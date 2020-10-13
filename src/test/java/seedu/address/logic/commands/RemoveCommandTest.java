@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.itemcommand.RemoveCommand;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.inventorymodel.InventoryModel;

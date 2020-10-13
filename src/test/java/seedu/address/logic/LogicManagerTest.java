@@ -20,8 +20,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.itemcommand.ItemAddCommand;
+import seedu.address.logic.commands.itemcommand.ItemListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -73,8 +73,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, inventoryModel);
+        String listCommand = ItemListCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, ItemListCommand.MESSAGE_SUCCESS, inventoryModel);
     }
 
     @Test
@@ -91,7 +91,7 @@ public class LogicManagerTest {
         logic = new LogicManager(inventoryModel, deliveryModel, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_CHICKEN + QUANTITY_DESC_CHICKEN
+        String addCommand = ItemAddCommand.COMMAND_WORD + NAME_DESC_CHICKEN + QUANTITY_DESC_CHICKEN
                 + SUPPLIER_DESC_CHICKEN + MAX_QUANTITY_DESC + METRIC_DESC_CHICKEN;
         Item expectedItem = new ItemBuilder(CHICKEN_MANUAL)
                 .withTags()

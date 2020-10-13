@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.itemcommand.ItemAddCommand;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.delivery.Delivery;
@@ -32,11 +33,11 @@ import seedu.address.model.item.Supplier;
 import seedu.address.model.item.Tag;
 import seedu.address.testutil.ItemBuilder;
 
-public class AddCommandTest {
+public class ItemAddCommandTest {
 
     @Test
     public void constructor_nullItem_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new ItemAddCommand(null));
     }
 
     @Test
@@ -44,9 +45,9 @@ public class AddCommandTest {
         ItemModelStubAcceptingInventoryAdded modelStub = new ItemModelStubAcceptingInventoryAdded();
         Item validItem = new ItemBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validItem).execute(modelStub);
+        CommandResult commandResult = new ItemAddCommand(validItem).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validItem), commandResult.getFeedbackToUser());
+        assertEquals(String.format(seedu.address.logic.commands.itemcommand.ItemAddCommand.MESSAGE_SUCCESS, validItem), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validItem), modelStub.itemsAdded);
     }
 
@@ -56,9 +57,9 @@ public class AddCommandTest {
         Item finalItem = new ItemBuilder().withName("Chicken").withQuantity("4").build();
         InventoryModelStub modelStub = new ItemModelStubAcceptingDuplicatingInventory(currentItem);
 
-        CommandResult commandResult = new AddCommand(currentItem).execute(modelStub);
+        CommandResult commandResult = new ItemAddCommand(currentItem).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_ITEM_ADDED_TO_INVENTORY, finalItem),
+        assertEquals(String.format(ItemAddCommand.MESSAGE_ITEM_ADDED_TO_INVENTORY, finalItem),
                 commandResult.getFeedbackToUser());
     }
 
@@ -68,21 +69,21 @@ public class AddCommandTest {
         Item finalItem = new ItemBuilder().withName("Chicken").withQuantity("4").withMaxQuantity("5000").build();
         InventoryModelStub modelStub = new ItemModelStubRejectingDuplicatingMaxQuantityInventory(currentItem);
 
-        assertThrows(CommandException.class, () -> new AddCommand(finalItem).execute(modelStub));
+        assertThrows(CommandException.class, () -> new ItemAddCommand(finalItem).execute(modelStub));
     }
 
     @Test
     public void equals() {
         Item chicken = new ItemBuilder().withName("Chicken").build();
         Item duck = new ItemBuilder().withName("Duck").build();
-        AddCommand addChickenCommand = new AddCommand(chicken);
-        AddCommand addDuckCommand = new AddCommand(duck);
+        ItemAddCommand addChickenCommand = new ItemAddCommand(chicken);
+        ItemAddCommand addDuckCommand = new ItemAddCommand(duck);
 
         // same object -> returns true
         assertTrue(addChickenCommand.equals(addChickenCommand));
 
         // same values -> returns true
-        AddCommand addChickenCommandCopy = new AddCommand(chicken);
+        ItemAddCommand addChickenCommandCopy = new ItemAddCommand(chicken);
         assertTrue(addChickenCommand.equals(addChickenCommandCopy));
 
         // different types -> returns false

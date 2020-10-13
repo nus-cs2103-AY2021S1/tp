@@ -11,7 +11,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DUCK;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditCommand.EditItemDescriptor;
+import seedu.address.logic.commands.itemcommand.ItemEditCommand;
+import seedu.address.logic.commands.itemcommand.ItemEditCommand.EditItemDescriptor;
 import seedu.address.testutil.EditItemDescriptorBuilder;
 
 public class EditItemDescriptorTest {
@@ -19,7 +20,7 @@ public class EditItemDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditCommand.EditItemDescriptor descriptorWithSameValues = new EditItemDescriptor(DESC_CHICKEN);
+        ItemEditCommand.EditItemDescriptor descriptorWithSameValues = new EditItemDescriptor(DESC_CHICKEN);
         assertTrue(DESC_CHICKEN.equals(descriptorWithSameValues));
 
         // same object -> returns true

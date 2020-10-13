@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.delivery.Delivery;
 import seedu.address.model.item.Item;
@@ -12,29 +13,9 @@ import seedu.address.model.item.Item;
 /**
  * The API of the InventoryModel component.
  */
-public interface InventoryModel {
+public interface InventoryModel extends Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Item> PREDICATE_SHOW_ALL_ITEMS = unused -> true;
-
-    /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
-     */
-    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
-
-    /**
-     * Returns the user prefs.
-     */
-    ReadOnlyUserPrefs getUserPrefs();
-
-    /**
-     * Returns the user prefs' GUI settings.
-     */
-    GuiSettings getGuiSettings();
-
-    /**
-     * Sets the user prefs' GUI settings.
-     */
-    void setGuiSettings(GuiSettings guiSettings);
 
     /**
      * Returns the user prefs' inventory book file path.

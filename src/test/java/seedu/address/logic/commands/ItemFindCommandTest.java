@@ -13,15 +13,16 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.itemcommand.ItemFindCommand;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.InventoryModelManager;
 import seedu.address.model.item.ItemContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code ItemFindCommand}.
  */
-public class FindCommandTest {
+public class ItemFindCommandTest {
     private InventoryModel inventoryModel = new InventoryModelManager(getTypicalInventoryBook(), new UserPrefs());
     private InventoryModel expectedInventoryModel =
             new InventoryModelManager(getTypicalInventoryBook(), new UserPrefs());
@@ -33,14 +34,14 @@ public class FindCommandTest {
         ItemContainsKeywordsPredicate secondPredicate =
                 new ItemContainsKeywordsPredicate(Collections.singletonList("second"), PREFIX_NAME);
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        ItemFindCommand findFirstCommand = new ItemFindCommand(firstPredicate);
+        ItemFindCommand findSecondCommand = new ItemFindCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        ItemFindCommand findFirstCommandCopy = new ItemFindCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -57,7 +58,7 @@ public class FindCommandTest {
     public void execute_zeroKeywords_noItemFound() {
         String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 0);
         ItemContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
+        ItemFindCommand command = new ItemFindCommand(predicate);
         expectedInventoryModel.updateFilteredItemList(predicate);
         assertCommandSuccess(command, inventoryModel, expectedMessage, expectedInventoryModel);
         assertEquals(Collections.emptyList(), inventoryModel.getFilteredItemList());

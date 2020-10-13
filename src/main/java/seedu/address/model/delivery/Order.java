@@ -20,6 +20,13 @@ public class Order {
         value = order;
     }
 
+    /**
+     * Returns true if a given string is a valid order.
+     */
+    public static boolean isValidOrder(String test) {
+        return true;
+    }
+
     @Override
     public String toString() {
         return value;

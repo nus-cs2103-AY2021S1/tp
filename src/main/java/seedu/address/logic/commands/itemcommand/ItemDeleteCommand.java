@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.itemcommand;
 
 import static java.util.Objects.requireNonNull;
 
@@ -8,15 +8,16 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.model.Model;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.item.Item;
 
 /**
  * Deletes a item identified using it's displayed index from the inventory book.
  */
-public class DeleteCommand extends Command {
+public class ItemDeleteCommand extends ItemCommand {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "delete-i";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the item identified by the index number used in the displayed item list.\n"
@@ -27,13 +28,15 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public ItemDeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
     @Override
-    public CommandResult execute(InventoryModel inventoryModel) throws CommandException {
-        requireNonNull(inventoryModel);
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        requireInventoryModel(model);
+        InventoryModel inventoryModel = (InventoryModel) model;
         List<Item> lastShownList = inventoryModel.getFilteredItemList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -48,7 +51,7 @@ public class DeleteCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                || (other instanceof ItemDeleteCommand // instanceof handles nulls
+                && targetIndex.equals(((ItemDeleteCommand) other).targetIndex)); // state check
     }
 }

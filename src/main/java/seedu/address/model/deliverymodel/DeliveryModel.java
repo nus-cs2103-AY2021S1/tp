@@ -5,35 +5,16 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.delivery.Delivery;
 
 /**
  * API of the DeliveryModel component
  */
-public interface DeliveryModel {
+public interface DeliveryModel extends Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Delivery> PREDICATE_SHOW_ALL_DELIVERIES = unused -> true;
-
-    /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
-     */
-    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
-
-    /**
-     * Returns the user prefs.
-     */
-    ReadOnlyUserPrefs getUserPrefs();
-
-    /**
-     * Returns the user prefs' GUI settings.
-     */
-    GuiSettings getGuiSettings();
-
-    /**
-     * Sets the user prefs' GUI settings.
-     */
-    void setGuiSettings(GuiSettings guiSettings);
 
     /**
      * Returns the user prefs' delivery book file path.

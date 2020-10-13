@@ -32,7 +32,8 @@ import static seedu.address.testutil.TypicalItems.DUCK_MANUAL;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.itemcommand.ItemAddCommand;
+import seedu.address.logic.parser.itemparser.ItemAddCommandParser;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
@@ -40,8 +41,8 @@ import seedu.address.model.item.Supplier;
 import seedu.address.model.item.Tag;
 import seedu.address.testutil.ItemBuilder;
 
-public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+public class ItemItemAddCommandParserTest {
+    private ItemAddCommandParser parser = new ItemAddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -49,26 +50,26 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_DUCK + QUANTITY_DESC_DUCK
-                + SUPPLIER_DESC_DUCK + TAG_DESC_DUCK, new AddCommand(expectedItem));
+                + SUPPLIER_DESC_DUCK + TAG_DESC_DUCK, new ItemAddCommand(expectedItem));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_CHICKEN + NAME_DESC_DUCK + QUANTITY_DESC_DUCK
-                + SUPPLIER_DESC_DUCK + TAG_DESC_DUCK, new AddCommand(expectedItem));
+                + SUPPLIER_DESC_DUCK + TAG_DESC_DUCK, new ItemAddCommand(expectedItem));
 
         // multiple quantity - last quantity accepted
         assertParseSuccess(parser, NAME_DESC_DUCK + QUANTITY_DESC_DUCK + QUANTITY_DESC_DUCK
-                + SUPPLIER_DESC_DUCK + TAG_DESC_DUCK, new AddCommand(expectedItem));
+                + SUPPLIER_DESC_DUCK + TAG_DESC_DUCK, new ItemAddCommand(expectedItem));
 
         // multiple supplier - last supplier accepted
         assertParseSuccess(parser, NAME_DESC_DUCK + QUANTITY_DESC_DUCK + SUPPLIER_DESC_DUCK
-                + SUPPLIER_DESC_DUCK + TAG_DESC_DUCK, new AddCommand(expectedItem));
+                + SUPPLIER_DESC_DUCK + TAG_DESC_DUCK, new ItemAddCommand(expectedItem));
 
         // multiple tags - all accepted
         Item expectedItemMultipleTags = new ItemBuilder(DUCK_MANUAL)
                 .withTags(VALID_TAG_CHICKEN, VALID_TAG_DUCK)
                 .build();
         assertParseSuccess(parser, NAME_DESC_DUCK + QUANTITY_DESC_DUCK + SUPPLIER_DESC_DUCK
-                + TAG_DESC_DUCK + TAG_DESC_CHICKEN, new AddCommand(expectedItemMultipleTags));
+                + TAG_DESC_DUCK + TAG_DESC_CHICKEN, new ItemAddCommand(expectedItemMultipleTags));
 
         // multiple maxQuantity - last maxQuantity accepted
         Item expectedItemMaxQuantitySpecified = new ItemBuilder(CHICKEN_MANUAL)
@@ -77,7 +78,7 @@ public class AddCommandParserTest {
                 .build();
         assertParseSuccess(parser, NAME_DESC_CHICKEN + QUANTITY_DESC_CHICKEN
                 + SUPPLIER_DESC_CHICKEN + TAG_DESC_CHICKEN
-                + MAX_QUANTITY_DESC_DUCK + MAX_QUANTITY_DESC_CHICKEN, new AddCommand(expectedItemMaxQuantitySpecified));
+                + MAX_QUANTITY_DESC_DUCK + MAX_QUANTITY_DESC_CHICKEN, new ItemAddCommand(expectedItemMaxQuantitySpecified));
 
         // multiple metrics - last metric accepted
         Item expectedItemMetricSpecified = new ItemBuilder(CHICKEN_MANUAL)
@@ -86,7 +87,7 @@ public class AddCommandParserTest {
                 .build();
         assertParseSuccess(parser, NAME_DESC_CHICKEN + QUANTITY_DESC_CHICKEN
                 + SUPPLIER_DESC_CHICKEN + TAG_DESC_CHICKEN
-                + METRIC_DESC_DUCK + METRIC_DESC_CHICKEN, new AddCommand(expectedItemMetricSpecified));
+                + METRIC_DESC_DUCK + METRIC_DESC_CHICKEN, new ItemAddCommand(expectedItemMetricSpecified));
     }
 
     @Test
@@ -94,17 +95,17 @@ public class AddCommandParserTest {
         // zero tags
         Item expectedItem = new ItemBuilder(CHICKEN_MANUAL).withTags().build();
         assertParseSuccess(parser, NAME_DESC_CHICKEN + QUANTITY_DESC_CHICKEN + SUPPLIER_DESC_CHICKEN,
-                new AddCommand(expectedItem));
+                new ItemAddCommand(expectedItem));
 
         // zero maxQuantity
         Item expectedItemMaxQ = new ItemBuilder(CHICKEN_MANUAL).build();
         assertParseSuccess(parser, NAME_DESC_CHICKEN + QUANTITY_DESC_CHICKEN + SUPPLIER_DESC_CHICKEN,
-                new AddCommand(expectedItemMaxQ));
+                new ItemAddCommand(expectedItemMaxQ));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, seedu.address.logic.commands.itemcommand.ItemAddCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_DUCK + QUANTITY_DESC_DUCK,
@@ -144,6 +145,6 @@ public class AddCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_DUCK + QUANTITY_DESC_DUCK
                 + SUPPLIER_DESC_DUCK + TAG_DESC_DUCK + TAG_DESC_CHICKEN,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, seedu.address.logic.commands.itemcommand.ItemAddCommand.MESSAGE_USAGE));
     }
 }
