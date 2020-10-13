@@ -42,7 +42,7 @@ public class MainWindowForExercise extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane exerciseListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -111,7 +111,7 @@ public class MainWindowForExercise extends UiPart<Stage> {
      */
     void fillInnerParts() {
         exerciseListPanel = new ExerciseListPanel(logic.getFilteredExerciseList());
-        personListPanelPlaceholder.getChildren().add(exerciseListPanel.getRoot());
+        exerciseListPanelPlaceholder.getChildren().add(exerciseListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
