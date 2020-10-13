@@ -183,7 +183,7 @@ public class CommentCommand extends Command {
         }
 
         public Set<Leave> getLeaves() {
-            return (leaves != null) ? leaves : null;
+            return (leaves != null) ? leaves : new HashSet<>();
         }
 
 

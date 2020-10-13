@@ -2,7 +2,6 @@ package com.eva.model.person.staff;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,6 +31,7 @@ public class Staff extends Person {
      * @param email
      * @param address
      * @param tags
+     * @param comments
      */
     public Staff(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Comment> comments) {
         super(name, phone, email, address, tags, comments);
@@ -64,18 +64,12 @@ public class Staff extends Person {
                 person.getAddress(), person.getTags(), leaves, person.getComments());
     }
 
-    /**
-     * Returns an immutable leave set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
     public Set<Leave> getLeaves() {
-        return Collections.unmodifiableSet(leaves);
+        return leaves;
     }
 
     public LeaveBalance getLeaveBalance() {
         return leaveBalance;
     }
-    /*
-    I think add leave is done in edit command or smth idk i guess it's similar to tag so gotta find out.
-     */
+
 }

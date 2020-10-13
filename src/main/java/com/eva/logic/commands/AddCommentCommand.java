@@ -28,12 +28,13 @@ public class AddCommentCommand extends CommentCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        //for now is staff because we only working with staff for now
+        List<Staff> lastShownList = model.getFilteredStaffList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-
+        //for now staff
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createAddEditedPerson(personToEdit, commentPersonDescriptor);
 
@@ -41,7 +42,11 @@ public class AddCommentCommand extends CommentCommand {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
+        if (editedPerson instanceof Staff) {
+            model.setStaff((Staff) personToEdit, (Staff) editedPerson);
+        } else {
+            model.setPerson(personToEdit, editedPerson);
+        }
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_ADD_COMMENT_SUCCESS, editedPerson));
     }

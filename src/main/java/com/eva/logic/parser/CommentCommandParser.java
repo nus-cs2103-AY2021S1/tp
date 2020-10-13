@@ -44,8 +44,6 @@ public class CommentCommandParser {
 
         CommentCommand.CommentPersonDescriptor commentPersonDescriptor = new CommentCommand.CommentPersonDescriptor();
         parseCommentsForEdit(argMultimap.getAllValues(PREFIX_COMMENT)).ifPresent(commentPersonDescriptor::setComments);
-        System.out.println(argMultimap.getAllValues(PREFIX_COMMENT));
-
         if (!commentPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }

@@ -8,6 +8,7 @@ import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.person.Person;
+import com.eva.model.person.staff.Staff;
 
 import javafx.collections.ObservableList;
 
@@ -33,6 +34,8 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
+
+    ObservableList<Staff> getFilteredStaffList();
 
     /**
      * Returns the user prefs' address book file path.
