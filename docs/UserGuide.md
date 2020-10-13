@@ -107,6 +107,8 @@ Format: `untag INDEX -t TAG_NAME`
 
 Shows a list of all food items in McGymmy.
 
+* List all food items in McGymmy
+
 Format: `list`
 
 ![list command example]()
