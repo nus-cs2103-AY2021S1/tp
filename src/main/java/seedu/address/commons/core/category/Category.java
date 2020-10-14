@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.util;
+package seedu.address.commons.core.category;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
