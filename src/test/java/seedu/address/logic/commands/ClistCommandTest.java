@@ -13,9 +13,9 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListContactsCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ClistCommand.
  */
-public class ListContactsCommandTest {
+public class ClistCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -28,12 +28,12 @@ public class ListContactsCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListContactsCommand(), model, ListContactsCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClistCommand(), model, ClistCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListContactsCommand(), model, ListContactsCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClistCommand(), model, ClistCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

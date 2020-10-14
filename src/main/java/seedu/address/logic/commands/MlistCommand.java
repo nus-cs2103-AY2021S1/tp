@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 /**
  * Lists all modules in the address book to the user.
  */
-public class ListModCommand extends Command {
+public class MlistCommand extends Command {
 
     public static final String COMMAND_WORD = "mlist";
 

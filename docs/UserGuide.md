@@ -227,6 +227,7 @@ Action | Format, Examples
 **Add modules** | `addmod m/MODULE_CODE n/MODULE_NAME`<br> e.g. `addmod m/CS2103 n/Software Engineering`
 **Delete modules** | `delmod m/MODULE_CODE`<br> e.g. `delmod m/CS2103`
 **Find modules** | `findmod KEYWORD [MORE_KEYWORDS]` <br> e.g. `findmod CS2103`
+**List all contacts and modules** | `list`
 **List all contacts** | `clist`
 **List all modules** | `mlist`
 **Assign** | `assign INDEX m/MODULE_CODE [MORE MODULE_CODES]` <br> e.g. `assign 3 m/CS2100 m/CS2106`

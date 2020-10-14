@@ -13,9 +13,9 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListModCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for MlistCommand.
  */
-public class ListModCommandTest {
+public class MlistCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -28,13 +28,13 @@ public class ListModCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListModCommand(), model, ListModCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new MlistCommand(), model, MlistCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showModuleAtIndex(model, INDEX_FIRST_MODULE);
-        assertCommandSuccess(new ListModCommand(), model, ListModCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new MlistCommand(), model, MlistCommand.MESSAGE_SUCCESS, expectedModel);
 
     }
 }

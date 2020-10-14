@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddModCommand;
+import seedu.address.logic.commands.ClistCommand;
 import seedu.address.logic.commands.DelModCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -23,8 +24,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindModCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListContactsCommand;
-import seedu.address.logic.commands.ListModCommand;
+import seedu.address.logic.commands.MlistCommand;
 import seedu.address.logic.commands.ResetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.CodeOrNameMatchesKeywordPredicate;
@@ -115,14 +115,14 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_listContacts() throws Exception {
-        assertTrue(parser.parseCommand(ListContactsCommand.COMMAND_WORD) instanceof ListContactsCommand);
-        assertTrue(parser.parseCommand(ListContactsCommand.COMMAND_WORD + " 3") instanceof ListContactsCommand);
+        assertTrue(parser.parseCommand(ClistCommand.COMMAND_WORD) instanceof ClistCommand);
+        assertTrue(parser.parseCommand(ClistCommand.COMMAND_WORD + " 3") instanceof ClistCommand);
     }
 
     @Test
     public void parseCommand_listModules() throws Exception {
-        assertTrue(parser.parseCommand(ListModCommand.COMMAND_WORD) instanceof ListModCommand);
-        assertTrue(parser.parseCommand(ListModCommand.COMMAND_WORD + " 3") instanceof ListModCommand);
+        assertTrue(parser.parseCommand(MlistCommand.COMMAND_WORD) instanceof MlistCommand);
+        assertTrue(parser.parseCommand(MlistCommand.COMMAND_WORD + " 3") instanceof MlistCommand);
     }
 
     @Test
