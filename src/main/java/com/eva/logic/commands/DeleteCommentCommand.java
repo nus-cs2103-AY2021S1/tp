@@ -47,7 +47,7 @@ public class DeleteCommentCommand extends CommentCommand {
             model.setPerson(personToEdit, editedPerson);
         }
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_ADD_COMMENT_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_DELETE_COMMENT_SUCCESS, editedPerson));
     }
 
     /**
