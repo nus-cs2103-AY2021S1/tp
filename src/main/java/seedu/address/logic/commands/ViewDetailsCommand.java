@@ -18,7 +18,7 @@ public class ViewDetailsCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the first item that matches "
             + "what is searched for, and displays its details.\n"
             + "Parameters: KEYWORD \n"
-            + "Example: " + COMMAND_WORD + "Bob's bone";
+            + "Example: " + COMMAND_WORD + " Bob's bone";
 
     private final NameIsExactlyPredicate predicate;
 
