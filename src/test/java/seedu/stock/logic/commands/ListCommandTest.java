@@ -6,7 +6,6 @@ import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_FIRST_STOCK;
 import static seedu.stock.testutil.TypicalStocks.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
