@@ -26,7 +26,8 @@ public class DeallocateCommandParser implements Parser<DeallocateCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_INDEX)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeallocateCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeallocateCommand.HELP.getFullMessage()));
         }
 
         try {
@@ -34,7 +35,7 @@ public class DeallocateCommandParser implements Parser<DeallocateCommand> {
             return new DeallocateCommand(studentIndex);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeallocateCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeallocateCommand.HELP.getFullMessage()), pe);
         }
     }
 

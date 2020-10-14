@@ -20,13 +20,9 @@ import seedu.resireg.model.student.Student;
 public class ReallocateCommand extends Command {
 
     public static final String COMMAND_WORD = "reallocate";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Reallocates a student to a room. \n"
-            + "Parameters: "
-            + PREFIX_STUDENT_INDEX + "STUDENT INDEX "
-            + PREFIX_ROOM_INDEX + "ROOM INDEX\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_STUDENT_INDEX + "1 "
-            + PREFIX_ROOM_INDEX + "1";
+    public static final Help HELP = new Help(COMMAND_WORD, "Reallocates a student to a room.",
+            "Parameters: " + PREFIX_STUDENT_INDEX + "STUDENT INDEX " + PREFIX_ROOM_INDEX + "ROOM INDEX\n"
+                    + "Example: " + COMMAND_WORD + " " + PREFIX_STUDENT_INDEX + "1 " + PREFIX_ROOM_INDEX + "1");
 
     public static final String MESSAGE_SUCCESS = "Room reallocated to %1$s: %2$s";
     public static final String MESSAGE_ROOM_NOT_FOUND = "This room does not exist in ResiReg";

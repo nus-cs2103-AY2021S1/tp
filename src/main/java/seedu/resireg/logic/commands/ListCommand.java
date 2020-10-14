@@ -14,6 +14,7 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all students";
 
+    public static final Help HELP = new Help(COMMAND_WORD, "Lists all students.");
 
     @Override
     public CommandResult execute(Model model) {

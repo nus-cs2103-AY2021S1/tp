@@ -27,7 +27,8 @@ public class ReallocateCommandParser implements Parser<ReallocateCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_INDEX, PREFIX_ROOM_INDEX)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReallocateCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ReallocateCommand.HELP.getFullMessage()));
         }
 
         try {
@@ -36,7 +37,7 @@ public class ReallocateCommandParser implements Parser<ReallocateCommand> {
             return new ReallocateCommand(studentIndex, roomIndex);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReallocateCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReallocateCommand.HELP.getFullMessage()), pe);
         }
     }
 

@@ -1,101 +1,73 @@
 package seedu.resireg.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.resireg.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.resireg.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.resireg.testutil.Assert.assertThrows;
-import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.resireg.logic.commands.AddCommand;
-import seedu.resireg.logic.commands.ClearCommand;
-import seedu.resireg.logic.commands.DeleteCommand;
-import seedu.resireg.logic.commands.EditCommand;
-import seedu.resireg.logic.commands.EditCommand.EditStudentDescriptor;
-import seedu.resireg.logic.commands.ExitCommand;
-import seedu.resireg.logic.commands.FindCommand;
-import seedu.resireg.logic.commands.HelpCommand;
-import seedu.resireg.logic.commands.ListCommand;
+import seedu.resireg.logic.commands.Command;
+import seedu.resireg.logic.commands.CommandResult;
+import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.logic.parser.exceptions.ParseException;
-import seedu.resireg.model.student.NameContainsKeywordsPredicate;
-import seedu.resireg.model.student.Student;
-import seedu.resireg.testutil.EditStudentDescriptorBuilder;
-import seedu.resireg.testutil.StudentBuilder;
-import seedu.resireg.testutil.StudentUtil;
+import seedu.resireg.model.Model;
 
 public class AddressBookParserTest {
+    private static final String MOCK_COMMAND_WORD = "command";
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final AddressBookParser mockParser;
 
-    @Test
-    public void parseCommand_add() throws Exception {
-        Student student = new StudentBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(StudentUtil.getAddCommand(student));
-        assertEquals(new AddCommand(student), command);
+    private static class MockCommand extends Command {
+        private final String userInput;
+
+        MockCommand(String userInput) {
+            this.userInput = userInput;
+        }
+
+        @Override
+        public CommandResult execute(Model model) throws CommandException {
+            throw new CommandException("unimplemented stub method");
+        }
+
+        public String getUserInput() {
+            return userInput;
+        }
+    }
+
+    AddressBookParserTest() {
+        Map<String, Parser<Command>> map = new HashMap<>();
+        map.put(MOCK_COMMAND_WORD, MockCommand::new);
+        mockParser = new AddressBookParser(map);
     }
 
     @Test
-    public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+    public void parseCommand_validCommandWordNoArgs() throws ParseException {
+        assertEquals("", ((MockCommand) mockParser.parseCommand(MOCK_COMMAND_WORD)).getUserInput());
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+    public void parseCommand_validCommandWordWithArgs() throws ParseException {
+        assertEquals(" args", ((MockCommand) mockParser.parseCommand(MOCK_COMMAND_WORD + " args")).getUserInput());
+        assertEquals(" a1 a2", ((MockCommand) mockParser.parseCommand(MOCK_COMMAND_WORD + " a1 a2")).getUserInput());
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
-        Student student = new StudentBuilder().build();
-        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+    public void parseCommand_validCommandWordWithArgsTrailingSpaces() throws ParseException {
+        // check that trailing spaces are removed
+        assertEquals(" args", ((MockCommand) mockParser.parseCommand(MOCK_COMMAND_WORD + " args  ")).getUserInput());
+    }
+
+
+    @Test
+    public void parseCommand_invalidCommandWord() {
+        assertThrows(ParseException.class, () -> mockParser.parseCommand("nonexistentCommand"));
     }
 
     @Test
-    public void parseCommand_exit() throws Exception {
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
-    }
-
-    @Test
-    public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
-    }
-
-    @Test
-    public void parseCommand_help() throws Exception {
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
-    }
-
-    @Test
-    public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
-    }
-
-    @Test
-    public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
-    }
-
-    @Test
-    public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    public void parseCommand_invalidCommandWordSubset() {
+        assertThrows(ParseException.class, () -> mockParser.parseCommand(MOCK_COMMAND_WORD + "asdfj"));
+        assertThrows(ParseException.class, () -> mockParser.parseCommand("asdfj" + MOCK_COMMAND_WORD));
     }
 }

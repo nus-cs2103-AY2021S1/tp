@@ -46,16 +46,16 @@ class ListRoomCommandParserTest {
     void parse_invalidOptionalArgs_throwsParseException() {
         // missing flag
         assertParseFailure(parser, "--",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListRoomCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListRoomCommand.HELP.getFullMessage()));
         // no two dashes
         assertParseFailure(parser, "-",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListRoomCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListRoomCommand.HELP.getFullMessage()));
         // misspelled vacant
         assertParseFailure(parser, "--vacent",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListRoomCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListRoomCommand.HELP.getFullMessage()));
         // misspelled allocated
         assertParseFailure(parser, "-allokated",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListRoomCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListRoomCommand.HELP.getFullMessage()));
     }
 
 }

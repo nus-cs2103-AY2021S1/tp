@@ -19,11 +19,10 @@ import seedu.resireg.model.student.Student;
 public class DeallocateCommand extends Command {
 
     public static final String COMMAND_WORD = "deallocate";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deallocates a student from a room. \n"
-            + "Parameters: "
-            + PREFIX_STUDENT_INDEX + "STUDENT INDEX\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_STUDENT_INDEX + "1";
+
+    public static final Help HELP = new Help(COMMAND_WORD, "Deallocates a student from a room.",
+            "Parameters: " + PREFIX_STUDENT_INDEX + "STUDENT INDEX\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_STUDENT_INDEX + "1");
 
     public static final String MESSAGE_SUCCESS = "Room deallocated from %1$s: %2$s.";
     public static final String MESSAGE_STUDENT_NOT_FOUND = "This student is not registered in ResiReg";
