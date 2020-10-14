@@ -1,12 +1,32 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-//public class AddCommandParserTest {
-//    private AddCommandParser parser = new AddCommandParser();
-//
-//
-//
-//}
+import org.junit.jupiter.api.Test;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.model.account.entry.Expense;
+import seedu.address.testutil.ExpenseBuilder;
+import seedu.address.testutil.RevenueBuilder;
+
+
+public class AddCommandParserTest {
+    private AddCommandParser parser = new AddCommandParser();
+    private ExpenseBuilder expenseBuilder = new ExpenseBuilder();
+    private RevenueBuilder revenueBuilder = new RevenueBuilder();
+    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
+
+
+    @Test
+    public void parse_allFieldsPresent_success() {
+
+        Expense expenseStub = expenseBuilder.build();
+        assertParseSuccess(parser, " c/expense d/buying paint supplies a/131.73",
+                new AddCommand(expenseStub));
+    }
+
+
+}
 
 
 
