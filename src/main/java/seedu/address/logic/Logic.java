@@ -9,7 +9,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyCommonCents;
 import seedu.address.model.account.Account;
-import seedu.address.model.account.entry.Entry;
 import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
 
@@ -41,9 +40,6 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of revenues */
     ObservableList<Revenue> getFilteredRevenueList();
-
-    /** Returns an unmodifiable view of the filtered list of entries */
-    ObservableList<Entry> getFilteredEntryList();
 
     /**
      * Returns the user prefs' common cents file path.
