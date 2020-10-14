@@ -1,62 +1,25 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
-
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.investigationcase.Case;
-
 /**
  * Adds a case to PIVOT.
  */
-public class AddCommand extends Command {
+public abstract class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_CASE
-            + ": Adds a case to PIVOT. "
-            + "Parameters: "
-            + PREFIX_TITLE + "TITLE "
-            + "[" + PREFIX_STATUS + "STATUS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TITLE + "John Doe "
-            + PREFIX_STATUS + "closed "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+    // Todo: Refine the description of message usage
+    public static final String MESSAGE_USAGE_MAIN_PAGE = COMMAND_WORD
+            + ": Adds an item of a specified type to PIVOT.\n"
+            + "Parameters (for 'case' TYPE): TYPE t:TITLE\n"
+            + "Example: " + COMMAND_WORD + " case t: Ang Mo Kio Murders";
 
-    public static final String MESSAGE_SUCCESS = "New case added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CASE = "This case already exists in the address book";
-
-    private final Case toAdd;
-
-    /**
-     * Creates an AddCommand to add the specified {@code Case}
-     */
-    public AddCommand(Case investigationCase) {
-        requireNonNull(investigationCase);
-        toAdd = investigationCase;
-    }
-
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-
-        if (model.hasCase(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_CASE);
-        }
-
-        model.addCase(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
-    }
+    // Todo: Refine the description of message usage
+    public static final String MESSAGE_USAGE_CASE_PAGE = COMMAND_WORD
+            + ": Adds an item of a specified type to current case in PIVOT.\n"
+            + "Parameters (for 'suspect','victim','witness' TYPE): TYPE n:NAME\n"
+            + "Parameters (for 'docs' TYPE): TYPE n:NAME r:REFERENCE\n"
+            + "Parameters (for 'desc' TYPE): TYPE d:DESC \n"
+            + "Example: " + COMMAND_WORD + " suspect n:John\n"
+            + "Example: " + COMMAND_WORD + " doc n:Evidence r:text1.txt"
+            + "Example: " + COMMAND_WORD + " desc d:description of case";
 }

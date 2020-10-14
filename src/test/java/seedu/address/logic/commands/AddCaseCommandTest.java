@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.casecommands.AddCaseCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -23,11 +24,11 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.investigationcase.Case;
 import seedu.address.testutil.CaseBuilder;
 
-public class AddCommandTest {
+public class AddCaseCommandTest {
 
     @Test
     public void constructor_nullCase_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddCaseCommand(null));
     }
 
     @Test
@@ -35,33 +36,34 @@ public class AddCommandTest {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Case validCase = new CaseBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validCase).execute(modelStub);
+        CommandResult commandResult = new AddCaseCommand(validCase).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validCase), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddCaseCommand.MESSAGE_SUCCESS, validCase), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validCase), modelStub.personsAdded);
     }
 
     @Test
     public void execute_duplicateCase_throwsCommandException() {
         Case validCase = new CaseBuilder().build();
-        AddCommand addCommand = new AddCommand(validCase);
+        AddCommand addCommand = new AddCaseCommand(validCase);
         ModelStub modelStub = new ModelStubWithPerson(validCase);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_CASE, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddCaseCommand.MESSAGE_DUPLICATE_CASE, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Case alice = new CaseBuilder().withTitle("Alice").build();
         Case bob = new CaseBuilder().withTitle("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddCommand addAliceCommand = new AddCaseCommand(alice);
+        AddCommand addBobCommand = new AddCaseCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddCommand addAliceCommandCopy = new AddCaseCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false

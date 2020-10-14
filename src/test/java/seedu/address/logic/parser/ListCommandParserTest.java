@@ -7,14 +7,15 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.casecommands.ListCaseCommand;
 
 public class ListCommandParserTest {
 
     private ListCommandParser parser = new ListCommandParser();
 
     @Test
-    public void parse_validArgs_returnsListCommand() {
-        assertParseSuccess(parser, "case", new ListCommand());
+    public void parse_validArgs_returnsListCaseCommand() {
+        assertParseSuccess(parser, "case", new ListCaseCommand());
     }
 
     @Test

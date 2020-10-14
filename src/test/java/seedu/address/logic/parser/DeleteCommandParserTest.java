@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.casecommands.DeleteCaseCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -22,14 +23,18 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "case 1", new DeleteCommand(INDEX_FIRST_PERSON));
+        assertParseSuccess(parser, "case 1", new DeleteCaseCommand(INDEX_FIRST_PERSON));
     }
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
+    public void parse_invalidArgsMainPage_throwsParseException() {
         assertParseFailure(parser, "case a",
-                           String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "0", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+                           String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE_MAIN_PAGE));
+        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeleteCommand.MESSAGE_USAGE_MAIN_PAGE));
+        assertParseFailure(parser, "0", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeleteCommand.MESSAGE_USAGE_MAIN_PAGE));
     }
+
+    //TODO: do checks for when state is at case page as well, need to maniuplate the state to case page?
 }
