@@ -10,12 +10,13 @@ traditional GUI apps.
 ## Quick start
 * [Features](#features)
   * [Show all commands : `help`](#show-all-commands--help)
-  * [Listing all tasks : `list`](#listing-all-tasks--list)
-  * [Adding a task: `add`](#adding-a-task-add)
-  * [Deleting a task : `delete`](#deleting-a-task--delete)
-  * [Mark a task as done: `done`](#marking-a-task-as-done-done)
-  * Editing a task : `edit` (coming soon)
-  * [Exiting the program : `exit`](#exiting-the-program--exit)
+  * [List all tasks : `list`](#list-all-tasks--list)
+  * [Add a task: `add`](#add-a-task-add)
+  * [Delete a task : `delete`](#delete-a-task--delete)
+  * [Mark a task as done: `done`](#mark-a-task-as-done-done)
+  * Edit a task : `edit`
+  * [Find a task : `find`](#find-a-task-by-attribute-find)
+  * [Exit the program : `exit`](#exit-the-program--exit)
 * [FAQ](#faq)
 * [Command summary](#command-summary)
 
@@ -50,7 +51,7 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### Listing all tasks : `list`
+### List all tasks : `list`
 
 Shows a list of all tasks in PlaNus.
 
@@ -59,7 +60,7 @@ Shows a list of all tasks in PlaNus.
 Format: `list`
 
 
-### Adding a task: `add`
+### Add a task: `add`
 
 Adds a task of the specified type to PlaNus.
 
@@ -79,7 +80,7 @@ Examples:
 
 
 
-### Deleting a task : `delete`
+### Delete a task : `delete`
 
 Deletes the specified task from PlaNus.
 
@@ -93,7 +94,7 @@ Examples:
 * `list` followed by `delete 2 3` deletes the 2nd and the 3rd tasks in the results of the `list` command.
 * `find title:homework` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
-### Marking a task as done: `done`
+### Mark a task as done: `done`
 
 Marks a specified task in PlaNus as done.
 
@@ -107,8 +108,24 @@ Examples:
 * `list` followed by `done 2 3` marks the 2nd and the 3rd tasks in the results of the `list` command status to be done.
 * `find title:homework` followed by `done 1` marks the 1st task in the results of the `find` command status to be done.
 
+### Find a task by attribute: `find`
 
-### Exiting the program : `exit`
+Finds a task by a set of defined attribute by the user
+
+Format: `find ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...`
+
+Available attributes in v1.2 include:
+* `title:` find all tasks with the given title
+* `desc:` find all tasks with the given description
+* `type:` find all tasks with the given type
+* `date:` find all tasks with the given date
+
+Examples:
+* `find title:play games` will list all tasks with title including the phrase `play games`
+* `find type:todo` will list all tasks with the type `todo`
+* `find title:dinner type:todo` will list all tasks with the type `todo` and title that includes `dinner`
+
+### Exit the program : `exit`
 
 Exits PlaNus.
 
