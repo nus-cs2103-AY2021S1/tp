@@ -24,12 +24,20 @@ QuickCache is a **desktop app for managing flashcards, optimized for use via a C
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
-
+   
    * **`list`** : Lists all FlashCards.
+   
+   * **`open`**`1` : Opens the 1st question shown in the current list.
 
-   * **`add`**`add n/Plants give out ___ when they photosynthesise? n/Oxygen` :  Adds a question `Plants give out ___ when they photosynthesise?` with answer `Oxygen`.
+   * **`add`**`q/Plants give out ___ when they photosynthesise? ans/Oxygen t/Biology` :  Adds a open ended question `Plants give out ___ when they photosynthesise?` with answer `Oxygen` and tagged to `Biology`. 
+   
+   * **`addmcq`**`q/Plants give out ___ when they photosynthesise? ans/1 c/Oxygen c/Carbon c/Carbon dioxide` :  Adds a multiple choice question `Plants give out ___ when they photosynthesise?` with 3 options `Oxygen`, `Carbon`, `Carbon dioxide` and with answer `Oxygen`.
    
    * **`test`**`1 ans/Example answer` : Tests the 1st question shown in the current list with `Example answer` as the answer.
+   
+   * **`find`**`Biology` : Finds all Flashcards tagged to the tag `Biology`.
+   
+   * **`stats`**`1` : Show stats of the 1st question shown in the current list.
    
    * **`delete`**`3` : Deletes the 3rd flashcard shown in the current list.
 
@@ -71,7 +79,7 @@ Format: `open INDEX`
 
 * Opens the flashcard at the specified `INDEX`.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `list` followed by `open 2` opens the 2nd flashcard in the list.
@@ -113,7 +121,7 @@ Format: `test INDEX ans/ANSWER`
 
 * Tests the flashcard at the specified `INDEX`
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer**  1, 2, 3, …​
+* The index **must be a positive integer**  1, 2, 3, …
 * The `ANSWER` is case-insensitive.
 
 Examples:
@@ -125,19 +133,44 @@ Format: `test INDEX o/OPTION`
 
 * Tests the flashcard at the specified `INDEX`
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer**  1, 2, 3, …​
+* The index **must be a positive integer**  1, 2, 3, …
 * `CHOICE`(s) are displayed in the displayed choices list of the flashcard after `open INDEX` command is performed.
 * The `OPTION` refers to the index number of the specified `CHOICE`.
-* The `OPTION` **must be a positive integer** 1, 2, 3, …​
+* The `OPTION` **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `list` followed by `test 1 o/2` tests the 1st flashcard in the list with `OPTION 2` corresponding to the 2nd choice in the choices of the multiple choice question as the answer.
+
+### Displaying statistics for a Flashcard: `stats`
+
+Shows the Bar Chart for a specified Flashcard in the list.
+
+Statistics include:
+
+* The number of times the user answers the question associated with the flashcard correctly.
+* The number of times the user attempted the question associated with the flashcard.
+
+Format: `stats INDEX`
+
+* Displays the statistics of a flashcard at the specified `INDEX`.
+* The index refers to the index number shown in the displayed flashcard list.
+* The index **must be a positive integer** 1, 2, 3, …
 
 ### Listing all flashcards : `list`
 
 Shows a list of all flashcards currently created.
 
 Format: `list`
+
+### Finding Flashcards by their tags: `find`
+
+Finds all Flashcards based on their tags.
+
+Format: `find TAGS`
+
+* Tags should be seperated by a whitespace between
+
+Example: `find CS2100 MCQ` where `CS2100` and `MCQ` are tags.
 
 ### Deleting a flashcard : `delete`
 
@@ -147,7 +180,7 @@ Format: `delete INDEX`
 
 * Deletes the flashcard at the specified `INDEX`.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd flashcard in the list.
@@ -157,16 +190,6 @@ Examples:
 Clears all entries from QuickCache.
 
 Format: `clear`
-
-### Finding Flashcards by their tags: `find`
-
-Finds all Flashcards based on their tags.
-
-Format: `find KEYWORDS`
-
-* Keywords should be seperated by a whitespace between
-
-Example: `find CS2100 MCQ` where `CS2100` and `MCQ` are keywords.
 
 ### Exiting the program : `exit`
 

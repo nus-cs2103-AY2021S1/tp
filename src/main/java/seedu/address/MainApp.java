@@ -77,8 +77,6 @@ public class MainApp extends Application {
         Optional<ReadOnlyQuickCache> addressBookOptional;
         ReadOnlyQuickCache initialData;
 
-        // initialData = SampleDataUtil.getSampleQuickCache(); // can delete after storage is implemented
-
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {

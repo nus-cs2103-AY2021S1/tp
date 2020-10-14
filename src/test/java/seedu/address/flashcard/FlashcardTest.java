@@ -18,17 +18,20 @@ class FlashcardTest {
     @Test
     public void constructor_negativeTimesTested_throwsIllegalArgumentException() {
         // negative times tested
-        assertThrows(IllegalArgumentException.class, () -> new FlashcardBuilder(RANDOM1).withTimesTested(-1).build());
+        assertThrows(IllegalArgumentException.class, () -> new FlashcardBuilder(RANDOM1)
+                .withStatistics(new Statistics(-1, 0)).build());
 
         // negative times tested correct
         assertThrows(
-                IllegalArgumentException.class, () -> new FlashcardBuilder(RANDOM1).withTimesTestedCorrect(-1).build());
+                IllegalArgumentException.class, () -> new FlashcardBuilder(RANDOM1)
+                        .withStatistics(new Statistics(0, -1)).build());
     }
 
     @Test
     public void constructor_timesTestedLessThanTimesTestedCorrect_throwsIllegalArgumentException() {
         assertThrows(
-                IllegalArgumentException.class, () -> new FlashcardBuilder(RANDOM1).withTimesTestedCorrect(1).build());
+                IllegalArgumentException.class, () -> new FlashcardBuilder(RANDOM1)
+                        .withStatistics(new Statistics(0, 1)).build());
     }
 
     @Test
@@ -77,14 +80,16 @@ class FlashcardTest {
 
     @Test
     public void getFlashcardAfterTestSuccess() {
-        Flashcard updatedRandom1 = new FlashcardBuilder(RANDOM1).withTimesTestedCorrect(1).withTimesTested(1).build();
+        Flashcard updatedRandom1 = new FlashcardBuilder(RANDOM1)
+                .withStatistics(new Statistics(1, 1)).build();
         assertTrue(RANDOM1.getFlashcardAfterTestSuccess().isSameFlashcard(updatedRandom1));
         assertTrue(RANDOM1.getFlashcardAfterTestSuccess().equals(updatedRandom1));
     }
 
     @Test
     public void getFlashcardAfterTestFailure() {
-        Flashcard updatedRandom1 = new FlashcardBuilder(RANDOM1).withTimesTested(1).build();
+        Flashcard updatedRandom1 = new FlashcardBuilder(RANDOM1)
+                .withStatistics(new Statistics(1, 0)).build();
         assertTrue(RANDOM1.getFlashcardAfterTestFailure().isSameFlashcard(updatedRandom1));
         assertTrue(RANDOM1.getFlashcardAfterTestFailure().equals(updatedRandom1));
     }

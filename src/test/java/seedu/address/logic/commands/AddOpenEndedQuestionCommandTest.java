@@ -54,26 +54,26 @@ public class AddOpenEndedQuestionCommandTest {
 
     @Test
     public void equals() {
-        Flashcard alice = new FlashcardBuilder().withQuestion("Alice").build();
-        Flashcard bob = new FlashcardBuilder().withQuestion("Bob").build();
-        AddOpenEndedQuestionCommand addAliceCommand = new AddOpenEndedQuestionCommand(alice);
-        AddOpenEndedQuestionCommand addBobCommand = new AddOpenEndedQuestionCommand(bob);
+        Flashcard sampleQuestionOne = new FlashcardBuilder().withQuestion("sample question").build();
+        Flashcard sampleQuestionTwo = new FlashcardBuilder().withQuestion("sample question 2").build();
+        AddOpenEndedQuestionCommand addSampleOneCommand = new AddOpenEndedQuestionCommand(sampleQuestionOne);
+        AddOpenEndedQuestionCommand addSampleTwoCommand = new AddOpenEndedQuestionCommand(sampleQuestionTwo);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addSampleOneCommand.equals(addSampleOneCommand));
 
         // same values -> returns true
-        AddOpenEndedQuestionCommand addAliceCommandCopy = new AddOpenEndedQuestionCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddOpenEndedQuestionCommand addAliceCommandCopy = new AddOpenEndedQuestionCommand(sampleQuestionOne);
+        assertTrue(addSampleOneCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addSampleOneCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addSampleOneCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addSampleOneCommand.equals(addSampleTwoCommand));
     }
 
     /**

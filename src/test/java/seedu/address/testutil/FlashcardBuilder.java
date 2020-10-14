@@ -12,6 +12,7 @@ import seedu.address.flashcard.Flashcard;
 import seedu.address.flashcard.MultipleChoiceQuestion;
 import seedu.address.flashcard.OpenEndedQuestion;
 import seedu.address.flashcard.Question;
+import seedu.address.flashcard.Statistics;
 import seedu.address.flashcard.Tag;
 
 
@@ -22,12 +23,12 @@ public class FlashcardBuilder {
     public static final String DEFAULT_TAG = "Tag 0";
     public static final int DEFAULT_TIMES_TESTED = 0;
     public static final int DEFAULT_TIMES_TESTED_CORRECT = 0;
+    public static final Statistics DEFAULT_STATISTICS = new Statistics();
 
     private Question question;
     private Answer answer;
     private Set<Tag> tags;
-    private int timesTested;
-    private int timesTestedCorrect;
+    private Statistics statistics;
 
     /**
      * Creates a {@code FlashcardBuilder} with the default details.
@@ -36,8 +37,7 @@ public class FlashcardBuilder {
         question = new OpenEndedQuestion(DEFAULT_QUESTION);
         answer = new Answer(DEFAULT_ANSWER);
         tags = new HashSet<>(Collections.singletonList(new Tag(DEFAULT_TAG)));
-        timesTested = DEFAULT_TIMES_TESTED;
-        timesTestedCorrect = DEFAULT_TIMES_TESTED_CORRECT;
+        statistics = DEFAULT_STATISTICS;
     }
 
     /**
@@ -49,8 +49,7 @@ public class FlashcardBuilder {
         question = flashcard.getQuestion();
         answer = flashcard.getAnswer();
         tags = flashcard.getTags();
-        timesTested = flashcard.getTimesTested();
-        timesTestedCorrect = flashcard.getTimesTestedCorrect();
+        statistics = flashcard.getStatistics();
     }
 
     /**
@@ -108,23 +107,15 @@ public class FlashcardBuilder {
     }
 
     /**
-     * Adds a new {@code timesTested} to the {@code Flashcard} that we are building.
+     * Adds a new {@code Statistics} to the {@code Flashcard} that we are building.
      */
-    public FlashcardBuilder withTimesTested(int timesTested) {
-        this.timesTested = timesTested;
-        return this;
-    }
-
-    /**
-     * Adds a new {@code timesTestedCorrect} to the {@code Flashcard} that we are building.
-     */
-    public FlashcardBuilder withTimesTestedCorrect(int timesTestedCorrect) {
-        this.timesTestedCorrect = timesTestedCorrect;
+    public FlashcardBuilder withStatistics(Statistics statistics) {
+        this.statistics = statistics;
         return this;
     }
 
     public Flashcard build() {
-        return new Flashcard(question, answer, tags, timesTested, timesTestedCorrect);
+        return new Flashcard(question, answer, tags, statistics);
     }
 
 }

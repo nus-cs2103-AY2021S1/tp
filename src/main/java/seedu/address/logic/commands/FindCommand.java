@@ -31,7 +31,7 @@ public class FindCommand extends Command {
         model.updateFilteredFlashcardList(predicate);
         return new CommandResult(
                 // TODO: Change the enum to be flashcard instead of persons
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredFlashcardList().size()));
+                String.format(Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW, model.getFilteredFlashcardList().size()));
     }
 
     @Override
