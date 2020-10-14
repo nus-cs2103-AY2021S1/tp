@@ -28,7 +28,7 @@ public abstract class FoodEntryBook implements ReadOnlyFoodEntryBook {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setFoodEntries(List<? extends FoodEntry> entries) {
+    public void setFoodEntries(List<? extends Item> entries) {
         this.entries.setFoodEntries(entries);
     }
 
@@ -46,7 +46,7 @@ public abstract class FoodEntryBook implements ReadOnlyFoodEntryBook {
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    public boolean hasIngredient(FoodEntry entry) {
+    public boolean hasIngredient(Item entry) {
         requireNonNull(entry);
         return entries.contains(entry);
     }
@@ -54,7 +54,7 @@ public abstract class FoodEntryBook implements ReadOnlyFoodEntryBook {
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    public boolean hasRecipe(FoodEntry entry) {
+    public boolean hasRecipe(Item entry) {
         requireNonNull(entry);
         return entries.contains(entry);
     }
@@ -123,7 +123,7 @@ public abstract class FoodEntryBook implements ReadOnlyFoodEntryBook {
     }
 
     @Override
-    public ObservableList<FoodEntry> getFoodEntryList() {
+    public ObservableList<Item> getFoodEntryList() {
         return entries.asUnmodifiableObservableList();
     }
 

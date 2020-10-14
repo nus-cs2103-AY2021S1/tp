@@ -15,7 +15,6 @@ import chopchop.model.recipe.Recipe;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.ingredient.IngredientReference;
 
-import chopchop.model.attributes.Name;
 import chopchop.model.attributes.Step;
 import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.ExpiryDate;
@@ -194,7 +193,7 @@ public class AddCommandParser {
         List<IngredientReference> ingredients, List<Step> steps) {
 
         return new AddRecipeCommand(new Recipe(
-            new Name(name), ingredients, steps
+            name, ingredients, steps
         ));
     }
 
@@ -202,9 +201,9 @@ public class AddCommandParser {
     private static AddIngredientCommand createAddIngredientCommand(String name,
         Optional<Quantity> qty, Optional<String> expiry) {
 
-        return new AddIngredientCommand(new Ingredient(new Name(name),
+        return new AddIngredientCommand(new Ingredient(name,
             qty.orElse(Count.of(1)),
-            expiry.map(ExpiryDate::new).orElse(ExpiryDate.none())
+            expiry.map(ExpiryDate::new).orElse(null)
         ));
     }
 }

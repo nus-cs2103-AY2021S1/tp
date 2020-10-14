@@ -9,16 +9,16 @@ import chopchop.model.exceptions.EntryNotFoundException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class UniqueFoodEntryList implements Iterable<FoodEntry> {
+public class UniqueFoodEntryList implements Iterable<Item> {
 
-    private final ObservableList<FoodEntry> internalList = FXCollections.observableArrayList();
-    private final ObservableList<FoodEntry> internalUnmodifiableList =
+    private final ObservableList<Item> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Item> internalUnmodifiableList =
         FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent food as the given argument.
      */
-    public boolean contains(FoodEntry toCheck) {
+    public boolean contains(Item toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::equals);
     }
@@ -27,7 +27,7 @@ public class UniqueFoodEntryList implements Iterable<FoodEntry> {
      * Adds a FoodEntry to the list.
      * The FoodEntry must not already exist in the list.
      */
-    public void add(FoodEntry toAdd) {
+    public void add(Item toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateEntryException();
@@ -41,7 +41,7 @@ public class UniqueFoodEntryList implements Iterable<FoodEntry> {
      * The FoodEntry identity of {@code editedFoodEntry} must not be the same as another existing
      * FoodEntry in the list.
      */
-    public void setEntry(FoodEntry target, FoodEntry editedFoodEntry) {
+    public void setEntry(Item target, Item editedFoodEntry) {
         requireAllNonNull(target, editedFoodEntry);
 
         int index = internalList.indexOf(target);
@@ -60,7 +60,7 @@ public class UniqueFoodEntryList implements Iterable<FoodEntry> {
      * Removes the equivalent FoodEntry from the list.
      * The FoodEntry must exist in the list.
      */
-    public void remove(FoodEntry toRemove) {
+    public void remove(Item toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new EntryNotFoundException();
@@ -76,7 +76,7 @@ public class UniqueFoodEntryList implements Iterable<FoodEntry> {
      * Replaces the contents of this list with {@code FoodEntries}.
      * {@code FoodEntries} must not contain duplicate FoodEntries.
      */
-    public void setFoodEntries(List<? extends FoodEntry> entries) {
+    public void setFoodEntries(List<? extends Item> entries) {
         requireAllNonNull(entries);
         //if (!ingredientsAreUnique(entries)) {
         if (!foodEntriesAreUnique(entries)) {
@@ -89,12 +89,12 @@ public class UniqueFoodEntryList implements Iterable<FoodEntry> {
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<FoodEntry> asUnmodifiableObservableList() {
+    public ObservableList<Item> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<FoodEntry> iterator() {
+    public Iterator<Item> iterator() {
         return internalList.iterator();
     }
 
@@ -113,7 +113,7 @@ public class UniqueFoodEntryList implements Iterable<FoodEntry> {
     /**
      * Returns true if {@code FoodEntries} contains only unique FoodEntries.
      */
-    private boolean ingredientsAreUnique(List<? extends FoodEntry> ingredients) {
+    private boolean ingredientsAreUnique(List<? extends Item> ingredients) {
         for (int i = 0; i < ingredients.size() - 1; i++) {
             for (int j = i + 1; j < ingredients.size(); j++) {
                 if (ingredients.get(i).equals(ingredients.get(j))) {
@@ -127,7 +127,7 @@ public class UniqueFoodEntryList implements Iterable<FoodEntry> {
     /**
      * Returns true if {@code FoodEntries} contains only unique FoodEntries.
      */
-    private boolean recipesAreUnique(List<? extends FoodEntry> recipes) {
+    private boolean recipesAreUnique(List<? extends Item> recipes) {
         for (int i = 0; i < recipes.size() - 1; i++) {
             for (int j = i + 1; j < recipes.size(); j++) {
                 if (recipes.get(i).equals(recipes.get(j))) {
@@ -141,7 +141,7 @@ public class UniqueFoodEntryList implements Iterable<FoodEntry> {
     /**
      * Returns true if {@code FoodEntries} contains only unique FoodEntries.
      */
-    private boolean foodEntriesAreUnique(List<? extends FoodEntry> foodEntries) {
+    private boolean foodEntriesAreUnique(List<? extends Item> foodEntries) {
         for (int i = 0; i < foodEntries.size() - 1; i++) {
             for (int j = i + 1; j < foodEntries.size(); j++) {
                 if (foodEntries.get(i).equals(foodEntries.get(j))) {

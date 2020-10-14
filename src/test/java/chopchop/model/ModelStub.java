@@ -86,7 +86,7 @@ public abstract class ModelStub implements Model {
     }
 
     @Override
-    public void updateFilteredIngredientList(Predicate<FoodEntry> predicate) {
+    public void updateFilteredIngredientList(Predicate<Item> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -136,7 +136,7 @@ public abstract class ModelStub implements Model {
     }
 
     @Override
-    public void updateFilteredRecipeList(Predicate<FoodEntry> predicate) {
+    public void updateFilteredRecipeList(Predicate<Item> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 

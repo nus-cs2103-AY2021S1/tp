@@ -46,7 +46,7 @@ public class JsonAdaptedRecipe {
      * Converts a given {@code Recipe} into this class for Jackson use.
      */
     public JsonAdaptedRecipe(Recipe source) {
-        name = source.getName().fullName;
+        name = source.getName();
         ingredientRefs = new ArrayList<>();
         ingredientRefs.addAll(source.getIngredients().stream()
             .map(JsonAdaptedIngredientRef::new)
@@ -91,9 +91,8 @@ public class JsonAdaptedRecipe {
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
 
-        return new Recipe(modelName, modelIngredientRefs, modelSteps);
+        return new Recipe(name, modelIngredientRefs, modelSteps);
     }
 
 }

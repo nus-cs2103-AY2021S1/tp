@@ -31,7 +31,7 @@ public class JsonAdaptedIngredient {
      * Converts a given {@code Ingredient} into this class for Jackson use.
      */
     public JsonAdaptedIngredient(Ingredient source) {
-        name = source.getName().fullName;
+        name = source.getName();
         qty = source.getQuantity().toString();
         expiry = source.getExpiryDate().isPresent()
             ? source.getExpiryDate().get().toString()
@@ -52,7 +52,6 @@ public class JsonAdaptedIngredient {
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
 
         if (expiry == null) {
             throw new IllegalValueException(String.format(IND_MISSING_FIELD_MESSAGE_FORMAT,
@@ -72,6 +71,6 @@ public class JsonAdaptedIngredient {
             throw new IllegalValueException(qtyResult.getError());
         }
 
-        return new Ingredient(modelName, qtyResult.getValue(), modelExpiry);
+        return new Ingredient(name, qtyResult.getValue(), modelExpiry);
     }
 }
