@@ -24,19 +24,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the FlashcardDeck.
      *
-     * @see seedu.flashcard.model.Model#getAddressBook()
+     * @see seedu.flashcard.model.Model#getFlashcardDeck()
      */
-    ReadOnlyFlashcardDeck getAddressBook();
+    ReadOnlyFlashcardDeck getFlashcardDeck();
 
     /** Returns an unmodifiable view of the filtered list of flashcards */
     ObservableList<Flashcard> getFilteredFlashcardList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' flashcard deck file path.
      */
-    Path getAddressBookFilePath();
+    Path getFlashcardDeckFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

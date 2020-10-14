@@ -79,8 +79,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Flashcard} with the details of {@code flashcardToEdit}
+     * edited with {@code editFlashcardDescriptor}.
      */
     private static Flashcard createEditedFlashcard(Flashcard flashcardToEdit,
                                                    EditFlashcardDescriptor editFlashcardDescriptor) {
@@ -112,8 +112,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the flashcard with. Each non-empty field value will replace the
+     * corresponding field value of the flashcard.
      */
     public static class EditFlashcardDescriptor {
         private Question question;
@@ -139,8 +139,8 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(question, answer, category);
         }
 
-        public void setQuestion(Question name) {
-            this.question = name;
+        public void setQuestion(Question question) {
+            this.question = question;
         }
 
         public Optional<Question> getQuestion() {

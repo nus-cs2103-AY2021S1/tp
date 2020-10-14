@@ -33,7 +33,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FLASHCARD_SUCCESS, flashcardToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getFlashcardDeck(), new UserPrefs());
         expectedModel.deleteFlashcard(flashcardToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -56,7 +56,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FLASHCARD_SUCCESS, flashcardToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getFlashcardDeck(), new UserPrefs());
         expectedModel.deleteFlashcard(flashcardToDelete);
         showNoFlashcard(expectedModel);
 
@@ -69,7 +69,7 @@ public class DeleteCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_FLASHCARD;
         // ensures that outOfBoundIndex is still in bounds of flashcard list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getFlashcardList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getFlashcardDeck().getFlashcardList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 

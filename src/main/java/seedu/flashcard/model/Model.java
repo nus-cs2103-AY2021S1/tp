@@ -37,7 +37,7 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getFlashcardDeckFilePath();
 
     /**
      * Sets the user prefs' address book file path.
@@ -49,8 +49,8 @@ public interface Model {
      */
     void setFlashcardDeck(ReadOnlyFlashcardDeck addressBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyFlashcardDeck getAddressBook();
+    /** Returns the FlashcardDeck */
+    ReadOnlyFlashcardDeck getFlashcardDeck();
 
     /**
      * Returns true if a flashcard with the same identity as {@code flashcard} exists in the flashcard list.

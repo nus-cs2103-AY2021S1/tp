@@ -10,7 +10,7 @@ import seedu.flashcard.commons.core.LogsCenter;
 import seedu.flashcard.logic.commands.Command;
 import seedu.flashcard.logic.commands.CommandResult;
 import seedu.flashcard.logic.commands.exceptions.CommandException;
-import seedu.flashcard.logic.parser.AddressBookParser;
+import seedu.flashcard.logic.parser.FlashcardParser;
 import seedu.flashcard.logic.parser.exceptions.ParseException;
 import seedu.flashcard.model.Model;
 import seedu.flashcard.model.ReadOnlyFlashcardDeck;
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final FlashcardParser flashcardParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        flashcardParser = new FlashcardParser();
     }
 
     @Override
@@ -42,11 +42,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = flashcardParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveFlashcardDeck(model.getAddressBook());
+            storage.saveFlashcardDeck(model.getFlashcardDeck());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,8 +55,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyFlashcardDeck getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyFlashcardDeck getFlashcardDeck() {
+        return model.getFlashcardDeck();
     }
 
     @Override
@@ -65,8 +65,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getFlashcardDeckFilePath() {
+        return model.getFlashcardDeckFilePath();
     }
 
     @Override

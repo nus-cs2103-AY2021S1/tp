@@ -29,7 +29,7 @@ public class AddCommandIntegrationTest {
     public void execute_newPerson_success() {
         Flashcard validFlashcard = new FlashcardBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getFlashcardDeck(), new UserPrefs());
         expectedModel.addFlashcard(validFlashcard);
 
         assertCommandSuccess(new AddCommand(validFlashcard), model,
@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Flashcard flashcardInList = model.getAddressBook().getFlashcardList().get(0);
+        Flashcard flashcardInList = model.getFlashcardDeck().getFlashcardList().get(0);
         assertCommandFailure(new AddCommand(flashcardInList), model, AddCommand.MESSAGE_DUPLICATE_FLASHCARD);
     }
 

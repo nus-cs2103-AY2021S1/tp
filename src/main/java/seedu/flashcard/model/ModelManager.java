@@ -66,7 +66,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getFlashcardDeckFilePath() {
         return userPrefs.getAddressBookFilePath();
     }
 
@@ -84,7 +84,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ReadOnlyFlashcardDeck getAddressBook() {
+    public ReadOnlyFlashcardDeck getFlashcardDeck() {
         return addressBook;
     }
 
