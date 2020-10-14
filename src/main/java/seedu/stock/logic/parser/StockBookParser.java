@@ -67,7 +67,11 @@ public class StockBookParser {
             return new ListCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            try {
+                return new DeleteCommandParser().parse(arguments);
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
 
         case FindCommand.COMMAND_WORD:
             try {

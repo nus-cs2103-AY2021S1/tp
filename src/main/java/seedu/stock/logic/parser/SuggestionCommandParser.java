@@ -150,7 +150,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         if (!bodyErrorMessage.equals("")) {
             toBeDisplayed.append("\n" + bodyErrorMessage);
         } else {
-            toBeDisplayed.append("\n" + FindCommand.MESSAGE_USAGE);
+            toBeDisplayed.append("\n" + FindExactCommand.MESSAGE_USAGE);
         }
     }
 
@@ -207,6 +207,11 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             for (String serialNumber : keywords) {
                 toBeDisplayed.append(" " + currentPrefix + serialNumber);
             }
+        }
+        if (!bodyErrorMessage.equals("")) {
+            toBeDisplayed.append("\n" + bodyErrorMessage);
+        } else {
+            toBeDisplayed.append("\n" + DeleteCommand.MESSAGE_USAGE);
         }
     }
 
