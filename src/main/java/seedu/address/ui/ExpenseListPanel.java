@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.scene.text.TextAlignment;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.account.entry.Expense;
 
@@ -27,6 +28,7 @@ public class ExpenseListPanel extends UiPart<Region> {
     public ExpenseListPanel(ObservableList<Expense> expenses) {
         super(FXML);
         expenseLabel.setText("Expenses");
+        expenseLabel.setTextAlignment(TextAlignment.CENTER);
         expenseListView.setItems(expenses);
         expenseListView.setCellFactory(listView -> new ExpenseListViewCell());
     }
