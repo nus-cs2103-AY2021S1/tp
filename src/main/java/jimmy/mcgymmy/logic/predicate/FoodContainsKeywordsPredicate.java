@@ -1,4 +1,4 @@
-package jimmy.mcgymmy.model.predicate;
+package jimmy.mcgymmy.logic.predicate;
 
 import java.util.List;
 import java.util.function.Predicate;

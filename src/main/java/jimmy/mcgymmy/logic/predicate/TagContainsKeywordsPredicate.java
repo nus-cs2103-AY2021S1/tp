@@ -1,4 +1,4 @@
-package jimmy.mcgymmy.model.predicate;
+package jimmy.mcgymmy.logic.predicate;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -16,6 +16,11 @@ public class TagContainsKeywordsPredicate implements Predicate<Food> {
         this.keywords = keywords;
     }
 
+    /**
+     * Check if the food contains the tag with exactly the same name as one of the keyword (case sensitive)
+     * @param food The food to be checked
+     * @return True if can create a tag with the keyword and Food contains the tag equals to that tag, false otherwise
+     */
     @Override
     public boolean test(Food food) {
         return keywords.stream()
