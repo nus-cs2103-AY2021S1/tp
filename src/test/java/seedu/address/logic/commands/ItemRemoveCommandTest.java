@@ -11,6 +11,8 @@ import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.itemcommand.ItemAddCommand;
+import seedu.address.logic.commands.itemcommand.ItemRemoveCommand;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.inventorymodel.InventoryModel;
@@ -20,16 +22,16 @@ import seedu.address.model.item.Quantity;
 import seedu.address.testutil.ItemBuilder;
 
 
-public class RemoveCommandTest {
+public class ItemRemoveCommandTest {
 
     private InventoryModel inventoryModel = new InventoryModelManager(getTypicalInventoryBook(), new UserPrefs());
 
     @Test
     public void constructor_nullItem_throwsNullPointerException() {
         Item currentItem = new ItemBuilder().withName("Chicken").withQuantity("12").build();
-        assertThrows(NullPointerException.class, () -> new RemoveCommand(null, null));
-        assertThrows(NullPointerException.class, () -> new RemoveCommand(null, currentItem.getQuantity()));
-        assertThrows(NullPointerException.class, () -> new RemoveCommand(INDEX_FIRST_ITEM, null));
+        assertThrows(NullPointerException.class, () -> new ItemRemoveCommand(null, null));
+        assertThrows(NullPointerException.class, () -> new ItemRemoveCommand(null, currentItem.getQuantity()));
+        assertThrows(NullPointerException.class, () -> new ItemRemoveCommand(INDEX_FIRST_ITEM, null));
     }
 
     @Test
@@ -41,23 +43,26 @@ public class RemoveCommandTest {
                 .build();
         Quantity quantity = new ItemBuilder().withQuantity("10").build().getQuantity();
 
-        CommandResult commandResult = new RemoveCommand(INDEX_FIRST_ITEM, quantity).execute(inventoryModel);
+        CommandResult commandResult = new ItemRemoveCommand(INDEX_FIRST_ITEM, quantity).execute(inventoryModel);
 
-        assertEquals(String.format(RemoveCommand.MESSAGE_EDIT_ITEM_SUCCESS, afterRemoveItem),
+        assertEquals(String.format(ItemRemoveCommand.MESSAGE_EDIT_ITEM_SUCCESS, afterRemoveItem),
                 commandResult.getFeedbackToUser());
     }
 
     @Test
     public void equals() {
-        RemoveCommand removeOne = new RemoveCommand(INDEX_FIRST_ITEM, new Quantity("10"));
-        RemoveCommand removeTwo = new RemoveCommand(INDEX_SECOND_ITEM, new Quantity("10"));
-        RemoveCommand removeThree = new RemoveCommand(INDEX_SECOND_ITEM, new Quantity("20"));
+        ItemRemoveCommand removeOne = new ItemRemoveCommand(INDEX_FIRST_ITEM, new Quantity("10"));
+        ItemRemoveCommand removeTwo = new ItemRemoveCommand(INDEX_SECOND_ITEM, new Quantity("10"));
+        ItemRemoveCommand removeThree = new ItemRemoveCommand(INDEX_SECOND_ITEM, new Quantity("20"));
+        ItemAddCommand removeFour = new ItemAddCommand(new ItemBuilder().build());
 
         assertTrue(removeOne.equals(removeOne));
 
         assertFalse(removeOne.equals(removeTwo));
 
         assertFalse(removeTwo.equals(removeThree));
+
+        assertFalse(removeOne.equals(removeFour));
     }
 
 }

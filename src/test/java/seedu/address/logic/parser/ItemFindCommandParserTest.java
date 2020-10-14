@@ -11,23 +11,25 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.itemcommand.ItemFindCommand;
+import seedu.address.logic.parser.itemparser.ItemFindCommandParser;
 import seedu.address.model.item.ItemContainsKeywordsPredicate;
 
-public class FindCommandParserTest {
+public class ItemFindCommandParserTest {
 
-    private FindCommandParser parser = new FindCommandParser();
+    private ItemFindCommandParser parser = new ItemFindCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ItemFindCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        FindCommand expectedFindCommand =
-                new FindCommand(new ItemContainsKeywordsPredicate(Arrays.asList("CHICKEN", "DUCK"), PREFIX_NAME));
+        ItemFindCommand expectedFindCommand =
+                new ItemFindCommand(new ItemContainsKeywordsPredicate(Arrays.asList("CHICKEN", "DUCK"), PREFIX_NAME));
         assertParseSuccess(parser, NAME_DESC_CHICKEN + " " + VALID_NAME_DUCK, expectedFindCommand);
     }
 

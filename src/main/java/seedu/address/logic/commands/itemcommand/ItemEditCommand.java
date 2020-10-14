@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.itemcommand;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAX_QUANTITY;
@@ -20,6 +20,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.model.Model;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Metric;
@@ -31,9 +32,9 @@ import seedu.address.model.item.Tag;
 /**
  * Edits the details of an existing item in the inventory book.
  */
-public class EditCommand extends Command {
+public class ItemEditCommand extends ItemCommand {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "edit-i";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the item identified "
             + "by the index number used in the displayed item list. "
@@ -59,7 +60,7 @@ public class EditCommand extends Command {
      * @param index of the item in the filtered item list to edit
      * @param editItemDescriptor details to edit the item with
      */
-    public EditCommand(Index index, EditItemDescriptor editItemDescriptor) {
+    public ItemEditCommand(Index index, EditItemDescriptor editItemDescriptor) {
         requireNonNull(index);
         requireNonNull(editItemDescriptor);
 
@@ -68,8 +69,10 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(InventoryModel inventoryModel) throws CommandException {
-        requireNonNull(inventoryModel);
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        requireInventoryModel(model);
+        InventoryModel inventoryModel = (InventoryModel) model;
         List<Item> lastShownList = inventoryModel.getFilteredItemList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -118,12 +121,12 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof ItemEditCommand)) {
             return false;
         }
 
         // state check
-        EditCommand e = (EditCommand) other;
+        ItemEditCommand e = (ItemEditCommand) other;
         return index.equals(e.index)
                 && editItemDescriptor.equals(e.editItemDescriptor);
     }

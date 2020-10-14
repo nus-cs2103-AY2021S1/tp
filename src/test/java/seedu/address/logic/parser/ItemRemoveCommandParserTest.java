@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import org.junit.jupiter.api.Test;
 
-public class RemoveCommandParserTest {
+public class ItemRemoveCommandParserTest {
 
     //    private RemoveCommandParser parser = new RemoveCommandParser();
 

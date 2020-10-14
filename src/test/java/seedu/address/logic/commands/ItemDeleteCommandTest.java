@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.itemcommand.ItemDeleteCommand;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.InventoryModelManager;
@@ -20,18 +21,18 @@ import seedu.address.model.item.Item;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
- * {@code DeleteCommand}.
+ * {@code ItemDeleteCommand}.
  */
-public class DeleteCommandTest {
+public class ItemDeleteCommandTest {
 
     private InventoryModel inventoryModel = new InventoryModelManager(getTypicalInventoryBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Item itemToDelete = inventoryModel.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ITEM);
+        ItemDeleteCommand deleteCommand = new ItemDeleteCommand(INDEX_FIRST_ITEM);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ITEM_SUCCESS, itemToDelete);
+        String expectedMessage = String.format(ItemDeleteCommand.MESSAGE_DELETE_ITEM_SUCCESS, itemToDelete);
 
         InventoryModelManager expectedModel =
                 new InventoryModelManager(inventoryModel.getInventoryBook(), new UserPrefs());
@@ -43,7 +44,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(inventoryModel.getFilteredItemList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        ItemDeleteCommand deleteCommand = new ItemDeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, inventoryModel, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
     }
@@ -53,9 +54,9 @@ public class DeleteCommandTest {
         showItemAtIndex(inventoryModel, INDEX_FIRST_ITEM);
 
         Item itemToDelete = inventoryModel.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ITEM);
+        ItemDeleteCommand deleteCommand = new ItemDeleteCommand(INDEX_FIRST_ITEM);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ITEM_SUCCESS, itemToDelete);
+        String expectedMessage = String.format(ItemDeleteCommand.MESSAGE_DELETE_ITEM_SUCCESS, itemToDelete);
 
         InventoryModel expectedInventoryModel =
                 new InventoryModelManager(inventoryModel.getInventoryBook(), new UserPrefs());
@@ -73,21 +74,21 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of inventory book list
         assertTrue(outOfBoundIndex.getZeroBased() < inventoryModel.getInventoryBook().getItemList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        ItemDeleteCommand deleteCommand = new ItemDeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, inventoryModel, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_ITEM);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_ITEM);
+        ItemDeleteCommand deleteFirstCommand = new ItemDeleteCommand(INDEX_FIRST_ITEM);
+        ItemDeleteCommand deleteSecondCommand = new ItemDeleteCommand(INDEX_SECOND_ITEM);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_ITEM);
+        ItemDeleteCommand deleteFirstCommandCopy = new ItemDeleteCommand(INDEX_FIRST_ITEM);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

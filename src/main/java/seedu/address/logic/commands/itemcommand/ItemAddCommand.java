@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.itemcommand;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAX_QUANTITY;
@@ -10,15 +10,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.model.Model;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.item.Item;
 
 /**
  * Adds a item to the inventory book.
  */
-public class AddCommand extends Command {
+public class ItemAddCommand extends ItemCommand {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "add-i";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a item to the inventory book. "
             + "Parameters: "
@@ -43,16 +44,18 @@ public class AddCommand extends Command {
     private final Item toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Item}
+     * Creates an ItemAddCommand to add the specified {@code Item}
      */
-    public AddCommand(Item item) {
+    public ItemAddCommand(Item item) {
         requireNonNull(item);
         toAdd = item;
     }
 
     @Override
-    public CommandResult execute(InventoryModel inventoryModel) throws CommandException {
-        requireNonNull(inventoryModel);
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        requireInventoryModel(model);
+        InventoryModel inventoryModel = (InventoryModel) model;
 
         if (inventoryModel.hasItem(toAdd)) {
             if (toAdd.getMaxQuantity().isPresent()) {
@@ -69,7 +72,7 @@ public class AddCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                || (other instanceof ItemAddCommand // instanceof handles nulls
+                && toAdd.equals(((ItemAddCommand) other).toAdd));
     }
 }

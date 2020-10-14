@@ -29,22 +29,23 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_ITEM;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditItemDescriptor;
+import seedu.address.logic.commands.itemcommand.ItemEditCommand;
+import seedu.address.logic.commands.itemcommand.ItemEditCommand.EditItemDescriptor;
+import seedu.address.logic.parser.itemparser.ItemEditCommandParser;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.item.Supplier;
 import seedu.address.model.item.Tag;
 import seedu.address.testutil.EditItemDescriptorBuilder;
 
-public class EditCommandParserTest {
+public class ItemEditCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ItemEditCommand.MESSAGE_USAGE);
 
-    private EditCommandParser parser = new EditCommandParser();
+    private ItemEditCommandParser parser = new ItemEditCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -52,7 +53,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, VALID_NAME_CHICKEN, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, "1", ItemEditCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
@@ -107,7 +108,7 @@ public class EditCommandParserTest {
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_CHICKEN)
                 .withQuantity(VALID_QUANTITY_DUCK).withSupplier(VALID_SUPPLIER_CHICKEN)
                 .withTags(VALID_TAG_DUCK, VALID_TAG_CHICKEN).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        ItemEditCommand expectedCommand = new ItemEditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -119,7 +120,7 @@ public class EditCommandParserTest {
 
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_DUCK)
                 .build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        ItemEditCommand expectedCommand = new ItemEditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -130,25 +131,25 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_ITEM;
         String userInput = targetIndex.getOneBased() + NAME_DESC_CHICKEN;
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_CHICKEN).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        ItemEditCommand expectedCommand = new ItemEditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // quantity
         userInput = targetIndex.getOneBased() + QUANTITY_DESC_CHICKEN;
         descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_CHICKEN).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new ItemEditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // supplier
         userInput = targetIndex.getOneBased() + SUPPLIER_DESC_CHICKEN;
         descriptor = new EditItemDescriptorBuilder().withSupplier(VALID_SUPPLIER_CHICKEN).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new ItemEditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_CHICKEN;
         descriptor = new EditItemDescriptorBuilder().withTags(VALID_TAG_CHICKEN).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new ItemEditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -162,7 +163,7 @@ public class EditCommandParserTest {
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_DUCK)
                 .withSupplier(VALID_SUPPLIER_DUCK).withTags(VALID_TAG_CHICKEN, VALID_TAG_DUCK)
                 .build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        ItemEditCommand expectedCommand = new ItemEditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -172,9 +173,9 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_ITEM;
         String userInput = targetIndex.getOneBased() + INVALID_QUANTITY_DESC + QUANTITY_DESC_DUCK;
-        EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder()
+        ItemEditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder()
                 .withQuantity(VALID_QUANTITY_DUCK).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        ItemEditCommand expectedCommand = new ItemEditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
@@ -182,7 +183,7 @@ public class EditCommandParserTest {
                 + QUANTITY_DESC_DUCK;
         descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_DUCK)
                 .withSupplier(VALID_SUPPLIER_DUCK).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new ItemEditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -192,7 +193,7 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withTags().build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        ItemEditCommand expectedCommand = new ItemEditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }

@@ -32,18 +32,20 @@ public class DeliveryContainsKeywordsPredicate implements Predicate<Delivery> {
 
     @Override
     public boolean test(Delivery delivery) {
+        String keywordsAsOneString = keywords.stream().reduce("", (keyword, res) -> keyword + " " + res);
+
         if (PREFIX_NAME.equals(prefix)) {
             return keywords.stream()
                     .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(delivery.getName().fullName, keyword));
         } else if (PREFIX_ADDRESS.equals(prefix)) {
             return keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(delivery.getAddress().value, keyword));
+                    .anyMatch(keyword -> StringUtil.containsStringIgnoreCase(delivery.getAddress().value, keyword));
         } else if (PREFIX_PHONE.equals(prefix)) {
             return keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(delivery.getPhone().value, keyword));
+                    .anyMatch(keyword -> StringUtil.containsStringIgnoreCase(delivery.getPhone().value, keyword));
         } else if (PREFIX_ORDER.equals(prefix)) {
             return keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(delivery.getOrder().value, keyword));
+                    .anyMatch(keyword -> StringUtil.containsStringIgnoreCase(delivery.getOrder().value, keyword));
         }
         return false;
     }

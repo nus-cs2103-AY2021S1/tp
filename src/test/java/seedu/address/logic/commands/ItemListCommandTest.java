@@ -8,14 +8,15 @@ import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.itemcommand.ItemListCommand;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.InventoryModelManager;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ItemListCommand.
  */
-public class ListCommandTest {
+public class ItemListCommandTest {
 
     private InventoryModel inventoryModel;
     private InventoryModel expectedInventoryModel;
@@ -28,12 +29,14 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), inventoryModel, ListCommand.MESSAGE_SUCCESS, expectedInventoryModel);
+        assertCommandSuccess(new ItemListCommand(), inventoryModel, ItemListCommand.MESSAGE_SUCCESS,
+                expectedInventoryModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showItemAtIndex(inventoryModel, INDEX_FIRST_ITEM);
-        assertCommandSuccess(new ListCommand(), inventoryModel, ListCommand.MESSAGE_SUCCESS, expectedInventoryModel);
+        assertCommandSuccess(new ItemListCommand(), inventoryModel, ItemListCommand.MESSAGE_SUCCESS,
+                expectedInventoryModel);
     }
 }
