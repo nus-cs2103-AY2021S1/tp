@@ -1,12 +1,14 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import seedu.address.model.task.DateTime;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.State;
 import seedu.address.model.task.Task;
 
 /**
@@ -29,19 +31,25 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private VBox card;
+    @FXML
     private Label title;
     @FXML
     private Label id;
     @FXML
-    private Label dateTime;
+    private Label status;
+    @FXML
+    private CheckBox statusSign;
     @FXML
     private Label type;
     @FXML
+    private HBox dateTimeHolder;
+    @FXML
+    private Label dateTime;
+    @FXML
+    private HBox descriptionHolder;
+    @FXML
     private Label description;
-    @FXML
-    private Label status;
-    @FXML
-    private FlowPane tags;
 
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
@@ -51,13 +59,39 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         title.setText(task.getTitle().title);
-        dateTime.setText(task.getDateTime().value.toString());
         type.setText(task.getType().value);
-        description.setText(task.getDescription().value);
+        loadStatus(task);
+        loadDescription(task);
+        loadDateTime(task);
+    }
+
+    private boolean loadStatus(Task task) {
+        if (task.getStatus().value.equals(State.DONE)) {
+            statusSign.setSelected(true);
+        }
         status.setText(task.getStatus().value.toString());
-        task.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        return true;
+    }
+
+    private boolean loadDateTime(Task task) {
+        if (task.getDateTime().equals(DateTime.defaultDateTime())) {
+            card.getChildren().remove(dateTimeHolder);
+            return false;
+        } else {
+            dateTime.setText(task.getDateTime().value.toString());
+            return true;
+        }
+
+    }
+
+    private boolean loadDescription(Task task) {
+        if (task.getDescription().equals(Description.defaultDescription())) {
+            card.getChildren().remove(descriptionHolder);
+            return false;
+        } else {
+            description.setText(task.getDescription().value.toString());
+            return true;
+        }
     }
 
     @Override
