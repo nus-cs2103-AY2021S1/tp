@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Bid {
 
-
+    public static final String DEFAULT_PROPERTY_ID = "P0";
     private String propertyId;
     private String bidderId;
     private double bidAmount;
@@ -61,6 +61,22 @@ public class Bid {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(propertyId, bidderId, bidAmount);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Bid)) {
+            return false;
+        }
+
+        Bid otherBid = (Bid) other;
+        return otherBid.getPropertyId().equals(this.getPropertyId())
+                && otherBid.getBidderId().equals(this.getBidderId())
+                && otherBid.getBidAmount() == (this.getBidAmount());
     }
 
     @Override
