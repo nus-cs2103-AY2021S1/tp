@@ -29,15 +29,16 @@ public class AddTutorialGroupCommand extends Command {
     // todo Implement execution of TG Addition
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-
-        if (model.hasTutorialGroup(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TUTGRP);
-        }
-        System.out.println("after");
-
-        model.addTutorialGroup(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        //        requireNonNull(model);
+        //
+        //        if (model.hasTutorialGroup(toAdd)) {
+        //            throw new CommandException(MESSAGE_DUPLICATE_TUTGRP);
+        //        }
+        //        System.out.println("after");
+        //
+        //        model.addTutorialGroup(toAdd);
+        //        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult("NOT IMPLEMENTED YET");
     }
 
     @Override
