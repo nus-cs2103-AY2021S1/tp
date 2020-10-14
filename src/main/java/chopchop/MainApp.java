@@ -102,7 +102,7 @@ public class MainApp extends Application {
             initialIngredientData = ingredientBookOptional.orElseGet(SampleDataUtil::getSampleIngredientBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty RecipeBook and"
-                    + "IngredientBook");
+                    + " IngredientBook");
             initialRecipeData = new EntryBook<>();
             initialIngredientData = new EntryBook<>();
         } catch (IOException e) {
