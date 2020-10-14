@@ -68,7 +68,8 @@ public class JsonAdaptedIngredientTest {
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedIngredient ingredient = new JsonAdaptedIngredient(VALID_NAME, VALID_QTY, null);
-        String expectedMessage = String.format(INGREDIENT_MISSING_FIELD_MESSAGE_FORMAT, ExpiryDate.class.getSimpleName());
+        String expectedMessage = String.format(INGREDIENT_MISSING_FIELD_MESSAGE_FORMAT,
+                ExpiryDate.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, ingredient::toModelType);
     }
 
