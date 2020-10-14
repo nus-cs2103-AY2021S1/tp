@@ -36,29 +36,29 @@ public class TaskManagerParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-            case AddTodoCommand.COMMAND_WORD:
-                return new AddTodoCommandParser().parse(arguments);
+        case AddTodoCommand.COMMAND_WORD:
+            return new AddTodoCommandParser().parse(arguments);
 
-            case AddDeadlineCommand.COMMAND_WORD:
-                return new AddDeadlineCommandParser().parse(arguments);
+        case AddDeadlineCommand.COMMAND_WORD:
+            return new AddDeadlineCommandParser().parse(arguments);
 
-            case AddEventCommand.COMMAND_WORD:
-                return new AddEventCommandParser().parse(arguments);
+        case AddEventCommand.COMMAND_WORD:
+            return new AddEventCommandParser().parse(arguments);
 
-            case DeleteCommand.COMMAND_WORD:
-                return new DeleteCommandParser().parse(arguments);
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommandParser().parse(arguments);
 
-            case DoneCommand.COMMAND_WORD:
-                return new DoneCommandParser().parse(arguments);
+        case DoneCommand.COMMAND_WORD:
+            return new DoneCommandParser().parse(arguments);
 
-            case ListCommand.COMMAND_WORD:
-                return new ListCommandParser().parse(arguments);
+        case ListCommand.COMMAND_WORD:
+            return new ListCommandParser().parse(arguments);
 
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommandParser().parse(arguments);
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommandParser().parse(arguments);
 
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 }
