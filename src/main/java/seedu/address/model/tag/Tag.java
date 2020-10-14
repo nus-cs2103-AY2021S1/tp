@@ -45,8 +45,7 @@ public class Tag {
         }
 
         return otherTag != null
-                && otherTag.getTagName().equals(getTagName())
-                && otherTag.getFileAddress().equals(getFileAddress());
+                && otherTag.getTagName().equals(getTagName());
     }
     /**
      * Returns true if both tag have the same identity and data fields.
