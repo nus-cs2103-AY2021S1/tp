@@ -135,7 +135,7 @@ public class SolveQuestionCommandTest {
 
         // different studentIndex -> false
         assertFalse(command.equals(new SolveQuestionCommand(INDEX_SECOND_PERSON, INDEX_FIRST_PERSON)));
-        
+
         // different class -> false
         assertFalse(command.equals(new OverdueCommand()));
     }
