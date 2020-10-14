@@ -320,4 +320,11 @@ public class ModelStub implements Model {
     public void updateFilteredSellerList(Predicate<Seller> predicate) {
         throw new AssertionError("This method should not be called.");
     }
+
+    // ================= BID =================
+
+    @Override
+    public boolean hasBid(Bid bid) {
+        throw new AssertionError("This method should not be called.");
+    }
 }
