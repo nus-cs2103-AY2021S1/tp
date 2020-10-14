@@ -71,7 +71,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             case TYPE_DESC:
                 return new AddDescriptionCommandParser().parse(arguments);
             case TYPE_DOC:
-                //TODO: return individual parser
+                return new AddDocumentCommandParser().parse(arguments);
 
             case TYPE_SUSPECT:
                 //TODO: return individual parser
