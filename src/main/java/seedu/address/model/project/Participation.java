@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonName;
 import seedu.address.model.task.Task;
 
 /**
@@ -82,6 +83,9 @@ public class Participation {
     }
     public Person getPerson() {
         return person;
+    }
+    public PersonName getAssigneeName() {
+        return person.getPersonName();
     }
     public Project getProject() {
         return project;
