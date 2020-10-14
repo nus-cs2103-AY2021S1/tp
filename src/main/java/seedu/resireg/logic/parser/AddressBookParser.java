@@ -10,6 +10,7 @@ import seedu.resireg.logic.commands.AddCommand;
 import seedu.resireg.logic.commands.AllocateCommand;
 import seedu.resireg.logic.commands.ClearCommand;
 import seedu.resireg.logic.commands.Command;
+import seedu.resireg.logic.commands.DeallocateCommand;
 import seedu.resireg.logic.commands.DeleteCommand;
 import seedu.resireg.logic.commands.EditCommand;
 import seedu.resireg.logic.commands.ExitCommand;
@@ -75,6 +76,9 @@ public class AddressBookParser {
 
         case AllocateCommand.COMMAND_WORD:
             return new AllocateCommandParser().parse(arguments);
+
+        case DeallocateCommand.COMMAND_WORD:
+            return new DeallocateCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
