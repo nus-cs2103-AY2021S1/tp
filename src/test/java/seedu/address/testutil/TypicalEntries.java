@@ -13,6 +13,7 @@ import java.util.List;
 
 import seedu.address.model.CommonCents;
 import seedu.address.model.account.Account;
+import seedu.address.model.account.Name;
 import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
 
@@ -67,16 +68,15 @@ public class TypicalEntries {
             .withTags(VALID_TAG_SUNFLOWER)
             .build();
 
-    private static final int GENERAL_ACC_INDEX = 0;
+    private static final String GENERAL_ACC_NAME = "General account";
 
     private TypicalEntries() {} // prevents instantiation
 
     /**
-     * Returns an {@code CommonCents} with all the typical expenses and revenues.
+     * Returns an {@code Account} with all the typical expenses and revenues.
      */
-    public static CommonCents getTypicalCommonCents() {
-        CommonCents cc = new CommonCents();
-        Account acc = cc.getAccountList().get(GENERAL_ACC_INDEX);
+    public static Account getTypicalAccount() {
+        Account acc = new Account(new Name(GENERAL_ACC_NAME));
 
         for (Expense expense: getTypicalExpenses()) {
             acc.addExpense(expense);
@@ -85,6 +85,16 @@ public class TypicalEntries {
         for (Revenue revenue: getTypicalRevenues()) {
             acc.addRevenue(revenue);
         }
+
+        return acc;
+    }
+
+    /**
+     * Returns an {@code CommonCents} with all the typical expenses and revenues.
+     */
+    public static CommonCents getTypicalCommonCents() {
+        CommonCents cc = new CommonCents();
+        Account acc = getTypicalAccount();
         cc.setAccount(acc);
         return cc;
     }
@@ -96,4 +106,5 @@ public class TypicalEntries {
     public static List<Revenue> getTypicalRevenues() {
         return new ArrayList<>(Arrays.asList(SELLFLOWERPOTS, SELLTOOLS, SELLFLOWERSEEDS, SELLSUNFLOWER));
     }
+
 }
