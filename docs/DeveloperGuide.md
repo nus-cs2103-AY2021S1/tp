@@ -224,7 +224,6 @@ Use case ends.
 * 1a. The given input is invalid.
 
     * 1a1. System shows an error message.
-    
       Use case resumes at step 1.
 <br>
 
@@ -248,8 +247,7 @@ Extensions
 Use case ends.
 * 3a. The given input is invalid.
     * 3a1. System shows an error message.
-        Use case resumes at step 2.
-        
+        Use case resumes at step 2. 
 <br>
 
 **Use case: Save attendance of all students**
@@ -262,9 +260,7 @@ Use case ends.
 * 1a. The given input is invalid.
 
     * 1a1. System shows an error message.
-    
-    Use case resumes at step 1.
-        
+    Use case resumes at step 1.    
 <br>
 
 **Use case: Retrieve attendance of all students from storage**
@@ -276,7 +272,6 @@ Use case ends.
 **Extensions**
 * 1a. The given input is invalid.
     * 1a1. System shows an error message.
-
     Use case resumes at step 1.
     
 <br>
