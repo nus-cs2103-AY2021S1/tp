@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.deliverycommand.DeliveryFindCommand;
+import seedu.address.logic.commands.deliverycommand.DeliveryListCommand;
 import seedu.address.logic.commands.help.HelpCommand;
 import seedu.address.logic.commands.itemcommand.ItemAddCommand;
 import seedu.address.logic.commands.itemcommand.ItemClearCommand;
@@ -52,6 +53,7 @@ public class InventoryBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
+//            Inventory command words
         case ItemAddCommand.COMMAND_WORD:
             return new ItemAddCommandParser().parse(arguments);
 
@@ -73,14 +75,19 @@ public class InventoryBookParser {
         case ItemListCommand.COMMAND_WORD:
             return new ItemListCommand();
 
+//            Delivery command words
+        case DeliveryFindCommand.COMMAND_WORD:
+            return new DeliveryFindCommandParser().parse(arguments);
+
+        case DeliveryListCommand.COMMAND_WORD:
+            return new DeliveryListCommand();
+
+//            General command words
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommandParser().parse(arguments.trim());
-
-        case DeliveryFindCommand.COMMAND_WORD:
-            return new DeliveryFindCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
