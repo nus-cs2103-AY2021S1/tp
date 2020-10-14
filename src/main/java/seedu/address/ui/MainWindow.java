@@ -10,6 +10,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import seedu.address.MainApp;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -137,7 +138,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceHolder.getChildren().add(commandBox.getRoot());
 
         // footer bar
-        FooterBar footerBar = new FooterBar("1.2");
+        FooterBar footerBar = new FooterBar(MainApp.VERSION.toString());
         footerbarPlaceHolder.getChildren().add(footerBar.getRoot());
     }
 
