@@ -128,7 +128,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code feedTimeText} is invalid.
      */
-    private static FeedTime parseFeedTime(String feedTimeText) throws ParseException {
+    public static FeedTime parseFeedTime(String feedTimeText) throws ParseException {
         requireNonNull(feedTimeText);
         String trimmedFeedTimeText = feedTimeText.trim();
         if (!FeedTime.isValidFeedTime(trimmedFeedTimeText)) {

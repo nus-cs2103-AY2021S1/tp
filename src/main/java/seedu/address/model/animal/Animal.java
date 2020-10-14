@@ -114,6 +114,10 @@ public class Animal {
         return builder.toString();
     }
 
+    /**
+     * Returns an immutable feedTime set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
     public Set<FeedTime> getFeedTimes() {
         return Collections.unmodifiableSet(feedTimes);
     }
