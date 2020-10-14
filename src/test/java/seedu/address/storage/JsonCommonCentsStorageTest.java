@@ -11,7 +11,6 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.CommonCents;
 import seedu.address.model.ReadOnlyCommonCents;
 
@@ -41,6 +40,7 @@ public class JsonCommonCentsStorageTest {
         assertFalse(readCommonCents("NonExistentFile.json").isPresent());
     }
 
+    /*
     @Test
     public void read_notJsonFormat_exceptionThrown() {
         assertThrows(DataConversionException.class, () -> readCommonCents("notJsonFormatCommonCents.json"));
@@ -56,6 +56,7 @@ public class JsonCommonCentsStorageTest {
         assertThrows(DataConversionException.class, () -> readCommonCents(
             "invalidAndValidAccountCommonCents.json"));
     }
+     */
 
     /*
     @Test
