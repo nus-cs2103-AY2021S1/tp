@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
 /**
- * Deletes a task identified using it's displayed index from the address book.
+ * Deletes a task identified using it's displayed index from the PlaNus.
  */
 public class DoneCommand extends Command {
 
@@ -23,7 +23,7 @@ public class DoneCommand extends Command {
             + "Parameters: INDEX (one or more positive integers that is separated by a white space)\n"
             + "Example: " + COMMAND_WORD + " 1 2 3";
 
-    public static final String MESSAGE_DONE_TASK_SUCCESS = "Task: %1$s is mark as complete";
+    public static final String MESSAGE_DONE_TASK_SUCCESS = "Task: %1$s is marked as complete.";
 
     private final Index[] targetIndexes;
 

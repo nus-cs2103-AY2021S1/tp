@@ -373,7 +373,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>    
 
-**Use case 06: Exit application**
+**Use case 06: Find a task**
+
+**MSS**
+
+  1. User requests to find task with specified search phrase(s) in specified attribute(s).
+  
+  2. PlaNus shows a list of tasks that match the specified search phrase(s) in the specified attribute(s).
+
+  Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+
+    Use case ends.
+
+<br>    
+
+
+**Use case 07: Exit application**
 
 **MSS**
 
