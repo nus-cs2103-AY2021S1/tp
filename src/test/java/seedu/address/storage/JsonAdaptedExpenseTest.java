@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedExpense.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEntries.BUYFLOWERPOTS;
+import static seedu.address.testutil.TypicalEntries.BUY_FLOWER_POTS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,15 +22,15 @@ public class JsonAdaptedExpenseTest {
 
     private static final String VALID_DESCRIPTION = "bought cooking utensils";
     private static final String VALID_AMOUNT = "1000.39";
-    private static final List<JsonAdaptedTag> VALID_TAGS = BUYFLOWERPOTS.getTags().stream()
+    private static final List<JsonAdaptedTag> VALID_TAGS = BUY_FLOWER_POTS.getTags().stream()
         .map(JsonAdaptedTag::new)
         .collect(Collectors.toList());
 
 
     @Test
     public void toModelType_validExpenseDetails_returnsExpense() throws Exception {
-        JsonAdaptedExpense adaptedExpense = new JsonAdaptedExpense(BUYFLOWERPOTS);
-        assertEquals(BUYFLOWERPOTS, adaptedExpense.toModelType());
+        JsonAdaptedExpense adaptedExpense = new JsonAdaptedExpense(BUY_FLOWER_POTS);
+        assertEquals(BUY_FLOWER_POTS, adaptedExpense.toModelType());
     }
 
     @Test

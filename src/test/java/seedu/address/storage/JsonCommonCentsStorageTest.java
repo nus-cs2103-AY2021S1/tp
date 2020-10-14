@@ -104,4 +104,5 @@ public class JsonCommonCentsStorageTest {
     public void saveCommonCents_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveCommonCents(new CommonCents(), null));
     }
+
 }

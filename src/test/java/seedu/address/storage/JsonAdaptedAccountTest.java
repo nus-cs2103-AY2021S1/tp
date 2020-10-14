@@ -33,4 +33,5 @@ public class JsonAdaptedAccountTest {
             JsonAdaptedAccount.class).get();
         assertThrows(IllegalValueException.class, jsonAdaptedAccount::toModelType);
     }
+
 }

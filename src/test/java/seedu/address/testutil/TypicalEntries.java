@@ -22,47 +22,47 @@ import seedu.address.model.account.entry.Revenue;
  */
 public class TypicalEntries {
 
-    public static final Expense BUYFLOWERPOTS = new ExpenseBuilder()
+    public static final Expense BUY_FLOWER_POTS = new ExpenseBuilder()
             .withDescription("bought flower pots")
             .withAmount("49.99")
             .withTags("tools", "29Sept").build();
-    public static final Expense BUYSHOVEL = new ExpenseBuilder()
+    public static final Expense BUY_SHOVEL = new ExpenseBuilder()
             .withDescription("bought shovel")
             .withAmount("20")
             .withTags("tools", "17Aug").build();
-    public static final Expense PAYRENT = new ExpenseBuilder()
+    public static final Expense PAY_RENT = new ExpenseBuilder()
             .withDescription("paid rent")
             .withAmount("1000").build();
-    public static final Revenue SELLFLOWERPOTS = new RevenueBuilder()
+    public static final Revenue SELL_FLOWER_POTS = new RevenueBuilder()
             .withDescription("sold flower pots")
             .withAmount("99.99")
             .withTags("10sold").build();
-    public static final Revenue SELLFLOWERSEEDS = new RevenueBuilder()
+    public static final Revenue SELL_FLOWER_SEEDS = new RevenueBuilder()
             .withDescription("sold flower seed")
             .withAmount("30")
             .withTags("10sunflowerseeds", "5roseseeds").build();
-    public static final Revenue SELLTOOLS = new RevenueBuilder()
+    public static final Revenue SELL_TOOLS = new RevenueBuilder()
             .withDescription("sold gardening tools")
             .withAmount("45.55")
             .withTags("shovel", "wateringCan", "sickle").build();
 
     // Manually added
-    public static final Expense BUYSTRING = new ExpenseBuilder()
+    public static final Expense BUY_STRING = new ExpenseBuilder()
             .withDescription("Bought strings")
             .withAmount("9.75")
             .withTags("decoration").build();
-    public static final Revenue SELLHANDICRAFT = new RevenueBuilder()
+    public static final Revenue SELL_HANDICRAFT = new RevenueBuilder()
             .withDescription("Sold handicrafts")
             .withAmount("19.70")
             .withTags("plantDecorations", "potDecorations").build();
 
     // Manually added - Entries's details found in {@code CommandTestUtil}
-    public static final Expense BUYROSESEEDS = new ExpenseBuilder()
+    public static final Expense BUY_ROSE_SEEDS = new ExpenseBuilder()
             .withDescription(VALID_DESCRIPTION_EXPENSE)
             .withAmount(VALID_AMOUNT_EXPENSE)
             .withTags(VALID_TAG_ROSES).build();
 
-    public static final Revenue SELLSUNFLOWER = new RevenueBuilder()
+    public static final Revenue SELL_SUNFLOWER = new RevenueBuilder()
             .withDescription(VALID_DESCRIPTION_REVENUE)
             .withAmount(VALID_AMOUNT_REVENUE)
             .withTags(VALID_TAG_SUNFLOWER)
@@ -101,11 +101,11 @@ public class TypicalEntries {
 
 
     public static List<Expense> getTypicalExpenses() {
-        return new ArrayList<>(Arrays.asList(BUYFLOWERPOTS, BUYSHOVEL, PAYRENT, BUYROSESEEDS));
+        return new ArrayList<>(Arrays.asList(BUY_FLOWER_POTS, BUY_SHOVEL, PAY_RENT, BUY_ROSE_SEEDS));
     }
 
     public static List<Revenue> getTypicalRevenues() {
-        return new ArrayList<>(Arrays.asList(SELLFLOWERPOTS, SELLTOOLS, SELLFLOWERSEEDS, SELLSUNFLOWER));
+        return new ArrayList<>(Arrays.asList(SELL_FLOWER_POTS, SELL_TOOLS, SELL_FLOWER_SEEDS, SELL_SUNFLOWER));
     }
 
 }
