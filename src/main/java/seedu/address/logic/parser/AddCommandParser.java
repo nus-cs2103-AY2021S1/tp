@@ -9,11 +9,11 @@ import static seedu.address.logic.parser.util.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.category.Category;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.util.ArgumentMultimap;
 import seedu.address.logic.parser.util.ArgumentTokenizer;
-import seedu.address.logic.parser.util.Category;
 import seedu.address.logic.parser.util.ParserUtil;
 import seedu.address.model.account.entry.Amount;
 import seedu.address.model.account.entry.Description;
