@@ -7,6 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS2103;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +16,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagName;
 import seedu.address.testutil.TagBuilder;
-
-import java.util.ArrayList;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
@@ -50,8 +50,8 @@ public class UntagCommandTest {
         TagName nonExistTagName = new TagName("jalksdjlfkjsdlakjflsjlj");
         UntagCommand untagCommand = new UntagCommand(nonExistTagName);
 
-        assertThrows(CommandException.class, String.format(UntagCommand.MESSAGE_TAG_NOT_FOUND, nonExistTagName),
-                () -> untagCommand.execute(modelStub));
+        assertThrows(CommandException.class, String.format(UntagCommand.MESSAGE_TAG_NOT_FOUND,
+                nonExistTagName), () -> untagCommand.execute(modelStub));
     }
 
     @Test
@@ -77,13 +77,4 @@ public class UntagCommandTest {
         // different tag -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
-
-//    /**
-//     * Updates {@code model}'s filtered list to show no one.
-//     */
-//    private void showNoTag(Model model) {
-//        model.updateFilteredTagList(p -> false);
-//
-//        assertTrue(model.getFilteredTagList().isEmpty());
-//    }
 }

@@ -1,12 +1,12 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.tag.Tag;
+import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.model.tag.Tag;
 
 public class ModelStubDeleteTag extends ModelStub {
     private List<Tag> tagList;
@@ -28,6 +28,7 @@ public class ModelStubDeleteTag extends ModelStub {
         this.tagList.remove(tag);
     }
 
+    @Override
     public List<Tag> findFilteredTagList(Predicate<Tag> predicate) {
         for (Tag tag : tagList) {
             if (predicate.test(tag)) {
