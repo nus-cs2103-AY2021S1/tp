@@ -1,6 +1,5 @@
 package seedu.stock.logic.parser;
 
-import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.stock.logic.commands.CommandWords.ADD_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.DELETE_COMMAND_WORD;
@@ -93,7 +92,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         }
 
         if (headerErrorMessage.equals("")) {
-            toBeDisplayed.append(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_SUGGESTION));
+            toBeDisplayed.append(MESSAGE_UNKNOWN_COMMAND + "\n" + MESSAGE_SUGGESTION);
         } else {
             toBeDisplayed.append(headerErrorMessage + "\n" + MESSAGE_SUGGESTION);
         }
@@ -184,6 +183,11 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
                 toBeDisplayed.append(" " + currentPrefix + argMultimap.getValue(currentPrefix).get());
             }
         }
+        if (!bodyErrorMessage.equals("")) {
+            toBeDisplayed.append("\n" + bodyErrorMessage);
+        } else {
+            toBeDisplayed.append("\n" + FindCommand.MESSAGE_USAGE);
+        }
     }
 
     private void generateDeleteSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
@@ -213,7 +217,11 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
                 toBeDisplayed.append(" " + currentPrefix + CliSyntax.getDefaultDescription(currentPrefix));
             }
         }
-        toBeDisplayed.append("\n" + bodyErrorMessage);
+        if (!bodyErrorMessage.equals("")) {
+            toBeDisplayed.append("\n" + bodyErrorMessage);
+        } else {
+            toBeDisplayed.append("\n" + AddCommand.MESSAGE_USAGE);
+        }
     }
 
     private void generateListSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
