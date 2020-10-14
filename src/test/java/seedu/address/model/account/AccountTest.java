@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEntries.BUYROSESEEDS;
-import static seedu.address.testutil.TypicalEntries.SELLSUNFLOWER;
+import static seedu.address.testutil.TypicalEntries.BUY_ROSE_SEEDS;
+import static seedu.address.testutil.TypicalEntries.SELL_SUNFLOWER;
 import static seedu.address.testutil.TypicalEntries.getTypicalAccount;
 
 import java.util.Collections;
@@ -47,24 +47,24 @@ public class AccountTest {
 
     @Test
     public void hasExpense_expenseNotInAccount_returnsFalse() {
-        assertFalse(account.hasExpense(BUYROSESEEDS));
+        assertFalse(account.hasExpense(BUY_ROSE_SEEDS));
     }
 
     @Test
     public void hasRevenue_revenueNotInAccount_returnsFalse() {
-        assertFalse(account.hasRevenue(SELLSUNFLOWER));
+        assertFalse(account.hasRevenue(SELL_SUNFLOWER));
     }
 
     @Test
     public void hasExpense_expenseInAccount_returnsTrue() {
-        account.addExpense(BUYROSESEEDS);
-        assertTrue(account.hasExpense(BUYROSESEEDS));
+        account.addExpense(BUY_ROSE_SEEDS);
+        assertTrue(account.hasExpense(BUY_ROSE_SEEDS));
     }
 
     @Test
     public void hasRevenue_revenueInAccount_returnsTrue() {
-        account.addRevenue(SELLSUNFLOWER);
-        assertTrue(account.hasRevenue(SELLSUNFLOWER));
+        account.addRevenue(SELL_SUNFLOWER);
+        assertTrue(account.hasRevenue(SELL_SUNFLOWER));
     }
 
     @Test
