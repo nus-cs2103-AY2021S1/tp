@@ -152,7 +152,7 @@
 
 .pane-with-dark-border {
      -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: black
+     -fx-border-color: black;
      -fx-border-top-width: 1px;
 }
 
