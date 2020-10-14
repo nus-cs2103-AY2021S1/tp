@@ -34,9 +34,9 @@ class JsonAdaptedFeedTime {
     }
 
     /**
-     * Converts this Jackson-friendly adapted medicalCondition object into the model's {@code FeedTime} object.
+     * Converts this Jackson-friendly adapted feedTime object into the model's {@code FeedTime} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted medicalCondition.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted feedTime.
      */
     public FeedTime toModelType() throws IllegalValueException {
         if (!FeedTime.isValidFeedTime(feedTimeText)) {
