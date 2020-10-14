@@ -66,6 +66,6 @@ public class DoneCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DoneCommand // instanceof handles nulls
-                && Arrays.equals(targetIndexes, ((DoneCommand) other).targetIndexes )); // state check
+                && Arrays.equals(targetIndexes, ((DoneCommand) other).targetIndexes)); // state check
     }
 }

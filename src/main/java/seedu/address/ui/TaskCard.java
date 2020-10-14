@@ -66,7 +66,7 @@ public class TaskCard extends UiPart<Region> {
     }
 
     private boolean loadStatus(Task task) {
-        if (task.getStatus().value.equals(State.DONE)) {
+        if (task.getStatus().value.equals(State.COMPLETE)) {
             statusSign.setSelected(true);
         }
         status.setText(task.getStatus().value.toString());
