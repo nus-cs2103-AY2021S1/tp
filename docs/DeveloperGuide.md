@@ -23,11 +23,11 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103-W14-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103-W14-3/tp/tree/master/src/main/java/seedu/expense/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103-W14-3/tp/tree/master/src/main/java/seedu/expense/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -62,11 +62,11 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103-W14-3/tp/tree/master/src/main/java/seedu/expense/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ExpenseListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103-W14-3/tp/tree/master/src/main/java/seedu/expense/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103-W14-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -78,9 +78,9 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103-W14-3/tp/tree/master/src/main/java/seedu/expense/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `ExpenseBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a expense).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -97,17 +97,17 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103-W14-3/tp/tree/master/src/main/java/seedu/expense/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores the expense book data.
 * exposes an unmodifiable `ObservableList<Expense>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Expense` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Expense` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ExpenseBook`, which `Expense` references. This allows `ExpenseBook` to only require one `Tag` object per unique `Tag`, instead of each `Expense` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -117,15 +117,15 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103-W14-3/tp/tree/master/src/main/java/seedu/expense/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the expense book data in json format and read it back.
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.expense.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -137,37 +137,37 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedExpenseBook`. It extends `ExpenseBook` with an undo/redo history, stored internally as an `expenseBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedExpenseBook#commit()` — Saves the current expense book state in its history.
+* `VersionedExpenseBook#undo()` — Restores the previous expense book state from its history.
+* `VersionedExpenseBook#redo()` — Restores a previously undone expense book state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitExpenseBook()`, `Model#undoExpenseBook()` and `Model#redoExpenseBook()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedExpenseBook` will be initialized with the initial expense book state, and the `currentStatePointer` pointing to that single expense book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th expense in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th expense in the expense book. The `delete` command calls `Model#commitExpenseBook()`, causing the modified state of the expense book after the `delete 5` command executes to be saved in the `expenseBookStateList`, and the `currentStatePointer` is shifted to the newly inserted expense book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new expense. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new expense. The `add` command also calls `Model#commitExpenseBook()`, causing another modified expense book state to be saved into the `expenseBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitExpenseBook()`, so the expense book state will not be saved into the `expenseBookStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the expense was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the expense was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoExpenseBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous expense book state, and restores the expense book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial ExpenseBook state, then there are no previous ExpenseBook states to restore. The `undo` command uses `Model#canUndoExpenseBook()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -180,17 +180,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoExpenseBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the expense book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `expenseBookStateList.size() - 1`, pointing to the latest expense book state, then there are no undone ExpenseBook states to restore. The `redo` command uses `Model#canRedoExpenseBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the expense book, such as `list`, will usually not call `Model#commitExpenseBook()`, `Model#undoExpenseBook()` or `Model#redoExpenseBook()`. Thus, the `expenseBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitExpenseBook()`. Since the `currentStatePointer` is not pointing at the end of the `expenseBookStateList`, all expense book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -202,7 +202,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire expense book.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
@@ -287,37 +287,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the System is the Bamboo and the Actor is the user, unless specified otherwise)
 
-**Use case: Add an expense**
+####Use case U1: Add an expense
 
 **Preconditions:** (Needed for v1.2.1)
 
-* User is logged in
+* User is logged in.
 
 **MSS**
 
-1. User requests to add an expense
-2. Bamboo adds the expense
-3. Bamboo shows the balance
+1. User requests to add an expense.
+2. Bamboo adds the expense.
+3. Bamboo lists all expenses and shows the new budget balance.
 
-    Use case ends
+    Use case ends.
 
 **Extensions**
 
-* 1a. The given command format is invalid
-    * 1a1. Bamboo shows an error message
+* 1a. The given command format is invalid.
+    * 1a1. Bamboo shows an error message.
       Use case ends.
 
-**Use case: Top-up budget**
+####Use case U2: Top-up budget
 
 **Preconditions:** (Needed for v1.2.1)
 
-- User is logged in
+- User is logged in.
 
 **MSS**
 
 1. User requests to top up budget by an amount he provides.
 2. Bamboo tops up the user's budget by the amount given by the user.
-3. Bamboo shows the balance.
+3. Bamboo lists all expenses and shows the budget balance.
 
     Use case ends.
 
@@ -327,19 +327,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Bamboo shows an error message. 
       Use case ends.
 
-**Use case: Delete an expense**
+####Use case U3: Delete an expense
 
 **Preconditions:** (Needed for v1.2.1)
 
-* User is logged in
+* User is logged in.
 
 **MSS**
 
-1. User requests to list expenses
-2. Bamboo shows a list of expenses
-3. User requests to delete a specific expense in the list
-4. Bamboo deletes the expense
-5. Bamboo shows the balance
+1. User requests to list expenses (U5).
+2. Bamboo shows a list of expenses.
+3. User requests to delete a specific expense in the list.
+4. Bamboo deletes the expense.
+5. Bamboo lists all expenses and shows the budget balance.
 
    Use case ends.
 
@@ -349,24 +349,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given expense does not exist.
     * 3a1. Bamboo shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: Edit an expense**
+####Use case U4: Edit an expense
 
 **Preconditions:** (Needed for v1.2.1)
 
-* User is logged in
+* User is logged in.
 
 **MSS**
 
-1. User requests to list expenses
-2. Bamboo shows a list of expenses
-3. User requests to edit an expense with the new fields given
-4. Bamboo edits the expense
-5. Bamboo shows the new balance
+1. User requests to list expenses (U5).
+2. Bamboo shows a list of expenses.
+3. User requests to edit an expense with the new fields given.
+4. Bamboo edits the expense.
+5. Bamboo feedbacks to user what was changed.
+6. Bamboo lists all expenses and shows the new budget balance.
+   Use case ends.
 
 **Extensions**
 
@@ -375,6 +377,56 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends
 * 3a. The given field value is invalid.
     * 3a1. Bamboo shows an error message. 
+      Use case ends.
+
+####Use case U5: List all expenses
+
+**Preconditions:** (Needed for v1.2.1)
+
+* User is logged in.
+
+**MSS**
+
+1. User requests to list all expenses.
+2. Bamboo shows a list of all expenses recorded and the current budget balance.
+
+   Use case ends.
+
+####Use case U6: Add a remark to an expense
+
+**Preconditions:** (Needed for v1.2.1)
+* User is logged in.
+* Expense List is not empty.
+
+**MSS**
+1. User requests to add a remark to specified expense item.
+2. Bamboo adds remark to specified expense item.
+3. Bamboo lists all expenses and shows the budget balance.
+   Use case ends.
+   
+**Extensions**
+
+* 1a. The given expense does not exist.
+    * 1a1. Bamboo shows an error message.
+    Use case ends.
+    
+####Use case U7: Find an expense
+
+**Preconditions:** (Needed for v1.2.1)
+
+* User is logged in.
+
+**MSS**
+
+1. User requests to find expense by certain identifiers and search terms.
+2. Bamboo shows a list of expenses which match the identifiers and search terms.
+3. Bamboo lists all expenses and shows the new budget balance.
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given field values are invalid.
+    * 1a1. Bamboo shows an error message. 
       Use case ends.
 
 ### Non-Functional Requirement
@@ -396,7 +448,7 @@ Process Requirements:
 ### Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
-- **Expense**: A single instance of expenditure containing a description, amount spent, date, and category (coming soon). Expenses are subtracted from the user's **budget**.
+- **Expense**: A single instance of expenditure containing a description, amount spent, date, and category. Expenses are subtracted from the user's **budget**.
 - **Budget**: The amount a user sets aside to spend.
 - **Budget Balance**: The amount of budget left after deducting all expenses.
 
