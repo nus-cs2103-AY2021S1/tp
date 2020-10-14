@@ -25,13 +25,18 @@ public class RetagCommandTest {
     }
 
     @Test
-    public void execute_duplicateNewTagName_throwsCommandException() {
-        TagName oldTag = new TagBuilder().build().getTagName();
-        TagName newTag = new TagBuilder().build().getTagName();
+    public void execute_duplicateNewTagName_retagSuccess() {
+        TagName oldTagName = new TagBuilder().build().getTagName();
+        TagName newTagName = new TagBuilder().build().getTagName();
 
-        RetagCommand retagCommand = new RetagCommand(oldTag, newTag);
+        Tag newTag = new TagBuilder().withTagName(newTagName.toString()).build();
 
-        assertThrows(CommandException.class, RetagCommand.MESSAGE_DUPLICATE_TAG, () -> retagCommand.execute(modelStub));
+        ModelStubWithTagAndTaglist expectedModelStub = new ModelStubWithTagAndTaglist(newTag);
+
+        RetagCommand retagCommand = new RetagCommand(oldTagName, newTagName);
+
+        assertCommandSuccess(retagCommand, modelStub,
+                String.format(retagCommand.MESSAGE_RETAG_TAG_SUCCESS, oldTagName, newTagName), expectedModelStub);
     }
 
     @Test
