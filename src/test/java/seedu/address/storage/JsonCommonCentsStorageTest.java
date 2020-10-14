@@ -43,17 +43,17 @@ public class JsonCommonCentsStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readCommonCents("notJsonFormatCommonCents.json"));
+        assertThrows(Exception.class, () -> readCommonCents("notJsonFormatCommonCents.json"));
     }
 
     @Test
     public void readCommonCents_invalidPersonCommonCents_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readCommonCents("invalidAccountNameCommonCents.json"));
+        assertThrows(Exception.class, () -> readCommonCents("invalidAccountNameCommonCents.json"));
     }
 
     @Test
     public void readCommonCents_invalidAndValidPersonCommonCents_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readCommonCents(
+        assertThrows(Exception.class, () -> readCommonCents(
             "invalidAndValidAccountCommonCents.json"));
     }
 
