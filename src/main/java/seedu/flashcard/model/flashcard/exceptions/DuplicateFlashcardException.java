@@ -6,6 +6,6 @@ package seedu.flashcard.model.flashcard.exceptions;
  */
 public class DuplicateFlashcardException extends RuntimeException {
     public DuplicateFlashcardException() {
-        super("Operation would result in duplicate persons");
+        super("Operation would result in duplicate flashcards");
     }
 }

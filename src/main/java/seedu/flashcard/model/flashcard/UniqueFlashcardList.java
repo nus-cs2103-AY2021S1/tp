@@ -13,7 +13,7 @@ import seedu.flashcard.model.flashcard.exceptions.FlashcardNotFoundException;
 
 /**
  * A list of flashcards that enforces uniqueness between its elements and does not allow nulls.
- * A flashcard is considered unique by comparing using {@code Flashcard#isSameQuestion(Person)}. As such, adding
+ * A flashcard is considered unique by comparing using {@code Flashcard#isSameQuestion(Question)}. As such, adding
  * and updating of flashcards uses Flashcard#isSameQuestion(Flashcard) for equality so as to ensure that the flashcard
  * being added or updated is unique in terms of identity in the UniqueFlashcardList. However, the removal of a
  * flashcard uses Flashcard#equals(Object) so as to ensure that the flashcard with exactly the same fields

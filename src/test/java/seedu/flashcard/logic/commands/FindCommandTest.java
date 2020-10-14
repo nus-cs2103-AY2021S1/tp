@@ -3,22 +3,22 @@ package seedu.flashcard.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalFlashcards.FLASHCARD_1;
-import static seedu.address.testutil.TypicalFlashcards.FLASHCARD_2;
-import static seedu.address.testutil.TypicalFlashcards.FLASHCARD_3;
-import static seedu.address.testutil.TypicalFlashcards.getTypicalFlashcardDeck;
+import static seedu.flashcard.commons.core.Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW;
+import static seedu.flashcard.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_1;
+import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_2;
+import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_3;
+import static seedu.flashcard.testutil.TypicalFlashcards.getTypicalFlashcardDeck;
 
 import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.flashcard.QuestionContainsKeywordsPredicate;
+import seedu.flashcard.model.Model;
+import seedu.flashcard.model.ModelManager;
+import seedu.flashcard.model.UserPrefs;
+import seedu.flashcard.model.flashcard.QuestionContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

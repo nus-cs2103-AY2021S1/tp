@@ -14,27 +14,27 @@ import seedu.flashcard.commons.core.LogsCenter;
 import seedu.flashcard.model.flashcard.Flashcard;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the flashcard deck data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final FlashcardDeck addressBook;
+    private final FlashcardDeck flashcardDeck;
     private final UserPrefs userPrefs;
     private final FilteredList<Flashcard> filteredFlashcards;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given flashcardDeck and userPrefs.
      */
-    public ModelManager(ReadOnlyFlashcardDeck addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyFlashcardDeck flashcardDeck, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(flashcardDeck, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with flashcard deck: " + flashcardDeck + " and user prefs " + userPrefs);
 
-        this.addressBook = new FlashcardDeck(addressBook);
+        this.flashcardDeck = new FlashcardDeck(flashcardDeck);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredFlashcards = new FilteredList<>(this.addressBook.getFlashcardList());
+        filteredFlashcards = new FilteredList<>(this.flashcardDeck.getFlashcardList());
     }
 
     public ModelManager() {
@@ -67,41 +67,41 @@ public class ModelManager implements Model {
 
     @Override
     public Path getFlashcardDeckFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getFlashcardDeckFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setFlashcardDeckFilePath(Path flashcardDeckFilePath) {
+        requireNonNull(flashcardDeckFilePath);
+        userPrefs.setFlashcardDeckFilePath(flashcardDeckFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== FlashcardDeck ==============================================================================
 
     @Override
-    public void setFlashcardDeck(ReadOnlyFlashcardDeck addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setFlashcardDeck(ReadOnlyFlashcardDeck flashcardDeck) {
+        this.flashcardDeck.resetData(flashcardDeck);
     }
 
     @Override
     public ReadOnlyFlashcardDeck getFlashcardDeck() {
-        return addressBook;
+        return flashcardDeck;
     }
 
     @Override
     public boolean hasFlashcard(Flashcard flashcard) {
         requireNonNull(flashcard);
-        return addressBook.hasFlashcard(flashcard);
+        return flashcardDeck.hasFlashcard(flashcard);
     }
 
     @Override
     public void deleteFlashcard(Flashcard target) {
-        addressBook.removeFlashcard(target);
+        flashcardDeck.removeFlashcard(target);
     }
 
     @Override
     public void addFlashcard(Flashcard flashcard) {
-        addressBook.addFlashcard(flashcard);
+        flashcardDeck.addFlashcard(flashcard);
         updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
     }
 
@@ -109,14 +109,14 @@ public class ModelManager implements Model {
     public void setFlashcard(Flashcard target, Flashcard editedFlashcard) {
         requireAllNonNull(target, editedFlashcard);
 
-        addressBook.setFlashcard(target, editedFlashcard);
+        flashcardDeck.setFlashcard(target, editedFlashcard);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Flashcard List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Flashcard} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedFlashcardDeck}
      */
     @Override
     public ObservableList<Flashcard> getFilteredFlashcardList() {
@@ -143,7 +143,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return flashcardDeck.equals(other.flashcardDeck)
                 && userPrefs.equals(other.userPrefs)
                 && filteredFlashcards.equals(other.filteredFlashcards);
     }

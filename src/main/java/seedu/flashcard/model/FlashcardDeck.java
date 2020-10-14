@@ -9,7 +9,7 @@ import seedu.flashcard.model.flashcard.Flashcard;
 import seedu.flashcard.model.flashcard.UniqueFlashcardList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the flashcard-deck level
  * Duplicates are not allowed (by .isSameQuestion comparison)
  */
 public class FlashcardDeck implements ReadOnlyFlashcardDeck {
@@ -30,7 +30,7 @@ public class FlashcardDeck implements ReadOnlyFlashcardDeck {
     public FlashcardDeck() {}
 
     /**
-     * Creates an AddressBook using the Flashcards in the {@code toBeCopied}
+     * Creates an FlashcardDeck using the Flashcards in the {@code toBeCopied}
      */
     public FlashcardDeck(ReadOnlyFlashcardDeck toBeCopied) {
         this();
@@ -48,7 +48,7 @@ public class FlashcardDeck implements ReadOnlyFlashcardDeck {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code FlashcardDeck} with {@code newData}.
      */
     public void resetData(ReadOnlyFlashcardDeck newData) {
         requireNonNull(newData);
@@ -59,7 +59,7 @@ public class FlashcardDeck implements ReadOnlyFlashcardDeck {
     //// flashcard-level operations
 
     /**
-     * Returns true if a flashcard with the same identity as {@code flashcard} exists in the address book.
+     * Returns true if a flashcard with the same identity as {@code flashcard} exists in the flashcard deck.
      */
     public boolean hasFlashcard(Flashcard flashcard) {
         requireNonNull(flashcard);
@@ -67,8 +67,8 @@ public class FlashcardDeck implements ReadOnlyFlashcardDeck {
     }
 
     /**
-     * Adds a flashcard to the address book.
-     * The flashcard must not already exist in the address book.
+     * Adds a flashcard to the flashcard deck.
+     * The flashcard must not already exist in the flashcard deck.
      */
     public void addFlashcard(Flashcard flashcard) {
         flashcards.add(flashcard);
@@ -76,9 +76,9 @@ public class FlashcardDeck implements ReadOnlyFlashcardDeck {
 
     /**
      * Replaces the given flashcard {@code target} in the list with {@code editedFlashcard}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the flashcard deck.
      * The flashcard identity of {@code editedFlashcard} must not be the same as another existing flashcard
-     * in the address book.
+     * in the flashcard deck.
      */
     public void setFlashcard(Flashcard target, Flashcard editedFlashcard) {
         requireNonNull(editedFlashcard);
@@ -87,8 +87,8 @@ public class FlashcardDeck implements ReadOnlyFlashcardDeck {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code FlashcardDeck}.
+     * {@code key} must exist in the flashcard deck.
      */
     public void removeFlashcard(Flashcard key) {
         flashcards.remove(key);

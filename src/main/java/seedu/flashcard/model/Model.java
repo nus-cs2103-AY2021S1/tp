@@ -35,19 +35,19 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' flashcard deck file path.
      */
     Path getFlashcardDeckFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' flashcard deck file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setFlashcardDeckFilePath(Path flashcardDeckFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces flashcard deck data with the data in {@code flashcardDeck}.
      */
-    void setFlashcardDeck(ReadOnlyFlashcardDeck addressBook);
+    void setFlashcardDeck(ReadOnlyFlashcardDeck flashcardDeck);
 
     /** Returns the FlashcardDeck */
     ReadOnlyFlashcardDeck getFlashcardDeck();

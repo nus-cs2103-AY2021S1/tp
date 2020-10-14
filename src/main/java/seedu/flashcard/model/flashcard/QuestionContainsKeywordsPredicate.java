@@ -3,7 +3,6 @@ package seedu.flashcard.model.flashcard;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.flashcard.commons.util.StringUtil;
 
 /**
  * Tests that a {@code Flashcard}'s {@code Question} matches any of the keywords given.

@@ -13,7 +13,7 @@ import seedu.flashcard.model.flashcard.Question;
 import seedu.flashcard.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code FlashcardDeck} with sample data.
  */
 public class SampleDataUtil {
     public static Flashcard[] getSampleFlashcards() {
@@ -26,7 +26,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyFlashcardDeck getSampleAddressBook() {
+    public static ReadOnlyFlashcardDeck getSampleFlashcardDeck() {
         FlashcardDeck sampleAb = new FlashcardDeck();
         for (Flashcard sampleFlashcard : getSampleFlashcards()) {
             sampleAb.addFlashcard(sampleFlashcard);
