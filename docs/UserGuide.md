@@ -67,8 +67,7 @@ Stores the attendance records of all the students to a file.
 ```
 store_record fn/FILENAME
 ```
-- Stores the NUSNET ID and attendance state of all students in the student list, then clears the attendance of all 
-  students
+- Stores the NUSNET ID and attendance state of all students in the student list, then clears the attendance of all students
 - The `FILENAME` can _only_ contain **alphanumeric characters**
 - The files are stored in the `/data` folder.
 

@@ -54,7 +54,6 @@ public class LoadAttendanceCommand extends StorageCommand {
             throw new CommandException(MESSAGE_NO_FILE_FOUND);
         }
 
-
         model.clearAttendance();
 
         try {
@@ -75,7 +74,6 @@ public class LoadAttendanceCommand extends StorageCommand {
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + filename);
         }
-
 
         return new CommandResult(String.format(MESSAGE_LOAD_ATTENDANCE_SUCCESS, filename));
     }

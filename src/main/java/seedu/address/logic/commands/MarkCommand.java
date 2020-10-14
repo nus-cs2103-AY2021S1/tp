@@ -19,9 +19,9 @@ public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks attendance of the student identified by the index number used in the displayed student list.\n"
-            + "Parameters: "
-            + "INDEX (must be a positive integer) "
+            + ": Marks attendance of the student identified by the "
+            + "index number used in the displayed student list.\n"
+            + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_ATTENDANCE_TYPE + "ATTENDANCE_TYPE (must be 'present' or 'absent') \n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_ATTENDANCE_TYPE + "present";
 
@@ -42,13 +42,14 @@ public class MarkCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        int index = targetIndex.getZeroBased();
         List<Student> lastShownList = model.getFilteredStudentList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (index >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        Student studentToMark = lastShownList.get(targetIndex.getZeroBased());
+        Student studentToMark = lastShownList.get(index);
         model.markStudent(studentToMark, attendanceType);
         return new CommandResult(String.format(MESSAGE_MARK_STUDENT_SUCCESS, studentToMark, attendanceType));
     }
