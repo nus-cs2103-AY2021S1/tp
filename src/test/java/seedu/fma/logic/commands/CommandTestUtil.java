@@ -32,8 +32,10 @@ public class CommandTestUtil {
     public static final String VALID_EXERCISE_SIT_UP = "Sit ups";
     public static final String VALID_EXERCISE_JUMPING_JACKS = "Jumping jacks";
 
-    public static final Exercise VALID_EXERCISE_A = new ExerciseBuilder().withName(VALID_EXERCISE_SIT_UP).build();
-    public static final Exercise VALID_EXERCISE_B = new ExerciseBuilder().withName(VALID_EXERCISE_JUMPING_JACKS).build();
+    public static final Exercise VALID_EXERCISE_A = new ExerciseBuilder()
+            .withName(VALID_EXERCISE_SIT_UP).build();
+    public static final Exercise VALID_EXERCISE_B = new ExerciseBuilder()
+            .withName(VALID_EXERCISE_JUMPING_JACKS).build();
     public static final String VALID_REP_A = "5";
     public static final String VALID_REP_B = "10";
     public static final String VALID_COMMENT_A = "This exercise is tough";
