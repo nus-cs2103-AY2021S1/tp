@@ -1,6 +1,7 @@
 package seedu.resireg.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.resireg.logic.parser.CliSyntax.PREFIX_STUDENT_INDEX;
 
 import java.util.List;
 
@@ -19,8 +20,10 @@ public class DeallocateCommand extends Command {
 
     public static final String COMMAND_WORD = "deallocate";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deallocates a student from a room. \n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: "
+            + PREFIX_STUDENT_INDEX + "STUDENT INDEX\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_STUDENT_INDEX + "1";
 
     public static final String MESSAGE_SUCCESS = "Room deallocated from %1$s: %2$s.";
     public static final String MESSAGE_STUDENT_NOT_FOUND = "This student is not registered in ResiReg";

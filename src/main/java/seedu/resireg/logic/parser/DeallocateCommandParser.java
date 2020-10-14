@@ -1,10 +1,13 @@
 package seedu.resireg.logic.parser;
 
 import static seedu.resireg.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_INDEX;
+import static seedu.resireg.logic.parser.CliSyntax.PREFIX_STUDENT_INDEX;
 
 import java.util.stream.Stream;
 
 import seedu.resireg.commons.core.index.Index;
+import seedu.resireg.logic.commands.AllocateCommand;
 import seedu.resireg.logic.commands.DeallocateCommand;
 import seedu.resireg.logic.parser.exceptions.ParseException;
 
@@ -20,12 +23,20 @@ public class DeallocateCommandParser implements Parser<DeallocateCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeallocateCommand parse(String args) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_STUDENT_INDEX);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_INDEX)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeallocateCommand.MESSAGE_USAGE));
+        }
+
         try {
-            Index index = ParserUtil.parseIndex(args);
-            return new DeallocateCommand(index);
+            Index studentIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT_INDEX).get());
+            return new DeallocateCommand(studentIndex);
         } catch (ParseException pe) {
             throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeallocateCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeallocateCommand.MESSAGE_USAGE), pe);
         }
     }
 
