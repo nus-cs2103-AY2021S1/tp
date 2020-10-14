@@ -4,9 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import seedu.address.model.Model;
 import seedu.address.model.account.ActiveAccount;
 import seedu.address.model.account.entry.Entry;
