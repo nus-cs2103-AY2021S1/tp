@@ -15,6 +15,7 @@ import seedu.address.model.CommonCents;
 import seedu.address.model.Model;
 import seedu.address.model.account.Account;
 import seedu.address.model.account.ActiveAccount;
+import seedu.address.model.account.ActiveAccountManager;
 
 /**
  * Contains helper methods for testing commands.
@@ -47,13 +48,17 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    private static final int GENERAL_ACC_INDEX = 0;
+
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, ActiveAccount activeAccount,
+    public static void assertCommandSuccess(Command command, Model actualModel,
                                             CommandResult expectedCommandResult, Model expectedModel) {
+        ActiveAccount activeAccount =
+                new ActiveAccountManager(actualModel.getFilteredAccountList().get(GENERAL_ACC_INDEX));
         try {
             CommandResult result = command.execute(actualModel, activeAccount);
             assertEquals(expectedCommandResult, result);
@@ -64,13 +69,13 @@ public class CommandTestUtil {
     }
 
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, ActiveAccount, CommandResult, Model)}
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, ActiveAccount activeAccount,
+    public static void assertCommandSuccess(Command command, Model actualModel,
                                             String expectedMessage, Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
-        assertCommandSuccess(command, actualModel, activeAccount, expectedCommandResult, expectedModel);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
     /**
@@ -79,13 +84,14 @@ public class CommandTestUtil {
      * - the CommandException message matches {@code expectedMessage} <br>
      * - the common cents, filtered account list and selected account in {@code actualModel} remain unchanged
      */
-    public static void assertCommandFailure(Command command, Model actualModel, ActiveAccount activeAccount,
+    public static void assertCommandFailure(Command command, Model actualModel,
                                             String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
+        ActiveAccount activeAccount =
+                new ActiveAccountManager(actualModel.getFilteredAccountList().get(GENERAL_ACC_INDEX));
         CommonCents expectedCommonCents = new CommonCents(actualModel.getCommonCents());
         List<Account> expectedFilteredList = new ArrayList<>(actualModel.getFilteredAccountList());
-
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel, activeAccount));
         assertEquals(expectedCommonCents, actualModel.getCommonCents());
         assertEquals(expectedFilteredList, actualModel.getFilteredAccountList());
