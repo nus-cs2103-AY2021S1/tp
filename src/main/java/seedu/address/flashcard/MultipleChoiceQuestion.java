@@ -42,11 +42,11 @@ public class MultipleChoiceQuestion implements Question {
             Choice choice = new Choice(c);
             choicesArray.add(choice);
         }
-        Choice[] test = choicesArray.toArray(new Choice[choices.size()]);
+        Choice[] newChoicesArray = choicesArray.toArray(new Choice[choices.size()]);
         for (int i = 0; i < choices.size(); i++) {
-            test[i] = new Choice(choices.get(i));
+            newChoicesArray[i] = new Choice(choices.get(i));
         }
-        this.choices = test;
+        this.choices = newChoicesArray;
     }
 
     public static boolean isValidQuestion(String test) {
