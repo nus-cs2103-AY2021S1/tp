@@ -6,9 +6,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-
-
-
 /**
  * Tests for UniqueAccountList.
  * Tests for uniqueness of accounts will be implemented in future as for now, we assume only one account.
