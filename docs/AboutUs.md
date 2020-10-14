@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/danadi7.png" width="200px">
 
-[[github](https://github.com/danadi7)] 
+[[github](https://github.com/danadi7)]
 [[portfolio](team/danadi7.md)]
 
 * Role: Developer

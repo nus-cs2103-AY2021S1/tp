@@ -236,7 +236,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* NUS CS Students 
+* NUS CS Students
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
