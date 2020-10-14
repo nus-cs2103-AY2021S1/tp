@@ -11,5 +11,5 @@ public interface ReadOnlyFoodEntryBook {
      * Returns an unmodifiable view of the food entry list.
      * This list will not contain any duplicate food entries.
      */
-    ObservableList<? extends Item> getFoodEntryList();
+    ObservableList<? extends Entry> getFoodEntryList();
 }

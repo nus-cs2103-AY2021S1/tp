@@ -9,11 +9,11 @@ import java.util.Objects;
 import java.util.StringJoiner;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import chopchop.model.Item;
+import chopchop.model.Entry;
 import chopchop.model.attributes.Step;
 import chopchop.model.ingredient.IngredientReference;
 
-public class Recipe extends Item {
+public class Recipe extends Entry {
     private final List<IngredientReference> ingredients = new ArrayList<>();
     private final List<Step> steps = new ArrayList<>();
 

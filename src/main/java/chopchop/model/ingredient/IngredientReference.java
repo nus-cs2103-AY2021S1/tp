@@ -2,14 +2,14 @@ package chopchop.model.ingredient;
 
 import static java.util.Objects.requireNonNull;
 
-import chopchop.model.Item;
+import chopchop.model.Entry;
 import chopchop.model.attributes.Quantity;
 import chopchop.util.Result;
 
 /**
  * A reference to an ingredient. Not the actual {@code Ingredient}, and knows nothing about it.
  */
-public class IngredientReference extends Item {
+public class IngredientReference extends Entry {
     private final Quantity quantity;
 
     /**

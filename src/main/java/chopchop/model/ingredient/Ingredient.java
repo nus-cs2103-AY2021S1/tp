@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.StringJoiner;
 
-import chopchop.model.Item;
+import chopchop.model.Entry;
 import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.Quantity;
 import chopchop.model.ingredient.exceptions.IncompatibleIngredientsException;
@@ -14,7 +14,7 @@ import chopchop.model.ingredient.exceptions.IncompatibleIngredientsException;
 /**
  * Represents an Ingredient in the recipe manager.
  */
-public class Ingredient extends Item {
+public class Ingredient extends Entry {
     private final Quantity quantity;
     private final ExpiryDate expiryDate;
 

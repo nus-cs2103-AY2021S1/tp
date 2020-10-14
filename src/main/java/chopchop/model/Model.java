@@ -21,8 +21,8 @@ import javafx.collections.ObservableList;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Item> PREDICATE_SHOW_ALL_RECIPES = unused -> true;
-    Predicate<Item> PREDICATE_SHOW_ALL_INGREDIENTS = unused -> true;
+    Predicate<Entry> PREDICATE_SHOW_ALL_RECIPES = unused -> true;
+    Predicate<Entry> PREDICATE_SHOW_ALL_INGREDIENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -103,7 +103,7 @@ public interface Model {
      * Updates the filter of the filtered recipe list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredRecipeList(Predicate<Item> predicate);
+    void updateFilteredRecipeList(Predicate<Entry> predicate);
 
     /**
      * Returns the user prefs' ingredient book file path.
@@ -165,6 +165,6 @@ public interface Model {
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredIngredientList(Predicate<Item> predicate);
+    void updateFilteredIngredientList(Predicate<Entry> predicate);
 
 }

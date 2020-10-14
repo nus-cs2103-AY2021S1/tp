@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import chopchop.commons.util.StringUtil;
-import chopchop.model.Item;
+import chopchop.model.Entry;
 
 /**
  * Tests that an item's {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Item> {
+public class NameContainsKeywordsPredicate implements Predicate<Entry> {
     private final List<String> keywords;
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
@@ -17,9 +17,9 @@ public class NameContainsKeywordsPredicate implements Predicate<Item> {
     }
 
     @Override
-    public boolean test(Item item) {
+    public boolean test(Entry entry) {
         return this.keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(item.getName().toString(), keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(entry.getName().toString(), keyword));
     }
 
     @Override

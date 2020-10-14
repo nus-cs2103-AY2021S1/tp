@@ -4,10 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import chopchop.model.attributes.Name;
 
-public abstract class Item {
+public abstract class Entry {
     protected final Name name;
 
-    protected Item(String name) {
+    protected Entry(String name) {
         requireNonNull(name);
         this.name = new Name(name);
     }
