@@ -77,7 +77,11 @@ public class StockBookParser {
             }
 
         case FindExactCommand.COMMAND_WORD:
-            return new FindExactCommandParser().parse(arguments);
+            try {
+                return new FindExactCommandParser().parse(arguments);
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
 
         default:
             return new SuggestionCommandParser(commandWord).parse(arguments);

@@ -147,6 +147,11 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
                 toBeDisplayed.append(" " + currentPrefix + argMultimap.getValue(currentPrefix).get());
             }
         }
+        if (!bodyErrorMessage.equals("")) {
+            toBeDisplayed.append("\n" + bodyErrorMessage);
+        } else {
+            toBeDisplayed.append("\n" + FindCommand.MESSAGE_USAGE);
+        }
     }
 
     private void generateUpdateSuggestion(StringBuilder toBeDisplayed,
