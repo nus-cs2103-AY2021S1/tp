@@ -14,7 +14,6 @@ traditional GUI apps.
   * [Add a task: `add`](#add-a-task-add)
   * [Delete a task : `delete`](#delete-a-task--delete)
   * [Mark a task as done: `done`](#mark-a-task-as-done-done)
-  * Edit a task : `edit`
   * [Find a task : `find`](#find-a-task-by-attribute-find)
   * [Exit the program : `exit`](#exit-the-program--exit)
 * [FAQ](#faq)
@@ -91,7 +90,7 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, ...
 
 Examples:
-* `list` followed by `delete 2 3` deletes the 2nd and the 3rd tasks in the results of the `list` command.
+* `list` followed by `delete 2` deletes the 2nd task in the results of the `list` command.
 * `find title:homework` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
 ### Mark a task as done: `done`
@@ -147,7 +146,7 @@ Format: `exit`
 Action | Format, Examples
 --------|------------------
 **Add** | `add title:TITLE type:TYPE_OF_TASK [desc:DESCRIPTION] [date:DATE_TIME]` <br> e.g. `add title:return book type:todo`
-**Delete** | `delete INDEX...` <br> e.g. `delete 3 5 6`
+**Delete** | `delete INDEX...` <br> e.g. `delete 3`
 **List** | `list`
 **Help** | `help`
 **Done** | `done INDEX...`<br> e.g. `done 1 2 3`
