@@ -41,6 +41,7 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
             // Only if Item Name is missing throws parse exception error
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddItemCommand.MESSAGE_USAGE));
         }
+        // Missing Field Name would have been detected.
         String name = ItemParserUtil.parseName(argMultimap.getValue(PREFIX_ITEM_NAME).get());
         Quantity quantity = ItemParserUtil.parseQuantity(argMultimap.getValue(PREFIX_ITEM_QUANTITY)
                 .orElse(DEFAULT_QUANTITY));

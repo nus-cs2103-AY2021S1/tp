@@ -28,5 +28,4 @@ public class ViewDetailedCommandParserTest {
                 new ViewDetailsCommand(new NameIsExactlyPredicate(Collections.singletonList("Shard of Alice #32")));
         assertParseSuccess(parser, "Shard of Alice #32", expectedViewDetailsCommand);
     }
-
 }

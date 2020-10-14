@@ -69,6 +69,7 @@ public class ItemParserUtil {
     }
 
     /**
+     * Could be extended to parse multiple locations here.
      * Parses {@code Collection<String> locations} into a {@code Set<String>}.
      */
     public static Set<String> parseLocations(Collection<String> locations) {

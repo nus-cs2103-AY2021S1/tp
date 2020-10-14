@@ -14,7 +14,6 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data", "addressbook.json");
     private Path itemListFilePath = Paths.get("data", "itemlist.json");
     private Path locationListFilePath = Paths.get("data", "locationlist.json");
     private Path recipeListFilePath = Paths.get("data", "recipelist.json");
@@ -39,7 +38,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
         setItemListFilePath(newUserPrefs.getItemListFilePath());
         setRecipeListFilePath(newUserPrefs.getRecipeListFilePath());
     }
@@ -51,11 +49,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         this.guiSettings = guiSettings;
-    }
-
-    @Override
-    public Path getAddressBookFilePath() {
-        return addressBookFilePath;
     }
 
     @Override
@@ -71,11 +64,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     @Override
     public Path getRecipeListFilePath() {
         return recipeListFilePath;
-    }
-
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
     }
 
     public void setItemListFilePath(Path itemListFilePath) {
@@ -105,7 +93,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath)
                 && itemListFilePath.equals(o.itemListFilePath)
                 && locationListFilePath.equals(o.locationListFilePath)
                 && recipeListFilePath.equals(o.recipeListFilePath);
@@ -113,18 +100,18 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath, itemListFilePath,
+        return Objects.hash(guiSettings, itemListFilePath,
                 locationListFilePath, recipeListFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
-        sb.append("\nLocal item data file location : " + itemListFilePath);
-        sb.append("\nLocal location data file location : " + locationListFilePath);
-        sb.append("\nLocal recipe data file location : " + recipeListFilePath);
+        sb.append("Gui Settings : ").append(guiSettings)
+                .append("\nLocal item data file location : ")
+                .append(itemListFilePath).append("\nLocal location data file location : ")
+                .append(locationListFilePath).append("\nLocal recipe data file location : ")
+                .append(recipeListFilePath);
         return sb.toString();
     }
 
