@@ -29,9 +29,9 @@ import seedu.address.testutil.EditItemDescriptorBuilder;
 import seedu.address.testutil.ItemBuilder;
 import seedu.address.testutil.ItemUtil;
 
-public class InventoryBookParserTest {
+public class OneShelfBookParserTest {
 
-    private final InventoryBookParser parser = new InventoryBookParser();
+    private final OneShelfBookParser parser = new OneShelfBookParser();
 
     @Test
     public void parseCommand_add() throws Exception {

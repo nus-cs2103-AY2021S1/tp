@@ -29,7 +29,7 @@ import seedu.address.logic.parser.itemparser.RemoveCommandParser;
 /**
  * Parses user input.
  */
-public class InventoryBookParser {
+public class OneShelfBookParser {
 
     /**
      * Used for initial separation of command word and args.

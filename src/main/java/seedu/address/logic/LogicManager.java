@@ -11,7 +11,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.itemcommand.ItemCommand;
 import seedu.address.logic.commands.results.CommandResult;
-import seedu.address.logic.parser.InventoryBookParser;
+import seedu.address.logic.parser.OneShelfBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.delivery.Delivery;
@@ -32,7 +32,7 @@ public class LogicManager implements Logic {
     private final InventoryModel inventoryModel;
     private final DeliveryModel deliveryModel;
     private final Storage storage;
-    private final InventoryBookParser inventoryBookParser;
+    private final OneShelfBookParser oneShelfBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -41,7 +41,7 @@ public class LogicManager implements Logic {
         this.inventoryModel = inventoryModel;
         this.deliveryModel = deliveryModel;
         this.storage = storage;
-        inventoryBookParser = new InventoryBookParser();
+        oneShelfBookParser = new OneShelfBookParser();
     }
 
     @Override
@@ -49,7 +49,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = inventoryBookParser.parseCommand(commandText);
+        Command command = oneShelfBookParser.parseCommand(commandText);
         commandResult = command.execute(getAppropriateModel(command));
 
         try {
