@@ -13,7 +13,7 @@ import seedu.address.model.investigationcase.Case;
 public class AddCaseCommand extends AddCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_CASE
-            + ": Adds a case to PIVOT. "
+            + ": Adds a case to PIVOT.\n"
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
             + "[" + PREFIX_STATUS + "STATUS]\n"
