@@ -70,7 +70,7 @@ Format: `help`
 Add a new task(todo/event/deadline) to the ScheDar program.
 
 Format: `add TYPE n/NAME d/DATETIME [t/TAG]…​`
-        TYPE refers to the type of task to be added. 
+        TYPE refers to the type of task to be added.
         TYPE must be one of the following: deadline, event, todo
         Adds a new task of the given type, name, date and time, and tag if any, to the task list.
         The new task will be appended at the end of the existing task list.
@@ -92,8 +92,8 @@ Format: `pri LEVEL INDEX`
         Marks the task at the specified INDEX as the priority level indicated.
         The index refers to the index number shown on the task list when using the list command.
         The index must be a positive integer 1, 2, 3, …​
-        
-Example: 
+
+Example:
 * `pri high 2`
 
 ### Listing all tasks : `list`
@@ -116,7 +116,7 @@ Format: `done INDEX`
         Marks as completed the task at the specified INDEX.
         The index refers to the index number shown on the task list when using the list command.
         The index must be a positive integer 1, 2, 3, …​
-        
+
 Example: `done 2`
 
 ### Deleting a task : `del`
@@ -144,7 +144,7 @@ Searches the current tasklist for the specified keyword(s).
 Format: `find KEYWORD1 [KEYWORD2]`
         Searches the entire task list for the presence of the keyword(s) on any task.
         Matching tasks are shown on a list to the user.
-        
+
 Example: `find cs2103 project`
 
 ### Exiting the program : `exit`
