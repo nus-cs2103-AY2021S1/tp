@@ -1,15 +1,12 @@
 package seedu.address.logic.commands.deliverycommand;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.deliverymodel.DeliveryModel.PREDICATE_SHOW_ALL_DELIVERIES;
+
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.itemcommand.ItemCommand;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.deliverymodel.DeliveryModel;
-import seedu.address.model.inventorymodel.InventoryModel;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.deliverymodel.DeliveryModel.PREDICATE_SHOW_ALL_DELIVERIES;
-import static seedu.address.model.inventorymodel.InventoryModel.PREDICATE_SHOW_ALL_ITEMS;
 
 /**
  * Lists all items in the delivery book to the user.

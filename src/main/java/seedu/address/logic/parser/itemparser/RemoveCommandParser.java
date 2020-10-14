@@ -33,7 +33,8 @@ public class RemoveCommandParser implements Parser<ItemRemoveCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ItemRemoveCommand.MESSAGE_USAGE), ive);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ItemRemoveCommand.MESSAGE_USAGE), ive);
         }
 
         if (!isQuantityPresent(argMultimap, PREFIX_QUANTITY)) {

@@ -52,8 +52,7 @@ public class OneShelfBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-
-//            Inventory command words
+        // Inventory command words
         case ItemAddCommand.COMMAND_WORD:
             return new ItemAddCommandParser().parse(arguments);
 
@@ -75,14 +74,14 @@ public class OneShelfBookParser {
         case ItemListCommand.COMMAND_WORD:
             return new ItemListCommand();
 
-//            Delivery command words
+            // Delivery command words
         case DeliveryFindCommand.COMMAND_WORD:
             return new DeliveryFindCommandParser().parse(arguments);
 
         case DeliveryListCommand.COMMAND_WORD:
             return new DeliveryListCommand();
 
-//            General command words
+            // General command words
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
