@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <VBox alignment="CENTER">
       <children>
          <CheckBox fx:id="statusSign" alignment="CENTER" disable="true" mnemonicParsing="false">
@@ -19,6 +19,9 @@
             </VBox.margin>
          </CheckBox>
       </children>
+      <padding>
+         <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+      </padding>
    </VBox>
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
@@ -26,7 +29,7 @@
     </columnConstraints>
     <VBox fx:id="card" alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
       <padding>
-        <Insets bottom="5" left="15" right="5" top="5" />
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </padding>
       <HBox alignment="CENTER_LEFT" spacing="5.0">
         <Label fx:id="id" styleClass="cell_big_label">
