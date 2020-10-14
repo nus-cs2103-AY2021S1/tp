@@ -36,7 +36,8 @@ project documents, Coding standards, format of deliverables
 [[portfolio](team/audrey.md)]
 
 * Role: Developer
-* Responsibilities: Team repository manager, main PR reviewer, Overall program structure.
+* Responsibilities: Project repository manager and maintainer, main PR reviewer and merger, Update feature, 
+  Git & GitHub expert.
 
 
 ### Lau Jun Hao Ashley

@@ -18,8 +18,10 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String HELP = "HELP \n---------------------------\n";
     public static final String ADD = "---------------------------\nADD \n---------------------------\n";
+    public static final String LIST = "---------------------------\nLIST \n---------------------------\n";
     public static final String DELETE = "---------------------------\nDELETE\n---------------------------\n";
     public static final String FIND = "---------------------------\nFIND\n---------------------------\n";
+    public static final String FINDEXACT = "---------------------------\nFINDEXACT\n---------------------------\n";
     public static final String UPDATE = "---------------------------\nUPDATE\n---------------------------\n";
     public static final String EXIT = "---------------------------\nEXIT\n---------------------------\n";
 
@@ -29,24 +31,29 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String ADD_DESCRIPTION =
             "format: \nadd n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>\n\n";
 
+    public static final String LIST_DESCRIPTION =
+            "format: \nlist\n\n";
+
     public static final String DELETE_DESCRIPTION =
             "format: \ndelete sn/<serial number>\n\n"
             + "format (multiple): \ndelete sn/<serial number> sn/<serial number 2> \n\n";
 
     public static final String FIND_DESCRIPTION =
-            "format(any): \nfind n/<name> find sn/<serial number> find l/<location> find s/<source of the stock>\n\n";
+            "format(any combination of): \nfind n/<name> sn/<serial number> l/<location> s/<source>\n\n";
+
+    public static final String FINDEXACT_DESCRIPTION =
+            "format(any combination of): \nfindexact n/<name> sn/<serial number> l/<location> s/<source>\n\n";
 
     public static final String UPDATE_DESCRIPTION =
-            "format(multiple): \nupdate sn/<Serial Number of product> (followed by one of):\n"
-                    + "q/<+/-><quantity to increment/decrement> nq/<new quantity> n/<new name> "
-                    + "l/<new location in warehouse> s/<new source of stock>\n\n";
+            "format: \nupdate sn/<Serial Number of product> (followed by combination of any):\n"
+                    + "iq/<+/-><quantity to increment/decrement> nq/<new quantity> n/<new name>\n"
+                    + "l/<new location in warehouse> s/<new source of stock>\n"
+                    + "NOTE: only either of iq/ or nq/ can be provided.\n";
 
-    public static final String EXIT_DESCRIPTION =
-            "format: \nexit\n\n";
+    public static final String EXIT_DESCRIPTION = "format: \nexit\n\n";
 
     public static final String DISCLAIMER = "---------------------------\nFor more information refer to the guide :";
-    public static final String USERGUIDE_URL = "https://github.com/AY2021S1-CS2103T-T15-3/tp"
-            + "/blob/master/docs/UserGuide.md";
+    public static final String USERGUIDE_URL = "https://ay2021s1-cs2103t-t15-3.github.io/tp/UserGuide.html";
     public static final Hyperlink USERGUIDE_LINK = new Hyperlink(USERGUIDE_URL);
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
@@ -59,6 +66,12 @@ public class HelpWindow extends UiPart<Stage> {
     private Label addMessage;
 
     @FXML
+    private Label listMethod;
+
+    @FXML
+    private Label listMessage;
+
+    @FXML
     private Label deleteMethod;
 
     @FXML
@@ -69,6 +82,12 @@ public class HelpWindow extends UiPart<Stage> {
 
     @FXML
     private Label findMessage;
+
+    @FXML
+    private Label findExactMethod;
+
+    @FXML
+    private Label findExactMessage;
 
     @FXML
     private Label updateMethod;
@@ -112,6 +131,11 @@ public class HelpWindow extends UiPart<Stage> {
         addMethod.setStyle("-fx-font-size: 130%;");
         addMessage.setText(ADD_DESCRIPTION);
 
+        //List Method
+        listMethod.setText(LIST);
+        listMethod.setStyle("-fx-font-size: 130%;");
+        listMessage.setText(LIST_DESCRIPTION);
+
         //Delete Method
         deleteMethod.setText(DELETE);
         deleteMethod.setStyle("-fx-font-size: 130%;");
@@ -126,6 +150,11 @@ public class HelpWindow extends UiPart<Stage> {
         findMethod.setText(FIND);
         findMethod.setStyle("-fx-font-size: 130%;");
         findMessage.setText(FIND_DESCRIPTION);
+
+        //FindExact Method
+        findExactMethod.setText(FINDEXACT);
+        findExactMethod.setStyle("-fx-font-size: 130%;");
+        findExactMessage.setText(FINDEXACT_DESCRIPTION);
 
         //Exit Method
         exitMethod.setText(EXIT);
@@ -146,8 +175,7 @@ public class HelpWindow extends UiPart<Stage> {
                 Application a = new Application() {
 
                     @Override
-                    public void start(Stage stage)
-                    {
+                    public void start(Stage stage) {
                     }
                 };
                 a.getHostServices().showDocument(USERGUIDE_LINK.getText());

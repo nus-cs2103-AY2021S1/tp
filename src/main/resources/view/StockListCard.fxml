@@ -48,7 +48,7 @@
         <Label fx:id="locationStored" styleClass="cell_small_label" text="\$locationStored" />
       </HBox>
 
-
     </VBox>
+
   </GridPane>
 </HBox>
