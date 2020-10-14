@@ -5,7 +5,7 @@ package seedu.address.model.task;
  * A task's state can be either complete or imcomplete.
  */
 public enum State {
-    DONE("done"), PENDING("pending");
+    COMPLETE("Complete"), INCOMPLETE("Incomplete");
 
     private String state;
 
