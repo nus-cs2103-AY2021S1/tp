@@ -9,6 +9,9 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.investigationcase.Document;
+import seedu.address.model.investigationcase.Name;
+import seedu.address.model.investigationcase.Reference;
 import seedu.address.model.investigationcase.Status;
 import seedu.address.model.investigationcase.Title;
 import seedu.address.model.tag.Tag;
@@ -37,7 +40,7 @@ public class ParserUtil {
      * Parses a {@code String title} into a {@code Title}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code title} is invalid.
      */
     public static Title parseTitle(String title) throws ParseException {
         requireNonNull(title);
@@ -61,6 +64,25 @@ public class ParserUtil {
             throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
         return Status.createStatus(trimmedStatus);
+    }
+
+    /**
+     * Parses a {@code String name} and {@code String reference} into an {@code Document}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} or {@code reference} is invalid.
+     */
+    public static Document parseDocument(String name, String reference) throws ParseException {
+        requireNonNull(name, reference);
+        String trimmedName = name.trim();
+        String trimmedReference = reference.trim();
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        if (!Reference.isValidReference(trimmedReference)) {
+            throw new ParseException(Reference.MESSAGE_CONSTRAINTS);
+        }
+        return new Document(new Name(trimmedName), new Reference(trimmedReference));
     }
 
     /**
