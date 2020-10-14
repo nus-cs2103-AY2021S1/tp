@@ -82,6 +82,10 @@ public class TaskManager implements ReadOnlyTaskManager {
         tasks.remove(key);
     }
 
+    public void doneTask(Task key) {
+        key.markDone();
+    }
+
     //// util methods
 
     @Override

@@ -21,7 +21,7 @@ public abstract class Task {
     // Data fields
     protected final Description description;
     protected final Priority priority;
-    protected final DoneStatus status;
+    protected DoneStatus status;
     protected final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -64,6 +64,10 @@ public abstract class Task {
 
     public DoneStatus getStatus() {
         return status;
+    }
+
+    public void markDone() {
+        this.status = new DoneStatus(1);
     }
 
     /**
