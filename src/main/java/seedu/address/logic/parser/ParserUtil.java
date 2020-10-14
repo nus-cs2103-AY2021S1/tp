@@ -9,7 +9,6 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.investigationcase.Document;
 import seedu.address.model.investigationcase.Name;
 import seedu.address.model.investigationcase.Reference;
 import seedu.address.model.investigationcase.Status;
@@ -67,22 +66,33 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} and {@code String reference} into an {@code Document}.
+     * Parses a {@code String name}  into an {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} or {@code reference} is invalid.
+     * @throws ParseException if the given {@code name}  is invalid.
      */
-    public static Document parseDocument(String name, String reference) throws ParseException {
-        requireNonNull(name, reference);
+    public static Name parseName(String name) throws ParseException {
+        requireNonNull(name);
         String trimmedName = name.trim();
-        String trimmedReference = reference.trim();
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
+        return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String reference}  into an {@code Reference}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code reference}  is invalid.
+     */
+    public static Reference parseReference(String reference) throws ParseException {
+        requireNonNull(reference);
+        String trimmedReference = reference.trim();
         if (!Reference.isValidReference(trimmedReference)) {
             throw new ParseException(Reference.MESSAGE_CONSTRAINTS);
         }
-        return new Document(new Name(trimmedName), new Reference(trimmedReference));
+        return new Reference(trimmedReference);
     }
 
     /**

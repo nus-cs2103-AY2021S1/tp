@@ -32,8 +32,8 @@ public class AddDocumentCommandParser implements Parser<AddDocumentCommand> {
         Index index = StateManager.getState();
 
 
-        Document doc = ParserUtil.parseDocument(argMultimap.getValue(PREFIX_NAME).get(),
-                    argMultimap.getValue(PREFIX_REFERENCE).get());
+        Document doc = new Document(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()),
+                    ParserUtil.parseReference(argMultimap.getValue(PREFIX_REFERENCE).get()));
 
         return new AddDocumentCommand(index, doc);
     }
