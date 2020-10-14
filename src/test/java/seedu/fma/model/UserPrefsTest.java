@@ -3,8 +3,8 @@ package seedu.fma.model;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.fma.testutil.Assert.assertThrows;
+import static seedu.fma.testutil.TypicalUserPrefs.VALID_FILE_PATH;
 
-import java.nio.file.Paths;
 import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
@@ -36,7 +36,7 @@ public class UserPrefsTest {
         assertTrue(userPrefs.equals(userPrefs));
 
         // Different userPrefs -> returns false
-        differentUserPrefs.setLogBookFilePath(Paths.get("differentFilePath"));
+        differentUserPrefs.setLogBookFilePath(VALID_FILE_PATH);
         assertFalse(userPrefs.equals(differentUserPrefs));
     }
 

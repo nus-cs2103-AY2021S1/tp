@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.fma.logic.commands.CommandTestUtil.EDIT_LOG_DESCRIPTOR_A;
 import static seedu.fma.logic.commands.CommandTestUtil.EDIT_LOG_DESCRIPTOR_B;
-import static seedu.fma.logic.commands.CommandTestUtil.VALID_COMMENT_B;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_COMMENT_B_STR;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_B;
-import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_B;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_B_STR;
 
 import org.junit.jupiter.api.Test;
 
@@ -43,11 +43,11 @@ public class EditLogDescriptorTest {
         assertNotEquals(EDIT_LOG_DESCRIPTOR_A, editedAmy);
 
         // different email -> returns false
-        editedAmy = new EditLogDescriptorBuilder(EDIT_LOG_DESCRIPTOR_A).withReps(VALID_REP_B).build();
+        editedAmy = new EditLogDescriptorBuilder(EDIT_LOG_DESCRIPTOR_A).withReps(VALID_REP_B_STR).build();
         assertNotEquals(EDIT_LOG_DESCRIPTOR_A, editedAmy);
 
         // different address -> returns false
-        editedAmy = new EditLogDescriptorBuilder(EDIT_LOG_DESCRIPTOR_A).withComment(VALID_COMMENT_B).build();
+        editedAmy = new EditLogDescriptorBuilder(EDIT_LOG_DESCRIPTOR_A).withComment(VALID_COMMENT_B_STR).build();
         assertNotEquals(EDIT_LOG_DESCRIPTOR_A, editedAmy);
     }
 }

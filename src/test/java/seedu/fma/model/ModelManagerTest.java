@@ -7,6 +7,11 @@ import static seedu.fma.model.Model.PREDICATE_SHOW_ALL_LOGS;
 import static seedu.fma.testutil.Assert.assertThrows;
 import static seedu.fma.testutil.TypicalLogs.LOG_A;
 import static seedu.fma.testutil.TypicalLogs.LOG_B;
+import static seedu.fma.testutil.TypicalUserPrefs.GUI_SETTINGS_A;
+import static seedu.fma.testutil.TypicalUserPrefs.GUI_SETTINGS_B;
+import static seedu.fma.testutil.TypicalUserPrefs.INVALID_FILE_PATH;
+import static seedu.fma.testutil.TypicalUserPrefs.VALID_FILE_PATH;
+import static seedu.fma.testutil.TypicalUserPrefs.getSampleUserPrefs;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -37,14 +42,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setLogBookFilePath(Paths.get("fma/book/file/path"));
-        userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
+        userPrefs.setLogBookFilePath(VALID_FILE_PATH);
+        userPrefs.setGuiSettings(GUI_SETTINGS_B);
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setLogBookFilePath(Paths.get("new/fma/book/file/path"));
+        userPrefs.setLogBookFilePath(VALID_FILE_PATH);
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -55,9 +60,8 @@ public class ModelManagerTest {
 
     @Test
     public void setGuiSettings_validGuiSettings_setsGuiSettings() {
-        GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4);
-        modelManager.setGuiSettings(guiSettings);
-        assertEquals(guiSettings, modelManager.getGuiSettings());
+        modelManager.setGuiSettings(GUI_SETTINGS_A);
+        assertEquals(GUI_SETTINGS_A, modelManager.getGuiSettings());
     }
 
     @Test
@@ -94,18 +98,24 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void equals() {
+    public void equals_validEqualLog_returnTrue() {
         LogBook fmaBook = new LogBookBuilder().withLog(LOG_A).withLog(LOG_B).build();
-        LogBook differentLogBook = new LogBook();
-        UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(fmaBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(fmaBook, userPrefs);
+        modelManager = new ModelManager(fmaBook, getSampleUserPrefs('A'));
+        ModelManager modelManagerCopy = new ModelManager(fmaBook, getSampleUserPrefs('A'));
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
         assertTrue(modelManager.equals(modelManager));
+    }
+
+    @Test
+    public void equals_invalidEqualLog_returnFalse() {
+        LogBook fmaBook = new LogBookBuilder().withLog(LOG_A).withLog(LOG_B).build();
+        LogBook differentLogBook = new LogBook();
+        UserPrefs userPrefs = new UserPrefs();
+        modelManager = new ModelManager(fmaBook, userPrefs);
 
         // null -> returns false
         assertFalse(modelManager.equals(null));
@@ -126,7 +136,7 @@ public class ModelManagerTest {
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setLogBookFilePath(Paths.get("differentFilePath"));
+        differentUserPrefs.setLogBookFilePath(INVALID_FILE_PATH);
         assertFalse(modelManager.equals(new ModelManager(fmaBook, differentUserPrefs)));
     }
 }

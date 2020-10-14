@@ -25,6 +25,8 @@ public class NameTest {
         assertThrows(NullPointerException.class, () -> Name.isValidName(null));
 
     }
+
+    @Test
     public void isValidName_invalid_returnFalse() {
         // invalid name
         assertFalse(Name.isValidName("")); // empty string
@@ -33,6 +35,7 @@ public class NameTest {
         assertFalse(Name.isValidName("situp*")); // contains non-alphanumeric characters
     }
 
+    @Test
     public void isValidName_valid_returnTrue() {
         // valid name
         assertTrue(Name.isValidName("jumping jacks")); // alphabets only
