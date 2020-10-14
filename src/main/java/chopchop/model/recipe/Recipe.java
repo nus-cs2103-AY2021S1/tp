@@ -44,17 +44,19 @@ public class Recipe extends Entry {
     }
 
     @Override
+    public boolean isSame(Entry other) {
+        return other == this
+                || (other instanceof Recipe
+                && this.name.equals(((Recipe) other).name));
+    }
+
+    @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof Recipe)) {
-            return false;
-        }
-
-        Recipe otherRecipe = (Recipe) other;
-        return otherRecipe.getName().equals(this.getName());
+        return other == this
+                || (other instanceof Recipe
+                && this.name.equals(((Recipe) other).name)
+                && this.ingredients.equals(((Recipe) other).ingredients)
+                && this.steps.equals(((Recipe) other).steps));
     }
 
     @Override

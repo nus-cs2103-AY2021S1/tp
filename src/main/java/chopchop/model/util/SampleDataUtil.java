@@ -3,18 +3,17 @@ package chopchop.model.util;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
+
+import chopchop.model.EntryBook;
+import chopchop.model.ReadOnlyEntryBook;
 import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.Step;
 import chopchop.model.attributes.units.Count;
 import chopchop.model.attributes.units.Mass;
 import chopchop.model.attributes.units.Volume;
 import chopchop.model.ingredient.Ingredient;
-import chopchop.model.ingredient.IngredientBook;
 import chopchop.model.ingredient.IngredientReference;
-import chopchop.model.ingredient.ReadOnlyIngredientBook;
-import chopchop.model.recipe.ReadOnlyRecipeBook;
 import chopchop.model.recipe.Recipe;
-import chopchop.model.recipe.RecipeBook;
 
 public class SampleDataUtil {
     public static Ingredient[] getSampleIngredients() {
@@ -25,12 +24,12 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyIngredientBook getSampleIngredientBook() {
-        IngredientBook sampleIndBook = new IngredientBook();
-        for (Ingredient sampleInd : getSampleIngredients()) {
-            sampleIndBook.addIngredient(sampleInd);
+    public static ReadOnlyEntryBook<Ingredient> getSampleIngredientBook() {
+        EntryBook<Ingredient> sampleIngredientBook = new EntryBook<>();
+        for (Ingredient sampleIngredient : getSampleIngredients()) {
+            sampleIngredientBook.add(sampleIngredient);
         }
-        return sampleIndBook;
+        return sampleIngredientBook;
     }
 
     public static Recipe[] getSampleRecipe() {
@@ -52,11 +51,11 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyRecipeBook getSampleRecipeBook() {
-        RecipeBook sampleRecipeBook = new RecipeBook();
-        for (Recipe sampleRec : getSampleRecipe()) {
-            sampleRecipeBook.addRecipe(sampleRec);
+    public static ReadOnlyEntryBook<Recipe> getSampleRecipeBook() {
+        EntryBook<Recipe> sampleRecipeEntryBook = new EntryBook<>();
+        for (Recipe sampleRecipe : getSampleRecipe()) {
+            sampleRecipeEntryBook.add(sampleRecipe);
         }
-        return sampleRecipeBook;
+        return sampleRecipeEntryBook;
     }
 }

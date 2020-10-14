@@ -7,7 +7,6 @@ package chopchop.model.ingredient.exceptions;
  * quantities (eg. volume and mass) or names.
  */
 public class IncompatibleIngredientsException extends Exception {
-
     public IncompatibleIngredientsException(String message) {
         super(message);
     }

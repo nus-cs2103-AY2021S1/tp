@@ -65,23 +65,20 @@ public class Ingredient extends Entry {
             .orElseThrow(IncompatibleIngredientsException::new);
     }
 
-    /**
-     * Returns true if both ingredients of the same name and expiry date.
-     */
+    @Override
+    public boolean isSame(Entry other) {
+        return other == this
+                || (other instanceof Ingredient
+                && this.name.equals(((Ingredient) other).name));
+    }
+
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof Ingredient)) {
-            return false;
-        }
-
-        Ingredient otherIngredient = (Ingredient) other;
-
-        return otherIngredient.getName().equals(getName())
-                && otherIngredient.getExpiryDate().equals(this.getExpiryDate());
+        return other == this
+                || (other instanceof Ingredient
+                && this.name.equals(((Ingredient) other).name)
+                && this.quantity.equals(((Ingredient) other).quantity)
+                && this.expiryDate.equals(((Ingredient) other).expiryDate));
     }
 
     @Override

@@ -50,11 +50,17 @@ public class IngredientReference extends Entry {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return obj == this
-            || (obj instanceof IngredientReference
-                && ((IngredientReference) obj).name.equals(this.name)
-                && ((IngredientReference) obj).quantity.equals(this.quantity)
-            );
+    public boolean isSame(Entry other) {
+        return other == this
+                || (other instanceof IngredientReference
+                && this.name.equals(((IngredientReference) other).name));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof IngredientReference
+                && this.name.equals(((IngredientReference) other).name)
+                && this.quantity.equals(((IngredientReference) other).quantity));
     }
 }
