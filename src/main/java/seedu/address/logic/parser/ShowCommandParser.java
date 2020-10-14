@@ -3,8 +3,6 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_NAME;
 
-import java.util.stream.Stream;
-
 import seedu.address.logic.commands.ShowCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.TagName;
@@ -25,22 +23,13 @@ public class ShowCommandParser implements Parser<ShowCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TAG_NAME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TAG_NAME)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.getValue(PREFIX_TAG_NAME).isPresent()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ShowCommand.MESSAGE_USAGE));
         }
 
-        TagName tagName = ParserUtil.parseTagName(argMultimap.getValue(PREFIX_TAG_NAME).orElse(""));
+        TagName tagName = new TagName(argMultimap.getValue(PREFIX_TAG_NAME).orElse(""));
 
         return new ShowCommand(new TagNameEqualsKeywordPredicate(tagName));
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
