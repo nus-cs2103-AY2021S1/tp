@@ -89,6 +89,7 @@ public class TypicalEntries {
         return cc;
     }
 
+
     public static List<Expense> getTypicalExpenses() {
         return new ArrayList<>(Arrays.asList(BUYFLOWERPOTS, BUYSHOVEL, PAYRENT, BUYROSESEEDS));
     }

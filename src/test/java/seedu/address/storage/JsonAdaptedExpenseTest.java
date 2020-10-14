@@ -3,6 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedExpense.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEntries.BUYFLOWERPOTS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +14,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.account.entry.Amount;
 import seedu.address.model.account.entry.Description;
-import seedu.address.model.account.entry.Expense;
-import seedu.address.testutil.ExpenseBuilder;
 
 public class JsonAdaptedExpenseTest {
     private static final String INVALID_DESCRIPTION = " ";
@@ -23,16 +22,15 @@ public class JsonAdaptedExpenseTest {
 
     private static final String VALID_DESCRIPTION = "bought cooking utensils";
     private static final String VALID_AMOUNT = "1000.39";
-    private static final List<JsonAdaptedTag> VALID_TAGS = new ExpenseBuilder().build().getTags().stream()
+    private static final List<JsonAdaptedTag> VALID_TAGS = BUYFLOWERPOTS.getTags().stream()
         .map(JsonAdaptedTag::new)
         .collect(Collectors.toList());
 
 
     @Test
     public void toModelType_validExpenseDetails_returnsExpense() throws Exception {
-        Expense modelExpense = new ExpenseBuilder().build();
-        JsonAdaptedExpense adaptedExpense = new JsonAdaptedExpense(modelExpense);
-        assertEquals(modelExpense, adaptedExpense.toModelType());
+        JsonAdaptedExpense adaptedExpense = new JsonAdaptedExpense(BUYFLOWERPOTS);
+        assertEquals(BUYFLOWERPOTS, adaptedExpense.toModelType());
     }
 
     @Test
