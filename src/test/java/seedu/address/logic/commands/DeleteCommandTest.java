@@ -54,13 +54,13 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_validIndexExpense_Failure() {
+    public void execute_validIndexExpense_failure() {
         assertThrows(CommandException.class, () -> new DeleteCommand(INDEX_TENTH_PERSON, expense).
                 execute(modelStub, activeAccount));
     }
 
     @Test
-    public void execute_validIndexRevenue_Failure() {
+    public void execute_validIndexRevenue_failure() {
         assertThrows(CommandException.class, () -> new DeleteCommand(INDEX_TENTH_PERSON, revenue).
                 execute(modelStub, activeAccount));
     }
