@@ -86,7 +86,6 @@ public class ActiveAccountManagerTest {
 
         // different account -> returns false
         assertFalse(activeAccountManager.equals(new ActiveAccountManager(differentAccount)));
-
     }
 
 }
