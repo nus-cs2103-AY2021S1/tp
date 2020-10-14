@@ -26,13 +26,11 @@ public class FinanceAccount implements Iterable<FinanceRecord>, ReadOnlyFinanceA
     }
 
 
-    @Override
     public void addRecord(FinanceRecord record) {
         internalList.add(record);
     }
 
 
-    @Override
     public void setFinanceRecord(FinanceRecord target, FinanceRecord newRecord) {
         int index = internalList.indexOf(target);
         internalList.remove(index);
@@ -40,7 +38,6 @@ public class FinanceAccount implements Iterable<FinanceRecord>, ReadOnlyFinanceA
     }
 
 
-    @Override
     public boolean hasRecord(FinanceRecord record) {
         return this.internalList.contains(record);
     }
@@ -52,7 +49,6 @@ public class FinanceAccount implements Iterable<FinanceRecord>, ReadOnlyFinanceA
      * @param targetIndex Index of finance record to be removed
      * @return Optional containing removed finance record if index is valid, else an empty optional
      */
-    @Override
     public Optional<FinanceRecord> removeRecord(Index targetIndex) {
 
         if (targetIndex.getZeroBased() >= internalList.size()) {
@@ -63,7 +59,6 @@ public class FinanceAccount implements Iterable<FinanceRecord>, ReadOnlyFinanceA
     }
 
 
-    @Override
     public int count() {
         return internalList.size();
     }
@@ -74,7 +69,6 @@ public class FinanceAccount implements Iterable<FinanceRecord>, ReadOnlyFinanceA
      *
      * @return Net transaction amount of all finance records
      */
-    @Override
     public double netProfit() {
         return internalList.stream()
                 .mapToDouble(FinanceRecord::getAmount)
@@ -82,13 +76,11 @@ public class FinanceAccount implements Iterable<FinanceRecord>, ReadOnlyFinanceA
     }
 
 
-    @Override
     public List<FinanceRecord> filterRecords(Predicate<FinanceRecord> filter) {
         return internalList.stream().filter(filter).collect(Collectors.toList());
     }
 
 
-    @Override
     public boolean isEmpty() {
         return internalList.isEmpty();
     }
