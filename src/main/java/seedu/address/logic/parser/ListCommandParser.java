@@ -8,24 +8,22 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 public class ListCommandParser implements Parser<ListCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ListCommand
+     * and returns a ListCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ListCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap;
 
         boolean isNotListAll = args.matches(".*\\b\\d+\\b$"); //Has index as argument
-        if (isNotListAll) {
-            try {
-                Index index = ParserUtil.parseListIndex(args);
-                return new ListCommand(index);
-            } catch (ParseException pe) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE), pe);
-            }
-        } else {
+        if (!isNotListAll) {
             return new ListCommand(Index.fromZeroBased(0));
+        }
+        try {
+            Index index = ParserUtil.parseListIndex(args);
+            return new ListCommand(index);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE), pe);
         }
     }
 }
