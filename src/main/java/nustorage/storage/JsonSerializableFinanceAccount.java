@@ -68,10 +68,10 @@ class JsonSerializableFinanceAccount {
         FinanceAccount finAccount = new FinanceAccount();
         for (JsonAdaptedFinanceRecord jsonFinRecord : this.financeRecords) {
             FinanceRecord finRecord = jsonFinRecord.toModelType();
-            if (finAccount.hasRecord(finRecord)) {
+            if (finAccount.hasFinanceRecord(finRecord)) {
                 throw new IllegalValueException(MESAGE_DUPLICATE_FINANCE_RECORD);
             }
-            finAccount.addRecord(finRecord);
+            finAccount.addFinanceRecord(finRecord);
         }
         return finAccount;
     }
