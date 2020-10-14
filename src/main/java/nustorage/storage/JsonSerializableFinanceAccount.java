@@ -36,6 +36,7 @@ class JsonSerializableFinanceAccount {
     }
 
 
+    @JsonCreator
     public JsonSerializableFinanceAccount(FinanceAccount source) {
         financeRecords.addAll(
                 source.asUnmodifiableObservableList()
@@ -45,18 +46,6 @@ class JsonSerializableFinanceAccount {
         );
     }
 
-
-    // TODO: implement alternative constructor
-    /* Commented out as not yet implemented */
-    // /**
-    //  * Converts a given {@code ReadOnlyFinanceAccount} into this class for Jackson use.
-    //  *
-    //  * @param source future changes to this will not affect the created {@code JsonSerializableFinanceAccount}.
-    //  */
-    // @JsonCreator
-    // public JsonSerializableFinanceAccount(ReadOnlyFinanceAccount source) {
-    //     this.financeRecords.addAll(...);
-    // }
 
 
     /**
