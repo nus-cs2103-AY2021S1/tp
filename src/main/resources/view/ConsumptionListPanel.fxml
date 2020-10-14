@@ -4,6 +4,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.layout.HBox?>
-<HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <ListView fx:id="consumptionListView" HBox.hgrow="ALWAYS" orientation="HORIZONTAL"/>
-</HBox>
+<?import com.jfoenix.controls.JFXListView?>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" VBox.vgrow="ALWAYS">
+    <JFXListView fx:id="consumptionListView" VBox.vgrow="ALWAYS" orientation="VERTICAL"/>
+</VBox>
