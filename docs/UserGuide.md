@@ -14,7 +14,7 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
 ## Quick Start <a name="QuickStart"></a>
 
 1. Download Java Version 11
-2. Download Bamboo v1.2. &lt;Work in progress. Not available yet&gt;
+2. Download [Bamboo v1.2](https://github.com/AY2021S1-CS2103-W14-3/tp/releases/tag/v1.2). 
 
 ## Features <a name="Features"></a>
 
