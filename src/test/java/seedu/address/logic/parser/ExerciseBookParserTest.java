@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.exercise.Exercise;
