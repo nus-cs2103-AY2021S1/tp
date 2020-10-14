@@ -64,7 +64,7 @@ Format: `list`
 
 Adds a task of the specified type to PlaNus.
 
-Format: `add title:TITLE type:TYPE_OF_TASK [desc:description] [date:DATE]`
+Format: `add title:TITLE type:TYPE_OF_TASK [desc:DESCRIPTION] [date:DATE_TIME]`
 
 * Adds the task of the specified `type:TYPE_OF_TASK` to PlaNus.
 * The type must be of the following types:
@@ -74,9 +74,9 @@ Format: `add title:TITLE type:TYPE_OF_TASK [desc:description] [date:DATE]`
 
 Examples:
 * `add title:return book type:todo` Adds a task with title return book and type todo to PlaNus.
-* `add title:Birthday party type:event desc:Frank’s birthday party date:2019-03-08`
+* `add title:Birthday party type:event desc:Frank’s birthday party date:01-01-2020 18:00`
   Adds a task with title “Birthday party” , type event,
-  description “Frank’s birthday party” , and date “2019-03-08” to PlaNus.
+  description “Frank’s birthday party” , and date and time “01-01-2020 18:00” to PlaNus.
 
 
 
@@ -145,7 +145,7 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add title:TITLE type:TYPE_OF_TASK [desc:DESCRIPTION] [date:DATE]` <br> e.g., `add title:return book type:todo`
+**Add** | `add title:TITLE type:TYPE_OF_TASK [desc:DESCRIPTION] [date:DATE_TIME]` <br> e.g., `add title:return book type:todo`
 **Delete** | `delete INDEX...` <br> e.g., `delete 3 5 6`
 **List** | `list`
 **Help** | `help`

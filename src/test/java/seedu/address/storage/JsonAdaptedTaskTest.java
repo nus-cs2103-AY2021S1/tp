@@ -54,7 +54,7 @@ public class JsonAdaptedTaskTest {
     }
 
     @Test
-    public void toModelType_invalidDate_throwsIllegalValueException() {
+    public void toModelType_invalidDateTime_throwsIllegalValueException() {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_TITLE, INVALID_DATE_TIME, VALID_DESCRIPTION, VALID_TYPE, VALID_TAGS);
         String expectedMessage = DateTime.MESSAGE_CONSTRAINTS;
@@ -62,7 +62,7 @@ public class JsonAdaptedTaskTest {
     }
 
     @Test
-    public void toModelType_nullDate_throwsIllegalValueException() {
+    public void toModelType_nullDateTime_throwsIllegalValueException() {
         JsonAdaptedTask task = new JsonAdaptedTask(VALID_TITLE, null, VALID_DESCRIPTION, VALID_TYPE, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, DateTime.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);

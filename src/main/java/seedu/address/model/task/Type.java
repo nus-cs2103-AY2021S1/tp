@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.util.ArrayList;
 
 /**
- * Represents a Task's type in the PLaNus.
+ * Represents a Task's type in the PlaNus task list.
  * Guarantees: immutable; is valid as declared in {@link #isValidType(String)}
  */
 public class Type {

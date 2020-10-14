@@ -37,7 +37,7 @@ public class Description {
 
     /**
      * Constructs a default {@code Description}.
-     * Caveat: Only called by defaultDescription method.
+     * Caveat: Only called by the defaultDescription method.
      */
     private Description() {
         value = DEFAULT_DESCRIPTION;
@@ -51,8 +51,8 @@ public class Description {
     }
 
     /**
-     * Constructs an empty Description when user didn't provide the description field.
-     * Caveat: Only called when the user didn't key in this field.
+     * Constructs an empty Description object if the user does not provide the description field.
+     * Caveat: Only called when the user does not key in this field.
      */
     public static Description defaultDescription() {
         return new Description();

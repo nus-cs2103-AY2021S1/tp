@@ -28,7 +28,7 @@ public class DescriptionTest {
         assertFalse(Description.isValidDescription("")); // empty string
         assertFalse(Description.isValidDescription(" ")); // spaces only
 
-        // invalid parts
+        // invalid description
         assertFalse(Description.isValidDescription("peterjack@-")); // invalid symbols used.
         assertFalse(Description.isValidDescription("!#$%&'*+/=?`{|}~^.-@example.org")); // invalid symbols used.
         assertFalse(Description.isValidDescription(" fdsjkfsd")); // start with space.
