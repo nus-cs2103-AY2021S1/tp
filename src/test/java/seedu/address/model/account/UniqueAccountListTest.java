@@ -149,4 +149,5 @@ public class UniqueAccountListTest {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueAccountList.asUnmodifiableObservableList().remove(0));
     }
+
 }
