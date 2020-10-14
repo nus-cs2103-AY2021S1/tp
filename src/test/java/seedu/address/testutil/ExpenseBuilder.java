@@ -42,8 +42,16 @@ public class ExpenseBuilder {
     /**
      * Sets the {@code Description} of the {@code Expense} that we are building.
      */
-    public ExpenseBuilder withDescription(Description description) {
-        this.description = description;
+    public ExpenseBuilder withDescription(String description) {
+        this.description = new Description(description);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Amount} of the {@code Expense} that we are building.
+     */
+    public ExpenseBuilder withAmount(String amount) {
+        this.amount = new Amount(amount);
         return this;
     }
 
