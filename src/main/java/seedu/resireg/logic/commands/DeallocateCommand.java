@@ -24,7 +24,7 @@ public class DeallocateCommand extends Command {
             "Parameters: " + PREFIX_STUDENT_INDEX + "STUDENT INDEX\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_STUDENT_INDEX + "1");
 
-    public static final String MESSAGE_SUCCESS = "Room deallocated from %1$s: %2$s.";
+    public static final String MESSAGE_SUCCESS = "Room %1$s deallocated for %2$s.";
     public static final String MESSAGE_STUDENT_NOT_FOUND = "This student is not registered in ResiReg";
     public static final String MESSAGE_STUDENT_NOT_ALLOCATED = "This student has not been allocated a room.";
 
@@ -66,7 +66,8 @@ public class DeallocateCommand extends Command {
         model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredRoomList(Model.PREDICATE_SHOW_ALL_ROOMS);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, studentToDeallocate, roomToDeallocate));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, roomToDeallocate.getRoomLabel(),
+            studentToDeallocate.getName().fullName));
     }
 
     @Override

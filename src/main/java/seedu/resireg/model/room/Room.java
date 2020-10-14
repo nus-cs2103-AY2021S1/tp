@@ -51,6 +51,10 @@ public class Room {
         return roomType;
     }
 
+    public String getRoomLabel() {
+        return getFloor() + ":" + getRoomNumber();
+    }
+
     public Student getStudent() {
         return student;
     }

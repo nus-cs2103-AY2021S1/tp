@@ -16,12 +16,12 @@ public class ListRoomCommand extends Command {
     public static final String MESSAGE_VACANT_SUCCESS = "Listed all vacant rooms";
     public static final String MESSAGE_ALLOCATED_SUCCESS = "Listed all allocated rooms";
 
-    public static final Help HELP = new Help(COMMAND_WORD, "Finds all rooms within the system.",
+    public static final Help HELP = new Help(COMMAND_WORD, "Lists all rooms within the system.",
             "If the --" + COMMAND_VACANT_FLAG
-            + " flag is specified, find only rooms that are vacant, meaning no students are assigned to them. "
+            + " flag is specified, lists only vacant rooms i.e rooms which have no students are allocated to them. "
             + "Otherwise, if the --" + COMMAND_ALLOCATED_FLAG + " flag is specified, "
-            + "find only rooms that have students assigned to them.\n"
-            + "Parameters: [--" + COMMAND_VACANT_FLAG + "|" + COMMAND_ALLOCATED_FLAG + "]\n"
+            + "lists only allocated rooms i.e rooms that have students allocated to them.\n"
+            + "Parameters: [--" + COMMAND_VACANT_FLAG + " | --" + COMMAND_ALLOCATED_FLAG + "]\n"
             + "Example: " + COMMAND_WORD);
 
     private final ListRoomFilter filter;

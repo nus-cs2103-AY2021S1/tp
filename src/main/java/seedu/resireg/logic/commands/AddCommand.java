@@ -19,26 +19,24 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_SUCCESS = "New student added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New student added: %1$s (%2$s)";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book";
 
     public static final Help HELP = new Help(COMMAND_WORD,
-            "Adds a student to ResiReg.",
+            "Adds a student to ResiReg.\n",
             "Parameters: "
                     + PREFIX_NAME + "NAME "
-                    + PREFIX_STUDENT_ID + "STUDENT ID "
+                    + PREFIX_STUDENT_ID + "STUDENT_ID "
                     + PREFIX_PHONE + "PHONE "
                     + PREFIX_EMAIL + "EMAIL "
                     + PREFIX_FACULTY + "FACULTY "
                     + "[" + PREFIX_TAG + "TAG]...\n"
                     + "Example: " + COMMAND_WORD + " "
                     + PREFIX_NAME + "John Doe "
-                    + PREFIX_STUDENT_ID + "E01234567 "
+                    + PREFIX_STUDENT_ID + "E0123456 "
                     + PREFIX_PHONE + "98765432 "
-                    + PREFIX_EMAIL + "johnd@example.com "
-                    + PREFIX_FACULTY + "FASS "
-                    + PREFIX_TAG + "friends "
-                    + PREFIX_TAG + "owesMoney");
+                    + PREFIX_EMAIL + "johnd@u.nus.edu "
+                    + PREFIX_FACULTY + "FASS ");
 
     private final Student toAdd;
 
@@ -59,7 +57,7 @@ public class AddCommand extends Command {
         }
 
         model.addStudent(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getName().fullName, toAdd.getStudentId().value));
     }
 
     @Override

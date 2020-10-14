@@ -8,7 +8,6 @@
 
 * Manage records of students.
 * Manage allocations of students to rooms in the College
-* Generate bills and log payments for RC-related services.
 * Export records of students, rooms or transactions to CSV files for easy reference and sharing.
 
 Our application is geared towards users who prefer typing over mouse actions, so interactions with our application is mainly keyboard based.

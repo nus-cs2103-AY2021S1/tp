@@ -24,7 +24,7 @@ public class ReallocateCommand extends Command {
             "Parameters: " + PREFIX_STUDENT_INDEX + "STUDENT INDEX " + PREFIX_ROOM_INDEX + "ROOM INDEX\n"
                     + "Example: " + COMMAND_WORD + " " + PREFIX_STUDENT_INDEX + "1 " + PREFIX_ROOM_INDEX + "1");
 
-    public static final String MESSAGE_SUCCESS = "Room reallocated to %1$s: %2$s";
+    public static final String MESSAGE_SUCCESS = "Student %1$s has been reallocated to Room %2$s.";
     public static final String MESSAGE_ROOM_NOT_FOUND = "This room does not exist in ResiReg";
     public static final String MESSAGE_STUDENT_NOT_FOUND = "This student is not registered in ResiReg";
     public static final String MESSAGE_STUDENT_NOT_ALLOCATED =
@@ -82,7 +82,8 @@ public class ReallocateCommand extends Command {
         model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredRoomList(Model.PREDICATE_SHOW_ALL_ROOMS);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, studentToReallocate, roomToReallocate));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, studentToReallocate.getName().fullName,
+            roomToReallocate.getRoomLabel()));
     }
 
     @Override

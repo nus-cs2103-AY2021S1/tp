@@ -11,9 +11,9 @@ import seedu.resireg.model.Model;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "ResiReg has been cleared!";
 
-    public static final Help HELP = new Help(COMMAND_WORD, "Clears list of students.");
+    public static final Help HELP = new Help(COMMAND_WORD, "Clears all students and rooms.");
 
     @Override
     public CommandResult execute(Model model) {

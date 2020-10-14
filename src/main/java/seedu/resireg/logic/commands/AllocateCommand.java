@@ -29,7 +29,7 @@ public class AllocateCommand extends Command {
                     + PREFIX_STUDENT_INDEX + "1 "
                     + PREFIX_ROOM_INDEX + "1");
 
-    public static final String MESSAGE_SUCCESS = "Room allocated to %1$s: %2$s";
+    public static final String MESSAGE_SUCCESS = "Room %1$s allocated to %2$s.";
     public static final String MESSAGE_ROOM_NOT_FOUND = "This room does not exist in ResiReg";
     public static final String MESSAGE_STUDENT_NOT_FOUND = "This student is not registered in ResiReg";
     public static final String MESSAGE_STUDENT_ALREADY_ALLOCATED = "This student has already been allocated a room.";
@@ -85,7 +85,8 @@ public class AllocateCommand extends Command {
         model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredRoomList(Model.PREDICATE_SHOW_ALL_ROOMS);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, studentToAllocate, roomToAllocate));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, roomToAllocate.getRoomLabel(),
+            studentToAllocate.getName().fullName));
     }
 
     @Override

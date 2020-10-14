@@ -13,7 +13,6 @@ title: User Guide
  
  * Manage records of students.
  * Manage allocations of students to rooms in the College
- * Generate bills and log payments for RC-related services.
  * Export records of students, rooms or transactions to CSV files for easy reference and sharing.
 
 __ResiReg__ is optimised for OHS who are fast typists who are used to MS Excel, and prefer typing over other means of input. It comes with:
@@ -29,13 +28,6 @@ This User Guide explains how you (as an OHS admin) can use __ResiReg__ to manage
 
 You may refer to [Quick Start](#quick-start) for a short tutorial on how to run __ResiReg__ on your system and use __ResiReg__'s main features. For a full walkthrough of __ResiReg__, please refer to [Features](#features).
 
-### Command Format
-This section explains the format of commands in this User Guide.
-
-- Words in `<angular_brackets>` are the parameters to be supplied by the user e.g. in `deallocate <student_name>`, `<student_name>` is a parameter which can be used as `deallocate Jet New`.
-- Items in square brackets are optional e.g `<full_name> [-aka <alias>]` can be used as `Jet New -aka JJ` or as `Jet New`.
-- Items with … after them can be used multiple times including zero times, unless otherwise stated e.g. `[/m <mod> /ig <interest_group>]…` can be used as `/m mod /ig ig`, `/m mod1 /ig ig1 /m mod2 /ig ig2` etc.
-
 ## Quick Start
 1. Ensure that Java 11 or above is installed in your computer
 2. Download the latest `ResiReg.jar` here.
@@ -48,227 +40,164 @@ This section explains the format of commands in this User Guide.
     - `exit`: exits the app.
 8. Refer to “Features” for details of all the commands.
 
+<div markdown="block" class="alert alert-info">
+This section explains the format of commands in this User Guide.
+
+- Words in `<angular_brackets>` are the parameters to be supplied by the user e.g. in `deallocate <student_name>`, `<student_name>` is a parameter which can be used as `deallocate Jet New`.
+- Items in square brackets are optional e.g `<full_name> [-aka <alias>]` can be used as `Jet New -aka JJ` or as `Jet New`.
+- Items with … after them can be used multiple times including zero times, unless otherwise stated e.g. `[/m <mod> /ig <interest_group>]…` can be used as `/m mod /ig ig`, `/m mod1 /ig ig1 /m mod2 /ig ig2` etc.
+</div> 
 
 ### I. Housing Management
 
 >**ResiReg** allows you to manage rooms in the Residential College.
 
-#### 1. Viewing a list of all vacant rooms
+#### 1. Listing of all rooms : `rooms` 
 
-Before assigning a room to a student at the start of the semester, you can view a list of all vacant rooms using the `rooms --vacant` command.
+Shows a list of all rooms in ResiReg.
 
-##### Command
-```
-rooms
-```
-##### Execution Example
-```
-> rooms
-```
+Format: `rooms`
 
-*Action*: Lists all rooms, along with the details such as vacancy in the Residential College.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Rooms can be filtered based on their allocation status. See the following two commands for further details.
+</div>
 
-*Output*:
-The Output panel on the right should display all rooms, along with their details such as vacancy in the Residential College.
+Examples:
+* `rooms` switches to the Rooms tab if it is not already selected, and shows the list of rooms on the right pane. 
+
+#### 2. Listing all vacant rooms : `rooms --vacant`
+
+Shows a list of all vacant rooms i.e those which have not been allocated to any student yet. 
+
+Format: `rooms --vacant`
+
+Examples:
+* `rooms --vacant` switches to the Rooms tab if it is not already selected, and shows the list of vacant rooms on the right pane. 
 
 
-#### 2. Allocating a room to a student 
+#### 3. Listing all allocated rooms : `rooms --allocated`
 
-Each student can be allocated a room in the Residential College at the start of the semester by using the `allocate` command.
+Shows a list of all allocated rooms i.e. those which have been allocated to a student. 
 
-##### Command
-```
-allocate <matric_number> <room_number>
-```
-##### Execution Example
-```
-> allocate A0123456X 10-108
-```
 
-*Action*: Allocates the student A0123456X the room 10-108.
+Format: `rooms --allocated`
 
-*Output*:
-```
-Successfully allocated the student A0123456X to room 10-108.
-```
+Examples:
+* `rooms --allocated` switches to the Rooms tab if it is not already selected, and shows the list of allocated rooms on the right pane. 
 
-#### 3. Deallocating a room for a student
+#### 4. Allocating a room to a student : `allocate`
 
-A student can be deallocated a room in the Residential College in cases such as early checkout or dropping out of the programme using the `deallocate` command.
+Allocates a room to a student i.e denotes that the student currently occupies the room. 
 
-##### Command
-```
-deallocate <matric_number>
-```
-##### Execution Example
-```
-> deallocate A0123456X
-```
+Format: `allocate ri/<room_index> si/<student_index>`
+* Allocates a room to the student person at the specified `room_index` and `student_index`. The `room_index` refers to the index number shown in the displayed rooms list, 
+and the `student_index` refers to the index number shown in the displayed students list. Both indices **must be positive integers** 1, 2, 3, …​
+* Both the student and the room must be unallocated when this command is run. Otherwise, an error message is displayed accordingly.
 
-*Action*: Deletes the room allocation for the student A0123456X.
+Examples:
+* `allocate ri/1 si/1` allocates the room at `room_index` 1 to the student at `student_index` 1. 
 
-*Output*:
-```
-Successfully deallocated room for student A0123456X.
-```
+#### 5. Deallocating a room for a student : `deallocate`
 
-#### 4. Viewing a room allocation for a student
+Deallocates a room for a student i.e denotes that the student no longer occupies the room. 
 
-The room allocation for a student in the residential college can be viewed to inform said student of his room allocation during check-in
+Format: `deallocate ri/<room_index> si/<student_index>`
+* Deallocates a room to the student at the specified `room_index` and `student_index`. The `room_index` refers to the index number shown in the displayed rooms list, 
+and the `student_index` refers to the index number shown in the displayed students list. Both indices **must be positive integers** 1, 2, 3, …​
+* The room at `room_index` must be allocated to the student at `student_index`. Otherwise, an error message is displayed accordingly. 
 
-##### Command
-```
-room <matric_number>
-```
-##### Execution Example
-```
-> room A0123456X
-```
-*Action*: views a room allocation for the student A0123456X.
+Examples:
+* `deallocate ri/1 si/1` deallocates the room at `room_index` 1 for the student at `student_index` 1. 
 
-*Output*:
-```
-A0123456X is allocated room <room_number>
-```
+#### 6. Edit a room allocation for a student : `reallocate`
 
-#### 5. Edit a room allocation for a student
+Edits a room allocation for a student, by first deallocating the student's current room, and then allocating a specified room to the student.
 
-A student's room allocation can be edited to update room vacancies.
+Format: `reallocate si/<student_index> ri/<room_index>`
 
-##### Command
-```
-edit <matric_number> <room_number>
-```
-##### Execution Example
-```
-> edit A0123456X 11-109
-```
-*Action*: edits the room allocation for student A0123456X to the specified room number.
+* Reallocates the room at `room_index` to the student at the specified `student_index` and `student_index`. The `room_index` refers to the index number shown in the displayed rooms list, 
+and the `student_index` refers to the index number shown in the displayed students list. Both indices **must be positive integers** 1, 2, 3, …​
+* The student at `student_index` must currently have a room allocation (which is not the specified room). Otherwise, an error message is displayed accordingly. 
+* The room at `room_index` must currently be vacant. Otherwise, an error message is displayed accordingly. 
 
-*Output*:
-```
-Successfully edited room allocation for student A0123456X to 11-109.
-```
-
-#### 6. Viewing a list of all allocated rooms
-
-The room allocations for all students in the residential college can be viewed to check which room each student stays in.
-
-##### Command
-```
-rooms --vacant
-```
-##### Execution Example
-```
-> rooms --vacant
-```
-*Action*: views the room allocations for all students
-
-*Output*:
-```
-Here is the list of all room allocations:
-- Jet New : 11-108
-- John New : 12-107
-- Jason New : 13-105
-```
-
-<br />
+Examples:
+* `reallocate si/1 ri/2` first deallocates the room currently allocated to student with index 1, then  allocates the room at index 2 to the student.
 
 ### II. Student Management
 
 >**ResiReg** allows you to manage students in the Residential College.
 
-#### 7. Adding a student
-A new student can be added to **ResiReg**. The following student details are stored: name, matriculation number, email, faculty and year.
+#### 1. Listing all students : `students`
 
-##### Command
-```
-add student /name <student_name> /matric <matric_number> /email <email> /faculty <faculty> /year <year>
-```
+Shows a list of all students in ResiReg.
 
-The pairs of types and data (eg. `/name <student_name>`) may given be in any order. The student will not be added if some pieces of information is missing.
+Format: `students`
 
-##### Successful Execution Example
-```
-add student /name Jet New /matric A0123456X /email jn@u.nus.edu /faculty computing /year 2
-```
+Examples:
+* `students` switches to the Students tab if it is not already selected, and shows the list of students on the right pane. 
 
-*Action*: Creates a new student named Jet New whose matriculation number is A0123456X, email is jn@u.nus.edu, faculty is Computing and who is in year 2.
+#### 2. Adding a student : `add`
+Adds a student to ResiReg. The following student details are stored: name, student ID, phone, email, faculty, and optionally, tags.
 
-*Output*:
-```
-Added a new student Jet New.
-```
+Format: `add n/<student_name> i/<student_id> p/<8_digit_phone_no> e/<email> f/<faculty> [t/<tag_name>]...`
+* The student ID must be a unique 8-digit alphanumeric string, starting with `EO` and ending with 6 digits. Otherwise, an error message is displayed accordingly.
+* The pairs of type-prefixes and data (eg. `n/<student_name>`) may given be in any order. 
+* The student will not be added if some pieces of information is missing. An error message will be displayed instead.
 
-##### Unsuccessful Execution Example
-```
-add student /name Jet New /matric A0123456X /email jn@u.nus.edu
-```
+Examples:
+* `add  n/Jet New i/E0407889 p/82462157 e/jn@u.nus.edu f/SOC` successfully creates a new student named Jet New whose student ID is E0407889, phone number is 82462157,
+email is jn@u.nus.edu, and faculty is Computing (SOC). 
+* `add student n/Jet New i/E0407889 e/jn@u.nus.edu` prompts the user with the following error message (because the faculty field is missing): 
+        ```
+        Invalid command format!
+        add: Adds a student to ResiReg.
+        Parameters: n/NAME i/STUDENT_ID p/PHONE e/EMAIL f/FACULTY [t/TAG]...
+        Example: add n/John Doe s/E0123456 p/98765432 e/johndoe@u.nus.edu f/FASS
+        ```
 
-*Action*: The student is not added because the faculty and year are missing. **ResiReg** will show an error message describing which fields are missing.
+#### 3. Editing a student : `edit`
+Edits an existing student in ResiReg.
 
-*Output*:
-```
-Couldn't add student! The following fields are missing: faculty, year. 
-```
+Format: `edit <index> [n/<student_name>] [i/<student_id>] [p/<8_digit_phone_no>] [e/<email>] [f/<faculty>] [t/<tag_name>]…​`
 
-#### 8. Listing all students
-All the students currently in **ResiReg** can be listed.
+* Edits the person at the specified `index`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
+* You can remove all of the student’s tags by typing `t/` without specifying any tags after it.
 
-##### Command
-```
-students
-```
+Examples:
+*  `edit 1 p/82462157 e/johnd@comp.nus.edu.sg` Edits the phone number and email address of the first student to be `82462157` and `johnd@comp.nus.edu.sg` respectively.
+*  `edit 2 n/Alpha Queue/` Edits the name of the 2nd student to be `Alpha Queue` and clears all existing tags.
 
-##### Execution Example
-```
-> students
-```
+#### 4. Finding a student by name : `find`
+Finds students whose names contain any of the given keywords.
 
-*Action*: Shows the names of all the students in the panel on the right.
-*Output*: 
-![](https://i.imgur.com/uqEO8Lp.png)
+Format: `find <keyword> [<more_keywords>]...`
 
-<!---
-#### Editing a room's type
-The types of all rooms in **ResiReg** can be edited, to log upgrades like the installation of air conditioners.
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Students matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-**Command**
-```
-edit room <room_number> <new_room_type>
-```
+Examples:
+* `find John` returns `john` and `John Doe`
+* `find alex david` returns `Alex Yeoh`, `David Li`
 
-**Execution Example**
-```
-Edit room 10-108 type air-con
-```
+#### 4. Deleting a student : `delete`
+Deletes the specified student from ResiReg.
 
-*Action*: edits a room's type 
-*Output*:
-```
-Successfully edited type of room 10-108. It is now of type "air-con".
-```
+Format: `delete <index>`
 
-#### Editing a room's semesterly fees
-The semesterly fees of all rooms in **ResiReg** can be edited, to update room charges when costs increase (e.g. from $1000 to $1500)
+* Deletes the person at the specified `index`.
+* The index refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
-**Command**
-```
-edit fees <room_type> <new_fees>
-```
-
-**Example**
-```
-edit fees air-con $1500
-```
-*Action*: edits a room's semesterly fees
-
-Output: 
-```
-The semesterly fees for air-con rooms are now $1500.
-```
--->
-
+Examples:
+* `list` followed by `delete 2` deletes the 2nd student in ResiReg.
+* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
 ### III. General
 
@@ -284,14 +213,22 @@ help
 ```
 ##### Execution Example
 ```
-> rooms --vacant - views a list of vacant rooms
-> ...
+help
 ```
 
-*Action*: Lists all user commands, along with details on syntax and usage.
+*Action*: Lists all user command and their purpose. Includes a link to this User Guide.
 
 *Output*:
 The Command History panel on the left will display all available command details.
+```
+Commands available:
+add: Adds a student to ResiReg.
+allocate: Allocates a student to a room.
+clear: Clears list of students.
+...other commands...
+
+You can also refer to our user guide at: https://ay2021s1-cs2103-t16-3.github.io/tp/UserGuide.html
+```
 
 
 #### 2. Checking the syntax for a command
@@ -300,18 +237,33 @@ Occasionally, you may need to check the syntax of a command if you need to use t
 
 ##### Command
 ```
-help <command>
+help <command_word>
 ```
 ##### Execution Example
 ```
-help list rooms
-> list rooms - views a list of vacant rooms
+help rooms
 ```
 
 *Action*: Shows details of the command, including syntax and usage.
 
 *Output*:
 The Command History panel on the left will display the command details, including syntax and usage.
+```
+rooms: Lists all rooms within the system. If the --vacant flag is specified, lists only vacant rooms i.e rooms which have no students allocated to them. 
+Otherwise, if the --allocated flag is specified, lists only allocated rooms i.e. rooms which have students allocated to them. 
+Parameters: [--vacant | --allocated]
+Example: rooms
+```
+
+#### 3. Clearing all entries : `clear`
+Clears all entries (students and rooms) from ResiReg.
+
+Format: `clear`
+
+#### 4. Exiting ResiReg : `exit`
+Exits the program.
+
+Format: `exit`
 
 ## FAQ
 ### Where do I get help?
@@ -326,23 +278,18 @@ Just type in the `help` command!
 5. Copy over the `resireg.json` file <em>residing in  your previous **ResiReg** home folder</em> that contains data of your previous **ResiReg** session.
 
 ## Command Summary
-<!-- Action | Format, Examples -->
-<!-- --------|------------------ -->
-<!-- **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` -->
-<!-- **Clear** | `clear` -->
-<!-- **Delete** | `delete INDEX`<br> e.g., `delete 3` -->
-<!-- **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` -->
-<!-- **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake` -->
-<!-- **List** | `list` -->
-<!-- **Help** | `help` -->
-
 Action   | Format, Examples
 ---------|--------------------
-*rooms*    | `rooms`
-*students* | `students`
-*allocate* | `allocate <matric_number> <room_number>` e.g. `allocate A0123456X 10-108`
-*deallocate* | `deallocate <matric_number> <room_number>` e.g. `allocate A0123456X 10-108`
-*edit* | `edit <matric_number> <room_number>` e.g. `edit A0123456X 10-108`
-*room* | `room <matric_number>` e.g. `room A0123456X`
-*add student* | `add student /name <name> /faculty <faculty> /year <year> /email <email>` e.g.`add student /name Jet New /faculty SOC /year 2 /email jn@u.nus.edu`
-*help* | `help [command]` e.g. `help` or `help list`
+*list rooms*    | `rooms [--allocated | --vacant]`
+*allocate room* | `allocate si/<student_index> ri/<room_index>` e.g. `allocate si/1 ri/1`
+*deallocate room* | `deallocate si/<student_index> ri/<room_index>` e.g. `deallocate si/1 ri/1`
+*edit allocation* | `reallocate si/<student_index> ri/<room_index>` e.g. `reallocate si/1 ri/2`
+*list students* | `students`
+*add student* | `add n/<student_name> i/<student_id> p/<8_digit_phone_no> e/<email> f/<faculty> [t/<tag_name>]...` e.g.`add  n/Jet New i/E0407889 p/82462157 e/jn@u.nus.edu f/SOC`
+*edit student* | `edit <index> [n/<student_name>] [i/<student_id>] [p/<8_digit_phone_no>] [e/<email>] [f/<faculty>] [t/<tag_name>]…` e.g.`edit 1 n/Jet New`
+*find student* | `find <keyword> [<more_keywords>]... ` e.g.`find John`
+*delete student* | `delete <student_index>` e.g.`delete 2`
+*help* | `help [command]` e.g. `help` or `help rooms`
+*clear* | `clear`
+*exit* | `exit`
+
