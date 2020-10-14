@@ -3,8 +3,6 @@ package seedu.address.model.flashcard;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
-
 /**
  * Tests that a {@code Flashcard}'s {@code Question} matches any of the keywords given.
  */
@@ -15,21 +13,11 @@ public class QuestionContainsKeywordsPredicate implements Predicate<Flashcard> {
         this.keywords = keywords;
     }
 
-    /**
-     * Formats the question for QuestionContainsKeywordsPredicate by adding whitespace between special characters.
-     * @param question Question to format.
-     * @return Returns a formatted question.
-     */
-    public String formatQuestionForQuestionContainsKeywordsPredicate(Question question) {
-        return question.toString().replaceAll("[^a-zA-Z0-9]", " $0 ");
-    }
-
     @Override
     public boolean test(Flashcard flashcard) {
         return keywords.stream()
                 .anyMatch(keyword ->
-                    StringUtil.containsWordIgnoreCase(
-                            formatQuestionForQuestionContainsKeywordsPredicate(flashcard.getQuestion()), keyword));
+                        flashcard.getQuestion().toString().toLowerCase().contains(keyword.toLowerCase()));
     }
 
     @Override
