@@ -25,8 +25,6 @@ public class EntryCard extends UiPart<Node> {
     @FXML
     private Label description;
     @FXML
-    private Label entryCategory;
-    @FXML
     private FlowPane tags;
 
     /**
@@ -39,10 +37,8 @@ public class EntryCard extends UiPart<Node> {
         description.setText(entry.getDescription().toString());
         if (entry instanceof Expense) {
             amount.setText("-$" + entry.getAmount().toString());
-            entryCategory.setText("Expense");
         } else {
             amount.setText("+$" + entry.getAmount().toString());
-            entryCategory.setText("Revenue");
         }
         entry.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
