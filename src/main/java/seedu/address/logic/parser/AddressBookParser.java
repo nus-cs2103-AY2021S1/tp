@@ -73,7 +73,7 @@ public class AddressBookParser {
 
         case MClearCommand.COMMAND_WORD:
             return new MClearCommand();
- 
+
         case ListModCommand.COMMAND_WORD:
             return new ListModCommand();
 
