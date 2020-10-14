@@ -24,14 +24,14 @@ public class Status {
     }
 
     /**
-     * Constructs a default {@code Status} that has a pending state.
+     * Constructs a default {@code Status} that has a state of incomplete.
      */
     private Status() {
         value = State.PENDING;
     }
 
     /**
-     * Returns a default Status object which has a pending state
+     * Returns a default Status object which has a state of incomplete.
      */
     public static Status defaultStatus() {
         return new Status();
