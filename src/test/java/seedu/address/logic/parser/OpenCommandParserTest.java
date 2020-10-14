@@ -1,10 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.OLD_TAG_DESC_CS2101;
-import static seedu.address.logic.commands.CommandTestUtil.OLD_TAG_DESC_CS2103;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CS2103;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS2103;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -30,11 +30,11 @@ public class OpenCommandParserTest {
         Tag expectedTag = new TagBuilder(CS2103).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + OLD_TAG_DESC_CS2103,
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + TAG_DESC_CS2103,
                 new OpenCommand(expectedTag.getTagName()));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, OLD_TAG_DESC_CS2101 + OLD_TAG_DESC_CS2103,
+        assertParseSuccess(parser, TAG_DESC_CS2101 + TAG_DESC_CS2103,
                 new OpenCommand(expectedTag.getTagName()));
     }
 
@@ -49,7 +49,7 @@ public class OpenCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + OLD_TAG_DESC_CS2101,
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + TAG_DESC_CS2101,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, OpenCommand.MESSAGE_USAGE));
     }
 

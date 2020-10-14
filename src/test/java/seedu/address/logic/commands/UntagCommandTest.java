@@ -23,11 +23,11 @@ import seedu.address.model.tag.Tag;
  * {@code UntagCommand}.
  */
 public class UntagCommandTest {
-//
-//    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-//
-//    @Test
-//    public void execute_validIndexUnfilteredList_success() {
+
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+    @Test
+    public void execute_validTagName_success() {
 //        Tag tagToDelete = model.getFilteredTagList().get(INDEX_FIRST_TAG.getZeroBased());
 //        UntagCommand untagCommand = new UntagCommand(INDEX_FIRST_TAG);
 //
@@ -37,7 +37,7 @@ public class UntagCommandTest {
 //        expectedModel.deleteTag(tagToDelete);
 //
 //        assertCommandSuccess(untagCommand, model, expectedMessage, expectedModel);
-//    }
+    }
 //
 //    @Test
 //    public void execute_invalidIndexUnfilteredList_throwsCommandException() {

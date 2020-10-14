@@ -5,8 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_NAME;
 
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
@@ -42,7 +40,7 @@ public class UntagCommand extends Command {
         // Check if tag to untag is in tag list
         List<Tag> tagList = model.findFilteredTagList(new TagNameEqualsKeywordPredicate(tagName));
         if (tagList.isEmpty()) {
-            throw new CommandException(String.format(MESSAGE_TAG_NOT_FOUND));
+            throw new CommandException(String.format(MESSAGE_TAG_NOT_FOUND, tagName));
         }
 
         model.deleteTag(tagList.get(0));
