@@ -39,11 +39,11 @@ public class TypicalEntries {
     public static final Revenue SELLFLOWERSEEDS = new RevenueBuilder()
             .withDescription("sold flower seed")
             .withAmount("30")
-            .withTags("10sunflowerseeds, 5roseseeds").build();
+            .withTags("10sunflowerseeds", "5roseseeds").build();
     public static final Revenue SELLTOOLS = new RevenueBuilder()
             .withDescription("sold gardening tools")
             .withAmount("45.55")
-            .withTags("shovel, wateringCan, sickle").build();
+            .withTags("shovel", "wateringCan", "sickle").build();
 
     // Manually added
     public static final Expense BUYSTRING = new ExpenseBuilder()
@@ -53,7 +53,7 @@ public class TypicalEntries {
     public static final Revenue SELLHANDICRAFT = new RevenueBuilder()
             .withDescription("Sold handicrafts")
             .withAmount("19.70")
-            .withTags("plantDecorationss, potDecorations").build();
+            .withTags("plantDecorations", "potDecorations").build();
 
     // Manually added - Entries's details found in {@code CommandTestUtil}
     public static final Expense BUYROSESEEDS = new ExpenseBuilder()
