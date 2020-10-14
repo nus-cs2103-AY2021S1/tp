@@ -1,9 +1,9 @@
 package seedu.resireg.logic.commands;
 
-import static seedu.resireg.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-
 import java.util.Map;
+import java.util.stream.Collectors;
 
+import seedu.resireg.commons.core.Messages;
 import seedu.resireg.logic.CommandMapper;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
@@ -20,7 +20,22 @@ public class HelpCommand extends Command {
             "When used with the command name (eg. help exit), it displays the help message for that command."
                     + " When used without any arguments, it displays a summary of all the commands.");
 
-    private static final CommandMapper commandMapper = new CommandMapper();
+    public static final String MESSAGE_UNKNOWN_COMMAND = "Cannot show help for %s: " + Messages.MESSAGE_UNKNOWN_COMMAND;
+
+    public static final String MESSAGE_GENERAL_HELP = "Commands available:\n"
+            // summary for commands available (excluding help command), in alphabetical order
+            + new CommandMapper().getCommandWordToHelpMap().entrySet().stream()
+                    .sorted(Map.Entry.comparingByKey())
+                    .filter(entry -> !entry.getKey().equals(HelpCommand.COMMAND_WORD))
+                    .map(entry -> entry.getValue().getSummary())
+                    .collect(Collectors.joining("\n"))
+            // full help message for help command
+            + "\n\n" + HELP.getFullMessage() + "\n\n"
+            // user guide
+            + "You can also refer to our user guide at: https://ay2021s1-cs2103-t16-3.github.io/tp/UserGuide.html";
+
+    private static final Map<String, Help> commandWordToHelpMap =
+            new CommandMapper().getCommandWordToHelpMap();
 
     private String input;
 
@@ -36,30 +51,14 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        Map<String, Help> commandWordToHelp = commandMapper.getCommandWordToHelpMap();
-
         if (input.isBlank()) {
-            // print summary of commands in alphabetical order, followed by full description of help command
-            StringBuilder sb = new StringBuilder();
-            sb.append("Commands available:\n");
-            commandWordToHelp.keySet().stream().sorted().forEachOrdered((commandWord) -> {
-                if (commandWord.equals(HelpCommand.COMMAND_WORD)) {
-                    return;
-                }
-                sb.append(commandWordToHelp.get(commandWord).getSummary());
-                sb.append("\n");
-            });
-            sb.append("\n");
-            sb.append(HELP.getFullMessage());
-            sb.append("\n\n");
-            sb.append("You can also check out our user guide at: "
-                    + "https://ay2021s1-cs2103-t16-3.github.io/tp/UserGuide.html");
-            return new CommandResult(sb.toString());
-        } else if (commandWordToHelp.containsKey(input)) { // print full help message for specific command
-            return new CommandResult(commandWordToHelp.get(input).getFullMessage());
+            return new CommandResult(MESSAGE_GENERAL_HELP);
+        } else if (commandWordToHelpMap.containsKey(input)) { // print full help message for specific command
+            return new CommandResult(commandWordToHelpMap.get(input).getFullMessage());
         } else {
-            throw new CommandException(input + ": " + MESSAGE_UNKNOWN_COMMAND);
+            throw new CommandException(String.format(MESSAGE_UNKNOWN_COMMAND, input));
         }
     }
+
 
 }
