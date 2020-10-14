@@ -24,6 +24,10 @@ public class TypicalStocks {
             .withSerialNumber("Fairprice1").withSource("Fairprice")
             .withQuantity("2103").withLocation("Fruits section, Subsection B")
             .build();
+    public static final Stock PINEAPPLE = new StockBuilder().withName("Pineapple Tart")
+            .withSerialNumber("BengawanSolo1").withSource("BengawanSolo")
+            .withQuantity("123").withLocation("Tart Section, Subsection A")
+            .build();
     public static final SerialNumber SERIAL_NUMBER_FIRST_STOCK = APPLE.getSerialNumber();
     public static final SerialNumber SERIAL_NUMBER_SECOND_STOCK = BANANA.getSerialNumber();
 
@@ -44,7 +48,7 @@ public class TypicalStocks {
         return new ArrayList<>(Arrays.asList(APPLE, BANANA));
     }
 
-    public static SerialNumberSetsBook getTypicalStocksSerialNumbers() {
+    public static SerialNumberSetsBook getTypicalSerialNumberSetsBook() {
         SerialNumberSetsBook serialNumbers = new SerialNumberSetsBook();
         List<SerialNumberSet> serialNumberSets = new ArrayList<>();
         for (Stock stock: getTypicalStocks()) {
