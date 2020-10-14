@@ -37,6 +37,9 @@ public class Reference {
      * Returns true if a given file path exists.
      */
     public static boolean isValidReference(String fileName) {
+        if (fileName.equals("")) {
+            return false;
+        }
         Path filePath = Paths.get(DEFAULT_FILEPATH + fileName);
         return Files.exists(filePath);
     }
