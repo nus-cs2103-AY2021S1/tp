@@ -2,7 +2,7 @@ package seedu.fma.model.exercise;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_CRUNCHES;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_JUMPING_JACKS;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_SIT_UP;
 import static seedu.fma.testutil.Assert.assertThrows;
 import static seedu.fma.testutil.TypicalExercises.JUMPING_JACK;
@@ -45,7 +45,7 @@ public class ExerciseTest {
         assertFalse(SIT_UP.equals(JUMPING_JACK));
 
         // different name -> returns false
-        Exercise editedSitUp = new ExerciseBuilder(SIT_UP).withName(VALID_EXERCISE_CRUNCHES).build();
+        Exercise editedSitUp = new ExerciseBuilder(SIT_UP).withName(VALID_EXERCISE_JUMPING_JACKS).build();
         assertFalse(SIT_UP.equals(editedSitUp));
     }
 

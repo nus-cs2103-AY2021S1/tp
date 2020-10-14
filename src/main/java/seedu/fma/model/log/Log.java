@@ -15,10 +15,10 @@ import seedu.fma.model.exercise.Exercise;
 public class Log {
 
     // Identity fields
-    private final Exercise exercise;
     private final LocalDateTime dateTime;
 
     // Data fields
+    private final Exercise exercise;
     private final Rep reps;
     private final Comment comment;
 
@@ -84,8 +84,7 @@ public class Log {
         }
 
         return otherLog != null
-                && otherLog.getExercise().equals(getExercise())
-                && (otherLog.getDateTime().equals(getDateTime()));
+                && otherLog.getDateTime().equals(getDateTime());
     }
 
     /**

@@ -30,10 +30,12 @@ import seedu.fma.testutil.LogBuilder;
 
 public class CommandTestUtil {
     public static final String VALID_EXERCISE_SIT_UP = "Sit ups";
-    public static final String VALID_EXERCISE_CRUNCHES = "Crunches";
+    public static final String VALID_EXERCISE_JUMPING_JACKS = "Jumping jacks";
 
-    public static final Exercise VALID_EXERCISE_A = new ExerciseBuilder().withName(VALID_EXERCISE_SIT_UP).build();
-    public static final Exercise VALID_EXERCISE_B = new ExerciseBuilder().withName(VALID_EXERCISE_CRUNCHES).build();
+    public static final Exercise VALID_EXERCISE_A = new ExerciseBuilder()
+            .withName(VALID_EXERCISE_SIT_UP).build();
+    public static final Exercise VALID_EXERCISE_B = new ExerciseBuilder()
+            .withName(VALID_EXERCISE_JUMPING_JACKS).build();
     public static final String VALID_REP_A = "5";
     public static final String VALID_REP_B = "10";
     public static final String VALID_COMMENT_A = "This exercise is tough";
@@ -56,8 +58,8 @@ public class CommandTestUtil {
             VALID_YEAR_B, VALID_MONTH_B, VALID_DAY_B, VALID_HOUR_B, VALID_MINUTE_B
     );
 
-    public static final String EXERCISE_DESC_A = " " + PREFIX_EXERCISE + VALID_EXERCISE_A;
-    public static final String EXERCISE_DESC_B = " " + PREFIX_EXERCISE + VALID_EXERCISE_B;
+    public static final String EXERCISE_DESC_A = " " + PREFIX_EXERCISE + VALID_EXERCISE_SIT_UP;
+    public static final String EXERCISE_DESC_B = " " + PREFIX_EXERCISE + VALID_EXERCISE_JUMPING_JACKS;
     public static final String REP_DESC_A = " " + PREFIX_REPS + VALID_REP_A;
     public static final String REP_DESC_B = " " + PREFIX_REPS + VALID_REP_B;
     public static final String COMMENT_DESC_A = " " + PREFIX_COMMENT + VALID_COMMENT_A;
@@ -71,16 +73,16 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final Log DESC_A;
-    public static final Log DESC_B;
+    public static final Log VALID_LOG_A;
+    public static final Log VALID_LOG_B;
 
     public static final EditCommand.EditLogDescriptor EDIT_LOG_DESCRIPTOR_A;
     public static final EditCommand.EditLogDescriptor EDIT_LOG_DESCRIPTOR_B;
 
     static {
-        DESC_A = new LogBuilder().withExercise(VALID_EXERCISE_A)
+        VALID_LOG_A = new LogBuilder().withExercise(VALID_EXERCISE_A)
                 .withReps(VALID_REP_A).withComment(VALID_COMMENT_A).build();
-        DESC_B = new LogBuilder().withExercise(VALID_EXERCISE_B)
+        VALID_LOG_B = new LogBuilder().withExercise(VALID_EXERCISE_B)
                 .withReps(VALID_REP_B).withComment(VALID_COMMENT_B).build();
 
         EDIT_LOG_DESCRIPTOR_A = new EditCommand.EditLogDescriptor();
