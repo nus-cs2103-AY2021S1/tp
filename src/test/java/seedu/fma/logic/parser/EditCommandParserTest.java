@@ -1,54 +1,36 @@
 package seedu.fma.logic.parser;
 
 import static seedu.fma.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-//import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-//import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-//import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-//import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-//import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-//import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-//import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-//import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-//import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-//import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-//import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-
-import static seedu.fma.logic.commands.CommandTestUtil.*;
+import static seedu.fma.logic.commands.CommandTestUtil.COMMENT_DESC_A;
+import static seedu.fma.logic.commands.CommandTestUtil.COMMENT_DESC_B;
+import static seedu.fma.logic.commands.CommandTestUtil.EXERCISE_DESC_A;
+import static seedu.fma.logic.commands.CommandTestUtil.EXERCISE_DESC_B;
+import static seedu.fma.logic.commands.CommandTestUtil.INVALID_EXERCISE_DESC;
+import static seedu.fma.logic.commands.CommandTestUtil.INVALID_REP_DESC;
+import static seedu.fma.logic.commands.CommandTestUtil.REP_DESC_A;
+import static seedu.fma.logic.commands.CommandTestUtil.REP_DESC_B;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_COMMENT_A;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_COMMENT_B;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_A;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_B;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_A;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_B;
 import static seedu.fma.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.fma.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.fma.testutil.TypicalIndexes.INDEX_FIRST_LOG;
 import static seedu.fma.testutil.TypicalIndexes.INDEX_SECOND_LOG;
 import static seedu.fma.testutil.TypicalIndexes.INDEX_THIRD_LOG;
 
+import org.junit.jupiter.api.Test;
+
 import seedu.fma.commons.core.index.Index;
 import seedu.fma.logic.commands.EditCommand;
 import seedu.fma.logic.commands.EditCommand.EditLogDescriptor;
-import seedu.fma.logic.parser.EditCommandParser;
-import seedu.fma.model.exercise.Exercise;
-import seedu.fma.model.log.Log;
 import seedu.fma.model.log.Rep;
-import seedu.fma.model.log.Comment;
 import seedu.fma.model.util.Name;
 import seedu.fma.testutil.EditLogDescriptorBuilder;
 
-import org.junit.jupiter.api.Test;
-
 public class EditCommandParserTest {
-
-//    private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);

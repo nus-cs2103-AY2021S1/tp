@@ -38,20 +38,22 @@ public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalLogBook(), new UserPrefs());
 
+    /*
     // TODO Edit this test
-//    @Test
-//    public void execute_allFieldsSpecifiedUnfilteredList_success() {
-//        Log editedLog = new LogBuilder().withExercise(VALID_EXERCISE_B).withComment("This is boring").build();
-//        EditLogDescriptor descriptor = new EditLogDescriptorBuilder(editedLog).build();
-//        EditCommand editCommand = new EditCommand(INDEX_FIRST_LOG, descriptor);
-//
-//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_LOG_SUCCESS, editedLog);
-//
-//        Model expectedModel = new ModelManager(new LogBook(model.getLogBook()), new UserPrefs());
-//        expectedModel.setLog(model.getFilteredLogList().get(0), editedLog);
-//
-//        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-//    }
+    @Test
+    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+        Log editedLog = new LogBuilder().withExercise(VALID_EXERCISE_B).withComment("This is boring").build();
+        EditLogDescriptor descriptor = new EditLogDescriptorBuilder(editedLog).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_LOG, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_LOG_SUCCESS, editedLog);
+
+        Model expectedModel = new ModelManager(new LogBook(model.getLogBook()), new UserPrefs());
+        expectedModel.setLog(model.getFilteredLogList().get(0), editedLog);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+    */
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
