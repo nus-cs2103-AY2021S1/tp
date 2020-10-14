@@ -4,24 +4,29 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.AddCommandParser.arePrefixesPresent;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
-import seedu.address.logic.commands.suspectcommands.AddSuspectCommand;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.victimcommands.AddVictimCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.state.StateManager;
 import seedu.address.model.investigationcase.Name;
-import seedu.address.model.investigationcase.Suspect;
+import seedu.address.model.investigationcase.Victim;
 
-public class AddSuspectCommandParser implements Parser<AddSuspectCommand> {
+public class AddVictimCommandParser implements Parser<AddVictimCommand> {
     @Override
-    public AddSuspectCommand parse(String args) throws ParseException {
+    public AddVictimCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSuspectCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddVictimCommand.MESSAGE_USAGE));
         }
 
+        assert(StateManager.atCasePage() == true) : "Program should be at case page";
+        Index index = StateManager.getState();
+
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Suspect suspect = new Suspect(name);
-        return new AddSuspectCommand(suspect);
+        Victim victim = new Victim(name);
+        return new AddVictimCommand(index, victim);
     }
 }

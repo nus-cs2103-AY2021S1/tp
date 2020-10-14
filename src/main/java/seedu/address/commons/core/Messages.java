@@ -14,4 +14,5 @@ public class Messages {
             + "Please return to main page to use this command.";
     public static final String MESSAGE_INCORRECT_CASE_PAGE = "Invalid command. "
             + "Please open a case to use this command.";
+    public static final String MESSAGE_INVALID_VICTIM_DISPLAYED_INDEX = "The victim index provided is invalid";
 }

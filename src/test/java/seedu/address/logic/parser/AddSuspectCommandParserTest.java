@@ -11,7 +11,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddSuspectCommand;
+import seedu.address.logic.commands.suspectcommands.AddSuspectCommand;
 import seedu.address.model.investigationcase.Name;
 import seedu.address.model.investigationcase.Suspect;
 

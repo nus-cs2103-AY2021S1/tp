@@ -18,6 +18,7 @@ public class AddCaseCommand extends AddCommand {
             + PREFIX_TITLE + "TITLE "
             + "[" + PREFIX_STATUS + "STATUS]\n"
             + "Example: " + COMMAND_WORD + " "
+            + TYPE_CASE + " "
             + PREFIX_TITLE + "John Doe "
             + PREFIX_STATUS + "closed";
 

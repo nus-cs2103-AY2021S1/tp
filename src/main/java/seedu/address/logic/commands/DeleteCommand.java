@@ -1,8 +1,5 @@
 package seedu.address.logic.commands;
 
-
-import seedu.address.commons.core.index.Index;
-
 /**
  * Abstract class for deleting different types of items based off of index.
  */
@@ -23,11 +20,5 @@ public abstract class DeleteCommand extends Command {
             + " used in the displayed list in current case.\n"
             + "Parameters (for 'suspect','victim','witness', 'docs' TYPE): TYPE INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " suspect 1";
-
-    protected final Index targetIndex;
-
-    protected DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
-    }
 
 }
