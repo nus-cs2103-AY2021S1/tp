@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
@@ -28,10 +29,10 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DATE_TIME,
-                                                            PREFIX_DESCRIPTION, PREFIX_TYPE, PREFIX_TAG);
+                                            PREFIX_DESCRIPTION, PREFIX_TYPE, PREFIX_STATUS, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TITLE,
-                                            PREFIX_DESCRIPTION, PREFIX_DATE_TIME, PREFIX_TYPE, PREFIX_TAG)) {
+                PREFIX_DESCRIPTION, PREFIX_DATE_TIME, PREFIX_TYPE, PREFIX_STATUS, PREFIX_TAG)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
         TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
@@ -46,6 +47,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         if (argMultimap.getValue(PREFIX_TYPE).isPresent()) {
             predicate.setKeyword(PREFIX_TYPE, argMultimap.getValue(PREFIX_TYPE).get());
+        }
+        if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
+            predicate.setKeyword(PREFIX_STATUS, argMultimap.getValue(PREFIX_STATUS).get());
         }
 
         return new FindCommand(predicate);

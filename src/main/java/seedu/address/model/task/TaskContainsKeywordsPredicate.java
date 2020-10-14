@@ -79,6 +79,10 @@ public class TaskContainsKeywordsPredicate implements Predicate<Task> {
             return words.stream()
                     .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getType().value, keyword));
         }
+        if (prefix.equals("status:")) {
+            return words.stream()
+                    .anyMatch(keyword -> task.getStatus().value.toString().toLowerCase().equals(keyword.toLowerCase()));
+        }
 
         return false;
     }
