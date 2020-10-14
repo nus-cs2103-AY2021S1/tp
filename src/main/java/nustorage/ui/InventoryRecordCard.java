@@ -12,7 +12,7 @@ import nustorage.model.record.InventoryRecord;
  */
 public class InventoryRecordCard extends UiPart<Region> {
 
-    private static final String FXML = "InventoryCard.fxml";
+    private static final String FXML = "RecordCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -31,11 +31,11 @@ public class InventoryRecordCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label quantity;
+    private Label detailOne; //quantity
     @FXML
-    private Label date;
+    private Label detailTwo; //date
     @FXML
-    private Label time;
+    private Label detailThree; //time
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -45,9 +45,9 @@ public class InventoryRecordCard extends UiPart<Region> {
         this.record = record;
         id.setText(displayedIndex + ". ");
         name.setText(record.getItemName());
-        quantity.setText(Integer.toString(record.getQuantity()));
-        date.setText(record.getDate().toString());
-        time.setText(record.getTime().toString());
+        detailOne.setText(Integer.toString(record.getQuantity()));
+        detailTwo.setText(record.getDate().toString());
+        detailThree.setText(record.getTime().toString());
     }
 
     @Override
