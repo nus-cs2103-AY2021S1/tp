@@ -30,6 +30,10 @@ public class FindCommandParser implements Parser<FindCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DATE_TIME,
                                                             PREFIX_DESCRIPTION, PREFIX_TYPE, PREFIX_TAG);
 
+        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE,
+                                            PREFIX_DESCRIPTION, PREFIX_DATE_TIME, PREFIX_TYPE, PREFIX_TAG)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
         TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
         if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {
             predicate.setKeyword(PREFIX_TITLE, argMultimap.getValue(PREFIX_TITLE).get());
