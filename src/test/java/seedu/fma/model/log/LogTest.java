@@ -40,8 +40,8 @@ public class LogTest {
 
     @Test
     public void getPrettyDateTime_hasDateTime_returnCorrectFormat() {
-        assertEquals("Wed 1:01am, 01 Jan 2020", LOG_A.getPrettyDateTime());
-        assertEquals("Sun 2:02am, 02 Feb 2020", LOG_B.getPrettyDateTime());
+        assertEquals("Wed 1:01AM, 01 Jan 2020", LOG_A.getPrettyDateTime());
+        assertEquals("Sun 2:02AM, 02 Feb 2020", LOG_B.getPrettyDateTime());
     }
 
     @Test
