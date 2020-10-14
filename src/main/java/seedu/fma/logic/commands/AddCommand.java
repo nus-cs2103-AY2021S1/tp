@@ -22,8 +22,8 @@ public class AddCommand extends Command {
             + PREFIX_REPS + "REPS "
             + PREFIX_COMMENT + "COMMENT \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_EXERCISE + "situp "
-            + PREFIX_REPS + "50 "
+            + PREFIX_EXERCISE + "Sit ups "
+            + PREFIX_REPS + "30 "
             + PREFIX_COMMENT + "my abs hurt:( \n";
 
     public static final String MESSAGE_SUCCESS = "New log added: %1$s";
