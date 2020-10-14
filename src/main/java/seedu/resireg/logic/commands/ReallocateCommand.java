@@ -1,17 +1,17 @@
 package seedu.resireg.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_INDEX;
+import static seedu.resireg.logic.parser.CliSyntax.PREFIX_STUDENT_INDEX;
+
+import java.util.List;
+
 import seedu.resireg.commons.core.Messages;
 import seedu.resireg.commons.core.index.Index;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_INDEX;
-import static seedu.resireg.logic.parser.CliSyntax.PREFIX_STUDENT_INDEX;
 
 
 /**
@@ -31,7 +31,8 @@ public class ReallocateCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Room reallocated to %1$s: %2$s";
     public static final String MESSAGE_ROOM_NOT_FOUND = "This room does not exist in ResiReg";
     public static final String MESSAGE_STUDENT_NOT_FOUND = "This student is not registered in ResiReg";
-    public static final String MESSAGE_STUDENT_NOT_ALLOCATED = "This student has not been allocated a room. Please use allocate instead.";
+    public static final String MESSAGE_STUDENT_NOT_ALLOCATED =
+            "This student has not been allocated a room. Please use allocate instead.";
 
     private final Index studentIndex;
     private final Index roomIndex;
