@@ -52,10 +52,10 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyEntryBook<Recipe> getSampleRecipeBook() {
-        EntryBook<Recipe> sampleRecipeEntryBook = new EntryBook<>();
+        EntryBook<Recipe> sampleRecipeBook = new EntryBook<>();
         for (Recipe sampleRecipe : getSampleRecipe()) {
-            sampleRecipeEntryBook.add(sampleRecipe);
+            sampleRecipeBook.add(sampleRecipe);
         }
-        return sampleRecipeEntryBook;
+        return sampleRecipeBook;
     }
 }
