@@ -17,6 +17,10 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** The tab should automatically change. */
+    private EntityType entityType;
+
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -27,6 +31,16 @@ public class CommandResult {
     }
 
     /**
+     * Constructs a {@code CommandResult} with the specified fields including EntityType.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, EntityType entityType) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.entityType = entityType;
+    }
+
+    /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
@@ -34,8 +48,16 @@ public class CommandResult {
         this(feedbackToUser, false, false);
     }
 
+    public CommandResult setEntity(EntityType entityType) {
+        return new CommandResult(feedbackToUser, showHelp, exit, entityType);
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser;
+    }
+
+    public EntityType getEntityType() {
+        return entityType;
     }
 
     public boolean isShowHelp() {

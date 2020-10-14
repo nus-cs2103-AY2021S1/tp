@@ -41,7 +41,7 @@ public class AddBidCommand extends Command {
 
 
         model.addBid(bid);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, bid));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, bid)).setEntity(EntityType.BID);
 
     }
 

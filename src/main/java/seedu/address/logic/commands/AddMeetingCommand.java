@@ -50,7 +50,7 @@ public class AddMeetingCommand extends Command {
         requireNonNull(model);
 
         model.addMeeting(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd)).setEntity(EntityType.MEETING);
     }
 
     @Override

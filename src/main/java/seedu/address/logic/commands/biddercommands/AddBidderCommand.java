@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.EntityType;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.bidder.Bidder;
@@ -47,7 +48,7 @@ public class AddBidderCommand extends Command {
         }
 
         model.addBidder(bidder);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, bidder));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, bidder)).setEntity(EntityType.BIDDER);
     }
 
     @Override
