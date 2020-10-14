@@ -3,12 +3,24 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.*;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyTaskmaster;
+import seedu.address.model.Taskmaster;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.attendance.Attendance;
 import seedu.address.model.attendance.AttendanceType;
 import seedu.address.model.student.NusnetId;
@@ -18,13 +30,6 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 public class LoadAttendanceCommandTest {
 
@@ -39,7 +44,8 @@ public class LoadAttendanceCommandTest {
 
     @BeforeEach
     public void setUp() {
-        JsonTaskmasterStorage taskmasterStorage = new JsonTaskmasterStorage(Path.of("data", "storage_test_taskmaster.json"));
+        JsonTaskmasterStorage taskmasterStorage =
+                new JsonTaskmasterStorage(Path.of("data", "storage_test_taskmaster.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storage = new StorageManager(taskmasterStorage, userPrefsStorage);
     }
@@ -89,7 +95,7 @@ public class LoadAttendanceCommandTest {
             String successMessage = LoadAttendanceCommand.MESSAGE_LOAD_ATTENDANCE_SUCCESS;
             CommandResult expectedCommandResult = new CommandResult(String.format(successMessage, filename));
             assertCommandSuccess(loadCommand, model, expectedCommandResult, expectedModel);
-        } catch (DataConversionException| IOException exception) {
+        } catch (DataConversionException | IOException exception) {
             throw new AssertionError("Failed to read Taskmaster from test storage.");
         }
     }
