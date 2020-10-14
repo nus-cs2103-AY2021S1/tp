@@ -26,6 +26,7 @@ public class TypicalItems {
             .withDescription("Used as bait")
             .withQuantity("99").build();
     public static final Item PEAR = new ItemBuilder()
+            .withName("Pear")
             .withId(3)
             .withRecipe(new HashSet<>())
             .withDescription("No description given")

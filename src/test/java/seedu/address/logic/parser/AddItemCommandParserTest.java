@@ -17,10 +17,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_BANAN
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_BANANA;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalItemPrecursors.*;
-
-import java.util.Collections;
-import java.util.HashSet;
+import static seedu.address.testutil.TypicalItemPrecursors.DEFAULT_DESCRIPTION_PRECURSOR;
+import static seedu.address.testutil.TypicalItemPrecursors.DEFAULT_QUANTITY_PRECURSOR;
+import static seedu.address.testutil.TypicalItemPrecursors.LOCATED_BANANA_PRECURSOR;
 
 import org.junit.jupiter.api.Test;
 

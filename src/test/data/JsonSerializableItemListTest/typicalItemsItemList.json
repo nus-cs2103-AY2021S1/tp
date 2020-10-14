@@ -17,5 +17,14 @@
     "recipeId" : [ ],
     "isDeleted" : false,
     "tagged" : [ ]
+  }, {
+    "id" : 3,
+    "name" : "Pear",
+    "quantity" : "1",
+    "description" : "No description given",
+    "locationId" : [ ],
+    "recipeId" : [ ],
+    "isDeleted" : false,
+    "tagged" : [ ]
   } ]
 }
