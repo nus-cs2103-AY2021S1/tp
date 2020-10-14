@@ -92,7 +92,7 @@ public class EditCommand extends Command {
         assert caseToEdit != null;
 
         Title updatedTitle = editCaseDescriptor.getTitle().orElse(caseToEdit.getTitle());
-        Description updatedDescription = new Description("");
+        Description updatedDescription = editCaseDescriptor.getDescription().orElse(caseToEdit.getDescription());
         Status updatedStatus = editCaseDescriptor.getStatus().orElse(caseToEdit.getStatus());
         List<Document> updatedDocuments = editCaseDescriptor.getDocuments().orElse(caseToEdit.getDocuments());
         List<Suspect> updatedSuspects = editCaseDescriptor.getSuspects().orElse(caseToEdit.getSuspects());
