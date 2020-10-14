@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_TAG;
 
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.account.ActiveAccount;
 import seedu.address.model.account.entry.Entry;
@@ -34,7 +33,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "blogshop "
             + PREFIX_TAG + "eCommerce";
 
-    public static final String MESSAGE_SUCCESS = "New entry added!";
+    public static final String MESSAGE_SUCCESS = "New entry added! %1$s";
 
     public final Entry entry;
 
@@ -47,7 +46,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
+    public CommandResult execute(Model model, ActiveAccount activeAccount) {
         requireNonNull(model);
 
         if (this.entry instanceof Expense) {
