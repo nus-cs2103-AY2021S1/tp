@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalVendors.getTypicalAddressBook;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -14,10 +15,13 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.food.Food;
 import seedu.address.model.menu.ReadOnlyMenuManager;
 import seedu.address.model.order.OrderItem;
@@ -45,47 +49,40 @@ public class AddCommandTest {
     }
 
     //    @Test
-    //    public void execute_vendorAcceptedByModel_addSuccessful() throws Exception {
-    //        ModelStubAcceptingVendorAdded modelStub = new ModelStubAcceptingVendorAdded();
-    //        Vendor validVendor = new VendorBuilder().build();
+    //    public void execute_valid_index_throwsCommandException() {
+    //        ModelStub modelStub = new ModelStub();
+    //        Model model = modelStub.getEmptyModel();
+    //        Index one = Index.fromOneBased(1);
+    //        AddCommand addCommand = new AddCommand(one);
+    //        List<Food> menu = new ArrayList<>();
+    //        menu.add(new Food("Prata", 1.00, new HashSet<>()));
+    //        OrderItem orderItem = new OrderItem(menu.get(one.getZeroBased()), 1);
+    //        String expectedMessage = String.format(AddCommand.MESSAGE_ADD_FIRST_SUCCESS, orderItem);
+    //        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     //
-    //        CommandResult commandResult = new AddCommand(food)
-    //                .execute(modelStub);
-    //
-    //        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validVendor), commandResult.getFeedbackToUser());
-    //        assertEquals(Arrays.asList(validVendor), modelStub.vendorsAdded);
-    //    }
-
-    //    @Test
-    //    public void execute_duplicateFood_throwsCommandException() {
-    //        AddCommand addCommand = new AddCommand(food);
-    //        ModelStub modelStub = new ModelStubWithVendor(new Food("Name", 1, new HashSet<>()));
-    //
-    //        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_VENDOR,
-    //        () -> addCommand.execute(modelStub));
+    //        assertCommandSuccess(addCommand, model, expectedMessage, expectedModel);
     //    }
 
     @Test
     public void equals() {
-        AddCommand addAliceCommand = new AddCommand(food);
-        Food expectedFood = new Food("prata", 1, new HashSet<>());
-        AddCommand addBobCommand = new AddCommand(expectedFood);
+        AddCommand addCommand1 = new AddCommand(Index.fromOneBased(1));
+        AddCommand addCommand2 = new AddCommand(Index.fromOneBased(3));
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addCommand1.equals(addCommand1));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(food);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddCommand addCommandCopy = new AddCommand(Index.fromOneBased(1));
+        assertTrue(addCommandCopy.equals(addCommand1));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addCommand1.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addCommand1.equals(null));
 
         // different vendor -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addCommand1.equals(addCommand2));
     }
 
     /**
@@ -95,6 +92,16 @@ public class AddCommandTest {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        public Model getEmptyModel() {
+            return new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        }
+
+        public Model getModelWithFood() {
+            Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+            model.addOrderItem(new OrderItem("Prata", 1.00, new HashSet<>(), 2));
+            return model;
         }
 
         @Override

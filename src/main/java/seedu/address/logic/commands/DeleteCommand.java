@@ -4,9 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.order.OrderItem;
 
@@ -37,6 +37,7 @@ public class DeleteCommand extends Command {
      * Creates a DeleteCommand to delete the OrderItem at the specified {@code targetIndex} and remove all its quantity
      */
     public DeleteCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
         this.quantity = Integer.MAX_VALUE;
     }
@@ -46,6 +47,7 @@ public class DeleteCommand extends Command {
      * the specified {@code quantity}
      */
     public DeleteCommand(Index targetIndex, int quantity) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
         this.quantity = quantity;
     }
@@ -54,13 +56,12 @@ public class DeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<OrderItem> lastShownList = model.getFilteredOrderItemList();
-
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
+            throw new CommandException(ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
         }
 
         if (!OrderItem.isValidQuantity(quantity)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ORDERITEM_DISPLAYED_QUANTITY);
+            throw new CommandException(ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_QUANTITY);
         }
 
         OrderItem orderItemToDelete = lastShownList.get(targetIndex.getZeroBased());
