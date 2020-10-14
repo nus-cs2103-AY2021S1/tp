@@ -21,7 +21,7 @@ public class FlashcardListPanel extends UiPart<Region> {
     private ListView<Flashcard> flashcardListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code FlashcardListPanel} with the given {@code ObservableList}.
      */
     public FlashcardListPanel(ObservableList<Flashcard> flashcardList) {
         super(FXML);
