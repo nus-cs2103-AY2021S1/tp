@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.casecommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESC;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CASES;
 
 import java.util.List;
@@ -21,10 +21,10 @@ public class AddDescriptionCommand extends AddCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_DESC
             + ": Adds a description to opened case in PIVOT. "
             + "Parameters: "
-            + PREFIX_DESCRIPTION + "DESCRIPTION\n"
+            + PREFIX_DESC + "DESCRIPTION\n"
             + "Example: " + COMMAND_WORD + " "
             + TYPE_DESC + " "
-            + PREFIX_DESCRIPTION + "7 people arrested for rioting";
+            + PREFIX_DESC + "7 people arrested for rioting";
 
     public static final String MESSAGE_ADD_DESCRIPTION_SUCCESS = "New description added: %1$s";
     public static final String MESSAGE_DUPLICATE_DESCRIPTION = "This description already exists for the case!";
