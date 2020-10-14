@@ -29,13 +29,17 @@ class ExpenseListTest {
         tags2.add(new Tag("clothes"));
         Expense e2 = new Expense(new Description("shopping for clothes"), new Amount("25"), tags2);
 
-        Set<Tag>tags3 = new HashSet<>();
+        Set<Tag> tags3 = new HashSet<>();
         tags3.add(new Tag("craft"));
         tags3.add(new Tag("ArtFriend"));
         Expense e3 = new Expense(new Description("artsupplies"), new Amount("10.50"), tags3);
 
         internalList.addAll(e1,e2,e3);
         assertTrue(internalList.contains(e1));
+        assertTrue(internalList.contains(e2));
+        assertTrue(internalList.contains(e3));
+
+
     }
 
     @Test
@@ -62,7 +66,7 @@ class ExpenseListTest {
     }
 
     @Test
-    void add() {
+    public void add() {
 
         ExpenseList expenseList = new ExpenseList();
         Expense expense = (new ExpenseBuilder()).build();
@@ -72,7 +76,7 @@ class ExpenseListTest {
     }
 
     @Test
-    void setExpense() {
+    public void setExpense() {
 
         Set<Tag> tags1 = new HashSet<>();
         tags1.add(new Tag("food"));
@@ -88,7 +92,7 @@ class ExpenseListTest {
     }
 
     @Test
-    void remove() {
+    public void remove() {
         ExpenseList expenseList = new ExpenseList();
         Expense expense = (new ExpenseBuilder()).build();
         expenseList.add(expense);
@@ -98,7 +102,7 @@ class ExpenseListTest {
     }
 
     @Test
-    void setExpenses() {
+    public void setExpenses() {
 
         ExpenseList expenseList = new ExpenseList();
 
@@ -132,7 +136,7 @@ class ExpenseListTest {
     }
 
     @Test
-    void testSetExpenses() {
+    public void testSetExpenses() {
         ExpenseList expenseList = new ExpenseList();
 
         Set<Tag> tags1 = new HashSet<>();
