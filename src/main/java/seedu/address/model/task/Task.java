@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.PersonName;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Participation;
 
@@ -76,7 +77,7 @@ public class Task {
      * @return true if this task has an assignee whose name matches the given name,
      * and false otherwise
      */
-    public boolean hasAssigneeWhoseNameIs(String assigneeName) {
+    public boolean hasAssigneeWhoseNameIs(PersonName assigneeName) {
         return assignees.stream()
             .anyMatch(assignee -> assignee.getAssigneeName().equals(assigneeName));
     }

@@ -38,9 +38,7 @@ public class Person {
     public PersonName getPersonName() {
         return personName;
     }
-    public String getFullName() {
-        return personName.toString();
-    }
+
 
     public Phone getPhone() {
         return phone;
