@@ -22,7 +22,7 @@ import seedu.address.model.task.Type;
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new Title("Return books"), DateTime.defaultDateTime(), Description.defaultDescription(),
+            new Task(new Title("Borrow books"), DateTime.defaultDateTime(), Description.defaultDescription(),
                 new Type("todo"),
                 getTagSet("friends"), new Status(State.COMPLETE)),
             new Task(new Title("Assignment 1"), new DateTime("25-11-2020 09:00"),
@@ -30,7 +30,16 @@ public class SampleDataUtil {
                 getTagSet("colleagues", "friends")),
             new Task(new Title("CCA Orientation"), new DateTime("16-01-2021 13:00"),
                     Description.defaultDescription(), new Type("event"),
-                getTagSet("neighbours"))
+                getTagSet("neighbours")),
+            new Task(new Title("Do laundry"), new DateTime("16-10-2020 17:00"), Description.defaultDescription(),
+                    new Type("todo"), getTagSet("what")),
+            new Task(new Title("CS2105 tutorial"), new DateTime("15-10-2020 16:00"), new Description("Remember to do " +
+                    "tutorial questions before the tutorial"),
+                    new Type("event"),
+                    getTagSet("friends"), new Status(State.COMPLETE)),
+            new Task(new Title("Return books"), DateTime.defaultDateTime(), Description.defaultDescription(),
+                    new Type("todo"),
+                    getTagSet("friends")),
         };
     }
 
