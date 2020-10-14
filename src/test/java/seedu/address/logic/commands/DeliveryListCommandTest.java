@@ -1,0 +1,44 @@
+package seedu.address.logic.commands;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import seedu.address.logic.commands.deliverycommand.DeliveryListCommand;
+import seedu.address.logic.commands.itemcommand.ItemListCommand;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.deliverymodel.DeliveryModel;
+import seedu.address.model.deliverymodel.DeliveryModelManager;
+import seedu.address.model.inventorymodel.InventoryModel;
+import seedu.address.model.inventorymodel.InventoryModelManager;
+
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showItemAtIndex;
+import static seedu.address.testutil.TypicalDeliveries.getTypicalDeliveryBook;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
+import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
+
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for DeliveryListCommand.
+ */
+public class DeliveryListCommandTest {
+
+    private DeliveryModel deliveryModel;
+    private DeliveryModel expectedDeliveryModel;
+
+    @BeforeEach
+    public void setUp() {
+        deliveryModel = new DeliveryModelManager(getTypicalDeliveryBook(), new UserPrefs());
+        expectedDeliveryModel = new DeliveryModelManager(deliveryModel.getDeliveryBook(), new UserPrefs());
+    }
+
+    @Test
+    public void execute_listIsNotFiltered_showsSameList() {
+        assertCommandSuccess(new DeliveryListCommand(), deliveryModel, DeliveryListCommand.MESSAGE_SUCCESS,
+                expectedDeliveryModel);
+    }
+
+    @Test
+    public void execute_listIsFiltered_showsEverything() {
+        assertCommandSuccess(new DeliveryListCommand(), deliveryModel, DeliveryListCommand.MESSAGE_SUCCESS,
+                expectedDeliveryModel);
+    }
+}
