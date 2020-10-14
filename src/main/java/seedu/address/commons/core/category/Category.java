@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.util;
+package seedu.address.commons.core.category;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Category {
     public static final String MESSAGE_CONSTRAINTS = "Category can only be expense or revenue";
-    public static final String VALIDATION_REGEX = "(^expense)|(^revenue)";
+    public static final String VALIDATION_REGEX = "(expense)|(revenue)";
     public static final String EXPENSE_STRING = "expense";
     public static final String REVENUE_STRING = "revenue";
     private final String value;

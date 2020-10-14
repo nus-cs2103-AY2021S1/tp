@@ -1,13 +1,13 @@
 //package seedu.address.logic;
 //
 //import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+//import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX;
 //import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-//import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-//import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-//import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+////import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+////import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+////import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 //import static seedu.address.testutil.Assert.assertThrows;
-//import static seedu.address.testutil.TypicalPersons.AMY;
+////import static seedu.address.testutil.TypicalPersons.AMY;
 //
 //import java.io.IOException;
 //import java.nio.file.Path;
@@ -18,34 +18,41 @@
 //
 //import seedu.address.logic.commands.AddCommand;
 //import seedu.address.logic.commands.CommandResult;
-//import seedu.address.logic.commands.ListCommand;
+//import seedu.address.logic.commands.ExitCommand;
 //import seedu.address.logic.commands.exceptions.CommandException;
 //import seedu.address.logic.parser.exceptions.ParseException;
 //import seedu.address.model.Model;
 //import seedu.address.model.ModelManager;
-//import seedu.address.model.ReadOnlyAddressBook;
+//import seedu.address.model.ReadOnlyCommonCents;
 //import seedu.address.model.UserPrefs;
-//import seedu.address.model.person.Person;
-//import seedu.address.storage.JsonAddressBookStorage;
+//import seedu.address.model.account.ActiveAccount;
+//import seedu.address.model.account.ActiveAccountManager;
+//import seedu.address.model.account.entry.Expense;
+//import seedu.address.storage.JsonCommonCentsStorage;
 //import seedu.address.storage.JsonUserPrefsStorage;
 //import seedu.address.storage.StorageManager;
-//import seedu.address.testutil.PersonBuilder;
+//import seedu.address.testutil.ExpenseBuilder;
+////import seedu.address.testutil.PersonBuilder;
 //
 //public class LogicManagerTest {
+//    private static final int FIRST_ACCOUNT_INDEX = 0;
 //    private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
 //
 //    @TempDir
 //    public Path temporaryFolder;
 //
 //    private Model model = new ModelManager();
+//    private ActiveAccount activeAccount =
+//            new ActiveAccountManager(model.getFilteredAccountList().get(FIRST_ACCOUNT_INDEX));
+//
 //    private Logic logic;
 //
 //    @BeforeEach
 //    public void setUp() {
-//        JsonAddressBookStorage addressBookStorage =
-//                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+//        JsonCommonCentsStorage commonCentsStorage =
+//                new JsonCommonCentsStorage(temporaryFolder.resolve("commonCents.json"));
 //        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-//        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+//        StorageManager storage = new StorageManager(commonCentsStorage, userPrefsStorage);
 //        logic = new LogicManager(model, storage);
 //    }
 //
@@ -57,31 +64,31 @@
 //
 //    @Test
 //    public void execute_commandExecutionError_throwsCommandException() {
-//        String deleteCommand = "delete 9";
-//        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+//        String deleteCommand = "delete 9 c/revenue";
+//        assertCommandException(deleteCommand, MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
 //    }
 //
 //    @Test
 //    public void execute_validCommand_success() throws Exception {
-//        String listCommand = ListCommand.COMMAND_WORD;
-//        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+//        String exitCommand = ExitCommand.COMMAND_WORD;
+//        assertCommandSuccess(exitCommand, ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT, model);
 //    }
 //
 //    @Test
 //    public void execute_storageThrowsIoException_throwsCommandException() {
 //        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-//        JsonAddressBookStorage addressBookStorage =
-//                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+//        JsonCommonCentsStorage commonCentsStorage =
+//                new JsonCommonCentsIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionCommonCents.json"));
 //        JsonUserPrefsStorage userPrefsStorage =
 //                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-//        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+//        StorageManager storage = new StorageManager(commonCentsStorage, userPrefsStorage);
 //        logic = new LogicManager(model, storage);
 //
 //        // Execute add command
 //        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY;
-//        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+//        Expense expectedExpense = new ExpenseBuilder().build();
 //        ModelManager expectedModel = new ModelManager();
-//        expectedModel.addPerson(expectedPerson);
+//        expectedModel.addExpense(expectedExpense);
 //        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
 //        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
 //    }
@@ -147,13 +154,13 @@
 //    /**
 //     * A stub class to throw an {@code IOException} when the save method is called.
 //     */
-//    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-//        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+//    private static class JsonCommonCentsIoExceptionThrowingStub extends JsonCommonCentsStorage {
+//        private JsonCommonCentsIoExceptionThrowingStub(Path filePath) {
 //            super(filePath);
 //        }
 //
 //        @Override
-//        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+//        public void saveCommonCents(ReadOnlyCommonCents commonCents, Path filePath) throws IOException {
 //            throw DUMMY_IO_EXCEPTION;
 //        }
 //    }

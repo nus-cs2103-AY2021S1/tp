@@ -8,10 +8,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import seedu.address.model.account.entry.Entry;
+import seedu.address.model.account.entry.Expense;
 
 public class EntryCard extends UiPart<Node> {
 
-    private static final String FXML = "EntryCard.FXML";
+    private static final String FXML = "EntryListCard.FXML";
 
     public final Entry entry;
 
@@ -24,8 +25,6 @@ public class EntryCard extends UiPart<Node> {
     @FXML
     private Label description;
     @FXML
-    private Label entryCategory;
-    @FXML
     private FlowPane tags;
 
     /**
@@ -35,10 +34,12 @@ public class EntryCard extends UiPart<Node> {
         super(FXML);
         this.entry = entry;
         id.setText(displayIndex + ". ");
-        amount.setText(entry.getAmount().toString());
         description.setText(entry.getDescription().toString());
-        // TODO: change this to Catergory
-        // entryCategory.setText(entry.getCategory());
+        if (entry instanceof Expense) {
+            amount.setText("-$" + entry.getAmount().toString());
+        } else {
+            amount.setText("+$" + entry.getAmount().toString());
+        }
         entry.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

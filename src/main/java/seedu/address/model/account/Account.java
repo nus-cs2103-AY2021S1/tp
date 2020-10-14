@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.AddressBook;
 import seedu.address.model.account.entry.Entry;
 import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.ExpenseList;
@@ -34,8 +33,8 @@ public class Account implements ReadOnlyAccount {
         this.revenues = new RevenueList();
     }
 
-    Account(Name name, ReadOnlyAccount toBeCopied) {
-        this(name);
+    Account(ReadOnlyAccount toBeCopied) {
+        this(toBeCopied.getName());
         resetData(toBeCopied);
     }
 
@@ -159,6 +158,7 @@ public class Account implements ReadOnlyAccount {
         // TODO: refine later
     }
 
+    @Override
     public Name getName() {
         return name;
     }
@@ -193,7 +193,7 @@ public class Account implements ReadOnlyAccount {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
+                || (other instanceof Account // instanceof handles nulls
                 && (name.equals(((Account) other).name)
                 && expenses.equals(((Account) other).expenses)
                 && revenues.equals(((Account) other).revenues)));

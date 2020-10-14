@@ -7,18 +7,18 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.account.Account;
-import seedu.address.model.person.Person;
+
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the common cents data.
  */
 public class ModelManager implements Model {
+    private static final int FIRST_ACCOUNT_INDEX = 0;
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final CommonCents commonCents;
@@ -42,6 +42,8 @@ public class ModelManager implements Model {
     public ModelManager() {
         this(new CommonCents(), new UserPrefs());
     }
+
+
 
     //=========== UserPrefs ==================================================================================
 
@@ -78,7 +80,7 @@ public class ModelManager implements Model {
         userPrefs.setCommonCentsFilePath(commonCentsFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== CommonCents ================================================================================
 
     @Override
     public void setCommonCents(ReadOnlyCommonCents commonCents) {
@@ -102,9 +104,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addAccount(Account person) {
-        commonCents.addAccount(person);
-        updateFilteredAccountList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addAccount(Account account) {
+        commonCents.addAccount(account);
+        updateFilteredAccountList(PREDICATE_SHOW_ALL_ACCOUNTS);
     }
 
     @Override
@@ -114,11 +116,18 @@ public class ModelManager implements Model {
         commonCents.setAccount(target, editedAccount);
     }
 
+    @Override
+    public void setAccount(Account editedAccount) {
+        requireAllNonNull(editedAccount);
+
+        commonCents.setAccount(editedAccount);
+    }
+
     //=========== Filtered Account List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Account} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedCommonCents}
      */
     @Override
     public ObservableList<Account> getFilteredAccountList() {
@@ -149,11 +158,5 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredAccounts.equals(other.filteredAccounts);
     }
-
-    //=========== Stub methods =============================================================
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return FXCollections.observableArrayList();
-    };
 
 }
