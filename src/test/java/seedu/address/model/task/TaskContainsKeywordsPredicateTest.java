@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -57,8 +58,8 @@ public class TaskContainsKeywordsPredicateTest {
 
         // Multiple keywords with partial match
         predicate = new TaskContainsKeywordsPredicate();
-        predicate.setKeyword(PREFIX_DESCRIPTION, "eague of Le");
-        assertTrue(predicate.test(new TaskBuilder().withDescription("League of Legends").build()));
+        predicate.setKeyword(PREFIX_TYPE, "tod");
+        assertTrue(predicate.test(new TaskBuilder().withType("todo").build()));
 
         // Mixed-case keywords
         predicate = new TaskContainsKeywordsPredicate();
@@ -77,10 +78,24 @@ public class TaskContainsKeywordsPredicateTest {
         predicate.setKeyword(PREFIX_DATE_TIME, "01-01-2020 19:00");
         assertFalse(predicate.test(new TaskBuilder().withDateTime("01-02-2019 18:00").build()));
 
-        // title Keywords match dateTime, description and type, but does not match title
+        // title Keywords does not match title
         predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_TITLE, "01-01-2020 12:00");
         assertFalse(predicate.test(new TaskBuilder().withTitle("Alice").withDateTime("01-01-2020 12:00")
+                .withDescription("alice,email.com").withType("event").build()));
+
+
+        // title Keywords does not match type
+        predicate = new TaskContainsKeywordsPredicate();
+        predicate.setKeyword(PREFIX_TYPE, "deadline");
+        assertFalse(predicate.test(new TaskBuilder().withType("event").withDateTime("01-01-2020 12:00")
+                .withDescription("alice,email.com").withType("event").build()));
+
+
+        // title Keywords does not match description
+        predicate = new TaskContainsKeywordsPredicate();
+        predicate.setKeyword(PREFIX_DESCRIPTION, "play outside");
+        assertFalse(predicate.test(new TaskBuilder().withType("event").withDateTime("01-01-2020 12:00")
                 .withDescription("alice,email.com").withType("event").build()));
 
     }
