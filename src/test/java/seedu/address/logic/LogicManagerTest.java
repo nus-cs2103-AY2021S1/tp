@@ -50,13 +50,13 @@ public class LogicManagerTest {
 
     @Test
     public void execute_invalidCommandFormat_throwsParseException() {
-        String invalidCommand = "uicfhmowqewca";
+        String invalidCommand = "invaliCommand";
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
     }
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String tagname = "laksdjflkajsdlkfjlksadjl";
+        String tagname = "randomTagName";
         String untagCommand = UntagCommand.COMMAND_WORD + " t/" + tagname;
         assertCommandException(untagCommand, String.format(UntagCommand.MESSAGE_TAG_NOT_FOUND, tagname));
     }

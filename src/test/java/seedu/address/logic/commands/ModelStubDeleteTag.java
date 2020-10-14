@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import seedu.address.model.tag.Tag;
 
@@ -30,19 +31,13 @@ public class ModelStubDeleteTag extends ModelStub {
 
     @Override
     public List<Tag> findFilteredTagList(Predicate<Tag> predicate) {
-        for (Tag tag : tagList) {
-            if (predicate.test(tag)) {
-                return List.of(tag);
-            }
-        }
-        return new ArrayList<>();
+        return tagList.stream().filter(predicate).collect(Collectors.toList());
     }
 
     @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
-
         }
 
         if (other instanceof ModelStubDeleteTag) {
