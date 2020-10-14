@@ -78,7 +78,7 @@ public class Task {
      */
     public boolean hasAssigneeWhoseNameIs(String assigneeName) {
         return assignees.stream()
-            .anyMatch(assignee -> assignee.getPerson().getPersonName().equals(assigneeName));
+            .anyMatch(assignee -> assignee.getAssigneeName().equals(assigneeName));
     }
 
     public boolean addAssignee(Participation assignee) {

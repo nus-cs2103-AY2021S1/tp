@@ -83,6 +83,9 @@ public class Participation {
     public Person getPerson() {
         return person;
     }
+    public String getAssigneeName() {
+        return person.getFullName();
+    }
     public Project getProject() {
         return project;
     }
