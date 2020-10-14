@@ -33,8 +33,8 @@ public class DeleteCommandTest {
 
     @Test
     public void constructor_nullEntry_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new DeleteCommand(INDEX_FIRST_PERSON, expense).
-                execute(modelStub, activeAccountStub));
+        assertThrows(NullPointerException.class, () -> new DeleteCommand(INDEX_FIRST_PERSON, expense)
+                .execute(modelStub, activeAccountStub));
     }
 
     @Test
@@ -55,14 +55,14 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexExpense_failure() {
-        assertThrows(CommandException.class, () -> new DeleteCommand(INDEX_TENTH_PERSON, expense).
-                execute(modelStub, activeAccount));
+        assertThrows(CommandException.class, () -> new DeleteCommand(INDEX_TENTH_PERSON, expense)
+                .execute(modelStub, activeAccount));
     }
 
     @Test
     public void execute_validIndexRevenue_failure() {
-        assertThrows(CommandException.class, () -> new DeleteCommand(INDEX_TENTH_PERSON, revenue).
-                execute(modelStub, activeAccount));
+        assertThrows(CommandException.class, () -> new DeleteCommand(INDEX_TENTH_PERSON, revenue)
+                .execute(modelStub, activeAccount));
     }
 
 }
