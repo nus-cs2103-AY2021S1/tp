@@ -141,6 +141,7 @@ public class ModelManagerTest {
     @Test
     public void setAccount_validEditedAccount_returnsTrue() {
         Account editedAccount = new Account(new Name("ALICE"));
+        modelManager.addAccount(editedAccount);
         modelManager.setAccount(editedAccount);
         assertTrue(modelManager.hasAccount(editedAccount));
     }
@@ -159,7 +160,7 @@ public class ModelManagerTest {
     public void equals() {
         Account account = new Account(new Name("General Account"));
         CommonCents commonCents = new CommonCents();
-        commonCents.setAccount(account);
+        commonCents.addAccount(account);
         CommonCents differentCommonCents = new CommonCents();
         UserPrefs userPrefs = new UserPrefs();
 
