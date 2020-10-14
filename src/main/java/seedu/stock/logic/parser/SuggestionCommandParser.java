@@ -35,9 +35,33 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
 
     private static final String MESSAGE_SUGGESTION = "Do you mean \n";
     private String faultyCommandWord;
+    private String commandWord;
+    private String headerErrorMessage;
+    private String bodyErrorMessage;
 
+    /**
+     * Constructs a new suggestion command parser.
+     *
+     * @param faultyCommandWord The command word to be corrected.
+     */
     public SuggestionCommandParser(String faultyCommandWord) {
         this.faultyCommandWord = faultyCommandWord;
+        commandWord = "";
+        this.headerErrorMessage = "";
+        this.bodyErrorMessage = "";
+    }
+
+    /**
+     * Constructs a new suggestion command parser with error message from another parser.
+     * @param commandWord The command word to be executed if all went well.
+     * @param errorMessage The parse error thrown from another parser.
+     */
+    public SuggestionCommandParser(String commandWord, String errorMessage) {
+        String[] splitHeaderAndBody = errorMessage.split("\n", 2);
+        this.commandWord = commandWord;
+        faultyCommandWord = "";
+        headerErrorMessage = splitHeaderAndBody[0];
+        bodyErrorMessage = splitHeaderAndBody[1];
     }
 
     @Override
@@ -60,10 +84,19 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             }
         }
 
-        if (suggestedCommandWord.equals(faultyCommandWord)) {
+        if (suggestedCommandWord.equals(faultyCommandWord) && commandWord.equals("")) {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
-        toBeDisplayed.append(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_SUGGESTION));
+
+        if (!commandWord.equals("")) {
+            suggestedCommandWord = commandWord;
+        }
+
+        if (headerErrorMessage.equals("")) {
+            toBeDisplayed.append(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_SUGGESTION));
+        } else {
+            toBeDisplayed.append(headerErrorMessage + "\n" + MESSAGE_SUGGESTION);
+        }
 
         switch (suggestedCommandWord) {
         case ExitCommand.COMMAND_WORD:
@@ -180,6 +213,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
                 toBeDisplayed.append(" " + currentPrefix + CliSyntax.getDefaultDescription(currentPrefix));
             }
         }
+        toBeDisplayed.append("\n" + bodyErrorMessage);
     }
 
     private void generateListSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {

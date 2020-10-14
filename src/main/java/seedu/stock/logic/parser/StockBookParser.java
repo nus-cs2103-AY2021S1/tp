@@ -45,7 +45,11 @@ public class StockBookParser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            try {
+                return new AddCommandParser().parse(arguments);
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
