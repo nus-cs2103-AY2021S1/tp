@@ -17,6 +17,12 @@ public class CliSyntax {
     public static final Prefix PREFIX_NEW_QUANTITY = new Prefix("nq/");
     public static final Prefix PREFIX_INCREMENT_QUANTITY = new Prefix("iq/");
 
+    /* Prefix values descriptions */
+    public static final String PREFIX_NAME_DESCRIPTION = "<name>";
+    public static final String PREFIX_SOURCE_DESCRIPTION = "<source>";
+    public static final String PREFIX_LOCATION_DESCRIPTION = "<location>";
+    public static final String PREFIX_QUANTITY_DESCRIPTION = "<quantity>";
+
     /**
      * Returns a list containing all possible prefixes.
      *
@@ -32,5 +38,17 @@ public class CliSyntax {
         allPrefixes.add(PREFIX_NEW_QUANTITY);
         allPrefixes.add(PREFIX_INCREMENT_QUANTITY);
         return allPrefixes;
+    }
+
+    public static String getDefaultDescription(Prefix prefix) {
+        if (prefix.equals(PREFIX_NAME)) {
+            return PREFIX_NAME_DESCRIPTION;
+        } else if (prefix.equals(PREFIX_SOURCE)) {
+            return PREFIX_SOURCE_DESCRIPTION;
+        } else if (prefix.equals(PREFIX_LOCATION)) {
+            return PREFIX_LOCATION_DESCRIPTION;
+        } else {
+            return PREFIX_QUANTITY_DESCRIPTION;
+        }
     }
 }

@@ -88,6 +88,8 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             Prefix currentPrefix = allowedPrefixes.get(i);
             if (argMultimap.getValue(currentPrefix).isPresent()) {
                 toBeDisplayed.append(" " + currentPrefix + argMultimap.getValue(currentPrefix).get());
+            } else {
+                toBeDisplayed.append(" " + currentPrefix + CliSyntax.getDefaultDescription(currentPrefix));
             }
         }
     }
