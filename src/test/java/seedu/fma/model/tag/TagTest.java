@@ -62,4 +62,16 @@ public class TagTest {
         // different values -> returns false
         assertFalse(tagA.equals(tagC));
     }
+
+    @Test
+    void testHashCode() {
+        Tag tagA = new Tag("newexercise");
+        assertTrue(tagA.hashCode() == tagA.hashCode());
+    }
+
+    @Test
+    void testToString() {
+        Tag tagA = new Tag("newexercise");
+        assertTrue("[newexercise]".equals(tagA.toString()));
+    }
 }

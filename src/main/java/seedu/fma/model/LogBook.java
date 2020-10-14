@@ -7,7 +7,6 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.fma.model.log.Log;
 import seedu.fma.model.log.UniqueLogList;
-
 /**
  * Wraps all data at the log-book level
  * Duplicates are not allowed (by .isSameLog comparison)
@@ -23,11 +22,11 @@ public class LogBook implements ReadOnlyLogBook {
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
      */
-    {
+
+    public LogBook() {
         logs = new UniqueLogList();
     }
 
-    public LogBook() {}
 
     /**
      * Creates an LogBook using the Logs in the {@code toBeCopied}
@@ -37,7 +36,7 @@ public class LogBook implements ReadOnlyLogBook {
         resetData(toBeCopied);
     }
 
-    //// list overwrite operations
+    // list overwrite operations
 
     /**
      * Replaces the contents of the log list with {@code logs}.
@@ -56,7 +55,7 @@ public class LogBook implements ReadOnlyLogBook {
         setLogs(newData.getLogList());
     }
 
-    //// log-level operations
+    // log-level operations
 
     /**
      * Returns true if a log with the same identity as {@code log} exists in the log book.

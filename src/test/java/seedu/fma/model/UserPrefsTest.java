@@ -1,8 +1,14 @@
 package seedu.fma.model;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.fma.testutil.Assert.assertThrows;
 
+import java.nio.file.Paths;
+import java.util.Objects;
+
 import org.junit.jupiter.api.Test;
+
 
 public class UserPrefsTest {
 
@@ -18,4 +24,26 @@ public class UserPrefsTest {
         assertThrows(NullPointerException.class, () -> userPrefs.setLogBookFilePath(null));
     }
 
+    @Test
+    void testEquals() {
+        UserPrefs userPrefs = new UserPrefs();
+        UserPrefs differentUserPrefs = new UserPrefs();
+
+        // Different type -> return False
+        assertFalse(userPrefs.equals(12));
+
+        // Same object -> return True
+        assertTrue(userPrefs.equals(userPrefs));
+
+        // Different userPrefs -> returns false
+        differentUserPrefs.setLogBookFilePath(Paths.get("differentFilePath"));
+        assertFalse(userPrefs.equals(differentUserPrefs));
+    }
+
+    @Test
+    void testHashCode() {
+        UserPrefs userPrefs = new UserPrefs();
+        assertTrue(userPrefs.hashCode() == Objects.hash(userPrefs.getGuiSettings(),
+                userPrefs.getLogBookFilePath()));
+    }
 }

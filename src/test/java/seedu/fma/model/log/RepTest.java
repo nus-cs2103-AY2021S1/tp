@@ -67,4 +67,10 @@ public class RepTest {
         // different values -> returns false
         assertFalse(repA.equals(repB));
     }
+
+    @Test
+    void testHashCode() {
+        Rep repA = new Rep(VALID_REP_A);
+        assertTrue(repA.hashCode() == repA.hashCode());
+    }
 }

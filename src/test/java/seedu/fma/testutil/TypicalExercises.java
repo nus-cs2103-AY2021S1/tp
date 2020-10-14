@@ -20,18 +20,6 @@ public class TypicalExercises {
 
     private TypicalExercises() {} // prevents instantiation
 
-    /**
-     * Returns an {@code LogBook} with all the typical exercises.
-     */
-    // TODO: Add test method for addressbook for exercises
-    //    public static LogBook getTypicalLogBook() {
-    //        LogBook ab = new LogBook();
-    //        for (Exercise exercise : getTypicalExercises()) {
-    //            ab.addExercise(exercise);
-    //        }
-    //        return ab;
-    //    }
-
     public static List<Exercise> getTypicalExercises() {
         return new ArrayList<>(Arrays.asList(SIT_UP, JUMPING_JACK, PULL_UP));
     }
