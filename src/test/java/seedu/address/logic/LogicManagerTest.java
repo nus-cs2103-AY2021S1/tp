@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.CATEGORY_DESC_EXPENSE
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_EXPENSE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_ROSES;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEntries.BUYROSESEEDS;
+import static seedu.address.testutil.TypicalEntries.BUY_ROSE_SEEDS;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -50,7 +50,7 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonCommonCentsStorage commonCentsStorage =
-                new JsonCommonCentsStorage(temporaryFolder.resolve("commonCents.json"));
+                new JsonCommonCentsStorage(temporaryFolder.resolve("CommonCents.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(commonCentsStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -87,7 +87,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + CATEGORY_DESC_EXPENSE + DESCRIPTION_DESC_EXPENSE
                 + AMOUNT_DESC_EXPENSE + TAG_DESC_ROSES;
-        Expense expectedExpense = new ExpenseBuilder(BUYROSESEEDS).build();
+        Expense expectedExpense = new ExpenseBuilder(BUY_ROSE_SEEDS).build();
         ModelManager expectedModel = new ModelManager();
         activeAccount.addExpense(expectedExpense);
         expectedModel.setAccount(activeAccount.getAccount());
