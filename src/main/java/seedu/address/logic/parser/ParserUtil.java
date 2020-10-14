@@ -46,7 +46,7 @@ public class ParserUtil {
         if (!Name.isValidName(trimmedTitle)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(name);
+        return new Name(trimmedTitle);
     }
 
     /**
