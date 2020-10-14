@@ -8,6 +8,7 @@ import seedu.resireg.logic.commands.AddCommand;
 import seedu.resireg.logic.commands.AllocateCommand;
 import seedu.resireg.logic.commands.ClearCommand;
 import seedu.resireg.logic.commands.Command;
+import seedu.resireg.logic.commands.DeallocateCommand;
 import seedu.resireg.logic.commands.DeleteCommand;
 import seedu.resireg.logic.commands.EditCommand;
 import seedu.resireg.logic.commands.ExitCommand;
@@ -16,14 +17,17 @@ import seedu.resireg.logic.commands.Help;
 import seedu.resireg.logic.commands.HelpCommand;
 import seedu.resireg.logic.commands.ListCommand;
 import seedu.resireg.logic.commands.ListRoomCommand;
+import seedu.resireg.logic.commands.ReallocateCommand;
 import seedu.resireg.logic.parser.AddCommandParser;
 import seedu.resireg.logic.parser.AddressBookParser;
 import seedu.resireg.logic.parser.AllocateCommandParser;
+import seedu.resireg.logic.parser.DeallocateCommandParser;
 import seedu.resireg.logic.parser.DeleteCommandParser;
 import seedu.resireg.logic.parser.EditCommandParser;
 import seedu.resireg.logic.parser.FindCommandParser;
 import seedu.resireg.logic.parser.ListRoomCommandParser;
 import seedu.resireg.logic.parser.Parser;
+import seedu.resireg.logic.parser.ReallocateCommandParser;
 
 /**
  * Manages the mapping between command words and parsers, and command words and their help messages.
@@ -53,6 +57,10 @@ public class CommandMapper {
         commandMap.addCommand(ListCommand.COMMAND_WORD, ListCommand.HELP, unused -> new ListCommand());
         commandMap.addCommand(ListRoomCommand.COMMAND_WORD, ListRoomCommand.HELP, new ListRoomCommandParser()::parse);
         commandMap.addCommand(AllocateCommand.COMMAND_WORD, AllocateCommand.HELP, new AllocateCommandParser()::parse);
+        commandMap.addCommand(DeallocateCommand.COMMAND_WORD, DeallocateCommand.HELP,
+                new DeallocateCommandParser()::parse);
+        commandMap.addCommand(ReallocateCommand.COMMAND_WORD, ReallocateCommand.HELP,
+                new ReallocateCommandParser()::parse);
 
         parser = new AddressBookParser(commandMap.getCommandWordToParserMap());
     }
