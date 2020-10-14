@@ -1,7 +1,7 @@
 {
   "animals": [ {
-    "name": "Animal with invalid name field: Ha!ns Mu@ster",
-    "id": "9482424",
-    "species": "4th street"
+    "name": "Animal with invalid name field: A!h Me@ng",
+    "id": "000234",
+    "species": "Orangutan"
   } ]
 }

@@ -1,12 +1,12 @@
 {
   "animals": [ {
-    "name": "Alice Pauline",
-    "id": "94351253",
-    "species": "123, Jurong West Ave 6, #08-111",
-    "medicalConditions": [ "friends" ]
+    "name": "Buttercup",
+    "id": "000123",
+    "species": "Reticulated Python",
+    "medicalConditions": [ "Healthy" ]
   }, {
-    "name": "Alice Pauline",
-    "id": "94351253",
-    "species": "4th street"
+    "name": "Buttercup",
+    "id": "000123",
+    "species": "Anaconda"
   } ]
 }
