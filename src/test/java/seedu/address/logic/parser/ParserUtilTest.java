@@ -20,7 +20,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class ParserUtilTest {
     private static final String INVALID_QUESTION = " ";
     private static final String INVALID_ANSWER = " ";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_TAG = " ";
 
     private static final String VALID_QUESTION = "Rachel Walker";
     private static final String VALID_ANSWER = "123 Main Street #0505";
