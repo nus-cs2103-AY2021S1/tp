@@ -29,6 +29,7 @@ public class ReallocateCommand extends Command {
     public static final String MESSAGE_STUDENT_NOT_FOUND = "This student is not registered in ResiReg";
     public static final String MESSAGE_STUDENT_NOT_ALLOCATED =
             "This student has not been allocated a room. Please use allocate instead.";
+    public static final String MESSAGE_ROOM_ALREADY_ALLOCATED = "This room has already been allocated to a student.";
 
     private final Index studentIndex;
     private final Index roomIndex;
@@ -67,6 +68,8 @@ public class ReallocateCommand extends Command {
             throw new CommandException(MESSAGE_ROOM_NOT_FOUND);
         } else if (!studentToReallocate.hasRoom()) {
             throw new CommandException(MESSAGE_STUDENT_NOT_ALLOCATED);
+        } else if (roomToReallocate.hasStudent()) {
+            throw new CommandException(MESSAGE_ROOM_ALREADY_ALLOCATED);
         }
 
         studentToReallocate.getRoom().unsetStudent();

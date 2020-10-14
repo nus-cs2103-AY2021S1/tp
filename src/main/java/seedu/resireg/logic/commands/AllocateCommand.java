@@ -33,6 +33,7 @@ public class AllocateCommand extends Command {
     public static final String MESSAGE_ROOM_NOT_FOUND = "This room does not exist in ResiReg";
     public static final String MESSAGE_STUDENT_NOT_FOUND = "This student is not registered in ResiReg";
     public static final String MESSAGE_STUDENT_ALREADY_ALLOCATED = "This student has already been allocated a room.";
+    public static final String MESSAGE_ROOM_ALREADY_ALLOCATED = "This room has already been allocated to a student.";
 
     private final Index studentIndex;
     private final Index roomIndex;
@@ -71,6 +72,8 @@ public class AllocateCommand extends Command {
             throw new CommandException(MESSAGE_ROOM_NOT_FOUND);
         } else if (studentToAllocate.hasRoom()) {
             throw new CommandException(MESSAGE_STUDENT_ALREADY_ALLOCATED);
+        } else if (roomToAllocate.hasStudent()) {
+            throw new CommandException(MESSAGE_ROOM_ALREADY_ALLOCATED);
         }
 
         studentToAllocate.setRoom(roomToAllocate);
