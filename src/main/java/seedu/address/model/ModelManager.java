@@ -21,7 +21,6 @@ public class ModelManager implements Model {
 
     private final ModuleList moduleList;
     private final UserPrefs userPrefs;
-    // private final ModuleList moduleList;
     private final FilteredList<Module> filteredModules;
 
     /**
