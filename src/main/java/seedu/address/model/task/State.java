@@ -1,7 +1,7 @@
 package seedu.address.model.task;
 
 public enum State {
-    COMPLETE("complete"), INCOMPLETE("incomplete");
+    COMPLETE("Complete"), INCOMPLETE("Incomplete");
 
     private String state;
 

@@ -20,14 +20,18 @@ public class DoneCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": mark the task identified by the index number used in the displayed task list as done.\n"
-            + "Parameters: INDEX (one or more positive integer that is separate by a white space)\n"
+            + "Parameters: INDEX (one or more positive integers that is separated by a white space)\n"
             + "Example: " + COMMAND_WORD + " 1 2 3";
 
-    public static final String MESSAGE_Done_TASK_SUCCESS = "Task: %1$s is done";
+    public static final String MESSAGE_DONE_TASK_SUCCESS = "Task: %1$s is mark as complete";
 
     private final Index[] targetIndexes;
 
+    /**
+     * Creates an DoneCommand to mark tasks with {@code targetIndexes} as done.
+     */
     public DoneCommand(Index[] targetIndexes) {
+        requireNonNull(targetIndexes);
         this.targetIndexes = targetIndexes;
     }
 
@@ -53,7 +57,7 @@ public class DoneCommand extends Command {
     public static String buildMessage(Task[] tasks) {
         String message = "";
         for (int i = 0; i < tasks.length; i++) {
-            message += String.format(MESSAGE_Done_TASK_SUCCESS, tasks[i]) + "\n";
+            message += String.format(MESSAGE_DONE_TASK_SUCCESS, tasks[i].getTitle()) + "\n";
         }
         return message;
     }
