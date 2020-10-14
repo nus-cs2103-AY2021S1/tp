@@ -14,6 +14,11 @@ public class CommandWords {
     public static final String LIST_COMMAND_WORD = "list";
     public static final String UPDATE_COMMAND_WORD = "update";
 
+    /**
+     * Returns all command words existing in Warenager.
+     *
+     * @return A list of all command words in Warenager.
+     */
     public static List<String> getAllCommandWords() {
         List<String> allCommandWords = new ArrayList<>();
         allCommandWords.add(ADD_COMMAND_WORD);

@@ -25,7 +25,7 @@ import seedu.stock.model.stock.SerialNumber;
  */
 public class UpdateCommandParser implements Parser<UpdateCommand> {
 
-    /**Ar
+    /**
      * Parses {@code args} into an update command.
      *
      * @param args The user input to be parsed.

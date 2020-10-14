@@ -6,7 +6,6 @@ import static seedu.stock.logic.commands.CommandWords.DELETE_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.FIND_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.FIND_EXACT_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.UPDATE_COMMAND_WORD;
-import static seedu.stock.logic.commands.UpdateCommand.MESSAGE_TOO_MANY_QUANTITY_PREFIXES;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
@@ -53,6 +52,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
 
     /**
      * Constructs a new suggestion command parser with error message from another parser.
+     *
      * @param commandWord The command word to be executed if all went well.
      * @param errorMessage The parse error thrown from another parser.
      */
@@ -64,6 +64,13 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         bodyErrorMessage = splitHeaderAndBody[1];
     }
 
+    /**
+     * Parses {@code args} into a suggestion command.
+     *
+     * @param args The user input to be parsed.
+     * @return A new suggestion command.
+     * @throws ParseException If any parsing errors occurs.
+     */
     @Override
     public SuggestionCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
@@ -138,16 +145,24 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         return new SuggestionCommand(toBeDisplayed.toString());
     }
 
+    /**
+     * Generates suggestion for faulty find exact command.
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param argMultimap The parsed user input fields.
+     */
     private void generateFindExactSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
         List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_NAME, PREFIX_SOURCE,
                 PREFIX_SERIAL_NUMBER, PREFIX_LOCATION);
         toBeDisplayed.append(FIND_EXACT_COMMAND_WORD);
+
         for (int i = 0; i < allowedPrefixes.size(); i++) {
             Prefix currentPrefix = allowedPrefixes.get(i);
             if (argMultimap.getValue(currentPrefix).isPresent()) {
                 toBeDisplayed.append(" " + currentPrefix + argMultimap.getValue(currentPrefix).get());
             }
         }
+
         if (!bodyErrorMessage.equals("")) {
             toBeDisplayed.append("\n" + bodyErrorMessage);
         } else {
@@ -155,11 +170,18 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         }
     }
 
+    /**
+     * Generates suggestion for faulty update command.
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param argMultimap The parsed user input fields.
+     */
     private void generateUpdateSuggestion(StringBuilder toBeDisplayed,
             ArgumentMultimap argMultimap) throws ParseException {
         List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_SERIAL_NUMBER,
                 PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY, PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION);
         toBeDisplayed.append(UPDATE_COMMAND_WORD);
+
         if (argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).isPresent()
                 && argMultimap.getValue(PREFIX_NEW_QUANTITY).isPresent()) {
             int removeRng = new Random().nextInt(2);
@@ -169,6 +191,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
                 allowedPrefixes.remove(PREFIX_NEW_QUANTITY);
             }
         }
+
         if (!argMultimap.getValue(PREFIX_SERIAL_NUMBER).isPresent()) {
             toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + CliSyntax.getDefaultDescription(PREFIX_SERIAL_NUMBER));
         }
@@ -176,12 +199,14 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         for (String serialNumber : keywords) {
             toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + serialNumber);
         }
+
         for (int i = 1; i < allowedPrefixes.size(); i++) {
             Prefix currentPrefix = allowedPrefixes.get(i);
             if (argMultimap.getValue(currentPrefix).isPresent()) {
                 toBeDisplayed.append(" " + currentPrefix + argMultimap.getValue(currentPrefix).get());
             }
         }
+
         if (!bodyErrorMessage.equals("")) {
             toBeDisplayed.append("\n" + bodyErrorMessage);
         } else {
@@ -189,16 +214,24 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         }
     }
 
+    /**
+     * Generates suggestion for faulty find command.
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param argMultimap The parsed user input fields.
+     */
     private void generateFindSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
         List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_NAME, PREFIX_SOURCE,
                 PREFIX_SERIAL_NUMBER, PREFIX_LOCATION);
         toBeDisplayed.append(FIND_COMMAND_WORD);
+
         for (int i = 0; i < allowedPrefixes.size(); i++) {
             Prefix currentPrefix = allowedPrefixes.get(i);
             if (argMultimap.getValue(currentPrefix).isPresent()) {
                 toBeDisplayed.append(" " + currentPrefix + argMultimap.getValue(currentPrefix).get());
             }
         }
+
         if (!bodyErrorMessage.equals("")) {
             toBeDisplayed.append("\n" + bodyErrorMessage);
         } else {
@@ -206,9 +239,16 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         }
     }
 
+    /**
+     * Generates suggestion for faulty delete command.
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param argMultimap The parsed user input fields.
+     */
     private void generateDeleteSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
         List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_SERIAL_NUMBER);
         toBeDisplayed.append(DELETE_COMMAND_WORD);
+
         for (int i = 0; i < allowedPrefixes.size(); i++) {
             Prefix currentPrefix = allowedPrefixes.get(i);
             if (!argMultimap.getValue(currentPrefix).isPresent()) {
@@ -219,6 +259,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
                 toBeDisplayed.append(" " + currentPrefix + serialNumber);
             }
         }
+
         if (!bodyErrorMessage.equals("")) {
             toBeDisplayed.append("\n" + bodyErrorMessage);
         } else {
@@ -226,10 +267,17 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         }
     }
 
+    /**
+     * Generates suggestion for faulty add command.
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param argMultimap The parsed user input fields.
+     */
     private void generateAddSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
         List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_NAME, PREFIX_SOURCE,
                  PREFIX_QUANTITY, PREFIX_LOCATION);
         toBeDisplayed.append(ADD_COMMAND_WORD);
+
         for (int i = 0; i < allowedPrefixes.size(); i++) {
             Prefix currentPrefix = allowedPrefixes.get(i);
             if (argMultimap.getValue(currentPrefix).isPresent()) {
@@ -238,6 +286,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
                 toBeDisplayed.append(" " + currentPrefix + CliSyntax.getDefaultDescription(currentPrefix));
             }
         }
+
         if (!bodyErrorMessage.equals("")) {
             toBeDisplayed.append("\n" + bodyErrorMessage);
         } else {
@@ -245,14 +294,32 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         }
     }
 
+    /**
+     * Generates suggestion for faulty list command.
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param argMultimap The parsed user input fields.
+     */
     private void generateListSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
         toBeDisplayed.append(CommandWords.LIST_COMMAND_WORD);
     }
 
+    /**
+     * Generates suggestion for faulty help command.
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param argMultimap The parsed user input fields.
+     */
     private void generateHelpSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
         toBeDisplayed.append(CommandWords.HELP_COMMAND_WORD);
     }
 
+    /**
+     * Generates suggestion for faulty exit command.
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param argMultimap The parsed user input fields.
+     */
     private void generateExitSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
         toBeDisplayed.append(CommandWords.EXIT_COMMAND_WORD);
     }
