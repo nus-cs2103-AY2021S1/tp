@@ -97,6 +97,7 @@ public class PatientCard extends UiPart<Region> {
         patient.getAllergies().stream()
                 .sorted(Comparator.comparing(tag -> tag.allergyName))
                 .forEach(tag -> allergies.getChildren().add(new Label(tag.allergyName)));
+        cardPane.setStyle("-fx-background-color: " + patient.getColorTag().cssColor + ";");
     }
 
     @FXML
