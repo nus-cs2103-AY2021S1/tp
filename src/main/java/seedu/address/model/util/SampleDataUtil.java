@@ -24,7 +24,7 @@ public class SampleDataUtil {
         return new Task[] {
             new Task(new Title("Alex Yeoh"), DateTime.defaultDateTime(), new Description("alexyeoh,example.com"),
                 new Type("todo"),
-                getTagSet("friends"), new Status(State.DONE)),
+                getTagSet("friends"), new Status(State.COMPLETE)),
             new Task(new Title("Bernice Yu"), new DateTime("02-02-2020 12:00"),
                     new Description("berniceyu,example.com"), new Type("deadline"),
                 getTagSet("colleagues", "friends")),
