@@ -16,6 +16,7 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
 import java.util.List;
+import java.util.Random;
 
 import seedu.stock.commons.util.SuggestionUtil;
 import seedu.stock.logic.commands.AddCommand;
@@ -161,7 +162,12 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         toBeDisplayed.append(UPDATE_COMMAND_WORD);
         if (argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).isPresent()
                 && argMultimap.getValue(PREFIX_NEW_QUANTITY).isPresent()) {
-            throw new ParseException(MESSAGE_TOO_MANY_QUANTITY_PREFIXES);
+            int removeRng = new Random().nextInt(2);
+            if (removeRng == 0) {
+                allowedPrefixes.remove(PREFIX_INCREMENT_QUANTITY);
+            } else {
+                allowedPrefixes.remove(PREFIX_NEW_QUANTITY);
+            }
         }
         if (!argMultimap.getValue(PREFIX_SERIAL_NUMBER).isPresent()) {
             toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + CliSyntax.getDefaultDescription(PREFIX_SERIAL_NUMBER));
@@ -175,6 +181,11 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             if (argMultimap.getValue(currentPrefix).isPresent()) {
                 toBeDisplayed.append(" " + currentPrefix + argMultimap.getValue(currentPrefix).get());
             }
+        }
+        if (!bodyErrorMessage.equals("")) {
+            toBeDisplayed.append("\n" + bodyErrorMessage);
+        } else {
+            toBeDisplayed.append("\n" + UpdateCommand.MESSAGE_USAGE);
         }
     }
 
