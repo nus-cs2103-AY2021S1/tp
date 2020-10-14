@@ -1,28 +1,34 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.CommandTestUtil;
+import seedu.address.model.account.entry.Amount;
+import seedu.address.model.account.entry.Description;
 import seedu.address.model.account.entry.Expense;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.ExpenseBuilder;
 import seedu.address.testutil.RevenueBuilder;
 
+import java.util.HashSet;
+
 
 public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
-    private ExpenseBuilder expenseBuilder = new ExpenseBuilder();
-    private RevenueBuilder revenueBuilder = new RevenueBuilder();
-    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
 
+    private AddCommandParser parser = new AddCommandParser();
+    private ExpenseBuilder expenseBuilder = new ExpenseBuilder(new Expense(new Description(VALID_DESCRIPTION_EXPENSE),
+            new Amount(VALID_AMOUNT_EXPENSE), new HashSet<>()));
+    private RevenueBuilder revenueBuilder = new RevenueBuilder();
 
     @Test
     public void parse_allFieldsPresent_success() {
 
-        Expense expenseStub = expenseBuilder.build();
-        assertParseSuccess(parser, " c/expense d/buying paint supplies a/131.73",
-                new AddCommand(expenseStub));
+        Expense expenseStub = expenseBuilder.withTags(VALID_TAG_ROSES).build();
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + CATEGORY_DESC_EXPENSE + VALID_TAG_ROSES, new AddCommand(expenseStub));
     }
 
 
