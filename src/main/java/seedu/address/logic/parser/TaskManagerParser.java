@@ -11,6 +11,8 @@ import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.AddTodoCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -40,17 +42,23 @@ public class TaskManagerParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddTodoCommand.COMMAND_WORD:
-            return new AddTodoCommandParser().parse(arguments);
+            case AddTodoCommand.COMMAND_WORD:
+                return new AddTodoCommandParser().parse(arguments);
 
-        case AddDeadlineCommand.COMMAND_WORD:
-            return new AddDeadlineCommandParser().parse(arguments);
+            case AddDeadlineCommand.COMMAND_WORD:
+                return new AddDeadlineCommandParser().parse(arguments);
 
-        case AddEventCommand.COMMAND_WORD:
-            return new AddEventCommandParser().parse(arguments);
+            case AddEventCommand.COMMAND_WORD:
+                return new AddEventCommandParser().parse(arguments);
 
-        default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            case ListCommand.COMMAND_WORD:
+                return new ListCommandParser().parse(arguments);
+
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommandParser().parse(arguments);
+
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 }
