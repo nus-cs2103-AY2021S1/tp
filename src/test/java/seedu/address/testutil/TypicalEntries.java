@@ -55,7 +55,7 @@ public class TypicalEntries {
             .withAmount("19.70")
             .withTags("plantDecorationss, potDecorations").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Entries's details found in {@code CommandTestUtil}
     public static final Expense BUYROSESEEDS = new ExpenseBuilder()
             .withDescription(VALID_DESCRIPTION_EXPENSE)
             .withAmount(VALID_AMOUNT_EXPENSE)
@@ -72,7 +72,7 @@ public class TypicalEntries {
     private TypicalEntries() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code CommonCents} with all the typical expenses and revenues.
      */
     public static CommonCents getTypicalCommonCents() {
         CommonCents cc = new CommonCents();
