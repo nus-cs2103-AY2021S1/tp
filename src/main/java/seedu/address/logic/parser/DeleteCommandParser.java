@@ -15,6 +15,10 @@ import java.util.regex.Matcher;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.casecommands.DeleteCaseCommand;
+import seedu.address.logic.commands.documentcommands.DeleteDocumentCommand;
+import seedu.address.logic.commands.suspectcommands.DeleteSuspectCommand;
+import seedu.address.logic.commands.victimcommands.DeleteVictimCommand;
+import seedu.address.logic.commands.witnesscommands.DeleteWitnessCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.state.StateManager;
 
@@ -84,19 +88,21 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                         pe);
             }
 
+            Index caseIndex = StateManager.getState();
+
             switch (deleteType) {
 
             case TYPE_DOC:
-                //TODO: return individual deleteTYPEcommands
+                return new DeleteDocumentCommand(caseIndex, index);
 
             case TYPE_SUSPECT:
-                //TODO: return individual deleteTYPEcommands
+                return new DeleteSuspectCommand(caseIndex, index);
 
             case TYPE_WITNESS:
-                //TODO: return individual deleteTYPEcommands
+                return new DeleteWitnessCommand(caseIndex, index);
 
             case TYPE_VICTIM:
-                //TODO: return individual deleteTYPEcommands
+                return new DeleteVictimCommand(caseIndex, index);
 
             default:
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,

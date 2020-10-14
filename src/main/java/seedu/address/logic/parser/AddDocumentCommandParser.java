@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REFERENCE;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddDocumentCommand;
+import seedu.address.logic.commands.documentcommands.AddDocumentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.state.StateManager;
 import seedu.address.model.investigationcase.Document;

@@ -24,7 +24,6 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.state.StateManager;
 import seedu.address.model.investigationcase.Case;
 import seedu.address.model.investigationcase.CasePerson;
 
@@ -120,8 +119,8 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
 
-        indexSimpleObjectProperty = StateManager.getVisibleState();
-        indexSimpleObjectProperty.addListener(new ChangeListener<Object>() {
+        indexSimpleObjectProperty = UiStateManager.getCaseState();
+        UiStateManager.getCaseState().addListener(new ChangeListener<Object>() {
             @Override
             public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
                 updateCaseInformationPanel((Index) newValue);

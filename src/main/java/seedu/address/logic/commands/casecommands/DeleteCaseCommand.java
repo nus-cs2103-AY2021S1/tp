@@ -19,8 +19,10 @@ public class DeleteCaseCommand extends DeleteCommand {
 
     public static final String MESSAGE_DELETE_CASE_SUCCESS = "Deleted Case: %1$s";
 
+    private final Index targetIndex;
+
     public DeleteCaseCommand(Index targetIndex) {
-        super(targetIndex);
+        this.targetIndex = targetIndex;
     }
 
     @Override

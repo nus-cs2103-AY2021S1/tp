@@ -15,7 +15,7 @@ public abstract class OpenCommand extends Command {
     public static final Object MESSAGE_USAGE = COMMAND_WORD
             + ": Opens the specified type of item, 'case' for investigation,"
             + " at the specified index in the displayed list.\n"
-            + "Parameters: [TYPE] [INDEX] (type must be 'case' and index must be a positive integer)\n"
+            + "Parameters: TYPE INDEX (type must be 'case' and index must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " case 1";;
 
     protected final Index targetIndex;

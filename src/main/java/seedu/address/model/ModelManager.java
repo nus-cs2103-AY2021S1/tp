@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.state.StateManager;
 import seedu.address.model.investigationcase.Case;
 
 /**
@@ -108,8 +109,8 @@ public class ModelManager implements Model {
     @Override
     public void setCase(Case target, Case editedCase) {
         requireAllNonNull(target, editedCase);
-
         addressBook.setCase(target, editedCase);
+        StateManager.refresh();
     }
 
     //=========== Filtered Case List Accessors =============================================================
