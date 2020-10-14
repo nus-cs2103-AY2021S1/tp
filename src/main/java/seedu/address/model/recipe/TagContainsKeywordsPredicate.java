@@ -2,23 +2,26 @@ package seedu.address.model.recipe;
 
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Recipe}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Recipe}'s {@code tags} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate extends RecipeContainsKeywordsPredicate
+public class TagContainsKeywordsPredicate extends RecipeContainsKeywordsPredicate
         implements Predicate<Recipe> {
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public TagContainsKeywordsPredicate(List<String> keywords) {
         super(keywords);
     }
 
     @Override
     public boolean test(Recipe recipe) {
+        String tags = recipe.getTags().stream().map(Object::toString).collect(Collectors.joining(","));
+        //String tags = String.join("-", recipe.getTags());
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(recipe.getName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(tags, keyword));
     }
 
     @Override
