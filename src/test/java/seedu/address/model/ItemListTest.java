@@ -58,6 +58,13 @@ public class ItemListTest {
         assertThrows(UnsupportedOperationException.class, () -> itemList.getItemList().remove(0));
     }
 
+    @Test
+    public void deleteItem_itemInItemList_returnsTrue() {
+        itemList.addItem(APPLE);
+        itemList.deleteItem(APPLE);
+        assertTrue(itemList.hasItem(APPLE));
+    }
+
     /**
      * A stub ReadOnlyItemList
      */

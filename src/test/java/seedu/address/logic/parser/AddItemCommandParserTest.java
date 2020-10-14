@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_PREFIX;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_QUANTITY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.ITEM_DESCRIPTION_DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.ITEM_DESCRIPTION_DESC_BANANA;
@@ -17,6 +18,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_BANAN
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_BANANA;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalItemPrecursors.DEFAULT_DESCRIPTION_PRECURSOR;
+import static seedu.address.testutil.TypicalItemPrecursors.DEFAULT_QUANTITY_PRECURSOR;
 import static seedu.address.testutil.TypicalItemPrecursors.LOCATED_BANANA_PRECURSOR;
 
 import org.junit.jupiter.api.Test;
@@ -69,11 +72,34 @@ public class AddItemCommandParserTest {
                 new AddItemCommand(expectedItem));
     }
 
+    @Test
+    public void parse_someFieldsMissing_success() {
+        ItemPrecursor expectedDefaultDescription = new ItemPrecursorBuilder(DEFAULT_DESCRIPTION_PRECURSOR)
+                .build();
+
+        // No Item Description
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE
+                        + ITEM_NAME_DESC_BANANA
+                        + ITEM_QUANTITY_DESC_BANANA
+                        + ITEM_LOCATION_DESC_PEACH_ORCHARD,
+                new AddItemCommand(expectedDefaultDescription));
+
+        ItemPrecursor expectedDefaultQuantity = new ItemPrecursorBuilder(DEFAULT_QUANTITY_PRECURSOR)
+                .build();
+
+        //No quantity given
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE
+                        + ITEM_NAME_DESC_BANANA
+                        + ITEM_DESCRIPTION_DESC_BANANA
+                        + ITEM_LOCATION_DESC_PEACH_ORCHARD,
+                new AddItemCommand(expectedDefaultQuantity));
+    }
+
     /**
      * Tests for compulsory fields.
      */
     @Test
-    public void parse_compulsoryFieldMissing_failure() {
+    public void parse_compulsoryPrefixMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddItemCommand.MESSAGE_USAGE);
 
         // missing name prefix
@@ -83,18 +109,17 @@ public class AddItemCommandParserTest {
                         + ITEM_LOCATION_DESC_PEACH_ORCHARD,
                 expectedMessage);
 
-        // missing quantity prefix
-        assertParseFailure(parser, ITEM_NAME_DESC_BANANA
-                        + VALID_ITEM_QUANTITY_BANANA
+        // missing name prefix
+        assertParseFailure(parser, INVALID_NAME_PREFIX + VALID_ITEM_NAME_BANANA
+                        + ITEM_QUANTITY_DESC_BANANA
                         + ITEM_DESCRIPTION_DESC_BANANA
                         + ITEM_LOCATION_DESC_PEACH_ORCHARD,
                 expectedMessage);
 
-        // missing description prefix
-        assertParseFailure(parser, ITEM_NAME_DESC_BANANA
-                        + ITEM_QUANTITY_DESC_BANANA
-                        + VALID_ITEM_DESCRIPTION_BANANA
-                        + ITEM_LOCATION_DESC_SPINACH_GARDEN,
+        // invalid prefixes used
+        assertParseFailure(parser, ITEM_QUANTITY_DESC_APPLE
+                        + ITEM_DESCRIPTION_DESC_BANANA
+                        + VALID_ITEM_LOCATION_PEACH_ORCHARD,
                 expectedMessage);
 
         // all prefixes missing
