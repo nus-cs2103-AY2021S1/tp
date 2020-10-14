@@ -16,11 +16,11 @@ public class QuestionContainsKeywordsPredicate implements Predicate<Flashcard> {
     }
 
     /**
-     * Formats the question for find command by adding whitespace between special characters.
+     * Formats the question for QuestionContainsKeywordsPredicate by adding whitespace between special characters.
      * @param question Question to format.
      * @return Returns a formatted question.
      */
-    public String formatQuestionForFindCommand(Question question) {
+    public String formatQuestionForQuestionContainsKeywordsPredicate(Question question) {
         return question.toString().replaceAll("[^a-zA-Z0-9]", " $0 ");
     }
 
@@ -28,7 +28,8 @@ public class QuestionContainsKeywordsPredicate implements Predicate<Flashcard> {
     public boolean test(Flashcard flashcard) {
         return keywords.stream()
                 .anyMatch(keyword ->
-                    StringUtil.containsWordIgnoreCase(formatQuestionForFindCommand(flashcard.getQuestion()), keyword));
+                    StringUtil.containsWordIgnoreCase(
+                            formatQuestionForQuestionContainsKeywordsPredicate(flashcard.getQuestion()), keyword));
     }
 
     @Override
