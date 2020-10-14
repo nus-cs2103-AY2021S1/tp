@@ -10,7 +10,8 @@ import chopchop.commons.exceptions.DataConversionException;
 import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.commons.util.FileUtil;
 import chopchop.commons.util.JsonUtil;
-import chopchop.model.recipe.ReadOnlyRecipeBook;
+import chopchop.model.ReadOnlyEntryBook;
+import chopchop.model.recipe.Recipe;
 
 public class JsonRecipeBookStorage implements RecipeBookStorage {
 
@@ -31,14 +32,14 @@ public class JsonRecipeBookStorage implements RecipeBookStorage {
     }
 
     /**
-     * Returns RecipeBook data as a {@link ReadOnlyRecipeBook}.
+     * Returns RecipeBook data as a {@link ReadOnlyEntryBook}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException             if there was any problem when reading from the storage.
      */
     @Override
-    public Optional<ReadOnlyRecipeBook> readRecipeBook() throws DataConversionException, IOException {
+    public Optional<ReadOnlyEntryBook<Recipe>> readRecipeBook() throws DataConversionException, IOException {
         return readRecipeBook(filePath);
     }
 
@@ -49,7 +50,7 @@ public class JsonRecipeBookStorage implements RecipeBookStorage {
      * @see #getRecipeBookFilePath()
      */
     @Override
-    public Optional<ReadOnlyRecipeBook> readRecipeBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyEntryBook<Recipe>> readRecipeBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableRecipeBook> jsonIndBook = JsonUtil.readJsonFile(
@@ -67,13 +68,13 @@ public class JsonRecipeBookStorage implements RecipeBookStorage {
     }
 
     /**
-     * Saves the given {@link ReadOnlyRecipeBook} to the storage.
+     * Saves the given {@link ReadOnlyEntryBook} to the storage.
      *
      * @param recipeBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
     @Override
-    public void saveRecipeBook(ReadOnlyRecipeBook recipeBook) throws IOException {
+    public void saveRecipeBook(ReadOnlyEntryBook<Recipe> recipeBook) throws IOException {
         saveRecipeBook(recipeBook, filePath);
     }
 
@@ -82,10 +83,10 @@ public class JsonRecipeBookStorage implements RecipeBookStorage {
      *
      * @param recipeBook updated recipe book.
      * @param filePath relative path where the json file is at.
-     * @see #saveRecipeBook(ReadOnlyRecipeBook)
+     * @see #saveRecipeBook(ReadOnlyEntryBook)
      */
     @Override
-    public void saveRecipeBook(ReadOnlyRecipeBook recipeBook, Path filePath) throws IOException {
+    public void saveRecipeBook(ReadOnlyEntryBook<Recipe> recipeBook, Path filePath) throws IOException {
         requireNonNull(recipeBook);
         requireNonNull(filePath);
 

@@ -7,10 +7,11 @@ import java.util.logging.Logger;
 
 import chopchop.commons.core.LogsCenter;
 import chopchop.commons.exceptions.DataConversionException;
+import chopchop.model.ReadOnlyEntryBook;
 import chopchop.model.ReadOnlyUserPrefs;
 import chopchop.model.UserPrefs;
-import chopchop.model.ingredient.ReadOnlyIngredientBook;
-import chopchop.model.recipe.ReadOnlyRecipeBook;
+import chopchop.model.ingredient.Ingredient;
+import chopchop.model.recipe.Recipe;
 
 /**
  * Manages storage of IngredientBook and RecipeBook data in local storage.
@@ -58,7 +59,7 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyRecipeBook> readRecipeBook()
+    public Optional<ReadOnlyEntryBook<Recipe>> readRecipeBook()
         throws DataConversionException, IOException {
         return readRecipeBook(recipeBookStorage.getRecipeBookFilePath());
     }
@@ -70,7 +71,7 @@ public class StorageManager implements Storage {
      * @see #getRecipeBookFilePath()
      */
     @Override
-    public Optional<ReadOnlyRecipeBook> readRecipeBook(Path filePath)
+    public Optional<ReadOnlyEntryBook<Recipe>> readRecipeBook(Path filePath)
         throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return recipeBookStorage.readRecipeBook(filePath);
@@ -82,7 +83,7 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyIngredientBook> readIngredientBook()
+    public Optional<ReadOnlyEntryBook<Ingredient>> readIngredientBook()
         throws DataConversionException, IOException {
         return readIngredientBook(ingredientBookStorage.getIngredientBookFilePath());
     }
@@ -94,14 +95,14 @@ public class StorageManager implements Storage {
      * @see #getIngredientBookFilePath()
      */
     @Override
-    public Optional<ReadOnlyIngredientBook> readIngredientBook(Path filePath)
+    public Optional<ReadOnlyEntryBook<Ingredient>> readIngredientBook(Path filePath)
         throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return ingredientBookStorage.readIngredientBook(filePath);
     }
 
     @Override
-    public void saveIngredientBook(ReadOnlyIngredientBook ingredientBook) throws IOException {
+    public void saveIngredientBook(ReadOnlyEntryBook<Ingredient> ingredientBook) throws IOException {
         saveIngredientBook(ingredientBook, ingredientBookStorage.getIngredientBookFilePath());
     }
 
@@ -110,16 +111,16 @@ public class StorageManager implements Storage {
      *
      * @param ingredientBook the ingredient book to be written from.
      * @param filePath the path where the data file is saved.
-     * @see #saveIngredientBook(ReadOnlyIngredientBook)
+     * @see #saveIngredientBook(ReadOnlyEntryBook)
      */
     @Override
-    public void saveIngredientBook(ReadOnlyIngredientBook ingredientBook, Path filePath) throws IOException {
+    public void saveIngredientBook(ReadOnlyEntryBook<Ingredient> ingredientBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         ingredientBookStorage.saveIngredientBook(ingredientBook, filePath);
     }
 
     @Override
-    public void saveRecipeBook(ReadOnlyRecipeBook recipeBook) throws IOException {
+    public void saveRecipeBook(ReadOnlyEntryBook<Recipe> recipeBook) throws IOException {
         saveRecipeBook(recipeBook, recipeBookStorage.getRecipeBookFilePath());
     }
 
@@ -128,10 +129,10 @@ public class StorageManager implements Storage {
      *
      * @param recipeBook the ingredient book to be written from.
      * @param filePath the path where the data file is saved.
-     * @see #saveIngredientBook(ReadOnlyIngredientBook)
+     * @see #saveIngredientBook(ReadOnlyEntryBook)
      */
     @Override
-    public void saveRecipeBook(ReadOnlyRecipeBook recipeBook, Path filePath) throws IOException {
+    public void saveRecipeBook(ReadOnlyEntryBook<Recipe> recipeBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         recipeBookStorage.saveRecipeBook(recipeBook, filePath);
     }

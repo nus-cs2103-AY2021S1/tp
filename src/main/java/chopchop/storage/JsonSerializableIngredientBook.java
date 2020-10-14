@@ -3,12 +3,13 @@ package chopchop.storage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import chopchop.model.EntryBook;
+import chopchop.model.ReadOnlyEntryBook;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.model.ingredient.Ingredient;
-import chopchop.model.ingredient.IngredientBook;
-import chopchop.model.ingredient.ReadOnlyIngredientBook;
 
 public class JsonSerializableIngredientBook {
 
@@ -29,8 +30,8 @@ public class JsonSerializableIngredientBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableIngredientBook}.
      */
-    public JsonSerializableIngredientBook(ReadOnlyIngredientBook source) {
-        ingredients.addAll(source.getFoodEntryList().stream().map(JsonAdaptedIngredient::new)
+    public JsonSerializableIngredientBook(ReadOnlyEntryBook<Ingredient> source) {
+        ingredients.addAll(source.getEntryList().stream().map(JsonAdaptedIngredient::new)
             .collect(Collectors.toList()));
     }
 
@@ -39,14 +40,14 @@ public class JsonSerializableIngredientBook {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public IngredientBook toModelType() throws IllegalValueException {
-        IngredientBook indBook = new IngredientBook();
+    public EntryBook<Ingredient> toModelType() throws IllegalValueException {
+        EntryBook<Ingredient> indBook = new EntryBook<>();
         for (JsonAdaptedIngredient jsonAdaptedIngredient : ingredients) {
             Ingredient ind = jsonAdaptedIngredient.toModelType();
-            if (indBook.hasIngredient(ind)) {
+            if (indBook.has(ind)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_INGREDIENT);
             }
-            indBook.addIngredient(ind);
+            indBook.add(ind);
         }
         return indBook;
     }

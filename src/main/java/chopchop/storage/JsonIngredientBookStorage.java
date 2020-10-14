@@ -9,8 +9,9 @@ import chopchop.commons.exceptions.DataConversionException;
 import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.commons.util.FileUtil;
 import chopchop.commons.util.JsonUtil;
-import chopchop.model.ingredient.ReadOnlyIngredientBook;
 import chopchop.commons.core.LogsCenter;
+import chopchop.model.ReadOnlyEntryBook;
+import chopchop.model.ingredient.Ingredient;
 
 public class JsonIngredientBookStorage implements IngredientBookStorage {
 
@@ -31,14 +32,14 @@ public class JsonIngredientBookStorage implements IngredientBookStorage {
     }
 
     /**
-     * Returns IngredientBook data as a {@link ReadOnlyIngredientBook}.
+     * Returns IngredientBook data as a {@link ReadOnlyEntryBook}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException             if there was any problem when reading from the storage.
      */
     @Override
-    public Optional<ReadOnlyIngredientBook> readIngredientBook() throws DataConversionException, IOException {
+    public Optional<ReadOnlyEntryBook<Ingredient>> readIngredientBook() throws DataConversionException, IOException {
         return readIngredientBook(filePath);
     }
 
@@ -47,7 +48,7 @@ public class JsonIngredientBookStorage implements IngredientBookStorage {
      * @see #getIngredientBookFilePath()
      */
     @Override
-    public Optional<ReadOnlyIngredientBook> readIngredientBook(Path filePath)
+    public Optional<ReadOnlyEntryBook<Ingredient>> readIngredientBook(Path filePath)
         throws DataConversionException, IOException {
         requireNonNull(filePath);
 
@@ -66,13 +67,13 @@ public class JsonIngredientBookStorage implements IngredientBookStorage {
     }
 
     /**
-     * Saves the given {@link ReadOnlyIngredientBook} to the storage.
+     * Saves the given {@link ReadOnlyEntryBook} to the storage.
      *
      * @param ingredientBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
     @Override
-    public void saveIngredientBook(ReadOnlyIngredientBook ingredientBook) throws IOException {
+    public void saveIngredientBook(ReadOnlyEntryBook<Ingredient> ingredientBook) throws IOException {
         saveIngredientBook(ingredientBook, filePath);
     }
 
@@ -81,10 +82,10 @@ public class JsonIngredientBookStorage implements IngredientBookStorage {
      *
      * @param ingredientBook updated ingredient book.
      * @param filePath relative path where the json file is at.
-     * @see #saveIngredientBook(ReadOnlyIngredientBook)
+     * @see #saveIngredientBook(ReadOnlyEntryBook)
      */
     @Override
-    public void saveIngredientBook(ReadOnlyIngredientBook ingredientBook, Path filePath) throws IOException {
+    public void saveIngredientBook(ReadOnlyEntryBook<Ingredient> ingredientBook, Path filePath) throws IOException {
         requireNonNull(ingredientBook);
         requireNonNull(filePath);
 

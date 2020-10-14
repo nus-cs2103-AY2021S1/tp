@@ -5,13 +5,11 @@ import java.util.Optional;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
+import chopchop.model.EntryBook;
 import chopchop.model.ModelStub;
-import chopchop.model.attributes.Name;
+import chopchop.model.ReadOnlyEntryBook;
 import chopchop.model.attributes.units.Volume;
-
 import chopchop.model.ingredient.Ingredient;
-import chopchop.model.ingredient.IngredientBook;
-import chopchop.model.ingredient.ReadOnlyIngredientBook;
 
 import org.junit.jupiter.api.Test;
 import chopchop.testutil.IngredientBuilder;
@@ -100,7 +98,7 @@ public class AddIngredientCommandTest {
         }
 
         @Override
-        public Optional<Ingredient> findIngredientWithName(Name name) {
+        public Optional<Ingredient> findIngredientWithName(String name) {
             requireNonNull(name);
             return this.ingredient.getName().equals(name)
                 ? Optional.of(this.ingredient)
@@ -127,7 +125,7 @@ public class AddIngredientCommandTest {
         }
 
         @Override
-        public Optional<Ingredient> findIngredientWithName(Name name) {
+        public Optional<Ingredient> findIngredientWithName(String name) {
             requireNonNull(name);
             return this.ingredientsAdded
                 .stream()
@@ -146,8 +144,8 @@ public class AddIngredientCommandTest {
         }
 
         @Override
-        public ReadOnlyIngredientBook getIngredientBook() {
-            return new IngredientBook();
+        public ReadOnlyEntryBook<Ingredient> getIngredientBook() {
+            return new EntryBook<>();
         }
     }
 

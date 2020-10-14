@@ -11,10 +11,9 @@ import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.parser.CommandParser;
 import chopchop.logic.parser.exceptions.ParseException;
 import chopchop.model.Model;
+import chopchop.model.ReadOnlyEntryBook;
 import chopchop.model.ingredient.Ingredient;
-import chopchop.model.ingredient.ReadOnlyIngredientBook;
 import chopchop.model.recipe.Recipe;
-import chopchop.model.recipe.ReadOnlyRecipeBook;
 import chopchop.storage.Storage;
 import javafx.collections.ObservableList;
 
@@ -66,7 +65,7 @@ public class CommandDispatcher implements Logic {
     }
 
     @Override
-    public ReadOnlyRecipeBook getRecipeBook() {
+    public ReadOnlyEntryBook<Recipe> getRecipeBook() {
         return model.getRecipeBook();
     }
 
@@ -81,7 +80,7 @@ public class CommandDispatcher implements Logic {
     }
 
     @Override
-    public ReadOnlyIngredientBook getIngredientBook() {
+    public ReadOnlyEntryBook<Ingredient> getIngredientBook() {
         return model.getIngredientBook();
     }
 

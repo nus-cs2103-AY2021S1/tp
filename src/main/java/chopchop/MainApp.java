@@ -13,14 +13,14 @@ import chopchop.commons.util.ConfigUtil;
 import chopchop.commons.util.StringUtil;
 import chopchop.logic.CommandDispatcher;
 import chopchop.logic.Logic;
+import chopchop.model.EntryBook;
 import chopchop.model.Model;
 import chopchop.model.ModelManager;
+import chopchop.model.ReadOnlyEntryBook;
 import chopchop.model.ReadOnlyUserPrefs;
 import chopchop.model.UserPrefs;
-import chopchop.model.ingredient.IngredientBook;
-import chopchop.model.ingredient.ReadOnlyIngredientBook;
-import chopchop.model.recipe.ReadOnlyRecipeBook;
-import chopchop.model.recipe.RecipeBook;
+import chopchop.model.ingredient.Ingredient;
+import chopchop.model.recipe.Recipe;
 import chopchop.model.util.SampleDataUtil;
 import chopchop.storage.IngredientBookStorage;
 import chopchop.storage.JsonIngredientBookStorage;
@@ -81,10 +81,10 @@ public class MainApp extends Application {
      * reading {@code storage}'s ingredient or recipe book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyRecipeBook> recipeBookOptional;
-        Optional<ReadOnlyIngredientBook> ingredientBookOptional;
-        ReadOnlyRecipeBook initialRecipeData;
-        ReadOnlyIngredientBook initialIngredientData;
+        Optional<ReadOnlyEntryBook<Recipe>> recipeBookOptional;
+        Optional<ReadOnlyEntryBook<Ingredient>> ingredientBookOptional;
+        ReadOnlyEntryBook<Recipe> initialRecipeData;
+        ReadOnlyEntryBook<Ingredient> initialIngredientData;
 
         try {
             recipeBookOptional = storage.readRecipeBook();
@@ -103,13 +103,13 @@ public class MainApp extends Application {
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty RecipeBook and"
                     + "IngredientBook");
-            initialRecipeData = new RecipeBook();
-            initialIngredientData = new IngredientBook();
+            initialRecipeData = new EntryBook<>();
+            initialIngredientData = new EntryBook<>();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty RecipeBook and"
                     + "IngredientBook");
-            initialRecipeData = new RecipeBook();
-            initialIngredientData = new IngredientBook();
+            initialRecipeData = new EntryBook<>();
+            initialIngredientData = new EntryBook<>();
         }
 
         return new ModelManager(initialRecipeData, initialIngredientData, userPrefs);
