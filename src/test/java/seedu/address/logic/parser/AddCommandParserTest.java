@@ -1,12 +1,18 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalExercise.PUSH_UP;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.model.exercise.Calories;
+import seedu.address.model.exercise.Date;
+import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.person.Name;
 import seedu.address.testutil.ExerciseBuilder;
 
 public class AddCommandParserTest {
@@ -15,64 +21,66 @@ public class AddCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         Exercise expectedExercise = new ExerciseBuilder(PUSH_UP).build();
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
-        assertParseSuccess(parser, " n/Push Up d/Test 1 at/09-10-2020 c/12345", new AddCommand(expectedExercise));
-
-        // whitespace only preamble
-        /*assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedExercise));
+        // normal input
+        assertParseSuccess(parser, " n/Push Up d/Test 1 at/09-10-2020 c/12345",
+                new AddCommand(expectedExercise));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedExercise));
+        assertParseSuccess(parser, " n/Push n/Push Up d/Test 1 at/09-10-2020 c/12345",
+                new AddCommand(expectedExercise));
 
-        // multiple phones - last phone accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedExercise));
+        //multiple descriptions - last description accepted
+        assertParseSuccess(parser, " n/Push Up d/Test d/Test 1 at/09-10-2020 c/12345",
+                new AddCommand(expectedExercise));
 
-        // multiple emails - last email accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedExercise));
+        //multiple date
+        assertParseSuccess(parser, " n/Push Up d/Test 1 at/10-10-2020 at/09-10-2020 c/12345",
+                new AddCommand(expectedExercise));
 
-        // multiple addresses - last address accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedExercise));*/
-    }
-
-    /*@Test
-    public void parse_optionalFieldsMissing_success() {
-        // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddCommand(expected));
+        //multiple calories
+        assertParseSuccess(parser, " n/Push Up d/Test 1 at/09-10-2020 c/1234 c/12345",
+                new AddCommand(expectedExercise));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
-        // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
+        //missing name
+        assertParseFailure(parser, " d/Test 1 at/09-10-2020 c/12345",
                 expectedMessage);
 
-        // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
+        //missing description
+        assertParseFailure(parser, " n/Push Up at/09-10-2020 c/12345",
                 expectedMessage);
 
-        // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
-
-        // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB,
-                expectedMessage);
-
-        // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB,
+        //missing date
+        assertParseFailure(parser, " n/Push Up d/Test 1 c/12345",
                 expectedMessage);
     }
 
     @Test
+    public void parse_invalidValue_failure() {
+        //invalid name
+        assertParseFailure(parser, " n/  d/Test 1 at/10-10-2020 c/12345",
+                Name.MESSAGE_CONSTRAINTS);
+
+        //invalid description
+        assertParseFailure(parser, " n/Run d/ at/10-10-2020 c/12345",
+                Description.MESSAGE_CONSTRAINTS);
+
+        //invalid date
+        assertParseFailure(parser, " n/Run d/Test 1 at/2020-10-10 c/12345",
+                Date.MESSAGE_CONSTRAINTS);
+
+        //invalid calories
+        assertParseFailure(parser, " n/Run d/Test 1 at/10-10-2020 c/abc",
+                Calories.MESSAGE_CONSTRAINTS);
+    }
+
+    /*@Test
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
