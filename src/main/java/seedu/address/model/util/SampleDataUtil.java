@@ -22,24 +22,15 @@ import seedu.address.model.task.Type;
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new Title("Alex Yeoh"), DateTime.defaultDateTime(), new Description("alexyeoh,example.com"),
+            new Task(new Title("Return books"), DateTime.defaultDateTime(), Description.defaultDescription(),
                 new Type("todo"),
                 getTagSet("friends"), new Status(State.COMPLETE)),
-            new Task(new Title("Bernice Yu"), new DateTime("02-02-2020 12:00"),
-                    new Description("berniceyu,example.com"), new Type("deadline"),
+            new Task(new Title("Assignment 1"), new DateTime("25-11-2020 09:00"),
+                    new Description("Programming Assignment 2 of CS3230, Very hard."), new Type("deadline"),
                 getTagSet("colleagues", "friends")),
-            new Task(new Title("Charlotte Oliveiro"), new DateTime("03-03-2020 12:00"),
+            new Task(new Title("CCA Orientation"), new DateTime("16-01-2021 13:00"),
                     Description.defaultDescription(), new Type("event"),
-                getTagSet("neighbours")),
-            new Task(new Title("David Li"), DateTime.defaultDateTime(), new Description("lidavid,example.com"),
-                new Type("todo"),
-                getTagSet("family")),
-            new Task(new Title("Irfan Ibrahim"), new DateTime("05-05-2020 12:00"), new Description("irfan,example.com"),
-                new Type("deadline"),
-                getTagSet("classmates")),
-            new Task(new Title("Roy Balakrishnan"), new DateTime("06-06-2020 12:00"),
-                    new Description("royb,example.com"), new Type("event"),
-                getTagSet("colleagues"))
+                getTagSet("neighbours"))
         };
     }
 
