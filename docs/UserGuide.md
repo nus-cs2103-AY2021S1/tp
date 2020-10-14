@@ -67,7 +67,7 @@ Adds a task of the specified type to PlaNus.
 Format: `add title:TITLE type:TYPE_OF_TASK [desc:DESCRIPTION] [date:DATE_TIME]`
 
 * Adds the task of the specified `type:TYPE_OF_TASK` to PlaNus.
-* The type must be of the following types (case-sensitive):
+* The type must be of the following types(case-sensitive):
     * todo
     * deadline
     * event
