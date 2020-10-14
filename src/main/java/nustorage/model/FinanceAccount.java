@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import nustorage.commons.core.index.Index;
 import nustorage.model.record.FinanceRecord;
 
-public class FinanceAccount implements Iterable<FinanceRecord> {
+public class FinanceAccount implements Iterable<FinanceRecord>, ReadOnlyFinanceAccount {
 
     private final ObservableList<FinanceRecord> internalList = FXCollections.observableArrayList();
     private final ObservableList<FinanceRecord> internalUnmodifiableList =
@@ -73,11 +73,12 @@ public class FinanceAccount implements Iterable<FinanceRecord> {
         return internalList.isEmpty();
     }
 
-
+    @Override
     public ObservableList<FinanceRecord> getFinanceList() {
         return internalList;
     }
 
+    @Override
     public ObservableList<FinanceRecord> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }

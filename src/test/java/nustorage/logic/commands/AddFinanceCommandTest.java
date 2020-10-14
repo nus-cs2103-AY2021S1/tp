@@ -15,14 +15,16 @@ import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.model.AddressBook;
 import nustorage.model.ReadOnlyAddressBook;
 import nustorage.model.person.Person;
+import nustorage.model.record.FinanceRecord;
+import nustorage.testutil.FinanceRecordBuilder;
 import nustorage.testutil.PersonBuilder;
 import nustorage.testutil.stub.ModelStub;
 
-public class AddCommandTest {
+public class AddFinanceCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullFinanceRecord_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddFinanceCommand(null));
     }
 
     @Test
@@ -47,26 +49,26 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        FinanceRecord record1 = new FinanceRecordBuilder().withAmount(200).build();
+        FinanceRecord record2 = new FinanceRecordBuilder().withAmount(10000).build();
+        AddFinanceCommand addFinanceCommand1 = new AddFinanceCommand(record1);
+        AddFinanceCommand addFinanceCommand2 = new AddFinanceCommand(record2);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addFinanceCommand1.equals(addFinanceCommand1));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddFinanceCommand addFinanceCommand1Copy = new AddFinanceCommand(record1);
+        assertTrue(addFinanceCommand1.equals(addFinanceCommand1Copy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addFinanceCommand1.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addFinanceCommand1.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addFinanceCommand1.equals(addFinanceCommand2));
     }
 
     /**
