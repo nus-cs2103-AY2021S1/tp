@@ -5,8 +5,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import org.junit.jupiter.api.io.TempDir;
+
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.*;
 import seedu.address.model.attendance.Attendance;
