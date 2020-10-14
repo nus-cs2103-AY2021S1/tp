@@ -1,13 +1,13 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_ARCHIE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BAILEY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_ARTHRITIS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_OBESE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_ARCHIE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BAILEY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_ARCHIE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BAILEY;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,36 +21,36 @@ import seedu.address.model.animal.Animal;
  */
 public class TypicalAnimals {
 
-    public static final Animal ALICE = new AnimalBuilder().withName("Alice Pauline")
-            .withSpecies("123, Jurong West Ave 6, #08-111")
-            .withId("94351253")
-            .withMedicalConditions("friends").build();
-    public static final Animal BENSON = new AnimalBuilder().withName("Benson Meier").withId("98765432")
-            .withSpecies("311, Clementi Ave 2, #02-25")
-            .withMedicalConditions("owesMoney", "friends").build();
-    public static final Animal CARL = new AnimalBuilder().withName("Carl Kurz").withId("95352563")
-            .withSpecies("wall street").build();
-    public static final Animal DANIEL = new AnimalBuilder().withName("Daniel Meier").withId("87652533")
-            .withSpecies("10th street").withMedicalConditions("friends").build();
-    public static final Animal ELLE = new AnimalBuilder().withName("Elle Meyer").withId("9482224")
-            .withSpecies("michegan ave").build();
-    public static final Animal FIONA = new AnimalBuilder().withName("Fiona Kunz").withId("9482427")
-            .withSpecies("little tokyo").build();
-    public static final Animal GEORGE = new AnimalBuilder().withName("George Best").withId("9482442")
-            .withSpecies("4th street").build();
+    public static final Animal AHMENG = new AnimalBuilder().withName("Ahmeng")
+            .withSpecies("Orangutan")
+            .withId("000123")
+            .withMedicalConditions("Healthy").build();
+    public static final Animal BUTTERCUP = new AnimalBuilder().withName("Buttercup").withId("000456")
+            .withSpecies("Reticulated Python")
+            .withMedicalConditions("Skin Infection", "Inclusion Body Disease").build();
+    public static final Animal COCO = new AnimalBuilder().withName("Coco").withId("000125")
+            .withSpecies("Chihuahua").build();
+    public static final Animal ESTHER = new AnimalBuilder().withName("Esther").withId("000126")
+            .withSpecies("Pig").withMedicalConditions("Healthy").build();
+    public static final Animal GRECIA = new AnimalBuilder().withName("Grecia").withId("000001")
+            .withSpecies("Toucan").build();
+    public static final Animal NEMO = new AnimalBuilder().withName("Nemo").withId("000012")
+            .withSpecies("Clownfish").build();
+    public static final Animal PASHA = new AnimalBuilder().withName("Pasha").withId("001234")
+            .withSpecies("White Tiger").build();
 
     // Manually added
-    public static final Animal HOON = new AnimalBuilder().withName("Hoon Meier").withId("8482424")
+    public static final Animal JIAJIA = new AnimalBuilder().withName("JiaJia").withId("000001")
             .withSpecies("little india").build();
-    public static final Animal IDA = new AnimalBuilder().withName("Ida Mueller").withId("8482131")
+    public static final Animal KAIKAI = new AnimalBuilder().withName("KaiKai").withId("000002")
             .withSpecies("chicago ave").build();
 
     // Manually added - Animal's details found in {@code CommandTestUtil}
-    public static final Animal AMY = new AnimalBuilder().withName(VALID_NAME_AMY).withId(VALID_ID_AMY)
-            .withSpecies(VALID_SPECIES_AMY).withMedicalConditions(VALID_MEDICAL_CONDITION_FRIEND).build();
-    public static final Animal BOB = new AnimalBuilder().withName(VALID_NAME_BOB).withId(VALID_ID_BOB)
-            .withSpecies(VALID_SPECIES_BOB).withMedicalConditions(VALID_MEDICAL_CONDITION_HUSBAND,
-                    VALID_MEDICAL_CONDITION_FRIEND)
+    public static final Animal ARCHIE = new AnimalBuilder().withName(VALID_NAME_ARCHIE).withId(VALID_ID_ARCHIE)
+            .withSpecies(VALID_SPECIES_ARCHIE).withMedicalConditions(VALID_MEDICAL_CONDITION_OBESE).build();
+    public static final Animal BAILEY = new AnimalBuilder().withName(VALID_NAME_BAILEY).withId(VALID_ID_BAILEY)
+            .withSpecies(VALID_SPECIES_BAILEY).withMedicalConditions(VALID_MEDICAL_CONDITION_ARTHRITIS,
+                    VALID_MEDICAL_CONDITION_OBESE)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
@@ -69,6 +69,6 @@ public class TypicalAnimals {
     }
 
     public static List<Animal> getTypicalAnimals() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(AHMENG, BUTTERCUP, COCO, ESTHER, GRECIA, NEMO, PASHA));
     }
 }

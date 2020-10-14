@@ -25,25 +25,25 @@ import seedu.address.testutil.EditAnimalDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_ID_AMY = "11111111";
-    public static final String VALID_ID_BOB = "22222222";
-    public static final String VALID_SPECIES_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_SPECIES_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_MEDICAL_CONDITION_HUSBAND = "husband";
-    public static final String VALID_MEDICAL_CONDITION_FRIEND = "friend";
+    public static final String VALID_NAME_ARCHIE = "Archie";
+    public static final String VALID_NAME_BAILEY = "Bailey";
+    public static final String VALID_ID_ARCHIE = "000123";
+    public static final String VALID_ID_BAILEY = "000456";
+    public static final String VALID_SPECIES_ARCHIE = "German Shepherd";
+    public static final String VALID_SPECIES_BAILEY = "Golden Retriever";
+    public static final String VALID_MEDICAL_CONDITION_ARTHRITIS = "arthritis";
+    public static final String VALID_MEDICAL_CONDITION_OBESE = "obese";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String ID_DESC_AMY = " " + PREFIX_ID + VALID_ID_AMY;
-    public static final String ID_DESC_BOB = " " + PREFIX_ID + VALID_ID_BOB;
-    public static final String SPECIES_DESC_AMY = " " + PREFIX_SPECIES + VALID_SPECIES_AMY;
-    public static final String SPECIES_DESC_BOB = " " + PREFIX_SPECIES + VALID_SPECIES_BOB;
-    public static final String MEDICAL_CONDITION_DESC_FRIEND =
-            " " + PREFIX_MEDICAL_CONDITION + VALID_MEDICAL_CONDITION_FRIEND;
-    public static final String MEDICAL_CONDITION_DESC_HUSBAND =
-            " " + PREFIX_MEDICAL_CONDITION + VALID_MEDICAL_CONDITION_HUSBAND;
+    public static final String NAME_DESC_ARCHIE = " " + PREFIX_NAME + VALID_NAME_ARCHIE;
+    public static final String NAME_DESC_BAILEY = " " + PREFIX_NAME + VALID_NAME_BAILEY;
+    public static final String ID_DESC_ARCHIE = " " + PREFIX_ID + VALID_ID_ARCHIE;
+    public static final String ID_DESC_BAILEY = " " + PREFIX_ID + VALID_ID_BAILEY;
+    public static final String SPECIES_DESC_ARCHIE = " " + PREFIX_SPECIES + VALID_SPECIES_ARCHIE;
+    public static final String SPECIES_DESC_BAILEY = " " + PREFIX_SPECIES + VALID_SPECIES_BAILEY;
+    public static final String MEDICAL_CONDITION_DESC_OBESE =
+            " " + PREFIX_MEDICAL_CONDITION + VALID_MEDICAL_CONDITION_OBESE;
+    public static final String MEDICAL_CONDITION_DESC_ARTHRITIS =
+            " " + PREFIX_MEDICAL_CONDITION + VALID_MEDICAL_CONDITION_ARTHRITIS;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_ID_DESC = " " + PREFIX_ID + "911a"; // 'a' not allowed in IDs
@@ -54,16 +54,16 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditAnimalDescriptor DESC_AMY;
-    public static final EditCommand.EditAnimalDescriptor DESC_BOB;
+    public static final EditCommand.EditAnimalDescriptor DESC_ARCHIE;
+    public static final EditCommand.EditAnimalDescriptor DESC_BAILEY;
 
     static {
-        DESC_AMY = new EditAnimalDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withId(VALID_ID_AMY).withSpecies(VALID_SPECIES_AMY)
-                .withMedicalConditions(VALID_MEDICAL_CONDITION_FRIEND).build();
-        DESC_BOB = new EditAnimalDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withId(VALID_ID_BOB).withSpecies(VALID_SPECIES_BOB)
-                .withMedicalConditions(VALID_MEDICAL_CONDITION_HUSBAND, VALID_MEDICAL_CONDITION_FRIEND).build();
+        DESC_ARCHIE = new EditAnimalDescriptorBuilder().withName(VALID_NAME_ARCHIE)
+                .withId(VALID_ID_ARCHIE).withSpecies(VALID_SPECIES_ARCHIE)
+                .withMedicalConditions(VALID_MEDICAL_CONDITION_OBESE).build();
+        DESC_BAILEY = new EditAnimalDescriptorBuilder().withName(VALID_NAME_BAILEY)
+                .withId(VALID_ID_BAILEY).withSpecies(VALID_SPECIES_BAILEY)
+                .withMedicalConditions(VALID_MEDICAL_CONDITION_ARTHRITIS, VALID_MEDICAL_CONDITION_OBESE).build();
     }
 
     /**

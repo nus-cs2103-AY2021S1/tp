@@ -3,9 +3,9 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAnimals.ALICE;
-import static seedu.address.testutil.TypicalAnimals.HOON;
-import static seedu.address.testutil.TypicalAnimals.IDA;
+import static seedu.address.testutil.TypicalAnimals.AHMENG;
+import static seedu.address.testutil.TypicalAnimals.JIAJIA;
+import static seedu.address.testutil.TypicalAnimals.KAIKAI;
 import static seedu.address.testutil.TypicalAnimals.getTypicalZooKeepBook;
 
 import java.io.IOException;
@@ -72,14 +72,14 @@ public class JsonZooKeepBookStorageTest {
         assertEquals(original, new ZooKeepBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addAnimal(HOON);
-        original.removeAnimal(ALICE);
+        original.addAnimal(JIAJIA);
+        original.removeAnimal(AHMENG);
         jsonZooKeepBookStorage.saveZooKeepBook(original, filePath);
         readBack = jsonZooKeepBookStorage.readZooKeepBook(filePath).get();
         assertEquals(original, new ZooKeepBook(readBack));
 
         // Save and read without specifying file path
-        original.addAnimal(IDA);
+        original.addAnimal(KAIKAI);
         jsonZooKeepBookStorage.saveZooKeepBook(original); // file path not specified
         readBack = jsonZooKeepBookStorage.readZooKeepBook().get(); // file path not specified
         assertEquals(original, new ZooKeepBook(readBack));
