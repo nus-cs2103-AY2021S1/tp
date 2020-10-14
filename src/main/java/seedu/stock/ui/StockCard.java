@@ -44,7 +44,7 @@ public class StockCard extends UiPart<Region> {
     public StockCard(Stock stock, int displayedIndex) {
         super(FXML);
         this.stock = stock;
-        id.setText(displayedIndex + ". ");
+        id.setText(displayedIndex + ".");
         name.setText(stock.getName().fullName);
         serialNumber.setText(stock.getSerialNumber().getSerialNumberAsString());
         quantity.setText(stock.getQuantity().quantity);

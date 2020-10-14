@@ -8,8 +8,8 @@ import static seedu.stock.logic.commands.CommandTestUtil.showStockAtSerialNumber
 import static seedu.stock.testutil.TypicalStocks.APPLE;
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_FIRST_STOCK;
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_SECOND_STOCK;
+import static seedu.stock.testutil.TypicalStocks.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
-import static seedu.stock.testutil.TypicalStocks.getTypicalStocksSerialNumbers;
 import static seedu.stock.testutil.TypicalStocks.serialNumberListAsString;
 import static seedu.stock.testutil.TypicalStocks.stocksAsString;
 
@@ -34,7 +34,7 @@ import seedu.stock.model.stock.Stock;
  */
 public class DeleteCommandTest {
     private Model model = new ModelManager(getTypicalStockBook(), new UserPrefs(),
-                                                    getTypicalStocksSerialNumbers());
+                                                    getTypicalSerialNumberSetsBook());
 
     @Test
     public void execute_validSerialNumbersUnfilteredList_success() {

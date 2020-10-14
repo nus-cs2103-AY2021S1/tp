@@ -155,8 +155,15 @@
 }
 
 .pane-with-border-main {
-    -fx-background-color: derive(#363c43, 0%);
-    -fx-border-color: derive(#363c43, 0%);
+    -fx-background-color: derive(#323232, 0%);
+    -fx-border-color: derive(#323232, 0%);
+    -fx-border-top-width: 0px;
+    -fx-background-radius: 5;
+}
+
+.pane-with-border-anchor {
+    -fx-background-color: derive(#ffffff, 0%);
+    -fx-border-color: derive(#ffffff, 0%);
     -fx-border-top-width: 0px;
 }
 
@@ -284,7 +291,7 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#363c43, 0%);
+    -fx-background-color: derive(#323232, 0%);
 }
 
 .scroll-bar .thumb {
