@@ -35,11 +35,7 @@ public class SampleDataUtil {
                 new NusnetId("e0984984"),
                 getTagSet("classmates")),
             new Student(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-<<<<<<< HEAD
-                new NusnetId("e0986987"),
-=======
                 new NusnetId("e0984983"),
->>>>>>> Implement MarkCommandTest
                 getTagSet("colleagues"))
         };
     }
