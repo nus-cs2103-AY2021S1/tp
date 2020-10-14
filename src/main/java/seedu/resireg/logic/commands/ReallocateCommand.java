@@ -40,7 +40,7 @@ public class ReallocateCommand extends Command {
     /**
      * @param studentIndex of the student in the filtered student list to allocate
      * @param roomIndex of the room in the filtered room list to be allocated to
-     * Creates an AllocateCommand to allocate the specified {@code Student} to {@code Room}
+     * Creates an ReallocateCommand to allocate the specified {@code Student} to {@code Room}
      */
     public ReallocateCommand(Index studentIndex, Index roomIndex) {
         requireNonNull(studentIndex);
