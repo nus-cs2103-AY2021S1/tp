@@ -32,8 +32,8 @@ public class ItemAddCommand extends ItemCommand {
             + PREFIX_QUANTITY + "12 "
             + PREFIX_SUPPLIER + "NTUC "
             + PREFIX_TAG + "meat "
-            + PREFIX_MAX_QUANTITY + "50"
-            + PREFIX_METRIC + "kg";
+            + PREFIX_MAX_QUANTITY + "50 "
+            + PREFIX_METRIC + "kg ";
 
     public static final String MESSAGE_SUCCESS = "New item added: %1$s";
     public static final String MESSAGE_ITEM_ADDED_TO_INVENTORY = "Item added to inventory. Stock is now: %1$s";
