@@ -33,6 +33,7 @@ public class ThemeWindow extends UiPart<Stage> {
     public ThemeWindow(Stage root) {
         super(FXML, root);
         UiUtil.setTheme(root, currentTheme);
+        root.setTitle("Select a Theme");
     }
 
     /**
@@ -45,10 +46,12 @@ public class ThemeWindow extends UiPart<Stage> {
     private void fillThemeCards() {
         ThemeCard defaultThemeCard = new ThemeCard("Default Theme", ThemeSet.DEFAULT_THEME, this);
         ThemeCard darkThemeCard = new ThemeCard("Dark Theme", ThemeSet.DARK_THEME, this);
+        ThemeCard galaxyThemeCard = new ThemeCard("Galaxy Theme", ThemeSet.GALAXY_THEME, this);
 
         themeList.getItems().setAll(
                 defaultThemeCard.getRoot(),
-                darkThemeCard.getRoot()
+                darkThemeCard.getRoot(),
+                galaxyThemeCard.getRoot()
         );
     }
 
