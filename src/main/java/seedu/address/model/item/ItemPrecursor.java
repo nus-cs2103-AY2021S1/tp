@@ -65,6 +65,7 @@ public class ItemPrecursor {
         return new Item(id, name, quantity, description, locationIds, recipeIds, tags, false);
     }
 
+
     /**
      * Returns true if both item precursors have the same name.
      * This defines a weaker notion of equality between two item precursors.
