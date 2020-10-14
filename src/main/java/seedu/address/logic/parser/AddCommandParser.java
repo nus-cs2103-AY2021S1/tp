@@ -80,7 +80,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 //TODO: return individual parser
 
             case TYPE_VICTIM:
-                //TODO: return individual parser
+                return new AddVictimCommandParser().parse(arguments);
 
             default:
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
