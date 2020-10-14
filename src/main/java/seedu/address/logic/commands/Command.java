@@ -9,6 +9,7 @@ import seedu.address.model.Model;
 public abstract class Command {
 
     public static final String TYPE_CASE = "case";
+    public static final String TYPE_DESCRIPTION = "desc";
 
     /**
      * Executes the command and returns the result message.

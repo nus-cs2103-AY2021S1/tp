@@ -1,8 +1,10 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INCORRECT_CASE_PAGE;
 import static seedu.address.commons.core.Messages.MESSAGE_INCORRECT_MAIN_PAGE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.Command.TYPE_CASE;
+import static seedu.address.logic.commands.Command.TYPE_DESCRIPTION;
 import static seedu.address.logic.parser.AddressBookParser.BASIC_COMMAND_FORMAT;
 
 import java.util.regex.Matcher;
@@ -36,11 +38,14 @@ public class AddCommandParser implements Parser<AddCommand> {
                 throw new ParseException(MESSAGE_INCORRECT_MAIN_PAGE);
             }
             return new AddCaseCommandParser().parse(arguments);
-
+        case TYPE_DESCRIPTION:
+            if (StateManager.atMainPage()) {
+                throw new ParseException(MESSAGE_INCORRECT_CASE_PAGE);
+            }
+            return new AddDescriptionCommandParser().parse(arguments);
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
-
 
     }
 
