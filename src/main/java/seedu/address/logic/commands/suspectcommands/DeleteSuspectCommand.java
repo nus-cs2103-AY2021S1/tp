@@ -46,6 +46,7 @@ public class DeleteSuspectCommand extends DeleteCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_SUSPECTS_DISPLAYED_INDEX);
         }
 
+        Suspect suspectToDelete = updatedSuspects.get(suspectIndex.getZeroBased());
         updatedSuspects.remove(suspectIndex.getZeroBased());
         Case editedCase = new Case(openCase.getTitle(), openCase.getDescription(), openCase.getStatus(),
                 openCase.getDocuments(), updatedSuspects, openCase.getVictims(), openCase.getWitnesses(),
@@ -53,7 +54,7 @@ public class DeleteSuspectCommand extends DeleteCommand {
 
         model.setCase(openCase, editedCase);
         model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
-        return new CommandResult(String.format(MESSAGE_DELETE_SUSPECT_SUCCESS, editedCase));
+        return new CommandResult(String.format(MESSAGE_DELETE_SUSPECT_SUCCESS, suspectToDelete));
     }
 
     @Override

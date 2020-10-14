@@ -26,6 +26,7 @@ public class AddSuspectCommand extends AddCommand {
     private static final String MESSAGE_ADD_SUSPECT_SUCCESS = "New suspect added: %1$s";
     private static final String MESSAGE_DUPLICATE_SUSPECT = "This suspect already exists in the case.";
 
+    private final Index index;
     private final Suspect toAdd;
 
     /**
@@ -34,8 +35,10 @@ public class AddSuspectCommand extends AddCommand {
      *
      * @param suspect
      */
-    public AddSuspectCommand(Suspect suspect) {
+    public AddSuspectCommand(Index index, Suspect suspect) {
+        requireNonNull(index);
         requireNonNull(suspect);
+        this.index = index;
         toAdd = suspect;
     }
 
@@ -45,7 +48,6 @@ public class AddSuspectCommand extends AddCommand {
         List<Case> lastShownList = model.getFilteredCaseList();
 
         assert(StateManager.atCasePage()) : "Program should be at case page";
-        Index index = StateManager.getState();
 
         Case openCase = lastShownList.get(index.getZeroBased());
         List<Suspect> updatedSuspects = openCase.getSuspects();
@@ -61,13 +63,14 @@ public class AddSuspectCommand extends AddCommand {
 
         model.setCase(openCase, editedCase);
         model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
-        return new CommandResult(String.format(MESSAGE_ADD_SUSPECT_SUCCESS, editedCase));
+        return new CommandResult(String.format(MESSAGE_ADD_SUSPECT_SUCCESS, toAdd));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddSuspectCommand // instanceof handles nulls
-                && toAdd.equals(((AddSuspectCommand) other).toAdd));
+                && toAdd.equals(((AddSuspectCommand) other).toAdd)
+                && index.equals(((AddSuspectCommand) other).index));
     }
 }
