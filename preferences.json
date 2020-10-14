@@ -1,0 +1,13 @@
+{
+  "guiSettings" : {
+    "windowWidth" : 740.0,
+    "windowHeight" : 626.0,
+    "windowCoordinates" : {
+      "x" : 785,
+      "y" : 103
+    }
+  },
+  "addressBookFilePath" : "data/addressbook.json",
+  "financeAccountFilePath" : "data/financeAccount.json",
+  "inventoryFilePath" : "data/inventory.json"
+}
