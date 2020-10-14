@@ -5,9 +5,9 @@ import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.category.Category;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.util.Category;
 import seedu.address.model.Model;
 import seedu.address.model.account.ActiveAccount;
 import seedu.address.model.account.entry.Expense;
