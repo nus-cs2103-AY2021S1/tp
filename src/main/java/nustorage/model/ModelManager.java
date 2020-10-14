@@ -50,11 +50,7 @@ public class ModelManager implements Model {
 
         this.inventory = new Inventory();
         filteredInventory = new FilteredList<>(this.inventory.asUnmodifiableObservableList());
-        // <<<<<<< HEAD
-        //
-        // =======
-        //         filteredFinance = new FilteredList<>(this.financeAccount.asUnmodifiableObservableList());
-        // >>>>>>> ba85e094c7db7ddb7b4601fc17379125a0c3bc68
+
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
