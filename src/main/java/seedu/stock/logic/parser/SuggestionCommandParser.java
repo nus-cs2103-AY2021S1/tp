@@ -5,6 +5,8 @@ import static seedu.stock.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.stock.logic.commands.CommandWords.ADD_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.DELETE_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.FIND_COMMAND_WORD;
+import static seedu.stock.logic.commands.CommandWords.UPDATE_COMMAND_WORD;
+import static seedu.stock.logic.commands.UpdateCommand.MESSAGE_TOO_MANY_QUANTITY_PREFIXES;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
@@ -24,6 +26,7 @@ import seedu.stock.logic.commands.FindCommand;
 import seedu.stock.logic.commands.HelpCommand;
 import seedu.stock.logic.commands.ListCommand;
 import seedu.stock.logic.commands.SuggestionCommand;
+import seedu.stock.logic.commands.UpdateCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 
 public class SuggestionCommandParser implements Parser<SuggestionCommand> {
@@ -85,11 +88,39 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             generateFindSuggestion(toBeDisplayed, argMultimap);
             break;
 
+        case UpdateCommand.COMMAND_WORD:
+            generateUpdateSuggestion(toBeDisplayed, argMultimap);
+            break;
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
 
         return new SuggestionCommand(toBeDisplayed.toString());
+    }
+
+    private void generateUpdateSuggestion(StringBuilder toBeDisplayed,
+            ArgumentMultimap argMultimap) throws ParseException {
+        List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_SERIAL_NUMBER,
+                PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY, PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION);
+        toBeDisplayed.append(UPDATE_COMMAND_WORD);
+        if (argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).isPresent()
+                && argMultimap.getValue(PREFIX_NEW_QUANTITY).isPresent()) {
+            throw new ParseException(MESSAGE_TOO_MANY_QUANTITY_PREFIXES);
+        }
+        if (!argMultimap.getValue(PREFIX_SERIAL_NUMBER).isPresent()) {
+            toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + CliSyntax.getDefaultDescription(PREFIX_SERIAL_NUMBER));
+        }
+        List<String> keywords = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
+        for (String serialNumber : keywords) {
+            toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + serialNumber);
+        }
+        for (int i = 1; i < allowedPrefixes.size(); i++) {
+            Prefix currentPrefix = allowedPrefixes.get(i);
+            if (argMultimap.getValue(currentPrefix).isPresent()) {
+                toBeDisplayed.append(" " + currentPrefix + argMultimap.getValue(currentPrefix).get());
+            }
+        }
     }
 
     private void generateFindSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
