@@ -6,6 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -25,7 +26,7 @@ public class JsonCommonCentsStorageTest {
         assertThrows(NullPointerException.class, () -> readCommonCents(null));
     }
 
-    private java.util.Optional<ReadOnlyCommonCents> readCommonCents(String filePath) throws Exception {
+    private Optional<ReadOnlyCommonCents> readCommonCents(String filePath) throws Exception {
         return new JsonCommonCentsStorage(Paths.get(filePath)).readCommonCents(addToTestDataPathIfNotNull(filePath));
     }
 
