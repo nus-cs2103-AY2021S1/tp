@@ -47,7 +47,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personAndBidTabPanePlaceholder;
-    
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
