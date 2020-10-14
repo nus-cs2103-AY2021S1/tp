@@ -23,7 +23,7 @@ public class AddDocumentCommand extends AddCommand {
             + PREFIX_NAME + "NAME "
             + PREFIX_REFERENCE + "REFERENCE\n"
             + "Example: " + COMMAND_WORD + " " + TYPE_DOC + " "
-            + PREFIX_NAME + "Location file"
+            + PREFIX_NAME + "Location file "
             + PREFIX_REFERENCE + "test1.txt";
 
     private static final String MESSAGE_ADD_DOCUMENT_SUCCESS = "New document added: %1$s";
