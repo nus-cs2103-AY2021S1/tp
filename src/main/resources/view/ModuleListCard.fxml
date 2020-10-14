@@ -28,8 +28,8 @@
                 <Label fx:id="moduleId" text="\$first" styleClass="cell_big_label" />
             </HBox>
 <!--            <FlowPane fx:id="tags" />-->
-<!--            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />-->
-<!--            <Label fx:id="email" styleClass="cell_small_label" text="\$email" />-->
+            <Label fx:id="totalStudents" styleClass="cell_small_label" text="\$totalStudents" />
+            <Label fx:id="totalGroups" styleClass="cell_small_label" text="\$totalGroups" />
         </VBox>
     </GridPane>
 </HBox>

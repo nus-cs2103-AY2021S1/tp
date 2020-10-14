@@ -130,16 +130,16 @@ public class ModelManager implements Model {
         filteredModules.setPredicate(predicate);
     }
 
-//    @Override
-//    public void addTutorialGroup(TutorialGroup tutorialGroup) {
-//        moduleList.addTutorialGroup(tutorialGroup);
-//    }
-//
-//    @Override
-//    public boolean hasTutorialGroup(TutorialGroup tutorialGroup) {
-//        requireAllNonNull(tutorialGroup);
-//        return moduleList.hasTutorialGroup(tutorialGroup);
-//    }
+    //    @Override
+    //    public void addTutorialGroup(TutorialGroup tutorialGroup) {
+    //        moduleList.addTutorialGroup(tutorialGroup);
+    //    }
+    //
+    //    @Override
+    //    public boolean hasTutorialGroup(TutorialGroup tutorialGroup) {
+    //        requireAllNonNull(tutorialGroup);
+    //        return moduleList.hasTutorialGroup(tutorialGroup);
+    //    }
 
     @Override
     public boolean equals(Object obj) {

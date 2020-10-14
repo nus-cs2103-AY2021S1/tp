@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalModules.getTypicalModuleList;
 
 import java.nio.file.Path;
 
@@ -11,7 +11,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.*;
+import seedu.address.model.ModuleList;
+import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.model.UserPrefs;
 
 public class StorageManagerTest {
 
@@ -22,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonModuleStorage moduleListStorage = new JsonModuleStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(moduleListStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -52,7 +54,7 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        ModuleList original = getTypicalAddressBook();
+        ModuleList original = getTypicalModuleList();
         storageManager.saveModuleList(original);
         ReadOnlyModuleList retrieved = storageManager.readModuleList().get();
         assertEquals(original, new ModuleList(retrieved));
@@ -60,7 +62,7 @@ public class StorageManagerTest {
 
     @Test
     public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+        assertNotNull(storageManager.getModuleFilePath());
     }
 
 }

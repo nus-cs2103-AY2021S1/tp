@@ -25,10 +25,10 @@ public class ModuleCard extends UiPart<Region> {
     private Label moduleId;
     @FXML
     private Label id;
-    //    @FXML
-    //    private Label phone;
-    //    @FXML
-    //    private Label email;
+    @FXML
+    private Label totalStudents;
+    @FXML
+    private Label totalGroups;
     //    @FXML
     //    private FlowPane tags;
 
@@ -40,8 +40,8 @@ public class ModuleCard extends UiPart<Region> {
         this.module = module;
         id.setText(displayedIndex + ". ");
         moduleId.setText(module.getModuleId());
-        //        phone.setText(person.getPhone().value);
-        //        email.setText(person.getEmail().value);
+        totalStudents.setText("Total Students: " + module.getTotalStudents());
+        totalGroups.setText("Total Groups: " + module.getTotalGroups());
         //        person.getTags().stream()
         //                .sorted(Comparator.comparing(tag -> tag.tagName))
         //                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
