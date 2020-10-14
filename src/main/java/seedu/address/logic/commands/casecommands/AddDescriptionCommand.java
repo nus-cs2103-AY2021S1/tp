@@ -5,24 +5,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CASES;
 
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.investigationcase.Case;
 import seedu.address.model.investigationcase.Description;
-import seedu.address.model.investigationcase.Document;
-import seedu.address.model.investigationcase.Status;
-import seedu.address.model.investigationcase.Suspect;
-import seedu.address.model.investigationcase.Title;
-import seedu.address.model.investigationcase.Victim;
-import seedu.address.model.investigationcase.Witness;
-import seedu.address.model.tag.Tag;
 
 
 public class AddDescriptionCommand extends AddCommand {
@@ -35,44 +26,22 @@ public class AddDescriptionCommand extends AddCommand {
             + PREFIX_DESCRIPTION + "7 people arrested for rioting";
 
     public static final String MESSAGE_ADD_DESCRIPTION_SUCCESS = "New description added: %1$s";
-    public static final String MESSAGE_DESCRIPTION_NOT_EDITED = "Please provide a description.";
     public static final String MESSAGE_DUPLICATE_DESCRIPTION = "This description already exists for the case!";
 
     private final Index index;
-    private final EditCommand.EditCaseDescriptor editCaseDescriptor;
+    private final Description description;
 
     /**
      * Creates an AddDescriptionCommand to add the specified {@code Description}
      *
      * @param index
-     * @param editCaseDescriptor
+     * @param description
      */
-    public AddDescriptionCommand(Index index, EditCommand.EditCaseDescriptor editCaseDescriptor) {
+    public AddDescriptionCommand(Index index, Description description) {
         requireNonNull(index);
-        requireNonNull(editCaseDescriptor);
+        requireNonNull(description);
         this.index = index;
-        this.editCaseDescriptor = editCaseDescriptor;
-    }
-
-    // FROM EDITCOMMAND -- CAN THINK OF ABSTRACTING IT IN THE FUTURE?
-    /**
-     * Creates and returns a {@code Case} with the details of {@code caseToEdit}
-     * edited with {@code editCaseDescriptor}.
-     */
-    private static Case createEditedCase(Case caseToEdit, EditCommand.EditCaseDescriptor editCaseDescriptor) {
-        assert caseToEdit != null;
-
-        Title updatedTitle = editCaseDescriptor.getTitle().orElse(caseToEdit.getTitle());
-        Description updatedDescription = editCaseDescriptor.getDescription().orElse(caseToEdit.getDescription());
-        Status updatedStatus = editCaseDescriptor.getStatus().orElse(caseToEdit.getStatus());
-        List<Document> updatedDocuments = editCaseDescriptor.getDocuments().orElse(caseToEdit.getDocuments());
-        List<Suspect> updatedSuspects = editCaseDescriptor.getSuspects().orElse(caseToEdit.getSuspects());
-        List<Victim> updatedVictims = editCaseDescriptor.getVictims().orElse(caseToEdit.getVictims());
-        Set<Tag> updatedTags = editCaseDescriptor.getTags().orElse(caseToEdit.getTags());
-        List<Witness> updatedWitnesses =
-                editCaseDescriptor.getWitnesses().orElse(caseToEdit.getWitnesses());
-        return new Case(updatedTitle, updatedDescription, updatedStatus, updatedDocuments,
-                updatedSuspects, updatedVictims, updatedWitnesses, updatedTags);
+        this.description = description;
     }
 
     @Override
@@ -84,15 +53,22 @@ public class AddDescriptionCommand extends AddCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
         }
 
-        Case caseToEdit = lastShownList.get(index.getZeroBased());
-        Case editedCase = createEditedCase(caseToEdit, editCaseDescriptor);
+        Case stateCase = lastShownList.get(index.getZeroBased());
+        Description stateCaseDescription = stateCase.getDescription();
 
-        if (!caseToEdit.isSameCase(editedCase) && model.hasCase(editedCase)) {
+        // check for same description
+        if (stateCaseDescription.equals(this.description)) {
             throw new CommandException(MESSAGE_DUPLICATE_DESCRIPTION);
         }
-        model.setCase(caseToEdit, editedCase);
+
+        // create new updated case
+        Case updatedCase = new Case(stateCase.getTitle(), this.description, stateCase.getStatus(),
+                stateCase.getDocuments(), stateCase.getSuspects(), stateCase.getVictims(), stateCase.getWitnesses(),
+                stateCase.getTags());
+        model.setCase(stateCase, updatedCase);
         model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
-        return new CommandResult(String.format(MESSAGE_ADD_DESCRIPTION_SUCCESS, editedCase));
+
+        return new CommandResult(String.format(MESSAGE_ADD_DESCRIPTION_SUCCESS, this.description));
     }
 
     @Override
@@ -100,6 +76,6 @@ public class AddDescriptionCommand extends AddCommand {
         return other == this // short circuit if same object
                 || (other instanceof AddDescriptionCommand // instanceof handles nulls
                 && index.equals(((AddDescriptionCommand) other).index)
-                && editCaseDescriptor.equals(((AddDescriptionCommand) other).editCaseDescriptor));
+                && description.equals(((AddDescriptionCommand) other).description));
     }
 }

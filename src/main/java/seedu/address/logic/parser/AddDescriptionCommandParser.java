@@ -5,10 +5,10 @@ import static seedu.address.logic.parser.AddCommandParser.arePrefixesPresent;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.casecommands.AddDescriptionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.state.StateManager;
+import seedu.address.model.investigationcase.Description;
 
 public class AddDescriptionCommandParser implements Parser<AddDescriptionCommand> {
     @Override
@@ -22,18 +22,10 @@ public class AddDescriptionCommandParser implements Parser<AddDescriptionCommand
                     AddDescriptionCommand.MESSAGE_USAGE));
         }
 
-        // Assume that State is already validated from the main AddCommandParser
+        assert(StateManager.atCasePage()) : "Program should be at case page";
+        Description description = ParserUtil.parseDescription(argMultimap
+                        .getValue(PREFIX_DESCRIPTION).orElse(""));
         Index index = StateManager.getState();
-        EditCommand.EditCaseDescriptor editCaseDescriptor = new EditCommand.EditCaseDescriptor();
-        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            editCaseDescriptor.setDescription(ParserUtil.parseDescription(argMultimap
-                    .getValue(PREFIX_DESCRIPTION).get()));
-        }
-
-        if (!editCaseDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(AddDescriptionCommand.MESSAGE_DESCRIPTION_NOT_EDITED);
-        }
-
-        return new AddDescriptionCommand(index, editCaseDescriptor);
+        return new AddDescriptionCommand(index, description);
     }
 }
