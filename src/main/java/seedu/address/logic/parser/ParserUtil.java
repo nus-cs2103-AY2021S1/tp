@@ -81,21 +81,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name}  into an {@code Name}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code name}  is invalid.
-     */
-    public static Name parseName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-        }
-        return new Name(trimmedName);
-    }
-
-    /**
      * Parses a {@code String reference}  into an {@code Reference}.
      * Leading and trailing whitespaces will be trimmed.
      *
