@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
@@ -23,15 +22,12 @@ public class AddCommand extends Command {
             + PREFIX_TITLE + "TITLE "
             + PREFIX_DATE_TIME + "DATE_TIME "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_TYPE + "TYPE "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_TYPE + "TYPE \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TITLE + "John Doe "
+            + PREFIX_TITLE + "Do work "
             + PREFIX_DATE_TIME + "01-01-2020 12:00 "
-            + PREFIX_DESCRIPTION + "johnd,example.com "
-            + PREFIX_TYPE + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_DESCRIPTION + "Science experiment "
+            + PREFIX_TYPE + "event";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in PlaNus.";
