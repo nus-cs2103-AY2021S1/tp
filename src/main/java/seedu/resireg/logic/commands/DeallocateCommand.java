@@ -1,17 +1,15 @@
 package seedu.resireg.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.resireg.commons.core.Messages;
 import seedu.resireg.commons.core.index.Index;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_INDEX;
-import static seedu.resireg.logic.parser.CliSyntax.PREFIX_STUDENT_INDEX;
 
 
 /**

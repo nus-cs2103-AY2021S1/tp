@@ -1,16 +1,13 @@
 package seedu.resireg.logic.parser;
 
-import seedu.resireg.commons.core.index.Index;
-import seedu.resireg.logic.commands.AllocateCommand;
-import seedu.resireg.logic.commands.DeallocateCommand;
-import seedu.resireg.logic.commands.DeleteCommand;
-import seedu.resireg.logic.parser.exceptions.ParseException;
+import static seedu.resireg.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.stream.Stream;
 
-import static seedu.resireg.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_INDEX;
-import static seedu.resireg.logic.parser.CliSyntax.PREFIX_STUDENT_INDEX;
+import seedu.resireg.commons.core.index.Index;
+import seedu.resireg.logic.commands.DeallocateCommand;
+import seedu.resireg.logic.parser.exceptions.ParseException;
+
 
 /**
  * Parses input arguments and creates a new DeallocateCommand object
