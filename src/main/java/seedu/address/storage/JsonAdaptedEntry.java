@@ -40,13 +40,6 @@ public class JsonAdaptedEntry {
      * Converts a given {@code Entry} into this class for Jackson use.
      */
     public JsonAdaptedEntry(Entry source) {
-        /*
-        if (source instanceof Revenue) {
-            type = "revenue";
-        } else {
-            type = "expense";
-        }
-        */
         description = source.getDescription().toString();
         amount = source.getAmount().toString();
         tags.addAll(source.getTags().stream()
