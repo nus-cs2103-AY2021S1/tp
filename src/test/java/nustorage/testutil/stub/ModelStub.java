@@ -9,6 +9,7 @@ import nustorage.commons.core.GuiSettings;
 import nustorage.commons.core.index.Index;
 import nustorage.model.Model;
 import nustorage.model.ReadOnlyAddressBook;
+import nustorage.model.ReadOnlyFinanceAccount;
 import nustorage.model.ReadOnlyUserPrefs;
 import nustorage.model.person.Person;
 import nustorage.model.record.FinanceRecord;
@@ -80,6 +81,11 @@ public class ModelStub implements Model {
     @Override
     public Optional<FinanceRecord> deleteFinanceRecord(Index targetIndex) {
         return Optional.empty();
+    }
+
+    @Override
+    public ReadOnlyFinanceAccount getFinanceAccount() {
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
