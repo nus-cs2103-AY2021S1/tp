@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.assignment.Deadline;
 import seedu.address.model.lesson.Lesson;
 
 /**
@@ -29,6 +30,9 @@ public class LessonCard extends UiPart<Region> {
      */
 
     public final Lesson lesson;
+
+    private DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
+            .withResolverStyle(ResolverStyle.STRICT);
 
     @FXML
     private HBox cardPane;
@@ -49,14 +53,16 @@ public class LessonCard extends UiPart<Region> {
         this.lesson = lesson;
         id.setText(displayedIndex + ". ");
         name.setText(lesson.getName().fullName);
-        DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
-                .withResolverStyle(ResolverStyle.STRICT);
-        String date = LocalDateTime.parse(lesson.getTime().value, inputFormat).toLocalDate().format(
-                DateTimeFormatter.ofPattern("dd MMM yyyy"));
-        LocalTime startTime = LocalDateTime.parse(lesson.getTime().value, inputFormat).toLocalTime();
-        LocalTime endTime = LocalDateTime.parse(lesson.getEndTime().value, inputFormat).toLocalTime();
-        time.setText(date + " " + startTime + "-" + endTime);
+        time.setText(formatTime(lesson.getTime(), lesson.getEndTime()));
         //moduleCode.setText("Module: " + lesson.getModuleCode().moduleCode);
+    }
+
+    private String formatTime(Deadline startDate, Deadline endDate) {
+        String date = LocalDateTime.parse(startDate.value, inputFormat).toLocalDate().format(
+                DateTimeFormatter.ofPattern("dd MMM yyyy"));
+        LocalTime startTime = LocalDateTime.parse(startDate.value, inputFormat).toLocalTime();
+        LocalTime endTime = LocalDateTime.parse(endDate.value, inputFormat).toLocalTime();
+        return date + " " + startTime + "-" + endTime;
     }
 
     @Override
