@@ -27,9 +27,6 @@ public class TabBar extends UiPart<Region> {
     private TabPane tabBar;
 
     @FXML
-    private Tab personTab;
-
-    @FXML
     private Tab sellerTab;
 
     @FXML
@@ -40,18 +37,15 @@ public class TabBar extends UiPart<Region> {
 
     @FXML
     private Tab calenderTab;
+
     @FXML
     private Tab propertyTab;
 
     @FXML
     private StackPane sellerListPanelPlaceholder;
 
-
     @FXML
     private StackPane bidderListPanelPlaceholder;
-
-    @FXML
-    private StackPane personListPanelPlaceholder;
 
     @FXML
     private StackPane bidListPanelPlaceholder;
@@ -77,7 +71,6 @@ public class TabBar extends UiPart<Region> {
      */
 
     private void setTabBar() {
-        personTab.setText("AddressBooks");
         bidTab.setText("Bids");
         bidderTab.setText("Bidders");
         sellerTab.setText("Sellers");
@@ -91,13 +84,11 @@ public class TabBar extends UiPart<Region> {
      * Fills the tabs with a list of applicants or jobs.
      */
     private void populateTab() {
-        PersonListPanel personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         BidListPanel bidListPanel = new BidListPanel(logic.getFilteredBidList());
         CalendarListPanel calendarListPanel = new CalendarListPanel(logic.getFilteredMeetingList());
         PropertyListPanel propertyListPanel = new PropertyListPanel(logic.getFilteredPropertyList());
         BidderListPanel bidderListPanel = new BidderListPanel(logic.getFilteredBidderList());
         SellerListPanel sellerListPanel = new SellerListPanel(logic.getFilteredSellerList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
         bidListPanelPlaceholder.getChildren().add(bidListPanel.getRoot());
         meetingListPanelPlaceholder.getChildren().add(calendarListPanel.getRoot());
         bidderListPanelPlaceholder.getChildren().add(bidderListPanel.getRoot());
