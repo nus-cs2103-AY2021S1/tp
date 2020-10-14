@@ -79,6 +79,18 @@
                         </VBox.margin>
                     </Label>
 
+                    <Label fx:id="findExactMethod"  >
+                        <VBox.margin>
+                            <Insets right="5.0" />
+                        </VBox.margin>
+                    </Label>
+
+                    <Label fx:id="findExactMessage"  >
+                        <VBox.margin>
+                            <Insets right="5.0" />
+                        </VBox.margin>
+                    </Label>
+
                     <Label fx:id="updateMethod"  >
                         <VBox.margin>
                             <Insets right="5.0" />
