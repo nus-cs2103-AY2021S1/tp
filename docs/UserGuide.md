@@ -244,4 +244,6 @@ Notify the user if a certain stock is below threshold
 |**Edit**   | `edit INDEX [n/NAME] [q/QUANTITY] [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]…​`<br> e.g.,`edit 1 n/Chicken q/50`                |
 |**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Chicken Steak`                                       |
 |**List**   | `list`                                                                                              |
-|**Help**   | `help`                                                                                              |
+|**Help**   | `help`
+                                                                                              
+                                                                                              |
