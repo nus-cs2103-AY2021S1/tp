@@ -56,8 +56,8 @@ class JsonSerializableFinanceAccount {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public ReadOnlyFinanceAccount toModelType() throws IllegalValueException {
-        ReadOnlyFinanceAccount finAccount = new FinanceAccount();
+    public FinanceAccount toModelType() throws IllegalValueException {
+        FinanceAccount finAccount = new FinanceAccount();
         for (JsonAdaptedFinanceRecord jsonFinRecord : this.financeRecords) {
             FinanceRecord finRecord = jsonFinRecord.toModelType();
             if (finAccount.hasRecord(finRecord)) {
