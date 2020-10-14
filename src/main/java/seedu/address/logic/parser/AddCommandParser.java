@@ -68,10 +68,8 @@ public class AddCommandParser implements Parser<AddCommand> {
 
             case TYPE_CASE:
                 throw new ParseException(MESSAGE_INCORRECT_MAIN_PAGE);
-
             case TYPE_DESC:
-                //TODO: return individual parser
-
+                return new AddDescriptionCommandParser().parse(arguments);
             case TYPE_DOC:
                 return new AddDocumentCommandParser().parse(arguments);
 
