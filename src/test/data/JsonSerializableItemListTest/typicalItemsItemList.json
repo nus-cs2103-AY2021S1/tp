@@ -20,8 +20,8 @@
   }, {
     "id" : 3,
     "name" : "Pear",
-    "quantity" : "1",
-    "description" : "No description given",
+    "quantity" : "0",
+    "description" : "None",
     "locationId" : [ ],
     "recipeId" : [ ],
     "isDeleted" : false,

@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.ItemParserUtil.DEFAULT_DESCRIPTION;
+import static seedu.address.logic.parser.ItemParserUtil.DEFAULT_QUANTITY;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -29,8 +32,8 @@ public class TypicalItems {
             .withName("Pear")
             .withId(3)
             .withRecipe(new HashSet<>())
-            .withDescription("No description given")
-            .withQuantity("1").build();
+            .withDescription(DEFAULT_DESCRIPTION)
+            .withQuantity(DEFAULT_QUANTITY).build();
 
     private TypicalItems() {} // prevents instantiation
 

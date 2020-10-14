@@ -213,7 +213,7 @@ NOT Supported as of v1.2 yet
 ### Deleting a Recipe : `delr`
 
 **NAME:**
-- `delr` - delete an item
+- `delr` - delete an recipe
 
 **SYNOPSIS:**
 - `delr` \<item name\> \[-r index\]
@@ -227,7 +227,7 @@ NOT Supported as of v1.2 yet
 - Deletes the **first recipe** of the item <u>Bob’s 28th finger</u>
 
 ### Delete item : `del`
-NOT Supported as of v1.1 yet
+NOT Supported as of v1.2 yet
 
 **NAME:**
 - `del` - delete an item
@@ -262,7 +262,7 @@ NOT Supported as of v1.1 yet
 	(supports regex, eg. find -i <u>Bob’s ([1-9][0-9])(st\*nd\*rd\*th) crush</u>)
 
 ### View item `view`
-NOT Supported as of v1.2
+**WIP as of v1.2**
 
 **NAME:**
 - `view` - view more details on an item
