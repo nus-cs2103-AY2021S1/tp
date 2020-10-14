@@ -39,7 +39,4 @@ class RevenueTest {
         assertThrows(IllegalArgumentException.class, () -> new Expense(description, new Amount(amount), tags));
     }
 
-
-
-
 }
