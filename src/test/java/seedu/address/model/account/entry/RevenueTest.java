@@ -1,15 +1,15 @@
 package seedu.address.model.account.entry;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.tag.Tag;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
 
-class RevenueTest {
+import seedu.address.model.tag.Tag;
+
+public class RevenueTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {

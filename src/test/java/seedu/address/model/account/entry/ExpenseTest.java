@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.tag.Tag;
 
-class ExpenseTest {
+public class ExpenseTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {

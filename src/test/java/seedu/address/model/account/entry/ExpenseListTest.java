@@ -1,19 +1,22 @@
 package seedu.address.model.account.entry;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.ExpenseBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
-class ExpenseListTest {
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.tag.Tag;
+import seedu.address.testutil.ExpenseBuilder;
+
+
+public class ExpenseListTest {
 
     @Test
     void contains_true() {
@@ -34,17 +37,16 @@ class ExpenseListTest {
         tags3.add(new Tag("ArtFriend"));
         Expense e3 = new Expense(new Description("artsupplies"), new Amount("10.50"), tags3);
 
-        internalList.addAll(e1,e2,e3);
+        internalList.addAll(e1, e2, e3);
         assertTrue(internalList.contains(e1));
         assertTrue(internalList.contains(e2));
         assertTrue(internalList.contains(e3));
 
-
     }
 
     @Test
-    public void contains_false(){
-        ObservableList<Expense>internalList=FXCollections.observableArrayList();
+    public void contains_false() {
+        ObservableList<Expense>internalList = FXCollections.observableArrayList();
 
         Set<Tag> tags1 = new HashSet<>();
         tags1.add(new Tag("food"));
@@ -61,7 +63,7 @@ class ExpenseListTest {
         tags3.add(new Tag("ArtFriend"));
         Expense e3 = new Expense(new Description("artsupplies"), new Amount("10.50"), tags3);
 
-        internalList.addAll(e1,e2);
+        internalList.addAll(e1, e2);
         assertFalse(internalList.contains(e3));
     }
 

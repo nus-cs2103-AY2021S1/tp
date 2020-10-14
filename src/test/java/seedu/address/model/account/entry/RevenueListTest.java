@@ -1,17 +1,19 @@
 package seedu.address.model.account.entry;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.RevenueBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.tag.Tag;
+import seedu.address.testutil.RevenueBuilder;
 
 class RevenueListTest {
 
