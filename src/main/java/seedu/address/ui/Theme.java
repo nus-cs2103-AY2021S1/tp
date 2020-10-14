@@ -12,6 +12,7 @@ public class Theme {
     /**
      * Constructs a theme with the given style sheet path and theme preview image path.
      *
+     * @param themeName the name of the theme
      * @param styleSheetPath the path of the style sheet
      * @param themePreviewPath the path of the preview image
      */
@@ -19,6 +20,10 @@ public class Theme {
         this.themeName = themeName;
         this.styleSheetPath = styleSheetPath;
         this.themePreviewPath = themePreviewPath;
+    }
+
+    public String getThemeName() {
+        return themeName;
     }
 
     public String getStyleSheetPath() {
