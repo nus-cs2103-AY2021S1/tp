@@ -17,8 +17,8 @@ public class SellerBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_ID_PREFIX = "S";
-    public static final int DEFAULT_ID_NUMBER = 12;
+    public static final Id DEFAULT_SELLER_ID = new Id("S", 0);
+
 
 
     private Name name;
@@ -33,7 +33,7 @@ public class SellerBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         tags = new HashSet<>();
-        id = new Id(DEFAULT_ID_PREFIX, DEFAULT_ID_NUMBER);
+        id = DEFAULT_SELLER_ID;
     }
 
     /**
