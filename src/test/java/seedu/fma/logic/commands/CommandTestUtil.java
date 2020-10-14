@@ -30,10 +30,10 @@ import seedu.fma.testutil.LogBuilder;
 
 public class CommandTestUtil {
     public static final String VALID_EXERCISE_SIT_UP = "Sit ups";
-    public static final String VALID_EXERCISE_FLYING_KICKS = "Jumping jacks";
+    public static final String VALID_EXERCISE_JUMPING_JACKS = "Jumping jacks";
 
     public static final Exercise VALID_EXERCISE_A = new ExerciseBuilder().withName(VALID_EXERCISE_SIT_UP).build();
-    public static final Exercise VALID_EXERCISE_B = new ExerciseBuilder().withName(VALID_EXERCISE_FLYING_KICKS).build();
+    public static final Exercise VALID_EXERCISE_B = new ExerciseBuilder().withName(VALID_EXERCISE_JUMPING_JACKS).build();
     public static final String VALID_REP_A = "5";
     public static final String VALID_REP_B = "10";
     public static final String VALID_COMMENT_A = "This exercise is tough";
@@ -57,7 +57,7 @@ public class CommandTestUtil {
     );
 
     public static final String EXERCISE_DESC_A = " " + PREFIX_EXERCISE + VALID_EXERCISE_SIT_UP;
-    public static final String EXERCISE_DESC_B = " " + PREFIX_EXERCISE + VALID_EXERCISE_FLYING_KICKS;
+    public static final String EXERCISE_DESC_B = " " + PREFIX_EXERCISE + VALID_EXERCISE_JUMPING_JACKS;
     public static final String REP_DESC_A = " " + PREFIX_REPS + VALID_REP_A;
     public static final String REP_DESC_B = " " + PREFIX_REPS + VALID_REP_B;
     public static final String COMMENT_DESC_A = " " + PREFIX_COMMENT + VALID_COMMENT_A;
