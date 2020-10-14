@@ -72,9 +72,19 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             final String deleteType = matcher.group("commandWord");
             final String indexString = matcher.group("arguments");
 
-            switch (deleteType) {
-            case TYPE_CASE:
+            if (deleteType.equals(TYPE_CASE)) {
                 throw new ParseException(MESSAGE_INCORRECT_MAIN_PAGE);
+            }
+
+            try {
+                index = ParserUtil.parseIndex(indexString);
+            } catch (ParseException pe) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE_CASE_PAGE),
+                        pe);
+            }
+
+            switch (deleteType) {
 
             case TYPE_DOC:
                 //TODO: return individual deleteTYPEcommands
