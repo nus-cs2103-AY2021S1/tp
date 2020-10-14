@@ -8,6 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
@@ -181,11 +182,6 @@ public class ModelManagerTest {
         // different commonCents -> returns false
         assertNotEquals(modelManager, new ModelManager(differentCommonCents, userPrefs));
 
-//        // different filteredList -> returns false
-//        String[] keywords = account.getName().split("\\s+");
-//        modelManager.updateFilteredAccountList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-//        assertNotEquals(modelManager, new ModelManager(commonCents, userPrefs));
-
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredAccountList(Model.PREDICATE_SHOW_ALL_ACCOUNTS);
 
@@ -194,5 +190,4 @@ public class ModelManagerTest {
         differentUserPrefs.setCommonCentsFilePath(Paths.get("differentFilePath"));
         assertNotEquals(modelManager, new ModelManager(commonCents, differentUserPrefs));
     }
-
 }
