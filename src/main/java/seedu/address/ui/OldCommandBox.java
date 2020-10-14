@@ -11,7 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * The UI component that is responsible for receiving user command inputs.
  */
-public class NewCommandBox extends UiPart<Region> {
+public class OldCommandBox extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
@@ -24,7 +24,7 @@ public class NewCommandBox extends UiPart<Region> {
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
-    public NewCommandBox(CommandExecutor commandExecutor) {
+    public OldCommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
@@ -38,11 +38,10 @@ public class NewCommandBox extends UiPart<Region> {
     private void handleCommandEntered() {
         try {
             commandExecutor.execute(commandTextField.getText());
+            commandTextField.setText("");
         } catch (CommandException | ParseException e) {
-            // setStyleToIndicateCommandFailure();
+            setStyleToIndicateCommandFailure();
         }
-
-        commandTextField.setText("");
     }
 
     /**

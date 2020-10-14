@@ -23,6 +23,11 @@
                           <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
                         </items>
                       </Menu>
+                        <Menu mnemonicParsing="false" text="View">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#handleTheme" text="Theme..." />
+                          </items>
+                        </Menu>
                       <Menu mnemonicParsing="false" text="Help">
                         <items>
                           <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" text="Help" />
@@ -39,17 +44,17 @@
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <StackPane fx:id="resultDisplayPlaceHolder" prefHeight="299.0" prefWidth="359.0" VBox.vgrow="ALWAYS" />
-                              <StackPane fx:id="lastInputPlaceHolder" prefHeight="15.0" prefWidth="301.0" VBox.vgrow="NEVER" />
+                              <StackPane fx:id="resultDisplayPlaceHolder" prefHeight="299.0" prefWidth="359.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin></StackPane>
+                              <StackPane fx:id="lastInputPlaceHolder" prefHeight="15.0" prefWidth="301.0" styleClass="pane-with-border" VBox.vgrow="NEVER" />
                            </children>
                         </VBox>
                     </items>
                   </SplitPane>
-                  <StackPane fx:id="commandBoxPlaceHolder" prefHeight="41.0" prefWidth="501.0">
-                     <padding>
-                        <Insets left="10.0" right="10.0" />
-                     </padding></StackPane>
-                  <StackPane fx:id="footerbarPlaceHolder" prefHeight="19.0" prefWidth="501.0" />
+                  <StackPane fx:id="commandBoxPlaceHolder" prefHeight="41.0" prefWidth="501.0" styleClass="pane-with-border" />
+                  <StackPane fx:id="footerbarPlaceHolder" prefHeight="19.0" prefWidth="501.0" styleClass="pane-with-border" />
                </children>
             </VBox>
          </root>

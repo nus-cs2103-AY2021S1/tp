@@ -36,7 +36,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 6, 0, true);
+    public static final Version VERSION = new Version(1, 2, 0, false);
 
     private static final Logger logger = LogsCenter.getLogger(OldMainApp.class);
 
@@ -167,7 +167,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + OldMainApp.VERSION);
+        logger.info("Starting AddressBook " + VERSION);
         ui.start(primaryStage);
     }
 

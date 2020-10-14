@@ -10,12 +10,14 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import seedu.address.MainApp;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.util.UiUtil;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -28,6 +30,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
+    private Theme currentTheme = ThemeSet.DARK_THEME;
     private Stage primaryStage;
     private Logic logic;
 
@@ -35,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private TagListPanel tagListPanel;
     private LastInputDisplay lastInputDisplay;
+    private ThemeWindow themeWindow;
 
     @FXML
     private StackPane resultDisplayPlaceHolder;
@@ -67,10 +71,16 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
+        // Set theme
+        setTheme(currentTheme);
+
         // setAccelerators();
 
         // Set instance
         instance = this;
+
+        // Theme selection window
+        themeWindow = new ThemeWindow();
     }
 
     public static MainWindow getInstance() {
@@ -79,6 +89,10 @@ public class MainWindow extends UiPart<Stage> {
 
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+
+    public Theme getCurrentTheme() {
+        return currentTheme;
     }
 
     private void setAccelerators() {
@@ -133,11 +147,11 @@ public class MainWindow extends UiPart<Stage> {
         lastInputPlaceHolder.getChildren().add(lastInputDisplay.getRoot());
 
         // command box
-        NewCommandBox commandBox = new NewCommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceHolder.getChildren().add(commandBox.getRoot());
 
         // footer bar
-        FooterBar footerBar = new FooterBar("1.2");
+        FooterBar footerBar = new FooterBar(MainApp.VERSION.toString());
         footerbarPlaceHolder.getChildren().add(footerBar.getRoot());
     }
 
@@ -177,6 +191,18 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Opens the theme choosing window.
+     */
+    @FXML
+    public void handleTheme() {
+        if (!themeWindow.isShowing()) {
+            themeWindow.show();
+        } else {
+            themeWindow.focus();
+        }
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
@@ -203,5 +229,10 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    public void setTheme(Theme theme) {
+        currentTheme = theme;
+        UiUtil.setTheme(primaryStage, theme);
     }
 }
