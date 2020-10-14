@@ -11,6 +11,15 @@
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1">
+   <VBox alignment="CENTER">
+      <children>
+         <CheckBox fx:id="statusSign" alignment="CENTER" disable="true" mnemonicParsing="false">
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+         </CheckBox>
+      </children>
+   </VBox>
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -19,7 +28,7 @@
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-      <HBox alignment="CENTER_LEFT" spacing="5">
+      <HBox alignment="CENTER_LEFT" spacing="5.0">
         <Label fx:id="id" styleClass="cell_big_label">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
@@ -28,28 +37,27 @@
         </Label>
         <Label fx:id="title" styleClass="cell_big_label" text="\$first" />
       </HBox>
-         <HBox>
+         <HBox spacing="5.0">
             <children>
-               <Label text="Status:  " />
-               <CheckBox fx:id="statusSign" disable="true" mnemonicParsing="false" text=" " />
+               <Label text="Status:" />
             <Label fx:id="status" styleClass="cell_small_label" text="\$status" />
             </children>
          </HBox>
-         <HBox>
+         <HBox spacing="5.0">
             <children>
-               <Label text="Type: " />
+               <Label text="Type:" />
             <Label fx:id="type" styleClass="cell_small_label" text="\$type" />
             </children>
          </HBox>
-         <HBox fx:id="dateTimeHolder">
+         <HBox fx:id="dateTimeHolder" spacing="5.0">
             <children>
-               <Label text="Date &amp; Time: " />
+               <Label text="Date &amp; Time:" />
             <Label fx:id="dateTime" styleClass="cell_small_label" text="\$dateTime" />
             </children>
          </HBox>
-         <HBox fx:id="descriptionHolder">
+         <HBox fx:id="descriptionHolder" spacing="5.0">
             <children>
-               <Label text="Description: " />
+               <Label text="Description:" />
             <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
             </children>
          </HBox>
