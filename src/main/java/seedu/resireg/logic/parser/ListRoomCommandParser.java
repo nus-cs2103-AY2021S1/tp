@@ -16,7 +16,7 @@ public class ListRoomCommandParser implements Parser<ListRoomCommand> {
         }
         if (!trimmedArgs.startsWith("--")) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListRoomCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListRoomCommand.HELP.getFullMessage()));
         }
         trimmedArgs = trimmedArgs.substring(2); // "strip away the leading "--"
         if (trimmedArgs.equalsIgnoreCase(ListRoomCommand.COMMAND_VACANT_FLAG)) {
@@ -26,6 +26,6 @@ public class ListRoomCommandParser implements Parser<ListRoomCommand> {
             return new ListRoomCommand(ListRoomFilter.ALLOCATED);
         }
         throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListRoomCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListRoomCommand.HELP.getFullMessage()));
     }
 }

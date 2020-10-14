@@ -26,7 +26,8 @@ public class AllocateCommandParser implements Parser<AllocateCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_INDEX, PREFIX_ROOM_INDEX)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AllocateCommand.MESSAGE_USAGE));
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AllocateCommand.HELP.getFullMessage()));
         }
 
         try {
@@ -35,7 +36,7 @@ public class AllocateCommandParser implements Parser<AllocateCommand> {
             return new AllocateCommand(studentIndex, roomIndex);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AllocateCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AllocateCommand.HELP.getFullMessage()), pe);
         }
     }
 

@@ -19,25 +19,26 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to ResiReg. "
-            + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_STUDENT_ID + "STUDENT ID "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_FACULTY + "FACULTY "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_STUDENT_ID + "E01234567 "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_FACULTY + "FASS "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
-
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book";
+
+    public static final Help HELP = new Help(COMMAND_WORD,
+            "Adds a student to ResiReg.",
+            "Parameters: "
+                    + PREFIX_NAME + "NAME "
+                    + PREFIX_STUDENT_ID + "STUDENT ID "
+                    + PREFIX_PHONE + "PHONE "
+                    + PREFIX_EMAIL + "EMAIL "
+                    + PREFIX_FACULTY + "FACULTY "
+                    + "[" + PREFIX_TAG + "TAG]...\n"
+                    + "Example: " + COMMAND_WORD + " "
+                    + PREFIX_NAME + "John Doe "
+                    + PREFIX_STUDENT_ID + "E01234567 "
+                    + PREFIX_PHONE + "98765432 "
+                    + PREFIX_EMAIL + "johnd@example.com "
+                    + PREFIX_FACULTY + "FASS "
+                    + PREFIX_TAG + "friends "
+                    + PREFIX_TAG + "owesMoney");
 
     private final Student toAdd;
 
