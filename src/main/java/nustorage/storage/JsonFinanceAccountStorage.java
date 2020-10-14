@@ -52,10 +52,11 @@ public class JsonFinanceAccountStorage implements FinanceAccountStorage {
     @Override
     public Optional<FinanceAccount> readFinanceAccount(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
+
+        // TODO: THIS LINE IS CAUSING A LOADING ERROR
         Optional<JsonSerializableFinanceAccount> jsonFinanceAccount = JsonUtil.readJsonFile(
                 filePath, JsonSerializableFinanceAccount.class);
 
-        // TODO: THIS LINE IS CAUSING A LOADING ERROR
         if (jsonFinanceAccount.isEmpty()) {
             return Optional.empty();
         }
