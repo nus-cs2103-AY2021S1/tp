@@ -52,7 +52,7 @@ public class SolveQuestionCommand extends QuestionCommand {
             throw new CommandException(MESSAGE_SOLVED_QUESTION);
         }
 
-        List<Question> questionList = solveQuestion(questionIndex, asker);
+        List<Question> questionList = solveQuestion(asker);
         Student replacement = new Student(asker.getName(), asker.getPhone(), asker.getSchool(),
                 asker.getYear(), asker.getAdmin(), questionList);
         Question solvedQuestion = questionList.get(questionIndex.getZeroBased());
@@ -65,7 +65,7 @@ public class SolveQuestionCommand extends QuestionCommand {
     /**
      * Marks a Student's question as done and returns the solved question.
      */
-    private List<Question> solveQuestion(Index index, Student asker) {
+    private List<Question> solveQuestion(Student asker) {
         int position = questionIndex.getZeroBased();
         List<Question> questions = new ArrayList<>(asker.getQuestions());
         String problem = questions.get(position).question;
