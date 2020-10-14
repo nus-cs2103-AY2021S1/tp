@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.fma.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.fma.logic.parser.CliSyntax.PREFIX_EXERCISE;
 import static seedu.fma.logic.parser.CliSyntax.PREFIX_REPS;
+import static seedu.fma.model.util.SampleDataUtil.getSampleExercises;
 import static seedu.fma.testutil.Assert.assertThrows;
 
 import java.time.LocalDateTime;
@@ -32,10 +33,8 @@ public class CommandTestUtil {
     public static final String VALID_EXERCISE_SIT_UP = "Sit ups";
     public static final String VALID_EXERCISE_JUMPING_JACKS = "Jumping jacks";
 
-    public static final Exercise VALID_EXERCISE_A = new ExerciseBuilder()
-            .withName(VALID_EXERCISE_SIT_UP).build();
-    public static final Exercise VALID_EXERCISE_B = new ExerciseBuilder()
-            .withName(VALID_EXERCISE_JUMPING_JACKS).build();
+    public static final Exercise VALID_EXERCISE_A = new ExerciseBuilder(getSampleExercises()[1]).build();
+    public static final Exercise VALID_EXERCISE_B = new ExerciseBuilder(getSampleExercises()[3]).build();
     public static final String VALID_REP_A = "5";
     public static final String VALID_REP_B = "10";
     public static final String VALID_COMMENT_A = "This exercise is tough";
