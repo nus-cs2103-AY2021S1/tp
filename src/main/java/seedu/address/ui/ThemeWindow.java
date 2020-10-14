@@ -33,6 +33,7 @@ public class ThemeWindow extends UiPart<Stage> {
     public ThemeWindow(Stage root) {
         super(FXML, root);
         UiUtil.setTheme(root, currentTheme);
+        root.setTitle("Select a Theme");
     }
 
     /**
