@@ -41,7 +41,7 @@ public class StoreAttendanceCommandTest {
     @Test
     public void execute_fileExists_fileOverwritten() {
         // Create file if it does not exist
-        String filename = "test_existing_file";
+        String filename = "test_sample_existing_storage_file";
         Path filepath = Path.of("data", filename + ".json");
         boolean isExistingFile = Files.exists(filepath);
         try {
@@ -56,7 +56,7 @@ public class StoreAttendanceCommandTest {
         // Run command in the condition where file already exists
         Model model = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
-        StoreAttendanceCommand storeCommand = new StoreAttendanceCommand(filename);
+        StorageCommand storeCommand = new StoreAttendanceCommand(filename);
         storeCommand.initaliseStorage(storage);
         String successMessage = StoreAttendanceCommand.MESSAGE_SAVE_SUCCESS_OVERWRITE;
         CommandResult expectedCommandResult = new CommandResult(String.format(successMessage, filename));
@@ -66,7 +66,7 @@ public class StoreAttendanceCommandTest {
     @Test
     public void execute_fileDoesNotExist_newFileCreated() {
         // Remove file if it exists
-        String filename = "test_non_existing_file";
+        String filename = "test_sample_non_existing_storage_file";
         Path filepath = Path.of("data", filename + ".json");
         boolean isExistingFile = Files.exists(filepath);
         if (isExistingFile) {
@@ -77,7 +77,7 @@ public class StoreAttendanceCommandTest {
         // Run command in the condition where file does not exist
         Model model = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
-        StoreAttendanceCommand storeCommand = new StoreAttendanceCommand(filename);
+        StorageCommand storeCommand = new StoreAttendanceCommand(filename);
         storeCommand.initaliseStorage(storage);
         String successMessage = StoreAttendanceCommand.MESSAGE_SAVE_SUCCESS_NEWFILE;
         CommandResult expectedCommandResult = new CommandResult(String.format(successMessage, filename));
