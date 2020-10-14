@@ -108,7 +108,7 @@ public class FilterCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywordsmixedOrder_success() {
+    public void execute_multipleKeywordsMixedOrder_success() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 2);
         CategoryEqualsKeywordsPredicate predicate = preparePredicate("c/REVISION HISTORY c/SDLC");
         FilterCommand command = new FilterCommand(predicate);

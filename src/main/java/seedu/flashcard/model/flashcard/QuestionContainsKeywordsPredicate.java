@@ -15,21 +15,11 @@ public class QuestionContainsKeywordsPredicate implements Predicate<Flashcard> {
         this.keywords = keywords;
     }
 
-    /**
-     * Formats the question for QuestionContainsKeywordsPredicate by adding whitespace between special characters.
-     * @param question Question to format.
-     * @return Returns a formatted question.
-     */
-    public String formatQuestionForQuestionContainsKeywordsPredicate(Question question) {
-        return question.toString().replaceAll("[^a-zA-Z0-9]", " $0 ");
-    }
-
     @Override
     public boolean test(Flashcard flashcard) {
         return keywords.stream()
                 .anyMatch(keyword ->
-                    StringUtil.containsWordIgnoreCase(
-                            formatQuestionForQuestionContainsKeywordsPredicate(flashcard.getQuestion()), keyword));
+                        flashcard.getQuestion().toString().toLowerCase().contains(keyword.toLowerCase()));
     }
 
     @Override

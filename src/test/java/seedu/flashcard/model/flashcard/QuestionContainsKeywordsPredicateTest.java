@@ -46,20 +46,25 @@ public class QuestionContainsKeywordsPredicateTest {
         // One keyword
         QuestionContainsKeywordsPredicate predicate = new
             QuestionContainsKeywordsPredicate(Collections.singletonList("oop"));
-        assertTrue(predicate.test(new FlashcardBuilder().withQuestion("What is OOP ?").build()));
+        assertTrue(predicate.test(new FlashcardBuilder().withQuestion("What is OOP?").build()));
 
         // Multiple keywords
         predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("association", "uml"));
         assertTrue(predicate.test(
-            new FlashcardBuilder().withQuestion("How to show association in UML diagrams ?").build()));
+            new FlashcardBuilder().withQuestion("How to show association in UML diagrams?").build()));
 
         // Only one matching keyword
         predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("OOP", "uml"));
-        assertTrue(predicate.test(new FlashcardBuilder().withQuestion("What is OOP ?").build()));
+        assertTrue(predicate.test(new FlashcardBuilder().withQuestion("What is OOP?").build()));
 
         // Mixed-case keywords
         predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("oOp", "iS"));
-        assertTrue(predicate.test(new FlashcardBuilder().withQuestion("What is OOP ?").build()));
+        assertTrue(predicate.test(new FlashcardBuilder().withQuestion("What is OOP?").build()));
+
+        // Question contains special characters
+        predicate = new QuestionContainsKeywordsPredicate(Collections.singletonList("oop"));
+        assertTrue(predicate.test(new FlashcardBuilder().withQuestion("What is OOP/OOP?").build()));
+        assertTrue(predicate.test(new FlashcardBuilder().withQuestion("What is OOP-OOP?").build()));
     }
 
     @Test
@@ -67,11 +72,11 @@ public class QuestionContainsKeywordsPredicateTest {
         // Zero keywords
         QuestionContainsKeywordsPredicate predicate =
             new QuestionContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new FlashcardBuilder().withQuestion("What is OOP ?").build()));
+        assertFalse(predicate.test(new FlashcardBuilder().withQuestion("What is OOP?").build()));
 
         // Non-matching keyword
         predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("UML"));
-        assertFalse(predicate.test(new FlashcardBuilder().withQuestion("What is OOP ?").build()));
+        assertFalse(predicate.test(new FlashcardBuilder().withQuestion("What is OOP?").build()));
 
         //Keywords match answer, but does not match question
         predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("programming"));
