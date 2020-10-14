@@ -2,8 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ParserUtil;
@@ -52,43 +51,17 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<OrderItem> orderItemList = model.getFilteredOrderItemList(); //Order: list of orderitems
         // Todo: This index value will be that of the chosen vendor. As of now the first menu on the list is chosen
-        List<Food> menu = model.getFilteredFoodList(0); // Menu: list of food
-        int menuSize;
+        ObservableList<Food> menu = model.getFilteredFoodList(0);
+        int index = addIndex.getZeroBased();
 
-        try {
-            menuSize = menu.size();
-        } catch (NullPointerException ex) {
-            throw new NullPointerException("Menu file has problems");
-        }
-
-        if (addIndex.getZeroBased() >= menuSize) {
-            // index provided larger than size of menu
+        if (menu.size() <= index) {
             throw new CommandException(ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
         }
 
-        if (!OrderItem.isValidQuantity(quantity)) {
-            throw new CommandException(ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_QUANTITY);
-        }
-
-        String addMessage;
-        Food toAdd = menu.get(addIndex.getZeroBased()); //get the food from the menu
-        OrderItem orderItem = new OrderItem(toAdd, quantity); //check if this orederitem is already in the order
-        if (!orderItemList.contains(orderItem)) {
-            // completely new addition to the order
-            model.addOrderItem(orderItem);
-            addMessage = String.format(MESSAGE_ADD_FIRST_SUCCESS, orderItem);
-        } else {
-            // increment the current order by the specified quantity
-            int index = orderItemList.indexOf(orderItem);
-            OrderItem original = orderItemList.get(index);
-            int newQuantity = original.getQuantity() + this.quantity;
-            original.setQuantity(newQuantity);
-            model.setOrderItem(original, original);
-            addMessage = String.format(MESSAGE_ADD_QUANTITY_SUCCESS, orderItem);
-        }
-        return new CommandResult(addMessage);
+        OrderItem orderItem = new OrderItem(menu.get(index), quantity);
+        model.addOrderItem(orderItem);
+        return new CommandResult(String.format(MESSAGE_ADD_FIRST_SUCCESS, orderItem));
     }
 
     @Override
