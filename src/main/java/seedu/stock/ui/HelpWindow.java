@@ -132,9 +132,9 @@ public class HelpWindow extends UiPart<Stage> {
         addMessage.setText(ADD_DESCRIPTION);
 
         //List Method
-        addMethod.setText(LIST);
-        addMethod.setStyle("-fx-font-size: 130%;");
-        addMessage.setText(LIST_DESCRIPTION);
+        listMethod.setText(LIST);
+        listMethod.setStyle("-fx-font-size: 130%;");
+        listMessage.setText(LIST_DESCRIPTION);
 
         //Delete Method
         deleteMethod.setText(DELETE);
