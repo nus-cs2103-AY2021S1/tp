@@ -76,7 +76,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 //TODO: return individual parser
 
             case TYPE_SUSPECT:
-                //TODO: return individual parser
+                return new AddSuspectCommandParser().parse(arguments);
 
             case TYPE_WITNESS:
                 //TODO: return individual parser
