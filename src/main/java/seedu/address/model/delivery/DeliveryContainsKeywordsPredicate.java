@@ -39,14 +39,13 @@ public class DeliveryContainsKeywordsPredicate implements Predicate<Delivery> {
                     .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(delivery.getName().fullName, keyword));
         } else if (PREFIX_ADDRESS.equals(prefix)) {
             return keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(delivery.getAddress().value, keyword))
-                    || StringUtil.containsStringIgnoreCase(delivery.getAddress().value, keywordsAsOneString);
+                    .anyMatch(keyword -> StringUtil.containsStringIgnoreCase(delivery.getAddress().value, keyword));
         } else if (PREFIX_PHONE.equals(prefix)) {
-            return StringUtil.containsStringIgnoreCase(delivery.getPhone().value, keywordsAsOneString);
+            return keywords.stream()
+                    .anyMatch(keyword -> StringUtil.containsStringIgnoreCase(delivery.getPhone().value, keyword));
         } else if (PREFIX_ORDER.equals(prefix)) {
             return keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(delivery.getOrder().value, keyword))
-                    || StringUtil.containsStringIgnoreCase(delivery.getOrder().value, keywordsAsOneString);
+                    .anyMatch(keyword -> StringUtil.containsStringIgnoreCase(delivery.getOrder().value, keyword));
         }
         return false;
     }

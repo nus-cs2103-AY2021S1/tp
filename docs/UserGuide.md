@@ -145,7 +145,7 @@ Format: `find-i PREFIX KEYWORD [MORE_KEYWORDS]`
   e.g. `chicken steak` will return `chicken steak`, `steak beef`
 
 Examples:
-* `find-i n/Chicken` returns `chicken` and `CHICKEN`
+* `find-i n/Chicken` returns `chicken` and `chicken salad` items.
 
 
 
@@ -179,15 +179,16 @@ Finds deliveries whose attributes contain any of the given keywords.
 
 Format: `find-d PREFIX KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `chicken` will match `CHICKEN`
-* The order of the keywords does not matter. e.g. `Chicken steak` will match `steak Chicken`
-* Name, Supplier and Tag can be searched
-* Only full words will be matched e.g. `chicke` will not match `chicken`
+* The search is case-insensitive. e.g `john` will match `JOHN`
+* The order of the keywords does not matter. e.g. `John Lim` will match `Lim John`
+* Name, Phone, Address, Order can be searched
+* Only full words for name will be matched e.g. `Bob` will not match `Bobby`
+* Any phone/address/order containing the search string within them will be matched. e.g. "Holland V" will match "Holland Village"
 * Items matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `chicken steak` will return `chicken steak`, `steak beef`
+  e.g. `Bernice Adam` will return `Bernice Yeo`, `Adam Tan`
 
 Examples:
-* `find-d n/Chicken` returns `chicken` and `CHICKEN`
+* `find-d n/John` returns `John Tay` and `John Lim`'s deliveries
 
 
 ### Exiting the program : `exit`
