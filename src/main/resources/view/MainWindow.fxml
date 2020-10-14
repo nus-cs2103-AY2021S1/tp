@@ -12,7 +12,7 @@
 
 <fx:root onCloseRequest="#handleExit" title="HelloFile App" type="Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
    <scene>
-      <Scene stylesheets="@HelloFileDarkTheme.css">
+      <Scene>
          <root>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="501.0">
                <children>
@@ -23,6 +23,11 @@
                           <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
                         </items>
                       </Menu>
+                        <Menu mnemonicParsing="false" text="View">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#handleTheme" text="Theme..." />
+                          </items>
+                        </Menu>
                       <Menu mnemonicParsing="false" text="Help">
                         <items>
                           <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" text="Help" />

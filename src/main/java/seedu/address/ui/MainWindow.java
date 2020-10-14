@@ -29,6 +29,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
+    private Theme currentTheme = ThemeSet.DARK_THEME;
     private Stage primaryStage;
     private Logic logic;
 
@@ -36,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private TagListPanel tagListPanel;
     private LastInputDisplay lastInputDisplay;
+    private ThemeWindow themeWindow;
 
     @FXML
     private StackPane resultDisplayPlaceHolder;
@@ -68,10 +70,16 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
+        // Set theme
+        setTheme(currentTheme);
+
         // setAccelerators();
 
         // Set instance
         instance = this;
+
+        // Theme selection window
+        themeWindow = new ThemeWindow();
     }
 
     public static MainWindow getInstance() {
@@ -80,6 +88,10 @@ public class MainWindow extends UiPart<Stage> {
 
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+
+    public Theme getCurrentTheme() {
+        return currentTheme;
     }
 
     private void setAccelerators() {
@@ -178,6 +190,18 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Opens the theme choosing window.
+     */
+    @FXML
+    public void handleTheme() {
+        if (!themeWindow.isShowing()) {
+            themeWindow.show();
+        } else {
+            themeWindow.focus();
+        }
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
@@ -204,5 +228,11 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    public void setTheme(Theme theme) {
+        currentTheme = theme;
+        primaryStage.getScene().getStylesheets().clear();
+        primaryStage.getScene().getStylesheets().add(theme.getStyleSheetPath());
     }
 }
