@@ -50,7 +50,7 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonCommonCentsStorage commonCentsStorage =
-                new JsonCommonCentsStorage(temporaryFolder.resolve("commonCents.json"));
+                new JsonCommonCentsStorage(temporaryFolder.resolve("CommonCents.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(commonCentsStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
