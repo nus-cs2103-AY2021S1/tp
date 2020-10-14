@@ -31,7 +31,7 @@ public class AddCommandTest {
         //placeholder for now
     }
 
-  @Test
+    @Test
     public void execute_typicalExpense() {
         Expense expenseStub = expenseBuilder.build();
         Model modelStub = new ModelStub();

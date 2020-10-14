@@ -77,13 +77,6 @@ public class ActiveAccountStub implements ActiveAccount {
         return null;
     }
 
-    /**
-     * Returns an unmodifiable view of the filtered entry list
-     */
-    @Override
-    public ObservableList<Entry> getFilteredEntryList() {
-        return null;
-    }
 
     @Override
     public void updateFilteredExpenseList(Predicate<Expense> predicate) {
@@ -95,8 +88,4 @@ public class ActiveAccountStub implements ActiveAccount {
 
     }
 
-    @Override
-    public void updateFilteredEntryList(Predicate<Entry> predicate) {
-
-    }
 }
