@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Task's dateTime in PlaNUS.
+ * Represents a Task's date and time in PlaNus task list.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
 public class DateTime {
@@ -48,8 +48,8 @@ public class DateTime {
     }
 
     /**
-     * Constructs an empty DateTime when user didn't provide the dateTime field.
-     * Caveat: Only called when the user didn't key in this field.
+     * Constructs an empty DateTime object if the user does not provide the dateTime field.
+     * Caveat: Only called when the user does not key in this field.
      */
     public static DateTime defaultDateTime() {
         return new DateTime();

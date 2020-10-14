@@ -4,24 +4,26 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.task.TitleContainsKeywordsPredicate;
+import seedu.address.model.task.TaskContainsKeywordsPredicate;
 
 /**
- * Finds and lists all tasks in address book whose name contains any of the argument keywords.
+ * Finds and lists all tasks in PlaNus whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks with the specified attribute"
+            + "containing the specified search phrase (case-insensitive)"
+            + "and displays them as a list with index numbers.\n"
+            + "Parameters: ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...\n"
+            + "For list of all available attribute, please refer to the user guide by typing 'help' command\n"
+            + "Example: " + COMMAND_WORD + " title:meet zijian type:todo";
 
-    private final TitleContainsKeywordsPredicate predicate;
+    private final TaskContainsKeywordsPredicate predicate;
 
-    public FindCommand(TitleContainsKeywordsPredicate predicate) {
+    public FindCommand(TaskContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

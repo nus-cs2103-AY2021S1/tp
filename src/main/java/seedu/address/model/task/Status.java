@@ -3,14 +3,14 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Task's Status in the PlaNus.
+ * Represents a Task's Status in the PlaNus task list.
  * Guarantees: immutable;
  */
 public class Status {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "the value is from the enum class State";
+            "The value is from the enum class State";
     public final State value;
 
     /**
@@ -24,14 +24,14 @@ public class Status {
     }
 
     /**
-     * Constructs a default {@code Status} that have a state of pending.
+     * Constructs a default {@code Status} that has a state of incomplete.
      */
     private Status() {
         value = State.INCOMPLETE;
     }
 
     /**
-     * Returns a default Status object which have a pending state
+     * Returns a default Status object which has a state of incomplete.
      */
     public static Status defaultStatus() {
         return new Status();

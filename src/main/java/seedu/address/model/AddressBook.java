@@ -59,7 +59,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// task-level operations
 
     /**
-     * Returns true if a task with the same identity as {@code task} exists in the address book.
+     * Returns true if a task with the same identity as {@code task} exists in the PlaNUS task list.
      */
     public boolean hasTask(Task task) {
         requireNonNull(task);
@@ -67,17 +67,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a task to the address book.
-     * The task must not already exist in the address book.
+     * Adds a task to PlaNus.
+     * The task must not already exist in the PlaNus task list.
      */
-    public void addTask(Task p) {
-        tasks.add(p);
+    public void addTask(Task task) {
+        tasks.add(task);
     }
 
     /**
      * Replaces the given task {@code target} in the list with {@code editedTask}.
-     * {@code target} must exist in the address book.
-     * The task identity of {@code editedTask} must not be the same as another existing task in the address book.
+     * {@code target} must exist in the PlaNus task list.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the task list.
      */
     public void setTask(Task target, Task editedTask) {
         requireNonNull(editedTask);
@@ -96,7 +96,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in PlaNus.
      */
     public void removeTask(Task key) {
         tasks.remove(key);
