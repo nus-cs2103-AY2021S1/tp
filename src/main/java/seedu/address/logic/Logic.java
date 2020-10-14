@@ -26,7 +26,7 @@ public interface Logic {
     /**
      * Returns the TaskManager.
      *
-     * @see seedu.address.model.Model#getTaskMnager()
+     * @see seedu.address.model.Model#getTaskManager()
      */
     ReadOnlyTaskManager getTaskManager();
 
