@@ -4,7 +4,7 @@ package chopchop.logic.commands;
 
 import chopchop.model.Model;
 import chopchop.model.ingredient.Ingredient;
-import chopchop.model.ingredient.exceptions.IncompatibleIngredientsException;
+import chopchop.model.exceptions.IncompatibleIngredientsException;
 
 import chopchop.logic.commands.exceptions.CommandException;
 

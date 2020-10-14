@@ -9,7 +9,7 @@ import java.util.StringJoiner;
 import chopchop.model.Entry;
 import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.Quantity;
-import chopchop.model.ingredient.exceptions.IncompatibleIngredientsException;
+import chopchop.model.exceptions.IncompatibleIngredientsException;
 
 /**
  * Represents an Ingredient in the recipe manager.
