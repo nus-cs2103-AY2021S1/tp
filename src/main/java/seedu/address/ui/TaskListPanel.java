@@ -32,7 +32,8 @@ public class TaskListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Task} using a {@code TaskCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Task} using either a {@code AssignmentCard}
+     * or a {@code LessonCard}.
      */
     class TaskListViewCell extends ListCell<Task> {
 
