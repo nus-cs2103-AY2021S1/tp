@@ -1,10 +1,12 @@
 package chopchop.storage;
 
 import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
+
 import chopchop.commons.core.LogsCenter;
 import chopchop.commons.exceptions.DataConversionException;
 import chopchop.commons.exceptions.IllegalValueException;
@@ -14,10 +16,9 @@ import chopchop.model.ReadOnlyEntryBook;
 import chopchop.model.recipe.Recipe;
 
 public class JsonRecipeBookStorage implements RecipeBookStorage {
-
     private static final Logger logger = LogsCenter.getLogger(JsonRecipeBookStorage.class);
 
-    private Path filePath;
+    private final Path filePath;
 
     public JsonRecipeBookStorage(Path filePath) {
         this.filePath = filePath;
@@ -28,7 +29,7 @@ public class JsonRecipeBookStorage implements RecipeBookStorage {
      */
     @Override
     public Path getRecipeBookFilePath() {
-        return filePath;
+        return this.filePath;
     }
 
     /**
@@ -36,11 +37,10 @@ public class JsonRecipeBookStorage implements RecipeBookStorage {
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException             if there was any problem when reading from the storage.
      */
     @Override
-    public Optional<ReadOnlyEntryBook<Recipe>> readRecipeBook() throws DataConversionException, IOException {
-        return readRecipeBook(filePath);
+    public Optional<ReadOnlyEntryBook<Recipe>> readRecipeBook() throws DataConversionException {
+        return this.readRecipeBook(this.filePath);
     }
 
     /**
@@ -53,14 +53,14 @@ public class JsonRecipeBookStorage implements RecipeBookStorage {
     public Optional<ReadOnlyEntryBook<Recipe>> readRecipeBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableRecipeBook> jsonIndBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableRecipeBook> jsonRecipeBook = JsonUtil.readJsonFile(
             filePath, JsonSerializableRecipeBook.class);
-        if (!jsonIndBook.isPresent()) {
+        if (jsonRecipeBook.isEmpty()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonIndBook.get().toModelType());
+            return Optional.of(jsonRecipeBook.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -75,7 +75,7 @@ public class JsonRecipeBookStorage implements RecipeBookStorage {
      */
     @Override
     public void saveRecipeBook(ReadOnlyEntryBook<Recipe> recipeBook) throws IOException {
-        saveRecipeBook(recipeBook, filePath);
+        this.saveRecipeBook(recipeBook, this.filePath);
     }
 
     /**

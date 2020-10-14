@@ -105,11 +105,6 @@ public class MainApp extends Application {
                     + " IngredientBook");
             initialRecipeData = new EntryBook<>();
             initialIngredientData = new EntryBook<>();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty RecipeBook and"
-                    + "IngredientBook");
-            initialRecipeData = new EntryBook<>();
-            initialIngredientData = new EntryBook<>();
         }
 
         return new ModelManager(initialRecipeData, initialIngredientData, userPrefs);
@@ -173,9 +168,6 @@ public class MainApp extends Application {
         } catch (DataConversionException e) {
             logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
                     + "Using default user prefs");
-            initializedPrefs = new UserPrefs();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initializedPrefs = new UserPrefs();
         }
 

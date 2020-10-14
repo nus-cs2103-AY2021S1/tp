@@ -18,14 +18,13 @@ public interface RecipeBookStorage {
      * Returns RecipeBook data as a {@link ReadOnlyEntryBook}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyEntryBook<Recipe>> readRecipeBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyEntryBook<Recipe>> readRecipeBook() throws DataConversionException;
 
     /**
      * @see #getRecipeBookFilePath()
      */
-    Optional<ReadOnlyEntryBook<Recipe>> readRecipeBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyEntryBook<Recipe>> readRecipeBook(Path filePath) throws DataConversionException;
 
     /**
      * Saves the given {@link ReadOnlyEntryBook} to the storage.
@@ -38,5 +37,4 @@ public interface RecipeBookStorage {
      * @see #saveRecipeBook(ReadOnlyEntryBook)
      */
     void saveRecipeBook(ReadOnlyEntryBook<Recipe> recipeBook, Path filePath) throws IOException;
-
 }

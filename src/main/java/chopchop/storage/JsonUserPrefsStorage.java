@@ -13,7 +13,6 @@ import chopchop.model.UserPrefs;
  * A class to access UserPrefs stored in the hard disk as a json file
  */
 public class JsonUserPrefsStorage implements UserPrefsStorage {
-
     private final Path filePath;
 
     public JsonUserPrefsStorage(Path filePath) {
@@ -22,12 +21,12 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
 
     @Override
     public Path getUserPrefsFilePath() {
-        return filePath;
+        return this.filePath;
     }
 
     @Override
     public Optional<UserPrefs> readUserPrefs() throws DataConversionException {
-        return readUserPrefs(filePath);
+        return this.readUserPrefs(this.filePath);
     }
 
     /**
@@ -41,7 +40,6 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
 
     @Override
     public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
-        JsonUtil.saveJsonFile(userPrefs, filePath);
+        JsonUtil.saveJsonFile(userPrefs, this.filePath);
     }
-
 }

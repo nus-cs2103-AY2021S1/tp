@@ -9,7 +9,6 @@ import chopchop.model.ReadOnlyEntryBook;
 import chopchop.model.ingredient.Ingredient;
 
 public interface IngredientBookStorage {
-
     /**
      * Returns the file path of the data file.
      */
@@ -19,15 +18,13 @@ public interface IngredientBookStorage {
      * Returns IngredientBook data as a {@link ReadOnlyEntryBook}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyEntryBook<Ingredient>> readIngredientBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyEntryBook<Ingredient>> readIngredientBook() throws DataConversionException;
 
     /**
      * @see #getIngredientBookFilePath()
      */
-    Optional<ReadOnlyEntryBook<Ingredient>> readIngredientBook(Path filePath)
-            throws DataConversionException, IOException;
+    Optional<ReadOnlyEntryBook<Ingredient>> readIngredientBook(Path filePath) throws DataConversionException;
 
     /**
      * Saves the given {@link ReadOnlyEntryBook} to the storage.
@@ -40,5 +37,4 @@ public interface IngredientBookStorage {
      * @see #saveIngredientBook(ReadOnlyEntryBook)
      */
     void saveIngredientBook(ReadOnlyEntryBook<Ingredient> ingredientBook, Path filePath) throws IOException;
-
 }
