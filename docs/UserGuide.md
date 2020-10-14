@@ -118,7 +118,7 @@ Available attributes in v1.2 include:
 * `title:` find all tasks with the search phrase in the given title
 * `desc:` find all tasks with the search phrase in the given description
 * `type:` find all tasks of the given type
-* `date:` find all tasks with the given date or given date and time
+* `date:` find all tasks with the given date and/or time
 
 Examples:
 * `find title:play games` will list all tasks with title that includes the phrase `play games`
