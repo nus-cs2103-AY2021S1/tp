@@ -1,8 +1,6 @@
 package seedu.resireg.logic.commands;
 
 import static seedu.resireg.logic.commands.CommandTestUtil.assertToggleCommandSuccess;
-import static seedu.resireg.logic.commands.CommandTestUtil.showRoomAtIndex;
-import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_ROOM;
 import static seedu.resireg.testutil.TypicalRooms.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -14,8 +12,9 @@ import seedu.resireg.model.UserPrefs;
 
 public class ListRoomCommandTest {
 
-    private static final boolean SHOULD_DISPLAY = true;
-    private static final boolean SHOULD_NOT_DISPLAY = false;
+    private static final ListRoomFilter DISPLAY_ALL = ListRoomFilter.ALL;
+    private static final ListRoomFilter DISPLAY_VACANT = ListRoomFilter.VACANT;
+    private static final ListRoomFilter DISPLAY_ALLOCATED = ListRoomFilter.ALLOCATED;
 
     private Model model;
     private Model expectedModel;
@@ -29,16 +28,26 @@ public class ListRoomCommandTest {
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
         assertToggleCommandSuccess(
-                new ListRoomCommand(SHOULD_NOT_DISPLAY),
+                new ListRoomCommand(DISPLAY_ALL),
                 model, ListRoomCommand.MESSAGE_SUCCESS, expectedModel, TabView.ROOMS);
     }
 
     @Test
-    void execute_listIsFiltered_showsEverything() {
-        showRoomAtIndex(model, INDEX_FIRST_ROOM);
+    void execute_listFilterIsVacant_showsOnlyVacantRooms() {
+        expectedModel.updateFilteredRoomList(Model.PREDICATE_SHOW_VACANT_ROOMS);
         assertToggleCommandSuccess(
-                new ListRoomCommand(SHOULD_DISPLAY),
+                new ListRoomCommand(DISPLAY_VACANT),
                 model,
                 ListRoomCommand.MESSAGE_VACANT_SUCCESS, expectedModel, TabView.ROOMS);
+    }
+
+    @Test
+    void execute_listFilterIsAllocated_showsOnlyAllocatedRooms() {
+        expectedModel.updateFilteredRoomList(Model.PREDICATE_SHOW_ALLOCATED_ROOMS);
+        var cmd = new ListRoomCommand(DISPLAY_ALLOCATED);
+        assertToggleCommandSuccess(
+                cmd,
+                model,
+                ListRoomCommand.MESSAGE_ALLOCATED_SUCCESS, expectedModel, TabView.ROOMS);
     }
 }

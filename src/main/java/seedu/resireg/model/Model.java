@@ -19,6 +19,16 @@ public interface Model {
     Predicate<Room> PREDICATE_SHOW_ALL_ROOMS = unused -> true;
 
     /**
+     * {@Code Predicate} that evaluate to true only if the room is vacant, meaning no student is occupying it.
+     */
+    Predicate<Room> PREDICATE_SHOW_VACANT_ROOMS = room -> !room.hasStudent();
+
+    /**
+     * {@Code Predicate} that evaluate to true only if the room is occupied, meaning there is a student occupying it.
+     */
+    Predicate<Room> PREDICATE_SHOW_ALLOCATED_ROOMS = Room::hasStudent;
+
+    /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
