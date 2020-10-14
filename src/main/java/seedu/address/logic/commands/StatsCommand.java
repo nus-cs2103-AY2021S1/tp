@@ -6,9 +6,9 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.flashcard.Flashcard;
-import seedu.address.flashcard.Question;
-import seedu.address.flashcard.Statistics;
+import seedu.address.model.flashcard.Flashcard;
+import seedu.address.model.flashcard.Question;
+import seedu.address.model.flashcard.Statistics;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 

@@ -18,9 +18,9 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.flashcard.Answer;
-import seedu.address.flashcard.Flashcard;
-import seedu.address.flashcard.MultipleChoiceQuestion;
+import seedu.address.model.flashcard.Answer;
+import seedu.address.model.flashcard.Flashcard;
+import seedu.address.model.flashcard.MultipleChoiceQuestion;
 import seedu.address.logic.commands.AddMultipleChoiceQuestionCommand;
 import seedu.address.testutil.FlashcardBuilder;
 

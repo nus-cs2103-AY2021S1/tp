@@ -7,7 +7,7 @@ import static seedu.address.testutil.TypicalFlashcards.getTypicalQuickCache;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.flashcard.Flashcard;
+import seedu.address.model.flashcard.Flashcard;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;

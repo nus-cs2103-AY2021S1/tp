@@ -17,15 +17,15 @@ import seedu.address.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private final AddressBookStorage addressBookStorage;
+    private final QuickCacheStorage quickCacheStorage;
     private final UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code QuickCacheStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(QuickCacheStorage quickCacheStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.quickCacheStorage = quickCacheStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -50,30 +50,30 @@ public class StorageManager implements Storage {
     // ================ QuickCache methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getQuickCacheFilePath() {
+        return quickCacheStorage.getQuickCacheFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyQuickCache> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyQuickCache> readQuickCache() throws DataConversionException, IOException {
+        return readQuickCache(quickCacheStorage.getQuickCacheFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyQuickCache> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyQuickCache> readQuickCache(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return quickCacheStorage.readQuickCache(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyQuickCache addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveQuickCache(ReadOnlyQuickCache quickCache) throws IOException {
+        saveQuickCache(quickCache, quickCacheStorage.getQuickCacheFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyQuickCache addressBook, Path filePath) throws IOException {
+    public void saveQuickCache(ReadOnlyQuickCache quickCache, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        quickCacheStorage.saveQuickCache(quickCache, filePath);
     }
 
 }

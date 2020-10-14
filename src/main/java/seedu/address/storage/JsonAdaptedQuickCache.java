@@ -11,19 +11,19 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.flashcard.Answer;
-import seedu.address.flashcard.Choice;
-import seedu.address.flashcard.Flashcard;
-import seedu.address.flashcard.MultipleChoiceQuestion;
-import seedu.address.flashcard.OpenEndedQuestion;
-import seedu.address.flashcard.Question;
-import seedu.address.flashcard.Statistics;
-import seedu.address.flashcard.Tag;
+import seedu.address.model.flashcard.Answer;
+import seedu.address.model.flashcard.Choice;
+import seedu.address.model.flashcard.Flashcard;
+import seedu.address.model.flashcard.MultipleChoiceQuestion;
+import seedu.address.model.flashcard.OpenEndedQuestion;
+import seedu.address.model.flashcard.Question;
+import seedu.address.model.flashcard.Statistics;
+import seedu.address.model.flashcard.Tag;
 
 /**
  * Jackson-friendly version of {@link Flashcard}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedQuickCache {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Flashcard's %s field is missing!";
     public static final String INVALID_TYPE = "Invalid flashcard type!";
@@ -39,12 +39,12 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("type") String type,
-                             @JsonProperty("question") String question,
-                             @JsonProperty("choices") List<String> choices,
-                             @JsonProperty("answer") String answer,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("statistics") Statistics statistics) {
+    public JsonAdaptedQuickCache(@JsonProperty("type") String type,
+                                 @JsonProperty("question") String question,
+                                 @JsonProperty("choices") List<String> choices,
+                                 @JsonProperty("answer") String answer,
+                                 @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                                 @JsonProperty("statistics") Statistics statistics) {
         this.type = type;
         this.question = question;
         this.choices = choices;
@@ -58,7 +58,7 @@ class JsonAdaptedPerson {
     /**
      * Converts a given {@code Flashcard} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Flashcard source) {
+    public JsonAdaptedQuickCache(Flashcard source) {
         if (source.getQuestion() instanceof MultipleChoiceQuestion) {
             this.type = MultipleChoiceQuestion.TYPE;
         } else if (source.getQuestion() instanceof OpenEndedQuestion) {

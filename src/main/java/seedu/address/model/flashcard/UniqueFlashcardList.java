@@ -1,4 +1,4 @@
-package seedu.address.flashcard;
+package seedu.address.model.flashcard;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.flashcard.exceptions.DuplicateFlashcardException;
-import seedu.address.flashcard.exceptions.FlashcardNotFoundException;
+import seedu.address.model.flashcard.exceptions.DuplicateFlashcardException;
+import seedu.address.model.flashcard.exceptions.FlashcardNotFoundException;
 
 
 /**

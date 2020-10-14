@@ -12,8 +12,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.flashcard.Answer;
-import seedu.address.flashcard.OpenEndedQuestion;
+import seedu.address.model.flashcard.Answer;
+import seedu.address.model.flashcard.OpenEndedQuestion;
 import seedu.address.logic.commands.AddOpenEndedQuestionCommand;
 
 public class AddOpenEndedQuestionCommandParserTest {

@@ -13,7 +13,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SEVENTH_FLASHCARD;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.flashcard.Flashcard;
+import seedu.address.model.flashcard.Flashcard;
 import seedu.address.logic.commands.EditCommand.EditFlashcardDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;

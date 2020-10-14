@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.flashcard.Flashcard;
+import seedu.address.model.flashcard.Flashcard;
 
 /**
  * Tests that a {@code Flashcards}'s {@code Question} matches any of the keywords given.

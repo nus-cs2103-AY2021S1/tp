@@ -11,12 +11,12 @@ import seedu.address.model.ReadOnlyQuickCache;
 /**
  * Represents a storage for {@link QuickCache}.
  */
-public interface AddressBookStorage {
+public interface QuickCacheStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getQuickCacheFilePath();
 
     /**
      * Returns QuickCache data as a {@link ReadOnlyQuickCache}.
@@ -25,24 +25,24 @@ public interface AddressBookStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyQuickCache> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyQuickCache> readQuickCache() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getQuickCacheFilePath()
      */
-    Optional<ReadOnlyQuickCache> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyQuickCache> readQuickCache(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyQuickCache} to the storage.
      *
-     * @param addressBook cannot be null.
+     * @param quickCache cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyQuickCache addressBook) throws IOException;
+    void saveQuickCache(ReadOnlyQuickCache quickCache) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyQuickCache)
+     * @see #saveQuickCache(ReadOnlyQuickCache)
      */
-    void saveAddressBook(ReadOnlyQuickCache addressBook, Path filePath) throws IOException;
+    void saveQuickCache(ReadOnlyQuickCache quickCache, Path filePath) throws IOException;
 
 }

@@ -11,7 +11,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.flashcard.Statistics;
+import seedu.address.model.flashcard.Statistics;
 import seedu.address.logic.commands.Feedback;
 
 public class BarChartDisplay extends UiPart<Region> {

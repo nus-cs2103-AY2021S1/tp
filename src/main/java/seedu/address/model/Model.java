@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.flashcard.Flashcard;
+import seedu.address.model.flashcard.Flashcard;
 
 /**
  * The API of the Model component.

@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import java.util.Objects;
 import java.util.Optional;
 
-import seedu.address.flashcard.Question;
-import seedu.address.flashcard.Statistics;
+import seedu.address.model.flashcard.Question;
+import seedu.address.model.flashcard.Statistics;
 
 public class Feedback {
 

@@ -18,36 +18,36 @@ import seedu.address.model.ReadOnlyQuickCache;
  * A class to access QuickCache data stored as a json file on the hard disk.
  */
 
-public class JsonAddressBookStorage implements AddressBookStorage {
+public class JsonQuickCacheStorage implements QuickCacheStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonQuickCacheStorage.class);
 
     private final Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonQuickCacheStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getQuickCacheFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyQuickCache> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyQuickCache> readQuickCache() throws DataConversionException {
+        return readQuickCache(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readQuickCache()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyQuickCache> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyQuickCache> readQuickCache(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
+        Optional<JsonSerializableQuickCache> jsonAddressBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializableQuickCache.class);
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
@@ -61,21 +61,21 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyQuickCache addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveQuickCache(ReadOnlyQuickCache quickCache) throws IOException {
+        saveQuickCache(quickCache, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyQuickCache)}.
+     * Similar to {@link #saveQuickCache(ReadOnlyQuickCache)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyQuickCache addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveQuickCache(ReadOnlyQuickCache quickCache, Path filePath) throws IOException {
+        requireNonNull(quickCache);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableQuickCache(quickCache), filePath);
     }
 
 }

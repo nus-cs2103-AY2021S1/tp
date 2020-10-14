@@ -1,4 +1,4 @@
-package seedu.address.flashcard;
+package seedu.address.model.flashcard;
 
 /**
  * A class to store information of a flashcard's statistics.

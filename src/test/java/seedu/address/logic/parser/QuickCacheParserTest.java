@@ -9,7 +9,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.flashcard.Flashcard;
+import seedu.address.model.flashcard.Flashcard;
 import seedu.address.logic.commands.AddOpenEndedQuestionCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;

@@ -10,12 +10,12 @@ import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.flashcard.Answer;
-import seedu.address.flashcard.Flashcard;
-import seedu.address.flashcard.MultipleChoiceQuestion;
-import seedu.address.flashcard.OpenEndedQuestion;
-import seedu.address.flashcard.Option;
-import seedu.address.flashcard.Question;
+import seedu.address.model.flashcard.Answer;
+import seedu.address.model.flashcard.Flashcard;
+import seedu.address.model.flashcard.MultipleChoiceQuestion;
+import seedu.address.model.flashcard.OpenEndedQuestion;
+import seedu.address.model.flashcard.Option;
+import seedu.address.model.flashcard.Question;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 

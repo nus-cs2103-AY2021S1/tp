@@ -11,9 +11,9 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.flashcard.Answer;
-import seedu.address.flashcard.OpenEndedQuestion;
-import seedu.address.flashcard.Tag;
+import seedu.address.model.flashcard.Answer;
+import seedu.address.model.flashcard.OpenEndedQuestion;
+import seedu.address.model.flashcard.Tag;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 

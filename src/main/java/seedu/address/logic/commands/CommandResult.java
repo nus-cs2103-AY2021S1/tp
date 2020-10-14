@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
-import seedu.address.flashcard.Question;
-import seedu.address.flashcard.Statistics;
+import seedu.address.model.flashcard.Question;
+import seedu.address.model.flashcard.Statistics;
 
 /**
  * Represents the result of a command execution.

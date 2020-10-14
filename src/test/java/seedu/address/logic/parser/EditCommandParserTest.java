@@ -21,8 +21,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.flashcard.Answer;
-import seedu.address.flashcard.OpenEndedQuestion;
+import seedu.address.model.flashcard.Answer;
+import seedu.address.model.flashcard.OpenEndedQuestion;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.testutil.EditFlashcardDescriptorBuilder;
 

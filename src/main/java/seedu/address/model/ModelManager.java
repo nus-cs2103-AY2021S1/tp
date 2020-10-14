@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.flashcard.Flashcard;
+import seedu.address.model.flashcard.Flashcard;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -69,13 +69,13 @@ public class ModelManager implements Model {
 
     @Override
     public Path getQuickCacheFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getQuickCacheFilePath();
     }
 
     @Override
     public void setQuickCacheFilePath(Path quickCacheFilePath) {
         requireNonNull(quickCacheFilePath);
-        userPrefs.setAddressBookFilePath(quickCacheFilePath);
+        userPrefs.setQuickCacheFilePath(quickCacheFilePath);
     }
 
     //=========== QuickCache ================================================================================

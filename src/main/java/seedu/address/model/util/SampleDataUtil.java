@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.flashcard.Answer;
-import seedu.address.flashcard.Choice;
-import seedu.address.flashcard.Flashcard;
-import seedu.address.flashcard.MultipleChoiceQuestion;
-import seedu.address.flashcard.Tag;
+import seedu.address.model.flashcard.Answer;
+import seedu.address.model.flashcard.Choice;
+import seedu.address.model.flashcard.Flashcard;
+import seedu.address.model.flashcard.MultipleChoiceQuestion;
+import seedu.address.model.flashcard.Tag;
 import seedu.address.model.QuickCache;
 import seedu.address.model.ReadOnlyQuickCache;
 

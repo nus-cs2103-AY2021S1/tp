@@ -1,4 +1,4 @@
-package seedu.address.flashcard;
+package seedu.address.model.flashcard;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;

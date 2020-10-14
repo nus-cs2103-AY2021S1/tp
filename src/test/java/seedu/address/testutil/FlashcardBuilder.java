@@ -6,14 +6,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.flashcard.Answer;
-import seedu.address.flashcard.Choice;
-import seedu.address.flashcard.Flashcard;
-import seedu.address.flashcard.MultipleChoiceQuestion;
-import seedu.address.flashcard.OpenEndedQuestion;
-import seedu.address.flashcard.Question;
-import seedu.address.flashcard.Statistics;
-import seedu.address.flashcard.Tag;
+import seedu.address.model.flashcard.Answer;
+import seedu.address.model.flashcard.Choice;
+import seedu.address.model.flashcard.Flashcard;
+import seedu.address.model.flashcard.MultipleChoiceQuestion;
+import seedu.address.model.flashcard.OpenEndedQuestion;
+import seedu.address.model.flashcard.Question;
+import seedu.address.model.flashcard.Statistics;
+import seedu.address.model.flashcard.Tag;
 
 
 public class FlashcardBuilder {

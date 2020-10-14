@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CHOICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import seedu.address.flashcard.Flashcard;
+import seedu.address.model.flashcard.Flashcard;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 

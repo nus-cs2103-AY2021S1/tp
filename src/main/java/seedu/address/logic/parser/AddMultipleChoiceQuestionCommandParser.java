@@ -9,11 +9,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.flashcard.Answer;
-import seedu.address.flashcard.Choice;
-import seedu.address.flashcard.Flashcard;
-import seedu.address.flashcard.Question;
-import seedu.address.flashcard.Tag;
+import seedu.address.model.flashcard.Answer;
+import seedu.address.model.flashcard.Choice;
+import seedu.address.model.flashcard.Flashcard;
+import seedu.address.model.flashcard.Question;
+import seedu.address.model.flashcard.Tag;
 import seedu.address.logic.commands.AddMultipleChoiceQuestionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 

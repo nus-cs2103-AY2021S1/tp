@@ -9,46 +9,46 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.flashcard.Flashcard;
+import seedu.address.model.flashcard.Flashcard;
 import seedu.address.model.QuickCache;
 import seedu.address.model.ReadOnlyQuickCache;
 
 /**
  * An Immutable QuickCache that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "quickCache")
+class JsonSerializableQuickCache {
 
     public static final String MESSAGE_DUPLICATE_FLASHCARD = "Flashcards list contains duplicate flashcard(s).";
 
-    private final List<JsonAdaptedPerson> flashcards = new ArrayList<>();
+    private final List<JsonAdaptedQuickCache> flashcards = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given flashcards.
+     * Constructs a {@code JsonSerializableQuickCache} with the given flashcards.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("flashcards") List<JsonAdaptedPerson> flashcards) {
+    public JsonSerializableQuickCache(@JsonProperty("flashcards") List<JsonAdaptedQuickCache> flashcards) {
         this.flashcards.addAll(flashcards);
     }
 
     /**
      * Converts a given {@code ReadOnlyQuickCache} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableQuickCache}.
      */
-    public JsonSerializableAddressBook(ReadOnlyQuickCache source) {
-        flashcards.addAll(source.getFlashcardList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+    public JsonSerializableQuickCache(ReadOnlyQuickCache source) {
+        flashcards.addAll(source.getFlashcardList().stream().map(JsonAdaptedQuickCache::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code QuickCache} object.
+     * Converts this quick cache into the model's {@code QuickCache} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public QuickCache toModelType() throws IllegalValueException {
         QuickCache quickCache = new QuickCache();
-        for (JsonAdaptedPerson jsonAdaptedPerson : flashcards) {
-            Flashcard flashcard = jsonAdaptedPerson.toModelType();
+        for (JsonAdaptedQuickCache jsonAdaptedQuickCache : flashcards) {
+            Flashcard flashcard = jsonAdaptedQuickCache.toModelType();
             if (quickCache.hasFlashcard(flashcard)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_FLASHCARD);
             }

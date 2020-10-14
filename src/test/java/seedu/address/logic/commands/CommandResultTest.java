@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.flashcard.OpenEndedQuestion;
-import seedu.address.flashcard.Question;
+import seedu.address.model.flashcard.OpenEndedQuestion;
+import seedu.address.model.flashcard.Question;
 
 public class CommandResultTest {
 

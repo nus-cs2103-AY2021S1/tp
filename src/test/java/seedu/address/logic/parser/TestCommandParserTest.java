@@ -16,8 +16,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_OPENENDED_FLASHC
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.flashcard.Answer;
-import seedu.address.flashcard.Option;
+import seedu.address.model.flashcard.Answer;
+import seedu.address.model.flashcard.Option;
 import seedu.address.logic.commands.TestCommand;
 
 class TestCommandParserTest {
