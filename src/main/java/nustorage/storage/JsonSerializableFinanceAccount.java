@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import nustorage.commons.exceptions.IllegalValueException;
 import nustorage.model.FinanceAccount;
+import nustorage.model.ReadOnlyFinanceAccount;
+import nustorage.model.ReadOnlyInventory;
 import nustorage.model.record.FinanceRecord;
 
 
@@ -37,9 +39,10 @@ class JsonSerializableFinanceAccount {
 
 
     @JsonCreator
-    public JsonSerializableFinanceAccount(FinanceAccount source) {
+    public JsonSerializableFinanceAccount(ReadOnlyFinanceAccount source) {
         financeRecords.addAll(
                 source.asUnmodifiableObservableList()
+                // source.getFinanceList()
                         .stream()
                         .map(JsonAdaptedFinanceRecord::new)
                         .collect(Collectors.toList())
@@ -53,8 +56,8 @@ class JsonSerializableFinanceAccount {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public FinanceAccount toModelType() throws IllegalValueException {
-        FinanceAccount finAccount = new FinanceAccount();
+    public ReadOnlyFinanceAccount toModelType() throws IllegalValueException {
+        ReadOnlyFinanceAccount finAccount = new FinanceAccount();
         for (JsonAdaptedFinanceRecord jsonFinRecord : this.financeRecords) {
             FinanceRecord finRecord = jsonFinRecord.toModelType();
             if (finAccount.hasRecord(finRecord)) {
