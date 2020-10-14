@@ -4,6 +4,7 @@ import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.stock.logic.commands.CommandWords.ADD_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.DELETE_COMMAND_WORD;
+import static seedu.stock.logic.commands.CommandWords.FIND_COMMAND_WORD;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
@@ -19,6 +20,7 @@ import seedu.stock.logic.commands.AddCommand;
 import seedu.stock.logic.commands.CommandWords;
 import seedu.stock.logic.commands.DeleteCommand;
 import seedu.stock.logic.commands.ExitCommand;
+import seedu.stock.logic.commands.FindCommand;
 import seedu.stock.logic.commands.HelpCommand;
 import seedu.stock.logic.commands.ListCommand;
 import seedu.stock.logic.commands.SuggestionCommand;
@@ -79,11 +81,27 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             generateDeleteSuggestion(toBeDisplayed, argMultimap);
             break;
 
+        case FindCommand.COMMAND_WORD:
+            generateFindSuggestion(toBeDisplayed, argMultimap);
+            break;
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
 
         return new SuggestionCommand(toBeDisplayed.toString());
+    }
+
+    private void generateFindSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
+        List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_NAME, PREFIX_SOURCE,
+                PREFIX_SERIAL_NUMBER, PREFIX_LOCATION);
+        toBeDisplayed.append(FIND_COMMAND_WORD);
+        for (int i = 0; i < allowedPrefixes.size(); i++) {
+            Prefix currentPrefix = allowedPrefixes.get(i);
+            if (argMultimap.getValue(currentPrefix).isPresent()) {
+                toBeDisplayed.append(" " + currentPrefix + argMultimap.getValue(currentPrefix).get());
+            }
+        }
     }
 
     private void generateDeleteSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
