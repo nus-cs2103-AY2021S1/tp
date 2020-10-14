@@ -83,12 +83,6 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /**
-     * Removes the module with the given module code {@code targetModuleCode}.
-     * Module with the {@code targetModuleCode} must exist in the address book.
-     */
-    void deleteMod(ModuleCode targetModuleCode);
-
-    /**
      * Clear all modules from the module list.
      * At least the list has 1 module.
      */
