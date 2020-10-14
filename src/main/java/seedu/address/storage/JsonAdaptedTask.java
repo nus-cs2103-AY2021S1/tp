@@ -127,7 +127,7 @@ class JsonAdaptedTask {
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
         }
-        final Status modelStatus = new Status(State.fromString(status));
+        final Status modelStatus = new Status(State.toState(status));
 
         return new Task(modelTitle, modelDateTime, modelDescription, modelType, modelTags, modelStatus);
     }

@@ -16,7 +16,7 @@ public enum State {
     /**
      * returns a State of corresponding text.
      */
-    public static State fromString(String text) {
+    public static State toState(String text) {
         for (State s : State.values()) {
             if (s.state.equalsIgnoreCase(text)) {
                 return s;
