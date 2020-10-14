@@ -24,7 +24,6 @@ class JsonSerializableAddressBook {
 
     private final List<JsonAdaptedAssignment> assignments = new ArrayList<>();
     private final List<JsonAdaptedLesson> lessons = new ArrayList<>();
-    // private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given assignments.
@@ -35,7 +34,6 @@ class JsonSerializableAddressBook {
             @JsonProperty("lessons") List<JsonAdaptedLesson> lessons) {
         this.assignments.addAll(assignments);
         this.lessons.addAll(lessons);
-        // his.tasks.addAll(tasks);
     }
 
     /**

@@ -107,14 +107,24 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addAssignment(Assignment a) {
         assignments.add(a);
+        updateTasks();
     }
 
     /**
      * Adds a task to the address book.
      * The task must not already exist in the address book.
      */
-    public void addTask(Task t) {
-        tasks.add(t);
+    private void updateTasks() {
+        tasks.getInternalList().clear();
+        tasks.getInternalList().addAll(assignments.getInternalList());
+        tasks.getInternalList().addAll(lessons.getInternalList());
+        tasks.getInternalList().sort((firstTask, secondTask) -> {
+            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
+                    .withResolverStyle(ResolverStyle.STRICT);
+            LocalDateTime firstTaskDateTime = LocalDateTime.parse(firstTask.getTime().value, inputFormat);
+            LocalDateTime secondTaskDateTime = LocalDateTime.parse(secondTask.getTime().value, inputFormat);
+            return firstTaskDateTime.compareTo(secondTaskDateTime);
+        });
     }
 
     /**
@@ -127,6 +137,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedAssignment);
 
         assignments.setAssignment(target, editedAssignment);
+        updateTasks();
     }
 
     /**
@@ -135,6 +146,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeAssignment(Assignment key) {
         assignments.remove(key);
+        updateTasks();
     }
 
     //// lesson-level operations
@@ -149,6 +161,7 @@ public class AddressBook implements ReadOnlyAddressBook {
             for (Lesson lesson : lessons) {
                 addLesson(lesson);
             }
+            updateTasks();
         } catch (IOException | ParseException e) {
             // nothing happens for now.
         }
