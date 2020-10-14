@@ -19,7 +19,7 @@ public class AddCaseCommand extends AddCommand {
             + "[" + PREFIX_STATUS + "STATUS]\n"
             + "Example: " + COMMAND_WORD + " "
             + TYPE_CASE + " "
-            + PREFIX_TITLE + "John Doe "
+            + PREFIX_TITLE + "Bishan Theft "
             + PREFIX_STATUS + "closed";
 
     public static final String MESSAGE_SUCCESS = "New case added: %1$s";

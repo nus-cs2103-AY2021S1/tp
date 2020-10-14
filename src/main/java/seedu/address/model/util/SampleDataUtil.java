@@ -29,6 +29,7 @@ public class SampleDataUtil {
             List.of(new Witness(new Name("Mary")), new Witness(new Name("Janice"))));
     private static List<Document> sampleDocuments =
             List.of(new Document(new Name("name"), new Reference("test1.txt")));
+    private static List<Suspect> sampleSuspects = getSuspectList("Alex", "Bernice");
     private static List<Victim> sampleVictims = getVictimList("Tom", "John");
     private static Description sampleDescription = new Description("");
 
@@ -85,7 +86,7 @@ public class SampleDataUtil {
     /**
      * Returns a suspect list containing the list of strings given.
      */
-    public static List<Suspect> getSuspectList(String[] suspects) {
+    public static List<Suspect> getSuspectList(String... suspects) {
         return Arrays.stream(suspects)
                 .map(string -> new Suspect(new Name(string)))
                 .collect(Collectors.toList());
