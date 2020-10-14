@@ -180,11 +180,7 @@ public class AddModCommandTest {
         public void clearMod() {
             throw new AssertionError("This method should not be called.");
         }
-
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
+        
         public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
