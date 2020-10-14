@@ -5,8 +5,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
+import static seedu.address.logic.parser.ItemParserUtil.*;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.CliSyntax;
+import seedu.address.logic.parser.ItemParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.ItemPrecursor;
@@ -33,6 +36,8 @@ public class AddItemCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New item added: %1$s";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the item list";
+    public static final String MESSAGE_WARNING = "New item added: %1$s \nDo note that one or more non-compulsory fields"
+            + " have been filled with default values, please use edit to edit fields you wish to alter";
 
     private final ItemPrecursor itemPre;
 
@@ -56,7 +61,21 @@ public class AddItemCommand extends Command {
         }
 
         model.addItem(itemToAdd);
+        if (hasNonDefaultParams(itemToAdd)) {
+            return new CommandResult(String.format(MESSAGE_WARNING, itemToAdd));
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, itemToAdd));
+    }
+
+    /**
+     * Checks if the item has any default parameters set
+     * TODO expand this criteria
+     * @param itemToAdd item to check
+     * @return boolean to check
+     */
+    public static boolean hasNonDefaultParams(Item itemToAdd) {
+        return itemToAdd.getQuantity().equals(DEFAULT_QUANTITY_TYPED)
+                && (itemToAdd.getDescription().equals(ItemParserUtil.DEFAULT_DESCRIPTION));
     }
 
     @Override
