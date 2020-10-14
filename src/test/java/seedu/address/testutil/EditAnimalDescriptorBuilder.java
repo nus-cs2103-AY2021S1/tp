@@ -9,6 +9,7 @@ import seedu.address.model.animal.Animal;
 import seedu.address.model.animal.Id;
 import seedu.address.model.animal.Name;
 import seedu.address.model.animal.Species;
+import seedu.address.model.feedtime.FeedTime;
 import seedu.address.model.medicalcondition.MedicalCondition;
 
 /**
@@ -35,6 +36,7 @@ public class EditAnimalDescriptorBuilder {
         descriptor.setId(animal.getId());
         descriptor.setSpecies(animal.getSpecies());
         descriptor.setMedicalConditions(animal.getMedicalConditions());
+        descriptor.setFeedTimes(animal.getFeedTimes());
     }
 
     /**
@@ -70,6 +72,18 @@ public class EditAnimalDescriptorBuilder {
         Set<MedicalCondition> medicalConditionSet = Stream.of(medicalConditions).map(MedicalCondition::new)
                 .collect(Collectors.toSet());
         descriptor.setMedicalConditions(medicalConditionSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code feedTimes} into a {@code Set<FeedTime>}
+     * and set it to the {@code EditAnimalDescriptor}
+     * that we are building.
+     */
+    public EditAnimalDescriptorBuilder withFeedTimes(String... feedTimes) {
+        Set<FeedTime> feedTimeSet = Stream.of(feedTimes).map(FeedTime::new)
+                .collect(Collectors.toSet());
+        descriptor.setFeedTimes(feedTimeSet);
         return this;
     }
 

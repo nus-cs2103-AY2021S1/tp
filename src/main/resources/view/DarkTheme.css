@@ -345,7 +345,21 @@
 #medicalConditions .label {
     -fx-text-fill: white;
     -fx-background-color: #3e7b91;
-    -fx-padding: 1 3 1 3;
+    -fx-padding: 0 3 0 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#feedTimes {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#feedTimes .label {
+    -fx-text-fill: white;
+    -fx-background-color: #913e50;
+    -fx-padding: 0 3 0 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;

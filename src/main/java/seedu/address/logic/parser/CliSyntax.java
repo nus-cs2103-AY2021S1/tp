@@ -10,5 +10,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_ID = new Prefix("i/");
     public static final Prefix PREFIX_SPECIES = new Prefix("s/");
     public static final Prefix PREFIX_MEDICAL_CONDITION = new Prefix("m/");
+    public static final Prefix PREFIX_FEED_TIME = new Prefix("f/");
 
 }

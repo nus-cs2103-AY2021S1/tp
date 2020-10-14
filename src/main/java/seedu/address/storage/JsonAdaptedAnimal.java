@@ -14,6 +14,7 @@ import seedu.address.model.animal.Animal;
 import seedu.address.model.animal.Id;
 import seedu.address.model.animal.Name;
 import seedu.address.model.animal.Species;
+import seedu.address.model.feedtime.FeedTime;
 import seedu.address.model.medicalcondition.MedicalCondition;
 
 /**
@@ -27,6 +28,7 @@ class JsonAdaptedAnimal {
     private final String id;
     private final String species;
     private final List<JsonAdaptedMedicalCondition> medicalConditions = new ArrayList<>();
+    private final List<JsonAdaptedFeedTime> feedTimes = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedAnimal} with the given animal details.
@@ -34,12 +36,16 @@ class JsonAdaptedAnimal {
     @JsonCreator
     public JsonAdaptedAnimal(@JsonProperty("name") String name, @JsonProperty("id") String id,
             @JsonProperty("species") String species,
-            @JsonProperty("medicalConditions") List<JsonAdaptedMedicalCondition> medicalConditions) {
+            @JsonProperty("medicalConditions") List<JsonAdaptedMedicalCondition> medicalConditions,
+            @JsonProperty("feedTimes") List<JsonAdaptedFeedTime> feedTimes) {
         this.name = name;
         this.id = id;
         this.species = species;
         if (medicalConditions != null) {
             this.medicalConditions.addAll(medicalConditions);
+        }
+        if (feedTimes != null) {
+            this.feedTimes.addAll(feedTimes);
         }
     }
 
@@ -53,6 +59,9 @@ class JsonAdaptedAnimal {
         medicalConditions.addAll(source.getMedicalConditions().stream()
                 .map(JsonAdaptedMedicalCondition::new)
                 .collect(Collectors.toList()));
+        feedTimes.addAll(source.getFeedTimes().stream()
+                .map(JsonAdaptedFeedTime::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -62,8 +71,15 @@ class JsonAdaptedAnimal {
      */
     public Animal toModelType() throws IllegalValueException {
         final List<MedicalCondition> animalMedicalConditions = new ArrayList<>();
+
         for (JsonAdaptedMedicalCondition medicalCondition : medicalConditions) {
             animalMedicalConditions.add(medicalCondition.toModelType());
+        }
+
+        final List<FeedTime> animalFeedTimes = new ArrayList<>();
+
+        for (JsonAdaptedFeedTime feedTime : feedTimes) {
+            animalFeedTimes.add(feedTime.toModelType());
         }
 
         if (name == null) {
@@ -92,7 +108,9 @@ class JsonAdaptedAnimal {
 
         final Set<MedicalCondition> modelMedicalConditions = new HashSet<>(animalMedicalConditions);
 
-        return new Animal(modelName, modelId, modelSpecies, modelMedicalConditions);
+        final Set<FeedTime> modelFeedTimes = new HashSet<>(animalFeedTimes);
+
+        return new Animal(modelName, modelId, modelSpecies, modelMedicalConditions, modelFeedTimes);
     }
 
 }

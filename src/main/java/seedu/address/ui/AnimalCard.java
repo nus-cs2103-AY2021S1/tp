@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.animal.Animal;
+import seedu.address.model.feedtime.FeedTimeComparator;
 
 /**
  * An UI component that displays information of a {@code Animal}.
@@ -40,6 +41,10 @@ public class AnimalCard extends UiPart<Region> {
     private Label medicalCondition;
     @FXML
     private FlowPane medicalConditions;
+    @FXML
+    private Label feedTime;
+    @FXML
+    private FlowPane feedTimes;
 
     /**
      * Creates a {@code AnimalCode} with the given {@code Animal} and index to display.
@@ -52,10 +57,15 @@ public class AnimalCard extends UiPart<Region> {
         identity.setText("ID: " + animal.getId().value);
         species.setText("Species: " + animal.getSpecies().value);
         medicalCondition.setText("Medical details: ");
+        feedTime.setText("Feeding times: ");
         animal.getMedicalConditions().stream()
                 .sorted(Comparator.comparing(medicalCondition -> medicalCondition.medicalConditionName))
                 .forEach(medicalCondition -> medicalConditions.getChildren()
                         .add(new Label(medicalCondition.medicalConditionName)));
+        animal.getFeedTimes().stream()
+                .sorted(new FeedTimeComparator())
+                .forEach(feedTime -> feedTimes.getChildren()
+                        .add(new Label(feedTime.feedTime)));
     }
 
     @Override

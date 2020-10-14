@@ -2,11 +2,14 @@ package seedu.address.testutil;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import seedu.address.model.animal.Animal;
 import seedu.address.model.animal.Id;
 import seedu.address.model.animal.Name;
 import seedu.address.model.animal.Species;
+import seedu.address.model.feedtime.FeedTime;
+import seedu.address.model.feedtime.FeedTimeComparator;
 import seedu.address.model.medicalcondition.MedicalCondition;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -23,6 +26,7 @@ public class AnimalBuilder {
     private Id id;
     private Species species;
     private Set<MedicalCondition> medicalConditions;
+    private Set<FeedTime> feedTimes;
 
     /**
      * Creates a {@code AnimalBuilder} with the default details.
@@ -32,6 +36,7 @@ public class AnimalBuilder {
         id = new Id(DEFAULT_ID);
         species = new Species(DEFAULT_SPECIES);
         medicalConditions = new HashSet<>();
+        feedTimes = new TreeSet<>(new FeedTimeComparator());
     }
 
     /**
@@ -42,6 +47,7 @@ public class AnimalBuilder {
         id = animalToCopy.getId();
         species = animalToCopy.getSpecies();
         medicalConditions = new HashSet<>(animalToCopy.getMedicalConditions());
+        feedTimes = new TreeSet<>(animalToCopy.getFeedTimes());
     }
 
     /**
@@ -62,6 +68,15 @@ public class AnimalBuilder {
     }
 
     /**
+     * Parses the {@code feedTimes} into a {@code Set<FeedTime>} and
+     * set it to the {@code Animal} that we are building.
+     */
+    public AnimalBuilder withFeedTimes(String ... feedTimes) {
+        this.feedTimes = SampleDataUtil.getFeedTimeSet(feedTimes);
+        return this;
+    }
+
+    /**
      * Sets the {@code Species} of the {@code Animal} that we are building.
      */
     public AnimalBuilder withSpecies(String species) {
@@ -78,7 +93,7 @@ public class AnimalBuilder {
     }
 
     public Animal build() {
-        return new Animal(name, id, species, medicalConditions);
+        return new Animal(name, id, species, medicalConditions, feedTimes);
     }
 
 }
