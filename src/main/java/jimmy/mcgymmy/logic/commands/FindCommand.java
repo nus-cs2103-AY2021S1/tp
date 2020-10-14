@@ -7,7 +7,7 @@ import java.util.Arrays;
 import jimmy.mcgymmy.commons.core.Messages;
 import jimmy.mcgymmy.logic.parser.parameter.Parameter;
 import jimmy.mcgymmy.model.Model;
-import jimmy.mcgymmy.model.food.NameContainsKeywordsPredicate;
+import jimmy.mcgymmy.model.predicate.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in mcgymmy whose name contains any of the argument keywords.

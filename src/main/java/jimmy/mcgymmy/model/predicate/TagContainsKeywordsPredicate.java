@@ -1,8 +1,9 @@
-package jimmy.mcgymmy.model.food;
+package jimmy.mcgymmy.model.predicate;
 
 import java.util.List;
 import java.util.function.Predicate;
 
+import jimmy.mcgymmy.model.food.Food;
 import jimmy.mcgymmy.model.tag.Tag;
 
 /**

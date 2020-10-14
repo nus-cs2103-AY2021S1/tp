@@ -13,7 +13,7 @@ import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.model.McGymmy;
 import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.food.Food;
-import jimmy.mcgymmy.model.food.NameContainsKeywordsPredicate;
+import jimmy.mcgymmy.model.predicate.NameContainsKeywordsPredicate;
 
 /**
  * Contains helper methods for testing commands.

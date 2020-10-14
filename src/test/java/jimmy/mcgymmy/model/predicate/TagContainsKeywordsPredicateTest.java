@@ -1,4 +1,4 @@
-package jimmy.mcgymmy.model.food;
+package jimmy.mcgymmy.model.predicate;
 
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
