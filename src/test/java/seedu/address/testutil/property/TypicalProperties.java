@@ -16,7 +16,7 @@ public class TypicalProperties {
             .withAddress("101 Aljunied Drive")
             .withAskingPrice(999.99)
             .withSellerId("S1")
-            .build();;
+            .build();
     public static final Property PROPERTY_B = new PropertyBuilder()
             .withPropertyId("P2")
             .withPropertyType("Condo")
