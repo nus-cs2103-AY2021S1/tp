@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import jimmy.mcgymmy.model.tag.Tag;
 
 /**
- * Tests that a {@code Food}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Food}'s {@code Tag} matches any of the keywords given.
  */
 public class TagContainsKeywordsPredicate implements Predicate<Food> {
     private final List<String> keywords;
@@ -18,8 +18,13 @@ public class TagContainsKeywordsPredicate implements Predicate<Food> {
     @Override
     public boolean test(Food food) {
         return keywords.stream()
-                .anyMatch(keyword ->
-                        food.getTags().contains(new Tag(keyword)));
+                .anyMatch(keyword -> {
+                    try {
+                        return food.getTags().contains(new Tag(keyword));
+                    } catch (IllegalArgumentException e) {
+                        return false;
+                    }
+                });
     }
 
     @Override
