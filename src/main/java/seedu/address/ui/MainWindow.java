@@ -30,7 +30,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Theme currentTheme = ThemeSet.DARK_THEME;
+    private Theme currentTheme;
     private Stage primaryStage;
     private Logic logic;
 
@@ -70,9 +70,6 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
-        // Set theme
-        setTheme(currentTheme);
 
         // setAccelerators();
 
@@ -165,6 +162,8 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+        currentTheme = guiSettings.getUiTheme();
+        UiUtil.setTheme(primaryStage, currentTheme);
     }
 
     /**
@@ -185,7 +184,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), currentTheme);
         logic.setGuiSettings(guiSettings);
         primaryStage.hide();
     }

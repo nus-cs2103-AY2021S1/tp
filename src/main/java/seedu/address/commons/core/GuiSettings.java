@@ -20,7 +20,6 @@ public class GuiSettings implements Serializable {
     private final double windowWidth;
     private final double windowHeight;
     private final Point windowCoordinates;
-
     private final Theme uiTheme;
 
     /**
