@@ -16,6 +16,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.casecommands.DeleteCaseCommand;
 import seedu.address.logic.commands.victimcommands.DeleteVictimCommand;
+import seedu.address.logic.commands.witnesscommands.DeleteWitnessCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.state.StateManager;
 
@@ -96,7 +97,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 //TODO: return individual deleteTYPEcommands
 
             case TYPE_WITNESS:
-                //TODO: return individual deleteTYPEcommands
+                return new DeleteWitnessCommand(caseIndex, index);
 
             case TYPE_VICTIM:
                 return new DeleteVictimCommand(caseIndex, index);
