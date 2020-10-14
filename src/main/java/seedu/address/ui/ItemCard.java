@@ -74,7 +74,9 @@ public class ItemCard extends UiPart<Region> {
                 quantityStats.setText(stats);
             }
 
-            if (percentage > 20) {
+            if (percentage > 100) {
+                quantityStats.setFill(Color.LIGHTSKYBLUE);
+            } else if (percentage > 20) {
                 quantityStats.setFill(Color.GREEN);
             } else if (percentage <= 20) {
                 quantityStats.setFill(Color.RED);
