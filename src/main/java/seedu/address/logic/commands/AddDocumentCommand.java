@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REFERENCE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CASES;
 
 import java.util.List;
 
@@ -72,6 +73,7 @@ public class AddDocumentCommand extends AddCommand {
                 stateCase.getTags());
 
         model.setCase(stateCase, updatedCase);
+        model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
 
         return new CommandResult(String.format(MESSAGE_ADD_DOCUMENT_SUCCESS, this.doc));
     }
