@@ -8,7 +8,10 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -31,18 +34,31 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    // private PersonListPanel personListPanel;
+
+    // TODO: Change this to ExpenseListPanel
+    private ExpenseListPanel expenseListPanel;
+    private RevenueListPanel revenueListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
     @FXML
-    private StackPane commandBoxPlaceholder;
+    private HBox commandBoxPlaceholder;
+
+    @FXML
+    private Circle accountDisplayPicture;
 
     @FXML
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private HBox entryListGridPlaceholder;
+
+    @FXML
+    private StackPane expenseListPanelPlaceholder;
+
+    @FXML
+    private StackPane revenueListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -62,6 +78,10 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        // Image img = new Image(this.getClass().getResourceAsStream("/images/sampleDisplayPicture.png"));
+        // accountDisplayPicture.setFill(new ImagePattern(img));
+        // TODO: Dummy colour, to be changed later
+        accountDisplayPicture.setFill(Color.web("ffb997"));
 
         setAccelerators();
 
@@ -110,17 +130,24 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        fillEntryDisplay();
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getCommonCentsFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        commandBoxPlaceholder.getChildren().addAll(commandBox.getRoot());
+    }
+
+    void fillEntryDisplay() {
+        expenseListPanel = new ExpenseListPanel(logic.getFilteredExpenseList());
+        entryListGridPlaceholder.getChildren().add(expenseListPanel.getRoot());
+
+        revenueListPanel = new RevenueListPanel(logic.getFilteredRevenueList());
+        entryListGridPlaceholder.getChildren().add(revenueListPanel.getRoot());
     }
 
     /**
@@ -163,8 +190,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public ExpenseListPanel getEntryListPanel() {
+        return expenseListPanel;
+    }
+
+    public RevenueListPanel getRevenueListPanel() {
+        return revenueListPanel;
     }
 
     /**

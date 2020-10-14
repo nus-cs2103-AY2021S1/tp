@@ -318,12 +318,12 @@
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-color: #B0838D;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
-    -fx-border-insets: 0;
+    -fx-border-color: #B0838D #B0838D #ffffff #B0838D;
+    -fx-border-insets: 20 20 25 20;
     -fx-border-width: 1;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Consolas";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
 }

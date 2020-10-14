@@ -252,7 +252,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                 | I want to …​                                   | So that I can…​                                                                 |
 | -------- | ------------------------------------------ | ------------------------------------------------- | -------------------------------------------------------------------- |
 | `* * *`  | user                                       | exit the app                                      |                                                                      |
-| `* * *`  | user                                       | add an expense/profit entry                       |                                                                      |
+| `* * *`  | user                                       | add an expense/revenue entry                       |                                                                      |
 | `* * *`  | user                                       | delete an entry                                   | remove entries that I no longer need                                 |
 | `* *`    | user                                       | have multiple accounts for different businesses   | keep expense/earning entries for the respective businesses separate  |
 
@@ -278,14 +278,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Common Cents shows an error message.
 
       Use case resumes at step 1.
-      
-      
-**Use case: UC02 - Add a profit entry**
+
+
+**Use case: UC02 - Add a revenue entry**
 
 **MSS**
 
-1.  User requests to add profit entry
-2.  Common Cents adds profit entry
+1.  User requests to add revenue entry
+2.  Common Cents adds revenue entry
 
     Use case ends.
 
@@ -296,7 +296,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Common Cents shows an error message.
 
       Use case resumes at step 1.
-      
+
 **Use case: UC03 - Delete an entry**
 
 **MSS**
@@ -313,7 +313,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Common cents shows an error message.
 
       Use case resumes at step 1.
-      
+
 **Use case: UC04 - Exiting app**
 
 **MSS**

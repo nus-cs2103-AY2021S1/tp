@@ -1,14 +1,16 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.util.CliSyntax.PREFIX_AMOUNT;
+import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.util.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.util.CliSyntax.PREFIX_TAG;
 
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.account.ActiveAccount;
+import seedu.address.model.account.entry.Entry;
+import seedu.address.model.account.entry.Expense;
+import seedu.address.model.account.entry.Revenue;
 
 /**
  * Adds a person to the address book.
@@ -17,52 +19,50 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an entry (revenue or expense) to "
+            + "Common Cents\n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_CATEGORY + "CATEGORY "
+            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_AMOUNT + "AMOUNT "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_CATEGORY + "revenue "
+            + PREFIX_DESCRIPTION + "Sale of clothes "
+            + PREFIX_AMOUNT + "200 "
+            + PREFIX_TAG + "blogshop "
+            + PREFIX_TAG + "eCommerce";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New entry added! %1$s";
 
-    private final Person toAdd;
+    public final Entry entry;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Entry}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Entry entry) {
+        requireNonNull(entry);
+        this.entry = entry;
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        /*
+    public CommandResult execute(Model model, ActiveAccount activeAccount) {
         requireNonNull(model);
 
-        if (model.hasAccount(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (this.entry instanceof Expense) {
+            activeAccount.addExpense((Expense) entry);
+        } else if (this.entry instanceof Revenue) {
+            activeAccount.addRevenue((Revenue) entry);
         }
+        model.setAccount(activeAccount.getAccount());
+        return new CommandResult(String.format(MESSAGE_SUCCESS, this.entry));
 
-        model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-         */
-        String stub = "stub";
-        return new CommandResult(String.format(MESSAGE_SUCCESS, stub));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                && entry.equals(((AddCommand) other).entry));
     }
 }

@@ -8,7 +8,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyCommonCents;
-import seedu.address.model.person.Person;
+import seedu.address.model.account.Account;
+import seedu.address.model.account.entry.Expense;
+import seedu.address.model.account.entry.Revenue;
 
 /**
  * API of the Logic component
@@ -24,19 +26,25 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the CommonCents.
      *
      * @see seedu.address.model.Model#getCommonCents()
      */
     ReadOnlyCommonCents getCommonCents();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of accounts */
+    ObservableList<Account> getFilteredAccountList();
+
+    /** Returns an unmodifiable view of the filtered list of expenses */
+    ObservableList<Expense> getFilteredExpenseList();
+
+    /** Returns an unmodifiable view of the filtered list of revenues */
+    ObservableList<Revenue> getFilteredRevenueList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' common cents file path.
      */
-    Path getAddressBookFilePath();
+    Path getCommonCentsFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
