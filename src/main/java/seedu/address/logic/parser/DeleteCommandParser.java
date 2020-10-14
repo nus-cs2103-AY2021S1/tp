@@ -6,12 +6,12 @@ import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
 
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.category.Category;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.util.ArgumentMultimap;
 import seedu.address.logic.parser.util.ArgumentTokenizer;
-import seedu.address.logic.parser.util.Category;
 import seedu.address.logic.parser.util.ParserUtil;
 
 

@@ -38,8 +38,16 @@ public class RevenueBuilder {
     /**
      * Sets the {@code Description} of the {@code Revenue} that we are building.
      */
-    public RevenueBuilder withDescription(Description description) {
-        this.description = description;
+    public RevenueBuilder withDescription(String description) {
+        this.description = new Description(description);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Amount} of the {@code Revenue} that we are building.
+     */
+    public RevenueBuilder withAmount(String amount) {
+        this.amount = new Amount(amount);
         return this;
     }
 
