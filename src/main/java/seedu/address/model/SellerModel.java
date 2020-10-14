@@ -4,13 +4,14 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.seller.Seller;
 import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
 
 public interface SellerModel {
 
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Seller> PREDICATE_SHOW_ALL_SELLERS = unused -> true;
+    Predicate<? super Person> PREDICATE_SHOW_ALL_SELLERS = unused -> true;
 
     /**
     * Returns the user prefs' Seller address book file path.
@@ -61,6 +62,6 @@ public interface SellerModel {
      * Updates the filter of the filtered seller list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredSellerList(Predicate<Seller> predicate);
+    void updateFilteredSellerList(Predicate<? super Person> predicate);
 
 }

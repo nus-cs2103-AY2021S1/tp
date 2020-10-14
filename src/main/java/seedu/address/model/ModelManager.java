@@ -390,7 +390,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredBidderList(Predicate<Bidder> predicate) {
+    public void updateFilteredBidderList(Predicate<? super Person> predicate) {
         requireNonNull(predicate);
         filteredBidders.setPredicate(predicate);
     }
@@ -448,7 +448,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredSellerList(Predicate<Seller> predicate) {
+    public void updateFilteredSellerList(Predicate<? super Person> predicate) {
         requireNonNull(predicate);
         filteredSellers.setPredicate(predicate);
     }

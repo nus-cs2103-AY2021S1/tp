@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalBidder.ALICE;
-import static seedu.address.testutil.TypicalBidder.BOB;
+import static seedu.address.testutil.bidder.TypicalBidder.ALICE;
+import static seedu.address.testutil.bidder.TypicalBidder.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,7 +18,7 @@ import seedu.address.model.person.bidder.Bidder;
 import seedu.address.model.person.bidder.UniqueBidderList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.testutil.BidderBuilder;
+import seedu.address.testutil.bidder.BidderBuilder;
 
 public class UniqueBidderListTest {
 

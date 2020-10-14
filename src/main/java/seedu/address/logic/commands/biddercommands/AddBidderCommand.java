@@ -34,6 +34,7 @@ public class AddBidderCommand extends Command {
      * Creates an AddBidderCommand to add the specified {@code Bidder}
      */
     public AddBidderCommand(Bidder bidder) {
+        requireNonNull(bidder);
         this.bidder = bidder;
     }
 
@@ -41,7 +42,7 @@ public class AddBidderCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(bidder)) {
+        if (model.hasBidder(bidder)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 

@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.seller;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;

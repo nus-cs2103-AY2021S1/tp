@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.bidder;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -13,7 +13,6 @@ import java.util.List;
 
 import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.person.bidder.Bidder;
-
 
 
 /**

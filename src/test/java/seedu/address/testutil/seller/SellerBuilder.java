@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.seller;
 
 import java.util.HashSet;
 import java.util.Set;

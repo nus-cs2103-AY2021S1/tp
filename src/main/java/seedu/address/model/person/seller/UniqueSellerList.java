@@ -2,6 +2,7 @@ package seedu.address.model.person.seller;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.person.seller.Seller.DEFAULT_SELLER_ID;
 
 import java.util.Iterator;
 import java.util.List;
@@ -47,7 +48,9 @@ public class UniqueSellerList implements Iterable<Seller> {
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
         }
-        toAdd.setId(getLatestId());
+        if (toAdd.getId().equals(DEFAULT_SELLER_ID)) {
+            toAdd.setId(getLatestId().increment());
+        }
         internalList.add(toAdd);
     }
 
@@ -55,8 +58,9 @@ public class UniqueSellerList implements Iterable<Seller> {
         if (internalList.size() == 0) {
             return new Id("S", 1);
         }
-        return this.internalList.get(internalList.size() - 1).getId().increment();
+        return this.internalList.get(internalList.size() - 1).getId();
     }
+
     /**
      * Replaces the contents of this list with {@code sellers}.
      * {@code sellers} must not contain duplicate bidders.

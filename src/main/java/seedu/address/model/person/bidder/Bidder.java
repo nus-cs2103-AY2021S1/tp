@@ -14,6 +14,11 @@ import seedu.address.model.tag.Tag;
  */
 public class Bidder extends ClientPerson {
 
+    public static final Id DEFAULT_BIDDER_ID = new Id("B", 0);
+
+    public Bidder(Name name, Phone phone, Set<Tag> tags) {
+        super(name, phone, tags, DEFAULT_BIDDER_ID);
+    }
     /**
      * Constructs the bidder with the name, phone, tags, and id.
      * @param name name of the bidder.
@@ -28,6 +33,10 @@ public class Bidder extends ClientPerson {
     public Bidder setBidderTag() {
         tags.add(new Tag("bidder"));
         return new Bidder(name, phone, tags, clientId);
+    }
+
+    public Bidder setDefaultBidderId() {
+        return new Bidder(name, phone, tags , DEFAULT_BIDDER_ID);
     }
 
     /**

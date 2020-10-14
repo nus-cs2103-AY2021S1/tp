@@ -37,15 +37,6 @@ public class ClientPerson extends Person {
         this.clientId = updatedId;
     }
 
-    /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
-     */
-    @Override
-    public boolean isSamePerson(Person otherPerson) {
-        return otherPerson instanceof ClientPerson && super.isSamePerson(otherPerson);
-    }
-
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();

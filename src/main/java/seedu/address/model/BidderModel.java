@@ -5,12 +5,13 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.bidder.Bidder;
 
 public interface BidderModel {
 
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Bidder> PREDICATE_SHOW_ALL_BIDDERS = unused -> true;
+    Predicate<? super Person> PREDICATE_SHOW_ALL_BIDDERS = unused -> true;
 
     /**
      * Returns the user prefs' Bidder address book file path.
@@ -61,6 +62,6 @@ public interface BidderModel {
      * Updates the filter of the filtered bidder list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredBidderList(Predicate<Bidder> predicate);
+    void updateFilteredBidderList(Predicate<? super Person> predicate);
 
 }

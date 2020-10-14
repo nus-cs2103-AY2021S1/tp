@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.bidder;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,9 +17,7 @@ public class BidderBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_ID_PREFIX = "B";
-    public static final int DEFAULT_ID_NUMBER = 12;
-
+    public static final Id DEFAULT_BIDDER_ID = new Id("B", 0);
 
     private Name name;
     private Phone phone;
@@ -33,7 +31,7 @@ public class BidderBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         tags = new HashSet<>();
-        id = new Id(DEFAULT_ID_PREFIX, DEFAULT_ID_NUMBER);
+        id = DEFAULT_BIDDER_ID;
     }
 
     /**

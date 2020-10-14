@@ -16,7 +16,6 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.id.Id;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.seller.Seller;
@@ -24,8 +23,6 @@ import seedu.address.model.tag.Tag;
 
 public class AddSellerCommandParser implements Parser<AddSellerCommand> {
 
-    private final String sellerIdDefaultPrefix = "S";
-    private final int sellerIdDefaultNumber = 0;
     private final String sellerTag = "seller";
 
     /**
@@ -47,8 +44,7 @@ public class AddSellerCommandParser implements Parser<AddSellerCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         tagList.add(new Tag(sellerTag));
-        Id id = new Id(sellerIdDefaultPrefix, sellerIdDefaultNumber);
-        Seller seller = new Seller(name, phone, tagList, id);
+        Seller seller = new Seller(name, phone, tagList);
 
         return new AddSellerCommand(seller);
     }
