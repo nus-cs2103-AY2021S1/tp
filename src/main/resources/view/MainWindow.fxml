@@ -51,24 +51,14 @@
                     </Menu>
                 </MenuBar>
 
-                <VBox alignment="BOTTOM_CENTER"
-                      GridPane.rowSpan="1" GridPane.columnSpan="1" GridPane.rowIndex="1" GridPane.columnIndex="0">
-                    <StackPane fx:id="resultDisplayPlaceholder"
-                               VBox.vgrow="ALWAYS"
-                               styleClass="pane-with-border">
-                        <padding>
-                            <Insets top="5" right="10" bottom="5" left="10"/>
-                        </padding>
-                    </StackPane>
-
-                    <StackPane fx:id="commandBoxPlaceholder"
-                               VBox.vgrow="NEVER"
-                               styleClass="pane-with-border">
-                        <padding>
-                            <Insets top="5" right="10" bottom="5" left="10"/>
-                        </padding>
-                    </StackPane>
-                </VBox>
+                <StackPane fx:id="resultDisplayPlaceholder"
+                           VBox.vgrow="ALWAYS"
+                           styleClass="pane-with-border"
+                           GridPane.rowSpan="1" GridPane.columnSpan="1" GridPane.rowIndex="1" GridPane.columnIndex="0">
+                    <padding>
+                        <Insets top="5" right="10" bottom="5" left="10"/>
+                    </padding>
+                </StackPane>
 
                 <TabPane fx:id="tabPane"
                          tabClosingPolicy="UNAVAILABLE"
@@ -100,9 +90,18 @@
                     </Tab>
                 </TabPane>
 
+                <StackPane fx:id="commandBoxPlaceholder"
+                           VBox.vgrow="NEVER"
+                           styleClass="pane-with-border"
+                           GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="2">
+                    <padding>
+                        <Insets top="5" right="10" bottom="5" left="10"/>
+                    </padding>
+                </StackPane>
+
                 <StackPane fx:id="statusbarPlaceholder"
                            VBox.vgrow="NEVER"
-                           GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="2"/>
+                           GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="2"/>
             </GridPane>
         </Scene>
     </scene>
