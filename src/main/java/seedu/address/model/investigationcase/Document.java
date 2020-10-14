@@ -49,6 +49,6 @@ public class Document {
 
     @Override
     public String toString() {
-        return this.name + ", " + this.reference;
+        return "Name: " + this.name + ", Reference: " + this.reference;
     }
 }
