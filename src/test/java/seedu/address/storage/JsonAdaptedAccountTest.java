@@ -5,7 +5,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +17,8 @@ import seedu.address.testutil.TypicalEntries;
 public class JsonAdaptedAccountTest {
     private static final Path TEST_DATA_FOLDER = Paths.get(
         "src", "test", "data", "JsonCommonCentsAccountTest");
-    private static final Path INVALID_ACCOUNT_NAME_FILE = TEST_DATA_FOLDER.resolve("invalidAccountNameCommonCents.json");
+    private static final Path INVALID_ACCOUNT_NAME_FILE = TEST_DATA_FOLDER.resolve(
+        "invalidAccountNameCommonCents.json");
 
     @Test
     public void toModelType_validTypicalAccount_returnAccount() throws IllegalValueException {
