@@ -54,6 +54,7 @@ public class AddDescriptionCommand extends AddCommand {
         this.editCaseDescriptor = editCaseDescriptor;
     }
 
+    // FROM EDITCOMMAND -- CAN THINK OF ABSTRACTING IT IN THE FUTURE?
     /**
      * Creates and returns a {@code Case} with the details of {@code caseToEdit}
      * edited with {@code editCaseDescriptor}.
