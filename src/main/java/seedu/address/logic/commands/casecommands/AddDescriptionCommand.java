@@ -6,7 +6,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CASES;
 
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
@@ -50,9 +49,8 @@ public class AddDescriptionCommand extends AddCommand {
         requireNonNull(model);
         List<Case> lastShownList = model.getFilteredCaseList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
-        }
+        //check for valid index
+        assert(index.getZeroBased() >= lastShownList.size()) : "index should be valid";
 
         Case stateCase = lastShownList.get(index.getZeroBased());
         Description stateCaseDescription = stateCase.getDescription();

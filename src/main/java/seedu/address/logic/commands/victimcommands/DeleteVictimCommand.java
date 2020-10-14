@@ -39,10 +39,7 @@ public class DeleteVictimCommand extends DeleteCommand {
         requireNonNull(model);
         List<Case> lastShownList = model.getFilteredCaseList();
 
-        // invalid case index
-        if (caseIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
-        }
+        assert(caseIndex.getZeroBased() >= lastShownList.size()) : "index should be valid";
 
         Case stateCase = lastShownList.get(caseIndex.getZeroBased());
         List<Victim> updatedVictims = stateCase.getVictims();
