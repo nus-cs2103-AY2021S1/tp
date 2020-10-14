@@ -5,6 +5,7 @@ package seedu.address.ui;
  */
 public class Theme {
 
+    private String themeName;
     private String styleSheetPath;
     private String themePreviewPath;
 
@@ -14,7 +15,8 @@ public class Theme {
      * @param styleSheetPath the path of the style sheet
      * @param themePreviewPath the path of the preview image
      */
-    public Theme(String styleSheetPath, String themePreviewPath) {
+    public Theme(String themeName, String styleSheetPath, String themePreviewPath) {
+        this.themeName = themeName;
         this.styleSheetPath = styleSheetPath;
         this.themePreviewPath = themePreviewPath;
     }
@@ -25,5 +27,26 @@ public class Theme {
 
     public String getThemePreviewPath() {
         return themePreviewPath;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof Theme)) { //this handles null as well.
+            return false;
+        }
+
+        Theme o = (Theme) other;
+
+        return themeName.equals(o.themeName)
+                && styleSheetPath.equals(o.styleSheetPath)
+                && themePreviewPath.equals(o.themePreviewPath);
+    }
+
+    @Override
+    public String toString() {
+        return themeName;
     }
 }
