@@ -18,6 +18,7 @@ import seedu.resireg.logic.commands.FindCommand;
 import seedu.resireg.logic.commands.HelpCommand;
 import seedu.resireg.logic.commands.ListCommand;
 import seedu.resireg.logic.commands.ListRoomCommand;
+import seedu.resireg.logic.commands.ReallocateCommand;
 import seedu.resireg.logic.parser.exceptions.ParseException;
 
 /**
@@ -76,6 +77,9 @@ public class AddressBookParser {
 
         case AllocateCommand.COMMAND_WORD:
             return new AllocateCommandParser().parse(arguments);
+
+        case ReallocateCommand.COMMAND_WORD:
+            return new ReallocateCommandParser().parse(arguments);
 
         case DeallocateCommand.COMMAND_WORD:
             return new DeallocateCommandParser().parse(arguments);
