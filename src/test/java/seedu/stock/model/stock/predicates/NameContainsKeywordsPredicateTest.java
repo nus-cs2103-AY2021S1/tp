@@ -15,63 +15,140 @@ public class NameContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
-        List<String> firstPredicateKeywordList = Collections.singletonList("first");
-        List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
+        List<String> firstNamePredicateKeywordList = Collections.singletonList("first");
+        List<String> secondNamePredicateKeywordList = Arrays.asList("first", "second");
+        List<String> thirdNamePredicateKeywordList = Arrays.asList("first", "first");
 
-        NameContainsKeywordsPredicate firstPredicate = new NameContainsKeywordsPredicate(firstPredicateKeywordList);
-        NameContainsKeywordsPredicate secondPredicate = new NameContainsKeywordsPredicate(secondPredicateKeywordList);
+        NameContainsKeywordsPredicate firstNamePredicate =
+                new NameContainsKeywordsPredicate(firstNamePredicateKeywordList);
+        NameContainsKeywordsPredicate secondNamePredicate =
+                new NameContainsKeywordsPredicate(secondNamePredicateKeywordList);
+        NameContainsKeywordsPredicate thirdNamePredicate =
+                new NameContainsKeywordsPredicate(thirdNamePredicateKeywordList);
 
         // same object -> returns true
-        assertTrue(firstPredicate.equals(firstPredicate));
+        assertTrue(firstNamePredicate.equals(firstNamePredicate));
 
         // same values -> returns true
-        NameContainsKeywordsPredicate firstPredicateCopy = new NameContainsKeywordsPredicate(firstPredicateKeywordList);
-        assertTrue(firstPredicate.equals(firstPredicateCopy));
+        NameContainsKeywordsPredicate firstPredicateCopy =
+                new NameContainsKeywordsPredicate(firstNamePredicateKeywordList);
+        assertTrue(firstNamePredicate.equals(firstPredicateCopy));
+
+        NameContainsKeywordsPredicate secondPredicateCopy =
+                new NameContainsKeywordsPredicate(Arrays.asList("first", "second"));
+        assertTrue(secondNamePredicate.equals(secondPredicateCopy));
+
+        // one same value, other copy of value -> returns false
+        assertFalse(firstNamePredicate.equals(thirdNamePredicate));
 
         // different types -> returns false
-        assertFalse(firstPredicate.equals(1));
+        assertFalse(firstNamePredicate.equals(1));
 
         // null -> returns false
-        assertFalse(firstPredicate.equals(null));
+        assertFalse(firstNamePredicate.equals(null));
 
-        // different person -> returns false
-        assertFalse(firstPredicate.equals(secondPredicate));
+        // different stock -> returns false
+        assertFalse(firstNamePredicate.equals(secondNamePredicate));
     }
 
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
-        // One keyword
+        // One keyword that matches a word
         NameContainsKeywordsPredicate predicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("Banana"));
-        assertTrue(predicate.test(new StockBuilder().withName("Banana Bun").build()));
+                new NameContainsKeywordsPredicate(Collections.singletonList("Pork"));
+        assertTrue(predicate.test(new StockBuilder().withName("Pork Belly 100g").build()));
 
-        // Multiple keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Banana", "Bun"));
-        assertTrue(predicate.test(new StockBuilder().withName("Banana Bun").build()));
+        // One keyword that matches entire name exactly
+        predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Pork Belly 100g"));
+        assertTrue(predicate.test(new StockBuilder().withName("Pork Belly 100g").build()));
 
-        // Only one matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Banana", "Juice"));
-        assertFalse(predicate.test(new StockBuilder().withName("Banana Bun").build()));
+        // One keyword that is substring of a word in name
+        predicate = new NameContainsKeywordsPredicate(Collections.singletonList("100"));
+        assertTrue(predicate.test(new StockBuilder().withName("Pork Belly 100g").build()));
 
-        // Mixed-case keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("bAnAna", "buN"));
-        assertTrue(predicate.test(new StockBuilder().withName("Banana Bun").build()));
+        // Multiple keywords that match completely
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Pork", "Belly", "100g"));
+        assertTrue(predicate.test(new StockBuilder().withName("Pork Belly 100g").build()));
+
+        // Multiple matching keywords with one non-matching keyword
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Pork", "Belly", "100g", "Donut"));
+        assertFalse(predicate.test(new StockBuilder().withName("Pork Belly 100g").build()));
+
+        // Multiple keywords that match with only one word
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Belly", "ly", "bel", "belly"));
+        assertTrue(predicate.test(new StockBuilder().withName("Pork Belly 100g").build()));
+
+        // Multiple matching keywords
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("pork", "belly", "ork", "00g"));
+        assertTrue(predicate.test(new StockBuilder().withName("Pork Belly 100g").build()));
+
+        // Multiple matching keywords that match multiple words in name
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("pork Belly", "belly 100"));
+        assertTrue(predicate.test(new StockBuilder().withName("Pork Belly 100g").build()));
+
+        // Mixed-case matching keywords
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("pOrK bEllY", "bElly", "100G"));
+        assertTrue(predicate.test(new StockBuilder().withName("Pork Belly 100g").build()));
+
+        //Mixed-case with multiple matching keywords and one non-matching keyword
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("pOrK bEllYs", "bElly", "100G"));
+        assertFalse(predicate.test(new StockBuilder().withName("Pork Belly 100g").build()));
+
+        // Keywords exactly matches name but do not match serial number, source, quantity and location
+        predicate = new NameContainsKeywordsPredicate(
+                Arrays.asList("ork", "pork belly", "pork belly 100g"));
+        assertTrue(predicate.test(new StockBuilder().withName("Pork Belly 100g").withSerialNumber("Fairprice1")
+                .withSource("Fairprice").withQuantity("12345").withLocation("Section B").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new StockBuilder().withName("Banana").build()));
+        assertFalse(predicate.test(new StockBuilder().withName("Pork Belly 100g").build()));
 
-        // Non-matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Apple"));
-        assertFalse(predicate.test(new StockBuilder().withName("Banana Bun").build()));
+        // One irrelevant non-matching keyword
+        predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Apple"));
+        assertFalse(predicate.test(new StockBuilder().withName("Pork Belly 100g").build()));
 
-        // Keywords match serial number, source, quantity and location but does not match name
+        // One non-matching keyword that contains words of name
+        predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Pork 100g"));
+        assertFalse(predicate.test(new StockBuilder().withName("Pork Belly 100g").build()));
+
+        // Multiple irrelevant non-matching keywords
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Porky", "Bully", "200"));
+        assertFalse(predicate.test(new StockBuilder().withName("Pork Belly 100g").build()));
+
+        // Multiple non-matching keywords that contain words of name
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Pork Bellys", "PorkBelly", "Pork 100g"));
+        assertFalse(predicate.test(new StockBuilder().withName("Pork Belly 100g").build()));
+
+        // Multiple non-matching keywords with one keyword that exactly matches name
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Pork Bellys", "PorkBelly", "Pork Belly 100g"));
+        assertFalse(predicate.test(new StockBuilder().withName("Pork Belly 100g").build()));
+
+        // Keywords exactly match serial number, source, quantity and location but does not match name
         predicate = new NameContainsKeywordsPredicate(
-                Arrays.asList("12345", "Section B", "Fairprice", "Fairprice1"));
-        assertFalse(predicate.test(new StockBuilder().withName("Banana").withSerialNumber("Fairprice1")
+                Arrays.asList("345", "section b", "Fairprice"));
+        assertFalse(predicate.test(new StockBuilder().withName("Pork Belly 100g").withSerialNumber("Fairprice1")
                 .withSource("Fairprice").withQuantity("12345").withLocation("Section B").build()));
+
     }
+
+    @Test
+    public void test_emptyStringKeywords_returnsFalse() {
+
+        // One empty string keyword
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList(""));
+        assertFalse(predicate.test(new StockBuilder().withName("Pork Belly 100g").build()));
+
+        // Multiple empty string keywords
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("", "", "", ""));
+        assertFalse(predicate.test(new StockBuilder().withName("Pork Belly 100g").build()));
+
+        //Mixed-case with multiple matching keywords and one empty string keyword
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("pOrK bEllY", "bElly", ""));
+        assertFalse(predicate.test(new StockBuilder().withName("Pork Belly 100g").build()));
+    }
+
 }
