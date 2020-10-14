@@ -30,7 +30,7 @@ public class JsonAdaptedAnimalTest {
             .map(JsonAdaptedMedicalCondition::new)
             .collect(Collectors.toList());
     private static final List<JsonAdaptedFeedTime> VALID_FEED_TIMES =
-            BENSON.getFeedTimes().stream()
+            BUTTERCUP.getFeedTimes().stream()
             .map(JsonAdaptedFeedTime::new)
             .collect(Collectors.toList());
 
