@@ -25,10 +25,10 @@ public class AddVictimCommand extends AddCommand {
             + PREFIX_NAME + "John Doe ";
 
     public static final String MESSAGE_ADD_VICTIM_SUCCESS = "New victim added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CASE = "This victim already exists in the case";
+    public static final String MESSAGE_DUPLICATE_VICTIM = "This victim already exists in the case";
 
-    private final Victim toAdd;
     private final Index index;
+    private final Victim victim;
 
     /**
      * Creates an AddVictimCommand to add the specified {@code Case}
@@ -38,8 +38,8 @@ public class AddVictimCommand extends AddCommand {
     public AddVictimCommand(Index index, Victim victim) {
         requireNonNull(index);
         requireNonNull(victim);
-        toAdd = victim;
         this.index = index;
+        this.victim = victim;
 
     }
 
@@ -52,29 +52,30 @@ public class AddVictimCommand extends AddCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
         }
 
-        Case caseToEdit = lastShownList.get(index.getZeroBased());
-        List<Victim> updatedVictims = caseToEdit.getVictims();
+        Case stateCase = lastShownList.get(index.getZeroBased());
+        List<Victim> updatedVictims = stateCase.getVictims();
 
-        if (updatedVictims.contains(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_CASE);
+        if (updatedVictims.contains(victim)) {
+            throw new CommandException(MESSAGE_DUPLICATE_VICTIM);
         }
 
-        updatedVictims.add(toAdd);
+        updatedVictims.add(victim);
 
-        Case editedCase = new Case(caseToEdit.getTitle(), caseToEdit.getDescription(),
-                caseToEdit.getStatus(), caseToEdit.getDocuments(), caseToEdit.getSuspects(),
-                updatedVictims, caseToEdit.getWitnesses(), caseToEdit.getTags());
+        Case editedCase = new Case(stateCase.getTitle(), stateCase.getDescription(),
+                stateCase.getStatus(), stateCase.getDocuments(), stateCase.getSuspects(),
+                updatedVictims, stateCase.getWitnesses(), stateCase.getTags());
 
-        model.setCase(caseToEdit, editedCase);
+        model.setCase(stateCase, editedCase);
         model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
 
-        return new CommandResult(String.format(MESSAGE_ADD_VICTIM_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_ADD_VICTIM_SUCCESS, victim));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddVictimCommand // instanceof handles nulls
-                && toAdd.equals(((AddVictimCommand) other).toAdd));
+                && victim.equals(((AddVictimCommand) other).victim)
+                && index.equals(((AddVictimCommand) other).index));
     }
 }

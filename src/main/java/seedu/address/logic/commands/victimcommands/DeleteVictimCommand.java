@@ -44,8 +44,8 @@ public class DeleteVictimCommand extends DeleteCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
         }
 
-        Case caseToEdit = lastShownList.get(caseIndex.getZeroBased());
-        List<Victim> updatedVictims = caseToEdit.getVictims();
+        Case stateCase = lastShownList.get(caseIndex.getZeroBased());
+        List<Victim> updatedVictims = stateCase.getVictims();
 
         // invalid victim index
         if (victimIndex.getZeroBased() >= updatedVictims.size()) {
@@ -55,11 +55,11 @@ public class DeleteVictimCommand extends DeleteCommand {
         Victim victimToDelete = updatedVictims.get(victimIndex.getZeroBased());
         updatedVictims.remove(victimToDelete);
 
-        Case editedCase = new Case(caseToEdit.getTitle(), caseToEdit.getDescription(),
-                caseToEdit.getStatus(), caseToEdit.getDocuments(), caseToEdit.getSuspects(),
-                updatedVictims, caseToEdit.getWitnesses(), caseToEdit.getTags());
+        Case editedCase = new Case(stateCase.getTitle(), stateCase.getDescription(),
+                stateCase.getStatus(), stateCase.getDocuments(), stateCase.getSuspects(),
+                updatedVictims, stateCase.getWitnesses(), stateCase.getTags());
 
-        model.setCase(caseToEdit, editedCase);
+        model.setCase(stateCase, editedCase);
         model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
 
         return new CommandResult(String.format(MESSAGE_DELETE_VICTIM_SUCCESS, victimToDelete));
