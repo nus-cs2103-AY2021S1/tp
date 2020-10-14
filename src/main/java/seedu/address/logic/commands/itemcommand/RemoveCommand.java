@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.itemcommand;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
@@ -11,6 +11,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.model.Model;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Metric;
@@ -22,9 +23,9 @@ import seedu.address.model.item.Tag;
 /**
  * Removes a quantity from an existing item in the inventory book.
  */
-public class RemoveCommand extends Command {
+public class RemoveCommand extends ItemCommand {
 
-    public static final String COMMAND_WORD = "remove";
+    public static final String COMMAND_WORD = "remove-i";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes quantity from the item identified "
             + "by the index number used in the displayed item list. "
@@ -53,8 +54,11 @@ public class RemoveCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(InventoryModel inventoryModel) throws CommandException {
-        requireNonNull(inventoryModel);
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        requireInventoryModel(model);
+        InventoryModel inventoryModel = (InventoryModel) model;
+
         List<Item> lastShownList = inventoryModel.getFilteredItemList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -103,7 +107,7 @@ public class RemoveCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof ItemEditCommand)) {
             return false;
         }
 

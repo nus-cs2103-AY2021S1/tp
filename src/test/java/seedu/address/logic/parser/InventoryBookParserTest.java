@@ -13,15 +13,15 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.commands.help.HelpCommand;
+import seedu.address.logic.commands.itemcommand.ItemAddCommand;
+import seedu.address.logic.commands.itemcommand.ItemClearCommand;
+import seedu.address.logic.commands.itemcommand.ItemDeleteCommand;
+import seedu.address.logic.commands.itemcommand.ItemEditCommand;
+import seedu.address.logic.commands.itemcommand.ItemFindCommand;
+import seedu.address.logic.commands.itemcommand.ItemListCommand;
+import seedu.address.logic.commands.itemcommand.RemoveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.ItemContainsKeywordsPredicate;
@@ -36,30 +36,30 @@ public class InventoryBookParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Item item = new ItemBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(ItemUtil.getAddCommand(item));
-        assertEquals(new AddCommand(item), command);
+        ItemAddCommand command = (ItemAddCommand) parser.parseCommand(ItemUtil.getAddCommand(item));
+        assertEquals(new ItemAddCommand(item), command);
     }
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+        assertTrue(parser.parseCommand(ItemClearCommand.COMMAND_WORD) instanceof ItemClearCommand);
+        assertTrue(parser.parseCommand(ItemClearCommand.COMMAND_WORD + " 3") instanceof ItemClearCommand);
     }
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_ITEM.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_ITEM), command);
+        ItemDeleteCommand command = (ItemDeleteCommand) parser.parseCommand(
+                ItemDeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_ITEM.getOneBased());
+        assertEquals(new ItemDeleteCommand(INDEX_FIRST_ITEM), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
         Item item = new ItemBuilder().build();
-        EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder(item).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+        ItemEditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder(item).build();
+        ItemEditCommand command = (ItemEditCommand) parser.parseCommand(ItemEditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_ITEM.getOneBased() + " " + ItemUtil.getEditItemDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_ITEM, descriptor), command);
+        assertEquals(new ItemEditCommand(INDEX_FIRST_ITEM, descriptor), command);
     }
 
     @Test
@@ -71,9 +71,9 @@ public class InventoryBookParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Collections.singletonList("CHICKEN");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + "n/chicken");
-        assertEquals(new FindCommand(new ItemContainsKeywordsPredicate(keywords, PREFIX_NAME)), command);
+        ItemFindCommand command = (ItemFindCommand) parser.parseCommand(
+                ItemFindCommand.COMMAND_WORD + " " + "n/chicken");
+        assertEquals(new ItemFindCommand(new ItemContainsKeywordsPredicate(keywords, PREFIX_NAME)), command);
     }
 
     @Test
@@ -93,8 +93,8 @@ public class InventoryBookParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ItemListCommand.COMMAND_WORD) instanceof ItemListCommand);
+        assertTrue(parser.parseCommand(ItemListCommand.COMMAND_WORD + " 3") instanceof ItemListCommand);
     }
 
     @Test

@@ -6,17 +6,24 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.RemoveCommand;
+import seedu.address.logic.commands.deliverycommand.DeliveryFindCommand;
 import seedu.address.logic.commands.help.HelpCommand;
+import seedu.address.logic.commands.itemcommand.ItemAddCommand;
+import seedu.address.logic.commands.itemcommand.ItemClearCommand;
+import seedu.address.logic.commands.itemcommand.ItemDeleteCommand;
+import seedu.address.logic.commands.itemcommand.ItemEditCommand;
+import seedu.address.logic.commands.itemcommand.ItemFindCommand;
+import seedu.address.logic.commands.itemcommand.ItemListCommand;
+import seedu.address.logic.commands.itemcommand.RemoveCommand;
+import seedu.address.logic.parser.deliveryparser.DeliveryFindCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.itemparser.ItemAddCommandParser;
+import seedu.address.logic.parser.itemparser.ItemDeleteCommandParser;
+import seedu.address.logic.parser.itemparser.ItemEditCommandParser;
+import seedu.address.logic.parser.itemparser.ItemFindCommandParser;
+import seedu.address.logic.parser.itemparser.RemoveCommandParser;
 
 /**
  * Parses user input.
@@ -45,32 +52,35 @@ public class InventoryBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case ItemAddCommand.COMMAND_WORD:
+            return new ItemAddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case ItemEditCommand.COMMAND_WORD:
+            return new ItemEditCommandParser().parse(arguments);
 
         case RemoveCommand.COMMAND_WORD:
             return new RemoveCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case ItemDeleteCommand.COMMAND_WORD:
+            return new ItemDeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case ItemClearCommand.COMMAND_WORD:
+            return new ItemClearCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case ItemFindCommand.COMMAND_WORD:
+            return new ItemFindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ItemListCommand.COMMAND_WORD:
+            return new ItemListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommandParser().parse(arguments.trim());
+
+        case DeliveryFindCommand.COMMAND_WORD:
+            return new DeliveryFindCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

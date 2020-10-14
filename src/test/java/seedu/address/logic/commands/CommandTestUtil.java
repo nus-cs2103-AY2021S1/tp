@@ -16,6 +16,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.itemcommand.ItemEditCommand;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.model.inventorymodel.InventoryModel;
@@ -65,8 +66,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditItemDescriptor DESC_CHICKEN;
-    public static final EditCommand.EditItemDescriptor DESC_DUCK;
+    public static final ItemEditCommand.EditItemDescriptor DESC_CHICKEN;
+    public static final ItemEditCommand.EditItemDescriptor DESC_DUCK;
 
     static {
         DESC_CHICKEN = new EditItemDescriptorBuilder().withName(VALID_NAME_CHICKEN)

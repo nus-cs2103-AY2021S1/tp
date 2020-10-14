@@ -9,9 +9,11 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.itemcommand.ItemCommand;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.InventoryBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
 import seedu.address.model.delivery.Delivery;
 import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.deliverymodel.ReadOnlyDeliveryBook;
@@ -48,7 +50,7 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = inventoryBookParser.parseCommand(commandText);
-        commandResult = command.execute(inventoryModel);
+        commandResult = command.execute(getAppropriateModel(command));
 
         try {
             storage.saveInventoryBook(inventoryModel.getInventoryBook());
@@ -58,6 +60,14 @@ public class LogicManager implements Logic {
         }
 
         return commandResult;
+    }
+
+    private Model getAppropriateModel(Command command) {
+        if (command instanceof ItemCommand) {
+            return inventoryModel;
+        } else {
+            return deliveryModel;
+        }
     }
 
     @Override
