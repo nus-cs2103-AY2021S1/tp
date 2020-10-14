@@ -52,26 +52,26 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Animal alice = new AnimalBuilder().withName("Alice").build();
-        Animal bob = new AnimalBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Animal ahmeng = new AnimalBuilder().withName("Ahmeng").build();
+        Animal buttercup = new AnimalBuilder().withName("Buttercup").build();
+        AddCommand addAhmengCommand = new AddCommand(ahmeng);
+        AddCommand addButtercupCommand = new AddCommand(buttercup);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addAhmengCommand.equals(addAhmengCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddCommand addAhmengCommandCopy = new AddCommand(ahmeng);
+        assertTrue(addAhmengCommand.equals(addAhmengCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addAhmengCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addAhmengCommand.equals(null));
 
         // different animal -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addAhmengCommand.equals(addButtercupCommand));
     }
 
     /**

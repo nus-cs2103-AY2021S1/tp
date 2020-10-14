@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_ANIMALS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalAnimals.CARL;
-import static seedu.address.testutil.TypicalAnimals.ELLE;
-import static seedu.address.testutil.TypicalAnimals.FIONA;
+import static seedu.address.testutil.TypicalAnimals.COCO;
+import static seedu.address.testutil.TypicalAnimals.GRECIA;
+import static seedu.address.testutil.TypicalAnimals.NEMO;
 import static seedu.address.testutil.TypicalAnimals.getTypicalZooKeepBook;
 
 import java.util.Arrays;
@@ -67,11 +67,11 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleAnimalsFound() {
         String expectedMessage = String.format(MESSAGE_ANIMALS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        NameContainsKeywordsPredicate predicate = preparePredicate("Coco Grecia Nemo");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredAnimalList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredAnimalList());
+        assertEquals(Arrays.asList(COCO, GRECIA, NEMO), model.getFilteredAnimalList());
     }
 
     /**
