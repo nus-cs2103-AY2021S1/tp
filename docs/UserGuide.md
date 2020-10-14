@@ -79,7 +79,7 @@ Shows a guide for user to kick-start their journey in OneShelf.
 
 
 
-### Adding a item: `add-i`
+### Adding an item: `add-i`
 
 Adds item to OneShelf, if there's already an item inside with the same name and supplier, it adds on to existing
 quantity of existing item.
@@ -104,11 +104,11 @@ Examples:
 
 
 
-### Listing all items : `list-i`
+### Listing all items : `list-i` or `list-d`
 
-Shows a list of all items in the Inventory book.
+Shows a list of all items in the Inventory book or delivery book respectively.
 
-Format: `list-i`
+Format: `list-i` or `list-d`
 
 
 
@@ -254,6 +254,10 @@ Notify the user if a certain stock is below threshold
 
 ## Command summary
 
+
+
+#### Inventory summary
+
 | Action    | Format, Examples                                                                                    |
 |-----------|-----------------------------------------------------------------------------------------------------|
 |**Add to Inventory**    | `add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]...​` <br> e.g., `add n/Chicken q/3 s/ShengSiong t/Poultry` |
@@ -263,5 +267,12 @@ Notify the user if a certain stock is below threshold
 |**Find in Inventory**   | `find-i PREFIX KEYWORD [MORE_KEYWORDS]`<br> e.g., `find-i n/Chicken Steak`                                       |
 |**List Inventory**   | `list-i
 |**Remove from Inventory** | `remove-i INDEX q/QUANTITY`                                                                                              |
-|**Find in Deliveries**  | `find-d PREFIX KEYWORD [MORE_KEYWORDS]` <br> e.g., `find-d n/Alex`           |
 |**Help**   | `help`                                                                                              |
+
+
+
+#### Inventory summary
+| Action    | Format, Examples                                                                                    |
+|-----------|-----------------------------------------------------------------------------------------------------|
+|**List Deliveries**   | `list-d`
+|**Find in Deliveries**  | `find-d PREFIX KEYWORD [MORE_KEYWORDS]` <br> e.g., `find-d n/Alex`           |
