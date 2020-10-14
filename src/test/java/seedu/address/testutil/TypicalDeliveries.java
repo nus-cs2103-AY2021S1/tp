@@ -1,11 +1,11 @@
 package seedu.address.testutil;
 
-import seedu.address.model.delivery.Delivery;
-import seedu.address.model.deliverymodel.DeliveryBook;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import seedu.address.model.delivery.Delivery;
+import seedu.address.model.deliverymodel.DeliveryBook;
 
 /**
  * A utility class containing a list of {@code Delivery} objects to be used in tests.
