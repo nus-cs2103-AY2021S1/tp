@@ -27,7 +27,7 @@ import seedu.address.model.tag.Tag;
 
 public class AddDescriptionCommand extends AddCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_DESCRIPTION
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_DESC
             + ": Adds a description to opened case in PIVOT. "
             + "Parameters: "
             + PREFIX_DESCRIPTION + "DESCRIPTION\n"
