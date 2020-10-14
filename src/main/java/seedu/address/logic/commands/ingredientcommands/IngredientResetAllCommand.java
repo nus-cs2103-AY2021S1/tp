@@ -51,9 +51,10 @@ public class IngredientResetAllCommand extends Command {
         }
 
         for (Ingredient i : lastShownList) {
-            Ingredient ingredientToEdit = lastShownList.get(lastShownList.indexOf(i));
-            Ingredient updatedIngredient = createResetIngredient(i);
-            model.setIngredient(ingredientToEdit, updatedIngredient);
+            if (!i.getAmount().equals(resetAmount)) {
+                Ingredient updatedIngredient = createResetIngredient(i);
+                model.setIngredient(i, updatedIngredient);
+            }
         }
         return new CommandResult(MESSAGE_SUCCESS);
     }
