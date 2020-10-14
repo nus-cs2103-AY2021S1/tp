@@ -15,5 +15,6 @@ public class Messages {
     public static final String MESSAGE_INCORRECT_CASE_PAGE = "Invalid command. "
             + "Please open a case to use this command.";
     public static final String MESSAGE_INVALID_VICTIM_DISPLAYED_INDEX = "The victim index provided is invalid";
+    public static final String MESSAGE_INVALID_DOCUMENT_DISPLAYED_INDEX = "The document index provided is invalid";
     public static final String MESSAGE_INVALID_WITNESS_DISPLAYED_INDEX = "The witness index provided is invalid";
 }
