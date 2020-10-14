@@ -23,6 +23,7 @@ public class AddDescriptionCommand extends AddCommand {
             + "Parameters: "
             + PREFIX_DESCRIPTION + "DESCRIPTION\n"
             + "Example: " + COMMAND_WORD + " "
+            + TYPE_DESC + " "
             + PREFIX_DESCRIPTION + "7 people arrested for rioting";
 
     public static final String MESSAGE_ADD_DESCRIPTION_SUCCESS = "New description added: %1$s";
