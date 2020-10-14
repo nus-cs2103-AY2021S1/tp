@@ -5,7 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TAG;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CS2103;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS2103;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,6 +23,7 @@ import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagName;
 import seedu.address.model.tag.TagNameContainsKeywordsPredicate;
 import seedu.address.testutil.TagBuilder;
 import seedu.address.testutil.TagUtil;
@@ -43,11 +45,14 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
     }
 
+    @Deprecated
     @Test
     public void parseCommand_untag() throws Exception {
         UntagCommand command = (UntagCommand) parser.parseCommand(
-                UntagCommand.COMMAND_WORD + " " + INDEX_FIRST_TAG.getOneBased());
-        assertEquals(new UntagCommand(INDEX_FIRST_TAG), command);
+                UntagCommand.COMMAND_WORD + " " + TAG_DESC_CS2103);
+
+        TagName validTagName = new TagName(VALID_NAME_CS2103);
+        assertEquals(new UntagCommand(validTagName), command);
     }
 
     @Test

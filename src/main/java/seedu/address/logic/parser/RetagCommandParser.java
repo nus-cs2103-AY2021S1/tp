@@ -24,9 +24,6 @@ public class RetagCommandParser implements Parser<RetagCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_OLD_TAG_NAME, PREFIX_TAG_NAME);
 
-        boolean a = arePrefixesPresent(argMultimap, PREFIX_OLD_TAG_NAME, PREFIX_TAG_NAME);
-        boolean b = argMultimap.getPreamble().isEmpty();
-        Object c = argMultimap.getPreamble();
         if (!arePrefixesPresent(argMultimap, PREFIX_OLD_TAG_NAME, PREFIX_TAG_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RetagCommand.MESSAGE_USAGE));

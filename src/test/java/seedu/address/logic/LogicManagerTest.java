@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.FILE_ADDRESS_DESC_CS2101;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.OLD_TAG_DESC_CS2101;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTags.CS2101;
 
@@ -77,7 +77,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute tag command
-        String tagCommand = TagCommand.COMMAND_WORD + NAME_DESC_CS2101
+        String tagCommand = TagCommand.COMMAND_WORD + OLD_TAG_DESC_CS2101
                 + FILE_ADDRESS_DESC_CS2101;
         Tag expectedTag = new TagBuilder(CS2101).build();
         ModelManager expectedModel = new ModelManager();
