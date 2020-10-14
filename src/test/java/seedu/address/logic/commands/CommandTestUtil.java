@@ -40,8 +40,8 @@ public class CommandTestUtil {
 
     public static final String INVALID_CATEGORY_DESC = " "
             + PREFIX_CATEGORY + "revenu"; // only 'revenue' or 'expense' allowed
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_DESCRIPTION + " "; // description cannot be empty
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_AMOUNT + "0"; // amount cannot be 0 in value
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + " "; // description cannot be empty
+    public static final String INVALID_AMOUNT_DESC = " " + PREFIX_AMOUNT + "0"; // amount cannot be 0 in value
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

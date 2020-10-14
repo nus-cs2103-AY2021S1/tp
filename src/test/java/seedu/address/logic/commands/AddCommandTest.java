@@ -1,12 +1,16 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.account.ActiveAccount;
+import seedu.address.model.account.entry.Entry;
 import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
 import seedu.address.testutil.ActiveAccountStub;
@@ -27,8 +31,15 @@ public class AddCommandTest {
 
     @Test
     public void execute_entryAcceptedByModel_addSuccessful() {
-        assertEquals(true, true);
-        //placeholder for now
+
+        Expense expenseStub = expenseBuilder.build();
+        Model modelStub = new ModelStub();
+        ActiveAccountStubAcceptingEntry activeAccountStub = new ActiveAccountStubAcceptingEntry();
+        CommandResult commandResult = new AddCommand(expenseStub).execute(modelStub, activeAccountStub);
+
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, expenseStub),
+                commandResult.getFeedbackToUser());
+        assertTrue(activeAccountStub.getEntries().contains(expenseStub));
     }
 
     @Test
@@ -78,6 +89,19 @@ public class AddCommandTest {
                 new AddCommand(expenseStub).execute(modelStub, activeAccountStub).getFeedbackToUser());
     }
 
+}
+
+class ActiveAccountStubAcceptingEntry extends ActiveAccountStub {
+    private final ArrayList<Entry> entries = new ArrayList<>();
+
+    @Override
+    public void addExpense(Expense expense) {
+        entries.add(expense);
+    }
+
+    public ArrayList<Entry> getEntries() {
+        return entries;
+    }
 }
 
 //class ActiveAccountAddSuccessful extends ActiveAccountStub {
