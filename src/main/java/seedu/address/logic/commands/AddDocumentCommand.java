@@ -77,4 +77,12 @@ public class AddDocumentCommand extends AddCommand {
 
         return new CommandResult(String.format(MESSAGE_ADD_DOCUMENT_SUCCESS, this.doc));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddDocumentCommand // instanceof handles nulls
+                && doc.equals(((AddDocumentCommand) other).doc)
+                && index.equals(((AddDocumentCommand) other).index));
+    }
 }
