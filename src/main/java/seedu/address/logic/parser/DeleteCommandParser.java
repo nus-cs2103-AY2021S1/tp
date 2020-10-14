@@ -14,6 +14,7 @@ import java.util.regex.Matcher;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteSuspectCommand;
 import seedu.address.logic.commands.casecommands.DeleteCaseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.state.StateManager;
@@ -90,7 +91,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 //TODO: return individual deleteTYPEcommands
 
             case TYPE_SUSPECT:
-                //TODO: return individual deleteTYPEcommands
+                return new DeleteSuspectCommand(index);
 
             case TYPE_WITNESS:
                 //TODO: return individual deleteTYPEcommands
