@@ -69,24 +69,24 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s flashcard deck and {@code userPrefs}. <br>
+     * The data from the sample flashcard deck will be used instead if {@code storage}'s flashcard deck is not found,
+     * or an empty flashcard deck will be used instead if errors occur when reading {@code storage}'s flashcard deck.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyFlashcardDeck> addressBookOptional;
+        Optional<ReadOnlyFlashcardDeck> flashcardDeckOptional;
         ReadOnlyFlashcardDeck initialData;
         try {
-            addressBookOptional = storage.readFlashcardDeck();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            flashcardDeckOptional = storage.readFlashcardDeck();
+            if (!flashcardDeckOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample FlashcardDeck");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleFlashcardDeck);
+            initialData = flashcardDeckOptional.orElseGet(SampleDataUtil::getSampleFlashcardDeck);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            logger.warning("Data file not in the correct format. Will be starting with an empty FlashcardDeck");
             initialData = new FlashcardDeck();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty FlashcardDeck");
             initialData = new FlashcardDeck();
         }
 
@@ -151,7 +151,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty FlashcardDeck");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,13 +167,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting FlashcardDeck " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping SWEe! ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

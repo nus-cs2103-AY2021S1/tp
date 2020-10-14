@@ -22,7 +22,7 @@ import seedu.flashcard.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class FlashcardParser {
+public class FlashcardDeckParser {
 
     /**
      * Used for initial separation of command word and args.

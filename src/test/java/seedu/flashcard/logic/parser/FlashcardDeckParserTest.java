@@ -1,6 +1,6 @@
 package seedu.flashcard.logic.parser;
 
-public class AddressBookParserTest {
+public class FlashcardDeckParserTest {
 
 //    private final AddressBookParser parser = new AddressBookParser();
 //

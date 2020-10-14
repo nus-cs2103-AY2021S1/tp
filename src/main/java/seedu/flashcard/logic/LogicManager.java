@@ -10,7 +10,7 @@ import seedu.flashcard.commons.core.LogsCenter;
 import seedu.flashcard.logic.commands.Command;
 import seedu.flashcard.logic.commands.CommandResult;
 import seedu.flashcard.logic.commands.exceptions.CommandException;
-import seedu.flashcard.logic.parser.FlashcardParser;
+import seedu.flashcard.logic.parser.FlashcardDeckParser;
 import seedu.flashcard.logic.parser.exceptions.ParseException;
 import seedu.flashcard.model.Model;
 import seedu.flashcard.model.ReadOnlyFlashcardDeck;
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final FlashcardParser flashcardParser;
+    private final FlashcardDeckParser flashcardDeckParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        flashcardParser = new FlashcardParser();
+        flashcardDeckParser = new FlashcardDeckParser();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = flashcardParser.parseCommand(commandText);
+        Command command = flashcardDeckParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
