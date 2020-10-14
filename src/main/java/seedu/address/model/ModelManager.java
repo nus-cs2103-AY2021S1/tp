@@ -120,9 +120,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteMod(ModuleCode targetCode) {
-        requireNonNull(targetCode);
-        addressBook.removeModule(targetCode);
+    public void deleteModule(ModuleCode moduleCode) {
+        requireNonNull(moduleCode);
+        addressBook.removeModule(moduleCode);
     }
 
     @Override

@@ -132,27 +132,12 @@ public class AddModCommandTest {
         }
 
         @Override
-        public void deleteMod(ModuleCode targetModuleCode) {
+        public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addModule(Module module) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Module> getFilteredModuleList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -162,12 +147,27 @@ public class AddModCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public void addModule(Module module) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteModule(ModuleCode moduleCode) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public UniqueModuleList getModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Module> getFilteredModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredModuleList(Predicate<Module> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -185,12 +185,14 @@ public class AddModCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
-
-        @Override
-        public void updateFilteredModuleList(Predicate<Module> predicate) {
+        public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void setAddressBook(ReadOnlyAddressBook newData) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
