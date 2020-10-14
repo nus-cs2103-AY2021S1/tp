@@ -18,7 +18,7 @@ public class ItemParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String DEFAULT_QUANTITY = "0";
-    public static final String DEFAULT_LOCATION = "Town";
+    public static final String DEFAULT_LOCATION = "No location given";
     public static final String DEFAULT_TAG = "No tag given";
     public static final String DEFAULT_DESCRIPTION = "No description given";
     public static final Quantity DEFAULT_QUANTITY_TYPED = new Quantity(DEFAULT_QUANTITY);

@@ -1,8 +1,11 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.*;
+
 import java.util.Collections;
 import java.util.HashSet;
 
+import seedu.address.logic.parser.ItemParserUtil;
 import seedu.address.model.item.ItemPrecursor;
 
 public class TypicalItemPrecursors {
@@ -17,6 +20,18 @@ public class TypicalItemPrecursors {
             .withDescription("Used as bait")
             .withQuantity("99")
             .withLocations(new HashSet<>(Collections.singletonList("Bob's peach orchard"))).build();
+    public static final ItemPrecursor DEFAULT_DESCRIPTION_PRECURSOR = new ItemPrecursorBuilder()
+            .withName(VALID_ITEM_NAME_BANANA)
+            .withDescription(ItemParserUtil.DEFAULT_DESCRIPTION)
+            .withQuantity(VALID_ITEM_QUANTITY_BANANA)
+            .withLocations(new HashSet<>(Collections.singletonList(VALID_ITEM_LOCATION_PEACH_ORCHARD)))
+            .build();
+    public static final ItemPrecursor DEFAULT_QUANTITY_PRECURSOR = new ItemPrecursorBuilder()
+            .withName(VALID_ITEM_NAME_BANANA)
+            .withDescription(VALID_ITEM_DESCRIPTION_BANANA)
+            .withQuantity(ItemParserUtil.DEFAULT_QUANTITY)
+            .withLocations(new HashSet<>(Collections.singletonList(VALID_ITEM_LOCATION_PEACH_ORCHARD)))
+            .build();
 
     private TypicalItemPrecursors() {} // prevents instantiation
 }

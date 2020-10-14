@@ -17,7 +17,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_BANAN
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_BANANA;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalItemPrecursors.LOCATED_BANANA_PRECURSOR;
+import static seedu.address.testutil.TypicalItemPrecursors.*;
+
+import java.util.Collections;
+import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
@@ -69,6 +72,29 @@ public class AddItemCommandParserTest {
                 new AddItemCommand(expectedItem));
     }
 
+    @Test
+    public void parse_someFieldsMissing() {
+        ItemPrecursor expectedDefaultDescription = new ItemPrecursorBuilder(DEFAULT_DESCRIPTION_PRECURSOR)
+                .build();
+
+        // No Item Description
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE
+                        + ITEM_NAME_DESC_BANANA
+                        + ITEM_QUANTITY_DESC_BANANA
+                        + ITEM_LOCATION_DESC_PEACH_ORCHARD,
+                new AddItemCommand(expectedDefaultDescription));
+
+        ItemPrecursor expectedDefaultQuantity = new ItemPrecursorBuilder(DEFAULT_QUANTITY_PRECURSOR)
+                .build();
+
+        //No quantity given
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE
+                        + ITEM_NAME_DESC_BANANA
+                        + ITEM_DESCRIPTION_DESC_BANANA
+                        + ITEM_LOCATION_DESC_PEACH_ORCHARD,
+                new AddItemCommand(expectedDefaultQuantity));
+    }
+
     /**
      * Tests for compulsory fields.
      */
@@ -84,18 +110,18 @@ public class AddItemCommandParserTest {
                 expectedMessage);
 
         // missing quantity prefix
-        assertParseFailure(parser, ITEM_NAME_DESC_BANANA
+        /*assertParseFailure(parser, ITEM_NAME_DESC_BANANA
                         + VALID_ITEM_QUANTITY_BANANA
                         + ITEM_DESCRIPTION_DESC_BANANA
                         + ITEM_LOCATION_DESC_PEACH_ORCHARD,
-                expectedMessage);
+                expectedMessage);*/
 
         // missing description prefix
-        assertParseFailure(parser, ITEM_NAME_DESC_BANANA
+        /*assertParseFailure(parser, ITEM_NAME_DESC_BANANA
                         + ITEM_QUANTITY_DESC_BANANA
                         + VALID_ITEM_DESCRIPTION_BANANA
                         + ITEM_LOCATION_DESC_SPINACH_GARDEN,
-                expectedMessage);
+                expectedMessage);*/
 
         // all prefixes missing
         assertParseFailure(parser, VALID_ITEM_NAME_BANANA

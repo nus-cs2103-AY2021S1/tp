@@ -5,10 +5,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
-import static seedu.address.logic.parser.ItemParserUtil.*;
+import static seedu.address.logic.parser.ItemParserUtil.DEFAULT_QUANTITY_TYPED;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.ItemParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.item.Item;
@@ -37,7 +36,8 @@ public class AddItemCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New item added: %1$s";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the item list";
     public static final String MESSAGE_WARNING = "New item added: %1$s \nDo note that one or more non-compulsory fields"
-            + " have been filled with default values, please use edit to edit fields you wish to alter";
+            + " have been filled with default values,"
+            + "\n please use edit to edit fields you wish to alter";
 
     private final ItemPrecursor itemPre;
 
