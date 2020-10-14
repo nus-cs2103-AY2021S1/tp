@@ -1,13 +1,15 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CS2103;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS2103;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TAG;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.UntagCommand;
+import seedu.address.model.tag.TagName;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -22,7 +24,18 @@ public class UntagCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsUntagCommand() {
-        assertParseSuccess(parser, "1", new UntagCommand(INDEX_FIRST_TAG));
+        TagName validTagName = new TagName(VALID_NAME_CS2103);
+
+        assertParseSuccess(parser, TAG_DESC_CS2103, new UntagCommand(validTagName));
+    }
+
+    @Test
+    public void parse_compulsoryFieldMissing_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, UntagCommand.MESSAGE_USAGE);
+
+        // missing tag name prefix
+        assertParseFailure(parser, VALID_NAME_CS2103,
+                expectedMessage);
     }
 
     @Test
