@@ -171,6 +171,12 @@
      -fx-hgap: 10;
 }
 
+.grid-with-vgap {
+     -fx-background-color: transparent;
+     -fx-border-top-width: 1px;
+     -fx-vgap: 10;
+}
+
 .black-pane-with-big-round-border {
     -fx-background-color: rgba(0, 0, 0, 0.6);
     -fx-border-color: derive(#1d1d1d, 10%);

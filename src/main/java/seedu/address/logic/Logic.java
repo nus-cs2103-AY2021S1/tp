@@ -37,6 +37,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of assignments */
     ObservableList<Task> getFilteredTaskList();
 
+    /** Returns an unmodifiable view of the filtered list of reminder assignments */
+    ObservableList<Assignment> getRemindedAssignmentList();
+
     /**
      * Returns the user prefs' address book file path.
      */

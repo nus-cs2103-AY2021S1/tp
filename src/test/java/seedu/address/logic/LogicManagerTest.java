@@ -56,6 +56,11 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void getFilteredReminderList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getRemindedAssignmentList().remove(0));
+    }
+
+    @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
