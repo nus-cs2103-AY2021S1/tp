@@ -4,7 +4,8 @@
     "expenses" : [ {
       "description" : "bought flower pots",
       "amount" : "49.99",
-      "tags" : [ "tools", "%29Sept" ]
+      "tags" : [ "tools", "%29Sept
+        " ]
     }, {
       "description" : " ",
       "amount" : "20",
