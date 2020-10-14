@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 
@@ -106,10 +107,14 @@ public class MeetingBook implements ReadOnlyMeetingBook {
         // TODO: refine later
     }
 
+    /**
+     * Returns meetingList sorted from earliest meeting to latest meeting
+     */
     @Override
     public ObservableList<Meeting> getMeetingList() {
         return new SortedList<Meeting>(
-                meetings.asUnmodifiableObservableList(), Comparator.comparing(o -> o.getDate().date));
+                meetings.asUnmodifiableObservableList(),
+                Comparator.comparing(o -> LocalDateTime.of(o.getDate().date, o.getTime().time)));
     }
 
     @Override
