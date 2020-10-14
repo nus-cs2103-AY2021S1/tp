@@ -45,7 +45,6 @@ public class PatientListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new PatientCard(patient, getIndex() + 1, logic).getRoot());
-                setStyle("-fx-border-color: white; -fx-background-color: " + patient.getColorTag().cssColor + ";");
             }
         }
     }
