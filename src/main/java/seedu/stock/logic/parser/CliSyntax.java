@@ -22,6 +22,7 @@ public class CliSyntax {
     public static final String PREFIX_SOURCE_DESCRIPTION = "<source>";
     public static final String PREFIX_LOCATION_DESCRIPTION = "<location>";
     public static final String PREFIX_QUANTITY_DESCRIPTION = "<quantity>";
+    public static final String PREFIX_SERIAL_NUMBER_DESCRIPTION = "<serial number>";
 
     /**
      * Returns a list containing all possible prefixes.
@@ -47,8 +48,10 @@ public class CliSyntax {
             return PREFIX_SOURCE_DESCRIPTION;
         } else if (prefix.equals(PREFIX_LOCATION)) {
             return PREFIX_LOCATION_DESCRIPTION;
-        } else {
+        } else if (prefix.equals(PREFIX_QUANTITY)) {
             return PREFIX_QUANTITY_DESCRIPTION;
+        } else {
+            return PREFIX_SERIAL_NUMBER_DESCRIPTION;
         }
     }
 }
