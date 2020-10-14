@@ -34,25 +34,25 @@ public class SampleDataUtil {
 
     public static Case[] getSampleCases() {
         return new Case[] {
-            new Case(new Title("Alex Yeoh"), sampleDescription,
+            new Case(new Title("Ang Mo Kio Car Theft"), sampleDescription,
                     Status.createStatus("active"), sampleDocuments,
                     new ArrayList<>(), sampleVictims,
-                    sampleWitnesses, getTagSet("friends")),
-            new Case(new Title("Bernice Yu"), sampleDescription,
+                    sampleWitnesses, getTagSet()),
+            new Case(new Title("Bishan Shopping Theft"), sampleDescription,
                     Status.createStatus("closed"), sampleDocuments,
-                    new ArrayList<>(), sampleVictims, sampleWitnesses, getTagSet("colleagues", "friends")),
-            new Case(new Title("Charlotte Oliveiro"), sampleDescription,
+                    new ArrayList<>(), sampleVictims, sampleWitnesses, getTagSet()),
+            new Case(new Title("Cha Bee Hoon Stall Fire"), sampleDescription,
                     Status.createStatus("cold"), sampleDocuments,
-                    new ArrayList<>(), sampleVictims, sampleWitnesses, getTagSet("neighbours")),
-            new Case(new Title("David Li"), sampleDescription,
+                    new ArrayList<>(), sampleVictims, sampleWitnesses, getTagSet()),
+            new Case(new Title("Dhoby Ghaut Murder Case"), sampleDescription,
                     Status.createStatus("active"), sampleDocuments,
-                    new ArrayList<>(), sampleVictims, sampleWitnesses, getTagSet("family")),
-            new Case(new Title("Irfan Ibrahim"), sampleDescription,
+                    new ArrayList<>(), sampleVictims, sampleWitnesses, getTagSet()),
+            new Case(new Title("IceCream Man Harassment"), sampleDescription,
                     Status.createStatus("active"), sampleDocuments,
-                    new ArrayList<>(), sampleVictims, sampleWitnesses, getTagSet("classmates")),
-            new Case(new Title("Roy Balakrishnan"), sampleDescription,
+                    new ArrayList<>(), sampleVictims, sampleWitnesses, getTagSet()),
+            new Case(new Title("Roti Prata Shop Robbery"), sampleDescription,
                     Status.createStatus("active"), sampleDocuments,
-                    new ArrayList<>(), sampleVictims, sampleWitnesses, getTagSet("colleagues"))
+                    new ArrayList<>(), sampleVictims, sampleWitnesses, getTagSet())
         };
     }
 
