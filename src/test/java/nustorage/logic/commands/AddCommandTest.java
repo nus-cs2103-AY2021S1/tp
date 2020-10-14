@@ -252,6 +252,7 @@ public class AddCommandTest {
             return Optional.empty();
         }
 
+
         @Override
         public void updateFilteredFinanceList(Predicate<FinanceRecord> predicate) {
 
@@ -262,6 +263,8 @@ public class AddCommandTest {
 
 
     /**
+     * =======
+     * >>>>>>> 2fa4958536709a1ce93d9efe1b3a34808a6c9d61
      * A Model stub that contains a single person.
      */
     private class ModelStubWithPerson extends ModelStub {

@@ -42,4 +42,11 @@ public class AddFinanceCommand extends Command {
         model.addFinanceRecord(newRecord);
         return new CommandResult(String.format(MESSAGE_SUCCESS, newRecord));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddFinanceCommand // instanceof handles nulls
+                && newRecord.equals(((AddFinanceCommand) other).newRecord));
+    }
 }
