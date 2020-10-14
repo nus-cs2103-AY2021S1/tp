@@ -16,7 +16,7 @@ import seedu.flashcard.model.flashcard.Flashcard;
 /**
  * An Immutable FlashcardDeck that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "flashcarddeck")
 class JsonSerializableFlashcardDeck {
 
     public static final String MESSAGE_DUPLICATE_FLASHCARD = "Flashcard deck contains duplicate flashcard(s).";
