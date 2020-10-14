@@ -1,6 +1,6 @@
 {
   "accounts" : [ {
-    "name" : "General @account with invalid name",
+    "name" : "Invalid account name!!!",
     "expenses" : [ {
       "description" : "bought flower pots",
       "amount" : "49.99",
