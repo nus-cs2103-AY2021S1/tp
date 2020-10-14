@@ -154,10 +154,7 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
-    @Override
-    public ReadOnlyBidBook getBidBook() {
-        return bidBook;
-    }
+
 
     @Override
     public boolean hasPerson(Person person) {
@@ -183,6 +180,36 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    //=========== BidBook ================================================================================
+
+    @Override
+    public ReadOnlyBidBook getBidBook() {
+        return bidBook;
+    }
+
+    @Override
+    public ObservableList<Bid> getFilteredBidList() {
+        return filteredBids;
+    }
+
+    @Override
+    public void addBid(Bid bid) {
+        bidBook.addBid(bid);
+        updateFilteredBidList(PREDICATE_SHOW_ALL_BIDS);
+    }
+
+    @Override
+    public void updateFilteredBidList(Predicate<Bid> predicate) {
+        requireNonNull(predicate);
+        filteredBids.setPredicate(predicate);
+    }
+
+    @Override
+    public boolean hasBid(Bid bid) {
+        requireNonNull(bid);
+        return bidBook.hasBid(bid);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -194,10 +221,7 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
-    @Override
-    public ObservableList<Bid> getFilteredBidList() {
-        return filteredBids;
-    }
+
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
@@ -205,17 +229,9 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    @Override
-    public void updateFilteredBidList(Predicate<Bid> predicate) {
-        requireNonNull(predicate);
-        filteredBids.setPredicate(predicate);
-    }
 
-    @Override
-    public void addBid(Bid bid) {
-        bidBook.addBid(bid);
-        updateFilteredBidList(PREDICATE_SHOW_ALL_BIDS);
-    }
+
+
 
     //=========== PropertyBook ================================================================================
 
@@ -475,6 +491,8 @@ public class ModelManager implements Model {
                 && meetingBook.equals(other.meetingBook)
                 && filteredMeetings.equals(other.filteredMeetings)
                 && propertyBook.equals(other.propertyBook)
-                && filteredProperties.equals(other.filteredProperties);
+                && filteredProperties.equals(other.filteredProperties)
+                && bidBook.equals(other.bidBook)
+                && filteredBids.equals(other.filteredBids);
     }
 }

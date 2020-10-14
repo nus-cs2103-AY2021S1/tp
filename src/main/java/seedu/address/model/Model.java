@@ -121,6 +121,11 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
 
     void addBid(Bid bid);
 
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     */
+    boolean hasBid(Bid bid);
+
     //=========== MeetingManager ================================================================================
 
     /**
