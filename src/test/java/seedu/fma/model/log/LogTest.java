@@ -36,10 +36,6 @@ public class LogTest {
         Log editedAlice = new LogBuilder(LOG_A).withExercise(VALID_EXERCISE_B).withDateTime(VALID_DATE_TIME_B).build();
         assertFalse(LOG_A.isSameLog(editedAlice));
 
-        // different exercise -> returns false
-        editedAlice = new LogBuilder(LOG_A).withExercise(VALID_EXERCISE_B).build();
-        assertFalse(LOG_A.isSameLog(editedAlice));
-
         // different dateTime -> returns false
         editedAlice = new LogBuilder(LOG_A).withDateTime(VALID_DATE_TIME_B).build();
         assertFalse(LOG_A.isSameLog(editedAlice));
