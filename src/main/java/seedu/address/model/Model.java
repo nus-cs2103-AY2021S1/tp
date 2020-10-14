@@ -16,7 +16,7 @@ import seedu.address.timetable.TimetableData;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Assignment> PREDICATE_SHOW_ALL_ASSIGNMENT = unused -> true;
-    Predicate<Task> PREDICATE_SHOW_ALL_TASK = unused -> true;
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
     Predicate<Assignment> PREDICATE_SHOW_ALL_REMINDED_ASSIGNMENTS = assignment -> assignment.isReminded();
 
     /**

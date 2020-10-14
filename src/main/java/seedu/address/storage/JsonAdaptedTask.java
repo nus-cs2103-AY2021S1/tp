@@ -13,7 +13,7 @@ import seedu.address.model.assignment.Task;
 import seedu.address.model.lesson.Lesson;
 
 public class JsonAdaptedTask {
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Assignment's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
     private final String name;
     private final String deadline;
