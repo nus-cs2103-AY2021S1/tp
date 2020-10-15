@@ -36,14 +36,14 @@ public class SampleDataUtil {
         return new Recipe[] {
             new Recipe("Apple blue mix",
                 Arrays.stream(getSampleIngredients())
-                    .map((x)-> new IngredientReference(x.getName().toString(), x.getQuantity()))
+                    .map((x)-> new IngredientReference(x.getName(), x.getQuantity()))
                     .collect(Collectors.toList()),
                 new ArrayList<>(Arrays.asList(new Step("Put them on a table."),
                     new Step("Cut and chop them."),
                     new Step("Mix them.")))),
             new Recipe("Blue custard cream",
                 Arrays.stream(getSampleIngredients())
-                    .map((x)-> new IngredientReference(x.getName().toString(), x.getQuantity()))
+                    .map((x)-> new IngredientReference(x.getName(), x.getQuantity()))
                     .collect(Collectors.toList()),
                 new ArrayList<>(Arrays.asList(new Step("Blend them."),
                     new Step("Stir them well."),

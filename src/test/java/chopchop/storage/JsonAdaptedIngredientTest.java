@@ -17,7 +17,7 @@ public class JsonAdaptedIngredientTest {
     private static final String INVALID_EXPIRY = "20-10-20";
     private static final String INVALID_QTY = "";
 
-    private static final String VALID_NAME = BANANA.getName().toString();
+    private static final String VALID_NAME = BANANA.getName();
     private static final String VALID_EXPIRY = BANANA.getExpiryDate().get().toString();
     private static final String VALID_QTY = BANANA.getQuantity().toString();
 

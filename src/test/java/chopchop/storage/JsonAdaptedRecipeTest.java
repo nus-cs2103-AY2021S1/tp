@@ -19,7 +19,7 @@ public class JsonAdaptedRecipeTest {
     private static final JsonAdaptedIngredientReference INVALID_REF = new JsonAdaptedIngredientReference(null, null);
     private static final String INVALID_STEP = "";
 
-    private static final String VALID_NAME = APRICOT_SALAD.getName().toString();
+    private static final String VALID_NAME = APRICOT_SALAD.getName();
     private static final List<JsonAdaptedIngredientReference> VALID_REFS = BANANA_SALAD.getIngredients()
         .stream().map(JsonAdaptedIngredientReference::new).collect(Collectors.toList());
     private static final List<String> VALID_STEPS = BANANA_SALAD.getSteps()

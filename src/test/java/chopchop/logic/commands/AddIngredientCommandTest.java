@@ -94,13 +94,13 @@ public class AddIngredientCommandTest {
         @Override
         public boolean hasIngredient(Ingredient ingredient) {
             requireNonNull(ingredient);
-            return this.ingredient.equals(ingredient);
+            return this.ingredient.isSame(ingredient);
         }
 
         @Override
         public Optional<Ingredient> findIngredientWithName(String name) {
             requireNonNull(name);
-            return this.ingredient.getName().equals(name)
+            return this.ingredient.getName().equalsIgnoreCase(name)
                 ? Optional.of(this.ingredient)
                 : Optional.empty();
         }
@@ -115,7 +115,7 @@ public class AddIngredientCommandTest {
         @Override
         public boolean hasIngredient(Ingredient ingredient) {
             requireNonNull(ingredient);
-            return ingredientsAdded.stream().anyMatch(ingredient::equals);
+            return ingredientsAdded.stream().anyMatch(ingredient::isSame);
         }
 
         @Override
@@ -129,7 +129,7 @@ public class AddIngredientCommandTest {
             requireNonNull(name);
             return this.ingredientsAdded
                 .stream()
-                .filter(i -> i.getName().equals(name))
+                .filter(i -> i.getName().equalsIgnoreCase(name))
                 .findFirst();
         }
 

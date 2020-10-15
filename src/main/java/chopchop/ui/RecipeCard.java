@@ -25,7 +25,7 @@ public class RecipeCard extends UiPart<Region> {
     public RecipeCard(Recipe recipe) {
         super(FXML);
         this.recipe = recipe;
-        name.setText(recipe.getName().toString());
+        name.setText(recipe.getName());
     }
 
     @FXML

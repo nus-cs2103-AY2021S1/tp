@@ -121,7 +121,7 @@ public class ModelManager implements Model {
     public Optional<Recipe> findRecipeWithName(String name) {
         return this.recipeBook.getEntryList()
             .stream()
-            .filter(recipe -> recipe.getName().equals(name))
+            .filter(recipe -> recipe.getName().equalsIgnoreCase(name))
             .findFirst();
     }
 
@@ -196,7 +196,7 @@ public class ModelManager implements Model {
     public Optional<Ingredient> findIngredientWithName(String name) {
         return this.ingredientBook.getEntryList()
             .stream()
-            .filter(ingredient -> ingredient.getName().equals(name))
+            .filter(ingredient -> ingredient.getName().equalsIgnoreCase(name))
             .findFirst();
     }
 
