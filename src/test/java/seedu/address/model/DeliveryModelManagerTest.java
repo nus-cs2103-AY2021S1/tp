@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.deliverymodel.DeliveryBook;
 import seedu.address.model.deliverymodel.DeliveryModelManager;
+import seedu.address.model.inventorymodel.InventoryModelManager;
 
 public class DeliveryModelManagerTest {
 

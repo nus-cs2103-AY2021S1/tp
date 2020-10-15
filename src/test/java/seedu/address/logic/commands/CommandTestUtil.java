@@ -18,6 +18,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.itemcommand.ItemEditCommand;
 import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.model.delivery.Delivery;
+import seedu.address.model.deliverymodel.DeliveryBook;
 import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.model.inventorymodel.InventoryModel;
@@ -30,6 +32,7 @@ import seedu.address.testutil.EditItemDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+//    INVENTORY ITEM
     public static final String VALID_NAME_CHICKEN = "Chicken";
     public static final String VALID_NAME_DUCK = "Duck";
     public static final String VALID_QUANTITY_CHICKEN = "11111111";
@@ -78,6 +81,31 @@ public class CommandTestUtil {
                 .withQuantity(VALID_QUANTITY_DUCK).withSupplier(VALID_SUPPLIER_DUCK)
                 .withTags(VALID_TAG_DUCK, VALID_TAG_CHICKEN).build();
     }
+
+
+
+
+//    DELIVERY
+    public static final String VALID_NAME_DAMITH = "DAMITH";
+    public static final String VALID_NAME_AARON = "AARON";
+    public static final String VALID_PHONE_DAMITH = "91231231";
+    public static final String VALID_PHONE_AARON = "92323232";
+    public static final String VALID_ADDRESS_DAMITH = "Jl Burong Kechil Tanjong Pajar No 92";
+    public static final String VALID_ADDRESS_AARON = "Jl Koro koro kuru kuru Blk 251";
+    public static final String VALID_ORDER_DAMITH = "Chicken rice 1x, not spicy";
+    public static final String VALID_ORDER_AARON = "Iced Kopi x2, Prata plain x3";
+
+    public static final String NAME_DESC_DAMITH = " " + PREFIX_NAME + VALID_NAME_DAMITH;
+    public static final String NAME_DESC_AARON = " " + PREFIX_NAME + VALID_NAME_AARON;
+    public static final String PHONE_DESC_DAMITH = " " + PREFIX_QUANTITY + VALID_PHONE_DAMITH;
+    public static final String PHONE_DESC_AARON = " " + PREFIX_QUANTITY + VALID_PHONE_AARON;
+    public static final String ADDRESS_DESC_DAMITH = " " + PREFIX_SUPPLIER + VALID_ADDRESS_DAMITH;
+    public static final String ADDRESS_DESC_AARON = " " + PREFIX_SUPPLIER + VALID_ADDRESS_AARON;
+    public static final String ORDER_DESC_DAMITH = " " + PREFIX_TAG + VALID_ORDER_DAMITH;
+    public static final String ORDER_DESC_AARON= " " + PREFIX_TAG + VALID_ORDER_AARON;
+
+
+
 
     /**
      * Executes the given {@code command}, confirms that <br>
@@ -152,6 +180,25 @@ public class CommandTestUtil {
         assertEquals(expectedInventoryBook, actualInventoryModel.getInventoryBook());
         assertEquals(expectedFilteredList, actualInventoryModel.getFilteredItemList());
     }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the delivery book, filtered delivery list and selected delivery in {@code actualModel} remain unchanged
+     */
+    public static void assertCommandFailure(Command command,
+                                            DeliveryModel actualDeliveryModel, String expectedMessage) {
+        // we are unable to defensively copy the model for comparison later, so we can
+        // only do so by copying its components.
+        DeliveryBook expectedDeliveryBook = new DeliveryBook(actualDeliveryModel.getDeliveryBook());
+        List<Delivery> expectedFilteredList = new ArrayList<>(actualDeliveryModel.getFilteredDeliveryList());
+
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualDeliveryModel));
+        assertEquals(expectedDeliveryBook, actualDeliveryModel.getDeliveryBook());
+        assertEquals(expectedFilteredList, actualDeliveryModel.getFilteredDeliveryList());
+    }
+
     /**
      * Updates {@code model}'s filtered list to show only the item at the given {@code targetIndex} in the
      * {@code model}'s inventory book.
