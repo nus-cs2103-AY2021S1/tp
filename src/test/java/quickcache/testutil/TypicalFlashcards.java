@@ -9,6 +9,7 @@ import quickcache.model.flashcard.Flashcard;
 
 public class TypicalFlashcards {
 
+    public static final String[] RANDOM_1_TAG = {"LSM1301"};
     public static final Flashcard RANDOM1 = new FlashcardBuilder().withQuestion("Are heparins safe in pregnancy?")
         .withAnswer("Yes, They dont cross the placenta").withTag("LSM1301").build();
     public static final Flashcard RANDOM2 = new FlashcardBuilder()
@@ -16,10 +17,10 @@ public class TypicalFlashcards {
         .withAnswer("No reversal agent").withTag("LSM1301").build();
     public static final Flashcard RANDOM3 = new FlashcardBuilder()
         .withQuestion("What is the binary representation of 4 5/8?")
-        .withAnswer("110.101").withTags(new String[]{"CS2100", "CS"}).build();
+        .withAnswer("110.101").withTags("CS2100", "CS").build();
     public static final Flashcard RANDOM4 = new FlashcardBuilder()
         .withQuestion("What is a digital circuit capable of holding a single digit")
-        .withAnswer("Flip-flop").withTags(new String[]{"CS2100", "CS"}).build();
+        .withAnswer("Flip-flop").withTags("CS2100", "CS").build();
 
     public static final Flashcard RANDOM5 = new FlashcardBuilder()
         .withMultipleChoiceQuestion("Which of the following storage systems is best suited for "
@@ -41,6 +42,8 @@ public class TypicalFlashcards {
                 "Management information system",
                 "Transaction processing system"})
         .build();
+    public static final Flashcard RANDOM8 = new FlashcardBuilder().withQuestion("Question One")
+            .withAnswer("1").withTags().build();
 
     /**
      * Returns a {@code Quickcache} with all the typical flashcards.

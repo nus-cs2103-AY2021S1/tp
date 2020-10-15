@@ -63,8 +63,8 @@ public class AddOpenEndedQuestionCommandTest {
         assertTrue(addSampleOneCommand.equals(addSampleOneCommand));
 
         // same values -> returns true
-        AddOpenEndedQuestionCommand addAliceCommandCopy = new AddOpenEndedQuestionCommand(sampleQuestionOne);
-        assertTrue(addSampleOneCommand.equals(addAliceCommandCopy));
+        AddOpenEndedQuestionCommand addSampleOneCommandCopy = new AddOpenEndedQuestionCommand(sampleQuestionOne);
+        assertTrue(addSampleOneCommand.equals(addSampleOneCommandCopy));
 
         // different types -> returns false
         assertFalse(addSampleOneCommand.equals(1));

@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static quickcache.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static quickcache.testutil.Assert.assertThrows;
-import static quickcache.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static quickcache.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -43,10 +43,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_FLASHCARD, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_FLASHCARD, ParserUtil.parseIndex("  1  "));
     }
 
     @Test
@@ -133,12 +133,4 @@ public class ParserUtilTest {
     public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
         assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
     }
-
-    //    @Test
-    //    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-    //        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-    //        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
-    //
-    //        assertEquals(expectedTagSet, actualTagSet);
-    //    }
 }

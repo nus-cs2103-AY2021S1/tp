@@ -25,30 +25,30 @@ import quickcache.testutil.EditFlashcardDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_QUESTION_ALICE = "Alice";
-    public static final String VALID_QUESTION_AMY = "Amy Bee";
-    public static final String VALID_QUESTION_BOB = "Bob Choo";
-    public static final String VALID_QUESTION_KEV = "KEv Chee";
-    public static final String VALID_ANSWER_ALICE = "2";
-    public static final String VALID_ANSWER_AMY = "11111111";
-    public static final String VALID_ANSWER_BOB = "22222222";
-    public static final String VALID_ANSWER_KEV = "11112222";
-    public static final String VALID_OPTION_ALICE = "1";
-    public static final String VALID_OPTION_AMY = "23";
-    public static final String VALID_OPTION_BOB = "555";
+    public static final String VALID_QUESTION_ONE = "Question One";
+    public static final String VALID_QUESTION_TWO = "Question Two";
+    public static final String VALID_QUESTION_THREE = "Question Three";
+    public static final String VALID_ANSWER_ONE = "1";
+    public static final String VALID_ANSWER_TWO = "2";
+    public static final String VALID_ANSWER_THREE = "3";
+    public static final String VALID_OPTION_ONE = "1";
+    public static final String VALID_OPTION_TWO = "2";
+    public static final String VALID_OPTION_THREE = "3";
+    public static final String VALID_TAG_LSM1301 = "LSM1301";
+    public static final String VALID_TAG_MODULE = "Module";
 
     public static final String CHOICE_DESC = " " + CliSyntax.PREFIX_CHOICE + "First" + " "
         + CliSyntax.PREFIX_CHOICE + "Second" + " " + CliSyntax.PREFIX_CHOICE + "Third" + " "
         + CliSyntax.PREFIX_CHOICE + "Fourth";
-    public static final String QUESTION_DESC_ALICE = " " + CliSyntax.PREFIX_QUESTION + VALID_QUESTION_ALICE;
-    public static final String QUESTION_DESC_AMY = " " + CliSyntax.PREFIX_QUESTION + VALID_QUESTION_AMY;
-    public static final String QUESTION_DESC_BOB = " " + CliSyntax.PREFIX_QUESTION + VALID_QUESTION_BOB;
-    public static final String ANSWER_DESC_ALICE = " " + CliSyntax.PREFIX_ANSWER + VALID_ANSWER_ALICE;
-    public static final String ANSWER_DESC_AMY = " " + CliSyntax.PREFIX_ANSWER + VALID_ANSWER_AMY;
-    public static final String ANSWER_DESC_BOB = " " + CliSyntax.PREFIX_ANSWER + VALID_ANSWER_BOB;
-    public static final String OPTION_DESC_ALICE = " " + CliSyntax.PREFIX_OPTION + VALID_OPTION_ALICE;
-    public static final String OPTION_DESC_AMY = " " + CliSyntax.PREFIX_OPTION + VALID_OPTION_AMY;
-    public static final String OPTION_DESC_BOB = " " + CliSyntax.PREFIX_OPTION + VALID_OPTION_BOB;
+    public static final String QUESTION_DESC_ONE = " " + CliSyntax.PREFIX_QUESTION + VALID_QUESTION_ONE;
+    public static final String QUESTION_DESC_TWO = " " + CliSyntax.PREFIX_QUESTION + VALID_QUESTION_TWO;
+    public static final String QUESTION_DESC_THREE = " " + CliSyntax.PREFIX_QUESTION + VALID_QUESTION_THREE;
+    public static final String ANSWER_DESC_ONE = " " + CliSyntax.PREFIX_ANSWER + VALID_ANSWER_ONE;
+    public static final String ANSWER_DESC_TWO = " " + CliSyntax.PREFIX_ANSWER + VALID_ANSWER_TWO;
+    public static final String ANSWER_DESC_THREE = " " + CliSyntax.PREFIX_ANSWER + VALID_ANSWER_THREE;
+    public static final String OPTION_DESC_ONE = " " + CliSyntax.PREFIX_OPTION + VALID_OPTION_ONE;
+    public static final String OPTION_DESC_TWO = " " + CliSyntax.PREFIX_OPTION + VALID_OPTION_TWO;
+    public static final String OPTION_DESC_THREE = " " + CliSyntax.PREFIX_OPTION + VALID_OPTION_THREE;
 
     // empty string not allowed for addresses
     public static final String INVALID_QUESTION_DESC = " " + CliSyntax.PREFIX_QUESTION + " ";
@@ -59,14 +59,14 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditFlashcardDescriptor DESC_AMY;
-    public static final EditCommand.EditFlashcardDescriptor DESC_BOB;
+    public static final EditCommand.EditFlashcardDescriptor DESC_TWO;
+    public static final EditCommand.EditFlashcardDescriptor DESC_THREE;
 
     static {
-        DESC_AMY = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_AMY)
-            .withAnswer(VALID_ANSWER_AMY).build();
-        DESC_BOB = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_BOB)
-            .withAnswer(VALID_ANSWER_BOB).build();
+        DESC_TWO = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_TWO)
+            .withAnswer(VALID_ANSWER_TWO).build();
+        DESC_THREE = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_THREE)
+            .withAnswer(VALID_ANSWER_THREE).build();
     }
 
     /**

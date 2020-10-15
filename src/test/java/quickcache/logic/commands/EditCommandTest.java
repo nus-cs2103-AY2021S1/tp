@@ -61,10 +61,10 @@ public class EditCommandTest {
         Flashcard flashcardInFilteredList =
             model.getFilteredFlashcardList().get(TypicalIndexes.INDEX_FIRST_FLASHCARD.getZeroBased());
         Flashcard editedFlashcard =
-            new FlashcardBuilder(flashcardInFilteredList).withQuestion(CommandTestUtil.VALID_QUESTION_BOB)
+            new FlashcardBuilder(flashcardInFilteredList).withQuestion(CommandTestUtil.VALID_QUESTION_THREE)
                 .build();
         EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_FLASHCARD,
-            new EditFlashcardDescriptorBuilder().withQuestion(CommandTestUtil.VALID_QUESTION_BOB).build());
+            new EditFlashcardDescriptorBuilder().withQuestion(CommandTestUtil.VALID_QUESTION_THREE).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard);
 
@@ -77,11 +77,11 @@ public class EditCommandTest {
     @Test
     public void equals() {
         final EditCommand standardCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_FLASHCARD,
-            CommandTestUtil.DESC_AMY);
+            CommandTestUtil.DESC_TWO);
 
         // same values -> returns true
         EditCommand.EditFlashcardDescriptor copyDescriptor =
-            new EditCommand.EditFlashcardDescriptor(CommandTestUtil.DESC_AMY);
+            new EditCommand.EditFlashcardDescriptor(CommandTestUtil.DESC_TWO);
         EditCommand commandWithSameValues = new EditCommand(TypicalIndexes.INDEX_FIRST_FLASHCARD, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -96,11 +96,11 @@ public class EditCommandTest {
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditCommand(TypicalIndexes.INDEX_SECOND_FLASHCARD,
-            CommandTestUtil.DESC_AMY)));
+            CommandTestUtil.DESC_TWO)));
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCommand(TypicalIndexes.INDEX_FIRST_FLASHCARD,
-            CommandTestUtil.DESC_BOB)));
+            CommandTestUtil.DESC_THREE)));
     }
 
 }

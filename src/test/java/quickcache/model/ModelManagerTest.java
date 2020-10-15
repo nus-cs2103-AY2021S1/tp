@@ -1,49 +1,57 @@
 package quickcache.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static quickcache.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
+import static quickcache.testutil.Assert.assertThrows;
+import static quickcache.testutil.TypicalFlashcards.RANDOM1;
+import static quickcache.testutil.TypicalFlashcards.RANDOM3;
+import static quickcache.testutil.TypicalFlashcards.RANDOM_1_TAG;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import quickcache.commons.core.GuiSettings;
-import quickcache.testutil.Assert;
+import quickcache.model.flashcard.FlashcardContainsTagPredicate;
+import quickcache.testutil.QuickCacheBuilder;
 
 public class ModelManagerTest {
 
-    private final ModelManager modelManager = new ModelManager();
+    private ModelManager modelManager = new ModelManager();
 
     @Test
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
-        Assertions.assertEquals(new GuiSettings(), modelManager.getGuiSettings());
+        assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new QuickCache(), new QuickCache(modelManager.getQuickCache()));
     }
 
     @Test
     public void setUserPrefs_nullUserPrefs_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> modelManager.setUserPrefs(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setUserPrefs(null));
     }
 
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setQuickCacheFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setQuickCacheFilePath(Paths.get("quick/cache/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setQuickCacheFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setQuickCacheFilePath(Paths.get("new/quick/cache/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
     @Test
     public void setGuiSettings_nullGuiSettings_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> modelManager.setGuiSettings(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setGuiSettings(null));
     }
 
     @Test
@@ -54,35 +62,42 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> modelManager.setQuickCacheFilePath(null));
+    public void setQuickCacheFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setQuickCacheFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
-        Path path = Paths.get("address/book/file/path");
+    public void setQuickCacheFilePath_validPath_setsQuickCacheFilePath() {
+        Path path = Paths.get("quick/cache/file/path");
         modelManager.setQuickCacheFilePath(path);
         assertEquals(path, modelManager.getQuickCacheFilePath());
     }
 
-    /*
     @Test
-    public void hasFlashcard_flashcardInAddressBook_returnsTrue() {
-        modelManager.addFlashcard(ALICE);
-        assertTrue(modelManager.hasFlashcard(ALICE));
+    public void hasFlashcard_nullFlashcard_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasFlashcard(null));
     }
-    */
+
+    @Test
+    public void hasFlashcard_flashcardNotInQuickCache_returnsFalse() {
+        assertFalse(modelManager.hasFlashcard(RANDOM1));
+    }
+
+    @Test
+    public void hasFlashcard_flashcardInQuickCache_returnsTrue() {
+        modelManager.addFlashcard(RANDOM1);
+        assertTrue(modelManager.hasFlashcard(RANDOM1));
+    }
 
     @Test
     public void getFilteredFlashcardList_modifyList_throwsUnsupportedOperationException() {
-        Assert.assertThrows(UnsupportedOperationException.class, ()
-            -> modelManager.getFilteredFlashcardList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () ->
+                modelManager.getFilteredFlashcardList().remove(0));
     }
 
-    /*
     @Test
     public void equals() {
-        QuickCache quickCache = new AddressBookBuilder().withFlashcard(ALICE).withPerson(BENSON).build();
+        QuickCache quickCache = new QuickCacheBuilder().withFlashcard(RANDOM1).withFlashcard(RANDOM3).build();
         QuickCache differentQuickCache = new QuickCache();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -100,22 +115,20 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different quickCache -> returns false
+        // different addressBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentQuickCache, userPrefs)));
 
         // different filteredList -> returns false
-        //        String[] keywords = ALICE.getQuestion().split("\\s+");
-        //        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(
-        //        Arrays.asList(keywords)));
-        //        assertFalse(modelManager.equals(new ModelManager(quickCache, userPrefs)));
+        modelManager.updateFilteredFlashcardList(new FlashcardContainsTagPredicate(
+                Arrays.asList(RANDOM_1_TAG)));
+        assertFalse(modelManager.equals(new ModelManager(quickCache, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
+        differentUserPrefs.setQuickCacheFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(quickCache, differentUserPrefs)));
     }
-    */
 }

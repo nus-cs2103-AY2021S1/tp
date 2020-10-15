@@ -1,15 +1,15 @@
 package quickcache.logic.parser;
 
 import static quickcache.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static quickcache.logic.commands.CommandTestUtil.ANSWER_DESC_AMY;
+import static quickcache.logic.commands.CommandTestUtil.ANSWER_DESC_TWO;
 import static quickcache.logic.commands.CommandTestUtil.INVALID_ANSWER_DESC;
 import static quickcache.logic.commands.CommandTestUtil.INVALID_OPTION_DESC;
 import static quickcache.logic.commands.CommandTestUtil.INVALID_OPTION_NON_ALPHANUMERIC_DESC;
-import static quickcache.logic.commands.CommandTestUtil.OPTION_DESC_AMY;
-import static quickcache.logic.commands.CommandTestUtil.VALID_ANSWER_AMY;
-import static quickcache.logic.commands.CommandTestUtil.VALID_OPTION_AMY;
+import static quickcache.logic.commands.CommandTestUtil.OPTION_DESC_TWO;
+import static quickcache.logic.commands.CommandTestUtil.VALID_ANSWER_TWO;
+import static quickcache.logic.commands.CommandTestUtil.VALID_OPTION_TWO;
 import static quickcache.testutil.TypicalIndexes.INDEX_FIRST_MCQ_FLASHCARD;
-import static quickcache.testutil.TypicalIndexes.INDEX_FIRST_OPENENDED_FLASHCARD;
+import static quickcache.testutil.TypicalIndexes.INDEX_FIRST_OPEN_ENDED_FLASHCARD;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,10 +40,10 @@ class TestCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        CommandParserTestUtil.assertParseFailure(parser, "-5" + ANSWER_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        CommandParserTestUtil.assertParseFailure(parser, "-5" + ANSWER_DESC_TWO, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        CommandParserTestUtil.assertParseFailure(parser, "0" + ANSWER_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        CommandParserTestUtil.assertParseFailure(parser, "0" + ANSWER_DESC_TWO, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         CommandParserTestUtil.assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -66,20 +66,20 @@ class TestCommandParserTest {
 
     @Test
     public void parse_answerField_success() {
-        Index targetIndex = INDEX_FIRST_OPENENDED_FLASHCARD;
-        String userInput = targetIndex.getOneBased() + ANSWER_DESC_AMY;
+        Index targetIndex = INDEX_FIRST_OPEN_ENDED_FLASHCARD;
+        String userInput = targetIndex.getOneBased() + ANSWER_DESC_TWO;
         TestCommand.TestAnswerDescriptor descriptor = new TestCommand.TestAnswerDescriptor();
-        descriptor.setAnswer(new Answer(VALID_ANSWER_AMY));
+        descriptor.setAnswer(new Answer(VALID_ANSWER_TWO));
         TestCommand expectedCommand = new TestCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
-    public void parse_optionField_sucesss() {
+    public void parse_optionField_success() {
         Index targetIndex = INDEX_FIRST_MCQ_FLASHCARD;
-        String userInput = targetIndex.getOneBased() + OPTION_DESC_AMY;
+        String userInput = targetIndex.getOneBased() + OPTION_DESC_TWO;
         TestCommand.TestAnswerDescriptor descriptor = new TestCommand.TestAnswerDescriptor();
-        descriptor.setOption(new Option(VALID_OPTION_AMY));
+        descriptor.setOption(new Option(VALID_OPTION_TWO));
         TestCommand expectedCommand = new TestCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
     }
