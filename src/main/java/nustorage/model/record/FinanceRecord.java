@@ -59,12 +59,29 @@ public class FinanceRecord {
         return datetime;
     }
 
+    public String getDatetimeString() {
+        return DATETIME_FORMAT.format(datetime);
+    }
+
+    /**
+     * Compares if {@code obj} is a {@code Finance Record} and has the same amount and datetime value.
+     *
+     * @param obj Object to compare with
+     * @return True if {@code obj} is a {@code Finance Record} and has the same amount and datetime value.
+     */
+    public boolean equalsWithoutID(Object obj) {
+        if (obj instanceof FinanceRecord) {
+            return ((FinanceRecord) obj).amount == this.amount
+                    && ((FinanceRecord) obj).getDatetimeString().equals(this.getDatetimeString());
+        }
+        return false;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof FinanceRecord) {
             return ((FinanceRecord) obj).id == this.id
-                    && ((FinanceRecord) obj).amount == this.amount
-                    && ((FinanceRecord) obj).datetime.equals(this.datetime);
+                    && this.equalsWithoutID(obj);
         }
         return false;
     }
@@ -73,7 +90,7 @@ public class FinanceRecord {
     public String toString() {
         return String.format("Transaction #%d on %s: $%.2f",
                 id,
-                DATETIME_FORMAT.format(datetime),
+                getDatetimeString(),
                 amount);
     }
 }

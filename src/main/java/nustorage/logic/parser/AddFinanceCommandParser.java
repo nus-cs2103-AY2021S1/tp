@@ -7,7 +7,6 @@ import static nustorage.logic.parser.CliSyntax.PREFIX_DATETIME;
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
-import nustorage.logic.commands.AddCommand;
 import nustorage.logic.commands.AddFinanceCommand;
 import nustorage.logic.parser.exceptions.ParseException;
 import nustorage.model.record.FinanceRecord;
@@ -25,7 +24,7 @@ public class AddFinanceCommandParser implements Parser<AddFinanceCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_AMOUNT)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddFinanceCommand.MESSAGE_USAGE));
         }
 
         double amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());

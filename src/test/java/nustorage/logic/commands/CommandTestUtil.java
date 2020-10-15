@@ -1,7 +1,8 @@
 package nustorage.logic.commands;
 
-
 import static nustorage.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static nustorage.logic.parser.CliSyntax.PREFIX_AMOUNT;
+import static nustorage.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static nustorage.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static nustorage.logic.parser.CliSyntax.PREFIX_NAME;
 import static nustorage.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -24,7 +25,6 @@ import nustorage.model.Model;
 import nustorage.model.person.NameContainsKeywordsPredicate;
 import nustorage.model.person.Person;
 import nustorage.testutil.EditPersonDescriptorBuilder;
-
 
 /**
  * Contains helper methods for testing commands.
@@ -65,7 +65,6 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
-
     /*
      * Adapted for NUStorage:
      */
@@ -77,24 +76,54 @@ public class CommandTestUtil {
     public static final int QUANTITY_2 = 0;
     public static final int QUANTITY_3 = 17;
 
-    public static final int ID_1 = 12345789;
-    public static final int ID_2 = 92502649;
-    public static final int ID_3 = 57396892;
+    public static final int ID_A = 12345789;
+    public static final int ID_B = 92502649;
+    public static final int ID_C = 57396892;
+    public static final int ID_D = 29730103;
 
-    public static final double AMOUNT_1 = 0.10;
-    public static final double AMOUNT_2 = 17.17;
-    public static final double AMOUNT_3 = 128.99;
+    public static final double AMOUNT_A = 0.10;
+    public static final double AMOUNT_B = 17.17;
+    public static final double AMOUNT_C = 128.99;
+    public static final double AMOUNT_D = 9999999;
 
-    public static final LocalDate DATE_1 = LocalDate.of(2020, 10, 1);
-    public static final LocalDate DATE_2 = LocalDate.of(2019, 1, 1);
-    public static final LocalTime TIME_1 = LocalTime.of(23, 59);
-    public static final LocalTime TIME_2 = LocalTime.of(0, 1);
+    public static final String DATE_STRING_A = "2020-10-01";
+    public static final String DATE_STRING_B = "2019-01-01";
+    public static final String DATE_STRING_C = "2018-12-30";
+    public static final String DATE_STRING_D = "2005-08-23";
+    public static final String TIME_STRING_A = "23:59";
+    public static final String TIME_STRING_B = "00:01";
+    public static final String TIME_STRING_C = "18:00";
+    public static final String TIME_STRING_D = "08:35";
+    public static final LocalDate DATE_A = LocalDate.parse(DATE_STRING_A);
+    public static final LocalDate DATE_B = LocalDate.parse(DATE_STRING_B);
+    public static final LocalDate DATE_C = LocalDate.parse(DATE_STRING_C);
+    public static final LocalDate DATE_D = LocalDate.parse(DATE_STRING_D);
+    public static final LocalTime TIME_A = LocalTime.parse(TIME_STRING_A);
+    public static final LocalTime TIME_B = LocalTime.parse(TIME_STRING_B);
+    public static final LocalTime TIME_C = LocalTime.parse(TIME_STRING_C);
+    public static final LocalTime TIME_D = LocalTime.parse(TIME_STRING_D);
 
-    public static final LocalDateTime DATE_TIME_1 = LocalDateTime.of(DATE_1, TIME_1);
-    public static final LocalDateTime DATE_TIME_2 = LocalDateTime.of(DATE_1, TIME_2);
-    public static final LocalDateTime DATE_TIME_3 = LocalDateTime.of(DATE_2, TIME_1);
-    public static final LocalDateTime DATE_TIME_4 = LocalDateTime.of(DATE_2, TIME_2);
+    public static final LocalDateTime DATE_TIME_A = LocalDateTime.of(DATE_A, TIME_A);
+    public static final LocalDateTime DATE_TIME_B = LocalDateTime.of(DATE_B, TIME_B);
+    public static final LocalDateTime DATE_TIME_C = LocalDateTime.of(DATE_C, TIME_C);
+    public static final LocalDateTime DATE_TIME_D = LocalDateTime.of(DATE_D, TIME_D);
 
+    public static final String AMOUNT_DESC_A = " " + PREFIX_AMOUNT + AMOUNT_A;
+    public static final String AMOUNT_DESC_B = " " + PREFIX_AMOUNT + AMOUNT_B;
+    public static final String AMOUNT_DESC_C = " " + PREFIX_AMOUNT + AMOUNT_C;
+    public static final String AMOUNT_DESC_D = " " + PREFIX_AMOUNT + AMOUNT_D;
+    public static final String DATE_DESC_A = " " + PREFIX_DATETIME + DATE_STRING_A;
+    public static final String DATE_DESC_B = " " + PREFIX_DATETIME + DATE_STRING_B;
+    public static final String DATE_DESC_C = " " + PREFIX_DATETIME + DATE_STRING_C;
+    public static final String DATE_DESC_D = " " + PREFIX_DATETIME + DATE_STRING_D;
+    public static final String TIME_DESC_A = " " + PREFIX_DATETIME + TIME_STRING_A;
+    public static final String TIME_DESC_B = " " + PREFIX_DATETIME + TIME_STRING_B;
+    public static final String TIME_DESC_C = " " + PREFIX_DATETIME + TIME_STRING_C;
+    public static final String TIME_DESC_D = " " + PREFIX_DATETIME + TIME_STRING_D;
+    public static final String DATE_TIME_DESC_A = " " + PREFIX_DATETIME + DATE_STRING_A + " " + TIME_STRING_A;
+    public static final String DATE_TIME_DESC_B = " " + PREFIX_DATETIME + DATE_STRING_B + " " + TIME_STRING_B;
+    public static final String DATE_TIME_DESC_C = " " + PREFIX_DATETIME + DATE_STRING_C + " " + TIME_STRING_C;
+    public static final String DATE_TIME_DESC_D = " " + PREFIX_DATETIME + DATE_STRING_D + " " + TIME_STRING_D;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)

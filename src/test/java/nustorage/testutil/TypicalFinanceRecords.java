@@ -1,12 +1,13 @@
 package nustorage.testutil;
 
-import static nustorage.logic.commands.CommandTestUtil.AMOUNT_1;
-import static nustorage.logic.commands.CommandTestUtil.AMOUNT_2;
-import static nustorage.logic.commands.CommandTestUtil.AMOUNT_3;
-import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_1;
-import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_2;
-import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_3;
-import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_4;
+import static nustorage.logic.commands.CommandTestUtil.AMOUNT_A;
+import static nustorage.logic.commands.CommandTestUtil.AMOUNT_B;
+import static nustorage.logic.commands.CommandTestUtil.AMOUNT_C;
+import static nustorage.logic.commands.CommandTestUtil.AMOUNT_D;
+import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_A;
+import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_B;
+import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_C;
+import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_D;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,11 +18,10 @@ import nustorage.model.record.FinanceRecord;
 
 public class TypicalFinanceRecords {
 
-    public static final FinanceRecord RECORD_A = new FinanceRecord(AMOUNT_1, DATE_TIME_1);
-    public static final FinanceRecord RECORD_B = new FinanceRecord(AMOUNT_2, DATE_TIME_2);
-    public static final FinanceRecord RECORD_C = new FinanceRecord(AMOUNT_3, DATE_TIME_3);
-    public static final FinanceRecord RECORD_D = new FinanceRecord(AMOUNT_3, DATE_TIME_4);
-
+    public static final FinanceRecord RECORD_A = new FinanceRecord(AMOUNT_A, DATE_TIME_A);
+    public static final FinanceRecord RECORD_B = new FinanceRecord(AMOUNT_B, DATE_TIME_B);
+    public static final FinanceRecord RECORD_C = new FinanceRecord(AMOUNT_C, DATE_TIME_C);
+    public static final FinanceRecord RECORD_D = new FinanceRecord(AMOUNT_D, DATE_TIME_D);
 
     private TypicalFinanceRecords() {} // prevents instantiation
 
