@@ -21,6 +21,7 @@ public class ThemeWindow extends UiPart<Stage> {
     private Theme currentTheme = MainWindow.getInstance().getCurrentTheme();
     private Theme selectedTheme = currentTheme;
 
+    // TODO Is ListView supposed to be used as a raw type here?
     @FXML
     private ListView<Region> themeList;
     @FXML

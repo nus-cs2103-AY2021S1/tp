@@ -46,6 +46,36 @@ public class StringUtilTest {
     }
 
 
+
+    @Test
+    public void containsCharIgnoreCase_nullKey_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsCharIgnoreCase("typical sentence", null));
+    }
+
+    @Test
+    public void containsCharIgnoreCase_emptyKey_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class,
+                "Key parameter cannot be empty", () -> StringUtil.containsCharIgnoreCase("typical tag", " "));
+    }
+
+    @Test
+    public void containsCharIgnoreCase_nullToCheck_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsCharIgnoreCase(null, "abc"));
+    }
+
+    @Test
+    public void containsCharIgnoreCase_validInput_success() {
+        String toCheck = "abc d";
+
+        assertTrue(StringUtil.containsCharIgnoreCase(toCheck, "abc d"));
+        assertTrue(StringUtil.containsCharIgnoreCase(toCheck, "a"));
+        assertTrue(StringUtil.containsCharIgnoreCase(toCheck, "ab"));
+        assertTrue(StringUtil.containsCharIgnoreCase(toCheck, "abc"));
+        assertTrue(StringUtil.containsCharIgnoreCase(toCheck, "bc"));
+        assertTrue(StringUtil.containsCharIgnoreCase(toCheck, "d"));
+    }
+
+
     //---------------- Tests for containsWordIgnoreCase --------------------------------------
 
     /*
@@ -61,14 +91,15 @@ public class StringUtilTest {
 
     @Test
     public void containsWordIgnoreCase_emptyWord_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", ()
-            -> StringUtil.containsWordIgnoreCase("typical sentence", "  "));
+        assertThrows(IllegalArgumentException.class,
+                "Word parameter cannot be empty", () -> StringUtil.containsWordIgnoreCase("typical sentence", "  "));
     }
 
     @Test
     public void containsWordIgnoreCase_multipleWords_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, "Word parameter should be a single word", ()
-            -> StringUtil.containsWordIgnoreCase("typical sentence", "aaa BBB"));
+        assertThrows(IllegalArgumentException.class,
+                "Word parameter should be a single word", () ->
+                        StringUtil.containsWordIgnoreCase("typical sentence", "aaa BBB"));
     }
 
     @Test
