@@ -22,7 +22,9 @@ public class CommandHistory implements History {
     // }
     // this is to prevent the first previousCommand() method call to
     // return commandHistory's 2nd last command instead of the last command
-    // will be reset to true if (newCommandsAdded || nextCommand() -> Optional.empty())
+    //
+    // will be set true after initial call of previousCommand()
+    // will be reset to false if (newCommandsAdded || nextCommand() -> Optional.empty())
     private boolean hasReturnedCurrentCommandBefore;
 
     /**
