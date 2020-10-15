@@ -1,12 +1,12 @@
 package seedu.address.model;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.UniqueContactList;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.UniqueContactList;
 
 /**
  * Wraps all data at the contact list level
@@ -76,7 +76,8 @@ public class ContactList implements ReadOnlyContactList {
     /**
      * Replaces the given contact {@code target} in the list with {@code editedContact}.
      * {@code target} must exist in the contactlist.
-     * The contact identity of {@code editedContact} must not be the same as another contact existing in the contactlist.
+     * The contact identity of {@code editedContact} must not be the same as another
+     * contact existing in the contactlist.
      */
     public void setContact(Contact target, Contact editedContact) {
         requireNonNull(editedContact);
