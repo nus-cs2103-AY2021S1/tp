@@ -1,10 +1,15 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.attendance.Attendance;
+import seedu.address.model.attendance.AttendanceType;
+import seedu.address.model.attendance.NamedAttendance;
+import seedu.address.model.student.NusnetId;
 import seedu.address.model.student.Student;
 
 /**
@@ -13,6 +18,9 @@ import seedu.address.model.student.Student;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<NamedAttendance> PREDICATE_SHOW_ALL_ATTENDANCES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -80,9 +88,36 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
 
+    /** Returns an unmodifiable view of the filtered attendance list */
+    ObservableList<NamedAttendance> getFilteredAttendanceList();
+
     /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
+
+    /**
+     * Updates the filter of the filtered attendance list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredAttendanceList(Predicate<NamedAttendance> predicate);
+
+    /**
+     * Marks the attendance of the given student {@code target} with the given {@code attendanceType}.
+     * The student must exist in the student list.
+     */
+    void markStudent(Student target, AttendanceType attendanceType);
+
+    void markStudentWithNusnetId(NusnetId nusnetId, AttendanceType attendanceType);
+
+    /**
+     * Updates the corresponding attendance statuses with the Attendances in the given list.
+     */
+    void updateAttendances(List<Attendance> attendances);
+
+    /**
+     * Clears the attendance statuses of all students in the student list.
+     */
+    void clearAttendance();
 }

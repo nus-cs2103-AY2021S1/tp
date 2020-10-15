@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +12,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.attendance.Attendance;
+import seedu.address.model.attendance.AttendanceType;
+import seedu.address.model.attendance.NamedAttendance;
+import seedu.address.model.student.NusnetId;
 import seedu.address.model.student.Student;
 
 /**
@@ -22,6 +27,7 @@ public class ModelManager implements Model {
     private final Taskmaster taskmaster;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
+    private final FilteredList<NamedAttendance> filteredNamedAttendance;
 
     /**
      * Initializes a ModelManager with the given taskmaster and userPrefs.
@@ -35,6 +41,7 @@ public class ModelManager implements Model {
         this.taskmaster = new Taskmaster(taskmaster);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.taskmaster.getStudentList());
+        filteredNamedAttendance = new FilteredList<>(this.taskmaster.getNamedAttendanceList());
     }
 
     public ModelManager() {
@@ -112,6 +119,30 @@ public class ModelManager implements Model {
         taskmaster.setStudent(target, editedStudent);
     }
 
+    @Override
+    public void markStudent(Student target, AttendanceType attendanceType) {
+        requireAllNonNull(target, attendanceType);
+        taskmaster.markStudent(target, attendanceType);
+        updateFilteredAttendanceList(PREDICATE_SHOW_ALL_ATTENDANCES);
+    }
+
+    @Override
+    public void markStudentWithNusnetId(NusnetId nusnetId, AttendanceType attendanceType) {
+        requireAllNonNull(nusnetId, attendanceType);
+        taskmaster.markStudentWithNusnetId(nusnetId, attendanceType);
+        updateFilteredAttendanceList(PREDICATE_SHOW_ALL_ATTENDANCES);
+    }
+
+    @Override
+    public void clearAttendance() {
+        taskmaster.clearAttendance();
+    }
+
+    @Override
+    public void updateAttendances(List<Attendance> attendances) {
+        taskmaster.updateAttendances(attendances);
+    }
+
     //=========== Filtered Student List Accessors =============================================================
 
     /**
@@ -127,6 +158,21 @@ public class ModelManager implements Model {
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Attendance} backed by the internal list of
+     * {@code versionedTaskmaster}
+     */
+    @Override
+    public ObservableList<NamedAttendance> getFilteredAttendanceList() {
+        return filteredNamedAttendance;
+    }
+
+    @Override
+    public void updateFilteredAttendanceList(Predicate<NamedAttendance> predicate) {
+        requireNonNull(predicate);
+        filteredNamedAttendance.setPredicate(predicate);
     }
 
     @Override

@@ -3,10 +3,19 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.attendance.Attendance;
+import seedu.address.model.attendance.AttendanceList;
+import seedu.address.model.attendance.AttendanceType;
+import seedu.address.model.attendance.NamedAttendance;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.NusnetId;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
+import seedu.address.model.student.exceptions.StudentNotFoundException;
 
 /**
  * Wraps all data at the address-book level
@@ -15,6 +24,7 @@ import seedu.address.model.student.UniqueStudentList;
 public class Taskmaster implements ReadOnlyTaskmaster {
 
     private final UniqueStudentList students;
+    private AttendanceList attendanceList;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -54,6 +64,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
         requireNonNull(newData);
 
         setStudents(newData.getStudentList());
+        attendanceList = AttendanceList.of(getStudentList());
     }
 
     //// student-level operations
@@ -94,7 +105,35 @@ public class Taskmaster implements ReadOnlyTaskmaster {
         students.remove(key);
     }
 
+    /**
+     * Marks the attendance of a {@code target} student with {@code attendanceType}
+     */
+    public void markStudent(Student target, AttendanceType attendanceType) {
+        attendanceList.markStudentAttendance(target.getNusnetId(), attendanceType);
+    }
+
+    /**
+     * Marks the attendance of a Student given the NUSNET ID
+     */
+    public void markStudentWithNusnetId(NusnetId nusnetId, AttendanceType attendanceType) {
+        attendanceList.markStudentAttendance(nusnetId, attendanceType);
+    }
+
     //// util methods
+
+    /**
+     * Returns the name of the student with the given {@code nusnetId}.
+     * The student must exist in the list.
+     */
+    public Name getNameByNusnetId(NusnetId nusnetId) {
+        for (Student student : getStudentList()) {
+            if (student.getNusnetId().equals(nusnetId)) {
+                return student.getName();
+            }
+        }
+
+        throw new StudentNotFoundException();
+    }
 
     @Override
     public String toString() {
@@ -105,6 +144,55 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     @Override
     public ObservableList<Student> getStudentList() {
         return students.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Sets the {@code AttendanceType} of all students' {@code Attendance} to NO_RECORD
+     */
+    public void clearAttendance() {
+        this.attendanceList.markAllAttendance(
+                attendanceList.asUnmodifiableObservableList().stream()
+                        .map(Attendance::getNusnetId).collect(Collectors.toList()),
+                AttendanceType.NO_RECORD);
+    }
+
+    /**
+     *
+     * @param attendances
+     * @throws StudentNotFoundException
+     */
+    public void updateAttendances(List<Attendance> attendances) throws StudentNotFoundException {
+        for (Attendance attendance: attendances) {
+            this.attendanceList.markStudentAttendance(attendance.getNusnetId(), attendance.getAttendanceType());
+        }
+    }
+
+    /**
+     * Returns an unmodifiable view of the {@code AttendanceList} backed by the internal list of the Taskmaster.
+     * Note that this method returns a List of {@code Attendance} without student names, not {@code NamedAttendance}
+     */
+    public ObservableList<Attendance> getUnmodifiableAttendanceList() {
+        return this.attendanceList.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Attendance} backed by the internal list of
+     * {@code versionedTaskmaster}
+     */
+    public ObservableList<NamedAttendance> getNamedAttendanceList() {
+        ObservableList<Attendance> attendances = attendanceList.asUnmodifiableObservableList();
+        ObservableList<NamedAttendance> namedAttendances = FXCollections.observableArrayList();
+        for (Attendance attendance : attendances) {
+            try {
+                Name name = getNameByNusnetId(attendance.getNusnetId());
+                namedAttendances.add(new NamedAttendance(name, attendance));
+            } catch (StudentNotFoundException stfe) {
+                Name name = Name.getStudentNotFoundName();
+                namedAttendances.add(new NamedAttendance(name, attendance));
+            }
+        }
+
+        return FXCollections.unmodifiableObservableList(namedAttendances);
     }
 
     @Override
