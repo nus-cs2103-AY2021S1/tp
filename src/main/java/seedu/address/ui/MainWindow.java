@@ -29,7 +29,6 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
     private BidListPanel bidListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -48,10 +47,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personAndBidTabPanePlaceholder;
-
-    @FXML
-    private StackPane personListPanelPlaceholder;
-
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
