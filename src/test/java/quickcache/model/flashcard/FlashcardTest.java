@@ -2,7 +2,6 @@ package quickcache.model.flashcard;
 
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static quickcache.logic.commands.CommandTestUtil.VALID_ANSWER_TWO;
 import static quickcache.logic.commands.CommandTestUtil.VALID_QUESTION_TWO;

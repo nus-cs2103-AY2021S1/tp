@@ -3,8 +3,6 @@ package quickcache.model.flashcard;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static quickcache.testutil.Assert.assertThrows;
-import static quickcache.testutil.TypicalFlashcards.RANDOM1;
-import static quickcache.testutil.TypicalFlashcards.RANDOM2;
 
 import org.junit.jupiter.api.Test;
 

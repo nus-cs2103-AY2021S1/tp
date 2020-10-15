@@ -41,8 +41,8 @@ class StatisticsTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Statistics newStatistics = new Statistics(5,4);
-        Statistics newStatisticsDuplicate = new Statistics(5,4);
+        Statistics newStatistics = new Statistics(5, 4);
+        Statistics newStatisticsDuplicate = new Statistics(5, 4);
         assertTrue(newStatistics.equals(newStatisticsDuplicate));
 
         // same object -> returns true
