@@ -1,6 +1,6 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
+// import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -48,9 +48,9 @@ public class ModuleCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(module.getName().fullName);
         zoomLink.setText(module.getLink().getLink());
-//        module.getTags().stream()
-//                .sorted(Comparator.comparing(tag -> tag.tagName))
-//                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        //module.getTags().stream()
+        //        .sorted(Comparator.comparing(tag -> tag.tagName))
+        //        .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

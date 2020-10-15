@@ -24,8 +24,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class MainWindow extends UiPart<Stage> {
 
-//    private static final String FXML = "MainWindow.fxml";
-    private static final String FXML = "test.fxml";
+    private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -42,9 +41,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
-
-//    @FXML
-//    private StackPane personListPanelPlaceholder;
 
     @FXML
     private VBox personListPanelPlaceholder;
@@ -69,7 +65,7 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
-//        setAccelerators();
+        //setAccelerators();
 
         helpWindow = new HelpWindow();
     }
@@ -123,8 +119,8 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-//        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-//        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        // StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        // statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
