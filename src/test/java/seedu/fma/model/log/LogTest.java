@@ -63,10 +63,6 @@ public class LogTest {
                 .build();
         assertFalse(LOG_A.isSameLog(editedLog));
 
-        // different exercise -> returns false
-        editedLog = new LogBuilder(LOG_A).withExercise(VALID_EXERCISE_B).build();
-        assertFalse(LOG_A.isSameLog(editedLog));
-
         // different dateTime -> returns false
         editedLog = new LogBuilder(LOG_A).withDateTime(VALID_DATE_TIME_B).build();
         assertFalse(LOG_A.isSameLog(editedLog));
