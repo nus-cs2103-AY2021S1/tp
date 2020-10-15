@@ -5,8 +5,12 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.AppUtil;
+import seedu.address.ui.theme.Theme;
+import seedu.address.ui.theme.ThemeSet;
 import seedu.address.ui.util.UiUtil;
 
 /**
@@ -22,7 +26,7 @@ public class ThemeWindow extends UiPart<Stage> {
 
     // TODO Is ListView supposed to be used as a raw type here?
     @FXML
-    private ListView themeList;
+    private ListView<Region> themeList;
     @FXML
     private ImageView themeImage;
 
@@ -45,9 +49,9 @@ public class ThemeWindow extends UiPart<Stage> {
     }
 
     private void fillThemeCards() {
-        ThemeCard defaultThemeCard = new ThemeCard("Default Theme", ThemeSet.DEFAULT_THEME, this);
-        ThemeCard darkThemeCard = new ThemeCard("Dark Theme", ThemeSet.DARK_THEME, this);
-        ThemeCard galaxyThemeCard = new ThemeCard("Galaxy Theme", ThemeSet.GALAXY_THEME, this);
+        ThemeCard defaultThemeCard = new ThemeCard(ThemeSet.DEFAULT_THEME, this);
+        ThemeCard darkThemeCard = new ThemeCard(ThemeSet.DARK_THEME, this);
+        ThemeCard galaxyThemeCard = new ThemeCard(ThemeSet.GALAXY_THEME, this);
 
         themeList.getItems().setAll(
                 defaultThemeCard.getRoot(),
@@ -61,7 +65,7 @@ public class ThemeWindow extends UiPart<Stage> {
      * @param theme the theme to display
      */
     public void showThemePreview(Theme theme) {
-        themeImage.setImage(UiUtil.getImage(theme.getThemePreviewPath()));
+        themeImage.setImage(AppUtil.getImage(theme.getThemePreviewPath()));
         selectedTheme = theme;
     }
 

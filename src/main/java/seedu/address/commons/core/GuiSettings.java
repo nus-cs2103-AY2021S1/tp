@@ -4,6 +4,8 @@ import java.awt.Point;
 import java.io.Serializable;
 import java.util.Objects;
 
+import seedu.address.ui.theme.ThemeSet;
+
 /**
  * A Serializable class that contains the GUI settings.
  * Guarantees: immutable.
@@ -12,27 +14,31 @@ public class GuiSettings implements Serializable {
 
     private static final double DEFAULT_HEIGHT = 600;
     private static final double DEFAULT_WIDTH = 740;
+    private static final String DEFAULT_THEME_NAME = ThemeSet.DARK_THEME.getThemeName();
 
     private final double windowWidth;
     private final double windowHeight;
     private final Point windowCoordinates;
+    private final String themeName;
 
     /**
-     * Constructs a {@code GuiSettings} with the default height, width and position.
+     * Constructs a {@code GuiSettings} with the default height, width, position and theme.
      */
     public GuiSettings() {
         windowWidth = DEFAULT_WIDTH;
         windowHeight = DEFAULT_HEIGHT;
         windowCoordinates = null; // null represent no coordinates
+        themeName = DEFAULT_THEME_NAME;
     }
 
     /**
-     * Constructs a {@code GuiSettings} with the specified height, width and position.
+     * Constructs a {@code GuiSettings} with the specified height, width, position and theme.
      */
-    public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition) {
+    public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition, String themeName) {
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
         windowCoordinates = new Point(xPosition, yPosition);
+        this.themeName = themeName;
     }
 
     public double getWindowWidth() {
@@ -45,6 +51,10 @@ public class GuiSettings implements Serializable {
 
     public Point getWindowCoordinates() {
         return windowCoordinates != null ? new Point(windowCoordinates) : null;
+    }
+
+    public String getThemeName() {
+        return themeName;
     }
 
     @Override
@@ -73,7 +83,8 @@ public class GuiSettings implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("Width : " + windowWidth + "\n");
         sb.append("Height : " + windowHeight + "\n");
-        sb.append("Position : " + windowCoordinates);
+        sb.append("Position : " + windowCoordinates + "\n");
+        sb.append("Theme: " + themeName);
         return sb.toString();
     }
 }

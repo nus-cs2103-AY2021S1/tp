@@ -17,6 +17,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.theme.Theme;
+import seedu.address.ui.theme.ThemeSet;
 import seedu.address.ui.util.UiUtil;
 
 /**
@@ -30,7 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Theme currentTheme = ThemeSet.DARK_THEME;
+    private Theme currentTheme;
     private Stage primaryStage;
     private Logic logic;
 
@@ -70,9 +72,6 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
-        // Set theme
-        setTheme(currentTheme);
 
         // setAccelerators();
 
@@ -165,6 +164,9 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+        // todo
+        currentTheme = ThemeSet.getTheme(guiSettings.getThemeName());
+        UiUtil.setTheme(primaryStage, currentTheme);
     }
 
     /**
@@ -185,7 +187,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), currentTheme.getThemeName());
         logic.setGuiSettings(guiSettings);
         primaryStage.hide();
     }

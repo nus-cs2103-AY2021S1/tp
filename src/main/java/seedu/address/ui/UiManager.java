@@ -7,9 +7,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.AppUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
-import seedu.address.ui.util.UiUtil;
 
 /**
  * The manager of the UI component.
@@ -18,7 +18,7 @@ public class UiManager implements Ui {
 
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
-    private static final Logger logger = LogsCenter.getLogger(OldUiManager.class);
+    private static final Logger logger = LogsCenter.getLogger(UiManager.class);
     private static final String ICON_APPLICATION = "/images/hello_file_icon.png";
 
     private Logic logic;
@@ -47,7 +47,7 @@ public class UiManager implements Ui {
         }
 
         //Set the application icon.
-        primaryStage.getIcons().add(UiUtil.getImage(ICON_APPLICATION));
+        primaryStage.getIcons().add(AppUtil.getImage(ICON_APPLICATION));
     }
 
     void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {
