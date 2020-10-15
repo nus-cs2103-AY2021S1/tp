@@ -7,21 +7,7 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddItemCommand;
-import seedu.address.logic.commands.AddRecipeCommand;
-import seedu.address.logic.commands.ClearItemCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteItemCommand;
-import seedu.address.logic.commands.DeleteRecipeCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindItemCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListItemCommand;
-import seedu.address.logic.commands.ListRecipeCommand;
-import seedu.address.logic.commands.ViewDetailsCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -51,8 +37,6 @@ public class InventoryParser {
         switch (commandWord) {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
         case FindItemCommand.COMMAND_WORD:
@@ -63,6 +47,8 @@ public class InventoryParser {
             return new HelpCommand();
         case AddItemCommand.COMMAND_WORD:
             return new AddItemCommandParser().parse(arguments);
+        case EditItemCommand.COMMAND_WORD:
+            return new EditItemCommandParser().parse(arguments);
         case ClearItemCommand.COMMAND_WORD:
             return new ClearItemCommand();
         case ListItemCommand.COMMAND_WORD:

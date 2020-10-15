@@ -8,15 +8,7 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddItemCommand;
-import seedu.address.logic.commands.ClearItemCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -49,9 +41,6 @@ public class InventoryListParser {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
@@ -69,6 +58,9 @@ public class InventoryListParser {
 
         case ClearItemCommand.COMMAND_WORD:
             return new ClearItemCommand();
+
+        case EditItemCommand.COMMAND_WORD:
+            return new EditItemCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

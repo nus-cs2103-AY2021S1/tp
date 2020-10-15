@@ -133,7 +133,7 @@ public class Item extends InventoryComponent {
     }
 
     /**
-     * Returns true if both persons have the same name and data fields.
+     * Returns true if both items have the same name and data fields.
      * This defines a stronger notion of equality between two items.
      */
     @Override
