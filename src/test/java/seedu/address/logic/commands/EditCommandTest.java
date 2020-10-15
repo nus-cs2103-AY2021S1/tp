@@ -23,7 +23,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.contact.Contact;
 //import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ContactBuilder;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for EditCommand.
@@ -34,7 +34,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Contact editedPerson = new PersonBuilder().build();
+        Contact editedPerson = new ContactBuilder().build();
         //EditCommand.EditModuleDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         //EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 

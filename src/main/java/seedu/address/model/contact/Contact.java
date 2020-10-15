@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a contact in the contact list.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Contact {
@@ -18,6 +18,7 @@ public class Contact {
     // Identity fields
     private final Name name;
     private final Email email;
+    private final Telegram telegramUsername;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -25,10 +26,11 @@ public class Contact {
     /**
      * Every field must be present and not null.
      */
-    public Contact(Name name, Email email, Set<Tag> tags) {
+    public Contact(Name name, Email email, Telegram telegramUsername, Set<Tag> tags) {
         requireAllNonNull(name, email, tags);
         this.name = name;
         this.email = email;
+        this.telegramUsername = telegramUsername;
         this.tags.addAll(tags);
     }
 
@@ -38,6 +40,10 @@ public class Contact {
 
     public Email getEmail() {
         return email;
+    }
+
+    public Telegram getTelegramUsername() {
+        return this.telegramUsername;
     }
 
     /**
@@ -52,14 +58,15 @@ public class Contact {
      * Returns true if both persons of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Contact otherPerson) {
+    public boolean isSameContact(Contact otherPerson) {
         if (otherPerson == this) {
             return true;
         }
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
-                && otherPerson.getEmail().equals(getEmail());
+                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getTelegramUsername().equals(getTelegramUsername());
     }
 
     /**
@@ -79,13 +86,14 @@ public class Contact {
         Contact otherPerson = (Contact) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getTelegramUsername().equals(getTelegramUsername())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, email, tags);
+        return Objects.hash(name, email, telegramUsername, tags);
     }
 
     @Override
@@ -94,6 +102,8 @@ public class Contact {
         builder.append(getName())
                 .append(" Email: ")
                 .append(getEmail())
+                .append(" Telegram: ")
+                .append(getTelegramUsername())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
