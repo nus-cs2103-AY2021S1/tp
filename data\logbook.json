@@ -1,0 +1,13 @@
+{
+  "logs" : [ {
+    "exercise" : "Sit ups",
+    "dateTime" : "2020-10-15T21:11:54.808921",
+    "rep" : "30",
+    "comment" : "My abs hurt :("
+  }, {
+    "exercise" : "Pull ups",
+    "dateTime" : "2020-10-15T21:11:54.809094",
+    "rep" : "10",
+    "comment" : "-"
+  } ]
+}
