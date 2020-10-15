@@ -12,9 +12,11 @@ public class Messages {
 
     // ------------------------- BIDDER ---------------------------
     public static final String MESSAGE_INVALID_BIDDER_DISPLAYED_INDEX = "The bidder index provided is invalid";
+    public static final String MESSAGE_BIDDERS_LISTED_OVERVIEW = "%1$d bidders listed!";
 
     // ------------------------- SELLER ---------------------------
     public static final String MESSAGE_INVALID_SELLER_DISPLAYED_INDEX = "The seller index provided is invalid";
+    public static final String MESSAGE_SELLERS_LISTED_OVERVIEW = "%1$d sellers listed!";
 
     // ------------------------- PROPERTY -------------------------
     public static final String MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX = "The property index provided is invalid";
