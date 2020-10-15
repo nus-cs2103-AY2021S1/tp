@@ -46,8 +46,8 @@ public class Assignment {
 
     @Override
     public String toString() {
-        return String.format("The assignment %s takes up %.2f of the total grade and " +
-                "the result for this assignment is %.2f", assignmentName, percentageOfGrade, result);
+        return String.format("Assignment %s is %.2f of the total grade and the result is %.2f",
+                assignmentName, percentageOfGrade, result);
     }
 
     @Override

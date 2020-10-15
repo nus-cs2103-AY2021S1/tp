@@ -121,4 +121,31 @@ public class ParserUtil {
         }
         return new ZoomLink(trimmedZoomLink);
     }
+
+    /**
+     * Parses a {@code String assignmentName}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static String parseAssignmentName(String assignmentName) {
+        String trimmedAssignmentName = assignmentName.trim();
+        return trimmedAssignmentName;
+    }
+
+    /**
+     * Parses a {@code String assignmentPercentage}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static double parseAssignmentPercentage(String assignmentPercentage) {
+        double trimmedAssignmentPercentage = Double.parseDouble(assignmentPercentage.trim());
+        return trimmedAssignmentPercentage;
+    }
+
+    /**
+     * Parses a {@code String assignmentResult}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static double parseAssignmentResult(String assignmentResult) {
+        double trimmedAssignmentResult = Double.parseDouble(assignmentResult.trim());
+        return trimmedAssignmentResult;
+    }
 }
