@@ -21,7 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 // import seedu.address.model.ModuleList;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Contact;
+import seedu.address.model.contact.Contact;
 //import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 

@@ -7,7 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
-import seedu.address.model.person.Contact;
+import seedu.address.model.contact.Contact;
 
 /**
  * Jackson-friendly version of {@link Contact}.
