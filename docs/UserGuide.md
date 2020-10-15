@@ -20,7 +20,7 @@ NUStorage is a desktop application for __managing inventory, transaction records
     - Some commands you can try are:
         - `list_inventory` to list inventory items
         - `list_finance` to list finance records
-        - `add_inventory i/laptop n/2` to add 2 laptops to inventory
+        - `add_inventory i/laptop q/2` to add 2 laptops to inventory
         - `add_finance amt/120.17` to add an outbound transaction of $120.17
         - `bye` to exit programme
     - Refer to the feature list below for details of each command.
@@ -47,13 +47,19 @@ NUStorage is a desktop application for __managing inventory, transaction records
 #### Add items into inventory (add): `add_inventory`
 Adds and stores items into the inventory
 
-Format: `add_inventory i/ITEM n/NUMBER`
+Format: `add_inventory i/ITEM_NAME Q/QUANTITY [c/ITEM_COST]`
 
 
-#### Sell items from inventory (remove): `sell_inventory`
+### Sell items from inventory (remove): `delete_inventory`
 Sells items from the inventory
 
-Format: `sell_inventory i/ITEM n/NUMBER`
+Format: `delete_inventory ITEM_NUMBER`
+
+
+### Edit item in inventory (remove): `edit_inventory`
+Edits items in the inventory
+
+Format: `edit_inventory ITEM_NUMBER [i/ITEM_NAME] [q/QUANTITY]`
 
 
 #### List inventory records: `list_inventory`
@@ -109,7 +115,8 @@ Format: `exit`
 Action | Format, Examples
 --------|------------------
 __Add inventory__ | `add_inventory i/ITEM n/NUMBER`<br> e.g. add_inventory i/MacBook n/200
-__Sell inventory__ | `sell_inventory i/ITEM n/NUMBER`<br> e.g. sell_inventory i/laptops n/100
+__Sell inventory__ | `delete_inventory ITEM_NUMBER`<br> e.g. sell_inventory i/laptops n/100
+__Edit inventory__ | `edit_inventory ITEM_NUMBER [i/ITEM_NAME] [q/QUANTITY]`<br> e.g. edit_inventory 3 i/laptops q/10
 __List inventory__ | `list_inventory`
 __Add finance__ | `add_finance amt/AMOUNT [at/[DATE] [TIME]]`<br> e.g. add_finance amt/420.69 at/2020-04-23
 __Delete finance__ | `delete_finance INDEX`<br> e.g. delete_finance 0
