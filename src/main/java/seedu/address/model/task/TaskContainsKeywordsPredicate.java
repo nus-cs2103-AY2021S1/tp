@@ -1,6 +1,8 @@
 package seedu.address.model.task;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
@@ -11,27 +13,33 @@ import seedu.address.logic.parser.Prefix;
  * Tests that a {@code Task}'s given attribute matches any of the keywords given.
  */
 public class TaskContainsKeywordsPredicate implements Predicate<Task> {
-    private final Map<Prefix, String> keywords;
+    private final Map<Prefix, List<String>> keywords;
 
     public TaskContainsKeywordsPredicate() {
         this.keywords = new HashMap<>();
     }
 
     public void setKeyword(Prefix attribute, String keyword) {
-        keywords.put(attribute, keyword);
+        List<String> extendedKeywords = new ArrayList<>();
+        if (keywords.containsKey(attribute)) {
+            extendedKeywords = keywords.get(attribute);
+        }
+        extendedKeywords.add(keyword);
+        keywords.put(attribute, extendedKeywords);
     }
 
     @Override
     public boolean test(Task task) {
-        for (Map.Entry<Prefix, String> entry : keywords.entrySet()) {
+        for (Map.Entry<Prefix, List<String>> entry : keywords.entrySet()) {
             Prefix prefix = entry.getKey();
-            String word = entry.getValue();
-            if (isMatched(prefix.getPrefix(), word, task)) {
+            List<String> words = entry.getValue();
+            if (isMatched(prefix.getPrefix(), words, task)) {
                 return true;
             }
         }
         return false;
     }
+
 
     @Override
     public boolean equals(Object other) {
@@ -52,25 +60,30 @@ public class TaskContainsKeywordsPredicate implements Predicate<Task> {
         return true;
     }
 
-    private boolean isMatched(String prefix, String word, Task task) {
+    private boolean isMatched(String prefix, List<String> words, Task task) {
         if (prefix.equals("title:")) {
-            return StringUtil.matchesWordIgnoreCase(task.getTitle().title, word);
+            return words.stream()
+                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getTitle().title, keyword));
         }
 
         if (prefix.equals("desc:")) {
-            return StringUtil.matchesWordIgnoreCase(task.getDescription().value, word);
+            return words.stream()
+                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getDescription().value, keyword));
         }
 
         if (prefix.equals("date:")) {
-            return StringUtil.matchesWordIgnoreCase(task.getDateTime().value, word);
+            return words.stream()
+                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getDateTime().value, keyword));
         }
 
         if (prefix.equals("type:")) {
-            return StringUtil.matchesWordIgnoreCase(task.getType().value, word);
+            return words.stream()
+                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getType().value, keyword));
         }
         if (prefix.equals("status:")) {
             // must be an exact match here
-            return task.getStatus().value.toString().toLowerCase().equals(word.toLowerCase());
+            return words.stream()
+                    .anyMatch(keyword -> task.getStatus().value.toString().toLowerCase().equals(keyword.toLowerCase()));
         }
 
         return false;

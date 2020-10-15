@@ -39,7 +39,8 @@ public class FindCommandParserTest {
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser,
-                " \n title:Meet Alice  \t desc:play \t\t\t type: todo \n date: \t 01-01-2020 23:59 \n status:incomplete",
+                " \n title:Meet Alice  \t desc:play \t\t\t type: todo \n date: \t 01-01-2020 23:59 "
+                        + "\n status:incomplete",
                 expectedFindCommand);
     }
 
