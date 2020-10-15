@@ -14,7 +14,7 @@ public class CommentTest {
     }
 
     @Test
-    void isValid_validComment_returnTrue() {
+    void isValidComment_validComment_returnTrue() {
         // valid Comment
         assertTrue(Comment.isValidComment("abc")); // minimal
         assertTrue(Comment.isValidComment("exercising")); // alphabets only
