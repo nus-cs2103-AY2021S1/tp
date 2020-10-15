@@ -14,6 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
+import seedu.address.model.module.grade.GradeTracker;
 
 /**
  * Edits the details of an existing Module in the address book.
@@ -91,7 +92,8 @@ public class EditCommand extends Command {
 
         ModuleName moduleName = editModuleDescriptor.getModuleName().orElse(moduleToEdit.getName());
         ZoomLink zoomLink = editModuleDescriptor.getZoomLink().orElse(moduleToEdit.getLink());
-        return new Module(moduleName, zoomLink);
+        GradeTracker gradeTracker = editModuleDescriptor.getGradeTracker().orElse((moduleToEdit.getGradeTracker()));
+        return new Module(moduleName, zoomLink, gradeTracker);
 
     }
 
@@ -128,6 +130,7 @@ public class EditCommand extends Command {
         //private Set<Tag> tags;
         private ModuleName moduleName;
         private ZoomLink zoomLink;
+        private GradeTracker gradeTracker;
 
         public EditModuleDescriptor() {}
 
@@ -141,6 +144,7 @@ public class EditCommand extends Command {
             //setTags(toCopy.tags);
             setModuleName(toCopy.moduleName);
             setZoomLink(toCopy.zoomLink);
+            setGradeTracker(toCopy.gradeTracker);
         }
 
         /*
@@ -193,12 +197,20 @@ public class EditCommand extends Command {
             this.zoomLink = zoomLink;
         }
 
+        public void setGradeTracker(GradeTracker gradeTracker) {
+            this.gradeTracker = gradeTracker;
+        }
+
         public Optional<ModuleName> getModuleName() {
             return Optional.ofNullable(moduleName);
         }
 
         public Optional<ZoomLink> getZoomLink() {
             return Optional.ofNullable(zoomLink);
+        }
+
+        public Optional<GradeTracker> getGradeTracker() {
+            return Optional.ofNullable(gradeTracker);
         }
 
         @Override
@@ -220,7 +232,8 @@ public class EditCommand extends Command {
             //       && getEmail().equals(e.getEmail())
             //       && getTags().equals(e.getTags());
             return getModuleName().equals(e.getModuleName())
-                    && getZoomLink().equals(e.getZoomLink());
+                    && getZoomLink().equals(e.getZoomLink())
+                    && getGradeTracker().equals(e.getGradeTracker());
         }
     }
 }
