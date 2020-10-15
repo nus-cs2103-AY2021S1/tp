@@ -35,6 +35,11 @@ public class EditItemCommandTest {
     private ItemList itemList = new ItemList();
     private ItemList expectedItemList = new ItemList();
 
+    @Test
+    public void constructor_throwsNullException() {
+        assertThrows(NullPointerException.class, () -> new EditItemCommand(null, null));
+    }
+
     /**
      * Tests for successful edit of an item's quantity found in the item list.
      */

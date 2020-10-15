@@ -60,7 +60,7 @@ public class FindItemCommandTest {
 
     @Test
     public void execute_zeroKeywords_noItemFound() {
-        String expectedMessage = String.format(Messages.MESSAGE_NO_ITEM_MATCH);
+        String expectedMessage = Messages.MESSAGE_NO_ITEM_MATCH;
 
         NameMatchesKeywordsPredicate predicate = preparePredicate(" ");
         FindItemCommand command = new FindItemCommand(predicate);

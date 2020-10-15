@@ -244,13 +244,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateRecipeNames(String originalName, String updatedName) {
-        filteredRecipes.stream()
-                        .filter(recipe -> recipe.getProductName().equals(originalName))
-                        .forEach(recipe -> setRecipe(recipe, recipe.setProductName(updatedName)));
-    }
-
-    @Override
     public int findLocationID(Location toFind) {
         requireNonNull(toFind);
         return locationList.findLocationID(toFind);
@@ -285,6 +278,13 @@ public class ModelManager implements Model {
             locationIds.add(findLocationIdByName(locationName));
         }
         return itemPrecursor.toItem(locationIds, new HashSet<>());
+    }
+
+    @Override
+    public void updateRecipeNames(String originalName, String updatedName) {
+        filteredRecipes.stream()
+                .filter(recipe -> recipe.getProductName().equals(originalName))
+                .forEach(recipe -> setRecipe(recipe, recipe.setProductName(updatedName)));
     }
 
     private int findLocationIdByName(String location) {
