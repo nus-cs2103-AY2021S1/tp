@@ -25,8 +25,9 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="nusnetId" styleClass="cell_big_label" text="\$nusnetId" />
+        <Label fx:id="name" styleClass="cell_big_label" text="\$name" />
       </HBox>
+      <Label fx:id="nusnetId" styleClass="cell_small_label" text="\$nusnetId" />
       <Label fx:id="attendanceStatus" styleClass="cell_small_label" text="\$attendanceStatus" />
     </VBox>
       <rowConstraints>
