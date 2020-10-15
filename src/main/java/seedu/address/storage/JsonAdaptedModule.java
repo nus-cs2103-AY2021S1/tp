@@ -19,7 +19,7 @@ class JsonAdaptedModule {
 
     private final String name;
     private final String zoomLink;
-    private final GradeTracker gradeTracker = new GradeTracker();
+    private final GradeTracker gradeTracker;
     //private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -28,10 +28,14 @@ class JsonAdaptedModule {
     @JsonCreator
     public JsonAdaptedModule(@JsonProperty("name") String name,
                              @JsonProperty("zoomLink") String zoomLink,
-                             @JsonProperty("gradeTracker") GradeTracker gradeTracker) {
+                             @JsonProperty("gradeTracker") GradeTracker storedGradeTracker) {
         this.name = name;
         this.zoomLink = zoomLink;
-
+        if (storedGradeTracker == null) {
+            this.gradeTracker = new GradeTracker();
+        } else {
+            this.gradeTracker = storedGradeTracker;
+        }
         //tagging temporarily removed
         /*if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -44,6 +48,7 @@ class JsonAdaptedModule {
     public JsonAdaptedModule(Module source) {
         name = source.getName().fullName;
         zoomLink = source.getLink().value;
+        gradeTracker = source.getGradeTracker();
         //tagging temporarily removed
         /*tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -77,6 +82,13 @@ class JsonAdaptedModule {
             throw new IllegalValueException(ModuleName.MESSAGE_CONSTRAINTS);
         }
         final ZoomLink modelLink = new ZoomLink(zoomLink);
+        if (gradeTracker == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    GradeTracker.class.getSimpleName()));
+        }
+        if (!GradeTracker.isValidGradeTracker(gradeTracker)) {
+            throw new IllegalValueException(GradeTracker.MESSAGE_INVALID_GRADE);
+        }
         //email and tagging removed temporarily
         /*if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -87,7 +99,7 @@ class JsonAdaptedModule {
         final Email modelEmail = new Email(email);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);*/
-        return new Module(modelName, modelLink);
+        return new Module(modelName, modelLink, gradeTracker);
     }
 
 }

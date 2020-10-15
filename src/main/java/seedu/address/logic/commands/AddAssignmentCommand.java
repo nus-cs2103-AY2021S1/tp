@@ -30,7 +30,7 @@ public class AddAssignmentCommand extends Command {
             + PREFIX_RESULT_ASSIGNMENT + " 0.85";
 
     public static final String MESSAGE_SUCCESS = "New assignment %1$s added.";
-    public static final String MESSAGE_ASSIGNMENT_NOT_ADDED = "Assignment not added to module.";
+    public static final String MESSAGE_ASSIGNMENT_NOT_ADDED = "Module to add to not found.";
 
     private final String moduleToAdd;
     private final Assignment assignmentToAdd;

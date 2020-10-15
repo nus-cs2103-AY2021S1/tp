@@ -87,7 +87,16 @@ public class Module {
      * @return Module a new Module with the input zoom link.
      */
     public Module addZoomLink(ZoomLink zoomLink) {
-        return new Module(this.getName(), zoomLink);
+        return new Module(this.getName(), zoomLink, this.gradeTracker);
+    }
+
+    /**
+     * Returns the grades being tracked for this module.
+     *
+     * @return grade tracker.
+     */
+    public GradeTracker getGradeTracker() {
+        return gradeTracker;
     }
 
     /**

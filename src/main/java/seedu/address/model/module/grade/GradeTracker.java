@@ -45,7 +45,15 @@ public class GradeTracker {
      * @return true if the grade is valid.
      */
     public static boolean isValidGrade(double test) {
-        if (test <= 1 && test >= 0) {
+        if (test >= 0 && test <= 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean isValidGradeTracker(GradeTracker gradeTracker) {
+        if (GradeTracker.isValidGrade(gradeTracker.getGrade())) {
             return true;
         } else {
             return false;

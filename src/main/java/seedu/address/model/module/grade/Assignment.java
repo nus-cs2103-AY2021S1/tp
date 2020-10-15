@@ -39,6 +39,15 @@ public class Assignment {
     }
 
     /**
+     * Default constructor for Assignment.
+     */
+    public Assignment() {
+        assignmentName = "";
+        assignmentPercentage = 0;
+        assignmentResult = 0;
+    }
+
+    /**
      * Returns true if a given string is a valid assignment name.
      */
     public static boolean isValidAssignmentName(String test) {
