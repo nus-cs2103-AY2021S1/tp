@@ -109,8 +109,10 @@ public class Animal {
                 .append(getId())
                 .append(" Species: ")
                 .append(getSpecies())
-                .append(" MedicalConditions: ");
+                .append(" Medical conditions: ");
         getMedicalConditions().forEach(builder::append);
+        builder.append(" Feeding times: ");
+        getFeedTimes().forEach(builder::append);
         return builder.toString();
     }
 
