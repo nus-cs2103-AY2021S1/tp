@@ -59,7 +59,6 @@ public class AddMultipleChoiceQuestionCommandParser implements Parser<AddMultipl
                 throw new ParseException("Answer must be smaller than number of choices");
             }
         } catch (NumberFormatException e) {
-            System.out.println("hello");
             throw new ParseException("Answer must be integer");
         }
 
