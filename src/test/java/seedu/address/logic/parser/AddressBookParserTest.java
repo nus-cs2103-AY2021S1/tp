@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CS2103;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS2103;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_NAME_CS2103;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
@@ -51,7 +51,7 @@ public class AddressBookParserTest {
         UntagCommand command = (UntagCommand) parser.parseCommand(
                 UntagCommand.COMMAND_WORD + " " + TAG_DESC_CS2103);
 
-        TagName validTagName = new TagName(VALID_NAME_CS2103);
+        TagName validTagName = new TagName(VALID_TAG_NAME_CS2103);
         assertEquals(new UntagCommand(validTagName), command);
     }
 

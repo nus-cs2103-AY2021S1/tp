@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MAC_FILE_ADDRESS_CS2101;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalTags.CS2101;
@@ -27,7 +28,7 @@ public class OpenCommandIntegrationTest {
         // If system is not windows, use sh
         if (!System.getProperty("os.name").toLowerCase().startsWith("windows")) {
             validTag = new TagBuilder(CS2101)
-                    .withFileAddress("./src/test/java/seedu/address/testutil/cs2101.sh").build();
+                    .withFileAddress(VALID_MAC_FILE_ADDRESS_CS2101).build();
         }
         invalidTag = new TagBuilder().withFileAddress(".\\somewhereOverTheRainbow").build();
         model.addTag(validTag);

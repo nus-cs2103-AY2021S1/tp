@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS2101;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS2103;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_NAME_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_NAME_CS2103;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -56,8 +56,8 @@ public class UntagCommandTest {
 
     @Test
     public void equals() {
-        TagName validTag1 = new TagName(VALID_NAME_CS2101);
-        TagName validTag2 = new TagName(VALID_NAME_CS2103);
+        TagName validTag1 = new TagName(VALID_TAG_NAME_CS2101);
+        TagName validTag2 = new TagName(VALID_TAG_NAME_CS2103);
         UntagCommand deleteFirstCommand = new UntagCommand(validTag1);
         UntagCommand deleteSecondCommand = new UntagCommand(validTag2);
 
@@ -65,11 +65,11 @@ public class UntagCommandTest {
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        UntagCommand deleteFirstCommandCopy = new UntagCommand(new TagName(VALID_NAME_CS2101));
+        UntagCommand deleteFirstCommandCopy = new UntagCommand(new TagName(VALID_TAG_NAME_CS2101));
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(new TagName(VALID_NAME_CS2101)));
+        assertFalse(deleteFirstCommand.equals(new TagName(VALID_TAG_NAME_CS2101)));
 
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));

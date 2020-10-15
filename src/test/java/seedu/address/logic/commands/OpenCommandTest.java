@@ -2,6 +2,9 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MAC_FILE_ADDRESS_TESTFILE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_NAME_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_NAME_CS2103;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTags.getTypicalAddressBook;
@@ -25,8 +28,8 @@ class OpenCommandTest {
 
     @Test
     public void equals() {
-        TagName tagName1 = new TagName("cs2103");
-        TagName tagName2 = new TagName("cs2103T");
+        TagName tagName1 = new TagName(VALID_TAG_NAME_CS2103);
+        TagName tagName2 = new TagName(VALID_TAG_NAME_CS2101);
 
         OpenCommand openCommand1 = new OpenCommand(tagName1);
         OpenCommand openCommand2 = new OpenCommand(tagName2);
@@ -63,7 +66,7 @@ class OpenCommandTest {
             String os = System.getProperty("os.name").toLowerCase();
             if (!os.startsWith("windows")) {
                 correctTag = new TagBuilder()
-                        .withFileAddress("./src/test/java/seedu/address/testutil/testFile.sh").build();
+                        .withFileAddress(VALID_MAC_FILE_ADDRESS_TESTFILE).build();
             }
             OpenCommand openCommand = new OpenCommand(correctTag.getTagName());
             Model modelStubWithAddressBook = new ModelStubWithAddressBook();

@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CS2103;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_NAME_CS2103;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -25,8 +25,8 @@ public class ShowCommandParserTest {
     @Test
     public void parse_validArgs_throwsParseException() {
         ShowCommand expectedFindCommand =
-                new ShowCommand(new TagNameEqualsKeywordPredicate(new TagName(VALID_NAME_AMY)));
+                new ShowCommand(new TagNameEqualsKeywordPredicate(new TagName(VALID_TAG_NAME_CS2103)));
 
-        assertParseSuccess(parser, NAME_DESC_AMY, expectedFindCommand);
+        assertParseSuccess(parser, TAG_DESC_CS2103, expectedFindCommand);
     }
 }

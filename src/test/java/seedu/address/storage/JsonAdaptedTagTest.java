@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedTag.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTags.BENSON;
+import static seedu.address.testutil.TypicalTags.MYFILE;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,14 +15,14 @@ public class JsonAdaptedTagTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_FILE_ADDRESS = " ";
 
-    private static final String VALID_TAG_NAME = BENSON.getTagName().toString();
+    private static final String VALID_TAG_NAME = MYFILE.getTagName().toString();
 
-    private static final String VALID_FILE_ADDRESS = BENSON.getFileAddress().toString();
+    private static final String VALID_FILE_ADDRESS = MYFILE.getFileAddress().toString();
 
     @Test
     public void toModelType_validTagDetails_returnsPerson() throws Exception {
-        JsonAdaptedTag person = new JsonAdaptedTag(BENSON);
-        assertEquals(BENSON, person.toModelType());
+        JsonAdaptedTag person = new JsonAdaptedTag(MYFILE);
+        assertEquals(MYFILE, person.toModelType());
     }
 
     @Test

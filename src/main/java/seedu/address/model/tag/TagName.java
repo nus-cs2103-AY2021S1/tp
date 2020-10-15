@@ -23,7 +23,7 @@ public class TagName {
     /**
      * Constructs a {@code Name}.
      *
-     * @param name A valid name.
+     * @param name A valid tag name.
      */
     public TagName(String name) {
         requireNonNull(name);
@@ -32,7 +32,7 @@ public class TagName {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX);
