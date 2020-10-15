@@ -2,6 +2,8 @@ package seedu.address.model.delivery;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Objects;
+
 /**
  * Represents a delivery in the delivery book
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -55,6 +57,11 @@ public class Delivery {
         return otherDelivery != null
                 && otherDelivery.getName().equals(getName())
                 && otherDelivery.getPhone().equals(getPhone());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, phone, address, order);
     }
 
     /**
