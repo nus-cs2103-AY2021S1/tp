@@ -37,7 +37,7 @@ NUStorage is a desktop application for __managing inventory, transaction records
 * Words in `UPPER_CASE` are the __parameters__ to be supplied by the user.<br>
     e.g. in `add_inventory i/ITEM`, `ITEM` is a parameter which can be used as `add_inventory i/MacBook`.
 * Items in square brackets are optional.<br>
-  e.g `amt/AMOUNT [at/[DATE] [TIME]]` can be used as the possible formats: 
+  e.g `amt/AMOUNT [at/[DATE] [TIME]]` can be used as the possible formats:
   * `amt/200 at/2020-04-10 18:00`
   * `amt/200 at/2020-04-10`
   * `amt/200 at/18:00`

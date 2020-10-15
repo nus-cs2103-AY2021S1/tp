@@ -44,10 +44,10 @@ public class InventoryRecordCard extends UiPart<Region> {
         super(FXML);
         this.record = record;
         id.setText(displayedIndex + ". ");
-        name.setText(record.getItemName());
-        detailOne.setText(Integer.toString(record.getQuantity()));
-        detailTwo.setText(record.getDate().toString());
-        detailThree.setText(record.getTime().toString());
+        name.setText(String.format("Item: %s", record.getItemName()));
+        detailOne.setText(String.format("Quantity: %d", record.getQuantity()));
+        detailTwo.setText(String.format("Last update: %s", record.getDate().toString()));
+        detailThree.setText(String.format("Time: %s", record.getTime().toString()));
     }
 
     @Override
