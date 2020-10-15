@@ -39,9 +39,6 @@ public class EditFlashcardDescriptorBuilder {
         descriptor.setIsMcq(isMcq);
         if (isMcq) {
             descriptor.setChoices(flashcard.getQuestion().getChoices().get());
-        } else {
-            Choice[] emptyArray = new Choice[0];
-            descriptor.setChoices(emptyArray);
         }
     }
 
