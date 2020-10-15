@@ -63,7 +63,7 @@ It is a convenient platform for you to keep track of your lessons and assignment
 
 </div>
 
-### Adding a person: `add`
+### Adding an assignment: `add`
 
 Adds an assignment into your schedule.
 
@@ -153,7 +153,7 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 
 Action | Format, Examples
 --------|------------------
-**add** | `add n/NAME_OF_ASSIGNMENT d/DEADLINE mod/MODULE_CODE` <br> e.g., `add n/Math tutorial d/21/03/2020 11:00 AM mod/ST2334`
+**add** | `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE​ [remind]` <br> e.g., `add n/Math tutorial d/21-03-2020 1100 mod/ST2334`
 **delete** | `delete INDEX`<br> e.g., `delete 3`
 **import** | `import NUSMODS_URL`
 **list** | `list [NUMBER]` e.g., `list 2`, `list`
