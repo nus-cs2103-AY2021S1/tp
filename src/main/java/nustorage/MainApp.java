@@ -20,6 +20,7 @@ import nustorage.model.FinanceAccount;
 import nustorage.model.Inventory;
 import nustorage.model.Model;
 import nustorage.model.ModelManager;
+import nustorage.model.ReadOnlyFinanceAccount;
 import nustorage.model.ReadOnlyUserPrefs;
 import nustorage.model.UserPrefs;
 import nustorage.storage.FinanceAccountStorage;
@@ -103,8 +104,8 @@ public class MainApp extends Application {
         //
         // return new ModelManager(initialData, userPrefs);
 
-        Optional<FinanceAccount> optionalFinanceAccount;
-        FinanceAccount initialFinanceAccount;
+        Optional<ReadOnlyFinanceAccount> optionalFinanceAccount;
+        ReadOnlyFinanceAccount initialFinanceAccount;
 
         Optional<Inventory> optionalInventory;
         Inventory initialInventory;

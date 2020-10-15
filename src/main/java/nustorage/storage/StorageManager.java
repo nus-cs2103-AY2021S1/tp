@@ -8,9 +8,9 @@ import java.util.logging.Logger;
 
 import nustorage.commons.core.LogsCenter;
 import nustorage.commons.exceptions.DataConversionException;
-import nustorage.model.FinanceAccount;
 import nustorage.model.Inventory;
 import nustorage.model.ReadOnlyAddressBook;
+import nustorage.model.ReadOnlyFinanceAccount;
 import nustorage.model.ReadOnlyUserPrefs;
 import nustorage.model.UserPrefs;
 
@@ -116,26 +116,26 @@ public class StorageManager implements Storage {
 
 
     @Override
-    public Optional<FinanceAccount> readFinanceAccount() throws DataConversionException, IOException {
+    public Optional<ReadOnlyFinanceAccount> readFinanceAccount() throws DataConversionException, IOException {
         return readFinanceAccount(financeAccountStorage.getFinanceAccountFilePath());
     }
 
 
     @Override
-    public Optional<FinanceAccount> readFinanceAccount(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyFinanceAccount> readFinanceAccount(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read finance account from data file: " + filePath);
         return financeAccountStorage.readFinanceAccount(filePath);
     }
 
 
     @Override
-    public void saveFinanceAccount(FinanceAccount financeAccount) throws IOException {
+    public void saveFinanceAccount(ReadOnlyFinanceAccount financeAccount) throws IOException {
         saveFinanceAccount(financeAccount, financeAccountStorage.getFinanceAccountFilePath());
     }
 
 
     @Override
-    public void saveFinanceAccount(FinanceAccount financeAccount, Path filePath) throws IOException {
+    public void saveFinanceAccount(ReadOnlyFinanceAccount financeAccount, Path filePath) throws IOException {
         logger.fine("Attempting to write finance account to data file: " + filePath);
         financeAccountStorage.saveFinanceAccount(financeAccount, filePath);
     }

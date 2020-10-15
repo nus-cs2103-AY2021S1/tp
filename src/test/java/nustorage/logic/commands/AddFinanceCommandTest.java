@@ -11,13 +11,10 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import nustorage.logic.commands.exceptions.CommandException;
-import nustorage.model.AddressBook;
-import nustorage.model.ReadOnlyAddressBook;
-import nustorage.model.person.Person;
+import nustorage.model.FinanceAccount;
+import nustorage.model.ReadOnlyFinanceAccount;
 import nustorage.model.record.FinanceRecord;
 import nustorage.testutil.FinanceRecordBuilder;
-import nustorage.testutil.PersonBuilder;
 import nustorage.testutil.stub.ModelStub;
 
 public class AddFinanceCommandTest {
@@ -28,23 +25,15 @@ public class AddFinanceCommandTest {
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_financeRecordAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingFinanceRecordAdded modelStub = new ModelStubAcceptingFinanceRecordAdded();
+        FinanceRecord financeRecord = new FinanceRecordBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddFinanceCommand(financeRecord).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
-    }
-
-    @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
-
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertEquals(String.format(AddFinanceCommand.MESSAGE_SUCCESS, financeRecord),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(financeRecord), modelStub.financeRecordAdded);
     }
 
     @Test
@@ -72,44 +61,20 @@ public class AddFinanceCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
-     */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
-
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
-        }
-    }
-
-    /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingFinanceRecordAdded extends ModelStub {
+        final ArrayList<FinanceRecord> financeRecordAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public void addFinanceRecord(FinanceRecord financeRecord) {
+            requireNonNull(financeRecord);
+            financeRecordAdded.add(financeRecord);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyFinanceAccount getFinanceAccount() {
+            return new FinanceAccount();
         }
     }
 
