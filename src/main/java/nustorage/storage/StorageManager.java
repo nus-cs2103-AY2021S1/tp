@@ -122,7 +122,8 @@ public class StorageManager implements Storage {
 
 
     @Override
-    public Optional<ReadOnlyFinanceAccount> readFinanceAccount(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyFinanceAccount> readFinanceAccount(Path filePath)
+            throws DataConversionException, IOException {
         logger.fine("Attempting to read finance account from data file: " + filePath);
         return financeAccountStorage.readFinanceAccount(filePath);
     }
