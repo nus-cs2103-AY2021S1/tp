@@ -162,7 +162,8 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
-        currentTheme = guiSettings.getUiTheme();
+        // todo
+        currentTheme = ThemeSet.getTheme(guiSettings.getThemeName());
         UiUtil.setTheme(primaryStage, currentTheme);
     }
 
@@ -184,7 +185,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY(), currentTheme);
+                (int) primaryStage.getX(), (int) primaryStage.getY(), currentTheme.getThemeName());
         logic.setGuiSettings(guiSettings);
         primaryStage.hide();
     }
