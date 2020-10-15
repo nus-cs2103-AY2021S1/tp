@@ -17,7 +17,7 @@ public class Student {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final Telegram telegram;
     private final Email email;
 
     // Data fields
@@ -27,10 +27,10 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, NusnetId nusnetId, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, nusnetId, tags);
+    public Student(Name name, Telegram telegram, Email email, NusnetId nusnetId, Set<Tag> tags) {
+        requireAllNonNull(name, telegram, email, nusnetId, tags);
         this.name = name;
-        this.phone = phone;
+        this.telegram = telegram;
         this.email = email;
         this.nusnetId = nusnetId;
         this.tags.addAll(tags);
@@ -40,8 +40,8 @@ public class Student {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Telegram getTelegram() {
+        return telegram;
     }
 
     public Email getEmail() {
@@ -71,7 +71,7 @@ public class Student {
 
         return otherStudent != null
                 && otherStudent.getName().equals(getName())
-                && (otherStudent.getPhone().equals(getPhone()) || otherStudent.getEmail().equals(getEmail()));
+                && (otherStudent.getTelegram().equals(getTelegram()) || otherStudent.getEmail().equals(getEmail()));
     }
 
     /**
@@ -90,7 +90,7 @@ public class Student {
 
         Student otherStudent = (Student) other;
         return otherStudent.getName().equals(getName())
-                && otherStudent.getPhone().equals(getPhone())
+                && otherStudent.getTelegram().equals(getTelegram())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getNusnetId().equals(getNusnetId())
                 && otherStudent.getTags().equals(getTags());
@@ -99,15 +99,15 @@ public class Student {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, nusnetId, tags);
+        return Objects.hash(name, telegram, email, nusnetId, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Phone: ")
-                .append(getPhone())
+                .append(" Telegram: ")
+                .append(getTelegram())
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" NusnetId: ")
