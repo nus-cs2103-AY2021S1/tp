@@ -91,15 +91,15 @@ Examples:
 
 ### Importing your timetable : `import`
 
-Imports your NUSMods timetable data.
+Imports your NUSMods timetable data into your schedule.
 
-Format: `import YOUR_NUSMODS_URL`
+Format: `import url/YOUR_NUSMODS_URL`
 
-* Imports lesson data based on your NUSMods timetable data.
-* NUSMods timetable URL used is obtained by clicking on the "Share/Sync" timetable icon at NUSMods.
+* Lesson data based on your NUSMods timetable will be added into your schedule.
+* `YOUR_NUSMODS_URL` is obtained by clicking on the "Share/Sync" timetable icon at the NUSMods website.
 
 Examples:
-* `import https://nusmods.com/timetable/sem-2/share?ES2660=SEC:G01`.
+* `import url/https://nusmods.com/timetable/sem-1/share?CS2100=TUT:01,LAB:11,LEC:1&CS2101=&CS2103T=LEC:G16&CS2105=TUT:14,LEC:1&EC1301=TUT:S28,LEC:1&IS1103=` will 
 
 ### Listing lessons and assignments : `list`
 
