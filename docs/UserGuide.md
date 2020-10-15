@@ -1,13 +1,13 @@
 ![PlanusLogo](images/PlanusLogo.png)
 ---
-User Guide v1.2
+
+User Guide v1.3
 ---
 
-PlaNus is a desktop app for **managing tasks, optimized for use via a Command Line Interface (CLI)** while still having
-the benefits of a Graphical User Interface (GUI). If you can type fast, PlaNus can get your tasks managed faster than
-traditional GUI apps.
+PlaNus is a desktop app for **managing tasks, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PlaNus can get your tasks managed faster than traditional GUI apps.
 
 ## Quick start
+
 * [Features](#features)
   * [Show all commands : `help`](#show-all-commands--help)
   * [List all tasks : `list`](#list-all-tasks--list)
@@ -15,6 +15,7 @@ traditional GUI apps.
   * [Delete a task : `delete`](#delete-a-task--delete)
   * [Mark a task as done: `done`](#mark-a-task-as-done-done)
   * [Find a task : `find`](#find-a-task-by-attribute-find)
+  * [Edit a task : `edit`](#edit-a-task-edit`)
   * [Exit the program : `exit`](#exit-the-program--exit)
 * [FAQ](#faq)
 * [Command summary](#command-summary)
@@ -25,13 +26,14 @@ traditional GUI apps.
 
 <div markdown="block" class="alert alert-info">
 
+
 **Notes about the command format**<br>
 
 * Words in UPPER_CASE are the parameters to be supplied by the user.<br>
   e.g. in `add title:TITLE`, `TITLE` is a parameter which can be used as `title:homework 1`.
 
 * Items in square brackets are optional input. e.g `desc:DESCRIPTION` <br>
-`[desc:DESCRIPTION]` can be used as `title:homework 1 desc:science project` or just as `title:homework 1`.
+  `[desc:DESCRIPTION]` can be used as `title:homework 1 desc:science project` or just as `title:homework 1`.
 
 * Items with `...` after them can be used multiple times including zero times.<br>
   e.g. `done INDEX...` can be used as (i.e. 0 times), `done 1 2 3`.
@@ -67,17 +69,16 @@ Format: `add title:TITLE type:TYPE_OF_TASK [desc:DESCRIPTION] [date:DATE_TIME]`
 
 * Adds the task of the specified `type:TYPE_OF_TASK` to PlaNus.
 * The type must be of the following types(case-sensitive):
-    * todo
-    * deadline
-    * event
+  * todo
+  * deadline
+  * event
 
 Examples:
+
 * `add title:return book type:todo` Adds a task with title return book and type todo to PlaNus.
 * `add title:Birthday party type:event desc:Frank’s birthday party date:01-01-2020 18:00`
   Adds a task with title “Birthday party” , type event,
   description “Frank’s birthday party” , and date and time “01-01-2020 18:00” to PlaNus.
-
-
 
 ### Delete a task : `delete`
 
@@ -90,7 +91,8 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, ...
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd task in the results of the `list` command.
+
+* `list` followed by `delete 1 2` deletes the 1st task followed by the 2nd task in the results of the `list` command.
 * `find title:homework` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
 ### Mark a task as done: `done`
@@ -104,6 +106,7 @@ Format: `done INDEX...`
 * The index **must be a positive integer** 1, 2, 3, ...
 
 Examples:
+
 * `list` followed by `done 2 3` marks the 2nd and the 3rd tasks in the results of the `list` command status to be done.
 * `find title:homework` followed by `done 1` marks the 1st task in the results of the `find` command status to be done.
 
@@ -113,17 +116,37 @@ Finds a task by a set of defined attribute by the user.
 
 Format: `find ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...`
 
-Available attributes in v1.2 include:
+Available attributes in v1.3 include:
+
 * `title:` find all tasks with the search phrase in the given title
 * `desc:` find all tasks with the search phrase in the given description
 * `type:` find all tasks of the given type
 * `date:` find all tasks with the given date and/or time
 
 Examples:
+
 * `find title:play games` will list all tasks with title that includes the phrase `play games`
 * `find type:todo` will list all tasks with the type `todo`
-* `find title:dinner type:todo` will list all tasks with the type `todo` and title that includes `dinner`
+* `find title:dinner type:todo` will list all tasks with a title that includes `dinner` and of the type `todo` 
 * `find date:01-01-2020` will list all tasks with the date 01-01-2020
+
+### Edit a task: `edit`
+
+Finds a task by a set of defined attribute by the user.
+
+Format: `edit ATTRIBUTE_1:NEW_VALUE ATTRIBUTE_2:NEW_VALUE ...`
+
+Available attributes in v1.3 include:
+
+* `title`
+* `desc` 
+* `type` 
+* `date`
+
+Examples:
+
+* `edit 1 title:play games` will edit the first task in the results of the `list` command, changing its title to `play games` and type of task to `todo`
+* `find title:homework` followed by`edit 2 date:01-01-2020` will edit the 1st task in the results of the `find` command, changing its date to 01-01-2020
 
 ### Exit the program : `exit`
 
@@ -143,13 +166,12 @@ Format: `exit`
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add title:TITLE type:TYPE_OF_TASK [desc:DESCRIPTION] [date:DATE_TIME]` <br> e.g. `add title:return book type:todo`
-**Delete** | `delete INDEX...` <br> e.g. `delete 3`
-**List** | `list`
-**Help** | `help`
-**Done** | `done INDEX...`<br> e.g. `done 1 2 3`
-**Find** | `find ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...` <br> e.g.`find title:dinner type:todo`
-**Exit** | `exit`
-
+| Action     | Format, Examples                                             |
+| ---------- | ------------------------------------------------------------ |
+| **Add**    | `add title:TITLE type:TYPE_OF_TASK [desc:DESCRIPTION] [date:DATE_TIME]` <br> e.g. `add title:return book type:todo` |
+| **Delete** | `delete INDEX...` <br> e.g. `delete 3`                       |
+| **List**   | `list`                                                       |
+| **Help**   | `help`                                                       |
+| **Done**   | `done INDEX...`<br> e.g. `done 1 2 3`                        |
+| **Find**   | `find ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...` <br> e.g.`find title:dinner type:todo` |
+| **Exit**   | `exit`                                                       |
