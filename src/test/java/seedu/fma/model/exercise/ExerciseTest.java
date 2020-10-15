@@ -1,5 +1,6 @@
 package seedu.fma.model.exercise;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_JUMPING_JACKS;
@@ -36,7 +37,10 @@ public class ExerciseTest {
         assertTrue(SIT_UP.equals(exerciseCopy));
 
         // same object -> returns true
-        assertTrue(SIT_UP.equals(SIT_UP));
+        assertTrue(exerciseCopy.equals(exerciseCopy));
+
+        // different object -> returns false
+        assertFalse(SIT_UP.equals(new ExerciseNotFoundException()));
 
         // null -> returns false
         assertFalse(SIT_UP.equals(null));
@@ -54,7 +58,6 @@ public class ExerciseTest {
         // existing values -> returns true
         assertTrue(new Exercise(new Name(VALID_EXERCISE_SIT_UP), 15)
                 .equals(Exercise.find(new Name(VALID_EXERCISE_SIT_UP))));
-
     }
 
     @Test
@@ -62,5 +65,15 @@ public class ExerciseTest {
         String invalidSearchString = "non existent exercise";
         // non existing values -> returns ExerciseNotFound exception
         assertThrows(ExerciseNotFoundException.class, () -> Exercise.find(new Name(invalidSearchString)));
+    }
+
+    @Test
+    void testHashCode() {
+        assertTrue(SIT_UP.hashCode() == SIT_UP.hashCode());
+    }
+
+    @Test
+    void testToString() {
+        assertEquals("Sit ups CaloriesPerRep: 20", SIT_UP.toString());
     }
 }

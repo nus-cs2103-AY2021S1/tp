@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.fma.logic.commands.CommandTestUtil.EDIT_LOG_DESCRIPTOR_A;
 import static seedu.fma.logic.commands.CommandTestUtil.EDIT_LOG_DESCRIPTOR_B;
-import static seedu.fma.logic.commands.CommandTestUtil.VALID_COMMENT_A;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_COMMENT_A_STR;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_A;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_B;
-import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_A;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_A_STR;
 import static seedu.fma.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.fma.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.fma.logic.commands.CommandTestUtil.showLogAtIndex;
@@ -61,11 +61,11 @@ public class EditCommandTest {
         Log lastLog = model.getFilteredLogList().get(indexLastLog.getZeroBased());
 
         LogBuilder logInList = new LogBuilder(lastLog);
-        Log editedLog = logInList.withExercise(VALID_EXERCISE_A).withComment(VALID_COMMENT_A)
-                .withReps(VALID_REP_A).build();
+        Log editedLog = logInList.withExercise(VALID_EXERCISE_A).withComment(VALID_COMMENT_A_STR)
+                .withReps(VALID_REP_A_STR).build();
 
         EditLogDescriptor descriptor = new EditLogDescriptorBuilder().withExercise(VALID_EXERCISE_A)
-                .withComment(VALID_COMMENT_A).withReps(VALID_REP_A).build();
+                .withComment(VALID_COMMENT_A_STR).withReps(VALID_REP_A_STR).build();
         EditCommand editCommand = new EditCommand(indexLastLog, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_LOG_SUCCESS, editedLog);

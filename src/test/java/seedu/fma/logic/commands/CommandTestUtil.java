@@ -19,6 +19,7 @@ import seedu.fma.logic.commands.exceptions.CommandException;
 import seedu.fma.model.LogBook;
 import seedu.fma.model.Model;
 import seedu.fma.model.exercise.Exercise;
+import seedu.fma.model.log.Comment;
 import seedu.fma.model.log.Log;
 import seedu.fma.model.log.Rep;
 import seedu.fma.model.util.NameContainsKeywordsPredicate;
@@ -33,12 +34,20 @@ public class CommandTestUtil {
     public static final String VALID_EXERCISE_SIT_UP = "Sit ups";
     public static final String VALID_EXERCISE_JUMPING_JACKS = "Jumping jacks";
 
+    public static final String VALID_REP_A_STR = "5";
+    public static final String VALID_REP_B_STR = "10";
+
+    public static final String VALID_COMMENT_A_STR = "This exercise is tough";
+    public static final String VALID_COMMENT_B_STR = "Easy";
+
+    public static final Rep VALID_REP_A = new Rep(VALID_REP_A_STR);
+    public static final Rep VALID_REP_B = new Rep(VALID_REP_B_STR);
+
     public static final Exercise VALID_EXERCISE_A = new ExerciseBuilder(getSampleExercises()[1]).build();
     public static final Exercise VALID_EXERCISE_B = new ExerciseBuilder(getSampleExercises()[3]).build();
-    public static final String VALID_REP_A = "5";
-    public static final String VALID_REP_B = "10";
-    public static final String VALID_COMMENT_A = "This exercise is tough";
-    public static final String VALID_COMMENT_B = "Easy";
+
+    public static final Comment VALID_COMMENT_A = new Comment(VALID_COMMENT_A_STR);
+    public static final Comment VALID_COMMENT_B = new Comment(VALID_COMMENT_B_STR);
 
     public static final int VALID_YEAR_A = 2021;
     public static final int VALID_MONTH_A = 2; // February
@@ -61,8 +70,8 @@ public class CommandTestUtil {
     public static final String EXERCISE_DESC_B = " " + PREFIX_EXERCISE + VALID_EXERCISE_JUMPING_JACKS;
     public static final String REP_DESC_A = " " + PREFIX_REPS + VALID_REP_A;
     public static final String REP_DESC_B = " " + PREFIX_REPS + VALID_REP_B;
-    public static final String COMMENT_DESC_A = " " + PREFIX_COMMENT + VALID_COMMENT_A;
-    public static final String COMMENT_DESC_B = " " + PREFIX_COMMENT + VALID_COMMENT_B;
+    public static final String COMMENT_DESC_A = " " + PREFIX_COMMENT + VALID_COMMENT_A_STR;
+    public static final String COMMENT_DESC_B = " " + PREFIX_COMMENT + VALID_COMMENT_B_STR;
 
     // '?' not allowed in exercise names
     public static final String INVALID_EXERCISE_DESC = " " + PREFIX_EXERCISE + "Sit ups?";
@@ -80,15 +89,15 @@ public class CommandTestUtil {
 
     static {
         VALID_LOG_A = new LogBuilder().withExercise(VALID_EXERCISE_A)
-                .withReps(VALID_REP_A).withComment(VALID_COMMENT_A).build();
+                .withReps(VALID_REP_A_STR).withComment(VALID_COMMENT_A_STR).build();
         VALID_LOG_B = new LogBuilder().withExercise(VALID_EXERCISE_B)
-                .withReps(VALID_REP_B).withComment(VALID_COMMENT_B).build();
+                .withReps(VALID_REP_B_STR).withComment(VALID_COMMENT_B_STR).build();
 
         EDIT_LOG_DESCRIPTOR_A = new EditCommand.EditLogDescriptor();
         EDIT_LOG_DESCRIPTOR_A.setExercise(VALID_EXERCISE_A);
 
         EDIT_LOG_DESCRIPTOR_B = new EditCommand.EditLogDescriptor();
-        EDIT_LOG_DESCRIPTOR_B.setRep(new Rep(VALID_REP_B));
+        EDIT_LOG_DESCRIPTOR_B.setRep(new Rep(VALID_REP_B_STR));
     }
 
     /**

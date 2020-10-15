@@ -11,6 +11,7 @@ import seedu.fma.model.log.Rep;
  * Contains utility methods for populating {@code LogBook} with sample data.
  */
 public class SampleDataUtil {
+
     public static Log[] getSampleLogs() {
         return new Log[] {
             new Log(Exercise.find(new Name("Sit ups")),

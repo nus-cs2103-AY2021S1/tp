@@ -18,10 +18,11 @@ public class Comment {
      */
     public Comment(String comment) {
         requireNonNull(comment);
+        isValidComment(comment);
         value = comment;
     }
 
-    //TODO: all Comments currently valid
+    /* All comments are valid */
     public static boolean isValidComment(String comment) {
         return true;
     }

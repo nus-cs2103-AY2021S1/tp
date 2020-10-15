@@ -9,12 +9,12 @@ import static seedu.fma.logic.commands.CommandTestUtil.INVALID_EXERCISE_DESC;
 import static seedu.fma.logic.commands.CommandTestUtil.INVALID_REP_DESC;
 import static seedu.fma.logic.commands.CommandTestUtil.REP_DESC_A;
 import static seedu.fma.logic.commands.CommandTestUtil.REP_DESC_B;
-import static seedu.fma.logic.commands.CommandTestUtil.VALID_COMMENT_A;
-import static seedu.fma.logic.commands.CommandTestUtil.VALID_COMMENT_B;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_COMMENT_A_STR;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_COMMENT_B_STR;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_A;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_B;
-import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_A;
-import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_B;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_A_STR;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_B_STR;
 import static seedu.fma.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.fma.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.fma.testutil.TypicalIndexes.INDEX_FIRST_LOG;
@@ -88,7 +88,7 @@ public class EditCommandParserTest {
                 + COMMENT_DESC_A;
 
         EditLogDescriptor descriptor = new EditLogDescriptorBuilder().withExercise(VALID_EXERCISE_A)
-                .withReps(VALID_REP_A).withComment(VALID_COMMENT_A).build();
+                .withReps(VALID_REP_A_STR).withComment(VALID_COMMENT_A_STR).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -100,7 +100,7 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + EXERCISE_DESC_A + REP_DESC_A;
 
         EditLogDescriptor descriptor = new EditLogDescriptorBuilder().withExercise(VALID_EXERCISE_A)
-                .withReps(VALID_REP_A).build();
+                .withReps(VALID_REP_A_STR).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -117,13 +117,13 @@ public class EditCommandParserTest {
 
         // reps
         userInput = targetIndex.getOneBased() + REP_DESC_A;
-        descriptor = new EditLogDescriptorBuilder().withReps(VALID_REP_A).build();
+        descriptor = new EditLogDescriptorBuilder().withReps(VALID_REP_A_STR).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
         userInput = targetIndex.getOneBased() + COMMENT_DESC_A;
-        descriptor = new EditLogDescriptorBuilder().withComment(VALID_COMMENT_A).build();
+        descriptor = new EditLogDescriptorBuilder().withComment(VALID_COMMENT_A_STR).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -135,7 +135,7 @@ public class EditCommandParserTest {
                 + EXERCISE_DESC_B + REP_DESC_B + COMMENT_DESC_B;
 
         EditLogDescriptor descriptor = new EditLogDescriptorBuilder().withExercise(VALID_EXERCISE_B)
-                .withReps(VALID_REP_B).withComment(VALID_COMMENT_B).build();
+                .withReps(VALID_REP_B_STR).withComment(VALID_COMMENT_B_STR).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -154,8 +154,8 @@ public class EditCommandParserTest {
         // other valid values specified
         userInput = targetIndex.getOneBased() + COMMENT_DESC_A + INVALID_EXERCISE_DESC + EXERCISE_DESC_A
                 + REP_DESC_A;
-        descriptor = new EditLogDescriptorBuilder().withExercise(VALID_EXERCISE_A).withComment(VALID_COMMENT_A)
-                .withReps(VALID_REP_A).build();
+        descriptor = new EditLogDescriptorBuilder().withExercise(VALID_EXERCISE_A).withComment(VALID_COMMENT_A_STR)
+                .withReps(VALID_REP_A_STR).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

@@ -1,170 +1,183 @@
-//package seedu.address.model.log;
-//
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static org.junit.jupiter.api.Assertions.assertFalse;
-//import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-//import static seedu.address.testutil.Assert.assertThrows;
-//import static seedu.address.testutil.TypicalLogs.ALICE;
-//import static seedu.address.testutil.TypicalLogs.BOB;
-//
-//import java.util.Arrays;
-//import java.util.Collections;
-//import java.util.List;
-//
-//import org.junit.jupiter.api.Test;
-//
-//import seedu.address.model.log.exceptions.DuplicateLogException;
-//import seedu.address.model.log.exceptions.LogNotFoundException;
-//import seedu.address.testutil.LogBuilder;
-//
-//public class UniqueLogListTest {
-//
-////    private final UniqueLogList UniqueLogList = new UniqueLogList();
-////
-////    @Test
-////    public void contains_nullPerson_throwsNullPointerException() {
-////        assertThrows(NullPointerException.class, () -> UniqueLogList.contains(null));
-////    }
-////
-////    @Test
-////    public void contains_personNotInList_returnsFalse() {
-////        assertFalse(UniqueLogList.contains(ALICE));
-////    }
-////
-////    @Test
-////    public void contains_personInList_returnsTrue() {
-////        UniqueLogList.add(ALICE);
-////        assertTrue(UniqueLogList.contains(ALICE));
-////    }
-////
-////    @Test
-////    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
-////        UniqueLogList.add(ALICE);
-////        Log editedAlice = new LogBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-////                .build();
-////        assertTrue(UniqueLogList.contains(editedAlice));
-////    }
-////
-////    @Test
-////    public void add_nullPerson_throwsNullPointerException() {
-////        assertThrows(NullPointerException.class, () -> UniqueLogList.add(null));
-////    }
-////
-////    @Test
-////    public void add_duplicatePerson_throwsDuplicatePersonException() {
-////        UniqueLogList.add(ALICE);
-////        assertThrows(DuplicateLogException.class, () -> UniqueLogList.add(ALICE));
-////    }
-////
-////    @Test
-////    public void setPerson_nullTargetPerson_throwsNullPointerException() {
-////        assertThrows(NullPointerException.class, () -> UniqueLogList.setPerson(null, ALICE));
-////    }
-////
-////    @Test
-////    public void setPerson_nullEditedPerson_throwsNullPointerException() {
-////        assertThrows(NullPointerException.class, () -> UniqueLogList.setPerson(ALICE, null));
-////    }
-////
-////    @Test
-////    public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-////        assertThrows(LogNotFoundException.class, () -> UniqueLogList.setPerson(ALICE, ALICE));
-////    }
-////
-////    @Test
-////    public void setPerson_editedPersonIsSamePerson_success() {
-////        UniqueLogList.add(ALICE);
-////        UniqueLogList.setPerson(ALICE, ALICE);
-////        UniqueLogList expectedUniqueLogList = new UniqueLogList();
-////        expectedUniqueLogList.add(ALICE);
-////        assertEquals(expectedUniqueLogList, UniqueLogList);
-////    }
-////
-////    @Test
-////    public void setPerson_editedPersonHasSameIdentity_success() {
-////        UniqueLogList.add(ALICE);
-////        Log editedAlice = new LogBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-////                .build();
-////        UniqueLogList.setPerson(ALICE, editedAlice);
-////        UniqueLogList expectedUniqueLogList = new UniqueLogList();
-////        expectedUniqueLogList.add(editedAlice);
-////        assertEquals(expectedUniqueLogList, UniqueLogList);
-////    }
-////
-////    @Test
-////    public void setPerson_editedPersonHasDifferentIdentity_success() {
-////        UniqueLogList.add(ALICE);
-////        UniqueLogList.setPerson(ALICE, BOB);
-////        UniqueLogList expectedUniqueLogList = new UniqueLogList();
-////        expectedUniqueLogList.add(BOB);
-////        assertEquals(expectedUniqueLogList, UniqueLogList);
-////    }
-////
-////    @Test
-////    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
-////        UniqueLogList.add(ALICE);
-////        UniqueLogList.add(BOB);
-////        assertThrows(DuplicateLogException.class, () -> UniqueLogList.setPerson(ALICE, BOB));
-////    }
-////
-////    @Test
-////    public void remove_nullPerson_throwsNullPointerException() {
-////        assertThrows(NullPointerException.class, () -> UniqueLogList.remove(null));
-////    }
-////
-////    @Test
-////    public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-////        assertThrows(LogNotFoundException.class, () -> UniqueLogList.remove(ALICE));
-////    }
-////
-////    @Test
-////    public void remove_existingPerson_removesPerson() {
-////        UniqueLogList.add(ALICE);
-////        UniqueLogList.remove(ALICE);
-////        UniqueLogList expectedUniqueLogList = new UniqueLogList();
-////        assertEquals(expectedUniqueLogList, UniqueLogList);
-////    }
-////
-////    @Test
-////    public void setPersons_nullUniqueLogList_throwsNullPointerException() {
-////        assertThrows(NullPointerException.class, () -> UniqueLogList.setPersons((UniqueLogList) null));
-////    }
-////
-////    @Test
-////    public void setPersons_UniqueLogList_replacesOwnListWithProvidedUniqueLogList() {
-////        UniqueLogList.add(ALICE);
-////        UniqueLogList expectedUniqueLogList = new UniqueLogList();
-////        expectedUniqueLogList.add(BOB);
-////        UniqueLogList.setPersons(expectedUniqueLogList);
-////        assertEquals(expectedUniqueLogList, UniqueLogList);
-////    }
-////
-////    @Test
-////    public void setPersons_nullList_throwsNullPointerException() {
-////        assertThrows(NullPointerException.class, () -> UniqueLogList.setPersons((List<Log>) null));
-////    }
-////
-////    @Test
-////    public void setPersons_list_replacesOwnListWithProvidedList() {
-////        UniqueLogList.add(ALICE);
-////        List<Log> logList = Collections.singletonList(BOB);
-////        UniqueLogList.setPersons(logList);
-////        UniqueLogList expectedUniqueLogList = new UniqueLogList();
-////        expectedUniqueLogList.add(BOB);
-////        assertEquals(expectedUniqueLogList, UniqueLogList);
-////    }
-////
-////    @Test
-////    public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
-////        List<Log> listWithDuplicateLogs = Arrays.asList(ALICE, ALICE);
-////        assertThrows(DuplicateLogException.class, () -> UniqueLogList.setPersons(listWithDuplicateLogs));
-////    }
-////
-////    @Test
-////    public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-////        assertThrows(UnsupportedOperationException.class, ()
-////            -> UniqueLogList.asUnmodifiableObservableList().remove(0));
-////    }
-//}
+package seedu.fma.model.log;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_COMMENT_A_STR;
+import static seedu.fma.testutil.Assert.assertThrows;
+import static seedu.fma.testutil.TypicalLogs.LOG_A;
+import static seedu.fma.testutil.TypicalLogs.LOG_B;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.fma.model.log.exceptions.DuplicateLogException;
+import seedu.fma.model.log.exceptions.LogNotFoundException;
+import seedu.fma.testutil.LogBuilder;
+
+public class UniqueLogListTest {
+
+    private final UniqueLogList uniqueLogList = new UniqueLogList();
+
+    @Test
+    public void contains_nullLog_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueLogList.contains(null));
+    }
+
+    @Test
+    public void contains_logNotInList_returnsFalse() {
+        assertFalse(uniqueLogList.contains(LOG_A));
+    }
+
+    @Test
+    public void contains_logInList_returnsTrue() {
+        uniqueLogList.add(LOG_A);
+        assertTrue(uniqueLogList.contains(LOG_A));
+    }
+
+    @Test
+    public void contains_logWithSameIdentityFieldsInList_returnsTrue() {
+        uniqueLogList.add(LOG_A);
+        Log editedLogA = new LogBuilder(LOG_A).withComment(VALID_COMMENT_A_STR)
+                .build();
+        assertTrue(uniqueLogList.contains(editedLogA));
+    }
+
+    @Test
+    public void add_nullLog_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueLogList.add(null));
+    }
+
+    @Test
+    public void add_duplicateLog_throwsDuplicateLogException() {
+        uniqueLogList.add(LOG_A);
+        assertThrows(DuplicateLogException.class, () -> uniqueLogList.add(LOG_A));
+    }
+
+    @Test
+    public void setLog_nullTargetLog_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueLogList.setLog(null, LOG_A));
+    }
+
+    @Test
+    public void setLog_nullEditedLog_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueLogList.setLog(LOG_A, null));
+    }
+
+    @Test
+    public void setLog_targetLogNotInList_throwsLogNotFoundException() {
+        assertThrows(LogNotFoundException.class, () -> uniqueLogList.setLog(LOG_A, LOG_A));
+    }
+
+    @Test
+    public void setLog_editedLogIsSameLog_success() {
+        uniqueLogList.add(LOG_A);
+        uniqueLogList.setLog(LOG_A, LOG_A);
+        UniqueLogList expectedUniqueLogList = new UniqueLogList();
+        expectedUniqueLogList.add(LOG_A);
+        assertEquals(expectedUniqueLogList, uniqueLogList);
+    }
+
+    @Test
+    public void setLog_editedLogHasSameIdentity_success() {
+        uniqueLogList.add(LOG_A);
+        Log editedLogA = new LogBuilder(LOG_A).withComment("test comment")
+                .build();
+        uniqueLogList.setLog(LOG_A, editedLogA);
+        UniqueLogList expectedUniqueLogList = new UniqueLogList();
+        expectedUniqueLogList.add(editedLogA);
+        assertEquals(expectedUniqueLogList, uniqueLogList);
+    }
+
+    @Test
+    public void setLog_editedLogHasDifferentIdentity_success() {
+        uniqueLogList.add(LOG_A);
+        uniqueLogList.setLog(LOG_A, LOG_B);
+        UniqueLogList expectedUniqueLogList = new UniqueLogList();
+        expectedUniqueLogList.add(LOG_B);
+        assertEquals(expectedUniqueLogList, uniqueLogList);
+    }
+
+    @Test
+    public void setLog_editedLogHasNonUniqueIdentity_throwsDuplicateLogException() {
+        uniqueLogList.add(LOG_A);
+        uniqueLogList.add(LOG_B);
+        assertThrows(DuplicateLogException.class, () -> uniqueLogList.setLog(LOG_A, LOG_B));
+    }
+
+    @Test
+    public void remove_nullLog_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueLogList.remove(null));
+    }
+
+    @Test
+    public void remove_logDoesNotExist_throwsLogNotFoundException() {
+        assertThrows(LogNotFoundException.class, () -> uniqueLogList.remove(LOG_A));
+    }
+
+    @Test
+    public void remove_existingLog_removesLog() {
+        uniqueLogList.add(LOG_A);
+        uniqueLogList.remove(LOG_A);
+        UniqueLogList expectedUniqueLogList = new UniqueLogList();
+        assertEquals(expectedUniqueLogList, uniqueLogList);
+    }
+
+    @Test
+    public void setLogs_nullUniqueLogList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueLogList.setLogs((UniqueLogList) null));
+    }
+
+    @Test
+    public void setLogs_uniqueLogList_replacesOwnListWithProvidedUniqueLogList() {
+        uniqueLogList.add(LOG_A);
+        UniqueLogList expectedUniqueLogList = new UniqueLogList();
+        expectedUniqueLogList.add(LOG_B);
+        uniqueLogList.setLogs(expectedUniqueLogList);
+        assertEquals(expectedUniqueLogList, uniqueLogList);
+    }
+
+    @Test
+    public void setLogs_nullList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueLogList.setLogs((List<Log>) null));
+    }
+
+    @Test
+    public void setLogs_list_replacesOwnListWithProvidedList() {
+        uniqueLogList.add(LOG_A);
+        List<Log> logList = Collections.singletonList(LOG_B);
+        uniqueLogList.setLogs(logList);
+        UniqueLogList expectedUniqueLogList = new UniqueLogList();
+        expectedUniqueLogList.add(LOG_B);
+        assertEquals(expectedUniqueLogList, uniqueLogList);
+    }
+
+    @Test
+    public void setLogs_listWithDuplicateLogs_throwsDuplicateLogException() {
+        List<Log> listWithDuplicateLogs = Arrays.asList(LOG_A, LOG_A);
+        assertThrows(DuplicateLogException.class, () -> uniqueLogList.setLogs(listWithDuplicateLogs));
+    }
+
+    @Test
+    public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, ()
+            -> uniqueLogList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    void iterator() {
+        uniqueLogList.add(LOG_A);
+        assertEquals(LOG_A, uniqueLogList.iterator().next());
+    }
+
+    @Test
+    void testHashCode() {
+        uniqueLogList.add(LOG_A);
+        uniqueLogList.add(LOG_B);
+        assertTrue(uniqueLogList.hashCode() == uniqueLogList.hashCode());
+    }
+
+}

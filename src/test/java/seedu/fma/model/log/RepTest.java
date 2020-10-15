@@ -3,6 +3,7 @@ package seedu.fma.model.log;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_A;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_A_STR;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_B;
 import static seedu.fma.testutil.Assert.assertThrows;
 
@@ -47,24 +48,32 @@ public class RepTest {
 
 
     @Test
-    public void equals() {
-
-        Rep repA = new Rep(VALID_REP_A);
-        Rep repB = new Rep(VALID_REP_B);
+    public void equals_equalRep_returnTrue() {
+        Rep repA = new Rep(VALID_REP_A_STR);
 
         // same values -> returns true
-        assertTrue(repA.equals(new Rep(VALID_REP_A)));
+        assertTrue(repA.equals(new Rep(VALID_REP_A_STR)));
 
-        // same object -> returns true
+        // same instance -> returns true
         assertTrue(repA.equals(repA));
+    }
+
+    @Test
+    public void equals_differentRep_returnFalse() {
 
         // null -> returns false
-        assertFalse(repA.equals(null));
+        assertFalse(VALID_REP_A.equals(null));
 
         // different types -> returns false
-        assertFalse(repA.equals(5));
+        assertFalse(VALID_REP_A.equals(5));
 
         // different values -> returns false
-        assertFalse(repA.equals(repB));
+        assertFalse(VALID_REP_A.equals(VALID_REP_B));
+    }
+
+    @Test
+    void testHashCode() {
+        Rep repA = new Rep(VALID_REP_A_STR);
+        assertTrue(repA.hashCode() == repA.hashCode());
     }
 }
