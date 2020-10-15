@@ -5,6 +5,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import seedu.fma.commons.core.index.Index;
+import seedu.fma.model.Model;
+import seedu.fma.model.log.Log;
+
+
 /**
  * A utility class for test cases.
  */

@@ -74,6 +74,6 @@ public class ExerciseTest {
 
     @Test
     void testToString() {
-        assertEquals("Sit up CaloriesPerRep: 20", SIT_UP.toString());
+        assertEquals("Sit ups CaloriesPerRep: 20", SIT_UP.toString());
     }
 }
