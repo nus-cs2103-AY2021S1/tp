@@ -21,15 +21,14 @@ public class ThemeCard extends UiPart<Region> {
     /**
      * Constructs a ThemeCard.
      *
-     * @param themeName the name of the theme
      * @param theme the theme
      * @param themeWindow the theme choosing window
      */
-    public ThemeCard(String themeName, Theme theme, ThemeWindow themeWindow) {
+    public ThemeCard(Theme theme, ThemeWindow themeWindow) {
         super(FXML);
-        this.themeName.setText(themeName);
         this.theme = theme;
         this.themeWindow = themeWindow;
+        themeName.setText(theme.getThemeName());
     }
 
     public void showThemePreview() {
