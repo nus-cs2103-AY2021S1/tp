@@ -26,7 +26,6 @@ public class EditLogDescriptorBuilder {
         this.descriptor = new EditLogDescriptor(descriptor);
     }
 
-
     /**
      * Returns an {@code EditLogDescriptor} with fields containing {@code log}'s details
      */
@@ -47,13 +46,20 @@ public class EditLogDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code Exercise} of the {@code EditLogDescriptor} that we are building.
+     */
+    public EditLogDescriptorBuilder withExerciseName(String name) {
+        descriptor.setExercise(Exercise.find(new Name(name)));
+        return this;
+    }
+
+    /**
      * Sets the {@code Rep} of the {@code EditLogDescriptor} that we are building.
      */
     public EditLogDescriptorBuilder withReps(Rep reps) {
         descriptor.setRep(reps);
         return this;
     }
-
 
     /**
      * Sets the {@code Rep} of the {@code EditLogDescriptor} that we are building.
@@ -64,28 +70,10 @@ public class EditLogDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Exercise} of the {@code EditLogDescriptor} that we are building.
-     */
-    public EditLogDescriptorBuilder withExerciseName(String name) {
-        descriptor.setExercise(Exercise.find(new Name(name)));
-        return this;
-    }
-
-
-    /**
      * Sets the {@code Comment} of the {@code EditLogDescriptor} that we are building.
      */
     public EditLogDescriptorBuilder withComment(String comment) {
         descriptor.setComment(new Comment(comment));
-        return this;
-    }
-
-
-    /**
-     * Sets the {@code Rep} of the {@code EditLogDescriptor} that we are building.
-     */
-    public EditLogDescriptorBuilder setReps(String reps) {
-        descriptor.setRep(new Rep(reps));
         return this;
     }
 
