@@ -46,9 +46,9 @@ public class LogBookTest {
     @Test
     public void resetData_withDuplicateLogs_throwsDuplicateLogException() {
         // Two logs with the same identity fields
-        Log editedAlice = new LogBuilder(LOG_A)
+        Log editedLog = new LogBuilder(LOG_A)
                 .build();
-        List<Log> newLogs = Arrays.asList(LOG_A, editedAlice);
+        List<Log> newLogs = Arrays.asList(LOG_A, editedLog);
         LogBookStub newData = new LogBookStub(newLogs);
 
         assertThrows(DuplicateLogException.class, () -> fmaBook.resetData(newData));
@@ -73,9 +73,9 @@ public class LogBookTest {
     @Test
     public void hasLog_logWithSameIdentityFieldsInLogBook_returnsTrue() {
         fmaBook.addLog(LOG_A);
-        Log editedAlice = new LogBuilder(LOG_A)
+        Log editedLog = new LogBuilder(LOG_A)
                 .build();
-        assertTrue(fmaBook.hasLog(editedAlice));
+        assertTrue(fmaBook.hasLog(editedLog));
     }
 
     @Test
