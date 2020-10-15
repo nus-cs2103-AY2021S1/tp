@@ -26,12 +26,14 @@ import seedu.address.model.lesson.Lesson;
 public class UpcomingTaskListPanel extends UiPart<Region> {
     private static final long MIN_PER_HOUR = 60;
     private static final long HOUR_PER_DAY = 24;
+    private static final long DAY_PER_WEEK = 7;
     private static final long MIN_DAY_PER_MONTH = 28;
     private static final String FXML = "UpcomingTaskListPanel.fxml";
     private static final DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
             .withResolverStyle(ResolverStyle.STRICT);
     private static final String DUE_SOON_STYLE_CLASS = "due-soon";
     private static final String OVERDUE_STYLE_CLASS = "overdue";
+    private static final String DUE_IN_A_WEEK_STYLE_CLASS = "due-in-a-week";
     private final Logger logger = LogsCenter.getLogger(UpcomingTaskListPanel.class);
 
     @FXML
@@ -54,13 +56,16 @@ public class UpcomingTaskListPanel extends UiPart<Region> {
         if (duration.toMinutes() < 0) {
             setStyleToIndicateOverdue(label);
             label.setText("Overdue, on " + formattedDue);
-        } else if (duration.toMinutes() <= MIN_PER_HOUR) {
+        } else if (duration.toMinutes() < MIN_PER_HOUR) {
             setStyleToIndicateDueSoon(label);
             label.setText("Due in " + duration.toMinutes() + " minutes, on " + formattedDue);
-        } else if (duration.toHours() <= HOUR_PER_DAY) {
+        } else if (duration.toHours() < HOUR_PER_DAY) {
             setStyleToIndicateDueSoon(label);
             label.setText("Due in " + duration.toHours() + " hours, on " + formattedDue);
-        } else if (duration.toDays() <= MIN_DAY_PER_MONTH) {
+        } else if (duration.toDays() < DAY_PER_WEEK) {
+            setStyleToIndicateDueInAWeek(label);
+            label.setText("Due in " + duration.toDays() + " days, on " + formattedDue);
+        } else if (duration.toDays() < MIN_DAY_PER_MONTH) {
             label.setText("Due in " + duration.toDays() + " days, on " + formattedDue);
         } else {
             label.setText("Due on " + formattedDue);
@@ -85,6 +90,16 @@ public class UpcomingTaskListPanel extends UiPart<Region> {
         }
 
         styleClass.add(DUE_SOON_STYLE_CLASS);
+    }
+
+    public static void setStyleToIndicateDueInAWeek(Label label) {
+        ObservableList<String> styleClass = label.getStyleClass();
+
+        if (styleClass.contains(DUE_IN_A_WEEK_STYLE_CLASS)) {
+            return;
+        }
+
+        styleClass.add(DUE_IN_A_WEEK_STYLE_CLASS);
     }
 
     /**
