@@ -67,4 +67,12 @@ public class ZoomLink {
         return value.hashCode();
     }
 
+    /**
+     * Returns the link stored in the object.
+     * @return String zoom link.
+     */
+    public String getLink() {
+        return this.value;
+    }
+
 }
