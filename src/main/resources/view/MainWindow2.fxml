@@ -12,10 +12,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root onCloseRequest="#handleExit" title="Cap 5.0 Buddy" type="Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root title="Cap 5.0 Buddy" type="Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <scene>
       <Scene>
-          <AnchorPane prefHeight="191.0" prefWidth="522.0">
+          <AnchorPane prefHeight="188.0" prefWidth="661.0">
             <children>
                <VBox prefHeight="200.0" prefWidth="394.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
                   <children>
@@ -23,7 +23,7 @@
                        <menus>
                          <Menu mnemonicParsing="false" text="File">
                            <items>
-                             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Close" />
+                             <MenuItem mnemonicParsing="false" text="Close" />
                            </items>
                          </Menu>
                          <Menu mnemonicParsing="false" text="Help">
