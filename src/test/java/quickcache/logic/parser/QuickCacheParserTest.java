@@ -2,10 +2,10 @@ package quickcache.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static quickcache.logic.commands.EditCommand.EditFlashcardDescriptor;
 import static quickcache.testutil.Assert.assertThrows;
 import static quickcache.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 import static quickcache.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static quickcache.logic.commands.EditCommand.EditFlashcardDescriptor;
 
 import org.junit.jupiter.api.Test;
 
@@ -48,13 +48,14 @@ public class QuickCacheParserTest {
     }
 
     @Test
-        public void parseCommand_edit() throws Exception {
-            Flashcard flashcard = new FlashcardBuilder().build();
-            EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder(flashcard).build();
-            EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                    + INDEX_FIRST_FLASHCARD.getOneBased() + " " + FlashcardUtil.getEditFlashcardDescriptorDetails(descriptor));
-            assertEquals(new EditCommand(INDEX_FIRST_FLASHCARD, descriptor), command);
-        }
+    public void parseCommand_edit() throws Exception {
+        Flashcard flashcard = new FlashcardBuilder().build();
+        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder(flashcard).build();
+        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_FLASHCARD.getOneBased() + " "
+                + FlashcardUtil.getEditFlashcardDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_FLASHCARD, descriptor), command);
+    }
 
     @Test
     public void parseCommand_exit() throws Exception {
