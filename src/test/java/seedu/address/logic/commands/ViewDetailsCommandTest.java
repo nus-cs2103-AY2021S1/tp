@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
@@ -22,6 +23,14 @@ import seedu.address.ui.DisplayedInventoryType;
  * Contains integration tests (interaction with the Model) for {@code ViewDetailsCommand}.
  */
 public class ViewDetailsCommandTest {
+    private ModelStubWithItem modelStub;
+    private Item validItem;
+
+    @BeforeEach
+    public void setUp() {
+        validItem = new ItemBuilder().build();
+        modelStub = new ModelStubWithItem(validItem);
+    }
 
     @Test
     public void equals() {
@@ -56,10 +65,8 @@ public class ViewDetailsCommandTest {
         NameIsExactlyPredicate predicate = new NameIsExactlyPredicate(
                 Collections.singletonList("Bob's Iridescent Grape"));
         ViewDetailsCommand command = new ViewDetailsCommand(predicate);
-        Item validItem = new ItemBuilder().build();
-        ModelStub modelStub = new ModelStubWithItem(validItem);
-        assertEquals(command.execute(modelStub),
-                new CommandResult(expectedMessage, false, false, DisplayedInventoryType.DETAILED_ITEM));
+        assertEquals(command.execute(modelStub), new CommandResult(expectedMessage, false,
+                false, DisplayedInventoryType.DETAILED_ITEM));
         List<Item> expectedList = Collections.singletonList(validItem);
         ObservableList<Item> expectedObservableList = FXCollections.observableList(expectedList);
         FilteredList<Item> expectedFilteredList = expectedObservableList.filtered(predicate);

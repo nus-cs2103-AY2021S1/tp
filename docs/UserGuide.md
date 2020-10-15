@@ -5,6 +5,7 @@ title: User Guide
 
 # User Guide
 ![inventoryinator](images/inventoryinator.jpg)
+
 Inventoryinator is a **desktop app for game inventories, optimized for use via a Command Line Interface** (CLI) 
 while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Inventoryinator can
 get your inventory management tasks done faster than traditional GUI apps.
@@ -72,7 +73,6 @@ Action | Format
 ### Viewing help : `help`
 **NAME:** 
 
-NOT Supported as of v1.1 yet
 - `help` - lists all commands and how to use them (Current implementation)
 
 **SYNOPSIS:**
@@ -101,7 +101,7 @@ Will eventually be extended to get help about specific commands.
 
 - **q:**	qty indicates quantity to add (default: 1)
 - **d:**	desc indicates description of item (default: “No description given.”)
-- **l:**	locations indicate where item is found (default: none)
+- **l:**	locations indicate where item is found 
 
 **EXAMPLE:**
 - `addi` <u>banana</u> -q 44 -d edible banana -l Bob’s banana farm
@@ -127,7 +127,7 @@ Will eventually be extended to get help about specific commands.
 
 
 ### Adding a item: `add`
-NOT Supported as of v1.1 yet
+NOT Supported as of v1.2 yet
 
 **NAME:**
 
@@ -145,8 +145,8 @@ NOT Supported as of v1.1 yet
 - `add` <u>Bob’s 6th regret</u> -q <u>8</u>
 - Adds <u>8</u> more <u>Bob’s 6th regrets</u> to the `Inventoryinator`
 
-### Listing all items : `list`
-NOT Supported as of v1.1 yet
+### Listing all items or recipes : `list`
+NOT Supported as of v1.2 yet
 
 **NAME:**
 	
@@ -167,6 +167,33 @@ NOT Supported as of v1.1 yet
 - `list` -i
 - Lists all items and their quantities
 
+### Listing all items : `listi`
+
+**NAME:**
+	
+- `listi` - lists all items
+
+**SYNOPSIS:**
+
+- `listi`
+
+**EXAMPLE:**
+- `list` -i
+- Lists all items and their quantities
+
+### Listing all items : `listr`
+
+**NAME:**
+	
+- `listi` - lists all recipes
+
+**SYNOPSIS:**
+
+- `listr`
+
+**EXAMPLE:**
+- `listr` 
+- Lists all recipes, outputs, descriptions and their ingredients
 
 ### Deleting a item : `deli`
 **NAME:**
@@ -186,7 +213,7 @@ NOT Supported as of v1.1 yet
 ### Deleting a Recipe : `delr`
 
 **NAME:**
-- `delr` - delete an item
+- `delr` - delete an recipe
 
 **SYNOPSIS:**
 - `delr` \<item name\> \[-r index\]
@@ -198,8 +225,9 @@ NOT Supported as of v1.1 yet
 **EXAMPLE:**
 - `delr` <u>Bob’s 28th finger -r 1</u>
 - Deletes the **first recipe** of the item <u>Bob’s 28th finger</u>
+
 ### Delete item : `del`
-NOT Supported as of v1.1 yet
+NOT Supported as of v1.2 yet
 
 **NAME:**
 - `del` - delete an item
@@ -216,8 +244,6 @@ NOT Supported as of v1.1 yet
 - Deletes the **item** with the name of <u>Bob’s 28th finger</u>
 
 ### Finding an Entry: `find`
-NOT Supported as of v1.1
-
 **NAME:**
 - `find` - find an item
 
@@ -229,14 +255,14 @@ NOT Supported as of v1.1
 
 **EXAMPLE:**
 - `find` -i <u>Bob’s 9000th crush</u>
+
+**NOT Supported as of v1.2**
 - Returns the item that match the item description: 
 <u>Bob’s 9000th crush</u>
-
 	(supports regex, eg. find -i <u>Bob’s ([1-9][0-9])(st\*nd\*rd\*th) crush</u>)
 
-
 ### View item `view`
-NOT Supported as of v1.1
+**WIP as of v1.2**
 
 **NAME:**
 - `view` - view more details on an item

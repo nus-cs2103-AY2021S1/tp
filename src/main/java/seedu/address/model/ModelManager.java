@@ -317,4 +317,16 @@ public class ModelManager implements Model {
                 && filteredRecipes.equals(other.filteredRecipes);
     }
 
+    @Override
+    public String toString() {
+        return "ModelManager{"
+                + "userPrefs=" + userPrefs
+                + ", itemList=" + itemList
+                + ", filteredItems=" + filteredItems
+                + ", locationList=" + locationList
+                + ", filteredLocations=" + filteredLocations
+                + ", recipeList=" + recipeList
+                + ", filteredRecipes=" + filteredRecipes
+                + '}';
+    }
 }

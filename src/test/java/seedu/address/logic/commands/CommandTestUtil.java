@@ -37,6 +37,7 @@ public class CommandTestUtil {
     public static final String VALID_ITEM_LOCATION_PEACH_ORCHARD = "Bob's peach orchard";
     public static final String VALID_ITEM_LOCATION_SPINACH_GARDEN = "Bob's spinach garden";
 
+    // recipe
     public static final String VALID_RECIPE_PRODUCT_NAME_APPLE_PIE = "Apple Pie";
     public static final String VALID_RECIPE_PRODUCT_NAME_BANANA_PIE = "Banana Pie";
     public static final int VALID_RECIPE_ID_TWO = 2;
@@ -50,6 +51,10 @@ public class CommandTestUtil {
     public static final String VALID_RECIPE_INGREDIENTS_BANANA_PIE = "Apple[2] Banana[1]";
     public static final String INVALID_RECIPE_QUANTITY_APPLE_PIE = "-1";
 
+    //prefix
+    public static final String INVALID_NAME_PREFIX = " --n";
+
+    // Command parts
     public static final String ITEM_NAME_DESC_APPLE = " "
             + PREFIX_ITEM_NAME + VALID_ITEM_NAME_APPLE;
     public static final String ITEM_NAME_DESC_BANANA = " "

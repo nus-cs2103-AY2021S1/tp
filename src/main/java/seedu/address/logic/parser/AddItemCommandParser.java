@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
+import static seedu.address.logic.parser.ItemParserUtil.DEFAULT_DESCRIPTION;
+import static seedu.address.logic.parser.ItemParserUtil.DEFAULT_QUANTITY;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -34,14 +36,18 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_ITEM_NAME, PREFIX_ITEM_QUANTITY,
                         PREFIX_ITEM_DESCRIPTION, PREFIX_ITEM_LOCATION);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ITEM_NAME, PREFIX_ITEM_QUANTITY,
-                PREFIX_ITEM_DESCRIPTION, PREFIX_ITEM_LOCATION)
+        if (!arePrefixesPresent(argMultimap, PREFIX_ITEM_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
+            // Only if Item Name is missing throws parse exception error
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddItemCommand.MESSAGE_USAGE));
         }
+        // Missing Field Name would have been detected.
         String name = ItemParserUtil.parseName(argMultimap.getValue(PREFIX_ITEM_NAME).get());
-        Quantity quantity = ItemParserUtil.parseQuantity(argMultimap.getValue(PREFIX_ITEM_QUANTITY).get());
-        String description = ItemParserUtil.parseDescription(argMultimap.getValue(PREFIX_ITEM_DESCRIPTION).get());
+        Quantity quantity = ItemParserUtil.parseQuantity(argMultimap.getValue(PREFIX_ITEM_QUANTITY)
+                .orElse(DEFAULT_QUANTITY));
+        String description = ItemParserUtil.parseDescription(argMultimap.getValue(PREFIX_ITEM_DESCRIPTION)
+                .orElse(DEFAULT_DESCRIPTION));
+        // TODO Item only allows registering one item location
         Set<String> locationList = ItemParserUtil.parseLocations(argMultimap.getAllValues(PREFIX_ITEM_LOCATION));
 
         ItemPrecursor itemPrecursor = new ItemPrecursor(Item.getIdCounter() + 1, name, quantity, description,
@@ -57,5 +63,4 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }

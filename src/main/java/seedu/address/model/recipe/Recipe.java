@@ -115,6 +115,7 @@ public class Recipe extends InventoryComponent {
         }
 
         Recipe otherRecipe = (Recipe) other;
+
         return otherRecipe.getId() == getId()
                 && otherRecipe.getIngredients().equals(getIngredients())
                 && otherRecipe.getProductId() == getProductId()
