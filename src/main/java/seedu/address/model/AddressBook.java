@@ -191,6 +191,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks.getInternalList().clear();
         tasks.getInternalList().addAll(assignments.getInternalList());
         tasks.getInternalList().addAll(lessons.getInternalList());
+        // filter overdue task
+        tasks.getInternalList().removeIf(task -> {
+            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
+                    .withResolverStyle(ResolverStyle.STRICT);
+            LocalDateTime time = LocalDateTime.parse(task.getTime().value, inputFormat);
+            return time.isBefore(LocalDateTime.now());
+        });
+        // sort tasks
         tasks.getInternalList().sort((firstTask, secondTask) -> {
             DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
                     .withResolverStyle(ResolverStyle.STRICT);

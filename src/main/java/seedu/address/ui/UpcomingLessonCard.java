@@ -2,11 +2,13 @@ package seedu.address.ui;
 
 import static seedu.address.model.assignment.Deadline.DEADLINE_DATE_TIME_FORMAT;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -17,9 +19,13 @@ import seedu.address.model.lesson.Lesson;
 /**
  * An UI component that displays information of a {@code Lesson}.
  */
-public class LessonCard extends UiPart<Region> {
+public class UpcomingLessonCard extends UiPart<Region> {
 
-    private static final String FXML = "LessonListCard.fxml";
+    private static final String FXML = "UpcomingLessonListCard.fxml";
+    private static final long MIN_PER_HOUR = 60;
+    private static final long HOUR_PER_DAY = 24;
+    private static final long MIN_DAY_PER_MONTH = 28;
+    private static final String START_SOON_STYLE_CLASS = "start-soon";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -31,7 +37,7 @@ public class LessonCard extends UiPart<Region> {
 
     public final Lesson lesson;
 
-    private DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
+    private final DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
             .withResolverStyle(ResolverStyle.STRICT);
 
     @FXML
@@ -44,16 +50,19 @@ public class LessonCard extends UiPart<Region> {
     //private Label moduleCode;
     @FXML
     private Label time;
+    @FXML
+    private Label startIn;
 
     /**
      * Creates a {@code LessonCode} with the given {@code Lesson} and index to display.
      */
-    public LessonCard(Lesson lesson, int displayedIndex) {
+    public UpcomingLessonCard(Lesson lesson, int displayedIndex) {
         super(FXML);
         this.lesson = lesson;
         id.setText(displayedIndex + ". ");
         name.setText(lesson.getName().fullName);
         time.setText(formatTime(lesson.getTime(), lesson.getEndTime()));
+        getStartDate(startIn, lesson.getTime());
         //moduleCode.setText("Module: " + lesson.getModuleCode().moduleCode);
     }
 
@@ -65,6 +74,34 @@ public class LessonCard extends UiPart<Region> {
         return date + " " + startTime + "-" + endTime;
     }
 
+    public void getStartDate(Label label, Deadline deadline) {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime due = LocalDateTime.parse(deadline.value, inputFormat);
+        String formattedDue = due.toLocalDate().format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
+        Duration duration = Duration.between(now, due);
+       if (duration.toMinutes() <= MIN_PER_HOUR) {
+           setStyleToIndicateDueSoon(label);
+           label.setText("Start in " + duration.toMinutes() + " minutes");
+       } else if (duration.toHours() <= HOUR_PER_DAY) {
+           setStyleToIndicateDueSoon(label);
+           label.setText("Start in " + duration.toHours() + " hours");
+       } else if (duration.toDays() <= MIN_DAY_PER_MONTH) {
+           label.setText("Start in " + duration.toDays() + " days");
+       } else {
+           label.setText("Start in months");
+       }
+    }
+
+    public void setStyleToIndicateDueSoon(Label label) {
+        ObservableList<String> styleClass = label.getStyleClass();
+
+        if (styleClass.contains(START_SOON_STYLE_CLASS)) {
+            return;
+        }
+
+        styleClass.add(START_SOON_STYLE_CLASS);
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -73,12 +110,12 @@ public class LessonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof LessonCard)) {
+        if (!(other instanceof UpcomingLessonCard)) {
             return false;
         }
 
         // state check
-        LessonCard card = (LessonCard) other;
+        UpcomingLessonCard card = (UpcomingLessonCard) other;
         return id.getText().equals(card.id.getText())
                 && lesson.equals(card.lesson);
     }
