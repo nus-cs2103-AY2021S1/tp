@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeSet;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -22,7 +23,11 @@ import seedu.address.model.animal.Animal;
 import seedu.address.model.animal.Id;
 import seedu.address.model.animal.Name;
 import seedu.address.model.animal.Species;
+import seedu.address.model.feedtime.FeedTime;
+import seedu.address.model.feedtime.FeedTimeComparator;
 import seedu.address.model.medicalcondition.MedicalCondition;
+
+
 
 /**
  * Edits the details of an existing animal in the address book.
@@ -94,8 +99,10 @@ public class EditCommand extends Command {
         Species updatedSpecies = editAnimalDescriptor.getSpecies().orElse(animalToEdit.getSpecies());
         Set<MedicalCondition> updatedMedicalConditions = editAnimalDescriptor.getMedicalConditions()
                 .orElse(animalToEdit.getMedicalConditions());
+        Set<FeedTime> updatedFeedTimes = editAnimalDescriptor.getFeedTimes()
+                .orElse(animalToEdit.getFeedTimes());
 
-        return new Animal(updatedName, updatedId, updatedSpecies, updatedMedicalConditions);
+        return new Animal(updatedName, updatedId, updatedSpecies, updatedMedicalConditions, updatedFeedTimes);
     }
 
     @Override
@@ -125,6 +132,7 @@ public class EditCommand extends Command {
         private Id id;
         private Species species;
         private Set<MedicalCondition> medicalConditions;
+        private Set<FeedTime> feedTimes;
 
         public EditAnimalDescriptor() {}
 
@@ -137,13 +145,14 @@ public class EditCommand extends Command {
             setId(toCopy.id);
             setSpecies(toCopy.species);
             setMedicalConditions(toCopy.medicalConditions);
+            setFeedTimes(toCopy.feedTimes);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, id, species, medicalConditions);
+            return CollectionUtil.isAnyNonNull(name, id, species, medicalConditions, feedTimes);
         }
 
         public void setName(Name name) {
@@ -207,6 +216,30 @@ public class EditCommand extends Command {
                     && getId().equals(e.getId())
                     && getSpecies().equals(e.getSpecies())
                     && getMedicalConditions().equals(e.getMedicalConditions());
+        }
+
+        /**
+         * Sets {@code feedTimes} to this object's {@code feedTimes}.
+         * A defensive copy of {@code feedTimes} is used internally.
+         */
+        public void setFeedTimes(Set<FeedTime> feedTimes) {
+            if (feedTimes != null) {
+                TreeSet<FeedTime> treeFeedTimes = new TreeSet<>(new FeedTimeComparator());
+                treeFeedTimes.addAll(feedTimes);
+                this.feedTimes = treeFeedTimes;
+            } else {
+                this.feedTimes = null;
+            }
+        }
+
+        /**
+         * Returns an unmodifiable feedTimes set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code feedTimes} is null.
+         */
+        public Optional<Set<FeedTime>> getFeedTimes() {
+            return (feedTimes != null) ? Optional.of(Collections.unmodifiableSet(feedTimes))
+                    : Optional.empty();
         }
     }
 }

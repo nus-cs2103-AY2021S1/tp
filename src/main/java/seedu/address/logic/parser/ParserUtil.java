@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -12,6 +13,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.animal.Id;
 import seedu.address.model.animal.Name;
 import seedu.address.model.animal.Species;
+import seedu.address.model.feedtime.FeedTime;
+import seedu.address.model.feedtime.FeedTimeComparator;
 import seedu.address.model.medicalcondition.MedicalCondition;
 
 /**
@@ -105,5 +108,32 @@ public class ParserUtil {
             medicalConditionSet.add(parseMedicalCondition(medicalConditionName));
         }
         return medicalConditionSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> feedTimes} into a {@code Set<FeedTime>}.
+     */
+    public static Set<FeedTime> parseFeedTimes(Collection<String> feedTimes) throws ParseException {
+        requireNonNull(feedTimes);
+        final Set<FeedTime> feedTimeSet = new TreeSet<>(new FeedTimeComparator());
+        for (String feedTimeText : feedTimes) {
+            feedTimeSet.add(parseFeedTime(feedTimeText));
+        }
+        return feedTimeSet;
+    }
+
+    /**
+     * Parses a {@code String feedTimeText} into a {@code FeedTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code feedTimeText} is invalid.
+     */
+    public static FeedTime parseFeedTime(String feedTimeText) throws ParseException {
+        requireNonNull(feedTimeText);
+        String trimmedFeedTimeText = feedTimeText.trim();
+        if (!FeedTime.isValidFeedTime(trimmedFeedTimeText)) {
+            throw new ParseException(FeedTime.MESSAGE_CONSTRAINTS);
+        }
+        return new FeedTime(trimmedFeedTimeText);
     }
 }

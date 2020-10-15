@@ -6,7 +6,10 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeSet;
 
+import seedu.address.model.feedtime.FeedTime;
+import seedu.address.model.feedtime.FeedTimeComparator;
 import seedu.address.model.medicalcondition.MedicalCondition;
 
 /**
@@ -22,16 +25,19 @@ public class Animal {
     // Data fields
     private final Species species;
     private final Set<MedicalCondition> medicalConditions = new HashSet<>();
+    private final Set<FeedTime> feedTimes = new TreeSet<>(new FeedTimeComparator());
 
     /**
      * Every field must be present and not null.
      */
-    public Animal(Name name, Id id, Species species, Set<MedicalCondition> medicalConditions) {
+    public Animal(Name name, Id id, Species species, Set<MedicalCondition> medicalConditions,
+                  Set<FeedTime> feedTimeList) {
         requireAllNonNull(name, id, species, medicalConditions);
         this.name = name;
         this.id = id;
         this.species = species;
         this.medicalConditions.addAll(medicalConditions);
+        this.feedTimes.addAll(feedTimeList);
     }
 
     public Name getName() {
@@ -108,4 +114,11 @@ public class Animal {
         return builder.toString();
     }
 
+    /**
+     * Returns an immutable feedTime set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<FeedTime> getFeedTimes() {
+        return Collections.unmodifiableSet(feedTimes);
+    }
 }

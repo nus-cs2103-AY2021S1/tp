@@ -33,6 +33,10 @@
         <Label fx:id="medicalCondition" styleClass="cell_small_label" />
         <FlowPane fx:id="medicalConditions" />
       </HBox>
+      <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label fx:id="feedTime" styleClass="cell_small_label" />
+        <FlowPane fx:id="feedTimes" />
+      </HBox>
     </VBox>
   </GridPane>
 </HBox>

@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FEED_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -16,6 +17,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditAnimalDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.feedtime.FeedTime;
 import seedu.address.model.medicalcondition.MedicalCondition;
 
 /**
@@ -31,7 +33,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ID, PREFIX_SPECIES, PREFIX_MEDICAL_CONDITION);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ID, PREFIX_SPECIES, PREFIX_MEDICAL_CONDITION,
+                        PREFIX_FEED_TIME);
 
         Index index;
 
@@ -53,12 +56,32 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         parseMedicalConditionsForEdit(argMultimap.getAllValues(PREFIX_MEDICAL_CONDITION))
                 .ifPresent(editAnimalDescriptor::setMedicalConditions);
+        parseFeedTimesForEdit(argMultimap.getAllValues(PREFIX_FEED_TIME))
+                .ifPresent(editAnimalDescriptor::setFeedTimes);
 
         if (!editAnimalDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditCommand(index, editAnimalDescriptor);
+    }
+
+    /**
+     * Parses {@code Collection<String> feedTimes} into a {@code Set<FeedTime>}
+     * if {@code feedTimes} is non-empty.
+     * If {@code feedTimes} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<FeedTime>} containing zero feedTimes.
+     */
+
+    private Optional<Set<FeedTime>> parseFeedTimesForEdit(Collection<String> feedTimes) throws ParseException {
+        assert feedTimes != null;
+
+        if (feedTimes.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> feedTimeSet = feedTimes.size() == 1 && feedTimes.contains("")
+                ? Collections.emptySet() : feedTimes;
+        return Optional.of(ParserUtil.parseFeedTimes(feedTimeSet));
     }
 
     /**
