@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ItemList;
 import seedu.address.model.LocationList;
 import seedu.address.model.Model;
@@ -13,9 +14,10 @@ import seedu.address.model.item.Item;
 import seedu.address.model.item.Quantity;
 import seedu.address.testutil.ItemBuilder;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_BANANA;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.assertInventoryCommandFailure;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_DESCRIPTION_BANANA;
 import static seedu.address.testutil.TypicalItems.APPLE;
 
 public class EditItemCommandIntegrationTest {
@@ -24,6 +26,9 @@ public class EditItemCommandIntegrationTest {
     private Model expectedModel;
     private Item apple;
 
+    /**
+     * Sets up model to contain an itemlist with only the item apple in it.
+     */
     @BeforeEach
     public void setUp() {
         model = new ModelManager(new ItemList(), new LocationList(), new RecipeList(), new UserPrefs());
@@ -33,10 +38,10 @@ public class EditItemCommandIntegrationTest {
     }
 
     /**
-     * Tests for successful edit of an item found in the item list.
+     * Tests for successful edit of an item's quantity found in the item list.
      */
     @Test
-    public void execute_success() {
+    public void execute_singleField_success() {
         EditItemCommand.EditItemDescriptor descriptor = new EditItemCommand.EditItemDescriptor();
         descriptor.setQuantity(new Quantity(VALID_ITEM_QUANTITY_BANANA));
         EditItemCommand eic = new EditItemCommand(Index.fromZeroBased(0), descriptor);
@@ -45,6 +50,38 @@ public class EditItemCommandIntegrationTest {
         Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_ITEM_QUANTITY_BANANA).build();
         expectedModel.addItem(editedApple);
         assertCommandSuccess(eic, model, expectedMessage, expectedModel);
+    }
+
+    /**
+     * Tests for successful edit of an item's quantity and description found in the item list.
+     */
+    @Test
+    public void execute_multipleFields_success() {
+        EditItemCommand.EditItemDescriptor descriptor = new EditItemCommand.EditItemDescriptor();
+        descriptor.setQuantity(new Quantity(VALID_ITEM_QUANTITY_BANANA));
+        descriptor.setDescription(VALID_ITEM_DESCRIPTION_BANANA);
+        EditItemCommand eic = new EditItemCommand(Index.fromZeroBased(0), descriptor);
+        String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, apple);
+
+        // expected model should contain the edited apple
+        Item editedApple = new ItemBuilder(APPLE)
+                .withQuantity(VALID_ITEM_QUANTITY_BANANA)
+                .withDescription(VALID_ITEM_DESCRIPTION_BANANA)
+                .build();
+        expectedModel.addItem(editedApple);
+
+        assertCommandSuccess(eic, model, expectedMessage, expectedModel);
+    }
+
+    /**
+     * Tests for failure when no field is specified.
+     */
+    @Test
+    public void execute_noFieldSpecified_failure() {
+        // edit command has empty descriptor with no fields specified
+        EditItemCommand eic = new EditItemCommand(Index.fromZeroBased(0), new EditItemCommand.EditItemDescriptor());
+
+        assertInventoryCommandFailure(eic, model, EditItemCommand.MESSAGE_NOT_EDITED);
     }
 
     /**

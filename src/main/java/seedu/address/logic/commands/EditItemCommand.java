@@ -29,7 +29,7 @@ public class EditItemCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the item identified "
-            + "by the index number used in the displayed item list.\n "
+            + "by the index number used in the displayed item list.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_ITEM_NAME + "NAME] "
@@ -69,6 +69,10 @@ public class EditItemCommand extends Command {
 
         Item itemToEdit = lastShownList.get(index.getZeroBased());
         Item editedItem = createEditedItem(itemToEdit, editItemDescriptor);
+
+        if (!editItemDescriptor.isAnyFieldEdited()) {
+            throw new CommandException(MESSAGE_NOT_EDITED);
+        }
 
         if (!itemToEdit.isSameItem(editedItem) && model.hasItem(editedItem)) {
             throw new CommandException(MESSAGE_DUPLICATE_ITEM);

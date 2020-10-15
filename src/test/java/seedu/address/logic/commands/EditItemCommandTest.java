@@ -6,7 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.*;
+import seedu.address.model.ItemList;
+import seedu.address.model.ReadOnlyItemList;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Quantity;
 import seedu.address.testutil.ItemBuilder;
@@ -14,10 +15,14 @@ import seedu.address.testutil.ItemBuilder;
 import java.util.function.Predicate;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.testutil.TypicalIndexes.*;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 import static seedu.address.testutil.TypicalItems.APPLE;
 
 public class EditItemCommandTest {
@@ -36,10 +41,10 @@ public class EditItemCommandTest {
     }
 
     /**
-     * Tests for successful edit of an item found in the item list.
+     * Tests for successful edit of an item's quantity found in the item list.
      */
     @Test
-    public void execute_success() {
+    public void execute_singleField_success() {
         itemList.addItem(apple);
         modelStub = new ModelStubWithItemList(itemList);
 
@@ -54,6 +59,50 @@ public class EditItemCommandTest {
         expectedModelStub = new ModelStubWithItemList(expectedItemList);
 
         assertCommandSuccess(eic, modelStub, expectedMessage, expectedModelStub);
+    }
+
+    /**
+     * Tests for successful edit of an item's quantity and description found in the item list.
+     */
+    @Test
+    public void execute_multipleFields_success() {
+        itemList.addItem(apple);
+        modelStub = new ModelStubWithItemList(itemList);
+
+        EditItemCommand.EditItemDescriptor descriptor = new EditItemCommand.EditItemDescriptor();
+        descriptor.setQuantity(new Quantity(VALID_ITEM_QUANTITY_BANANA));
+        descriptor.setDescription(VALID_ITEM_DESCRIPTION_BANANA);
+        EditItemCommand eic = new EditItemCommand(Index.fromZeroBased(0), descriptor);
+        String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, apple);
+
+        // expected model should contain the edited apple
+        Item editedApple = new ItemBuilder(APPLE)
+                .withQuantity(VALID_ITEM_QUANTITY_BANANA)
+                .withDescription(VALID_ITEM_DESCRIPTION_BANANA)
+                .build();
+        expectedItemList.addItem(editedApple);
+        expectedModelStub = new ModelStubWithItemList(expectedItemList);
+
+        assertCommandSuccess(eic, modelStub, expectedMessage, expectedModelStub);
+    }
+
+    /**
+     * Tests for failure when no field is specified.
+     */
+    @Test
+    public void execute_noFieldSpecified_failure() {
+        itemList.addItem(apple);
+        modelStub = new ModelStubWithItemList(itemList);
+
+        expectedItemList.addItem(apple);
+        expectedModelStub = new ModelStubWithItemList(expectedItemList);
+
+        // edit command has empty descriptor with no fields specified
+        EditItemCommand eic = new EditItemCommand(Index.fromZeroBased(0), new EditItemCommand.EditItemDescriptor());
+
+        assertThrows(CommandException.class, () -> eic.execute(modelStub),
+                EditItemCommand.MESSAGE_NOT_EDITED);
+        assertEquals(expectedModelStub, modelStub);
     }
 
     /**
@@ -122,7 +171,7 @@ public class EditItemCommandTest {
         assertFalse(editName.equals(null));
 
         // different types -> returns false
-        assertFalse(editName.equals(new ListCommand()));
+        assertFalse(editName.equals(new ListItemCommand()));
 
         // different index -> returns false
         assertFalse(editName.equals(new EditItemCommand(INDEX_SECOND_ITEM, descName)));
