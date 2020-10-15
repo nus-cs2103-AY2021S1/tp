@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_TAGS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalTags.CARL;
-import static seedu.address.testutil.TypicalTags.ELLE;
-import static seedu.address.testutil.TypicalTags.FIONA;
+import static seedu.address.testutil.TypicalTags.MYFILE3;
+import static seedu.address.testutil.TypicalTags.MYFILE4;
+import static seedu.address.testutil.TypicalTags.MYFILE5;
 import static seedu.address.testutil.TypicalTags.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -67,11 +67,12 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleTagsFound() {
         String expectedMessage = String.format(MESSAGE_TAGS_LISTED_OVERVIEW, 3);
-        TagNameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        TagNameContainsKeywordsPredicate predicate = preparePredicate("3 4 5");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredTagList(predicate);
+
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredTagList());
+        assertEquals(Arrays.asList(MYFILE3, MYFILE4, MYFILE5), model.getFilteredTagList());
     }
 
     /**

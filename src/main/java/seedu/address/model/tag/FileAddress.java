@@ -33,7 +33,7 @@ public class FileAddress {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid file address.
      */
     public static boolean isValidFileAddress(String test) {
         return test.matches(VALIDATION_REGEX);

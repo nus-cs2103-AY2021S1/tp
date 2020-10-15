@@ -3,9 +3,9 @@ package seedu.address.model.tag;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_FILE_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FILE_ADDRESS_CS2103;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTags.BOB;
+import static seedu.address.testutil.TypicalTags.CS2101;
 import static seedu.address.testutil.TypicalTags.CS2103;
 
 import java.util.Arrays;
@@ -83,7 +83,7 @@ public class UniqueTagListTest {
     @Test
     public void setTag_editedTagHasSameIdentity_success() {
         uniqueTagList.add(CS2103);
-        Tag editedCS2103 = new TagBuilder(CS2103).withFileAddress(VALID_FILE_ADDRESS_BOB).build();
+        Tag editedCS2103 = new TagBuilder(CS2103).withFileAddress(VALID_FILE_ADDRESS_CS2103).build();
         uniqueTagList.setTag(CS2103, editedCS2103);
         UniqueTagList expectedUniqueTagList = new UniqueTagList();
         expectedUniqueTagList.add(editedCS2103);
@@ -93,17 +93,17 @@ public class UniqueTagListTest {
     @Test
     public void setTag_editedTagHasDifferentIdentity_success() {
         uniqueTagList.add(CS2103);
-        uniqueTagList.setTag(CS2103, BOB);
+        uniqueTagList.setTag(CS2103, CS2101);
         UniqueTagList expectedUniqueTagList = new UniqueTagList();
-        expectedUniqueTagList.add(BOB);
+        expectedUniqueTagList.add(CS2101);
         assertEquals(expectedUniqueTagList, uniqueTagList);
     }
 
     @Test
     public void setTag_editedTagHasNonUniqueIdentity_throwsDuplicateTagException() {
         uniqueTagList.add(CS2103);
-        uniqueTagList.add(BOB);
-        assertThrows(DuplicateTagException.class, () -> uniqueTagList.setTag(CS2103, BOB));
+        uniqueTagList.add(CS2101);
+        assertThrows(DuplicateTagException.class, () -> uniqueTagList.setTag(CS2103, CS2101));
     }
 
     @Test
@@ -133,7 +133,7 @@ public class UniqueTagListTest {
     public void setTag_uniqueTagList_replacesOwnListWithProvidedUniqueTagList() {
         uniqueTagList.add(CS2103);
         UniqueTagList expectedUniqueTagList = new UniqueTagList();
-        expectedUniqueTagList.add(BOB);
+        expectedUniqueTagList.add(CS2101);
         uniqueTagList.setTags(expectedUniqueTagList);
         assertEquals(expectedUniqueTagList, uniqueTagList);
     }
@@ -146,10 +146,10 @@ public class UniqueTagListTest {
     @Test
     public void setTags_list_replacesOwnListWithProvidedList() {
         uniqueTagList.add(CS2103);
-        List<Tag> tagList = Collections.singletonList(BOB);
+        List<Tag> tagList = Collections.singletonList(CS2101);
         uniqueTagList.setTags(tagList);
         UniqueTagList expectedUniqueTagList = new UniqueTagList();
-        expectedUniqueTagList.add(BOB);
+        expectedUniqueTagList.add(CS2101);
         assertEquals(expectedUniqueTagList, uniqueTagList);
     }
 

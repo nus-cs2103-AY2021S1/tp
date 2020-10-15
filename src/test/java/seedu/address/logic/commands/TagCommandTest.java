@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_NAME_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_NAME_CS2103;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
@@ -55,8 +57,8 @@ public class TagCommandTest {
 
     @Test
     public void equals() {
-        Tag t1 = new TagBuilder().withTagName("cs2101").build();
-        Tag t2 = new TagBuilder().withTagName("cs2103").build();
+        Tag t1 = new TagBuilder().withTagName(VALID_TAG_NAME_CS2101).build();
+        Tag t2 = new TagBuilder().withTagName(VALID_TAG_NAME_CS2103).build();
         TagCommand tagT1Command = new TagCommand(t1);
         TagCommand tagT2Command = new TagCommand(t2);
 

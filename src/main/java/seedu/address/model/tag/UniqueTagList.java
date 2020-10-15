@@ -12,11 +12,11 @@ import seedu.address.model.tag.exceptions.DuplicateTagException;
 import seedu.address.model.tag.exceptions.TagNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Tag#isSamePerson(Tag)}. As such, adding and updating of
- * persons uses Tag#isSamePerson(Tag) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniqueTagList. However, the removal of a person uses Tag#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A list of tags that enforces uniqueness between its elements and does not allow nulls.
+ * A tag is considered unique by comparing using {@code Tag#isSametag(Tag)}. As such, adding and updating of
+ * tags uses Tag#isSametag(Tag) for equality so as to ensure that the tag being added or updated is
+ * unique in terms of identity in the UniqueTagList. However, the removal of a tag uses Tag#equals(Object) so
+ * as to ensure that the tag with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -29,7 +29,7 @@ public class UniqueTagList implements Iterable<Tag> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent tag as the given argument.
      */
     public boolean contains(Tag toCheck) {
         requireNonNull(toCheck);
@@ -37,8 +37,8 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a tag to the list.
+     * The tag must not already exist in the list.
      */
     public void add(Tag toAdd) {
         requireNonNull(toAdd);
@@ -49,9 +49,9 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedTag}.
+     * Replaces the tag {@code target} in the list with {@code editedTag}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedTag} must not be the same as another existing person in the list.
+     * The tag identity of {@code editedTag} must not be the same as another existing tag in the list.
      */
     public void setTag(Tag target, Tag editedTag) {
         requireAllNonNull(target, editedTag);
@@ -69,8 +69,8 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent tag from the list.
+     * The tag must exist in the list.
      */
     public void remove(Tag toRemove) {
         requireNonNull(toRemove);

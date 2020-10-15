@@ -59,8 +59,8 @@ public interface Model {
     boolean hasTag(Tag tag);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given tag.
+     * The tag must exist in the address book.
      */
     void deleteTag(Tag target);
 
@@ -71,17 +71,17 @@ public interface Model {
     void addTag(Tag tag);
 
     /**
-     * Replaces the given person {@code target} with {@code editedTag}.
+     * Replaces the given tag {@code target} with {@code editedTag}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedTag} must not be the same as another existing person in the address book.
+     * The tag identity of {@code editedTag} must not be the same as another existing tag in the address book.
      */
     void setTag(Tag target, Tag editedTag);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered tag list */
     ObservableList<Tag> getFilteredTagList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered tag list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTagList(Predicate<Tag> predicate);

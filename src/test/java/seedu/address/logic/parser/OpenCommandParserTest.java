@@ -5,7 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CS2101;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CS2103;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS2103;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_NAME_CS2103;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalTags.CS2103;
@@ -43,7 +43,7 @@ public class OpenCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, OpenCommand.MESSAGE_USAGE);
 
         // missing tag name prefix
-        assertParseFailure(parser, VALID_NAME_CS2103, expectedMessage);
+        assertParseFailure(parser, VALID_TAG_NAME_CS2103, expectedMessage);
     }
 
     @Test

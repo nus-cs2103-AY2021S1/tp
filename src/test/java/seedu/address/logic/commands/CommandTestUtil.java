@@ -24,37 +24,26 @@ import seedu.address.model.tag.TagNameContainsKeywordsPredicate;
 public class CommandTestUtil {
 
     // TODO All of these needs to be updated!
-    public static final String VALID_NAME_CS2103 = "cs2103";
-    public static final String VALID_NAME_CS2101 = "cs2101";
+    public static final String VALID_TAG_NAME_CS2103 = "cs2103";
+    public static final String VALID_TAG_NAME_CS2101 = "cs2101";
+    public static final String INVALID_TAG_NAME = "&";
     public static final String VALID_FILE_ADDRESS_CS2103 = "./src/test/java/seedu/address/testutil/cs2103.bat";
     public static final String VALID_FILE_ADDRESS_CS2101 = "./src/test/java/seedu/address/testutil/cs2101.bat";
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_FILE_ADDRESS_AMY = "c:\\a\\b\\amy.txt";
-    public static final String VALID_FILE_ADDRESS_BOB = "c:\\a\\b\\bob.txt";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_MAC_FILE_ADDRESS_CS2101 = "./src/test/java/seedu/address/testutil/cs2101.sh";
+    public static final String VALID_MAC_FILE_ADDRESS_TESTFILE = "./src/test/java/seedu/address/testutil/testFile.sh";
 
-    public static final String OLD_TAG_DESC_CS2101 = " " + PREFIX_OLD_TAG_NAME + VALID_NAME_CS2101;
-    public static final String OLD_TAG_DESC_CS2103 = " " + PREFIX_OLD_TAG_NAME + VALID_NAME_CS2103;
-    public static final String TAG_DESC_CS2103 = " " + PREFIX_TAG_NAME + VALID_NAME_CS2103;
-    public static final String TAG_DESC_CS2101 = " " + PREFIX_TAG_NAME + VALID_NAME_CS2101;
-    public static final String NAME_DESC_AMY = " " + PREFIX_TAG_NAME + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_TAG_NAME + VALID_NAME_BOB;
+    public static final String OLD_TAG_DESC_CS2101 = " " + PREFIX_OLD_TAG_NAME + VALID_TAG_NAME_CS2101;
+    public static final String OLD_TAG_DESC_CS2103 = " " + PREFIX_OLD_TAG_NAME + VALID_TAG_NAME_CS2103;
+    public static final String TAG_DESC_CS2103 = " " + PREFIX_TAG_NAME + VALID_TAG_NAME_CS2103;
+    public static final String TAG_DESC_CS2101 = " " + PREFIX_TAG_NAME + VALID_TAG_NAME_CS2101;
 
     public static final String FILE_ADDRESS_DESC_CS2103 = " " + PREFIX_FILE_ADDRESS + VALID_FILE_ADDRESS_CS2103;
     public static final String FILE_ADDRESS_DESC_CS2101 = " " + PREFIX_FILE_ADDRESS + VALID_FILE_ADDRESS_CS2101;
-    public static final String FILE_ADDRESS_DESC_AMY = " " + PREFIX_FILE_ADDRESS + VALID_FILE_ADDRESS_AMY;
-    public static final String FILE_ADDRESS_DESC_BOB = " " + PREFIX_FILE_ADDRESS + VALID_FILE_ADDRESS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + VALID_TAG_HUSBAND;
 
-    public static final String INVALID_OLD_TAG_DESC = " " + PREFIX_OLD_TAG_NAME + "myfile&"; // '&' not allowed in names
-    public static final String INVALID_NEW_TAG_DESC = " " + PREFIX_TAG_NAME + "myfile&"; // '&' not allowed in names
-    public static final String INVALID_NAME_DESC = " " + PREFIX_TAG_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_FILE_ADDRESS_DESC = " "
-            + PREFIX_FILE_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_OLD_TAG_DESC = " " + PREFIX_OLD_TAG_NAME + INVALID_TAG_NAME;
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG_NAME + INVALID_TAG_NAME;
+    // empty string not allowed for addresses
+    public static final String INVALID_FILE_ADDRESS_DESC = " " + PREFIX_FILE_ADDRESS;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -89,7 +78,7 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the address book, filtered tag list and selected tag in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
