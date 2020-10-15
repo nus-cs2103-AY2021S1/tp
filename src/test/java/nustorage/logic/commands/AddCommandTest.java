@@ -6,26 +6,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Optional;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
-import nustorage.commons.core.GuiSettings;
-import nustorage.commons.core.index.Index;
 import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.model.AddressBook;
-import nustorage.model.Model;
 import nustorage.model.ReadOnlyAddressBook;
-import nustorage.model.ReadOnlyUserPrefs;
 import nustorage.model.person.Person;
-import nustorage.model.record.FinanceRecord;
-import nustorage.model.record.InventoryRecord;
 import nustorage.testutil.PersonBuilder;
+import nustorage.testutil.stub.ModelStub;
 
 public class AddCommandTest {
 
@@ -76,130 +67,6 @@ public class AddCommandTest {
 
         // different person -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
-    }
-
-    /**
-     * A default model stub that have all of the methods failing.
-     */
-    private class ModelStub implements Model {
-        @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public GuiSettings getGuiSettings() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setGuiSettings(GuiSettings guiSettings) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addInventoryRecord(InventoryRecord newRecord) {}
-
-        @Override
-        public void deleteInventoryRecord(InventoryRecord target) {}
-
-        @Override
-        public ObservableList<InventoryRecord> getFilteredInventory() {
-            throw new AssertionError("This method should not be called.");
-        }
-        @Override
-        public boolean hasInventoryRecord(InventoryRecord inventoryRecord) {
-            return true;
-        }
-        @Override
-        public void setInventoryRecord(InventoryRecord a, InventoryRecord b) {}
-
-        @Override
-        public void addFinanceRecord(FinanceRecord newRecord) {
-
-        }
-
-        @Override
-        public ObservableList<FinanceRecord> getFilteredFinanceList() {
-            return null;
-        }
-
-        @Override
-        public void setFinanceRecord(FinanceRecord target, FinanceRecord editedFinanceRecord) {
-
-        }
-
-        @Override
-        public Optional<FinanceRecord> deleteFinanceRecord(Index targetIndex) {
-            return Optional.empty();
-        }
-
-        @Override
-        public Path getAddressBookFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deletePerson(Person target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setPerson(Person target, Person editedPerson) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredInventoryList(Predicate<InventoryRecord> predicate) {
-
-        }
-
-        @Override
-        public void updateFilteredFinanceList(Predicate<FinanceRecord> predicate) {
-
-        }
-
-
     }
 
     /**

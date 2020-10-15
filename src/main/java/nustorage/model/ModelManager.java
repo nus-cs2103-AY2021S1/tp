@@ -42,9 +42,9 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.inventory = new Inventory();
-        this.financeAccount = new FinanceAccount();
+        this.financeAccount = new FinanceAccount(new FinanceAccount());
         filteredInventory = new FilteredList<>(this.inventory.asUnmodifiableObservableList());
-        filteredFinance = new FilteredList<>(this.financeAccount.asUnmodifiableObservableList());
+        filteredFinance = new FilteredList<>(this.financeAccount.getFinanceList());
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
@@ -131,7 +131,7 @@ public class ModelManager implements Model {
     //=========== FinanceAccount ================================================================================
     @Override
     public void addFinanceRecord(FinanceRecord newRecord) {
-        financeAccount.addRecord(newRecord);
+        financeAccount.addFinanceRecord(newRecord);
     }
 
     @Override
@@ -154,7 +154,12 @@ public class ModelManager implements Model {
 
     @Override
     public Optional<FinanceRecord> deleteFinanceRecord(Index targetIndex) {
-        return financeAccount.removeRecord(targetIndex);
+        return financeAccount.removeFinanceRecord(targetIndex);
+    }
+
+    @Override
+    public ReadOnlyFinanceAccount getFinanceAccount() {
+        return financeAccount;
     }
 
     //=========== AddressBook ================================================================================

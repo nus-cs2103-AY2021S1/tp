@@ -48,6 +48,8 @@ public interface Model {
 
     Optional<FinanceRecord> deleteFinanceRecord(Index targetIndex);
 
+    ReadOnlyFinanceAccount getFinanceAccount();
+
     void addInventoryRecord(InventoryRecord inventoryRecord);
 
     void deleteInventoryRecord(InventoryRecord target);
