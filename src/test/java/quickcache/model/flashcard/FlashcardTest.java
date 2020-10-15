@@ -4,8 +4,8 @@ package quickcache.model.flashcard;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static quickcache.logic.commands.CommandTestUtil.VALID_ANSWER_AMY;
-import static quickcache.logic.commands.CommandTestUtil.VALID_QUESTION_AMY;
+import static quickcache.logic.commands.CommandTestUtil.VALID_ANSWER_TWO;
+import static quickcache.logic.commands.CommandTestUtil.VALID_QUESTION_TWO;
 import static quickcache.testutil.TypicalFlashcards.RANDOM1;
 import static quickcache.testutil.TypicalFlashcards.RANDOM2;
 
@@ -43,11 +43,11 @@ class FlashcardTest {
         assertFalse(RANDOM1.isSameFlashcard(null));
 
         // different answer -> returns false
-        Flashcard editedRandom1 = new FlashcardBuilder(RANDOM1).withAnswer(VALID_ANSWER_AMY).build();
+        Flashcard editedRandom1 = new FlashcardBuilder(RANDOM1).withAnswer(VALID_ANSWER_TWO).build();
         assertFalse(RANDOM1.isSameFlashcard(editedRandom1));
 
         // different question -> returns false
-        editedRandom1 = new FlashcardBuilder(RANDOM1).withQuestion(VALID_QUESTION_AMY).build();
+        editedRandom1 = new FlashcardBuilder(RANDOM1).withQuestion(VALID_QUESTION_TWO).build();
         assertFalse(RANDOM1.isSameFlashcard(editedRandom1));
     }
 
@@ -70,11 +70,11 @@ class FlashcardTest {
         assertFalse(RANDOM1.equals(RANDOM2));
 
         // different answer -> returns false
-        Flashcard editedRandom1 = new FlashcardBuilder(RANDOM1).withAnswer(VALID_ANSWER_AMY).build();
+        Flashcard editedRandom1 = new FlashcardBuilder(RANDOM1).withAnswer(VALID_ANSWER_TWO).build();
         assertFalse(RANDOM1.equals(editedRandom1));
 
         // different question -> returns false
-        editedRandom1 = new FlashcardBuilder(RANDOM1).withQuestion(VALID_QUESTION_AMY).build();
+        editedRandom1 = new FlashcardBuilder(RANDOM1).withQuestion(VALID_QUESTION_TWO).build();
         assertFalse(RANDOM1.equals(editedRandom1));
     }
 

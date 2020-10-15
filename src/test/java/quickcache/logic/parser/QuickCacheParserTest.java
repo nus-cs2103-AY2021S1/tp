@@ -3,7 +3,8 @@ package quickcache.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static quickcache.testutil.Assert.assertThrows;
-import static quickcache.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static quickcache.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
+import static quickcache.logic.commands.EditCommand.EditFlashcardDescriptor;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,10 +12,15 @@ import quickcache.commons.core.Messages;
 import quickcache.logic.commands.AddOpenEndedQuestionCommand;
 import quickcache.logic.commands.ClearCommand;
 import quickcache.logic.commands.DeleteCommand;
+import quickcache.logic.commands.EditCommand;
 import quickcache.logic.commands.ExitCommand;
 import quickcache.logic.commands.HelpCommand;
+import quickcache.logic.commands.ListCommand;
+import quickcache.logic.commands.OpenCommand;
+import quickcache.logic.commands.StatsCommand;
 import quickcache.logic.parser.exceptions.ParseException;
 import quickcache.model.flashcard.Flashcard;
+import quickcache.testutil.EditFlashcardDescriptorBuilder;
 import quickcache.testutil.FlashcardBuilder;
 import quickcache.testutil.FlashcardUtil;
 
@@ -39,17 +45,31 @@ public class QuickCacheParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-            DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+            DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_FLASHCARD), command);
+    }
+
+    @Test
+    public void parseCommand_open() throws Exception {
+        OpenCommand command = (OpenCommand) parser.parseCommand(
+                OpenCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased());
+        assertEquals(new OpenCommand(INDEX_FIRST_FLASHCARD), command);
+    }
+
+    @Test
+    public void parseCommand_stats() throws Exception {
+        StatsCommand command = (StatsCommand) parser.parseCommand(
+                StatsCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased());
+        assertEquals(new StatsCommand(INDEX_FIRST_FLASHCARD), command);
     }
 
     //    @Test
     //    public void parseCommand_edit() throws Exception {
-    //        Person person = new PersonBuilder().build();
-    //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+    //        Flashcard flashcard = new FlashcardBuilder().build();
+    //        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder(flashcard).build();
     //        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-    //                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-    //        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+    //                + INDEX_FIRST_FLASHCARD.getOneBased() + " " + FlashcardUtil.getEditFlashcardDescriptorDetails(descriptor));
+    //        assertEquals(new EditCommand(INDEX_FIRST_FLASHCARD, descriptor), command);
     //    }
 
     @Test
@@ -72,11 +92,11 @@ public class QuickCacheParserTest {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
 
-    //    @Test
-    //    public void parseCommand_list() throws Exception {
-    //        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-    //        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
-    //    }
+    @Test
+    public void parseCommand_list() throws Exception {
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {

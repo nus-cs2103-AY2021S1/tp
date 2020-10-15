@@ -42,4 +42,11 @@ public class OpenCommand extends Command {
         return new CommandResult(String.format(MESSAGE_OPEN_FLASHCARD_SUCCESS, flashcardToOpen), question,
                 null, true);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof OpenCommand // instanceof handles nulls
+                && targetIndex.equals(((OpenCommand) other).targetIndex)); // state check
+    }
 }

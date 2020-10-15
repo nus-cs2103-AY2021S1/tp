@@ -21,8 +21,6 @@ public class FlashcardBuilder {
     public static final String DEFAULT_QUESTION = "Question 0";
     public static final String DEFAULT_ANSWER = "Answer 0";
     public static final String DEFAULT_TAG = "Tag0";
-    public static final int DEFAULT_TIMES_TESTED = 0;
-    public static final int DEFAULT_TIMES_TESTED_CORRECT = 0;
     public static final Statistics DEFAULT_STATISTICS = new Statistics();
 
     private Question question;
