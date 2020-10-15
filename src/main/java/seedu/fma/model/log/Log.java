@@ -2,6 +2,7 @@ package seedu.fma.model.log;
 
 import static seedu.fma.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.Clock;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -14,8 +15,11 @@ import seedu.fma.model.exercise.Exercise;
  */
 public class Log {
 
+    // User clock
+    private static Clock clock = Clock.systemDefaultZone();
+
     // Identity fields
-    private final LocalDateTime dateTime;
+    private LocalDateTime dateTime;
 
     // Data fields
     private final Exercise exercise;
@@ -28,7 +32,7 @@ public class Log {
     public Log(Exercise exercise, Rep reps, Comment comment) {
         requireAllNonNull(exercise);
         this.exercise = exercise;
-        this.dateTime = LocalDateTime.now();
+        this.dateTime = LocalDateTime.now(clock);
         this.reps = reps;
         this.comment = comment;
     }
@@ -107,6 +111,10 @@ public class Log {
                 && otherLog.getDateTime().equals(getDateTime())
                 && otherLog.getReps().equals(getReps())
                 && otherLog.getComment().equals(getComment());
+    }
+
+    public static void setUserClock(Clock anotherClock) {
+        clock = anotherClock;
     }
 
     @Override
