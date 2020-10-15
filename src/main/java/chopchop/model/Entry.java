@@ -20,11 +20,7 @@ public abstract class Entry {
      * Returns true if both entries have the same name.
      * This defines a weaker notion of equality between two entries.
      */
-    public boolean isSame(Entry other) {
-        return other == this
-                || (other != null
-                && this.name.equals(other.name));
-    }
+    public abstract boolean isSame(Entry other);
 
     /**
      * Returns true if both entries have the same fields.
