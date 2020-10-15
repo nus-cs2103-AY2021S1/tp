@@ -8,8 +8,9 @@ import java.util.logging.Logger;
 
 import nustorage.commons.core.LogsCenter;
 import nustorage.commons.exceptions.DataConversionException;
-import nustorage.model.FinanceAccount;
+import nustorage.model.Inventory;
 import nustorage.model.ReadOnlyAddressBook;
+import nustorage.model.ReadOnlyFinanceAccount;
 import nustorage.model.ReadOnlyUserPrefs;
 import nustorage.model.UserPrefs;
 
@@ -23,26 +24,31 @@ public class StorageManager implements Storage {
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
     private FinanceAccountStorage financeAccountStorage;
+    private InventoryStorage inventoryStorage;
+
+
+    // /**
+    //  * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+    //  */
+    // public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    //     super();
+    //     this.addressBookStorage = addressBookStorage;
+    //     this.userPrefsStorage = userPrefsStorage;
+    // }
 
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given
+     * {@code FinanceAccountStorage}, {@code InventoryStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        super();
-        this.addressBookStorage = addressBookStorage;
-        this.userPrefsStorage = userPrefsStorage;
-    }
-
-
-    /**
-     * Creates a {@code StorageManager} with the given {@code FinanceAccountStorage} and {@code UserPrefStorage}.
-     */
-    public StorageManager(FinanceAccountStorage financeAccountStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(FinanceAccountStorage financeAccountStorage, InventoryStorage inventoryStorage,
+                          UserPrefsStorage userPrefsStorage) {
         super();
         this.userPrefsStorage = userPrefsStorage;
         this.financeAccountStorage = financeAccountStorage;
+        this.inventoryStorage = inventoryStorage;
     }
+
 
     // ================ UserPrefs methods ==============================
 
@@ -110,29 +116,64 @@ public class StorageManager implements Storage {
 
 
     @Override
-    public Optional<FinanceAccount> readFinanceAccount() throws DataConversionException, IOException {
+    public Optional<ReadOnlyFinanceAccount> readFinanceAccount() throws DataConversionException, IOException {
         return readFinanceAccount(financeAccountStorage.getFinanceAccountFilePath());
     }
 
 
     @Override
-    public Optional<FinanceAccount> readFinanceAccount(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyFinanceAccount> readFinanceAccount(Path filePath)
+            throws DataConversionException, IOException {
         logger.fine("Attempting to read finance account from data file: " + filePath);
         return financeAccountStorage.readFinanceAccount(filePath);
     }
 
 
     @Override
-    public void saveFinanceAccount(FinanceAccount financeAccount) throws IOException {
+    public void saveFinanceAccount(ReadOnlyFinanceAccount financeAccount) throws IOException {
         saveFinanceAccount(financeAccount, financeAccountStorage.getFinanceAccountFilePath());
     }
 
 
     @Override
-    public void saveFinanceAccount(FinanceAccount financeAccount, Path filepath) throws IOException {
-        logger.fine("Attempting to write finance account to data file: " + filepath);
-        financeAccountStorage.saveFinanceAccount(financeAccount, filepath);
+    public void saveFinanceAccount(ReadOnlyFinanceAccount financeAccount, Path filePath) throws IOException {
+        logger.fine("Attempting to write finance account to data file: " + filePath);
+        financeAccountStorage.saveFinanceAccount(financeAccount, filePath);
     }
 
+
+    // ================ Inventory methods ==============================
+
+
+    @Override
+    public Path getInventoryFilePath() {
+        return inventoryStorage.getInventoryFilePath();
+    }
+
+
+    @Override
+    public Optional<Inventory> readInventory() throws DataConversionException, IOException {
+        return readInventory(inventoryStorage.getInventoryFilePath());
+    }
+
+
+    @Override
+    public Optional<Inventory> readInventory(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read finance account from data file: " + filePath);
+        return inventoryStorage.readInventory(filePath);
+    }
+
+
+    @Override
+    public void saveInventory(Inventory inventory) throws IOException {
+        saveInventory(inventory, inventoryStorage.getInventoryFilePath());
+    }
+
+
+    @Override
+    public void saveInventory(Inventory inventory, Path filePath) throws IOException {
+        logger.fine("Attempting to write finance account to data file: " + filePath);
+        inventoryStorage.saveInventory(inventory, filePath);
+    }
 
 }

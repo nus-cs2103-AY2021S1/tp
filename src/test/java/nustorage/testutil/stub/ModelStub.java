@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import nustorage.commons.core.GuiSettings;
 import nustorage.commons.core.index.Index;
+import nustorage.model.Inventory;
 import nustorage.model.Model;
 import nustorage.model.ReadOnlyAddressBook;
 import nustorage.model.ReadOnlyFinanceAccount;
@@ -53,6 +54,14 @@ public class ModelStub implements Model {
     public ObservableList<InventoryRecord> getFilteredInventory() {
         throw new AssertionError("This method should not be called.");
     }
+
+
+    @Override
+    public Inventory getInventory() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+
     @Override
     public boolean hasInventoryRecord(InventoryRecord inventoryRecord) {
         return true;

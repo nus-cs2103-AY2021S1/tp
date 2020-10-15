@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import nustorage.logic.parser.ParserUtil;
+import nustorage.logic.parser.exceptions.ParseException;
 import nustorage.model.record.FinanceRecord;
 
 /**
@@ -46,7 +48,11 @@ public class FinanceRecordBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
     public FinanceRecordBuilder withDatetime(String datetime) {
-        this.datetime = LocalDateTime.parse(datetime);
+        try {
+            this.datetime = ParserUtil.parseDatetime(datetime);
+        } catch (ParseException e) {
+            return this;
+        }
         return this;
     }
 
