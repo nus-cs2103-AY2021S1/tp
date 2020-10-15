@@ -5,7 +5,6 @@ import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.itemcommand.ItemClearCommand;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.model.inventorymodel.InventoryModel;

@@ -33,7 +33,6 @@ import static seedu.address.testutil.TypicalItems.DUCK_MANUAL;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.itemcommand.ItemAddCommand;
-import seedu.address.logic.parser.itemparser.ItemAddCommandParser;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;

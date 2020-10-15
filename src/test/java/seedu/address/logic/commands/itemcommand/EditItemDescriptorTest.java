@@ -11,7 +11,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DUCK;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.itemcommand.ItemEditCommand;
 import seedu.address.logic.commands.itemcommand.ItemEditCommand.EditItemDescriptor;
 import seedu.address.testutil.EditItemDescriptorBuilder;
 

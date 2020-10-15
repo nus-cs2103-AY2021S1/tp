@@ -31,7 +31,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.itemcommand.ItemEditCommand;
 import seedu.address.logic.commands.itemcommand.ItemEditCommand.EditItemDescriptor;
-import seedu.address.logic.parser.itemparser.ItemEditCommandParser;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.item.Supplier;

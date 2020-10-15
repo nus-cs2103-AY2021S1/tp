@@ -12,7 +12,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.itemcommand.ItemFindCommand;
-import seedu.address.logic.parser.itemparser.ItemFindCommandParser;
 import seedu.address.model.item.ItemContainsKeywordsPredicate;
 
 public class ItemFindCommandParserTest {

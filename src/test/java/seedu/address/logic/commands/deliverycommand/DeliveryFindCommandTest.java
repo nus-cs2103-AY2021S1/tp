@@ -1,7 +1,21 @@
 package seedu.address.logic.commands.deliverycommand;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_DELIVERIES_LISTED_OVERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.testutil.TypicalDeliveries.getTypicalDeliveryBook;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.delivery.Delivery;
@@ -10,18 +24,17 @@ import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.deliverymodel.DeliveryModelManager;
 import seedu.address.testutil.DeliveryBuilder;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.commons.core.Messages.MESSAGE_DELIVERIES_LISTED_OVERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.testutil.TypicalDeliveries.getTypicalDeliveryBook;
-
 class DeliveryFindCommandTest {
+    private static final Delivery KELVIN = new DeliveryBuilder().withName("Kelvin")
+            .withPhone("91234332")
+            .withAddress("Clementi Blk 235 #11-111")
+            .withOrder("Char Kway Teow")
+            .build();
+    private static final Delivery MARCUS = new DeliveryBuilder().withName("Marcus")
+            .withPhone("8198264")
+            .withAddress("Jurong Blk 231 #15-123")
+            .withOrder("Seafood Hor Fun x5")
+            .build();
     private DeliveryModel deliveryModel = new DeliveryModelManager(getTypicalDeliveryBook(), new UserPrefs());
     private DeliveryModel expectedDeliveryModel =
             new DeliveryModelManager(getTypicalDeliveryBook(), new UserPrefs());
@@ -30,16 +43,6 @@ class DeliveryFindCommandTest {
 
     @BeforeEach
     public void setUp() {
-        Delivery KELVIN = new DeliveryBuilder().withName("Kelvin")
-                .withPhone("91234332")
-                .withAddress("Clementi Blk 235 #11-111")
-                .withOrder("Char Kway Teow")
-                .build();
-        Delivery MARCUS = new DeliveryBuilder().withName("Marcus")
-                .withPhone("8198264")
-                .withAddress("Jurong Blk 231 #15-123")
-                .withOrder("Seafood Hor Fun x5")
-                .build();
         testModel = new DeliveryModelManager();
         expectedTestModel = new DeliveryModelManager();
         testModel.addDelivery(KELVIN);

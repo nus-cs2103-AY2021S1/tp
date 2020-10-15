@@ -1,20 +1,28 @@
 package seedu.address.logic.parser.deliveryparser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.deliverycommand.DeliveryFindCommand;
-import seedu.address.logic.commands.itemcommand.ItemFindCommand;
-import seedu.address.logic.parser.itemparser.ItemFindCommandParser;
-import seedu.address.model.delivery.DeliveryContainsKeywordsPredicate;
-import seedu.address.model.item.ItemContainsKeywordsPredicate;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_DAMITH;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_DAMITH;
+import static seedu.address.logic.commands.CommandTestUtil.ORDER_DESC_DAMITH;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_DAMITH;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DAMITH;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AARON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DAMITH;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ORDER_DAMITH;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_DAMITH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.deliverycommand.DeliveryFindCommand;
+import seedu.address.model.delivery.DeliveryContainsKeywordsPredicate;
 
 class DeliveryFindCommandParserTest {
 
