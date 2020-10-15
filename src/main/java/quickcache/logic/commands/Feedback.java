@@ -45,7 +45,7 @@ public class Feedback {
         return Optional.ofNullable(isCorrect);
     }
 
-    public void setCorrect(boolean correct) {
+    public void setCorrect(Boolean correct) {
         isCorrect = correct;
     }
 

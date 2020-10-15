@@ -3,7 +3,6 @@ layout: page
 title: User Guide
 ---
 
-
 QuickCache is a **desktop app for managing flashcards, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, QuickCache can get your flashcard management tasks done faster than traditional GUI apps.
 
 * Table of Contents

@@ -38,7 +38,7 @@ public class QuickCache implements ReadOnlyQuickCache {
         resetData(toBeCopied);
     }
 
-    //// list overwrite operations
+    // list overwrite operations
 
     /**
      * Replaces the contents of the flashcard list with {@code flashcards}.
@@ -57,7 +57,7 @@ public class QuickCache implements ReadOnlyQuickCache {
         setFlashcards(newData.getFlashcardList());
     }
 
-    //// person-level operations
+    // person-level operations
 
     /**
      * Returns true if a flashcard with the same identity as {@code person} exists in the address book.
@@ -94,7 +94,7 @@ public class QuickCache implements ReadOnlyQuickCache {
         flashcards.remove(key);
     }
 
-    //// util methods
+    // util methods
 
     @Override
     public String toString() {

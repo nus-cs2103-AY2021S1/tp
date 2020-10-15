@@ -1,22 +1,22 @@
 package quickcache.logic.parser;
 
 import static quickcache.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static quickcache.logic.commands.CommandTestUtil.ANSWER_DESC_AMY;
-import static quickcache.logic.commands.CommandTestUtil.ANSWER_DESC_BOB;
+import static quickcache.logic.commands.CommandTestUtil.ANSWER_DESC_THREE;
+import static quickcache.logic.commands.CommandTestUtil.ANSWER_DESC_TWO;
 import static quickcache.logic.commands.CommandTestUtil.INVALID_ANSWER_DESC;
 import static quickcache.logic.commands.CommandTestUtil.INVALID_QUESTION_DESC;
-import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_AMY;
-import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_BOB;
-import static quickcache.logic.commands.CommandTestUtil.VALID_ANSWER_AMY;
-import static quickcache.logic.commands.CommandTestUtil.VALID_ANSWER_BOB;
-import static quickcache.logic.commands.CommandTestUtil.VALID_QUESTION_AMY;
-import static quickcache.logic.commands.CommandTestUtil.VALID_QUESTION_BOB;
+import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_THREE;
+import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_TWO;
+import static quickcache.logic.commands.CommandTestUtil.VALID_ANSWER_THREE;
+import static quickcache.logic.commands.CommandTestUtil.VALID_ANSWER_TWO;
+import static quickcache.logic.commands.CommandTestUtil.VALID_QUESTION_THREE;
+import static quickcache.logic.commands.CommandTestUtil.VALID_QUESTION_TWO;
 import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
 import static quickcache.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static quickcache.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static quickcache.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static quickcache.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static quickcache.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+import static quickcache.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
+import static quickcache.testutil.TypicalIndexes.INDEX_SECOND_FLASHCARD;
+import static quickcache.testutil.TypicalIndexes.INDEX_THIRD_FLASHCARD;
 
 import org.junit.jupiter.api.Test;
 
@@ -39,7 +39,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_QUESTION_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_QUESTION_TWO, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
@@ -51,10 +51,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + QUESTION_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + QUESTION_DESC_TWO, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + QUESTION_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + QUESTION_DESC_TWO, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -70,12 +70,12 @@ public class EditCommandParserTest {
 
 
         // invalid question followed by valid answer
-        assertParseFailure(parser, "1" + INVALID_QUESTION_DESC + ANSWER_DESC_AMY,
+        assertParseFailure(parser, "1" + INVALID_QUESTION_DESC + ANSWER_DESC_TWO,
             OpenEndedQuestion.MESSAGE_CONSTRAINTS);
 
         // valid answer followed by invalid question. The test case for invalid phone followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + QUESTION_DESC_BOB + INVALID_ANSWER_DESC, Answer.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + QUESTION_DESC_THREE + INVALID_ANSWER_DESC, Answer.MESSAGE_CONSTRAINTS);
 
 
         // multiple invalid values, but only the first invalid value is captured
@@ -85,12 +85,12 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + QUESTION_DESC_BOB + ANSWER_DESC_BOB;
+        Index targetIndex = INDEX_SECOND_FLASHCARD;
+        String userInput = targetIndex.getOneBased() + QUESTION_DESC_THREE + ANSWER_DESC_THREE;
 
         EditCommand.EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
-            .withQuestion(VALID_QUESTION_BOB)
-            .withAnswer(VALID_ANSWER_BOB).build();
+            .withQuestion(VALID_QUESTION_THREE)
+            .withAnswer(VALID_ANSWER_THREE).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -98,11 +98,11 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + QUESTION_DESC_BOB;
+        Index targetIndex = INDEX_FIRST_FLASHCARD;
+        String userInput = targetIndex.getOneBased() + QUESTION_DESC_THREE;
 
         EditCommand.EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
-            .withQuestion(VALID_QUESTION_BOB)
+            .withQuestion(VALID_QUESTION_THREE)
             .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -112,16 +112,16 @@ public class EditCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // question
-        Index targetIndex = INDEX_THIRD_PERSON;
-        String userInput = targetIndex.getOneBased() + QUESTION_DESC_AMY;
+        Index targetIndex = INDEX_THIRD_FLASHCARD;
+        String userInput = targetIndex.getOneBased() + QUESTION_DESC_TWO;
         EditCommand.EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
-            .withQuestion(VALID_QUESTION_AMY).build();
+            .withQuestion(VALID_QUESTION_TWO).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // answer
-        userInput = targetIndex.getOneBased() + ANSWER_DESC_AMY;
-        descriptor = new EditFlashcardDescriptorBuilder().withAnswer(VALID_ANSWER_AMY).build();
+        userInput = targetIndex.getOneBased() + ANSWER_DESC_TWO;
+        descriptor = new EditFlashcardDescriptorBuilder().withAnswer(VALID_ANSWER_TWO).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -130,12 +130,12 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + QUESTION_DESC_AMY + ANSWER_DESC_AMY
-            + ANSWER_DESC_BOB + QUESTION_DESC_BOB;
+        Index targetIndex = INDEX_FIRST_FLASHCARD;
+        String userInput = targetIndex.getOneBased() + QUESTION_DESC_TWO + ANSWER_DESC_TWO
+            + ANSWER_DESC_THREE + QUESTION_DESC_THREE;
 
         EditCommand.EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
-            .withQuestion(VALID_QUESTION_BOB).withAnswer(VALID_ANSWER_BOB)
+            .withQuestion(VALID_QUESTION_THREE).withAnswer(VALID_ANSWER_THREE)
             .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -145,17 +145,17 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
-        Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + INVALID_QUESTION_DESC + ANSWER_DESC_BOB + QUESTION_DESC_BOB;
+        Index targetIndex = INDEX_FIRST_FLASHCARD;
+        String userInput = targetIndex.getOneBased() + INVALID_QUESTION_DESC + ANSWER_DESC_THREE + QUESTION_DESC_THREE;
         EditCommand.EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
-            .withAnswer(VALID_ANSWER_BOB).withQuestion(VALID_QUESTION_BOB).build();
+            .withAnswer(VALID_ANSWER_THREE).withQuestion(VALID_QUESTION_THREE).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + QUESTION_DESC_BOB + INVALID_ANSWER_DESC + ANSWER_DESC_BOB;
-        descriptor = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_BOB).withAnswer(VALID_ANSWER_BOB)
-            .build();
+        userInput = targetIndex.getOneBased() + QUESTION_DESC_THREE + INVALID_ANSWER_DESC + ANSWER_DESC_THREE;
+        descriptor = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_THREE)
+                .withAnswer(VALID_ANSWER_THREE).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

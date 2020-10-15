@@ -42,18 +42,12 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean changeWindow,
                          Question question, Boolean isCorrect) {
-        requireNonNull(feedbackToUser);
+
+        this(feedbackToUser, showHelp, exit, changeWindow);
+
         requireNonNull(question);
-
-        this.feedbackToUser = new Feedback(feedbackToUser);
         this.feedbackToUser.setQuestion(question);
-        if (isCorrect != null) {
-            this.feedbackToUser.setCorrect(isCorrect);
-        }
-
-        this.showHelp = showHelp;
-        this.exit = exit;
-        this.changeWindow = changeWindow;
+        this.feedbackToUser.setCorrect(isCorrect);
     }
 
     /**

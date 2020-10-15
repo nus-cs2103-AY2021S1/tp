@@ -21,8 +21,6 @@ public class FlashcardBuilder {
     public static final String DEFAULT_QUESTION = "Question 0";
     public static final String DEFAULT_ANSWER = "Answer 0";
     public static final String DEFAULT_TAG = "Tag0";
-    public static final int DEFAULT_TIMES_TESTED = 0;
-    public static final int DEFAULT_TIMES_TESTED_CORRECT = 0;
     public static final Statistics DEFAULT_STATISTICS = new Statistics();
 
     private Question question;
@@ -97,7 +95,7 @@ public class FlashcardBuilder {
      * @param tagArr the array containing the tags.
      * @return the FlashcardBuilder.
      */
-    public FlashcardBuilder withTags(String[] tagArr) {
+    public FlashcardBuilder withTags(String... tagArr) {
         List<Tag> taglist = new ArrayList<>();
         for (String tag : tagArr) {
             taglist.add(new Tag(tag));

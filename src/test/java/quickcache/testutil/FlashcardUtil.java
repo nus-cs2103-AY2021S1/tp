@@ -12,19 +12,19 @@ import quickcache.model.flashcard.Tag;
 
 
 /**
- * A utility class for Person.
+ * A utility class for Flashcard.
  */
 public class FlashcardUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code flashcard}.
      */
     public static String getAddCommand(Flashcard flashcard) {
         return AddOpenEndedQuestionCommand.COMMAND_WORD + " " + getFlashcardDetails(flashcard);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code flashcard}'s details.
      */
     public static String getFlashcardDetails(Flashcard flashcard) {
         StringBuilder sb = new StringBuilder();
@@ -36,7 +36,7 @@ public class FlashcardUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditFlashcardDescriptor}'s details.
      */
     public static String getEditFlashcardDescriptorDetails(EditFlashcardDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();

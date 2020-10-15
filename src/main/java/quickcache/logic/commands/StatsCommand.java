@@ -45,4 +45,11 @@ public class StatsCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DISPLAY_STATISTICS_FLASHCARD_SUCCESS,
                 flashcardToDisplayStatistics), question, statistics);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof StatsCommand // instanceof handles nulls
+                && targetIndex.equals(((StatsCommand) other).targetIndex)); // state check
+    }
 }

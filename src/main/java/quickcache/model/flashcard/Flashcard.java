@@ -94,9 +94,7 @@ public class Flashcard {
 
         return otherFlashcard != null
                 && otherFlashcard.getQuestion().equals(getQuestion())
-                && otherFlashcard.getAnswer().equals(getAnswer())
-                && otherFlashcard.getTags().equals(getTags())
-                && otherFlashcard.getStatistics().equals(getStatistics());
+                && otherFlashcard.getAnswer().equals(getAnswer());
     }
 
     /**

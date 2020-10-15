@@ -18,7 +18,8 @@ public class CommandResultTest {
 
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
-        assertTrue(commandResult.equals(new CommandResult("feedback", false, false, false)));
+        assertTrue(commandResult.equals(new CommandResult("feedback", false,
+                false, false)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -33,16 +34,19 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult("different")));
 
         // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", true, false, false)));
+        assertFalse(commandResult.equals(new CommandResult("feedback",
+                true, false, false)));
 
         // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, false)));
+        assertFalse(commandResult.equals(new CommandResult("feedback",
+                false, true, false)));
 
         Question question = new OpenEndedQuestion("question");
         commandResult = new CommandResult("feedback", question, true, false);
 
         // same values -> returns true
-        assertTrue(commandResult.equals(new CommandResult("feedback", question, true, false)));
+        assertTrue(commandResult.equals(new CommandResult("feedback", question,
+                true, false)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -54,13 +58,16 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(0.5f));
 
         // different feedbackToUser value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("different", question, true, false)));
+        assertFalse(commandResult.equals(new CommandResult("different", question,
+                true, false)));
 
         // different showHelp value -> returns false
-        // assertFalse(commandResult.equals(new CommandResult("feedback", true, false, question, true, false)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", true,
+                 false, false, question, true)));
 
         // different exit value -> returns false
-        // assertFalse(commandResult.equals(new CommandResult("feedback", false, true, question, true, false)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, true,
+                 false, question, true)));
     }
 
     @Test

@@ -65,24 +65,24 @@ public class AddMultipleChoiceQuestionCommandTest {
             .withAnswer("2").build();
         Flashcard second = new FlashcardBuilder().withMultipleChoiceQuestion("Sample two", choices)
             .withAnswer("2").build();
-        AddMultipleChoiceQuestionCommand addAliceCommand = new AddMultipleChoiceQuestionCommand(first);
-        AddMultipleChoiceQuestionCommand addBobCommand = new AddMultipleChoiceQuestionCommand(second);
+        AddMultipleChoiceQuestionCommand addSampleMcqQuestionOne = new AddMultipleChoiceQuestionCommand(first);
+        AddMultipleChoiceQuestionCommand addSampleMcqQuestionTwo = new AddMultipleChoiceQuestionCommand(second);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addSampleMcqQuestionOne.equals(addSampleMcqQuestionOne));
 
         // same values -> returns true
-        AddMultipleChoiceQuestionCommand addAliceCommandCopy = new AddMultipleChoiceQuestionCommand(first);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddMultipleChoiceQuestionCommand addSampleMcqQuestionOneCopy = new AddMultipleChoiceQuestionCommand(first);
+        assertTrue(addSampleMcqQuestionOne.equals(addSampleMcqQuestionOneCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addSampleMcqQuestionOne.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addSampleMcqQuestionOne.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addSampleMcqQuestionOne.equals(addSampleMcqQuestionTwo));
     }
 
     /**
