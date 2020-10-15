@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.ALICE;
-import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTasks.getTypicalPlanus;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,25 +22,25 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.testutil.TaskBuilder;
 
-public class AddressBookTest {
+public class PlanusTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final Planus planus = new Planus();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getTaskList());
+        assertEquals(Collections.emptyList(), planus.getTaskList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> planus.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyPlanus_replacesData() {
+        Planus newData = getTypicalPlanus();
+        planus.resetData(newData);
+        assertEquals(newData, planus);
     }
 
     @Test
@@ -49,47 +49,47 @@ public class AddressBookTest {
         Task editedAlice = new TaskBuilder(ALICE).withType(VALID_TYPE_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Task> newTasks = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newTasks);
+        PlanusStub newData = new PlanusStub(newTasks);
 
-        assertThrows(DuplicateTaskException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateTaskException.class, () -> planus.resetData(newData));
     }
 
     @Test
     public void hasTask_nullTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasTask(null));
+        assertThrows(NullPointerException.class, () -> planus.hasTask(null));
     }
 
     @Test
-    public void hasTask_taskNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasTask(ALICE));
+    public void hasTask_taskNotInPlanus_returnsFalse() {
+        assertFalse(planus.hasTask(ALICE));
     }
 
     @Test
-    public void hasTask_taskInAddressBook_returnsTrue() {
-        addressBook.addTask(ALICE);
-        assertTrue(addressBook.hasTask(ALICE));
+    public void hasTask_taskInPlanus_returnsTrue() {
+        planus.addTask(ALICE);
+        assertTrue(planus.hasTask(ALICE));
     }
 
     @Test
-    public void hasTask_taskWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addTask(ALICE);
+    public void hasTask_taskWithSameIdentityFieldsInPlanus_returnsTrue() {
+        planus.addTask(ALICE);
         Task editedAlice = new TaskBuilder(ALICE).withType(VALID_TYPE_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasTask(editedAlice));
+        assertTrue(planus.hasTask(editedAlice));
     }
 
     @Test
     public void getTaskList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getTaskList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> planus.getTaskList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose tasks list can violate interface constraints.
+     * A stub ReadOnlyPlanus whose tasks list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class PlanusStub implements ReadOnlyPlanus {
         private final ObservableList<Task> tasks = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Task> tasks) {
+        PlanusStub(Collection<Task> tasks) {
             this.tasks.setAll(tasks);
         }
 

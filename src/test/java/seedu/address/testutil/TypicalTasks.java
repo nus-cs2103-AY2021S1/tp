@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.Planus;
 import seedu.address.model.task.Task;
 
 /**
@@ -61,10 +61,10 @@ public class TypicalTasks {
     private TypicalTasks() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical tasks.
+     * Returns an {@code Planus} with all the typical tasks.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static Planus getTypicalPlanus() {
+        Planus ab = new Planus();
         for (Task task : getTypicalTasks()) {
             ab.addTask(task);
         }
