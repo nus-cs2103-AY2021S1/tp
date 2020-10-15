@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.contact.exceptions.DuplicatePersonException;
-import seedu.address.model.contact.exceptions.PersonNotFoundException;
+import seedu.address.model.contact.exceptions.DuplicateContactException;
+import seedu.address.model.contact.exceptions.ContactNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -43,7 +43,7 @@ public class UniqueModuleList implements Iterable<Module> {
     public void add(Module toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateContactException();
         }
         internalList.add(toAdd);
     }
@@ -58,11 +58,11 @@ public class UniqueModuleList implements Iterable<Module> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new ContactNotFoundException();
         }
 
         if (!target.isSameModule(editedPerson) && contains(editedPerson)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateContactException();
         }
 
         internalList.set(index, editedPerson);
@@ -75,7 +75,7 @@ public class UniqueModuleList implements Iterable<Module> {
     public void remove(Module toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new ContactNotFoundException();
         }
     }
 
@@ -91,7 +91,7 @@ public class UniqueModuleList implements Iterable<Module> {
     public void setModules(List<Module> modules) {
         requireAllNonNull(modules);
         if (!modulesAreUnique(modules)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateContactException();
         }
 
         internalList.setAll(modules);
