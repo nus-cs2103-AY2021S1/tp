@@ -9,8 +9,8 @@ import static quickcache.logic.commands.CommandTestUtil.INVALID_QUESTION_DESC;
 import static quickcache.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static quickcache.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_ONE;
-import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_TWO;
 import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_THREE;
+import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_TWO;
 import static quickcache.logic.commands.CommandTestUtil.VALID_ANSWER_ONE;
 import static quickcache.logic.commands.CommandTestUtil.VALID_QUESTION_ONE;
 

@@ -1,16 +1,16 @@
 package quickcache.logic.parser;
 
 import static quickcache.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static quickcache.logic.commands.CommandTestUtil.ANSWER_DESC_TWO;
 import static quickcache.logic.commands.CommandTestUtil.ANSWER_DESC_THREE;
+import static quickcache.logic.commands.CommandTestUtil.ANSWER_DESC_TWO;
 import static quickcache.logic.commands.CommandTestUtil.INVALID_ANSWER_DESC;
 import static quickcache.logic.commands.CommandTestUtil.INVALID_QUESTION_DESC;
-import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_TWO;
 import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_THREE;
-import static quickcache.logic.commands.CommandTestUtil.VALID_ANSWER_TWO;
+import static quickcache.logic.commands.CommandTestUtil.QUESTION_DESC_TWO;
 import static quickcache.logic.commands.CommandTestUtil.VALID_ANSWER_THREE;
-import static quickcache.logic.commands.CommandTestUtil.VALID_QUESTION_TWO;
+import static quickcache.logic.commands.CommandTestUtil.VALID_ANSWER_TWO;
 import static quickcache.logic.commands.CommandTestUtil.VALID_QUESTION_THREE;
+import static quickcache.logic.commands.CommandTestUtil.VALID_QUESTION_TWO;
 import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
 import static quickcache.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static quickcache.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -154,8 +154,8 @@ public class EditCommandParserTest {
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + QUESTION_DESC_THREE + INVALID_ANSWER_DESC + ANSWER_DESC_THREE;
-        descriptor = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_THREE).withAnswer(VALID_ANSWER_THREE)
-            .build();
+        descriptor = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_THREE)
+                .withAnswer(VALID_ANSWER_THREE).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

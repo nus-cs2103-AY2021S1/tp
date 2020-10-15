@@ -2,8 +2,8 @@ package quickcache.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static quickcache.logic.commands.CommandTestUtil.DESC_TWO;
 import static quickcache.logic.commands.CommandTestUtil.DESC_THREE;
+import static quickcache.logic.commands.CommandTestUtil.DESC_TWO;
 import static quickcache.logic.commands.CommandTestUtil.VALID_ANSWER_THREE;
 import static quickcache.logic.commands.CommandTestUtil.VALID_QUESTION_THREE;
 

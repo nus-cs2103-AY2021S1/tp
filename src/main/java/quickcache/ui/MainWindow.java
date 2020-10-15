@@ -24,7 +24,6 @@ import quickcache.logic.commands.Feedback;
 import quickcache.logic.commands.exceptions.CommandException;
 import quickcache.logic.parser.exceptions.ParseException;
 import quickcache.model.flashcard.Choice;
-import quickcache.model.flashcard.Flashcard;
 import quickcache.model.flashcard.MultipleChoiceQuestion;
 import quickcache.model.flashcard.Question;
 

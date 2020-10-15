@@ -1,12 +1,13 @@
 package quickcache.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import quickcache.logic.commands.StatsCommand;
-
 import static quickcache.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static quickcache.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static quickcache.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static quickcache.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
+
+import org.junit.jupiter.api.Test;
+
+import quickcache.logic.commands.StatsCommand;
 
 public class StatsCommandParserTest {
     private final StatsCommandParser parser = new StatsCommandParser();

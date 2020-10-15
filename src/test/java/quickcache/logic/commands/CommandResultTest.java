@@ -62,11 +62,11 @@ public class CommandResultTest {
                 true, false)));
 
         // different showHelp value -> returns false
-         assertFalse(commandResult.equals(new CommandResult("feedback", true,
-                 false, false, question, true )));
+        assertFalse(commandResult.equals(new CommandResult("feedback", true,
+                 false, false, question, true)));
 
-         // different exit value -> returns false
-         assertFalse(commandResult.equals(new CommandResult("feedback", false, true,
+        // different exit value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, true,
                  false, question, true)));
     }
 
