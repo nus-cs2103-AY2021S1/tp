@@ -1,7 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.todolist.Task;
+import seedu.address.model.task.Task;
 
 /**
  * Unmodifiable view of a todo list
