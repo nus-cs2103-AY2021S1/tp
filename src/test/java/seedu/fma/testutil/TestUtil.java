@@ -49,7 +49,7 @@ public class TestUtil {
     /**
      * Returns the log in the {@code model}'s log list at {@code index}.
      */
-    public static Log getPerson(Model model, Index index) {
+    public static Log getLog(Model model, Index index) {
         return model.getFilteredLogList().get(index.getZeroBased());
     }
 }

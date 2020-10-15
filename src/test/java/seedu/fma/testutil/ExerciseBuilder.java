@@ -11,9 +11,8 @@ import seedu.fma.model.util.Name;
  */
 public class ExerciseBuilder {
     public static final Exercise SAMPLE_EXERCISE = getSampleExercises()[0];
-
-    public static final String DEFAULT_NAME = SAMPLE_EXERCISE.getName().toString();
-    public static final int DEFAULT_CALORIESPERREP = SAMPLE_EXERCISE.getCaloriesPerRep();
+    public static final String DEFAULT_EXERCISE_NAME = SAMPLE_EXERCISE.getName().toString();
+    public static final int DEFAULT_CALORIES_PER_REP = SAMPLE_EXERCISE.getCaloriesPerRep();
 
     private Name name;
     private int caloriesPerRep;
@@ -22,8 +21,8 @@ public class ExerciseBuilder {
      * Creates a {@code ExerciseBuilder} with the default details.
      */
     public ExerciseBuilder() {
-        name = new Name(DEFAULT_NAME);
-        caloriesPerRep = DEFAULT_CALORIESPERREP;
+        name = new Name(DEFAULT_EXERCISE_NAME);
+        caloriesPerRep = DEFAULT_CALORIES_PER_REP;
     }
 
     /**

@@ -1,73 +1,52 @@
 // TODO or delete
-/*
-package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+package seedu.fma.testutil;
 
-import java.util.Set;
+import static seedu.fma.logic.parser.CliSyntax.PREFIX_COMMENT;
+import static seedu.fma.logic.parser.CliSyntax.PREFIX_EXERCISE;
+import static seedu.fma.logic.parser.CliSyntax.PREFIX_REPS;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.model.log.Log;
-import seedu.address.model.tag.Tag;
+import seedu.fma.logic.commands.AddCommand;
+import seedu.fma.logic.commands.EditCommand;
+import seedu.fma.model.log.Log;
 
-*/
+
 /**
  * A utility class for Log.
- *//*
+ */
+public class LogUtil {
 
-public class PersonUtil {
-
-    */
-/**
+    /**
      * Returns an add command string for adding the {@code log}.
-     *//*
-
+     *
+     * @param log Log to be added.
+     * @return Input command for adding a log.
+     */
     public static String getAddCommand(Log log) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(log);
+        return AddCommand.COMMAND_WORD + " " + getLogDetails(log);
     }
 
-    */
-/**
+    /**
      * Returns the part of command string for the given {@code log}'s details.
-     *//*
-
-    public static String getPersonDetails(Log log) {
+     */
+    public static String getLogDetails(Log log) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + log.getName().value + " ");
-        sb.append(PREFIX_PHONE + log.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + log.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + log.getAddress().value + " ");
-        log.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
-        );
+        sb.append(PREFIX_EXERCISE + log.getExercise().getName().value + " ");
+        sb.append(PREFIX_REPS + log.getReps().value + " ");
+        sb.append(PREFIX_COMMENT + log.getComment().value + " ");
         return sb.toString();
     }
 
-    */
-/**
+    /**
      * Returns the part of command string for the given {@code EditLogDescriptor}'s details.
-     *//*
-
-    public static String getEditPersonDescriptorDetails(EditCommand.EditLogDescriptor descriptor) {
+     */
+    public static String getEditLogDescriptorDetails(EditCommand.EditLogDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.value).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
-        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
-            } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
-            }
-        }
+        descriptor.getExercise().ifPresent(
+            exercise -> sb.append(PREFIX_EXERCISE).append(exercise.getName().value).append(" ")
+        );
+        descriptor.getRep().ifPresent(rep -> sb.append(PREFIX_REPS).append(rep.value).append(" "));
+        descriptor.getComment().ifPresent(comment -> sb.append(PREFIX_COMMENT).append(comment.value).append(" "));
         return sb.toString();
     }
 }
-*/
