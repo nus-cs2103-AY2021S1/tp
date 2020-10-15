@@ -125,7 +125,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.taskmaster.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -247,7 +247,7 @@ Extensions
 Use case ends.
 * 3a. The given input is invalid.
     * 3a1. System shows an error message.
-        Use case resumes at step 2. 
+        Use case resumes at step 2.
 <br>
 
 **Use case: Save attendance of all students**
@@ -260,7 +260,7 @@ Use case ends.
 * 1a. The given input is invalid.
 
     * 1a1. System shows an error message.
-    Use case resumes at step 1.    
+    Use case resumes at step 1.
 <br>
 
 **Use case: Retrieve attendance of all students from storage**
@@ -273,7 +273,7 @@ Use case ends.
 * 1a. The given input is invalid.
     * 1a1. System shows an error message.
     Use case resumes at step 1.
-    
+
 <br>
 
 **Use case: Retrieve list of all attendances saved in storage**

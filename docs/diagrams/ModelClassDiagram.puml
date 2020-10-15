@@ -20,7 +20,7 @@ Class Student
 Class Address
 Class Email
 Class Name
-Class Phone
+Class Telegram
 Class UniqueStudentList
 }
 
@@ -43,13 +43,13 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 AddressBook *--> "1" UniqueStudentList
 UniqueStudentList o--> "*" Student
 Student *--> Name
-Student *--> Phone
+Student *--> Telegram
 Student *--> Email
 Student *--> Address
 Student *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
+Name -[hidden]right-> Telegram
+Telegram -[hidden]right-> Address
 Address -[hidden]right-> Email
 
 ModelManager -->"1" Student : filtered list
