@@ -76,22 +76,21 @@ Examples:
 * `add n/Lab report 3 d/23-04-2020 1230 mod/CS2100`
 * `add n/Tutorial 2 d/29-06-2020 1400 mod/CS2100 remind`
 
-### Listing all lessons and assignments : `list`
+### Listing lessons and assignments : `list`
 
 Format: `list [NUMBER]`
 
-- Shows a list of all lessons and assignments in your schedule within `NUMBER` 
-number of weeks.
+- Shows a list of lessons and assignments in your schedule within next `NUMBER` 
+weeks, starting from today.
 - `list` command without `NUMBER` displays your entire list of lessons and assignments 
 stored in ProductiveNUS.
-- A week in this context starts with Monday and ends with Sunday.
 
 
 Examples: 
-- `list 2` displays all your lessons and assignments within 
-2 weeks (including the current week).
-- `list 3` displays all your lessons and assignments within  
-3 weeks (including the current week).
+- `list 2` displays your lessons and assignments within the next
+2 weeks (starting from today).
+- `list 3` displays all your lessons and assignments within the next
+3 weeks (starting from today).
 - `list ` displays all your lessons and assignments.
 
 ### Deleting an assignment : `delete`
