@@ -45,7 +45,7 @@ tasks still remain uncompleted. You might have been spinning your wheels.
 * Listing lessons and assignments 
 * Deleting assignments from ProductiveNUS
 * Reminders for assignments
-
+* Exiting ProductiveNUS
 
 ## Site Map
 * [Developer Guide](https://ay2021s1-cs2103t-f11-3.github.io/tp/DeveloperGuide.html)
