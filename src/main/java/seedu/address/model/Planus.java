@@ -12,7 +12,7 @@ import seedu.address.model.task.UniqueTaskList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameTask comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class Planus implements ReadOnlyPlanus {
 
     private final UniqueTaskList tasks;
 
@@ -27,12 +27,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks = new UniqueTaskList();
     }
 
-    public AddressBook() {}
+    public Planus() {}
 
     /**
-     * Creates an AddressBook using the Tasks in the {@code toBeCopied}
+     * Creates an Planus using the Tasks in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public Planus(ReadOnlyPlanus toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -48,9 +48,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code Planus} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyPlanus newData) {
         requireNonNull(newData);
 
         setTasks(newData.getTaskList());
@@ -95,7 +95,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code Planus}.
      * {@code key} must exist in PlaNus.
      */
     public void removeTask(Task key) {
@@ -118,8 +118,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && tasks.equals(((AddressBook) other).tasks));
+                || (other instanceof Planus // instanceof handles nulls
+                && tasks.equals(((Planus) other).tasks));
     }
 
     @Override

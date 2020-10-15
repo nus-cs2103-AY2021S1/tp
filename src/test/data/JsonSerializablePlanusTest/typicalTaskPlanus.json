@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Tasks values as in TypicalTasks#getTypicalAddressBook()",
+  "_comment": "Planus save file which contains the same Tasks values as in TypicalTasks#getTypicalPlanus()",
   "tasks" : [ {
     "title" : "Alice Pauline",
     "dateTime" : "01-01-2020 12:00",
