@@ -46,7 +46,8 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Makes a {@code CommandHistory} object with limit 20
+     * Makes a {@code CommandHistory} object with COMMAND_HISTORY_LIMIT
+     * @see seedu.address.ui.CommandBox#COMMAND_HISTORY_LIMIT
      * @return {@code CommandHistory} object
      */
     private CommandHistory makeCommandHistory() {
