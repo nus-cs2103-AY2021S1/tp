@@ -67,7 +67,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'cap5buddy.jar'
 }
 
 defaultTasks 'clean', 'test'

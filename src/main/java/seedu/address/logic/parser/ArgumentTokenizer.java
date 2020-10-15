@@ -99,6 +99,7 @@ public class ArgumentTokenizer {
             String error = "User input has multiple arguments for the same prefix";
             throw new ParseException(error);
         }
+
         return (prefixIndex == -1
                 ? Optional.empty()
                 : Optional.of(new PrefixPosition(prefix, prefixIndex + 1)));
