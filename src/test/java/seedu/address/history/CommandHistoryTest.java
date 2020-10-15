@@ -86,34 +86,34 @@ public class CommandHistoryTest {
         // cThree Current index = 1;
         //===========================================================
 
-        // cOne has limit of 1, thus there is no previousCommand
-        assertEquals(Optional.empty(), cOne.previousCommand());
+        // if only command in history, return that command
+        assertEquals(optionalSecondCommand, cOne.previousCommand());
 
-        // previous command of cTwo should be firstCommand
-        assertEquals(optionalFirstCommand, cTwo.previousCommand());
+        // previous command of cTwo should be secondCommand as it's the first time we are applying previousCommand
+        assertEquals(optionalSecondCommand, cTwo.previousCommand());
 
-        // previous command of cThree should be firstCommand
-        assertEquals(optionalFirstCommand, cThree.previousCommand());
+        // previous command of cThree should be secondCommand as it's the first time we are applying previousCommand
+        assertEquals(optionalSecondCommand, cThree.previousCommand());
 
         //================== AFTER 1x PREVIOUS COMMAND ==================
         // cOne = {secondCommand};
         // cOne Current index = 0;
         //
         // cTwo = {firstCommand, secondCommand};
-        // cTwo Current index = 0;
+        // cTwo Current index = 1;
         //
         // cThree = {firstCommand, secondCommand};
-        // cThree Current index = 0;
+        // cThree Current index = 1;
         //===============================================================
 
         // cOne has limit of 1, thus there is no previousCommand
         assertEquals(Optional.empty(), cOne.nextCommand());
 
-        // next command of cTwo should be secondCommand
-        assertEquals(optionalSecondCommand, cTwo.nextCommand());
+        // since currentCommandIndex is at the end, there is no nextCommand
+        assertEquals(Optional.empty(), cTwo.nextCommand());
 
-        // next command of cThree should be secondCommand
-        assertEquals(optionalSecondCommand, cThree.nextCommand());
+        // since currentCommandIndex is at the end, there is no nextCommand
+        assertEquals(Optional.empty(), cThree.nextCommand());
 
         //================== AFTER 1x NEXT COMMAND ==================
         // cOne = {secondCommand};
@@ -171,34 +171,34 @@ public class CommandHistoryTest {
         // cThree Current index = 1;
         //==============================================================
 
-        // cOne has limit of 1, thus there is no previousCommand
-        assertEquals(Optional.empty(), cOne.previousCommand());
+        // if only command in history, return that command
+        assertEquals(optionalSecondCommand, cOne.previousCommand());
 
-        // previous command of cTwo should be firstCommand
-        assertEquals(optionalFirstCommand, cTwo.previousCommand());
+        // previous command of cTwo should be secondCommand as it's the first time we are applying previousCommand
+        assertEquals(optionalSecondCommand, cTwo.previousCommand());
 
-        // previous command of cThree should be firstCommand
-        assertEquals(optionalFirstCommand, cThree.previousCommand());
+        // previous command of cThree should be secondCommand as it's the first time we are applying previousCommand
+        assertEquals(optionalSecondCommand, cThree.previousCommand());
 
         //================== AFTER 1x PREVIOUS COMMAND ==================
         // cOne = {secondCommand};
         // cOne Current index = 0;
         //
         // cTwo = {firstCommand, secondCommand};
-        // cTwo Current index = 0;
+        // cTwo Current index = 1;
         //
         // cThree = {firstCommand, secondCommand};
-        // cThree Current index = 0;
+        // cThree Current index = 1;
         //===============================================================
 
         // cOne has limit of 1, thus there is no nextCommand
         assertEquals(Optional.empty(), cOne.nextCommand());
 
-        // nextCommand of cTwo should be secondCommand
-        assertEquals(optionalSecondCommand, cTwo.nextCommand());
+        // since currentCommandIndex is at the end, there is no nextCommand
+        assertEquals(Optional.empty(), cTwo.nextCommand());
 
-        // nextCommand of cThree should be secondCommand
-        assertEquals(optionalSecondCommand, cThree.nextCommand());
+        // since currentCommandIndex is at the end, there is no nextCommand
+        assertEquals(Optional.empty(), cThree.nextCommand());
 
         //==================== AFTER 1x NEXT COMMAND ====================
         // cOne = {secondCommand};
@@ -211,24 +211,24 @@ public class CommandHistoryTest {
         // cThree Current index = 1;
         //===============================================================
 
-        // cOne has limit of 1, thus there is no previousCommand
-        assertEquals(Optional.empty(), cOne.previousCommand());
+        // if only command in history, return that command
+        assertEquals(optionalSecondCommand, cOne.previousCommand());
 
-        // previous command of cTwo should be firstCommand
-        assertEquals(optionalFirstCommand, cTwo.previousCommand());
+        // previous command of cTwo should be secondCommand as it's the first time we are applying previousCommand
+        assertEquals(optionalSecondCommand, cTwo.previousCommand());
 
-        // previous command of cThree should be firstCommand
-        assertEquals(optionalFirstCommand, cThree.previousCommand());
+        // previous command of cThree should be secondCommand as it's the first time we are applying previousCommand
+        assertEquals(optionalSecondCommand, cThree.previousCommand());
 
         //================== AFTER 1x PREVIOUS COMMAND ==================
         // cOne = {secondCommand};
         // cOne Current index = 0;
         //
         // cTwo = {firstCommand, secondCommand};
-        // cTwo Current index = 0;
+        // cTwo Current index = 1;
         //
         // cThree = {firstCommand, secondCommand};
-        // cThree Current index = 0;
+        // cThree Current index = 1;
         //===============================================================
     }
 
@@ -238,6 +238,7 @@ public class CommandHistoryTest {
         String secondCommand = "SecondCommand";
 
         Optional<String> optionalFirstCommand = Optional.of(firstCommand);
+        Optional<String> optionalSecondCommand = Optional.of(secondCommand);
 
         CommandHistory cOne = new CommandHistory(1);
         CommandHistory cTwo = new CommandHistory(2);
@@ -268,12 +269,28 @@ public class CommandHistoryTest {
         cTwo.addToHistory(firstCommand);
         cThree.addToHistory(firstCommand);
 
+        //================== AFTER ADDING FIRST COMMAND ==================
+        // cOne = {firstCommand};
+        // cOne Current index = 0;
+        //
+        // cTwo = {firstCommand};
+        // cTwo Current index = 0;
+        //
+        // cThree = {firstCommand};
+        // cThree Current index = 0;
+        //=================================================================
+
+        // if only command in history, return that command
+        assertEquals(optionalFirstCommand, cOne.previousCommand());
+        assertEquals(optionalFirstCommand, cTwo.previousCommand());
+        assertEquals(optionalFirstCommand, cThree.previousCommand());
+
         // Adding secondCommand
         cOne.addToHistory(secondCommand);
         cTwo.addToHistory(secondCommand);
         cThree.addToHistory(secondCommand);
 
-        //================== AFTER ADDING TO HISTORY ==================
+        //================== AFTER ADDING SECOND COMMAND ==================
         // cOne = {secondCommand};
         // cOne Current index = 0;
         //
@@ -282,15 +299,35 @@ public class CommandHistoryTest {
         //
         // cThree = {firstCommand, secondCommand};
         // cThree Current index = 1;
-        //==============================================================
+        //=================================================================
 
-        // cOne has limit of 1, thus there is no previousCommand
-        assertEquals(Optional.empty(), cOne.previousCommand());
+        // if only command in history, return that command
+        assertEquals(optionalSecondCommand, cOne.previousCommand());
 
-        // previous command of cTwo should be firstCommand
+        // previous command of cTwo should be secondCommand as it's the first time we're prompting previousCommand
+        assertEquals(optionalSecondCommand, cTwo.previousCommand());
+
+        // previous command of cThree should be secondCommand as it's the first time we're prompting previousCommand
+        assertEquals(optionalSecondCommand, cThree.previousCommand());
+
+        //================== AFTER 1x PREVIOUS COMMAND ==================
+        // cOne = {secondCommand};
+        // cOne Current index = 0;
+        //
+        // cTwo = {firstCommand, secondCommand};
+        // cTwo Current index = 1;
+        //
+        // cThree = {firstCommand, secondCommand};
+        // cThree Current index = 1;
+        //===============================================================
+
+        // if only command in history, return that command
+        assertEquals(optionalSecondCommand, cOne.previousCommand());
+
+        // previous command of cTwo should be firstCommand as it's not the first time we're prompting previousCommand
         assertEquals(optionalFirstCommand, cTwo.previousCommand());
 
-        // previous command of cThree should be firstCommand
+        // previous command of cTwo should be firstCommand as it's not the first time we're prompting previousCommand
         assertEquals(optionalFirstCommand, cThree.previousCommand());
 
         //================== AFTER 1x PREVIOUS COMMAND ==================
@@ -303,12 +340,6 @@ public class CommandHistoryTest {
         // cThree = {firstCommand, secondCommand};
         // cThree Current index = 0;
         //===============================================================
-
-        // since now current index = 0, there is no previous command
-        assertEquals(Optional.empty(), cTwo.previousCommand());
-
-        // since now current index = 0, there is no previous command
-        assertEquals(Optional.empty(), cThree.previousCommand());
     }
 
     @Test

@@ -13,6 +13,7 @@ public class CommandHistory implements History {
     private List<String> commandHistory;
     private int currentCommandIndex;
     private final int lengthLimit;
+    private boolean hasReturnedCurrentCommandBefore;
 
     /**
      * Constructor for CommandHistory
@@ -28,6 +29,8 @@ public class CommandHistory implements History {
 
             // since commandHistory is zero-indexed, initializing currentCommandIndex to -1 solves the zero-index issue
             this.currentCommandIndex = -1;
+
+            this.hasReturnedCurrentCommandBefore = false;
         } else {
             throw new HistoryException(MESSAGE_LENGTH_LIMIT_AT_LEAST_ONE);
         }
@@ -61,12 +64,17 @@ public class CommandHistory implements History {
         return currentCommandIndex > 0 && isWithinLengthLimit();
     }
 
-    public boolean hasNextCommand() {
+    private boolean isCurrentCommandIndexZero() {
+        return currentCommandIndex == 0;
+    }
+
+    private boolean hasNextCommand() {
         return currentCommandIndex < commandHistory.size() - 1;
     }
 
     @Override
     public void addToHistory(String command) {
+        hasReturnedCurrentCommandBefore = false;
         if (hasNextCommand()) {
             // if there exist a next command,
             // copy commandHistory[0] to commandHistory[currentCommandIndex],
@@ -87,8 +95,13 @@ public class CommandHistory implements History {
 
     @Override
     public Optional<String> previousCommand() {
-        if (isAbleToReturnPreviousCommand()) {
+        if (!hasReturnedCurrentCommandBefore) {
+            hasReturnedCurrentCommandBefore = true;
+            return currentCommand();
+        } else if (isAbleToReturnPreviousCommand()) {
             currentCommandIndex--;
+            return Optional.of(commandHistory.get(currentCommandIndex));
+        } else if (isCurrentCommandIndexZero()) {
             return Optional.of(commandHistory.get(currentCommandIndex));
         } else {
             return Optional.empty();
@@ -97,6 +110,7 @@ public class CommandHistory implements History {
 
     @Override
     public Optional<String> nextCommand() {
+        hasReturnedCurrentCommandBefore = false;
         if (isAbleToReturnNextCommand()) {
             currentCommandIndex++;
             return Optional.of(commandHistory.get(currentCommandIndex));
