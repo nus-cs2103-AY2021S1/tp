@@ -90,11 +90,11 @@ public class CommandHistoryTest {
         assertEquals(optionalSecondCommand, cOne.previousCommand());
 
         // previous command of cTwo should be secondCommand as it's the first time
-        // we are applying previousCommand after any other commands
+        // we are applying previousCommand after addingToHistory
         assertEquals(optionalSecondCommand, cTwo.previousCommand());
 
         // previous command of cThree should be secondCommand as it's the first time
-        // we are applying previousCommand after any other commands
+        // we are applying previousCommand after addingToHistory
         assertEquals(optionalSecondCommand, cThree.previousCommand());
 
         //================== AFTER 1x PREVIOUS COMMAND ==================
@@ -177,11 +177,11 @@ public class CommandHistoryTest {
         assertEquals(optionalSecondCommand, cOne.previousCommand());
 
         // previous command of cTwo should be secondCommand as it's the first time
-        // we are applying previousCommand after any other commands
+        // we are applying previousCommand after addingToHistory
         assertEquals(optionalSecondCommand, cTwo.previousCommand());
 
         // previous command of cThree should be secondCommand as it's the first time
-        // we are applying previousCommand after any other commands
+        // we are applying previousCommand after addingToHistory
         assertEquals(optionalSecondCommand, cThree.previousCommand());
 
         //================== AFTER 1x PREVIOUS COMMAND ==================
@@ -236,13 +236,13 @@ public class CommandHistoryTest {
         // if only command in history, return that command
         assertEquals(optionalSecondCommand, cOne.previousCommand());
 
-        // previous command of cTwo should be secondCommand as it's the first time
-        // we are applying previousCommand after any other commands
-        assertEquals(optionalSecondCommand, cTwo.previousCommand());
+        // previous command of cTwo should be firstCommand as it's not the first time
+        // we are applying previousCommand after addingToHistory
+        assertEquals(optionalFirstCommand, cTwo.previousCommand());
 
         // previous command of cThree should be secondCommand as it's the first time
-        // we are applying previousCommand after any other commands
-        assertEquals(optionalSecondCommand, cThree.previousCommand());
+        // we are applying previousCommand after addingToHistory
+        assertEquals(optionalFirstCommand, cThree.previousCommand());
     }
 
     @Test
@@ -292,11 +292,11 @@ public class CommandHistoryTest {
         assertEquals(optionalSecondCommand, cOne.previousCommand());
 
         // previous command of cTwo should be secondCommand as it's the first time
-        // we are applying previousCommand after any other commands
+        // we are applying previousCommand after addingToHistory
         assertEquals(optionalSecondCommand, cTwo.previousCommand());
 
         // previous command of cThree should be secondCommand as it's the first time
-        // we are applying previousCommand after any other commands
+        // we are applying previousCommand after addingToHistory
         assertEquals(optionalSecondCommand, cThree.previousCommand());
 
         //================== AFTER 1x PREVIOUS COMMAND ==================
@@ -334,11 +334,11 @@ public class CommandHistoryTest {
         assertEquals(optionalSecondCommand, cOne.previousCommand());
 
         // previous command of cTwo should be secondCommand as it's the first time
-        // we are applying previousCommand after any other commands
+        // we are applying previousCommand after addingToHistory
         assertEquals(optionalSecondCommand, cTwo.previousCommand());
 
         // previous command of cThree should be secondCommand as it's the first time
-        // we are applying previousCommand after any other commands
+        // we are applying previousCommand after addingToHistory
         assertEquals(optionalSecondCommand, cThree.previousCommand());
 
         //================== AFTER 1x PREVIOUS COMMAND ==================
@@ -426,11 +426,11 @@ public class CommandHistoryTest {
         assertEquals(optionalSecondCommand, cOne.previousCommand());
 
         // previous command of cTwo should be secondCommand as it's the first time
-        // we are applying previousCommand after any other commands
+        // we are applying previousCommand after addingToHistory
         assertEquals(optionalSecondCommand, cTwo.previousCommand());
 
         // previous command of cThree should be secondCommand as it's the first time
-        // we are applying previousCommand after any other commands
+        // we are applying previousCommand after addingToHistory
         assertEquals(optionalSecondCommand, cThree.previousCommand());
 
         //================== AFTER 1x PREVIOUS COMMAND ==================

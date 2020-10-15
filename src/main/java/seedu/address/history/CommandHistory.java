@@ -110,11 +110,11 @@ public class CommandHistory implements History {
 
     @Override
     public Optional<String> nextCommand() {
-        hasReturnedCurrentCommandBefore = false;
         if (isAbleToReturnNextCommand()) {
             currentCommandIndex++;
             return Optional.of(commandHistory.get(currentCommandIndex));
         } else {
+            hasReturnedCurrentCommandBefore = false;
             return Optional.empty();
         }
     }
