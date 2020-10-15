@@ -1,12 +1,15 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.attendance.Attendance;
 import seedu.address.model.attendance.AttendanceType;
 import seedu.address.model.attendance.NamedAttendance;
+import seedu.address.model.student.NusnetId;
 import seedu.address.model.student.Student;
 
 /**
@@ -105,4 +108,16 @@ public interface Model {
      * The student must exist in the student list.
      */
     void markStudent(Student target, AttendanceType attendanceType);
+
+    void markStudentWithNusnetId(NusnetId nusnetId, AttendanceType attendanceType);
+
+    /**
+     * Updates the corresponding attendance statuses with the Attendances in the given list.
+     */
+    void updateAttendances(List<Attendance> attendances);
+
+    /**
+     * Clears the attendance statuses of all students in the student list.
+     */
+    void clearAttendance();
 }

@@ -1,7 +1,9 @@
 package seedu.address.storage;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -10,15 +12,23 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyTaskmaster;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.attendance.Attendance;
 
 /**
  * Manages storage of Taskmaster data in local storage.
  */
 public class StorageManager implements Storage {
 
+    public static final String FILENAME_CONSTRAINTS =
+            "Filenames should only be a string of alphanumeric characters with no spaces, and cannot be blank.";
+
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
+
+    private static final String VALIDATION_REGEX = "\\w*";
+
     private TaskmasterStorage taskmasterStorage;
     private UserPrefsStorage userPrefsStorage;
+
 
     /**
      * Creates a {@code StorageManager} with the given {@code TaskmasterStorage} and {@code UserPrefStorage}.
@@ -76,4 +86,26 @@ public class StorageManager implements Storage {
         taskmasterStorage.saveTaskmaster(taskmaster, filePath);
     }
 
+    @Override
+    public void saveAttendance(ReadOnlyTaskmaster taskmaster, Path filePath) throws IOException {
+        logger.fine("Attempting to save attendance to file: " + filePath);
+        taskmasterStorage.saveAttendance(taskmaster, filePath);
+    }
+
+    @Override
+    public Optional<List<Attendance>> readAttendance(Path filepath)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to load attendance from file: " + filepath);
+        return taskmasterStorage.readAttendance(filepath);
+    }
+
+    // ================ Util methods ==============================
+
+    public boolean fileExists(Path filePath) {
+        return Files.exists(filePath);
+    }
+
+    public static boolean isValidFilename(String filename) {
+        return filename.matches(VALIDATION_REGEX);
+    }
 }
