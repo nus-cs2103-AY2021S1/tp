@@ -32,7 +32,7 @@ import seedu.address.testutil.EditItemDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-//    INVENTORY ITEM
+    //    INVENTORY ITEM
     public static final String VALID_NAME_CHICKEN = "Chicken";
     public static final String VALID_NAME_DUCK = "Duck";
     public static final String VALID_QUANTITY_CHICKEN = "11111111";
@@ -82,10 +82,7 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_DUCK, VALID_TAG_CHICKEN).build();
     }
 
-
-
-
-//    DELIVERY
+    //    DELIVERY
     public static final String VALID_NAME_DAMITH = "DAMITH";
     public static final String VALID_NAME_AARON = "AARON";
     public static final String VALID_PHONE_DAMITH = "91231231";
@@ -102,10 +99,7 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_DAMITH = " " + PREFIX_SUPPLIER + VALID_ADDRESS_DAMITH;
     public static final String ADDRESS_DESC_AARON = " " + PREFIX_SUPPLIER + VALID_ADDRESS_AARON;
     public static final String ORDER_DESC_DAMITH = " " + PREFIX_TAG + VALID_ORDER_DAMITH;
-    public static final String ORDER_DESC_AARON= " " + PREFIX_TAG + VALID_ORDER_AARON;
-
-
-
+    public static final String ORDER_DESC_AARON = " " + PREFIX_TAG + VALID_ORDER_AARON;
 
     /**
      * Executes the given {@code command}, confirms that <br>

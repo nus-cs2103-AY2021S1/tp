@@ -1,8 +1,5 @@
 package seedu.address.model.delivery;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.DeliveryBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AARON;
@@ -11,6 +8,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ORDER_AARON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AARON;
 import static seedu.address.testutil.TypicalDeliveries.KELVIN;
 import static seedu.address.testutil.TypicalDeliveries.MARCUS;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.DeliveryBuilder;
+
+
 
 public class DeliveryTest {
 
