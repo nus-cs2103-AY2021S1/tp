@@ -76,6 +76,7 @@
 
 .table-view:focused .table-row-cell:filled:focused:selected {
     -fx-background-color: -fx-focus-color;
+    -fx-border-width: 20;
 }
 
 .split-pane:horizontal .split-pane-divider {
@@ -151,7 +152,7 @@
 .result-display {
     -fx-background-color: transparent;
     -fx-font-family: "Arial";
-    -fx-font-size: 11pt;
+    -fx-font-size: 10pt;
     -fx-text-fill: #90EE90;
 }
 
