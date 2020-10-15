@@ -1,7 +1,7 @@
-package seedu.address.model.student;
+package seedu.taskmaster.model.student;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.taskmaster.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Student's telegram username in the student list.

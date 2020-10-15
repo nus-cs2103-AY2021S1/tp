@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_NUSNETID;
-import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.model.Model;
