@@ -107,7 +107,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public Path getStaffDatabaseFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setEvaDatabaseFilePath(Path addressBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setStaffDatabaseFilePath(Path staffDatabaseFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
