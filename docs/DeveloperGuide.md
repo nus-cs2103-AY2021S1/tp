@@ -1,9 +1,13 @@
 ---
 layout: page
 title: Developer Guide
+
 ---
+
 * Table of Contents
 {:toc}
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,11 +27,13 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
+
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -93,6 +99,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -110,6 +117,7 @@ The `Model`,
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
+
 </div>
 
 
@@ -120,6 +128,7 @@ The `Model`,
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
+
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
 
@@ -155,11 +164,12 @@ Step 2. The user executes `delete 5` command to delete the 5th task in the addre
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new task. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …` to add a new task. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+
 
 </div>
 
@@ -170,6 +180,7 @@ Step 4. The user now decides that adding the task was a mistake, and decides to 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
+
 </div>
 
 The following sequence diagram shows how the undo operation works:
@@ -178,11 +189,13 @@ The following sequence diagram shows how the undo operation works:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
+
 </div>
 
 The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+
 
 </div>
 
@@ -190,7 +203,7 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -249,21 +262,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                     | So that I can…                   |
-| -------- | ------------------------------------------ | ---------------------------------------------- | -------------------------------- |
-| `* * *`  | new user                                   | have a help command                            |  easily access the user guide.   |
-| `* * *`  | user                                       | add new task to my list                        |                                  |
-| `* * *`  | student                                    | know when my tasks are due                     |                                  |
-| `* * *`  | user                                       | maintain a list of tasks I currently have      |                                  |
-| `* * *`  | user with a lot of task                    | delete my task after it is not relevant        | be focused on the unfinished tasks. |
-| `* * *`  | user                                       | mark my task as done after it is completed     | track the status of the task     |
-| `* *  `  | user                                       | find tasks by module                           |                                  |
-| `* *  `  | user                                       | find tasks by due date                         |                                  |
-| `* *  `  | user                                       | mark my task as done after it is completed     |                                  |
-| `* * *`  | user                                       | find tasks by title                             |                                  |
-| `* *  `  | user                                       | find tasks by category                         |                                  |
-| `* * *`  | user                                       | edit my tasks                                  |                                  |
-  
+| Priority | As a …                  | I want to …                                | So that I can…                      |
+| -------- | ----------------------- | ------------------------------------------ | ----------------------------------- |
+| `* * *`  | new user                | have a help command                        | easily access the user guide.       |
+| `* * *`  | user                    | add new task to my list                    |                                     |
+| `* * *`  | student                 | know when my tasks are due                 |                                     |
+| `* * *`  | user                    | maintain a list of tasks I currently have  |                                     |
+| `* * *`  | user with a lot of task | delete my task after it is not relevant    | be focused on the unfinished tasks. |
+| `* * *`  | user                    | mark my task as done after it is completed | track the status of the task        |
+| `* *  `  | user                    | find tasks by module                       |                                     |
+| `* *  `  | user                    | find tasks by due date                     |                                     |
+| `* *  `  | user                    | mark my task as done after it is completed |                                     |
+| `* * *`  | user                    | find tasks by title                        |                                     |
+| `* *  `  | user                    | find tasks by category                     |                                     |
+| `* * *`  | user                    | edit my tasks                              |                                     |
+
 *{More to be added}*
 
 ### Use cases
@@ -274,9 +287,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-  1. User requests to add a specific task to the list.
+    1. User requests to add a specific task to the list.
 
-  2. PlaNus adds the task.
+    2. PlaNus adds the task.
 
   Use case ends.
 
@@ -295,13 +308,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-  1. User requests to list tasks.
+    1. User requests to list tasks.
 
-  2. PlaNus shows a list of tasks.
+    2. PlaNus shows a list of tasks.
 
-  3. User requests to delete a specific task in the list.
+    3. User requests to delete a specific task in the list.
 
-  4. PlaNus deletes the task.
+    4. PlaNus deletes the task.
 
   Use case ends.
 
@@ -317,15 +330,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
- <br> 
+<br>
 
 **Use case 03: List all tasks**
 
 **MSS**
 
-  1. User requests to list tasks.
+    1. User requests to list tasks.
 
-  2. PlaNus shows a list of tasks.
+    2. PlaNus shows a list of tasks.
 
   Use case ends.
 
@@ -341,25 +354,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-  1. User requests help.
+    1. User requests help.
 
-  2. PlaNus shows available commands.
+    2. PlaNus shows available commands.
 
   Use case ends.
 
-<br>   
+<br>
 
 **Use case 05: Mark a task as done**
 
 **MSS**
 
-  1. User requests to list tasks.
-  
-  2. PlaNus shows a list of tasks.
-  
-  3. User requests to mark a specific tasks in the list as done.
-  
-  4. PlaNus marks the task as done.
+    1. User requests to list tasks.
+
+    2. PlaNus shows a list of tasks.
+
+    3. User requests to mark a specific tasks in the list as done.
+
+    4. PlaNus marks the task as done.
 
   Use case ends.
 
@@ -371,15 +384,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 3.
 
-<br>    
+<br>
 
 **Use case 06: Find a task**
 
 **MSS**
 
-  1. User requests to find task with specified search phrase(s) in specified attribute(s).
-  
-  2. PlaNus shows a list of tasks that match the specified search phrase(s) in the specified attribute(s).
+    1. User requests to find task with specified search phrase(s) in specified attribute(s).
+
+    2. PlaNus shows a list of tasks that match the specified search phrase(s) in the specified attribute(s).
 
   Use case ends.
 
@@ -387,37 +400,67 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. The list is empty.
 
-    Use case ends.
+  Use case ends.
 
-<br>    
+<br>
 
-
-**Use case 07: Exit application**
+**Use case 07: Edit a task**
 
 **MSS**
 
-  1. User requests to exit application.
+    1. User requests to edit values of specified attribute(s) of a task.
 
-  2. PlaNus exits application.
+    2. PlaNus shows task with updated attribute(s).
 
   Use case ends.
 
-   
+**Extensions**
+- 1a. The given index is invalid.
+
+  - 1a1. PlaNus shows an error message.
+
+    Use case resumes at step 1.
+
+- 1b. The given value of an attribute is invalid.
+
+  - 1b1. PlaNus shows an error message.
+
+    Use case resumes at step 1.
+
+<br>
+
+**Use case 08: Exit application**
+
+**MSS**
+
+    1. User requests to exit application.
+
+    2. PlaNus exits application.
+
+  Use case ends.
+
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
-<<<<<<< HEAD
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-=======
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using a mouse.
-4.  The product should be easy to use by a novice with no experience of using a task management application.
-5.  The size of built-in module data should not exceed 10mb.
-6.  Documentation should be easy to read with proper highlighting.
-7.  The source code should be open source.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+
+2. Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
+   <<<<<<< HEAD
+
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+   =======
+
+4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using a mouse.
+
+5. The product should be easy to use by a novice with no experience of using a task management application.
+
+6. The size of built-in module data should not exceed 10mb.
+
+7. Documentation should be easy to read with proper highlighting.
+
+8. The source code should be open source.
 
 >>>>>>> 40c48479e0967772ef6be58268c9d0236e38d3f4
 
@@ -437,6 +480,7 @@ Given below are instructions to test the app manually.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
+
 </div>
 
 ### Launch and shutdown
@@ -452,9 +496,9 @@ testers are expected to do more *exploratory* testing.
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+      Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. _{ more test cases … }_
 
 ### Deleting a task
 
@@ -471,7 +515,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. _{ more test cases … }_
 
 ### Saving data
 
@@ -479,4 +523,14 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+1. _{ more test cases … }_
+
+|      |      |
+| ---- | ---- |
+|      |      |
+|      |      |
+|      |      |
+|      |      |
+|      |      |
+|      |      |
+|      |      |
