@@ -18,14 +18,14 @@ import seedu.address.model.person.seller.Seller;
  */
 public class DeleteSellerCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete-b";
+    public static final String COMMAND_WORD = "delete-s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the seller identified by the index number used in the displayed seller list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Seller: %1$s";
+    public static final String MESSAGE_DELETE_SELLER_SUCCESS = "Deleted Seller: %1$s";
 
     private final Index targetIndex;
 
@@ -39,13 +39,13 @@ public class DeleteSellerCommand extends Command {
         List<Seller> lastShownList = model.getFilteredSellerList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_SELLER_DISPLAYED_INDEX);
         }
 
         Seller sellerToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteSeller(sellerToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, sellerToDelete))
-                .setEntity(EntityType.BIDDER);
+        return new CommandResult(String.format(MESSAGE_DELETE_SELLER_SUCCESS, sellerToDelete))
+                .setEntity(EntityType.SELLER);
     }
 
     @Override

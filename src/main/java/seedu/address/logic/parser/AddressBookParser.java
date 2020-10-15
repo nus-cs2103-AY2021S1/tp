@@ -20,17 +20,21 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListBidCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.biddercommands.AddBidderCommand;
+import seedu.address.logic.commands.biddercommands.DeleteBidderCommand;
 import seedu.address.logic.commands.biddercommands.ListBidderCommand;
 import seedu.address.logic.commands.property.AddPropertyCommand;
 import seedu.address.logic.commands.property.DeletePropertyCommand;
 import seedu.address.logic.commands.property.ListPropertyCommand;
 import seedu.address.logic.commands.sellercommands.AddSellerCommand;
+import seedu.address.logic.commands.sellercommands.DeleteSellerCommand;
 import seedu.address.logic.commands.sellercommands.ListSellerCommand;
 import seedu.address.logic.parser.bidderparser.AddBidderCommandParser;
+import seedu.address.logic.parser.bidderparser.DeleteBidderCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.property.AddPropertyCommandParser;
 import seedu.address.logic.parser.property.DeletePropertyCommandParser;
 import seedu.address.logic.parser.sellerparser.AddSellerCommandParser;
+import seedu.address.logic.parser.sellerparser.DeleteSellerCommandParser;
 
 /**
  * Parses user input.
@@ -107,14 +111,20 @@ public class AddressBookParser {
         case AddBidderCommand.COMMAND_WORD:
             return new AddBidderCommandParser().parse(arguments);
 
+        case ListBidderCommand.COMMAND_WORD:
+            return new ListBidderCommand();
+
+        case DeleteBidderCommand.COMMAND_WORD:
+            return new DeleteBidderCommandParser().parse(arguments);
+
         case AddSellerCommand.COMMAND_WORD:
             return new AddSellerCommandParser().parse(arguments);
 
         case ListSellerCommand.COMMAND_WORD:
             return new ListSellerCommand();
 
-        case ListBidderCommand.COMMAND_WORD:
-            return new ListBidderCommand();
+        case DeleteSellerCommand.COMMAND_WORD:
+            return new DeleteSellerCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
