@@ -34,7 +34,7 @@ public interface Logic {
     /** Returns the ItemList */
     ReadOnlyItemList getItemList();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the filtered list of items */
     ObservableList<Item> getFilteredItemList();
 
     /** Returns the user prefs' item list file path. */

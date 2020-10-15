@@ -54,13 +54,13 @@ public class FindItemCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different predicate -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(Messages.MESSAGE_NO_ITEM_MATCH);
+    public void execute_zeroKeywords_noItemFound() {
+        String expectedMessage = Messages.MESSAGE_NO_ITEM_MATCH;
 
         NameMatchesKeywordsPredicate predicate = preparePredicate(" ");
         FindItemCommand command = new FindItemCommand(predicate);
@@ -71,7 +71,7 @@ public class FindItemCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_multipleItemsFound() {
         String expectedMessage = String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW, 2);
 
         NameMatchesKeywordsPredicate predicate = preparePredicate("Apple Banana Carrot");
