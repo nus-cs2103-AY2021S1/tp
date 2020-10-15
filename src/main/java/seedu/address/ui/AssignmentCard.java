@@ -1,17 +1,33 @@
 package seedu.address.ui;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Deadline;
+
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
+
+import static seedu.address.model.assignment.Deadline.DEADLINE_DATE_TIME_FORMAT;
 
 /**
  * An UI component that displays information of a {@code Assignment}.
  */
 public class AssignmentCard extends UiPart<Region> {
-
+    private static final long MIN_PER_HOUR = 60;
+    private static final long HOUR_PER_DAY = 24;
+    private static final long DAY_PER_WEEK = 7;
     private static final String FXML = "AssignmentListCard.fxml";
+    private static final String OVERDUE_STYLE_CLASS = "overdue";
+    private static final String DUE_SOON_STYLE_CLASS = "due-soon";
+    private static final String DUE_IN_A_WEEK_STYLE_CLASS = "due-in-a-week";
+    private static final DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
+            .withResolverStyle(ResolverStyle.STRICT);
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -33,6 +49,8 @@ public class AssignmentCard extends UiPart<Region> {
     private Label deadline;
     @FXML
     private Label moduleCode;
+    @FXML
+    private Label dueDate;
 
     /**
      * Creates a {@code AssignmentCode} with the given {@code Assignment} and index to display.
@@ -44,6 +62,60 @@ public class AssignmentCard extends UiPart<Region> {
         name.setText(assignment.getName().fullName);
         deadline.setText("Deadline: " + assignment.getDeadline().value);
         moduleCode.setText("Module: " + assignment.getModuleCode().moduleCode);
+        getDueDate(dueDate, assignment.getDeadline());
+    }
+
+    public void getDueDate(Label label, Deadline deadline) {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime due = LocalDateTime.parse(deadline.value, inputFormat);
+        String formattedDue = due.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"));
+        Duration duration = Duration.between(now, due);
+
+        if (duration.toMinutes() < 0) {
+            setStyleToIndicateOverdue(label);
+            label.setText("Overdue!");
+        } else if (duration.toMinutes() <= MIN_PER_HOUR) {
+            setStyleToIndicateDueSoon(label);
+            label.setText("Due in " + duration.toMinutes() + " minutes");
+        } else if (duration.toHours() <= HOUR_PER_DAY) {
+            setStyleToIndicateDueSoon(label);
+            label.setText("Due in " + duration.toHours() + " hours");
+        } else if (duration.toDays() <= DAY_PER_WEEK) {
+            setStyleToIndicateDueInAWeek(label);
+            label.setText("Due in " + duration.toDays() + " days");
+        } else {
+            label.setText("");
+        }
+    }
+
+    public void setStyleToIndicateOverdue(Label label) {
+        ObservableList<String> styleClass = label.getStyleClass();
+
+        if (styleClass.contains(OVERDUE_STYLE_CLASS)) {
+            return;
+        }
+
+        styleClass.add(OVERDUE_STYLE_CLASS);
+    }
+
+    public void setStyleToIndicateDueSoon(Label label) {
+        ObservableList<String> styleClass = label.getStyleClass();
+
+        if (styleClass.contains(DUE_SOON_STYLE_CLASS)) {
+            return;
+        }
+
+        styleClass.add(DUE_SOON_STYLE_CLASS);
+    }
+
+    public void setStyleToIndicateDueInAWeek(Label label) {
+        ObservableList<String> styleClass = label.getStyleClass();
+
+        if (styleClass.contains(DUE_IN_A_WEEK_STYLE_CLASS)) {
+            return;
+        }
+
+        styleClass.add(DUE_IN_A_WEEK_STYLE_CLASS);
     }
 
     @Override
