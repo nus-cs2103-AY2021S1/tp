@@ -2,8 +2,13 @@ package quickcache.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static quickcache.logic.commands.EditCommand.EditFlashcardDescriptor;
 import static quickcache.testutil.Assert.assertThrows;
 import static quickcache.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +16,7 @@ import quickcache.commons.core.Messages;
 import quickcache.logic.commands.AddOpenEndedQuestionCommand;
 import quickcache.logic.commands.ClearCommand;
 import quickcache.logic.commands.DeleteCommand;
+import quickcache.logic.commands.EditCommand;
 import quickcache.logic.commands.ExitCommand;
 import quickcache.logic.commands.FindCommand;
 import quickcache.logic.commands.HelpCommand;
@@ -20,12 +26,9 @@ import quickcache.logic.commands.StatsCommand;
 import quickcache.logic.parser.exceptions.ParseException;
 import quickcache.model.flashcard.Flashcard;
 import quickcache.model.flashcard.FlashcardContainsTagPredicate;
+import quickcache.testutil.EditFlashcardDescriptorBuilder;
 import quickcache.testutil.FlashcardBuilder;
 import quickcache.testutil.FlashcardUtil;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class QuickCacheParserTest {
 
@@ -66,15 +69,15 @@ public class QuickCacheParserTest {
         assertEquals(new StatsCommand(INDEX_FIRST_FLASHCARD), command);
     }
 
-    //    @Test
-    //    public void parseCommand_edit() throws Exception {
-    //        Flashcard flashcard = new FlashcardBuilder().build();
-    //        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder(flashcard).build();
-    //        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-    //                + INDEX_FIRST_FLASHCARD.getOneBased() + " " +
-    //                FlashcardUtil.getEditFlashcardDescriptorDetails(descriptor));
-    //        assertEquals(new EditCommand(INDEX_FIRST_FLASHCARD, descriptor), command);
-    //    }
+    @Test
+    public void parseCommand_edit() throws Exception {
+        Flashcard flashcard = new FlashcardBuilder().build();
+        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder(flashcard).build();
+        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_FLASHCARD.getOneBased() + " "
+                + FlashcardUtil.getEditFlashcardDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_FLASHCARD, descriptor), command);
+    }
 
     @Test
     public void parseCommand_exit() throws Exception {
