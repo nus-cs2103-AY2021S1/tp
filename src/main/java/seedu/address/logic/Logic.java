@@ -10,13 +10,11 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.InventoryComponent;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyItemList;
 import seedu.address.model.ReadOnlyLocationList;
 import seedu.address.model.ReadOnlyRecipeList;
 import seedu.address.model.item.Item;
 import seedu.address.model.location.Location;
-import seedu.address.model.person.Person;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.ui.DisplayedInventoryType;
 
@@ -32,19 +30,6 @@ public interface Logic {
      * @throws ParseException If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException, IOException;
-
-    /**
-     * Returns the AddressBook.
-     *
-     * @see seedu.address.model.Model#getAddressBook()
-     */
-    ReadOnlyAddressBook getAddressBook();
-
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
-
-    /** Returns the user prefs' address book file path */
-    Path getAddressBookFilePath();
 
     /** Returns the ItemList */
     ReadOnlyItemList getItemList();

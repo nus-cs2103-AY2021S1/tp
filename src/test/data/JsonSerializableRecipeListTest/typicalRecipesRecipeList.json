@@ -1,0 +1,31 @@
+{
+  "recipes" : [ {
+    "id" : 1,
+    "ingredients" : [ {
+      "itemId" : 1,
+      "itemQuantity" : 1
+    }, {
+      "itemId" : 2,
+      "itemQuantity" : 2
+    } ],
+    "productId" : 0,
+    "productName" : "Apple",
+    "productQuantity" : "1",
+    "description" : "Apple-y!",
+    "isDeleted" : false
+  }, {
+    "id" : 2,
+    "ingredients" : [ {
+      "itemId" : 1,
+      "itemQuantity" : 1
+    }, {
+      "itemId" : 2,
+      "itemQuantity" : 2
+    } ],
+    "productId" : 0,
+    "productName" : "Apple",
+    "productQuantity" : "1",
+    "description" : "Banana-y!",
+    "isDeleted" : false
+  } ]
+}

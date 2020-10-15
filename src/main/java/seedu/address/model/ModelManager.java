@@ -18,7 +18,6 @@ import seedu.address.model.item.Item;
 import seedu.address.model.item.ItemPrecursor;
 import seedu.address.model.item.exceptions.ItemNotFoundException;
 import seedu.address.model.location.Location;
-import seedu.address.model.person.Person;
 import seedu.address.model.recipe.IngredientList;
 import seedu.address.model.recipe.IngredientPrecursor;
 import seedu.address.model.recipe.Recipe;
@@ -30,35 +29,13 @@ import seedu.address.model.recipe.RecipePrecursor;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
     private final ItemList itemList;
     private final FilteredList<Item> filteredItems;
     private final LocationList locationList;
     private final FilteredList<Location> filteredLocations;
     private final RecipeList recipeList;
     private final FilteredList<Recipe> filteredRecipes;
-
-    /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
-     */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        super();
-        requireAllNonNull(addressBook, userPrefs);
-
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
-
-        this.addressBook = new AddressBook(addressBook);
-        this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        itemList = null;
-        filteredItems = null;
-        locationList = null;
-        filteredLocations = null;
-        recipeList = null;
-        filteredRecipes = null;
-    }
 
     /**
      * Initializes a ModelManager with the given itemList, locationList, recipeList and userPrefs.
@@ -73,8 +50,6 @@ public class ModelManager implements Model {
                 + " recipe list: " + recipeList
                 + " and user prefs " + userPrefs);
 
-        addressBook = null;
-        filteredPersons = null;
         this.userPrefs = new UserPrefs(userPrefs);
         this.itemList = new ItemList(itemList);
         filteredItems = new FilteredList<>(this.itemList.getItemList());
@@ -114,11 +89,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
-    }
-
-    @Override
     public Path getItemListFilePath() {
         return userPrefs.getItemListFilePath();
     }
@@ -131,12 +101,6 @@ public class ModelManager implements Model {
     @Override
     public Path getRecipeListFilePath() {
         return userPrefs.getRecipeListFilePath();
-    }
-
-    @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
     @Override
@@ -160,11 +124,6 @@ public class ModelManager implements Model {
     //=========== Item and Location List =====================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
     public void setItemList(ReadOnlyItemList itemList) {
         this.itemList.resetData(itemList);
     }
@@ -172,11 +131,6 @@ public class ModelManager implements Model {
     @Override
     public void setRecipeList(ReadOnlyRecipeList recipeList) {
         this.recipeList.resetData(recipeList);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
     }
 
     @Override
@@ -192,12 +146,6 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyRecipeList getRecipeList() {
         return recipeList;
-    }
-
-    @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
     }
 
     @Override
@@ -219,11 +167,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
-    }
-
-    @Override
     public void deleteItem(Item target) {
         itemList.deleteItem(target);
     }
@@ -231,12 +174,6 @@ public class ModelManager implements Model {
     @Override
     public void deleteRecipe(Recipe target) {
         recipeList.deleteRecipe(target);
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -258,13 +195,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
-    }
-
-    @Override
     public void setItem(Item target, Item editedItem) {
         requireAllNonNull(target, editedItem);
 
@@ -280,15 +210,6 @@ public class ModelManager implements Model {
 
     //=========== Filtered Item and Location List Accessors ==================================================
 
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
     @Override
     public ObservableList<Item> getFilteredItemList() {
         return filteredItems;
@@ -302,12 +223,6 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Recipe> getFilteredRecipeList() {
         return filteredRecipes;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
     }
 
     @Override
@@ -402,4 +317,16 @@ public class ModelManager implements Model {
                 && filteredRecipes.equals(other.filteredRecipes);
     }
 
+    @Override
+    public String toString() {
+        return "ModelManager{"
+                + "userPrefs=" + userPrefs
+                + ", itemList=" + itemList
+                + ", filteredItems=" + filteredItems
+                + ", locationList=" + locationList
+                + ", filteredLocations=" + filteredLocations
+                + ", recipeList=" + recipeList
+                + ", filteredRecipes=" + filteredRecipes
+                + '}';
+    }
 }

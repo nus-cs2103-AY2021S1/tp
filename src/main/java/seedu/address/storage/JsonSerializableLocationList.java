@@ -19,7 +19,7 @@ import seedu.address.model.location.Location;
 @JsonRootName(value = "locationlist")
 class JsonSerializableLocationList {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Locations list contains duplicate location(s).";
+    public static final String MESSAGE_DUPLICATE_LOCATION = "Locations list contains duplicate location(s).";
 
     private final List<JsonAdaptedLocation> locations = new ArrayList<>();
 
@@ -50,7 +50,7 @@ class JsonSerializableLocationList {
         for (JsonAdaptedLocation jsonAdaptedLocation : locations) {
             Location location = jsonAdaptedLocation.toModelType();
             if (locationList.hasLocation(location)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_LOCATION);
             }
             locationList.addLocation(location);
         }

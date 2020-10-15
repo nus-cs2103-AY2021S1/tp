@@ -35,12 +35,7 @@ public class InventoryParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-        case FindItemCommand.COMMAND_WORD:
-            return new FindItemCommandParser().parse(arguments);
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:
@@ -49,6 +44,8 @@ public class InventoryParser {
             return new AddItemCommandParser().parse(arguments);
         case EditItemCommand.COMMAND_WORD:
             return new EditItemCommandParser().parse(arguments);
+        case FindItemCommand.COMMAND_WORD:
+            return new FindItemCommandParser().parse(arguments);
         case ClearItemCommand.COMMAND_WORD:
             return new ClearItemCommand();
         case ListItemCommand.COMMAND_WORD:

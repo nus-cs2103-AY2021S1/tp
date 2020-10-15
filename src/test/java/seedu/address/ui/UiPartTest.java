@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import javafx.fxml.FXML;
-import seedu.address.MainApp;
+import seedu.address.InventoryMainApp;
 
 public class UiPartTest {
 
@@ -77,14 +77,14 @@ public class UiPartTest {
 
     private URL getTestFileUrl(String testFilePath) {
         String testFilePathInView = "/view/" + testFilePath;
-        URL testFileUrl = MainApp.class.getResource(testFilePathInView);
+        URL testFileUrl = InventoryMainApp.class.getResource(testFilePathInView);
         assertNotNull(testFileUrl, testFilePathInView + " does not exist.");
         return testFileUrl;
     }
 
     /**
      * UiPart used for testing.
-     * It should only be used with invalid FXML files or the valid file located at {@link VALID_FILE_PATH}.
+     * It should only be used with invalid FXML files or the valid file located at VALID_FILE_PATH.
      */
     private static class TestUiPart<T> extends UiPart<T> {
 

@@ -1,0 +1,30 @@
+{
+  "items" : [ {
+    "id" : 1,
+    "name" : "Apple",
+    "quantity" : "9",
+    "description" : "Recovers 10 hp",
+    "locationId" : [ ],
+    "recipeId" : [ ],
+    "isDeleted" : false,
+    "tagged" : [ ]
+  }, {
+    "id" : 2,
+    "name" : "Banana",
+    "quantity" : "99",
+    "description" : "Used as bait",
+    "locationId" : [ ],
+    "recipeId" : [ ],
+    "isDeleted" : false,
+    "tagged" : [ ]
+  }, {
+    "id" : 3,
+    "name" : "Pear",
+    "quantity" : "0",
+    "description" : "None",
+    "locationId" : [ ],
+    "recipeId" : [ ],
+    "isDeleted" : false,
+    "tagged" : [ ]
+  } ]
+}

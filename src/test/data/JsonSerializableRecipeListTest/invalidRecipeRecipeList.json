@@ -1,0 +1,15 @@
+{
+  "recipes" : [ {
+    "id" : 1,
+    "ingredients" : [ {
+      "itemId" : 0,
+      "itemQuantity" : 2
+    }, {
+      "itemId" : 1,
+      "itemQuantity" : 3
+    } ],
+    "productId" : 2,
+    "description" : "Recipe 1",
+    "isDeleted" : false
+  } ]
+}

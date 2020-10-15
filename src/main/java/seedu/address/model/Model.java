@@ -8,7 +8,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.ItemPrecursor;
 import seedu.address.model.location.Location;
-import seedu.address.model.person.Person;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.recipe.RecipePrecursor;
 
@@ -19,7 +18,6 @@ public interface Model {
     /**
      * {@code Predicate} that always evaluate to true
      */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Item> PREDICATE_SHOW_ALL_ITEMS = unused -> true;
     Predicate<Location> PREDICATE_SHOW_ALL_LOCATIONS = unused -> true;
     Predicate<Recipe> PREDICATE_SHOW_ALL_RECIPES = unused -> true;
@@ -45,11 +43,6 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
-     */
-    Path getAddressBookFilePath();
-
-    /**
      * Returns the user prefs' item list file path.
      */
     Path getItemListFilePath();
@@ -63,11 +56,6 @@ public interface Model {
      * Returns the user prefs' recipe list file path.
      */
     Path getRecipeListFilePath();
-
-    /**
-     * Sets the user prefs' address book file path.
-     */
-    void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
      * Sets the user prefs' item list file path.
@@ -85,11 +73,6 @@ public interface Model {
     void setRecipeListFilePath(Path recipeListFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
-     */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
-
-    /**
      * Replaces item list data with the data in {@code itemList}.
      */
     void setItemList(ReadOnlyItemList itemList);
@@ -98,11 +81,6 @@ public interface Model {
      * Replaces recipe list data with the data in {@code recipeList}.
      */
     void setRecipeList(ReadOnlyRecipeList recipeList);
-
-    /**
-     * Returns the AddressBook
-     */
-    ReadOnlyAddressBook getAddressBook();
 
     /**
      * Returns the ItemList
@@ -120,11 +98,6 @@ public interface Model {
     ReadOnlyRecipeList getRecipeList();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    boolean hasPerson(Person person);
-
-    /**
      * Returns true if an item with the same identity as {@code item} exists in the item list.
      */
     boolean hasItem(Item item);
@@ -140,12 +113,6 @@ public interface Model {
     boolean hasRecipe(Recipe recipe);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
-     */
-    void deletePerson(Person target);
-
-    /**
      * Deletes the given item.
      * The item must exist in the item list.
      */
@@ -156,12 +123,6 @@ public interface Model {
      * The recipe must exist in the recipe list.
      */
     void deleteRecipe(Recipe target);
-
-    /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
-     */
-    void addPerson(Person person);
 
     /**
      * Adds the given item.
@@ -182,13 +143,6 @@ public interface Model {
     void addRecipe(Recipe recipe);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    void setPerson(Person target, Person editedPerson);
-
-    /**
      * Replaces the given item {@code target} with {@code editedItem}.
      * {@code target} must exist in the item list.
      * The item identity of {@code editedItem} must not be the same as another existing item in the item list.
@@ -201,11 +155,6 @@ public interface Model {
      * The recipe identity of {@code editedRecipe} must not be the same as another existing recipe in the recipe list.
      */
     void setRecipe(Recipe target, Recipe editedRecipe);
-
-    /**
-     * Returns an unmodifiable view of the filtered person list
-     */
-    ObservableList<Person> getFilteredPersonList();
 
     /**
      * Returns an unmodifiable view of the filtered item list
@@ -221,13 +170,6 @@ public interface Model {
      * Returns an unmodifiable view of the filtered recipe list
      */
     ObservableList<Recipe> getFilteredRecipeList();
-
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
      * Updates the filter of the filtered item list to filter by the given {@code predicate}.

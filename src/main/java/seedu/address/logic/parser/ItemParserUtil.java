@@ -17,7 +17,11 @@ import seedu.address.model.item.Quantity;
 public class ItemParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-
+    public static final String DEFAULT_QUANTITY = "0";
+    public static final String DEFAULT_LOCATION = "None";
+    public static final String DEFAULT_TAG = "None";
+    public static final String DEFAULT_DESCRIPTION = "None";
+    public static final Quantity DEFAULT_QUANTITY_TYPED = new Quantity(DEFAULT_QUANTITY);
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -66,6 +70,7 @@ public class ItemParserUtil {
     }
 
     /**
+     * Could be extended to parse multiple locations here.
      * Parses {@code Collection<String> locations} into a {@code Set<String>}.
      */
     public static Set<String> parseLocations(Collection<String> locations) {

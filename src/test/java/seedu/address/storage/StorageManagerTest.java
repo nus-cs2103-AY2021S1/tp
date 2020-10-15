@@ -2,7 +2,6 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
 
@@ -11,12 +10,15 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ItemList;
+import seedu.address.model.ReadOnlyItemList;
+import seedu.address.model.ReadOnlyRecipeList;
+import seedu.address.model.RecipeList;
 import seedu.address.model.UserPrefs;
+import seedu.address.testutil.TypicalItems;
+import seedu.address.testutil.TypicalRecipes;
 
 public class StorageManagerTest {
-
     @TempDir
     public Path testFolder;
 
@@ -24,9 +26,12 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonItemListStorage itemListStorage = new JsonItemListStorage(getTempFilePath("ab"));
+        JsonRecipeListStorage recipeListStorage = new JsonRecipeListStorage(getTempFilePath("ac"));
+        JsonLocationListStorage locationListStorage = new JsonLocationListStorage(getTempFilePath("ad"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+
+        storageManager = new StorageManager(itemListStorage, locationListStorage, recipeListStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,21 +53,46 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void itemListReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonItemListStorage} class.
+         * More extensive testing of ItemList saving/reading is done in {@link JsonItemListStorageTest} class.
+         *
+         * Similar for the below tests.
          */
-        AddressBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        ItemList original = TypicalItems.getTypicalItemList();
+        storageManager.saveItemList(original);
+        ReadOnlyItemList retrieved = storageManager.readItemList().get();
+        assertEquals(original, new ItemList(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void recipeListReadSave() throws Exception {
+        RecipeList original = TypicalRecipes.getTypicalRecipeList();
+        storageManager.saveRecipeList(original);
+        ReadOnlyRecipeList retrieved = storageManager.readRecipeList().get();
+        assertEquals(original, new RecipeList(retrieved));
     }
 
+    // TODO fix this test
+    /*
+    @Test
+    public void locationListReadSave() throws Exception {
+        LocationList original = TypicalLocations.getTypicalLocationsList();
+        storageManager.saveLocationList(original);
+        ReadOnlyLocationList retrieved = storageManager.readLocationList().get();
+        assertEquals(original, new LocationList(retrieved));
+    }
+    */
+
+    @Test
+    public void getItemListFilePath() {
+        assertNotNull(storageManager.getItemListFilePath());
+    }
+
+    @Test
+    public void getRecipeListFilePath() {
+        assertNotNull(storageManager.getRecipeListFilePath());
+    }
 }

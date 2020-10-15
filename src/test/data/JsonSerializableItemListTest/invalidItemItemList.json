@@ -1,0 +1,12 @@
+{
+  "items": [ {
+    "id" : 2,
+    "name" : "Bob's Iridescent Pineapple",
+    "quantity" : "2a",
+    "description" : "Very rare drop from Bob",
+    "locationId" : [ 1 ],
+    "recipeId" : [ ],
+    "isDeleted" : false,
+    "tagged" : [ ]
+  }  ]
+}
