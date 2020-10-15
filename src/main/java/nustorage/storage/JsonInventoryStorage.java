@@ -53,6 +53,7 @@ public class JsonInventoryStorage implements InventoryStorage {
     public Optional<Inventory> readInventory(Path filePath) throws DataConversionException, IOException {
         requireNonNull(filePath);
 
+        // TODO: THIS LINE IS CAUSING A LOADING ERROR
         Optional<JsonSerializableInventory> jsonInventory = JsonUtil.readJsonFile(
                 filePath, JsonSerializableInventory.class);
 

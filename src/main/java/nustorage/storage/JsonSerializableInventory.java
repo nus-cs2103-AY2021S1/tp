@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import nustorage.commons.exceptions.IllegalValueException;
 import nustorage.model.Inventory;
+import nustorage.model.ReadOnlyInventory;
 import nustorage.model.record.InventoryRecord;
 
 
@@ -36,26 +37,19 @@ class JsonSerializableInventory {
     }
 
 
-    public JsonSerializableInventory(Inventory source) {
-        inventoryRecords.addAll(
-                source.getInventoryList()
+    /**
+     * Converts a given {@code ReadOnlyInventory} into this class for Jackson use.
+     *
+     * @param source future changes to this will not affect the created {@code JsonSerializableInventory}.
+     */
+    public JsonSerializableInventory(ReadOnlyInventory source) {
+        this.inventoryRecords.addAll(
+                source.asUnmodifiableObservableList()
                         .stream()
                         .map(JsonAdaptedInventoryRecord::new)
                         .collect(Collectors.toList())
         );
     }
-
-    // TODO: implement alternative constructor
-    /* Commented out as not yet implemented */
-    // /**
-    //  * Converts a given {@code ReadOnlyInventory} into this class for Jackson use.
-    //  *
-    //  * @param source future changes to this will not affect the created {@code JsonSerializableInventory}.
-    //  */
-    // @JsonCreator
-    // public JsonSerializableInventory(ReadOnlyInventory source) {
-    //     this.financeRecords.addAll(...);
-    // }
 
 
     /**

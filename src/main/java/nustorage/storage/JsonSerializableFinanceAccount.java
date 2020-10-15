@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import nustorage.commons.exceptions.IllegalValueException;
 import nustorage.model.FinanceAccount;
+import nustorage.model.ReadOnlyFinanceAccount;
 import nustorage.model.record.FinanceRecord;
 
 
@@ -36,27 +37,14 @@ class JsonSerializableFinanceAccount {
     }
 
 
-    public JsonSerializableFinanceAccount(FinanceAccount source) {
+    public JsonSerializableFinanceAccount(ReadOnlyFinanceAccount source) {
         financeRecords.addAll(
-                source.asUnmodifiableObservableList()
+                source.getFinanceList()
                         .stream()
                         .map(JsonAdaptedFinanceRecord::new)
                         .collect(Collectors.toList())
         );
     }
-
-
-    // TODO: implement alternative constructor
-    /* Commented out as not yet implemented */
-    // /**
-    //  * Converts a given {@code ReadOnlyFinanceAccount} into this class for Jackson use.
-    //  *
-    //  * @param source future changes to this will not affect the created {@code JsonSerializableFinanceAccount}.
-    //  */
-    // @JsonCreator
-    // public JsonSerializableFinanceAccount(ReadOnlyFinanceAccount source) {
-    //     this.financeRecords.addAll(...);
-    // }
 
 
     /**
@@ -68,10 +56,11 @@ class JsonSerializableFinanceAccount {
         FinanceAccount finAccount = new FinanceAccount();
         for (JsonAdaptedFinanceRecord jsonFinRecord : this.financeRecords) {
             FinanceRecord finRecord = jsonFinRecord.toModelType();
-            if (finAccount.hasRecord(finRecord)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_FINANCE_RECORD);
-            }
-            finAccount.addRecord(finRecord);
+
+            // if (finAccount.hasFinanceRecord(finRecord)) {
+            //     throw new IllegalValueException(MESSAGE_DUPLICATE_FINANCE_RECORD);
+            // }
+            finAccount.addFinanceRecord(finRecord);
         }
         return finAccount;
     }

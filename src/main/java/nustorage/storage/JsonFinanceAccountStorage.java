@@ -14,7 +14,7 @@ import nustorage.commons.exceptions.DataConversionException;
 import nustorage.commons.exceptions.IllegalValueException;
 import nustorage.commons.util.FileUtil;
 import nustorage.commons.util.JsonUtil;
-import nustorage.model.FinanceAccount;
+import nustorage.model.ReadOnlyFinanceAccount;
 
 
 /**
@@ -44,15 +44,16 @@ public class JsonFinanceAccountStorage implements FinanceAccountStorage {
 
 
     @Override
-    public Optional<FinanceAccount> readFinanceAccount() throws DataConversionException {
+    public Optional<ReadOnlyFinanceAccount> readFinanceAccount() throws DataConversionException {
         return readFinanceAccount(filePath);
     }
 
 
     @Override
-    public Optional<FinanceAccount> readFinanceAccount(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyFinanceAccount> readFinanceAccount(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
+        // TODO: THIS LINE IS CAUSING A LOADING ERROR
         Optional<JsonSerializableFinanceAccount> jsonFinanceAccount = JsonUtil.readJsonFile(
                 filePath, JsonSerializableFinanceAccount.class);
 
@@ -70,16 +71,16 @@ public class JsonFinanceAccountStorage implements FinanceAccountStorage {
 
 
     @Override
-    public void saveFinanceAccount(FinanceAccount financeAccount) throws IOException {
+    public void saveFinanceAccount(ReadOnlyFinanceAccount financeAccount) throws IOException {
         saveFinanceAccount(financeAccount, filePath);
     }
 
 
     @Override
-    public void saveFinanceAccount(FinanceAccount financeAccount, Path filepath) throws IOException {
-        requireAllNonNull(financeAccount, filepath);
+    public void saveFinanceAccount(ReadOnlyFinanceAccount financeAccount, Path filePath) throws IOException {
+        requireAllNonNull(financeAccount, filePath);
 
-        FileUtil.createIfMissing(filepath);
+        FileUtil.createIfMissing(filePath);
 
         JsonUtil.saveJsonFile(new JsonSerializableFinanceAccount(financeAccount), filePath);
     }

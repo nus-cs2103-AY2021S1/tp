@@ -2,7 +2,6 @@ package nustorage.model;
 
 
 import java.nio.file.Path;
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -56,19 +55,7 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
 
-    // <<<<<<< HEAD
-    //     // ---------- AddressBook ----------
-    //
-    // =======
-    //     void setFinanceRecord(FinanceRecord target, FinanceRecord editedFinanceRecord);
-    //
-    //     Optional<FinanceRecord> deleteFinanceRecord(Index targetIndex);
-    //
-    //     void addInventoryRecord(InventoryRecord inventoryRecord);
-    // >>>>>>> ba85e094c7db7ddb7b4601fc17379125a0c3bc68
-
-
-    void deleteInventoryRecord(InventoryRecord target);
+    // ---------- AddressBook ----------
 
 
     /**
@@ -140,16 +127,15 @@ public interface Model {
     // --------- Finance Account ---------
 
 
-    void addFinanceRecord(FinanceRecord newRecord);
-
-
-    List<FinanceRecord> viewFinanceRecords();
-
-
     Optional<FinanceRecord> deleteFinanceRecord(Index targetIndex);
 
 
-    FinanceAccount getFinanceAccount();
+    ReadOnlyFinanceAccount getFinanceAccount();
+
+    void addFinanceRecord(FinanceRecord newRecord);
+
+
+    void deleteInventoryRecord(InventoryRecord target);
 
 
     void setFinanceRecord(FinanceRecord financeRecordToEdit, FinanceRecord editedFinanceRecord);

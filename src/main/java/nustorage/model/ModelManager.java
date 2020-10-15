@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import static nustorage.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -45,16 +44,11 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.financeAccount = new FinanceAccount();
-        filteredFinance = new FilteredList<>(this.financeAccount.asUnmodifiableObservableList());
-
         this.inventory = new Inventory();
+        this.financeAccount = new FinanceAccount();
         filteredInventory = new FilteredList<>(this.inventory.asUnmodifiableObservableList());
-        // <<<<<<< HEAD
-        //
-        // =======
-        //         filteredFinance = new FilteredList<>(this.financeAccount.asUnmodifiableObservableList());
-        // >>>>>>> ba85e094c7db7ddb7b4601fc17379125a0c3bc68
+        filteredFinance = new FilteredList<>(this.financeAccount.getFinanceList());
+
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
@@ -64,15 +58,15 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given financeAccount, inventory and userPrefs
      */
-    public ModelManager(FinanceAccount financeAccount, Inventory inventory, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyFinanceAccount financeAccount, Inventory inventory, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(financeAccount, inventory, userPrefs);
 
         logger.fine("Initializing with finance account " + financeAccount
                 + ", inventory " + inventory + " and user prefs " + userPrefs);
 
-        this.financeAccount = financeAccount;
-        filteredFinance = new FilteredList<>(this.financeAccount.asUnmodifiableObservableList());
+        this.financeAccount = new FinanceAccount(financeAccount);
+        filteredFinance = new FilteredList<>(this.financeAccount.getFinanceList());
 
         this.inventory = inventory;
         filteredInventory = new FilteredList<>(this.inventory.asUnmodifiableObservableList());
@@ -178,7 +172,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addFinanceRecord(FinanceRecord newRecord) {
-        financeAccount.addRecord(newRecord);
+        financeAccount.addFinanceRecord(newRecord);
     }
 
 
@@ -196,11 +190,11 @@ public class ModelManager implements Model {
     }
 
 
-    @Override
-    public List<FinanceRecord> viewFinanceRecords() {
-        // TODO: DORA IMPLEMENT VIEW FINANCE RECORDS.
-        return null;
-    }
+    // @Override
+    // public List<FinanceRecord> viewFinanceRecords() {
+    //     // TODO: DORA IMPLEMENT VIEW FINANCE RECORDS.
+    //     return null;
+    // }
 
 
     @Override
@@ -212,7 +206,7 @@ public class ModelManager implements Model {
 
     @Override
     public Optional<FinanceRecord> deleteFinanceRecord(Index targetIndex) {
-        return financeAccount.removeRecord(targetIndex);
+        return financeAccount.removeFinanceRecord(targetIndex);
     }
 
 

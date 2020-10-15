@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -232,12 +231,6 @@ public class AddCommandTest {
         }
 
 
-        @Override
-        public List<FinanceRecord> viewFinanceRecords() {
-            return null;
-        }
-
-
         public void setFinanceRecord(FinanceRecord target, FinanceRecord editedFinanceRecord) {
         }
 
@@ -252,6 +245,7 @@ public class AddCommandTest {
             return Optional.empty();
         }
 
+
         @Override
         public void updateFilteredFinanceList(Predicate<FinanceRecord> predicate) {
 
@@ -262,6 +256,8 @@ public class AddCommandTest {
 
 
     /**
+     * =======
+     * >>>>>>> 2fa4958536709a1ce93d9efe1b3a34808a6c9d61
      * A Model stub that contains a single person.
      */
     private class ModelStubWithPerson extends ModelStub {
