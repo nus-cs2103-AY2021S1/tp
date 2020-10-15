@@ -45,8 +45,16 @@ public class AddFinanceCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddFinanceCommand // instanceof handles nulls
-                && newRecord.equals(((AddFinanceCommand) other).newRecord));
+
+        if (other == this) {
+            return true;
+        }
+
+        //ignore comparison of internal ID field as user cannot set it
+        if (other instanceof AddFinanceCommand) {
+            return newRecord.equalsWithoutID(((AddFinanceCommand) other).newRecord);
+        }
+
+        return false;
     }
 }
