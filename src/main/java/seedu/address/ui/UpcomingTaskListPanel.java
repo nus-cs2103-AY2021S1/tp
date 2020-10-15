@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.model.assignment.Deadline.DEADLINE_DATE_TIME_FORMAT;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -17,8 +19,6 @@ import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.Task;
 import seedu.address.model.lesson.Lesson;
-
-import static seedu.address.model.assignment.Deadline.DEADLINE_DATE_TIME_FORMAT;
 
 /**
  * Panel containing the list of tasks.

@@ -79,17 +79,17 @@ public class UpcomingLessonCard extends UiPart<Region> {
         LocalDateTime due = LocalDateTime.parse(deadline.value, inputFormat);
         String formattedDue = due.toLocalDate().format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
         Duration duration = Duration.between(now, due);
-       if (duration.toMinutes() <= MIN_PER_HOUR) {
-           setStyleToIndicateDueSoon(label);
-           label.setText("Start in " + duration.toMinutes() + " minutes");
-       } else if (duration.toHours() <= HOUR_PER_DAY) {
-           setStyleToIndicateDueSoon(label);
-           label.setText("Start in " + duration.toHours() + " hours");
-       } else if (duration.toDays() <= MIN_DAY_PER_MONTH) {
-           label.setText("Start in " + duration.toDays() + " days");
-       } else {
-           label.setText("Start in months");
-       }
+        if (duration.toMinutes() <= MIN_PER_HOUR) {
+            setStyleToIndicateDueSoon(label);
+            label.setText("Start in " + duration.toMinutes() + " minutes");
+        } else if (duration.toHours() <= HOUR_PER_DAY) {
+            setStyleToIndicateDueSoon(label);
+            label.setText("Start in " + duration.toHours() + " hours");
+        } else if (duration.toDays() <= MIN_DAY_PER_MONTH) {
+            label.setText("Start in " + duration.toDays() + " days");
+        } else {
+            label.setText("Start in months");
+        }
     }
 
     public void setStyleToIndicateDueSoon(Label label) {
