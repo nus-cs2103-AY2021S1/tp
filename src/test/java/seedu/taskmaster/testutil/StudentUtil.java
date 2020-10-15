@@ -3,8 +3,8 @@ package seedu.taskmaster.testutil;
 import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_NUSNETID;
-import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import java.util.Set;
 
@@ -31,7 +31,7 @@ public class StudentUtil {
     public static String getStudentDetails(Student student) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + student.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + student.getPhone().value + " ");
+        sb.append(PREFIX_TELEGRAM + student.getTelegram().value + " ");
         sb.append(PREFIX_EMAIL + student.getEmail().value + " ");
         sb.append(PREFIX_NUSNETID + student.getNusnetId().value + " ");
         student.getTags().stream().forEach(
@@ -46,7 +46,7 @@ public class StudentUtil {
     public static String getEditStudentDescriptorDetails(EditStudentDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
+        descriptor.getTelegram().ifPresent(telegram -> sb.append(PREFIX_TELEGRAM).append(telegram.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getNusnetId().ifPresent(address -> sb.append(PREFIX_NUSNETID).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {

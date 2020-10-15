@@ -6,7 +6,7 @@ import static seedu.taskmaster.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.NUSNETID_DESC_AMY;
-import static seedu.taskmaster.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.taskmaster.logic.commands.CommandTestUtil.TELEGRAM_DESC_AMY;
 import static seedu.taskmaster.testutil.Assert.assertThrows;
 import static seedu.taskmaster.testutil.TypicalStudents.AMY;
 
@@ -79,7 +79,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + TELEGRAM_DESC_AMY + EMAIL_DESC_AMY
                 + NUSNETID_DESC_AMY;
         Student expectedStudent = new StudentBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();

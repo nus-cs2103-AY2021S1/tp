@@ -33,7 +33,7 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label telegram;
     @FXML
     private Label nusnetId;
     @FXML
@@ -49,7 +49,7 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        phone.setText(student.getPhone().value);
+        telegram.setText(student.getTelegram().value);
         nusnetId.setText(student.getNusnetId().value);
         email.setText(student.getEmail().value);
         student.getTags().stream()

@@ -24,7 +24,7 @@ class JsonAdaptedAttendance {
      */
     @JsonCreator
     public JsonAdaptedAttendance(@JsonProperty("nusnetId") String nusnetId,
-                                 @JsonProperty("phone") String attendanceType) {
+                                 @JsonProperty("telegram") String attendanceType) {
         this.nusnetId = nusnetId;
         this.attendanceType = attendanceType;
     }

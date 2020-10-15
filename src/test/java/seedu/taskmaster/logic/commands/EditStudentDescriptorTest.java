@@ -7,8 +7,8 @@ import static seedu.taskmaster.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.VALID_NUSNETID_BOB;
-import static seedu.taskmaster.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.taskmaster.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -39,8 +39,8 @@ public class EditStudentDescriptorTest {
         EditStudentDescriptor editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different phone -> returns false
-        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
+        // different telegram -> returns false
+        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withTelegram(VALID_TELEGRAM_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different email -> returns false

@@ -9,8 +9,8 @@ import seedu.taskmaster.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.taskmaster.model.student.Email;
 import seedu.taskmaster.model.student.Name;
 import seedu.taskmaster.model.student.NusnetId;
-import seedu.taskmaster.model.student.Phone;
 import seedu.taskmaster.model.student.Student;
+import seedu.taskmaster.model.student.Telegram;
 import seedu.taskmaster.model.tag.Tag;
 
 /**
@@ -34,7 +34,7 @@ public class EditStudentDescriptorBuilder {
     public EditStudentDescriptorBuilder(Student student) {
         descriptor = new EditStudentDescriptor();
         descriptor.setName(student.getName());
-        descriptor.setPhone(student.getPhone());
+        descriptor.setTelegram(student.getTelegram());
         descriptor.setEmail(student.getEmail());
         descriptor.setNusnetId(student.getNusnetId());
         descriptor.setTags(student.getTags());
@@ -49,10 +49,10 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditStudentDescriptor} that we are building.
+     * Sets the {@code Telegram} of the {@code EditStudentDescriptor} that we are building.
      */
-    public EditStudentDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+    public EditStudentDescriptorBuilder withTelegram(String telegram) {
+        descriptor.setTelegram(new Telegram(telegram));
         return this;
     }
 

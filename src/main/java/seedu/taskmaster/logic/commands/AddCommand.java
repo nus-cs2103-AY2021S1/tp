@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_NUSNETID;
-import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
@@ -21,13 +21,13 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the student list. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
+            + PREFIX_TELEGRAM + "TELEGRAM "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_NUSNETID + "NUSNETID "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
+            + PREFIX_TELEGRAM + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_NUSNETID + "e0123456 "
             + PREFIX_TAG + "friends "

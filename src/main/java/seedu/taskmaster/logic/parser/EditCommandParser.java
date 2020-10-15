@@ -5,8 +5,8 @@ import static seedu.taskmaster.commons.core.Messages.MESSAGE_INVALID_COMMAND_FOR
 import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_NUSNETID;
-import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -32,7 +32,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_NUSNETID, PREFIX_TAG);
+                ArgumentTokenizer
+                        .tokenize(args, PREFIX_NAME, PREFIX_TELEGRAM, PREFIX_EMAIL, PREFIX_NUSNETID, PREFIX_TAG);
 
         Index index;
 
@@ -46,8 +47,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editStudentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editStudentDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+        if (argMultimap.getValue(PREFIX_TELEGRAM).isPresent()) {
+            editStudentDescriptor.setTelegram(ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editStudentDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
