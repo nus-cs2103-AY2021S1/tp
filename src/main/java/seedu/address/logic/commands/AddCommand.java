@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FEED_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -22,13 +23,14 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_ID + "ID "
             + PREFIX_SPECIES + "SPECIES "
-            + "[" + PREFIX_MEDICAL_CONDITION + "MEDICAL_CONDITION]...\n"
+            + "[" + PREFIX_MEDICAL_CONDITION + "MEDICAL CONDITION] "
+            + "[" + PREFIX_FEED_TIME + "FEEDING TIME]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Thomas "
             + PREFIX_ID + "0000237 "
             + PREFIX_SPECIES + "Parrot "
             + PREFIX_MEDICAL_CONDITION + "Psittacosis "
-            + PREFIX_MEDICAL_CONDITION + "Proventricular Dilatation Disease ";
+            + PREFIX_FEED_TIME + "1400 ";
 
     public static final String MESSAGE_SUCCESS = "New animal added: %1$s";
     public static final String MESSAGE_DUPLICATE_ANIMAL = "This animal already exists in the address book";
