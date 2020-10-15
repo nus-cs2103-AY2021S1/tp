@@ -1,4 +1,4 @@
-package seedu.address.model.todolist;
+package seedu.address.model.task;
 
 /**
  * Represents the type of the task.

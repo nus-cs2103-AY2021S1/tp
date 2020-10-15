@@ -1,4 +1,4 @@
-package seedu.address.model.todolist;
+package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.todolist.exceptions.DuplicateTaskException;
-import seedu.address.model.todolist.exceptions.TaskNotFoundException;
+import seedu.address.model.task.exceptions.DuplicateTaskException;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 /**
  * A list of tasks that enforces uniqueness between its elements and does not allow nulls.
