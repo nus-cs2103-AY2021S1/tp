@@ -32,7 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     //Independent Ui parts residing in this Ui container
     private AssignmentListPanel assignmentListPanel;
-    private TaskListPanel taskListPanel;
+    private UpcomingTaskListPanel upcomingTaskListPanel;
     private ReminderListPanel reminderListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -126,8 +126,8 @@ public class MainWindow extends UiPart<Stage> {
         reminderListPanel = new ReminderListPanel(logic.getRemindedAssignmentList());
         reminderListPanelPlaceholder.getChildren().add(reminderListPanel.getRoot());
 
-        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+        upcomingTaskListPanel = new UpcomingTaskListPanel(logic.getFilteredTaskList());
+        taskListPanelPlaceholder.getChildren().add(upcomingTaskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -187,8 +187,8 @@ public class MainWindow extends UiPart<Stage> {
         return reminderListPanel;
     }
 
-    public TaskListPanel getTaskListPanel() {
-        return taskListPanel;
+    public UpcomingTaskListPanel getTaskListPanel() {
+        return upcomingTaskListPanel;
     }
 
     /**
