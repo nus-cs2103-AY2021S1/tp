@@ -63,7 +63,7 @@ public class UpcomingTaskListPanel extends UiPart<Region> {
             setStyleToIndicateDueSoon(label);
             label.setText("Due in " + duration.toHours() + " hours, on " + formattedDue);
         } else if (duration.toDays() < DAY_PER_WEEK) {
-            setStyleToIndicateDueSoon(label);
+            setStyleToIndicateDueInAWeek(label);
             label.setText("Due in " + duration.toDays() + " days, on " + formattedDue);
         } else if (duration.toDays() < MIN_DAY_PER_MONTH) {
             label.setText("Due in " + duration.toDays() + " days, on " + formattedDue);
@@ -92,7 +92,7 @@ public class UpcomingTaskListPanel extends UiPart<Region> {
         styleClass.add(DUE_SOON_STYLE_CLASS);
     }
 
-    public void setStyleToIndicateDueInAWeek(Label label) {
+    public static void setStyleToIndicateDueInAWeek(Label label) {
         ObservableList<String> styleClass = label.getStyleClass();
 
         if (styleClass.contains(DUE_IN_A_WEEK_STYLE_CLASS)) {
