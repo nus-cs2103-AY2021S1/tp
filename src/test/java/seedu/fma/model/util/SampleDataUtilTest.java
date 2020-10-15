@@ -13,7 +13,7 @@ import seedu.fma.model.log.Rep;
 class SampleDataUtilTest {
 
     @Test
-    void getSampleLogs() {
+    void testGetSampleLogs() {
         Log[] sampleLogs = {
             new Log(Exercise.find(new Name("Sit ups")), new Rep("30"), new Comment("My abs hurt :(")),
             new Log(Exercise.find(new Name("Pull ups")), new Rep("10"), new Comment("-"))
@@ -26,7 +26,7 @@ class SampleDataUtilTest {
     }
 
     @Test
-    void getSampleExercises() {
+    void testGetSampleExercises() {
         Exercise[] sampleExercises = {
             new Exercise(new Name("Flying kicks"), 15),
             new Exercise(new Name("Sit ups"), 30),
@@ -41,15 +41,10 @@ class SampleDataUtilTest {
     }
 
     @Test
-    void getSampleLogBook() {
-        LogBook sampleLogbook = new LogBook();
-        for (Log sampleLog : SampleDataUtil.getSampleLogs()) {
-            sampleLogbook.addLog(sampleLog);
-        }
-        for (int i = 0; i < SampleDataUtil.getSampleLogBook().getLogList().size(); i++) {
-            // TODO: Need to check date time for logs
-            assertTrue(SampleDataUtil.getSampleLogBook().getLogList().get(i).getExercise()
-                    == sampleLogbook.getLogList().get(i).getExercise());
+    void testGetSampleLogBook() {
+        LogBook newLogBook = new LogBook();
+        for (int i = 0; i < newLogBook.getLogList().size(); i++) {
+            assertTrue(newLogBook.getLogList().contains(SampleDataUtil.getSampleLogs()[i]));
         }
     }
 }
