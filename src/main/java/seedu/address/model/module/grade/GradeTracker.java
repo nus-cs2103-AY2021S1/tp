@@ -7,6 +7,10 @@ import java.util.List;
  * Tracks the assignments and final grade for a module.
  */
 public class GradeTracker {
+    public static final String MESSAGE_INVALID_GRADE =
+            "Grades should be provided in the range from 0.00 to 1.00.";
+    public static final String MESSAGE_DUPLICATE_ASSIGNMENT =
+            "Assignments cannot be repeated.";
     private final List<Assignment> assignments;
     private double grade;
 
@@ -28,6 +32,24 @@ public class GradeTracker {
 
     public void addAssignment(Assignment newAssignment) {
         assignments.add(newAssignment);
+    }
+
+    public List<Assignment> getAssignments() {
+        return assignments;
+    }
+
+    /**
+     * Checks if the grade can be placed into the grade tracker.
+     *
+     * @param test grade to be checked.
+     * @return true if the grade is valid.
+     */
+    public static boolean isValidGrade(double test) {
+        if (test <= 1 && test >= 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

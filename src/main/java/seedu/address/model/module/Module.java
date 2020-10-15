@@ -54,6 +54,17 @@ public class Module {
     }
 
     /**
+     * Represents the module object constructor.
+     * @param name name of module
+     * @param gradeTracker grade tracker attached to module
+     */
+    public Module(ModuleName name, GradeTracker gradeTracker) {
+        this.name = name;
+        this.zoomLink = null;
+        this.gradeTracker = gradeTracker;
+    }
+
+    /**
      * Returns the module name.
      * @return ModuleName module name.
      */

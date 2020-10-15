@@ -7,10 +7,11 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
+import seedu.address.model.module.grade.GradeTracker;
 import seedu.address.model.person.Person;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Module}.
  */
 class JsonAdaptedModule {
 
@@ -18,6 +19,7 @@ class JsonAdaptedModule {
 
     private final String name;
     private final String zoomLink;
+    private final GradeTracker gradeTracker = new GradeTracker();
     //private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -25,9 +27,11 @@ class JsonAdaptedModule {
      */
     @JsonCreator
     public JsonAdaptedModule(@JsonProperty("name") String name,
-                             @JsonProperty("zoomLink") String zoomLink) {
+                             @JsonProperty("zoomLink") String zoomLink,
+                             @JsonProperty("gradeTracker") GradeTracker gradeTracker) {
         this.name = name;
         this.zoomLink = zoomLink;
+
         //tagging temporarily removed
         /*if (tagged != null) {
             this.tagged.addAll(tagged);
