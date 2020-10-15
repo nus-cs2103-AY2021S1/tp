@@ -1,11 +1,16 @@
 package seedu.address.model.delivery;
 
+import org.junit.jupiter.api.Test;
+import seedu.address.model.item.Name;
+
+import static seedu.address.testutil.Assert.assertThrows;
+
 public class DeliveryNameTest {
 
-//    @Test
-//    public void constructor_null_throwsNullPointerException() {
-//        assertThrows(NullPointerException.class, () -> new Name(null));
-//    }
+    @Test
+    public void constructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new DeliveryName(null));
+    }
 //
 //    @Test
 //    public void constructor_invalidName_throwsIllegalArgumentException() {
