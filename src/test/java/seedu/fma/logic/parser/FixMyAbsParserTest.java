@@ -5,7 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.fma.logic.commands.AddCommand;
 import seedu.fma.logic.commands.ClearCommand;
+import seedu.fma.logic.commands.DeleteCommand;
+import seedu.fma.logic.commands.EditCommand;
 import seedu.fma.logic.commands.ExitCommand;
 import seedu.fma.logic.commands.FindCommand;
 import seedu.fma.logic.commands.HelpCommand;
@@ -57,25 +60,24 @@ class FixMyAbsParserTest {
                 + " e/situp r/50 c/my abs hurt:(") instanceof HelpCommand);
     }
 
-    // TODO: Uncomment when exercise added
-    /*  @Test
+    @Test
     void parseCommand_containsAddCommand_returnsAddCommand() throws ParseException {
         FixMyAbsParser parser = new FixMyAbsParser();
-        assertTrue(parser.parseCommand(AddCommand.COMMAND_WORD +
-        " e/situp r/50 c/my abs hurt:(") instanceof AddCommand);
+        assertTrue(parser.parseCommand(AddCommand.COMMAND_WORD
+                + " e/Sit ups r/50 c/my abs hurt:(") instanceof AddCommand);
     }
 
     @Test
     void parseCommand_containsEditCommand_returnsEditCommand() throws ParseException {
         FixMyAbsParser parser = new FixMyAbsParser();
-        assertTrue(parser.parseCommand(EditCommand.COMMAND_WORD +
-        " e/situp r/50 c/my abs hurt:(") instanceof EditCommand);
+        assertTrue(parser.parseCommand(EditCommand.COMMAND_WORD
+                + " e/Sit ups r/50 c/my abs hurt:(") instanceof EditCommand);
     }
 
     @Test
     void parseCommand_containsDeleteCommand_returnsDeleteCommand() throws ParseException {
         FixMyAbsParser parser = new FixMyAbsParser();
-        assertTrue(parser.parseCommand(DeleteCommand.COMMAND_WORD +
-        " e/situp r/50 c/my abs hurt:(") instanceof DeleteCommand);
-    } */
+        assertTrue(parser.parseCommand(DeleteCommand.COMMAND_WORD
+                + " e/Sit ups r/50 c/my abs hurt:(") instanceof DeleteCommand);
+    }
 }
