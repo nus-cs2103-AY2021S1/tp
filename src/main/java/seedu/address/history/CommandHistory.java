@@ -57,7 +57,7 @@ public class CommandHistory implements History {
     }
 
     private boolean isAbleToReturnNextCommand() {
-        return currentCommandIndex < commandHistory.size() - 1 && isWithinLengthLimit();
+        return hasNextCommand() && isWithinLengthLimit();
     }
 
     private boolean isAbleToReturnPreviousCommand() {
