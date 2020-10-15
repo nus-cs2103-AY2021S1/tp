@@ -89,10 +89,12 @@ public class CommandHistoryTest {
         // if only command in history, return that command
         assertEquals(optionalSecondCommand, cOne.previousCommand());
 
-        // previous command of cTwo should be secondCommand as it's the first time we are applying previousCommand
+        // previous command of cTwo should be secondCommand as it's the first time
+        // we are applying previousCommand after addingToHistory
         assertEquals(optionalSecondCommand, cTwo.previousCommand());
 
-        // previous command of cThree should be secondCommand as it's the first time we are applying previousCommand
+        // previous command of cThree should be secondCommand as it's the first time
+        // we are applying previousCommand after addingToHistory
         assertEquals(optionalSecondCommand, cThree.previousCommand());
 
         //================== AFTER 1x PREVIOUS COMMAND ==================
@@ -128,7 +130,7 @@ public class CommandHistoryTest {
     }
 
     @Test
-    public void previousCommandThenNextCommandThenPreviousCommand() throws HistoryException {
+    public void previousCommandThenPreviousCommandThenNextCommandThenPreviousCommand() throws HistoryException {
         String firstCommand = "FirstCommand";
         String secondCommand = "SecondCommand";
 
@@ -174,10 +176,127 @@ public class CommandHistoryTest {
         // if only command in history, return that command
         assertEquals(optionalSecondCommand, cOne.previousCommand());
 
-        // previous command of cTwo should be secondCommand as it's the first time we are applying previousCommand
+        // previous command of cTwo should be secondCommand as it's the first time
+        // we are applying previousCommand after addingToHistory
         assertEquals(optionalSecondCommand, cTwo.previousCommand());
 
-        // previous command of cThree should be secondCommand as it's the first time we are applying previousCommand
+        // previous command of cThree should be secondCommand as it's the first time
+        // we are applying previousCommand after addingToHistory
+        assertEquals(optionalSecondCommand, cThree.previousCommand());
+
+        //================== AFTER 1x PREVIOUS COMMAND ==================
+        // cOne = {secondCommand};
+        // cOne Current index = 0;
+        //
+        // cTwo = {firstCommand, secondCommand};
+        // cTwo Current index = 1;
+        //
+        // cThree = {firstCommand, secondCommand};
+        // cThree Current index = 1;
+        //===============================================================
+
+        // if only command in history, return that command
+        assertEquals(optionalSecondCommand, cOne.previousCommand());
+
+        // previous command of cTwo should be firstCommand as it's not the first time we are applying previousCommand
+        assertEquals(optionalFirstCommand, cTwo.previousCommand());
+
+        // previous command of cThree should be firstCommand as it's not the first time we are applying previousCommand
+        assertEquals(optionalFirstCommand, cThree.previousCommand());
+
+        //================== AFTER 1x PREVIOUS COMMAND ==================
+        // cOne = {secondCommand};
+        // cOne Current index = 0;
+        //
+        // cTwo = {firstCommand, secondCommand};
+        // cTwo Current index = 0;
+        //
+        // cThree = {firstCommand, secondCommand};
+        // cThree Current index = 0;
+        //===============================================================
+
+        // since currentCommandIndex is at the end, there is no nextCommand
+        assertEquals(Optional.empty(), cOne.nextCommand());
+
+        // next Item in both cTwo and cThree should be secondCommand
+        assertEquals(optionalSecondCommand, cTwo.nextCommand());
+        assertEquals(optionalSecondCommand, cThree.nextCommand());
+
+        //==================== AFTER 1x NEXT COMMAND ====================
+        // cOne = {secondCommand};
+        // cOne Current index = 0;
+        //
+        // cTwo = {firstCommand, secondCommand};
+        // cTwo Current index = 1;
+        //
+        // cThree = {firstCommand, secondCommand};
+        // cThree Current index = 1;
+        //===============================================================
+
+        // if only command in history, return that command
+        assertEquals(optionalSecondCommand, cOne.previousCommand());
+
+        // previous command of cTwo should be firstCommand as it's not the first time
+        // we are applying previousCommand after addingToHistory
+        assertEquals(optionalFirstCommand, cTwo.previousCommand());
+
+        // previous command of cThree should be secondCommand as it's the first time
+        // we are applying previousCommand after addingToHistory
+        assertEquals(optionalFirstCommand, cThree.previousCommand());
+    }
+
+    @Test
+    public void previousCommandThenNextCommandThenPreviousCommand() throws HistoryException {
+        String firstCommand = "FirstCommand";
+        String secondCommand = "SecondCommand";
+
+        Optional<String> optionalSecondCommand = Optional.of(secondCommand);
+
+        CommandHistory cOne = new CommandHistory(1);
+        CommandHistory cTwo = new CommandHistory(2);
+        CommandHistory cThree = new CommandHistory(3);
+
+        //========================= PRIOR TO ADDING =========================
+        // cOne = {};
+        // cOne Current index = -1;
+        //
+        // cTwo = {};
+        // cTwo Current index = -1;
+        //
+        // cThree = {};
+        // cThree Current index = -1;
+        //===================================================================
+
+        // Adding firstCommand
+        cOne.addToHistory(firstCommand);
+        cTwo.addToHistory(firstCommand);
+        cThree.addToHistory(firstCommand);
+
+        // Adding secondCommand
+        cOne.addToHistory(secondCommand);
+        cTwo.addToHistory(secondCommand);
+        cThree.addToHistory(secondCommand);
+
+        //================== AFTER ADDING TO HISTORY ==================
+        // cOne = {secondCommand};
+        // cOne Current index = 0;
+        //
+        // cTwo = {firstCommand, secondCommand};
+        // cTwo Current index = 1;
+        //
+        // cThree = {firstCommand, secondCommand};
+        // cThree Current index = 1;
+        //==============================================================
+
+        // if only command in history, return that command
+        assertEquals(optionalSecondCommand, cOne.previousCommand());
+
+        // previous command of cTwo should be secondCommand as it's the first time
+        // we are applying previousCommand after addingToHistory
+        assertEquals(optionalSecondCommand, cTwo.previousCommand());
+
+        // previous command of cThree should be secondCommand as it's the first time
+        // we are applying previousCommand after addingToHistory
         assertEquals(optionalSecondCommand, cThree.previousCommand());
 
         //================== AFTER 1x PREVIOUS COMMAND ==================
@@ -214,10 +333,12 @@ public class CommandHistoryTest {
         // if only command in history, return that command
         assertEquals(optionalSecondCommand, cOne.previousCommand());
 
-        // previous command of cTwo should be secondCommand as it's the first time we are applying previousCommand
+        // previous command of cTwo should be secondCommand as it's the first time
+        // we are applying previousCommand after addingToHistory
         assertEquals(optionalSecondCommand, cTwo.previousCommand());
 
-        // previous command of cThree should be secondCommand as it's the first time we are applying previousCommand
+        // previous command of cThree should be secondCommand as it's the first time
+        // we are applying previousCommand after addingToHistory
         assertEquals(optionalSecondCommand, cThree.previousCommand());
 
         //================== AFTER 1x PREVIOUS COMMAND ==================
@@ -304,10 +425,12 @@ public class CommandHistoryTest {
         // if only command in history, return that command
         assertEquals(optionalSecondCommand, cOne.previousCommand());
 
-        // previous command of cTwo should be secondCommand as it's the first time we're prompting previousCommand
+        // previous command of cTwo should be secondCommand as it's the first time
+        // we are applying previousCommand after addingToHistory
         assertEquals(optionalSecondCommand, cTwo.previousCommand());
 
-        // previous command of cThree should be secondCommand as it's the first time we're prompting previousCommand
+        // previous command of cThree should be secondCommand as it's the first time
+        // we are applying previousCommand after addingToHistory
         assertEquals(optionalSecondCommand, cThree.previousCommand());
 
         //================== AFTER 1x PREVIOUS COMMAND ==================
