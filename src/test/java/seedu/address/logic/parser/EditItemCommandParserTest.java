@@ -1,15 +1,13 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.DeleteItemCommand;
-import seedu.address.logic.commands.EditItemCommand;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
-import static seedu.address.testutil.TypicalItems.APPLE;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.EditItemCommand;
 
 public class EditItemCommandParserTest {
 

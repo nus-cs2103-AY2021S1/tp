@@ -244,6 +244,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateRecipeNames(String originalName, String updatedName) {
+        filteredRecipes.stream()
+                        .filter(recipe -> recipe.getProductName().equals(originalName))
+                        .forEach(recipe -> setRecipe(recipe, recipe.setProductName(updatedName)));
+    }
+
+    @Override
     public int findLocationID(Location toFind) {
         requireNonNull(toFind);
         return locationList.findLocationID(toFind);

@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ITEMS;
@@ -28,8 +27,8 @@ public class EditItemCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the item identified "
-            + "by the index number used in the displayed item list.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the item "
+            + "at the index number used in the displayed item list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_ITEM_NAME + "NAME] "
@@ -41,7 +40,7 @@ public class EditItemCommand extends Command {
     public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the item list.";
-    public static final String MESSAGE_INVALID_ITEM_DISPLAYED_INDEX = "Please enter a valid item index.";
+    public static final String MESSAGE_INVALID_ITEM_DISPLAYED_INDEX = "The index must be a positive integer.";
 
     private final Index index;
     private final EditItemDescriptor editItemDescriptor;
@@ -78,8 +77,16 @@ public class EditItemCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_ITEM);
         }
 
+        // update affected recipes
+        if (editItemDescriptor.getName().isPresent()) {
+            model.updateRecipeNames(itemToEdit.getName(), editItemDescriptor.getName().get());
+        }
+
         model.setItem(itemToEdit, editedItem);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
+
+
+
         return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem));
     }
 

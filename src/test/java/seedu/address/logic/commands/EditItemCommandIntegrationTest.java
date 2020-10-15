@@ -1,9 +1,17 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_DESCRIPTION_BANANA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_BANANA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_BANANA;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertInventoryCommandFailure;
+import static seedu.address.testutil.TypicalItems.APPLE;
+import static seedu.address.testutil.TypicalRecipes.APPLE_PIE;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ItemList;
 import seedu.address.model.LocationList;
 import seedu.address.model.Model;
@@ -12,13 +20,8 @@ import seedu.address.model.RecipeList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Quantity;
+import seedu.address.model.recipe.Recipe;
 import seedu.address.testutil.ItemBuilder;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_DESCRIPTION_BANANA;
-import static seedu.address.testutil.TypicalItems.APPLE;
 
 public class EditItemCommandIntegrationTest {
 
@@ -27,7 +30,7 @@ public class EditItemCommandIntegrationTest {
     private Item apple;
 
     /**
-     * Sets up model to contain an itemlist with only the item apple in it.
+     * Sets up model to contain an item list with only the item apple in it.
      */
     @BeforeEach
     public void setUp() {
@@ -35,21 +38,6 @@ public class EditItemCommandIntegrationTest {
         expectedModel = new ModelManager(new ItemList(), new LocationList(), new RecipeList(), new UserPrefs());
         apple = new ItemBuilder(APPLE).build();
         model.addItem(apple);
-    }
-
-    /**
-     * Tests for successful edit of an item's quantity found in the item list.
-     */
-    @Test
-    public void execute_singleField_success() {
-        EditItemCommand.EditItemDescriptor descriptor = new EditItemCommand.EditItemDescriptor();
-        descriptor.setQuantity(new Quantity(VALID_ITEM_QUANTITY_BANANA));
-        EditItemCommand eic = new EditItemCommand(Index.fromZeroBased(0), descriptor);
-        String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, apple);
-
-        Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_ITEM_QUANTITY_BANANA).build();
-        expectedModel.addItem(editedApple);
-        assertCommandSuccess(eic, model, expectedMessage, expectedModel);
     }
 
     /**
@@ -69,6 +57,25 @@ public class EditItemCommandIntegrationTest {
                 .withDescription(VALID_ITEM_DESCRIPTION_BANANA)
                 .build();
         expectedModel.addItem(editedApple);
+
+        assertCommandSuccess(eic, model, expectedMessage, expectedModel);
+    }
+
+    /**
+     * Tests for successful edit of an item's name found in the item list and correct update in recipe.
+     */
+    @Test
+    public void execute_withRecipeList_success() {
+        EditItemCommand.EditItemDescriptor descriptor = new EditItemCommand.EditItemDescriptor();
+        descriptor.setName(VALID_ITEM_NAME_BANANA);
+        EditItemCommand eic = new EditItemCommand(Index.fromZeroBased(0), descriptor);
+        String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, VALID_ITEM_NAME_BANANA);
+        model.addRecipe(APPLE_PIE);
+
+        Item editedApple = new ItemBuilder(APPLE).withName(VALID_ITEM_NAME_BANANA).build();
+        expectedModel.addItem(editedApple);
+        Recipe updatedRecipe = APPLE_PIE.setProductName(VALID_ITEM_NAME_BANANA);
+        expectedModel.addRecipe(updatedRecipe);
 
         assertCommandSuccess(eic, model, expectedMessage, expectedModel);
     }

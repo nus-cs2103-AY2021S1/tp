@@ -1,9 +1,24 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_DESCRIPTION_BANANA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_BANANA;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
+import static seedu.address.testutil.TypicalItems.APPLE;
+
+import java.util.function.Predicate;
+
+import org.junit.jupiter.api.Test;
+
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ItemList;
@@ -12,33 +27,13 @@ import seedu.address.model.item.Item;
 import seedu.address.model.item.Quantity;
 import seedu.address.testutil.ItemBuilder;
 
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
-import static seedu.address.testutil.TypicalItems.APPLE;
-
 public class EditItemCommandTest {
 
     private ModelStubWithItemList modelStub;
     private ModelStubWithItemList expectedModelStub;
-    private Item apple;
-    private ItemList itemList;
-    private ItemList expectedItemList;
-
-    @BeforeEach
-    public void setUp() {
-        apple = new ItemBuilder(APPLE).build();
-        itemList = new ItemList();
-        expectedItemList = new ItemList();
-    }
+    private Item apple = new ItemBuilder(APPLE).build();
+    private ItemList itemList = new ItemList();
+    private ItemList expectedItemList = new ItemList();
 
     /**
      * Tests for successful edit of an item's quantity found in the item list.

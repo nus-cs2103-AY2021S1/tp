@@ -1,14 +1,14 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditItemCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditItemCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -39,14 +39,12 @@ public class EditItemCommandParser implements Parser<EditItemCommand> {
             editItemDescriptor.setName(ItemParserUtil.parseName(argMultimap.getValue(PREFIX_ITEM_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_ITEM_QUANTITY).isPresent()) {
-            editItemDescriptor.setQuantity(ItemParserUtil.parseQuantity(argMultimap.getValue(PREFIX_ITEM_QUANTITY).get()));
+            editItemDescriptor.setQuantity(ItemParserUtil.parseQuantity(
+                    argMultimap.getValue(PREFIX_ITEM_QUANTITY).get()));
         }
         if (argMultimap.getValue(PREFIX_ITEM_DESCRIPTION).isPresent()) {
-            editItemDescriptor.setDescription(ItemParserUtil.parseDescription(argMultimap.getValue(PREFIX_ITEM_DESCRIPTION).get()));
-        }
-
-        if (!editItemDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditItemCommand.MESSAGE_NOT_EDITED);
+            editItemDescriptor.setDescription(ItemParserUtil.parseDescription(
+                    argMultimap.getValue(PREFIX_ITEM_DESCRIPTION).get()));
         }
 
         return new EditItemCommand(index, editItemDescriptor);
