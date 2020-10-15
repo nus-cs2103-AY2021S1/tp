@@ -12,40 +12,40 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.ModuleList;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Contact;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
 public class TypicalPersons {
 
-    public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
+    public static final Contact ALICE = new PersonBuilder().withName("Alice Pauline")
             .withEmail("alice@example.com")
             .withTags("friends").build();
-    public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
+    public static final Contact BENSON = new PersonBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com")
             .withTags("owesMoney", "friends").build();
-    public static final Person CARL = new PersonBuilder().withName("Carl Kurz")
+    public static final Contact CARL = new PersonBuilder().withName("Carl Kurz")
             .withEmail("heinz@example.com").build();
-    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
+    public static final Contact DANIEL = new PersonBuilder().withName("Daniel Meier")
             .withEmail("cornelia@example.com").withTags("friends").build();
-    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer")
+    public static final Contact ELLE = new PersonBuilder().withName("Elle Meyer")
             .withEmail("werner@example.com").build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz")
+    public static final Contact FIONA = new PersonBuilder().withName("Fiona Kunz")
             .withEmail("lydia@example.com").build();
-    public static final Person GEORGE = new PersonBuilder().withName("George Best")
+    public static final Contact GEORGE = new PersonBuilder().withName("George Best")
             .withEmail("anna@example.com").build();
 
     // Manually added
-    public static final Person HOON = new PersonBuilder().withName("Hoon Meier")
+    public static final Contact HOON = new PersonBuilder().withName("Hoon Meier")
             .withEmail("stefan@example.com").build();
-    public static final Person IDA = new PersonBuilder().withName("Ida Mueller")
+    public static final Contact IDA = new PersonBuilder().withName("Ida Mueller")
             .withEmail("hans@example.com").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY)
+    public static final Contact AMY = new PersonBuilder().withName(VALID_NAME_AMY)
             .withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB)
+    public static final Contact BOB = new PersonBuilder().withName(VALID_NAME_BOB)
             .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
@@ -58,13 +58,13 @@ public class TypicalPersons {
      */
     public static ModuleList getTypicalAddressBook() {
         ModuleList ab = new ModuleList();
-        for (Person person : getTypicalPersons()) {
+        for (Contact person : getTypicalPersons()) {
             // ab.addPerson(person);
         }
         return ab;
     }
 
-    public static List<Person> getTypicalPersons() {
+    public static List<Contact> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

@@ -7,10 +7,10 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Contact;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Contact}.
  */
 class JsonAdaptedModule {
 

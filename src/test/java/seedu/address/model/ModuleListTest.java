@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Contact;
 // import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
 
@@ -45,9 +45,9 @@ public class ModuleListTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        Contact editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
+        List<Contact> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
 
         // assertThrows(DuplicatePersonException.class, () -> moduleList.resetData(newData));
@@ -72,7 +72,7 @@ public class ModuleListTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         // moduleList.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        Contact editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         // assertTrue(moduleList.hasPerson(editedAlice));
     }
@@ -86,14 +86,14 @@ public class ModuleListTest {
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Contact> persons = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
+        AddressBookStub(Collection<Contact> persons) {
             this.persons.setAll(persons);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
+        public ObservableList<Contact> getPersonList() {
             return persons;
         }
     }

@@ -5,7 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Contact;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -33,7 +33,7 @@ public class PersonBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
+    public PersonBuilder(Contact personToCopy) {
         name = personToCopy.getName();
         email = personToCopy.getEmail();
         tags = new HashSet<>(personToCopy.getTags());
@@ -63,8 +63,8 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, email, tags);
+    public Contact build() {
+        return new Contact(name, email, tags);
     }
 
 }

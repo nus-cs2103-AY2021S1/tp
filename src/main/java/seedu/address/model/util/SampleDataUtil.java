@@ -8,33 +8,33 @@ import seedu.address.model.ModuleList;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Contact;
 import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Person[] getSamplePersons() {
-        return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Email("alexyeoh@example.com"),
+    public static Contact[] getSamplePersons() {
+        return new Contact[] {
+            new Contact(new Name("Alex Yeoh"), new Email("alexyeoh@example.com"),
                 getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Email("berniceyu@example.com"),
+            new Contact(new Name("Bernice Yu"), new Email("berniceyu@example.com"),
                 getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Email("charlotte@example.com"),
+            new Contact(new Name("Charlotte Oliveiro"), new Email("charlotte@example.com"),
                 getTagSet("neighbours")),
-            new Person(new Name("David Li"), new Email("lidavid@example.com"),
+            new Contact(new Name("David Li"), new Email("lidavid@example.com"),
                 getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new Email("irfan@example.com"),
+            new Contact(new Name("Irfan Ibrahim"), new Email("irfan@example.com"),
                 getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new Email("royb@example.com"),
+            new Contact(new Name("Roy Balakrishnan"), new Email("royb@example.com"),
                 getTagSet("colleagues"))
         };
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         ModuleList sampleAb = new ModuleList();
-        for (Person samplePerson : getSamplePersons()) {
+        for (Contact samplePerson : getSamplePersons()) {
             // sampleAb.addPerson(samplePerson);
         }
         // return sampleAb;
