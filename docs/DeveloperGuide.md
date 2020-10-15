@@ -404,8 +404,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-
-
 **Use case 07: Edit a task**
 
 **MSS**
@@ -417,10 +415,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 **Extensions**
+- 1a. The given index is invalid.
 
-- 2a. The given value of an attribute is invalid.
+  - 1a1. PlaNus shows an error message.
 
-  - 2a1. PlaNus shows an error message.
+    Use case resumes at step 1.
+
+- 1b. The given value of an attribute is invalid.
+
+  - 1b1. PlaNus shows an error message.
 
     Use case resumes at step 1.
 
