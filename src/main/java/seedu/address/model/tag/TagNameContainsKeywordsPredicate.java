@@ -9,7 +9,7 @@ import seedu.address.commons.util.StringUtil;
  * Tests that a {@code Tag}'s {@code Name} matches any of the keywords given.
  */
 public class TagNameContainsKeywordsPredicate implements Predicate<Tag> {
-    private final List<String> keywords;
+    protected final List<String> keywords;
 
     public TagNameContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
