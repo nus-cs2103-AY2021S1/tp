@@ -71,13 +71,13 @@ class FixMyAbsParserTest {
     void parseCommand_containsEditCommand_returnsEditCommand() throws ParseException {
         FixMyAbsParser parser = new FixMyAbsParser();
         assertTrue(parser.parseCommand(EditCommand.COMMAND_WORD
-                + " e/Sit ups r/50 c/my abs hurt:(") instanceof EditCommand);
+                + " 1 r/50 c/my abs hurt:(") instanceof EditCommand);
     }
 
     @Test
     void parseCommand_containsDeleteCommand_returnsDeleteCommand() throws ParseException {
         FixMyAbsParser parser = new FixMyAbsParser();
         assertTrue(parser.parseCommand(DeleteCommand.COMMAND_WORD
-                + " e/Sit ups r/50 c/my abs hurt:(") instanceof DeleteCommand);
+                + " 1") instanceof DeleteCommand);
     }
 }
