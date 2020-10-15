@@ -96,8 +96,8 @@ public class LogBook implements ReadOnlyLogBook {
 
     @Override
     public String toString() {
-        return logs.asUnmodifiableObservableList().size() + " logs";
-        // TODO: refine later
+        return logs.asUnmodifiableObservableList().stream()
+                .reduce("", (a, b) -> a + b.toString(), (a, b) -> a + b);
     }
 
     @Override

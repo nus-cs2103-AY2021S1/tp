@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.fma.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.fma.logic.parser.CliSyntax.PREFIX_EXERCISE;
 import static seedu.fma.logic.parser.CliSyntax.PREFIX_REPS;
+import static seedu.fma.model.util.SampleDataUtil.getSampleExercises;
 import static seedu.fma.testutil.Assert.assertThrows;
 
 import java.time.LocalDateTime;
@@ -44,11 +45,6 @@ public class CommandTestUtil {
 
     public static final Comment VALID_COMMENT_A = new Comment(VALID_COMMENT_A_STR);
     public static final Comment VALID_COMMENT_B = new Comment(VALID_COMMENT_B_STR);
-
-    public static final Exercise VALID_EXERCISE_A = new ExerciseBuilder()
-            .withName(VALID_EXERCISE_SIT_UP).build();
-    public static final Exercise VALID_EXERCISE_B = new ExerciseBuilder()
-            .withName(VALID_EXERCISE_JUMPING_JACKS).build();
 
     public static final int VALID_YEAR_A = 2021;
     public static final int VALID_MONTH_A = 2; // February

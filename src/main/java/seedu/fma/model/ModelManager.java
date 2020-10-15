@@ -153,4 +153,14 @@ public class ModelManager implements Model {
                 && filteredLogs.equals(other.filteredLogs);
     }
 
+    //=========== Debugging ===============================================================================
+
+    @Override
+    public String toString() {
+        return "\n====== MODEL MANAGER ======\n"
+            + "=== LOGBOOK ===\n"
+            + logBook.toString() + "\n"
+            + "=== USER PREFS ===\n"
+            + userPrefs.toString() + "\n";
+    }
 }

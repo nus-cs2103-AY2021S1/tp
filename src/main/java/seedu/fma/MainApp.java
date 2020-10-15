@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing LogBook ]===========================");
+        logger.info("=============================[ Initializing FixMyAbs ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -167,7 +167,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting LogBook " + MainApp.VERSION);
+        logger.info("Starting FixMyAbs " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
