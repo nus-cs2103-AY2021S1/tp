@@ -74,13 +74,13 @@ public class AssignmentCard extends UiPart<Region> {
         if (duration.toMinutes() < 0) {
             setStyleToIndicateOverdue(label);
             label.setText("Overdue!");
-        } else if (duration.toMinutes() <= MIN_PER_HOUR) {
+        } else if (duration.toMinutes() < MIN_PER_HOUR) {
             setStyleToIndicateDueSoon(label);
             label.setText("Due in " + duration.toMinutes() + " minutes");
-        } else if (duration.toHours() <= HOUR_PER_DAY) {
+        } else if (duration.toHours() < HOUR_PER_DAY) {
             setStyleToIndicateDueSoon(label);
             label.setText("Due in " + duration.toHours() + " hours");
-        } else if (duration.toDays() <= DAY_PER_WEEK) {
+        } else if (duration.toDays() < DAY_PER_WEEK) {
             setStyleToIndicateDueInAWeek(label);
             label.setText("Due in " + duration.toDays() + " days");
         } else {

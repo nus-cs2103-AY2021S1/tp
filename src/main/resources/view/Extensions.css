@@ -15,6 +15,10 @@
     -fx-text-fill: #e0de9b !important;
 }
 
+.start-in-a-week {
+    -fx-text-fill: #e0de9b !important;
+}
+
 .start-soon {
     -fx-text-fill: #d06651 !important;
 }

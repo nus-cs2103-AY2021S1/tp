@@ -24,8 +24,10 @@ public class UpcomingLessonCard extends UiPart<Region> {
     private static final String FXML = "UpcomingLessonListCard.fxml";
     private static final long MIN_PER_HOUR = 60;
     private static final long HOUR_PER_DAY = 24;
+    private static final long DAY_PER_WEEK = 7;
     private static final long MIN_DAY_PER_MONTH = 28;
     private static final String START_SOON_STYLE_CLASS = "start-soon";
+    private static final String START_IN_A_WEEK_STYLE_CLASS = "start-in-a-week";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -79,20 +81,23 @@ public class UpcomingLessonCard extends UiPart<Region> {
         LocalDateTime due = LocalDateTime.parse(deadline.value, inputFormat);
         String formattedDue = due.toLocalDate().format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
         Duration duration = Duration.between(now, due);
-        if (duration.toMinutes() <= MIN_PER_HOUR) {
-            setStyleToIndicateDueSoon(label);
+        if (duration.toMinutes() < MIN_PER_HOUR) {
+            setStyleToIndicateStartSoon(label);
             label.setText("Start in " + duration.toMinutes() + " minutes");
-        } else if (duration.toHours() <= HOUR_PER_DAY) {
-            setStyleToIndicateDueSoon(label);
+        } else if (duration.toHours() < HOUR_PER_DAY) {
+            setStyleToIndicateStartSoon(label);
             label.setText("Start in " + duration.toHours() + " hours");
-        } else if (duration.toDays() <= MIN_DAY_PER_MONTH) {
+        } else if (duration.toDays() < DAY_PER_WEEK) {
+            setStyleToIndicateStartInAWeek(label);
+            label.setText("Start in " + duration.toDays() + " days");
+        } else if (duration.toDays() < MIN_DAY_PER_MONTH) {
             label.setText("Start in " + duration.toDays() + " days");
         } else {
             label.setText("Start in months");
         }
     }
 
-    public void setStyleToIndicateDueSoon(Label label) {
+    public void setStyleToIndicateStartSoon(Label label) {
         ObservableList<String> styleClass = label.getStyleClass();
 
         if (styleClass.contains(START_SOON_STYLE_CLASS)) {
@@ -100,6 +105,16 @@ public class UpcomingLessonCard extends UiPart<Region> {
         }
 
         styleClass.add(START_SOON_STYLE_CLASS);
+    }
+
+    public void setStyleToIndicateStartInAWeek(Label label) {
+        ObservableList<String> styleClass = label.getStyleClass();
+
+        if (styleClass.contains(START_IN_A_WEEK_STYLE_CLASS)) {
+            return;
+        }
+
+        styleClass.add(START_IN_A_WEEK_STYLE_CLASS);
     }
 
     @Override
