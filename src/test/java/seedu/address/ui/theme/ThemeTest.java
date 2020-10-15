@@ -1,8 +1,8 @@
 package seedu.address.ui.theme;
 
-import org.junit.jupiter.api.Test;
-
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 public class ThemeTest {
 
@@ -12,7 +12,8 @@ public class ThemeTest {
 
     @Test
     public void constructor_nullThemeName_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Theme(null, VALID_STYLE_SHEET_PATH, VALID_THEME_PREVIEW_PATH));
+        assertThrows(
+                NullPointerException.class, () -> new Theme(null, VALID_STYLE_SHEET_PATH, VALID_THEME_PREVIEW_PATH));
     }
 
     @Test

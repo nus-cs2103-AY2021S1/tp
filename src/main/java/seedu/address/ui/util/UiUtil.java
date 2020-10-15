@@ -1,9 +1,9 @@
 package seedu.address.ui.util;
 
+import static java.util.Objects.requireNonNull;
+
 import javafx.stage.Stage;
 import seedu.address.ui.theme.Theme;
-
-import static java.util.Objects.requireNonNull;
 
 public class UiUtil {
 
