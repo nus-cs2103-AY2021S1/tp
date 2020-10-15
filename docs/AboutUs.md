@@ -48,7 +48,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/dearvae.md)]
 
 * Role: Developer, Figma Expert
-* Responsibilities: Integration 
+* Responsibilities: Integration
 
 ### Li Gangwei
 

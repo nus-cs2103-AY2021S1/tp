@@ -127,7 +127,7 @@ Examples:
 
 * `find title:play games` will list all tasks with title that includes the phrase `play games`
 * `find type:todo` will list all tasks with the type `todo`
-* `find title:dinner type:todo` will list all tasks with a title that includes `dinner` and of the type `todo` 
+* `find title:dinner type:todo` will list all tasks with a title that includes `dinner` and of the type `todo`
 * `find date:01-01-2020` will list all tasks with the date 01-01-2020
 
 ### Edit a task: `edit`
@@ -139,8 +139,8 @@ Format: `edit ATTRIBUTE_1:NEW_VALUE ATTRIBUTE_2:NEW_VALUE ...`
 Available attributes in v1.3 include:
 
 * `title`
-* `desc` 
-* `type` 
+* `desc`
+* `type`
 * `date`
 
 Examples:
