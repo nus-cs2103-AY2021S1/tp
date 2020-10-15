@@ -41,6 +41,7 @@ public class MainWindow extends UiPart<Stage> {
     private TagListPanel tagListPanel;
     private LastInputDisplay lastInputDisplay;
     private ThemeWindow themeWindow;
+    private HelpWindow helpWindow;
 
     @FXML
     private StackPane resultDisplayPlaceHolder;
@@ -80,6 +81,9 @@ public class MainWindow extends UiPart<Stage> {
 
         // Theme selection window
         themeWindow = new ThemeWindow();
+
+        // Help window
+        helpWindow = new HelpWindow();
     }
 
     public static MainWindow getInstance() {
@@ -164,7 +168,6 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
-        // todo
         currentTheme = ThemeSet.getTheme(guiSettings.getThemeName());
         UiUtil.setTheme(primaryStage, currentTheme);
     }
@@ -174,7 +177,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
-
+        if (!helpWindow.isShowing()) {
+            helpWindow.show();
+        } else {
+            helpWindow.focus();
+        }
     }
 
     void show() {
@@ -236,5 +243,7 @@ public class MainWindow extends UiPart<Stage> {
     public void setTheme(Theme theme) {
         currentTheme = theme;
         UiUtil.setTheme(primaryStage, theme);
+        UiUtil.setTheme(helpWindow.getRoot(), theme);
+        UiUtil.setTheme(themeWindow.getRoot(), theme);
     }
 }
