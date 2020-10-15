@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
-import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTasks.getTypicalPlanus;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ import seedu.address.model.task.Task;
  */
 public class DoneCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPlanus(), new UserPrefs());
 
     @Test
     public void execute_oneValidIndexUnfilteredList_success() {
@@ -37,7 +37,7 @@ public class DoneCommandTest {
 
         String expectedMessage = String.format(DoneCommand.buildMessage(tasksToDone));
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getPlanus(), new UserPrefs());
         expectedModel.markAsDone(tasksToDone);
 
         assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
@@ -54,7 +54,7 @@ public class DoneCommandTest {
 
         String expectedMessage = String.format(DoneCommand.buildMessage(tasksToDone));
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getPlanus(), new UserPrefs());
         expectedModel.markAsDone(tasksToDone);
 
         assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
@@ -93,7 +93,7 @@ public class DoneCommandTest {
 
         String expectedMessage = String.format(DoneCommand.buildMessage(tasksToDone));
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPlanus(), new UserPrefs());
         showTaskAtIndex(expectedModel, INDEX_FIRST_TASK);
         expectedModel.markAsDone(tasksToDone);
 
@@ -107,7 +107,7 @@ public class DoneCommandTest {
         Index outOfBoundIndex = INDEX_SECOND_TASK;
         Index[] indexes = {outOfBoundIndex};
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTaskList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getPlanus().getTaskList().size());
 
         DoneCommand doneCommand = new DoneCommand(indexes);
 
