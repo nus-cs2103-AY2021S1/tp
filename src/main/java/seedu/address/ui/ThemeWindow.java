@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.ui.util.UiUtil;
@@ -21,7 +22,7 @@ public class ThemeWindow extends UiPart<Stage> {
     private Theme selectedTheme = currentTheme;
 
     @FXML
-    private ListView themeList;
+    private ListView<Region> themeList;
     @FXML
     private ImageView themeImage;
 
