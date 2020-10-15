@@ -104,8 +104,8 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-__Add inventory__ | `add_inventory i/ITEM n/NUMBER`<br> e.g. add_inventory i/MacBook n/200
-__Sell inventory__ | `delete_inventory ITEM_NUMBER`<br> e.g. sell_inventory i/laptops n/100
+__Add inventory__ | `add_inventory i/ITEM q/NUMBER c/ITEM_COST`<br> e.g. add_inventory i/MacBook q/200 c/50
+__Sell inventory__ | `delete_inventory ITEM_NUMBER`<br> e.g. sell_inventory i/laptops q/100
 __Edit inventory__ | `edit_inventory ITEM_NUMBER [i/ITEM_NAME] [q/QUANTITY]`<br> e.g. edit_inventory 3 i/laptops q/10
 __List inventory__ | `list_inventory`
 __Add finance__ | `add_finance op/OPERATOR amt/AMOUNT`<br> e.g. add_finance op/in amt/420.69
