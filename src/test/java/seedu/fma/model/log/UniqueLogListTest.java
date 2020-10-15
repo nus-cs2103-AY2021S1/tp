@@ -3,7 +3,6 @@ package seedu.fma.model.log;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.fma.logic.commands.CommandTestUtil.VALID_COMMENT_A_STR;
 import static seedu.fma.testutil.Assert.assertThrows;
 import static seedu.fma.testutil.TypicalLogs.LOG_A;
 import static seedu.fma.testutil.TypicalLogs.LOG_B;
@@ -41,8 +40,7 @@ public class UniqueLogListTest {
     @Test
     public void contains_logWithSameIdentityFieldsInList_returnsTrue() {
         uniqueLogList.add(LOG_A);
-        Log editedLogA = new LogBuilder(LOG_A).withComment(VALID_COMMENT_A_STR)
-                .build();
+        Log editedLogA = new LogBuilder(LOG_A).build();
         assertTrue(uniqueLogList.contains(editedLogA));
     }
 
