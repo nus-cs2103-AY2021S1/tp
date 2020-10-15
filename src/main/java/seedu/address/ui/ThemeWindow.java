@@ -8,6 +8,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.AppUtil;
+import seedu.address.ui.theme.Theme;
+import seedu.address.ui.theme.ThemeSet;
 import seedu.address.ui.util.UiUtil;
 
 /**
@@ -62,7 +65,7 @@ public class ThemeWindow extends UiPart<Stage> {
      * @param theme the theme to display
      */
     public void showThemePreview(Theme theme) {
-        themeImage.setImage(UiUtil.getImage(theme.getThemePreviewPath()));
+        themeImage.setImage(AppUtil.getImage(theme.getThemePreviewPath()));
         selectedTheme = theme;
     }
 

@@ -1,4 +1,6 @@
-package seedu.address.ui;
+package seedu.address.ui.theme;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Theme stores the style sheet path and theme preview image path information.
@@ -17,6 +19,9 @@ public class Theme {
      * @param themePreviewPath the path of the preview image
      */
     public Theme(String themeName, String styleSheetPath, String themePreviewPath) {
+        requireNonNull(themeName);
+        requireNonNull(styleSheetPath);
+        requireNonNull(themePreviewPath);
         this.themeName = themeName;
         this.styleSheetPath = styleSheetPath;
         this.themePreviewPath = themePreviewPath;

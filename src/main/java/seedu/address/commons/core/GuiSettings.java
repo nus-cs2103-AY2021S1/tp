@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.io.Serializable;
 import java.util.Objects;
 
-import seedu.address.ui.ThemeSet;
+import seedu.address.ui.theme.ThemeSet;
 
 /**
  * A Serializable class that contains the GUI settings.
