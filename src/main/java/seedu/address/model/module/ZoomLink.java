@@ -67,4 +67,8 @@ public class ZoomLink {
         return value.hashCode();
     }
 
+    public String getLink() {
+        return this.value;
+    }
+
 }
