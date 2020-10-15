@@ -1,14 +1,15 @@
 package tp.cap5buddy.logic.parser;
 
 import tp.cap5buddy.logic.commands.Command;
-import tp.cap5buddy.logic.commands.EditContactCommand;
-import tp.cap5buddy.logic.commands.EditContactCommand.EditContactDescriptor;
+// import tp.cap5buddy.logic.commands.EditContactCommand;
+// import tp.cap5buddy.logic.commands.EditContactCommand.EditContactDescriptor;
 import tp.cap5buddy.logic.parser.exception.ParseException;
 
 public class EditContactParser extends Parser {
 
     @Override
     public Command parse(String userInput) throws ParseException {
+        /*
         Tokenizer tokenizer = new Tokenizer(userInput, PrefixList.CONTACT_INDEX_PREFIX,
                 PrefixList.CONTACT_NAME_PREFIX, PrefixList.CONTACT_EMAIL_PREFIX);
         String[] parsedArguments = tokenizer.tokenize();
@@ -31,5 +32,8 @@ public class EditContactParser extends Parser {
             String error = "error";
             throw new ParseException(error);
         }
+
+         */
+        return null;
     }
 }

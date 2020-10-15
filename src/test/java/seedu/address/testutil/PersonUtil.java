@@ -4,12 +4,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Set;
-
+//import java.util.Set;
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
+//import seedu.address.model.tag.Tag;
 
 /**
  * A utility class for Person.
@@ -37,20 +36,20 @@ public class PersonUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditModuleDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+    public static String getEditPersonDescriptorDetails(EditCommand.EditModuleDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
-            } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
-            }
-        }
+        descriptor.getModuleName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
+        descriptor.getZoomLink().ifPresent(zoomLink -> sb.append(PREFIX_EMAIL).append(zoomLink.value).append(" "));
+        //if (descriptor.getTags().isPresent()) {
+        //    Set<Tag> tags = descriptor.getTags().get();
+        //    if (tags.isEmpty()) {
+        //       sb.append(PREFIX_TAG);
+        //    } else {
+        //        tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+        //    }
+        //}
         return sb.toString();
     }
 }

@@ -16,7 +16,7 @@ import seedu.address.model.Model;
 // import seedu.address.model.ModuleList;
 // import seedu.address.model.person.NameContainsKeywordsPredicate;
 // import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+//import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -46,16 +46,16 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    //public static final EditCommand.EditModuleDescriptor DESC_AMY;
+    //public static final EditCommand.EditModuleDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_FRIEND)
-                .build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-                .build();
+        //DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        //        .withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_FRIEND)
+        //        .build();
+        //DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        //       .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+        //       .build();
     }
 
     /**

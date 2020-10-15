@@ -1,98 +1,97 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.module.ModuleName;
+import seedu.address.model.module.ZoomLink;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing Module in the address book.
  */
 public class EditCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "editmodule";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the module identified "
+            + "by the index number used in the displayed module list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_ZOOM_LINK + "www.zoom-link3.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited module: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the module list.";
 
-    private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final String moduleToEdit;
+    private final EditModuleDescriptor editModuleDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param moduleToEdit  the name of the module to edit
+     * @param editModuleDescriptor details to edit the Module with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+    public EditCommand(String moduleToEdit, EditModuleDescriptor editModuleDescriptor) {
+        requireNonNull(moduleToEdit);
+        requireNonNull(editModuleDescriptor);
 
-        this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.moduleToEdit = moduleToEdit;
+        this.editModuleDescriptor = new EditModuleDescriptor(editModuleDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        Module module = null;
         List<Module> lastShownList = model.getFilteredModuleList();
-
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        for (Module eachModule : lastShownList) {
+            if (eachModule.getName().fullName.equals(moduleToEdit)) {
+                module = eachModule;
+                break;
+            }
         }
 
-        Module personToEdit = lastShownList.get(index.getZeroBased());
-        Module editedPerson = createEditedModule(personToEdit, editPersonDescriptor);
-
-        if (!personToEdit.isSameModule(editedPerson) && model.hasModule(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (module == null) {
+            throw new CommandException(MESSAGE_NOT_EDITED);
         }
 
-        model.setModule(personToEdit, editedPerson);
+        Module editedModule = createEditedModule(module, editModuleDescriptor);
+
+        if (!module.isSameModule(editedModule) && model.hasModule(editedModule)) {
+            throw new CommandException(MESSAGE_DUPLICATE_MODULE);
+        }
+
+        model.setModule(module, editedModule);
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code module} with the details of {@code moduleToEdit}
+     * edited with {@code editModuleDescriptor}.
      */
-    private static Module createEditedModule(Module personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Module createEditedModule(Module moduleToEdit, EditModuleDescriptor editModuleDescriptor) {
+        assert moduleToEdit != null;
+        // Name updatedName = editModuleDescriptor.getName().orElse(ModuleToEdit.getName());
+        // Email updatedEmail = editModuleDescriptor.getEmail().orElse(ModuleToEdit.getEmail());
+        // Address updatedAddress = editModuleDescriptor.getAddress().orElse(ModuleToEdit.getAddress());
+        // Set<Tag> updatedTags = editModuleDescriptor.getTags().orElse(ModuleToEdit.getTags());
 
-        // Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        // Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        // Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        // Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        // return new Module(updatedName, updatedEmail, updatedAddress, updatedTags);
 
-        // return new Person(updatedName, updatedEmail, updatedAddress, updatedTags);
-        return new Module();
+        ModuleName moduleName = editModuleDescriptor.getModuleName().orElse(moduleToEdit.getName());
+        ZoomLink zoomLink = editModuleDescriptor.getZoomLink().orElse(moduleToEdit.getLink());
+        return new Module(moduleName, zoomLink);
 
     }
 
@@ -110,39 +109,49 @@ public class EditCommand extends Command {
 
         // state check
         EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+        return moduleToEdit.equals(e.moduleToEdit)
+                && editModuleDescriptor.equals(e.editModuleDescriptor);
+    }
+
+    @Override
+    public boolean isExit() {
+        return false;
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the module with. Each non-empty field value will replace the
+     * corresponding field value of the module.
      */
-    public static class EditPersonDescriptor {
-        private Name name;
-        private Email email;
-        private Set<Tag> tags;
+    public static class EditModuleDescriptor {
+        //private Name name;
+        //private Email email;
+        //private Set<Tag> tags;
+        private ModuleName moduleName;
+        private ZoomLink zoomLink;
 
-        public EditPersonDescriptor() {}
+        public EditModuleDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
-            setName(toCopy.name);
-            setEmail(toCopy.email);
-            setTags(toCopy.tags);
+        public EditModuleDescriptor(EditModuleDescriptor toCopy) {
+            //setName(toCopy.name);
+            //setEmail(toCopy.email);
+            //setTags(toCopy.tags);
+            setModuleName(toCopy.moduleName);
+            setZoomLink(toCopy.zoomLink);
         }
 
+        /*
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, email, tags);
+            return CollectionUtil.isAnyNonNull(moduleName, zoomLink);
         }
 
-        public void setName(Name name) {
+        /*public void setName(Name name) {
             this.name = name;
         }
 
@@ -162,7 +171,7 @@ public class EditCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
+        /*public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
@@ -171,8 +180,25 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
+        /*public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }*/
+
+
+        public void setModuleName(ModuleName moduleName) {
+            this.moduleName = moduleName;
+        }
+
+        public void setZoomLink(ZoomLink zoomLink) {
+            this.zoomLink = zoomLink;
+        }
+
+        public Optional<ModuleName> getModuleName() {
+            return Optional.ofNullable(moduleName);
+        }
+
+        public Optional<ZoomLink> getZoomLink() {
+            return Optional.ofNullable(zoomLink);
         }
 
         @Override
@@ -183,16 +209,18 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditModuleDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditModuleDescriptor e = (EditModuleDescriptor) other;
 
-            return getName().equals(e.getName())
-                    && getEmail().equals(e.getEmail())
-                    && getTags().equals(e.getTags());
+            //return getName().equals(e.getName())
+            //       && getEmail().equals(e.getEmail())
+            //       && getTags().equals(e.getTags());
+            return getModuleName().equals(e.getModuleName())
+                    && getZoomLink().equals(e.getZoomLink());
         }
     }
 }

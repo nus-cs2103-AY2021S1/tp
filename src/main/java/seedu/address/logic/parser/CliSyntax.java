@@ -9,5 +9,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
+    public static final Prefix PREFIX_ZOOM_LINK = new Prefix("l/");
+    public static final Prefix PREFIX_EDIT_NAME = new Prefix("e/");
 
 }

@@ -19,9 +19,13 @@ public class AddModuleParser extends Parser {
      */
     public Command parse(String userInput) throws ParseException {
         Tokenizer token = new Tokenizer(userInput, PrefixList.MODULE_NAME_PREFIX, PrefixList.MODULE_LINK_PREFIX);
-        String[] parsedArguments = token.tokenize();
-        String modName = parsedArguments[0];
-        String modLink = parsedArguments[1];
+        ArgumentMap argumentMap = token.tokenize();
+        if (!argumentMap.arePrefixesPresent(PrefixList.MODULE_NAME_PREFIX)) {
+            String error = "Missing prefix arguments";
+            throw new ParseException(error);
+        }
+        String modName = argumentMap.getValue(PrefixList.MODULE_NAME_PREFIX).get();
+        String modLink = argumentMap.getValue(PrefixList.MODULE_LINK_PREFIX).orElse("");
         this.command = new AddModuleCommand(modName, modLink);
         return this.command;
     }

@@ -13,6 +13,7 @@ public class DeleteContactParser extends Parser {
      * @throws ParseException If the user input could not be successfully parsed.
      */
     public DeleteContactCommand parse(String userInput) throws ParseException {
+        /*
         Tokenizer tokenizer = new Tokenizer(userInput,
                 PrefixList.CONTACT_INDEX_PREFIX);
         String[] parsedArguments = tokenizer.tokenize();
@@ -26,6 +27,7 @@ public class DeleteContactParser extends Parser {
             String error = "Missing arguments";
             throw new ParseException(error);
         }
-
+        */
+        return null;
     }
 }
