@@ -41,8 +41,6 @@ public class UniqueLogList implements Iterable<Log> {
      * The log must not already exist in the list.
      */
     public void add(Log toAdd) {
-        System.out.println(internalList);
-        System.out.println(toAdd);
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateLogException();
