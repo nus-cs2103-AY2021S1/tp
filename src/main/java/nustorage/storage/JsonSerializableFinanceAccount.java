@@ -37,7 +37,6 @@ class JsonSerializableFinanceAccount {
     }
 
 
-    @JsonCreator
     public JsonSerializableFinanceAccount(ReadOnlyFinanceAccount source) {
         financeRecords.addAll(
                 source.getFinanceList()

@@ -34,7 +34,6 @@ class JsonAdaptedInventoryRecord {
     /**
      * Converts a given {@code InventoryRecord} into this class for Jackson use.
      */
-    @JsonCreator
     public JsonAdaptedInventoryRecord(InventoryRecord source) {
         this.quantity = source.getQuantity();
         this.itemName = source.getItemName();

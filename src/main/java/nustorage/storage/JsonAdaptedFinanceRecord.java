@@ -38,7 +38,6 @@ class JsonAdaptedFinanceRecord {
     /**
      * Converts a given {@code FinanceRecord} into this class for Jackson use.
      */
-    @JsonCreator
     public JsonAdaptedFinanceRecord(FinanceRecord source) {
         this.id = source.getID();
         this.amount = source.getAmount();

@@ -42,7 +42,6 @@ class JsonSerializableInventory {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableInventory}.
      */
-    @JsonCreator
     public JsonSerializableInventory(ReadOnlyInventory source) {
         this.inventoryRecords.addAll(
                 source.asUnmodifiableObservableList()
