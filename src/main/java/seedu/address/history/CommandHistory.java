@@ -8,7 +8,7 @@ import java.util.Optional;
 import seedu.address.history.exception.HistoryException;
 
 public class CommandHistory implements History {
-    private static final String MESSAGE_LENGTH_LIMIT_AT_LEAST_ONE = "Length of Command History must at least be 1";
+    private static final String MESSAGE_LENGTH_LIMIT_AT_LEAST_ONE = "Length of Command History must be at least be 1";
 
     private List<String> commandHistory;
     private int currentCommandIndex;
