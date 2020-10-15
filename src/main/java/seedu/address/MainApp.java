@@ -80,8 +80,9 @@ public class MainApp extends Application {
             if (!moduleListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ModuleList");
                 initialData = new ModuleList();
+            } else {
+                initialData = moduleListOptional.get();
             }
-            initialData = moduleListOptional.get();
             //to be used when sample modulelist is created
             //initialData = moduleListOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
