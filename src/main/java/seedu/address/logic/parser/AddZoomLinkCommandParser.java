@@ -21,8 +21,8 @@ public class AddZoomLinkCommandParser implements Parser<AddZoomLinkCommand> {
      */
     public AddZoomLinkCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ZOOM_LINK);
+        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_ZOOM_LINK);
+        ArgumentMultimap argMultimap = tokenizer.tokenize();
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());

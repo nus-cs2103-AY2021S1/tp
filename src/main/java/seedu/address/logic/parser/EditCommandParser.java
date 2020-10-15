@@ -27,12 +27,11 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_EDIT_NAME, PREFIX_NAME, PREFIX_ZOOM_LINK);
+        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_EDIT_NAME, PREFIX_NAME, PREFIX_ZOOM_LINK);
+        ArgumentMultimap argMultimap = tokenizer.tokenize();
 
         String moduleName;
         moduleName = argMultimap.getValue(PREFIX_EDIT_NAME).get();
-
 
         EditModuleDescriptor editModuleDescriptor = new EditModuleDescriptor();
 
