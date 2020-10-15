@@ -31,6 +31,8 @@ public class AttendanceCard extends UiPart<Region> {
     private Label nusnetId;
     @FXML
     private Label attendanceStatus;
+    @FXML
+    private Label name;
 
     /**
      * Creates a {@code AttendanceCard} with the given {@code AttendanceType} and index to display.
@@ -39,9 +41,9 @@ public class AttendanceCard extends UiPart<Region> {
         super(FXML);
         this.attendance = attendance;
         id.setText(displayedIndex + ". ");
+        name.setText(attendance.getName().fullName);
         nusnetId.setText(attendance.getAttendance().getNusnetId().value);
         attendanceStatus.setText(attendance.getAttendance().getAttendanceType().name());
-        // get name by attendance.getName().value
     }
 
     @Override
