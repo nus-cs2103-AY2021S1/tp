@@ -81,16 +81,16 @@ Examples:
 Format: `list [NUMBER]`
 
 - Shows a list of lessons and assignments in your schedule within next `NUMBER` 
-weeks, starting from today.
+weeks, starting from the current date.
 - `list` command without `NUMBER` displays your entire list of lessons and assignments 
 stored in ProductiveNUS.
 
 
 Examples: 
 - `list 2` displays your lessons and assignments within the next
-2 weeks (starting from today).
+2 weeks (starting from the current date).
 - `list 3` displays all your lessons and assignments within the next
-3 weeks (starting from today).
+3 weeks (starting from the current date).
 - `list ` displays all your lessons and assignments.
 
 ### Deleting an assignment : `delete`
