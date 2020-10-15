@@ -6,8 +6,6 @@ import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.commands.results.HelpCommandResult;
 import seedu.address.model.Model;
 
-
-
 /**
  * Format instructions for getting started.
  */

@@ -1,0 +1,50 @@
+package seedu.address.logic.commands.deliverycommand;
+
+import static java.util.Objects.requireNonNull;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.model.Model;
+import seedu.address.model.delivery.DeliveryContainsKeywordsPredicate;
+import seedu.address.model.deliverymodel.DeliveryModel;
+
+/**
+ * Finds and lists all items in delivery book whose name contains any of the argument keywords.
+ * Keyword matching is case insensitive.
+ */
+public class DeliveryFindCommand extends DeliveryCommand {
+
+    public static final String COMMAND_WORD = "find-d";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all deliveries whose names contain any of "
+            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + "PREFIX only limited to name, phone, address and order\n"
+            + "Parameters: " + "PREFIX " + "KEYWORD [MORE_KEYWORDS]...\n"
+            + "Example: " + COMMAND_WORD + " n/Sally";
+
+    private final DeliveryContainsKeywordsPredicate predicate;
+
+    public DeliveryFindCommand(DeliveryContainsKeywordsPredicate predicate) {
+        this.predicate = predicate;
+    }
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        requireDeliveryModel(model);
+
+        DeliveryModel deliveryModel = (DeliveryModel) model;
+        deliveryModel.updateFilteredDeliveryList(predicate);
+        return new CommandResult(
+                String.format(Messages.MESSAGE_DELIVERIES_LISTED_OVERVIEW,
+                        deliveryModel.getFilteredDeliveryList().size()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeliveryFindCommand // instanceof handles nulls
+                && predicate.equals(((DeliveryFindCommand) other).predicate)); // state check
+    }
+}

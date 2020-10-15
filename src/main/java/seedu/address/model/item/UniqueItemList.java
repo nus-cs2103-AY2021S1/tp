@@ -12,7 +12,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.item.exceptions.DuplicateItemException;
 import seedu.address.model.item.exceptions.ItemNotFoundException;
-import seedu.address.model.tag.Tag;
 
 /**
  * A list of items that enforces uniqueness between its elements and does not allow nulls.
@@ -107,7 +106,7 @@ public class UniqueItemList implements Iterable<Item> {
         // 2) if both existing item and toAdd does not have max quantity
         // 3) if both existing item and toAdd item have maxQuantity
         // 4) if existing item does not have maxQuantity, but toAdd does
-        // case 3 and 4 are handled upstream @ AddCommand via throwing MESSAGE_CHANGE_MAX_ON_EXISTING_ITEM
+        // case 3 and 4 are handled upstream @ ItemAddCommand via throwing MESSAGE_CHANGE_MAX_ON_EXISTING_ITEM
         // Only need to consider case 1 and 2
         assert toAdd.getMaxQuantity().isEmpty();
         Quantity maxQuantity = existingItem.getMaxQuantity().orElse(null);

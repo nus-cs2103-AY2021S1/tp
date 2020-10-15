@@ -136,7 +136,8 @@ public class MainWindow extends UiPart<Stage> {
         deliveryListPanel = new DeliveryListPanel(logic.getFilteredDeliveryList());
         deliveryListPanelPlaceholder.getChildren().add(deliveryListPanel.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getInventoryBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getInventoryBookFilePath(),
+                logic.getDeliveryBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);

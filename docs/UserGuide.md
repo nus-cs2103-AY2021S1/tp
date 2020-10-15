@@ -30,13 +30,13 @@ title: User Guide
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all items.
+   * **`list-i`** : Lists all items.
 
-   * **`add`**`add n/Chicken q/3 s/ShengSiong t/Poultry` : Adds a item named `Chicken` to OneShelf.
+   * **`add-i`**`add-i n/Chicken q/3 s/ShengSiong t/Poultry` : Adds a item named `Chicken` to OneShelf.
 
-   * **`delete`**`3` : Deletes the item shown in the current list.
+   * **`delete-i`**`3` : Deletes the item shown in the current list.
 
-   * **`clear`** : Deletes all items.
+   * **`clear-i`** : Deletes all items.
 
    * **`exit`** : Exits the app.
 
@@ -53,7 +53,7 @@ title: User Guide
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Chicken`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add-i n/Chicken`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/Chicken t/Poultry` or as `n/Chicken`.
@@ -79,12 +79,12 @@ Shows a guide for user to kick-start their journey in OneShelf.
 
 
 
-### Adding a item: `add`
+### Adding an item: `add-i`
 
 Adds item to OneShelf, if there's already an item inside with the same name and supplier, it adds on to existing
 quantity of existing item.
 
-Format: `add n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]...​`
+Format: `add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]...​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A item can have any number of tags (including 0)
@@ -92,31 +92,31 @@ A item can have any number of tags (including 0)
 
 
 
-### Removing quantity from an item: `remove`
+### Removing quantity from an item: `remove-i`
 
 Removes a specified quantity of an existing item from OneShelf.
 
-Format: `remove INDEX q/QUANTITY`
+Format: `remove-i INDEX q/QUANTITY`
 * Subtracts `QUANTITY` from the current quantity of an item at the specified `INDEX`. The index refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `remove n/Chicken q/1`
+* `remove-i n/Chicken q/1`
 
 
 
-### Listing all items : `list`
+### Listing all items : `list-i` or `list-d`
 
-Shows a list of all items in the Inventory book.
+Shows a list of all items in the Inventory book or delivery book respectively.
 
-Format: `list`
+Format: `list-i` or `list-d`
 
 
 
-### Editing an item : `edit`
+### Editing an item : `edit-i`
 
 Edits an existing item in the Inventory book.
 
-Format: ` edit INDEX [n/NAME] [q/QUANTITY] [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]…​`
+Format: ` edit-i INDEX [n/NAME] [q/QUANTITY] [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]…​`
 
 * Edits the item at the specified `INDEX`. The index refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
 * Updates ALL the components of an item, UNABLE to update a specific component of an item.
@@ -126,16 +126,16 @@ Ie if a user wants to update the quantity, he/ she needs to specify all attribut
     specifying any tags after it.
 
 Examples:
-*  `edit 1 n/Chicken q/50` Edits the name and quantity of the 1st item to be `CHICKEN` and `50` respectively.
-*  `edit 2 n/Spinach t/` Edits the name of the 2nd item to be `Spinach` and clears all existing tags.
+*  `edit-i 1 n/Chicken q/50` Edits the name and quantity of the 1st item to be `CHICKEN` and `50` respectively.
+*  `edit-i 2 n/Spinach t/` Edits the name of the 2nd item to be `Spinach` and clears all existing tags.
 
 
 
-### Locating items by name: `find`
+### Locating items by keywords: `find-i`
 
-Finds items whose names contain any of the given keywords.
+Finds items whose atributes contain any of the given keywords.
 
-Format: `find PREFIX KEYWORD [MORE_KEYWORDS]`
+Format: `find-i PREFIX KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `chicken` will match `CHICKEN`
 * The order of the keywords does not matter. e.g. `Chicken steak` will match `steak Chicken`
@@ -145,32 +145,50 @@ Format: `find PREFIX KEYWORD [MORE_KEYWORDS]`
   e.g. `chicken steak` will return `chicken steak`, `steak beef`
 
 Examples:
-* `find n/Chicken` returns `chicken` and `CHICKEN`
+* `find-i n/Chicken` returns `chicken` and `chicken salad` items.
 
 
 
-### Deleting an item : `delete`
+### Deleting an item : `delete-i`
 
 Deletes the specified item from the inventory book.
 
-Format: `delete INDEX`
+Format: `delete-i INDEX`
 
 * Deletes the item at the specified `INDEX`.
 * The index refers to the index number shown in the displayed item list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd item in the inventory book.
-* `find Duck` followed by `delete 1` deletes the 1st item in the results of the `find` command.
+* `list-i` followed by `delete-i 2` deletes the 2nd item in the inventory book.
+* `find-i Duck` followed by `delete-i 1` deletes the 1st item in the results of the `find-i` command.
 
 
 
-### Clearing all entries : `clear`
+### Clearing all entries : `clear-i`
 
 Clears all entries from the Inventory book.
 
-Format: `clear`
+Format: `clear-i`
 
+
+
+### Locating deliveries by keywords: `find-d`
+
+Finds deliveries whose attributes contain any of the given keywords.
+
+Format: `find-d PREFIX KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `john` will match `JOHN`
+* The order of the keywords does not matter. e.g. `John Lim` will match `Lim John`
+* Name, Phone, Address, Order can be searched
+* Only full words for name will be matched e.g. `Bob` will not match `Bobby`
+* Any phone/address/order containing the search string within them will be matched. e.g. "Holland V" will match "Holland Village"
+* Items matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Bernice Adam` will return `Bernice Yeo`, `Adam Tan`
+
+Examples:
+* `find-d n/John` returns `John Tay` and `John Lim`'s deliveries
 
 
 ### Exiting the program : `exit`
@@ -236,14 +254,25 @@ Notify the user if a certain stock is below threshold
 
 ## Command summary
 
+
+
+#### Inventory summary
+
 | Action    | Format, Examples                                                                                    |
 |-----------|-----------------------------------------------------------------------------------------------------|
-|**Add**    | `add n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]...​` <br> e.g., `add n/Chicken q/3 s/ShengSiong t/Poultry` |
-|**Clear**  | `clear`                                                                                             |
-|**Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                 |
-|**Edit**   | `edit INDEX [n/NAME] [q/QUANTITY] [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]…​`<br> e.g.,`edit 1 n/Chicken q/50`                |
-|**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Chicken Steak`                                       |
-|**List**   | `list`                                                                                              |
-|**Help**   | `help`
-                                                                                              
-                                                                                              |
+|**Add to Inventory**    | `add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]...​` <br> e.g., `add n/Chicken q/3 s/ShengSiong t/Poultry` |
+|**Clear from Inventory**  | `clear-i`                                                                                             |
+|**Delete from Inventory** | `delete-i INDEX`<br> e.g., `delete 3`                                                                 |
+|**Edit Inventory**   | `edit-i INDEX [n/NAME] [q/QUANTITY] [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]…​`<br> e.g.,`edit 1 n/Chicken q/50`                |
+|**Find in Inventory**   | `find-i PREFIX KEYWORD [MORE_KEYWORDS]`<br> e.g., `find-i n/Chicken Steak`                                       |
+|**List Inventory**   | `list-i
+|**Remove from Inventory** | `remove-i INDEX q/QUANTITY`                                                                                              |
+|**Help**   | `help`                                                                                              |
+
+
+
+#### Inventory summary
+| Action    | Format, Examples                                                                                    |
+|-----------|-----------------------------------------------------------------------------------------------------|
+|**List Deliveries**   | `list-d`
+|**Find in Deliveries**  | `find-d PREFIX KEYWORD [MORE_KEYWORDS]` <br> e.g., `find-d n/Alex`           |
