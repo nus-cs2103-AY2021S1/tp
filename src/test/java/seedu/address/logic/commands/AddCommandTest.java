@@ -20,9 +20,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ModuleList;
 import seedu.address.model.ReadOnlyModuleList;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.module.Module;
 // import seedu.address.model.module.Module;
-import seedu.address.model.contact.Contact;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
