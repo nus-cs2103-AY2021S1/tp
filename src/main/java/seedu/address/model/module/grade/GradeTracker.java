@@ -52,6 +52,12 @@ public class GradeTracker {
         }
     }
 
+    /**
+     * Checks if the Grade Tracker is valid.
+     *
+     * @param gradeTracker grade tracker to check.
+     * @return true if the grade tracker is valid.
+     */
     public static boolean isValidGradeTracker(GradeTracker gradeTracker) {
         if (GradeTracker.isValidGrade(gradeTracker.getGrade())) {
             return true;

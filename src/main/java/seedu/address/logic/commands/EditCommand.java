@@ -197,7 +197,9 @@ public class EditCommand extends Command {
             this.zoomLink = zoomLink;
         }
 
-        public void setGradeTracker(GradeTracker gradeTracker) {this.gradeTracker = gradeTracker;}
+        public void setGradeTracker(GradeTracker gradeTracker) {
+            this.gradeTracker = gradeTracker;
+        }
 
         public Optional<ModuleName> getModuleName() {
             return Optional.ofNullable(moduleName);
