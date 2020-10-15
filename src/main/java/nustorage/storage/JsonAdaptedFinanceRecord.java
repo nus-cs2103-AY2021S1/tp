@@ -21,11 +21,12 @@ class JsonAdaptedFinanceRecord {
     private final double amount;
     private final LocalDateTime dateTime;
 
+
     /**
      * Constructs a {@code JsonAdaptedFinanceRecord} with the given record details.
      */
     @JsonCreator
-    public JsonAdaptedFinanceRecord(@JsonProperty("amount") int id,
+    public JsonAdaptedFinanceRecord(@JsonProperty("id") int id,
                                     @JsonProperty("amount") double amount,
                                     @JsonProperty("dateTime") LocalDateTime dateTime) {
         this.id = id;
@@ -37,7 +38,6 @@ class JsonAdaptedFinanceRecord {
     /**
      * Converts a given {@code FinanceRecord} into this class for Jackson use.
      */
-    @JsonCreator
     public JsonAdaptedFinanceRecord(FinanceRecord source) {
         this.id = source.getID();
         this.amount = source.getAmount();
@@ -52,6 +52,11 @@ class JsonAdaptedFinanceRecord {
      */
     public FinanceRecord toModelType() throws IllegalValueException {
 
+        if (this.id < 0) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "id"));
+        }
+        final int modelId = this.id;
+
         if (this.amount < 0) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "amount"));
         }
@@ -62,7 +67,7 @@ class JsonAdaptedFinanceRecord {
         }
         final LocalDateTime modelDateTime = this.dateTime;
 
-        return new FinanceRecord(id, modelAmount, modelDateTime);
+        return new FinanceRecord(modelId, modelAmount, modelDateTime);
 
     }
 

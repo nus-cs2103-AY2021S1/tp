@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import nustorage.commons.exceptions.DataConversionException;
 import nustorage.model.FinanceAccount;
+import nustorage.model.ReadOnlyFinanceAccount;
 
 
 /**
@@ -14,25 +15,27 @@ import nustorage.model.FinanceAccount;
  */
 public interface FinanceAccountStorage {
 
-    /*
+    /**
      * @return file path to json data file.
      */
     Path getFinanceAccountFilePath();
 
 
     /**
-     * @return FinanceAccount data, or {@code Optional.empty()} if storage file is not found
+     * Read finance account from json storage file.
+     *
+     * @return FinanceAccount data, or {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException             if there was any problem when reading from the storage.
      */
-    Optional<FinanceAccount> readFinanceAccount() throws DataConversionException, IOException;
+    Optional<ReadOnlyFinanceAccount> readFinanceAccount() throws DataConversionException, IOException;
 
 
     /**
      * @param filePath overrides default storage filepath.
      * @see #readFinanceAccount()
      */
-    Optional<FinanceAccount> readFinanceAccount(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyFinanceAccount> readFinanceAccount(Path filePath) throws DataConversionException, IOException;
 
 
     /**
@@ -41,13 +44,13 @@ public interface FinanceAccountStorage {
      * @param financeAccount given finance account to be stored, cannot be null.
      * @throws IOException if there's any problem writing to file.
      */
-    void saveFinanceAccount(FinanceAccount financeAccount) throws IOException;
+    void saveFinanceAccount(ReadOnlyFinanceAccount financeAccount) throws IOException;
 
 
     /**
-     * @param filepath overrides default storage filepath.
-     * @see #saveFinanceAccount(FinanceAccount)
+     * @param filePath overrides default storage filepath.
+     * @see #saveFinanceAccount(ReadOnlyFinanceAccount)
      */
-    void saveFinanceAccount(FinanceAccount financeAccount, Path filepath) throws IOException;
+    void saveFinanceAccount(ReadOnlyFinanceAccount financeAccount, Path filePath) throws IOException;
 
 }

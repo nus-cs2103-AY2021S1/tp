@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import nustorage.commons.exceptions.IllegalValueException;
 import nustorage.model.FinanceAccount;
+import nustorage.model.ReadOnlyFinanceAccount;
 import nustorage.model.record.FinanceRecord;
 
 
@@ -20,7 +21,7 @@ import nustorage.model.record.FinanceRecord;
 @JsonRootName("financeAccount")
 class JsonSerializableFinanceAccount {
 
-    public static final String MESAGE_DUPLICATE_FINANCE_RECORD = "Finance record list contains duplicate records!";
+    public static final String MESSAGE_DUPLICATE_FINANCE_RECORD = "Finance record list contains duplicate records!";
 
     public final List<JsonAdaptedFinanceRecord> financeRecords = new ArrayList<>();
 
@@ -36,7 +37,7 @@ class JsonSerializableFinanceAccount {
     }
 
 
-    public JsonSerializableFinanceAccount(FinanceAccount source) {
+    public JsonSerializableFinanceAccount(ReadOnlyFinanceAccount source) {
         financeRecords.addAll(
                 source.getFinanceList()
                         .stream()
@@ -46,21 +47,8 @@ class JsonSerializableFinanceAccount {
     }
 
 
-    // TODO: implement alternative constructor
-    /* Commented out as not yet implemented */
-    // /**
-    //  * Converts a given {@code ReadOnlyFinanceAccount} into this class for Jackson use.
-    //  *
-    //  * @param source future changes to this will not affect the created {@code JsonSerializableFinanceAccount}.
-    //  */
-    // @JsonCreator
-    // public JsonSerializableFinanceAccount(ReadOnlyFinanceAccount source) {
-    //     this.financeRecords.addAll(...);
-    // }
-
-
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this finance account into the model's {@link FinanceAccount} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
@@ -68,9 +56,10 @@ class JsonSerializableFinanceAccount {
         FinanceAccount finAccount = new FinanceAccount();
         for (JsonAdaptedFinanceRecord jsonFinRecord : this.financeRecords) {
             FinanceRecord finRecord = jsonFinRecord.toModelType();
-            if (finAccount.hasFinanceRecord(finRecord)) {
-                throw new IllegalValueException(MESAGE_DUPLICATE_FINANCE_RECORD);
-            }
+
+            // if (finAccount.hasFinanceRecord(finRecord)) {
+            //     throw new IllegalValueException(MESSAGE_DUPLICATE_FINANCE_RECORD);
+            // }
             finAccount.addFinanceRecord(finRecord);
         }
         return finAccount;

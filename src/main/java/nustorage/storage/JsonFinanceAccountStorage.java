@@ -14,9 +14,12 @@ import nustorage.commons.exceptions.DataConversionException;
 import nustorage.commons.exceptions.IllegalValueException;
 import nustorage.commons.util.FileUtil;
 import nustorage.commons.util.JsonUtil;
-import nustorage.model.FinanceAccount;
+import nustorage.model.ReadOnlyFinanceAccount;
 
 
+/**
+ * A class to access FinanceAccount data stored as a json file on the hard disk.
+ */
 public class JsonFinanceAccountStorage implements FinanceAccountStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonFinanceAccountStorage.class);
@@ -24,6 +27,11 @@ public class JsonFinanceAccountStorage implements FinanceAccountStorage {
     private Path filePath;
 
 
+    /**
+     * Creates a new finance account storage object.
+     *
+     * @param filePath file path to storage file.
+     */
     public JsonFinanceAccountStorage(Path filePath) {
         this.filePath = filePath;
     }
@@ -36,15 +44,16 @@ public class JsonFinanceAccountStorage implements FinanceAccountStorage {
 
 
     @Override
-    public Optional<FinanceAccount> readFinanceAccount() throws DataConversionException {
+    public Optional<ReadOnlyFinanceAccount> readFinanceAccount() throws DataConversionException {
         return readFinanceAccount(filePath);
     }
 
 
     @Override
-    public Optional<FinanceAccount> readFinanceAccount(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyFinanceAccount> readFinanceAccount(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
+        // TODO: THIS LINE IS CAUSING A LOADING ERROR
         Optional<JsonSerializableFinanceAccount> jsonFinanceAccount = JsonUtil.readJsonFile(
                 filePath, JsonSerializableFinanceAccount.class);
 
@@ -55,23 +64,23 @@ public class JsonFinanceAccountStorage implements FinanceAccountStorage {
         try {
             return Optional.of(jsonFinanceAccount.get().toModelType());
         } catch (IllegalValueException e) {
-            logger.info("Illegal values found in " + filePath + " " + e.getMessage());
+            logger.info("Illegal values found in " + filePath + ": " + e.getMessage());
             throw new DataConversionException(e);
         }
     }
 
 
     @Override
-    public void saveFinanceAccount(FinanceAccount financeAccount) throws IOException {
+    public void saveFinanceAccount(ReadOnlyFinanceAccount financeAccount) throws IOException {
         saveFinanceAccount(financeAccount, filePath);
     }
 
 
     @Override
-    public void saveFinanceAccount(FinanceAccount financeAccount, Path filepath) throws IOException {
-        requireAllNonNull(financeAccount, filepath);
+    public void saveFinanceAccount(ReadOnlyFinanceAccount financeAccount, Path filePath) throws IOException {
+        requireAllNonNull(financeAccount, filePath);
 
-        FileUtil.createIfMissing(filepath);
+        FileUtil.createIfMissing(filePath);
 
         JsonUtil.saveJsonFile(new JsonSerializableFinanceAccount(financeAccount), filePath);
     }

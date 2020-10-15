@@ -21,6 +21,7 @@ class JsonAdaptedInventoryRecord {
     /**
      * Constructs a {@code JsonAdaptedInventoryRecord} with the given record details.
      */
+    @JsonCreator
     public JsonAdaptedInventoryRecord(@JsonProperty("itemName") String itemName,
                                       @JsonProperty("quantity") int quantity,
                                       @JsonProperty("dateTime") LocalDateTime dateTime) {
@@ -33,7 +34,6 @@ class JsonAdaptedInventoryRecord {
     /**
      * Converts a given {@code InventoryRecord} into this class for Jackson use.
      */
-    @JsonCreator
     public JsonAdaptedInventoryRecord(InventoryRecord source) {
         this.quantity = source.getQuantity();
         this.itemName = source.getItemName();
@@ -50,7 +50,8 @@ class JsonAdaptedInventoryRecord {
         if (this.itemName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "item name"));
         }
-        String modelItemName = this.itemName;
+        final String modelItemName = this.itemName;
+
         if (this.quantity < 0) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "quantity"));
         }

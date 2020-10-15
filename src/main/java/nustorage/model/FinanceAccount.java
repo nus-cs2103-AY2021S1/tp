@@ -1,5 +1,6 @@
 package nustorage.model;
 
+
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import javafx.collections.ObservableList;
 import nustorage.commons.core.index.Index;
 import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.FinanceRecordList;
+
 
 public class FinanceAccount implements ReadOnlyFinanceAccount {
 
@@ -21,11 +23,16 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
      */
+
+
     {
         financeRecords = new FinanceRecordList();
     }
 
-    public FinanceAccount() {}
+
+    public FinanceAccount() {
+    }
+
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -37,6 +44,7 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
 
     //// list overwrite operations
 
+
     /**
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
@@ -44,6 +52,7 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
     public void setFinanceRecords(List<FinanceRecord> financeRecords) {
         this.financeRecords.setFinanceRecords(financeRecords);
     }
+
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
@@ -54,7 +63,6 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
         setFinanceRecords(newData.getFinanceList());
     }
 
-    //// person-level operations
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -64,6 +72,7 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
         return financeRecords.contains(financeRecord);
     }
 
+
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
@@ -71,6 +80,7 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
     public void addFinanceRecord(FinanceRecord financeRecord) {
         financeRecords.add(financeRecord);
     }
+
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
@@ -82,6 +92,7 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
 
         financeRecords.setFinanceRecord(target, editedRecord);
     }
+
 
     /**
      * Removes the finance record with the corresponding index
@@ -95,16 +106,19 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
 
     //// util methods
 
+
     @Override
     public String toString() {
         return financeRecords.asUnmodifiableObservableList().size() + " persons";
         // TODO: refine later
     }
 
+
     @Override
     public ObservableList<FinanceRecord> getFinanceList() {
         return financeRecords.asUnmodifiableObservableList();
     }
+
 
     @Override
     public boolean equals(Object other) {
@@ -113,8 +127,10 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
                 && financeRecords.equals(((FinanceAccount) other).financeRecords));
     }
 
+
     @Override
     public int hashCode() {
         return financeRecords.hashCode();
     }
+
 }
