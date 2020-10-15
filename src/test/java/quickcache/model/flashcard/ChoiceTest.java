@@ -3,6 +3,8 @@ package quickcache.model.flashcard;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static quickcache.testutil.Assert.assertThrows;
+import static quickcache.testutil.TypicalFlashcards.RANDOM1;
+import static quickcache.testutil.TypicalFlashcards.RANDOM2;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,6 +35,26 @@ class ChoiceTest {
         assertTrue(Choice.isValidChoice("Magnetic disk 12345!"));
         assertTrue(Choice.isValidChoice("Main memory!")); // with punctuation
         assertTrue(Choice.isValidChoice("Optical CDs and DVDs 12345")); // with numbers
+    }
+
+    @Test
+    public void equals() {
+        Choice choice = new Choice("Main memory!");
+        Choice choiceCopy = new Choice("Main memory!");
+        Choice choiceDifferent = new Choice("Not main memory!");
+        assertTrue(choice.equals(choiceCopy));
+
+        // same object -> returns true
+        assertTrue(choice.equals(choice));
+
+        // null -> returns false
+        assertFalse(choice.equals(null));
+
+        // different type -> returns false
+        assertFalse(choice.equals(5));
+
+        // different person -> returns false
+        assertFalse(choice.equals(choiceDifferent));
     }
 
 }

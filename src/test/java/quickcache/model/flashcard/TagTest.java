@@ -1,5 +1,6 @@
 package quickcache.model.flashcard;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static quickcache.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,13 @@ public class TagTest {
     public void isValidTagName() {
         // null tag name
         assertThrows(NullPointerException.class, () -> Tag.isValidTagName(null));
+    }
+
+    @Test
+    public void testToString() {
+        String tagName = "ValidTag";
+        Tag tag = new Tag(tagName);
+        assertEquals(tag.toString(), "[" + tagName + "]");
     }
 
 }
