@@ -50,7 +50,7 @@ public class CommandTestUtil {
     public static final String OPTION_DESC_TWO = " " + CliSyntax.PREFIX_OPTION + VALID_OPTION_TWO;
     public static final String OPTION_DESC_THREE = " " + CliSyntax.PREFIX_OPTION + VALID_OPTION_THREE;
 
-    // empty string not allowed for addresses
+    // empty string not allowed for questions, answers and options
     public static final String INVALID_QUESTION_DESC = " " + CliSyntax.PREFIX_QUESTION + " ";
     public static final String INVALID_ANSWER_DESC = " " + CliSyntax.PREFIX_ANSWER + " ";
     public static final String INVALID_OPTION_DESC = " " + CliSyntax.PREFIX_OPTION + " ";
@@ -123,7 +123,7 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the quick cache, filtered flashcard list and selected flashcard in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
