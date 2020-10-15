@@ -95,7 +95,7 @@ public class FlashcardBuilder {
      * @param tagArr the array containing the tags.
      * @return the FlashcardBuilder.
      */
-    public FlashcardBuilder withTags(String[] tagArr) {
+    public FlashcardBuilder withTags(String... tagArr) {
         List<Tag> taglist = new ArrayList<>();
         for (String tag : tagArr) {
             taglist.add(new Tag(tag));

@@ -27,7 +27,7 @@ public class QuickCacheParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Flashcard flashcard = new FlashcardBuilder().withTags(new String[]{}).build();
+        Flashcard flashcard = new FlashcardBuilder().withTags().build();
         AddOpenEndedQuestionCommand command = (AddOpenEndedQuestionCommand)
             parser.parseCommand(FlashcardUtil.getAddCommand(flashcard));
         assertEquals(new AddOpenEndedQuestionCommand(flashcard), command);
