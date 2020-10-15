@@ -4,7 +4,6 @@ import static seedu.fma.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.Clock;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
@@ -16,6 +15,9 @@ import seedu.fma.model.exercise.Exercise;
  */
 public class Log {
 
+    // User clock
+    private static Clock clock = Clock.systemDefaultZone();
+
     // Identity fields
     private LocalDateTime dateTime;
 
@@ -23,9 +25,6 @@ public class Log {
     private final Exercise exercise;
     private final Rep reps;
     private final Comment comment;
-
-    // User clock
-    private static Clock clock = Clock.systemDefaultZone();
 
     /**
      * Every field must be present and not null.
