@@ -33,7 +33,7 @@ public class UniqueLogList implements Iterable<Log> {
      */
     public boolean contains(Log toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameLog);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -41,6 +41,8 @@ public class UniqueLogList implements Iterable<Log> {
      * The log must not already exist in the list.
      */
     public void add(Log toAdd) {
+        System.out.println(internalList);
+        System.out.println(toAdd);
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateLogException();
@@ -127,7 +129,7 @@ public class UniqueLogList implements Iterable<Log> {
     private boolean logsAreUnique(List<Log> logs) {
         for (int i = 0; i < logs.size() - 1; i++) {
             for (int j = i + 1; j < logs.size(); j++) {
-                if (logs.get(i).isSameLog(logs.get(j))) {
+                if (logs.get(i).equals(logs.get(j))) {
                     return false;
                 }
             }
