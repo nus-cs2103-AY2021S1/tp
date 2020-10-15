@@ -13,6 +13,16 @@ public class CommandHistory implements History {
     private List<String> commandHistory;
     private int currentCommandIndex;
     private final int lengthLimit;
+
+    // boolean value to be checked during previousCommand() method call
+    // if (hasReturnedCurrentCommandBefore) {
+    //      return previousCommand;
+    // } else {
+    //      return currentCommand;
+    // }
+    // this is to prevent the first previousCommand() method call to
+    // return commandHistory's 2nd last command instead of the last command
+    // will be reset to true if (newCommandsAdded || nextCommand() -> Optional.empty())
     private boolean hasReturnedCurrentCommandBefore;
 
     /**
