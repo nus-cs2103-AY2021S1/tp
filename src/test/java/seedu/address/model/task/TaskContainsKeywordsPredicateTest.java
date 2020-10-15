@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
@@ -61,6 +62,14 @@ public class TaskContainsKeywordsPredicateTest {
         predicate.setKeyword(PREFIX_TYPE, "tod");
         assertTrue(predicate.test(new TaskBuilder().withType("todo").build()));
 
+        // status keywords match status exactly
+        predicate = new TaskContainsKeywordsPredicate();
+        predicate.setKeyword(PREFIX_STATUS, "incomplete");
+        assertTrue(predicate.test(new TaskBuilder().withStatus(State.INCOMPLETE).build()));
+
+        predicate.setKeyword(PREFIX_STATUS, "complete");
+        assertTrue(predicate.test(new TaskBuilder().withStatus(State.COMPLETE).build()));
+
         // Mixed-case keywords
         predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_TITLE, "mEeT aLiCe");
@@ -85,18 +94,25 @@ public class TaskContainsKeywordsPredicateTest {
                 .withDescription("alice,email.com").withType("event").build()));
 
 
-        // title Keywords does not match type
+        // type Keywords does not match type
         predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_TYPE, "deadline");
         assertFalse(predicate.test(new TaskBuilder().withType("event").withDateTime("01-01-2020 12:00")
                 .withDescription("alice,email.com").withType("event").build()));
 
 
-        // title Keywords does not match description
+        // desc Keywords does not match description
         predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_DESCRIPTION, "play outside");
         assertFalse(predicate.test(new TaskBuilder().withType("event").withDateTime("01-01-2020 12:00")
                 .withDescription("alice,email.com").withType("event").build()));
+
+
+        // status Keywords does not match status
+        predicate = new TaskContainsKeywordsPredicate();
+        predicate.setKeyword(PREFIX_STATUS, "complet");
+        assertFalse(predicate.test(new TaskBuilder().withType("event").withDateTime("01-01-2020 12:00")
+                .withDescription("alice,email.com").withType("event").withStatus(State.COMPLETE).build()));
 
     }
 }
