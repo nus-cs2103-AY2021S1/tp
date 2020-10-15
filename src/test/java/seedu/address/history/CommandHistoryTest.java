@@ -340,6 +340,15 @@ public class CommandHistoryTest {
         // cThree = {firstCommand, secondCommand};
         // cThree Current index = 0;
         //===============================================================
+
+        // since currentIndex is 0, return secondCommand for cOne
+        assertEquals(optionalSecondCommand, cOne.previousCommand());
+
+        // since currentIndex is 0, return firstCommand for cTwo
+        assertEquals(optionalFirstCommand, cTwo.previousCommand());
+
+        // since currentIndex is 0, return firstCommand for cThree
+        assertEquals(optionalFirstCommand, cThree.previousCommand());
     }
 
     @Test
