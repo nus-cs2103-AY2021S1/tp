@@ -3,29 +3,33 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.ui.util.UiUtil;
 
 /**
  * Controller for a help page
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
-
+    public static final String WEBSITE_MESSAGE = "Visit our website for more information of HelloFile";
+    public static final String WEBSITE_URL = "https://ay2021s1-cs2103t-f12-1.github.io/tp/";
+    public static final String USERGUIDE_MESSAGE = "Refer to the User Guide";
+    public static final String USERGUIDE_URL = "https://ay2021s1-cs2103t-f12-1.github.io/tp/UserGuide.html#quick-start";
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
     @FXML
-    private Button copyButton;
-
+    private Label message01;
     @FXML
-    private Label helpMessage;
+    private Label message02;
+    @FXML
+    private Label url01;
+    @FXML
+    private Label url02;
 
     /**
      * Creates a new HelpWindow.
@@ -34,7 +38,12 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
+        message01.setText(WEBSITE_MESSAGE);
+        message02.setText(USERGUIDE_MESSAGE);
+        url01.setText(WEBSITE_URL);
+        url02.setText(USERGUIDE_URL);
+        root.setTitle("Help");
+        UiUtil.setTheme(root, MainWindow.getInstance().getCurrentTheme());
     }
 
     /**
@@ -90,10 +99,21 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     /**
+     * Copies the URL to the product website to the clipboard.
+     */
+    @FXML
+    private void copyWebsiteUrl() {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent url = new ClipboardContent();
+        url.putString(WEBSITE_URL);
+        clipboard.setContent(url);
+    }
+
+    /**
      * Copies the URL to the user guide to the clipboard.
      */
     @FXML
-    private void copyUrl() {
+    private void copyUserGuideUrl() {
         final Clipboard clipboard = Clipboard.getSystemClipboard();
         final ClipboardContent url = new ClipboardContent();
         url.putString(USERGUIDE_URL);

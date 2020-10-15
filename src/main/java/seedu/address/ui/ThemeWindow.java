@@ -74,7 +74,6 @@ public class ThemeWindow extends UiPart<Stage> {
      */
     public void applySelectedTheme() {
         MainWindow.getInstance().setTheme(selectedTheme);
-        UiUtil.setTheme(getRoot(), selectedTheme);
         hide();
     }
 
