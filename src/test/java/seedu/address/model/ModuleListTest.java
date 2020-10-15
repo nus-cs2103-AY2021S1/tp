@@ -85,7 +85,7 @@ public class ModuleListTest {
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class AddressBookStub implements ReadOnlyContactList {
         private final ObservableList<Contact> persons = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Contact> persons) {
@@ -93,7 +93,7 @@ public class ModuleListTest {
         }
 
         @Override
-        public ObservableList<Contact> getPersonList() {
+        public ObservableList<Contact> getContactList() {
             return persons;
         }
     }
