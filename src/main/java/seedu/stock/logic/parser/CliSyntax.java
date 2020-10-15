@@ -41,6 +41,12 @@ public class CliSyntax {
         return allPrefixes;
     }
 
+    /**
+     * Returns the default parameter description of a certain prefix.
+     *
+     * @param prefix The prefix that needs parameter description.
+     * @return The default parameter description of the given prefix.
+     */
     public static String getDefaultDescription(Prefix prefix) {
         if (prefix.equals(PREFIX_NAME)) {
             return PREFIX_NAME_DESCRIPTION;
@@ -50,8 +56,10 @@ public class CliSyntax {
             return PREFIX_LOCATION_DESCRIPTION;
         } else if (prefix.equals(PREFIX_QUANTITY)) {
             return PREFIX_QUANTITY_DESCRIPTION;
-        } else {
+        } else if (prefix.equals(PREFIX_SERIAL_NUMBER)) {
             return PREFIX_SERIAL_NUMBER_DESCRIPTION;
+        } else {
+            return "";
         }
     }
 }

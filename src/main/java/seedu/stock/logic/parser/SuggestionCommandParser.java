@@ -302,6 +302,12 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
      */
     private void generateListSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
         toBeDisplayed.append(CommandWords.LIST_COMMAND_WORD);
+
+        if (!bodyErrorMessage.equals("")) {
+            toBeDisplayed.append("\n" + bodyErrorMessage);
+        } else {
+            toBeDisplayed.append("\n" + ListCommand.MESSAGE_USAGE);
+        }
     }
 
     /**
@@ -312,6 +318,12 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
      */
     private void generateHelpSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
         toBeDisplayed.append(CommandWords.HELP_COMMAND_WORD);
+
+        if (!bodyErrorMessage.equals("")) {
+            toBeDisplayed.append("\n" + bodyErrorMessage);
+        } else {
+            toBeDisplayed.append("\n" + HelpCommand.MESSAGE_USAGE);
+        }
     }
 
     /**

@@ -1,6 +1,15 @@
 package seedu.stock.commons.util;
 
 public class SuggestionUtil {
+
+    /**
+     * Computes the minimum of three integers.
+     *
+     * @param x The first integer.
+     * @param y The second integer.
+     * @param z The third integer.
+     * @return The minimum of those three integers.
+     */
     public static int min(int x, int y, int z) {
         return Math.min(x, Math.min(y, z));
     }
