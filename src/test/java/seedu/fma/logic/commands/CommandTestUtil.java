@@ -43,6 +43,9 @@ public class CommandTestUtil {
     public static final Rep VALID_REP_A = new Rep(VALID_REP_A_STR);
     public static final Rep VALID_REP_B = new Rep(VALID_REP_B_STR);
 
+    public static final Exercise VALID_EXERCISE_A = new ExerciseBuilder(getSampleExercises()[1]).build();
+    public static final Exercise VALID_EXERCISE_B = new ExerciseBuilder(getSampleExercises()[3]).build();
+
     public static final Comment VALID_COMMENT_A = new Comment(VALID_COMMENT_A_STR);
     public static final Comment VALID_COMMENT_B = new Comment(VALID_COMMENT_B_STR);
 
