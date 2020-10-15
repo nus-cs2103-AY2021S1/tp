@@ -23,7 +23,7 @@ import seedu.address.model.item.Tag;
 /**
  * Removes a quantity from an existing item in the inventory book.
  */
-public class RemoveCommand extends ItemCommand {
+public class ItemRemoveCommand extends ItemCommand {
 
     public static final String COMMAND_WORD = "remove-i";
 
@@ -45,7 +45,7 @@ public class RemoveCommand extends ItemCommand {
      * @param index of the item in the filtered item list to edit
      * @param quantity to be subtracted
      */
-    public RemoveCommand(Index index, Quantity quantity) {
+    public ItemRemoveCommand(Index index, Quantity quantity) {
         requireNonNull(index);
         requireNonNull(quantity);
 
@@ -107,12 +107,12 @@ public class RemoveCommand extends ItemCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ItemEditCommand)) {
+        if (!(other instanceof ItemRemoveCommand)) {
             return false;
         }
 
         // state check
-        RemoveCommand r = (RemoveCommand) other;
+        ItemRemoveCommand r = (ItemRemoveCommand) other;
         return index.equals(r.index)
                 && quantity.equals(r.quantity);
     }

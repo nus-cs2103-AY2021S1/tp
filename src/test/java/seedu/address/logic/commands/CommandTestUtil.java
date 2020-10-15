@@ -18,6 +18,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.itemcommand.ItemEditCommand;
 import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.item.Item;
@@ -96,6 +97,23 @@ public class CommandTestUtil {
     }
 
     /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualModel} matches {@code expectedModel}
+     */
+    public static void assertCommandSuccess(Command command, DeliveryModel actualDeliveryModel,
+                                            CommandResult expectedCommandResult,
+                                            DeliveryModel expectedDeliveryModel) {
+        try {
+            CommandResult result = command.execute(actualDeliveryModel);
+            assertEquals(expectedCommandResult, result);
+            assertEquals(expectedDeliveryModel, actualDeliveryModel);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, InventoryModel, CommandResult, InventoryModel)}
      * that takes a string {@code expectedMessage}.
      */
@@ -104,6 +122,17 @@ public class CommandTestUtil {
                                             InventoryModel expectedInventoryModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualInventoryModel, expectedCommandResult, expectedInventoryModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, DeliveryModel, CommandResult, DeliveryModel)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertCommandSuccess(Command command, DeliveryModel actualDeliveryModel,
+                                            String expectedMessage,
+                                            DeliveryModel expectedDeliveryModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertCommandSuccess(command, actualDeliveryModel, expectedCommandResult, expectedDeliveryModel);
     }
 
     /**

@@ -21,7 +21,7 @@ import seedu.address.logic.commands.itemcommand.ItemDeleteCommand;
 import seedu.address.logic.commands.itemcommand.ItemEditCommand;
 import seedu.address.logic.commands.itemcommand.ItemFindCommand;
 import seedu.address.logic.commands.itemcommand.ItemListCommand;
-import seedu.address.logic.commands.itemcommand.RemoveCommand;
+import seedu.address.logic.commands.itemcommand.ItemRemoveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.ItemContainsKeywordsPredicate;
@@ -29,9 +29,9 @@ import seedu.address.testutil.EditItemDescriptorBuilder;
 import seedu.address.testutil.ItemBuilder;
 import seedu.address.testutil.ItemUtil;
 
-public class InventoryBookParserTest {
+public class OneShelfBookParserTest {
 
-    private final InventoryBookParser parser = new InventoryBookParser();
+    private final OneShelfBookParser parser = new OneShelfBookParser();
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -78,7 +78,7 @@ public class InventoryBookParserTest {
 
     @Test
     public void parseCommand_remove() throws Exception {
-        assertTrue(parser.parseCommand(RemoveCommand.COMMAND_WORD + " 1 q/10") instanceof RemoveCommand);
+        assertTrue(parser.parseCommand(ItemRemoveCommand.COMMAND_WORD + " 1 q/10") instanceof ItemRemoveCommand);
     }
 
     @Test

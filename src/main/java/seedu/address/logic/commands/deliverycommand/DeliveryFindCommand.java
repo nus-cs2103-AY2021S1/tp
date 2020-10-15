@@ -10,7 +10,7 @@ import seedu.address.model.delivery.DeliveryContainsKeywordsPredicate;
 import seedu.address.model.deliverymodel.DeliveryModel;
 
 /**
- * Finds and lists all items in inventory book whose name contains any of the argument keywords.
+ * Finds and lists all items in delivery book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class DeliveryFindCommand extends DeliveryCommand {

@@ -19,6 +19,7 @@ import seedu.address.model.item.Item;
  */
 public class TypicalItems {
 
+    // Typical Inventory Item
     public static final Item CHICKEN = new ItemBuilder().withName("Chicken")
             .withSupplier("Giant")
             .withQuantity("12")
@@ -74,18 +75,17 @@ public class TypicalItems {
             .withSupplier(VALID_SUPPLIER_DUCK)
             .build();
 
-
     private TypicalItems() {} // prevents instantiation
 
     /**
      * Returns an {@code InventoryBook} with all the typical items.
      */
     public static InventoryBook getTypicalInventoryBook() {
-        InventoryBook ab = new InventoryBook();
+        InventoryBook inventoryBook = new InventoryBook();
         for (Item item : getTypicalItems()) {
-            ab.addItem(item);
+            inventoryBook.addItem(item);
         }
-        return ab;
+        return inventoryBook;
     }
 
     public static List<Item> getTypicalItems() {
