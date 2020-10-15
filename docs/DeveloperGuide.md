@@ -21,12 +21,6 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-
-</div>
-
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -102,8 +96,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the quick cache flashcard data.
+* exposes an unmodifiable `ObservableList<Flashcard>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
@@ -212,6 +206,35 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
+
+### \[Proposed\] Tags
+
+The proposed tags mechanism is facilitated by `Flashcard` upon creation. It is stored internally as an `Set<Tag>` inside the `flashcard` object.
+
+Given below is an example usage scenario and how the tag mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+
+Step 2. The user executes `add q/ question... t/tag` command to add a flashcard with tag. The `add` command will cause the addition of a flashcard with a tag inside the QuickCache. 
+
+Step 3. The user executes `edit 1 t/tag` to edit the tag in the first flashcard of the list. The edit command will change the internal structure of flashcard such that the `Set<Tag>` is updated.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
+
+#### Design consideration:
+
+##### Aspect: How tag executes
+
+* **Alternative 1 (current choice):** Tag is saved upon creation.
+  * Pros: Easy to implement.
+  * Cons: May be complicated as there will be too many fields in the `add` command.
+
+* **Alternative 2:** Individual command knows how to tag by
+  itself.
+  * Pros: Will be less complicated.
+  * Cons: There may be too many commands which can be combined to one.
+
+#### Proposed Implementation
 
 ### \[Proposed\] Data archiving
 
@@ -712,20 +735,18 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+1. Deleting a flashcard while all flashcards are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First flashcard is deleted from the list. Details of the deleted flashcard shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No flashcard is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases … }_
 
 ### Saving data
 

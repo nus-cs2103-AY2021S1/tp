@@ -23,12 +23,20 @@ QuickCache is a **desktop app for managing flashcards, optimized for use via a C
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
-
+   
    * **`list`** : Lists all FlashCards.
+   
+   * **`open`**`1` : Opens the 1st question shown in the current list.
 
-   * **`add`**`add n/Plants give out ___ when they photosynthesise? n/Oxygen` :  Adds a question `Plants give out ___ when they photosynthesise?` with answer `Oxygen`.
+   * **`add`**`q/Plants give out ___ when they photosynthesise? ans/Oxygen t/Biology` :  Adds a open ended question `Plants give out ___ when they photosynthesise?` with answer `Oxygen` and tagged to `Biology`. 
+   
+   * **`addmcq`**`q/Plants give out ___ when they photosynthesise? ans/1 c/Oxygen c/Carbon c/Carbon dioxide` :  Adds a multiple choice question `Plants give out ___ when they photosynthesise?` with 3 options `Oxygen`, `Carbon`, `Carbon dioxide` and with answer `Oxygen`.
    
    * **`test`**`1 ans/Example answer` : Tests the 1st question shown in the current list with `Example answer` as the answer.
+   
+   * **`find`**`Biology` : Finds all Flashcards tagged to the tag `Biology`.
+   
+   * **`stats`**`1` : Show stats of the 1st question shown in the current list.
    
    * **`delete`**`3` : Deletes the 3rd flashcard shown in the current list.
 
@@ -157,11 +165,11 @@ Format: `list`
 
 Finds all Flashcards based on their tags.
 
-Format: `find KEYWORDS`
+Format: `find TAGS`
 
-* Keywords should be seperated by a whitespace between
+* Tags should be seperated by a whitespace between
 
-Example: `find CS2100 MCQ` where `CS2100` and `MCQ` are keywords.
+Example: `find CS2100 MCQ` where `CS2100` and `MCQ` are tags.
 
 ### Deleting a flashcard : `delete`
 
