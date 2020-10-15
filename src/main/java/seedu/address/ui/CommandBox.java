@@ -20,6 +20,7 @@ public class CommandBox extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
+    private static final int COMMAND_HISTORY_LIMIT = 20;
 
     private final CommandExecutor commandExecutor;
     private final History history;
@@ -51,7 +52,7 @@ public class CommandBox extends UiPart<Region> {
     private CommandHistory makeCommandHistory() {
         CommandHistory tempHistory;
         try {
-            tempHistory = new CommandHistory(20);
+            tempHistory = new CommandHistory(COMMAND_HISTORY_LIMIT);
         } catch (HistoryException historyException) {
             tempHistory = null;
             System.err.println(historyException);
