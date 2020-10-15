@@ -13,7 +13,7 @@ import seedu.address.model.module.Module;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Contact> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Contact> PREDICATE_SHOW_ALL_CONTACTS = unused -> true;
 
     Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
 
@@ -91,4 +91,48 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredModuleList(Predicate<Module> predicate);
+
+    // ============================ ContactList ==================================================
+
+    /**
+     * Replaces contact list data with the data in {@code contactlist}.
+     */
+    void setContactList(ReadOnlyContactList contactList);
+
+    /** Returns the ContactList */
+    ReadOnlyContactList getContactList();
+
+    /**
+     * Returns true if a contact with the same identity as {@code contact} exists in the contact list.
+     */
+    boolean hasContact(Contact contact);
+
+    /**
+     * Deletes the given contact.
+     * The contact must exist in the contact list.
+     */
+    void deleteContact(Contact target);
+
+    /**
+     * Adds the given contact.
+     * {@code contact} must not already exist in the contact list.
+     */
+    void addContact(Contact contact);
+
+    /**
+     * Replaces the given contact {@code target} with {@code editedContact}.
+     * {@code target} must exist in the contact list.
+     * The contact identity of {@code editedContact} must not be the same as another existing
+     * contact in the contact list.
+     */
+    void setContact(Contact target, Contact editedContact);
+
+    /** Returns an unmodifiable view of the filtered contact list */
+    ObservableList<Contact> getFilteredContactList();
+
+    /**
+     * Updates the filter of the filtered contact list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredContactList(Predicate<Contact> predicate);
 }
