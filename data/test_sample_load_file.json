@@ -1,0 +1,12 @@
+{
+  "attendances" : [ {
+    "nusnetId" : "e0000000",
+    "attendanceType" : "PRESENT"
+  }, {
+    "nusnetId" : "e0000001",
+    "attendanceType" : "ABSENT"
+  }, {
+    "nusnetId" : "e0000002",
+    "attendanceType" : "NO_RECORD"
+  } ]
+}

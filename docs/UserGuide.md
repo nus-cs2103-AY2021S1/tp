@@ -11,7 +11,9 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
     - [Adding a student: `add`](#Adding-a-student-add "Goto Adding-a-student-add")
     - [Listing all students: `list`](#Listing-all-students-list "Goto Listing-all-students-list")
     - [Deleting a student: `delete`](#Deleting-a-student-delete "Goto Deleting-a-student-delete")
-    - [Marking a student's attendance: `mark`](#Marking-a-student's-attendance "Goto Marking-a-student's-attendance")
+    - [Marking a student's attendance: `mark`](#Marking-a-student’s-attendance-mark "Goto Marking-a-students-attendance-mark")
+    - [Storing students' attendance records: `store_record`](#Storing-students’-attendance-records-store_record "Goto Storing-students'-attendance-records")
+    - [Loading students' attendance records: `load_record`](#Loading-students’-attendance-records-load_record "Goto Loading-students'-attendance-records")
     - [Clear all students: `clear`](#Clearing-all-entries-clear "Goto Clearing-all-entries-clear")
     - [Exit the program: `exit`](#Exiting-the-program-exit "Goto Exiting-the-program-exit")
 - [Command Summary](#Command-Summary "Goto Command-Summary")
@@ -60,6 +62,23 @@ mark INDEX a/ATTENDANCE_TYPE
 - The `INDEX` **must be a positive integer**.
 - The `ATTENDANCE_TYPE` must either be `present` or `absent`.
 
+### Storing students' attendance records: `store_record`
+Stores the attendance records of all the students to a file.
+```
+store_record fn/FILENAME
+```
+- Stores the NUSNET ID and attendance state of all students in the student list, then clears the attendance of all students
+- The `FILENAME` can _only_ contain **alphanumeric characters**
+- The files are stored in the `/data` folder.
+
+### Loading students' attendance records: `load_record`
+```
+load_record fn/FILENAME
+```
+- Loads the attendance state of all students whose attendance is stored in the file.
+- Students whose NUSNET IDs do not appear in the file have their attendance cleared to a NO_RECORD state.
+- The `FILENAME` must refer to an existing file and can _only_ contain **alphanumeric** characters.
+
 ### Clearing all entries: `clear`
 Clears all students from the student list.
 ```
@@ -75,10 +94,14 @@ exit
 ## Command Summary
 | Action | Format, Examples                                                                                        |
 |--------|---------------------------------------------------------------------------------------------------------|
-| Add    | ```add n/NAME i/NUSNET_ID e/EMAIL``` <br>e.g., ```add n/John Doe Kai Jie i/E9412345 e/e9412345@u.nus.edu``` |
-| List   | ```list```                                                                                              |
-| Delete | ```delete INDEX``` <br> e.g., ```delete 3```                                                                 |
-| Clear  | ```clear```                                                                                             |
+| Add    | ```add n/NAME i/NUSNET_ID e/EMAIL``` <br> e.g., ```add n/John Doe Kai Jie i/E9412345 e/e9412345@u.nus.edu```|
+| List   | ```list```                                                                                               |
+| Delete | ```delete INDEX``` <br> e.g., ```delete 3```                                                             |
+| Mark   | `mark INDEX a/ATTENDANCE_TYPE` <br> e.g., `mark 1 a/present`                                             |
+| Store Attendance | `store_record fn/FILENAME` <br> e.g., `store_record tutorial01`                                |
+| Load Attendance | `load_record fn/FILENAME`
+| Clear  | ```clear```                                                                                              |
+
 
 ## Frequently Asked Questions (FAQ)
 How to download java? [Here](https://lmgtfy.com/?q=how+to+download+java)
