@@ -1,11 +1,10 @@
 package chopchop.ui;
 
 import chopchop.model.recipe.Recipe;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-
-import javafx.event.ActionEvent;
 
 /**
  * An UI component that displays information of a {@code Recipe}.

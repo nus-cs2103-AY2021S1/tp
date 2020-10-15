@@ -32,9 +32,9 @@ public class CommandDispatcher implements Logic {
      * Constructs a {@code CommandDispatcher} with the given {@code Model} and {@code Storage}.
      */
     public CommandDispatcher(Model model, Storage storage) {
-        this.model   = model;
+        this.model = model;
         this.storage = storage;
-        this.parser  = new CommandParser();
+        this.parser = new CommandParser();
     }
 
     /**

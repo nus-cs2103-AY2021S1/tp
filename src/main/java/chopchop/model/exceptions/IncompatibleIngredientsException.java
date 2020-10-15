@@ -1,5 +1,3 @@
-// IncompatibleIngredientsException.java
-
 package chopchop.model.exceptions;
 
 /**

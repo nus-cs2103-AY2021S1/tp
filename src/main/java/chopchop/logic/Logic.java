@@ -3,16 +3,12 @@ package chopchop.logic;
 import java.nio.file.Path;
 
 import chopchop.commons.core.GuiSettings;
-
 import chopchop.logic.commands.CommandResult;
 import chopchop.logic.commands.exceptions.CommandException;
-
 import chopchop.logic.parser.exceptions.ParseException;
-
 import chopchop.model.ReadOnlyEntryBook;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
-
 import javafx.collections.ObservableList;
 
 /**
