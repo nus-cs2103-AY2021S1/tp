@@ -3,7 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_CS2103T;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2030;
 import static seedu.address.testutil.TypicalModules.getTypicalModuleList;
@@ -18,6 +18,8 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
+// import seedu.address.model.module.exceptions.DuplicateModulesException;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.ModuleBuilder;
 
 public class ModuleListTest {
@@ -44,13 +46,12 @@ public class ModuleListTest {
     @Test
     public void resetData_withDuplicateModules_throwsDuplicateModuleException() {
         // Two modules with the same name
-        Module editedCS2030 = new ModuleBuilder(CS2030).withZoomLink(VALID_ZOOMLINK)
+        Module editedCS2030 = new ModuleBuilder(CS2030).withZoomLink(VALID_ZOOMLINK_CS2103T)
                 .build();
         List<Module> newModules = Arrays.asList(CS2030, editedCS2030);
         ModuleListStub newData = new ModuleListStub(newModules);
 
-        // assertThrows(DuplicateModuleException.class, () -> moduleList.resetData(newData));
-        // class DuplicateModuleException is to be created
+        assertThrows(DuplicatePersonException.class, () -> moduleList.resetData(newData));
     }
 
     @Test
@@ -72,7 +73,7 @@ public class ModuleListTest {
     @Test
     public void hasModule_moduleWithSameNameModuleList_returnsTrue() {
         moduleList.addModule(CS2030);
-        Module editedCS2030 = new ModuleBuilder(CS2030).withZoomLink(VALID_ZOOMLINK)
+        Module editedCS2030 = new ModuleBuilder(CS2030).withZoomLink(VALID_ZOOMLINK_CS2103T)
                 .build();
         assertTrue(moduleList.hasModule(editedCS2030));
     }

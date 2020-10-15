@@ -44,7 +44,9 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String VALID_MODULENAME_CS2103T = "CS2103T";
-    public static final String VALID_ZOOMLINK = "www.validzoom.us";
+    public static final String VALID_MODULENAME_ES2660 = "ES2660";
+    public static final String VALID_ZOOMLINK_CS2103T = "www.cs2103tzoom.us";
+    public static final String VALID_ZOOMLINK_ES2660 = "www.es2660zoom.us";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

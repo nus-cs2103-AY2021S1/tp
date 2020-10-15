@@ -1,15 +1,9 @@
 package seedu.address.testutil;
 
-/*
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-*/
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2103T;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_ES2660;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_ES2660;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,15 +35,10 @@ public class TypicalModules {
         .withZoomLink("www.zoom.us").build();
 
     // Manually added - Modules's details found in {@code CommandTestUtil}
-    public static final Module CS2103T = new ModuleBuilder().withName(VALID_MODULENAME_CS2103T)
-        .withZoomLink(VALID_ZOOMLINK).build();
-    /*
-    public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB)
-        .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-        .build();
-    */
-
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+    public static final Module CS2103 = new ModuleBuilder().withName(VALID_MODULENAME_CS2103T)
+        .withZoomLink(VALID_ZOOMLINK_CS2103T).build();
+    public static final Module ES2660 = new ModuleBuilder().withName(VALID_MODULENAME_ES2660)
+        .withZoomLink(VALID_ZOOMLINK_ES2660).build();
 
     private TypicalModules() {} // prevents instantiation
 
