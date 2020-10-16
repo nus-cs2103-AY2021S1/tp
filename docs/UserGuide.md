@@ -113,6 +113,10 @@ Finds a task by a set of defined attribute by the user.
 
 Format: `find ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...`
 
+If different attributes are supplied, tasks that match all attributes will be displayed.
+If multiple search phrases of the same attribute is supplied, tasks that match any of the 
+search phrase will be displayed.
+
 Available attributes in v1.2 include:
 * `title:` find all tasks with the search phrase in the given title
 * `desc:` find all tasks with the search phrase in the given description
@@ -124,6 +128,8 @@ Examples:
 * `find type:todo` will list all tasks with the type `todo`
 * `find title:dinner type:todo` will list all tasks with the type `todo` and title that includes `dinner`
 * `find date:01-01-2020` will list all tasks with the date 01-01-2020
+* `find title:dinner title:lunch type:todo` will list all tasks with the type `todo` and title that includes either
+`dinner` or `lunch`
 
 ### Exit the program : `exit`
 
