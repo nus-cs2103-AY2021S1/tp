@@ -6,7 +6,7 @@ import javafx.scene.layout.StackPane;
 import jfxtras.scene.control.agenda.Agenda;
 
 /**
- * A ui for the status bar that is displayed at the header of the application.
+ * A ui for the calendar displayed in one of the tabs of the application.
  */
 public class CalendarDisplay extends UiPart<Region> {
 
@@ -17,8 +17,10 @@ public class CalendarDisplay extends UiPart<Region> {
     @FXML
     private StackPane calendarPlaceholder;
 
-    // TODO: change constructor to enable linking to main logic
-    public CalendarDisplay() {
+    /**
+     * Creates a {@code Calendar} with a blank {@code Agenda}.
+     */
+    public CalendarDisplay() { // TODO: change constructor to enable linking to main logic
         super(FXML);
         calendar = new Agenda();
         calendarPlaceholder.getChildren().add(calendar);
