@@ -10,7 +10,7 @@ import seedu.address.model.module.ModuleName;
 /**
  * Parses input arguments and creates a new ViewCommand object
  */
-public class ViewCommandParser implements Parser<ViewModuleCommand> {
+public class ViewModuleParser implements Parser<ViewModuleCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the ViewCommand

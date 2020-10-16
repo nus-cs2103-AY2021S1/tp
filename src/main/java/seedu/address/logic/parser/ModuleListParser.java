@@ -75,7 +75,7 @@ public class ModuleListParser {
             return new AddZoomLinkParser().parse(arguments);
 
         case ViewModuleCommand.COMMAND_WORD:
-            return new ViewCommandParser().parse(arguments);
+            return new ViewModuleParser().parse(arguments);
 
         case AddAssignmentCommand.COMMAND_WORD:
             return new AddAssignmentParser().parse(arguments);
