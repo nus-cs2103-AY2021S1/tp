@@ -7,7 +7,7 @@
       "y" : 103
     }
   },
-  "addressBookFilePath" : "data/addressbook.json",
-  "financeAccountFilePath" : "data/financeAccount.json",
-  "inventoryFilePath" : "data/inventory.json"
+  "addressBookFilePath" : "data\\addressbook.json",
+  "financeAccountFilePath" : "data\\financeAccount.json",
+  "inventoryFilePath" : "data\\inventory.json"
 }
