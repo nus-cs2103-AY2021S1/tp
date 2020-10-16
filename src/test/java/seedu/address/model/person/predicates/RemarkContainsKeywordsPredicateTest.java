@@ -20,14 +20,17 @@ public class RemarkContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        RemarkContainsKeywordsPredicate firstPredicate = new RemarkContainsKeywordsPredicate(firstPredicateKeywordList);
-        RemarkContainsKeywordsPredicate secondPredicate = new RemarkContainsKeywordsPredicate(secondPredicateKeywordList);
+        RemarkContainsKeywordsPredicate firstPredicate =
+                new RemarkContainsKeywordsPredicate(firstPredicateKeywordList);
+        RemarkContainsKeywordsPredicate secondPredicate =
+                new RemarkContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertEquals(firstPredicate, firstPredicate);
 
         // same values -> returns true
-        RemarkContainsKeywordsPredicate firstPredicateCopy = new RemarkContainsKeywordsPredicate(firstPredicateKeywordList);
+        RemarkContainsKeywordsPredicate firstPredicateCopy =
+                new RemarkContainsKeywordsPredicate(firstPredicateKeywordList);
         assertEquals(firstPredicateCopy, firstPredicate);
 
         // different types -> returns false
@@ -43,8 +46,8 @@ public class RemarkContainsKeywordsPredicateTest {
     @Test
     public void test_remarkContainsKeywords_returnsTrue() {
         // One keyword
-        RemarkContainsKeywordsPredicate predicate = new RemarkContainsKeywordsPredicate(Collections.singletonList(
-                "glasses"));
+        RemarkContainsKeywordsPredicate predicate =
+                new RemarkContainsKeywordsPredicate(Collections.singletonList("glasses"));
         assertTrue(predicate.test(new PersonBuilder().withRemark("wears glasses").build()));
 
         // Multiple keywords
@@ -63,7 +66,8 @@ public class RemarkContainsKeywordsPredicateTest {
     @Test
     public void test_remarkDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        RemarkContainsKeywordsPredicate predicate = new RemarkContainsKeywordsPredicate(Collections.emptyList());
+        RemarkContainsKeywordsPredicate predicate =
+                new RemarkContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withRemark("glasses").build()));
 
         // Non-matching keyword
@@ -71,8 +75,8 @@ public class RemarkContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withRemark("glasses bob-hair").build()));
 
         // Keywords match name, phone, email, department and office, but does not match remark
-        predicate = new RemarkContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Alice", "Computing",
-                "COM2-03-01"));
+        predicate = new RemarkContainsKeywordsPredicate(
+                Arrays.asList("12345", "alice@email.com", "Alice", "Computing", "COM2-03-01"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withDepartment("Computing").withOffice("COM2-03-01")
                 .withRemark("glasses").build()));

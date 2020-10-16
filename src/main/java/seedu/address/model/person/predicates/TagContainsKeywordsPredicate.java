@@ -3,10 +3,8 @@ package seedu.address.model.person.predicates;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 
 /**
  * Tests that a {@code Person}'s {@code Tag} matches any of the keywords given.

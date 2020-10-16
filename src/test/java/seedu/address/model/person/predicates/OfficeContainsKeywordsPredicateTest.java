@@ -1,15 +1,17 @@
 package seedu.address.model.person.predicates;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.person.predicates.OfficeContainsKeywordsPredicate;
-import seedu.address.testutil.PersonBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.PersonBuilder;
 
 public class OfficeContainsKeywordsPredicateTest {
     @Test
@@ -17,14 +19,17 @@ public class OfficeContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        OfficeContainsKeywordsPredicate firstPredicate = new OfficeContainsKeywordsPredicate(firstPredicateKeywordList);
-        OfficeContainsKeywordsPredicate secondPredicate = new OfficeContainsKeywordsPredicate(secondPredicateKeywordList);
+        OfficeContainsKeywordsPredicate firstPredicate =
+                new OfficeContainsKeywordsPredicate(firstPredicateKeywordList);
+        OfficeContainsKeywordsPredicate secondPredicate =
+                new OfficeContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertEquals(firstPredicate, firstPredicate);
 
         // same values -> returns true
-        OfficeContainsKeywordsPredicate firstPredicateCopy = new OfficeContainsKeywordsPredicate(firstPredicateKeywordList);
+        OfficeContainsKeywordsPredicate firstPredicateCopy =
+                new OfficeContainsKeywordsPredicate(firstPredicateKeywordList);
         assertEquals(firstPredicateCopy, firstPredicate);
 
         // different types -> returns false
@@ -40,7 +45,8 @@ public class OfficeContainsKeywordsPredicateTest {
     @Test
     public void test_officeContainsKeywords_returnsTrue() {
         // One keyword
-        OfficeContainsKeywordsPredicate predicate = new OfficeContainsKeywordsPredicate(Collections.singletonList("COM2"));
+        OfficeContainsKeywordsPredicate predicate =
+                new OfficeContainsKeywordsPredicate(Collections.singletonList("COM2"));
         assertTrue(predicate.test(new PersonBuilder().withOffice("COM2").build()));
 
         // One subword
@@ -63,7 +69,8 @@ public class OfficeContainsKeywordsPredicateTest {
     @Test
     public void test_officeDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        OfficeContainsKeywordsPredicate predicate = new OfficeContainsKeywordsPredicate(Collections.emptyList());
+        OfficeContainsKeywordsPredicate predicate =
+                new OfficeContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withOffice("COM2").build()));
 
         // Non-matching keyword
@@ -71,8 +78,8 @@ public class OfficeContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withOffice("COM2 S17").build()));
 
         // Keywords match name, phone, email, and department, but does not match office
-        predicate = new OfficeContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Engineering",
-                "Alice", "COM2-03-17"));
+        predicate = new OfficeContainsKeywordsPredicate(
+                Arrays.asList("12345", "alice@email.com", "Engineering", "Alice", "COM2-03-17"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice")
                 .withPhone("12345").withEmail("alice@email.com")
                 .withDepartment("Engineering").withOffice("E4-03-01").build()));
