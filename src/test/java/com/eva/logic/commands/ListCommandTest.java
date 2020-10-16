@@ -3,6 +3,7 @@ package com.eva.logic.commands;
 import static com.eva.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static com.eva.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static com.eva.testutil.TypicalPersons.getTypicalApplicantDatabase;
 import static com.eva.testutil.TypicalPersons.getTypicalPersonDatabase;
 import static com.eva.testutil.TypicalPersons.getTypicalStaffDatabase;
 
@@ -23,8 +24,10 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(), new UserPrefs());
-        expectedModel = new ModelManager(model.getPersonDatabase(), model.getStaffDatabase(), new UserPrefs());
+        model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
+                getTypicalApplicantDatabase(), new UserPrefs());
+        expectedModel = new ModelManager(model.getPersonDatabase(), model.getStaffDatabase(),
+                model.getApplicantDatabase(), new UserPrefs());
     }
 
     @Test
