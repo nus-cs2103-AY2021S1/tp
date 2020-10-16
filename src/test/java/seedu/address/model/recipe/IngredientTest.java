@@ -12,7 +12,7 @@ public class IngredientTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Ingredient(null, ""));
+        assertThrows(NullPointerException.class, () -> new Ingredient(null));
     }
 
     /*@Test
@@ -38,7 +38,7 @@ public class IngredientTest {
         assertTrue(ParserUtil.isValidIngredient(new Ingredient("cabbage", "2 cups"))); // space within quantity
         assertTrue(ParserUtil.isValidIngredient(new Ingredient("cabbage", "2cups"))); // no space within quantity
         assertTrue(ParserUtil.isValidIngredient(new Ingredient("cabbage", "pinch"))); // no numbers in quantity
-        assertTrue(ParserUtil.isValidIngredient(new Ingredient("cabbage", ""))); // no quantity
+        assertTrue(ParserUtil.isValidIngredient(new Ingredient("cabbage"))); // no quantity
 
         // invalid ingredient quantities
         assertFalse(ParserUtil.isValidIngredient(new Ingredient("fishcake", "2 c@ps"))); // empty name

@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedConsumption.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalRecipes.BENSON;
+import static seedu.address.testutil.TypicalRecipes.PASTA;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,24 +22,24 @@ import seedu.address.model.recipe.Name;
 public class JsonAdaptedConsumptionTest {
     private static final String INVALID_NAME = "R@chel";
     private static final ArrayList<Ingredient> INVALID_INGREDIENT =
-            new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("@olive oil", "")}));
+            new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("@olive oil")}));
     private static final Integer INVALID_CALORIES = -1;
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = BENSON.getName().toString();
-    private static final ArrayList<Ingredient> VALID_INGREDIENT = BENSON.getIngredient();
-    private static final int VALID_CALORIES = BENSON.getCalories().value;
-    private static final String VALID_INSTRUCTION = BENSON.getInstruction();
-    private static final String VALID_RECIPE_IMAGE = BENSON.getRecipeImage();
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
+    private static final String VALID_NAME = PASTA.getName().toString();
+    private static final ArrayList<Ingredient> VALID_INGREDIENT = PASTA.getIngredient();
+    private static final int VALID_CALORIES = PASTA.getCalories().value;
+    private static final String VALID_INSTRUCTION = PASTA.getInstruction();
+    private static final String VALID_RECIPE_IMAGE = PASTA.getRecipeImage();
+    private static final List<JsonAdaptedTag> VALID_TAGS = PASTA.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
 
     @Test
     public void toModelType_validConsumptionDetails_returnsRecipe() throws Exception {
-        JsonAdaptedConsumption consumpReturn = new JsonAdaptedConsumption(BENSON);
-        Consumption consump = new Consumption(BENSON);
+        JsonAdaptedConsumption consumpReturn = new JsonAdaptedConsumption(PASTA);
+        Consumption consump = new Consumption(PASTA);
         assertEquals(consump, consumpReturn.toModelType());
     }
 

@@ -13,8 +13,8 @@ import seedu.address.model.recipe.Ingredient;
 import seedu.address.testutil.IngredientBuilder;
 
 public class IngredientParserTest {
-    private static final String VALID_INGREDIENT_STRING = "apple -2 slices, banana -200g";
-    private static final String VALID_INGREDIENT_STRING_WITHOUTQUANTITY = "food -2g";
+    private static final String VALID_INGREDIENT_STRING = "Potato -2 whole, Banana -200g";
+    private static final String VALID_INGREDIENT_STRING_WITHOUTQUANTITY = "food";
 
 
     @Test
@@ -28,7 +28,7 @@ public class IngredientParserTest {
     @Test
     public void parser_validInputWithoutQuantity_success() throws ParseException {
         ArrayList<Ingredient> expectedIngredients = new ArrayList<>();
-        expectedIngredients.add(new IngredientBuilder().build());
+        expectedIngredients.add(new IngredientBuilder().buildWithoutQuantity());
         assertEquals(expectedIngredients, IngredientParser.parse(VALID_INGREDIENT_STRING_WITHOUTQUANTITY));
     }
 }

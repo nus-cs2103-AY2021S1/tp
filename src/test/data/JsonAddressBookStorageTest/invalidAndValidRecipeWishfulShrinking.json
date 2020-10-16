@@ -1,9 +1,0 @@
-{
-  "recipes": [ {
-    "name": "Valid Recipe",
-    "ingredients": "9482424"
-  }, {
-    "name": "Recipe With Invalid Ingredient Field",
-    "ingredients": "948asdf2424"
-  } ]
-}

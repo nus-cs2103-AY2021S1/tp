@@ -3,9 +3,9 @@ package seedu.address.storage;
 //import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalRecipes.ALICE;
-import static seedu.address.testutil.TypicalRecipes.HOON;
-import static seedu.address.testutil.TypicalRecipes.IDA;
+import static seedu.address.testutil.TypicalRecipes.BURGER;
+import static seedu.address.testutil.TypicalRecipes.SANDWICH;
+import static seedu.address.testutil.TypicalRecipes.SOUP;
 import static seedu.address.testutil.TypicalRecipes.getTypicalWishfulShrinking;
 
 import java.io.IOException;
@@ -74,14 +74,14 @@ public class JsonWishfulShrinkingStorageTest {
         // assertEquals(original, new WishfulShrinking(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addRecipe(HOON);
-        original.removeRecipe(ALICE);
+        original.addRecipe(BURGER);
+        original.removeRecipe(SANDWICH);
         jsonWishfulShrinkingStorage.saveWishfulShrinking(original, filePath);
         readBack = jsonWishfulShrinkingStorage.readWishfulShrinking(filePath).get();
         // assertEquals(original, new WishfulShrinking(readBack));
 
         // Save and read without specifying file path
-        original.addRecipe(IDA);
+        original.addRecipe(SOUP);
         jsonWishfulShrinkingStorage.saveWishfulShrinking(original); // file path not specified
         readBack = jsonWishfulShrinkingStorage.readWishfulShrinking().get(); // file path not specified
         // assertEquals(original, new WishfulShrinking(readBack));

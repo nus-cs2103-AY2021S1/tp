@@ -15,24 +15,36 @@ public class Ingredient {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum} ][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public static final String VALIDATION_REGEX_QUANTITY = "[\\p{Alnum}/\\ ]*";
     private String value;
     private String quantity;
 
     /**
-     * Constructs a {@code Ingredient}.
+     * Constructs a {@code Ingredient} with quantity.
      *
      * @param ingredient A valid ingredients number.
      */
     public Ingredient(String ingredient, String quantity) {
-        requireNonNull(ingredient);
+        requireNonNull(ingredient, quantity);
         value = ingredient;
         this.quantity = quantity;
     }
-    public Ingredient() {
 
+    /**
+     * Constructs a {@code Ingredient} without quantity.
+     *
+     * @param ingredient A valid ingredients number.
+     */
+    public Ingredient(String ingredient) {
+        requireNonNull(ingredient);
+        value = ingredient;
+        this.quantity = "";
     }
+
+    public Ingredient() {
+    }
+
     public void setValue(String value) {
         this.value = value;
     }
