@@ -35,7 +35,7 @@ public class RemindCommand extends Command {
 
     /**
      * Constructs a RemindCommand to set reminders to the specified assignment.
-     * @param targetIndex index of the assignment in the filtered assignment list to edit
+     * @param targetIndex index of the assignment in the filtered assignment list to remind
      */
     public RemindCommand(Index targetIndex) {
         requireNonNull(targetIndex);
