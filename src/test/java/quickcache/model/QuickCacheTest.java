@@ -37,40 +37,40 @@ public class QuickCacheTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyQuickCache_replacesData() {
         QuickCache newData = getTypicalQuickCache();
         quickCache.resetData(newData);
         assertEquals(newData, quickCache);
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
+    public void resetData_withDuplicateFlashcards_throwsDuplicateFlashcardException() {
+        // Two flashcards with the same question and answer fields
         Flashcard editedRandom1 = new FlashcardBuilder(RANDOM1).withTags(VALID_TAG_LSM1301).build();
-        List<Flashcard> newPersons = Arrays.asList(RANDOM1, editedRandom1);
-        QuickCacheStub newData = new QuickCacheStub(newPersons);
+        List<Flashcard> newFlashcards = Arrays.asList(RANDOM1, editedRandom1);
+        QuickCacheStub newData = new QuickCacheStub(newFlashcards);
 
         assertThrows(DuplicateFlashcardException.class, () -> quickCache.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasFlashcard_nullFlashcard_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> quickCache.hasFlashcard(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasFlashcard_flashcardNotInQuickCache_returnsFalse() {
         assertFalse(quickCache.hasFlashcard(RANDOM1));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasFlashcard_flashcardInQuickCache_returnsTrue() {
         quickCache.addFlashcard(RANDOM1);
         assertTrue(quickCache.hasFlashcard(RANDOM1));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasFlashcard_flashcardWithSameIdentityFieldsInQuickCache_returnsTrue() {
         quickCache.addFlashcard(RANDOM1);
         Flashcard editedRandom1 = new FlashcardBuilder(RANDOM1).withTags(VALID_TAG_MODULE).build();
         assertTrue(quickCache.hasFlashcard(editedRandom1));
@@ -83,13 +83,13 @@ public class QuickCacheTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyQuickCache whose flashcards list can violate interface constraints.
      */
     private static class QuickCacheStub implements ReadOnlyQuickCache {
         private final ObservableList<Flashcard> flashcards = FXCollections.observableArrayList();
 
-        QuickCacheStub(Collection<Flashcard> persons) {
-            this.flashcards.setAll(persons);
+        QuickCacheStub(Collection<Flashcard> flashcards) {
+            this.flashcards.setAll(flashcards);
         }
 
         @Override

@@ -67,7 +67,7 @@ public class DeleteCommandTest {
         CommandTestUtil.showFlashcardAtIndex(model, TypicalIndexes.INDEX_FIRST_FLASHCARD);
 
         Index outOfBoundIndex = TypicalIndexes.VERY_BIG_INDEX_FLASHCARD;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of quick cache list
         assertFalse(outOfBoundIndex.getZeroBased() < model.getQuickCache().getFlashcardList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);

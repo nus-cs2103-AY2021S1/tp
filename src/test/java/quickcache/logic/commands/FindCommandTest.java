@@ -51,7 +51,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_zeroKeywords_noFlashcardFound() {
         String expectedMessage = String.format(Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 0);
         FlashcardContainsTagPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
@@ -61,7 +61,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_oneKeyword_multiplePersonsFound() {
+    public void execute_oneKeyword_multipleFlashcardsFound() {
         String expectedMessage = String.format(Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 2);
         FlashcardContainsTagPredicate predicate = preparePredicate("LSM1301");
         FindCommand command = new FindCommand(predicate);
@@ -72,7 +72,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_multipleFlashcardsFound() {
         String expectedMessage = String.format(Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 2);
         FlashcardContainsTagPredicate predicate = preparePredicate("CS2100 CS");
         FindCommand command = new FindCommand(predicate);
