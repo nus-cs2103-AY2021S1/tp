@@ -1,5 +1,6 @@
 package jimmy.mcgymmy.ui;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.util.logging.Logger;
 
@@ -11,6 +12,8 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import jimmy.mcgymmy.commons.core.GuiSettings;
 import jimmy.mcgymmy.commons.core.LogsCenter;
@@ -153,6 +156,38 @@ public class MainWindow extends UiPart<Stage> {
         }
 
     }
+
+    /**
+     * Handles the importing of data file.
+     */
+    @FXML
+    public void handleImport() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose file to import");
+        file = fileChooser.showOpenDialog(primaryStage);
+        if (file.exists()) {
+            logger.info(String.format("User selected '%s'", file.toString()));
+        } else {
+            logger.info("User did not select a file");
+        }
+
+    }
+
+    /**
+     * Handles the exporting of data file.
+     */
+    @FXML
+    public void handleExport() {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Choose location to export");
+        directory = directoryChooser.showDialog(primaryStage);
+        if (directory.exists()) {
+            logger.info(String.format("User selected '%s'", directory.toString()));
+        } else {
+            logger.info(String.format("User did not select any directory"));
+        }
+    }
+
 
     void show() {
         primaryStage.show();
