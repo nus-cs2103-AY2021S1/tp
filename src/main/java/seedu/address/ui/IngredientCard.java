@@ -24,13 +24,14 @@ public class IngredientCard extends UiPart<Region> {
      */
 
     public final Ingredient ingredient;
+    private final int displayIndex;
 
     @FXML
     private HBox cardPane;
     @FXML
     private Label name;
     @FXML
-    private Label id;
+    private Label quantity;
     @FXML
     private Label ingredients;
 
@@ -40,8 +41,9 @@ public class IngredientCard extends UiPart<Region> {
     public IngredientCard(Ingredient ingredient, int displayedIndex) {
         super(FXML);
         this.ingredient = ingredient;
-        id.setText(displayedIndex + ". ");
+        this.displayIndex = displayedIndex;
         name.setText(ingredient.getValue());
+        quantity.setText(ingredient.getQuantity());
     }
 
     @Override
@@ -58,6 +60,6 @@ public class IngredientCard extends UiPart<Region> {
 
         // state check
         IngredientCard card = (IngredientCard) other;
-        return id.getText().equals(card.id.getText());
+        return this.displayIndex == card.displayIndex;
     }
 }

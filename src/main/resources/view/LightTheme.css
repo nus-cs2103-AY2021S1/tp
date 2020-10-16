@@ -72,10 +72,6 @@
     -fx-opacity: 1;
 }
 
-.table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: -fx-focus-color;
-}
-
 .split-pane:horizontal .split-pane-divider {
     -fx-background-color: derive(#fafafa, 20%);
     -fx-border-color: transparent transparent transparent #4d4d4d;
@@ -105,15 +101,6 @@
 
 .list-cell:filled:odd {
     -fx-background-color: white;
-}
-
-.list-cell:filled:selected {
-    -fx-background-color: gray;
-}
-
-.list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
 }
 
 .list-cell .label {
@@ -207,55 +194,6 @@
     -fx-background-color: #fafafa;
 }
 
-/*
- * Metro style Push Button
- * Author: Pedro Duque Vieira
- * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
- */
-.button {
-    -fx-padding: 5 22 5 22;
-    -fx-border-color: #e2e2e2;
-    -fx-border-width: 2;
-    -fx-background-radius: 0;
-    -fx-background-color: #1d1d1d;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-font-size: 11pt;
-    -fx-text-fill: #d8d8d8;
-    -fx-background-insets: 0 0 0 0, 0, 1, 2;
-}
-
-.button:hover {
-    -fx-background-color: #3a3a3a;
-}
-
-.button:pressed, .button:default:hover:pressed {
-    -fx-background-color: white;
-    -fx-text-fill: #1d1d1d;
-}
-
-.button:focused {
-    -fx-border-color: white, white;
-    -fx-border-width: 1, 1;
-    -fx-border-style: solid, segments(1, 1);
-    -fx-border-radius: 0, 0;
-    -fx-border-insets: 1 1 1 1, 0;
-}
-
-.button:disabled, .button:default:disabled {
-    -fx-opacity: 0.4;
-    -fx-background-color: #fafafa;
-    -fx-text-fill: white;
-}
-
-.button:default {
-    -fx-background-color: -fx-focus-color;
-    -fx-text-fill: #ffffff;
-}
-
-.button:default:hover {
-    -fx-background-color: derive(-fx-focus-color, 30%);
-}
-
 .dialog-pane {
     -fx-background-color: #fafafa;
 }
@@ -282,29 +220,9 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#fafafa, 20%);
-}
-
-.scroll-bar .thumb {
-    -fx-background-color: derive(#b8b8b8, 80%);
-    -fx-background-insets: 3;
-}
-
-.scroll-bar .increment-button, .scroll-bar .decrement-button {
-    -fx-background-color: transparent;
-    -fx-padding: 0 0 0 0;
-}
-
-.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
-    -fx-shape: " ";
-}
-
-.scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
-    -fx-padding: 1 8 1 8;
-}
-
-.scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
-    -fx-padding: 8 1 8 1;
+    -fx-scale-x: 0;
+    -fx-padding: -10;
+    -fx-opacity: 0;
 }
 
 #cardPane {
@@ -328,7 +246,7 @@
     -fx-text-fill: black;
 }
 
-#filterField, #recipeListPanel, #recipeWebpage {
+#filterField #recipeWebpage {
     -fx-effect: innershadow(gaussian, whitesmoke, 10, 0, 0, 0);
 }
 

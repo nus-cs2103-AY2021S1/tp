@@ -125,6 +125,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        fillRecipePanel();
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -192,7 +194,8 @@ public class MainWindow extends UiPart<Stage> {
         final ObservableList<String> stylesheets = mainScene.getStylesheets();
         stylesheets.addAll(JFoenixResources.load("css/jfoenix-fonts.css").toExternalForm(),
                 JFoenixResources.load("css/jfoenix-design.css").toExternalForm(),
-                MainWindow.class.getResource("/css/wishful-shrinking.css").toExternalForm());
+                MainWindow.class.getResource("/css/wishful-shrinking.css").toExternalForm(),
+                MainWindow.class.getResource("/css/wishful-shrinking-components.css").toExternalForm());
         primaryStage.show();
     }
 
