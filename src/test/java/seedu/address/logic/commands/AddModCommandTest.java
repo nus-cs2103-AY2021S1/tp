@@ -172,6 +172,15 @@ public class AddModCommandTest {
         }
 
         @Override
+        public boolean isEmptyModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearMod() {
+            throw new AssertionError("This method should not be called.");
+        }
+
         public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }

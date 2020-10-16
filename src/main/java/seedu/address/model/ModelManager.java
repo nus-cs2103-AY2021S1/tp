@@ -125,6 +125,16 @@ public class ModelManager implements Model {
         addressBook.removeModule(moduleCode);
     }
 
+    @Override
+    public boolean isEmptyModuleList() {
+        return modules.isEmptyList();
+    }
+
+    @Override
+    public void clearMod() {
+        addressBook.clearMod();
+    }
+
     /**
      * Checks if addressBook has the given (@code Module}
      */
