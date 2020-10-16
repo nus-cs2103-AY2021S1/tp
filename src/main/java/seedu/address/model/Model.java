@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * The API of the Model component.
@@ -16,6 +17,8 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
+
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
     // ==================== UserPrefs ===============================================================
 
@@ -91,4 +94,47 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredModuleList(Predicate<Module> predicate);
+
+    // ============================ TodoList ==================================================
+
+    /**
+     * Replaces todo list data with the data in {@code todolist}.
+     */
+    void setTodoList(ReadOnlyTodoList todoList);
+
+    /** Returns the TodoList */
+    ReadOnlyTodoList getTodoList();
+
+    /**
+     * Returns true if a task with the same name, date, and type as {@code task} exists in the todo list.
+     */
+    boolean hasTask(Task task);
+
+    /**
+     * Deletes the given task.
+     * The task must exist in the todo list.
+     */
+    void deleteTask(Task target);
+
+    /**
+     * Adds the given task.
+     * {@code task} must not already exist in the todo list.
+     */
+    void addTask(Task task);
+
+    /**
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code target} must exist in the todo list.
+     * The task name of {@code editedTask} must not be the same as another existing task in the todo list.
+     */
+    void setTask(Task target, Task editedTask);
+
+    /** Returns an unmodifiable view of the filtered todo list */
+    ObservableList<Task> getFilteredTodoList();
+
+    /**
+     * Updates the filter of the filtered todo list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTodoList(Predicate<Task> predicate);
 }
