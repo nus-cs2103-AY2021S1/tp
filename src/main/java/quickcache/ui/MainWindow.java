@@ -189,6 +189,7 @@ public class MainWindow extends UiPart<Stage> {
      * @param feedbackToUser the feedback describing what to display to the user.
      */
     public void handleChangeWindow(Feedback feedbackToUser) {
+        // Statistics is null if there is no statistics to display to the user.
         feedbackToUser.getStatistics().ifPresentOrElse((statistics ->
                 changeInnerPartsToStatisticsWindow(feedbackToUser)), () ->
                 changeInnerPartsToFlashcardWindow(feedbackToUser));

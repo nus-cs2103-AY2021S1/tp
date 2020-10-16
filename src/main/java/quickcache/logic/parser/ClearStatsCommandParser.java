@@ -3,7 +3,6 @@ package quickcache.logic.parser;
 import quickcache.commons.core.Messages;
 import quickcache.commons.core.index.Index;
 import quickcache.logic.commands.ClearStatsCommand;
-import quickcache.logic.commands.StatsCommand;
 import quickcache.logic.parser.exceptions.ParseException;
 
 /**
