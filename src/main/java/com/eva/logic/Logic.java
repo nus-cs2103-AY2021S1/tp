@@ -30,7 +30,14 @@ public interface Logic {
      *
      * @see com.eva.model.Model#getEvaDatabase()
      */
-    ReadOnlyEvaDatabase getEvaDatabase();
+    ReadOnlyEvaDatabase<Person> getEvaDatabase();
+
+    /**
+     * Returns the StaffDatabase.
+     *
+     * @see com.eva.model.Model#getStaffDataBase()
+     */
+    ReadOnlyEvaDatabase<Staff> getStaffDataBase();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
@@ -38,10 +45,14 @@ public interface Logic {
     ObservableList<Staff> getFilteredStaffList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' persons data file path.
      */
     Path getEvaDatabaseFilePath();
 
+    /**
+     * Returns the user prefs' staff data file path.
+     */
+    Path getStaffDatabaseFilePath();
     /**
      * Returns the user prefs' GUI settings.
      */

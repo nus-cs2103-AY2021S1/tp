@@ -39,14 +39,24 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' persons data file path.
      */
     Path getEvaDatabaseFilePath();
 
     /**
+     * Returns the user prefs' staff data file path.
+     */
+    Path getStaffDatabaseFilePath();
+
+    /**
      * Sets the user prefs' address book file path.
      */
-    void setEvaDatabaseFilePath(Path addressBookFilePath);
+    void setEvaDatabaseFilePath(Path evaDatabaseFilePath);
+
+    /**
+     * Sets the user prefs' address book file path.
+     */
+    void setStaffDatabaseFilePath(Path staffDatabaseFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
