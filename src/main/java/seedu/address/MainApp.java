@@ -15,9 +15,11 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
+import seedu.address.model.ContactList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ModuleList;
+import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyModuleList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -75,6 +77,7 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyModuleList> moduleListOptional;
         ReadOnlyModuleList initialData;
+        ReadOnlyContactList initalContactList = new ContactList();
         try {
             moduleListOptional = storage.readModuleList();
             if (!moduleListOptional.isPresent()) {
@@ -93,7 +96,7 @@ public class MainApp extends Application {
             initialData = new ModuleList();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialData, initalContactList, userPrefs);
     }
 
     private void initLogging(Config config) {

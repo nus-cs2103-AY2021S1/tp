@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.module.Module;
 
 /**
@@ -20,25 +21,31 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final ModuleList moduleList;
+    private final ContactList contactList;
     private final UserPrefs userPrefs;
     private final FilteredList<Module> filteredModules;
+    private final FilteredList<Contact> filteredContacts;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyModuleList moduleList, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyModuleList moduleList, ReadOnlyContactList contactList,
+                        ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(moduleList, userPrefs);
+        requireAllNonNull(moduleList, contactList, userPrefs);
 
-        logger.fine("Initializing with module list: " + moduleList + " and user prefs " + userPrefs);
+        logger.fine("Initializing with module list: " + moduleList + " and contact list: "
+                + contactList + " and user prefs " + userPrefs);
 
         this.moduleList = new ModuleList(moduleList);
+        this.contactList = new ContactList(contactList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredModules = new FilteredList<Module>(this.moduleList.getModuleList());
+        filteredContacts = new FilteredList<Contact>(this.contactList.getContactList());
     }
 
     public ModelManager() {
-        this(new ModuleList(), new UserPrefs());
+        this(new ModuleList(), new ContactList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -112,6 +119,42 @@ public class ModelManager implements Model {
         moduleList.setModule(target, editedModule);
     }
 
+    //=========== Contact List ================================================================================
+
+    @Override
+    public void setContactList(ReadOnlyContactList contactList) {
+        this.contactList.resetData(contactList);
+    }
+
+    @Override
+    public ReadOnlyContactList getContactList() {
+        return contactList;
+    }
+
+    @Override
+    public boolean hasContact(Contact contact) {
+        requireNonNull(contact);
+        return contactList.hasContact(contact);
+    }
+
+    @Override
+    public void deleteContact(Contact target) {
+        contactList.removeContact(target);
+    }
+
+    @Override
+    public void addContact(Contact contact) {
+        contactList.addContact(contact);
+        updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
+    }
+
+    @Override
+    public void setContact(Contact target, Contact editedContact) {
+        requireAllNonNull(target, editedContact);
+
+        contactList.setContact(target, editedContact);
+    }
+
     //=========== Filtered Module List Accessors =============================================================
 
     /**
@@ -123,10 +166,25 @@ public class ModelManager implements Model {
         return filteredModules;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Contact} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Contact> getFilteredContactList() {
+        return filteredContacts;
+    }
+
     @Override
     public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredContactList(Predicate<Contact> predicate) {
+        requireNonNull(predicate);
+        filteredContacts.setPredicate(predicate);
     }
 
     @Override
