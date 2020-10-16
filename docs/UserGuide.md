@@ -96,7 +96,7 @@ Examples:
 * `searchR n/salad` followed by `deleteR 1` deletes the 1st recipe in the results of the `search` command.
 
 
-### Search recipe by recipe ingredients OR recipe title OR recipe tags: `searchR`
+### Searching for a recipe: `searchR`
 
 Finds recipes that contains all the specified ingredients OR whose title OR tags contain any of the given keywords.
 
@@ -112,7 +112,7 @@ Examples:
 * `searchR t/healthy` returns `salad` with tag `healthy`
 
 
-### Recommend recipes : `recommend`
+### Recommending recipes : `recommend`
 
 Shows a list of all recipes in the Recipes Collection that can be made with the ingredients in the user's fridge.
 
@@ -157,7 +157,7 @@ Examples:
 * `searchF peanut` followed by `deleteF 1` deletes the 1st ingredient in the results of the `search` command.
 
 
-### Search Ingredient: `searchF`
+### Searching for an Ingredient: `searchF`
 
 Finds ingredients that contain any of the given keywords.
 
