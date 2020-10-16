@@ -23,7 +23,7 @@ public class RemindCommand extends Command {
     public static final String COMMAND_WORD = "remind";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sets reminders for the assignment identified by the index number"
+            + ": Sets reminders for the assignment identified by the index number "
             + "used in the displayed assignment list."
             + " Assignments with reminders set are permanently shown in the displayed reminders list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"

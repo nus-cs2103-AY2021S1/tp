@@ -25,14 +25,14 @@ public class UnremindCommand extends NegateCommand {
     public static final String COMMAND_WORD = NegateCommand.COMMAND_WORD + COMMAND_WORD_SUFFIX;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Removes the reminder from the assignment identified by the index number"
+            + ": Removes the reminder from the assignment identified by the index number "
             + "used in the displayed assignment list."
             + " Assignments will no longer have reminders set and will be removed from the displayed reminders list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_UNREMIND_ASSIGNMENT_SUCCESS = "Removed reminder for Assignment: %1$s";
-    public static final String MESSAGE_UNREMINDED_ASSIGNMENT = "This assignment already does not have reminders set.";
+    public static final String MESSAGE_UNREMINDED_ASSIGNMENT = "This assignment does not have reminders set.";
 
     /**
      * Constructs an UnremindCommand to remove reminders from the specified assignment.
