@@ -40,7 +40,8 @@ public class OpenEndedQuestion implements Question {
             return true;
         } else if (o instanceof OpenEndedQuestion) {
             OpenEndedQuestion temp = (OpenEndedQuestion) o;
-            return this.toString().equals(temp.toString());
+            return this.toString().equals(temp.toString())
+                    && this.answer.equals(temp.answer);
         }
         return false;
     }

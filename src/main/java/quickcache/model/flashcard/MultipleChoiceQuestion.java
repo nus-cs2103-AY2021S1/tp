@@ -72,7 +72,7 @@ public class MultipleChoiceQuestion implements Question {
     public Answer getAnswerOrIndex() {
         for (int i = 0; i < choices.length; i++) {
             if (this.answer.getValue().equals(choices[i].getValue())) {
-                return new Answer(String.valueOf(i));
+                return new Answer(String.valueOf(i + 1));
             }
         }
         return this.answer;
@@ -112,7 +112,8 @@ public class MultipleChoiceQuestion implements Question {
         } else if (o instanceof MultipleChoiceQuestion) {
             MultipleChoiceQuestion temp = (MultipleChoiceQuestion) o;
             return this.toString().equals(temp.toString())
-                    && Arrays.equals(this.getChoices().get(), temp.getChoices().get());
+                    && Arrays.equals(this.getChoices().get(), temp.getChoices().get())
+                    && this.answer.equals(temp.answer);
         }
         return false;
     }
