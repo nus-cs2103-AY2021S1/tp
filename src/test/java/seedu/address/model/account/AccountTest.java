@@ -12,7 +12,10 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-
+/**
+ * Tests for Account class.
+ * isSameAccount tests will be implemented.
+ */
 public class AccountTest {
     private static final String ACCOUNT_NAME = "General account";
     private final Account account = new Account(new Name(ACCOUNT_NAME));
