@@ -8,11 +8,11 @@ import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.NameContainsKeywordsPredicateForExercise;
 import seedu.address.testutil.ExerciseBuilder;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ExerciseBookParserTest {
 
