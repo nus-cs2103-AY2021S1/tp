@@ -180,6 +180,17 @@ class DelModCommandTest {
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean isEmptyModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearMod() {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
     /**
      * A Model stub that always accept the person being added.
