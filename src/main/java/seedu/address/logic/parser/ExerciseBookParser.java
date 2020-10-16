@@ -10,6 +10,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ArchiveCommand;
 import seedu.address.logic.commands.CommandForExercise;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.UpdateExerciseCommand;
@@ -34,9 +35,6 @@ public class ExerciseBookParser {
      */
     public CommandForExercise parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
-        if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-        }
 
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -55,11 +53,14 @@ public class ExerciseBookParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
         case UpdateExerciseCommand.COMMAND_WORD:
             return new UpdateExerciseCommandParser().parse(arguments);
+
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
+
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

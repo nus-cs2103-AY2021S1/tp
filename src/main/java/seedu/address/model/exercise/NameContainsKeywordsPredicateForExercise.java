@@ -18,12 +18,10 @@ public class NameContainsKeywordsPredicateForExercise implements Predicate<Exerc
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(exercise.getName().fullName, keyword));
     }
 
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof NameContainsKeywordsPredicateForExercise // instanceof handles nulls
                 && keywords.equals(((NameContainsKeywordsPredicateForExercise) other).keywords)); // state check
     }
-
 }
