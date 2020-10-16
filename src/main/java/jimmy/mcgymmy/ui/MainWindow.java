@@ -1,9 +1,11 @@
 package jimmy.mcgymmy.ui;
 
+import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -33,9 +35,14 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private FoodListPanel foodListPanel;
     private ResultDisplay resultDisplay;
+    private File file;
+    private File directory;
 
     @FXML
     private StackPane commandBoxPlaceholder;
+
+    @FXML
+    private DatePicker datePicker;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -61,7 +68,6 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
         setAccelerators();
 
     }
@@ -153,6 +159,13 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Get the date selected by the User.
+     */
+    public LocalDate getDate() {
+        return datePicker.getValue();
+    }
+
+    /**
      * Closes the application.
      */
     @FXML
@@ -177,10 +190,6 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-            if (commandResult.isShowHelp()) {
-                handleHelp();
-            }
 
             if (commandResult.isExit()) {
                 handleExit();
