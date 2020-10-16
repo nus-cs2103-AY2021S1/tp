@@ -31,7 +31,7 @@ public class Contact {
         this.name = name;
         this.email = email;
         this.telegramUsername = telegramUsername;
-        this.tags.addAll(tags);
+        // this.tags.addAll(tags);
     }
 
     public Name getName() {
