@@ -3,6 +3,7 @@ package seedu.address.model.module;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.BinaryOperator;
 
 import seedu.address.model.module.grade.Assignment;
 import seedu.address.model.module.grade.GradeTracker;
@@ -155,6 +156,14 @@ public class Module {
         }
         return otherModule != null
                 && otherModule.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if module is completed by checking whether the module has a completed tag.
+     */
+    public boolean isCompleted() {
+        return this.tags.stream().map(x -> x.equals(new Tag("completed")))
+                .reduce(false, (x, y) -> x || y);
     }
 
     @Override
