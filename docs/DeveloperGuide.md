@@ -19,6 +19,11 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 **How the architecture components interact with each other**
 
+### OverAll components
+<img src="images/OverViewClassDiagram.png" width="200px">
+
+[Enter description here]
+
 ### UI component
 
 **API** :
@@ -29,9 +34,15 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Model component
 
+**API** :
+
 ### Storage component
 
+**API** :
+
 ### Common classes
+
+**API** :
 
 
 --------------------------------------------------------------------------------------------------------------------
