@@ -62,7 +62,7 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         // If both increment and new quantity prefix provided
         if (argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).isPresent()
                 && argMultimap.getValue(PREFIX_NEW_QUANTITY).isPresent()) {
-            throw new ParseException(MESSAGE_TOO_MANY_QUANTITY_PREFIXES);
+            throw new ParseException(MESSAGE_TOO_MANY_QUANTITY_PREFIXES + "\n" + UpdateCommand.MESSAGE_USAGE);
         }
 
         UpdateStockDescriptor updateStockDescriptor = new UpdateStockDescriptor();
