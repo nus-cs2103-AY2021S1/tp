@@ -10,6 +10,12 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
 
+    // ------------------------- BIDDER ---------------------------
+    public static final String MESSAGE_INVALID_BIDDER_DISPLAYED_INDEX = "The bidder index provided is invalid";
+
+    // ------------------------- SELLER ---------------------------
+    public static final String MESSAGE_INVALID_SELLER_DISPLAYED_INDEX = "The seller index provided is invalid";
+
     // ------------------------- PROPERTY -------------------------
     public static final String MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX = "The property index provided is invalid";
 
