@@ -39,10 +39,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane commandBoxPlaceholder;
 
     @FXML
-    private MenuItem helpMenuItem;
+    private StackPane personListPanelPlaceholder;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private MenuItem helpMenuItem;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -141,11 +141,12 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
-        } else {
-            helpWindow.focus();
+        try {
+            executeCommand("help");
+        } catch (Exception e) {
+            assert false : "Help button on menu error";
         }
+
     }
 
     void show() {
