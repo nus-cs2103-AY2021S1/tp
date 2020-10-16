@@ -73,6 +73,30 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String num} into a int.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given int is invalid.
+     */
+    public static int parseExpectedTime(String num) throws ParseException {
+        requireNonNull(num);
+        String trimmedNum = num.trim();
+        try {
+            int n = Integer.parseInt(trimmedNum);
+            if (!isValidExpectedTime(n)) {
+                throw new ParseException("Invalid expected time");
+            }
+            return n;
+        } catch (NumberFormatException e) {
+            throw new ParseException("Invalid expected time");
+        }
+    }
+
+    private static boolean isValidExpectedTime(int n) {
+        return (1 <= n && n <= 5);
+    }
+
+    /**
      * Parses a {@code String moduleCode} into an {@code ModuleCode}.
      * Leading and trailing whitespaces will be trimmed.
      *

@@ -10,14 +10,19 @@ import java.util.Objects;
  */
 public class Assignment extends Task {
     private final Remind remind;
-
+    private final Schedule schedule;
     /**
      * Every field must be present and not null.
      */
-    public Assignment(Name name, Deadline deadline, ModuleCode moduleCode, Remind remind) {
+    public Assignment(Name name, Deadline deadline, ModuleCode moduleCode, Remind remind, Schedule schedule) {
         super(name, deadline, moduleCode);
         requireAllNonNull(name, deadline, moduleCode, remind);
         this.remind = remind;
+        this.schedule = schedule;
+    }
+
+    public Schedule getSchedule() {
+        return schedule;
     }
 
     public Deadline getDeadline() {

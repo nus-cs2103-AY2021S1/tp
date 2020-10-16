@@ -9,6 +9,7 @@ import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.ModuleCode;
 import seedu.address.model.assignment.Name;
 import seedu.address.model.assignment.Remind;
+import seedu.address.model.assignment.Schedule;
 import seedu.address.model.assignment.Task;
 import seedu.address.model.lesson.Lesson;
 
@@ -20,20 +21,29 @@ public class JsonAdaptedTask {
     private final boolean isReminded;
     private final String endTime;
     private final String moduleCode;
+    private final boolean isScheduled;
+    private final String suggestedStartTime;
+    private final String suggestedEndTime;
 
     /**
      * Constructs a {@code JsonAdaptedAssignment} with the given assignment details.
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("deadline") String deadline,
-                                 @JsonProperty("endTime") String endTime,
-                                 @JsonProperty("module") String moduleCode,
-                                 @JsonProperty("isReminded") boolean isReminded) {
+                           @JsonProperty("endTime") String endTime,
+                           @JsonProperty("module") String moduleCode,
+                           @JsonProperty("isReminded") boolean isReminded,
+                           @JsonProperty("isScheduled") boolean isScheduled,
+                           @JsonProperty("suggestedStartTime") String suggestedStartTime,
+                           @JsonProperty("suggestedEndTime") String suggestedEndTime) {
         this.name = name;
         this.moduleCode = moduleCode;
         this.endTime = endTime;
         this.deadline = deadline;
         this.isReminded = isReminded;
+        this.isScheduled = isScheduled;
+        this.suggestedStartTime = suggestedStartTime;
+        this.suggestedEndTime = suggestedEndTime;
     }
 
     /**
@@ -46,12 +56,18 @@ public class JsonAdaptedTask {
             moduleCode = source.getModuleCode().moduleCode;
             isReminded = ((Assignment) source).isReminded();
             endTime = "";
+            isScheduled = ((Assignment) source).getSchedule().isScheduled();
+            suggestedStartTime = ((Assignment) source).getSchedule().getSuggestedStartTime().value;
+            suggestedEndTime = ((Assignment) source).getSchedule().getSuggestedEndTime().value;
         } else {
             name = source.getName().fullName;
             moduleCode = source.getModuleCode().moduleCode;
             deadline = source.getTime().value;
             endTime = ((Lesson) source).getEndTime().value;
             isReminded = false;
+            isScheduled = false;
+            suggestedStartTime = "";
+            suggestedEndTime = "";
         }
     }
 
@@ -95,8 +111,21 @@ public class JsonAdaptedTask {
                     MISSING_FIELD_MESSAGE_FORMAT, ModuleCode.class.getSimpleName()));
         }
 
+        if ((suggestedStartTime == null || suggestedEndTime == null) && isScheduled) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()));
+        }
+        if (isScheduled && !Deadline.isValidDeadline(suggestedStartTime)) {
+            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        if (isScheduled && !Deadline.isValidDeadline(suggestedEndTime)) {
+            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+
         if (endTime.equals("")) {
-            return new Assignment(modelName, modelDeadline, modelModuleCode, modelRemind);
+            final Schedule modelSchedule = new Schedule(new Deadline(suggestedStartTime),
+                    new Deadline(suggestedEndTime));
+            return new Assignment(modelName, modelDeadline, modelModuleCode, modelRemind, modelSchedule);
         } else {
             return new Lesson(modelName, modelDeadline, new Deadline(endTime), modelModuleCode);
         }

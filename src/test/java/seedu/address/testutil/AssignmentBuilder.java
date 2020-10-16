@@ -1,10 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Deadline;
-import seedu.address.model.assignment.ModuleCode;
-import seedu.address.model.assignment.Name;
-import seedu.address.model.assignment.Remind;
+import seedu.address.model.assignment.*;
 
 /**
  * A utility class to help with building Assignment objects.
@@ -19,6 +15,7 @@ public class AssignmentBuilder {
     private Deadline deadline;
     private ModuleCode moduleCode;
     private Remind remind;
+    private Schedule schedule;
 
     /**
      * Creates a {@code AssignmentBuilder} with the default details.
@@ -75,7 +72,7 @@ public class AssignmentBuilder {
     }
 
     public Assignment build() {
-        return new Assignment(name, deadline, moduleCode, remind);
+        return new Assignment(name, deadline, moduleCode, remind, schedule);
     }
 
 }
