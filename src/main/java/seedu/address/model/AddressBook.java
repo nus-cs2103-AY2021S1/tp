@@ -125,7 +125,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes all the module from the list.
+     * Removes all the modules from the list.
      */
     public void clearMod() {
         modules.clearAll();
