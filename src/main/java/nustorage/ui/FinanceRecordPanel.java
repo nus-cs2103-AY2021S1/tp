@@ -11,19 +11,19 @@ import nustorage.commons.core.LogsCenter;
 import nustorage.model.record.FinanceRecord;
 
 public class FinanceRecordPanel extends UiPart<Region> {
-    private static final String FXML = "RecordPanel.fxml";
+    private static final String FXML = "FinanceListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(FinanceRecordPanel.class);
 
     @FXML
-    private ListView<FinanceRecord> recordView;
+    private ListView<FinanceRecord> financeRecordView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
     public FinanceRecordPanel(ObservableList<FinanceRecord> financeList) {
         super(FXML);
-        recordView.setItems(financeList);
-        recordView.setCellFactory(listView -> new FinanceRecordPanel.FinanceListViewCell());
+        financeRecordView.setItems(financeList);
+        financeRecordView.setCellFactory(listView -> new FinanceListViewCell());
     }
 
     /**

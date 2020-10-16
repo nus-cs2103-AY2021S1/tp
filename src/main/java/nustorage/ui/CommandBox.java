@@ -35,7 +35,7 @@ public class CommandBox extends UiPart<Region> {
      * Handles the Enter button pressed event.
      */
     @FXML
-    private void handleCommandEntered() {
+    private void handleCommandEntered() throws Exception {
         try {
             commandExecutor.execute(commandTextField.getText());
             commandTextField.setText("");
@@ -74,7 +74,7 @@ public class CommandBox extends UiPart<Region> {
          *
          * @see nustorage.logic.Logic#execute(String)
          */
-        CommandResult execute(String commandText) throws CommandException, ParseException;
+        CommandResult execute(String commandText) throws Exception;
     }
 
 }
