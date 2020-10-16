@@ -81,7 +81,7 @@ public class AddMultipleChoiceQuestionCommandTest {
         // null -> returns false
         assertFalse(addSampleMcqQuestionOne.equals(null));
 
-        // different sample MCQ -> returns false
+        // different flashcard -> returns false
         assertFalse(addSampleMcqQuestionOne.equals(addSampleMcqQuestionTwo));
     }
 
