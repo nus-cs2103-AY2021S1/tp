@@ -25,7 +25,7 @@ public class UiLogicManager implements UiLogic {
         String command = commandText.split("_")[0];
         String param;
         if (command.equals(COMMAND_WORD_NAVIGATION)) {
-            try{
+            try {
                 param = commandText.split("_")[1];
             } catch (ArrayIndexOutOfBoundsException e) {
                 throw new ParseException("Please specify a tab to switch to");
