@@ -137,7 +137,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### 3.1.1 Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedCliniCal`. It extends `CliniCal` with an undo/redo history, stored internally as an `CliniCalStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `VersionedCliniCal`. It extends `CliniCal` with an undo/redo history, stored internally as an `CliniCalStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
 * `VersionedCliniCal#commit()` — Saves the current CliniCal application state in its history.
 * `VersionedCliniCal#undo()` — Restores the previous CliniCal application state from its history.
@@ -211,9 +211,63 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
+### 3.2 Add Profile Picture feature
+#### 3.2.1 Implementation
+
+This feature allows users to add image files to serve as the patient's profile picture. The mechanism utilises the `StorageManager#addPictureToProfile`
+method to update the patients' profile pictures.
+
+This feature comprise of the `AddProfilePictureCommand` class. Given below is an example usage scenario and how the mechanism behaves at each step.
+
+![AddProfilePictureSequenceDiagram](images/AddProfilePictureSequenceDiagram.png)
+
+Step 1. User input is parsed to obtain the patient index and file path of the desired profile picture.
+
+Step 2. After successful parsing of user input, the `AddProfilePictureCommand#execute(Model model)` method is called. 
+
+Step 3. The `StorageManager#addPictureToProfile` method is then called which adds the desired profile picture to the specified patient.
+
+Step 4. Next, the patient's profile picture is updated in the `Model` by calling the `Model#setPatient` method.
+
+Step 5. As a result of the successful update of the patient's profile picture, a `CommandResult` object is instantiated and returned to `LogicManager`.
+
+#### 3.2.2 Design consideration
+
+Aspect: Choice of component to save the profile pictures
+
+* Current Implementation: Save image file through `StorageManager`.
+
+    * Pro: Mechanism can be extended from the existing architecture that the project is built upon (AB3).
+
+    * Con: There is a need to implement additional exception handling mechanism to inform the user in cases where invalid file path is provided.
+
+* Alternative considered: Save image files through a new standalone class eg. `ImageCommand`. This class handles all mechanism related to profile pictures.
+
+    * Pro: Exception handling is simplified as informing the user of invalid file path will be similar to when an invalid command is given.
+
+    * Con: It is harder to store and update patient's profile pictures. New dependencies need to be created to associate with
+    the newly created `ImageCommand` class. Thus, our team decided to implement the first alternative as it follows the existing
+    architecture closely and minimizes the risk of breaking the existing architecture.
+
+Aspect: Image type
+
+* Current Implementation: All types of files are accepted, including `.jpg` and `.png`.
+
+    * Pro: User do not need to convert `.jpg` to `.png` file or vice versa before setting desired image file as profile picture. This enhances usability.
+    
+    * Con: Non-image files are still stored in 'data' folder even though the patient's profile picture in CliniCal will not be updated visually.
+
+* Alternative Implementation: Accept only some types of files i.e `.jpg` and `.png`.
+
+    * Pro: Acts as a form of validation check and non-image files will not be stored in the 'data' folder. This helps to save disk space.
+
+    * Con: User is only limited to certain types of image files. As such, our team decided to implement the first alternative
+    as this design maximizes application usability. User will not need to spend additional time converting their images into accepted file types. 
+    Furthermore, our team assessed that users can easily delete non-image files from the 'data' folder if the need arises.
+
 _{more aspects and alternatives to be added}_
 
-### 3.2 \[Proposed\] Data archiving
+### 3.3 \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
@@ -275,7 +329,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `CliniCal` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a patient**
+**Use case: UC01 - Delete a patient**
 
 **MSS**
 
@@ -298,7 +352,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Add a patient**
+**Use case: UC02 - Add a patient**
 
 **MSS**
 
@@ -314,7 +368,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 1.
 
-**Use case: Edit a patient**
+**Use case: UC03 - Edit a patient**
 
 **MSS**
 
@@ -336,6 +390,46 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b1. CliniCal shows an error message.
 
     Use case resumes at Step 3.
+
+**Use case: UC04 - Add a patient's profile picture using command line interface**
+
+**MSS**
+
+1.  User keys in command to add profile picture to patient
+2.  CliniCal adds the profile picture to the specified patient
+3.  CliniCal shows an updated list of patients
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command is invalid.
+    * 1a1. CliniCal shows an error message.
+
+  Use case resumes at step 1.
+  
+**Use case: UC05 - Add a patient's profile picture using drag and drop**
+  
+  **MSS**
+  
+1. User selects the desired profile picture and drags it onto the specified patient profile in CliniCal.
+2.  User releases mouse button.
+3.  CliniCal adds the profile picture to the specified patient.
+4.  CliniCal shows an updated list of patients.
+  
+      Use case ends.
+  
+  **Extensions**
+  
+  * 1a. The file being dragged into ClinCal application is not a valid image file.
+      * 1a1. Patient profile picture is not updated.
+  
+    Use case resumes at step 1.
+    
+  * 1b. The profile picture is not dragged onto a valid space that represents patient profile in CliniCal.
+     * 1b1. Patient profile picture is not updated.
+     
+         Use case resumes at step 1.
 
 *{More to be added}*
 
