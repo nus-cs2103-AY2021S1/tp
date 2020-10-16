@@ -113,7 +113,7 @@ public class UniqueAccountList implements Iterable<Account> {
 
     /**
      * Replaces the contents of this list with {@code accounts}.
-     * {@code accounts} must not contain duplicate persons.
+     * {@code accounts} must not contain duplicate accounts.
      */
     public void setAccounts(List<Account> accounts) {
         requireAllNonNull(accounts);

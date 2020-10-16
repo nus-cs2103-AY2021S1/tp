@@ -41,7 +41,7 @@ public class JsonSerializableCommonCents {
     }
 
     /**
-     * Converts this address book into the model's {@code CommonCents} object.
+     * Converts this Common Cents into the model's {@code CommonCents} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

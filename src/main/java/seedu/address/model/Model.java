@@ -70,7 +70,7 @@ public interface Model {
     void addAccount(Account account);
 
     /**
-     * Replaces the given person {@code target} with {@code editedAccount}.
+     * Replaces the given account {@code target} with {@code editedAccount}.
      * {@code target} must exist in the money tacker.
      * The account identity of {@code editedAccount} must not be the same as another existing account
      * in the CommonCents.

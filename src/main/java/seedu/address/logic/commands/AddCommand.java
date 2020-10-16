@@ -13,7 +13,7 @@ import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
 
 /**
- * Adds a person to the address book.
+ * Adds a entry to the Common Cents.
  */
 public class AddCommand extends Command {
 

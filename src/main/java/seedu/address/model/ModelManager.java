@@ -15,7 +15,7 @@ import seedu.address.model.account.Account;
 
 
 /**
- * Represents the in-memory model of the common cents data.
+ * Represents the in-memory model of the Common Cents data.
  */
 public class ModelManager implements Model {
     private static final int FIRST_ACCOUNT_INDEX = 0;

@@ -69,9 +69,9 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s Common Cents and {@code userPrefs}. <br>
+     * The data from the sample Common Cents will be used instead if {@code storage}'s Common Cents is not found,
+     * or an empty Common Cents will be used instead if errors occur when reading {@code storage}'s Common Cents.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyCommonCents> commonCentsOptional;
