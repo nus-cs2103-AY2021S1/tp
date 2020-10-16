@@ -37,10 +37,10 @@ public class StudentRecordListManager implements StudentRecordList {
         return studentRecordList;
     }
 
-    @Override
     /**
      * Marks the attendance of a student represented by their {@code nusnetId} with {@code attendanceType}.
      */
+    @Override
     public void markStudentAttendance(NusnetId nusnetId, AttendanceType attendanceType) {
         requireAllNonNull(nusnetId, attendanceType);
 
@@ -59,10 +59,10 @@ public class StudentRecordListManager implements StudentRecordList {
         }
     }
 
-    @Override
     /**
      * Marks the attendance of students represented by the list of {@code nusnetIds} with {@code attendanceType}.
      */
+    @Override
     public void markAllAttendance(List<NusnetId> nusnetIds, AttendanceType attendanceType) {
         for (NusnetId nusnetId : nusnetIds) {
             markStudentAttendance(nusnetId, attendanceType);
@@ -75,11 +75,11 @@ public class StudentRecordListManager implements StudentRecordList {
         internalList.setAll(replacement.internalList);
     }
 
-    @Override
     /**
      * Replaces the contents of this list with {@code attendances}.
      * {@code attendances} must not contain duplicate students.
      */
+    @Override
     public void setStudentRecords(List<StudentRecord> studentRecords) {
         requireAllNonNull(studentRecords);
         if (!studentsAreUnique(studentRecords)) {
@@ -89,10 +89,10 @@ public class StudentRecordListManager implements StudentRecordList {
         internalList.setAll(studentRecords);
     }
 
-    @Override
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}
      */
+    @Override
     public ObservableList<StudentRecord> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }

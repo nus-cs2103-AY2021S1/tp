@@ -1,10 +1,10 @@
 package seedu.taskmaster.model.session;
 
-import javafx.collections.ObservableList;
-import seedu.taskmaster.model.student.NusnetId;
-
 import java.util.Iterator;
 import java.util.List;
+
+import javafx.collections.ObservableList;
+import seedu.taskmaster.model.student.NusnetId;
 
 public interface StudentRecordList extends Iterable<StudentRecord> {
 

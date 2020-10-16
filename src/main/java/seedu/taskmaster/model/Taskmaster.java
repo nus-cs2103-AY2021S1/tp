@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
+import seedu.taskmaster.model.session.AttendanceType;
 import seedu.taskmaster.model.session.StudentRecord;
 import seedu.taskmaster.model.session.StudentRecordList;
-import seedu.taskmaster.model.session.AttendanceType;
 import seedu.taskmaster.model.session.StudentRecordListManager;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.student.Student;
@@ -131,7 +131,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     }
 
     /**
-     * Returns an unmodifiable view of the {@code StudentRecordList} backed by the internal list of the 
+     * Returns an unmodifiable view of the {@code StudentRecordList} backed by the internal list of the
      * Taskmaster.
      */
     public ObservableList<StudentRecord> getStudentRecordList() {
@@ -155,7 +155,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     public void updateStudentRecords(List<StudentRecord> studentRecords) throws StudentNotFoundException {
         for (StudentRecord studentRecord: studentRecords) {
             this.studentRecordList.markStudentAttendance(
-                    studentRecord.getNusnetId(), 
+                    studentRecord.getNusnetId(),
                     studentRecord.getAttendanceType());
         }
     }
