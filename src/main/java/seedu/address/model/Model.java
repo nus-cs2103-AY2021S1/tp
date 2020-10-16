@@ -84,7 +84,7 @@ public interface Model {
 
     /**
      * Clear all modules from the module list.
-     * At least the list has 1 module.
+     * The list must have at least one module.
      */
     void clearMod();
 
