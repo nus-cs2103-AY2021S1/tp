@@ -48,22 +48,14 @@ public class AddMultipleChoiceQuestionCommandParser implements Parser<AddMultipl
 
         Choice[] choicesList = ParserUtil.parseChoices(argMultimap.getAllValues(PREFIX_CHOICE));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Question question = ParserUtil.parseMultipleChoiceQuestion(
-                argMultimap.getValue(PREFIX_QUESTION).get(), choicesList);
         Answer parsedAnswer = ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get());
+        String questionInString = ParserUtil.parseQuestion(argMultimap.getValue(PREFIX_QUESTION).get());
+        Question question = ParserUtil.parseMultipleChoiceQuestion(
+                questionInString, parsedAnswer, choicesList);
 
-        int ans;
-        try {
-            ans = Integer.parseInt(parsedAnswer.getValue());
-            if (ans > choicesList.length) {
-                throw new ParseException("Answer must be smaller than number of choices");
-            }
-        } catch (NumberFormatException e) {
-            throw new ParseException("Answer must be integer");
-        }
 
-        Answer answer = new Answer(choicesList[ans - 1].getValue());
-        Flashcard flashcard = new Flashcard(question, answer, tagList);
+
+        Flashcard flashcard = new Flashcard(question, tagList);
 
         return new AddMultipleChoiceQuestionCommand(flashcard);
     }

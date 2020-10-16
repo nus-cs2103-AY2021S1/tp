@@ -48,13 +48,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code question} is invalid.
      */
-    public static Question parseQuestion(String question) throws ParseException {
+    public static String parseQuestion(String question) throws ParseException {
         requireNonNull(question);
         String trimmedQuestion = question.trim();
-        if (!OpenEndedQuestion.isValidQuestion(trimmedQuestion)) {
+        if (!Question.isValidQuestion(trimmedQuestion)) {
             throw new ParseException(OpenEndedQuestion.MESSAGE_CONSTRAINTS);
         }
-        return new OpenEndedQuestion(trimmedQuestion);
+        return question;
     }
 
     /**
@@ -63,14 +63,40 @@ public class ParserUtil {
      *
      * @throws ParseException if answer is less than choices and question is invalid.
      */
-    public static Question parseMultipleChoiceQuestion(String question,
+    public static Question parseOpenEndedQuestion(String question, Answer answer) throws ParseException {
+        requireNonNull(question);
+        String trimmedQuestion = question.trim();
+        if (!MultipleChoiceQuestion.isValidQuestion(trimmedQuestion)) {
+            throw new ParseException(MultipleChoiceQuestion.MESSAGE_CONSTRAINTS);
+        }
+        return new OpenEndedQuestion(question, answer);
+    }
+
+    /**
+     * Parses a {@code String question} into a {@code Question}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if answer is less than choices and question is invalid.
+     */
+    public static Question parseMultipleChoiceQuestion(String question, Answer answer,
                                                        Choice[] choices) throws ParseException {
         requireNonNull(question);
         String trimmedQuestion = question.trim();
         if (!MultipleChoiceQuestion.isValidQuestion(trimmedQuestion)) {
             throw new ParseException(MultipleChoiceQuestion.MESSAGE_CONSTRAINTS);
         }
-        return new MultipleChoiceQuestion(trimmedQuestion, choices);
+        int ans;
+        try {
+            ans = Integer.parseInt(answer.getValue());
+            if (ans > choices.length) {
+                throw new ParseException("Answer must be smaller than number of choices");
+            }
+        } catch (NumberFormatException e) {
+            throw new ParseException("Answer must be integer");
+        }
+
+        Answer finalAnswer = new Answer(choices[ans - 1].getValue());
+        return new MultipleChoiceQuestion(trimmedQuestion, finalAnswer, choices);
     }
 
     /**

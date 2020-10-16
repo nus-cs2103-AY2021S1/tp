@@ -46,10 +46,12 @@ public class AddOpenEndedQuestionCommandParser implements Parser<AddOpenEndedQue
 
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Question question = ParserUtil.parseQuestion(argMultimap.getValue(PREFIX_QUESTION).get());
         Answer answer = ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get());
+        String questionInString = ParserUtil.parseQuestion(argMultimap.getValue(PREFIX_QUESTION).get());
+        Question question = ParserUtil.parseOpenEndedQuestion(questionInString, answer);
 
-        Flashcard flashcard = new Flashcard(question, answer, tagList);
+
+        Flashcard flashcard = new Flashcard(question, tagList);
 
         return new AddOpenEndedQuestionCommand(flashcard);
     }
