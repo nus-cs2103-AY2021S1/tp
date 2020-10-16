@@ -15,6 +15,6 @@ public class ListBidCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredBidList(PREDICATE_SHOW_ALL_BIDS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS).setEntity(EntityType.BID);
     }
 }

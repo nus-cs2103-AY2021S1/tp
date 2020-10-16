@@ -1,8 +1,7 @@
-package seedu.address.logic.commands.property;
+package seedu.address.logic.commands.seller;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.model.property.Property.DEFAULT_PROPERTY_ID;
+import static seedu.address.logic.commands.seller.SellerCommandTestUtil.assertSellerCommandFailure;
+import static seedu.address.logic.commands.seller.SellerCommandTestUtil.assertSellerCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.property.TypicalProperties.getTypicalPropertyBook;
@@ -11,18 +10,16 @@ import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddres
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.sellercommands.AddSellerCommand;
 import seedu.address.model.BidBook;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.property.Property;
-import seedu.address.testutil.property.PropertyBuilder;
+import seedu.address.model.person.seller.Seller;
+import seedu.address.testutil.seller.SellerBuilder;
 
-/**
- * Contains integration tests (interaction with the Model) for {@code AddPropertyCommand}.
- */
-public class AddPropertyCommandIntegrationTest {
+public class AddSellerCommandIntegrationTest {
 
     private Model model;
 
@@ -33,10 +30,8 @@ public class AddPropertyCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newProperty_success() {
-        Property validProperty = new PropertyBuilder()
-                .withPropertyId(DEFAULT_PROPERTY_ID.toString())
-                .build();
+    public void execute_newSeller_success() {
+        Seller validSeller = new SellerBuilder().build().setSellerTag();
 
         Model expectedModel = new ModelManager(
                 model.getAddressBook(),
@@ -47,17 +42,17 @@ public class AddPropertyCommandIntegrationTest {
                 model.getSellerAddressBook(),
                 model.getMeetingManager()
         );
-        expectedModel.addProperty(validProperty);
 
-        assertCommandSuccess(new AddPropertyCommand(validProperty), model,
-                String.format(AddPropertyCommand.MESSAGE_SUCCESS, validProperty), expectedModel);
+        expectedModel.addSeller(validSeller);
+
+        assertSellerCommandSuccess(new AddSellerCommand(validSeller.setDefaultSellerId()), model,
+                String.format(AddSellerCommand.MESSAGE_SUCCESS, validSeller), expectedModel);
     }
 
     @Test
-    public void execute_duplicateProperty_throwsCommandException() {
-        Property propertyInList = model.getPropertyBook().getPropertyList().get(0);
-        assertCommandFailure(new AddPropertyCommand(propertyInList), model,
-                AddPropertyCommand.MESSAGE_DUPLICATE_PROPERTY);
+    public void execute_duplicateSeller_throwsCommandException() {
+        Seller sellerInList = model.getSellerAddressBook().getSellerList().get(0);
+        assertSellerCommandFailure(new AddSellerCommand(sellerInList), model,
+                AddSellerCommand.MESSAGE_DUPLICATE_PERSON);
     }
-
 }

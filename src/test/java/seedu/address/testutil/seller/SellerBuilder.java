@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.seller;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -6,19 +6,19 @@ import java.util.Set;
 import seedu.address.model.id.Id;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.bidder.Bidder;
+import seedu.address.model.person.seller.Seller;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
  */
-public class BidderBuilder {
+public class SellerBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_ID_PREFIX = "B";
-    public static final int DEFAULT_ID_NUMBER = 12;
+    public static final Id DEFAULT_SELLER_ID = new Id("S", 0);
+
 
 
     private Name name;
@@ -29,17 +29,17 @@ public class BidderBuilder {
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
-    public BidderBuilder() {
+    public SellerBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         tags = new HashSet<>();
-        id = new Id(DEFAULT_ID_PREFIX, DEFAULT_ID_NUMBER);
+        id = DEFAULT_SELLER_ID;
     }
 
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public BidderBuilder(Bidder bidderToCopy) {
+    public SellerBuilder(Seller bidderToCopy) {
         name = bidderToCopy.getName();
         phone = bidderToCopy.getPhone();
         tags = new HashSet<>(bidderToCopy.getTags());
@@ -47,39 +47,39 @@ public class BidderBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Bidder} that we are building.
+     * Sets the {@code Name} of the {@code Seller} that we are building.
      */
-    public BidderBuilder withName(String name) {
+    public SellerBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Bidder} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Seller} that we are building.
      */
-    public BidderBuilder withTags(String ... tags) {
+    public SellerBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Bidder} that we are building.
+     * Sets the {@code Phone} of the {@code Seller} that we are building.
      */
-    public BidderBuilder withPhone(String phone) {
+    public SellerBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
         return this;
     }
 
     /**
-     * Sets the {@code Id} of the {@code Bidder} that we are building.
+     * Sets the {@code Id} of the {@code Seller} that we are building.
      */
-    public BidderBuilder withId(String prefix, int number) {
+    public SellerBuilder withId(String prefix, int number) {
         this.id = new Id(prefix, number);
         return this;
     }
 
-    public Bidder build() {
-        return new Bidder(name, phone, tags, id);
+    public Seller build() {
+        return new Seller(name, phone, tags, id);
     }
 
 }

@@ -14,6 +14,12 @@ import seedu.address.model.tag.Tag;
  */
 public class Seller extends ClientPerson {
 
+    public static final Id DEFAULT_SELLER_ID = new Id("S", 0);
+
+    public Seller(Name name, Phone phone, Set<Tag> tags) {
+        super(name, phone, tags, DEFAULT_SELLER_ID);
+    }
+
     /**
      * Constructs the seller with the name, phone, tags, and id.
      *
@@ -29,6 +35,11 @@ public class Seller extends ClientPerson {
     public Seller setSellerTag() {
         tags.add(new Tag("seller"));
         return new Seller(name, phone, tags, clientId);
+    }
+
+
+    public Seller setDefaultSellerId() {
+        return new Seller(name, phone, tags, DEFAULT_SELLER_ID);
     }
 
     /**

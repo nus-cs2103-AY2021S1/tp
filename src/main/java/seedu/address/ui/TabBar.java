@@ -6,6 +6,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.EntityType;
 import seedu.address.ui.bidder.BidderListPanel;
 import seedu.address.ui.property.PropertyListPanel;
 import seedu.address.ui.seller.SellerListPanel;
@@ -94,6 +95,24 @@ public class TabBar extends UiPart<Region> {
         bidderListPanelPlaceholder.getChildren().add(bidderListPanel.getRoot());
         sellerListPanelPlaceholder.getChildren().add(sellerListPanel.getRoot());
         propertyListPanelPlaceholder.getChildren().add(propertyListPanel.getRoot());
+    }
+
+    public void setTab(EntityType entityType) {
+        if (entityType == EntityType.BID) {
+            tabBar.getSelectionModel().select(bidTab);
+        }
+        if (entityType == EntityType.BIDDER) {
+            tabBar.getSelectionModel().select(bidderTab);
+        }
+        if (entityType == EntityType.SELLER) {
+            tabBar.getSelectionModel().select(sellerTab);
+        }
+        if (entityType == EntityType.PROPERTY) {
+            tabBar.getSelectionModel().select(propertyTab);
+        }
+        if (entityType == EntityType.MEETING) {
+            tabBar.getSelectionModel().select(calenderTab);
+        }
     }
 }
 
