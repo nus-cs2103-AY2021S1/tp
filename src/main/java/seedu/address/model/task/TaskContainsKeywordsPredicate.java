@@ -30,14 +30,16 @@ public class TaskContainsKeywordsPredicate implements Predicate<Task> {
 
     @Override
     public boolean test(Task task) {
+        boolean matched = false;
         for (Map.Entry<Prefix, List<String>> entry : keywords.entrySet()) {
             Prefix prefix = entry.getKey();
             List<String> words = entry.getValue();
-            if (isMatched(prefix.getPrefix(), words, task)) {
-                return true;
+            if (!isMatched(prefix.getPrefix(), words, task)) {
+                return false;
             }
+            matched = true;
         }
-        return false;
+        return matched;
     }
 
 

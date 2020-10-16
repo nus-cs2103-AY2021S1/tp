@@ -114,5 +114,20 @@ public class TaskContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new TaskBuilder().withType("event").withDateTime("01-01-2020 12:00")
                 .withDescription("alice,email.com").withType("event").withStatus(State.COMPLETE).build()));
 
+        // test with multiple repeated attributes
+        predicate = new TaskContainsKeywordsPredicate();
+        predicate.setKeyword(PREFIX_TITLE, "assignment");
+        predicate.setKeyword(PREFIX_TITLE, "borrow");
+        assertTrue(predicate.test(new TaskBuilder().withTitle("Submit assignment").build()));
+        assertTrue(predicate.test(new TaskBuilder().withTitle("borrow").build()));
+        assertFalse(predicate.test(new TaskBuilder().withTitle("random thing").build()));
+
+        // test with multiple distinct attributes
+        predicate = new TaskContainsKeywordsPredicate();
+        predicate.setKeyword(PREFIX_TITLE, "assignment");
+        predicate.setKeyword(PREFIX_TYPE, "event");
+        assertTrue(predicate.test(new TaskBuilder().withTitle("submit assignment").withType("event").build()));
+        assertFalse(predicate.test(new TaskBuilder().withTitle("submit assignment").withType("todo").build()));
+        assertFalse(predicate.test(new TaskBuilder().withTitle("random").withType("event").build()));
     }
 }

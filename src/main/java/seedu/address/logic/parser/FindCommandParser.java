@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindCommand;
@@ -49,13 +50,16 @@ public class FindCommandParser implements Parser<FindCommand> {
     private void setKeyword(Prefix prefix,
                             ArgumentMultimap argMultimap,
                             TaskContainsKeywordsPredicate predicate) throws ParseException {
-        if (argMultimap.getValue(prefix).isPresent()) {
-            String val = argMultimap.getValue(prefix).get();
+        List<String> values = argMultimap.getAllValues(prefix);
+        if (values.size() == 0) {
+            return;
+        }
+        for (String val : values) {
             if (val.trim().length() == 0) {
                 throw new ParseException(MESSAGE_EMPTY_SEARCH_PHRASE);
             }
-            predicate.setKeyword(prefix, val);
         }
+        values.forEach(val -> predicate.setKeyword(prefix, val));
     }
 
     /**
