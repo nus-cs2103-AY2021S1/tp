@@ -19,7 +19,6 @@ public class TagContainsKeywordsPredicate extends RecipeContainsKeywordsPredicat
     @Override
     public boolean test(Recipe recipe) {
         String tags = recipe.getTags().stream().map(Object::toString).collect(Collectors.joining(","));
-        //String tags = String.join("-", recipe.getTags());
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(tags, keyword));
     }
@@ -27,8 +26,8 @@ public class TagContainsKeywordsPredicate extends RecipeContainsKeywordsPredicat
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof TagContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((TagContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }

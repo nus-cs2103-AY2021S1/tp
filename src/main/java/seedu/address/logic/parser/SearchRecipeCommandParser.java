@@ -49,9 +49,9 @@ public class SearchRecipeCommandParser implements Parser<SearchRecipeCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchRecipeCommand.MESSAGE_USAGE));
         }
 
-        RecipeContainsKeywordsPredicate pred = parsePredicates(trimmedName, trimmedTag, trimmedIngredient);
+        RecipeContainsKeywordsPredicate predicate = parsePredicates(trimmedName, trimmedTag, trimmedIngredient);
 
-        return new SearchRecipeCommand(pred);
+        return new SearchRecipeCommand(predicate);
     }
 
     /**
