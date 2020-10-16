@@ -128,6 +128,10 @@ public class Flashcard {
         return statistics;
     }
 
+    public Flashcard getFlashcardAfterClearStatistics() {
+        return new Flashcard(question, answer, tags, new Statistics());
+    }
+
     public Flashcard getFlashcardAfterTestSuccess() {
         Statistics newStats = statistics.incrementTimesTested().incrementTimesTestedCorrect();
         return new Flashcard(question, answer, tags, newStats);
