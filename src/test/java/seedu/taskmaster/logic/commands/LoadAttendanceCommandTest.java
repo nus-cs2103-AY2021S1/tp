@@ -21,8 +21,8 @@ import seedu.taskmaster.model.ModelManager;
 import seedu.taskmaster.model.ReadOnlyTaskmaster;
 import seedu.taskmaster.model.Taskmaster;
 import seedu.taskmaster.model.UserPrefs;
-import seedu.taskmaster.model.session.StudentRecord;
 import seedu.taskmaster.model.session.AttendanceType;
+import seedu.taskmaster.model.session.StudentRecord;
 import seedu.taskmaster.model.student.Name;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.util.SampleDataUtil;
@@ -89,7 +89,8 @@ public class LoadAttendanceCommandTest {
             List<StudentRecord> attendances = new ArrayList<>();
             attendances.add(new StudentRecord(new Name("StudentA"), new NusnetId("e0000000"), AttendanceType.PRESENT));
             attendances.add(new StudentRecord(new Name("StudentB"), new NusnetId("e0000001"), AttendanceType.ABSENT));
-            attendances.add(new StudentRecord(new Name("StudentC"), new NusnetId("e0000002"), AttendanceType.NO_RECORD));
+            attendances.add(new StudentRecord(new Name("StudentC"), new NusnetId("e0000002"),
+                    AttendanceType.NO_RECORD));
             taskmaster.updateStudentRecords(attendances);
             Model expectedModel = new ModelManager(taskmaster, new UserPrefs());
 
