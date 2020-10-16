@@ -135,7 +135,15 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        //Set the date value to today's date
         datePicker.setValue(LocalDate.now());
+
+        //Add listener to execute after date is changed
+        datePicker.valueProperty().addListener((observable, oldDate, newDate)-> {
+            setDate();
+        });
+
     }
 
     /**
@@ -219,6 +227,15 @@ public class MainWindow extends UiPart<Stage> {
 
     void show() {
         primaryStage.show();
+    }
+
+    /**
+     * Add the selected Date to the commandLine.
+     */
+    public void setDate() {
+        if (getDate().isPresent()) {
+            logger.info(String.format("Selected %s", getDate().get().toString()));
+        }
     }
 
     /**
