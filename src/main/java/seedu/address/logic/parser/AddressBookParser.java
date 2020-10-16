@@ -21,20 +21,24 @@ import seedu.address.logic.commands.ListBidCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.biddercommands.AddBidderCommand;
 import seedu.address.logic.commands.biddercommands.DeleteBidderCommand;
+import seedu.address.logic.commands.biddercommands.FindBidderCommand;
 import seedu.address.logic.commands.biddercommands.ListBidderCommand;
 import seedu.address.logic.commands.property.AddPropertyCommand;
 import seedu.address.logic.commands.property.DeletePropertyCommand;
 import seedu.address.logic.commands.property.ListPropertyCommand;
 import seedu.address.logic.commands.sellercommands.AddSellerCommand;
 import seedu.address.logic.commands.sellercommands.DeleteSellerCommand;
+import seedu.address.logic.commands.sellercommands.FindSellerCommand;
 import seedu.address.logic.commands.sellercommands.ListSellerCommand;
 import seedu.address.logic.parser.bidderparser.AddBidderCommandParser;
 import seedu.address.logic.parser.bidderparser.DeleteBidderCommandParser;
+import seedu.address.logic.parser.bidderparser.FindBidderCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.property.AddPropertyCommandParser;
 import seedu.address.logic.parser.property.DeletePropertyCommandParser;
 import seedu.address.logic.parser.sellerparser.AddSellerCommandParser;
 import seedu.address.logic.parser.sellerparser.DeleteSellerCommandParser;
+import seedu.address.logic.parser.sellerparser.FindSellerCommandParser;
 
 /**
  * Parses user input.
@@ -108,6 +112,7 @@ public class AddressBookParser {
         case ListPropertyCommand.COMMAND_WORD:
             return new ListPropertyCommand();
 
+        // -------------------- BIDDER ------------------- //
         case AddBidderCommand.COMMAND_WORD:
             return new AddBidderCommandParser().parse(arguments);
 
@@ -116,6 +121,11 @@ public class AddressBookParser {
 
         case DeleteBidderCommand.COMMAND_WORD:
             return new DeleteBidderCommandParser().parse(arguments);
+
+        case FindBidderCommand.COMMAND_WORD:
+            return new FindBidderCommandParser().parse(arguments);
+
+        // -------------------- SELLER ------------------- //
 
         case AddSellerCommand.COMMAND_WORD:
             return new AddSellerCommandParser().parse(arguments);
@@ -126,6 +136,8 @@ public class AddressBookParser {
         case DeleteSellerCommand.COMMAND_WORD:
             return new DeleteSellerCommandParser().parse(arguments);
 
+        case FindSellerCommand.COMMAND_WORD:
+            return new FindSellerCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
