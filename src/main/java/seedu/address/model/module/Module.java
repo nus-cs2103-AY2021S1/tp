@@ -3,7 +3,6 @@ package seedu.address.model.module;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.function.BinaryOperator;
 
 import seedu.address.model.module.grade.Assignment;
 import seedu.address.model.module.grade.GradeTracker;
@@ -18,6 +17,7 @@ public class Module {
     private final ModuleName name;
     private final ZoomLink zoomLink;
     private final GradeTracker gradeTracker;
+    private final int modularCredits;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -33,6 +33,22 @@ public class Module {
         this.zoomLink = zoomLink;
         this.gradeTracker = gradeTracker;
         this.tags.addAll(tags);
+        this.modularCredits = 4;
+    }
+
+    /**
+     * Represents the module object constructor.
+     * @param name name of module
+     * @param zoomLink zoom link attached to module
+     * @param gradeTracker grade tracker attached to module
+     * @param tags tag attached to module
+     */
+    public Module(ModuleName name, ZoomLink zoomLink, GradeTracker gradeTracker, Set<Tag> tags, int modularCredits) {
+        this.name = name;
+        this.zoomLink = zoomLink;
+        this.gradeTracker = gradeTracker;
+        this.tags.addAll(tags);
+        this.modularCredits = modularCredits;
     }
 
     /**
@@ -46,6 +62,7 @@ public class Module {
         this.zoomLink = zoomLink;
         this.gradeTracker = new GradeTracker();
         this.tags.addAll(tags);
+        this.modularCredits = 4;
     }
     /**
      * Represents the module object constructor.
@@ -54,6 +71,7 @@ public class Module {
         this.name = null;
         this.zoomLink = null;
         this.gradeTracker = new GradeTracker();
+        this.modularCredits = 4;
     }
 
     /**
@@ -64,6 +82,7 @@ public class Module {
         this.name = name;
         this.zoomLink = null;
         this.gradeTracker = new GradeTracker();
+        this.modularCredits = 4;
     }
 
     /**
@@ -76,6 +95,7 @@ public class Module {
         this.zoomLink = null;
         this.gradeTracker = new GradeTracker();
         this.tags.addAll(tags);
+        this.modularCredits = 4;
     }
 
     /**
@@ -87,6 +107,7 @@ public class Module {
         this.name = name;
         this.zoomLink = null;
         this.gradeTracker = gradeTracker;
+        this.modularCredits = 4;
     }
 
     /**
