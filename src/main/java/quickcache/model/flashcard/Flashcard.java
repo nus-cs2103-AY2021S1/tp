@@ -90,7 +90,8 @@ public class Flashcard {
         }
 
         return otherFlashcard != null
-                && otherFlashcard.getQuestion().equals(getQuestion());
+                && otherFlashcard.getQuestion().equals(getQuestion())
+                && otherFlashcard.getTags().equals(getTags());
     }
 
     /**
