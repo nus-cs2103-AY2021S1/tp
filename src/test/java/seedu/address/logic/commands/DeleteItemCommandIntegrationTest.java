@@ -27,7 +27,7 @@ public class DeleteItemCommandIntegrationTest {
     private Model model;
 
     @BeforeEach
-    private void setUp() {
+    public void setUp() {
         model = new ModelManager(getTypicalItemList(), getTypicalLocationsList(),
                 getTypicalRecipeList(), new UserPrefs());
     }

@@ -88,6 +88,23 @@ public class Recipe extends InventoryComponent {
     }
 
     /**
+     * Generates a printable recipe for display.
+     * @param filteredItemList The current item list which ingredients reference to.
+     * @return Printable Recipe with the same fields as this recipe.
+     */
+    public PrintableRecipe print(ObservableList<Item> filteredItemList) {
+        return new PrintableRecipe(this.id, this.ingredients, this.productId, this.productName,
+                this.productQuantity, this.description, this.isDeleted, filteredItemList);
+    }
+
+    /**
+     * Creates a new recipe with same fields and updated product name. Used for editing items.
+     */
+    public Recipe setProductName(String updatedProductName) {
+        return new Recipe(id, ingredients, productId, updatedProductName, productQuantity, description, isDeleted);
+    }
+
+    /**
      * Returns true if both recipes have the same id.
      * This defines a weaker notion of equality between two recipes.
      */
@@ -137,15 +154,5 @@ public class Recipe extends InventoryComponent {
 
     public DisplayedInventoryType getType() {
         return DisplayedInventoryType.RECIPES;
-    }
-
-    /**
-     * Generates a printable recipe for display.
-     * @param filteredItemList The current item list which ingredients reference to.
-     * @return Printable Recipe with the same fields as this recipe.
-     */
-    public PrintableRecipe print(ObservableList<Item> filteredItemList) {
-        return new PrintableRecipe(this.id, this.ingredients, this.productId, this.productName,
-                this.productQuantity, this.description, this.isDeleted, filteredItemList);
     }
 }

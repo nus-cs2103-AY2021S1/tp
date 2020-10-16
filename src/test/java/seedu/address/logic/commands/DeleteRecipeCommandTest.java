@@ -29,6 +29,11 @@ public class DeleteRecipeCommandTest {
         expectedModelStub = new ModelStubWithRecipeList(TypicalRecipes.getTypicalRecipeList());
     }
 
+    @Test
+    public void constructor_throwsNullException() {
+        assertThrows(NullPointerException.class, () -> new DeleteRecipeCommand(null, null));
+    }
+
     /**
      * Tests for successful deletion of a recipe found in the recipe list.
      */
@@ -50,7 +55,7 @@ public class DeleteRecipeCommandTest {
         DeleteRecipeCommand drc = new DeleteRecipeCommand("Cake", Index.fromOneBased(1));
         // Cake does not exist in recipe list
         assertThrows(CommandException.class, DeleteRecipeCommand.MESSAGE_RECIPE_NOT_FOUND, (
-            ) -> drc.execute(modelStub));
+        ) -> drc.execute(modelStub));
         assertEquals(expectedModelStub, modelStub);
     }
 
@@ -63,7 +68,7 @@ public class DeleteRecipeCommandTest {
         // index out of range since only 1 recipe for apple
         drc.execute(modelStub);
         assertThrows(CommandException.class, DeleteRecipeCommand.MESSAGE_INDEX_NOT_FOUND, (
-            ) -> drc.execute(modelStub));
+        ) -> drc.execute(modelStub));
         assertEquals(expectedModelStub, modelStub);
     }
 

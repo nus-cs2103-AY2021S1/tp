@@ -280,6 +280,13 @@ public class ModelManager implements Model {
         return itemPrecursor.toItem(locationIds, new HashSet<>());
     }
 
+    @Override
+    public void updateRecipeNames(String originalName, String updatedName) {
+        filteredRecipes.stream()
+                .filter(recipe -> recipe.getProductName().equals(originalName))
+                .forEach(recipe -> setRecipe(recipe, recipe.setProductName(updatedName)));
+    }
+
     private int findLocationIdByName(String location) {
         requireNonNull(location);
         String trimmedLocation = location.trim();
