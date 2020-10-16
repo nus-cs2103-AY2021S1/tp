@@ -2,9 +2,9 @@ package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.predicates.ContainsTagPredicate;
+import seedu.address.model.person.predicates.TagContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.DepartmentContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.OfficeContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.RemarkContainsKeywordsPredicate;
 
@@ -57,7 +57,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             keywords = argMultimap.getValue(PREFIX_TAG).get().split("\\s+");
-            return new FindCommand(new ContainsTagPredicate(Arrays.asList(keywords)));
+            return new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList(keywords)));
         }
 
         // if no prefix, find name
