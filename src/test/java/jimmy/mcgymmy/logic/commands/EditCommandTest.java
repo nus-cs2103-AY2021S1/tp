@@ -27,6 +27,7 @@ import jimmy.mcgymmy.testutil.FoodBuilder;
 public class EditCommandTest {
     private static final String VALID_NAME_BOB = "Robert Donald";
     private static final String VALID_PROTEIN_BOB = "99999999";
+    private static final String VALID_DATE = "12-04-2020";
     private Model model = new ModelManager(getTypicalMcGymmy(), new UserPrefs());
 
     @Test
@@ -83,7 +84,7 @@ public class EditCommandTest {
         Food lastFood = model.getFilteredFoodList().get(indexLastFood.getZeroBased());
 
         FoodBuilder foodInList = new FoodBuilder(lastFood);
-        Food editedFood = foodInList.withDate("12-04-2020").build();
+        Food editedFood = foodInList.withDate(VALID_DATE).build();
 
         EditCommand editCommand = new EditCommand();
         editCommand.setParameters(
