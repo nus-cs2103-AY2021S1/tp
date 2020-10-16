@@ -124,7 +124,7 @@ Examples:
 
 ## Fridge
 
-### Adding an ingredient: `add`
+### Adding an ingredient: `addF`
 
 Adds an ingredient to fridge.
 
