@@ -126,6 +126,7 @@ public class AddressBookParser {
             return new FindBidderCommandParser().parse(arguments);
 
         // -------------------- SELLER ------------------- //
+
         case AddSellerCommand.COMMAND_WORD:
             return new AddSellerCommandParser().parse(arguments);
 
