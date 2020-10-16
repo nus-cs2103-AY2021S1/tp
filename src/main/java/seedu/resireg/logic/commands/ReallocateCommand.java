@@ -82,6 +82,8 @@ public class ReallocateCommand extends Command {
         model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredRoomList(Model.PREDICATE_SHOW_ALL_ROOMS);
 
+        model.saveStateResiReg();
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, studentToReallocate.getName().fullName,
             roomToReallocate.getRoomLabel()));
     }
