@@ -99,12 +99,6 @@ public interface Model {
      */
     void updateFilteredAssignmentList(Predicate<Assignment> predicate);
 
-    /**
-     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredTaskList(Predicate<Task> predicate);
-
     /** Returns an unmodifiable view of the reminded assignments list */
     ObservableList<Assignment> getRemindedAssignmentsList();
 
