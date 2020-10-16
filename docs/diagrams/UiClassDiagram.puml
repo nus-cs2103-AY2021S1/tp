@@ -13,6 +13,10 @@ Class HelpWindow
 Class ResultDisplay
 Class RecipeListPanel
 Class RecipeCard
+Class IngredientListPanel
+Class IngredientCard
+Class ConsumptionListPanel
+Class ConsumptionCard
 Class StatusBarFooter
 Class CommandBox
 }
@@ -34,6 +38,8 @@ MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> RecipeListPanel
+MainWindow *-down-> ConsumptionListPanel
+MainWindow *-down-> IngredientListPanel
 MainWindow *-down-> StatusBarFooter
 
 RecipeListPanel -down-> RecipeCard
@@ -44,10 +50,19 @@ ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 RecipeListPanel --|> UiPart
 RecipeCard --|> UiPart
+IngredientCard --|> UiPart
+IngredientListPanel --|> UiPart
+ConsumptionCard --|> UiPart
+ConsumptionListPanel --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
+IngredientListPanel --> IngredientCard
+ConsumptionListPanel --> ConsumptionCard
+
 RecipeCard ..> Model
+ConsumptionCard ..> Model
+IngredientCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
