@@ -37,7 +37,7 @@ class TagNameContainsCharPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different predicate -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
@@ -62,7 +62,7 @@ class TagNameContainsCharPredicateTest {
     }
 
     @Test
-    public void test_tagNameContainsKeyword_returnsFalse() {
+    public void test_keywordMissing_returnsFalse() {
         //Words contain one character longer than keyword
         TagNameContainsCharPredicate firstPredicate = new TagNameContainsCharPredicate(
                 Arrays.asList("tes", "4567"));
