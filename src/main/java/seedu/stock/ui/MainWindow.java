@@ -3,7 +3,6 @@ package seedu.stock.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.stock.commons.core.GuiSettings;
@@ -32,7 +31,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
     @FXML
-    private HBox commandBoxPlaceholder;
+    private StackPane commandBoxPlaceholder;
 
     @FXML
     private StackPane stockListPanelPlaceholder;
