@@ -46,7 +46,7 @@ public class TaskName {
             return false;
         }
 
-        return value.equals(((TaskName) other).value);
+        return value.equalsIgnoreCase(((TaskName) other).value);
     }
 
     @Override

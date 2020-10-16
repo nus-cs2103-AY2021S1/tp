@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Module;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -20,25 +21,30 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final ModuleList moduleList;
+    private final TodoList todoList;
     private final UserPrefs userPrefs;
     private final FilteredList<Module> filteredModules;
+    private final FilteredList<Task> filteredTasks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyModuleList moduleList, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyModuleList moduleList, ReadOnlyTodoList todoList, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(moduleList, userPrefs);
+        requireAllNonNull(moduleList, userPrefs, todoList);
 
-        logger.fine("Initializing with module list: " + moduleList + " and user prefs " + userPrefs);
+        logger.fine("Initializing with module list: " + moduleList + " and todo list" + todoList
+                + " and user prefs " + userPrefs);
 
         this.moduleList = new ModuleList(moduleList);
+        this.todoList = new TodoList(todoList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredModules = new FilteredList<Module>(this.moduleList.getModuleList());
+        filteredTasks = new FilteredList<Task>(this.todoList.getTodoList());
     }
 
     public ModelManager() {
-        this(new ModuleList(), new UserPrefs());
+        this(new ModuleList(), new TodoList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -112,7 +118,43 @@ public class ModelManager implements Model {
         moduleList.setModule(target, editedModule);
     }
 
-    //=========== Filtered Module List Accessors =============================================================
+    //=========== Todo List =============================================================
+
+    @Override
+    public void setTodoList(ReadOnlyTodoList todoList) {
+        this.todoList.resetData(todoList);
+    }
+
+    @Override
+    public ReadOnlyTodoList getTodoList() {
+        return todoList;
+    }
+
+    @Override
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return todoList.hasTask(task);
+    }
+
+    @Override
+    public void deleteTask(Task target) {
+        todoList.removeTask(target);
+    }
+
+    @Override
+    public void addTask(Task task) {
+        todoList.addTask(task);
+        updateFilteredTodoList(PREDICATE_SHOW_ALL_TASKS);
+    }
+
+    @Override
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
+        todoList.setTask(target, editedTask);
+    }
+
+    //=========== Filtered List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Module} backed by the internal list of
@@ -127,6 +169,17 @@ public class ModelManager implements Model {
     public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTodoList() {
+        return filteredTasks;
+    }
+
+    @Override
+    public void updateFilteredTodoList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
     }
 
     @Override
@@ -145,7 +198,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return moduleList.equals(other.moduleList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredModules.equals(other.filteredModules);
+                && filteredModules.equals(other.filteredModules)
+                && filteredTasks.equals(other.filteredTasks);
     }
 
 }
