@@ -179,10 +179,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public AssignmentListPanel getAssignmentListPanel() {
-        return assignmentListPanel;
-    }
-
     public ReminderListPanel getReminderListPanel() {
         return reminderListPanel;
     }

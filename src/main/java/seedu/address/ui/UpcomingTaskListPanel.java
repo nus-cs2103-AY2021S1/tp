@@ -40,7 +40,7 @@ public class UpcomingTaskListPanel extends UiPart<Region> {
     private ListView<Task> upcomingTaskListView;
 
     /**
-     * Creates a {@code TaskListPanel} with the given {@code ObservableList}.
+     * Constructs a {@code UpcomingTaskListPanel} with the given {@code ObservableList}.
      */
     public UpcomingTaskListPanel(ObservableList<Task> taskList) {
         super(FXML);
