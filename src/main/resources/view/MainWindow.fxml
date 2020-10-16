@@ -23,11 +23,12 @@
       </stylesheets>
       <VBox>
 
-        <HBox VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border" >
+        <StackPane HBox.hgrow="ALWAYS" fx:id="commandBoxPlaceholder" styleClass="pane-with-border" >
           <padding>
             <Insets top="5" right="5" left="5" />
           </padding>
-        </HBox>
+        </StackPane>
+
 
         <StackPane VBox.vgrow="ALWAYS" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
                    minHeight="100" prefHeight="100" maxHeight="200">
