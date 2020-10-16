@@ -17,8 +17,8 @@ import nustorage.commons.core.GuiSettings;
 import nustorage.commons.core.LogsCenter;
 import nustorage.logic.Logic;
 import nustorage.logic.commands.CommandResult;
-import nustorage.ui.uiLogic.UiLogic;
-import nustorage.ui.uiLogic.UiLogicManager;
+import nustorage.ui.uilogic.UiLogic;
+import nustorage.ui.uilogic.UiLogicManager;
 
 /**
  * The Main Window. Provides the basic application layout containing
