@@ -78,6 +78,32 @@ public class EditCommandTest {
     }
 
     @Test
+    public void execute_dateSpecifiedUnfilteredList_success() {
+        Index indexLastFood = Index.fromOneBased(model.getFilteredFoodList().size());
+        Food lastFood = model.getFilteredFoodList().get(indexLastFood.getZeroBased());
+
+        FoodBuilder foodInList = new FoodBuilder(lastFood);
+        Food editedFood = foodInList.withDate("12-04-2020").build();
+
+        EditCommand editCommand = new EditCommand();
+        editCommand.setParameters(
+                new CommandParserTestUtil.ParameterStub<>("", indexLastFood),
+                new CommandParserTestUtil.OptionalParameterStub<>("n"),
+                new CommandParserTestUtil.OptionalParameterStub<>("p"),
+                new CommandParserTestUtil.OptionalParameterStub<>("f"),
+                new CommandParserTestUtil.OptionalParameterStub<>("c"),
+                new CommandParserTestUtil.OptionalParameterStub<>("d", editedFood.getDate())
+        );
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FOOD_SUCCESS, editedFood);
+
+        Model expectedModel = new ModelManager(new McGymmy(model.getMcGymmy()), new UserPrefs());
+        expectedModel.setFood(indexLastFood, editedFood);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_noFieldSpecifiedUnfilteredList_failure() {
         EditCommand editCommand = new EditCommand();
         editCommand.setParameters(
