@@ -18,9 +18,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_SELLER_DISPLAYED_INDEX = "The seller index provided is invalid";
     public static final String MESSAGE_SELLERS_LISTED_OVERVIEW = "%1$d sellers listed!";
 
-    // ------------------------- SELLER ---------------------------
-    public static final String MESSAGE_INVALID_SELLER_DISPLAYED_INDEX = "The seller index provided is invalid";
-
     // ------------------------- PROPERTY -------------------------
     public static final String MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX = "The property index provided is invalid";
 
