@@ -19,7 +19,6 @@ import org.junit.jupiter.api.Test;
 import quickcache.logic.commands.AddMultipleChoiceQuestionCommand;
 import quickcache.model.flashcard.Answer;
 import quickcache.model.flashcard.Flashcard;
-import quickcache.model.flashcard.MultipleChoiceQuestion;
 import quickcache.model.flashcard.Question;
 import quickcache.testutil.FlashcardBuilder;
 

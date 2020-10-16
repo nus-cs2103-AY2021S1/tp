@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 
 import quickcache.logic.parser.exceptions.ParseException;
 import quickcache.model.flashcard.Answer;
-import quickcache.model.flashcard.OpenEndedQuestion;
 import quickcache.model.flashcard.Tag;
 
 

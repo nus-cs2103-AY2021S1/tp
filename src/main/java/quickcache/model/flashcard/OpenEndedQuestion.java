@@ -15,6 +15,9 @@ public class OpenEndedQuestion implements Question {
     private final String value;
     private final Answer answer;
 
+    /**
+     * A constructor to create OpenEndedQuestion object.
+     */
     public OpenEndedQuestion(String question, Answer answer) {
         this.value = question;
         this.answer = answer;

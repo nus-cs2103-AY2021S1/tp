@@ -6,7 +6,6 @@ import static quickcache.logic.parser.CliSyntax.PREFIX_CHOICE;
 import static quickcache.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -17,7 +16,6 @@ import quickcache.commons.core.Messages;
 import quickcache.commons.core.index.Index;
 import quickcache.commons.util.CollectionUtil;
 import quickcache.logic.commands.exceptions.CommandException;
-import quickcache.logic.parser.exceptions.ParseException;
 import quickcache.model.Model;
 import quickcache.model.flashcard.Answer;
 import quickcache.model.flashcard.Choice;
@@ -89,7 +87,8 @@ public class EditCommand extends Command {
         Choice[] updatedChoices;
         Question finalQuestion;
         if (isMcq) {
-            updatedChoices = editFlashcardDescriptor.getChoices().orElse(flashcardToEdit.getQuestion().getChoices().get());
+            updatedChoices = editFlashcardDescriptor.getChoices()
+                    .orElse(flashcardToEdit.getQuestion().getChoices().get());
             int ans;
             try {
                 ans = Integer.parseInt(updatedAnswer.getValue());

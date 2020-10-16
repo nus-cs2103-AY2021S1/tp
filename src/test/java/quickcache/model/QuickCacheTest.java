@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static quickcache.logic.commands.CommandTestUtil.VALID_TAG_LSM1301;
-import static quickcache.logic.commands.CommandTestUtil.VALID_TAG_MODULE;
 import static quickcache.testutil.Assert.assertThrows;
 import static quickcache.testutil.TypicalFlashcards.RANDOM1;
 import static quickcache.testutil.TypicalFlashcards.getTypicalQuickCache;

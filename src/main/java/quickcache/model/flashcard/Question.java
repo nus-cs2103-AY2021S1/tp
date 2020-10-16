@@ -7,10 +7,11 @@ import java.util.Optional;
  */
 public interface Question {
 
+    public static final String VALIDATION_REGEX = "[^\\s].*";
+
     String MESSAGE_CONSTRAINTS =
             "Questions should only contain alphanumeric characters and spaces, and it should not be blank";
 
-    public static final String VALIDATION_REGEX = "[^\\s].*";
 
     String getValue();
 

@@ -11,7 +11,6 @@ import java.util.stream.Stream;
 
 import quickcache.logic.commands.AddMultipleChoiceQuestionCommand;
 import quickcache.logic.parser.exceptions.ParseException;
-import quickcache.model.flashcard.Answer;
 import quickcache.model.flashcard.Choice;
 import quickcache.model.flashcard.Flashcard;
 import quickcache.model.flashcard.Question;

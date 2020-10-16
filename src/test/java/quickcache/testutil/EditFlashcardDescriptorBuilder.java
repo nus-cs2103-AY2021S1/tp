@@ -5,7 +5,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import quickcache.logic.commands.EditCommand;
-import quickcache.model.flashcard.*;
+import quickcache.model.flashcard.Answer;
+import quickcache.model.flashcard.Choice;
+import quickcache.model.flashcard.Flashcard;
+import quickcache.model.flashcard.MultipleChoiceQuestion;
+import quickcache.model.flashcard.Tag;
+
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
