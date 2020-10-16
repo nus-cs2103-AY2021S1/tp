@@ -8,11 +8,11 @@ import seedu.address.commons.util.StringUtil;
 /**
  * Tests that a {@code Recipe}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Recipe> {
-    private final List<String> keywords;
+public class NameContainsKeywordsPredicate extends RecipeContainsKeywordsPredicate
+        implements Predicate<Recipe> {
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
-        this.keywords = keywords;
+        super(keywords);
     }
 
     @Override

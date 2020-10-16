@@ -14,7 +14,7 @@ public class ListConsumptionCommand extends Command {
 
     public static final String COMMAND_WORD = "calories";
 
-    public static final String MESSAGE_SUCCESS = "Listed all Recipe ate" + "\n";
+    public static final String MESSAGE_SUCCESS = "Listed all Recipes eaten" + "\n";
 
     @Override
     public CommandResult execute(Model model) {
