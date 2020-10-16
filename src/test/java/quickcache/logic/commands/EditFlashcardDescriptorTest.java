@@ -34,13 +34,13 @@ public class EditFlashcardDescriptorTest {
         assertFalse(DESC_TWO.equals(DESC_THREE));
 
         // different question -> returns false
-        EditFlashcardDescriptor editedAmy = new EditFlashcardDescriptorBuilder(DESC_TWO)
+        EditFlashcardDescriptor editedDescTwo = new EditFlashcardDescriptorBuilder(DESC_TWO)
             .withQuestion(VALID_QUESTION_THREE).build();
-        assertFalse(DESC_TWO.equals(editedAmy));
+        assertFalse(DESC_TWO.equals(editedDescTwo));
 
         // different answer -> returns false
-        editedAmy = new EditFlashcardDescriptorBuilder(DESC_TWO).withAnswer(VALID_ANSWER_THREE).build();
-        assertFalse(DESC_TWO.equals(editedAmy));
+        editedDescTwo = new EditFlashcardDescriptorBuilder(DESC_TWO).withAnswer(VALID_ANSWER_THREE).build();
+        assertFalse(DESC_TWO.equals(editedDescTwo));
 
 
     }
