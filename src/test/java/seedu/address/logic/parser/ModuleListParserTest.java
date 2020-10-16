@@ -29,9 +29,9 @@ import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 //import seedu.address.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class ModuleListParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final ModuleListParser parser = new ModuleListParser();
 
     @Test
     public void parseCommand_add() throws Exception {
