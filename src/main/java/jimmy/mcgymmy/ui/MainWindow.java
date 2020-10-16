@@ -47,10 +47,13 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane commandBoxPlaceholder;
 
     @FXML
+    private CommandBox commandBox;
+
+    @FXML
     private JFXDatePicker datePicker;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane foodListPanelPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
@@ -125,7 +128,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         foodListPanel = new FoodListPanel(logic.getFilteredFoodList());
-        personListPanelPlaceholder.getChildren().add(foodListPanel.getRoot());
+        foodListPanelPlaceholder.getChildren().add(foodListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -133,7 +136,7 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getMcGymmyFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         //Set the date value to today's date
@@ -145,7 +148,7 @@ public class MainWindow extends UiPart<Stage> {
         });
 
         //Hide the datepicker for now
-        datePicker.setVisible(false);
+        //datePicker.setVisible(false);
     }
 
     /**
@@ -237,6 +240,7 @@ public class MainWindow extends UiPart<Stage> {
     public void setDate() {
         if (getDate().isPresent()) {
             logger.info(String.format("Selected %s", getDate().get().toString()));
+            commandBox.insertText(getDate().get().toString());
         }
     }
 
