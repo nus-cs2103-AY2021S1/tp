@@ -10,7 +10,7 @@ import tp.cap5buddy.modules.ModuleList;
 
 
 /**
- * Represents a storage for {@link seedu.address.model.AddressBook}.
+ * Represents a storage for {@link seedu.address.model.ModuleList}.
  */
 public interface ModuleListStorage {
 

@@ -66,8 +66,17 @@ public class ContactList {
      * @return
      */
     public Contact getContact(int contactID) {
-        Contact contact = this.contacts.get(contactID);
+        Contact contact = this.contacts.get(contactID - 1);
         return contact;
+    }
+
+    /**
+     * Returns the number of contacts in the contact list.
+     *
+     * @return
+     */
+    public int getContactListSize() {
+        return this.contacts.size();
     }
 
     /**
@@ -88,7 +97,7 @@ public class ContactList {
      * @param contactID Zero based index of the contact in the contact list.
      */
     public void removeContact(int contactID) {
-        this.contacts.remove(contactID);
+        this.contacts.remove(contactID - 1);
     }
 
     public List<Contact> getContactList() {

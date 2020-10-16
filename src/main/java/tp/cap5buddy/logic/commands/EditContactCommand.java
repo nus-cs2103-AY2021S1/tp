@@ -10,6 +10,7 @@ import tp.cap5buddy.contacts.exceptions.ContactNotFoundException;
 import tp.cap5buddy.contacts.exceptions.DuplicateContactException;
 import tp.cap5buddy.logic.commands.exception.CommandException;
 import tp.cap5buddy.modules.ModuleList;
+import tp.cap5buddy.todolist.TodoList;
 import tp.cap5buddy.util.CollectionUtil;
 
 public class EditContactCommand extends Command {
@@ -29,7 +30,7 @@ public class EditContactCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(ModuleList modules, ContactList contacts) throws CommandException {
+    public CommandResult execute(ModuleList modules, ContactList contacts, TodoList todoList) throws CommandException {
         try {
             Contact contactToEdit = contacts.getContact(this.contactID - 1);
             Contact editedContact = createEditedContact(contactToEdit, this.editContactDescriptor);

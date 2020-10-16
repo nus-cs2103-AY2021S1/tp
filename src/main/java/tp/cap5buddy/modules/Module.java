@@ -1,11 +1,16 @@
 package tp.cap5buddy.modules;
 
+import tp.cap5buddy.grades.FinalGrade;
+import tp.cap5buddy.grades.GradeList;
+
 /**
  * Represents the Module creation class.
  */
 public class Module {
     private final String name;
     private final String zoomLink;
+    private GradeList gradeList;
+    private FinalGrade finalGrade;
 
     /**
      * Represents the module object constructor.
@@ -15,6 +20,8 @@ public class Module {
     public Module(String name, String zoomLink) {
         this.name = name;
         this.zoomLink = zoomLink;
+        this.gradeList = new GradeList(name);
+        this.finalGrade = null;
     }
 
     /**
@@ -24,6 +31,8 @@ public class Module {
     public Module(String name) {
         this.name = name;
         this.zoomLink = null;
+        this.gradeList = new GradeList(name);
+        this.finalGrade = null;
     }
 
     /**
@@ -49,6 +58,33 @@ public class Module {
      */
     public Module addZoomLink(String zoomLink) {
         return new Module(this.getName(), zoomLink);
+    }
+
+    /**
+     * Returns the grades accumulated for this module.
+     *
+     * @return grade list attached to this module.
+     */
+    public GradeList getGradeList() {
+        return gradeList;
+    }
+
+    /**
+     * Returns the final grade achieved for this module.
+     *
+     * @return final grade achieved for this module.
+     */
+    public FinalGrade getFinalGrade() {
+        return finalGrade;
+    }
+
+    /**
+     * Sets the final grade for this module.
+     *
+     * @param finalGrade the grade to be set.
+     */
+    public void setFinalGrade(FinalGrade finalGrade) {
+        this.finalGrade = finalGrade;
     }
 
     @Override
