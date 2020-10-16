@@ -15,8 +15,8 @@ class FlashcardContainsTagPredicateTest {
 
     @Test
     public void equals() {
-        List<String> firstPredicateKeywordList = Collections.singletonList("first");
-        List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
+        List<Tag> firstPredicateKeywordList = Collections.singletonList(new Tag("first"));
+        List<Tag> secondPredicateKeywordList = Arrays.asList(new Tag("first"), new Tag("second"));
 
         FlashcardContainsTagPredicate firstPredicate = new FlashcardContainsTagPredicate(firstPredicateKeywordList);
         FlashcardContainsTagPredicate secondPredicate = new FlashcardContainsTagPredicate(secondPredicateKeywordList);
@@ -42,15 +42,17 @@ class FlashcardContainsTagPredicateTest {
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
         FlashcardContainsTagPredicate predicate =
-            new FlashcardContainsTagPredicate(Collections.singletonList("Programming"));
+            new FlashcardContainsTagPredicate(Collections.singletonList(new Tag("Programming")));
         assertTrue(predicate.test(new FlashcardBuilder().withTags("Programming", "English").build()));
 
         // Multiple keywords
-        predicate = new FlashcardContainsTagPredicate(Arrays.asList("Programming", "English"));
+        predicate = new FlashcardContainsTagPredicate(
+                Arrays.asList(new Tag("Programming"), new Tag("English")));
         assertTrue(predicate.test(new FlashcardBuilder().withTags("Programming", "English").build()));
 
         // Only one matching keyword
-        predicate = new FlashcardContainsTagPredicate(Arrays.asList("Programming", "Carol"));
+        predicate = new FlashcardContainsTagPredicate(Arrays.asList(
+                new Tag("Programming"), new Tag("Carol")));
         assertTrue(predicate.test(new FlashcardBuilder().withTags("Programming", "English").build()));
     }
 
@@ -61,11 +63,12 @@ class FlashcardContainsTagPredicateTest {
         assertFalse(predicate.test(new FlashcardBuilder().withTags("Programming").build()));
 
         // Non-matching keyword
-        predicate = new FlashcardContainsTagPredicate(Arrays.asList("Carol"));
+        predicate = new FlashcardContainsTagPredicate(Collections.singletonList(new Tag("Carol")));
         assertFalse(predicate.test(new FlashcardBuilder().withTags("Programming", "English").build()));
 
         // Mixed-case keywords
-        predicate = new FlashcardContainsTagPredicate(Arrays.asList("pRogramming", "EnGlish"));
+        predicate = new FlashcardContainsTagPredicate(Arrays.asList(new Tag(
+                "pRogramming"), new Tag("EnGlish")));
         assertFalse(predicate.test(new FlashcardBuilder().withTags("Programming", "English").build()));
     }
 }

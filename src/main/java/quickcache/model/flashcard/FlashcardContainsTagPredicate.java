@@ -5,22 +5,22 @@ import java.util.function.Predicate;
 
 public class FlashcardContainsTagPredicate implements Predicate<Flashcard> {
 
-    private final List<String> keywords;
+    private final List<Tag> tagsToMatch;
 
-    public FlashcardContainsTagPredicate(List<String> keywords) {
-        this.keywords = keywords;
+    public FlashcardContainsTagPredicate(List<Tag> tagsToMatch) {
+        this.tagsToMatch = tagsToMatch;
     }
 
     @Override
     public boolean test(Flashcard flashcard) {
-        return keywords.stream()
-                .anyMatch(keyword -> flashcard.matchTag(new Tag(keyword)));
+        return tagsToMatch.stream()
+                .anyMatch(flashcard::matchTag);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FlashcardContainsTagPredicate // instanceof handles nulls
-                && keywords.equals(((FlashcardContainsTagPredicate) other).keywords)); // state check
+                && tagsToMatch.equals(((FlashcardContainsTagPredicate) other).tagsToMatch)); // state check
     }
 }

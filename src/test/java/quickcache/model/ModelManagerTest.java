@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import quickcache.commons.core.GuiSettings;
 import quickcache.model.flashcard.FlashcardContainsTagPredicate;
+import quickcache.model.flashcard.Tag;
 import quickcache.testutil.QuickCacheBuilder;
 
 public class ModelManagerTest {

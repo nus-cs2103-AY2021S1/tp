@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import quickcache.logic.commands.FindCommand;
 import quickcache.model.flashcard.FlashcardContainsTagPredicate;
+import quickcache.model.flashcard.Tag;
 
 public class FindCommandParserTest {
 
@@ -25,7 +26,8 @@ public class FindCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new FlashcardContainsTagPredicate(Arrays.asList("TagOne", "TagTwo")));
+                new FindCommand(new FlashcardContainsTagPredicate(Arrays.asList(
+                        new Tag("TagOne"), new Tag("TagTwo"))));
         assertParseSuccess(parser, "TagOne TagTwo", expectedFindCommand);
 
         // multiple whitespaces between keywords

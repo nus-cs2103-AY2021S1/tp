@@ -4,8 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +17,7 @@ import quickcache.model.Model;
 import quickcache.model.ModelManager;
 import quickcache.model.UserPrefs;
 import quickcache.model.flashcard.FlashcardContainsTagPredicate;
+import quickcache.model.flashcard.Tag;
 import quickcache.testutil.TypicalFlashcards;
 
 /**
@@ -26,9 +30,9 @@ public class FindCommandTest {
     @Test
     public void equals() {
         FlashcardContainsTagPredicate firstPredicate =
-            new FlashcardContainsTagPredicate(Collections.singletonList("LSM1301"));
+            new FlashcardContainsTagPredicate(Collections.singletonList(new Tag("LSM1301")));
         FlashcardContainsTagPredicate secondPredicate =
-            new FlashcardContainsTagPredicate(Collections.singletonList("CS2101"));
+            new FlashcardContainsTagPredicate(Collections.singletonList(new Tag("CS2101")));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -48,16 +52,6 @@ public class FindCommandTest {
 
         // different keywords -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
-    }
-
-    @Test
-    public void execute_zeroKeywords_noFlashcardFound() {
-        String expectedMessage = String.format(Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 0);
-        FlashcardContainsTagPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredFlashcardList(predicate);
-        CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredFlashcardList());
     }
 
     @Test
@@ -86,6 +80,10 @@ public class FindCommandTest {
      * Parses {@code userInput} into a {@code FlashcardContainsTagPredicate}.
      */
     private FlashcardContainsTagPredicate preparePredicate(String userInput) {
-        return new FlashcardContainsTagPredicate(Arrays.asList(userInput.split("\\s+")));
+        String trimmedArgs = userInput.trim();
+        List<Tag> tagsToMatch = Arrays.stream(trimmedArgs.split("\\s+"))
+                .map(Tag::new).collect(Collectors.toCollection(ArrayList::new));
+
+        return new FlashcardContainsTagPredicate(tagsToMatch);
     }
 }
