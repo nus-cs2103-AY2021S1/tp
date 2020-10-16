@@ -55,6 +55,11 @@ public class MultipleChoiceQuestion implements Question {
     }
 
     @Override
+    public Question copyQuestion(String question, Answer answer) {
+        return new MultipleChoiceQuestion(question, answer, this.choices);
+    }
+
+    @Override
     public String getValue() {
         return value;
     }

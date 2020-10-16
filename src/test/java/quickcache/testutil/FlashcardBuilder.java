@@ -24,7 +24,6 @@ public class FlashcardBuilder {
     public static final Statistics DEFAULT_STATISTICS = new Statistics();
 
     private Question question;
-    private Answer answer;
     private Set<Tag> tags;
     private Statistics statistics;
 
@@ -32,8 +31,7 @@ public class FlashcardBuilder {
      * Creates a {@code FlashcardBuilder} with the default details.
      */
     public FlashcardBuilder() {
-        question = new OpenEndedQuestion(DEFAULT_QUESTION);
-        answer = new Answer(DEFAULT_ANSWER);
+        question = new OpenEndedQuestion(DEFAULT_QUESTION, new Answer(DEFAULT_ANSWER));
         tags = new HashSet<>(Collections.singletonList(new Tag(DEFAULT_TAG)));
         statistics = DEFAULT_STATISTICS;
     }
@@ -45,7 +43,6 @@ public class FlashcardBuilder {
      */
     public FlashcardBuilder(Flashcard flashcard) {
         question = flashcard.getQuestion();
-        answer = flashcard.getAnswer();
         tags = flashcard.getTags();
         statistics = flashcard.getStatistics();
     }
@@ -54,7 +51,9 @@ public class FlashcardBuilder {
      * Adds a new {@code question} to the {@code Flashcard} that we are building.
      */
     public FlashcardBuilder withQuestion(String question) {
-        this.question = new OpenEndedQuestion(question);
+        Answer answer = new Answer(this.question.getAnswer().getValue());
+        Question finalQuestion = this.question.copyQuestion(question, answer);
+        this.question = finalQuestion;
         return this;
     }
 
@@ -62,11 +61,12 @@ public class FlashcardBuilder {
      * Adds a new {@code question} to the {@code Flashcard} that we are building.
      */
     public FlashcardBuilder withMultipleChoiceQuestion(String question, String[] choices) {
+        Answer answer = new Answer(this.question.getAnswer().getValue());
         Choice[] choiceArr = new Choice[choices.length];
         for (int i = 0; i < choices.length; i++) {
             choiceArr[i] = new Choice(choices[i]);
         }
-        this.question = new MultipleChoiceQuestion(question, choiceArr);
+        this.question = new MultipleChoiceQuestion(question, answer, choiceArr);
         return this;
     }
 
@@ -74,7 +74,9 @@ public class FlashcardBuilder {
      * Adds a new {@code answer} to the {@code Flashcard} that we are building.
      */
     public FlashcardBuilder withAnswer(String answer) {
-        this.answer = new Answer(answer);
+        String question = this.question.getValue();
+        Question finalQuestion = this.question.copyQuestion(question, new Answer(answer));
+        this.question = finalQuestion;
         return this;
     }
 
@@ -113,7 +115,7 @@ public class FlashcardBuilder {
     }
 
     public Flashcard build() {
-        return new Flashcard(question, answer, tags, statistics);
+        return new Flashcard(question, tags, statistics);
     }
 
 }
