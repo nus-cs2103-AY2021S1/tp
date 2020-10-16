@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
-public class MClearCommandTest {
+public class MclearCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -26,12 +26,12 @@ public class MClearCommandTest {
     @Test
     public void execute_emptyList() {
         model.clearMod();
-        assertCommandFailure(new MClearCommand(), model, MClearCommand.MESSAGE_FAIL);
+        assertCommandFailure(new MclearCommand(), model, MclearCommand.MESSAGE_FAIL);
     }
 
     @Test
     public void execute_notEmptyList() {
-        assertCommandSuccess(new MClearCommand(), model, MClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new MclearCommand(), model, MclearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
 }

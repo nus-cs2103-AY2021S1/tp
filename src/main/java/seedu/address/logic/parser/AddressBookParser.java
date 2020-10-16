@@ -18,7 +18,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindModCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.MClearCommand;
+import seedu.address.logic.commands.MclearCommand;
 import seedu.address.logic.commands.MlistCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.ResetCommand;
@@ -72,8 +72,8 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
-        case MClearCommand.COMMAND_WORD:
-            return new MClearCommand();
+        case MclearCommand.COMMAND_WORD:
+            return new MclearCommand();
 
         case ClistCommand.COMMAND_WORD:
             return new ClistCommand();

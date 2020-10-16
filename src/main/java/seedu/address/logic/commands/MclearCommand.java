@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
-public class MClearCommand extends Command {
+public class MclearCommand extends Command {
 
     public static final String COMMAND_WORD = "mclear";
 
