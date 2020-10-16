@@ -48,10 +48,10 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void commonCentsReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
+         * {@link JsonCommonCentsStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonCommonCentsStorageTest} class.
          */
         CommonCents original = getTypicalCommonCents();

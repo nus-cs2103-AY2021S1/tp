@@ -47,7 +47,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ CommonCents methods ==============================
 
     @Override
     public Path getCommonCentsFilePath() {
