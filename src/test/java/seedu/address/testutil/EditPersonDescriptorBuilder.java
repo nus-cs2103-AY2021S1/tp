@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 //import seedu.address.logic.commands.EditCommand.EditModuleDescriptor;
 //import seedu.address.model.person.Email;
 //import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,7 +28,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Returns an {@code EditModuleDescriptor} with fields containing {@code person}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
+    public EditPersonDescriptorBuilder(Contact person) {
         //descriptor = new EditModuleDescriptor();
         //descriptor.setName(person.getName());
         //descriptor.setEmail(person.getEmail());
