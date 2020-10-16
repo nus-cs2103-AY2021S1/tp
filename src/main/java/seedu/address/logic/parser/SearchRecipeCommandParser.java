@@ -62,6 +62,14 @@ public class SearchRecipeCommandParser implements Parser<SearchRecipeCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
+    /**
+     * Parses the values to be searched to determine the type of predicate to return
+     * @param trimmedName the name to be searched, if present
+     * @param trimmedTag the tag to be searched, if present
+     * @param trimmedIngredient the ingredient to be searched, if present
+     * @return the suitable subclass of RecipeContainsKeywordsPredicate
+     * @throws ParseException if the user input does not conform the expected format
+     */
     private RecipeContainsKeywordsPredicate parsePredicates(String trimmedName, String trimmedTag,
                                                             String trimmedIngredient)
             throws ParseException {

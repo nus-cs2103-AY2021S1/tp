@@ -20,14 +20,14 @@ public class RecipeContainsIngredientsPredicate extends RecipeContainsKeywordsPr
     public boolean test(Recipe recipe) {
         String ingredients = recipe.getIngredient().stream().map(Object::toString).collect(Collectors.joining(","));
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(ingredients, keyword));
+                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(ingredients, keyword));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof RecipeContainsIngredientsPredicate // instanceof handles nulls
+                && keywords.equals(((RecipeContainsIngredientsPredicate) other).keywords)); // state check
     }
 
 }

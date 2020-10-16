@@ -14,10 +14,13 @@ public class SearchRecipeCommand extends Command {
 
     public static final String COMMAND_WORD = "searchR";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all recipes whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all recipes that contains all the specified "
+            + "ingredients OR whose names OR tags contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " n/salad";
+            + "Example: " + COMMAND_WORD + " n/salad"
+            + " OR " + COMMAND_WORD + " i/butter cheese"
+            + " OR " + COMMAND_WORD + " t/healthy";
 
     private final RecipeContainsKeywordsPredicate predicate;
 

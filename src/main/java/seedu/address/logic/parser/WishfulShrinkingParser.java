@@ -20,6 +20,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListConsumptionCommand;
 import seedu.address.logic.commands.ListIngredientsCommand;
 import seedu.address.logic.commands.ListRecipesCommand;
+import seedu.address.logic.commands.RecommendCommand;
 import seedu.address.logic.commands.SearchIngredientCommand;
 import seedu.address.logic.commands.SearchRecipeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -89,6 +90,9 @@ public class WishfulShrinkingParser {
 
         case ListConsumptionCommand.COMMAND_WORD:
             return new ListConsumptionCommand();
+
+        case RecommendCommand.COMMAND_WORD:
+            return new RecommendCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
