@@ -76,7 +76,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
+        // Setup LogicManager with JsonCommonCentsIoExceptionThrowingStub
         JsonCommonCentsStorage commonCentsStorage =
                 new JsonCommonCentsIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionCommonCents.json"));
         JsonUserPrefsStorage userPrefsStorage =

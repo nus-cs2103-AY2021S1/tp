@@ -35,17 +35,17 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' money tacker file path.
      */
     Path getCommonCentsFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' money tacker file path.
      */
     void setCommonCentsFilePath(Path commonCentsFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces money tacker data with the data in {@code commonCents}.
      */
     void setCommonCents(ReadOnlyCommonCents commonCents);
 
@@ -71,7 +71,7 @@ public interface Model {
 
     /**
      * Replaces the given person {@code target} with {@code editedAccount}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the money tacker.
      * The account identity of {@code editedAccount} must not be the same as another existing account
      * in the CommonCents.
      */

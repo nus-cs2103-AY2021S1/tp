@@ -26,7 +26,7 @@ public class ModelManager implements Model {
     private final FilteredList<Account> filteredAccounts;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given CommonCents and userPrefs.
      */
     public ModelManager(ReadOnlyCommonCents commonCents, ReadOnlyUserPrefs userPrefs) {
         super();

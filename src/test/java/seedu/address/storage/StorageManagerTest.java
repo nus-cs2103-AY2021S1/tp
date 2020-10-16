@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonCommonCentsStorage addressBookStorage = new JsonCommonCentsStorage(getTempFilePath("ab"));
+        JsonCommonCentsStorage commonCentsStorage = new JsonCommonCentsStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(commonCentsStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -52,7 +52,7 @@ public class StorageManagerTest {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonCommonCentsStorageTest} class.
          */
         CommonCents original = getTypicalCommonCents();
         storageManager.saveCommonCents(original);
@@ -61,7 +61,7 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void getAddressBookFilePath() {
+    public void getCommonCentsFilePath() {
         assertNotNull(storageManager.getCommonCentsFilePath());
     }
 
