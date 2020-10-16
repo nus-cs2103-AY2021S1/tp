@@ -49,7 +49,7 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        telegram.setText(student.getTelegram().value);
+        telegram.setText("@" + student.getTelegram().value);
         nusnetId.setText(student.getNusnetId().value);
         email.setText(student.getEmail().value);
         student.getTags().stream()
