@@ -1,4 +1,4 @@
-package nustorage.ui.uiLogic;
+package nustorage.ui.uilogic;
 
 import nustorage.logic.commands.CommandResult;
 

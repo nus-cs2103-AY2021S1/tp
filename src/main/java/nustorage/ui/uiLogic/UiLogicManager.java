@@ -1,4 +1,4 @@
-package nustorage.ui.uiLogic;
+package nustorage.ui.uilogic;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.SingleSelectionModel;
