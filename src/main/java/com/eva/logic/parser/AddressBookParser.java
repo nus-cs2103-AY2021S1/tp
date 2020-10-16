@@ -17,7 +17,10 @@ import com.eva.logic.commands.ExitCommand;
 import com.eva.logic.commands.FindCommand;
 import com.eva.logic.commands.HelpCommand;
 import com.eva.logic.commands.ListCommand;
+import com.eva.logic.parser.comment.CommentCommandParser;
+import com.eva.logic.parser.comment.DeleteCommandParser;
 import com.eva.logic.parser.exceptions.ParseException;
+import com.eva.logic.parser.leave.AddLeaveCommandParser;
 
 /**
  * Parses user input.

@@ -1,4 +1,4 @@
-package com.eva.logic.parser;
+package com.eva.logic.parser.comment;
 
 import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static com.eva.logic.parser.CliSyntax.PREFIX_COMMENT;
@@ -16,6 +16,9 @@ import com.eva.logic.commands.AddCommentCommand;
 import com.eva.logic.commands.CommentCommand;
 import com.eva.logic.commands.DeleteCommentCommand;
 import com.eva.logic.commands.EditCommand;
+import com.eva.logic.parser.ArgumentMultimap;
+import com.eva.logic.parser.ArgumentTokenizer;
+import com.eva.logic.parser.ParserUtil;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.comment.Comment;
 
