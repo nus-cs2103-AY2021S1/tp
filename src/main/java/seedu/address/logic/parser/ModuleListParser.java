@@ -7,17 +7,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddAssignmentCommand;
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.commands.AddZoomLinkCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.DeleteModuleCommand;
+import seedu.address.logic.commands.EditModuleCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ViewCommand;
+import seedu.address.logic.commands.ViewModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -47,13 +47,13 @@ public class ModuleListParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
+        case AddModuleCommand.COMMAND_WORD:
             return new AddModuleParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
+        case EditModuleCommand.COMMAND_WORD:
             return new EditModuleParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
+        case DeleteModuleCommand.COMMAND_WORD:
             return new DeleteModuleParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
@@ -74,7 +74,7 @@ public class ModuleListParser {
         case AddZoomLinkCommand.COMMAND_WORD:
             return new AddZoomLinkParser().parse(arguments);
 
-        case ViewCommand.COMMAND_WORD:
+        case ViewModuleCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
 
         case AddAssignmentCommand.COMMAND_WORD:

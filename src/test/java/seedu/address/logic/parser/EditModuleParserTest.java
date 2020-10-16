@@ -20,7 +20,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditModuleCommand;
 //import seedu.address.model.person.Email;
 //import seedu.address.model.person.Name;
 //import seedu.address.model.tag.Tag;
@@ -30,7 +30,7 @@ public class EditModuleParserTest {
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditModuleCommand.MESSAGE_USAGE);
 
     private EditModuleParser parser = new EditModuleParser();
 
