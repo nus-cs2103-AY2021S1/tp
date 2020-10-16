@@ -37,6 +37,7 @@ public class Seller extends ClientPerson {
         return new Seller(name, phone, tags, clientId);
     }
 
+
     public Seller setDefaultSellerId() {
         return new Seller(name, phone, tags, DEFAULT_SELLER_ID);
     }
