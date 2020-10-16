@@ -48,13 +48,13 @@ public class ModuleListParser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            return new AddModuleParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+            return new EditModuleParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            return new DeleteModuleParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -72,7 +72,7 @@ public class ModuleListParser {
             return new HelpCommand();
 
         case AddZoomLinkCommand.COMMAND_WORD:
-            return new AddZoomLinkCommandParser().parse(arguments);
+            return new AddZoomLinkParser().parse(arguments);
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
