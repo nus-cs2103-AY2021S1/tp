@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEntries.BUY_FLOWER_POTS;
 import static seedu.address.testutil.TypicalEntries.SELL_FLOWER_POTS;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_TENTH_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_TENTH_ENTRY;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,13 +33,13 @@ public class DeleteCommandTest {
 
     @Test
     public void constructor_nullEntry_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new DeleteCommand(INDEX_FIRST_PERSON, expense)
+        assertThrows(NullPointerException.class, () -> new DeleteCommand(INDEX_FIRST_ENTRY, expense)
                 .execute(modelStub, activeAccountStub));
     }
 
     @Test
     public void execute_validDeleteExpense_success() throws CommandException {
-        CommandResult commandResult = new DeleteCommand(INDEX_FIRST_PERSON, expense).execute(modelStub, activeAccount);
+        CommandResult commandResult = new DeleteCommand(INDEX_FIRST_ENTRY, expense).execute(modelStub, activeAccount);
         assertEquals(String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, expense),
                 commandResult.getFeedbackToUser());
         assertFalse(activeAccount.hasExpense(BUY_FLOWER_POTS));
@@ -47,7 +47,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validDeleteRevenue_success() throws CommandException {
-        CommandResult commandResult = new DeleteCommand(INDEX_FIRST_PERSON, revenue).execute(modelStub, activeAccount);
+        CommandResult commandResult = new DeleteCommand(INDEX_FIRST_ENTRY, revenue).execute(modelStub, activeAccount);
         assertEquals(String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, revenue),
                 commandResult.getFeedbackToUser());
         assertFalse(activeAccount.hasRevenue(SELL_FLOWER_POTS));
@@ -55,13 +55,13 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexExpense_failure() {
-        assertThrows(CommandException.class, () -> new DeleteCommand(INDEX_TENTH_PERSON, expense)
+        assertThrows(CommandException.class, () -> new DeleteCommand(INDEX_TENTH_ENTRY, expense)
                 .execute(modelStub, activeAccount));
     }
 
     @Test
     public void execute_validIndexRevenue_failure() {
-        assertThrows(CommandException.class, () -> new DeleteCommand(INDEX_TENTH_PERSON, revenue)
+        assertThrows(CommandException.class, () -> new DeleteCommand(INDEX_TENTH_ENTRY, revenue)
                 .execute(modelStub, activeAccount));
     }
 
