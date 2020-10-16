@@ -48,12 +48,9 @@ public class AddMultipleChoiceQuestionCommandParser implements Parser<AddMultipl
 
         Choice[] choicesList = ParserUtil.parseChoices(argMultimap.getAllValues(PREFIX_CHOICE));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Answer parsedAnswer = ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get());
         String questionInString = ParserUtil.parseQuestion(argMultimap.getValue(PREFIX_QUESTION).get());
         Question question = ParserUtil.parseMultipleChoiceQuestion(
-                questionInString, parsedAnswer, choicesList);
-
-
+                questionInString, argMultimap.getValue(PREFIX_ANSWER).get(), choicesList);
 
         Flashcard flashcard = new Flashcard(question, tagList);
 

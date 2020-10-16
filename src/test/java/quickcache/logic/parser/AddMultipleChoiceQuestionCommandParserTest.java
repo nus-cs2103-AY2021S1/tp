@@ -20,6 +20,7 @@ import quickcache.logic.commands.AddMultipleChoiceQuestionCommand;
 import quickcache.model.flashcard.Answer;
 import quickcache.model.flashcard.Flashcard;
 import quickcache.model.flashcard.MultipleChoiceQuestion;
+import quickcache.model.flashcard.Question;
 import quickcache.testutil.FlashcardBuilder;
 
 public class AddMultipleChoiceQuestionCommandParserTest {
@@ -77,7 +78,7 @@ public class AddMultipleChoiceQuestionCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid Question
         CommandParserTestUtil.assertParseFailure(parser, ANSWER_DESC_ONE + INVALID_QUESTION_DESC + CHOICE_DESC,
-            MultipleChoiceQuestion.MESSAGE_CONSTRAINTS);
+            Question.MESSAGE_CONSTRAINTS);
         // invalid Answer
         CommandParserTestUtil.assertParseFailure(parser, QUESTION_DESC_THREE + INVALID_ANSWER_DESC + CHOICE_DESC,
             Answer.MESSAGE_CONSTRAINTS);
@@ -85,7 +86,7 @@ public class AddMultipleChoiceQuestionCommandParserTest {
 
         // two invalid values, only first invalid value reported
         CommandParserTestUtil.assertParseFailure(parser, INVALID_QUESTION_DESC + INVALID_ANSWER_DESC + CHOICE_DESC,
-            MultipleChoiceQuestion.MESSAGE_CONSTRAINTS);
+            Question.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         CommandParserTestUtil.assertParseFailure(parser, PREAMBLE_NON_EMPTY + QUESTION_DESC_ONE
