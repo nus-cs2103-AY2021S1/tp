@@ -1,72 +1,88 @@
 package seedu.address.model.task;
 
+import java.util.Optional;
+
+import seedu.address.model.tag.Tag;
+
 /**
  * Represents a Task in the todo list.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Task {
     private final TaskName name;
-    private final Type type;
+    private final Tag tag;
     private final Priority priority;
     private final Date date;
     private final Status status;
 
     /**
-     * Represents the task object constructor.
-     * Every field must be present and not null.
+     * Only name of the task is compulsory.
      *
-     * @param name name of the task.
+     * @param name name of the task
+     * @param tag tags related to the task
+     * @param priority priority of the task
+     * @param date date of the task
+     * @param status status of the task
      */
-    public Task(TaskName name, Type type, Priority priority, Date date, Status status) {
+    public Task(TaskName name, Tag tag, Priority priority, Date date, Status status) {
         this.name = name;
-        this.type = type;
+        this.tag = tag;
         this.priority = priority;
         this.date = date;
         this.status = status;
     }
 
     /**
-     * Returns the name of the task.
-     * @return name of the task
+     * Constructor to avoid having null as arguments.
+     *
+     * @param name name of the task
      */
-    public TaskName getName() {
-        return this.name;
+    public Task(TaskName name) {
+        this.name = name;
+        this.tag = null;
+        this.priority = null;
+        this.date = null;
+        this.status = null;
     }
 
-    /**
-     * Returs the type of the task.
-     *
-     * @return type of the task
-     */
-    public Type getType() {
-        return type;
+    public Optional<TaskName> getName() {
+        return Optional.ofNullable(this.name);
     }
 
-    /**
-     * Returns the priority of the task.
-     *
-     * @return priority of the task
-     */
-    public Priority getPriority() {
-        return priority;
+    public Task setName(TaskName name) {
+        return new Task(name, this.tag, this.priority, this.date, this.status);
     }
 
-    /**
-     * Returns the date of the task.
-     *
-     * @return date of the task
-     */
-    public Date getDate() {
-        return date;
+    public Optional<Tag> getTag() {
+        return Optional.ofNullable(this.tag);
     }
 
-    /**
-     * Returns the status of the task.
-     *
-     * @return status of the task
-     */
-    public Status getStatus() {
-        return status;
+    public Task setTag(Tag tag) {
+        return new Task(this.name, tag, this.priority, this.date, this.status);
+    }
+
+    public Optional<Priority> getPriority() {
+        return Optional.ofNullable(this.priority);
+    }
+
+    public Task setPriority(Priority priority) {
+        return new Task(this.name, this.tag, priority, this.date, this.status);
+    }
+
+    public Optional<Date> getDate() {
+        return Optional.ofNullable(this.date);
+    }
+
+    public Task setDate(Date date) {
+        return new Task(this.name, this.tag, this.priority, date, this.status);
+    }
+
+    public Optional<Status> getStatus() {
+        return Optional.ofNullable(this.status);
+    }
+
+    public Task setStatus(Status status) {
+        return new Task(this.name, this.tag, this.priority, this.date, status);
     }
 
     /**
@@ -81,7 +97,7 @@ public class Task {
             return true;
         }
 
-        return getType().equals(otherTask.getType())
+        return getTag().equals(otherTask.getTag())
             && getName().equals((otherTask.getName()))
             && getDate().equals(otherTask.getDate());
     }
@@ -105,7 +121,7 @@ public class Task {
 
         Task otherTask = (Task) other;
         return otherTask.getName().equals(getName())
-            && otherTask.getType().equals(getType())
+            && otherTask.getTag().equals(getTag())
             && otherTask.getPriority().equals(getPriority())
             && otherTask.getDate().equals(getDate())
             && otherTask.getStatus().equals(getStatus());
@@ -117,8 +133,8 @@ public class Task {
         builder.append(" *Name: ")
                 .append(getName())
                 .append("\n")
-                .append(" *Type: ")
-                .append(getType())
+                .append(" *Tag: ")
+                .append(getTag())
                 .append("\n")
                 .append(" *Priority: ")
                 .append(getPriority())
