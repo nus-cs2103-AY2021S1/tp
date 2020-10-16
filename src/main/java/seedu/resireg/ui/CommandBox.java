@@ -21,9 +21,9 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     // keyboard shortcuts (can consider KeyboardCommandMapper similar to CommandMapper)
-    public static final KeyCombination undo =
+    private static final KeyCombination undo =
             new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN);
-    public static KeyCombination redo =
+    private static final KeyCombination redo =
             new KeyCodeCombination(KeyCode.Y, KeyCombination.CONTROL_DOWN);
 
 
@@ -31,6 +31,16 @@ public class CommandBox extends UiPart<Region> {
 
     @FXML
     private TextField commandTextField;
+
+    /**
+     * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
+     */
+    public CommandBox(CommandExecutor commandExecutor) {
+        super(FXML);
+        this.commandExecutor = commandExecutor;
+        // calls #setStyleToDefault() whenever there is a change to the text of the command box.
+        commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+    }
 
     @FXML
     private void handleOnKeyPressed(KeyEvent event) {
@@ -42,16 +52,6 @@ public class CommandBox extends UiPart<Region> {
         if (redo.match(event)) {
             handleCommandEntered("redo");
         }
-    }
-
-    /**
-     * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
-     */
-    public CommandBox(CommandExecutor commandExecutor) {
-        super(FXML);
-        this.commandExecutor = commandExecutor;
-        // calls #setStyleToDefault() whenever there is a change to the text of the command box.
-        commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
     }
 
     /**
@@ -75,10 +75,7 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Sets the command entered to the given string and executes it
-     */
-    /**
-     * Handles the Enter button pressed event.
+     * Handles the Enter button pressed event
      */
     public void handleCommandEntered(String commandText) {
         try {

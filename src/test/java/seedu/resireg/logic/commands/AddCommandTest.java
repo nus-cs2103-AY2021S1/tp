@@ -169,6 +169,31 @@ public class AddCommandTest {
         public void updateFilteredRoomList(Predicate<Room> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean canUndoResiReg() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canRedoResiReg() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoResiReg() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoResiReg() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveStateResiReg() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -205,6 +230,11 @@ public class AddCommandTest {
         public void addStudent(Student student) {
             requireNonNull(student);
             studentsAdded.add(student);
+        }
+
+        @Override
+        public void saveStateResiReg() {
+            // called by {@code AddCommand#execute()}
         }
 
         @Override

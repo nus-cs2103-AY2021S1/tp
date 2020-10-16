@@ -6,19 +6,17 @@ import java.util.List;
 import seedu.resireg.model.exceptions.NoRedoableStateException;
 import seedu.resireg.model.exceptions.NoUndoableStateException;
 
+/**
+ * {@code AddressBook} that keeps track of its own history.
+ */
 public class VersionedResiReg extends AddressBook {
 
     private final List<ReadOnlyAddressBook> resiRegStateList;
     private int currentStatePtr;
 
-    public VersionedResiReg() {
-        super();
-
-        resiRegStateList = new ArrayList<>();
-        resiRegStateList.add(new AddressBook());
-        currentStatePtr = 0;
-    }
-
+    /**
+     * Creates a {@code VersionedResiReg} with the given {@code ReadOnlyAddressBook}.
+     */
     public VersionedResiReg(ReadOnlyAddressBook initialState) {
         super(initialState);
 

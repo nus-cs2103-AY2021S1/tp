@@ -1,5 +1,7 @@
 package seedu.resireg.logic;
 
+import java.util.Set;
+
 import seedu.resireg.model.room.Floor;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.room.RoomNumber;
@@ -12,13 +14,20 @@ import seedu.resireg.model.student.StudentId;
 import seedu.resireg.model.student.faculty.Faculty;
 import seedu.resireg.model.tag.Tag;
 
-import java.util.Set;
-
 /**
  * Contains functionality for "copy-constructing" {@code Student} and {@code Room}
- * to deal with persistence of student and room allocation statuses.
+ * objects to deal with persistence of student and room allocation statuses that
+ * inhibits undo and redo functionality.
  */
 public class CreateEditCopy {
+    /**
+     * Creates a new student instance with the same information
+     * as the student it is copying from.
+     *
+     * @param studentToCopy student to copy from
+     * @return a new student instance with the same fields
+     * as the student to copy from
+     */
     public static Student createCopiedStudent(Student studentToCopy) {
         assert studentToCopy != null;
 
@@ -36,6 +45,14 @@ public class CreateEditCopy {
         return copy;
     }
 
+    /**
+     * Creates a new room instance with the same information
+     * as the room it is copying from.
+     *
+     * @param roomToCopy the room to copy from
+     * @return a new room instance with the same fields
+     * as the room to copy from
+     */
     public static Room createCopiedRoom(Room roomToCopy) {
         assert roomToCopy != null;
 

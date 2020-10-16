@@ -2,8 +2,8 @@ package seedu.resireg.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.resireg.model.AddressBook;
 import seedu.resireg.model.Model;
-import seedu.resireg.model.VersionedResiReg;
 
 /**
  * Clears the address book.
@@ -18,7 +18,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new VersionedResiReg());
+        model.setAddressBook(new AddressBook());
         model.saveStateResiReg();
         return new CommandResult(MESSAGE_SUCCESS);
     }
