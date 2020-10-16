@@ -93,7 +93,7 @@ public class DeleteCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different flashcard -> returns false
+        // different delete command -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 

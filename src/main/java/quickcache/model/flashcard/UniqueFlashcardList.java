@@ -103,6 +103,11 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
         internalList.setAll(flashcards);
     }
 
+    public void setFlashcards(UniqueFlashcardList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
+
     @Override
     public Iterator<Flashcard> iterator() {
         return internalList.iterator();

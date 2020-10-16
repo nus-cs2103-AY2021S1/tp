@@ -35,4 +35,24 @@ class ChoiceTest {
         assertTrue(Choice.isValidChoice("Optical CDs and DVDs 12345")); // with numbers
     }
 
+    @Test
+    public void equals() {
+        Choice choice = new Choice("Main memory!");
+        Choice choiceCopy = new Choice("Main memory!");
+        Choice choiceDifferent = new Choice("Not main memory!");
+        assertTrue(choice.equals(choiceCopy));
+
+        // same object -> returns true
+        assertTrue(choice.equals(choice));
+
+        // null -> returns false
+        assertFalse(choice.equals(null));
+
+        // different type -> returns false
+        assertFalse(choice.equals(5));
+
+        // different choice -> returns false
+        assertFalse(choice.equals(choiceDifferent));
+    }
+
 }

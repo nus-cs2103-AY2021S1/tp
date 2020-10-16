@@ -49,4 +49,11 @@ class AnswerTest {
         assertTrue(answer1.checkAnswer(answerLowerCase));
     }
 
+    @Test
+    public void equals() {
+        Answer answer1 = new Answer("Photosynthesis is good");
+        // null -> returns false
+        assertFalse(answer1.equals(null));
+    }
+
 }
