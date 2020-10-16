@@ -40,5 +40,5 @@ public interface ContactListStorage {
     /**
      * @see #saveContactList(ReadOnlyContactList)
      */
-    void saveContactList(ReadOnlyContactList ContactList, Path filePath) throws IOException;
+    void saveContactList(ReadOnlyContactList contactList, Path filePath) throws IOException;
 }

@@ -35,7 +35,7 @@ public class SampleDataUtil {
             // getTagSet("classmates")),
             new Contact(new Name("Roy Balakrishnan"), new Email("royb@example.com"),
                 new Telegram("@roybala"))
-            // getTagSet("colleagues"))
+                // getTagSet("colleagues"))
         };
     }
 
