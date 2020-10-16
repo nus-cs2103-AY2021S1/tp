@@ -88,6 +88,10 @@ public class Recipe {
                 && otherRecipe.getTags().equals(getTags());
     }
 
+    public String stringify() {
+
+    }
+
     /**
      * Returns true if both recipes have the same identity and data fields.
      * This defines a stronger notion of equality between two recipes.

@@ -26,17 +26,26 @@ public class CommandResult {
     /** Should show consumption list. */
     private final boolean isShowConsumption;
 
+    /** Should show edit ingredient command. */
+    private final boolean isEditIngredient;
+
+    /** Should show edit recipe command. */
+    private final boolean isEditRecipe;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                         boolean isShowRecipe, boolean isShowIngredient, boolean isShowConsumption) {
+                         boolean isShowRecipe, boolean isShowIngredient, boolean isShowConsumption,
+                         boolean isEditRecipe, boolean isEditIngredient) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.isShowRecipe = isShowRecipe;
         this.isShowIngredient = isShowIngredient;
         this.isShowConsumption = isShowConsumption;
+        this.isEditRecipe = isEditRecipe;
+        this.isEditIngredient = isEditIngredient;
     }
 
     /**
@@ -44,7 +53,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false, false);
+        this(feedbackToUser, false, false, false, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -71,6 +80,14 @@ public class CommandResult {
         return isShowConsumption;
     }
 
+    public boolean isEditRecipe() {
+        return isEditRecipe;
+    }
+
+    public boolean isEditIngredient() {
+        return isEditIngredient;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -85,12 +102,15 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && isEditIngredient == otherCommandResult.isEditIngredient()
+                && isEditIngredient == otherCommandResult.isEditIngredient();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, isShowRecipe, isShowIngredient, isShowConsumption);
+        return Objects.hash(feedbackToUser, showHelp, exit, isShowRecipe, isShowIngredient, isShowConsumption,
+                isEditRecipe, isEditIngredient);
     }
 
 }
