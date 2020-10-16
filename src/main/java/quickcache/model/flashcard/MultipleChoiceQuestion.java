@@ -16,26 +16,26 @@ public class MultipleChoiceQuestion implements Question {
 
     public static final String TYPE = "MCQ";
 
-    public static final String VALIDATION_REGEX = "[^\\s].*";
-
     public static final String MESSAGE_CONSTRAINTS = "MultipleChoiceQuestion can take any values, "
             + "and it should not be blank";
 
     private final Choice[] choices;
     private final String value;
+    private final Answer answer;
 
     /**
      * A constructor to create MCQ Question object.
      */
-    public MultipleChoiceQuestion(String question, Choice... choices) {
+    public MultipleChoiceQuestion(String question, Answer answer, Choice... choices) {
         this.value = question;
         this.choices = choices;
+        this.answer = answer;
     }
 
     /**
      * A constructor to create MCQ Question object.
      */
-    public MultipleChoiceQuestion(String question, List<String> choices) {
+    public MultipleChoiceQuestion(String question, List<String> choices, Answer answer) {
         this.value = question;
         List<Choice> choicesArray = new ArrayList<Choice>();
         for (String c : choices) {
@@ -47,6 +47,7 @@ public class MultipleChoiceQuestion implements Question {
             newChoicesArray[i] = new Choice(choices.get(i));
         }
         this.choices = newChoicesArray;
+        this.answer = answer;
     }
 
     public static boolean isValidQuestion(String test) {
@@ -60,6 +61,26 @@ public class MultipleChoiceQuestion implements Question {
 
     public Optional<Choice[]> getChoices() {
         return Optional.ofNullable(this.choices);
+    }
+
+    @Override
+    public Answer getAnswer() {
+        return this.answer;
+    }
+
+    @Override
+    public Answer getAnswerOrIndex() {
+        for (int i = 0; i < choices.length; i++) {
+            if (this.answer.getValue().equals(choices[i].getValue())) {
+                return new Answer(String.valueOf(i));
+            }
+        }
+        return this.answer;
+    }
+
+    @Override
+    public boolean checkAnswer(Answer answer) {
+        return this.answer.checkAnswer(answer);
     }
 
     @Override
