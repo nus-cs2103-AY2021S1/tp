@@ -2,8 +2,7 @@ package seedu.address.model.util;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -33,48 +32,44 @@ public class SampleDataUtil {
     public static Recipe[] getSampleRecipes() {
         ArrayList<Recipe> recipeList = new ArrayList<>();
         Recipe[] recipes = new Recipe[]{};
-        try {
-            File file = new File("src/main/java/seedu/address/model/util/openrecipes.txt");
-            Scanner sc = new Scanner(file);
-            int index = 0;
-            Name recipeName = null;
-            String recipeInstructions = "";
-            String recipeImage = "";
-            HashSet<Tag> tag = new HashSet<>();
-            ArrayList<Ingredient> ingredients = new ArrayList<>();
-            Calories calories = null;
-            while (sc.hasNextLine() && index < 11) {
-                String field = sc.nextLine();
-                if (index == 0) {
-                    recipeName = new Name(getRecipeName(field));
-                } else if (index == 1) {
-                    ingredients = getRecipeIngredients(field);
-                } else if (index == 2) {
-                    recipeInstructions = getRecipeInstructions(field);
-                } else if (index == 3) {
-                    tag.add(new Tag(getTag(field)));
-                } else if (index == 5) {
-                    recipeImage = getRecipeImage(field);
-                } else if (index == 7) {
-                    calories = new Calories(getCalories(field));
-                }
-                index++;
-                if (index == 11) { //end of a recipe object
-                    index = 0;
-                    requireAllNonNull(recipeName, recipeInstructions, recipeImage, ingredients,
-                            calories, tag);
-                    Recipe toAdd = new Recipe(recipeName, recipeInstructions, recipeImage, ingredients,
-                            calories, tag);
-                    recipeList.add(toAdd);
-                }
+        InputStream file = SampleDataUtil.class.getResourceAsStream("/recipes/openrecipes.txt");
+        Scanner sc = new Scanner(file);
+        int index = 0;
+        Name recipeName = null;
+        String recipeInstructions = "";
+        String recipeImage = "";
+        HashSet<Tag> tag = new HashSet<>();
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
+        Calories calories = null;
+        while (sc.hasNextLine() && index < 11) {
+            String field = sc.nextLine();
+            if (index == 0) {
+                recipeName = new Name(getRecipeName(field));
+            } else if (index == 1) {
+                ingredients = getRecipeIngredients(field);
+            } else if (index == 2) {
+                recipeInstructions = getRecipeInstructions(field);
+            } else if (index == 3) {
+                tag.add(new Tag(getTag(field)));
+            } else if (index == 5) {
+                recipeImage = getRecipeImage(field);
+            } else if (index == 7) {
+                calories = new Calories(getCalories(field));
             }
-            if (recipeList.size() == 0) {
-                recipeList.add(getFallbackRecipe());
+            index++;
+            if (index == 11) { //end of a recipe object
+                index = 0;
+                requireAllNonNull(recipeName, recipeInstructions, recipeImage, ingredients,
+                        calories, tag);
+                Recipe toAdd = new Recipe(recipeName, recipeInstructions, recipeImage, ingredients,
+                        calories, tag);
+                recipeList.add(toAdd);
             }
-            recipes = recipeList.toArray(new Recipe[]{});
-        } catch (FileNotFoundException e) {
-            System.out.println("Cannot find sample data file: openrecipes.txt");
         }
+        if (recipeList.size() == 0) {
+            recipeList.add(getFallbackRecipe());
+        }
+        recipes = recipeList.toArray(new Recipe[]{});
         return recipes;
     }
 
