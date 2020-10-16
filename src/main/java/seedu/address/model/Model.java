@@ -5,15 +5,15 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.module.Module;
-import seedu.address.model.person.Person;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Contact> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
 
