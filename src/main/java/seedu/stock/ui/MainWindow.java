@@ -1,6 +1,5 @@
 package seedu.stock.ui;
 
-import java.util.Stack;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
