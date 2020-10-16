@@ -14,4 +14,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADD_NEW_ASSIGNMENT = new Prefix("a/");
     public static final Prefix PREFIX_PERCENTAGE_ASSIGNMENT = new Prefix("%/");
     public static final Prefix PREFIX_RESULT_ASSIGNMENT = new Prefix("r/");
+    public static final Prefix PREFIX_MODULAR_CREDITS = new Prefix("mc/");
 }

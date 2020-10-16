@@ -25,7 +25,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         Module module;
-        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME, PREFIX_ZOOM_LINK, PREFIX_TAG);
+        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME, PREFIX_ZOOM_LINK, PREFIX_TAG,
+                PREFIX_MODULAR_CREDITS);
         ArgumentMultimap argMultimap = tokenizer.tokenize();
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -33,11 +34,16 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
         ModuleName moduleName = ParserUtil.parseModuleName(argMultimap.getValue(PREFIX_NAME).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        int modularCredits = 4;
+        if (arePrefixesPresent(argMultimap, PREFIX_MODULAR_CREDITS)
+                && argMultimap.getPreamble().isEmpty()) {
+            modularCredits = Integer.parseInt(argMultimap.getValue(PREFIX_MODULAR_CREDITS).get());
+        }
         if (argMultimap.getValue(PREFIX_ZOOM_LINK).isPresent()) {
             ZoomLink zoomLink = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_ZOOM_LINK).get());
-            module = new Module(moduleName, zoomLink, tagList);
+            module = new Module(moduleName, zoomLink, tagList, modularCredits);
         } else {
-            module = new Module(moduleName, tagList);
+            module = new Module(moduleName, tagList, modularCredits);
         }
 
 

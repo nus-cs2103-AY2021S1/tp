@@ -57,12 +57,12 @@ public class Module {
      * @param zoomLink zoom link attached to module
      * @param tags tag attached to module
      */
-    public Module(ModuleName name, ZoomLink zoomLink, Set<Tag> tags) {
+    public Module(ModuleName name, ZoomLink zoomLink, Set<Tag> tags, int modularCredits) {
         this.name = name;
         this.zoomLink = zoomLink;
         this.gradeTracker = new GradeTracker();
         this.tags.addAll(tags);
-        this.modularCredits = 4;
+        this.modularCredits = modularCredits;
     }
     /**
      * Represents the module object constructor.
@@ -90,12 +90,12 @@ public class Module {
      * @param name name of module
      * @param tags tag attached to module
      */
-    public Module(ModuleName name, Set<Tag> tags) {
+    public Module(ModuleName name, Set<Tag> tags, int modularCredits) {
         this.name = name;
         this.zoomLink = null;
         this.gradeTracker = new GradeTracker();
         this.tags.addAll(tags);
-        this.modularCredits = 4;
+        this.modularCredits = modularCredits;
     }
 
     /**
@@ -143,6 +143,13 @@ public class Module {
      */
     public GradeTracker getGradeTracker() {
         return gradeTracker;
+    }
+
+    /**
+     * Returns the modular credits for this module
+     */
+    public int getModularCredits() {
+        return this.modularCredits;
     }
 
     /**
