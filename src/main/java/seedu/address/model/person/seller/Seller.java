@@ -40,7 +40,7 @@ public class Seller extends ClientPerson {
     public Seller setDefaultSellerId() {
         return new Seller(name, phone, tags, DEFAULT_SELLER_ID);
     }
-
+  
     /**
      * Returns true if both persons of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.

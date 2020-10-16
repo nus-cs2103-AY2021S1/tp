@@ -30,13 +30,13 @@ public class Bidder extends ClientPerson {
         super(name, phone, tags, id);
     }
 
+    public Bidder setDefaultBidderId() {
+        return new Bidder(name, phone, tags , DEFAULT_BIDDER_ID);
+    }
+
     public Bidder setBidderTag() {
         tags.add(new Tag("bidder"));
         return new Bidder(name, phone, tags, clientId);
-    }
-
-    public Bidder setDefaultBidderId() {
-        return new Bidder(name, phone, tags , DEFAULT_BIDDER_ID);
     }
 
     /**
