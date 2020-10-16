@@ -8,7 +8,7 @@ import seedu.taskmaster.logic.commands.CommandResult;
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.logic.parser.exceptions.ParseException;
 import seedu.taskmaster.model.ReadOnlyTaskmaster;
-import seedu.taskmaster.model.attendance.NamedAttendance;
+import seedu.taskmaster.model.session.StudentRecord;
 import seedu.taskmaster.model.student.Student;
 
 /**
@@ -34,8 +34,8 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of students */
     ObservableList<Student> getFilteredStudentList();
 
-    /** Returns an unmodifiable view of the filtered list of attendance */
-    ObservableList<NamedAttendance> getFilteredAttendanceList();
+    /** Returns an unmodifiable view of the filtered list of student records */
+    ObservableList<StudentRecord> getFilteredStudentRecordList();
 
     /**
      * Returns the user prefs' student list file path.

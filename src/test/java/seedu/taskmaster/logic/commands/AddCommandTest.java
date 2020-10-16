@@ -21,9 +21,8 @@ import seedu.taskmaster.model.Model;
 import seedu.taskmaster.model.ReadOnlyTaskmaster;
 import seedu.taskmaster.model.ReadOnlyUserPrefs;
 import seedu.taskmaster.model.Taskmaster;
-import seedu.taskmaster.model.attendance.Attendance;
-import seedu.taskmaster.model.attendance.AttendanceType;
-import seedu.taskmaster.model.attendance.NamedAttendance;
+import seedu.taskmaster.model.session.StudentRecord;
+import seedu.taskmaster.model.session.AttendanceType;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.student.Student;
 import seedu.taskmaster.testutil.StudentBuilder;
@@ -149,7 +148,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<NamedAttendance> getFilteredAttendanceList() {
+        public ObservableList<StudentRecord> getFilteredStudentRecordList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -159,7 +158,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateFilteredAttendanceList(Predicate<NamedAttendance> predicate) {
+        public void updateFilteredStudentRecordList(Predicate<StudentRecord> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -174,7 +173,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateAttendances(List<Attendance> attendances) {
+        public void updateStudentRecords(List<StudentRecord> studentRecords) {
             throw new AssertionError("This method should not be called");
         }
 

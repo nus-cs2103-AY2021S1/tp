@@ -10,7 +10,7 @@ import java.util.List;
 import seedu.taskmaster.commons.exceptions.DataConversionException;
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.model.Model;
-import seedu.taskmaster.model.attendance.Attendance;
+import seedu.taskmaster.model.session.StudentRecord;
 import seedu.taskmaster.model.student.exceptions.StudentNotFoundException;
 
 /**
@@ -57,14 +57,14 @@ public class LoadAttendanceCommand extends StorageCommand {
         model.clearAttendance();
 
         try {
-            List<Attendance> newAttendanceList = storage.readAttendance(filepath).get();
+            List<StudentRecord> newAttendanceList = storage.readAttendance(filepath).get();
 
             // TODO: Build a list of students whose IDs aren't found + IDs stored that aren't in the
             //      current StudentList and display it to the user
 
-            for (Attendance attendance: newAttendanceList) {
+            for (StudentRecord studentRecord: newAttendanceList) {
                 try {
-                    model.markStudentWithNusnetId(attendance.getNusnetId(), attendance.getAttendanceType());
+                    model.markStudentWithNusnetId(studentRecord.getNusnetId(), studentRecord.getAttendanceType());
                 } catch (StudentNotFoundException snfe) {
                     // skip
                 }

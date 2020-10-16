@@ -6,9 +6,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.taskmaster.commons.core.GuiSettings;
-import seedu.taskmaster.model.attendance.Attendance;
-import seedu.taskmaster.model.attendance.AttendanceType;
-import seedu.taskmaster.model.attendance.NamedAttendance;
+import seedu.taskmaster.model.session.StudentRecord;
+import seedu.taskmaster.model.session.AttendanceType;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.student.Student;
 
@@ -20,7 +19,7 @@ public interface Model {
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
-    Predicate<NamedAttendance> PREDICATE_SHOW_ALL_ATTENDANCES = unused -> true;
+    Predicate<StudentRecord> PREDICATE_SHOW_ALL_STUDENT_RECORDS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -89,7 +88,7 @@ public interface Model {
     ObservableList<Student> getFilteredStudentList();
 
     /** Returns an unmodifiable view of the filtered attendance list */
-    ObservableList<NamedAttendance> getFilteredAttendanceList();
+    ObservableList<StudentRecord> getFilteredStudentRecordList();
 
     /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.
@@ -101,7 +100,7 @@ public interface Model {
      * Updates the filter of the filtered attendance list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredAttendanceList(Predicate<NamedAttendance> predicate);
+    void updateFilteredStudentRecordList(Predicate<StudentRecord> predicate);
 
     /**
      * Marks the attendance of the given student {@code target} with the given {@code attendanceType}.
@@ -114,7 +113,7 @@ public interface Model {
     /**
      * Updates the corresponding attendance statuses with the Attendances in the given list.
      */
-    void updateAttendances(List<Attendance> attendances);
+    void updateStudentRecords(List<StudentRecord> studentRecords);
 
     /**
      * Clears the attendance statuses of all students in the student list.

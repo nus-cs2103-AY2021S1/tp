@@ -4,14 +4,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.taskmaster.model.attendance.NamedAttendance;
+import seedu.taskmaster.model.session.StudentRecord;
 
 /**
  * An UI component that displays information of a {@code Student}.
  */
-public class AttendanceCard extends UiPart<Region> {
+public class StudentRecordListCard extends UiPart<Region> {
 
-    private static final String FXML = "AttendanceListCard.fxml";
+    private static final String FXML = "StudentRecordListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -21,7 +21,7 @@ public class AttendanceCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final NamedAttendance attendance;
+    public final StudentRecord studentRecord;
 
     @FXML
     private HBox cardPane;
@@ -35,15 +35,15 @@ public class AttendanceCard extends UiPart<Region> {
     private Label name;
 
     /**
-     * Creates a {@code AttendanceCard} with the given {@code AttendanceType} and index to display.
+     * Creates a {@code StudentRecordListCard} with the given {@code AttendanceType} and index to display.
      */
-    public AttendanceCard(NamedAttendance attendance, int displayedIndex) {
+    public StudentRecordListCard(StudentRecord studentRecord, int displayedIndex) {
         super(FXML);
-        this.attendance = attendance;
+        this.studentRecord = studentRecord;
         id.setText(displayedIndex + ". ");
-        name.setText(attendance.getName().fullName);
-        nusnetId.setText(attendance.getAttendance().getNusnetId().value);
-        attendanceStatus.setText(attendance.getAttendance().getAttendanceType().name());
+        name.setText(studentRecord.getName().fullName);
+        nusnetId.setText(studentRecord.getNusnetId().value);
+        attendanceStatus.setText(studentRecord.getAttendanceType().name());
     }
 
     @Override
@@ -54,12 +54,12 @@ public class AttendanceCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AttendanceCard)) {
+        if (!(other instanceof StudentRecordListCard)) {
             return false;
         }
 
         // state check
-        AttendanceCard card = (AttendanceCard) other;
-        return this.attendance.equals(card.attendance);
+        StudentRecordListCard card = (StudentRecordListCard) other;
+        return this.studentRecord.equals(card.studentRecord);
     }
 }

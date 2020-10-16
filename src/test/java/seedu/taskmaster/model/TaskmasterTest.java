@@ -18,8 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.taskmaster.model.attendance.Attendance;
-import seedu.taskmaster.model.attendance.NamedAttendance;
+import seedu.taskmaster.model.session.StudentRecord;
 import seedu.taskmaster.model.student.Student;
 import seedu.taskmaster.model.student.exceptions.DuplicateStudentException;
 import seedu.taskmaster.testutil.StudentBuilder;
@@ -90,8 +89,7 @@ public class TaskmasterTest {
      */
     private static class TaskmasterStub implements ReadOnlyTaskmaster {
         private final ObservableList<Student> students = FXCollections.observableArrayList();
-        private final ObservableList<NamedAttendance> namedAttendances = FXCollections.observableArrayList();
-        private final ObservableList<Attendance> attendances = FXCollections.observableArrayList();
+        private final ObservableList<StudentRecord> studentRecords = FXCollections.observableArrayList();
 
         TaskmasterStub(Collection<Student> students) {
             this.students.setAll(students);
@@ -102,13 +100,8 @@ public class TaskmasterTest {
             return students;
         }
 
-        @Override
-        public ObservableList<NamedAttendance> getNamedAttendanceList() {
-            return namedAttendances;
-        }
-
-        public ObservableList<Attendance> getUnmodifiableAttendanceList() {
-            return attendances;
+        public ObservableList<StudentRecord> getStudentRecordList() {
+            return studentRecords;
         }
     }
 

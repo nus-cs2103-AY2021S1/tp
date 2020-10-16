@@ -4,13 +4,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.taskmaster.commons.exceptions.IllegalValueException;
-import seedu.taskmaster.model.attendance.Attendance;
-import seedu.taskmaster.model.attendance.AttendanceList;
-import seedu.taskmaster.model.attendance.AttendanceType;
+import seedu.taskmaster.model.session.StudentRecord;
+import seedu.taskmaster.model.session.StudentRecordListManager;
+import seedu.taskmaster.model.session.AttendanceType;
+import seedu.taskmaster.model.student.Name;
 import seedu.taskmaster.model.student.NusnetId;
 
 /**
- * Jackson-friendly version of {@link AttendanceList}.
+ * Jackson-friendly version of {@link StudentRecordListManager}.
  */
 class JsonAdaptedAttendance {
 
@@ -30,19 +31,19 @@ class JsonAdaptedAttendance {
     }
 
     /**
-     * Converts a given {@code Attendance} into this class for Jackson use.
+     * Converts a given {@code StudentRecord} into this class for Jackson use.
      */
-    public JsonAdaptedAttendance(Attendance source) {
+    public JsonAdaptedAttendance(StudentRecord source) {
         nusnetId = source.getNusnetId().value;
         attendanceType = source.getAttendanceType().name();
     }
 
     /**
-     * Converts this Jackson-friendly adapted student object into the model's {@code AttendanceList} object.
+     * Converts this Jackson-friendly adapted student object into the model's {@code StudentRecordListManager} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
-    public Attendance toModelType() throws IllegalValueException {
+    public StudentRecord toModelType() throws IllegalValueException {
         if (nusnetId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     NusnetId.class.getSimpleName()));
@@ -61,11 +62,13 @@ class JsonAdaptedAttendance {
             throw new IllegalValueException(AttendanceType.MESSAGE_CONSTRAINTS);
         }
 
+        final Name placeholderName = Name.getStudentNotFoundName();
+
         final NusnetId modelNusnetId = new NusnetId(nusnetId);
 
         final AttendanceType modelAttendanceType = AttendanceType.valueOf(attendanceType);
 
-        return new Attendance(modelNusnetId, modelAttendanceType);
+        return new StudentRecord(placeholderName, modelNusnetId, modelAttendanceType);
     }
 
 }

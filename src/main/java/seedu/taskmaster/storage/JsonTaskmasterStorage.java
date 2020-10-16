@@ -14,7 +14,7 @@ import seedu.taskmaster.commons.exceptions.IllegalValueException;
 import seedu.taskmaster.commons.util.FileUtil;
 import seedu.taskmaster.commons.util.JsonUtil;
 import seedu.taskmaster.model.ReadOnlyTaskmaster;
-import seedu.taskmaster.model.attendance.Attendance;
+import seedu.taskmaster.model.session.StudentRecord;
 
 /**
  * A class to access Taskmaster data stored as a json file on the hard disk.
@@ -90,7 +90,7 @@ public class JsonTaskmasterStorage implements TaskmasterStorage {
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(
                 JsonSerializableAttendanceList.getSerializableListFromAttendances(
-                        taskmaster.getUnmodifiableAttendanceList()),
+                        taskmaster.getStudentRecordList()),
                 filePath);
     }
 
@@ -100,7 +100,7 @@ public class JsonTaskmasterStorage implements TaskmasterStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<List<Attendance>> readAttendance(Path filePath)
+    public Optional<List<StudentRecord>> readAttendance(Path filePath)
             throws DataConversionException {
         requireNonNull(filePath);
 

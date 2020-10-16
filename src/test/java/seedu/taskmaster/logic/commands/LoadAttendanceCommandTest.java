@@ -21,8 +21,9 @@ import seedu.taskmaster.model.ModelManager;
 import seedu.taskmaster.model.ReadOnlyTaskmaster;
 import seedu.taskmaster.model.Taskmaster;
 import seedu.taskmaster.model.UserPrefs;
-import seedu.taskmaster.model.attendance.Attendance;
-import seedu.taskmaster.model.attendance.AttendanceType;
+import seedu.taskmaster.model.session.StudentRecord;
+import seedu.taskmaster.model.session.AttendanceType;
+import seedu.taskmaster.model.student.Name;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.util.SampleDataUtil;
 import seedu.taskmaster.storage.JsonTaskmasterStorage;
@@ -85,11 +86,11 @@ public class LoadAttendanceCommandTest {
             Taskmaster taskmaster = new Taskmaster(optionalReadOnlyTaskmaster.orElseThrow());
             Model model = new ModelManager(taskmaster, new UserPrefs());
 
-            List<Attendance> attendances = new ArrayList<>();
-            attendances.add(new Attendance(new NusnetId("e0000000"), AttendanceType.PRESENT));
-            attendances.add(new Attendance(new NusnetId("e0000001"), AttendanceType.ABSENT));
-            attendances.add(new Attendance(new NusnetId("e0000002"), AttendanceType.NO_RECORD));
-            taskmaster.updateAttendances(attendances);
+            List<StudentRecord> attendances = new ArrayList<>();
+            attendances.add(new StudentRecord(new Name("StudentA"), new NusnetId("e0000000"), AttendanceType.PRESENT));
+            attendances.add(new StudentRecord(new Name("StudentB"), new NusnetId("e0000001"), AttendanceType.ABSENT));
+            attendances.add(new StudentRecord(new Name("StudentC"), new NusnetId("e0000002"), AttendanceType.NO_RECORD));
+            taskmaster.updateStudentRecords(attendances);
             Model expectedModel = new ModelManager(taskmaster, new UserPrefs());
 
             String successMessage = LoadAttendanceCommand.MESSAGE_LOAD_ATTENDANCE_SUCCESS;
