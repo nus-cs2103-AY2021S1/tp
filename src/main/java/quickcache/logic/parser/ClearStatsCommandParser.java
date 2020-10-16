@@ -6,7 +6,7 @@ import quickcache.logic.commands.ClearStatsCommand;
 import quickcache.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new StatsCommand object
+ * Parses input arguments and creates a new ClearStatsCommand object
  */
 public class ClearStatsCommandParser implements Parser<ClearStatsCommand> {
 
