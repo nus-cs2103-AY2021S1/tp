@@ -40,7 +40,7 @@ public class ModuleBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code ZoomLink} of the {@code Module} that we are building.
      */
     public ModuleBuilder withZoomLink(String zoomLink) {
         this.zoomLink = new ZoomLink(zoomLink);
