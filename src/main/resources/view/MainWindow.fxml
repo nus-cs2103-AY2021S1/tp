@@ -46,7 +46,7 @@
           </padding>
         </StackPane>
 
-            <TabPane prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+            <TabPane prefWidth="340" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
               <tabs>
                 <Tab text="Contacts">
                   <content>
