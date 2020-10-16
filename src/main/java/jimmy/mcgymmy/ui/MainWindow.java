@@ -144,6 +144,8 @@ public class MainWindow extends UiPart<Stage> {
             setDate();
         });
 
+        //Hide the datepicker for now
+        datePicker.setVisible(false);
     }
 
     /**
