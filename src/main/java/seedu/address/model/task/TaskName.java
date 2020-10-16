@@ -8,6 +8,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class TaskName {
     public static final String MESSAGE_CONSTRAINTS = "Task name should be no longer than 30 words.";
+    public static final int MAXIMUM_LENGTH = 30;
 
     private final String value;
 
@@ -28,7 +29,7 @@ public class TaskName {
      * @return true if task name is valid
      */
     public static boolean isValidTaskName(String test) {
-        return test.length() <= 30;
+        return test.length() <= MAXIMUM_LENGTH;
     }
 
     public String getValue() {
