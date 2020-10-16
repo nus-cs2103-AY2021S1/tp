@@ -27,6 +27,8 @@ public class Module {
     private final String moduleId;
     private List<TutorialGroup> tutorialGroups;
     private TaskList taskList;
+    private int totalStudents = 0;
+    private int totalGroups = 0;
 
     /**
      * Constructs an {@code Module}.
@@ -52,6 +54,14 @@ public class Module {
 
     public String getModuleId() {
         return this.moduleId;
+    }
+
+    public int getTotalStudents() {
+        return this.totalStudents;
+    }
+
+    public int getTotalGroups() {
+        return this.totalGroups;
     }
 
     public void addTutorialGroup(TutorialGroup tutorialGroup) {
