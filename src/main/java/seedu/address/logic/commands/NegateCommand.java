@@ -11,19 +11,19 @@ public abstract class NegateCommand extends Command {
 
     public static final String COMMAND_WORD = "un";
 
-    private final String commandWord;
     private final Index targetIndex;
 
     /**
      * Constructs a {@code NegateCommand} to reverse the execution of other commands.
      *
-     * @param suffix the command word of the command to be negated
      * @param targetIndex index of the assignment in the filtered assignment list
      */
-    NegateCommand(String suffix, Index targetIndex) {
-        requireNonNull(suffix);
+    NegateCommand(Index targetIndex) {
         requireNonNull(targetIndex);
-        this.commandWord = COMMAND_WORD + suffix;
         this.targetIndex = targetIndex;
+    }
+
+    public Index getTargetIndex() {
+        return this.targetIndex;
     }
 }
