@@ -72,7 +72,7 @@ public class QuickCacheTest {
     @Test
     public void hasFlashcard_flashcardWithSameIdentityFieldsInQuickCache_returnsTrue() {
         quickCache.addFlashcard(RANDOM1);
-        Flashcard editedRandom1 = new FlashcardBuilder(RANDOM1).withTags(VALID_TAG_MODULE).build();
+        Flashcard editedRandom1 = new FlashcardBuilder(RANDOM1).build();
         assertTrue(quickCache.hasFlashcard(editedRandom1));
     }
 

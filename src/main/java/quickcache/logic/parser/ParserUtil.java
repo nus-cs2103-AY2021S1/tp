@@ -52,9 +52,9 @@ public class ParserUtil {
         requireNonNull(question);
         String trimmedQuestion = question.trim();
         if (!Question.isValidQuestion(trimmedQuestion)) {
-            throw new ParseException(OpenEndedQuestion.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Question.MESSAGE_CONSTRAINTS);
         }
-        return question;
+        return trimmedQuestion;
     }
 
     /**
@@ -63,13 +63,14 @@ public class ParserUtil {
      *
      * @throws ParseException if answer is less than choices and question is invalid.
      */
-    public static Question parseOpenEndedQuestion(String question, Answer answer) throws ParseException {
+    public static Question parseOpenEndedQuestion(String question, String answer) throws ParseException {
         requireNonNull(question);
         String trimmedQuestion = question.trim();
         if (!MultipleChoiceQuestion.isValidQuestion(trimmedQuestion)) {
             throw new ParseException(MultipleChoiceQuestion.MESSAGE_CONSTRAINTS);
         }
-        return new OpenEndedQuestion(question, answer);
+        Answer finalAnswer = ParserUtil.parseAnswer(answer);
+        return new OpenEndedQuestion(question, finalAnswer);
     }
 
     /**
@@ -78,16 +79,17 @@ public class ParserUtil {
      *
      * @throws ParseException if answer is less than choices and question is invalid.
      */
-    public static Question parseMultipleChoiceQuestion(String question, Answer answer,
+    public static Question parseMultipleChoiceQuestion(String question, String answer,
                                                        Choice[] choices) throws ParseException {
         requireNonNull(question);
         String trimmedQuestion = question.trim();
         if (!MultipleChoiceQuestion.isValidQuestion(trimmedQuestion)) {
             throw new ParseException(MultipleChoiceQuestion.MESSAGE_CONSTRAINTS);
         }
+        Answer tempAnswer = ParserUtil.parseAnswer(answer);
         int ans;
         try {
-            ans = Integer.parseInt(answer.getValue());
+            ans = Integer.parseInt(tempAnswer.getValue());
             if (ans > choices.length) {
                 throw new ParseException("Answer must be smaller than number of choices");
             }

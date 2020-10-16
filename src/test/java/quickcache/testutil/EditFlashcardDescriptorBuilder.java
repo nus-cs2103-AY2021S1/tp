@@ -5,12 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import quickcache.logic.commands.EditCommand;
-import quickcache.model.flashcard.Answer;
-import quickcache.model.flashcard.Choice;
-import quickcache.model.flashcard.Flashcard;
-import quickcache.model.flashcard.MultipleChoiceQuestion;
-import quickcache.model.flashcard.OpenEndedQuestion;
-import quickcache.model.flashcard.Tag;
+import quickcache.model.flashcard.*;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -20,7 +15,7 @@ public class EditFlashcardDescriptorBuilder {
     private final EditCommand.EditFlashcardDescriptor descriptor;
 
     public EditFlashcardDescriptorBuilder() {
-        descriptor = new EditCommand.EditFlashcardDescriptor(false);
+        descriptor = new EditCommand.EditFlashcardDescriptor();
     }
 
     public EditFlashcardDescriptorBuilder(EditCommand.EditFlashcardDescriptor descriptor) {
@@ -31,13 +26,11 @@ public class EditFlashcardDescriptorBuilder {
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
     public EditFlashcardDescriptorBuilder(Flashcard flashcard) {
-        descriptor = new EditCommand.EditFlashcardDescriptor(false);
-        descriptor.setQuestion(flashcard.getQuestion());
+        descriptor = new EditCommand.EditFlashcardDescriptor();
+        descriptor.setQuestion(flashcard.getQuestion().getValue());
         descriptor.setTags(flashcard.getTags());
         descriptor.setAnswer(flashcard.getAnswer());
-        boolean isMcq = flashcard.getQuestion() instanceof MultipleChoiceQuestion;
-        descriptor.setIsMcq(isMcq);
-        if (isMcq) {
+        if (flashcard.getQuestion() instanceof MultipleChoiceQuestion) {
             descriptor.setChoices(flashcard.getQuestion().getChoices().get());
         }
     }
@@ -46,7 +39,7 @@ public class EditFlashcardDescriptorBuilder {
      * Sets the {@code question} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditFlashcardDescriptorBuilder withQuestion(String question) {
-        descriptor.setQuestion(new OpenEndedQuestion(question));
+        descriptor.setQuestion(question);
         return this;
     }
 

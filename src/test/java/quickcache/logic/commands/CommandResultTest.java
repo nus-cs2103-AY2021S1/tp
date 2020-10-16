@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import quickcache.model.flashcard.Answer;
 import quickcache.model.flashcard.OpenEndedQuestion;
 import quickcache.model.flashcard.Question;
 
@@ -41,7 +42,8 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult("feedback",
                 false, true, false)));
 
-        Question question = new OpenEndedQuestion("question");
+        Answer answer = new Answer("answer");
+        Question question = new OpenEndedQuestion("question", answer);
         commandResult = new CommandResult("feedback", question, true, false);
 
         // same values -> returns true

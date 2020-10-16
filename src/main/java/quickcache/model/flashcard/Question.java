@@ -27,4 +27,6 @@ public interface Question {
     public static boolean isValidQuestion(String test) {
         return test.matches(VALIDATION_REGEX);
     }
+
+    public Question copyQuestion(String question, Answer answer);
 }

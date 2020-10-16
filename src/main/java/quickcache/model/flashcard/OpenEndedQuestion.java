@@ -25,6 +25,11 @@ public class OpenEndedQuestion implements Question {
     }
 
     @Override
+    public Question copyQuestion(String question, Answer answer) {
+        return new OpenEndedQuestion(question, answer);
+    }
+
+    @Override
     public String getValue() {
         return value;
     }
