@@ -1,6 +1,10 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -8,11 +12,7 @@ import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.NameContainsKeywordsPredicateForExercise;
 import seedu.address.testutil.ExerciseBuilder;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import org.junit.jupiter.api.Test;
 
 public class ExerciseBookParserTest {
 
