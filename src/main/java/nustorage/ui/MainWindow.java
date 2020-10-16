@@ -5,17 +5,20 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import nustorage.commons.core.GuiSettings;
 import nustorage.commons.core.LogsCenter;
 import nustorage.logic.Logic;
 import nustorage.logic.commands.CommandResult;
-import nustorage.logic.commands.exceptions.CommandException;
-import nustorage.logic.parser.exceptions.ParseException;
+import nustorage.ui.uilogic.UiLogic;
+import nustorage.ui.uilogic.UiLogicManager;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -29,11 +32,10 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private UiLogic uiLogic;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
-    private InventoryPanel inventoryPanel;
-    private FinanceRecordPanel financeRecordPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -47,16 +49,25 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
-    private StackPane inventoryPanelPlaceholder;
+    private AnchorPane inventoryPanelPlaceholder;
 
     @FXML
-    private StackPane financeListPanelPlaceholder;
+    private AnchorPane financeListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private TabPane tabPane;
+
+    @FXML
+    private Tab inventoryTab;
+
+    @FXML
+    private Tab financeTab;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -67,6 +78,7 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.uiLogic = new UiLogicManager(tabPane);
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -131,32 +143,14 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
-
-    /**
-     * Fills up all the placeholders of this window.
-     */
-    public void fillInnerPartsWithInventory() {
-        inventoryPanel = new InventoryPanel(logic.getFilteredInventory());
-        inventoryPanelPlaceholder.getChildren().add(inventoryPanel.getRoot());
-
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-    }
-
     /**
      * Fills up all the placeholders of this window.
      */
     public void fillInnerPartsWithFinance() {
-        financeRecordPanel = new FinanceRecordPanel(logic.getFilteredFinanceList());
+        FinanceRecordPanel financeRecordPanel = new FinanceRecordPanel(logic.getFilteredFinanceList());
         financeListPanelPlaceholder.getChildren().add(financeRecordPanel.getRoot());
 
-        inventoryPanel = new InventoryPanel(logic.getFilteredInventory());
+        InventoryPanel inventoryPanel = new InventoryPanel(logic.getFilteredInventory());
         inventoryPanelPlaceholder.getChildren().add(inventoryPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -219,9 +213,20 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see nustorage.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws Exception {
         try {
-            CommandResult commandResult = logic.execute(commandText);
+            CommandResult commandResult;
+
+            if (isUiCommand(commandText)) {
+                commandResult = uiLogic.execute(commandText);
+            } else if (tabPane.getSelectionModel().getSelectedItem().getText().equals("Finance")) {
+                commandResult = logic.execute(commandText);
+            } else if (tabPane.getSelectionModel().getSelectedItem().getText().equals("Inventory")) {
+                commandResult = logic.execute(commandText);
+            } else {
+                commandResult = logic.execute(commandText);
+            }
+
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
@@ -234,10 +239,19 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (Exception e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    private boolean isUiCommand(String userInput) {
+        userInput.trim();
+        String[] userInputArr = userInput.split("_");
+        if (userInputArr.length > 0) {
+            return userInput.split("_")[0].equals("list");
+        }
+        return false;
     }
 }

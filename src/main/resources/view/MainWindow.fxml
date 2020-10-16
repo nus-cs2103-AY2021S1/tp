@@ -6,12 +6,15 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="NUStorage" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="700.0" minWidth="1000.0" onCloseRequest="#handleExit" title="NUStorage" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -22,7 +25,7 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox>
+      <VBox styleClass="background">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -43,16 +46,26 @@
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-
-        <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets bottom="10" left="10" right="10" top="10" />
-          </padding>
-          <StackPane fx:id="inventoryPanelPlaceholder" VBox.vgrow="ALWAYS" />
-               <StackPane fx:id="financeListPanelPlaceholder" layoutX="21.0" layoutY="21.0" />
-        </VBox>
+            <TabPane fx:id="tabPane" stylesheets="@DarkTheme.css" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab fx:id="inventoryTab" text="Inventory">
+                  <content>
+                    <AnchorPane fx:id="inventoryPanelPlaceholder" />
+                  </content>
+                </Tab>
+                <Tab fx:id="financeTab" text="FInance">
+                  <content>
+                    <AnchorPane fx:id="financeListPanelPlaceholder" />
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+            <stylesheets>
+               <URL value="@Extensions.css" />
+               <URL value="@DarkTheme.css" />
+            </stylesheets>
       </VBox>
     </Scene>
   </scene>
