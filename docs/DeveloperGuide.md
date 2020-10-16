@@ -388,6 +388,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 2a. The list is empty.
 
     Use case ends.
+  
+- 2a. The search phrase is empty or consists of only white spaces.
+
+  - 2a1. PlaNus shows an error message.
+
+    Use case ends.
 
 <br>    
 

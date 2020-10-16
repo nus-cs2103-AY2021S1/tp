@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_SEARCH_PHRASE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -42,6 +43,22 @@ public class FindCommandParserTest {
                 " \n title:Meet Alice  \t desc:play \t\t\t type: todo \n date: \t 01-01-2020 23:59 "
                         + "\n status:incomplete",
                 expectedFindCommand);
+    }
+
+    @Test
+    public void parse_emptyArgs_returnsFalse() {
+        // throw error if argument is empty
+        assertParseFailure(parser, " title:", MESSAGE_EMPTY_SEARCH_PHRASE);
+        assertParseFailure(parser, " desc:", MESSAGE_EMPTY_SEARCH_PHRASE);
+        assertParseFailure(parser, " type:", MESSAGE_EMPTY_SEARCH_PHRASE);
+        assertParseFailure(parser, " status:", MESSAGE_EMPTY_SEARCH_PHRASE);
+        assertParseFailure(parser, " date:", MESSAGE_EMPTY_SEARCH_PHRASE);
+
+        // one of the attribute is empty
+        assertParseFailure(parser, " title:abc date: desc:edf", MESSAGE_EMPTY_SEARCH_PHRASE);
+
+        // space is trimmed. empty spaces also considered empty
+        assertParseFailure(parser, " desc:abc date:  ", MESSAGE_EMPTY_SEARCH_PHRASE);
     }
 
 }

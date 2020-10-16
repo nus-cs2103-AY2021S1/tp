@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_SEARCH_PHRASE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -36,23 +37,25 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
         TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
-        if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {
-            predicate.setKeyword(PREFIX_TITLE, argMultimap.getValue(PREFIX_TITLE).get());
-        }
-        if (argMultimap.getValue(PREFIX_DATE_TIME).isPresent()) {
-            predicate.setKeyword(PREFIX_DATE_TIME, argMultimap.getValue(PREFIX_DATE_TIME).get());
-        }
-        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            predicate.setKeyword(PREFIX_DESCRIPTION, argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        }
-        if (argMultimap.getValue(PREFIX_TYPE).isPresent()) {
-            predicate.setKeyword(PREFIX_TYPE, argMultimap.getValue(PREFIX_TYPE).get());
-        }
-        if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
-            predicate.setKeyword(PREFIX_STATUS, argMultimap.getValue(PREFIX_STATUS).get());
-        }
+        setKeyword(PREFIX_TITLE, argMultimap, predicate);
+        setKeyword(PREFIX_DESCRIPTION, argMultimap, predicate);
+        setKeyword(PREFIX_TYPE, argMultimap, predicate);
+        setKeyword(PREFIX_DATE_TIME, argMultimap, predicate);
+        setKeyword(PREFIX_STATUS, argMultimap, predicate);
 
         return new FindCommand(predicate);
+    }
+
+    private void setKeyword(Prefix prefix,
+                            ArgumentMultimap argMultimap,
+                            TaskContainsKeywordsPredicate predicate) throws ParseException {
+        if (argMultimap.getValue(prefix).isPresent()) {
+            String val = argMultimap.getValue(prefix).get();
+            if (val.trim().length() == 0) {
+                throw new ParseException(MESSAGE_EMPTY_SEARCH_PHRASE);
+            }
+            predicate.setKeyword(prefix, val);
+        }
     }
 
     /**
