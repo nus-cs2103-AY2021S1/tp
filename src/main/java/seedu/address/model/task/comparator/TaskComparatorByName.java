@@ -1,6 +1,7 @@
 package seedu.address.model.task.comparator;
 
 import java.util.Comparator;
+import java.util.Optional;
 
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskName;
@@ -20,9 +21,12 @@ public class TaskComparatorByName implements Comparator<Task> {
      */
     @Override
     public int compare(Task task, Task otherTask) {
-        TaskName description = task.getName();
-        TaskName otherName = otherTask.getName();
+        Optional<TaskName> name = task.getName();
+        Optional<TaskName> otherName = otherTask.getName();
         TaskNameComparator descriptionComparator = new TaskNameComparator();
-        return descriptionComparator.compare(description, otherName);
+        // names are compulsory
+        // no need to check with ifPresent() [?]
+        return descriptionComparator.compare(name.get(), otherName.get());
     }
+
 }
