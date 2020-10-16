@@ -41,7 +41,7 @@ public class TypicalRecipes {
 
     public static final Recipe PASTA = new RecipeBuilder().withName("Pasta")
             .withIngredient("Pasta", "12 ounces")
-            .withCalories(10)
+            .withCalories(80)
             .withInstruction(
                     "Cook pasta until al dente. "
                     + "Add basil leaves, 1/2 cup Parmesan, pine nuts, and salt and pepper to food processor or blender."
@@ -55,8 +55,7 @@ public class TypicalRecipes {
             .withTags("healthy")
             .build();
 
-    public static final Recipe PORK = new RecipeBuilder()
-            .withName("Roasted Pork")
+    public static final Recipe PORK = new RecipeBuilder().withName("Roasted Pork")
             .withIngredient("Pork Tenderloins", "2 whole")
             .withCalories(102)
             .withInstruction(

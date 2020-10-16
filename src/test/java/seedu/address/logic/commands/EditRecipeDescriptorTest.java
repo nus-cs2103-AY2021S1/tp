@@ -35,20 +35,20 @@ public class EditRecipeDescriptorTest {
         assertFalse(DESC_NOODLE.equals(DESC_MARGARITAS));
 
         // different name -> returns false
-        EditRecipeDescriptor editedAmy = new EditRecipeDescriptorBuilder(DESC_NOODLE)
+        EditRecipeDescriptor editedNoodle = new EditRecipeDescriptorBuilder(DESC_NOODLE)
                         .withName(VALID_NAME_MARGARITAS)
                         .build();
-        assertFalse(DESC_NOODLE.equals(editedAmy));
+        assertFalse(DESC_NOODLE.equals(editedNoodle));
 
         // different ingredients -> returns false
-        editedAmy =
+        editedNoodle =
                 new EditRecipeDescriptorBuilder(DESC_NOODLE)
                         .withIngredient(VALID_INGREDIENT_MARGARITAS, VALID_QUANTITY_MARGARITAS)
                         .build();
-        assertFalse(DESC_NOODLE.equals(editedAmy));
+        assertFalse(DESC_NOODLE.equals(editedNoodle));
 
         // different tags -> returns false
-        editedAmy = new EditRecipeDescriptorBuilder(DESC_NOODLE).build();
-        //        assertFalse(DESC_AMY.equals(editedAmy));
+        // editedNoodle = new EditRecipeDescriptorBuilder(DESC_NOODLE).build();
+        // assertFalse(DESC_NOODLE.equals(editedNoodle));
     }
 }

@@ -10,7 +10,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commons.Calories;
-import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.tag.Tag;
 
@@ -19,24 +18,13 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
     public static final String MESSAGE_CONSTRAINTS =
-            "Ingredients should be separated by commas, "
-                    + "each ingredient and optional field quantity "
-                    + "separated by a hyphen, should be consisted "
-                    + "of alphanumeric characters only";
+            "1. Ingredients should be consisted of alphanumeric characters only.\n"
+            + "2. Each ingredient are separated by a comma.\n"
+            + "3. Each ingredient name and optional field quantity are separated by a hyphen. ";
     public static final String VALIDATION_REGEX = "[\\w\\s-]+"
             + "(,\\s*[\\w\\s-]*)*";
     public static final String VALIDATION_REGEX_QUANTITY = "[\\w\\s]*";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-
-    /**
-     * Checks if ingredient has attributes in the right format.
-     * @param ingredient Ingredient to check.
-     * @return boolean to indicate whether ingredient is valid.
-     */
-    public static boolean isValidIngredient(Ingredient ingredient) {
-        return ingredient.getValue().matches(VALIDATION_REGEX)
-                && ingredient.getQuantity().matches(VALIDATION_REGEX_QUANTITY);
-    }
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be

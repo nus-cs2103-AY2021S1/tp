@@ -5,13 +5,17 @@ import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_MARGA
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MARGARITAS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIngredients.MANGO;
 
 import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.AddIngredientCommand;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.testutil.IngredientBuilder;
@@ -26,8 +30,8 @@ public class AddIngredientCommandParserTest {
         arr.add(expectedIngredient);
 
         // whitespace only preamble
-        /*assertParseSuccess(parser, PREAMBLE_WHITESPACE + INGREDIENT_DESC_MARGARITAS,
-                new AddIngredientCommand(arr));*/
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + INGREDIENT_DESC_MARGARITAS,
+                new AddIngredientCommand(arr));
     }
 
     @Test

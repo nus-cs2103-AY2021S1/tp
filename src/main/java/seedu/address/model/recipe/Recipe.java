@@ -83,7 +83,7 @@ public class Recipe {
                 && otherRecipe.getName().equals(getName())
                 && otherRecipe.getInstruction().equals(getInstruction())
                 && otherRecipe.getRecipeImage().equals(getRecipeImage())
-                && (otherRecipe.getIngredient().equals(getIngredient()))
+                && otherRecipe.getIngredient().equals(getIngredient())
                 && otherRecipe.getCalories().equals(getCalories())
                 && otherRecipe.getTags().equals(getTags());
     }

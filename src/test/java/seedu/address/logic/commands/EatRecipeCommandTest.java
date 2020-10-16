@@ -43,7 +43,7 @@ public class EatRecipeCommandTest {
         assertCommandFailure(eatRecipeCommand, model, Messages.MESSAGE_INVALID_CONSUMPTION_DISPLAYED_INDEX);
     }
 
-    /*@Test
+    @Test
     public void execute_validIndexFilteredList_success() {
         showRecipeAtIndex(model, INDEX_FIRST_RECIPE);
 
@@ -54,10 +54,10 @@ public class EatRecipeCommandTest {
 
         Model expectedModel = new ModelManager(model.getWishfulShrinking(), new UserPrefs());
         expectedModel.addConsumption(new Consumption(recipeToEat));
-        showNoRecipe(expectedModel);
+        showRecipeAtIndex(expectedModel, INDEX_FIRST_RECIPE);
 
         assertCommandSuccess(eatRecipeCommand, model, expectedMessage, expectedModel);
-    }*/
+    }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
@@ -92,15 +92,6 @@ public class EatRecipeCommandTest {
 
         // different consumption -> returns false
         assertFalse(eatFirstCommand.equals(eatSecondCommand));
-    }
-
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoRecipe(Model model) {
-        model.updateFilteredRecipeList(p -> false);
-
-        assertTrue(model.getFilteredRecipeList().isEmpty());
     }
 
     /**

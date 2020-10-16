@@ -1,9 +1,10 @@
 package seedu.address.model.recipe;
 
 import static java.util.Objects.requireNonNull;
-//import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Objects;
+
+//import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Recipe's ingredients in the Wishful Shrinking.
@@ -72,7 +73,7 @@ public class Ingredient {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid Ingredient.
      */
     public static boolean isValidIngredient(Ingredient test) {
         return test.getValue().matches(VALIDATION_REGEX)
@@ -81,7 +82,12 @@ public class Ingredient {
 
     @Override
     public String toString() {
-        return quantity + " " + value;
+        String ingredientString = "";
+        if (quantity != "") {
+            ingredientString = quantity + " ";
+        }
+        ingredientString += value;
+        return ingredientString;
     }
 
     @Override

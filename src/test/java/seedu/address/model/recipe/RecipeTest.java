@@ -25,45 +25,50 @@ public class RecipeTest {
         assertFalse(SANDWICH.isSameRecipe(null));
 
         // different ingredients -> returns false
-        Recipe editedAlice =
+        Recipe editedSandwich =
                 new RecipeBuilder(SANDWICH)
                         .withIngredient(VALID_INGREDIENT_MARGARITAS, VALID_QUANTITY_SANDWICH)
                         .build();
-        assertFalse(SANDWICH.isSameRecipe(editedAlice));
+        assertFalse(SANDWICH.isSameRecipe(editedSandwich));
 
         // same ingredients and quantity -> returns true
-        editedAlice =
+        editedSandwich =
                 new RecipeBuilder(SANDWICH).withIngredient(VALID_INGREDIENT_SANDWICH, VALID_QUANTITY_SANDWICH).build();
-        assertTrue(SANDWICH.isSameRecipe(editedAlice));
+        assertTrue(SANDWICH.isSameRecipe(editedSandwich));
 
         // different ingredients and quantity -> returns false
-        editedAlice = new RecipeBuilder(SANDWICH)
+        editedSandwich = new RecipeBuilder(SANDWICH)
                 .withIngredient(VALID_INGREDIENT_MARGARITAS, VALID_QUANTITY_MARGARITAS)
                 .build();
-        assertFalse(SANDWICH.isSameRecipe(editedAlice));
+        assertFalse(SANDWICH.isSameRecipe(editedSandwich));
 
         // different name -> returns false
-        editedAlice = new RecipeBuilder(SANDWICH).withName(VALID_NAME_MARGARITAS).build();
-        assertFalse(SANDWICH.isSameRecipe(editedAlice));
+        editedSandwich = new RecipeBuilder(SANDWICH).withName(VALID_NAME_MARGARITAS).build();
+        assertFalse(SANDWICH.isSameRecipe(editedSandwich));
 
         // same name -> returns true
-        editedAlice = new RecipeBuilder(SANDWICH).withName("Burger").build();
-        assertFalse(SANDWICH.isSameRecipe(editedAlice));
+        editedSandwich = new RecipeBuilder(SANDWICH).withName("Burger").build();
+        assertFalse(SANDWICH.isSameRecipe(editedSandwich));
 
         // same name, same ingredients, different attributes -> returns true
-        editedAlice = new RecipeBuilder(SANDWICH)
+        editedSandwich = new RecipeBuilder(SANDWICH)
                .build();
-        assertTrue(SANDWICH.isSameRecipe(editedAlice));
+        assertTrue(SANDWICH.isSameRecipe(editedSandwich));
 
+        /*
         // same name, same ingredients, different attributes -> returns true
-        editedAlice = new RecipeBuilder(SANDWICH)
+        editedSandwich = new RecipeBuilder(SANDWICH)
                 .withIngredient(VALID_INGREDIENT_MARGARITAS, VALID_QUANTITY_SANDWICH)
+                .withCalories(VALID_CALORIES_MARGARITAS)
                 .build();
-        // assertTrue(SANDWICH.isSameRecipe(editedAlice));
+        //assertTrue(SANDWICH.isSameRecipe(editedSandwich));
 
         // same name, same ingredients, different attributes -> returns true
-        editedAlice = new RecipeBuilder(SANDWICH).build();
-        assertTrue(SANDWICH.isSameRecipe(editedAlice));
+        editedSandwich = new RecipeBuilder(SANDWICH)
+                .withCalories(VALID_CALORIES_MARGARITAS)
+                .build();
+        // assertTrue(SANDWICH.isSameRecipe(editedSandwich));
+        */
     }
 
     @Test
@@ -85,26 +90,26 @@ public class RecipeTest {
         assertFalse(SANDWICH.equals(MARGARITAS));
 
         // different name -> returns false
-        Recipe editedAlice = new RecipeBuilder(SANDWICH).withName(VALID_NAME_MARGARITAS).build();
-        assertFalse(SANDWICH.equals(editedAlice));
+        Recipe editedSandwich = new RecipeBuilder(SANDWICH).withName(VALID_NAME_MARGARITAS).build();
+        assertFalse(SANDWICH.equals(editedSandwich));
 
         // different ingredients -> returns false
-        editedAlice = new RecipeBuilder(SANDWICH)
+        editedSandwich = new RecipeBuilder(SANDWICH)
                 .withIngredient(VALID_INGREDIENT_MARGARITAS, VALID_QUANTITY_SANDWICH)
                 .build();
-        assertFalse(SANDWICH.equals(editedAlice));
+        assertFalse(SANDWICH.equals(editedSandwich));
 
         // different quantity -> returns false
-        editedAlice =
+        editedSandwich =
                 new RecipeBuilder(SANDWICH)
                         .withIngredient(VALID_INGREDIENT_SANDWICH, VALID_QUANTITY_MARGARITAS)
                         .build();
-        assertFalse(SANDWICH.equals(editedAlice));
+        assertFalse(SANDWICH.equals(editedSandwich));
 
         // same ingredient and quantity -> returns true
-        editedAlice =
+        editedSandwich =
                 new RecipeBuilder(SANDWICH).withIngredient(VALID_INGREDIENT_SANDWICH, VALID_QUANTITY_SANDWICH).build();
-        assertTrue(SANDWICH.equals(editedAlice));
+        assertTrue(SANDWICH.equals(editedSandwich));
 
     }
 }

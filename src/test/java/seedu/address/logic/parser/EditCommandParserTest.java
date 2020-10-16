@@ -149,7 +149,7 @@ public class EditCommandParserTest {
                 .withIngredient(VALID_INGREDIENT_NOODLE, VALID_QUANTITY_NOODLE)
                 .build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
-        // assertParseSuccess(parser, userInput, expectedCommand);
+        assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_MARGARITAS;
@@ -181,7 +181,7 @@ public class EditCommandParserTest {
         EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder()
                 .withIngredient(VALID_INGREDIENT_MARGARITAS, VALID_QUANTITY_MARGARITAS).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-        // assertParseSuccess(parser, userInput, expectedCommand);
+        assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + INVALID_INGREDIENT_DESC
@@ -190,7 +190,7 @@ public class EditCommandParserTest {
                 .withIngredient(VALID_INGREDIENT_MARGARITAS, VALID_QUANTITY_MARGARITAS)
                 .build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
-        // assertParseSuccess(parser, userInput, expectedCommand);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     /*@Test
