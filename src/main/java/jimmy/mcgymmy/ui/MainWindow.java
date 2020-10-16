@@ -2,6 +2,7 @@ package jimmy.mcgymmy.ui;
 
 import java.io.File;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -65,6 +66,10 @@ public class MainWindow extends UiPart<Stage> {
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
 
+        //Initialise values
+        file = null;
+        directory = null;
+
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
@@ -80,7 +85,6 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void setAccelerators() {
-        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
     }
 
@@ -151,7 +155,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleHelp() {
         try {
             executeCommand("help");
-        } catch (Exception e) {
+        } catch (CommandException | ParseException e) {
             assert false : "Help button on menu error";
         }
 
@@ -164,13 +168,24 @@ public class MainWindow extends UiPart<Stage> {
     public void handleImport() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose file to import");
-        file = fileChooser.showOpenDialog(primaryStage);
-        if (file.exists()) {
+        try {
+            file = fileChooser.showOpenDialog(primaryStage);
             logger.info(String.format("User selected '%s'", file.toString()));
-        } else {
+        } catch (RuntimeException e) {
+            file = null;
             logger.info("User did not select a file");
         }
+    }
 
+    /**
+     * Get the import file directory chosen by the user.
+     */
+    public Optional<File> getImportFileDirectory() {
+        if (file == null) {
+            return Optional.empty();
+        } else {
+            return Optional.of(file);
+        }
     }
 
     /**
@@ -180,11 +195,22 @@ public class MainWindow extends UiPart<Stage> {
     public void handleExport() {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Choose location to export");
-        directory = directoryChooser.showDialog(primaryStage);
-        if (directory.exists()) {
+        try {
+            directory = directoryChooser.showDialog(primaryStage);
             logger.info(String.format("User selected '%s'", directory.toString()));
-        } else {
+        } catch (RuntimeException e) {
+            directory = null;
             logger.info(String.format("User did not select any directory"));
+        }
+    }
+    /**
+     * Get the export directory chosen by the user.
+     */
+    public Optional<File> getExportDirectory() {
+        if (directory == null) {
+            return Optional.empty();
+        } else {
+            return Optional.of(directory);
         }
     }
 
