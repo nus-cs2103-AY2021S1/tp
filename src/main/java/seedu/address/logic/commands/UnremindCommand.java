@@ -57,7 +57,7 @@ public class UnremindCommand extends NegateCommand {
             throw new CommandException(MESSAGE_UNREMINDED_ASSIGNMENT);
         }
 
-        assert(!assignmentToUnremind.isReminded());
+        assert(assignmentToUnremind.isReminded());
         Assignment unremindedAssignment = createUnremindedAssignment(assignmentToUnremind);
 
         model.setAssignment(assignmentToUnremind, unremindedAssignment);

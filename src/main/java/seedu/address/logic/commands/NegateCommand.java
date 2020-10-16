@@ -23,7 +23,7 @@ public abstract class NegateCommand extends Command {
         this.targetIndex = targetIndex;
     }
 
-    public Index getTargetIndex() {
+    protected Index getTargetIndex() {
         return this.targetIndex;
     }
 }
