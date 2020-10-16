@@ -5,9 +5,10 @@ import java.time.LocalDate;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import com.jfoenix.controls.JFXDatePicker;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -46,7 +47,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane commandBoxPlaceholder;
 
     @FXML
-    private DatePicker datePicker;
+    private JFXDatePicker datePicker;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -134,6 +135,7 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        datePicker.setValue(LocalDate.now());
     }
 
     /**
@@ -220,10 +222,16 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Get the date selected by the User.
+     * Get the date which the user selected.
+     * @return Optional containing the date selected. Null if no date is selected.
      */
-    public LocalDate getDate() {
-        return datePicker.getValue();
+    public Optional<LocalDate> getDate() {
+        LocalDate date = datePicker.getValue();
+        if (date == null) {
+            return Optional.empty();
+        } else {
+            return Optional.of(date);
+        }
     }
 
     /**
@@ -237,7 +245,7 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public FoodListPanel getPersonListPanel() {
+    public FoodListPanel getFoodListPanel() {
         return foodListPanel;
     }
 

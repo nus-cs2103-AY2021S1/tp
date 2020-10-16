@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
+<?import com.jfoenix.controls.JFXDatePicker?>
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="McGymmy" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/mcgymmy_32.png" />
@@ -37,7 +38,7 @@
                   <items>
                      <MenuItem mnemonicParsing="false">
                         <graphic>
-                           <DatePicker prefHeight="37.0" prefWidth="139.0" promptText="Select Date" />
+                           <JFXDatePicker id="datePicker" fx:id="datePicker" editable="false" prefHeight="37.0" prefWidth="139.0" promptText="Select Date" />
                         </graphic>
                      </MenuItem>
                   </items>
