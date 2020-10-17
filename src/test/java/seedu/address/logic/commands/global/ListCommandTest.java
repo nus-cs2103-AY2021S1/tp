@@ -1,7 +1,8 @@
-package seedu.address.logic.commands.catalogue;
+package seedu.address.logic.commands.global;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showProjectAtIndex;
+import seedu.address.logic.commands.global.ListCommand;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
 

@@ -7,7 +7,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.catalogue.DeleteCommand;
+import seedu.address.logic.commands.global.DeleteCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

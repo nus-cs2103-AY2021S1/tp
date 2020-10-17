@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.catalogue;
+package seedu.address.logic.commands.global;
 
 import static java.util.Objects.requireNonNull;
 
@@ -13,22 +13,22 @@ import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 
 /**
- * Deletes a project identified using it's displayed index from the main catalogue.
+ * Starts a project identified using it's displayed index from the main catalogue.
  */
-public class DeleteCommand extends Command {
+public class StartCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "start";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the project identified by the index number used in the displayed project list.\n"
+            + ": Starts the project identified by the index number used in the displayed project list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "Deleted Project: %1$s";
+    public static final String MESSAGE_START_PROJECT_SUCCESS = "Started Project: %1$s";
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public StartCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -41,15 +41,15 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
 
-        Project projectToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteProject(projectToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete));
+        Project projectToStart = lastShownList.get(targetIndex.getZeroBased());
+        model.enter(projectToStart);
+        return new CommandResult(String.format(MESSAGE_START_PROJECT_SUCCESS, projectToStart));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                || (other instanceof StartCommand // instanceof handles nulls
+                && targetIndex.equals(((StartCommand) other).targetIndex)); // state check
     }
 }

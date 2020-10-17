@@ -16,8 +16,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.catalogue.EditCommand;
-import seedu.address.logic.commands.catalogue.EditCommand.EditProjectDescriptor;
+import seedu.address.logic.commands.global.EditCommand;
+import seedu.address.logic.commands.global.EditCommand.EditProjectDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.tag.ProjectTag;
