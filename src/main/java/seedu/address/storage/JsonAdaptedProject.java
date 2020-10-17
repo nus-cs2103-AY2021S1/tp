@@ -1,10 +1,6 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -12,11 +8,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.project.Deadline;
-import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectDescription;
-import seedu.address.model.project.ProjectName;
-import seedu.address.model.project.RepoUrl;
+import seedu.address.model.person.PersonName;
+import seedu.address.model.project.*;
 import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 
@@ -33,6 +26,7 @@ class JsonAdaptedProject {
     private final String projectDescription;
     private final List<JsonAdaptedTag> projectTagged = new ArrayList<>();
     private final List<JsonAdaptedTask> projectOccupied = new ArrayList<>();
+    private final List<JsonParticipation> participations = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedProject} with the given project details.
@@ -43,7 +37,9 @@ class JsonAdaptedProject {
                                 @JsonProperty("repoUrl") String repoUrl,
                                 @JsonProperty("projectDescription") String projectDescription,
                                 @JsonProperty("projectTag") List<JsonAdaptedTag> projectTagged,
-                                @JsonProperty("occupied") List<JsonAdaptedTask> projectOccupied) {
+                                @JsonProperty("occupied") List<JsonAdaptedTask> projectOccupied,
+                                @JsonProperty("participations") List<JsonParticipation> participations
+                              ) {
         this.projectName = projectName;
         this.deadline = deadline;
         this.repoUrl = repoUrl;
@@ -53,6 +49,9 @@ class JsonAdaptedProject {
         }
         if (projectOccupied != null) {
             this.projectOccupied.addAll(projectOccupied);
+        }
+        if(participations !=null){
+            this.participations.addAll(participations);
         }
     }
 
@@ -70,6 +69,9 @@ class JsonAdaptedProject {
         projectOccupied.addAll(source.getTasks().stream()
                 .map(JsonAdaptedTask::new)
                 .collect(Collectors.toList()));
+        participations.addAll(source.getParticipationList().stream()
+                .map(JsonParticipation::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -78,6 +80,13 @@ class JsonAdaptedProject {
      * @throws IllegalValueException if there were any data constraints violated in the adapted project.
      */
     public Project toModelType() throws IllegalValueException {
+
+        HashMap<PersonName, Participation> participationHashMap = new HashMap<>();
+        for (JsonParticipation participation : participations) {
+            participationHashMap.put(participation.toModelType().getPerson().getPersonName()
+                    ,participation.toModelType());
+        }
+
         final List<ProjectTag> projectProjectTags = new ArrayList<>();
         for (JsonAdaptedTag projectTag : projectTagged) {
             projectProjectTags.add(projectTag.toModelType());
@@ -127,7 +136,7 @@ class JsonAdaptedProject {
         final Set<Task> modelTasks = new HashSet<>(projectTasks);
         final Set<Meeting> modelMeetings = new HashSet<>(projectMeetings);
         return new Project(modelProjectName, modelDeadline, modelRepoUrl, modelProjectDescription,
-            modelProjectTags, new HashMap<>(), modelTasks, modelMeetings);
+            modelProjectTags, participationHashMap, modelTasks, modelMeetings);
     }
 
 }

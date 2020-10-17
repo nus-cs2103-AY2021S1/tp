@@ -2,15 +2,7 @@ package seedu.address.model.project;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -26,6 +18,8 @@ import seedu.address.model.task.Task;
  */
 public class Project {
     private static final Predicate<Task> TRUE_TASK_PREDICATE = task -> true;
+    // List of all Projects
+    public static ArrayList<Project> allProjects;
 
     // Identity fields
     private final ProjectName projectName;
@@ -50,7 +44,7 @@ public class Project {
                    Set<ProjectTag> projectTags,
                    HashMap<PersonName, Participation> listOfParticipations, Set<Task> tasks, Set<Meeting> meetings) {
         requireAllNonNull(projectName, deadline, repoUrl, projectDescription, projectTags,
-                listOfParticipations, tasks, meetings);
+                listOfParticipations, tasks);
         this.projectName = projectName;
         this.deadline = deadline;
         this.repoUrl = repoUrl;
@@ -58,8 +52,11 @@ public class Project {
         this.projectTags.addAll(projectTags);
         this.listOfParticipations.putAll(listOfParticipations);
         this.tasks.addAll(tasks);
-        this.meetings.addAll(meetings);
+        if(meetings!=null) {
+            this.meetings.addAll(meetings);
+        }
         this.taskOnView = Optional.empty();
+        allProjects.add(this);
     }
 
     public ProjectName getProjectName() {
@@ -131,7 +128,7 @@ public class Project {
      */
     public void addParticipation(Person p) {
         listOfParticipations.put(
-            p.getPersonName(), new Participation(p.getPersonName().toString(), this));
+            p.getPersonName(), new Participation(p.getPersonName().toString(), projectName.toString()));
     }
 
     /**
@@ -146,6 +143,13 @@ public class Project {
      */
     public Participation getParticipation(String name) {
         return listOfParticipations.get(new PersonName(name));
+    }
+
+    /**
+     * Gets the list of Participations.
+     */
+    public Collection<Participation> getParticipationList() {
+        return listOfParticipations.values();
     }
 
     /**

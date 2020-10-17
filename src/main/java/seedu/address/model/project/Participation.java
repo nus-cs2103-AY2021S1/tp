@@ -17,7 +17,7 @@ public class Participation {
      * List of thing(s) Person can participate in.
      */
     private String person;
-    private Project project;
+    private String project;
     private Role role;
     private Set<Task> tasks;
     private Set<Meeting> meetings;
@@ -25,7 +25,7 @@ public class Participation {
     /**
      * Constructor for Participation
      */
-    public Participation(String person, Project project) {
+    public Participation(String person, String project) {
         this.person = person;
         this.project = project;
         role = Role.MEMBER;
@@ -36,7 +36,7 @@ public class Participation {
     /**
      * Alternative constructor that allows specifying the role of the person
      */
-    public Participation(String person, Project project, Role role) {
+    public Participation(String person, String project, Role role) {
         this.person = person;
         this.project = project;
         this.role = role;
@@ -53,7 +53,7 @@ public class Participation {
      */
     public void attends(Meeting meeting) {
         meetings.add(meeting);
-        project.addMeeting(meeting);
+        this.getProject().addMeeting(meeting);
     }
 
     /**
@@ -62,7 +62,7 @@ public class Participation {
      */
     public void addTask(Task task) {
         tasks.add(task);
-        project.addTask(task);
+        this.getProject().addTask(task);
     }
     /**
      * Checks whether the person is an attendee of the meeting.
@@ -94,14 +94,25 @@ public class Participation {
         return this.getPerson().getPersonName();
     }
     public Project getProject() {
-        return project;
+        Project p = null;
+        for(int i = 0 ; i<Project.allProjects.size();i++){
+            if(Project.allProjects.get(i).getProjectName().toString().equals(project)){
+                p = Project.allProjects.get(i);
+            }
+        }
+        return p;
     }
+
     public Role getRole() {
         return role;
     }
-}
 
-enum Role {
-    LEADER, MEMBER;
+    public Set<Task> getTasks() {
+        return tasks;
+    }
+
+    public Set<Meeting> getMeetings() {
+        return meetings;
+    }
 }
 

@@ -74,7 +74,8 @@ public class Person {
     }
 
     public void addProject(Project p) {
-        listOfParticipations.put(p.getProjectName(), new Participation(personName.toString(), p));
+        listOfParticipations.put(p.getProjectName(),
+                new Participation(personName.toString(), p.getProjectName().toString()));
     }
 
     /**

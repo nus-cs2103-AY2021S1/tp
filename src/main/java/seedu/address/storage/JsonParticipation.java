@@ -12,44 +12,45 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.PersonName;
 import seedu.address.model.project.*;
+import seedu.address.model.task.Task;
 
 /**
  * Jackson-friendly version of {@link Participation}.
  */
 class JsonParticipation {
 
-    private PersonName person;
-    private ProjectName project;
-    private Role role;
-    private ArrayList<Integer> tasks;
-    private Set<Meeting> meetings;
+    private final String person;
+    private final String project;
+    private final Role role;
+    private final Set<Task> tasks;
+//    private Set<Meeting> meetings;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given {@code taskName}.
      */
     @JsonCreator
-    public JsonParticipation(@JsonProperty("person") PersonName person,
-                             @JsonProperty("project") ProjectName project,
+    public JsonParticipation(@JsonProperty("person") String person,
+                             @JsonProperty("project") String project,
                              @JsonProperty("role")Role role,
-                             @JsonProperty("tasks hashcode")ArrayList<Integer> tasks,
-                             @JsonProperty("meetings")Set<Meeting> meetings
+                             @JsonProperty("tasks hashcode")Set<Task> tasks
+//                             @JsonProperty("meetings")Set<Meeting> meetings
     ) {
         this.person = person;
         this.project = project;
         this.role = role;
         this.tasks = tasks;
-        this.meetings = meetings;
+//        this.meetings = meetings;
     }
 
     /**
      * Converts a given {@code Task} into this class for Jackson use.
      */
     public JsonParticipation(Participation source) {
-        person = source.getPerson().getPersonName();
-        project = source.getProject().getProjectName();
+        person = source.getPerson().getPersonName().toString();
+        project = source.getProject().getProjectName().toString();
         role = source.getRole();
-        tasks = source.getTasksHash();
-        meetings = source.getMeetings();
+        tasks = source.getTasks();
+//        meetings = source.getMeetings();
     }
 
     /**
@@ -58,12 +59,7 @@ class JsonParticipation {
      * @throws IllegalValueException if there were any data constraints violated in the adapted participation.
      */
     public Participation toModelType() throws IllegalValueException {
-        JsonPointer pointer = JsonPointer.compile("/projects");
-        pointer.
-                JsonValue project = Json.createPointer()
-//        Participation task = new Participation();
-        task.setPublishDate(publishDate);
-        return task;
+        return new Participation(person,project);
     }
 
 }

@@ -53,10 +53,10 @@ public class AddCommandParser implements Parser<AddCommand> {
                 PREFIX_PROJECT_DESCRIPTION).get());
         Set<ProjectTag> projectTagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_PROJECT_TAG));
         Set<Task> taskList = ParserUtil.parseTasks(argMultimap.getAllValues(PREFIX_TASK));
-        Set<Meeting> meetingList = ParserUtil.parseMeetings(argMultimap.getAllValues(PREFIX_MEETING));
+//        Set<Meeting> meetingList = ParserUtil.parseMeetings(argMultimap.getAllValues(PREFIX_MEETING));
 
         Project project = new Project(projectName, deadline, repoUrl, projectDescription, projectTagList,
-                new HashMap<>(), taskList, meetingList);
+                new HashMap<>(), taskList, null);
 
         return new AddCommand(project);
     }
