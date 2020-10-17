@@ -10,8 +10,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_HAN
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showProjectAtIndex;
-import seedu.address.logic.commands.global.ClearCommand;
-import seedu.address.logic.commands.global.EditCommand;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
