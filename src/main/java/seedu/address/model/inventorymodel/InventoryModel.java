@@ -69,9 +69,6 @@ public interface InventoryModel extends Model {
     /** Returns an unmodifiable view of the filtered item list */
     ObservableList<Item> getFilteredItemList();
 
-    /** Returns an unmodifiable view of the filtered deliveries list */
-    ObservableList<Delivery> getFilteredDeliveryList();
-
     /**
      * Updates the filter of the filtered item list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
