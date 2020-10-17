@@ -13,7 +13,7 @@ import seedu.address.model.deliverymodel.DeliveryModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.testutil.DeliveryBuilder;
 
-public class DeliveryCommandIntegrationTest {
+public class DeliveryAddCommandIntegrationTest {
 
     private DeliveryModel model;
 

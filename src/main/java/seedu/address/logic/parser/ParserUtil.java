@@ -188,16 +188,16 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String order} into a {@code Order}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code Phone} is invalid.
+     * @throws ParseException if the given {@code Order} is invalid.
      */
     public static Order parseOrder(String order) throws ParseException {
         requireNonNull(order);
         String trimmedOrder = order.trim();
         if (!Order.isValidOrder(order)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Order.MESSAGE_CONSTRAINTS);
         }
         return new Order(trimmedOrder);
     }

@@ -104,6 +104,11 @@ public class CommandTestUtil {
     public static final String ORDER_DESC_DAMITH = " " + PREFIX_ORDER + VALID_ORDER_DAMITH;
     public static final String ORDER_DESC_AARON = " " + PREFIX_ORDER + VALID_ORDER_AARON;
 
+    public static final String INVALID_DELIVERYNAME_DESC = " " + PREFIX_NAME + "Salt&"; // '&' not allowed in names
+    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phone
+    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for address
+    public static final String INVALID_ORDER_DESC = " " + PREFIX_ORDER; // empty string not allowed for orders
+
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
