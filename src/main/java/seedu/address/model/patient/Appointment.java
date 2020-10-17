@@ -14,6 +14,9 @@ public class Appointment {
         value = appointment;
     }
 
+    /**
+     * Returns true if a given string is a valid Appointment.
+     */
     public static boolean isValidAppointment(String test) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HH:mm");
         LocalDateTime localDateTime;
@@ -32,7 +35,7 @@ public class Appointment {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy h:mm a");
-        return value.format(formatter) ;
+        return value.format(formatter);
     }
 
     @Override
