@@ -7,6 +7,7 @@ import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
 import quickcache.commons.core.Messages;
 import quickcache.model.Model;
 import quickcache.model.flashcard.Flashcard;
+import quickcache.model.flashcard.FlashcardPredicate;
 
 import java.util.function.Predicate;
 
@@ -28,9 +29,9 @@ public class FindCommand extends Command {
             + PREFIX_QUESTION + "What "
             + PREFIX_TAG + "CS2100";
 
-    private final Predicate<Flashcard> predicate;
+    private final FlashcardPredicate predicate;
 
-    public FindCommand(Predicate<Flashcard> predicate) {
+    public FindCommand(FlashcardPredicate predicate) {
         this.predicate = predicate;
     }
 

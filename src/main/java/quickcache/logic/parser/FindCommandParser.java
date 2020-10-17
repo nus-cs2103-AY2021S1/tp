@@ -1,5 +1,6 @@
 package quickcache.logic.parser;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -9,6 +10,7 @@ import quickcache.logic.commands.FindCommand;
 import quickcache.logic.parser.exceptions.ParseException;
 import quickcache.model.flashcard.Flashcard;
 import quickcache.model.flashcard.FlashcardContainsTagPredicate;
+import quickcache.model.flashcard.FlashcardPredicate;
 import quickcache.model.flashcard.QuestionContainsKeywordsPredicate;
 import quickcache.model.flashcard.Tag;
 
@@ -48,27 +50,22 @@ public class FindCommandParser implements Parser<FindCommand> {
         Set<Tag> tagsToMatch = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         List<String> questionKeywords = ParserUtil.parseKeywords(argMultimap.getAllValues(PREFIX_QUESTION));
 
-        Predicate<Flashcard> predicate = getFlashcardPredicate(tagsToMatch, questionKeywords);
+        FlashcardPredicate predicate = getFlashcardPredicate(tagsToMatch, questionKeywords);
 
         return new FindCommand(predicate);
     }
 
-    private Predicate<Flashcard> getFlashcardPredicate(Set<Tag> tagsToMatch, List<String> questionKeywords) {
-        Predicate<Flashcard> predicate = null;
+    private FlashcardPredicate getFlashcardPredicate(Set<Tag> tagsToMatch, List<String> questionKeywords) {
+        ArrayList<Predicate<Flashcard>> predicates = new ArrayList<>();
 
         if (!tagsToMatch.isEmpty()) {
-            predicate = new FlashcardContainsTagPredicate(tagsToMatch);
+            predicates.add(new FlashcardContainsTagPredicate(tagsToMatch));
         }
 
         if (!questionKeywords.isEmpty()) {
-            Predicate<Flashcard> keywordPredicate = new QuestionContainsKeywordsPredicate(questionKeywords);
-            if (predicate == null) {
-                predicate = keywordPredicate;
-            } else {
-                predicate = predicate.and(keywordPredicate);
-            }
+            predicates.add(new QuestionContainsKeywordsPredicate(questionKeywords));
         }
-        return predicate;
+        return new FlashcardPredicate(predicates);
     }
 
 }
