@@ -157,6 +157,8 @@ The switch of `status` is implemented by the following operations:
 
 These operations are exposed in `Model` and `Logic` interfaces with the same name.
 
+
+
 Users are allowed to switch the scoping status while using the app using user input commands. Relevant commands include:
 
 * `StartCommand` — Enters a project with its index in the current filtered list of projects and switches to `PROJECT` status. This corresponds to `enter` method.
@@ -165,6 +167,7 @@ Users are allowed to switch the scoping status while using the app using user in
 
 Step 1. The user launches the application. The default status of scope is `CATALOGUE`, and `project` in `MainCatalogue` is initialized to an empty `Optional` object.
 
+![ScopingStep1](images/ScopingStep1.png)
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
