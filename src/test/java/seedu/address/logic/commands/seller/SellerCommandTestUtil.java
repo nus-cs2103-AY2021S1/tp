@@ -15,10 +15,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.sellercommands.EditSellerCommand;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.seller.Seller;
 import seedu.address.model.selleraddressbook.SellerAddressBook;
+import seedu.address.testutil.seller.EditSellerDescriptorBuilder;
 
 
 /**
@@ -31,6 +33,7 @@ public class SellerCommandTestUtil {
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_TAG_SELLER = "seller";
+    public static final String VALID_ID_SELLER = "S0";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -45,6 +48,17 @@ public class SellerCommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    public static final EditSellerCommand.EditSellerDescriptor DESC_AMY;
+    public static final EditSellerCommand.EditSellerDescriptor DESC_BOB;
+
+    static {
+        DESC_AMY = new EditSellerDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withTags(VALID_TAG_SELLER)
+                .withId(VALID_ID_SELLER).build();
+        DESC_BOB = new EditSellerDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_SELLER)
+                .withId(VALID_ID_SELLER).build();
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
