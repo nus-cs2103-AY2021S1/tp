@@ -118,7 +118,7 @@ public class PersonBuilder {
     }
 
     public Patient build() {
-        return new Patient(name, nric, phone, email, address, tags);
+        return new Patient(name, nric, phone, email, address, tags, appointments);
     }
 
 }

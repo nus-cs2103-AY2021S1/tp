@@ -128,18 +128,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
-    }
-
-    /**
      * Parses a {@code String appointment} into a {@code Appointment}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -151,7 +139,19 @@ public class ParserUtil {
         if (!Appointment.isValidAppointment(trimmedAppointment)) {
             throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
         }
-        return new Appointment(trimmedAppointment);
+        return new Appointment().setTime(trimmedAppointment);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<Tag> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(parseTag(tagName));
+        }
+        return tagSet;
     }
 
     /**

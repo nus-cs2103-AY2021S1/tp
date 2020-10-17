@@ -29,14 +29,16 @@ public class Patient {
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Nric nric, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, nric, email, address, tags);
+    public Patient(Name name, Nric nric, Phone phone, Email email, Address address,
+                   Set<Tag> tags, Set<Appointment> appointments) {
+        requireAllNonNull(name, phone, nric, email, address, tags, appointments);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.nric = nric;
         this.tags.addAll(tags);
+        this.appointments.addAll(appointments);
     }
 
     public Name getName() {
@@ -138,5 +140,4 @@ public class Patient {
         getAppointments().forEach(builder::append);
         return builder.toString();
     }
-
 }
