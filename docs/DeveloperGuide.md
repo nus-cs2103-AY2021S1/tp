@@ -163,7 +163,7 @@ Users are allowed to switch the scoping status while using the app using user in
 * `ViewTaskCommand` — Requests to view the detailed information of a task. This corresponds to `enterTask` method.
 * `LeaveCommand` — Leaves the current object of focus, i.e. Switches to the parent status and clear the lower-level pointer. This corresponds to `quit` method.
 
-
+Step 1. The user launches the application. The default status of scope is `CATALOGUE`, and `project` in `MainCatalogue` is initialized to an empty `Optional` object.
 
 ### \[Proposed\] Undo/redo feature
 
