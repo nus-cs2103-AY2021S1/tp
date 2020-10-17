@@ -76,7 +76,7 @@ public class MultipleChoiceQuestion implements Question {
     @Override
     public Answer getAnswerOrIndex() {
         for (int i = 0; i < choices.length; i++) {
-            if (this.answer.getValue().equals(choices[i].getValue())) {
+            if (this.answer.getValue().toLowerCase().equals(choices[i].getValue().toLowerCase())) {
                 return new Answer(String.valueOf(i + 1));
             }
         }
