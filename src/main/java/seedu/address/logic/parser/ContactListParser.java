@@ -1,15 +1,26 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.*;
-import seedu.address.logic.commands.contactListCommands.*;
-import seedu.address.logic.parser.contactListParsers.*;
-import seedu.address.logic.parser.exceptions.ParseException;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.contactlistcommands.AddContactCommand;
+import seedu.address.logic.commands.contactlistcommands.DeleteContactCommand;
+import seedu.address.logic.commands.contactlistcommands.EditContactCommand;
+import seedu.address.logic.commands.contactlistcommands.FindContactCommand;
+import seedu.address.logic.commands.contactlistcommands.HelpContactCommand;
+import seedu.address.logic.commands.contactlistcommands.ListContactCommand;
+import seedu.address.logic.commands.contactlistcommands.ViewContactCommand;
+import seedu.address.logic.parser.contactlistparsers.AddContactParser;
+import seedu.address.logic.parser.contactlistparsers.DeleteContactParser;
+import seedu.address.logic.parser.contactlistparsers.EditContactParser;
+import seedu.address.logic.parser.contactlistparsers.FindContactParser;
+import seedu.address.logic.parser.contactlistparsers.ViewContactParser;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 public class ContactListParser {
 
@@ -34,39 +45,38 @@ public class ContactListParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
+        case AddContactCommand.COMMAND_WORD:
+            return new AddContactParser().parse(arguments);
 
-            case AddContactCommand.COMMAND_WORD:
-                return new AddContactParser().parse(arguments);
+        case EditContactCommand.COMMAND_WORD:
+            return new EditContactParser().parse(arguments);
 
-            case EditContactCommand.COMMAND_WORD:
-                return new EditContactParser().parse(arguments);
+        case DeleteContactCommand.COMMAND_WORD:
+            return new DeleteContactParser().parse(arguments);
 
-            case DeleteContactCommand.COMMAND_WORD:
-                return new DeleteContactParser().parse(arguments);
+        //case ClearCommand.COMMAND_WORD:
+            //return new ClearCommand();
 
-            //case ClearCommand.COMMAND_WORD:
-                //return new ClearCommand();
+        case FindContactCommand.COMMAND_WORD:
+            return new FindContactParser().parse(arguments);
 
-            case FindContactCommand.COMMAND_WORD:
-                return new FindContactParser().parse(arguments);
+        case ListContactCommand.COMMAND_WORD:
+            return new ListContactCommand();
 
-            case ListContactCommand.COMMAND_WORD:
-                return new ListContactCommand();
+        //case ExitCommand.COMMAND_WORD:
+            //return new ExitCommand();
 
-            //case ExitCommand.COMMAND_WORD:
-                //return new ExitCommand();
+        case HelpContactCommand.COMMAND_WORD:
+            return new HelpContactCommand();
 
-            case HelpContactCommand.COMMAND_WORD:
-                return new HelpContactCommand();
+        case ViewContactCommand.COMMAND_WORD:
+            return new ViewContactParser().parse(arguments);
 
-            case ViewContactCommand.COMMAND_WORD:
-                return new ViewContactParser().parse(arguments);
+        //case AddAssignmentCommand.COMMAND_WORD:
+            //return new AddAssignmentParser().parse(arguments);
 
-            //case AddAssignmentCommand.COMMAND_WORD:
-                //return new AddAssignmentParser().parse(arguments);
-
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 }
