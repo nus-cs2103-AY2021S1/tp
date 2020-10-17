@@ -39,7 +39,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         boolean taskStatus = Boolean.parseBoolean(
                 ParserUtil.parseTaskBasicInformation(argMultimap.getValue(PREFIX_TASK_IS_DONE).get()));
 
-        Task task = new Task(taskName, null, null, taskProgress, taskStatus);
+        Task task = new Task(taskName, "", null, taskProgress, taskStatus);
 
         return new AddTaskCommand(task);
     }

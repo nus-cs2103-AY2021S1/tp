@@ -19,7 +19,7 @@ import seedu.address.model.task.Task;
 public class Project {
     private static final Predicate<Task> TRUE_TASK_PREDICATE = task -> true;
     // List of all Projects
-    public static ArrayList<Project> allProjects;
+    public static ArrayList<Project> allProjects = new ArrayList<>();
 
     // Identity fields
     private final ProjectName projectName;

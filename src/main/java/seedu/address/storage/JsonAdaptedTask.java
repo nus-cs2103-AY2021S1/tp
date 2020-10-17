@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -27,10 +28,13 @@ class JsonAdaptedTask {
      * Constructs a {@code JsonAdaptedTask} with the given {@code taskName}.
      */
     @JsonCreator
-    public JsonAdaptedTask(String taskName
-                    , String description, LocalDate publishDate,
-                                   Deadline deadline, double progress, boolean isDone,
-                                   Set<String> assignees) {
+    public JsonAdaptedTask(@JsonProperty("taskName") String taskName,
+                           @JsonProperty("description")String description,
+                           @JsonProperty("publishDate")LocalDate publishDate,
+                           @JsonProperty("deadline")Deadline deadline,
+                           @JsonProperty("progress")double progress,
+                           @JsonProperty("isDone")boolean isDone,
+                           @JsonProperty("assignees")Set<String> assignees) {
         this.taskName = taskName;
                 this.description = description;
                 this.publishDate = publishDate;

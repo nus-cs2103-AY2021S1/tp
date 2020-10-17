@@ -17,7 +17,7 @@ import seedu.address.model.project.ProjectName;
 public class Person {
 
     // List of all Persons
-    public static ArrayList<Person> allPeople;
+    public static ArrayList<Person> allPeople = new ArrayList<>();
 
     // Identity fields
     private PersonName personName;
