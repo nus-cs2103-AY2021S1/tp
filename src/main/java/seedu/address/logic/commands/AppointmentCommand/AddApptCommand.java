@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -81,10 +82,12 @@ public class AddApptCommand extends Command {
         Address updatedAddress = patientToAddAppt.getAddress();
         Set<Tag> updatedTags = patientToAddAppt.getTags();
         Set<Appointment> appointments = patientToAddAppt.getAppointments();
-        appointments.add(appointment);
+        Set<Appointment> updatedAppointments = new HashSet<>();
+        updatedAppointments.addAll(appointments);
+        updatedAppointments.add(appointment);
 
         return new Patient(updatedName, updatedNric, updatedPhone, updatedEmail, updatedAddress,
-                updatedTags, appointments);
+                updatedTags, updatedAppointments);
     }
 
     @Override

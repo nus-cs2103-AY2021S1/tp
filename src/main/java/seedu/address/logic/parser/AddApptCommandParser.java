@@ -4,12 +4,18 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
 
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.LogicManager;
 import seedu.address.logic.commands.AppointmentCommand.AddApptCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Appointment;
 
 public class AddApptCommandParser implements Parser<AddApptCommand> {
+
+    private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddApptCommand
@@ -17,6 +23,7 @@ public class AddApptCommandParser implements Parser<AddApptCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddApptCommand parse(String args) throws ParseException {
+        logger.info("----------------[STRING TO PARSE][" + args + "]");
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_APPOINTMENT);

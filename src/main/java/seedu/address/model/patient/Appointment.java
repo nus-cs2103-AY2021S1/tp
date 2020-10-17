@@ -7,11 +7,11 @@ import java.time.format.DateTimeParseException;
 public class Appointment {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Appointment times should follow the format (dd/MM/yyyy HH:mm)";
+            "Appointment times should follow the format (yyyy-MM-dd HH:mm)";
     private final LocalDateTime time;
 
     public Appointment() {
-        time = null;
+        time = LocalDateTime.MIN;
     }
 
     public Appointment(LocalDateTime appointment) {
@@ -23,18 +23,18 @@ public class Appointment {
      * @return an Appointment object with date specified by the given String
      */
     public Appointment setTime(String timeString) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return new Appointment(LocalDateTime.parse(timeString, formatter));
     }
 
     /**
      * Returns true if a given string is a valid Appointment.
      */
-    public static boolean isValidAppointment(String test) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    public static boolean isValidAppointment(String input) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime localDateTime;
         try {
-            localDateTime = LocalDateTime.parse(test, formatter);
+            localDateTime = LocalDateTime.parse(input, formatter);
         } catch (DateTimeParseException e) {
             return false;
         }
