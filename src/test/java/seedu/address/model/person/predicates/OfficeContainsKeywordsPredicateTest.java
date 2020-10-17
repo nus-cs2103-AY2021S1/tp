@@ -57,9 +57,9 @@ public class OfficeContainsKeywordsPredicateTest {
         predicate = new OfficeContainsKeywordsPredicate(Arrays.asList("COM2", "17"));
         assertTrue(predicate.test(new PersonBuilder().withOffice("COM2-02-17").build()));
 
-        // Only one matching keyword
+        // Only one matching keyword -> fail
         predicate = new OfficeContainsKeywordsPredicate(Arrays.asList("S17", "COM2"));
-        assertTrue(predicate.test(new PersonBuilder().withOffice("COM2-02-04").build()));
+        assertFalse(predicate.test(new PersonBuilder().withOffice("COM2-02-04").build()));
 
         // Mixed-case keywords
         predicate = new OfficeContainsKeywordsPredicate(Arrays.asList("cOm", "SCi"));
@@ -74,7 +74,7 @@ public class OfficeContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withOffice("COM2").build()));
 
         // Non-matching keyword
-        predicate = new OfficeContainsKeywordsPredicate(Arrays.asList("E5"));
+        predicate = new OfficeContainsKeywordsPredicate(Collections.singletonList("E5"));
         assertFalse(predicate.test(new PersonBuilder().withOffice("COM2 S17").build()));
 
         // Keywords match name, phone, email, and department, but does not match office

@@ -52,15 +52,15 @@ public class RemarkContainsKeywordsPredicateTest {
 
         // Multiple keywords
         predicate = new RemarkContainsKeywordsPredicate(Arrays.asList("glasses", "bob-hair"));
-        assertTrue(predicate.test(new PersonBuilder().withRemark("glasses, bob-hair").build()));
+        assertTrue(predicate.test(new PersonBuilder().withRemark("glasses bob-hair").build()));
 
-        // Only one matching keyword
+        // Only one matching keyword -> fail
         predicate = new RemarkContainsKeywordsPredicate(Arrays.asList("bob-hair", "beard"));
-        assertTrue(predicate.test(new PersonBuilder().withRemark("glasses, beard").build()));
+        assertFalse(predicate.test(new PersonBuilder().withRemark("glasses beard").build()));
 
         // Mixed-case keywords
         predicate = new RemarkContainsKeywordsPredicate(Arrays.asList("gLaSsEs", "bOB-HAiR"));
-        assertTrue(predicate.test(new PersonBuilder().withRemark("glasses, bob-hair").build()));
+        assertTrue(predicate.test(new PersonBuilder().withRemark("glasses bob-hair").build()));
     }
 
     @Test
@@ -71,7 +71,7 @@ public class RemarkContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withRemark("glasses").build()));
 
         // Non-matching keyword
-        predicate = new RemarkContainsKeywordsPredicate(Arrays.asList("beard"));
+        predicate = new RemarkContainsKeywordsPredicate(Collections.singletonList("beard"));
         assertFalse(predicate.test(new PersonBuilder().withRemark("glasses bob-hair").build()));
 
         // Keywords match name, phone, email, department and office, but does not match remark

@@ -7,10 +7,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_OFFICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.DepartmentContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.OfficeContainsKeywordsPredicate;
@@ -30,45 +35,69 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEPARTMENT, PREFIX_OFFICE, PREFIX_REMARK,
-                        PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEPARTMENT, PREFIX_OFFICE,
+                        PREFIX_REMARK, PREFIX_TAG);
+
+        if (!areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DEPARTMENT, PREFIX_OFFICE,
+                PREFIX_REMARK, PREFIX_TAG)) {
+
+            String trimmedArgs = args.trim();
+            if (trimmedArgs.isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
+
+            String[] nameKeywords = trimmedArgs.split("\\s+");
+
+            return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        }
 
         String[] keywords;
+        List<Predicate<Person>> predicates = new ArrayList<>();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             keywords = argMultimap.getValue(PREFIX_NAME).get().split("\\s+");
-            return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+            predicates.add(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         }
 
         if (argMultimap.getValue(PREFIX_DEPARTMENT).isPresent()) {
             keywords = argMultimap.getValue(PREFIX_DEPARTMENT).get().split("\\s+");
-            return new FindCommand(new DepartmentContainsKeywordsPredicate(Arrays.asList(keywords)));
+            predicates.add(new DepartmentContainsKeywordsPredicate(Arrays.asList(keywords)));
         }
 
         if (argMultimap.getValue(PREFIX_OFFICE).isPresent()) {
             keywords = argMultimap.getValue(PREFIX_OFFICE).get().split("\\s+");
-            return new FindCommand(new OfficeContainsKeywordsPredicate(Arrays.asList(keywords)));
+            predicates.add(new OfficeContainsKeywordsPredicate(Arrays.asList(keywords)));
         }
 
         if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
             keywords = argMultimap.getValue(PREFIX_REMARK).get().split("\\s+");
-            return new FindCommand(new RemarkContainsKeywordsPredicate(Arrays.asList(keywords)));
+            predicates.add(new RemarkContainsKeywordsPredicate(Arrays.asList(keywords)));
         }
 
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             keywords = argMultimap.getValue(PREFIX_TAG).get().split("\\s+");
-            return new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList(keywords)));
+            predicates.add(new TagContainsKeywordsPredicate(Arrays.asList(keywords)));
         }
 
-        // if no prefix, find name
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        if (predicates.size() == 1) {
+            return new FindCommand(predicates.get(0));
         }
 
-        keywords = trimmedArgs.split("\\s+");
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        Predicate<Person> composedPredicate = person -> true;
+
+        for (Predicate<Person> p: predicates) {
+            composedPredicate = composedPredicate.and(p);
+        }
+
+        return new FindCommand(composedPredicate);
     }
 
+    /**
+     * Returns true if one of the prefixes has an {@code Optional} value in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean areAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
 }

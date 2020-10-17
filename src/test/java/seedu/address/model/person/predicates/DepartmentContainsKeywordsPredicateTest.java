@@ -49,21 +49,21 @@ public class DepartmentContainsKeywordsPredicateTest {
                 new DepartmentContainsKeywordsPredicate(Collections.singletonList("Computing"));
         assertTrue(predicate.test(new PersonBuilder().withDepartment("School of Computing").build()));
 
-        // One subword
+        // One sub-word
         predicate = new DepartmentContainsKeywordsPredicate(Collections.singletonList("Com"));
         assertTrue(predicate.test(new PersonBuilder().withDepartment("Computing").build()));
 
         // Multiple keywords
-        predicate = new DepartmentContainsKeywordsPredicate(Arrays.asList("Computing", "Science"));
+        predicate = new DepartmentContainsKeywordsPredicate(Arrays.asList("Computer", "Science"));
         assertTrue(predicate.test(new PersonBuilder().withDepartment("Computer Science").build()));
 
-        // Multiple subwords
+        // Multiple sub-words
         predicate = new DepartmentContainsKeywordsPredicate(Arrays.asList("Com", "Sci"));
         assertTrue(predicate.test(new PersonBuilder().withDepartment("Computer Science").build()));
 
-        // Only one matching keyword
+        // Only one matching keyword -> fail
         predicate = new DepartmentContainsKeywordsPredicate(Arrays.asList("Science", "Engineering"));
-        assertTrue(predicate.test(new PersonBuilder().withDepartment("Computer Engineering").build()));
+        assertFalse(predicate.test(new PersonBuilder().withDepartment("Computer Engineering").build()));
 
         // Mixed-case keywords
         predicate = new DepartmentContainsKeywordsPredicate(Arrays.asList("cOmPuTer", "SCiEnCe"));
@@ -78,7 +78,7 @@ public class DepartmentContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withDepartment("Computing").build()));
 
         // Non-matching keyword
-        predicate = new DepartmentContainsKeywordsPredicate(Arrays.asList("Engineering"));
+        predicate = new DepartmentContainsKeywordsPredicate(Collections.singletonList("Engineering"));
         assertFalse(predicate.test(new PersonBuilder().withDepartment("Computing Science").build()));
 
         // Keywords match name, phone, email, and office, but does not match department

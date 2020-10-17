@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.function.Predicate;
@@ -17,11 +18,12 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose attributes contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose attributes contain all of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Prefixes are optional for name searching.\n"
-            + "Parameters: PREFIX KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " alice bob charlie ";
+            + "Prefixes are optional for name-only searching.\n"
+            + "Parameters: PREFIX KEYWORD... [PREFIX] [KEYWORD]...\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " alice "
+            + PREFIX_DEPARTMENT + " computing";
 
     private final Predicate<Person> predicate;
 
@@ -43,4 +45,5 @@ public class FindCommand extends Command {
                 || (other instanceof FindCommand // instanceof handles nulls
                 && predicate.equals(((FindCommand) other).predicate)); // state check
     }
+
 }

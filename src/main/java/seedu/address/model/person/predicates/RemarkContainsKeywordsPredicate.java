@@ -18,8 +18,12 @@ public class RemarkContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
+        if (keywords.isEmpty()) {
+            return false;
+        }
+
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getRemark().value, keyword));
+                .allMatch(keyword -> StringUtil.containsSubWordOrWordIgnoreCase(person.getRemark().value, keyword));
     }
 
     @Override

@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,11 +35,11 @@ public class FindCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Liddel")));
+        assertParseSuccess(parser, "Alice Liddel", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, " \n Alice \n \t Liddel  \t", expectedFindCommand);
     }
 
     @Test
@@ -51,14 +52,14 @@ public class FindCommandParserTest {
 
         // department
         expectedFindCommand =
-                new FindCommand(new DepartmentContainsKeywordsPredicate(Arrays.asList("Science", "Computing")));
-        assertParseSuccess(parser, COMMAND_WORD + " " + PREFIX_DEPARTMENT + "Science Computing",
+                new FindCommand(new DepartmentContainsKeywordsPredicate(Collections.singletonList("Computing")));
+        assertParseSuccess(parser, COMMAND_WORD + " " + PREFIX_DEPARTMENT + "Computing",
                 expectedFindCommand);
 
         // office
         expectedFindCommand =
-                new FindCommand(new OfficeContainsKeywordsPredicate(Arrays.asList("com2", "s17")));
-        assertParseSuccess(parser, COMMAND_WORD + " " + PREFIX_OFFICE + "com2 s17",
+                new FindCommand(new OfficeContainsKeywordsPredicate(Arrays.asList("com2", "02")));
+        assertParseSuccess(parser, COMMAND_WORD + " " + PREFIX_OFFICE + "com2 02",
                 expectedFindCommand);
 
         // remark
@@ -67,7 +68,7 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, COMMAND_WORD + " " + PREFIX_REMARK + "glasses beard",
                 expectedFindCommand);
 
-        // remark
+        // tag
         expectedFindCommand =
                 new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList("friend", "colleague")));
         assertParseSuccess(parser, COMMAND_WORD + " " + PREFIX_TAG + "friend colleague",

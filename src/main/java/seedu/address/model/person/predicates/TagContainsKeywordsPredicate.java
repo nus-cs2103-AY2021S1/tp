@@ -18,11 +18,15 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
+        if (tagKeywords.isEmpty()) {
+            return false;
+        }
+
         List<String> tags = person.getTags().stream()
                 .map(x -> x.tagName.toLowerCase())
                 .collect(Collectors.toList());
         return tagKeywords.stream()
-                .anyMatch(keyword -> tags.contains(keyword.toLowerCase()));
+                .allMatch(keyword -> tags.contains(keyword.toLowerCase()));
     }
 
     @Override

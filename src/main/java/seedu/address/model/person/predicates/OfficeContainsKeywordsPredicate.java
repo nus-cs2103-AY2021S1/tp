@@ -18,8 +18,12 @@ public class OfficeContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
+        if (keywords.isEmpty()) {
+            return false;
+        }
+
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsSubWordOrWordIgnoreCase(person.getOffice().value, keyword));
+                .allMatch(keyword -> StringUtil.containsSubWordOrWordIgnoreCase(person.getOffice().value, keyword));
     }
 
     @Override
