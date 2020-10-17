@@ -35,7 +35,7 @@ public class ScheduleCommandParser implements Parser<ScheduleCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_EXPECTED_TIME, PREFIX_DO_BEFORE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScheduleCommand.MESSAGE_USAGE));
         }
-        System.out.println("CAK");
+
         Deadline doBefore = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DO_BEFORE).get());
         int expectedTime = ParserUtil.parseExpectedTime(argMultimap.getValue(PREFIX_EXPECTED_TIME).get());
 
