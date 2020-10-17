@@ -46,20 +46,28 @@ public class CommandBox extends UiPart<Region> {
     private void handleCommandEntered() {
         try {
             String input = commandTextField.getText();
-
-            if (pointer < pastCommands.size() - 1) {
-                pastCommands = pastCommands.subList(0, pointer + 1);
-                pastCommands.add("");
-            }
-            if (!input.isBlank()) {
-                this.pastCommands.set(pastCommands.size() - 1, input);
-                pastCommands.add("");
-                pointer++;
-            }
+            updatePointerAndPastCommandsList(input);
             commandExecutor.execute(input);
             commandTextField.setText("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
+        }
+    }
+
+    /**
+     * Handles the updating of past commands and pointer position after executing a particular input.
+     *
+     * @param input The input executed.
+     */
+    private void updatePointerAndPastCommandsList(String input) {
+        if (pointer < pastCommands.size() - 1) {
+            pastCommands = pastCommands.subList(0, pointer + 1);
+            pastCommands.add("");
+        }
+        if (!input.isBlank()) {
+            this.pastCommands.set(pastCommands.size() - 1, input);
+            pastCommands.add("");
+            pointer++;
         }
     }
 
