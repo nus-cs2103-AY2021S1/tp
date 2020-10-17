@@ -10,15 +10,28 @@ public class Appointment {
             "Appointment times should follow the format (dd/MM/yyyy HH:mm)";
     private final LocalDateTime time;
 
+    public Appointment() {
+        time = null;
+    }
+
     public Appointment(LocalDateTime appointment) {
         time = appointment;
+    }
+
+    /**
+     * @param timeString
+     * @return an Appointment object with date specified by the given String
+     */
+    public Appointment setTime(String timeString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        return new Appointment(LocalDateTime.parse(timeString, formatter));
     }
 
     /**
      * Returns true if a given string is a valid Appointment.
      */
     public static boolean isValidAppointment(String test) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime localDateTime;
         try {
             localDateTime = LocalDateTime.parse(test, formatter);
