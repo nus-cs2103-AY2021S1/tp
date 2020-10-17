@@ -17,6 +17,7 @@ public class ImportCommand extends Command {
     public static final String SHORT_DESCRIPTION = "Import a McGymmy Save file";
 
     public static final String MESSAGE_IMPORT_FOOD_SUCCESS = "Imported %s";
+    public static final String MESSAGE_IMPORT_FOOD_FAILURE = "File is invalid";
     public static final String FILE_CONSTRAINTS = "Please select a valid .json file";
 
     private Parameter<Path> fileParameter = this.addParameter(
@@ -38,12 +39,12 @@ public class ImportCommand extends Command {
         try {
             Optional<ReadOnlyMcGymmy> readOnlyMcGymmyOptional = importedMcgymmy.readMcGymmy();
             if (readOnlyMcGymmyOptional.isEmpty()) {
-                throw new CommandException("File is invalid");
+                throw new CommandException(MESSAGE_IMPORT_FOOD_FAILURE);
             }
             model.setMcGymmy(readOnlyMcGymmyOptional.get());
             return new CommandResult(String.format(MESSAGE_IMPORT_FOOD_SUCCESS, filepath.getFileName()));
         } catch (DataConversionException e) {
-            throw new CommandException("Invalid data in file");
+            throw new CommandException(MESSAGE_IMPORT_FOOD_FAILURE);
         }
     }
 }
