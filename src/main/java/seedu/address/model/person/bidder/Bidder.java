@@ -14,6 +14,11 @@ import seedu.address.model.tag.Tag;
  */
 public class Bidder extends ClientPerson {
 
+    public static final Id DEFAULT_BIDDER_ID = new Id("B", 0);
+
+    public Bidder(Name name, Phone phone, Set<Tag> tags) {
+        super(name, phone, tags, DEFAULT_BIDDER_ID);
+    }
     /**
      * Constructs the bidder with the name, phone, tags, and id.
      * @param name name of the bidder.
@@ -23,13 +28,16 @@ public class Bidder extends ClientPerson {
      */
     public Bidder(Name name, Phone phone, Set<Tag> tags, Id id) {
         super(name, phone, tags, id);
-        tags.add(new Tag("bidder"));
     }
 
-    //    public static Bidder makeBidder(Name name, Phone phone, Set<Tag> tags, Id id) {
-    //        tags.add(new Tag("bidder"));
-    //        return new Bidder(name, phone, tags, id);
-    //    }
+    public Bidder setDefaultBidderId() {
+        return new Bidder(name, phone, tags , DEFAULT_BIDDER_ID);
+    }
+
+    public Bidder setBidderTag() {
+        tags.add(new Tag("bidder"));
+        return new Bidder(name, phone, tags, clientId);
+    }
 
     /**
      * Returns true if both persons of the same name have at least one other identity field that is the same.

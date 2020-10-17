@@ -265,7 +265,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void updateFilteredBidderList(Predicate<Bidder> predicate) {
+    public void updateFilteredBidderList(Predicate<? super Person> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -317,7 +317,14 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void updateFilteredSellerList(Predicate<Seller> predicate) {
+    public void updateFilteredSellerList(Predicate<? super Person> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    // ================= BID =================
+
+    @Override
+    public boolean hasBid(Bid bid) {
         throw new AssertionError("This method should not be called.");
     }
 }

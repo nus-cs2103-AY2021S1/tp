@@ -14,6 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.EntityType;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -29,7 +30,6 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
     private BidListPanel bidListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -48,10 +48,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personAndBidTabPanePlaceholder;
-
-    @FXML
-    private StackPane personListPanelPlaceholder;
-
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -166,6 +162,13 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    @FXML
+    private void setAutoTab(EntityType entityType) {
+        TabBar personAndJobTabPane = new TabBar(this.logic);
+        personAndJobTabPane.setTab(entityType);
+        personAndBidTabPanePlaceholder.getChildren().add(personAndJobTabPane.getRoot());
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -176,7 +179,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
+            setAutoTab(commandResult.getEntityType());
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

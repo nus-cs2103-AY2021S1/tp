@@ -6,13 +6,13 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalSeller.ALICE;
-import static seedu.address.testutil.TypicalSeller.BOB;
+import static seedu.address.testutil.seller.TypicalSeller.ALICE;
+import static seedu.address.testutil.seller.TypicalSeller.BOB;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.seller.Seller;
-import seedu.address.testutil.SellerBuilder;
+import seedu.address.testutil.seller.SellerBuilder;
 
 public class SellerTest {
 

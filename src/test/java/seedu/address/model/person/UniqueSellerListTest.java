@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalSeller.ALICE;
-import static seedu.address.testutil.TypicalSeller.BOB;
+import static seedu.address.testutil.seller.TypicalSeller.ALICE;
+import static seedu.address.testutil.seller.TypicalSeller.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,7 +18,7 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.person.seller.Seller;
 import seedu.address.model.person.seller.UniqueSellerList;
-import seedu.address.testutil.SellerBuilder;
+import seedu.address.testutil.seller.SellerBuilder;
 
 public class UniqueSellerListTest {
 

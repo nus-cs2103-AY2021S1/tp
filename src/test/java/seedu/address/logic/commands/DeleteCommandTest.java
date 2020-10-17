@@ -5,13 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalMeeting.getTypicalMeetingAddressBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalSeller.getTypicalSellerAddressBook;
+import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
+import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
 
 import org.junit.jupiter.api.Test;
 

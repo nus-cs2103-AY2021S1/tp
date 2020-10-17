@@ -28,6 +28,12 @@ public class BidBook implements ReadOnlyBidBook {
         resetData(toBeCopied);
     }
 
+    public void setBid(Bid target, Bid editedBid) {
+        requireNonNull(editedBid);
+
+        listOfBids.setBid(target, editedBid);
+    }
+
     public void setBids(List<Bid> bids) {
         this.listOfBids.setBids(bids);
     }
@@ -52,7 +58,6 @@ public class BidBook implements ReadOnlyBidBook {
      */
     public void resetData(ReadOnlyBidBook newData) {
         requireNonNull(newData);
-
         setBids(newData.getBidList());
     }
 

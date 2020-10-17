@@ -9,16 +9,6 @@
 <StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1">
 
     <TabPane fx:id="tabBar" stylesheets="@TabPane.css" tabClosingPolicy="UNAVAILABLE">
-        <Tab fx:id="personTab" text="Untitled Tab 1">
-            <content>
-                <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                    <padding>
-                        <Insets bottom="10" left="10" right="10" top="10" />
-                    </padding>
-                    <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-                </VBox>
-            </content>
-        </Tab>
         <Tab fx:id="bidderTab" text="Untitled Tab 1">
             <content>
                 <VBox fx:id="bidderList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">

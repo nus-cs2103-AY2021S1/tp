@@ -11,11 +11,11 @@ import seedu.address.model.bid.Bid;
 
 public class AddBidCommand extends Command {
 
-
-
     public static final String COMMAND_WORD = "add-bid";
 
     public static final String MESSAGE_SUCCESS = "New bid added: %1$s";
+
+    public static final String MESSAGE_DUPLICATE_BID = "This bid already exists in the bid book";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a bid to the bid book. "
             + "Parameters: "
@@ -29,8 +29,12 @@ public class AddBidCommand extends Command {
 
     private final Bid bid;
 
-
+    /**
+     * constructor for a AddBidCommand object
+     * @param bid
+     */
     public AddBidCommand(Bid bid) {
+        requireNonNull(bid);
         this.bid = bid;
     }
 
@@ -39,9 +43,12 @@ public class AddBidCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (model.hasBid(bid)) {
+            throw new CommandException(MESSAGE_DUPLICATE_BID);
+        }
 
         model.addBid(bid);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, bid));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, bid)).setEntity(EntityType.BID);
 
     }
 

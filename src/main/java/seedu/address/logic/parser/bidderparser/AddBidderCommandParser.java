@@ -16,7 +16,6 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.id.Id;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.bidder.Bidder;
@@ -24,8 +23,6 @@ import seedu.address.model.tag.Tag;
 
 public class AddBidderCommandParser implements Parser<AddBidderCommand> {
 
-    private final String bidderIdDefaultPrefix = "B";
-    private final int bidderIdDefaultNumber = 0;
     private final String bidderTag = "bidder";
 
     /**
@@ -47,8 +44,7 @@ public class AddBidderCommandParser implements Parser<AddBidderCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         tagList.add(new Tag(bidderTag));
-        Id id = new Id(bidderIdDefaultPrefix, bidderIdDefaultNumber);
-        Bidder bidder = new Bidder(name, phone, tagList, id);
+        Bidder bidder = new Bidder(name, phone, tagList);
 
         return new AddBidderCommand(bidder);
     }
