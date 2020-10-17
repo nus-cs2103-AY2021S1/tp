@@ -14,6 +14,7 @@ import seedu.address.model.patient.Email;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.Appointment;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -136,5 +137,32 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String appointment} into a {@code Appointment}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code appointment} is invalid.
+     */
+    public static Appointment parseAppointment(String appointment) throws ParseException {
+        requireNonNull(appointment);
+        String trimmedAppointment = appointment.trim();
+        if (!Appointment.isValidAppointment(trimmedAppointment)) {
+            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
+        }
+        return new Appointment(trimmedAppointment);
+    }
+
+    /**
+     * Parses {@code Collection<String> appointments} into a {@code Set<Appointment>}.
+     */
+    public static Set<Appointment> parseAppointments(Collection<String> appointments) throws ParseException {
+        requireNonNull(appointments);
+        final Set<Appointment> appointmentSet = new HashSet<>();
+        for (String appointmentTime : appointments) {
+            appointmentSet.add(parseAppointment(appointmentTime));
+        }
+        return appointmentSet;
     }
 }

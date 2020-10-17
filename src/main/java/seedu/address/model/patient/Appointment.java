@@ -8,10 +8,16 @@ public class Appointment {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Appointment times should follow the format (dd/MM/yyyy HH:mm)";
-    private final LocalDateTime value;
+    public final LocalDateTime value;
 
-    public Appointment(LocalDateTime appointment) {
-        value = appointment;
+    /**
+     * Constructs an appointment with a given appointment time.
+     *
+     * @param appointment A valid appointment.
+     */
+    public Appointment(String appointment) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HH:mm");
+        value = LocalDateTime.parse(appointment, formatter) ;
     }
 
     /**
@@ -44,4 +50,10 @@ public class Appointment {
                 || (other instanceof Appointment // instanceof handles nulls
                 && value.equals(((Appointment) other).value)); // state check
     }
+
+    @Override
+    public int hashCode() {
+        return value.hashCode();
+    }
+
 }

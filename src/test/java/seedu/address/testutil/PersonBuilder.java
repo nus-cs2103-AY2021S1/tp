@@ -9,6 +9,7 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.Appointment;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -29,6 +30,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private Set<Appointment> appointments;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,6 +42,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        appointments = new HashSet<>();
     }
 
     /**
@@ -52,6 +55,7 @@ public class PersonBuilder {
         email = patientToCopy.getEmail();
         address = patientToCopy.getAddress();
         tags = new HashSet<>(patientToCopy.getTags());
+        appointments = new HashSet<>(patientToCopy.getAppointments());
     }
 
     /**
@@ -77,6 +81,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code appointments} into a {@code Set<Appointment>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withAppointments(String ... appointments) {
+        this.appointments = SampleDataUtil.getAppointmentSet(appointments);
         return this;
     }
 
