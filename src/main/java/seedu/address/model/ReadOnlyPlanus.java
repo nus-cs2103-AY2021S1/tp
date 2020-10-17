@@ -6,7 +6,7 @@ import seedu.address.model.task.Task;
 /**
  * Unmodifiable view of an PlaNus.
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyPlanus {
 
     /**
      * Returns an unmodifiable view of the task list.

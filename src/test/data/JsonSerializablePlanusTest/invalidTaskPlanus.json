@@ -3,6 +3,7 @@
     "title": "Hans Muster",
     "dateTime": "01-01-2020 12:00",
     "description": "invalid@email!3e",
-    "type": "event"
+    "type": "event",
+    "status" : "Incomplete"
   } ]
 }

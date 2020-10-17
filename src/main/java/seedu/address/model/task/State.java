@@ -13,6 +13,18 @@ public enum State {
         this.state = state;
     }
 
+    /**
+     * returns a State of corresponding text.
+     */
+    public static State toState(String text) {
+        for (State s : State.values()) {
+            if (s.state.equalsIgnoreCase(text)) {
+                return s;
+            }
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
         return state;

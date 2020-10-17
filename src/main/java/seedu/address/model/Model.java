@@ -35,22 +35,22 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' PlaNus file path.
      */
-    Path getAddressBookFilePath();
+    Path getPlanusFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' PlaNus file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setPlanusFilePath(Path planusFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces PlaNus data with the data in {@code planus}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setPlanus(ReadOnlyPlanus planus);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns PlaNus */
+    ReadOnlyPlanus getPlanus();
 
     /**
      * Returns true if a task with the same identity as {@code task} exists in PlaNus.
@@ -65,7 +65,7 @@ public interface Model {
 
     /**
      * Mark the given array of tasks to be done.
-     * The tasks must exist in the address book.
+     * The tasks must exist in PlaNus.
      */
     void markAsDone(Task[] targets);
 

@@ -15,16 +15,16 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.Planus;
+import seedu.address.model.ReadOnlyPlanus;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonPlanusStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.PlanusStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        PlanusStorage planusStorage = new JsonPlanusStorage(userPrefs.gePlanusFilePath());
+        storage = new StorageManager(planusStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -69,25 +69,25 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s planus and {@code userPrefs}. <br>
+     * The data from the sample planus will be used instead if {@code storage}'s planus is not found,
+     * or an empty planusk will be used instead if errors occur when reading {@code storage}'s planus.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyPlanus> planusOptional;
+        ReadOnlyPlanus initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            planusOptional = storage.readPlanus();
+            if (!planusOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample task list");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = planusOptional.orElseGet(SampleDataUtil::getSamplePlanus);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty task list");
-            initialData = new AddressBook();
+            initialData = new Planus();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty task list");
-            initialData = new AddressBook();
+            initialData = new Planus();
         }
 
         return new ModelManager(initialData, userPrefs);

@@ -13,9 +13,12 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.State;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 import seedu.address.model.task.Type;
+
 
 /**
  * Jackson-friendly version of {@link Task}.
@@ -28,6 +31,7 @@ class JsonAdaptedTask {
     private final String dateTime;
     private final String description;
     private final String type;
+    private final String status;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -36,7 +40,7 @@ class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("dateTime") String dateTime,
            @JsonProperty("description") String description, @JsonProperty("type") String type,
-           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("status") String status) {
         this.title = title;
         this.dateTime = dateTime;
         this.description = description;
@@ -44,6 +48,7 @@ class JsonAdaptedTask {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.status = status;
     }
 
     /**
@@ -54,6 +59,7 @@ class JsonAdaptedTask {
         dateTime = source.getDateTime().value;
         description = source.getDescription().value;
         type = source.getType().value;
+        status = source.getStatus().value.toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -82,20 +88,31 @@ class JsonAdaptedTask {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     DateTime.class.getSimpleName()));
         }
-        if (!DateTime.isValidDateTime(dateTime)) {
+
+        final DateTime modelDateTime;
+
+        if (dateTime == "") {
+            modelDateTime = DateTime.defaultDateTime();
+        } else if (!DateTime.isValidDateTime(dateTime)) {
             throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
+        } else {
+            modelDateTime = new DateTime(dateTime);
         }
-        final DateTime modelDateTime = new DateTime(dateTime);
 
         // tentatively description field is not allowed to be empty
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Description.class.getSimpleName()));
         }
-        if (!Description.isValidDescription(description)) {
+
+        final Description modelDescription;
+        if (description == "") {
+            modelDescription = Description.defaultDescription();
+        } else if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+        } else {
+            modelDescription = new Description(description);
         }
-        final Description modelDescription = new Description(description);
 
         if (type == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Type.class.getSimpleName()));
@@ -107,7 +124,12 @@ class JsonAdaptedTask {
 
         final Set<Tag> modelTags = new HashSet<>(taskTags);
 
-        return new Task(modelTitle, modelDateTime, modelDescription, modelType, modelTags);
+        if (status == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
+        }
+        final Status modelStatus = new Status(State.toState(status));
+
+        return new Task(modelTitle, modelDateTime, modelDescription, modelType, modelTags, modelStatus);
     }
 
 }

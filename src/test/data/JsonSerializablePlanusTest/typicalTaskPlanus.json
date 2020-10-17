@@ -1,46 +1,53 @@
 {
-  "_comment": "AddressBook save file which contains the same Tasks values as in TypicalTasks#getTypicalAddressBook()",
+  "_comment": "Planus save file which contains the same Tasks values as in TypicalTasks#getTypicalPlanus()",
   "tasks" : [ {
     "title" : "Alice Pauline",
     "dateTime" : "01-01-2020 12:00",
     "description" : "alice,example.com",
     "type" : "event",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "status" : "Incomplete"
   }, {
     "title" : "Benson Meier",
     "dateTime" : "02-02-2020 12:00",
     "description" : "johnd,example.com",
     "type" : "event",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "owesMoney", "friends" ],
+    "status" : "Incomplete"
   }, {
     "title" : "Carl Kurz",
     "dateTime" : "03-03-2020 12:00",
     "description" : "heinz,example.com",
     "type" : "event",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "status" : "Incomplete"
   }, {
     "title" : "Daniel Meier",
     "dateTime" : "04-04-2020 12:00",
     "description" : "cornelia,example.com",
     "type" : "event",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "status" : "Incomplete"
   }, {
     "title" : "Elle Meyer",
     "dateTime" : "05-05-2020 12:00",
     "description" : "werner,example.com",
     "type" : "event",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "status" : "Incomplete"
   }, {
     "title" : "Fiona Kunz",
     "dateTime" : "06-06-2020 12:00",
     "description" : "lydia,example.com",
     "type" : "event",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "status" : "Incomplete"
   }, {
     "title" : "George Best",
     "dateTime" : "07-07-2020 12:00",
     "description" : "anna,example.com",
     "type" : "event",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "status" : "Incomplete"
   } ]
 }
