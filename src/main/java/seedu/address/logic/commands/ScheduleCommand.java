@@ -68,7 +68,7 @@ public class ScheduleCommand extends Command {
 
         Assignment assignmentToSchedule = lastShownList.get(targetIndex.getZeroBased());
 
-        Schedule schedule = createValidSchedule(assignmentToSchedule, model.getTaskList());
+        Schedule schedule = createValidSchedule(assignmentToSchedule, model.getFilteredTaskList());
 
         Assignment scheduledAssignment = createScheduledAssignment(assignmentToSchedule, schedule);
 

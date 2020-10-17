@@ -32,13 +32,14 @@ class JsonAdaptedAssignment {
     @JsonCreator
     public JsonAdaptedAssignment(@JsonProperty("name") String name, @JsonProperty("deadline") String deadline,
                                  @JsonProperty("module") String moduleCode,
+                                 @JsonProperty("isRemind") boolean isReminded,
                                  @JsonProperty("isSchedule") boolean isScheduled,
                                  @JsonProperty("suggestedStartTime") String suggestedStartTime,
                                  @JsonProperty("suggestedEndTime") String suggestedEndTime) {
         this.name = name;
         this.deadline = deadline;
         this.moduleCode = moduleCode;
-        this.isReminded = false;
+        this.isReminded = isReminded;
         this.isScheduled = isScheduled;
         this.suggestedStartTime = suggestedStartTime;
         this.suggestedEndTime = suggestedEndTime;
