@@ -28,21 +28,17 @@ import seedu.address.model.task.Task;
  * {@code DeleteCommand}.
  */
 public class AssignCommandTest {
-    //TODO: CHECK THIS TEST, ESPECIALLY LINE ABT `project.deleteParticipation...`
+
     @Test
     public void execute_validIndexInvalidPerson_throwsCommandException() {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
-        Project projectCopy = new Project(project.getProjectName(), project.getDeadline(), project.getRepoUrl(),
-                project.getProjectDescription(), project.getProjectTags(), new HashMap<>(),
-                project.getTasks(), project.getMeetings());
         model.enter(project);
         project.deleteParticipation(ALICE.getGitUserNameString());
-        model.setProject(project, projectCopy);
 
         AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_TASK, ALICE.getGitUserNameString());
         assertCommandFailure(assignCommand, model,
-                String.format(Messages.MESSAGE_MEMBER_NOT_PRESENT, ALICE.getGitUserName()));
+            String.format(Messages.MESSAGE_MEMBER_NOT_PRESENT, ALICE.getGitUserName()));
     }
 
     @Test
