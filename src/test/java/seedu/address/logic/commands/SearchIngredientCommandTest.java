@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INGREDIENT_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalIngredients.CARL;
-import static seedu.address.testutil.TypicalIngredients.ELLE;
-import static seedu.address.testutil.TypicalIngredients.FIONA;
+import static seedu.address.testutil.TypicalIngredients.BANANA;
+import static seedu.address.testutil.TypicalIngredients.BREAD;
+import static seedu.address.testutil.TypicalIngredients.OAT;
 import static seedu.address.testutil.TypicalIngredients.getTypicalWishfulShrinking;
 
 import java.util.Arrays;
@@ -67,12 +67,12 @@ public class SearchIngredientCommandTest {
     @Test
     public void execute_multipleKeywords_multipleIngredientsFound() {
         String expectedMessage = String.format(MESSAGE_INGREDIENT_LISTED_OVERVIEW, 3);
-        expectedMessage += "\n" + "1. Carl Kurz\n" + "2. Elle Meyer\n" + "3. Fiona Kunz" + "\n";
-        IngredientContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        expectedMessage += "\n" + "1. White Bread\n" + "2. Banana\n" + "3. Oat" + "\n";
+        IngredientContainsKeywordsPredicate predicate = preparePredicate("Bread Oat Banana");
         SearchIngredientCommand command = new SearchIngredientCommand(predicate);
         expectedModel.updateFilteredIngredientList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredIngredientList());
+        assertEquals(Arrays.asList(BREAD, BANANA, OAT), model.getFilteredIngredientList());
     }
 
     /**

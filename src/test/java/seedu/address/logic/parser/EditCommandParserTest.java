@@ -1,16 +1,16 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_MARGARITAS;
+import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_NOODLE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_INGREDIENT_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_NOODLE;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_MARGARITAS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_MARGARITAS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_NOODLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_NOODLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_MARGARITAS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_NOODLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -36,7 +36,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_NAME_NOODLE, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
@@ -48,10 +48,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + NAME_DESC_NOODLE, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + NAME_DESC_NOODLE, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -138,19 +138,21 @@ public class EditCommandParserTest {
     public void parse_oneFieldSpecified_success() {
         // name
         Index targetIndex = INDEX_THIRD_RECIPE;
-        String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        String userInput = targetIndex.getOneBased() + NAME_DESC_NOODLE;
+        EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withName(VALID_NAME_NOODLE).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // ingredients
-        userInput = targetIndex.getOneBased() + INGREDIENT_DESC_AMY;
-        descriptor = new EditRecipeDescriptorBuilder().withIngredient(VALID_INGREDIENT_AMY, VALID_QUANTITY_AMY).build();
+        userInput = targetIndex.getOneBased() + INGREDIENT_DESC_NOODLE;
+        descriptor = new EditRecipeDescriptorBuilder()
+                .withIngredient(VALID_INGREDIENT_NOODLE, VALID_QUANTITY_NOODLE)
+                .build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
-        // assertParseSuccess(parser, userInput, expectedCommand);
+        assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_BOB;
+        userInput = targetIndex.getOneBased() + TAG_DESC_MARGARITAS;
         descriptor = new EditRecipeDescriptorBuilder().build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         // assertParseSuccess(parser, userInput, expectedCommand);
@@ -175,18 +177,20 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_RECIPE;
         String userInput = targetIndex.getOneBased() + INVALID_INGREDIENT_DESC
-                + INGREDIENT_DESC_BOB;
+                + INGREDIENT_DESC_MARGARITAS;
         EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder()
-                .withIngredient(VALID_INGREDIENT_BOB, VALID_QUANTITY_BOB).build();
+                .withIngredient(VALID_INGREDIENT_MARGARITAS, VALID_QUANTITY_MARGARITAS).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-        // assertParseSuccess(parser, userInput, expectedCommand);
+        assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + INVALID_INGREDIENT_DESC
-                + INGREDIENT_DESC_BOB;
-        descriptor = new EditRecipeDescriptorBuilder().withIngredient(VALID_INGREDIENT_BOB, VALID_QUANTITY_BOB).build();
+                + INGREDIENT_DESC_MARGARITAS;
+        descriptor = new EditRecipeDescriptorBuilder()
+                .withIngredient(VALID_INGREDIENT_MARGARITAS, VALID_QUANTITY_MARGARITAS)
+                .build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
-        // assertParseSuccess(parser, userInput, expectedCommand);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     /*@Test
