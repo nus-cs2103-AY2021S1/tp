@@ -100,8 +100,8 @@ public class AssignCommandTest {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
-        // project.deleteParticipation(ALICE.getPersonName().fullPersonName);
         project.addParticipation(ALICE);
+        project.updateTaskFilter(x -> true);
         Task taskToAssign = project.getFilteredTaskList().get(INDEX_SECOND_TASK.getZeroBased());
         Participation assignee = project.getParticipation(ALICE.getPersonName().fullPersonName);
         project.updateTaskFilter(task -> task.getTaskName().contains(taskToAssign.getTaskName()));
