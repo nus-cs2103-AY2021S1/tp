@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.bid.Bid;
+import seedu.address.model.id.BidderId;
+import seedu.address.model.id.PropertyId;
 
 public class JsonAdaptedBid {
 
@@ -35,8 +37,8 @@ public class JsonAdaptedBid {
      * @param source bid object to convert
      */
     public JsonAdaptedBid(Bid source) {
-        propertyId = source.getPropertyId();
-        bidderId = source.getBidderId();
+        propertyId = source.getPropertyId().toString();
+        bidderId = source.getBidderId().toString();
         bidAmount = source.getBidAmount();
     }
 
@@ -50,12 +52,16 @@ public class JsonAdaptedBid {
         if (propertyId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "P12"));
         }
+        PropertyId modelPropertyId = new PropertyId(propertyId);
+
         if (bidderId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "B04"));
         }
+        BidderId modelBidderId = new BidderId(bidderId);
+
         if (bidAmount == 0) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "450443"));
         }
-        return new Bid(propertyId, bidderId, bidAmount);
+        return new Bid(modelPropertyId, modelBidderId, bidAmount);
     }
 }
