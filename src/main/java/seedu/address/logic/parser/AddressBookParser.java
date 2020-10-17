@@ -6,7 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddBidCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -17,8 +16,12 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListBidCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.bidcommands.AddBidCommand;
+import seedu.address.logic.commands.bidcommands.DeleteBidCommand;
+import seedu.address.logic.commands.bidcommands.EditBidCommand;
+import seedu.address.logic.commands.bidcommands.FindBidCommand;
+import seedu.address.logic.commands.bidcommands.ListBidCommand;
 import seedu.address.logic.commands.biddercommands.AddBidderCommand;
 import seedu.address.logic.commands.biddercommands.DeleteBidderCommand;
 import seedu.address.logic.commands.biddercommands.FindBidderCommand;
@@ -33,6 +36,10 @@ import seedu.address.logic.commands.sellercommands.ListSellerCommand;
 import seedu.address.logic.parser.bidderparser.AddBidderCommandParser;
 import seedu.address.logic.parser.bidderparser.DeleteBidderCommandParser;
 import seedu.address.logic.parser.bidderparser.FindBidderCommandParser;
+import seedu.address.logic.parser.bidparser.AddBidCommandParser;
+import seedu.address.logic.parser.bidparser.DeleteBidCommandParser;
+import seedu.address.logic.parser.bidparser.EditBidCommandParser;
+import seedu.address.logic.parser.bidparser.FindBidCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.property.AddPropertyCommandParser;
 import seedu.address.logic.parser.property.DeletePropertyCommandParser;
@@ -90,19 +97,29 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
+        // -------------------- BID ------------------- //
         case AddBidCommand.COMMAND_WORD:
             return new AddBidCommandParser().parse(arguments);
 
         case ListBidCommand.COMMAND_WORD:
             return new ListBidCommand();
 
+        case DeleteBidCommand.COMMAND_WORD:
+            return new DeleteBidCommandParser().parse(arguments);
+
+        case EditBidCommand.COMMAND_WORD:
+            return new EditBidCommandParser().parse(arguments);
+
+        case FindBidCommand.COMMAND_WORD:
+            return new FindBidCommandParser().parse(arguments);
+
+        // -------------------- MEETING ------------------- //
         case AddMeetingCommand.COMMAND_WORD:
             return new AddMeetingCommandParser().parse(arguments);
 
         case DeleteMeetingCommand.COMMAND_WORD:
             return new DeleteMeetingCommandParser().parse(arguments);
-
+        // -------------------- PROPERTY ------------------- //
         case AddPropertyCommand.COMMAND_WORD:
             return new AddPropertyCommandParser().parse(arguments);
 

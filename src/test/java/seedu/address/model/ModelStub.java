@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.bid.Bid;
+import seedu.address.model.bidbook.ReadOnlyBidBook;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
 import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.id.Id;
@@ -325,6 +326,21 @@ public class ModelStub implements Model {
 
     @Override
     public boolean hasBid(Bid bid) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void deleteBid(Bid target) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    /**
+     * Replaces the given bid {@code target} with {@code editedBid}.
+     * {@code target} must exist in the bid book.
+     * The bid identity of {@code editedBid} must not be the same as another existing bid in the bid book.
+     */
+    @Override
+    public void setBid(Bid target, Bid editedBid) {
         throw new AssertionError("This method should not be called.");
     }
 }

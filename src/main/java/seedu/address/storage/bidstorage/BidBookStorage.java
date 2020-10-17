@@ -1,14 +1,15 @@
-package seedu.address.storage;
+package seedu.address.storage.bidstorage;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyBidBook;
+import seedu.address.model.bidbook.BidBook;
+import seedu.address.model.bidbook.ReadOnlyBidBook;
 
 /**
- * Represents a storage for {@link seedu.address.model.BidBook}.
+ * Represents a storage for {@link BidBook}.
  */
 public interface BidBookStorage {
 

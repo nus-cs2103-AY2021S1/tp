@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.BidBook;
-import seedu.address.model.ReadOnlyBidBook;
 import seedu.address.model.bid.exceptions.DuplicateBidException;
+import seedu.address.model.bidbook.BidBook;
+import seedu.address.model.bidbook.ReadOnlyBidBook;
 import seedu.address.testutil.bids.BidBuilder;
 
 public class BidBookTest {

@@ -12,6 +12,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.bid.Bid;
+import seedu.address.model.bidbook.BidBook;
+import seedu.address.model.bidbook.ReadOnlyBidBook;
 import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
 import seedu.address.model.calendar.CalendarMeeting;
@@ -208,6 +210,18 @@ public class ModelManager implements Model {
     public boolean hasBid(Bid bid) {
         requireNonNull(bid);
         return bidBook.hasBid(bid);
+    }
+
+    @Override
+    public void deleteBid(Bid target) {
+        bidBook.removeBid(target);
+    }
+
+    @Override
+    public void setBid(Bid target, Bid editedBid) {
+        requireAllNonNull(target, editedBid);
+
+        bidBook.setBid(target, editedBid);
     }
 
     //=========== Filtered Person List Accessors =============================================================

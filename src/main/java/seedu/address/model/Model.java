@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.bid.Bid;
+import seedu.address.model.bidbook.ReadOnlyBidBook;
 import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.propertybook.PropertyModel;
@@ -84,6 +85,12 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
     boolean hasPerson(Person person);
 
     /**
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -111,11 +118,6 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
     ReadOnlyBidBook getBidBook();
 
     ObservableList<Bid> getFilteredBidList();
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredPersonList(Predicate<Person> predicate);
 
     void updateFilteredBidList(Predicate<Bid> predicate);
 
@@ -125,6 +127,15 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasBid(Bid bid);
+
+    void deleteBid(Bid target);
+
+    /**
+     * Replaces the given bid {@code target} with {@code editedBid}.
+     * {@code target} must exist in the bid book.
+     * The bid identity of {@code editedBid} must not be the same as another existing bid in the bid book.
+     */
+    void setBid(Bid target, Bid editedBid);
 
     //=========== MeetingManager ================================================================================
 
