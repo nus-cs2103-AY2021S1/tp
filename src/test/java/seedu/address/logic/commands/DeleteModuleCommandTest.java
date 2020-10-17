@@ -72,7 +72,6 @@ public class DeleteModuleCommandTest {
         // assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
         DeleteModuleCommand deleteModuleCommand = new DeleteModuleCommand(outOfBoundIndex);
-
         // assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
     }
 
