@@ -117,8 +117,15 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
 
     @Override
     public void quit() {
-        status = Status.CATALOGUE;
-        this.project = Optional.empty();
+        if (status == Status.PROJECT) {
+            status = Status.CATALOGUE;
+            this.project = Optional.empty();
+        } else if (status == Status.TASK) {
+            status = Status.PROJECT;
+            project.get().updateTaskOnView(null);
+        } else if (status == Status.CATALOGUE) {
+            this.project = Optional.empty();
+        }
     }
 
     @Override
