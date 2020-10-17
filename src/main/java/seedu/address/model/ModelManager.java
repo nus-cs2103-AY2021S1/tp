@@ -151,7 +151,10 @@ public class ModelManager implements Model {
         return filteredTasks;
     }
 
-    @Override
+    /**
+     * Updates filtered task list with given predicate.
+     * @param predicate Returns a true if a task matches the predicate, false otherwise.
+     */
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
