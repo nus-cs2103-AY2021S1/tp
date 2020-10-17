@@ -2,9 +2,11 @@ package seedu.address.model.contact;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+// import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
@@ -13,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.ContactBuilder;
 
-public class PersonTest {
+public class ContactTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
@@ -29,27 +31,26 @@ public class PersonTest {
         // null -> returns false
         assertFalse(ALICE.isSameContact(null));
 
-        // different phone and email -> returns false
-        Contact editedAlice = new ContactBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        // different telegram and email -> returns false
+        Contact editedAlice = new ContactBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
+                .withTelegram(VALID_TELEGRAM_AMY).build();
         assertFalse(ALICE.isSameContact(editedAlice));
 
         // different name -> returns false
         editedAlice = new ContactBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSameContact(editedAlice));
 
-        // same name, same phone, different attributes -> returns true
-        editedAlice = new ContactBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+        // same name, same email, different telegram -> returns true
+        editedAlice = new ContactBuilder(ALICE).withTelegram(VALID_TELEGRAM_AMY).build();
         // assertTrue(ALICE.isSamePerson(editedAlice));
 
-        // same name, same email, different attributes -> returns true
-        editedAlice = new ContactBuilder(ALICE)
-                .withTags(VALID_TAG_HUSBAND).build();
+        // same name, same telegram, different email -> returns true
+        editedAlice = new ContactBuilder(ALICE).withEmail(VALID_EMAIL_AMY).build();
         assertTrue(ALICE.isSameContact(editedAlice));
 
         // same name, same phone, same email, different attributes -> returns true
-        editedAlice = new ContactBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameContact(editedAlice));
+        // editedAlice = new ContactBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        // assertTrue(ALICE.isSameContact(editedAlice));
     }
 
     @Test
@@ -78,8 +79,12 @@ public class PersonTest {
         editedAlice = new ContactBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
+        // different telegram -> returns false
+        editedAlice = new ContactBuilder(ALICE).withTelegram(VALID_TELEGRAM_AMY).build();
+        assertFalse(ALICE.equals(editedAlice));
+
         // different tags -> returns false
-        editedAlice = new ContactBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        // editedAlice = new ContactBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         // assertFalse(ALICE.equals(editedAlice));
     }
 }
