@@ -13,26 +13,26 @@ import seedu.address.model.patient.Patient;
 /**
  * Panel containing the list of persons.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class PatientListPanel extends UiPart<Region> {
+    private static final String FXML = "PatientListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(PatientListPanel.class);
 
     @FXML
     private ListView<Patient> personListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code PatientListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Patient> patientList) {
+    public PatientListPanel(ObservableList<Patient> patientList) {
         super(FXML);
         personListView.setItems(patientList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        personListView.setCellFactory(listView -> new PatientListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Patient} using a {@code PatientCard}.
      */
-    class PersonListViewCell extends ListCell<Patient> {
+    class PatientListViewCell extends ListCell<Patient> {
         @Override
         protected void updateItem(Patient patient, boolean empty) {
             super.updateItem(patient, empty);
@@ -41,7 +41,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(patient, getIndex() + 1).getRoot());
+                setGraphic(new PatientCard(patient, getIndex() + 1).getRoot());
             }
         }
     }

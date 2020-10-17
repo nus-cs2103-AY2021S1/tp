@@ -9,7 +9,7 @@ Hospify is an application to help maintain medical records.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to find a patient.
+* **New Feature**: Added the ability to `find` a patient.
   * What it does: allows the user to find a patient's medical records.
   * Justification: This feature provides a convenient way to access patients' medical records.
   * Highlights: The implementation does not require changes to existing commands.
@@ -19,17 +19,33 @@ Given below are my contributions to the project.
 * **Project management**:
 
 * **Enhancements to existing features**:
-  * Edited find command to take in both name and NRIC, returning all patients that match the keywords and NRIC (Pull request [\#47]())
-  * Edited delete command to be able to delete by NRIC, in addition to just deleting by index originally (Pull request [\#48]())
+  * Edited `find` command to take in both name and `NRIC`, returning all patients that match the keywords and `NRIC` (Pull request [\#47]())
+  * Edited `delete` command to be able to delete by `NRIC`, in addition to just deleting by `INDEX` originally (Pull request [\#48]())
   * Updated the GUI color scheme for base colors (Pull requests [\#50]())
+  * Edited `help` command to display a table of commands and updated the link to Hospify user guide (Pull request [\#68]())
 
-* **Documentation**:
+* **Contributions to the User Guide**:
   * User Guide:
-  * Developer Guide:
+    * Updated `find` command to include new find by `NRIC` functionality (Pull requests [\#71]())
+    * Updated `delete` command to include new delete by `NRIC` functionality (Pull requests [\#71]())
+    * Updated product screenshots and included some new screenshots (Pull requests [\#71]())
+
+* **Contributions to the Developer Guide**:
+  * Developer Guide: (Pull requests [\#21]())
     * Added Target user profile, value proposition, and user stories.
     * Added Use cases.
     * Added Non-functional requirements.
     * Added Glossary.
+
+* **Contributions to team-based tasks**:
+  * Set up the product website
+  * Set up team issue tracker and manage team issues and milestones
+  * Maintaining issue tracker
+  * Updating the Developer Guide
+    * Target user profile, value proposition, user stories, use cases, non-functional requirements, glossary (Pull requests [\#21]())
+  * Renaming the product to Hospify (Pull requests [\#70]())
+  * Changing the App window's bottom path display (Pull requests [\#70]())
+  * Updating product home page and description to Hospify and relevant links to Java CI and codecov (Pull requests [\#76]())
 
 * **Community**:
 

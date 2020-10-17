@@ -28,8 +28,8 @@ public class CountCommandTest {
 
     @Test
     void execute_removePatients_success() {
-        Patient patientToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        model.deletePerson(patientToDelete);
+        Patient patientToDelete = model.getFilteredPatientList().get(INDEX_FIRST_PERSON.getZeroBased());
+        model.deletePatient(patientToDelete);
 
         String expectedMessage = "There are 6 records.";
 
@@ -43,8 +43,8 @@ public class CountCommandTest {
         Patient firstPatientToAdd = HOON;
         Patient secondPatientToAdd = IDA;
 
-        model.addPerson(HOON);
-        model.addPerson(IDA);
+        model.addPatient(HOON);
+        model.addPatient(IDA);
 
         String expectedMessage = "There are 9 records.";
 

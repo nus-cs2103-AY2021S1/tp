@@ -37,7 +37,7 @@ class JsonSerializableHospify {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableHospify(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPatient::new).collect(Collectors.toList()));
+        persons.addAll(source.getPatientList().stream().map(JsonAdaptedPatient::new).collect(Collectors.toList()));
     }
 
     /**
@@ -49,10 +49,10 @@ class JsonSerializableHospify {
         AddressBook addressBook = new AddressBook();
         for (JsonAdaptedPatient jsonAdaptedPatient : persons) {
             Patient patient = jsonAdaptedPatient.toModelType();
-            if (addressBook.hasPerson(patient)) {
+            if (addressBook.hasPatient(patient)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(patient);
+            addressBook.addPatient(patient);
         }
         return addressBook;
     }
