@@ -43,7 +43,7 @@ public class AssignCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Project project = model.getFilteredProjectList().get(0);
+        Project project = model.getProjectToBeDisplayedOnDashboard().get();
         List<Task> lastShownTaskList = project.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownTaskList.size()) {

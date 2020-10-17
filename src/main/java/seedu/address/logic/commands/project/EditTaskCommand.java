@@ -66,7 +66,7 @@ public class EditTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Project project = model.getFilteredProjectList().get(0);
+        Project project = model.getProjectToBeDisplayedOnDashboard().get();
         List<Task> lastShownList = project.getFilteredTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
