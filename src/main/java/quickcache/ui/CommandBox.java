@@ -69,31 +69,41 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void handleKeyEvent() {
         commandTextField.setOnKeyPressed(event -> {
-            String textToDisplay;
-
             switch(event.getCode()) {
             case UP:
-                // handle up
-                if (pointer > 0) {
-                    pointer--;
-                    textToDisplay = pastCommands.get(pointer);
-                    commandTextField.setText(textToDisplay);
-                    commandTextField.positionCaret(textToDisplay.length());
-                }
+                decrementPointer();
                 break;
             case DOWN:
-                // handle down
-                if (pointer < pastCommands.size() - 1) {
-                    pointer++;
-                    textToDisplay = pastCommands.get(pointer);
-                    commandTextField.setText(textToDisplay);
-                    commandTextField.positionCaret(textToDisplay.length());
-                }
+                incrementPointer();
                 break;
             default:
                 // Do Nothing
             }
         });
+    }
+
+    /**
+     * Move pointer one position front
+     */
+    private void incrementPointer() {
+        if (pointer < pastCommands.size() - 1) {
+            pointer++;
+            String textToDisplay = pastCommands.get(pointer);
+            commandTextField.setText(textToDisplay);
+            commandTextField.positionCaret(textToDisplay.length());
+        }
+    }
+
+    /**
+     * Move pointer one position back
+     */
+    private void decrementPointer() {
+        if (pointer > 0) {
+            pointer--;
+            String textToDisplay = pastCommands.get(pointer);
+            commandTextField.setText(textToDisplay);
+            commandTextField.positionCaret(textToDisplay.length());
+        }
     }
 
     /**
