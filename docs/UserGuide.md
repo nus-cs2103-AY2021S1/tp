@@ -2,14 +2,14 @@
 layout: page
 title: User Guide
 ---
-Clinic Calendar (CliniCal) is a **desktop app for managing patients and appointments, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CliniCal can get your contact management tasks done faster than traditional GUI apps.
+Clinic Calendar (CliniCal) is a **desktop app for managing patients and appointments, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CliniCal can get your patient management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 1. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -33,11 +33,11 @@ Clinic Calendar (CliniCal) is a **desktop app for managing patients and appointm
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#2. features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 2. Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -57,7 +57,7 @@ Clinic Calendar (CliniCal) is a **desktop app for managing patients and appointm
 
 </div>
 
-### Commands
+### 2.1 Commands
 
 #### Viewing help : `help`
 
@@ -68,7 +68,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-#### Adding a patient: `add`
+#### 2.1.1 Adding a patient: `add`
 
 Adds a patient to the patient database.
 
@@ -89,7 +89,7 @@ Examples:
 * `add n/John Doe p/98765432 i/S3857462J e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe i/G7667353B e/betsycrowe@example.com a/Newgate Prison p/1234567 g/penicillin`
 
-#### Adding profile picture using command line interface: `addPicture`
+#### 2.1.2 Adding profile picture using command line interface: `addPicture`
 
 Adds a profile picture to the patient’s profile by specifying filepath to desired profile picture.
 
@@ -102,20 +102,20 @@ Examples:
 *  `addPicture 2 f/downloads/profile_picture.png` Replaces existing profile picture with 'profile_picture.png' found in 
                                                   'downloads' folder for the 2nd patient
 
-#### Adding profile picture using drag and drop:
+#### 2.1.3 Adding profile picture using drag and drop:
 
 Adds a profile picture to the patient’s profile by using drag and drop with your mouse.
 
 1. Select the desired profile picture and drag it onto the space reserved for patient profile picture in ClinCal.
 2. Release mouse button and patient's profile picture would be updated with your desired picture.
 
-#### Listing all patients: `list`
+#### 2.1.4 Listing all patients: `list`
 
 Shows a list of all patients in the patient database.
 
 Format: `list`
 
-#### Editing a patient: `edit`
+#### 2.1.5 Editing a patient: `edit`
 
 Edits an existing patient in the patient database.
 
@@ -138,7 +138,7 @@ Examples:
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing allergies.
 *  `edit 3 ct/red` Clears the existing color tag and edits the color tag of the 3rd patient to be `red`.
 
-#### Locating patients by name: `find`
+#### 2.1.6 Locating patients by name: `find`
 
 Finds patients whose names contain any of the given keywords.
 
@@ -156,7 +156,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-#### Deleting a patient: `delete`
+#### 2.1.7 Deleting a patient: `delete`
 
 Deletes the specified patient from the patient database.
 
@@ -170,43 +170,43 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the patient database.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
-#### Clearing all entries : `clear`
+#### 2.1.8 Clearing all entries : `clear`
 
 Clears all entries from the patient database.
 
 Format: `clear`
 
-#### Clearing command history : `clearhistory`
+#### 2.1.9 Clearing command history : `clearhistory`
 
 Clears command history from the patient database.
 
 Format: `clearhistory`
 
-#### Exiting the program : `exit`
+#### 2.1.10 Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-#### Undoing the previous command: `undo` 
+#### 2.1.11 Undoing the previous command: `undo` 
 
 Reverts the previous command given by the user. 
 
 Format: `undo`
 
-#### Redoing a command : `redo` 
+#### 2.1.12 Redoing a command : `redo` 
 
 Redoes the most recent command that the user has undone. 
 
 Format: `redo` 
 
-#### Retrieve past commands using command line interface: `history`
+#### 2.1.13 Retrieve past commands using command line interface: `history`
 
 Retrieves a list of past commands that the user had used during the session.
 
 Format: `history`
 
-#### Retrieve and reuse past commands using arrow keys:
+#### 2.1.14 Retrieve and reuse past commands using arrow keys:
 
 Reuse past commands using the up arrow (↑) and down arrow (↓) keys on the keyboard.
 1. Click on the text field of the command box.
@@ -214,11 +214,11 @@ Reuse past commands using the up arrow (↑) and down arrow (↓) keys on the ke
 3. Press the down arrow key to display the previously shown past command.
 4. Press enter/return key to reuse the command.
 
-### Saving the data
+### 2.2 Saving the data
 
 CliniCal data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Color coding patients
+### 2.3 Color coding patients
 
 When a patient is tagged with a color tag, the background of the patient will be styled to show that color. The color tags can be used for a variety of purposes; for example, a doctor may color code patients at risk of terminal diseases as red, for easier reference.
 
@@ -226,14 +226,14 @@ When a patient is tagged with a color tag, the background of the patient will be
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 3. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CliniCal home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## 4. Command summary
 
 Action | Format, Examples
 --------|------------------
