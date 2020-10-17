@@ -70,7 +70,7 @@ public class EditSellerCommand extends Command {
         Seller sellerToEdit = lastShownList.get(index.getZeroBased());
         Seller editedSeller = createEditedSeller(sellerToEdit, editSellerDescriptor);
 
-        if (!sellerToEdit.isSamePerson(editedSeller) && model.hasPerson(editedSeller)) {
+        if (!sellerToEdit.isSamePerson(editedSeller) && model.hasSeller(editedSeller)) {
             throw new CommandException(MESSAGE_DUPLICATE_SELLER);
         }
 
@@ -94,11 +94,31 @@ public class EditSellerCommand extends Command {
     }
 
 
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof EditSellerCommand)) {
+            return false;
+        }
+
+        // state check
+        EditSellerCommand e = (EditSellerCommand) other;
+        return index.equals(e.index)
+                && editSellerDescriptor.equals(e.editSellerDescriptor);
+    }
+
+
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
     public static class EditSellerDescriptor {
+
         private Name name;
         private Phone phone;
         private Set<Tag> tags;

@@ -70,7 +70,7 @@ public class EditBidderCommand extends Command {
         Bidder bidderToEdit = lastShownList.get(index.getZeroBased());
         Bidder editedBidder = createEditedBidder(bidderToEdit, editBidderDescriptor);
 
-        if (!bidderToEdit.isSamePerson(editedBidder) && model.hasPerson(editedBidder)) {
+        if (!bidderToEdit.isSamePerson(editedBidder) && model.hasBidder(editedBidder)) {
             throw new CommandException(MESSAGE_DUPLICATE_BIDDER);
         }
 
@@ -94,11 +94,31 @@ public class EditBidderCommand extends Command {
     }
 
 
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof EditBidderCommand)) {
+            return false;
+        }
+
+        // state check
+        EditBidderCommand e = (EditBidderCommand) other;
+        return index.equals(e.index)
+                && editBidderDescriptor.equals(e.editBidderDescriptor);
+    }
+
+
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
     public static class EditBidderDescriptor {
+
         private Name name;
         private Phone phone;
         private Set<Tag> tags;
