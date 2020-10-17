@@ -223,6 +223,6 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **List** | `list`
-**Find** | `find KEYWORDS` <br> e.g., `find CS2100 MCQ`
+**Find** | `find t/TAG1 t/TAG2 .. q/KEYWORD1 q/KEYWORD2 ..` <br> e.g., `find t/MCQ q/What CS2103T q/is t/GoodQuestion`
 **Help** | `help`
 **Exit** | `exit`
