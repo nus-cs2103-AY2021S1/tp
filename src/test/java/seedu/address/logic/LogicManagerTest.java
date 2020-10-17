@@ -76,7 +76,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
+        // Setup LogicManager with JsonCommonCentsIoExceptionThrowingStub
         JsonCommonCentsStorage commonCentsStorage =
                 new JsonCommonCentsIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionCommonCents.json"));
         JsonUserPrefsStorage userPrefsStorage =
@@ -98,6 +98,16 @@ public class LogicManagerTest {
     @Test
     public void getFilteredAccountList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredAccountList().remove(0));
+    }
+
+    @Test
+    public void getFilteredExpenseList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredExpenseList().remove(0));
+    }
+
+    @Test
+    public void getFilteredRevenueList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredRevenueList().remove(0));
     }
 
     /**

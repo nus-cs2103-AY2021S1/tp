@@ -49,6 +49,9 @@ public class CommonCentsParser {
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
