@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalItems.APPLE;
@@ -90,8 +90,8 @@ public class DeleteItemCommandTest {
         DeleteItemCommand dic = new DeleteItemCommand(PEAR.getName());
         dic.execute(modelStub);
 
-        //Assert that the item contained still exists within the model
-        assertTrue(modelStub.getItemList().getItemList().contains(PEAR.delete()));
+        //Assert that the item not contained within the model
+        assertFalse(modelStub.getItemList().getItemList().contains(PEAR));
     }
 
     /**
