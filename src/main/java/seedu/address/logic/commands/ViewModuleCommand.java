@@ -13,7 +13,7 @@ import seedu.address.model.module.ModuleName;
 /**
  * Lists all persons in the address book to the user.
  */
-public class ViewCommand extends Command {
+public class ViewModuleCommand extends Command {
 
     public static final String COMMAND_WORD = "viewmodule";
 
@@ -31,7 +31,7 @@ public class ViewCommand extends Command {
      * Creates an ViewCommand to view the specified {@code Module}
      *
      */
-    public ViewCommand(ModuleName moduleName) {
+    public ViewModuleCommand(ModuleName moduleName) {
         this.moduleName = moduleName;
     }
 
