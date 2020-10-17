@@ -64,7 +64,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
+        //resizeTest();
         //setAccelerators();
 
         helpWindow = new HelpWindow();
@@ -112,8 +112,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        moduleListPanel = new ModuleListPanel(logic.getFilteredPersonList());
-        //temp only until null error is resolved
+        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
         personListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -136,6 +135,11 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+    }
+
+    private void resizeTest() {
+        primaryStage.setHeight(1000);
+        primaryStage.setWidth(1000);
     }
 
     /**

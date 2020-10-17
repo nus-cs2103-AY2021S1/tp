@@ -15,7 +15,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -25,11 +25,11 @@ import seedu.address.model.ModelManager;
 //import seedu.address.model.ReadOnlyAddressBook;
 // import seedu.address.model.UserPrefs;
 import seedu.address.model.ReadOnlyModuleList;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.storage.JsonModuleListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ContactBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -78,8 +78,9 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + EMAIL_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        String addCommand = AddModuleCommand.COMMAND_WORD + NAME_DESC_AMY + EMAIL_DESC_AMY;
+        //Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Contact expectedPerson = new ContactBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         //  expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
@@ -88,7 +89,7 @@ public class LogicManagerTest {
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredModuleList().remove(0));
     }
 
     /**
