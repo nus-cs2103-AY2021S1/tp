@@ -6,24 +6,32 @@ import static chopchop.testutil.Assert.assertThrows;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import chopchop.commons.core.index.Index;
+import chopchop.logic.parser.ItemReference;
 import chopchop.logic.commands.exceptions.CommandException;
+import chopchop.model.EntryBook;
 import chopchop.model.Model;
 import chopchop.model.attributes.NameContainsKeywordsPredicate;
 import chopchop.model.ingredient.Ingredient;
+<<<<<<< HEAD
 import chopchop.model.ingredient.IngredientBook;
 import chopchop.model.recipe.Recipe;
 import chopchop.model.recipe.RecipeBook;
+=======
+>>>>>>> b04c1647ff463527478c9337eb1f7248df163b1e
 
 public class CommandTestUtil {
     public static final String VALID_INGREDIENT_NAME_APRICOT = "Apricot";
     public static final String VALID_INGREDIENT_NAME_BANANA = "Banana";
+    public static final String VALID_INGREDIENT_NAME_CUSTARD = "Custard";
     public static final double VALID_INGREDIENT_QTY_APRICOT = 1000000;
     public static final double VALID_INGREDIENT_QTY_BANANA = 17;
+    public static final double VALID_INGREDIENT_QTY_CUSTARD = 18;
     public static final String VALID_INGREDIENT_EXPIRY_APRICOT = "2020-12-01";
     public static final String VALID_INGREDIENT_EXPIRY_BANANA = "2021-10-13";
+    public static final String VALID_INGREDIENT_EXPIRY_CUSTARD = "2020-04-04";
     public static final String VALID_RECIPE_NAME_APRICOT_SALAD = "Apricot Salad";
     public static final String VALID_RECIPE_NAME_BANANA_SALAD = "Banana Salad";
+    public static final String VALID_RECIPE_NAME_CUSTARD_SALAD = "Custard Salad";
 
     /**
      * Executes the given {@code command}, confirms that <br>
@@ -60,7 +68,7 @@ public class CommandTestUtil {
     public static void assertIngredientCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        IngredientBook expectedIndBook = new IngredientBook(actualModel.getIngredientBook());
+        EntryBook<Ingredient> expectedIndBook = new EntryBook<>(actualModel.getIngredientBook());
         List<Ingredient> expectedFilteredList = new ArrayList<>(actualModel.getFilteredIngredientList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
@@ -74,6 +82,7 @@ public class CommandTestUtil {
      * - the CommandException message matches {@code expectedMessage} <br>
      * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
      */
+<<<<<<< HEAD
     public static void assertRecipeCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
@@ -94,6 +103,13 @@ public class CommandTestUtil {
 
         Ingredient ind = model.getFilteredIngredientList().get(targetIndex.getZeroBased());
         final String[] splitName = ind.getName().fullName.split("\\s+");
+=======
+    public static void showPersonAtIndex(Model model, ItemReference targetIndex) {
+        assertTrue(targetIndex.getZeroIndex() < model.getFilteredIngredientList().size());
+
+        Ingredient person = model.getFilteredIngredientList().get(targetIndex.getZeroIndex());
+        final String[] splitName = person.getName().split("\\s+");
+>>>>>>> b04c1647ff463527478c9337eb1f7248df163b1e
         model.updateFilteredIngredientList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredIngredientList().size());

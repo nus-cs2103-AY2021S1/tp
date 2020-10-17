@@ -1,9 +1,9 @@
 package chopchop.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static chopchop.util.Strings.ARG_INGREDIENT;
 import static chopchop.util.Strings.ARG_QUANTITY;
 import static chopchop.util.Strings.ARG_STEP;
+import static java.util.Objects.requireNonNull;
 
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.model.Model;
@@ -12,7 +12,7 @@ import chopchop.model.recipe.Recipe;
 /**
  * Adds a person to the address book.
  */
-public class AddRecipeCommand extends AddCommand {
+public class AddRecipeCommand extends Command {
 
     public static final String COMMAND_WORD = "add recipe";
 
@@ -31,13 +31,14 @@ public class AddRecipeCommand extends AddCommand {
     public static final String MESSAGE_SUCCESS = "New recipe added: %1$s";
     public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the recipe book";
 
+    private final Recipe recipe;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
     public AddRecipeCommand(Recipe recipe) {
-        super(recipe);
         requireNonNull(recipe);
+        this.recipe = recipe;
     }
 
 
@@ -45,25 +46,25 @@ public class AddRecipeCommand extends AddCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasRecipe((Recipe) toAdd)) {
+        if (model.hasRecipe(this.recipe)) {
             throw new CommandException(MESSAGE_DUPLICATE_RECIPE);
         }
 
-        model.addRecipe((Recipe) toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        model.addRecipe(this.recipe);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, this.recipe));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddRecipeCommand // instanceof handles nulls
-                && toAdd.equals(((AddRecipeCommand) other).toAdd));
+                && this.recipe.equals(((AddRecipeCommand) other).recipe));
     }
 
 
     @Override
     public String toString() {
-        return String.format("AddRecipeCommand: %s", this.toAdd);
+        return String.format("AddRecipeCommand: %s", this.recipe);
     }
 }
 

@@ -1,11 +1,9 @@
 package chopchop.model.ingredient;
 
 import chopchop.testutil.IngredientBuilder;
-import chopchop.model.attributes.units.Count;
 
 import static chopchop.testutil.TypicalIngredients.APRICOT;
 import static chopchop.testutil.TypicalIngredients.BANANA;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,15 +31,11 @@ public class IngredientTest {
         assertFalse(APRICOT.equals(BANANA));
 
         // different name -> returns false
-        Ingredient editedApricot = new IngredientBuilder(APRICOT).withName(VALID_NAME_BOB).build();
+        Ingredient editedApricot = new IngredientBuilder(APRICOT).withName("DD").build();
         assertFalse(APRICOT.equals(editedApricot));
 
         // different date -> returns false. Different ingredients can be of the same name but different expiry
         editedApricot = new IngredientBuilder(APRICOT).withDate("2020-12-02").build();
         assertFalse(APRICOT.equals(editedApricot));
-
-        // different qty -> returns true
-        editedApricot = new IngredientBuilder(APRICOT).withQuantity(Count.of(5)).build();
-        assertTrue(APRICOT.equals(editedApricot));
     }
 }

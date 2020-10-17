@@ -22,3 +22,5 @@ src/test/data/sandbox/
 docs/_site/
 
 *.code-workspace
+all.sh
+test.sh

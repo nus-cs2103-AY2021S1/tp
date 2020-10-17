@@ -26,7 +26,7 @@ public class UiManager implements Ui {
     private MainWindow mainWindow;
 
     /**
-     * Constructs {@code UiManager}
+     * Creates a {@code UiManager} with the given {@code Logic}.
      */
     public UiManager(Logic logic) {
         super();
