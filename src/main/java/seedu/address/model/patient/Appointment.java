@@ -17,7 +17,7 @@ public class Appointment {
      */
     public Appointment(String appointment) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HH:mm");
-        value = LocalDateTime.parse(appointment, formatter) ;
+        value = LocalDateTime.parse(appointment, formatter);
     }
 
     /**
