@@ -146,7 +146,9 @@ also in the `CATALOGUE` scope. However, it is not necessarily in `TASK` scope be
 and it is definitely not in `PERSON` scope because `PERSON` is parallel to `PROJECT`.
 
 The `status` of `MainCatalogue` is open to be accessed in other `Model` components and `Logic` components by a public getter.
-
+The `MainCatalogue` has a field `project` which is an `Optional` object of `Project`. 
+This is a pointer to the project that is expected to be the focus for the application if it is in the `PROJECT` or lower status.
+Similarly, there is a pointer in each `Project` to keep the task of focus if the application is in `TASK` status.
 The switch of `status` is implemented by the following methods:
 
 * `MainCatalogue#enter(Project project)` — Switches to `PROJECT` status and updates the project on view to the given project.
