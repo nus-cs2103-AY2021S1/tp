@@ -16,13 +16,13 @@ import seedu.address.testutil.ContactBuilder;
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
-public class AddCommandIntegrationTest {
+public class AddModuleCommandIntegrationTest {
 
     private Model model;
 
     @BeforeEach
     public void setUp() {
-        // model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    //    model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     }
 
     @Test

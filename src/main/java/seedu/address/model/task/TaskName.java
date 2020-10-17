@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; is valid as declared in {@link #isValidTaskName(String)}
  */
 public class TaskName {
-    public static final String MESSAGE_CONSTRAINTS = "Task name should be no longer than 30 words.";
+    public static final String MESSAGE_CONSTRAINTS = "Task name should not be empty or longer than 30 words.";
     public static final int MAXIMUM_LENGTH = 30;
 
     private final String value;
