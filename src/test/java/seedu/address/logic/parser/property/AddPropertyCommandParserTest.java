@@ -34,6 +34,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.property.AddPropertyCommand;
 import seedu.address.model.id.Id;
+import seedu.address.model.id.PropertyId;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.price.Price;
 import seedu.address.model.property.IsRental;
 import seedu.address.model.property.Property;
@@ -248,7 +250,7 @@ public class AddPropertyCommandParserTest {
                         + PROPERTY_ASKING_PRICE_DESC_BEDOK
                         + PROPERTY_IS_RENTAL_DESC_BEDOK
                         + INVALID_PROPERTY_SELLER_ID,
-                Id.MESSAGE_CONSTRAINTS);
+                SellerId.MESSAGE_CONSTRAINTS);
 
 
         // two invalid values, only first invalid value reported

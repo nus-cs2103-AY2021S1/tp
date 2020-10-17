@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.id.Id;
+import seedu.address.model.id.PropertyId;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.price.Price;
 import seedu.address.model.property.Address;
 import seedu.address.model.property.IsRental;
@@ -43,36 +45,6 @@ public class PropertyParserUtil {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(trimmedAddress);
-    }
-
-    /**
-     * Parses a {@code String propertyId} into an {@code Id}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code propertyId} is invalid.
-     */
-    public static Id parsePropertyId(String propertyId) throws ParseException {
-        requireNonNull(propertyId);
-        String trimmedPropertyId = propertyId.trim();
-        if (!Id.isValidId(propertyId)) {
-            throw new ParseException(Id.MESSAGE_CONSTRAINTS);
-        }
-        return new Id(trimmedPropertyId);
-    }
-
-    /**
-     * Parses a {@code String sellerId} into an {@code Id}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code sellerId} is invalid.
-     */
-    public static Id parseSellerId(String sellerId) throws ParseException {
-        requireNonNull(sellerId);
-        String trimmedSellerId = sellerId.trim();
-        if (!Id.isValidId(sellerId)) {
-            throw new ParseException(Id.MESSAGE_CONSTRAINTS);
-        }
-        return new Id(trimmedSellerId);
     }
 
     /**

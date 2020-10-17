@@ -2,6 +2,7 @@ package seedu.address.model.person.bidder;
 
 import java.util.Set;
 
+import seedu.address.model.id.BidderId;
 import seedu.address.model.id.Id;
 import seedu.address.model.person.ClientPerson;
 import seedu.address.model.person.Name;
@@ -14,20 +15,23 @@ import seedu.address.model.tag.Tag;
  */
 public class Bidder extends ClientPerson {
 
-    public static final Id DEFAULT_BIDDER_ID = new Id("B", 0);
+    public static final BidderId DEFAULT_BIDDER_ID = new BidderId(0);
+    public final BidderId bidderId;
 
     public Bidder(Name name, Phone phone, Set<Tag> tags) {
         super(name, phone, tags, DEFAULT_BIDDER_ID);
+        this.bidderId = DEFAULT_BIDDER_ID;
     }
     /**
      * Constructs the bidder with the name, phone, tags, and id.
      * @param name name of the bidder.
      * @param phone phone number.
      * @param tags tags.
-     * @param id identifier.
+     * @param bidderId identifier.
      */
-    public Bidder(Name name, Phone phone, Set<Tag> tags, Id id) {
-        super(name, phone, tags, id);
+    public Bidder(Name name, Phone phone, Set<Tag> tags, BidderId bidderId) {
+        super(name, phone, tags, bidderId);
+        this.bidderId = bidderId;
     }
 
     public Bidder setDefaultBidderId() {
@@ -36,7 +40,12 @@ public class Bidder extends ClientPerson {
 
     public Bidder setBidderTag() {
         tags.add(new Tag("bidder"));
-        return new Bidder(name, phone, tags, clientId);
+        return new Bidder(name, phone, tags, bidderId);
+    }
+
+    @Override
+    public BidderId getId() {
+        return bidderId;
     }
 
     /**

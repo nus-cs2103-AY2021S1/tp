@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.id.Id;
+import seedu.address.model.id.PropertyId;
 import seedu.address.model.property.exceptions.DuplicatePropertyException;
 import seedu.address.model.property.exceptions.PropertyNotFoundException;
 
@@ -183,9 +184,9 @@ public class UniquePropertyList implements Iterable<Property> {
         return true;
     }
 
-    private Id getLastId() {
+    private PropertyId getLastId() {
         if (internalList.size() == 0) {
-            return new Id(PROPERTY_ID_PREFIX, 0);
+            return new PropertyId(0);
         }
         return internalList.get(internalList.size() - 1).getPropertyId();
     }

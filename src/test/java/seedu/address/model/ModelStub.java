@@ -8,7 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
 import seedu.address.model.calendar.CalendarMeeting;
-import seedu.address.model.id.Id;
+import seedu.address.model.id.PropertyId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.bidder.Bidder;
 import seedu.address.model.person.seller.Seller;
@@ -183,7 +183,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void deletePropertyByPropertyId(Id id) {
+    public void deletePropertyByPropertyId(PropertyId propertyId) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -193,12 +193,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public Property getPropertyById(Id id) {
+    public Property getPropertyById(PropertyId propertyId) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public boolean containsPropertyId(Id id) {
+    public boolean containsPropertyId(PropertyId propertyId) {
         throw new AssertionError("This method should not be called.");
     }
 

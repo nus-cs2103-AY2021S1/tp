@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.id.Id;
+import seedu.address.model.id.PropertyId;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.UniquePropertyList;
 
@@ -98,31 +98,31 @@ public class PropertyBook implements ReadOnlyPropertyBook {
      * Removes property with {@code id} from this {@code PropertyBook}. A
      * property with this {@code id} must exist in the property book.
      *
-     * @param id The propertyId of the property to be removed.
+     * @param propertyId The propertyId of the property to be removed.
      */
-    public void removePropertyByPropertyId(Id id) {
-        properties.removeByPropertyId(id);
+    public void removePropertyByPropertyId(PropertyId propertyId) {
+        properties.removeByPropertyId(propertyId);
     }
 
     /**
      * Gets property with {@code id} from this {@code PropertyBook}. A
      * property with this {@code id} must exist in the property book.
      *
-     * @param id The propertyId.
+     * @param propertyId The propertyId.
      * @return The property with the {@code id}.
      */
-    public Property getPropertyById(Id id) {
-        return properties.getPropertyById(id);
+    public Property getPropertyById(PropertyId propertyId) {
+        return properties.getPropertyById(propertyId);
     }
 
     /**
      * Checks if this {@code PropertyBook} contains a property with the given {@code id}.
      *
-     * @param id The given id.
+     * @param propertyId The given id.
      * @return True if a property with the given id exists in the list.
      */
-    public boolean containsPropertyId(Id id) {
-        return properties.containsPropertyId(id);
+    public boolean containsPropertyId(PropertyId propertyId) {
+        return properties.containsPropertyId(propertyId);
     }
 
     //// util methods

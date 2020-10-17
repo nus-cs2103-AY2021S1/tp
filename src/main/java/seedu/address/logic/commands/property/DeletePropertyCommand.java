@@ -11,7 +11,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.EntityType;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.id.Id;
+import seedu.address.model.id.PropertyId;
 import seedu.address.model.property.Property;
 
 /**
@@ -29,14 +29,14 @@ public class DeletePropertyCommand extends Command {
     public static final String MESSAGE_DELETE_PROPERTY_SUCCESS = "Deleted Property: %1$s";
 
     private final Index targetIndex;
-    private final Id targetId;
+    private final PropertyId targetId;
 
     /**
      * Creates a DeletePropertyCommand to delete the specified {@code targetIndex} or {@code targetId}.
      */
-    public DeletePropertyCommand(Index targetIndex, Id targetId) {
+    public DeletePropertyCommand(Index targetIndex, PropertyId propertyId) {
         this.targetIndex = targetIndex;
-        this.targetId = targetId;
+        this.targetId = propertyId;
     }
 
     @Override

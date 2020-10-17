@@ -3,7 +3,7 @@ package seedu.address.testutil.seller;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.id.Id;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.seller.Seller;
@@ -17,14 +17,14 @@ public class SellerBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final Id DEFAULT_SELLER_ID = new Id("S", 0);
+    public static final SellerId DEFAULT_SELLER_ID = new SellerId(0);
 
 
 
     private Name name;
     private Phone phone;
     private Set<Tag> tags;
-    private Id id;
+    private SellerId id;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -71,10 +71,10 @@ public class SellerBuilder {
     }
 
     /**
-     * Sets the {@code Id} of the {@code Seller} that we are building.
+     * Sets the {@code SellerId} of the {@code Seller} that we are building.
      */
-    public SellerBuilder withId(String prefix, int number) {
-        this.id = new Id(prefix, number);
+    public SellerBuilder withId(int number) {
+        this.id = new SellerId(number);
         return this;
     }
 
