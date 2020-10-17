@@ -48,7 +48,12 @@
 
             <TabPane prefWidth="340" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
               <tabs>
-                <Tab text="Contacts">
+                <Tab text="Overview">
+                  <content>
+                    <StackPane fx:id="calendarDisplayPlaceholder" prefHeight="150.0" prefWidth="200.0" />
+                  </content>
+                </Tab>
+                <Tab text="Patients">
                   <content>
                        <VBox fx:id="patientList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                          <padding>
@@ -57,11 +62,6 @@
                          <StackPane fx:id="patientListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                        </VBox>
                   </content>
-                </Tab>
-                <Tab text="Calendar">
-                   <content>
-                     <StackPane fx:id="calendarDisplayPlaceholder" prefHeight="150.0" prefWidth="200.0" />
-                   </content>
                 </Tab>
               </tabs>
             </TabPane>
