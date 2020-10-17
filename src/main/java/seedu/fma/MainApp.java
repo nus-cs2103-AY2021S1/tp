@@ -90,7 +90,8 @@ public class MainApp extends Application {
             initialData = new LogBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        ModelManager help = new ModelManager(initialData, userPrefs);
+        return help;
     }
 
     private void initLogging(Config config) {

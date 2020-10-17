@@ -60,7 +60,7 @@ class JsonAdaptedLog {
         }
         Exercise modelExercise;
         try {
-            modelExercise = Exercise.find(new Name(exercise));
+            modelExercise = Exercise.getExercise(new Name(exercise));
         } catch (ExerciseNotFoundException e) {
             throw new IllegalValueException(Exercise.MESSAGE_CONSTRAINTS);
         }
