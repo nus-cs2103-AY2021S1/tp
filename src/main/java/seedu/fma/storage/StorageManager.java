@@ -17,8 +17,8 @@ import seedu.fma.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private LogBookStorage logBookStorage;
-    private UserPrefsStorage userPrefsStorage;
+    private final LogBookStorage logBookStorage;
+    private final UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code LogBookStorage} and {@code UserPrefStorage}.

@@ -45,7 +45,7 @@ public class ParserUtil {
     public static Exercise parseExercise(String exerciseName) throws ParseException {
         Name name = parseName(exerciseName);
         try {
-            return Exercise.find(name);
+            return Exercise.getExercise(name);
         } catch (ExerciseNotFoundException e) {
             throw new ParseException(Exercise.MESSAGE_CONSTRAINTS);
         }

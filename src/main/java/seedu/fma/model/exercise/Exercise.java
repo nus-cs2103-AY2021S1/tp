@@ -2,6 +2,7 @@ package seedu.fma.model.exercise;
 
 import static seedu.fma.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.fma.commons.util.IntegerUtil.requirePositiveInteger;
+import static seedu.fma.model.util.SampleDataUtil.getSampleExercises;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 import seedu.fma.model.exercise.exceptions.ExerciseNotFoundException;
+import seedu.fma.model.log.Log;
 import seedu.fma.model.util.Name;
 import seedu.fma.model.util.SampleDataUtil;
 
@@ -20,16 +22,9 @@ public class Exercise {
     public static final String MESSAGE_CONSTRAINTS =
             "Exercise does not exist";
 
-    private static List<Exercise> exerciseList = new ArrayList<>();
-
     // Identity fields
     private final Name name;
     private final int caloriesPerRep;
-
-    // TODO: Exercises currently hardcoded
-    static {
-        exerciseList.addAll(Arrays.asList(SampleDataUtil.getSampleExercises()));
-    }
 
     /**
      * Every field must be present and not null.
@@ -41,11 +36,22 @@ public class Exercise {
         this.caloriesPerRep = caloriesPerRep;
     }
 
+    public Name getName() {
+        return name;
+    }
+
+    public int getCaloriesPerRep() {
+        return caloriesPerRep;
+    }
+
+    // TODO GET RID OF THIS METHOD and use LogBook.getExercise() instead
     /**
-     * Returns an existing exercise with the same Name, or null if none are found.
+     * Returns an existing exercise with the same Name.
+     *
+     * @throws ExerciseNotFoundException if no such Exercise is found.
      */
-    public static Exercise find(Name name) throws ExerciseNotFoundException {
-        for (Exercise e : exerciseList) {
+    public static Exercise getExercise(Name name) throws ExerciseNotFoundException {
+        for (Exercise e : getSampleExercises()) {
             if (e.getName().equals(name)) {
                 return e;
             }
@@ -53,12 +59,17 @@ public class Exercise {
         throw new ExerciseNotFoundException();
     }
 
-    public Name getName() {
-        return name;
-    }
+    /**
+     * Returns true if both Exercises have the same Name. This defines a weaker
+     * notion of equality between two Exercises.
+     */
+    public boolean isSameExercise(Exercise otherExercise) {
+        if (otherExercise == this) {
+            return true;
+        }
 
-    public int getCaloriesPerRep() {
-        return caloriesPerRep;
+        return otherExercise != null
+                && otherExercise.getName().equals(getName());
     }
 
     /**
@@ -93,5 +104,4 @@ public class Exercise {
                 .append(getCaloriesPerRep());
         return builder.toString();
     }
-
 }

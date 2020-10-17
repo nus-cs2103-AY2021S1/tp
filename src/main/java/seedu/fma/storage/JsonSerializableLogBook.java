@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.fma.commons.exceptions.IllegalValueException;
 import seedu.fma.model.LogBook;
 import seedu.fma.model.ReadOnlyLogBook;
+import seedu.fma.model.exercise.Exercise;
 import seedu.fma.model.log.Log;
 
 /**
@@ -20,15 +21,19 @@ import seedu.fma.model.log.Log;
 class JsonSerializableLogBook {
 
     public static final String MESSAGE_DUPLICATE_LOG = "Log list contains duplicate log(s).";
+    private static final String MESSAGE_DUPLICATE_EXERCISE = "Exercise list contains duplicate exercise(s).";
 
     private final List<JsonAdaptedLog> logs = new ArrayList<>();
+    private final List<JsonAdaptedExercise> exercises = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableLogBook} with the given logs.
+     * Constructs a {@code JsonSerializableLogBook} with the given logs and Exercises.
      */
     @JsonCreator
-    public JsonSerializableLogBook(@JsonProperty("logs") List<JsonAdaptedLog> logs) {
+    public JsonSerializableLogBook(@JsonProperty("logs") List<JsonAdaptedLog> logs,
+                                   @JsonProperty("exercises") List<JsonAdaptedExercise> exercises) {
         this.logs.addAll(logs);
+        this.exercises.addAll(exercises);
     }
 
     /**
@@ -38,6 +43,7 @@ class JsonSerializableLogBook {
      */
     public JsonSerializableLogBook(ReadOnlyLogBook source) {
         logs.addAll(source.getLogList().stream().map(JsonAdaptedLog::new).collect(Collectors.toList()));
+        exercises.addAll(source.getExerciseList().stream().map(JsonAdaptedExercise::new).collect(Collectors.toList()));
     }
 
     /**
@@ -53,6 +59,13 @@ class JsonSerializableLogBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_LOG);
             }
             logBook.addLog(log);
+        }
+        for (JsonAdaptedExercise jsonAdaptedExercise : exercises) {
+            Exercise exercise = jsonAdaptedExercise.toModelType();
+            if (logBook.hasExercise(exercise)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EXERCISE);
+            }
+            logBook.addExercise(exercise);
         }
         return logBook;
     }
