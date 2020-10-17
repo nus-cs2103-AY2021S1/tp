@@ -22,6 +22,7 @@ import seedu.address.logic.commands.project.EditTaskCommand;
 import seedu.address.logic.commands.project.FilterCommand;
 import seedu.address.logic.commands.project.LeaveCommand;
 import seedu.address.logic.commands.project.NewTeammateCommand;
+import seedu.address.logic.commands.project.ViewTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exceptions.InvalidScopeException;
 import seedu.address.model.project.Status;
@@ -82,43 +83,46 @@ public class MainCatalogueParser {
             return new StartCommandParser().parse(arguments);
 
         case LeaveCommand.COMMAND_WORD:
-            if (status == Status.PROJECT) {
-                return new LeaveCommand();
-            } else {
-                throw new InvalidScopeException(Status.PROJECT, status);
-            }
+            return new LeaveCommand();
 
         case AssignCommand.COMMAND_WORD:
-            if (status == Status.PROJECT) {
+            if (status != Status.CATALOGUE) {
                 return new AssignCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case FilterCommand.COMMAND_WORD:
-            if (status == Status.PROJECT) {
+            if (status != Status.CATALOGUE) {
                 return new FilterCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case NewTeammateCommand.COMMAND_WORD:
-            if (status == Status.PROJECT) {
+            if (status != Status.CATALOGUE) {
                 return new NewTeammateCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case AddTaskCommand.COMMAND_WORD:
-            if (status == Status.PROJECT) {
+            if (status != Status.CATALOGUE) {
                 return new AddTaskCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case EditTaskCommand.COMMAND_WORD:
-            if (status == Status.PROJECT) {
+            if (status != Status.CATALOGUE) {
                 return new EditTaskCommandParser().parse(arguments);
+            } else {
+                throw new InvalidScopeException(Status.PROJECT, status);
+            }
+
+        case ViewTaskCommand.COMMAND_WORD:
+            if (status != Status.CATALOGUE) {
+                return new ViewTaskCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
