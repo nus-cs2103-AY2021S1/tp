@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditContactCommand;
-import seedu.address.logic.commands.EditContactCommand.EditContactDescriptor;
+import seedu.address.logic.commands.EditContactDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
