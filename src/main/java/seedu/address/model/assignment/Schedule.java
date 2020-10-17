@@ -1,28 +1,26 @@
 package seedu.address.model.assignment;
 
 public class Schedule {
-    private String dummyDeadline = "01-01-2000 0101";
-    private boolean schedule;
-    private Deadline suggestedStartTime;
-    private Deadline suggestedEndTime;
+    private final boolean schedule;
+    private final Deadline suggestedStartTime;
+    private final Deadline suggestedEndTime;
 
     /**
      * Constructor
-     * Returns a false schedule with dummy value
+     * Returns a false schedule
      */
     public Schedule() {
         schedule = false;
-        suggestedStartTime = new Deadline(dummyDeadline);
-        suggestedEndTime = new Deadline(dummyDeadline);
+        suggestedStartTime = null;
+        suggestedEndTime = null;
     }
 
     /**
      * Constructor
-     * @param suggestedStartTime
-     * @param suggestedEndTime
+     * Returns a suggested schedule
      */
     public Schedule(Deadline suggestedStartTime, Deadline suggestedEndTime) {
-        schedule = !suggestedStartTime.value.equals(dummyDeadline);
+        schedule = true;
         this.suggestedStartTime = suggestedStartTime;
         this.suggestedEndTime = suggestedEndTime;
     }

@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DO_BEFORE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPECTED_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPECTED_HOURS;
 
 import java.util.stream.Stream;
 
@@ -12,7 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.Deadline;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new ScheduleCommand object
  */
 public class ScheduleCommandParser implements Parser<ScheduleCommand> {
 
@@ -23,7 +23,7 @@ public class ScheduleCommandParser implements Parser<ScheduleCommand> {
      */
     public ScheduleCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap;
-        argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EXPECTED_TIME, PREFIX_DO_BEFORE);
+        argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EXPECTED_HOURS, PREFIX_DO_BEFORE);
 
         Index index;
 
@@ -32,12 +32,12 @@ public class ScheduleCommandParser implements Parser<ScheduleCommand> {
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScheduleCommand.MESSAGE_USAGE), pe);
         }
-        if (!arePrefixesPresent(argMultimap, PREFIX_EXPECTED_TIME, PREFIX_DO_BEFORE)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_EXPECTED_HOURS, PREFIX_DO_BEFORE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScheduleCommand.MESSAGE_USAGE));
         }
 
         Deadline doBefore = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DO_BEFORE).get());
-        int expectedTime = ParserUtil.parseExpectedTime(argMultimap.getValue(PREFIX_EXPECTED_TIME).get());
+        int expectedTime = ParserUtil.parseExpectedTime(argMultimap.getValue(PREFIX_EXPECTED_HOURS).get());
 
         return new ScheduleCommand(index, expectedTime, doBefore);
     }

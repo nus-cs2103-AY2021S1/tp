@@ -32,8 +32,8 @@ class JsonAdaptedAssignment {
     @JsonCreator
     public JsonAdaptedAssignment(@JsonProperty("name") String name, @JsonProperty("deadline") String deadline,
                                  @JsonProperty("module") String moduleCode,
-                                 @JsonProperty("isRemind") boolean isReminded,
-                                 @JsonProperty("isSchedule") boolean isScheduled,
+                                 @JsonProperty("isReminded") boolean isReminded,
+                                 @JsonProperty("isScheduled") boolean isScheduled,
                                  @JsonProperty("suggestedStartTime") String suggestedStartTime,
                                  @JsonProperty("suggestedEndTime") String suggestedEndTime) {
         this.name = name;
@@ -54,8 +54,13 @@ class JsonAdaptedAssignment {
         moduleCode = source.getModuleCode().moduleCode;
         isReminded = source.getRemind().isReminded();
         isScheduled = source.getSchedule().isScheduled();
-        suggestedStartTime = source.getSchedule().getSuggestedStartTime().value;
-        suggestedEndTime = source.getSchedule().getSuggestedEndTime().value;
+        if (isScheduled) {
+            suggestedStartTime = source.getSchedule().getSuggestedStartTime().value;
+            suggestedEndTime = source.getSchedule().getSuggestedEndTime().value;
+        } else {
+            suggestedStartTime = "";
+            suggestedEndTime = "";
+        }
     }
 
     /**
@@ -92,20 +97,22 @@ class JsonAdaptedAssignment {
 
         final Remind modelRemind = new Remind(isReminded);
 
-        if ((suggestedStartTime == null || suggestedEndTime == null) && isScheduled) {
+        if ((suggestedStartTime.equals("") || suggestedEndTime.equals("")) && isScheduled) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()));
         }
-        if (suggestedStartTime != null && !Deadline.isValidDeadline(suggestedStartTime)) {
+        if (!suggestedStartTime.equals("") && !Deadline.isValidDeadline(suggestedStartTime)) {
             throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
         }
-        if (suggestedEndTime != null && !Deadline.isValidDeadline(suggestedEndTime)) {
+        if (!suggestedEndTime.equals("") && !Deadline.isValidDeadline(suggestedEndTime)) {
             throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
         }
-        final Schedule modelSchedule = new Schedule(new Deadline(suggestedStartTime),
-                new Deadline(suggestedEndTime));
-
-        return new Assignment(modelName, modelDeadline, modelModuleCode, modelRemind, modelSchedule);
+        if (isScheduled) {
+            final Schedule modelSchedule = new Schedule(new Deadline(suggestedStartTime),
+                    new Deadline(suggestedEndTime));
+            return new Assignment(modelName, modelDeadline, modelModuleCode, modelRemind, modelSchedule);
+        } else {
+            return new Assignment(modelName, modelDeadline, modelModuleCode, modelRemind, new Schedule());
+        }
     }
-
 }

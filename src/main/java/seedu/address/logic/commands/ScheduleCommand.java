@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DO_BEFORE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPECTED_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPECTED_HOURS;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -25,7 +25,7 @@ import seedu.address.model.assignment.Task;
 import seedu.address.model.lesson.Lesson;
 
 /**
- * Sets reminders for an assignment identified using it's displayed index from the address book.
+ * Schedule an assignment identified using it's displayed index from the address book.
  */
 public class ScheduleCommand extends Command {
 
@@ -39,26 +39,26 @@ public class ScheduleCommand extends Command {
             + ": Schedule the assignment identified by the index number used in the displayed assignment list. "
             + "The suggested time will be within working hours from " + START_TIME + " to " + END_TIME + "\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_EXPECTED_TIME + "EXPECTED HOURS (must be between " + MIN_HOURS + " and " + MAX_HOURS + " hours) "
+            + PREFIX_EXPECTED_HOURS + "EXPECTED HOURS (must be between " + MIN_HOURS + " and " + MAX_HOURS + " hours) "
             + PREFIX_DO_BEFORE + "BEFORE "
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_EXPECTED_TIME + "2 " + PREFIX_DO_BEFORE + "23-12-2020 2359";
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_EXPECTED_HOURS + "2 " + PREFIX_DO_BEFORE + "23-12-2020 2359";
 
     private static final LocalTime WORKING_START_TIME = LocalTime.parse(START_TIME, DateTimeFormatter.ISO_TIME);
     private static final LocalTime WORKING_END_TIME = LocalTime.parse(END_TIME, DateTimeFormatter.ISO_TIME);
 
     private final Index targetIndex;
     private final Deadline doBefore;
-    private final int expectedTime;
+    private final int expectedHours;
 
     /**
-     * Constructs a RemindCommand to set reminders to the specified assignment.
+     * Constructs a ScheduleCommand to set reminders to the specified assignment.
      * @param targetIndex index of the assignment in the filtered assignment list to edit
      */
-    public ScheduleCommand(Index targetIndex, int expectedTime, Deadline doBefore) {
+    public ScheduleCommand(Index targetIndex, int expectedHours, Deadline doBefore) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
         this.doBefore = doBefore;
-        this.expectedTime = expectedTime;
+        this.expectedHours = expectedHours;
     }
 
     @Override
@@ -106,26 +106,26 @@ public class ScheduleCommand extends Command {
     private Schedule getRandom(List<LocalDateTime> list) {
         int rnd = new Random().nextInt(list.size());
         Deadline suggestedStartTime = new Deadline(list.get(rnd));
-        Deadline suggestedEndTime = new Deadline(list.get(rnd).plusHours(expectedTime));
+        Deadline suggestedEndTime = new Deadline(list.get(rnd).plusHours(expectedHours));
         return new Schedule(suggestedStartTime, suggestedEndTime);
     }
 
     private List<LocalDateTime> generateAllPossibleTime(LocalDateTime start, LocalDateTime end, List<Task> taskList) {
         List<LocalDateTime> possibleTime = new ArrayList<>();
         for (LocalDateTime i = start; i.isBefore(end); i = i.plusHours(1)) {
-            boolean can = true;
+            boolean canSchedule = true;
             // working hours
-            if (!isWorkingHour(i, i.plusHours(expectedTime))) {
-                can = false;
+            if (!isWorkingHour(i, i.plusHours(expectedHours))) {
+                canSchedule = false;
             }
             // no overlap
             for (Task j: taskList) {
-                if (overlap(i, i.plusHours(expectedTime), j)) {
-                    can = false;
+                if (haveOverlap(i, i.plusHours(expectedHours), j)) {
+                    canSchedule = false;
                 }
             }
 
-            if (can) {
+            if (canSchedule) {
                 possibleTime.add(i);
             }
         }
@@ -136,7 +136,7 @@ public class ScheduleCommand extends Command {
         return !start.toLocalTime().isBefore(WORKING_START_TIME) && !end.toLocalTime().isAfter(WORKING_END_TIME);
     }
 
-    private boolean overlap(LocalDateTime start, LocalDateTime end, Task task) {
+    private boolean haveOverlap(LocalDateTime start, LocalDateTime end, Task task) {
         if (task instanceof Assignment) {
             if (!((Assignment) task).getSchedule().isScheduled()) {
                 return false;
