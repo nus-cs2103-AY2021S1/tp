@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_HW;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_LAB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -48,7 +49,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    public void execute_nameAndDeadlineFieldsSpecifiedUnfilteredList_success() {
         Index indexLastAssignment = Index.fromOneBased(model.getFilteredAssignmentList().size());
         Assignment lastAssignment = model.getFilteredAssignmentList().get(indexLastAssignment.getZeroBased());
 
@@ -58,6 +59,27 @@ public class EditCommandTest {
 
         EditCommand.EditAssignmentDescriptor descriptor = new EditAssignmentDescriptorBuilder().withName(VALID_NAME_LAB)
                 .withDeadline(VALID_DEADLINE_LAB).build();
+        EditCommand editCommand = new EditCommand(indexLastAssignment, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ASSIGNMENT_SUCCESS, editedAssignment);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setAssignment(lastAssignment, editedAssignment);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_nameAndModuleCodeFieldsSpecifiedUnfilteredList_success() {
+        Index indexLastAssignment = Index.fromOneBased(model.getFilteredAssignmentList().size());
+        Assignment lastAssignment = model.getFilteredAssignmentList().get(indexLastAssignment.getZeroBased());
+
+        AssignmentBuilder assignmentInList = new AssignmentBuilder(lastAssignment);
+        Assignment editedAssignment = assignmentInList.withName(VALID_NAME_LAB).withModuleCode(VALID_MODULE_CODE_LAB)
+                .build();
+
+        EditCommand.EditAssignmentDescriptor descriptor = new EditAssignmentDescriptorBuilder().withName(VALID_NAME_LAB)
+                .withModuleCode(VALID_MODULE_CODE_LAB).build();
         EditCommand editCommand = new EditCommand(indexLastAssignment, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ASSIGNMENT_SUCCESS, editedAssignment);
@@ -111,7 +133,7 @@ public class EditCommandTest {
     public void execute_duplicateAssignmentFilteredList_failure() {
         showAssignmentAtIndex(model, INDEX_FIRST_ASSIGNMENT);
 
-        // edit assignment in filtered list into a duplicate in address book
+        // edit assignment in filtered list into a duplicate in ProductiveNUS
         Assignment assignmentInList = model.getAddressBook().getAssignmentList()
                 .get(INDEX_SECOND_ASSIGNMENT.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ASSIGNMENT,
