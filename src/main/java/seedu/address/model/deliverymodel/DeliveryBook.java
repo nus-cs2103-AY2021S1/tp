@@ -8,7 +8,6 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.delivery.Delivery;
 import seedu.address.model.delivery.UniqueDeliveryList;
-import seedu.address.model.inventorymodel.InventoryBook;
 
 public class DeliveryBook implements ReadOnlyDeliveryBook {
     private static List<DeliveryBook> deliveryBookStateList = new ArrayList<>();

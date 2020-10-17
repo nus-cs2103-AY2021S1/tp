@@ -3,13 +3,13 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INCORRECT_MODEL;
 
+import java.util.List;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.inventorymodel.InventoryModel;
-
-import java.util.List;
 
 /**
  * Represents command with hidden internal logic and the ability to be executed.

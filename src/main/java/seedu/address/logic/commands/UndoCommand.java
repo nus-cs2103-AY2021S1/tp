@@ -1,13 +1,10 @@
 package seedu.address.logic.commands;
 
+import java.util.List;
+
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.itemcommand.ItemCommand;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.inventorymodel.InventoryModel;
-import seedu.address.model.inventorymodel.InventoryModelManager;
-
-import java.util.List;
 
 public class UndoCommand extends Command {
 

@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
+import java.util.List;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Model;
-
-import java.util.List;
 
 public class RedoCommand extends Command {
     public static final String COMMAND_WORD = "redo";

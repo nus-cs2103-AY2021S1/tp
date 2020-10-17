@@ -175,8 +175,8 @@ public class CommandTestUtil {
         InventoryBook expectedInventoryBook = new InventoryBook(actualInventoryModel.getInventoryBook());
         List<Item> expectedFilteredList = new ArrayList<>(actualInventoryModel.getFilteredItemList());
 
-        assertThrows(CommandException.class, expectedMessage,
-                () -> command.execute(List.of(actualInventoryModel, new DeliveryModelManager())));
+        assertThrows(CommandException.class, expectedMessage, () ->
+            command.execute(List.of(actualInventoryModel, new DeliveryModelManager())));
         assertEquals(expectedInventoryBook, actualInventoryModel.getInventoryBook());
         assertEquals(expectedFilteredList, actualInventoryModel.getFilteredItemList());
     }
@@ -194,8 +194,8 @@ public class CommandTestUtil {
         DeliveryBook expectedDeliveryBook = new DeliveryBook(actualDeliveryModel.getDeliveryBook());
         List<Delivery> expectedFilteredList = new ArrayList<>(actualDeliveryModel.getFilteredDeliveryList());
 
-        assertThrows(CommandException.class, expectedMessage,
-                () -> command.execute(List.of(new InventoryModelManager(), actualDeliveryModel)));
+        assertThrows(CommandException.class, expectedMessage, () ->
+            command.execute(List.of(new InventoryModelManager(), actualDeliveryModel)));
         assertEquals(expectedDeliveryBook, actualDeliveryModel.getDeliveryBook());
         assertEquals(expectedFilteredList, actualDeliveryModel.getFilteredDeliveryList());
     }

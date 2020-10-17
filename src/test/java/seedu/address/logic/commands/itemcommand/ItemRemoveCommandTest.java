@@ -8,6 +8,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -19,9 +21,6 @@ import seedu.address.model.inventorymodel.InventoryModelManager;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Quantity;
 import seedu.address.testutil.ItemBuilder;
-
-import java.util.List;
-
 
 public class ItemRemoveCommandTest {
 
