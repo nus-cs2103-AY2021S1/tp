@@ -11,6 +11,20 @@ import javafx.collections.ObservableList;
 import seedu.address.model.exercise.exceptions.DuplicateExerciseException;
 import seedu.address.model.exercise.exceptions.ExerciseNotFoundException;
 
+/**
+ * A list of exercises that enforces uniqueness between its elements and does not allow nulls.
+ * An exercise is considered unique by comparing using
+ * {@code Exercise#isSameExercise(Exercise)}. As such, adding and updating of
+ * exercises uses Exercise#isSameExercise(Exercise) for equality so
+ * as to ensure that the exercise being added or updated is
+ * unique in terms of identity in the UniqueExerciseList.
+ * However, the removal of an exercise uses Exercise#equals(Object) so
+ * as to ensure that the exercise with exactly the same fields will be removed.
+ * <p>
+ * Supports a minimal set of list operations.
+ *
+ * @see Exercise#isSameExercise(Exercise)
+ */
 public class UniqueExerciseList implements Iterable<Exercise> {
 
     private final ObservableList<Exercise> internalList = FXCollections.observableArrayList();
@@ -22,7 +36,7 @@ public class UniqueExerciseList implements Iterable<Exercise> {
      */
     public boolean contains(Exercise toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return internalList.stream().anyMatch(toCheck::isSameExercise);
     }
 
 

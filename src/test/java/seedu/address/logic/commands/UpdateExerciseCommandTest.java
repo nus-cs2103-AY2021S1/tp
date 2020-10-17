@@ -108,31 +108,30 @@ class UpdateExerciseCommandTest {
         assertCommandSuccess(updateExerciseCommand, model, expectedMessage, expectedModel);
     }
 
-    //     NOTE: to agree on command failure -> class differences in asserts
-    //    @Test
-    //    public void execute_duplicateExerciseUnfilteredList_failure() {
-    //        Exercise firstExercise = model.getFilteredExerciseList().get(INDEX_FIRST_EXERCISE.getZeroBased());
-    //        UpdateExerciseCommand.EditExerciseDescriptor descriptor =
-    //                                                  new EditExerciseDescriptorBuilder(firstExercise).build();
-    //        UpdateExerciseCommand updateExerciseCommand =
-    //          new UpdateExerciseCommand(INDEX_SECOND_EXERCISE, descriptor);
-    //
-    //        assertCommandFailure(updateExerciseCommand, model, UpdateExerciseCommand.MESSAGE_DUPLICATE_EXERCISE);
-    //    }
+    @Test
+    public void execute_duplicateExerciseUnfilteredList_failure() {
+        Exercise firstExercise = model.getFilteredExerciseList().get(INDEX_FIRST_EXERCISE.getZeroBased());
+        UpdateExerciseCommand.EditExerciseDescriptor descriptor =
+                                                      new EditExerciseDescriptorBuilder(firstExercise).build();
+        UpdateExerciseCommand updateExerciseCommand =
+              new UpdateExerciseCommand(INDEX_SECOND_EXERCISE, descriptor);
 
-    //    @Test
-    //    public void execute_duplicatePersonFilteredList_failure() {
-    //        showExerciseAtIndex(model, INDEX_FIRST_EXERCISE);
-    //
-    //        // edit exercise in filtered list into a duplicate in exercise book
-    //        Exercise exerciseInList = model.getExerciseBook().
-    //                                        getExerciseList().get(INDEX_SECOND_EXERCISE.getZeroBased());
-    //        UpdateExerciseCommand updateExerciseCommand = new UpdateExerciseCommand(INDEX_FIRST_EXERCISE,
-    //                                                          new EditExerciseDescriptorBuilder(exerciseInList)
-    //                                                          .build());
-    //
-    //        assertCommandFailure(updateExerciseCommand, model, UpdateExerciseCommand.MESSAGE_DUPLICATE_EXERCISE);
-    //    }
+        assertCommandFailure(updateExerciseCommand, model, UpdateExerciseCommand.MESSAGE_DUPLICATE_EXERCISE);
+    }
+
+    @Test
+    public void execute_duplicatePersonFilteredList_failure() {
+        showExerciseAtIndex(model, INDEX_FIRST_EXERCISE);
+
+        // edit exercise in filtered list into a duplicate in exercise book
+        Exercise exerciseInList = model.getExerciseBook()
+                                        .getExerciseList().get(INDEX_SECOND_EXERCISE.getZeroBased());
+        UpdateExerciseCommand updateExerciseCommand = new UpdateExerciseCommand(INDEX_FIRST_EXERCISE,
+                                                          new EditExerciseDescriptorBuilder(exerciseInList)
+                                                          .build());
+
+        assertCommandFailure(updateExerciseCommand, model, UpdateExerciseCommand.MESSAGE_DUPLICATE_EXERCISE);
+    }
 
     /**
      * Edit filtered list where index is larger than size of filtered list,

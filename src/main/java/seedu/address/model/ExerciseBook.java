@@ -97,12 +97,6 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
 
     @Override
     public String toString() {
-        exercises.asUnmodifiableObservableList().stream().forEach(x -> {
-            System.out.println("Name: " + x.getName().fullName);
-            System.out.println("Description: " + x.getDescription().value);
-            System.out.println("Calories: " + x.getCalories().value);
-            System.out.println("Date: " + x.getDate().value);
-        });
         return exercises.asUnmodifiableObservableList().size() + " exercises";
         // TODO: refine later
     }

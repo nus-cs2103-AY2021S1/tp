@@ -109,7 +109,6 @@ public class CommandTestUtil {
                 .withDescription(VALID_DESCRIPTION_SIT_UP).withDate(VALID_DATE_SIT_UP)
                 .withCalories(VALID_CALORIES_SIT_UP).build();
 
-
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
@@ -221,16 +220,14 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the exercise at the given {@code targetIndex} in the
-     * {@code model}'s exercise book.
+     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * {@code model}'s address book.
      */
     public static void showExerciseAtIndex(ExerciseModel model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredExerciseList().size());
-
         Exercise exercise = model.getFilteredExerciseList().get(targetIndex.getZeroBased());
         final String[] splitName = exercise.getName().fullName.split("\\s+");
         model.updateFilteredExerciseList(new NameContainsKeywordsPredicateForExercise(Arrays.asList(splitName[0])));
-
         assertEquals(1, model.getFilteredExerciseList().size());
     }
 }
