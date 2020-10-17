@@ -149,11 +149,21 @@ The `status` of `MainCatalogue` is open to be accessed in other `Model` componen
 The `MainCatalogue` has a field `project` which is an `Optional` object of `Project`. 
 This is a pointer to the project that is expected to be the focus for the application if it is in the `PROJECT` or lower status.
 Similarly, there is a pointer in each `Project` to keep the task of focus if the application is in `TASK` status.
-The switch of `status` is implemented by the following methods:
+The switch of `status` is implemented by the following operations:
 
 * `MainCatalogue#enter(Project project)` — Switches to `PROJECT` status and updates the project on view to the given project.
 * `MainCatalogue#enterTask(Task task)` — Switches to `TASK` status and updates the task on view to the given task.
 * `MainCatalogue#quit()` — Switches to the parent status, and clear the lower-level pointer.
+
+These operations are exposed in `Model` and `Logic` interfaces with the same name.
+
+Users are allowed to switch the scoping status while using the app using user input commands. Relevant commands include:
+
+* `StartCommand` — Enters a project with its index in the current filtered list of projects and switches to `PROJECT` status. This corresponds to `enter` method.
+* `ViewTaskCommand` — Requests to view the detailed information of a task. This corresponds to `enterTask` method.
+* `LeaveCommand` — Leaves the current object of focus, i.e. Switches to the parent status and clear the lower-level pointer. This corresponds to `quit` method.
+
+
 
 ### \[Proposed\] Undo/redo feature
 
