@@ -125,6 +125,84 @@ public class StringUtilTest {
         assertTrue(StringUtil.containsWordIgnoreCase("AAA bBb ccc  bbb", "bbB"));
     }
 
+    //---------------- Tests for containsWordAsSubsetIgnoreCase --------------------------------------
+
+    /*
+     * Invalid equivalence partitions for word: null, empty, multiple words
+     * Invalid equivalence partitions for sentence: null
+     * The four test cases below test one invalid input at a time.
+     */
+
+    @Test
+    public void containsWordAsSubsetIgnoreCase_nullWord_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () ->
+                StringUtil.containsWordAsSubsetIgnoreCase("typical sentence",null));
+    }
+
+    @Test
+    public void containsWordAsSubsetIgnoreCase_emptyWord_throwsIllegalArgumentException() {
+        Assert.assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", ()
+                -> StringUtil.containsWordAsSubsetIgnoreCase("typical sentence", "  "));
+    }
+
+    @Test
+    public void containsWordAsSubsetIgnoreCase_multipleWords_throwsIllegalArgumentException() {
+        Assert.assertThrows(IllegalArgumentException.class, "Word parameter should be a single word", ()
+                -> StringUtil.containsWordAsSubsetIgnoreCase("typical sentence", "aaa BBB"));
+    }
+
+    @Test
+    public void containsWordAsSubsetIgnoreCase_nullSentence_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, ()
+                -> StringUtil.containsWordAsSubsetIgnoreCase(null, "abc"));
+    }
+
+    /*
+     * Valid equivalence partitions for word:
+     *   - any word
+     *   - word containing symbols/numbers
+     *   - word with leading/trailing spaces
+     *
+     * Valid equivalence partitions for sentence:
+     *   - empty string
+     *   - one word
+     *   - multiple words
+     *   - sentence with extra spaces
+     *
+     * Possible scenarios returning true:
+     *   - is subset of first word in sentence
+     *   - is subset of last word in sentence
+     *   - is subset of middle word in sentence
+     *   - is subset of multiple words
+     *
+     * Possible scenarios returning false:
+     *   - sentence word matches part of the query word
+     *
+     * The test method below tries to verify all above with a reasonably low number of test cases.
+     */
+
+    @Test
+    public void containsWordAsSubsetIgnoreCase_validInputs_correctResult() {
+
+        // Empty sentence
+        assertFalse(StringUtil.containsWordAsSubsetIgnoreCase("", "abc")); // Boundary case
+        assertFalse(StringUtil.containsWordAsSubsetIgnoreCase("    ", "123"));
+
+        // Matches a partial word only
+        assertFalse(StringUtil.containsWordAsSubsetIgnoreCase("aaa bbb ccc", "bbbb")); // Query word bigger than sentence word
+
+        // Partially matches or matches word in the sentence, different upper/lower case letters
+        assertTrue(StringUtil.containsWordAsSubsetIgnoreCase("aaa bbb ccc", "bb")); // Sentence word bigger than query word
+        assertTrue(StringUtil.containsWordAsSubsetIgnoreCase("aaa bBb ccc", "Bbb")); // First word (boundary case)
+        assertTrue(StringUtil.containsWordAsSubsetIgnoreCase("aaa bBb ccc@1", "CCc@1")); // Last word (boundary case)
+        assertTrue(StringUtil.containsWordAsSubsetIgnoreCase("  AAA   bBb   ccc  ", "aaa")); // Sentence has extra spaces
+        assertTrue(StringUtil.containsWordAsSubsetIgnoreCase("Aaa", "aaa")); // Only one word in sentence (boundary case)
+        assertTrue(StringUtil.containsWordAsSubsetIgnoreCase("aaa bbb ccc", "  ccc  ")); // Leading/trailing spaces
+
+        // Matches multiple words in sentence
+        assertTrue(StringUtil.containsWordAsSubsetIgnoreCase("AAA bBb ccc  bbb", "bbB"));
+    }
+
     //---------------- Tests for getDetails --------------------------------------
 
     /*

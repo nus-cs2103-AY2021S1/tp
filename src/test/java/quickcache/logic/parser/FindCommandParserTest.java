@@ -30,7 +30,12 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_emptyTag_throwsParseException() {
-        assertParseFailure(parser, " t/", Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " t/ t/TagOne", Tag.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_emptyQuestion_throwsParseException() {
+        assertParseFailure(parser, " q/ q/KeywordOne", "Keyword should not be blank");
     }
 
     @Test

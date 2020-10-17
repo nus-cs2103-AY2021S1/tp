@@ -8,6 +8,7 @@ import static quickcache.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -133,4 +134,42 @@ public class ParserUtilTest {
     public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
         assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
     }
+
+    @Test
+    public void parseKeywords_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseKeywords(null));
+    }
+
+    @Test
+    public void parseKeywords_collectionWithInvalidKeywords_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_QUESTION, INVALID_QUESTION)));
+    }
+
+    @Test
+    public void parseKeywords_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseKeywords(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseKeywords_collectionWithOneSpacedInput_returnsBrokenDownKeywords() {
+        List<String> inputWithWhiteSpacesInbetween = List.of(VALID_QUESTION);
+        List<String> expectedKeywords = Arrays.asList(VALID_QUESTION.split("\\s+"));
+    }
+
+    @Test
+    public void parseKeywords_collectionWithManyNotSpacedInputs_returnsCollectionWithSameContents() throws Exception {
+        String[] notSpacedInputs = VALID_QUESTION.split("\\s+");
+        List<String> inputsWithNoWhiteSpacesInBetween = List.of(notSpacedInputs[0], notSpacedInputs[1]);
+        assertEquals(inputsWithNoWhiteSpacesInBetween, ParserUtil.parseKeywords(inputsWithNoWhiteSpacesInBetween));
+    }
+
+    @Test
+    public void parseKeywords_collectionWithManySpacedInputs_returnsBrokenDownKeywords() throws Exception {
+        String[] notSpacedInputs = VALID_QUESTION.split("\\s+");
+        List<String> spacedInputs = List.of(notSpacedInputs[0] + " " + notSpacedInputs[1],
+                notSpacedInputs[2] + " " + notSpacedInputs[3]);
+        List<String> expectedKeywords = Arrays.asList(notSpacedInputs);
+        assertEquals(expectedKeywords, ParserUtil.parseKeywords(spacedInputs));
+    }
+
 }
