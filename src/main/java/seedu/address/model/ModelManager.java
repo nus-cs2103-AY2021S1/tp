@@ -126,14 +126,12 @@ public class ModelManager implements Model {
     @Override
     public void enter(Project project) {
         mainCatalogue.enter(project);
-        updateFilteredProjectList(p -> p.isSameProject(project));
         updateProjectToBeDisplayedOnDashboard(project);
     }
 
     @Override
     public void quit() {
         mainCatalogue.quit();
-        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
 
     //=========== Filtered Project List Accessors =============================================================
