@@ -49,7 +49,7 @@ public class AssignCommandTest {
         project.addParticipation(ALICE);
         AssignCommand assignCommand = new AssignCommand(outOfBoundIndex, ALICE.getPersonName().fullPersonName);
 
-        assertCommandFailure(assignCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+        assertCommandFailure(assignCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
