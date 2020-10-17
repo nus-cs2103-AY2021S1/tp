@@ -25,7 +25,7 @@ public class DeleteItemCommand extends Command {
             + PREFIX_ITEM_NAME + "Iron ";
 
     public static final String MESSAGE_SUCCESS = "Item and Recipes of the item Deleted: %1$s";
-    public static final String MESSAGE_ITEM_NOT_FOUND = "Item is not found in the item list";
+    public static final String MESSAGE_ITEM_NOT_FOUND = "Item is not found in the item list.";
 
     private final String productName;
 

@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditItemCommand;
+import seedu.address.logic.commands.EditItemCommand.EditItemDescriptor;
 
 public class EditItemCommandParserTest {
 
@@ -18,18 +19,18 @@ public class EditItemCommandParserTest {
      */
     @Test
     public void parse_validArgs_returnsEditItemCommand() {
-        String userInput = INDEX_FIRST_ITEM.getOneBased() + " -n edited";
-        EditItemCommand.EditItemDescriptor descriptor = new EditItemCommand.EditItemDescriptor();
+        String itemName = "Apple";
+        String userInput = "edit -o " + itemName + " -n edited";
+        EditItemDescriptor descriptor = new EditItemDescriptor();
         descriptor.setName("edited");
-        EditItemCommand expectedCommand = new EditItemCommand(INDEX_FIRST_ITEM, descriptor);
+        EditItemCommand expectedCommand = new EditItemCommand(itemName, descriptor);
 
         //expected user input constructs successful edit item command
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                EditItemCommand.MESSAGE_USAGE));
+    public void parse_noItemProvided_throwsParseException() {
+        assertParseFailure(parser, "a", EditItemCommand.MESSAGE_NO_ORIGINAL_ITEM);
     }
 }

@@ -50,7 +50,7 @@ public class EditItemCommandTest {
 
         EditItemCommand.EditItemDescriptor descriptor = new EditItemCommand.EditItemDescriptor();
         descriptor.setQuantity(new Quantity(VALID_ITEM_QUANTITY_BANANA));
-        EditItemCommand eic = new EditItemCommand(Index.fromZeroBased(0), descriptor);
+        EditItemCommand eic = new EditItemCommand("Apple", descriptor);
         String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, apple);
 
         // expected model should contain the edited apple
@@ -72,7 +72,7 @@ public class EditItemCommandTest {
         EditItemCommand.EditItemDescriptor descriptor = new EditItemCommand.EditItemDescriptor();
         descriptor.setQuantity(new Quantity(VALID_ITEM_QUANTITY_BANANA));
         descriptor.setDescription(VALID_ITEM_DESCRIPTION_BANANA);
-        EditItemCommand eic = new EditItemCommand(Index.fromZeroBased(0), descriptor);
+        EditItemCommand eic = new EditItemCommand("Apple", descriptor);
         String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, apple);
 
         // expected model should contain the edited apple
@@ -98,32 +98,10 @@ public class EditItemCommandTest {
         expectedModelStub = new ModelStubWithItemList(expectedItemList);
 
         // edit command has empty descriptor with no fields specified
-        EditItemCommand eic = new EditItemCommand(Index.fromZeroBased(0), new EditItemCommand.EditItemDescriptor());
+        EditItemCommand eic = new EditItemCommand("Apple", new EditItemCommand.EditItemDescriptor());
 
         assertThrows(CommandException.class, () -> eic.execute(modelStub),
                 EditItemCommand.MESSAGE_NOT_EDITED);
-        assertEquals(expectedModelStub, modelStub);
-    }
-
-    /**
-     * Tests for failure when index is out of range of the number of items.
-     */
-    @Test
-    public void execute_invalidIndex_failure() {
-        itemList.addItem(apple);
-        modelStub = new ModelStubWithItemList(itemList);
-
-        Index outOfBoundIndex = Index.fromOneBased(modelStub.getFilteredItemList().size() + 1);
-        EditItemCommand.EditItemDescriptor descriptor = new EditItemCommand.EditItemDescriptor();
-        descriptor.setQuantity(new Quantity(VALID_ITEM_QUANTITY_BANANA));
-        EditItemCommand eic = new EditItemCommand(outOfBoundIndex, descriptor);
-
-        // expected model should be the same as the model
-        expectedItemList.addItem(apple);
-        expectedModelStub = new ModelStubWithItemList(expectedItemList);
-
-        assertThrows(CommandException.class, () -> eic.execute(modelStub),
-                EditItemCommand.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
         assertEquals(expectedModelStub, modelStub);
     }
 
@@ -140,7 +118,7 @@ public class EditItemCommandTest {
         EditItemCommand.EditItemDescriptor descriptor = new EditItemCommand.EditItemDescriptor();
         descriptor.setName(banana.getName());
         // This command tries to modify apple to be named banana, which is already in the model
-        EditItemCommand eic = new EditItemCommand(Index.fromZeroBased(0), descriptor);
+        EditItemCommand eic = new EditItemCommand("Apple", descriptor);
 
         // expected model should be the same as the model
         expectedItemList.addItem(apple);
@@ -156,12 +134,12 @@ public class EditItemCommandTest {
     public void equals() {
         EditItemCommand.EditItemDescriptor descName = new EditItemCommand.EditItemDescriptor();
         descName.setName("x");
-        EditItemCommand editName = new EditItemCommand(INDEX_FIRST_ITEM, descName);
+        EditItemCommand editName = new EditItemCommand("Apple", descName);
 
         // same values -> returns true
         EditItemCommand.EditItemDescriptor descName2 = new EditItemCommand.EditItemDescriptor();
         descName2.setName("x");
-        EditItemCommand editName2 = new EditItemCommand(INDEX_FIRST_ITEM, descName2);
+        EditItemCommand editName2 = new EditItemCommand("Apple", descName2);
         assertTrue(editName.equals(editName2));
 
         // same object -> returns true
@@ -173,13 +151,13 @@ public class EditItemCommandTest {
         // different types -> returns false
         assertFalse(editName.equals(new ListItemCommand()));
 
-        // different index -> returns false
-        assertFalse(editName.equals(new EditItemCommand(INDEX_SECOND_ITEM, descName)));
+        // different name -> returns false
+        assertFalse(editName.equals(new EditItemCommand("Banana", descName)));
 
         // different descriptor -> returns false
         EditItemCommand.EditItemDescriptor descQuant = new EditItemCommand.EditItemDescriptor();
         descQuant.setQuantity(new Quantity("1"));
-        assertFalse(editName.equals(new EditItemCommand(INDEX_FIRST_ITEM, descQuant)));
+        assertFalse(editName.equals(new EditItemCommand("Apple", descQuant)));
     }
 
     /**
