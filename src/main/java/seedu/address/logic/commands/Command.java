@@ -1,13 +1,8 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.List;
-
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.delivery.Delivery;
 import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.deliverymodel.DeliveryModelManager;
 import seedu.address.model.inventorymodel.InventoryModel;
@@ -36,7 +31,7 @@ public abstract class Command {
      * Executes the command and returns the result message.
      *
      * @param inventoryModel which contains the {@code InventoryModel} which the command should operate on.
-     * @param deliveryModel which contains the {@code DeliveryModel} which the command should operate on                              the 2nd must be a {@code DeliveryModel}
+     * @param deliveryModel which contains the {@code DeliveryModel} which the command should operate on.
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */

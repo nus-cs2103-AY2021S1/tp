@@ -10,7 +10,6 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -22,7 +21,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.delivery.Delivery;
-import seedu.address.model.deliverymodel.DeliveryModelManager;
 import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;

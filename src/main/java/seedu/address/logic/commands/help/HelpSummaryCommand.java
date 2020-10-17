@@ -20,6 +20,6 @@ public class HelpSummaryCommand extends HelpCommand {
      */
     @Override
     public CommandResult execute(InventoryModel inventoryModel, DeliveryModel deliveryModel) {
-        return new HelpCommandResult(SHOWING_HELP_MESSAGE,false, true, false, "", HELP_SUMMARY);
+        return new HelpCommandResult(SHOWING_HELP_MESSAGE, false, true, false, "", HELP_SUMMARY);
     }
 }

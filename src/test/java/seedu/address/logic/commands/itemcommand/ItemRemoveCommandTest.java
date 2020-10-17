@@ -8,14 +8,11 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
 
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.deliverymodel.DeliveryModelManager;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.InventoryModelManager;
 import seedu.address.model.item.Item;

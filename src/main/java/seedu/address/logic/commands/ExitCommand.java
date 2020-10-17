@@ -1,9 +1,6 @@
 package seedu.address.logic.commands;
 
-import java.util.List;
-
 import seedu.address.logic.commands.results.CommandResult;
-import seedu.address.model.Model;
 import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.inventorymodel.InventoryModel;
 
