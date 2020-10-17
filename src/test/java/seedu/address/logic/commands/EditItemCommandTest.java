@@ -9,8 +9,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_DESCRIPTION_BANANA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_BANANA;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 import static seedu.address.testutil.TypicalItems.APPLE;
 
 import java.util.function.Predicate;
@@ -19,7 +17,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ItemList;
 import seedu.address.model.ReadOnlyItemList;
@@ -163,7 +160,7 @@ public class EditItemCommandTest {
     /**
      * A Model stub which contains an item list.
      */
-    private class ModelStubWithItemList extends ModelStub {
+    public static class ModelStubWithItemList extends ModelStub {
 
         private final ItemList itemList;
         private final FilteredList<Item> filteredItems;

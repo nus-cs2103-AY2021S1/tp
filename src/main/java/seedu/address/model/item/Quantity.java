@@ -12,7 +12,7 @@ public class Quantity {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity should only contain numbers, and it should be at least 1 digit long";
-    public static final String VALIDATION_REGEX = "^-?\\d+";
+    public static final String VALIDATION_REGEX = "\\d+";
     public final String value;
 
     /**
