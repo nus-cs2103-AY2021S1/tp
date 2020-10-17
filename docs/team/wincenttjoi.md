@@ -12,7 +12,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=Wincenttjoi&tabRepo=AY2021S1-CS2103T-T12-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=functional-code~test-code)
 
 * **Project management**:
-  * Managed releases `v1.1` on GitHub
+  * Managed releases `v1.1`, `v1.2` on GitHub
   * Planned and sketched UI Mock Up using Figma ([\#63](https://github.com/AY2021S1-CS2103T-T12-1/tp/issues/63))
 
 * **Added help and preview window**: Help window and summary command window. <<Insert PR>>
