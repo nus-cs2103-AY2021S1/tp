@@ -26,6 +26,7 @@ Class UniquePatientList
 
 Package Tag {
 Class Tag
+Class ColorTag
 }
 }
 
@@ -46,11 +47,13 @@ Patient *--> Name
 Patient *--> Phone
 Patient *--> Email
 Patient *--> Address
+Patient *--> ColorTag
 Patient *--> "*" Tag
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
+ColorTag -[hidden]right->Tag
 
 ModelManager -->"1" Patient : filtered list
 @enduml
