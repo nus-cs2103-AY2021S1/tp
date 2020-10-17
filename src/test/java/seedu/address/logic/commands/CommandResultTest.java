@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.ui.DisplayedInventoryType;
+
 public class CommandResultTest {
     @Test
     public void equals() {
@@ -33,6 +35,10 @@ public class CommandResultTest {
 
         // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, true)));
+
+        // different displayed inventory type -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
+                DisplayedInventoryType.ITEMS)));
     }
 
     @Test
@@ -50,5 +56,9 @@ public class CommandResultTest {
 
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true).hashCode());
+
+        // different displayed inventory type -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false,
+                DisplayedInventoryType.ITEMS).hashCode());
     }
 }

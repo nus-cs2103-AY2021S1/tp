@@ -207,4 +207,8 @@ public interface Model {
      */
     Item processPrecursor(ItemPrecursor itemPrecursor);
 
+    /**
+     * Updates recipe product names.
+     */
+    void updateRecipeNames(String originalName, String updatedName);
 }

@@ -3,6 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_BANANA;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LOCATIONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RECIPES;
@@ -174,6 +175,18 @@ public class ModelManagerTest {
     public void getFilteredRecipeList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager
                 .getFilteredRecipeList().remove(0));
+    }
+
+    @Test
+    public void testUpdateRecipeNames() {
+        modelManager.addRecipe(APPLE_PIE);
+        modelManager.updateRecipeNames("Apple", "Banana");
+
+        ModelManager expectedModelManager = new ModelManager();
+        Recipe updatedRecipe = APPLE_PIE.setProductName(VALID_ITEM_NAME_BANANA);
+        expectedModelManager.addRecipe(updatedRecipe);
+
+        assertEquals(expectedModelManager, modelManager);
     }
 
     @Test
