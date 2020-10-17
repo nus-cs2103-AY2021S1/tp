@@ -2,15 +2,25 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import seedu.address.logic.commands.project.AddTaskCommand;
+import seedu.address.logic.commands.project.EditTaskCommand;
+import seedu.address.logic.commands.project.NewTeammateCommand;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_FILTER_BY_ASSIGNEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_FILTER_BY_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_FILTER_BY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PROGRESS;
+import seedu.address.model.person.Person;
 import static seedu.address.testutil.Assert.assertThrows;
+import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.TaskUtil;
+import seedu.address.testutil.TestUtil;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalTasks.PLAN_MEETING;
 import static seedu.address.testutil.TypicalTasks.VALID_TASK_DEADLINE;
 import static seedu.address.testutil.TypicalTasks.VALID_TASK_NAME;
 
@@ -41,6 +51,7 @@ import seedu.address.model.project.Status;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
 import seedu.address.testutil.ProjectBuilder;
 import seedu.address.testutil.ProjectUtil;
+import static seedu.address.testutil.TypicalTasks.VALID_TASK_PROGRESS_HALF;
 
 public class MainCatalogueParserTest {
 
@@ -151,60 +162,10 @@ public class MainCatalogueParserTest {
 
     @Test
     public void parseCommand_invalidScope_throwsInvalidScopeException() {
-        try {
-            Project project = new ProjectBuilder().build();
-            parser.parseCommand(ProjectUtil.getAddCommand(project), Status.PROJECT);
-        } catch (Exception e) {
-            assertEquals(new InvalidScopeException(Status.CATALOGUE, Status.PROJECT), e);
-        }
-
-        try {
-            parser.parseCommand(ClearCommand.COMMAND_WORD, Status.PROJECT);
-        } catch (Exception e) {
-            assertEquals(new InvalidScopeException(Status.CATALOGUE, Status.PROJECT), e);
-        }
-
-        try {
-            parser.parseCommand(
-                    DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PROJECT.getOneBased(), Status.PROJECT);
-        } catch (Exception e) {
-            assertEquals(new InvalidScopeException(Status.CATALOGUE, Status.PROJECT), e);
-        }
-
-        try {
-            Project project = new ProjectBuilder().build();
-            EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(project).build();
-            parser.parseCommand(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_PROJECT.getOneBased()
-                            + " " + ProjectUtil.getEditProjectDescriptorDetails(descriptor),
-                    Status.PROJECT);
-        } catch (Exception e) {
-            assertEquals(new InvalidScopeException(Status.CATALOGUE, Status.PROJECT), e);
-        }
-
-        try {
-            List<String> keywords = Arrays.asList("foo", "bar", "baz");
-            parser.parseCommand(
-                    FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")),
-                    Status.CATALOGUE);
-        } catch (Exception e) {
-            assertEquals(new InvalidScopeException(Status.CATALOGUE, Status.PROJECT), e);
-        }
-
-        try {
-            parser.parseCommand(ListCommand.COMMAND_WORD, Status.PROJECT);
-        } catch (Exception e) {
-            assertEquals(new InvalidScopeException(Status.CATALOGUE, Status.PROJECT), e);
-        }
-
-        try {
-            parser.parseCommand(
-                    StartCommand.COMMAND_WORD + " " + INDEX_FIRST_PROJECT.getOneBased(), Status.PROJECT);
-        } catch (Exception e) {
-            assertEquals(new InvalidScopeException(Status.CATALOGUE, Status.PROJECT), e);
-        }
 
         try {
             parser.parseCommand(LeaveCommand.COMMAND_WORD, Status.CATALOGUE);
+            fail();
         } catch (Exception e) {
             assertEquals(new InvalidScopeException(Status.PROJECT, Status.CATALOGUE), e);
         }
@@ -213,13 +174,40 @@ public class MainCatalogueParserTest {
             parser.parseCommand(
                     AssignCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased() + " " + ALICE.getPersonName(),
                     Status.CATALOGUE);
+            fail();
         } catch (Exception e) {
             assertEquals(new InvalidScopeException(Status.PROJECT, Status.CATALOGUE), e);
         }
+
         try {
             parser.parseCommand(
                 FilterCommand.COMMAND_WORD + " " + PREFIX_TASK_FILTER_BY_ASSIGNEE + ALICE.getPersonName(),
                 Status.CATALOGUE);
+            fail();
+        } catch (Exception e) {
+            assertEquals(new InvalidScopeException(Status.PROJECT, Status.CATALOGUE), e);
+        }
+
+        try {
+            parser.parseCommand(NewTeammateCommand.COMMAND_WORD + " "
+                    + PersonUtil.getCommandInfo(ALICE), Status.CATALOGUE);
+            fail();
+        } catch (Exception e) {
+            assertEquals(new InvalidScopeException(Status.PROJECT, Status.CATALOGUE), e);
+        }
+
+        try {
+            parser.parseCommand(AddTaskCommand.COMMAND_WORD + " "
+                    + TaskUtil.getTaskCommand(PLAN_MEETING), Status.CATALOGUE);
+            fail();
+        } catch (Exception e) {
+            assertEquals(new InvalidScopeException(Status.PROJECT, Status.CATALOGUE), e);
+        }
+
+        try {
+            parser.parseCommand(EditTaskCommand.COMMAND_WORD + " " + PREFIX_TASK_PROGRESS
+                    + " " + VALID_TASK_PROGRESS_HALF, Status.CATALOGUE);
+            fail();
         } catch (Exception e) {
             assertEquals(new InvalidScopeException(Status.PROJECT, Status.CATALOGUE), e);
         }
