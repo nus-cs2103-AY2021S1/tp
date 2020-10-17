@@ -89,13 +89,9 @@ public class UniqueItemList implements Iterable<Item> {
     public void delete(Item toDelete) {
         requireNonNull(toDelete);
 
-        if (!internalList.contains(toDelete)) {
+        if (!internalList.remove(toDelete)) {
             throw new ItemNotFoundException();
         }
-
-        Item updatedItem = toDelete.delete();
-        remove(toDelete);
-        add(updatedItem);
     }
 
     public void setItems(UniqueItemList replacement) {

@@ -71,8 +71,9 @@ public class UniqueItemListTest {
     public void delete() {
         UniqueItemList uList = new UniqueItemList();
         uList.add(APPLE);
-        uList.delete(APPLE); // Item is still in the list, but boolean delete flag is set to true
-        assertTrue(uList.contains(APPLE));
+        uList.delete(APPLE);
+        // Make sure item is not in the list
+        assertFalse(uList.contains(APPLE));
     }
 
     @Test

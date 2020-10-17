@@ -62,7 +62,7 @@ public class ItemListTest {
     public void deleteItem_itemInItemList_returnsTrue() {
         itemList.addItem(APPLE);
         itemList.deleteItem(APPLE);
-        assertTrue(itemList.hasItem(APPLE));
+        assertFalse(itemList.hasItem(APPLE));
     }
 
     /**
