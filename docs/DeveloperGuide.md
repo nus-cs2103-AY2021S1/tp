@@ -217,6 +217,41 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Medical Record feature
+
+#### Proposed Implementation
+
+The proposed feature will enable users to add medical records of patients by specifying a url containing his/her online medical record document. The following are the additions required for this feature:
+
+* A `MedicalRecord` class will be added under `patient` package.
+* A new prefix `mr/` to be used with the `add` command to allow users to specify the url.
+* A new `Copy MR url` button which allows users to copy the medical record url onto the clipboard.
+
+Given below is an example usage scenario.
+
+Step 1. The user executes `add n/John Doe …​ mr/www.medicalrecorddoc.com/patients1234567` command to add patient John Doe in Hospify.
+
+Step 2. The user now decides to access the medical record of patient John Doe and can then do so by clicking on the `Copy MR url` button located at the bottom right corner of the patient's tab.
+
+Step 3. The user opens his/her preferred web browser and paste the url that was copied in step 2.
+
+The following activity diagram summarizes what happens when a user adds a new patient:
+
+![MedicalRecordActivityDiagram](images/UML_Diagrams/MedicalRecordActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How medical records are added and accessed
+
+* **Alternative 1 (current choice):** Requires users to enter a unique url that links to the patient's online medical record each time a new patient is first added
+  * Pros: Easy to implement and to edit medical records.
+  * Cons: May be cumbersome for users to keep generating a new url for new patients.
+
+* **Alternative 2:** Automatically generates an empty medical record when a new patient is added (which can be accessed/edited within Hospify).
+  * Pros: Independent from external and online platforms (fully integrated within the application).
+  * Cons: Harder to implement and less freedom to edit medical records.
+
+_{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
