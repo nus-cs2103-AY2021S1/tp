@@ -118,9 +118,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code tag} is invalid.
      */
     public static Tag parseTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
         try {
-            requireNonNull(tag);
-            String trimmedTag = tag.trim();
             return new Tag(trimmedTag);
         } catch (IllegalArgumentException e) {
             throw new ParseException(e.getMessage());
