@@ -11,7 +11,7 @@ import seedu.address.logic.commands.AddZoomLinkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ZoomLink;
 
-public class AddZoomLinkCommandParser implements Parser<AddZoomLinkCommand> {
+public class AddZoomLinkParser implements Parser<AddZoomLinkCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
