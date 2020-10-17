@@ -19,7 +19,7 @@ import seedu.address.model.project.Participation;
 public class Task {
     public final String taskName;
     private final String description;
-    private final LocalDate publishDate;
+    private LocalDate publishDate;
     private final Deadline deadline;
     private final double progress;
     private final boolean isDone;
@@ -114,6 +114,10 @@ public class Task {
     @Override
     public String toString() {
         return "[" + taskName + "]";
+    }
+
+    public void setPublishDate(LocalDate publishDate) {
+        this.publishDate = publishDate;
     }
 
     // TODO: may add isValidTask method.
