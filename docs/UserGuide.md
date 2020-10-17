@@ -42,6 +42,8 @@ QuickCache is a **desktop app for managing flashcards, optimized for use via a C
 
    * **`clear`** : Deletes all FlashCards.
 
+   * **`clearstats`**`1` : Clears the statistics of the 1st flashcard shown in the current list.
+
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -231,6 +233,7 @@ Action | Format, Examples
 **Addmcq** | `addmcq q/Plants give out ___ when they photosynthesise? ans/1 c/Oxygen c/Carbon c/Carbon dioxide`
 **Test** | `test INDEX ans/ANSWER` (open-ended question)<br> e.g., `test 2 a/lorem ipsum` <br> `test INDEX o/OPTION` (multiple choice question)<br> e.g., `test 3 o/1`
 **Clear** | `clear`
+**ClearStats** | `clearstats INDEX`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **List** | `list`
 **Find** | `find KEYWORDS` <br> e.g., `find CS2100 MCQ`
