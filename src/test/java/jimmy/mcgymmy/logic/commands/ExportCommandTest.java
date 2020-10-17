@@ -17,8 +17,8 @@ class ExportCommandTest {
     public void directoryNotFoundError() {
         ExportCommand exportCommand = new ExportCommand();
         ParameterStub<Path> parameterStub = new ParameterStub<Path>("", Path.of("c:\\Invalid String"));
-        OptionalParameterStub<String> optionalparameterStub = new OptionalParameterStub<String>("o", "mcgymmy.json");
-        exportCommand.setPathParameter(parameterStub, optionalparameterStub);
+        OptionalParameterStub<String> optionalParameterStub = new OptionalParameterStub<String>("o", "mcgymmy.json");
+        exportCommand.setPathParameter(parameterStub, optionalParameterStub);
         Model model = new ModelManager();
         assertCommandFailure(exportCommand, model, String.format(ExportCommand.MESSAGE_FAILURE, "c:\\Invalid String"));
     }
