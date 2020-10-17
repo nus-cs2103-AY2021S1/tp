@@ -6,12 +6,11 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CASES;
 
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.victimcommands.AddVictimCommand;
+import seedu.address.logic.state.StateManager;
 import seedu.address.model.Model;
 import seedu.address.model.investigationcase.Case;
 import seedu.address.model.investigationcase.Witness;
@@ -26,15 +25,15 @@ public class AddWitnessCommand extends AddCommand {
             + PREFIX_NAME + "John Doe ";
 
     public static final String MESSAGE_ADD_WITNESS_SUCCESS = "New witness added: %1$s";
-    public static final String MESSAGE_DUPLICATE_VICTIM = "This witness already exists in the case";
+    public static final String MESSAGE_DUPLICATE_WITNESS = "This witness already exists in the case";
 
     private final Index index;
     private final Witness witness;
 
     /**
-     * Creates an AddVictimCommand to add the specified {@code Case}
+     * Creates an AddWitnessCommand to add the specified {@code Case}
      *
-     * @param witness The victim to be added.
+     * @param witness The witness to be added.
      */
     public AddWitnessCommand(Index index, Witness witness) {
         requireNonNull(index);
@@ -49,24 +48,23 @@ public class AddWitnessCommand extends AddCommand {
         requireNonNull(model);
         List<Case> lastShownList = model.getFilteredCaseList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
-        }
+        assert(StateManager.atCasePage()) : "Program should be at case page";
+        assert(index.getZeroBased() < lastShownList.size()) : "index should be valid";
 
         Case stateCase = lastShownList.get(index.getZeroBased());
         List<Witness> updatedWitnesses = stateCase.getWitnesses();
 
         if (updatedWitnesses.contains(witness)) {
-            throw new CommandException(MESSAGE_DUPLICATE_VICTIM);
+            throw new CommandException(MESSAGE_DUPLICATE_WITNESS);
         }
 
         updatedWitnesses.add(witness);
 
-        Case editedCase = new Case(stateCase.getTitle(), stateCase.getDescription(),
+        Case updatedCase = new Case(stateCase.getTitle(), stateCase.getDescription(),
                 stateCase.getStatus(), stateCase.getDocuments(), stateCase.getSuspects(),
                 stateCase.getVictims(), updatedWitnesses, stateCase.getTags());
 
-        model.setCase(stateCase, editedCase);
+        model.setCase(stateCase, updatedCase);
         model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
 
         return new CommandResult(String.format(MESSAGE_ADD_WITNESS_SUCCESS, witness));
@@ -75,7 +73,7 @@ public class AddWitnessCommand extends AddCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddVictimCommand // instanceof handles nulls
+                || (other instanceof AddWitnessCommand // instanceof handles nulls
                 && witness.equals(((AddWitnessCommand) other).witness)
                 && index.equals(((AddWitnessCommand) other).index));
     }

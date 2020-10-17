@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.state.StateManager;
 import seedu.address.model.Model;
 import seedu.address.model.investigationcase.Case;
 import seedu.address.model.investigationcase.Victim;
@@ -48,7 +49,8 @@ public class AddVictimCommand extends AddCommand {
         List<Case> lastShownList = model.getFilteredCaseList();
 
         //check for valid index
-        assert(index.getZeroBased() >= lastShownList.size()) : "index should be valid";
+        assert(StateManager.atCasePage()) : "Program should be at case page";
+        assert(index.getZeroBased() < lastShownList.size()) : "index should be valid";
 
         Case stateCase = lastShownList.get(index.getZeroBased());
         List<Victim> updatedVictims = stateCase.getVictims();
@@ -59,11 +61,11 @@ public class AddVictimCommand extends AddCommand {
 
         updatedVictims.add(victim);
 
-        Case editedCase = new Case(stateCase.getTitle(), stateCase.getDescription(),
+        Case updatedCase = new Case(stateCase.getTitle(), stateCase.getDescription(),
                 stateCase.getStatus(), stateCase.getDocuments(), stateCase.getSuspects(),
                 updatedVictims, stateCase.getWitnesses(), stateCase.getTags());
 
-        model.setCase(stateCase, editedCase);
+        model.setCase(stateCase, updatedCase);
         model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
 
         return new CommandResult(String.format(MESSAGE_ADD_VICTIM_SUCCESS, victim));
