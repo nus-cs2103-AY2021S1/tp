@@ -5,14 +5,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.AddContactCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Name;
 import seedu.address.model.contact.Telegram;
-
-import java.util.stream.Stream;
 
 /**
  * Parses input arguments and creates a new AddCommand object

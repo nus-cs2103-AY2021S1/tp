@@ -20,19 +20,19 @@ public class SampleDataUtil {
         return new Contact[] {
             new Contact(new Name("Alex Yeoh"), new Email("alexyeoh@example.com"),
                 new Telegram("@alexyeoh")),
-                // getTagSet("friends")),
+            // getTagSet("friends")),
             new Contact(new Name("Bernice Yu"), new Email("berniceyu@example.com"),
                 new Telegram("@bernice")),
-                // getTagSet("colleagues", "friends")),
+            // getTagSet("colleagues", "friends")),
             new Contact(new Name("Charlotte Oliveiro"), new Email("charlotte@example.com"),
                 new Telegram("@charlotte")),
-                // getTagSet("neighbours"))
+            // getTagSet("neighbours"))
             new Contact(new Name("David Li"), new Email("lidavid@example.com"),
                 new Telegram("@david")),
-                // getTagSet("family")),
+            // getTagSet("family")),
             new Contact(new Name("Irfan Ibrahim"), new Email("irfan@example.com"),
                 new Telegram("@irfan")),
-                // getTagSet("classmates")),
+            // getTagSet("classmates")),
             new Contact(new Name("Roy Balakrishnan"), new Email("royb@example.com"),
                 new Telegram("@roybala"))
                 // getTagSet("colleagues"))
