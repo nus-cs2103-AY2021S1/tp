@@ -26,7 +26,7 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
     - Delete a task `delete `
     - Locate tasks by keyword `find `
     - Give a task a certain level of priority `prioritise `
-    - Viewing tasks allocated to a team member `view `
+    - Viewing tasks allocated to a team member `viewtask `
     - Assign task to a team member `assign `
   - Teammate related features 
     - Create new teammate `new teammate `
@@ -77,6 +77,18 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+
+**:information_source: Notes about scoping:**<br>
+
+The hierarchy of command scoping is as follows:
+* `CATALOGUE` (i.e. global)
+  * `PROJECT`
+    * `TASK`
+  * `PERSON`
+
+<br>A lower-level scope always belongs to any parent scopes. For example, if the app is currently in `PROJECT`
+scope, it is also in the `CATALOGUE` scope. However, it is not necessarily in `TASK` scope because `TASK` is
+a child level of `PROJECT` and it is definitely not in `PERSON` scope because `PERSON` is parallel to `PROJECT`.
 
 </div>
 
