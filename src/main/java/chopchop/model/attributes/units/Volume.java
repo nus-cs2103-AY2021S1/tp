@@ -1,5 +1,3 @@
-// Volume.java
-
 package chopchop.model.attributes.units;
 
 import chopchop.util.Result;
@@ -29,6 +27,9 @@ public class Volume implements Quantity {
             if (value > 5000) {
                 ratio *= 1000;
                 value /= 1000;
+            } else if (value < 1.0) {
+                ratio /= 1000;
+                value *= 1000;
             }
         }
 
@@ -40,7 +41,7 @@ public class Volume implements Quantity {
     public Result<Quantity> add(Quantity qty) {
 
         if (!(qty instanceof Volume)) {
-            return Result.error("cannot add '%s' to '%s' (incompatbile units)", qty, this);
+            return Result.error("cannot add '%s' to '%s' (incompatible units)", qty, this);
         } else {
             var vol = (Volume) qty;
             var newval = this.value + (vol.value * (vol.ratio / this.ratio));

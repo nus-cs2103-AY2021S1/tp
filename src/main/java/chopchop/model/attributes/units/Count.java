@@ -1,5 +1,3 @@
-// Count.java
-
 package chopchop.model.attributes.units;
 
 import chopchop.util.Result;
@@ -17,7 +15,7 @@ public class Count implements Quantity {
     public Result<Count> add(Quantity qty) {
 
         if (!(qty instanceof Count)) {
-            return Result.error("cannot add '%s' to '%s' (incompatbile units)", qty, this);
+            return Result.error("cannot add '%s' to '%s' (incompatible units)", qty, this);
         } else {
             var cnt = (Count) qty;
             return Result.of(new Count(this.value + cnt.value));

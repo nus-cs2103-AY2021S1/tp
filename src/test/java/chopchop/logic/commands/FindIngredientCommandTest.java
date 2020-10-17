@@ -10,32 +10,31 @@ import static chopchop.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static chopchop.testutil.TypicalIngredients.getTypicalIngredientBook;
 import java.util.Arrays;
 import java.util.Collections;
+
+import chopchop.model.EntryBook;
 import org.junit.jupiter.api.Test;
 import chopchop.model.Model;
 import chopchop.model.ModelManager;
 import chopchop.model.UserPrefs;
 import chopchop.model.attributes.NameContainsKeywordsPredicate;
-import chopchop.model.recipe.RecipeBook;
 
 public class FindIngredientCommandTest {
-    private Model model = new ModelManager(new RecipeBook(), getTypicalIngredientBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(new RecipeBook(), getTypicalIngredientBook(), new UserPrefs());
+    private Model model = new ModelManager(new EntryBook<>(), getTypicalIngredientBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(new EntryBook<>(), getTypicalIngredientBook(), new UserPrefs());
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-            new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-            new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        var firstPredicate = new NameContainsKeywordsPredicate(Collections.singletonList("first"));
+        var secondPredicate = new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindCommand findFirstCommand = new FindIngredientCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindIngredientCommand(secondPredicate);
+        var findFirstCommand = new FindIngredientCommand(firstPredicate);
+        var findSecondCommand = new FindIngredientCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindIngredientCommand(firstPredicate);
+        var findFirstCommandCopy = new FindIngredientCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -50,9 +49,9 @@ public class FindIngredientCommandTest {
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_INGREDIENTS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindIngredientCommand command = new FindIngredientCommand(predicate);
+        var expectedMessage = String.format(MESSAGE_INGREDIENTS_LISTED_OVERVIEW, 0);
+        var predicate = preparePredicate(" ");
+        var command = new FindIngredientCommand(predicate);
         expectedModel.updateFilteredIngredientList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredIngredientList());
@@ -60,9 +59,9 @@ public class FindIngredientCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleIngredientsFound() {
-        String expectedMessage = String.format(MESSAGE_INGREDIENTS_LISTED_OVERVIEW, 2);
-        NameContainsKeywordsPredicate predicate = preparePredicate("apricot banana");
-        chopchop.logic.commands.FindCommand command = new FindIngredientCommand(predicate);
+        var expectedMessage = String.format(MESSAGE_INGREDIENTS_LISTED_OVERVIEW, 2);
+        var predicate = preparePredicate("apricot banana");
+        var command = new FindIngredientCommand(predicate);
         expectedModel.updateFilteredIngredientList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(APRICOT, BANANA), model.getFilteredIngredientList());

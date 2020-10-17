@@ -1,23 +1,21 @@
 package chopchop.logic;
 
-// import java.io.IOException;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import chopchop.commons.core.GuiSettings;
 import chopchop.commons.core.LogsCenter;
-// import chopchop.logic.commands.Command;
 import chopchop.logic.commands.CommandResult;
 import chopchop.logic.commands.exceptions.CommandException;
+import chopchop.logic.parser.CommandParser;
+import chopchop.logic.parser.exceptions.ParseException;
 import chopchop.model.Model;
+import chopchop.model.ReadOnlyEntryBook;
 import chopchop.model.ingredient.Ingredient;
-import chopchop.model.ingredient.ReadOnlyIngredientBook;
-import chopchop.model.recipe.ReadOnlyRecipeBook;
 import chopchop.model.recipe.Recipe;
+import chopchop.storage.Storage;
 import javafx.collections.ObservableList;
-import seedu.address.logic.parser.AddressBookParser;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.storage.Storage;
 
 /**
  * The main CommandDispatcher governing the logic in the app.
@@ -28,7 +26,7 @@ public class CommandDispatcher implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final CommandParser parser;
 
     /**
      * Constructs a {@code CommandDispatcher} with the given {@code Model} and {@code Storage}.
@@ -36,7 +34,7 @@ public class CommandDispatcher implements Logic {
     public CommandDispatcher(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        this.parser = new CommandParser();
     }
 
     /**
@@ -48,22 +46,26 @@ public class CommandDispatcher implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        /*
-        Command command = addressBookParser.parseCommand(commandText);
-        CommandResult commandResult = command.execute(model);
+        var res = this.parser.parse(commandText);
+        if (res.isError()) {
+            throw new ParseException(res.getError());
+        }
+
+        var cmd = res.getValue();
+        var result = cmd.execute(this.model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveIngredientBook(model.getIngredientBook());
+            storage.saveRecipeBook(model.getRecipeBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
-        */
-        CommandResult commandResult = new CommandResult("stub");
-        return commandResult;
+
+        return result;
     }
 
     @Override
-    public ReadOnlyRecipeBook getRecipeBook() {
+    public ReadOnlyEntryBook<Recipe> getRecipeBook() {
         return model.getRecipeBook();
     }
 
@@ -78,7 +80,7 @@ public class CommandDispatcher implements Logic {
     }
 
     @Override
-    public ReadOnlyIngredientBook getIngredientBook() {
+    public ReadOnlyEntryBook<Ingredient> getIngredientBook() {
         return model.getIngredientBook();
     }
 

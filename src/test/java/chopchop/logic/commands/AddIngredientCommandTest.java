@@ -1,19 +1,24 @@
 package chopchop.logic.commands;
 
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.ArrayList;
+import java.util.NoSuchElementException;
+
+import chopchop.model.EntryBook;
+import chopchop.model.ModelStub;
+import chopchop.model.ReadOnlyEntryBook;
+import chopchop.model.attributes.units.Volume;
+import chopchop.model.ingredient.Ingredient;
+
+import org.junit.jupiter.api.Test;
+import chopchop.testutil.IngredientBuilder;
+
 import static java.util.Objects.requireNonNull;
+import static chopchop.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static chopchop.testutil.Assert.assertThrows;
-import java.util.ArrayList;
-import java.util.Arrays;
-import org.junit.jupiter.api.Test;
-import chopchop.logic.commands.exceptions.CommandException;
-import chopchop.model.ModelStub;
-import chopchop.model.ingredient.Ingredient;
-import chopchop.model.ingredient.IngredientBook;
-import chopchop.model.ingredient.ReadOnlyIngredientBook;
-import chopchop.testutil.IngredientBuilder;
 
 public class AddIngredientCommandTest {
 
@@ -24,10 +29,10 @@ public class AddIngredientCommandTest {
 
     @Test
     public void execute_ingredientAcceptedByModel_addSuccessful() throws Exception {
-        AddIngredientCommandTest.ModelStubAcceptingIngredientAdded modelStub = new ModelStubAcceptingIngredientAdded();
-        Ingredient validIngredient = new IngredientBuilder().build();
+        var modelStub = new ModelStubAcceptingIngredientAdded();
+        var validIngredient = new IngredientBuilder().build();
 
-        CommandResult commandResult = new AddIngredientCommand(validIngredient).execute(modelStub);
+        var commandResult = new AddIngredientCommand(validIngredient).execute(modelStub);
 
         assertEquals(String.format(AddIngredientCommand.MESSAGE_SUCCESS, validIngredient),
             commandResult.getFeedbackToUser());
@@ -35,28 +40,34 @@ public class AddIngredientCommandTest {
     }
 
     @Test
-    public void execute_duplicateIngredient_throwsCommandException() {
-        Ingredient validIngredient = new IngredientBuilder().build();
-        chopchop.logic.commands.AddCommand addCommand = new AddIngredientCommand(validIngredient);
-        ModelStub modelStub = new ModelStubWithIngredient(validIngredient);
+    public void add_ingredients_combine() throws Exception {
+        var milk1 = new IngredientBuilder().withName("milk").withQuantity(Volume.litres(0.7)).build();
+        var milk2 = new IngredientBuilder().withName("MILK").withQuantity(Volume.cups(1)).build();
+        var milk3 = new IngredientBuilder().withName("milk").withQuantity(Volume.millilitres(950)).build();
 
-        assertThrows(CommandException.class,
-            AddIngredientCommand.MESSAGE_DUPLICATE_INGREDIENT, () -> addCommand.execute(modelStub)
-        );
+        var modelStub = new ModelStubAcceptingIngredientAdded();
+
+        assertEquals(String.format(AddIngredientCommand.MESSAGE_SUCCESS, milk1),
+            new AddIngredientCommand(milk1).execute(modelStub).getFeedbackToUser());
+
+        var out2 = new AddIngredientCommand(milk2).execute(modelStub).getFeedbackToUser();
+        System.err.println(out2);
+
+        assertEquals(String.format(AddIngredientCommand.MESSAGE_COMBINED, milk3), out2);
     }
 
     @Test
     public void equals() {
-        Ingredient apple = new IngredientBuilder().withName("Apple").build();
-        Ingredient banana = new IngredientBuilder().withName("Banana").build();
-        AddCommand addAppleCommand = new AddIngredientCommand(apple);
-        AddCommand addBananaCommand = new AddIngredientCommand(banana);
+        var apple = new IngredientBuilder().withName("Apple").build();
+        var banana = new IngredientBuilder().withName("Banana").build();
+        var addAppleCommand = new AddIngredientCommand(apple);
+        var addBananaCommand = new AddIngredientCommand(banana);
 
         // same object -> returns true
         assertTrue(addAppleCommand.equals(addAppleCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddIngredientCommand(apple);
+        var addAliceCommandCopy = new AddIngredientCommand(apple);
         assertTrue(addAppleCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -83,7 +94,15 @@ public class AddIngredientCommandTest {
         @Override
         public boolean hasIngredient(Ingredient ingredient) {
             requireNonNull(ingredient);
-            return this.ingredient.equals(ingredient);
+            return this.ingredient.isSame(ingredient);
+        }
+
+        @Override
+        public Optional<Ingredient> findIngredientWithName(String name) {
+            requireNonNull(name);
+            return this.ingredient.getName().equalsIgnoreCase(name)
+                ? Optional.of(this.ingredient)
+                : Optional.empty();
         }
     }
 
@@ -96,7 +115,7 @@ public class AddIngredientCommandTest {
         @Override
         public boolean hasIngredient(Ingredient ingredient) {
             requireNonNull(ingredient);
-            return ingredientsAdded.stream().anyMatch(ingredient::equals);
+            return ingredientsAdded.stream().anyMatch(ingredient::isSame);
         }
 
         @Override
@@ -106,8 +125,27 @@ public class AddIngredientCommandTest {
         }
 
         @Override
-        public ReadOnlyIngredientBook getIngredientBook() {
-            return new IngredientBook();
+        public Optional<Ingredient> findIngredientWithName(String name) {
+            requireNonNull(name);
+            return this.ingredientsAdded
+                .stream()
+                .filter(i -> i.getName().equalsIgnoreCase(name))
+                .findFirst();
+        }
+
+        @Override
+        public void setIngredient(Ingredient target, Ingredient editedIngredient) {
+            var i = this.ingredientsAdded.indexOf(target);
+            if (i == -1) {
+                throw new NoSuchElementException("ingredient not found");
+            }
+
+            this.ingredientsAdded.set(i, editedIngredient);
+        }
+
+        @Override
+        public ReadOnlyEntryBook<Ingredient> getIngredientBook() {
+            return new EntryBook<>();
         }
     }
 

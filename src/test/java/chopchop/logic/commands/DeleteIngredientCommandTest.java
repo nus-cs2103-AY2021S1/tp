@@ -1,34 +1,41 @@
 package chopchop.logic.commands;
 
+import chopchop.commons.core.Messages;
+import chopchop.model.EntryBook;
+import chopchop.model.Model;
+import chopchop.model.ModelManager;
+import chopchop.model.UserPrefs;
+import chopchop.logic.parser.ItemReference;
+
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static chopchop.logic.commands.CommandTestUtil.assertIngredientCommandFailure;
 import static chopchop.logic.commands.CommandTestUtil.assertCommandSuccess;
+<<<<<<< HEAD
 import static chopchop.logic.commands.CommandTestUtil.showIngredientAtIndex;
 import static chopchop.testutil.TypicalIndexes.INDEX_FIRST_INGREDIENT;
 import static chopchop.testutil.TypicalIndexes.INDEX_SECOND_INGREDIENT;
+=======
+import static chopchop.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static chopchop.testutil.TypicalReferences.INDEXED_FIRST;
+import static chopchop.testutil.TypicalReferences.INDEXED_SECOND;
+>>>>>>> b04c1647ff463527478c9337eb1f7248df163b1e
 import static chopchop.testutil.TypicalIngredients.getTypicalIngredientBook;
-import org.junit.jupiter.api.Test;
-import chopchop.commons.core.Messages;
-import chopchop.commons.core.index.Index;
-import chopchop.model.Model;
-import chopchop.model.ModelManager;
-import chopchop.model.UserPrefs;
-import chopchop.model.ingredient.Ingredient;
-import chopchop.model.recipe.RecipeBook;
 
 public class DeleteIngredientCommandTest {
 
-    private Model model = new ModelManager(new RecipeBook(), getTypicalIngredientBook(), new UserPrefs());
+    private Model model = new ModelManager(new EntryBook<>(), getTypicalIngredientBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Ingredient indToDelete = model.getFilteredIngredientList().get(INDEX_FIRST_INGREDIENT.getZeroBased());
-        DeleteIngredientCommand deleteCommand = new DeleteIngredientCommand(INDEX_FIRST_INGREDIENT);
+        var indToDelete = model.getFilteredIngredientList().get(INDEXED_FIRST.getZeroIndex());
+        var deleteCommand = new DeleteIngredientCommand(INDEXED_FIRST);
 
         String expectedMessage = String.format(DeleteIngredientCommand.MESSAGE_DELETE_INGREDIENT_SUCCESS, indToDelete);
 
-        ModelManager expectedModel = new ModelManager(new RecipeBook(), model.getIngredientBook(), new UserPrefs());
+        var expectedModel = new ModelManager(new EntryBook<>(), model.getIngredientBook(), new UserPrefs());
         expectedModel.deleteIngredient(indToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -36,22 +43,26 @@ public class DeleteIngredientCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredIngredientList().size() + 1);
-        DeleteIngredientCommand deleteCommand = new DeleteIngredientCommand(outOfBoundIndex);
+        var outOfBoundIndex = ItemReference.ofOneIndex(model.getFilteredIngredientList().size() + 1);
+        var deleteCommand = new DeleteIngredientCommand(outOfBoundIndex);
 
         assertIngredientCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INGREDIENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
+<<<<<<< HEAD
         showIngredientAtIndex(model, INDEX_FIRST_INGREDIENT);
+=======
+        showPersonAtIndex(model, INDEXED_FIRST);
+>>>>>>> b04c1647ff463527478c9337eb1f7248df163b1e
 
-        Ingredient indToDelete = model.getFilteredIngredientList().get(INDEX_FIRST_INGREDIENT.getZeroBased());
-        DeleteIngredientCommand deleteCommand = new DeleteIngredientCommand(INDEX_FIRST_INGREDIENT);
+        var indToDelete = model.getFilteredIngredientList().get(INDEXED_FIRST.getZeroIndex());
+        var deleteCommand = new DeleteIngredientCommand(INDEXED_FIRST);
 
-        String expectedMessage = String.format(DeleteIngredientCommand.MESSAGE_DELETE_INGREDIENT_SUCCESS, indToDelete);
+        var expectedMessage = String.format(DeleteIngredientCommand.MESSAGE_DELETE_INGREDIENT_SUCCESS, indToDelete);
 
-        Model expectedModel = new ModelManager(new RecipeBook(), model.getIngredientBook(), new UserPrefs());
+        var expectedModel = new ModelManager(new EntryBook<>(), model.getIngredientBook(), new UserPrefs());
         expectedModel.deleteIngredient(indToDelete);
         showNoIngredient(expectedModel);
 
@@ -60,11 +71,15 @@ public class DeleteIngredientCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
+<<<<<<< HEAD
         showIngredientAtIndex(model, INDEX_FIRST_INGREDIENT);
+=======
+        showPersonAtIndex(model, INDEXED_FIRST);
+>>>>>>> b04c1647ff463527478c9337eb1f7248df163b1e
 
-        Index outOfBoundIndex = INDEX_SECOND_INGREDIENT;
+        var outOfBoundIndex = INDEXED_SECOND;
         // ensures that outOfBoundIndex is still in bounds of ingredient book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getIngredientBook().getFoodEntryList().size());
+        assertTrue(outOfBoundIndex.getZeroIndex() < model.getIngredientBook().getEntryList().size());
 
         DeleteIngredientCommand deleteCommand = new DeleteIngredientCommand(outOfBoundIndex);
 
@@ -73,14 +88,14 @@ public class DeleteIngredientCommandTest {
 
     @Test
     public void equals() {
-        DeleteIngredientCommand deleteFirstCommand = new DeleteIngredientCommand(INDEX_FIRST_INGREDIENT);
-        DeleteIngredientCommand deleteSecondCommand = new DeleteIngredientCommand(INDEX_SECOND_INGREDIENT);
+        var deleteFirstCommand = new DeleteIngredientCommand(INDEXED_FIRST);
+        var deleteSecondCommand = new DeleteIngredientCommand(INDEXED_SECOND);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteIngredientCommand deleteFirstCommandCopy = new DeleteIngredientCommand(INDEX_FIRST_INGREDIENT);
+        var deleteFirstCommandCopy = new DeleteIngredientCommand(INDEXED_FIRST);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

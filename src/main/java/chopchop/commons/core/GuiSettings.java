@@ -11,7 +11,7 @@ import java.util.Objects;
 public class GuiSettings implements Serializable {
 
     private static final double DEFAULT_HEIGHT = 600;
-    private static final double DEFAULT_WIDTH = 740;
+    private static final double DEFAULT_WIDTH = 928;
 
     private final double windowWidth;
     private final double windowHeight;
@@ -71,9 +71,9 @@ public class GuiSettings implements Serializable {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Width : " + windowWidth + "\n");
-        sb.append("Height : " + windowHeight + "\n");
-        sb.append("Position : " + windowCoordinates);
+        sb.append("Width : ").append(windowWidth).append('\n');
+        sb.append("Height : ").append(windowHeight).append('\n');
+        sb.append("Position : ").append(windowCoordinates);
         return sb.toString();
     }
 }

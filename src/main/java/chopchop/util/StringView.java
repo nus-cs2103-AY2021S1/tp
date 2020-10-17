@@ -2,7 +2,9 @@
 
 package chopchop.util;
 
+import java.util.List;
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.function.Predicate;
 
@@ -373,6 +375,24 @@ public class StringView {
      */
     public StringView uppercase() {
         return new StringView(this.toString().toUpperCase());
+    }
+
+    /**
+     * Splits the given stringview into a list of words by whitespace.
+     */
+    public List<String> words() {
+        var ret = new ArrayList<String>();
+
+        var sv = this;
+        while (!sv.isEmpty()) {
+            sv = sv.dropWhile(Character::isWhitespace);
+            var word = sv.takeWhile(x -> !Character.isWhitespace(x));
+            ret.add(word.toString());
+
+            sv = sv.dropWhile(x -> !Character.isWhitespace(x));
+        }
+
+        return ret;
     }
 
     /**
