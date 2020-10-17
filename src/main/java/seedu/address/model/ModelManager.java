@@ -12,7 +12,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.Status;
 
 /**
  * Represents the in-memory model of the main catalogue data.

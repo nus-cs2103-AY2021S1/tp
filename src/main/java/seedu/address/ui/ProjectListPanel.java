@@ -9,7 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.Status;
+import seedu.address.model.Status;
 
 /**
  * Panel containing the list of projects.

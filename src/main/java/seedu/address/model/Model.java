@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.Status;
 
 /**
  * The API of the Model component.

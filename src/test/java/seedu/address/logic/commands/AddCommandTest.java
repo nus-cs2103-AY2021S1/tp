@@ -21,7 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyMainCatalogue;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.Status;
+import seedu.address.model.Status;
 import seedu.address.testutil.ProjectBuilder;
 
 public class AddCommandTest {

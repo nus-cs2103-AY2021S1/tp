@@ -8,8 +8,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyMainCatalogue;
+import seedu.address.model.Status;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.Status;
 
 /**
  * API of the Logic component

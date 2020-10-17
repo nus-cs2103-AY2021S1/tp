@@ -2,7 +2,7 @@ package seedu.address.model.exceptions;
 
 import java.util.Objects;
 
-import seedu.address.model.project.Status;
+import seedu.address.model.Status;
 
 /**
  * Signals operations on an invalid scope status.

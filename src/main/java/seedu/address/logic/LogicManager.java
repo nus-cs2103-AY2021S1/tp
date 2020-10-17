@@ -14,8 +14,8 @@ import seedu.address.logic.parser.MainCatalogueParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyMainCatalogue;
+import seedu.address.model.Status;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.Status;
 import seedu.address.storage.Storage;
 
 /**

@@ -19,7 +19,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.StartCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exceptions.InvalidScopeException;
-import seedu.address.model.project.Status;
+import seedu.address.model.Status;
 
 /**
  * Parses user input.
