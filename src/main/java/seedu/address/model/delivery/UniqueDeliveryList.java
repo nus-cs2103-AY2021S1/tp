@@ -34,7 +34,7 @@ public class UniqueDeliveryList implements Iterable<Delivery> {
      */
     public boolean contains(Delivery toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameDelivery);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -62,7 +62,7 @@ public class UniqueDeliveryList implements Iterable<Delivery> {
             throw new DeliveryNotFoundException();
         }
 
-        if (!target.isSameDelivery(editedDelivery) && contains(editedDelivery)) {
+        if (!target.equals(editedDelivery) && contains(editedDelivery)) {
             throw new DuplicateDeliveryException();
         }
 
@@ -128,7 +128,7 @@ public class UniqueDeliveryList implements Iterable<Delivery> {
     private boolean deliveriesAreUnique(List<Delivery> items) {
         for (int i = 0; i < items.size() - 1; i++) {
             for (int j = i + 1; j < items.size(); j++) {
-                if (items.get(i).isSameDelivery(items.get(j))) {
+                if (items.get(i).equals(items.get(j))) {
                     return false;
                 }
             }

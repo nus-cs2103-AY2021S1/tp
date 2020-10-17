@@ -45,20 +45,6 @@ public class Delivery {
         return order;
     }
 
-    /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
-     */
-    public boolean isSameDelivery(Delivery otherDelivery) {
-        if (otherDelivery == this) {
-            return true;
-        }
-
-        return otherDelivery != null
-                && otherDelivery.getName().equals(getName())
-                && otherDelivery.getPhone().equals(getPhone());
-    }
-
     @Override
     public int hashCode() {
         return Objects.hash(name, phone, address, order);
