@@ -3,22 +3,14 @@ package seedu.address.logic.commands.project;
 import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.project.Deadline;
-import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
 
-import java.time.LocalDate;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 /**
  * Requests to view the details of an existing task in the project.
@@ -30,7 +22,7 @@ public class ViewTaskCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views the details of the task identified "
             + "by the index number used in the displayed task list. ";
 
-    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Started TASK: %1$s";
+    public static final String MESSAGE_VIEW_TASK_SUCCESS = "Started TASK: %1$s";
 
     private final Index index;
 
@@ -53,11 +45,9 @@ public class ViewTaskCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task taskToEdit = lastShownList.get(index.getZeroBased());
+        Task task = lastShownList.get(index.getZeroBased());
 
-        project.deleteTask(taskToEdit);
-
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, ""));
+        return new CommandResult(String.format(MESSAGE_VIEW_TASK_SUCCESS, task));
     }
 
     @Override
