@@ -7,5 +7,29 @@ public enum Priority {
     HIGHEST,
     HIGH,
     NORMAL,
-    LOW
+    LOW;
+
+    public static final String MESSAGE_CONSTRAINTS =
+            "There are only 4 priority level that can be chosen: HIGHEST, "
+            + "HIGH, NORMAL, and LOW.";
+
+    /**
+     * [method might be used in the future to improve SLAP in ParserUtil if needed]
+     * Returns true if a given string is a valid priority.
+     *
+     * @param test given string
+     * @return true if priority is valid
+     */
+    public static boolean isValidPriority(String test) {
+        String inputAllUpperCase = test.toUpperCase();
+        switch(inputAllUpperCase) {
+        case ("HIGHEST"):
+        case ("HIGH"):
+        case ("NORMAL"):
+        case ("LOW"):
+            return true;
+        default:
+            return false;
+        }
+    }
 }

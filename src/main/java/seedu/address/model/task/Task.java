@@ -1,12 +1,14 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Optional;
 
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Task in the todo list.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: non-null field values are validated, immutable.
  */
 public class Task {
     private final TaskName name;
@@ -16,7 +18,21 @@ public class Task {
     private final Status status;
 
     /**
-     * Only name of the task is compulsory.
+     * Initial constructor to avoid having null as arguments.
+     *
+     * @param name name of the task
+     */
+    public Task(TaskName name) {
+        requireNonNull(name);
+        this.name = name;
+        this.tag = null;
+        this.priority = null;
+        this.date = null;
+        this.status = null;
+    }
+
+    /**
+     * Constructor to support immutability.
      *
      * @param name name of the task
      * @param tag tags related to the task
@@ -25,6 +41,7 @@ public class Task {
      * @param status status of the task
      */
     public Task(TaskName name, Tag tag, Priority priority, Date date, Status status) {
+        requireNonNull(name);
         this.name = name;
         this.tag = tag;
         this.priority = priority;
@@ -32,21 +49,10 @@ public class Task {
         this.status = status;
     }
 
-    /**
-     * Constructor to avoid having null as arguments.
-     *
-     * @param name name of the task
-     */
-    public Task(TaskName name) {
-        this.name = name;
-        this.tag = null;
-        this.priority = null;
-        this.date = null;
-        this.status = null;
-    }
+
 
     public Optional<TaskName> getName() {
-        return Optional.ofNullable(this.name);
+        return Optional.of(this.name);
     }
 
     public Task setName(TaskName name) {
@@ -86,20 +92,18 @@ public class Task {
     }
 
     /**
-     * Returns true if both task of the same name have the same type and date.
+     * Returns true if both task have the same name.
      * This defines a weaker notion of equality between two tasks.
      *
      * @param otherTask other task to be compared
-     * @return true if both task has the same name, type, and date
+     * @return true if both task has the same name.
      */
     public boolean isSameTask(Task otherTask) {
         if (this == otherTask) {
             return true;
         }
 
-        return getTag().equals(otherTask.getTag())
-            && getName().equals((otherTask.getName()))
-            && getDate().equals(otherTask.getDate());
+        return getName().equals((otherTask.getName()));
     }
 
     /**
@@ -130,7 +134,8 @@ public class Task {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(" *Name: ")
+        builder
+                .append(" *Name: ")
                 .append(getName())
                 .append("\n")
                 .append(" *Tag: ")
