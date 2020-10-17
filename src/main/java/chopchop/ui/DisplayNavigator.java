@@ -22,7 +22,7 @@ public class DisplayNavigator {
     /**
      * Loads the RecipeViewPanel onto the swappable display region.
      */
-    protected static void loadRecipePanel() {
+    public static void loadRecipePanel() {
         displayController.displayRecipeList();
     }
 
@@ -33,10 +33,11 @@ public class DisplayNavigator {
     protected static void loadRecipeDisplay(Recipe recipe) {
         displayController.displayRecipe(recipe);
     }
+
     /**
      * Loads the IngredientViewPanel into the swappable display region.
      */
-    protected static void loadIngredientPanel() {
+    public static void loadIngredientPanel() {
         displayController.displayIngredientList();
     }
 }
