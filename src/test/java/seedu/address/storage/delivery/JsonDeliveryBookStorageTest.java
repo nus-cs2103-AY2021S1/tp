@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDeliveries.AARON_MANUAL;
 import static seedu.address.testutil.TypicalDeliveries.DAMITH_MANUAL;
-import static seedu.address.testutil.TypicalDeliveries.KELVIN;
 import static seedu.address.testutil.TypicalDeliveries.MARCUS;
 import static seedu.address.testutil.TypicalDeliveries.getTypicalDeliveryBook;
 

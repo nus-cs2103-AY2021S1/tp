@@ -13,7 +13,7 @@ Given below are my contributions to the project.
   * What it does: Allows readability to suit our application.
   * Justification: To allow our application to make more sense with class names and method names.
   * Credits: *AB3 from CS2103T [Repo link](https://github.com/nus-cs2103-AY2021S1/tp)*
-  
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=zeranium97&tabRepo=AY2021S1-CS2103T-T12-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=functional-code~test-code)
 
 * **Enhancements to existing features**:
@@ -30,7 +30,7 @@ Given below are my contributions to the project.
 
 * **Community**
    * Reported bugs (such as: [Unhandled Exceptions](https://github.com/AY2021S1-CS2103T-T12-1/tp/issues/78)
-   
+
 * **Tools**:
   * Update site-wide settings using Jekyll
 
