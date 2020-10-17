@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -63,6 +64,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Project> getFilteredProjectList() {
         return model.getFilteredProjectList();
+    }
+
+    @Override
+    public Optional<Project> getProjectToBeDisplayedOnDashBoard() {
+        return model.getProjectToBeDisplayedOnDashboard();
     }
 
     @Override

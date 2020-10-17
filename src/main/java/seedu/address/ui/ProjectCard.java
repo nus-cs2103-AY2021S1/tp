@@ -8,7 +8,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.Status;
 
 /**
  * An UI component that displays information of a {@code Project}.
@@ -26,7 +25,6 @@ public class ProjectCard extends UiPart<Region> {
      */
 
     public final Project project;
-    private Status status;
 
     @FXML
     private HBox cardPane;
@@ -37,43 +35,21 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private Label deadline;
     @FXML
-    private Label projectDescription;
-    @FXML
-    private Label repoUrl;
-    @FXML
     private FlowPane tags;
-    @FXML
-    private FlowPane tasks;
 
     /**
      * Creates a {@code ProjectCode} with the given {@code Project} and index to display.
      */
-    public ProjectCard(Project project, int displayedIndex, Status status) {
+    public ProjectCard(Project project, int displayedIndex) {
         super(FXML);
         this.project = project;
-        this.status = status;
         id.setText(displayedIndex + ". ");
         projectName.setText(project.getProjectName().fullProjectName);
-        deadline.setText(project.getDeadline().value);
+        deadline.setText(project.getDeadline().toString());
         project.getProjectTags().stream()
                 .sorted(Comparator.comparing(projectTag -> projectTag.projectTagName))
                 .forEach(projectTag -> this.tags.getChildren()
                 .add(new Label(projectTag.projectTagName)));
-
-        projectDescription.setText(project.getProjectDescription().value);
-        repoUrl.setText(project.getRepoUrl().value);
-        project.getTasks().stream()
-                .sorted(Comparator.comparing(task -> task.taskName))
-                .forEach(task -> tasks.getChildren().add(new Label(task.taskName)));
-        //System.out.println(status + name.getText());
-        if (status == Status.CATALOGUE) {
-            projectDescription.setVisible(false);
-            repoUrl.setVisible(false);
-            tasks.setVisible(false);
-            projectDescription.setManaged(false);
-            repoUrl.setManaged(false);
-            tasks.setManaged(false);
-        }
     }
 
     @Override
@@ -91,7 +67,6 @@ public class ProjectCard extends UiPart<Region> {
         // state check
         ProjectCard card = (ProjectCard) other;
         return id.getText().equals(card.id.getText())
-                && project.equals(card.project)
-                && status.equals(card.status);
+                && project.equals(card.project);
     }
 }

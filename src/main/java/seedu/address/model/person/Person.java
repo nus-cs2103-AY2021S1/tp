@@ -2,16 +2,12 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.tag.ProjectTag;
 
 /**
  * Represents a Teammate in the team.
@@ -26,24 +22,23 @@ public class Person {
 
     // Data fields
     private Address address;
-    private final Set<ProjectTag> projectTags = new HashSet<>();
     private HashMap<ProjectName, Participation> listOfParticipations = new HashMap<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(PersonName personName, Phone phone, Email email, Address address, Set<ProjectTag> projectTags) {
-        requireAllNonNull(personName, phone, email, address, projectTags);
+    public Person(PersonName personName, Phone phone, Email email, Address address) {
+        requireAllNonNull(personName, phone, email, address);
         this.personName = personName;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.projectTags.addAll(projectTags);
     }
 
     public PersonName getPersonName() {
         return personName;
     }
+
 
     public Phone getPhone() {
         return phone;
@@ -75,14 +70,6 @@ public class Person {
 
     public void addProject(Project p) {
         listOfParticipations.put(p.getProjectName(), new Participation(this, p));
-    }
-
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<ProjectTag> getTags() {
-        return Collections.unmodifiableSet(projectTags);
     }
 
     /**
@@ -119,14 +106,13 @@ public class Person {
         return otherProject.getPersonName().equals(getPersonName())
                 && otherProject.getPhone().equals(getPhone())
                 && otherProject.getEmail().equals(getEmail())
-                && otherProject.getAddress().equals(getAddress())
-                && otherProject.getTags().equals(getTags());
+                && otherProject.getAddress().equals(getAddress());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(personName, phone, email, address, projectTags);
+        return Objects.hash(personName, phone, email, address);
     }
 
     @Override
@@ -139,10 +125,7 @@ public class Person {
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Address: ")
-                .append(getAddress())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(getAddress());
         return builder.toString();
     }
-
 }

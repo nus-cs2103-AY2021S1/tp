@@ -281,14 +281,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. Team leader keys in the details.
 4. PTS stores the project profile into the data file.
 
-Use case ends.
+   Use case ends.
 
 **Extensions**
       
  * 3a. The given details are not valid.
    * 3a1. PTS shows an error message.
-    
-Use case ends.
+   
+   Use case ends.
 
 **Use Case: UC2 - Edit Existing Project Profile**
 
@@ -304,19 +304,20 @@ Use case ends.
 5. Team leader keys in the details.
 6. PTS stores the team member's profile into the data file. 
 
-Use case ends.
- 
+   Use case ends.
+
 **Extensions**
       
  * 3a. The given projectName is not found.
    * 3a1. PTS shows an error message.
-    
-Use case ends.
- 
-  * 5b. The given information is not valid.
-    * 5b1. PTS shows an error message.
    
-Use case ends.
+   Use case ends.
+   
+  * 5b. The given information is not valid.
+
+    * 5b1. PTS shows an error message.
+
+    Use case ends.
 
 
 #### System: Team Members Tracking System (TMTS)
@@ -332,15 +333,15 @@ Use case ends.
 3. Team leader keys in the details.
 4. TMTS stores the team member's profile into the data file.
 
-Use case ends.
+   Use case ends.
 
 **Extensions**
       
  * 3a. The given details are not valid.
    * 3a1. TMTS shows an error message.
-    
-Use case ends.
- 
+   
+   Use case ends.
+
 
 **Use Case: UC4 - Update Team Members**
 
@@ -357,19 +358,20 @@ Use case ends.
 5. Team leader keys in the details.
 6. TMTS stores the team member's profile into the data file.
 
-Use case ends.
+   Use case ends.
 
 **Extensions**
       
  * 3a. The given projectName is not found.
    * 3a1. PTS shows an error message.
-    
-Use case ends.
- 
-  * 5b. The given information is not valid.
-    * 5b1. TMTS shows an error message.
    
-Use case ends.
+   Use case ends.
+   
+  * 5b. The given information is not valid.
+
+    * 5b1. TMTS shows an error message.
+
+    Use case ends.
 
 **Use Case: UC5 - View Team Member On The Task**
 
@@ -384,12 +386,12 @@ Use case ends.
 3. Team leader keys in the task number.
 4. TMTS shows the profile of the task assignee.
 
-Use case ends.
+   Use case ends.
 
  * 3a. The given task number is not found.
    * 3a1. TMTS shows an error message.
-    
-Use case ends.
+   
+   Use case ends.
 
 #### System: Project Management System (PMS)
 **Use case: UC6 - Start the project**
@@ -399,17 +401,17 @@ Use case ends.
 **MSS:**
 
 1.  User requests to start a project with its index.
-2.  PMS shows the dashboard of the project.
+2. PMS shows the dashboard of the project.
 
-Use case ends.
+   Use case ends.
 
 **Extensions**
       
- * 2a. The given index is not valid
-   * 2a1. PMS shows an error message. 
+ * 1a. The given index is not valid
    
-
-Use case ends.
+   * 1a1. PMS shows an error message. 
+   
+   Use case ends.
 
 **Use case: UC7 - Add new task**
 
@@ -418,21 +420,40 @@ Use case ends.
 **MSS:**
 
 1. User requests to add a task in a project with specifications such as projectName, deadline, etc.
-2. PMS adds the task with given specifications.
+1. PMS adds the task with given specifications.
+1. User requests to assign the task to a team member.
+1. PMS associates the task with the team member.
 
-Use case ends.
+   Use case ends.
 
 **Extensions**
 
- * 2a. The application has not started any project.
-   * 2a1. PMS shows an error message. 
+ * 1a. The application has not started any project.
+   
+   * 1a1. PMS shows an error message. 
+   * 1a2. User _starts the project_ (UC6)
+   
+   Use case resumes at 1.
+   
+ * 1b. The input format for adding a task is invalid.
 
-Use case ends
+   * 1b1. PMS shows an error message. 
+   * 1b2. Repeat 1 until adding task is successful.
 
- * 2b. The input format for adding a task is invalid.
-   * 2b1. PMS shows an error message. 
+   Use case resumes at 3.
 
-Use case ends.
+ * 3a. The input task index is invalid or the team member is not found in the project.
+
+   * 3a1. PMS shows an error message.
+   * 3a2. Repeat 3 until assignment of task is successful.
+
+   Use case ends.
+
+ * 3b. The task has already been associated with the team member.
+
+   * 3b1. PMS shows an error message.
+
+   Use case ends.
 
 **Use case: UC8 - Delete a task**
 
@@ -443,19 +464,21 @@ Use case ends.
 1. User requests to delete a task in a project with its index.
 2. PMS deletes the task in the project.
 
-Use case ends.
+   Use case ends.
 
 **Extensions**
 
- * 2a. The application has not started any project.
-   * 2a1. PMS shows an error message. 
+ * 1a. The application has not started any project.
+   
+   * 1a1. PMS shows an error message. 
+   
+   Use case ends
+   
+ * 1b. The index for the task is invalid.
 
-Use case ends
+   * 1b1. PMS shows an error message. 
 
- * 2b. The index for the task is invalid.
-   * 2b1. PMS shows an error message. 
-
-Use case ends.
+   Use case ends.
 
 **Use case: UC9 - Find a task**
 
@@ -466,7 +489,7 @@ Use case ends.
 1. User requests to find a task based on its projectName, description, deadline, etc.
 2. PMS shows the list of filtered tasks with given specifications.
 
-Use case ends.
+   Use case ends.
 
 **Use case: UC10 - Prioritises a task**
 
@@ -477,24 +500,27 @@ Use case ends.
 1. User requests to prioritise a task in a project with its index.
 2. PMS prioritises the task.
 
-Use case ends.
+   Use case ends.
 
 **Extensions**
 
- * 2a. The application has not started any project.
-   * 2a1. PMS shows an error message. 
+ * 1a. The application has not started any project.
+   
+   * 1a1. PMS shows an error message. 
+   
+   Use case ends
+   
+ * 1b. The input index of task is invalid.
 
-Use case ends
+   * 1b1. PMS shows an error message. 
 
- * 2b. The input index of task is invalid.
-   * 2b1. PMS shows an error message. 
+   Use case ends.
 
-Use case ends.
+ * 1c. The task has already be prioritised.
 
- * 2c. The task has already be prioritised.
-   * 2c1. PMS outputs a message and do nothing else. 
+   * 1c1. PMS outputs a message and do nothing else. 
 
-Use case ends.
+   Use case ends.
 
 **Use case: UC11 - Task assignment**
 
@@ -505,52 +531,93 @@ Use case ends.
 1. User requests to assign a task in the project with its index to a teammate of the project.
 2. PMS associates the task with the participation of the teammate in the project.
 
+   Use case ends.
+
+**Extensions**
+
+ * 1a. The application has not started any project.
+   
+   * 1a1. PMS shows an error message. 
+   
+   Use case ends
+   
+ * 1b. The input index of task is invalid.
+
+   * 1b1. PMS shows an error message. 
+
+   Use case ends.
+
+ * 1c. The projectName of person does not exist in the project.
+
+   * 1c1. PMS shows an error message. 
+
+   Use case ends.
+
+ * 1d. The task has already been assigned to the teammate.
+
+   * 1d1. PMS shows a message and do nothing else. 
+
+   Use case ends.
+
+**Use case: UC12 - Filter tasks**
+
+**Actor**: User
+
+**MSS**:
+
+1. User requested a filtered list of tasks matching his/her predicate
+2. PMS displays the filtered list of tasks matching the predicate
+
 Use case ends.
 
 **Extensions**
 
- * 2a. The application has not started any project.
-   * 2a1. PMS shows an error message. 
+- 1a. The application has not started any project.
 
-Use case ends
+  * 1a1. PMS shows an error message
 
- * 2b. The input index of task is invalid.
-   * 2b1. PMS shows an error message. 
+  Use case ends.
 
-Use case ends.
+- 1b. the filter is empty
 
- * 2c. The projectName of person does not exist in the project.
-   * 2c1. PMS shows an error message. 
+  - 1b1. PMS shows an error message
 
-Use case ends.
+  Use case ends.
 
- * 2d. The task has already been assigned to the teammate.
-   * 2d1. PMS shows a message and do nothing else. 
+- 1c. the input format is incorrect
 
-Use case ends.
+  - 1c1. PMS shows an error message and the correct format.
 
-**Use case: UC12 - View Tasks of a Person**
+  Use case ends.
+
+**Use case: UC13 - View Tasks of a Person**
 
 **Actor:** User
 
 **MSS:**
 
-1. User requests to view all tasks assigned to a teammate.
+1. User requests to view all tasks assigned to a teammate by filtering tasks (UC12).
 2. PMS displays the filtered list of tasks that are associated with the person in the project.
 
-Use case ends.
+   Use case ends.
 
 **Extensions**
 
- * 2a. The application has not started any project.
-   * 2a1. PMS shows the list of tasks that are associated with the person in all projects. 
-
-Use case ends
+ * 1a. The application has not started any project.
+   
+   * 1a1. PMS shows an error message
+   
+   Use case ends.
 
  * 2b. The teammate does not exist in the project.
+   
    * 2b1. PMS shows an error message. 
+   
+   Use case ends.
 
-Use case ends.
+
+
+
 
 
 ### Non-Functional Requirements

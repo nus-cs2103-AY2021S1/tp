@@ -37,7 +37,7 @@ You can reach us at the repoUrl `seer[at]comp.nus.edu.sg`
 
 <img src="images/t-fang.png" width="200px">
 
-[[github](http://github.com/T-Fang)] 
+[[github](http://github.com/T-Fang)]
 
 [[portfolio](team/T-Fang.md)]
 

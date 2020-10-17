@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDescription;
@@ -29,6 +30,7 @@ public class ProjectBuilder {
     private ProjectDescription projectDescription;
     private Set<ProjectTag> projectTags;
     private Set<Task> tasks;
+    private Set<Meeting> meetings;
 
     /**
      * Creates a {@code ProjectBuilder} with the default details.
@@ -40,6 +42,7 @@ public class ProjectBuilder {
         projectDescription = new ProjectDescription(DEFAULT_ADDRESS);
         projectTags = new HashSet<>();
         tasks = new HashSet<>();
+        meetings = new HashSet<>();
     }
 
     /**
@@ -52,6 +55,7 @@ public class ProjectBuilder {
         projectDescription = projectToCopy.getProjectDescription();
         projectTags = new HashSet<>(projectToCopy.getProjectTags());
         tasks = new HashSet<>(projectToCopy.getTasks());
+        meetings = new HashSet<>(projectToCopy.getMeetings());
     }
 
     /**
@@ -80,6 +84,14 @@ public class ProjectBuilder {
     }
 
     /**
+     * Parses the {@code tasks} into a {@code Set<Task>} and set it to the {@code Project} that we are building.
+     */
+    public ProjectBuilder withMeetings(String ... meetings) {
+        this.meetings = SampleDataUtil.getMeetingSet(meetings);
+        return this;
+    }
+
+    /**
      * Sets the {@code ProjectDescription} of the {@code Project} that we are building.
      */
     public ProjectBuilder withProjectDescription(String projectDescription) {
@@ -103,8 +115,14 @@ public class ProjectBuilder {
         return this;
     }
 
+    /**
+     * Creates a project
+     *
+     * @return project sample
+     */
     public Project build() {
-        return new Project(projectName, deadline, repoUrl, projectDescription, projectTags, new HashMap<>(), tasks);
+        return new Project(projectName, deadline, repoUrl, projectDescription,
+                projectTags, new HashMap<>(), tasks, meetings);
     }
 
 }

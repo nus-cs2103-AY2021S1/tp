@@ -18,7 +18,7 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
   - Features associated with initialising project 
     - Creating new project `new project `
     - Start working on an existing project `start `
-    
+  
 - Features in project scope
   - Task related features
     - Check the project dashboard `dashboard `
@@ -28,6 +28,7 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
     - Give a task a certain level of priority `prioritise `
     - Viewing tasks allocated to a team member `viewtask `
     - Assign task to a team member `assign `
+    - Filter tasks by assignee/deadline/task name `filter `
   - Teammate related features 
     - Create new teammate `new teammate `
     - Add existing teammates of other projects to participate in this project `involves `
@@ -77,6 +78,10 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  
+* One and only one Item in parenthesis should be supplied by user
+
+  e.g. `(ta/ASSIGNEE NAME)||(td/DEADLINE)||(tn/TASK NAME)` can be used as "ta/Alice", "td/31-12-2020 10:00:00" or as "tn/group meeting", but not as "ta/Alice td/31-12-2020" or "".
 
 **:information_source: Notes about scoping:**<br>
 
@@ -110,8 +115,7 @@ Adds a project to the project list.
 Format: `add project n/NAME d/DUEDATE t/TEAM`
 TEAM is any number of names separated by “ “ spaces.
 
-Examples: `add project n/Taskmania d/2020-09-09 t/Niaaz Lucas Jiayu` Adds a new project with the projectName Taskmania, due
- date 9 Sep 2020 with team members, Niaaz, Lucas and Jiayu.
+Examples: `add project n/Taskmania d/2020-09-09 t/Niaaz Lucas Jiayu` Adds a new project with the projectName Taskmania, due date 9 Sep 2020 with team members, Niaaz, Lucas and Jiayu.
 
 ### Starting work on an existing project `start `
 Initialises the project specified.
@@ -213,6 +217,22 @@ Format: `assign INDEX NAME`
 
 Example: `assign 1 Niaaz` Assigns the task currently with index 1 to Niaaz.
 
+#### Filter tasks by assignee/deadline/task name `filter `
+
+Filter tasks by assignee, deadline or task name. 
+
+Format: ``filter (ta/ASSIGNEE NAME)||(td/DEADLINE)||(tn/TASK NAME)``
+
+- `filter (ta/ASSIGNEE NAME)` retrieves all tasks that have assignee named `ASSIGNEE NAME`
+- `filter (td/DEADLINE)` retrieves all tasks whose deadlines are`DEADLINE`
+- `filter (tn/TASK NAME)` retrieves all tasks whose task names contain `TASK NAME`
+
+Example: 
+
+1. `filter ta/Alice` Displays filtered list of tasks that have assignee named Alice.
+2. `filter td/31-12-2020 10:00:00` Displays filtered list of tasks whose deadlines are at 10am on 31/12/2020.
+3. `filter tn/group meeting` Displays filtered list of tasks whose task names contain "group meeting".
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### **Teammate**-related features
@@ -241,7 +261,7 @@ Format: `updatetm NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]`
 
 Example: `updatetm Lucas p/12345678` Resets the contact number of `Lucas` to `12345678`
 
-#### Update participation details (tasks and project-specific information) `updatept participation `
+#### Update participation details (tasks and project-specific information) `update participation `
 Updates the participation details of the teammate, such as his/her role
 
 Format: `updatept NAME [r/ROLE]`
@@ -290,6 +310,7 @@ Action | Format, Examples | Scope
 **Find KEYWORD** | `find KEYWORD` <br> eg. `find read` | project scope
 **Give A Task A Priority Level** | `prioritise INDEX1, INDEX2` <br> eg. `prioritise 2,3` | project scope 
 **Assign A Task To A Teammate** | `assign INDEX NAME` <br> e.g. `assign 1 Niaaz` | project scope
+**Filter Tasks by Assignee/Deadline/Task Name** | ``filter (ta/ASSIGNEE NAME)||(td/DEADLINE)||(tn/TASK NAME)``<br>e.g. `filter ta/Alice` | project scope 
 **New Teammate** | `new NAME p/PHONE_NUMBER e/EMAIL` <br> e.g., `new Lucas p/94311421 e/lucastai98@gmail.com` | project scope
 **Involve Teammate** | `involves NAME` <br> e.g., `involves Lucase` | project scope
 **Update Teammate** | `updatetm NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `updatetm Lucas p/12345678` | project scope

@@ -12,12 +12,24 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
  
 Given below are my contributions to the project.
 
-* **Model modification**: Refactored some attributes for Person in AB3 to attributes for Project in Taskmania.
+* **Model modification**: Refactored some attributes for Person in AB3 to attributes for Project in Taskmania.(Pull request [\#72](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/72), [\#76](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/76))
   * What it means: refactors person.Phone -> project.Deadline, person.Email -> project.RepoUrl
   * What changes made: 
     * refactored based on attributes for Person in AB3;
     * changed all methods that has dependency on relevant attributes;
     * updated test cases accordingly.
+
+* **GUI modification**: Enhanced the GUI for Milestone v1.2. (Pull request [\#101](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/101))
+  * What it means: makes the GUI show the list of projects on the left half while the certain project profile is shown on the right half
+  * What changes made: 
+    * removed the status of the ProjectCard;
+    * removed the extra information of a project to be shown on the ProjectCard.
+    * added a new attribute in ModelManager which is the project that will be shown on the project dashboard.
+    * updated methods in dependent classes to allow access to the new attribute.
+    * created a ProjectDashboard class and the corresponding ProjectDashboard.fxml file;
+    * created a EmptyProjectDashboard class and the corresponding EmptyProjectDashboard.fxml file;
+    * added these two instances to the MainWindow class;
+    * updated test cases of the MainWindow class.
 
 * **New Feature**: 
 
@@ -29,9 +41,9 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
 
 * **Documentation**:
-  * User Guide:
+  * User Guide: (Pull request [\#52](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/52))
     * Added documentation for advanced task-related features.
-  * Developer Guide:
+  * Developer Guide: (Pull request [\#53](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/53))
     * Came up with the outline of Use Cases.
     * Wrote the Use Cases for first draft of ProjectProfile Tracking System.
     * Wrote the Use Cases for first draft of Team Members Tracking System.

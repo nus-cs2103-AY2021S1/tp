@@ -7,8 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIP
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_DG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_HANG;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalProjects.ALICE;
-import static seedu.address.testutil.TypicalProjects.BOB;
+import static seedu.address.testutil.TypicalProjects.APEAKAPP;
+import static seedu.address.testutil.TypicalProjects.BOT;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -31,19 +31,20 @@ public class UniqueProjectListTest {
 
     @Test
     public void contains_projectNotInList_returnsFalse() {
-        assertFalse(uniqueProjectList.contains(ALICE));
+        assertFalse(uniqueProjectList.contains(APEAKAPP));
     }
 
     @Test
     public void contains_projectInList_returnsTrue() {
-        uniqueProjectList.add(ALICE);
-        assertTrue(uniqueProjectList.contains(ALICE));
+        uniqueProjectList.add(APEAKAPP);
+        assertTrue(uniqueProjectList.contains(APEAKAPP));
     }
 
     @Test
     public void contains_projectWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueProjectList.add(ALICE);
-        Project editedAlice = new ProjectBuilder(ALICE).withProjectDescription(VALID_PROJECT_DESCRIPTION_BOT).withTags(
+        uniqueProjectList.add(APEAKAPP);
+        Project editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(
+            VALID_PROJECT_DESCRIPTION_BOT).withTags(
             VALID_PROJECT_TAG_HANG)
                 .withTasks(VALID_PROJECT_TAG_DG)
                 .build();
@@ -57,42 +58,43 @@ public class UniqueProjectListTest {
 
     @Test
     public void add_duplicateProject_throwsDuplicateProjectException() {
-        uniqueProjectList.add(ALICE);
-        assertThrows(DuplicateProjectException.class, () -> uniqueProjectList.add(ALICE));
+        uniqueProjectList.add(APEAKAPP);
+        assertThrows(DuplicateProjectException.class, () -> uniqueProjectList.add(APEAKAPP));
     }
 
     @Test
     public void setProject_nullTargetProject_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueProjectList.setProject(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueProjectList.setProject(null, APEAKAPP));
     }
 
     @Test
     public void setProject_nullEditedProject_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueProjectList.setProject(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueProjectList.setProject(APEAKAPP, null));
     }
 
     @Test
     public void setProject_targetProjectNotInList_throwsProjectNotFoundException() {
-        assertThrows(ProjectNotFoundException.class, () -> uniqueProjectList.setProject(ALICE, ALICE));
+        assertThrows(ProjectNotFoundException.class, () -> uniqueProjectList.setProject(APEAKAPP, APEAKAPP));
     }
 
     @Test
     public void setProject_editedProjectIsSameProject_success() {
-        uniqueProjectList.add(ALICE);
-        uniqueProjectList.setProject(ALICE, ALICE);
+        uniqueProjectList.add(APEAKAPP);
+        uniqueProjectList.setProject(APEAKAPP, APEAKAPP);
         UniqueProjectList expectedUniqueProjectList = new UniqueProjectList();
-        expectedUniqueProjectList.add(ALICE);
+        expectedUniqueProjectList.add(APEAKAPP);
         assertEquals(expectedUniqueProjectList, uniqueProjectList);
     }
 
     @Test
     public void setProject_editedProjectHasSameIdentity_success() {
-        uniqueProjectList.add(ALICE);
-        Project editedAlice = new ProjectBuilder(ALICE).withProjectDescription(VALID_PROJECT_DESCRIPTION_BOT).withTags(
+        uniqueProjectList.add(APEAKAPP);
+        Project editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(
+            VALID_PROJECT_DESCRIPTION_BOT).withTags(
             VALID_PROJECT_TAG_HANG)
                 .withTasks(VALID_PROJECT_TAG_DG)
                 .build();
-        uniqueProjectList.setProject(ALICE, editedAlice);
+        uniqueProjectList.setProject(APEAKAPP, editedAlice);
         UniqueProjectList expectedUniqueProjectList = new UniqueProjectList();
         expectedUniqueProjectList.add(editedAlice);
         assertEquals(expectedUniqueProjectList, uniqueProjectList);
@@ -100,18 +102,18 @@ public class UniqueProjectListTest {
 
     @Test
     public void setProject_editedProjectHasDifferentIdentity_success() {
-        uniqueProjectList.add(ALICE);
-        uniqueProjectList.setProject(ALICE, BOB);
+        uniqueProjectList.add(APEAKAPP);
+        uniqueProjectList.setProject(APEAKAPP, BOT);
         UniqueProjectList expectedUniqueProjectList = new UniqueProjectList();
-        expectedUniqueProjectList.add(BOB);
+        expectedUniqueProjectList.add(BOT);
         assertEquals(expectedUniqueProjectList, uniqueProjectList);
     }
 
     @Test
     public void setProject_editedProjectHasNonUniqueIdentity_throwsDuplicateProjectException() {
-        uniqueProjectList.add(ALICE);
-        uniqueProjectList.add(BOB);
-        assertThrows(DuplicateProjectException.class, () -> uniqueProjectList.setProject(ALICE, BOB));
+        uniqueProjectList.add(APEAKAPP);
+        uniqueProjectList.add(BOT);
+        assertThrows(DuplicateProjectException.class, () -> uniqueProjectList.setProject(APEAKAPP, BOT));
     }
 
     @Test
@@ -121,13 +123,13 @@ public class UniqueProjectListTest {
 
     @Test
     public void remove_projectDoesNotExist_throwsProjectNotFoundException() {
-        assertThrows(ProjectNotFoundException.class, () -> uniqueProjectList.remove(ALICE));
+        assertThrows(ProjectNotFoundException.class, () -> uniqueProjectList.remove(APEAKAPP));
     }
 
     @Test
     public void remove_existingProject_removesProject() {
-        uniqueProjectList.add(ALICE);
-        uniqueProjectList.remove(ALICE);
+        uniqueProjectList.add(APEAKAPP);
+        uniqueProjectList.remove(APEAKAPP);
         UniqueProjectList expectedUniqueProjectList = new UniqueProjectList();
         assertEquals(expectedUniqueProjectList, uniqueProjectList);
     }
@@ -139,9 +141,9 @@ public class UniqueProjectListTest {
 
     @Test
     public void setProjects_uniqueProjectList_replacesOwnListWithProvidedUniqueProjectList() {
-        uniqueProjectList.add(ALICE);
+        uniqueProjectList.add(APEAKAPP);
         UniqueProjectList expectedUniqueProjectList = new UniqueProjectList();
-        expectedUniqueProjectList.add(BOB);
+        expectedUniqueProjectList.add(BOT);
         uniqueProjectList.setProjects(expectedUniqueProjectList);
         assertEquals(expectedUniqueProjectList, uniqueProjectList);
     }
@@ -153,18 +155,19 @@ public class UniqueProjectListTest {
 
     @Test
     public void setProjects_list_replacesOwnListWithProvidedList() {
-        uniqueProjectList.add(ALICE);
-        List<Project> projectList = Collections.singletonList(BOB);
+        uniqueProjectList.add(APEAKAPP);
+        List<Project> projectList = Collections.singletonList(BOT);
         uniqueProjectList.setProjects(projectList);
         UniqueProjectList expectedUniqueProjectList = new UniqueProjectList();
-        expectedUniqueProjectList.add(BOB);
+        expectedUniqueProjectList.add(BOT);
         assertEquals(expectedUniqueProjectList, uniqueProjectList);
     }
 
     @Test
     public void setProjects_listWithDuplicateProjects_throwsDuplicateProjectException() {
-        List<Project> listWithDuplicateProjects = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateProjectException.class, () -> uniqueProjectList.setProjects(listWithDuplicateProjects));
+        List<Project> listWithDuplicateProjects = Arrays.asList(APEAKAPP, APEAKAPP);
+        assertThrows(DuplicateProjectException.class, () -> uniqueProjectList.setProjects(
+            listWithDuplicateProjects));
     }
 
     @Test

@@ -2,12 +2,16 @@ package seedu.address.model.project;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
@@ -20,6 +24,7 @@ import seedu.address.model.task.Task;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Project {
+    private static final Predicate<Task> TRUE_TASK_PREDICATE = task -> true;
 
     // Identity fields
     private final ProjectName projectName;
@@ -30,6 +35,7 @@ public class Project {
     private final ProjectDescription projectDescription;
     private final Set<ProjectTag> projectTags = new HashSet<>();
     private final HashMap<PersonName, Participation> listOfParticipations = new HashMap<>();
+    private Predicate<Task> taskFilter = TRUE_TASK_PREDICATE;
     private final Set<Task> tasks = new HashSet<>();
     private final Set<Meeting> meetings = new HashSet<>();
 
@@ -38,8 +44,9 @@ public class Project {
      */
     public Project(ProjectName projectName, Deadline deadline, RepoUrl repoUrl, ProjectDescription projectDescription,
                    Set<ProjectTag> projectTags,
-                   HashMap<PersonName, Participation> listOfParticipations, Set<Task> tasks) {
-        requireAllNonNull(projectName, deadline, repoUrl, projectDescription, projectTags, listOfParticipations, tasks);
+                   HashMap<PersonName, Participation> listOfParticipations, Set<Task> tasks, Set<Meeting> meetings) {
+        requireAllNonNull(projectName, deadline, repoUrl, projectDescription, projectTags,
+                listOfParticipations, tasks, meetings);
         this.projectName = projectName;
         this.deadline = deadline;
         this.repoUrl = repoUrl;
@@ -47,6 +54,7 @@ public class Project {
         this.projectTags.addAll(projectTags);
         this.listOfParticipations.putAll(listOfParticipations);
         this.tasks.addAll(tasks);
+        this.meetings.addAll(meetings);
     }
 
     public ProjectName getProjectName() {
@@ -74,12 +82,18 @@ public class Project {
     public boolean addTask(Task task) {
         return tasks.add(task);
     }
+    public boolean deleteTask(Task task) {
+        return tasks.remove(task);
+    }
+    public void updateTaskFilter(Predicate<Task> predicate) {
+        this.taskFilter = predicate;
+    }
 
     /**
      * Gets all attendees of a specific meeting
      */
     public Set<Person> getAttendeesOfMeeting(Meeting meeting) {
-        HashSet<Person> attendees = new HashSet<Person>();
+        HashSet<Person> attendees = new HashSet<>();
         for (Map.Entry<PersonName, Participation> entry: listOfParticipations.entrySet()) {
             attendees.add(entry.getValue().getPerson());
         }
@@ -107,6 +121,48 @@ public class Project {
     public void addParticipation(Person p) {
         listOfParticipations.put(
             p.getPersonName(), new Participation(p, this));
+    }
+
+    /**
+     * Checks whether the project contains a member of the given name.
+     */
+    public boolean hasParticipation(String name) {
+        return listOfParticipations.containsKey(new PersonName(name));
+    }
+
+    /**
+     * Gets the Participation with the member name.
+     */
+    public Participation getParticipation(String name) {
+        return listOfParticipations.get(new PersonName(name));
+    }
+
+    /**
+     * Deletes the Participation with the member name.
+     */
+    public void deleteParticipation(String name) {
+        if (listOfParticipations.containsKey(new PersonName(name))) {
+            listOfParticipations.remove(new PersonName(name));
+        }
+    }
+
+    /**
+     * Gets the complete list of Teammates associated with this project
+     */
+    public List<Person> getTeammates() {
+        List<Person> listOfPersons = new ArrayList<>();
+        for (Map.Entry<PersonName, Participation> entry: listOfParticipations.entrySet()) {
+            Person p = entry.getValue().getPerson();
+            listOfPersons.add(p);
+        }
+        return listOfPersons;
+    }
+
+    /**
+     * Returns the list of tasks that is last shown.
+     */
+    public List<Task> getFilteredTaskList() {
+        return tasks.stream().filter(taskFilter).collect(Collectors.toList());
     }
 
     /**

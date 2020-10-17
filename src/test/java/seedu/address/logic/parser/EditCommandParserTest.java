@@ -38,8 +38,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PROJECT;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditProjectDescriptor;
+import seedu.address.logic.commands.global.EditCommand;
+import seedu.address.logic.commands.global.EditCommand.EditProjectDescriptor;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
@@ -52,7 +52,7 @@ public class EditCommandParserTest {
     private static final String TAG_EMPTY = " " + PREFIX_PROJECT_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+        String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
     private EditCommandParser parser = new EditCommandParser();
 
