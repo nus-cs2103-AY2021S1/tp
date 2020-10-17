@@ -53,11 +53,11 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Exercise sitsUp = Exercise.find(new Name("Sit ups"));
-        Exercise flyingKicks = Exercise.find(new Name("Flying kicks"));
+        Exercise sitUps = new Exercise(new Name("Sit ups"), 30);
+        Exercise flyingKicks = new Exercise(new Name("Flying kicks"), 20);
 
         Log logSitsUp = new LogBuilder()
-                .withExercise(sitsUp)
+                .withExercise(sitUps)
                 .withComment("This is okay")
                 .withReps("13")
                 .build();

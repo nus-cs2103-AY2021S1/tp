@@ -1,17 +1,10 @@
 package seedu.fma.storage;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.fma.commons.exceptions.IllegalValueException;
 import seedu.fma.model.exercise.Exercise;
-import seedu.fma.model.exercise.exceptions.ExerciseNotFoundException;
-import seedu.fma.model.log.Comment;
-import seedu.fma.model.log.Log;
-import seedu.fma.model.log.Rep;
 import seedu.fma.model.util.Name;
 
 /**

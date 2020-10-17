@@ -3,6 +3,7 @@ package seedu.fma.testutil;
 
 import seedu.fma.logic.commands.EditCommand;
 import seedu.fma.logic.commands.EditCommand.EditLogDescriptor;
+import seedu.fma.model.LogBook;
 import seedu.fma.model.exercise.Exercise;
 import seedu.fma.model.log.Comment;
 import seedu.fma.model.log.Log;
@@ -49,7 +50,7 @@ public class EditLogDescriptorBuilder {
      * Sets the {@code Exercise} of the {@code EditLogDescriptor} that we are building.
      */
     public EditLogDescriptorBuilder withExerciseName(String name) {
-        descriptor.setExercise(Exercise.getExercise(new Name(name)));
+        descriptor.setExercise(LogBook.getExercise(new Name(name)));
         return this;
     }
 

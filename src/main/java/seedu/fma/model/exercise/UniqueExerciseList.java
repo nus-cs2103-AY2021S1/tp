@@ -10,15 +10,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.fma.model.exercise.exceptions.DuplicateExerciseException;
 import seedu.fma.model.exercise.exceptions.ExerciseNotFoundException;
-import seedu.fma.model.log.exceptions.DuplicateLogException;
-import seedu.fma.model.log.exceptions.LogNotFoundException;
 
 /**
  * A list of Exercises that enforces uniqueness between its elements and does not allow nulls.
- * An Exercise is considered unique by comparing using {@code Exercise#isSameExercise(Exercise)}. As such, adding and updating of
- * Exercises uses Exercise#isSameExercise(Exercise) for equality so as to ensure that the Exercise being added or updated is
- * unique in terms of identity in the UniqueExerciseList. However, the removal of an Exercise uses Exercise#equals(Object) so
- * as to ensure that the Exercise with exactly the same fields will be removed.
+ * An Exercise is considered unique by comparing using {@code Exercise#isSameExercise(Exercise)}. As such, adding and
+ * updating of Exercises uses Exercise#isSameExercise(Exercise) for equality so as to ensure that the Exercise being
+ * added or updated is unique in terms of identity in the UniqueExerciseList. However, the removal of an Exercise
+ * uses Exercise#equals(Object) so * as to ensure that the Exercise with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -81,10 +79,10 @@ public class UniqueExerciseList implements Iterable<Exercise> {
         }
     }
 
-    public void setExercises(UniqueExerciseList replacement) {
+    /*public void setExercises(UniqueExerciseList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
-    }
+    }*/
 
     /**
      * Replaces the contents of this list with {@code exercises}.

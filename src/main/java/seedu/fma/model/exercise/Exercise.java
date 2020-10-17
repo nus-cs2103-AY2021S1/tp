@@ -2,17 +2,10 @@ package seedu.fma.model.exercise;
 
 import static seedu.fma.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.fma.commons.util.IntegerUtil.requirePositiveInteger;
-import static seedu.fma.model.util.SampleDataUtil.getSampleExercises;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
-import seedu.fma.model.exercise.exceptions.ExerciseNotFoundException;
-import seedu.fma.model.log.Log;
 import seedu.fma.model.util.Name;
-import seedu.fma.model.util.SampleDataUtil;
 
 /**
  * Represents a Exercise in the log book.
