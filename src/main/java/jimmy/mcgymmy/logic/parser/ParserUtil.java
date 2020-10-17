@@ -2,8 +2,10 @@ package jimmy.mcgymmy.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.File;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -137,6 +139,19 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@Code String directory} into a {@code File}
+     */
+    public static Path parseDir(String directory) throws ParseException {
+        //Create the directory
+        Path path = Path.of(directory);
+        File file = new File(directory);
+        if (!file.exists()) {
+            throw new ParseException(String.format("Directory does not exist %s", path.toString()));
+        }
+        return path;
     }
 
     /**
