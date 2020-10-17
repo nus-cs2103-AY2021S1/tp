@@ -5,15 +5,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 //import java.util.Set;
-<<<<<<< HEAD
 import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.commands.EditModuleCommand;
-import seedu.address.model.person.Person;
-=======
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.contact.Contact;
->>>>>>> master
 //import seedu.address.model.tag.Tag;
 
 /**
@@ -24,13 +18,8 @@ public class PersonUtil {
     /**
      * Returns an add command string for adding the {@code person}.
      */
-<<<<<<< HEAD
-    public static String getAddCommand(Person person) {
-        return AddModuleCommand.COMMAND_WORD + " " + getPersonDetails(person);
-=======
     public static String getAddCommand(Contact person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
->>>>>>> master
+        return AddModuleCommand.COMMAND_WORD + " " + getPersonDetails(person);
     }
 
     /**
