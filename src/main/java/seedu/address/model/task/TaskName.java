@@ -7,7 +7,11 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; is valid as declared in {@link #isValidTaskName(String)}
  */
 public class TaskName {
+<<<<<<< HEAD
     public static final String MESSAGE_CONSTRAINTS = "Task name should be no longer than 30 words.";
+=======
+    public static final String MESSAGE_CONSTRAINTS = "Task name should not be empty or longer than 30 words.";
+>>>>>>> refactor-todo-list-mainlist
     public static final int MAXIMUM_LENGTH = 30;
 
     private final String value;
@@ -29,7 +33,7 @@ public class TaskName {
      * @return true if task name is valid
      */
     public static boolean isValidTaskName(String test) {
-        return test.length() <= MAXIMUM_LENGTH;
+        return test.length() <= MAXIMUM_LENGTH && !test.equals("");
     }
 
     public String getValue() {

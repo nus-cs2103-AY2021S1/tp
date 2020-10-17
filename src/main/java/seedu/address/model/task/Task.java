@@ -49,8 +49,6 @@ public class Task {
         this.status = status;
     }
 
-
-
     public Optional<TaskName> getName() {
         return Optional.of(this.name);
     }
