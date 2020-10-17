@@ -13,9 +13,7 @@ public class ListCommandParser implements Parser<ListCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ListCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap;
-
-        boolean isNotListAll = args.matches(".*\\b\\d+\\b$"); //Has index as argument
+        boolean isNotListAll = args.matches(".*\\b.+\\b$"); //Has argument
         if (!isNotListAll) {
             return new ListCommand(Index.fromZeroBased(0));
         }
