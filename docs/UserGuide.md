@@ -107,8 +107,6 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-## **Features** in catalogue scope
-
 ### Creating a new project `add project `
 Adds a project to the project list.
 
@@ -303,14 +301,15 @@ contains the data of your previous Taskmania home folder.
 Action | Format, Examples | Scope
 --------|------------------|-------
 **Get Help** | `help` | global scope
-**Add Project** | `add project n/NAME d/DUEDATE t/TEAM` <br> e.g., `add project n/Taskmania d/2020-09-09 t/Niaaz Lucas` | catalogue scope
-**Start** | `start INDEX`<br> e.g., `start 3` | catalogue scope
+**Add Project** | `add project n/NAME d/DUEDATE t/TEAM` <br> e.g., `add project n/Taskmania d/2020-09-09 t/Niaaz Lucas` | global scope
+**Start** | `start INDEX`<br> e.g., `start 3` | global scope
 **List Out The List Of Tasks** | `list` | project scope
 **Delete Task** | `delete INDEX` <br> eg. `delete 2` | project scope
 **Find KEYWORD** | `find KEYWORD` <br> eg. `find read` | project scope
 **Give A Task A Priority Level** | `prioritise INDEX1, INDEX2` <br> eg. `prioritise 2,3` | project scope 
 **Assign A Task To A Teammate** | `assign INDEX NAME` <br> e.g. `assign 1 Niaaz` | project scope
-**Filter Tasks by Assignee/Deadline/Task Name** | ``filter (ta/ASSIGNEE NAME)||(td/DEADLINE)||(tn/TASK NAME)``<br>e.g. `filter ta/Alice` | project scope 
+**Filter Tasks by Assignee/Deadline/Task Name** | ``filter (ta/ASSIGNEE NAME)||(td/DEADLINE)||(tn/TASK NAME)``<br>e.g. `filter ta/Alice` | project scope
+**View Details of A Task** | `viewtask INDEX` <br> eg. `viewtask 1` | project scope
 **New Teammate** | `new NAME p/PHONE_NUMBER e/EMAIL` <br> e.g., `new Lucas p/94311421 e/lucastai98@gmail.com` | project scope
 **Involve Teammate** | `involves NAME` <br> e.g., `involves Lucase` | project scope
 **Update Teammate** | `updatetm NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `updatetm Lucas p/12345678` | project scope
