@@ -21,8 +21,8 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose attributes contain all of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Prefixes are optional for name-only searching.\n"
-            + "Parameters: PREFIX KEYWORD... [PREFIX] [KEYWORD]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " alice "
+            + "Parameters: PREFIX KEYWORD... [PREFIX KEYWORD...]...\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " alice liddel "
             + PREFIX_DEPARTMENT + " computing";
 
     private final Predicate<Person> predicate;
