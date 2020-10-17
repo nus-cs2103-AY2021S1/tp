@@ -145,8 +145,9 @@ public class ModelManager implements Model {
     }
 
     //=========== Task List Accessors =============================================================
+
     @Override
-    public ObservableList<Task> getTaskList() {
+    public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
     }
 
@@ -154,11 +155,6 @@ public class ModelManager implements Model {
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
-    }
-
-    @Override
-    public ObservableList<Task> getFilteredTaskList() {
-        return filteredTasks;
     }
 
     //=========== Reminded Assignments List Accessors =============================================================
@@ -170,11 +166,6 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Assignment> getRemindedAssignmentsList() {
         return remindedAssignments;
-    }
-
-    @Override
-    public ObservableList<Lesson> getLessonList() {
-        return lessons;
     }
 
     @Override
