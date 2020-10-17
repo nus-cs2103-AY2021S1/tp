@@ -2,10 +2,18 @@
   "assignments": [ {
     "name": "Valid Assignment",
     "deadline": "01-01-2020 1800",
-    "moduleCode": "CS2103T"
+    "moduleCode": "CS2103T",
+    "suggestedStartTime" : "06-11-2020 0600",
+    "suggestedEndTime" : "06-11-2020 0800",
+    "isReminded" : true,
+    "isScheduled" : true
   }, {
     "name": "Assignment With Invalid Deadline Field",
     "deadline": "99-99-9999 9999",
-    "moduleCode": "CS2103T"
+    "moduleCode": "CS2103T",
+    "suggestedStartTime" : "06-11-2020 0600",
+    "suggestedEndTime" : "06-11-2020 0800",
+    "isReminded" : true,
+    "isScheduled" : true
   } ]
 }

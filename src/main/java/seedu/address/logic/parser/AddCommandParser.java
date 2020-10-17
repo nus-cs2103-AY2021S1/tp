@@ -14,6 +14,7 @@ import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.ModuleCode;
 import seedu.address.model.assignment.Name;
 import seedu.address.model.assignment.Remind;
+import seedu.address.model.assignment.Schedule;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -52,12 +53,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
         ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
         Remind remind = new Remind();
+        Schedule schedule = new Schedule();
 
         if (isRemindPresent) {
             remind = remind.setReminder();
         }
 
-        Assignment assignment = new Assignment(name, deadline, moduleCode, remind);
+        Assignment assignment = new Assignment(name, deadline, moduleCode, remind, schedule);
         return new AddCommand(assignment);
     }
 

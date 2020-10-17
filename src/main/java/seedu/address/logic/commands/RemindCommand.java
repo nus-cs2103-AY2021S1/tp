@@ -14,6 +14,7 @@ import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.ModuleCode;
 import seedu.address.model.assignment.Name;
 import seedu.address.model.assignment.Remind;
+import seedu.address.model.assignment.Schedule;
 
 /**
  * Sets reminders for an assignment identified using it's displayed index from the address book.
@@ -76,8 +77,9 @@ public class RemindCommand extends Command {
         Deadline updatedDeadline = assignmentToRemind.getDeadline();
         ModuleCode updatedModuleCode = assignmentToRemind.getModuleCode();
         Remind updatedRemind = assignmentToRemind.getRemind().setReminder();
+        Schedule updatedSchedule = assignmentToRemind.getSchedule();
 
-        return new Assignment(updatedName, updatedDeadline, updatedModuleCode, updatedRemind);
+        return new Assignment(updatedName, updatedDeadline, updatedModuleCode, updatedRemind, updatedSchedule);
     }
 
     @Override
