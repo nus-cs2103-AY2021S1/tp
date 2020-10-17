@@ -1,0 +1,24 @@
+{
+  "recipes": [ {
+    "name": "Sandwich",
+    "instruction" : "Make egg salad by chopping the hard boiled eggs and mixing in a bowl with mayonnaise, Dijon. Halve the rolls and spread one half with Dijon, the other half with mayonnaise. Sprinkle the mayonnaise-spread half with salt and pepper. Lay cheese and ham on the mustard half; lay avocado, onion slices, tomato slices, egg salad, and lettuce on the other half.",
+    "recipeImage": "images/sandwich.jpeg",
+    "ingredients": [ {
+      "value" : "Kaiser Rolls Or Other Bread",
+      "quantity" : "2 whole"
+    }],
+    "calories": "70",
+    "tagged": [ "healthy" ]
+  }, {
+    "name": "Sandwich",
+    "instruction" : "Make egg salad by chopping the hard boiled eggs and mixing in a bowl with mayonnaise, Dijon. Halve the rolls and spread one half with Dijon, the other half with mayonnaise. Sprinkle the mayonnaise-spread half with salt and pepper. Lay cheese and ham on the mustard half; lay avocado, onion slices, tomato slices, egg salad, and lettuce on the other half.",
+    "recipeImage": "images/sandwich.jpeg",
+    "ingredients": [ {
+      "value" : "Kaiser Rolls Or Other Bread",
+      "quantity" : "2 whole"
+    }],
+    "calories": "70",
+    "tagged": [ "healthy" ]
+  } ]
+}
+

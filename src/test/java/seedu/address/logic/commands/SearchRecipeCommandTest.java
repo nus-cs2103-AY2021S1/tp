@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_RECIPES_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalRecipes.CARL;
-import static seedu.address.testutil.TypicalRecipes.ELLE;
-import static seedu.address.testutil.TypicalRecipes.FIONA;
+import static seedu.address.testutil.TypicalRecipes.EGGS;
+import static seedu.address.testutil.TypicalRecipes.ENCHILADAS;
+import static seedu.address.testutil.TypicalRecipes.PORK;
 import static seedu.address.testutil.TypicalRecipes.getTypicalWishfulShrinking;
 
 import java.util.Arrays;
@@ -67,11 +67,11 @@ public class SearchRecipeCommandTest {
     @Test
     public void execute_multipleKeywords_multipleRecipesFound() {
         String expectedMessage = String.format(MESSAGE_RECIPES_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        NameContainsKeywordsPredicate predicate = preparePredicate("Pork Egg Enchiladas");
         SearchRecipeCommand command = new SearchRecipeCommand(predicate);
         expectedModel.updateFilteredRecipeList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredRecipeList());
+        assertEquals(Arrays.asList(PORK, ENCHILADAS, EGGS), model.getFilteredRecipeList());
     }
 
     /**

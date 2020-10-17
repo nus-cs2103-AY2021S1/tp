@@ -57,7 +57,7 @@ public class StorageManagerTest {
         WishfulShrinking original = getTypicalWishfulShrinking();
         storageManager.saveWishfulShrinking(original);
         ReadOnlyWishfulShrinking retrieved = storageManager.readWishfulShrinking().get();
-        //assertEquals(original, new WishfulShrinking(retrieved));
+        assertEquals(original, new WishfulShrinking(retrieved));
     }
 
     @Test

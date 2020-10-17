@@ -32,58 +32,91 @@ import seedu.address.testutil.EditRecipeDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_INGREDIENT_ALICE = "apple";
-    public static final String VALID_INGREDIENT_AMY = "11111111";
-    public static final String VALID_INGREDIENT_BOB = "22222222";
-    public static final String VALID_QUANTITY_AMY = "2 cups";
-    public static final String VALID_QUANTITY_BOB = "a teaspoon";
-    public static final String VALID_QUANTITY_ALICE = "1 cup";
-    public static final Integer VALID_CALORIES_AMY = 10;
-    public static final Integer VALID_CALORIES_BOB = 10;
-    public static final String VALID_INSTRUCTION_AMY = "instruction";
-    public static final String VALID_INSTRUCTION_BOB = "instruction2";
-    public static final String VALID_RECIPE_IMAGE_AMY = "images/healthy1";
-    public static final String VALID_RECIPE_IMAGE_BOB = "images/healthy2";
-    public static final String VALID_TAG_AMY = "healthy";
-    public static final String VALID_TAG_BOB = "healthy";
+    //SANDWICH
+    public static final String VALID_INGREDIENT_SANDWICH = "Kaiser Rolls Or Other Bread";
+    public static final String VALID_QUANTITY_SANDWICH = "2 whole";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String INGREDIENT_DESC_AMY = " " + PREFIX_INGREDIENT + VALID_INGREDIENT_AMY
-            + " " + PREFIX_QUANTITY + VALID_QUANTITY_AMY;
-    public static final String INGREDIENT_DESC_BOB = " " + PREFIX_INGREDIENT + VALID_INGREDIENT_BOB
-            + " " + PREFIX_QUANTITY + VALID_QUANTITY_BOB;
-    public static final String CALORIES_DESC_AMY = " " + PREFIX_CALORIES + VALID_CALORIES_AMY;
-    public static final String CALORIES_DESC_BOB = " " + PREFIX_CALORIES + VALID_CALORIES_BOB;
-    public static final String INSTRUCTION_DESC_AMY = " " + PREFIX_INSTRUCTION + VALID_INSTRUCTION_AMY;
-    public static final String INSTRUCTION_DESC_BOB = " " + PREFIX_INSTRUCTION + VALID_INSTRUCTION_BOB;
-    public static final String RECIPE_IMAGE_DESC_AMY = " " + PREFIX_RECIPE_IMAGE + VALID_RECIPE_IMAGE_AMY;
-    public static final String RECIPE_IMAGE_DESC_BOB = " " + PREFIX_RECIPE_IMAGE + VALID_RECIPE_IMAGE_BOB;
-    public static final String TAG_DESC_AMY = " " + PREFIX_TAG + VALID_TAG_AMY;
-    public static final String TAG_DESC_BOB = " " + PREFIX_TAG + VALID_TAG_BOB;
+    // NOODLE
+    public static final String VALID_NAME_NOODLE = "Buttery Lemon Parsley Noodles";
+    public static final String VALID_INGREDIENT_NOODLE = "Pasta fettuccine";
+    public static final String VALID_QUANTITY_NOODLE = "1 pound";
+    public static final Integer VALID_CALORIES_NOODLE = 180;
+    public static final String VALID_INSTRUCTION_NOODLE = "Cook the noodles according to package instructions. "
+            + "(If using angel hair, stop just short of the al dente stage.) Drain and set aside. "
+            + "Melt butter in a large skillet over medium-high heat. "
+            + "Throw in the cooked pasta and cook it around in the butter for a couple of minutes "
+                + "so that a few of the noodles get a little bit of a panfried texture to them, whatever that means. "
+            + "Zest the lemon. "
+            + "Squeeze in the juice, then add the zest of half the lemon, salt and pepper to taste,"
+                + " then toss around and serve.";
+    public static final String VALID_RECIPE_IMAGE_NOODLE = "images/noodles1.jpg";
+    public static final String VALID_TAG_NOODLE = "healthy";
 
+    public static final String NAME_DESC_NOODLE = " " + PREFIX_NAME + VALID_NAME_NOODLE;
+    public static final String INGREDIENT_DESC_NOODLE = " " + PREFIX_INGREDIENT + VALID_INGREDIENT_NOODLE
+            + " " + PREFIX_QUANTITY + VALID_QUANTITY_NOODLE;
+    public static final String CALORIES_DESC_NOODLE = " " + PREFIX_CALORIES + VALID_CALORIES_NOODLE;
+    public static final String INSTRUCTION_DESC_NOODLE = " " + PREFIX_INSTRUCTION + VALID_INSTRUCTION_NOODLE;
+    public static final String RECIPE_IMAGE_DESC_NOODLE = " " + PREFIX_RECIPE_IMAGE + VALID_RECIPE_IMAGE_NOODLE;
+    public static final String TAG_DESC_NOODLE = " " + PREFIX_TAG + VALID_TAG_NOODLE;
+
+
+    // MARGARITAS
+    public static final String VALID_NAME_MARGARITAS = "Mango Margaritas";
+    public static final String VALID_INGREDIENT_MARGARITAS = "Mango Chunks Drained";
+    public static final String VALID_QUANTITY_MARGARITAS = "2 jars";
+    public static final Integer VALID_CALORIES_MARGARITAS = 80;
+    public static final String VALID_INSTRUCTION_MARGARITAS = "Zest the limes and lay the zest on a plate. "
+            + "If you have the time, let the zest dry out for ten minutes or so. "
+            + "Pour the coarse sugar over the zest and toss it around with your fingers to combine. "
+            + "Lime sugar! "
+            + "Yum. Throw the mango chunks into a blender. "
+            + "Pour in the tequila, triple sec, and sugar. "
+            + "Squeeze in the juice of the limes, then top off the whole thing with ice. "
+            + "Blend it until it's totally smooth. "
+            + "Give it a taste, then add more of what you think it needs (alcohol, sugar, lime, etc.) "
+            + "To serve, cut a small wedge in one of the juiced limes and "
+            + "rub the lime all over the rim of the glass to moisten. "
+            + "Dip the rim of the glasses in the lime sugar to give it a pretty, crystally rim. "
+            + "Pour in the margaritas and serve immediately!";
+    public static final String VALID_RECIPE_IMAGE_MARGARITAS = "images/mango23.jpg";
+    public static final String VALID_TAG_MARGARITAS = "healthy";
+
+    public static final String NAME_DESC_MARGARITAS = " " + PREFIX_NAME + VALID_NAME_MARGARITAS;
+    public static final String INGREDIENT_DESC_MARGARITAS = " " + PREFIX_INGREDIENT + VALID_INGREDIENT_MARGARITAS
+            + " " + PREFIX_QUANTITY + VALID_QUANTITY_MARGARITAS;
+    public static final String CALORIES_DESC_MARGARITAS = " " + PREFIX_CALORIES + VALID_CALORIES_MARGARITAS;
+    public static final String INSTRUCTION_DESC_MARGARITAS = " " + PREFIX_INSTRUCTION + VALID_INSTRUCTION_MARGARITAS;
+    public static final String RECIPE_IMAGE_DESC_MARGARITAS = " " + PREFIX_RECIPE_IMAGE + VALID_RECIPE_IMAGE_MARGARITAS;
+    public static final String TAG_DESC_MARGARITAS = " " + PREFIX_TAG + VALID_TAG_MARGARITAS;
+
+    //Invalid
     public static final String INVALID_NAME_DESC = " "
-            + PREFIX_NAME + "James&"; // '&' not allowed in names
+            + PREFIX_NAME + "Butter&Chicken"; // '&' not allowed in names
     public static final String INVALID_INGREDIENT_DESC = " "
             + PREFIX_INGREDIENT + " "; // not allowed in to blank the ingredients
     public static final String INVALID_CALORIES_DESC = " " + PREFIX_CALORIES + "-1"; // negative number
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "healthy*"; // '*' not allowed in tags
-
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+<<<<<<< HEAD
     public static final EditRecipeCommand.EditRecipeDescriptor DESC_AMY;
     public static final EditRecipeCommand.EditRecipeDescriptor DESC_BOB;
+=======
+    public static final EditCommand.EditRecipeDescriptor DESC_NOODLE;
+    public static final EditCommand.EditRecipeDescriptor DESC_MARGARITAS;
+>>>>>>> 87d382ec766cc16ee80bf67caf27dbf62638cda7
 
     static {
-        DESC_AMY = new EditRecipeDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withIngredient(VALID_INGREDIENT_AMY, VALID_QUANTITY_AMY).withCalories(VALID_CALORIES_AMY)
-                .withTags(VALID_TAG_AMY).build();
-        DESC_BOB = new EditRecipeDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withIngredient(VALID_INGREDIENT_BOB, VALID_QUANTITY_BOB).withCalories(VALID_CALORIES_BOB)
-                .withTags(VALID_TAG_AMY).build();
+        DESC_NOODLE = new EditRecipeDescriptorBuilder().withName(VALID_NAME_NOODLE)
+                .withIngredient(VALID_INGREDIENT_NOODLE, VALID_QUANTITY_NOODLE)
+                .withCalories(VALID_CALORIES_NOODLE)
+                .withTags(VALID_TAG_NOODLE).build();
+        DESC_MARGARITAS = new EditRecipeDescriptorBuilder().withName(VALID_NAME_MARGARITAS)
+                .withIngredient(VALID_INGREDIENT_MARGARITAS, VALID_QUANTITY_MARGARITAS)
+                .withCalories(VALID_CALORIES_MARGARITAS)
+                .withTags(VALID_TAG_NOODLE).build();
     }
 
     /**
