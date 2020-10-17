@@ -1,12 +1,8 @@
 package seedu.address.ui;
 
-import java.io.IOException;
 import java.util.logging.Logger;
 
 import com.jfoenix.assets.JFoenixResources;
-import com.jfoenix.controls.JFXDecorator;
-import com.jfoenix.svg.SVGGlyph;
-import com.jfoenix.svg.SVGGlyphLoader;
 
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
@@ -181,26 +177,12 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     void show() {
-        new Thread(() -> {
-            try {
-                SVGGlyphLoader.loadGlyphsFont(MainWindow.class.getResourceAsStream("/fonts/icomoon.svg"),
-                        "icomoon.svg");
-            } catch (IOException ioExc) {
-                ioExc.printStackTrace();
-            }
-        }).start();
-
-        JFXDecorator decorator = new JFXDecorator(primaryStage, container);
-        decorator.setCustomMaximize(true);
-        decorator.setGraphic(new SVGGlyph(""));
-
         //Responsive resizing
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
             leftPanel.setPrefWidth(primaryStage.getWidth() / 3);
         };
         primaryStage.widthProperty().addListener(stageSizeListener);
 
-        mainScene.setRoot(decorator);
         final ObservableList<String> stylesheets = mainScene.getStylesheets();
         stylesheets.addAll(JFoenixResources.load("css/jfoenix-fonts.css").toExternalForm(),
                 JFoenixResources.load("css/jfoenix-design.css").toExternalForm(),
