@@ -34,8 +34,12 @@ public class NewTeammateCommandParser implements Parser<NewTeammateCommand> {
             String afterNameSubstring = input.substring(upperBound + 1);
 
             upperBound = afterNameSubstring.indexOf(" ");
-            String phone = afterNameSubstring.substring(lowerBound, upperBound);
-            String afterPhoneSubstring = afterNameSubstring.substring(upperBound + 1);
+            String gitUserName = afterNameSubstring.substring(lowerBound, upperBound);
+            String afterGitUserNameSubstring = afterNameSubstring.substring(upperBound + 1);
+
+            upperBound = afterGitUserNameSubstring.indexOf(" ");
+            String phone = afterGitUserNameSubstring.substring(lowerBound, upperBound);
+            String afterPhoneSubstring = afterGitUserNameSubstring.substring(upperBound + 1);
 
             upperBound = afterPhoneSubstring.indexOf(" ");
             String email = afterPhoneSubstring.substring(lowerBound, upperBound);
@@ -43,7 +47,7 @@ public class NewTeammateCommandParser implements Parser<NewTeammateCommand> {
             String address = afterPhoneSubstring.substring(upperBound + 1);
 
 
-            return new NewTeammateCommand(name, phone, email, address);
+            return new NewTeammateCommand(name, gitUserName, phone, email, address);
         } catch (ParseException | StringIndexOutOfBoundsException e) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, NewTeammateCommand.MESSAGE_USAGE), e);

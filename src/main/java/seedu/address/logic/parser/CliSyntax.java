@@ -18,5 +18,10 @@ public class CliSyntax {
     public static final Prefix PREFIX_TASK_FILTER_BY_DEADLINE = new Prefix("td/");
     public static final Prefix PREFIX_TASK_IS_DONE = new Prefix("done/");
     public static final Prefix PREFIX_TASK_PROGRESS = new Prefix("p/");
+    public static final Prefix PREFIX_TEAMMATE_ADDRESS = new Prefix("ma/");
+    public static final Prefix PREFIX_TEAMMATE_EMAIL = new Prefix("me/");
+    public static final Prefix PREFIX_TEAMMATE_GIT_USERNAME = new Prefix("mg/");
+    public static final Prefix PREFIX_TEAMMATE_NAME = new Prefix("mn/");
+    public static final Prefix PREFIX_TEAMMATE_PHONE = new Prefix("mp/");
 
 }

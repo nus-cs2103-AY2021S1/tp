@@ -11,6 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GitUserName;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonName;
 import seedu.address.model.person.Phone;
@@ -26,8 +27,8 @@ public class NewTeammateCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Creates a new teammate as a part of this project"
         + "that participates in the current project with his/her name.\n"
-        + "Parameters: NAME, PHONE, EMAIL, ADDRESS (must be present in the project)\n"
-        + "Example: " + COMMAND_WORD + "1 Lucas 93824823 lucas@gmail.com 18 Evelyn Road";
+        + "Parameters: NAME, GIT USERNAME,  PHONE, EMAIL, ADDRESS (must be present in the project)\n"
+        + "Example: " + COMMAND_WORD + "1 Lucas LucasTai98 93824823 lucas@gmail.com 18 Evelyn Road";
 
     public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "New Teammate: ";
 
@@ -36,15 +37,16 @@ public class NewTeammateCommand extends Command {
     /**
      * Creates an new teammate that is associated with the project
      */
-    public NewTeammateCommand(String name, String phone, String email, String address) throws ParseException {
-        requireAllNonNull(name, phone, email, address);
+    public NewTeammateCommand(String name, String gitUserName, String phone, String email, String address) throws ParseException {
+        requireAllNonNull(name, gitUserName, phone, email, address);
 
         PersonName personName = ParsePersonUtil.parsePersonName(name);
+        GitUserName personGitUserName = ParsePersonUtil.parseGitUserName(gitUserName);
         Phone personPhone = ParsePersonUtil.parsePhone(phone);
         Email personEmail = ParsePersonUtil.parseEmail(email);
         Address personAddress = ParsePersonUtil.parseAddress(address);
 
-        teammate = new Person(personName, personPhone, personEmail, personAddress);
+        teammate = new Person(personName, personGitUserName, personPhone, personEmail, personAddress);
     }
 
     @Override
@@ -56,7 +58,7 @@ public class NewTeammateCommand extends Command {
 
 
         return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS,
-            teammate.getPersonName().toString()));
+            teammate.getGitUserNameString()));
     }
 
     @Override

@@ -17,6 +17,7 @@ public class Person {
 
     // Identity fields
     private PersonName personName;
+    private GitUserName gitUserName;
     private Phone phone;
     private Email email;
 
@@ -27,18 +28,37 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(PersonName personName, Phone phone, Email email, Address address) {
+    public Person(PersonName personName, GitUserName gitUserName, Phone phone, Email email, Address address) {
         requireAllNonNull(personName, phone, email, address);
         this.personName = personName;
+        this.gitUserName = gitUserName;
         this.phone = phone;
         this.email = email;
         this.address = address;
+    }
+
+    /**
+     * Overloaded constructor to take in listOfParticipations
+     */
+    public Person(PersonName personName, GitUserName gitUserName, Phone phone, Email email, Address address,
+                  HashMap<ProjectName,
+        Participation> listOfParticipations) {
+        requireAllNonNull(personName, phone, email, address);
+        this.personName = personName;
+        this.gitUserName = gitUserName;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.listOfParticipations = listOfParticipations;
     }
 
     public PersonName getPersonName() {
         return personName;
     }
 
+    public GitUserName getGitUserName() {
+        return gitUserName;
+    }
 
     public Phone getPhone() {
         return phone;
@@ -50,6 +70,14 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public String getGitUserNameString() {
+        return gitUserName.toString();
+    }
+
+    public HashMap<ProjectName, Participation> getParticipations() {
+        return this.listOfParticipations;
     }
 
     public void updatePersonName(String newPersonNameStr) {
@@ -74,7 +102,7 @@ public class Person {
 
     /**
      * Returns true if both teammates of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two projects.
+     * This defines a weaker notion of equality between two teammates.
      */
     public boolean isSameTeammate(Person otherTeammate) {
         if (otherTeammate == this) {
@@ -82,10 +110,11 @@ public class Person {
         }
 
         return otherTeammate != null
-                && otherTeammate.getPersonName().equals(getPersonName())
-                && (otherTeammate.getPhone().equals(getPhone())
-                || otherTeammate.getEmail().equals(getEmail())
-                || otherTeammate.getAddress().equals(getAddress()));
+            && otherTeammate.getPersonName().equals(getPersonName())
+            && otherTeammate.getGitUserName().equals(getGitUserName())
+            && (otherTeammate.getPhone().equals(getPhone())
+            || otherTeammate.getEmail().equals(getEmail())
+            || otherTeammate.getAddress().equals(getAddress()));
     }
 
     /**
@@ -104,28 +133,31 @@ public class Person {
 
         Person otherProject = (Person) other;
         return otherProject.getPersonName().equals(getPersonName())
-                && otherProject.getPhone().equals(getPhone())
-                && otherProject.getEmail().equals(getEmail())
-                && otherProject.getAddress().equals(getAddress());
+            && otherProject.getGitUserName().equals(getGitUserName())
+            && otherProject.getPhone().equals(getPhone())
+            && otherProject.getEmail().equals(getEmail())
+            && otherProject.getAddress().equals(getAddress());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(personName, phone, email, address);
+        return Objects.hash(personName, gitUserName, phone, email, address);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(" Person name: ")
-                .append(getPersonName())
-                .append(" Phone: ")
-                .append(getPhone())
-                .append(" Email: ")
-                .append(getEmail())
-                .append(" Address: ")
-                .append(getAddress());
+            .append(getPersonName())
+            .append(" Git Username: ")
+            .append(getGitUserName())
+            .append(" Phone: ")
+            .append(getPhone())
+            .append(" Email: ")
+            .append(getEmail())
+            .append(" Address: ")
+            .append(getAddress());
         return builder.toString();
     }
 

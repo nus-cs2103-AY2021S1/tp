@@ -12,21 +12,19 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class AssignCommandParser implements Parser<AssignCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteCommand
-     * and returns a DeleteCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AssignCommand
+     * and returns a AssignCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AssignCommand parse(String args) throws ParseException {
         try {
             String input = args.trim();
-            int divider = input.indexOf(" ");
-            if (divider <= 0) {
+            String[] info = input.split(" ");
+            if (info.length != 2) {
                 throw new ParseException("");
             }
-            String indexString = input.substring(0, divider);
-            Index index = ParserUtil.parseIndex(indexString);
-            String name = input.substring(divider + 1);
-            return new AssignCommand(index, name);
+            Index index = ParserUtil.parseIndex(info[0]);
+            return new AssignCommand(index, info[1]);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.MESSAGE_USAGE), pe);

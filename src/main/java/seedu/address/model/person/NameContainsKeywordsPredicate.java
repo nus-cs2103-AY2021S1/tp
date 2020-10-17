@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Person}'s {@code PersonName} matches any of the keywords given.
+ * Tests that a {@code Person}'s {@code GitUserName} matches any of the keywords given.
  */
 public class NameContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
@@ -19,7 +19,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
     public boolean test(Person project) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
-                        project.getPersonName().fullPersonName, keyword));
+                        project.getGitUserNameString(), keyword));
     }
 
     @Override

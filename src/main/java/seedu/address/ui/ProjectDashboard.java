@@ -71,7 +71,7 @@ public class ProjectDashboard extends UiPart<Region> {
                 .forEach(task -> tasks.getChildren().add(new Label(task.taskName)));
         header3.setText("Teammates: ");
         this.project.getTeammates().stream()
-                .forEach(person -> teammates.getChildren().add(new Label((person.getPersonName().toString()))));
+                .forEach(person -> teammates.getChildren().add(new Label((person.getGitUserNameString()))));
     }
 
     @Override

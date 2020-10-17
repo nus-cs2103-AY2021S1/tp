@@ -19,6 +19,7 @@ import seedu.address.logic.commands.global.HelpCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
 import seedu.address.logic.commands.project.AssignCommand;
 import seedu.address.logic.commands.project.EditTaskCommand;
+import seedu.address.logic.commands.project.EditTeammateCommand;
 import seedu.address.logic.commands.project.FilterCommand;
 import seedu.address.logic.commands.project.LeaveCommand;
 import seedu.address.logic.commands.project.NewTeammateCommand;
@@ -115,6 +116,9 @@ public class MainCatalogueParser {
 
             case EditTaskCommand.COMMAND_WORD:
                 return new EditTaskCommandParser().parse(arguments);
+
+            case EditTeammateCommand.COMMAND_WORD:
+                return new EditTeammateCommandParser().parse(arguments);
 
             case DeleteCommand.COMMAND_WORD:
             case ClearCommand.COMMAND_WORD:
