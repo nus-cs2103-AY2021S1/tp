@@ -15,8 +15,6 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 - Features in global scope
   - Get help `help` 
   - Exit application `exit`
-  
-- Features in catalogue scope
   - Features associated with initialising project 
     - Creating new project `new project `
     - Start working on an existing project `start `
@@ -256,7 +254,7 @@ Example: `task participants 1` Displays the teammates that are assigned to do ta
 
 ### **Scoping**-related features
 #### Return to main catalogue `leave`
-Leaves the current project view page and return to the main catalogue of all projects
+Switch to the scope of a level of higher hierarchy.
 
 Format: `leave`
 
