@@ -44,7 +44,7 @@ public class AddTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Project project = model.getFilteredProjectList().get(0);
+        Project project = model.getProjectToBeDisplayedOnDashboard().get();
         project.addTask(toAdd);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

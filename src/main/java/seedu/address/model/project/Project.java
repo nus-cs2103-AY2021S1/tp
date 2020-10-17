@@ -138,6 +138,15 @@ public class Project {
     }
 
     /**
+     * Deletes the Participation with the member name.
+     */
+    public void deleteParticipation(String name) {
+        if (listOfParticipations.containsKey(new PersonName(name))) {
+            listOfParticipations.remove(new PersonName(name));
+        }
+    }
+
+    /**
      * Gets the complete list of Teammates associated with this project
      */
     public List<Person> getTeammates() {
