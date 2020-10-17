@@ -6,8 +6,7 @@ public class Schedule {
     private final Deadline suggestedEndTime;
 
     /**
-     * Constructor
-     * Returns a false schedule
+     * Constructs a false schedule
      */
     public Schedule() {
         schedule = false;
@@ -16,8 +15,7 @@ public class Schedule {
     }
 
     /**
-     * Constructor
-     * Returns a suggested schedule
+     * Constructs a suggested schedule
      */
     public Schedule(Deadline suggestedStartTime, Deadline suggestedEndTime) {
         schedule = true;
