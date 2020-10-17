@@ -16,9 +16,9 @@
         </columnConstraints>
         <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
             <padding>
-                <Insets top="5" right="5" bottom="5" left="15" />
+                <Insets top="5" right="5" bottom="5" left="5" />
             </padding>
-            <ImageView fx:id="recipeImageView" fitHeight="100.0" fitWidth="150.0" pickOnBounds="true">
+            <ImageView fx:id="recipeImageView" pickOnBounds="true">
             </ImageView>
             <HBox spacing="5" alignment="CENTER_LEFT">
                 <Label fx:id="id" styleClass="cell_big_label">
@@ -29,7 +29,6 @@
                 </Label>
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
             </HBox>
-            <Label fx:id="ingredients" styleClass="cell_small_label" text="\$ingredients" />
             <Label fx:id="calories" styleClass="cell_small_label" text="\$calories" />
 
         </VBox>

@@ -2,11 +2,11 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import com.jfoenix.controls.JFXListCell;
 import com.jfoenix.controls.JFXListView;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListCell;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.recipe.Recipe;
@@ -28,12 +28,13 @@ public class RecipeListPanel extends UiPart<Region> {
         super(FXML);
         recipeListView.setItems(recipeList);
         recipeListView.setCellFactory(listView -> new RecipeListViewCell());
+        recipeListView.depthProperty().set(1);
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Recipe} using a {@code RecipeCard}.
      */
-    class RecipeListViewCell extends JFXListCell<Recipe> {
+    class RecipeListViewCell extends ListCell<Recipe> {
         @Override
         protected void updateItem(Recipe recipe, boolean empty) {
             super.updateItem(recipe, empty);
