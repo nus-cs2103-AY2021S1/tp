@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.ScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.ModuleCode;
@@ -70,6 +71,30 @@ public class ParserUtil {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }
         return new Deadline(trimmedDeadline);
+    }
+
+    /**
+     * Parses a {@code String num} into a int.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given int is invalid.
+     */
+    public static int parseExpectedTime(String num) throws ParseException {
+        requireNonNull(num);
+        String trimmedNum = num.trim();
+        try {
+            int n = Integer.parseInt(trimmedNum);
+            if (!isValidExpectedTime(n)) {
+                throw new ParseException("Invalid expected time");
+            }
+            return n;
+        } catch (NumberFormatException e) {
+            throw new ParseException("Invalid expected time");
+        }
+    }
+
+    private static boolean isValidExpectedTime(int n) {
+        return (ScheduleCommand.MIN_HOURS <= n && n <= ScheduleCommand.MAX_HOURS);
     }
 
     /**
