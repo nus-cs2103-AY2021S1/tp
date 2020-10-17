@@ -36,12 +36,12 @@ class JsonAdaptedTask {
                            @JsonProperty("isDone")boolean isDone,
                            @JsonProperty("assignees")Set<String> assignees) {
         this.taskName = taskName;
-                this.description = description;
-                this.publishDate = publishDate;
-                this.deadline = deadline;
-                this.progress = progress;
-                this.isDone = isDone;
-                this.assignees = assignees;
+        this.description = description;
+        this.publishDate = publishDate;
+        this.deadline = deadline;
+        this.progress = progress;
+        this.isDone = isDone;
+        this.assignees = assignees;
     }
 
     /**
@@ -56,41 +56,6 @@ class JsonAdaptedTask {
                 isDone = source.isDone();
                 assignees = source.getAssignees();
     }
-
-    @JsonValue
-    public String getTaskName() {
-        return taskName;
-    }
-
-        @JsonValue
-        public String getDescription() {
-            return description;
-        }
-
-        @JsonValue
-        public LocalDate getPublishDate() {
-            return publishDate;
-        }
-
-        @JsonValue
-        public Deadline getDeadline() {
-            return deadline;
-        }
-
-        @JsonValue
-        public double getProgress() {
-            return progress;
-        }
-
-        @JsonValue
-        public boolean isDone() {
-            return isDone;
-        }
-
-        @JsonValue
-        public Set<String> getAssignees() {
-            return assignees;
-        }
 
     /**
      * Converts this Jackson-friendly adapted task object into the model's {@code Task} object.

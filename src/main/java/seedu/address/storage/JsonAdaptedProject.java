@@ -81,12 +81,6 @@ class JsonAdaptedProject {
      */
     public Project toModelType() throws IllegalValueException {
 
-        HashMap<PersonName, Participation> participationHashMap = new HashMap<>();
-        for (JsonParticipation participation : participations) {
-            participationHashMap.put(participation.toModelType().getPerson().getPersonName()
-                    ,participation.toModelType());
-        }
-
         final List<ProjectTag> projectProjectTags = new ArrayList<>();
         for (JsonAdaptedTag projectTag : projectTagged) {
             projectProjectTags.add(projectTag.toModelType());
@@ -135,8 +129,13 @@ class JsonAdaptedProject {
         final Set<ProjectTag> modelProjectTags = new HashSet<>(projectProjectTags);
         final Set<Task> modelTasks = new HashSet<>(projectTasks);
         final Set<Meeting> modelMeetings = new HashSet<>(projectMeetings);
-        return new Project(modelProjectName, modelDeadline, modelRepoUrl, modelProjectDescription,
-            modelProjectTags, participationHashMap, modelTasks, modelMeetings);
+        Project p = new Project(modelProjectName, modelDeadline, modelRepoUrl, modelProjectDescription,
+            modelProjectTags, null, modelTasks, modelMeetings);
+
+        for (JsonParticipation participation : participations) {
+            p.addParticipation(participation.toModelType().getPerson());
+        }
+        return p;
     }
 
 }

@@ -44,13 +44,15 @@ public class Project {
                    Set<ProjectTag> projectTags,
                    HashMap<PersonName, Participation> listOfParticipations, Set<Task> tasks, Set<Meeting> meetings) {
         requireAllNonNull(projectName, deadline, repoUrl, projectDescription, projectTags,
-                listOfParticipations, tasks);
+                 tasks);
         this.projectName = projectName;
         this.deadline = deadline;
         this.repoUrl = repoUrl;
         this.projectDescription = projectDescription;
         this.projectTags.addAll(projectTags);
-        this.listOfParticipations.putAll(listOfParticipations);
+        if(listOfParticipations!=null) {
+            this.listOfParticipations.putAll(listOfParticipations);
+        }
         this.tasks.addAll(tasks);
         if(meetings!=null) {
             this.meetings.addAll(meetings);

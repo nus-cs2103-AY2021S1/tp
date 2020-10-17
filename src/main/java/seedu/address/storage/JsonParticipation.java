@@ -1,7 +1,9 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.core.JsonPointer;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.person.PersonName;
+import seedu.address.model.person.*;
 import seedu.address.model.project.*;
 import seedu.address.model.task.Task;
 
@@ -22,7 +24,7 @@ class JsonParticipation {
     private final String person;
     private final String project;
     private final Role role;
-    private final Set<Task> tasks;
+    private List<JsonAdaptedTask> tasks = new ArrayList<>();
 //    private Set<Meeting> meetings;
 
     /**
@@ -32,7 +34,7 @@ class JsonParticipation {
     public JsonParticipation(@JsonProperty("person") String person,
                              @JsonProperty("project") String project,
                              @JsonProperty("role")Role role,
-                             @JsonProperty("tasks hashcode")Set<Task> tasks
+                             @JsonProperty("tasks hashcode")List<JsonAdaptedTask> tasks
 //                             @JsonProperty("meetings")Set<Meeting> meetings
     ) {
         this.person = person;
@@ -49,7 +51,9 @@ class JsonParticipation {
         person = source.getPerson().getPersonName().toString();
         project = source.getProject().getProjectName().toString();
         role = source.getRole();
-        tasks = source.getTasks();
+        tasks.addAll(source.getTasks().stream()
+                .map(JsonAdaptedTask::new)
+                .collect(Collectors.toList()));
 //        meetings = source.getMeetings();
     }
 
@@ -59,7 +63,14 @@ class JsonParticipation {
      * @throws IllegalValueException if there were any data constraints violated in the adapted participation.
      */
     public Participation toModelType() throws IllegalValueException {
-        return new Participation(person,project);
+        Person temp = new Person(new PersonName(person), new Phone("98765432"),new Email("pb@gmail.com"),new Address("temp"));
+        Participation p = new Participation(person,project);
+
+        for (JsonAdaptedTask task : tasks) {
+            p.addTask(task.toModelType());
+        }
+
+        return p;
     }
 
 }
