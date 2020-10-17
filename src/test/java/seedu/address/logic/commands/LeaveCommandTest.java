@@ -11,9 +11,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.Status;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.project.Project;
-import seedu.address.model.Status;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
