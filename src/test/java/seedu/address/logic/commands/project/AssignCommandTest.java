@@ -32,11 +32,8 @@ public class AssignCommandTest {
     public void execute_validIndexInvalidPerson_throwsCommandException() {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
-        Project projectCopy = new Project(project.getProjectName(), project.getDeadline(), project.getRepoUrl(),
-                project.getProjectDescription(), project.getProjectTags(), new HashMap<>(),
-                project.getTasks(), project.getMeetings());
         model.enter(project);
-        model.setProject(project, projectCopy);
+        project.deleteParticipation(ALICE.getPersonName().fullPersonName);
 
         AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_TASK, ALICE.getPersonName().fullPersonName);
         assertCommandFailure(assignCommand, model,
