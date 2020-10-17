@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Task;
-import seedu.address.model.lesson.Lesson;
 import seedu.address.timetable.TimetableData;
 
 /**
@@ -101,10 +100,4 @@ public interface Model {
 
     /** Returns an unmodifiable view of the reminded assignments list */
     ObservableList<Assignment> getRemindedAssignmentsList();
-
-    /** Returns an unmodifiable view of the reminded assignments list */
-    ObservableList<Task> getTaskList();
-
-    /** Returns an unmodifiable view of lesson list */
-    ObservableList<Lesson> getLessonList();
 }

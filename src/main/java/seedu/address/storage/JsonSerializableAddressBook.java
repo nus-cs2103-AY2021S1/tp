@@ -12,7 +12,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Task;
 import seedu.address.model.lesson.Lesson;
 
 /**
@@ -25,7 +24,6 @@ class JsonSerializableAddressBook {
 
     private final List<JsonAdaptedAssignment> assignments = new ArrayList<>();
     private final List<JsonAdaptedLesson> lessons = new ArrayList<>();
-    private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given assignments.
@@ -33,11 +31,9 @@ class JsonSerializableAddressBook {
     @JsonCreator
     public JsonSerializableAddressBook(
             @JsonProperty("assignments") List<JsonAdaptedAssignment> assignments,
-            @JsonProperty("lessons") List<JsonAdaptedLesson> lessons,
-            @JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
+            @JsonProperty("lessons") List<JsonAdaptedLesson> lessons) {
         this.assignments.addAll(assignments);
         this.lessons.addAll(lessons);
-        this.tasks.addAll(tasks);
     }
 
     /**
@@ -49,8 +45,6 @@ class JsonSerializableAddressBook {
         assignments.addAll(source.getAssignmentList().stream().map(JsonAdaptedAssignment::new)
                                                      .collect(Collectors.toList()));
         lessons.addAll(source.getLessonList().stream().map(JsonAdaptedLesson::new)
-                .collect(Collectors.toList()));
-        tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new)
                 .collect(Collectors.toList()));
     }
 
@@ -71,10 +65,6 @@ class JsonSerializableAddressBook {
         for (JsonAdaptedLesson jsonAdaptedLesson : lessons) {
             Lesson lesson = jsonAdaptedLesson.toModelType();
             addressBook.addLesson(lesson);
-        }
-        for (JsonAdaptedTask jsonAdaptedTask : tasks) {
-            Task task = jsonAdaptedTask.toModelType();
-            addressBook.addTask(task);
         }
         return addressBook;
     }

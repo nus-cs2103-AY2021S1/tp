@@ -107,14 +107,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addAssignment(Assignment a) {
         assignments.add(a);
-    }
-
-    /**
-     * Adds a task to the address book.
-     * The task must not already exist in the address book.
-     */
-    public void addTask(Task t) {
-        tasks.add(t);
+        updateTasks();
     }
 
     /**
@@ -127,6 +120,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedAssignment);
 
         assignments.setAssignment(target, editedAssignment);
+        updateTasks();
     }
 
     /**
@@ -135,6 +129,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeAssignment(Assignment key) {
         assignments.remove(key);
+        updateTasks();
     }
 
     //// lesson-level operations
@@ -149,6 +144,7 @@ public class AddressBook implements ReadOnlyAddressBook {
             for (Lesson lesson : lessons) {
                 addLesson(lesson);
             }
+            updateTasks();
         } catch (IOException | ParseException e) {
             // nothing happens for now.
         }
@@ -169,12 +165,59 @@ public class AddressBook implements ReadOnlyAddressBook {
         lessons.removeAll();
     }
 
+    //// task-level operations
+
+    /**
+     * Retrieves all assignments and lessons from the respective lists and adds them into the task list.
+     */
+    private void retrieveTasks() {
+        tasks.getInternalList().clear();
+        tasks.getInternalList().addAll(assignments.getInternalList());
+        tasks.getInternalList().addAll(lessons.getInternalList());
+    }
+
+    /**
+     * Removes any tasks that are overdue.
+     * A task is overdue if the date and time of the task is before the current date and time.
+     */
+    private void filterOverdueTasks() {
+        tasks.getInternalList().removeIf(task -> {
+            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
+                    .withResolverStyle(ResolverStyle.STRICT);
+            LocalDateTime time = LocalDateTime.parse(task.getTime().value, inputFormat);
+            return time.isBefore(LocalDateTime.now());
+        });
+    }
+
+    /**
+     * Sorts the task list according to date and time of the task.
+     */
+    private void sortTasks() {
+        tasks.getInternalList().sort((firstTask, secondTask) -> {
+            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
+                    .withResolverStyle(ResolverStyle.STRICT);
+            LocalDateTime firstTaskDateTime = LocalDateTime.parse(firstTask.getTime().value, inputFormat);
+            LocalDateTime secondTaskDateTime = LocalDateTime.parse(secondTask.getTime().value, inputFormat);
+            return firstTaskDateTime.compareTo(secondTaskDateTime);
+        });
+    }
+
+    /**
+     * Updates the task list in the address book.
+     */
+    private void updateTasks() {
+        retrieveTasks();
+        filterOverdueTasks();
+        sortTasks();
+    }
+
     //// util methods
 
     @Override
     public String toString() {
-        return assignments.asUnmodifiableObservableList().size() + " assignments";
-        // TODO: refine later (add lessons?)
+        return assignments.asUnmodifiableObservableList().size() + " assignments"
+                + lessons.asUnmodifiableObservableList().size() + "lessons"
+                + tasks.asUnmodifiableObservableList().size() + "tasks";
     }
 
     @Override
@@ -187,25 +230,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         return lessons.asUnmodifiableObservableList();
     }
 
+    @Override
     public ObservableList<Task> getTaskList() {
-        tasks.getInternalList().clear();
-        tasks.getInternalList().addAll(assignments.getInternalList());
-        tasks.getInternalList().addAll(lessons.getInternalList());
-        // filter overdue task
-        tasks.getInternalList().removeIf(task -> {
-            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
-                    .withResolverStyle(ResolverStyle.STRICT);
-            LocalDateTime time = LocalDateTime.parse(task.getTime().value, inputFormat);
-            return time.isBefore(LocalDateTime.now());
-        });
-        // sort tasks
-        tasks.getInternalList().sort((firstTask, secondTask) -> {
-            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
-                    .withResolverStyle(ResolverStyle.STRICT);
-            LocalDateTime firstTaskDateTime = LocalDateTime.parse(firstTask.getTime().value, inputFormat);
-            LocalDateTime secondTaskDateTime = LocalDateTime.parse(secondTask.getTime().value, inputFormat);
-            return firstTaskDateTime.compareTo(secondTaskDateTime);
-        });
+        updateTasks();
 
         return tasks.asUnmodifiableObservableList();
     }
