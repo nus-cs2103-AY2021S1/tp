@@ -134,16 +134,24 @@ This section describes some noteworthy details on how certain features are imple
 #### Implementation
 
 The scoping mechanism is facilitated by an `enum` class `Status` in `MainCatalogue`. Possible values of `Status` are `CATALOGUE`, `PROJECT`, `PERSON`, and `TASK`.
-The possible values of `Status` form a hierarchy structure as follows. A lower-level scope always belongs to any parent scopes. For example, 
-if the app is currently in `PROJECT` scope, it is also in the `CATALOGUE` scope. However, it is not necessarily in `TASK` scope because `TASK` is
-a child level of `PROJECT` and it is definitely not in `PERSON` scope because `PERSON` is parallel to `PROJECT`.
+The possible values of `Status` form a hierarchy structure as follows. 
 
 * `CATALOGUE`
   * `PROJECT`
     * `TASK`
   * `PERSON`
 
+A lower-level scope always belongs to any parent scopes. For example, if the app is currently in `PROJECT` scope, it is 
+also in the `CATALOGUE` scope. However, it is not necessarily in `TASK` scope because `TASK` is a child level of `PROJECT`
+and it is definitely not in `PERSON` scope because `PERSON` is parallel to `PROJECT`.
 
+The `status` of `MainCatalogue` is open to be accessed in other `Model` components and `Logic` components by a public getter.
+
+The switch of `status` is implemented by the following methods:
+
+* `MainCatalogue#enter(Project project)` — Switches to `PROJECT` status and updates the project on view to the given project.
+* `MainCatalogue#enterTask(Task task)` — Switches to `TASK` status and updates the task on view to the given task.
+* `MainCatalogue#quit()` — Switches to the parent status, and clear the lower-level pointer.
 
 ### \[Proposed\] Undo/redo feature
 
