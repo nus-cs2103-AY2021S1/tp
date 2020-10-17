@@ -9,7 +9,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.stage.*?>
 
-<fx:root minWidth="400.0" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maximized="true" minWidth="400.0" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
@@ -66,11 +66,23 @@
                            <Insets bottom="10.0" />
                         </VBox.margin>
                       </Label>
-                     <Button id="pill-button" fx:id="copyButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
-                        <font>
-                           <Font name="System Bold" size="12.0" />
-                        </font>
-                     </Button>
+                     <HBox>
+                        <children>
+                           <Button id="pill-button" fx:id="copyButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
+                              <font>
+                                 <Font name="System Bold" size="12.0" />
+                              </font>
+                           </Button>
+                            <Label fx:id="copyButtonNotification">
+                                <font>
+                                    <Font name="Consolas Bold" size="12.0" />
+                                </font>
+                              <HBox.margin>
+                                 <Insets left="10.0" top="6.0" />
+                              </HBox.margin>
+                            </Label>
+                        </children>
+                     </HBox>
                   </children>
                   <padding>
                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
