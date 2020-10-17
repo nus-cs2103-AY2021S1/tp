@@ -8,10 +8,10 @@ public class Appointment {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Appointment times should follow the format (dd/MM/yyyy HH:mm)";
-    private final LocalDateTime value;
+    private final LocalDateTime time;
 
     public Appointment(LocalDateTime appointment) {
-        value = appointment;
+        time = appointment;
     }
 
     /**
@@ -35,13 +35,13 @@ public class Appointment {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy h:mm a");
-        return value.format(formatter);
+        return time.format(formatter);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Appointment // instanceof handles nulls
-                && value.equals(((Appointment) other).value)); // state check
+                && time.equals(((Appointment) other).time)); // state check
     }
 }
