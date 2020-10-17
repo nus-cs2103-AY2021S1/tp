@@ -23,7 +23,7 @@ public class Appointment {
      * @return an Appointment object with date specified by the given String
      */
     public Appointment setTime(String timeString) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         return new Appointment(LocalDateTime.parse(timeString, formatter));
     }
 
@@ -31,7 +31,7 @@ public class Appointment {
      * Returns true if a given string is a valid Appointment.
      */
     public static boolean isValidAppointment(String input) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime localDateTime;
         try {
             localDateTime = LocalDateTime.parse(input, formatter);
