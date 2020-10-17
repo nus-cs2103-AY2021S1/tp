@@ -35,10 +35,12 @@ public class ExportCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         //Get the path parameter
         Path path = pathParameter.consume();
+        Logger.getLogger("ExportCommand").info(String.format("Directory Selected: %s", path.toString()));
 
         //Check if the directory exists
         File file = new File(path.toString());
         if (!file.exists()) {
+            Logger.getLogger("Export Command").warning("Directory does not exist");
             throw new CommandException(String.format(MESSAGE_FAILURE, path.toString()));
         }
 
@@ -48,7 +50,7 @@ public class ExportCommand extends Command {
         try {
             mcGymmyStorage.saveMcGymmy(model.getMcGymmy());
         } catch (IOException e) {
-            Logger.getLogger("Export Command").info(e.toString());
+            Logger.getLogger("Export Command").warning(e.toString());
             throw new CommandException(String.format(MESSAGE_FAILURE, path.toString()));
         }
 
