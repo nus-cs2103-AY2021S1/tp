@@ -65,7 +65,7 @@ public class SampleDataUtil {
      */
     public static Set<Appointment> getAppointmentSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Appointment::new)
+                .map(string -> new Appointment().setTime(string))
                 .collect(Collectors.toSet());
     }
 

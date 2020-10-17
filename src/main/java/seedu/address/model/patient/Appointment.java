@@ -60,7 +60,7 @@ public class Appointment {
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return time.hashCode();
     }
 
 }
