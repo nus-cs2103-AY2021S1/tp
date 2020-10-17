@@ -7,8 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.project.Project;
 import seedu.address.model.Status;
+import seedu.address.model.project.Project;
 
 /**
  * An UI component that displays information of a {@code Project}.
