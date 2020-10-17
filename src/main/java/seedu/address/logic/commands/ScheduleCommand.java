@@ -29,12 +29,12 @@ import seedu.address.model.lesson.Lesson;
  */
 public class ScheduleCommand extends Command {
 
+    public static final String START_TIME = "06:00";
+    public static final String END_TIME = "23:59";
+    public static final int MAX_HOURS = 5;
+    public static final int MIN_HOURS = 1;
     public static final String COMMAND_WORD = "schedule";
-    public static int MAX_HOURS = 5;
-    public static int MIN_HOURS = 1;
-    private static final String START_TIME = "06:00";
-    private static final String END_TIME = "23:59";
-
+    public static final String MESSAGE_SCHEDULE_ASSIGNMENT_SUCCESS = "Schedule Assignment: %1$s";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Schedule the assignment identified by the index number used in the displayed assignment list. "
             + "The suggested time will be within working hours from " + START_TIME + " to " + END_TIME + "\n"
@@ -43,7 +43,6 @@ public class ScheduleCommand extends Command {
             + PREFIX_DO_BEFORE + "BEFORE "
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_EXPECTED_TIME + "2 " + PREFIX_DO_BEFORE + "23-12-2020 2359";
 
-    public static final String MESSAGE_SCHEDULE_ASSIGNMENT_SUCCESS = "Schedule Assignment: %1$s";
     private static final LocalTime WORKING_START_TIME = LocalTime.parse(START_TIME, DateTimeFormatter.ISO_TIME);
     private static final LocalTime WORKING_END_TIME = LocalTime.parse(END_TIME, DateTimeFormatter.ISO_TIME);
 

@@ -1,5 +1,7 @@
 package seedu.address.model.util;
 
+import java.time.LocalDateTime;
+
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.assignment.Assignment;
@@ -8,9 +10,6 @@ import seedu.address.model.assignment.ModuleCode;
 import seedu.address.model.assignment.Name;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -67,5 +66,4 @@ public class SampleDataUtil {
         }
         return sampleAb;
     }
-
 }
