@@ -40,7 +40,8 @@ public class DeleteCommandParser {
         // we expect no named arguments
         Optional<ArgName> foo;
         if ((foo = getFirstUnknownArgument(args, new ArrayList<>())).isPresent()) {
-            return Result.error("'delete' command doesn't support '%s'", foo.get());
+            return Result.error("'delete' command doesn't support '%s'\n%s",
+                foo.get(), DeleteRecipeCommand.MESSAGE_USAGE);
         }
 
         return getCommandTarget(args)
@@ -57,7 +58,7 @@ public class DeleteCommandParser {
                     return parseDeleteIngredientCommand(target.snd().strip(), args);
 
                 default:
-                    return Result.error("can only add recipes or ingredients ('%s' invalid)", target.fst());
+                    return Result.error("can only delete recipes or ingredients ('%s' invalid)", target.fst());
                 }
             });
     }

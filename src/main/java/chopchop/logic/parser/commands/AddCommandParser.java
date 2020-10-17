@@ -75,17 +75,18 @@ public class AddCommandParser {
         if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_QUANTITY,
             Strings.ARG_EXPIRY))).isPresent()) {
 
-            return Result.error("'add ingredient' command doesn't support '%s'", foo.get());
+            return Result.error("'add ingredient' command doesn't support '%s'\n%s",
+                foo.get(), AddIngredientCommand.MESSAGE_USAGE);
         }
 
         var qtys = args.getArgument(Strings.ARG_QUANTITY);
         if (qtys.size() > 1) {
-            return Result.error("multiple quantities specified");
+            return Result.error("multiple quantities specified\n%s", AddIngredientCommand.MESSAGE_USAGE);
         }
 
         var exps = args.getArgument(Strings.ARG_EXPIRY);
         if (exps.size() > 1) {
-            return Result.error("multiple expiry dates specified");
+            return Result.error("multiple expiry dates specified\n%s", AddIngredientCommand.MESSAGE_USAGE);
         }
 
         // looks weird, but basically this extracts the /qty and /expiry arguments (if present),
@@ -113,7 +114,8 @@ public class AddCommandParser {
         if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_QUANTITY,
             Strings.ARG_INGREDIENT, Strings.ARG_STEP))).isPresent()) {
 
-            return Result.error("'add recipe' command doesn't support '%s'", foo.get());
+            return Result.error("'add recipe' command doesn't support '%s'\n%s",
+                foo.get(), AddRecipeCommand.MESSAGE_USAGE);
         }
 
         return parseIngredientList(args)
