@@ -104,15 +104,9 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the main catalogue data.
+* stores the main catalogue data, which is essentially a list of `Project`s, each of which has a few `Participant`s who can do tasks and attend meetings.
 * exposes an unmodifiable `ObservableList<Project>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
-
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `MainCatalogue`, which `Project` references. This allows `MainCatalogue` to only require one `Tag` object per unique `Tag`, instead of each `Project` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
 
 
 ### Storage component
