@@ -18,7 +18,10 @@ public class ListIngredientCommand extends Command {
         requireNonNull(model);
         model.updateFilteredIngredientList(PREDICATE_SHOW_ALL_ENTRIES);
 
-        DisplayNavigator.loadIngredientPanel();
+        if (DisplayNavigator.hasDisplayController()) {
+            DisplayNavigator.loadIngredientPanel();
+        }
+
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

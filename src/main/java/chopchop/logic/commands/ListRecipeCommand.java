@@ -18,7 +18,10 @@ public class ListRecipeCommand extends Command {
         requireNonNull(model);
         model.updateFilteredRecipeList(PREDICATE_SHOW_ALL_ENTRIES);
 
-        DisplayNavigator.loadRecipePanel();
+        if (DisplayNavigator.hasDisplayController()) {
+            DisplayNavigator.loadRecipePanel();
+        }
+
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
