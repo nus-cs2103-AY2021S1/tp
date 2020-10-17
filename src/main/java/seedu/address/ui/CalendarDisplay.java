@@ -1,10 +1,8 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import jfxtras.scene.control.agenda.Agenda;
 import jfxtras.scene.control.agenda.icalendar.ICalendarAgenda;
 
 /**
