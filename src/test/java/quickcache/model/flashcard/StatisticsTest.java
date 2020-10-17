@@ -43,7 +43,7 @@ class StatisticsTest {
     }
 
     // Solution below adapted from https://stackoverflow.com/questions/2808535
-    private static double round(double value, int places) {
+    private double round(double value, int places) {
         if (places < 0) {
             throw new IllegalArgumentException();
         }
