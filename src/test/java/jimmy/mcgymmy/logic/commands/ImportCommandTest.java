@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import org.junit.jupiter.api.Test;
 
 import jimmy.mcgymmy.logic.parser.CommandParserTestUtil.ParameterStub;
-import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.ModelManager;
 
 class ImportCommandTest {
