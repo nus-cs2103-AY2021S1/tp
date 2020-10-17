@@ -53,19 +53,19 @@ class JsonSerializableLogBook {
      */
     public LogBook toModelType() throws IllegalValueException {
         LogBook logBook = new LogBook();
-        for (JsonAdaptedLog jsonAdaptedLog : logs) {
-            Log log = jsonAdaptedLog.toModelType();
-            if (logBook.hasLog(log)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_LOG);
-            }
-            logBook.addLog(log);
-        }
         for (JsonAdaptedExercise jsonAdaptedExercise : exercises) {
             Exercise exercise = jsonAdaptedExercise.toModelType();
             if (logBook.hasExercise(exercise)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_EXERCISE);
             }
             logBook.addExercise(exercise);
+        }
+        for (JsonAdaptedLog jsonAdaptedLog : logs) {
+            Log log = jsonAdaptedLog.toModelType();
+            if (logBook.hasLog(log)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_LOG);
+            }
+            logBook.addLog(log);
         }
         return logBook;
     }

@@ -44,21 +44,6 @@ public class Exercise {
         return caloriesPerRep;
     }
 
-    // TODO GET RID OF THIS METHOD and use LogBook.getExercise() instead
-    /**
-     * Returns an existing exercise with the same Name.
-     *
-     * @throws ExerciseNotFoundException if no such Exercise is found.
-     */
-    public static Exercise getExercise(Name name) throws ExerciseNotFoundException {
-        for (Exercise e : getSampleExercises()) {
-            if (e.getName().equals(name)) {
-                return e;
-            }
-        }
-        throw new ExerciseNotFoundException();
-    }
-
     /**
      * Returns true if both Exercises have the same Name. This defines a weaker
      * notion of equality between two Exercises.
