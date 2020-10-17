@@ -9,7 +9,6 @@ import seedu.address.model.delivery.Delivery;
 import seedu.address.model.delivery.DeliveryName;
 import seedu.address.model.delivery.Order;
 import seedu.address.model.delivery.Phone;
-import seedu.address.model.item.Quantity;
 
 public class JsonAdaptedDelivery {
 
