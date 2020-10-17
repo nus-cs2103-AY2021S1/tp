@@ -87,6 +87,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setPreviousModel(Model previousModel) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Model getPreviousModel() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
@@ -113,6 +123,11 @@ public class AddCommandTest {
 
         @Override
         public void addAssignment(Assignment assignment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void preUpdateModel() {
             throw new AssertionError("This method should not be called.");
         }
 

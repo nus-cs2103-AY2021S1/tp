@@ -22,14 +22,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), null);
     }
 
     @Test
     public void execute_newAssignment_success() {
         Assignment validAssignment = new AssignmentBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), null);
         expectedModel.addAssignment(validAssignment);
 
         assertCommandSuccess(new AddCommand(validAssignment), model,
