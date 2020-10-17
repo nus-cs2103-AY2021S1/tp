@@ -66,14 +66,13 @@ Refer to the features below for details of each command.
 
 Shows all help commands in the terminal.
 
-![help message](images/CommandImagesForUG/Help.png)
-
 Format: `help [COMMAND]`
 
 Examples:
 * `help add`
 * `help`
 
+![help message](images/CommandImagesForUG/Help.png)
 
 ### Adding a food item: `add`
 
@@ -172,6 +171,7 @@ Examples:
 Adds a macro to run several commands in succession.
 
 *__WARNING:__* this is an advanced feature!
+
 *__NOTE:__* allows you to use one of the arguments as a command, allowing you to build higher order commands but also potentially infinite loops.
 
 Arguments to the macro can be substituted in the commands using the syntax:
