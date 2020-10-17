@@ -38,7 +38,7 @@
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -58,60 +58,58 @@ Shows the user instructions on how to use the application.
 
 Shows the list of vendor. If an index is specified, that vendor is selected.
 
-Format: `vendor [i/INDEX]`
+Format: `vendor INDEX`
 
 Examples:
-* `vendor` Shows the list of vendor
-* `vendor i/2` Selects the 2<sup>nd</sup> vendor in the list
+* `vendor 2` Selects the 2<sup>nd</sup> vendor in the list
 
 
 ### Displaying supper menu: `menu`
 
 Shows the menu from the current selected vendor
 
-Format: `menu`
-
-
-### Creating a new supper order: `create`
-
-Creates a new supper order for the user
-
-Format: `create`
+Format: `menu
 
 
 ### Adding a food item: `add`
 
 Adds a new food item for the user according to the index from the menu
 
-Format: `add i/INDEX q/QUANTITY`
+Format: `add INDEX [QUANTITY]`
 
 Examples:
-* `add i/1 q/1` add 1 quantity of item at index 1
-* `add i/2 q/3` add 3 quantity of item at index 2
+* `add 1 1` add 1 quantity of item at index 1
+* `add 2 3` add 3 quantity of item at index 2
+* `add 1` add 1 quantity of item at index 1
 
 
-### Deleting an item : `delete`
+### Removing an item : `remove`
 
-Deletes the specified item from the supper order.
+Removes the specified item from the supper order.
 
-Format: `delete i/INDEX [q/QUANTITY]`
+Format: `remove INDEX [QUANTITY]`
 
-* Deletes the item at the specified `INDEX` of the user's supper order.
+* Removes the item at the specified `INDEX` of the user's supper order.
 * Quantity can be specified to indicate the number of item to be deleted. Otherwise, it deletes all the item's quantity.
 * The index refers to the index number shown in the displayed supper order list.
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `delete i/2` deletes the second item in the supper order.
-* `delete i/1 q/2` deletes 2 instances of the first item in the supper order.
+* `delete 2` deletes the second item in the supper order.
+* `delete 1 2` deletes 2 instances of the first item in the supper order.
 
 
-### Confirming order: 'confirm'
+### Display total: 'total'
 
-Confirms the final order with the final price displayed
+Displays the price of the current order
 
-Format: `confirm`
+Format: `total`
 
+### Submit the order: 'submit'
+
+Displays the current order along with its total price
+
+Format: `submit`
 
 ### Other features `[coming soon]`
 
@@ -131,9 +129,9 @@ _{coming soon}_
 Action | Format, Examples
 --------|------------------
 **Help**   | `help`
-**Vendor** | `vendor i/INDEX` <br> e.g., `vendor i/2`
+**Vendor** | `vendor INDEX` <br> e.g., `vendor 2` 
 **Menu**   | `menu` <br> e.g., `menu`
-**Create** | `create` <br> e.g., `create`
-**Add**    | `add i/INDEX q/QUANTITY` <br> e.g., `add i/2`
-**Delete** | `delete i/INDEX [q/QUANTITY]`<br> e.g., `delete i/3`
-**Confirm**| `confirm` <br> e.g., `confirm`
+**Total** | `total` <br> e.g., `total` 
+**Add**    | `add INDEX [QUANTITY]` <br> e.g., `add 2 2` 
+**Delete** | `delete INDEX [QUANTITY]`<br> e.g., `delete 3 1` 
+**Submit**| `submit` <br> e.g., `submit` 
