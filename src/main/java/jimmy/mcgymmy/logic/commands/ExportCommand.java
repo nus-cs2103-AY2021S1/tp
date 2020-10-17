@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.logic.parser.ParserUtil;
+import jimmy.mcgymmy.logic.parser.parameter.OptionalParameter;
 import jimmy.mcgymmy.logic.parser.parameter.Parameter;
 import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.storage.JsonMcGymmyStorage;
@@ -27,14 +28,24 @@ public class ExportCommand extends Command {
             ParserUtil::parseDir
     );
 
-    public void setPathParameter(Parameter<Path> pathParameter) {
+    private OptionalParameter<String> outputFileName = addOptionalParameter(
+            "outputName",
+            "o",
+            "Output name of McGymmy file",
+            "mcgymmy.json",
+            ParserUtil::parseOutputName
+    );
+
+    public void setPathParameter(Parameter<Path> pathParameter, OptionalParameter<String> outputFileName) {
         this.pathParameter = pathParameter;
+        this.outputFileName = outputFileName;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         //Get the path parameter
         Path path = pathParameter.consume();
+        String filename = outputFileName.getValue().orElseGet(() -> DEFAULT_FILENAME);
         Logger.getLogger("ExportCommand").info(String.format("Directory Selected: %s", path.toString()));
 
         //Check if the directory exists
@@ -45,7 +56,7 @@ public class ExportCommand extends Command {
         }
 
         //Add the mcgymmy filename to export
-        path = Path.of(path.toString() + DEFAULT_FILENAME);
+        path = Path.of(path.toString() + filename);
         JsonMcGymmyStorage mcGymmyStorage = new JsonMcGymmyStorage(path);
         try {
             mcGymmyStorage.saveMcGymmy(model.getMcGymmy());
