@@ -47,7 +47,7 @@ public class ViewTaskCommand extends Command {
         }
 
         Task task = lastShownList.get(index.getZeroBased());
-        project.updateTaskOnView(task);
+        model.enterTask(task);
 
         return new CommandResult(String.format(MESSAGE_VIEW_TASK_SUCCESS, task));
     }
