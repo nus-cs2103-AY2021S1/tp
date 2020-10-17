@@ -57,4 +57,10 @@ public class Appointment {
                 || (other instanceof Appointment // instanceof handles nulls
                 && time.equals(((Appointment) other).time)); // state check
     }
+
+    @Override
+    public int hashCode() {
+        return value.hashCode();
+    }
+
 }

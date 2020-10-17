@@ -136,6 +136,8 @@ public class Patient {
                 .append(getAddress())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
+        builder.append(" Appointments: ");
+        getAppointments().forEach(builder::append);
         return builder.toString();
     }
 }
