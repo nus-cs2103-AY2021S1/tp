@@ -68,10 +68,6 @@ public class AddressBookParser {
 
         case AddAssignmentCommand.COMMAND_WORD:
             return new AddAssignmentParser().parse(arguments);
-
-        case CalculateCapCommand.COMMAND_WORD:
-            return new CalculateCapParser().parse(arguments);
-
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

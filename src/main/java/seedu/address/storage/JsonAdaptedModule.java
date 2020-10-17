@@ -27,6 +27,7 @@ class JsonAdaptedModule {
     private final String name;
     private final String zoomLink;
     private final GradeTracker gradeTracker;
+    private final String modularCredits;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -35,7 +36,8 @@ class JsonAdaptedModule {
     @JsonCreator
     public JsonAdaptedModule(@JsonProperty("name") String name,
                              @JsonProperty("zoomLink") String zoomLink,
-                             @JsonProperty("gradeTracker") GradeTracker storedGradeTracker) {
+                             @JsonProperty("gradeTracker") GradeTracker storedGradeTracker,
+                             @JsonProperty("modularCredits") String storedModularCredits) {
         this.name = name;
         this.zoomLink = zoomLink;
         if (storedGradeTracker == null) {
@@ -46,6 +48,7 @@ class JsonAdaptedModule {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.modularCredits = storedModularCredits;
     }
 
     /**
@@ -62,6 +65,7 @@ class JsonAdaptedModule {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        modularCredits = Integer.toString(source.getModularCredits());
     }
 
     /**
@@ -106,9 +110,9 @@ class JsonAdaptedModule {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
         final Email modelEmail = new Email(email);*/
-
+        final int modelModularCredits = Integer.parseInt(modularCredits);
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Module(modelName, modelLink, gradeTracker, modelTags);
+        return new Module(modelName, modelLink, gradeTracker, modelTags, modelModularCredits);
     }
 
 }
