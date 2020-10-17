@@ -74,7 +74,7 @@ public class UpdateExerciseCommand extends CommandForExercise {
         Exercise exerciseToEdit = lastShownList.get(index.getZeroBased());
         Exercise editedExercise = createEditedExercise(exerciseToEdit, editExerciseDescriptor);
 
-        if (!exerciseToEdit.isSameExercise(exerciseToEdit) && model.hasExercise(editedExercise)) {
+        if (!exerciseToEdit.isSameExercise(editedExercise) && model.hasExercise(editedExercise)) {
             throw new CommandException(MESSAGE_DUPLICATE_EXERCISE);
         }
 
