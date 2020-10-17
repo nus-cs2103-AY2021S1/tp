@@ -12,6 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.exceptions.UndoRedoLimitReachedException;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.delivery.Delivery;
@@ -160,12 +162,12 @@ public class InventoryModelManager implements InventoryModel {
     }
 
     @Override
-    public void undo() {
+    public void undo() throws UndoRedoLimitReachedException {
         inventoryBook.undo();
     }
 
     @Override
-    public void redo() {
+    public void redo() throws UndoRedoLimitReachedException {
         inventoryBook.redo();
     }
 

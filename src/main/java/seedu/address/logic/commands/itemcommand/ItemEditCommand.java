@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.itemcommand;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_METRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -70,17 +71,13 @@ public class ItemEditCommand extends ItemCommand {
     }
 
     @Override
-    public CommandResult execute(List<Model> models) throws CommandException {
-        InventoryModel inventoryModel = getInventoryModel(models);
-        DeliveryModel deliveryModel = getDeliveryModel(models);
+    public CommandResult execute(InventoryModel inventoryModel, DeliveryModel deliveryModel) throws CommandException {
+        requireAllNonNull(inventoryModel, deliveryModel);
         List<Item> lastShownList = inventoryModel.getFilteredItemList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
         }
-
-        inventoryModel.commit();
-        deliveryModel.commit();
 
         Item itemToEdit = lastShownList.get(index.getZeroBased());
         Item editedItem = createEditedItem(itemToEdit, editItemDescriptor);
@@ -91,6 +88,8 @@ public class ItemEditCommand extends ItemCommand {
 
         inventoryModel.setItem(itemToEdit, editedItem);
         inventoryModel.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
+        inventoryModel.commit();
+        deliveryModel.commit();
         return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem));
     }
 

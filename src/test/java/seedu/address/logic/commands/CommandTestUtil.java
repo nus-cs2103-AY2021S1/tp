@@ -115,7 +115,7 @@ public class CommandTestUtil {
                                             CommandResult expectedCommandResult,
                                             InventoryModel expectedInventoryModel) {
         try {
-            CommandResult result = command.execute(List.of(actualInventoryModel, new DeliveryModelManager()));
+            CommandResult result = command.execute(actualInventoryModel);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedInventoryModel, actualInventoryModel);
         } catch (CommandException ce) {
@@ -132,7 +132,7 @@ public class CommandTestUtil {
                                             CommandResult expectedCommandResult,
                                             DeliveryModel expectedDeliveryModel) {
         try {
-            CommandResult result = command.execute(List.of(new InventoryModelManager(), actualDeliveryModel));
+            CommandResult result = command.execute(actualDeliveryModel);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedDeliveryModel, actualDeliveryModel);
         } catch (CommandException ce) {
@@ -176,7 +176,7 @@ public class CommandTestUtil {
         List<Item> expectedFilteredList = new ArrayList<>(actualInventoryModel.getFilteredItemList());
 
         assertThrows(CommandException.class, expectedMessage, () ->
-            command.execute(List.of(actualInventoryModel, new DeliveryModelManager())));
+            command.execute(actualInventoryModel);
         assertEquals(expectedInventoryBook, actualInventoryModel.getInventoryBook());
         assertEquals(expectedFilteredList, actualInventoryModel.getFilteredItemList());
     }
@@ -195,7 +195,7 @@ public class CommandTestUtil {
         List<Delivery> expectedFilteredList = new ArrayList<>(actualDeliveryModel.getFilteredDeliveryList());
 
         assertThrows(CommandException.class, expectedMessage, () ->
-            command.execute(List.of(new InventoryModelManager(), actualDeliveryModel)));
+            command.execute(actualDeliveryModel);
         assertEquals(expectedDeliveryBook, actualDeliveryModel.getDeliveryBook());
         assertEquals(expectedFilteredList, actualDeliveryModel.getFilteredDeliveryList());
     }

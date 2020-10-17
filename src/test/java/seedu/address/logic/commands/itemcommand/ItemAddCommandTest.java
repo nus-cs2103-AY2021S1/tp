@@ -46,8 +46,7 @@ public class ItemAddCommandTest {
         ItemModelStubAcceptingInventoryAdded modelStub = new ItemModelStubAcceptingInventoryAdded();
         Item validItem = new ItemBuilder().build();
 
-        CommandResult commandResult = new ItemAddCommand(validItem).execute(
-                List.of(modelStub, new DeliveryModelManager()));
+        CommandResult commandResult = new ItemAddCommand(validItem).execute(modelStub);
 
         assertEquals(String.format(seedu.address.logic.commands.itemcommand.ItemAddCommand.MESSAGE_SUCCESS, validItem),
                 commandResult.getFeedbackToUser());
@@ -60,8 +59,7 @@ public class ItemAddCommandTest {
         Item finalItem = new ItemBuilder().withName("Chicken").withQuantity("4").build();
         InventoryModelStub modelStub = new ItemModelStubAcceptingDuplicatingInventory(currentItem);
 
-        CommandResult commandResult = new ItemAddCommand(currentItem).execute(
-                List.of(modelStub, new DeliveryModelManager()));
+        CommandResult commandResult = new ItemAddCommand(currentItem).execute(modelStub);
 
         assertEquals(String.format(ItemAddCommand.MESSAGE_ITEM_ADDED_TO_INVENTORY, finalItem),
                 commandResult.getFeedbackToUser());
@@ -73,8 +71,7 @@ public class ItemAddCommandTest {
         Item finalItem = new ItemBuilder().withName("Chicken").withQuantity("4").withMaxQuantity("5000").build();
         InventoryModelStub modelStub = new ItemModelStubRejectingDuplicatingMaxQuantityInventory(currentItem);
 
-        assertThrows(CommandException.class, () -> new ItemAddCommand(finalItem).execute(
-                List.of(modelStub, new DeliveryModelManager())));
+        assertThrows(CommandException.class, () -> new ItemAddCommand(finalItem).execute(modelStub));
     }
 
     @Test

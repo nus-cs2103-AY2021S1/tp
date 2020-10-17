@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.UndoRedoLimitReachedException;
 
 /**
  * API of a Model component
@@ -33,11 +34,13 @@ public interface Model {
 
     /**
      * Reverts the current model to the previous one in the list of model states
+     * @throws UndoRedoLimitReachedException if there is nothing left to undo
      */
-    void undo();
+    void undo() throws UndoRedoLimitReachedException;
 
     /**
      * Changes an undone model back to the previous one
+     * @throws UndoRedoLimitReachedException if there is nothing left to redo
      */
-    void redo();
+    void redo() throws UndoRedoLimitReachedException;
 }

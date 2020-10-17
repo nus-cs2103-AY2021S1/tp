@@ -9,6 +9,8 @@ import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.model.inventorymodel.InventoryModel;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 /**
  * Clears the inventory book.
  */
@@ -19,14 +21,12 @@ public class ItemClearCommand extends ItemCommand {
 
 
     @Override
-    public CommandResult execute(List<Model> models) throws CommandException {
-        InventoryModel inventoryModel = getInventoryModel(models);
-        DeliveryModel deliveryModel = getDeliveryModel(models);
-
-        inventoryModel.commit();
-        deliveryModel.commit();
+    public CommandResult execute(InventoryModel inventoryModel, DeliveryModel deliveryModel) {
+        requireAllNonNull(inventoryModel, deliveryModel);
 
         inventoryModel.setInventoryBook(new InventoryBook());
+        inventoryModel.commit();
+        deliveryModel.commit();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

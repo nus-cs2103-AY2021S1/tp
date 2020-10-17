@@ -1,11 +1,14 @@
 package seedu.address.model.inventorymodel;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_REDO_LIMIT_REACHED;
+import static seedu.address.commons.core.Messages.MESSAGE_UNDO_LIMIT_REACHED;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.logic.commands.exceptions.UndoRedoLimitReachedException;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.UniqueItemList;
 
@@ -110,7 +113,7 @@ public class InventoryBook implements ReadOnlyInventoryBook {
      */
     public void commit() {
         if (!inventoryBookStateList.isEmpty()) {
-            inventoryBookStateList = inventoryBookStateList.subList(0, inventoryBookStatePointer);
+            inventoryBookStateList = inventoryBookStateList.subList(0, inventoryBookStatePointer + 1);
         }
         inventoryBookStateList.add(new InventoryBook(this));
         inventoryBookStatePointer++;
@@ -118,21 +121,27 @@ public class InventoryBook implements ReadOnlyInventoryBook {
 
     /**
      * Shifts the current {@code InventoryBook} to the previous one in the state list.
+     * @throws UndoRedoLimitReachedException if there is nothing left to undo
      */
-    public void undo() {
+    public void undo() throws UndoRedoLimitReachedException {
         if (canUndo()) {
             inventoryBookStatePointer--;
             resetData(inventoryBookStateList.get(inventoryBookStatePointer));
+        } else {
+            throw new UndoRedoLimitReachedException(MESSAGE_UNDO_LIMIT_REACHED);
         }
     }
 
     /**
      * Shifts the current {@code InventoryBook} to the next one in the state list.
+     * @throws UndoRedoLimitReachedException if there is nothing left to redo
      */
-    public void redo() {
+    public void redo() throws UndoRedoLimitReachedException {
         if (canRedo()) {
             inventoryBookStatePointer++;
             resetData(inventoryBookStateList.get(inventoryBookStatePointer));
+        } else {
+            throw new UndoRedoLimitReachedException(MESSAGE_REDO_LIMIT_REACHED);
         }
     }
 

@@ -44,7 +44,7 @@ public class ItemRemoveCommandTest {
         Quantity quantity = new ItemBuilder().withQuantity("10").build().getQuantity();
 
         CommandResult commandResult = new ItemRemoveCommand(INDEX_FIRST_ITEM, quantity)
-                .execute(List.of(inventoryModel, new DeliveryModelManager()));
+                .execute(inventoryModel);
 
         assertEquals(String.format(ItemRemoveCommand.MESSAGE_EDIT_ITEM_SUCCESS, afterRemoveItem),
                 commandResult.getFeedbackToUser());

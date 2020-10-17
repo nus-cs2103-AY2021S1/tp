@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.itemcommand;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_METRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -55,24 +56,27 @@ public class ItemAddCommand extends ItemCommand {
     }
 
     @Override
-    public CommandResult execute(List<Model> models) throws CommandException {
-        InventoryModel inventoryModel = getInventoryModel(models);
-        DeliveryModel deliveryModel = getDeliveryModel(models);
+    public CommandResult execute(InventoryModel inventoryModel, DeliveryModel deliveryModel) throws CommandException {
+        requireAllNonNull(inventoryModel, deliveryModel);
+
+        CommandResult commandResult;
 
         if (inventoryModel.hasItem(toAdd) && toAdd.getMaxQuantity().isPresent()) {
             throw new CommandException(MESSAGE_CHANGE_MAX_ON_EXISTING_ITEM);
         }
 
+        if (inventoryModel.hasItem(toAdd)) {
+            Item toReplace = inventoryModel.addOnExistingItem(toAdd);
+            commandResult = new CommandResult(String.format(MESSAGE_ITEM_ADDED_TO_INVENTORY, toReplace));
+        } else {
+            inventoryModel.addItem(toAdd);
+            commandResult = new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        }
+
         inventoryModel.commit();
         deliveryModel.commit();
 
-        if (inventoryModel.hasItem(toAdd)) {
-            Item toReplace = inventoryModel.addOnExistingItem(toAdd);
-            return new CommandResult(String.format(MESSAGE_ITEM_ADDED_TO_INVENTORY, toReplace));
-        }
-
-        inventoryModel.addItem(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return commandResult;
     }
 
     @Override

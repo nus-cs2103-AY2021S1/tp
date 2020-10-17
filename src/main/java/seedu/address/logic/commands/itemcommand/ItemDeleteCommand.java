@@ -11,6 +11,8 @@ import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.item.Item;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 /**
  * Deletes a item identified using it's displayed index from the inventory book.
  */
@@ -32,20 +34,18 @@ public class ItemDeleteCommand extends ItemCommand {
     }
 
     @Override
-    public CommandResult execute(List<Model> models) throws CommandException {
-        InventoryModel inventoryModel = getInventoryModel(models);
-        DeliveryModel deliveryModel = getDeliveryModel(models);
+    public CommandResult execute(InventoryModel inventoryModel, DeliveryModel deliveryModel) throws CommandException {
+        requireAllNonNull(inventoryModel, deliveryModel);
         List<Item> lastShownList = inventoryModel.getFilteredItemList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
         }
 
-        inventoryModel.commit();
-        deliveryModel.commit();
-
         Item itemToDelete = lastShownList.get(targetIndex.getZeroBased());
         inventoryModel.deleteItem(itemToDelete);
+        inventoryModel.commit();
+        deliveryModel.commit();
         return new CommandResult(String.format(MESSAGE_DELETE_ITEM_SUCCESS, itemToDelete));
     }
 

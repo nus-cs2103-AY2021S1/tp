@@ -6,8 +6,12 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Model;
+import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.item.ItemContainsKeywordsPredicate;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Finds and lists all items in inventory book whose name contains any of the argument keywords.
@@ -30,9 +34,8 @@ public class ItemFindCommand extends ItemCommand {
     }
 
     @Override
-    public CommandResult execute(List<Model> models) throws CommandException {
-        InventoryModel inventoryModel = getInventoryModel(models);
-        inventoryModel.commit();
+    public CommandResult execute(InventoryModel inventoryModel, DeliveryModel deliveryModel) {
+        requireNonNull(inventoryModel);
 
         inventoryModel.updateFilteredItemList(predicate);
         return new CommandResult(

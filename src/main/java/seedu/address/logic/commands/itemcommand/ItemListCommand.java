@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.itemcommand;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.inventorymodel.InventoryModel.PREDICATE_SHOW_ALL_ITEMS;
 
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.List;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Model;
+import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.inventorymodel.InventoryModel;
 
 /**
@@ -20,8 +23,8 @@ public class ItemListCommand extends ItemCommand {
 
 
     @Override
-    public CommandResult execute(List<Model> models) throws CommandException {
-        InventoryModel inventoryModel = getInventoryModel(models);
+    public CommandResult execute(InventoryModel inventoryModel, DeliveryModel deliveryModel) {
+        requireNonNull(inventoryModel);
 
         inventoryModel.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(MESSAGE_SUCCESS);

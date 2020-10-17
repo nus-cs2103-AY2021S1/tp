@@ -37,6 +37,8 @@ public class LogicManager implements Logic {
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
     public LogicManager(InventoryModel inventoryModel, DeliveryModel deliveryModel, Storage storage) {
+        assert inventoryModel != null && deliveryModel != null;
+
         this.inventoryModel = inventoryModel;
         inventoryModel.commit();
         this.deliveryModel = deliveryModel;
@@ -51,7 +53,7 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = oneShelfBookParser.parseCommand(commandText);
-        commandResult = command.execute(List.of(inventoryModel, deliveryModel));
+        commandResult = command.execute(inventoryModel, deliveryModel);
 
         try {
             storage.saveInventoryBook(inventoryModel.getInventoryBook());
