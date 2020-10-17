@@ -10,7 +10,9 @@ public abstract class AddCommand extends Command {
     // Todo: Refine the description of message usage
     public static final String MESSAGE_USAGE_MAIN_PAGE = COMMAND_WORD
             + ": Adds an item of a specified type to PIVOT.\n"
-            + "Parameters (for 'case' TYPE): TYPE t:TITLE\n"
+            + "Format: '" + COMMAND_WORD + " TYPE PARAMETERS'\n\n"
+            + "TYPE 'case'\n"
+            + "Parameters: t:TITLE\n"
             + "Example: " + COMMAND_WORD + " case t: Ang Mo Kio Murders";
 
     // Todo: Refine the description of message usage

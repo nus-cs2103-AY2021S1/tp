@@ -13,10 +13,18 @@ import seedu.address.logic.state.StateManager;
 import seedu.address.model.Model;
 import seedu.address.model.investigationcase.Case;
 
+/**
+ * Opens a specified case in PIVOT.
+ */
 public class OpenCaseCommand extends OpenCommand {
 
     public static final String MESSAGE_OPEN_CASE_SUCCESS = "Opened Case: %1$s";
 
+    /**
+     * Creates an OpenCaseCommand to open the case at specified {@code targetIndex}.
+     *
+     * @param targetIndex Index of the case in PIVOT.
+     */
     public OpenCaseCommand(Index targetIndex) {
         super(targetIndex);
     }
@@ -25,6 +33,8 @@ public class OpenCaseCommand extends OpenCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Case> lastShownList = model.getFilteredCaseList();
+
+        assert(StateManager.atMainPage()) : "Program should be at main page";
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);

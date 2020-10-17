@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.state.StateManager;
 import seedu.address.model.Model;
 import seedu.address.model.investigationcase.Case;
 import seedu.address.model.investigationcase.Witness;
@@ -39,10 +40,8 @@ public class DeleteWitnessCommand extends DeleteCommand {
         requireNonNull(model);
         List<Case> lastShownList = model.getFilteredCaseList();
 
-        // invalid case index
-        if (caseIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
-        }
+        assert(StateManager.atCasePage()) : "Program should be at case page";
+        assert(caseIndex.getZeroBased() < lastShownList.size()) : "index should be valid";
 
         Case stateCase = lastShownList.get(caseIndex.getZeroBased());
         List<Witness> updatedWitnesses = stateCase.getWitnesses();
@@ -55,11 +54,11 @@ public class DeleteWitnessCommand extends DeleteCommand {
         Witness witnessToDelete = updatedWitnesses.get(witnessIndex.getZeroBased());
         updatedWitnesses.remove(witnessToDelete);
 
-        Case editedCase = new Case(stateCase.getTitle(), stateCase.getDescription(),
+        Case updatedCase = new Case(stateCase.getTitle(), stateCase.getDescription(),
                 stateCase.getStatus(), stateCase.getDocuments(), stateCase.getSuspects(),
                 stateCase.getVictims(), updatedWitnesses, stateCase.getTags());
 
-        model.setCase(stateCase, editedCase);
+        model.setCase(stateCase, updatedCase);
         model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
 
         return new CommandResult(String.format(MESSAGE_DELETE_WITNESS_SUCCESS, witnessToDelete));

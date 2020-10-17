@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.state.StateManager;
 import seedu.address.model.Model;
 import seedu.address.model.investigationcase.Case;
 
@@ -29,6 +30,8 @@ public class DeleteCaseCommand extends DeleteCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Case> lastShownList = model.getFilteredCaseList();
+
+        assert(StateManager.atMainPage()) : "Program should be at main page";
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
