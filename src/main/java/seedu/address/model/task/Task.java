@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonName;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Participation;
@@ -22,7 +23,7 @@ public class Task {
     private final Deadline deadline;
     private final double progress;
     private final boolean isDone;
-    private Set<Participation> assignees;
+    private final Set<String> assignees;
 
     /**
      * name, progress, and isDone should be present and not null. description and deadline can be null.
@@ -58,7 +59,7 @@ public class Task {
         return progress;
     }
 
-    public Set<Participation> getAssignees() {
+    public Set<String> getAssignees() {
         return assignees;
     }
 
@@ -67,7 +68,7 @@ public class Task {
     }
 
     public boolean hasAssignee(Participation assignee) {
-        return assignees.contains(assignee);
+        return assignees.contains(assignee.getPerson().toString());
     }
 
     /**
@@ -79,11 +80,11 @@ public class Task {
      */
     public boolean hasAssigneeWhoseNameIs(PersonName assigneeName) {
         return assignees.stream()
-            .anyMatch(assignee -> assignee.getAssigneeName().equals(assigneeName));
+            .anyMatch(assignee -> assignee.equals(assigneeName.toString()));
     }
 
     public boolean addAssignee(Participation assignee) {
-        return assignees.add(assignee);
+        return assignees.add(assignee.getAssigneeName().toString());
     }
 
     /**

@@ -131,7 +131,7 @@ public class Project {
      */
     public void addParticipation(Person p) {
         listOfParticipations.put(
-            p.getPersonName(), new Participation(p, this));
+            p.getPersonName(), new Participation(p.getPersonName().toString(), this));
     }
 
     /**

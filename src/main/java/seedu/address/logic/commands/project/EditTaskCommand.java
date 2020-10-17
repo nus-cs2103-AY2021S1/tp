@@ -21,6 +21,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.PersonName;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
@@ -95,7 +96,7 @@ public class EditTaskCommand extends Command {
         Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.isDone());
         String updatedTaskDescription = editTaskDescriptor.getTaskDescription()
                 .orElse(taskToEdit.getDescription());
-        Set<Participation> updatedAssignees = editTaskDescriptor.getAssignees().orElse(
+        Set<String> updatedAssignees = editTaskDescriptor.getAssignees().orElse(
                 taskToEdit.getAssignees());
 
         Task updatedTask = new Task(updatedTaskName, updatedTaskDescription, updatedDeadline,
@@ -134,7 +135,7 @@ public class EditTaskCommand extends Command {
         private Deadline deadline;
         private Double progress;
         private Boolean isDone;
-        private Set<Participation> assignees;
+        private Set<String> assignees;
 
         public EditTaskDescriptor() {}
 
@@ -211,7 +212,7 @@ public class EditTaskCommand extends Command {
          * Sets {@code assignees} to this object's {@code assignees}.
          * A defensive copy of {@code assignees} is used internally.
          */
-        public void setAssignees(Set<Participation> assignees) {
+        public void setAssignees(Set<String> assignees) {
             this.assignees = (assignees != null) ? new HashSet<>(assignees) : null;
         }
 
@@ -220,7 +221,7 @@ public class EditTaskCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code assignees} is null.
          */
-        public Optional<Set<Participation>> getAssignees() {
+        public Optional<Set<String>> getAssignees() {
             return (assignees != null) ? Optional.of(Collections.unmodifiableSet(assignees)) : Optional.empty();
         }
 

@@ -16,7 +16,7 @@ public class Participation {
     /**
      * List of thing(s) Person can participate in.
      */
-    private Person person;
+    private String person;
     private Project project;
     private Role role;
     private Set<Task> tasks;
@@ -25,7 +25,7 @@ public class Participation {
     /**
      * Constructor for Participation
      */
-    public Participation(Person person, Project project) {
+    public Participation(String person, Project project) {
         this.person = person;
         this.project = project;
         role = Role.MEMBER;
@@ -36,7 +36,7 @@ public class Participation {
     /**
      * Alternative constructor that allows specifying the role of the person
      */
-    public Participation(Person person, Project project, Role role) {
+    public Participation(String person, Project project, Role role) {
         this.person = person;
         this.project = project;
         this.role = role;
@@ -82,10 +82,16 @@ public class Participation {
         return tasks.contains(task);
     }
     public Person getPerson() {
-        return person;
+        Person p = null;
+        for(int i = 0 ; i<Person.allPeople.size();i++){
+            if(Person.allPeople.get(i).getPersonName().toString().equals(person)){
+                p = Person.allPeople.get(i);
+            }
+        }
+        return p;
     }
     public PersonName getAssigneeName() {
-        return person.getPersonName();
+        return this.getPerson().getPersonName();
     }
     public Project getProject() {
         return project;
