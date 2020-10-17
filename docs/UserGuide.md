@@ -3,7 +3,8 @@ layout: page
 title: User Guide
 ---
 
-McGymmy (MG) is a **desktop app for managing diet and exercise, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, McGymmy can log your diet and exercise tasks, goals and progress done faster than traditional GUI apps.
+McGymmy (MG) is a **desktop app for Software Engineers who need help managing their diet, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). <br>
+If you can type fast, McGymmy can log your diet and exercise tasks, goals and progress done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
