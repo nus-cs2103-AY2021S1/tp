@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
@@ -15,20 +15,20 @@ import seedu.address.model.module.ZoomLink;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddCommandParser implements Parser<AddCommand> {
+public class AddModuleParser implements Parser<AddModuleCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
+    public AddModuleCommand parse(String args) throws ParseException {
         Module module;
         ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME, PREFIX_ZOOM_LINK);
         ArgumentMultimap argMultimap = tokenizer.tokenize();
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE));
         }
         ModuleName moduleName = ParserUtil.parseModuleName(argMultimap.getValue(PREFIX_NAME).get());
 
@@ -40,7 +40,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         // return new AddCommand(person);
-        return new AddCommand(module);
+        return new AddModuleCommand(module);
 
         //Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         //Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());

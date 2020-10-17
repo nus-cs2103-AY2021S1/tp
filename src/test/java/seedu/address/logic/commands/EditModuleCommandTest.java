@@ -28,7 +28,7 @@ import seedu.address.testutil.ContactBuilder;
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for EditCommand.
  */
-public class EditCommandTest {
+public class EditModuleCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 

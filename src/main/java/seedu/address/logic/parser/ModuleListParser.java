@@ -7,23 +7,23 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddAssignmentCommand;
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.commands.AddZoomLinkCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.DeleteModuleCommand;
+import seedu.address.logic.commands.EditModuleCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ViewCommand;
+import seedu.address.logic.commands.ViewModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class ModuleListParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -47,14 +47,14 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AddModuleCommand.COMMAND_WORD:
+            return new AddModuleParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case EditModuleCommand.COMMAND_WORD:
+            return new EditModuleParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case DeleteModuleCommand.COMMAND_WORD:
+            return new DeleteModuleParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -72,10 +72,10 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case AddZoomLinkCommand.COMMAND_WORD:
-            return new AddZoomLinkCommandParser().parse(arguments);
+            return new AddZoomLinkParser().parse(arguments);
 
-        case ViewCommand.COMMAND_WORD:
-            return new ViewCommandParser().parse(arguments);
+        case ViewModuleCommand.COMMAND_WORD:
+            return new ViewModuleParser().parse(arguments);
 
         case AddAssignmentCommand.COMMAND_WORD:
             return new AddAssignmentParser().parse(arguments);
