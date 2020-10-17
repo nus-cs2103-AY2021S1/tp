@@ -61,8 +61,7 @@ public class CommandBox extends UiPart<Region> {
      */
     private void updatePointerAndPastCommandsList(String input) {
         if (pointer < pastCommands.size() - 1) {
-            pastCommands = pastCommands.subList(0, pointer + 1);
-            pastCommands.add("");
+            pointer = pastCommands.size() - 1;
         }
         if (!input.isBlank()) {
             this.pastCommands.set(pastCommands.size() - 1, input);
