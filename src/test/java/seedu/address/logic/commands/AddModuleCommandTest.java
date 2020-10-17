@@ -26,11 +26,11 @@ import seedu.address.model.module.Module;
 // import seedu.address.model.module.Module;
 import seedu.address.testutil.ContactBuilder;
 
-public class AddCommandTest {
+public class AddModuleCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddModuleCommand(null));
     }
 
     @Test
