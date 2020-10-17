@@ -9,6 +9,7 @@ import seedu.address.model.delivery.Delivery;
 import seedu.address.model.delivery.DeliveryName;
 import seedu.address.model.delivery.Order;
 import seedu.address.model.delivery.Phone;
+import seedu.address.model.item.Quantity;
 
 public class JsonAdaptedDelivery {
 
@@ -76,6 +77,9 @@ public class JsonAdaptedDelivery {
 
         if (order == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Order.class.getSimpleName()));
+        }
+        if (!Order.isValidOrder(order)) {
+            throw new IllegalValueException(Order.MESSAGE_CONSTRAINTS);
         }
         final Order modelOrder = new Order(order);
 
