@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 //import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteModuleCommand;
 //import seedu.address.logic.commands.EditCommand;
 //import seedu.address.logic.commands.EditCommand.EditModuleDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -29,9 +29,9 @@ import seedu.address.model.contact.NameContainsKeywordsPredicate;
 import seedu.address.testutil.ContactBuilder;
 //import seedu.address.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class ModuleListParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final ModuleListParser parser = new ModuleListParser();
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -48,9 +48,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+        DeleteModuleCommand command = (DeleteModuleCommand) parser.parseCommand(
+                DeleteModuleCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteModuleCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
