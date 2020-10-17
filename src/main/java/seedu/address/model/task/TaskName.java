@@ -29,7 +29,7 @@ public class TaskName {
      * @return true if task name is valid
      */
     public static boolean isValidTaskName(String test) {
-        return test.length() <= MAXIMUM_LENGTH && !test.equalsIgnoreCase("");
+        return test.length() <= MAXIMUM_LENGTH && !test.equals("");
     }
 
     public String getValue() {
