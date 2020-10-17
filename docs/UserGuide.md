@@ -142,12 +142,12 @@ Examples:
 
 ### Displaying statistics for a Flashcard: `stats`
 
-Shows the Bar Chart for a specified Flashcard in the list.
+Shows the Pie Chart for a specified Flashcard in the list.
 
 Statistics include:
 
-* The number of times the user answers the question associated with the flashcard correctly.
-* The number of times the user attempted the question associated with the flashcard.
+* The number of times and the percentage the user answers the question associated with the flashcard correctly.
+* The number of times and the percentage the user answers the question associated with the flashcard incorrectly.
 
 Format: `stats INDEX`
 
@@ -217,6 +217,7 @@ Action | Format, Examples
 **Add** | `add q/QUESTION ans/ANSWER` <br> e.g., `add q/Plants give out ___ when they photosynthesise? ans/Oxygen`
 **Addmcq** | `addmcq q/Plants give out ___ when they photosynthesise? ans/1 c/Oxygen c/Carbon c/Carbon dioxide`
 **Test** | `test INDEX ans/ANSWER` (open-ended question)<br> e.g., `test 2 a/lorem ipsum` <br> `test INDEX o/OPTION` (multiple choice question)<br> e.g., `test 3 o/1`
+**stats** | `stats INDEX`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **List** | `list`
