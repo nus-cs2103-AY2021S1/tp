@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class ExpiryDate {
+public class ExpiryDate implements Comparable<ExpiryDate> {
 
     public static final String MESSAGE_CONSTRAINTS =
         "Expiry date should be of the form yyyy-MM-dd";
@@ -56,6 +56,12 @@ public class ExpiryDate {
             || (other instanceof ExpiryDate // instanceof handles nulls
             && this.date.equals(((ExpiryDate) other).date));
     }
+
+    @Override
+    public int compareTo(ExpiryDate other) {
+        return this.date.compareTo(other.date);
+    }
+
     /**
      * Creates an expiry date far in the future, to represent food that either doesn't expire,
      * or where the expiry date was not given. TODO: Remove
