@@ -32,9 +32,9 @@ Refer to the features below for details of each command.
 
    * **`list`** : Lists all food items.
 
-   * **`add`**`-n potato -p 100 -c 5 -f 0` : Adds a food item named `potato` with `100` proteins, `5` carbs, and `0` fats.
+   * **`add`**`-n potato -p 100 -c 5 -f 0` : Adds a food item named `potato` with `100`g of proteins, `5`g of carbs, and `0`g of fats.
 
-   * **`delete`**`3` : Deletes the 3rd food item shown in the current list.
+   * **`delete`**`3` : Deletes the 3rd food item (i.e. food item with index 3) shown in the current list.
 
    * **`exit`** : Exits the app.
 
@@ -89,7 +89,7 @@ Examples:
 
 *__NOTE:__* The default value for protein, fats and carbs is 0. The default date is the day in which the food item is added
 
-*__NOTE:__* To view a list of supported day format, see *Appendix A*
+*__NOTE:__* To view the list of supported date formats, see *Appendix A*
 
 ![add command example](images/CommandImagesForUG/Add.png)
 
@@ -148,7 +148,7 @@ Examples:
 Examples:
 *  `edit 3 -n banana -p 120` Changes the `name` and `protein` values of the 3rd item in the list to `banana` and `120` respectively.
 
-*__NOTE:__* To view a list of supported day format, see *Appendix A*
+*__NOTE:__* To view the list of supported date formats, see *Appendix A*
 
 ![edit command example](images/CommandImagesForUG/Edit.png)
 
@@ -171,8 +171,8 @@ Examples:
 
 Adds a macro to run several commands in succession.
 
-Warning: this is an advanced feature!
-NOTE: allows you to use one of the arguments as a command, allowing you to build higher order commands but also potentially infinite loops.
+*__WARNING:__* this is an advanced feature!
+*__NOTE:__* allows you to use one of the arguments as a command, allowing you to build higher order commands but also potentially infinite loops.
 
 Arguments to the macro can be substituted in the commands using the syntax:
 \ARGUMENT_NAME.
