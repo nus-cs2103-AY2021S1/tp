@@ -212,5 +212,13 @@ public class MainCatalogueParserTest {
         } catch (Exception e) {
             assertEquals(new InvalidScopeException(Status.PROJECT, Status.CATALOGUE), e);
         }
+
+        try {
+            parser.parseCommand(ViewTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased(),
+                    Status.CATALOGUE);
+            fail();
+        } catch (Exception e) {
+            assertEquals(new InvalidScopeException(Status.PROJECT, Status.CATALOGUE), e);
+        }
     }
 }
