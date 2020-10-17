@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -62,6 +63,13 @@ public class RecipeCard extends UiPart<Region> {
         PixelReader reader = rawImage.getPixelReader();
         WritableImage newImage = new WritableImage(reader, 0, 0, 310, 150);
         recipeImage.setImage(newImage);
+        recipeImage.setPreserveRatio(true);
+
+        //Responsive resizing
+        ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
+            recipeImage.setFitWidth(getRoot().getWidth() - 10);
+        };
+        getRoot().widthProperty().addListener(stageSizeListener);
 
         ingredients.setText(recipe.getIngredient().stream()
                 .map(item -> item.getQuantity() + " " + item.getValue())

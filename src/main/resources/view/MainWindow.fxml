@@ -24,7 +24,7 @@
       </stylesheets>
     <BorderPane fx:id="container">
         <left>
-            <VBox fx:id="recipeList" minWidth="340" VBox.vgrow="ALWAYS">
+            <VBox fx:id="leftPanel" minWidth="340" VBox.vgrow="ALWAYS">
                 <padding>
                     <Insets top="10" right="10" bottom="10" left="10" />
                 </padding>
