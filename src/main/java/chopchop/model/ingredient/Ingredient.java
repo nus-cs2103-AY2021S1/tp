@@ -17,10 +17,8 @@ import static java.util.Objects.requireNonNull;
  */
 public class Ingredient extends Entry {
 
-    private final TreeMap<Optional<ExpiryDate>, Quantity> sets;
-
     // comparator that compares expiry dates, and puts empty expiries at the end.
-    private final Comparator<Optional<ExpiryDate>> comparator = (a, b) -> {
+    public static final Comparator<Optional<ExpiryDate>> SET_COMPARATOR = (a, b) -> {
 
         if (a.isEmpty() && b.isEmpty()) {
             return 0;
@@ -32,6 +30,8 @@ public class Ingredient extends Entry {
             return a.get().compareTo(b.get());
         }
     };
+
+    private final TreeMap<Optional<ExpiryDate>, Quantity> sets;
 
     /**
      * Every field must be present and not null. Use this constructor if expiry date is not present.
@@ -49,14 +49,14 @@ public class Ingredient extends Entry {
         super(name);
         requireNonNull(quantity);
 
-        this.sets = new TreeMap<>(this.comparator);
+        this.sets = new TreeMap<>(SET_COMPARATOR);
         this.sets.put(Optional.ofNullable(expiryDate), quantity);
     }
 
     /**
-     * Internal constructor. used for combine() to keep immutability.
+     * Constructs a set of ingredients directly from the map of expiry dates and quantities.
      */
-    private Ingredient(String name, TreeMap<Optional<ExpiryDate>, Quantity> sets) {
+    public Ingredient(String name, TreeMap<Optional<ExpiryDate>, Quantity> sets) {
         super(name);
         this.sets = sets;
     }
@@ -86,6 +86,15 @@ public class Ingredient extends Entry {
         return this.sets.firstEntry().getKey();
     }
 
+    public TreeMap<Optional<ExpiryDate>, Quantity> getIngredientSets() {
+
+        // i want const correctness dammit
+        var ret = new TreeMap<Optional<ExpiryDate>, Quantity>(SET_COMPARATOR);
+        ret.putAll(this.sets);
+
+        return ret;
+    }
+
     /**
      * Combines the quantities of this ingredient and the provided ingredient.
      *
@@ -101,7 +110,7 @@ public class Ingredient extends Entry {
         }
 
         // there's no constructor that takes both an existing map and the comparator...
-        var newSets = new TreeMap<Optional<ExpiryDate>, Quantity>(this.comparator);
+        var newSets = new TreeMap<Optional<ExpiryDate>, Quantity>(SET_COMPARATOR);
         newSets.putAll(this.sets);
 
         // because of exceptions, we cannot do this using nice lambdas and stuff.
