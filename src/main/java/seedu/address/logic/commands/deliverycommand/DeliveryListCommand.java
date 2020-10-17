@@ -6,7 +6,11 @@ import static seedu.address.model.deliverymodel.DeliveryModel.PREDICATE_SHOW_ALL
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Model;
+import seedu.address.model.delivery.Delivery;
 import seedu.address.model.deliverymodel.DeliveryModel;
+import seedu.address.model.inventorymodel.InventoryModel;
+
+import java.util.List;
 
 /**
  * Lists all items in the delivery book to the user.
@@ -19,10 +23,9 @@ public class DeliveryListCommand extends DeliveryCommand {
 
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        requireDeliveryModel(model);
-        DeliveryModel deliveryModel = (DeliveryModel) model;
+    public CommandResult execute(List<Model> models) throws CommandException {
+        DeliveryModel deliveryModel = getDeliveryModel(models);
+
         deliveryModel.updateFilteredDeliveryList(PREDICATE_SHOW_ALL_DELIVERIES);
         return new CommandResult(MESSAGE_SUCCESS);
     }

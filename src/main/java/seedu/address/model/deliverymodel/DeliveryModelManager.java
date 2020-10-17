@@ -126,6 +126,24 @@ public class DeliveryModelManager implements DeliveryModel {
         filteredDeliveries.setPredicate(predicate);
     }
 
+    //=========== Redo/Undo ===============================================================================
+
+    @Override
+    public void commit() {
+        deliveryBook.commit();
+    }
+
+    @Override
+    public void undo() {
+        deliveryBook.undo();
+    }
+
+    @Override
+    public void redo() {
+        deliveryBook.redo();
+    }
+
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object

@@ -152,6 +152,23 @@ public class InventoryModelManager implements InventoryModel {
         filteredItems.setPredicate(predicate);
     }
 
+    //=========== Redo/Undo ===============================================================================
+
+    @Override
+    public void commit() {
+        inventoryBook.commit();
+    }
+
+    @Override
+    public void undo() {
+        inventoryBook.undo();
+    }
+
+    @Override
+    public void redo() {
+        inventoryBook.redo();
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object

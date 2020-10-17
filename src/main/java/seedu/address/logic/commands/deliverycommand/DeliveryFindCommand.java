@@ -8,6 +8,9 @@ import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.delivery.DeliveryContainsKeywordsPredicate;
 import seedu.address.model.deliverymodel.DeliveryModel;
+import seedu.address.model.inventorymodel.InventoryModel;
+
+import java.util.List;
 
 /**
  * Finds and lists all items in delivery book whose name contains any of the argument keywords.
@@ -30,11 +33,9 @@ public class DeliveryFindCommand extends DeliveryCommand {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        requireDeliveryModel(model);
+    public CommandResult execute(List<Model> models) throws CommandException {
+        DeliveryModel deliveryModel = getDeliveryModel(models);
 
-        DeliveryModel deliveryModel = (DeliveryModel) model;
         deliveryModel.updateFilteredDeliveryList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_DELIVERIES_LISTED_OVERVIEW,

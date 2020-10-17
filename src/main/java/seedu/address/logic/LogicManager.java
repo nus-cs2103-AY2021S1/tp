@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -39,7 +40,9 @@ public class LogicManager implements Logic {
      */
     public LogicManager(InventoryModel inventoryModel, DeliveryModel deliveryModel, Storage storage) {
         this.inventoryModel = inventoryModel;
+        inventoryModel.commit();
         this.deliveryModel = deliveryModel;
+        deliveryModel.commit();
         this.storage = storage;
         oneShelfBookParser = new OneShelfBookParser();
     }
@@ -50,7 +53,7 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = oneShelfBookParser.parseCommand(commandText);
-        commandResult = command.execute(getAppropriateModel(command));
+        commandResult = command.execute(List.of(inventoryModel, deliveryModel));
 
         try {
             storage.saveInventoryBook(inventoryModel.getInventoryBook());
@@ -60,14 +63,6 @@ public class LogicManager implements Logic {
         }
 
         return commandResult;
-    }
-
-    private Model getAppropriateModel(Command command) {
-        if (command instanceof ItemCommand) {
-            return inventoryModel;
-        } else {
-            return deliveryModel;
-        }
     }
 
     @Override

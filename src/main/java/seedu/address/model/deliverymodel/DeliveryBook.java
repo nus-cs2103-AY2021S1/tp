@@ -2,13 +2,17 @@ package seedu.address.model.deliverymodel;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.delivery.Delivery;
 import seedu.address.model.delivery.UniqueDeliveryList;
+import seedu.address.model.inventorymodel.InventoryBook;
 
 public class DeliveryBook implements ReadOnlyDeliveryBook {
+    private static List<DeliveryBook> deliveryBookStateList = new ArrayList<>();
+    private static int deliveryBookStatePointer = -1;
 
     private final UniqueDeliveryList deliveries;
 
@@ -94,6 +98,47 @@ public class DeliveryBook implements ReadOnlyDeliveryBook {
     @Override
     public ObservableList<Delivery> getDeliveryList() {
         return deliveries.asUnmodifiableObservableList();
+    }
+
+    //// undo-redo operations
+
+    /**
+     * Copies the current {@code InventoryBook} in the state list.
+     */
+    public void commit() {
+        if (!deliveryBookStateList.isEmpty()) {
+            deliveryBookStateList = deliveryBookStateList.subList(0, deliveryBookStatePointer);
+        }
+        deliveryBookStateList.add(new DeliveryBook(this));
+        deliveryBookStatePointer++;
+    }
+
+    /**
+     * Shifts the current {@code InventoryBook} to the previous one in the state list.
+     */
+    public void undo() {
+        if (canUndo()) {
+            deliveryBookStatePointer--;
+            resetData(deliveryBookStateList.get(deliveryBookStatePointer));
+        }
+    }
+
+    /**
+     * Shifts the current {@code InventoryBook} to the next one in the state list.
+     */
+    public void redo() {
+        if (canRedo()) {
+            deliveryBookStatePointer++;
+            resetData(deliveryBookStateList.get(deliveryBookStatePointer));
+        }
+    }
+
+    private boolean canUndo() {
+        return deliveryBookStatePointer > 0;
+    }
+
+    private boolean canRedo() {
+        return deliveryBookStatePointer < deliveryBookStateList.size() - 1;
     }
 
     @Override

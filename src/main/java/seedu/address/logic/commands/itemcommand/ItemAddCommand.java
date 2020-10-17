@@ -11,8 +11,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Model;
+import seedu.address.model.delivery.Delivery;
+import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.item.Item;
+
+import java.util.List;
 
 /**
  * Adds a item to the inventory book.
@@ -52,21 +56,24 @@ public class ItemAddCommand extends ItemCommand {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        requireInventoryModel(model);
-        InventoryModel inventoryModel = (InventoryModel) model;
+    public CommandResult execute(List<Model> models) throws CommandException {
+        InventoryModel inventoryModel = getInventoryModel(models);
+        DeliveryModel deliveryModel = getDeliveryModel(models);
+
+        if (inventoryModel.hasItem(toAdd) && toAdd.getMaxQuantity().isPresent()) {
+            throw new CommandException(MESSAGE_CHANGE_MAX_ON_EXISTING_ITEM);
+        }
+
+        inventoryModel.commit();
+        deliveryModel.commit();
 
         if (inventoryModel.hasItem(toAdd)) {
-            if (toAdd.getMaxQuantity().isPresent()) {
-                throw new CommandException(MESSAGE_CHANGE_MAX_ON_EXISTING_ITEM);
-            }
             Item toReplace = inventoryModel.addOnExistingItem(toAdd);
             return new CommandResult(String.format(MESSAGE_ITEM_ADDED_TO_INVENTORY, toReplace));
-        } else {
-            inventoryModel.addItem(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         }
+
+        inventoryModel.addItem(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override

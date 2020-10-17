@@ -6,6 +6,8 @@ import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.commands.results.HelpCommandResult;
 import seedu.address.model.Model;
 
+import java.util.List;
+
 /**
  * Formats full help instructions for every command for display.
  */
@@ -17,7 +19,7 @@ public class HelpSummaryCommand extends HelpCommand {
      * @return {@code CommandResult} that describes changes made when command execute runs successfully.
      */
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(List<Model> models) {
         return new HelpCommandResult(SHOWING_HELP_MESSAGE,
                 false, true, false, "", HELP_SUMMARY);
     }

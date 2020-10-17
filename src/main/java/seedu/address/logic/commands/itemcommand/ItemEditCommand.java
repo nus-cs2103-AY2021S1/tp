@@ -21,6 +21,8 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Model;
+import seedu.address.model.delivery.Delivery;
+import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Metric;
@@ -69,15 +71,17 @@ public class ItemEditCommand extends ItemCommand {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        requireInventoryModel(model);
-        InventoryModel inventoryModel = (InventoryModel) model;
+    public CommandResult execute(List<Model> models) throws CommandException {
+        InventoryModel inventoryModel = getInventoryModel(models);
+        DeliveryModel deliveryModel = getDeliveryModel(models);
         List<Item> lastShownList = inventoryModel.getFilteredItemList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
         }
+
+        inventoryModel.commit();
+        deliveryModel.commit();
 
         Item itemToEdit = lastShownList.get(index.getZeroBased());
         Item editedItem = createEditedItem(itemToEdit, editItemDescriptor);

@@ -2,6 +2,7 @@ package seedu.address.model.inventorymodel;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -13,7 +14,8 @@ import seedu.address.model.item.UniqueItemList;
  * Duplicates are not allowed (by .isSameItem comparison)
  */
 public class InventoryBook implements ReadOnlyInventoryBook {
-
+    private static List<InventoryBook> inventoryBookStateList = new ArrayList<>();
+    private static int inventoryBookStatePointer = -1;
     private final UniqueItemList items;
 
     /*
@@ -99,6 +101,47 @@ public class InventoryBook implements ReadOnlyInventoryBook {
      */
     public void removeItem(Item key) {
         items.remove(key);
+    }
+
+    //// undo-redo operations
+
+    /**
+     * Copies the current {@code InventoryBook} in the state list.
+     */
+    public void commit() {
+        if (!inventoryBookStateList.isEmpty()) {
+            inventoryBookStateList = inventoryBookStateList.subList(0, inventoryBookStatePointer);
+        }
+        inventoryBookStateList.add(new InventoryBook(this));
+        inventoryBookStatePointer++;
+    }
+
+    /**
+     * Shifts the current {@code InventoryBook} to the previous one in the state list.
+     */
+    public void undo() {
+        if (canUndo()) {
+            inventoryBookStatePointer--;
+            resetData(inventoryBookStateList.get(inventoryBookStatePointer));
+        }
+    }
+
+    /**
+     * Shifts the current {@code InventoryBook} to the next one in the state list.
+     */
+    public void redo() {
+        if (canRedo()) {
+            inventoryBookStatePointer++;
+            resetData(inventoryBookStateList.get(inventoryBookStatePointer));
+        }
+    }
+
+    private boolean canUndo() {
+        return inventoryBookStatePointer > 0;
+    }
+
+    private boolean canRedo() {
+        return inventoryBookStatePointer < inventoryBookStateList.size() - 1;
     }
 
     //// util methods
