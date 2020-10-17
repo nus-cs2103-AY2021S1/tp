@@ -15,8 +15,6 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 - Features in global scope
   - Get help `help` 
   - Exit application `exit`
-  
-- Features in catalogue scope
   - Features associated with initialising project 
     - Creating new project `new project `
     - Start working on an existing project `start `
@@ -28,7 +26,7 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
     - Delete a task `delete `
     - Locate tasks by keyword `find `
     - Give a task a certain level of priority `prioritise `
-    - Viewing tasks allocated to a team member `view `
+    - Viewing tasks allocated to a team member `viewtask `
     - Assign task to a team member `assign `
     - Filter tasks by assignee/deadline/task name `filter `
   - Teammate related features 
@@ -85,6 +83,18 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 
   e.g. `(ta/ASSIGNEE NAME)||(td/DEADLINE)||(tn/TASK NAME)` can be used as "ta/Alice", "td/31-12-2020 10:00:00" or as "tn/group meeting", but not as "ta/Alice td/31-12-2020" or "".
 
+**:information_source: Notes about scoping:**<br>
+
+The hierarchy of command scoping is as follows:
+* `CATALOGUE` (i.e. global)
+  * `PROJECT`
+    * `TASK`
+  * `PERSON`
+
+<br>A lower-level scope always belongs to any parent scopes. For example, if the app is currently in `PROJECT`
+scope, it is also in the `CATALOGUE` scope. However, it is not necessarily in `TASK` scope because `TASK` is
+a child level of `PROJECT` and it is definitely not in `PERSON` scope because `PERSON` is parallel to `PROJECT`.
+
 </div>
 
 ## **Features** in global scope
@@ -96,8 +106,6 @@ Shows a message explaning how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
-## **Features** in catalogue scope
 
 ### Creating a new project `add project `
 Adds a project to the project list.
@@ -276,7 +284,7 @@ Example: `task participants 1` Displays the teammates that are assigned to do ta
 
 ### **Scoping**-related features
 #### Return to main catalogue `leave`
-Leaves the current project view page and return to the main catalogue of all projects
+Switch to the scope of a level of higher hierarchy.
 
 Format: `leave`
 
@@ -293,14 +301,15 @@ contains the data of your previous Taskmania home folder.
 Action | Format, Examples | Scope
 --------|------------------|-------
 **Get Help** | `help` | global scope
-**Add Project** | `add project n/NAME d/DUEDATE t/TEAM` <br> e.g., `add project n/Taskmania d/2020-09-09 t/Niaaz Lucas` | catalogue scope
-**Start** | `start INDEX`<br> e.g., `start 3` | catalogue scope
+**Add Project** | `add project n/NAME d/DUEDATE t/TEAM` <br> e.g., `add project n/Taskmania d/2020-09-09 t/Niaaz Lucas` | global scope
+**Start** | `start INDEX`<br> e.g., `start 3` | global scope
 **List Out The List Of Tasks** | `list` | project scope
 **Delete Task** | `delete INDEX` <br> eg. `delete 2` | project scope
 **Find KEYWORD** | `find KEYWORD` <br> eg. `find read` | project scope
 **Give A Task A Priority Level** | `prioritise INDEX1, INDEX2` <br> eg. `prioritise 2,3` | project scope 
 **Assign A Task To A Teammate** | `assign INDEX NAME` <br> e.g. `assign 1 Niaaz` | project scope
-**Filter Tasks by Assignee/Deadline/Task Name** | ``filter (ta/ASSIGNEE NAME)||(td/DEADLINE)||(tn/TASK NAME)``<br>e.g. `filter ta/Alice` | project scope 
+**Filter Tasks by Assignee/Deadline/Task Name** | ``filter (ta/ASSIGNEE NAME)||(td/DEADLINE)||(tn/TASK NAME)``<br>e.g. `filter ta/Alice` | project scope
+**View Details of A Task** | `viewtask INDEX` <br> eg. `viewtask 1` | project scope
 **New Teammate** | `new NAME p/PHONE_NUMBER e/EMAIL` <br> e.g., `new Lucas p/94311421 e/lucastai98@gmail.com` | project scope
 **Involve Teammate** | `involves NAME` <br> e.g., `involves Lucase` | project scope
 **Update Teammate** | `updatetm NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `updatetm Lucas p/12345678` | project scope
