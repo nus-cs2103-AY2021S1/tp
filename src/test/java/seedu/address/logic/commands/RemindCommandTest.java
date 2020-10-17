@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAssignmentAtIndex;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSIGNMENT;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ASSIGNMENT;
@@ -27,6 +28,11 @@ import seedu.address.testutil.AssignmentBuilder;
 public class RemindCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+    @Test
+    public void constructor_nullAssignment_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new RemindCommand(null));
+    }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
