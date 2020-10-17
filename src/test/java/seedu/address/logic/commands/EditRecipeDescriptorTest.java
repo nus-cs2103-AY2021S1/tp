@@ -2,11 +2,11 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_MARGARITAS;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_NOODLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_MARGARITAS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MARGARITAS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_MARGARITAS;
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
@@ -19,33 +19,36 @@ public class EditRecipeDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditRecipeDescriptor descriptorWithSameValues = new EditRecipeDescriptor(DESC_AMY);
-        assertTrue(DESC_AMY.equals(descriptorWithSameValues));
+        EditRecipeDescriptor descriptorWithSameValues = new EditRecipeDescriptor(DESC_NOODLE);
+        assertTrue(DESC_NOODLE.equals(descriptorWithSameValues));
 
         // same object -> returns true
-        assertTrue(DESC_AMY.equals(DESC_AMY));
+        assertTrue(DESC_NOODLE.equals(DESC_NOODLE));
 
         // null -> returns false
-        assertFalse(DESC_AMY.equals(null));
+        assertFalse(DESC_NOODLE.equals(null));
 
         // different types -> returns false
-        assertFalse(DESC_AMY.equals(5));
+        assertFalse(DESC_NOODLE.equals(5));
 
         // different values -> returns false
-        assertFalse(DESC_AMY.equals(DESC_BOB));
+        assertFalse(DESC_NOODLE.equals(DESC_MARGARITAS));
 
         // different name -> returns false
-        EditRecipeDescriptor editedAmy = new EditRecipeDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        EditRecipeDescriptor editedNoodle = new EditRecipeDescriptorBuilder(DESC_NOODLE)
+                        .withName(VALID_NAME_MARGARITAS)
+                        .build();
+        assertFalse(DESC_NOODLE.equals(editedNoodle));
 
         // different ingredients -> returns false
-        editedAmy =
-                new EditRecipeDescriptorBuilder(DESC_AMY).withIngredient(VALID_INGREDIENT_BOB, VALID_QUANTITY_BOB)
+        editedNoodle =
+                new EditRecipeDescriptorBuilder(DESC_NOODLE)
+                        .withIngredient(VALID_INGREDIENT_MARGARITAS, VALID_QUANTITY_MARGARITAS)
                         .build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        assertFalse(DESC_NOODLE.equals(editedNoodle));
 
         // different tags -> returns false
-        editedAmy = new EditRecipeDescriptorBuilder(DESC_AMY).build();
-        //        assertFalse(DESC_AMY.equals(editedAmy));
+        // editedNoodle = new EditRecipeDescriptorBuilder(DESC_NOODLE).build();
+        // assertFalse(DESC_NOODLE.equals(editedNoodle));
     }
 }

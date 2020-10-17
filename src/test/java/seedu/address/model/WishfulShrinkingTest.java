@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalRecipes.ALICE;
+import static seedu.address.testutil.TypicalRecipes.SANDWICH;
 import static seedu.address.testutil.TypicalRecipes.getTypicalWishfulShrinking;
 
 import java.util.Arrays;
@@ -46,9 +46,9 @@ public class WishfulShrinkingTest {
     @Test
     public void resetData_withDuplicateRecipes_throwsDuplicateRecipeException() {
         // Two recipes with the same identity fields
-        Recipe editedAlice = new RecipeBuilder(ALICE)
+        Recipe editedAlice = new RecipeBuilder(SANDWICH)
                 .build();
-        List<Recipe> newRecipes = Arrays.asList(ALICE, editedAlice);
+        List<Recipe> newRecipes = Arrays.asList(SANDWICH, editedAlice);
         WishfulShrinkingStub newData = new WishfulShrinkingStub(newRecipes);
 
         assertThrows(DuplicateRecipeException.class, () -> wishfulShrinking.resetData(newData));
@@ -61,19 +61,19 @@ public class WishfulShrinkingTest {
 
     @Test
     public void hasRecipe_recipeNotInWishfulShrinking_returnsFalse() {
-        assertFalse(wishfulShrinking.hasRecipe(ALICE));
+        assertFalse(wishfulShrinking.hasRecipe(SANDWICH));
     }
 
     @Test
     public void hasRecipe_recipeInWishfulShrinking_returnsTrue() {
-        wishfulShrinking.addRecipe(ALICE);
-        assertTrue(wishfulShrinking.hasRecipe(ALICE));
+        wishfulShrinking.addRecipe(SANDWICH);
+        assertTrue(wishfulShrinking.hasRecipe(SANDWICH));
     }
 
     @Test
     public void hasRecipe_recipeWithSameIdentityFieldsInWishfulShrinking_returnsTrue() {
-        wishfulShrinking.addRecipe(ALICE);
-        Recipe editedAlice = new RecipeBuilder(ALICE)
+        wishfulShrinking.addRecipe(SANDWICH);
+        Recipe editedAlice = new RecipeBuilder(SANDWICH)
                 .build();
         assertTrue(wishfulShrinking.hasRecipe(editedAlice));
     }
