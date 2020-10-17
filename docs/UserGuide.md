@@ -34,7 +34,7 @@ QuickCache is a **desktop app for managing flashcards, optimized for use via a C
    
    * **`test`**`1 ans/Example answer` : Tests the 1st question shown in the current list with `Example answer` as the answer.
    
-   * **`find`**`Biology` : Finds all Flashcards tagged to the tag `Biology`.
+   * **`find`** `find t/MCQ q/What CS2103T q/is t/GoodQuestion` : Finds all Flashcards tagged to the tag `MCQ` and `GoodQuestion` and has keywords `What`, `CS2103T` and `is` in question.
    
    * **`stats`**`1` : Show stats of the 1st question shown in the current list.
    
