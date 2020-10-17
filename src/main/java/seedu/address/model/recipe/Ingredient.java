@@ -1,7 +1,12 @@
 package seedu.address.model.recipe;
 
+import seedu.address.logic.commands.EditIngredientCommand;
+import seedu.address.logic.commands.EditRecipeCommand;
+
 import static java.util.Objects.requireNonNull;
-//import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
+
 
 import java.util.Objects;
 
@@ -16,7 +21,7 @@ public class Ingredient {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum} ][\\p{Alnum} ]*";
-    public static final String VALIDATION_REGEX_QUANTITY = "[\\p{Alnum}/\\ ]*";
+    public static final String VALIDATION_REGEX_QUANTITY = "[\\p{Alnum}\\/\\. ]*";
     private String value;
     private String quantity;
 
@@ -65,6 +70,21 @@ public class Ingredient {
     public static boolean isValidIngredient(Ingredient test) {
         return test.getValue().matches(VALIDATION_REGEX)
                 && test.getQuantity().matches(VALIDATION_REGEX_QUANTITY);
+    }
+
+    public String parseToString() {
+        if (quantity != "") {
+            return value + " -" + quantity;
+        } else {
+            return value;
+        }
+    }
+
+    public String stringify(int position) {
+        String COMMAND_WORD = EditIngredientCommand.COMMAND_WORD;
+        String ingredientValue = PREFIX_INGREDIENT + getValue();
+        String quantity = PREFIX_QUANTITY + getQuantity();
+        return COMMAND_WORD + " " + position + " " + ingredientValue + " " + quantity;
     }
 
     @Override

@@ -18,7 +18,7 @@ public class GetEditRecipeCommand extends Command {
             + "Parameters: " + "INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_RECIPE_SUCCESS = "Recipe to edit shown: %1$s";
+    public static final String MESSAGE_EDIT_RECIPE_SUCCESS = "Recipe to edit shown: %1$s";
 
     private final Index toEdit;
 
@@ -36,15 +36,19 @@ public class GetEditRecipeCommand extends Command {
         }
 
         Recipe recipeToEdit = lastShownList.get(toEdit.getZeroBased());
-        model.setCommandBox(recipeToEdit.stringify());
-        return new CommandResult(String.format(MESSAGE_DELETE_RECIPE_SUCCESS, recipeToDelete));
+        int recipePositionToEdit = lastShownList.indexOf(recipeToEdit) + 1;
+        CommandResult commandResult = new CommandResult(MESSAGE_EDIT_RECIPE_SUCCESS + recipeToEdit.toString(),
+                false, false, false, false, false,
+                true, false);
+        commandResult.setCommandBox(recipeToEdit.stringify(recipePositionToEdit));
+        return commandResult;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteRecipeCommand // instanceof handles nulls
-                && toDelete.equals(((DeleteRecipeCommand) other).toDelete)); // state check
+                || (other instanceof GetEditRecipeCommand // instanceof handles nulls
+                && toEdit.equals(((GetEditRecipeCommand) other).toEdit)); // state check
     }
 
 }

@@ -74,8 +74,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditRecipeDescriptor DESC_AMY;
-    public static final EditCommand.EditRecipeDescriptor DESC_BOB;
+    public static final EditRecipeCommand.EditRecipeDescriptor DESC_AMY;
+    public static final EditRecipeCommand.EditRecipeDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditRecipeDescriptorBuilder().withName(VALID_NAME_AMY)

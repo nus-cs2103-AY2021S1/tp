@@ -11,7 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditCommand.EditRecipeDescriptor;
+import seedu.address.logic.commands.EditRecipeCommand.EditRecipeDescriptor;
 import seedu.address.testutil.EditRecipeDescriptorBuilder;
 
 public class EditRecipeDescriptorTest {

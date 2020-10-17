@@ -20,18 +20,18 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_RECIPE;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditRecipeDescriptor;
+import seedu.address.logic.commands.EditRecipeCommand;
+import seedu.address.logic.commands.EditRecipeCommand.EditRecipeDescriptor;
 import seedu.address.testutil.EditRecipeDescriptorBuilder;
 
-public class EditCommandParserTest {
+public class EditRecipeCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditRecipeCommand.MESSAGE_USAGE);
 
-    private EditCommandParser parser = new EditCommandParser();
+    private EditRecipeCommandParser parser = new EditRecipeCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -39,7 +39,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, "1", EditRecipeCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
@@ -140,19 +140,19 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_RECIPE;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
         EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withName(VALID_NAME_AMY).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditRecipeCommand expectedCommand = new EditRecipeCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // ingredients
         userInput = targetIndex.getOneBased() + INGREDIENT_DESC_AMY;
         descriptor = new EditRecipeDescriptorBuilder().withIngredient(VALID_INGREDIENT_AMY, VALID_QUANTITY_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new EditRecipeCommand(targetIndex, descriptor);
         // assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_BOB;
         descriptor = new EditRecipeDescriptorBuilder().build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new EditRecipeCommand(targetIndex, descriptor);
         // assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -178,14 +178,14 @@ public class EditCommandParserTest {
                 + INGREDIENT_DESC_BOB;
         EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder()
                 .withIngredient(VALID_INGREDIENT_BOB, VALID_QUANTITY_BOB).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditRecipeCommand expectedCommand = new EditRecipeCommand(targetIndex, descriptor);
         // assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + INVALID_INGREDIENT_DESC
                 + INGREDIENT_DESC_BOB;
         descriptor = new EditRecipeDescriptorBuilder().withIngredient(VALID_INGREDIENT_BOB, VALID_QUANTITY_BOB).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new EditRecipeCommand(targetIndex, descriptor);
         // assertParseSuccess(parser, userInput, expectedCommand);
     }
 

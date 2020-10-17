@@ -25,7 +25,7 @@ public class ParserUtil {
                     + "of alphanumeric characters only";
     public static final String VALIDATION_REGEX = "[\\w\\s-]+"
             + "(,\\s*[\\w\\s-]*)*";
-    public static final String VALIDATION_REGEX_QUANTITY = "[\\w\\s]*";
+    public static final String VALIDATION_REGEX_QUANTITY = "[\\w\\s\\/\\.]*";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
@@ -75,7 +75,14 @@ public class ParserUtil {
     public static String parseIngredient(String ingredients) throws ParseException {
         requireNonNull(ingredients);
         String trimmedIngredient = ingredients.trim();
-        if (!trimmedIngredient.matches(VALIDATION_REGEX)) {
+        String ingName = trimmedIngredient;
+        String ingQuantity = "";
+        int indexOfDash = trimmedIngredient.indexOf("-");
+        if (indexOfDash != -1) {
+            ingName = trimmedIngredient.substring(0, indexOfDash).trim();
+            ingQuantity = trimmedIngredient.substring(indexOfDash).trim();
+        }
+        if (!ingName.matches(VALIDATION_REGEX) && ingQuantity.matches(VALIDATION_REGEX_QUANTITY)) {
             throw new ParseException(MESSAGE_CONSTRAINTS);
         }
         return trimmedIngredient;

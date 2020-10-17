@@ -2,8 +2,11 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INSTRUCTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_IMAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
@@ -13,8 +16,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditRecipeDescriptor;
+import seedu.address.logic.commands.EditRecipeCommand;
+import seedu.address.logic.commands.EditRecipeCommand.EditRecipeDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.tag.Tag;
@@ -22,17 +25,18 @@ import seedu.address.model.tag.Tag;
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class EditCommandParser implements Parser<EditCommand> {
+public class EditRecipeCommandParser implements Parser<EditRecipeCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditCommand parse(String args) throws ParseException {
+    public EditRecipeCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_INGREDIENT, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_INGREDIENT, PREFIX_CALORIES,
+                        PREFIX_INSTRUCTION, PREFIX_RECIPE_IMAGE, PREFIX_TAG);
 
         Index index;
 
@@ -40,7 +44,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditCommand.MESSAGE_USAGE), pe);
+                    EditRecipeCommand.MESSAGE_USAGE), pe);
         }
 
         EditRecipeDescriptor editRecipeDescriptor = new EditRecipeDescriptor();
@@ -51,22 +55,30 @@ public class EditCommandParser implements Parser<EditCommand> {
             String ingredientString = ParserUtil.parseIngredient(argMultimap
                     .getValue(PREFIX_INGREDIENT).get());
             ArrayList<Ingredient> ingredients = IngredientParser.parse(ingredientString);
-
-            //String[] ingredientsToken = ingredientString.split(",");
-            //ArrayList<Ingredient> ingredients = new ArrayList<>();
-            //
-            //for (int i = 0; i < ingredientsToken.length; i++) {
-            //  ingredients.add(new Ingredient(ingredientsToken[i].trim()));
-            //}
             editRecipeDescriptor.setIngredient(ingredients);
         }
-
-
-        if (!editRecipeDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        if (argMultimap.getValue(PREFIX_CALORIES).isPresent()) {
+            Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+            editRecipeDescriptor.setTags(tags);
+        }
+        if (argMultimap.getValue(PREFIX_INSTRUCTION).isPresent()) {
+            String instructions = argMultimap.getValue(PREFIX_INSTRUCTION).get();
+            editRecipeDescriptor.setInstruction(instructions);
+        }
+        if (argMultimap.getValue(PREFIX_RECIPE_IMAGE).isPresent()) {
+            String recipeImage = argMultimap.getValue(PREFIX_RECIPE_IMAGE).get();
+            editRecipeDescriptor.setRecipeImage(recipeImage);
+        }
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+            editRecipeDescriptor.setTags(tagList);
         }
 
-        return new EditCommand(index, editRecipeDescriptor);
+        if (!editRecipeDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditRecipeCommand.MESSAGE_NOT_EDITED);
+        }
+
+        return new EditRecipeCommand(index, editRecipeDescriptor);
     }
 
     /**

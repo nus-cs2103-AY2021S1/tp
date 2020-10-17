@@ -145,17 +145,4 @@ public interface Model {
      */
     void updateFilteredIngredientList(Predicate<Ingredient> predicate);
 
-    /**
-     * Set the command box with editR or editF followed by the stringified version of a
-     * recipe or ingredient respectively.
-     * @param str
-     */
-    void setCommandBox(String str);
-
-    /**
-     * Return the stringified edit command.
-     * @param str stringified command to be displayed in command box.
-     * @return
-     */
-    String getCommandBox();
 }

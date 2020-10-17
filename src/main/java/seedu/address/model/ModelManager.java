@@ -26,7 +26,6 @@ public class ModelManager implements Model {
     private final FilteredList<Recipe> filteredRecipes;
     private final FilteredList<Ingredient> filteredIngredients;
     private final FilteredList<Consumption> filteredConsumption;
-    private String commandBoxText;
 
     /**
      * Initializes a ModelManager with the given wishfulShrinking and userPrefs.
@@ -196,18 +195,6 @@ public class ModelManager implements Model {
     public void updateFilteredIngredientList(Predicate<Ingredient> predicate) {
         requireNonNull(predicate);
         filteredIngredients.setPredicate(predicate);
-    }
-
-    //=========== Edit commands Accessors =============================================================
-    @Override
-    public void setCommandBox(String str) {
-        requireNonNull(str);
-        commandBoxText = str;
-    }
-
-    @Override
-    public String getCommandBox() {
-        return commandBoxText;
     }
 
     @Override

@@ -32,6 +32,9 @@ public class CommandResult {
     /** Should show edit recipe command. */
     private final boolean isEditRecipe;
 
+    private String commandBoxText;
+
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -53,7 +56,8 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false, false, false, false);
+        this(feedbackToUser, false, false, false, false,
+                false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -88,6 +92,15 @@ public class CommandResult {
         return isEditIngredient;
     }
 
+    public void setCommandBox(String str) {
+        requireNonNull(str);
+        commandBoxText = str;
+    }
+
+    public String getCommandBox() {
+        return commandBoxText;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -102,9 +115,7 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit
-                && isEditIngredient == otherCommandResult.isEditIngredient()
-                && isEditIngredient == otherCommandResult.isEditIngredient();
+                && exit == otherCommandResult.exit;
     }
 
     @Override

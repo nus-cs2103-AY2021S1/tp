@@ -29,6 +29,7 @@ public class AddIngredientCommandParser implements Parser<AddIngredientCommand> 
         }
 
         String ingredientString = ParserUtil.parseIngredient(argMultimap.getValue(PREFIX_INGREDIENT).get());
+        System.out.println(ingredientString);
         ArrayList<Ingredient> ingredients = IngredientParser.parse(ingredientString);
 
         return new AddIngredientCommand(ingredients);
