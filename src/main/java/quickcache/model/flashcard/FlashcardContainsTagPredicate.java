@@ -1,20 +1,19 @@
 package quickcache.model.flashcard;
 
-import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 public class FlashcardContainsTagPredicate implements Predicate<Flashcard> {
 
-    private final List<Tag> tagsToMatch;
+    private final Set<Tag> tagsToMatch;
 
-    public FlashcardContainsTagPredicate(List<Tag> tagsToMatch) {
+    public FlashcardContainsTagPredicate(Set<Tag> tagsToMatch) {
         this.tagsToMatch = tagsToMatch;
     }
 
     @Override
     public boolean test(Flashcard flashcard) {
-        return tagsToMatch.stream()
-                .anyMatch(flashcard::matchTag);
+        return flashcard.containsAllTags(tagsToMatch);
     }
 
     @Override

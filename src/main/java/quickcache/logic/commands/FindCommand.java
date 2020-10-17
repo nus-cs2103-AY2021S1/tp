@@ -1,10 +1,14 @@
 package quickcache.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static quickcache.logic.parser.CliSyntax.PREFIX_QUESTION;
+import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
 
 import quickcache.commons.core.Messages;
 import quickcache.model.Model;
-import quickcache.model.flashcard.FlashcardContainsTagPredicate;
+import quickcache.model.flashcard.Flashcard;
+
+import java.util.function.Predicate;
 
 /**
  * Finds and lists all flashcards in QuickCache with tags equivalent to any of the argument keywords.
@@ -14,14 +18,19 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all flashcards whose tags contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all flashcards whose question "
+            + "and tags respectively contains all of\n"
+            + "[" + PREFIX_QUESTION + "KEYWORD]...\n"
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + " and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " CS2100";
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_QUESTION + "What "
+            + PREFIX_TAG + "CS2100";
 
-    private final FlashcardContainsTagPredicate predicate;
+    private final Predicate<Flashcard> predicate;
 
-    public FindCommand(FlashcardContainsTagPredicate predicate) {
+    public FindCommand(Predicate<Flashcard> predicate) {
         this.predicate = predicate;
     }
 
@@ -30,7 +39,6 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredFlashcardList(predicate);
         return new CommandResult(
-                // TODO: Change the enum to be flashcard instead of persons
                 String.format(Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW, model.getFilteredFlashcardList().size()));
     }
 

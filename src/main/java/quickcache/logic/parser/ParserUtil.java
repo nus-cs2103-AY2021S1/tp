@@ -3,6 +3,7 @@ package quickcache.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -55,6 +56,26 @@ public class ParserUtil {
             throw new ParseException(OpenEndedQuestion.MESSAGE_CONSTRAINTS);
         }
         return new OpenEndedQuestion(trimmedQuestion);
+    }
+
+    /**
+     * Parses a {@code List} of inputs into a a {@code List} of keywords.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if any of the given input in the {@code inputList} is invalid.
+     */
+    public static List<String> parseKeywords(List<String> inputList) throws ParseException {
+        requireNonNull(inputList);
+        List<String> keywords = new ArrayList<>(8);
+        for (String input: inputList) {
+            String trimmedInput = input.trim();
+            if (!trimmedInput.matches("[^\\s].*")) {
+                throw new ParseException("Keyword should not be blank");
+            }
+            keywords.addAll(Arrays.asList(input.split("\\s+")));
+        }
+
+        return keywords;
     }
 
     /**
