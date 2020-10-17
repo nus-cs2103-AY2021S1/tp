@@ -3,25 +3,17 @@ package quickcache.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static quickcache.logic.parser.CliSyntax.PREFIX_QUESTION;
-import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import quickcache.commons.core.Messages;
-import quickcache.logic.parser.ArgumentMultimap;
-import quickcache.logic.parser.ArgumentTokenizer;
-import quickcache.logic.parser.ParserUtil;
-import quickcache.logic.parser.exceptions.ParseException;
 import quickcache.model.Model;
 import quickcache.model.ModelManager;
 import quickcache.model.UserPrefs;

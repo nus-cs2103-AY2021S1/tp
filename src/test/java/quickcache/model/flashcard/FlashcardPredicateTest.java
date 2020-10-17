@@ -1,7 +1,7 @@
 package quickcache.model.flashcard;
 
-import org.junit.jupiter.api.Test;
-import quickcache.testutil.FlashcardBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,8 +10,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import quickcache.testutil.FlashcardBuilder;
 
 public class FlashcardPredicateTest {
 
@@ -73,7 +74,7 @@ public class FlashcardPredicateTest {
         assertTrue(predicate.test(new FlashcardBuilder().withTags("Programming", "English").build()));
 
         // Multiple keywords
-        predicate =preparePredicate(prepareTagSet("Programming", "English"), prepareKeywordList());
+        predicate = preparePredicate(prepareTagSet("Programming", "English"), prepareKeywordList());
         assertTrue(predicate.test(new FlashcardBuilder().withTags("Programming", "English").build()));
 
         // Non-matching keyword

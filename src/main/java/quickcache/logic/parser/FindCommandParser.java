@@ -1,5 +1,9 @@
 package quickcache.logic.parser;
 
+import static quickcache.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static quickcache.logic.parser.CliSyntax.PREFIX_QUESTION;
+import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -13,10 +17,6 @@ import quickcache.model.flashcard.FlashcardContainsTagPredicate;
 import quickcache.model.flashcard.FlashcardPredicate;
 import quickcache.model.flashcard.QuestionContainsKeywordsPredicate;
 import quickcache.model.flashcard.Tag;
-
-import static quickcache.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static quickcache.logic.parser.CliSyntax.PREFIX_QUESTION;
-import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
 
 /**
  * Parses input arguments and creates a new FindCommand object

@@ -6,10 +6,7 @@ import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
 
 import quickcache.commons.core.Messages;
 import quickcache.model.Model;
-import quickcache.model.flashcard.Flashcard;
 import quickcache.model.flashcard.FlashcardPredicate;
-
-import java.util.function.Predicate;
 
 /**
  * Finds and lists all flashcards in QuickCache with tags equivalent to any of the argument keywords.
