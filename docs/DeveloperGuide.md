@@ -157,7 +157,11 @@ The switch of `status` is implemented by the following operations:
 
 These operations are exposed in `Model` and `Logic` interfaces with the same name.
 
-
+In the GUI design of the application, the three columns correspond to three levels of the status. The left column refers to the top level,
+which is `CATALOGUE`, and it thus consists of a list of projects. The middle column refers to the middle level, which can be `PROJECT`
+or `PERSON`, and it shows the details of the project or person of focus as stored in `MainCatalogue`. The right column refers to the bottom
+level, which can be `TASK`, and it shows the details of the object this status refers to that is of focus as stored in its parent object (
+project or person).
 
 Users are allowed to switch the scoping status while using the app using user input commands. Relevant commands include:
 
