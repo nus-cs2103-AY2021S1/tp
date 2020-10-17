@@ -4,7 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.NameContainsKeywordsPredicate;
+
+import java.util.function.Predicate;
 
 /**
  * Finds and lists all assignments in address book whose name contains any of the argument keywords.
@@ -19,9 +22,9 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final Predicate<Assignment> predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(Predicate<Assignment> predicate) {
         this.predicate = predicate;
     }
 
