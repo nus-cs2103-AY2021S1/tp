@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -21,6 +22,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.delivery.Delivery;
+import seedu.address.model.deliverymodel.DeliveryModelManager;
 import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
@@ -44,7 +46,8 @@ public class ItemAddCommandTest {
         ItemModelStubAcceptingInventoryAdded modelStub = new ItemModelStubAcceptingInventoryAdded();
         Item validItem = new ItemBuilder().build();
 
-        CommandResult commandResult = new ItemAddCommand(validItem).execute(modelStub);
+        CommandResult commandResult = new ItemAddCommand(validItem).execute(
+                List.of(modelStub, new DeliveryModelManager()));
 
         assertEquals(String.format(seedu.address.logic.commands.itemcommand.ItemAddCommand.MESSAGE_SUCCESS, validItem),
                 commandResult.getFeedbackToUser());
@@ -57,7 +60,8 @@ public class ItemAddCommandTest {
         Item finalItem = new ItemBuilder().withName("Chicken").withQuantity("4").build();
         InventoryModelStub modelStub = new ItemModelStubAcceptingDuplicatingInventory(currentItem);
 
-        CommandResult commandResult = new ItemAddCommand(currentItem).execute(modelStub);
+        CommandResult commandResult = new ItemAddCommand(currentItem).execute(
+                List.of(modelStub, new DeliveryModelManager()));
 
         assertEquals(String.format(ItemAddCommand.MESSAGE_ITEM_ADDED_TO_INVENTORY, finalItem),
                 commandResult.getFeedbackToUser());
@@ -69,7 +73,8 @@ public class ItemAddCommandTest {
         Item finalItem = new ItemBuilder().withName("Chicken").withQuantity("4").withMaxQuantity("5000").build();
         InventoryModelStub modelStub = new ItemModelStubRejectingDuplicatingMaxQuantityInventory(currentItem);
 
-        assertThrows(CommandException.class, () -> new ItemAddCommand(finalItem).execute(modelStub));
+        assertThrows(CommandException.class, () -> new ItemAddCommand(finalItem).execute(
+                List.of(modelStub, new DeliveryModelManager())));
     }
 
     @Test
@@ -179,6 +184,17 @@ public class ItemAddCommandTest {
         public void updateFilteredItemList(Predicate<Item> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        //=========== Redo/Undo ===============================================================================
+
+        @Override
+        public void commit() { }
+
+        @Override
+        public void undo() { }
+
+        @Override
+        public void redo() { }
     }
 
     /**
