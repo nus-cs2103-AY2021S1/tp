@@ -2,8 +2,8 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AARON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_DAMITH;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DAMITH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AARON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DAMITH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ORDER_AARON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ORDER_DAMITH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AARON;

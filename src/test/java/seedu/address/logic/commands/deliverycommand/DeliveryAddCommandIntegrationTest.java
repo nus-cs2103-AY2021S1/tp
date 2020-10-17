@@ -7,10 +7,10 @@ import static seedu.address.testutil.TypicalDeliveries.getTypicalDeliveryBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.deliverymodel.DeliveryModel;
-import seedu.address.model.delivery.Delivery;
-import seedu.address.model.deliverymodel.DeliveryModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.delivery.Delivery;
+import seedu.address.model.deliverymodel.DeliveryModel;
+import seedu.address.model.deliverymodel.DeliveryModelManager;
 import seedu.address.testutil.DeliveryBuilder;
 
 public class DeliveryAddCommandIntegrationTest {

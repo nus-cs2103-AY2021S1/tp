@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.Model;
-import seedu.address.model.delivery.Delivery;
 import seedu.address.model.item.Item;
 
 /**

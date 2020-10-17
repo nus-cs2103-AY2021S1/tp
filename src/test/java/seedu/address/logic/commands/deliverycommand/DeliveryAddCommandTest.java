@@ -1,7 +1,9 @@
 package seedu.address.logic.commands.deliverycommand;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -14,14 +16,12 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.delivery.Delivery;
 import seedu.address.model.deliverymodel.DeliveryBook;
 import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.deliverymodel.ReadOnlyDeliveryBook;
-
 import seedu.address.testutil.DeliveryBuilder;
 
 public class DeliveryAddCommandTest {
@@ -33,7 +33,8 @@ public class DeliveryAddCommandTest {
 
     @Test
     public void execute_deliveryAcceptedByModel_addSuccessful() throws CommandException {
-        DeliveryAddCommandTest.DeliveryModelStubAcceptingDeliveriesAdded modelStub = new DeliveryAddCommandTest.DeliveryModelStubAcceptingDeliveriesAdded();
+        DeliveryAddCommandTest.DeliveryModelStubAcceptingDeliveriesAdded modelStub =
+                new DeliveryAddCommandTest.DeliveryModelStubAcceptingDeliveriesAdded();
         Delivery validDelivery = new DeliveryBuilder().build();
 
         CommandResult commandResult = new DeliveryAddCommand(validDelivery).execute(modelStub);

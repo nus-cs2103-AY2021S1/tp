@@ -89,24 +89,24 @@ public class DeliveryAddCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_DELIVERYNAME_DESC + PHONE_DESC_DAMITH + ADDRESS_DESC_DAMITH + ORDER_DESC_DAMITH,
-                Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_DELIVERYNAME_DESC + PHONE_DESC_DAMITH + ADDRESS_DESC_DAMITH
+                        + ORDER_DESC_DAMITH, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
-        assertParseFailure(parser, NAME_DESC_DAMITH + INVALID_PHONE_DESC + ADDRESS_DESC_DAMITH + ORDER_DESC_DAMITH,
-                Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_DAMITH + INVALID_PHONE_DESC + ADDRESS_DESC_DAMITH
+                        + ORDER_DESC_DAMITH, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid address
-        assertParseFailure(parser, NAME_DESC_DAMITH + PHONE_DESC_DAMITH + INVALID_ADDRESS_DESC + ORDER_DESC_DAMITH,
-                Address.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_DAMITH + PHONE_DESC_DAMITH + INVALID_ADDRESS_DESC
+                        + ORDER_DESC_DAMITH, Address.MESSAGE_CONSTRAINTS);
 
         // invalid order
-        assertParseFailure(parser, NAME_DESC_DAMITH + PHONE_DESC_DAMITH + ADDRESS_DESC_DAMITH + INVALID_ORDER_DESC,
-                Order.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_DAMITH + PHONE_DESC_DAMITH + ADDRESS_DESC_DAMITH
+                        + INVALID_ORDER_DESC, Order.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_DELIVERYNAME_DESC + PHONE_DESC_DAMITH + ADDRESS_DESC_DAMITH + INVALID_ORDER_DESC,
-                Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_DELIVERYNAME_DESC + PHONE_DESC_DAMITH + ADDRESS_DESC_DAMITH
+                        + INVALID_ORDER_DESC, Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_DAMITH + PHONE_DESC_DAMITH + ADDRESS_DESC_DAMITH
