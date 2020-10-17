@@ -94,7 +94,9 @@ class JsonAdaptedTask {
      * @throws IllegalValueException if there were any data constraints violated in the adapted task.
      */
     public Task toModelType() throws IllegalValueException {
-        return new Task(taskName, description, deadline, progress, isDone);
+        Task task = new Task(taskName, description, deadline, progress, isDone);
+        task.setPublishDate(publishDate);
+        return task;
     }
 
 }
