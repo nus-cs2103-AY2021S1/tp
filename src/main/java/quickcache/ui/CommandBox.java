@@ -1,5 +1,8 @@
 package quickcache.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -18,6 +21,8 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+    private List<String> pastCommands;
+    private int pointer = 0;
 
     @FXML
     private TextField commandTextField;
@@ -28,6 +33,8 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
+        this.pastCommands = new ArrayList<>(16);
+        pastCommands.add("");
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
     }
@@ -38,11 +45,55 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void handleCommandEntered() {
         try {
-            commandExecutor.execute(commandTextField.getText());
+            String input = commandTextField.getText();
+
+            if (pointer < pastCommands.size() - 1) {
+                pastCommands = pastCommands.subList(0, pointer + 1);
+                pastCommands.add("");
+            }
+            if (!input.isBlank()) {
+                this.pastCommands.set(pastCommands.size() - 1, input);
+                pastCommands.add("");
+                pointer++;
+            }
+            commandExecutor.execute(input);
             commandTextField.setText("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }
+    }
+
+    /**
+     * Handles the Up and Down arrow buttons pressed events.
+     */
+    @FXML
+    private void handleKeyEvent() {
+        commandTextField.setOnKeyPressed(event -> {
+            String textToDisplay;
+
+            switch(event.getCode()) {
+            case UP:
+                // handle up
+                if (pointer > 0) {
+                    pointer--;
+                    textToDisplay = pastCommands.get(pointer);
+                    commandTextField.setText(textToDisplay);
+                    commandTextField.positionCaret(textToDisplay.length());
+                }
+                break;
+            case DOWN:
+                // handle down
+                if (pointer < pastCommands.size() - 1) {
+                    pointer++;
+                    textToDisplay = pastCommands.get(pointer);
+                    commandTextField.setText(textToDisplay);
+                    commandTextField.positionCaret(textToDisplay.length());
+                }
+                break;
+            default:
+                // Do Nothing
+            }
+        });
     }
 
     /**
