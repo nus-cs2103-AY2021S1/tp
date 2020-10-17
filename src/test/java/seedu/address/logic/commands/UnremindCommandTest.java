@@ -135,7 +135,7 @@ public class UnremindCommandTest {
         model.setAssignment(assignmentInList, assignmentInListReminded);
     }
 
-    // Reminded first assignment in filtered list
+    // Reminded second assignment in filtered list
     private void remindSecondAssignment() {
         // Set reminders for assignment in filtered list in address book
         Assignment assignmentInList = model.getAddressBook().getAssignmentList()
