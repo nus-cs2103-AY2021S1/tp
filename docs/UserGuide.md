@@ -67,7 +67,11 @@ Shows all help commands in the terminal.
 
 ![help message](images/CommandImagesForUG/Help.png)
 
-Format: `help`
+Format: `help [COMMAND]`
+
+Examples:
+* `help add`
+* `help`
 
 
 ### Adding a food item: `add`
@@ -164,13 +168,33 @@ Examples:
 
 ### Creating a macro command : `macro`
 
-Creates a macro in McGymmy.
+Adds a macro to run several commands in succession.
 
-* Creates a macro with name `SHORTCUT` which executes `COMMAND_1; COMMAND_2; ...`.
+Warning: this is an advanced feature!
+NOTE: allows you to use one of the arguments as a command, allowing you to build higher order commands but also potentially infinite loops.
 
-Format: `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​`
+Arguments to the macro can be substituted in the commands using the syntax:
+\ARGUMENT_NAME.
 
-![Alias command example](images/CommandImagesForUG/Macro.png)
+Unnamed arguments can be substituted using the syntax: \$
+
+Format: `macro SHORTCUT ARGUMENT_1 ARGUMENT_2 ... ; COMMAND_1 ARGUMENTS_TO_COMMAND \REUSED_ARGUMENT; [COMMAND_2; ...]` <br>
+
+* Create a macro with name `SHORTCUT` and arguments `ARGUMENT_1` and `ARGUMENT_2` which executes `COMMAND_1; COMMAND_2; ...`.
+
+Examples:
+* Example 1
+    * macro addWith100cal p ; add -n \$ -c 100 -p \p
+    * Example usage of this macro: addWith100cal Banana -p 2000
+    * The following command will be executed by the macro: add -n Banana -c 100 -p 2000
+    * i.e. in add -n \$ -c 100 -p \p, \$ and \p will be substituted with Banana and 2000 respectively.
+    
+* Example 2
+    * macro addFoodWithFries; add -n \$ ; add -n \$ With Fries
+    * Example usage of this macro: addFoodWithFries Ice Cream
+    * The following commands will be executed by the macro: add -n Ice Cream and add -n Ice Cream With Fries.
+
+![Macro command example](images/CommandImagesForUG/Macro.png)
 
 ### Exiting the program : `exit`
 
@@ -201,11 +225,11 @@ _{explain the feature here}_
 
 Action     | Format, Examples
 -----------|------------------
-**Add**    | `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE]` <br> e.g., `add Chicken Rice -p 10 -f 5 -c 23 -d 20/04/2020`
+**Add**    | `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS]` <br> e.g., `add Chicken Rice -p 10 -f 5 -c 23`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**edit**   | `edit INDEX [-n NAME] [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE]`<br> e.g.,`edit 2 -n Chicken Rice -p 30 -f 50 -c 60 -d 02/09/2020`
+**Edit**   | `edit INDEX [-n NAME] [-p PROTEIN] [-f FATS] [-c CARBS]`<br> e.g.,`edit 2 -n Chicken Rice -p 30 -f 50 -c 60`
 **List**   | `list`
-**Help**   | `help` 
+**Help**   | `help [COMMAND]` <br> e.g., `help add`
 **Find**   | `find KEYWORDS` <br> e.g., `find chicken`
 **Tag**    | `tag INDEX -t TAG_NAME` <br> e.g., `tag 1 -t Lunch`
 **UnTag**  | `untag INDEX -t TAG_NAME` <br> e.g., `untag 1 -t Lunch`
