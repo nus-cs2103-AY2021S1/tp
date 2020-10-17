@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDescription;
@@ -31,7 +32,7 @@ class JsonAdaptedProject {
     private final String repoUrl;
     private final String projectDescription;
     private final List<JsonAdaptedTag> projectTagged = new ArrayList<>();
-    private final List<JsonAdaptedTask> occupied = new ArrayList<>();
+    private final List<JsonAdaptedTask> projectOccupied = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedProject} with the given project details.
@@ -42,7 +43,7 @@ class JsonAdaptedProject {
                                 @JsonProperty("repoUrl") String repoUrl,
                                 @JsonProperty("projectDescription") String projectDescription,
                                 @JsonProperty("projectTag") List<JsonAdaptedTag> projectTagged,
-                                @JsonProperty("occupied") List<JsonAdaptedTask> occupied) {
+                                @JsonProperty("occupied") List<JsonAdaptedTask> projectOccupied) {
         this.projectName = projectName;
         this.deadline = deadline;
         this.repoUrl = repoUrl;
@@ -50,8 +51,8 @@ class JsonAdaptedProject {
         if (projectTagged != null) {
             this.projectTagged.addAll(projectTagged);
         }
-        if (occupied != null) {
-            this.occupied.addAll(occupied);
+        if (projectOccupied != null) {
+            this.projectOccupied.addAll(projectOccupied);
         }
     }
 
@@ -60,13 +61,13 @@ class JsonAdaptedProject {
      */
     public JsonAdaptedProject(Project source) {
         projectName = source.getProjectName().fullProjectName;
-        deadline = source.getDeadline().value;
+        deadline = source.getDeadline().toString();
         repoUrl = source.getRepoUrl().value;
         projectDescription = source.getProjectDescription().value;
         projectTagged.addAll(source.getProjectTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        occupied.addAll(source.getTasks().stream()
+        projectOccupied.addAll(source.getTasks().stream()
                 .map(JsonAdaptedTask::new)
                 .collect(Collectors.toList()));
     }
@@ -82,7 +83,8 @@ class JsonAdaptedProject {
             projectProjectTags.add(projectTag.toModelType());
         }
         final List<Task> projectTasks = new ArrayList<>();
-        for (JsonAdaptedTask task : occupied) {
+        final List<Meeting> projectMeetings = new ArrayList<>();
+        for (JsonAdaptedTask task : projectOccupied) {
             projectTasks.add(task.toModelType());
         }
 
@@ -123,8 +125,9 @@ class JsonAdaptedProject {
 
         final Set<ProjectTag> modelProjectTags = new HashSet<>(projectProjectTags);
         final Set<Task> modelTasks = new HashSet<>(projectTasks);
+        final Set<Meeting> modelMeetings = new HashSet<>(projectMeetings);
         return new Project(modelProjectName, modelDeadline, modelRepoUrl, modelProjectDescription,
-            modelProjectTags, new HashMap<>(), modelTasks);
+            modelProjectTags, new HashMap<>(), modelTasks, modelMeetings);
     }
 
 }

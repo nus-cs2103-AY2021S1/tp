@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
@@ -123,6 +124,7 @@ public class ParserUtil {
         return projectTagSet;
     }
 
+
     /**
      * Parses a {@code String task} into a {@code Task}.
      * Leading and trailing whitespaces will be trimmed.
@@ -145,4 +147,43 @@ public class ParserUtil {
         }
         return taskSet; //TODO: parse tasks in a more meaningful way
     }
+
+    /**
+     * Parses a {@code String meeting} into a {@code Meeting}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Meeting parseMeeting(String meeting) {
+        requireNonNull(meeting);
+        String trimmedMeeting = meeting.trim();
+        return new Meeting(meeting);
+    }
+
+
+    /**
+     * Parses {@code Collection<String> meetingTiming} into a {@code Set<Meeting>}.
+     */
+    public static Set<Meeting> parseMeetings(Collection<String> meetings) {
+        requireNonNull(meetings);
+        final Set<Meeting> meetingSet = new HashSet<>();
+        for (String meetingTime : meetings) {
+            meetingSet.add(parseMeeting(meetingTime));
+        }
+        return meetingSet;
+    }
+
+    /**
+     * Parses a {@code String projectName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code projectName} is invalid.
+     */
+    public static String parseTaskBasicInformation(String projectName) throws ParseException {
+        requireNonNull(projectName);
+        String trimmedProjectName = projectName.trim();
+        if (!ProjectName.isValidProjectName(trimmedProjectName)) {
+            throw new ParseException(ProjectName.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedProjectName;
+    }
+
 }

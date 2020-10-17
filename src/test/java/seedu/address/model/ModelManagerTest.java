@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalProjects.ALICE;
-import static seedu.address.testutil.TypicalProjects.BENSON;
+import static seedu.address.testutil.TypicalProjects.APEAKAPP;
+import static seedu.address.testutil.TypicalProjects.BRICK;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,40 +79,42 @@ public class ModelManagerTest {
 
     @Test
     public void hasProject_projectNotInMainCatalogue_returnsFalse() {
-        assertFalse(modelManager.hasProject(ALICE));
+        assertFalse(modelManager
+            .hasProject(APEAKAPP));
     }
 
     @Test
     public void hasProject_projectInMainCatalogue_returnsTrue() {
-        modelManager.addProject(ALICE);
-        assertTrue(modelManager.hasProject(ALICE));
+        modelManager.addProject(APEAKAPP);
+        assertTrue(modelManager.hasProject(APEAKAPP));
     }
 
     @Test
     public void getFilteredProjectList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredProjectList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> modelManager
+            .getFilteredProjectList().remove(0));
     }
 
     @Test
     public void getFilteredProjectList_enterProject_singleProject() {
-        modelManager.addProject(ALICE);
-        modelManager.enter(ALICE);
-        assertTrue(modelManager.getFilteredProjectList().contains(ALICE));
+        modelManager.addProject(APEAKAPP);
+        modelManager.enter(APEAKAPP);
+        assertTrue(modelManager.getFilteredProjectList().contains(APEAKAPP));
         assertEquals(1, modelManager.getFilteredProjectList().size());
     }
 
     @Test
     public void getFilteredProjectList_quit_fullList() {
-        modelManager.addProject(ALICE);
-        modelManager.addProject(BENSON);
-        modelManager.enter(ALICE);
+        modelManager.addProject(APEAKAPP);
+        modelManager.addProject(BRICK);
+        modelManager.enter(APEAKAPP);
         modelManager.quit();
         assertEquals(modelManager.getProjectCatalogue().getProjectList(), modelManager.getFilteredProjectList());
     }
 
     @Test
     public void equals() {
-        MainCatalogue mainCatalogue = new MainCatalogueBuilder().withProject(ALICE).withProject(BENSON).build();
+        MainCatalogue mainCatalogue = new MainCatalogueBuilder().withProject(APEAKAPP).withProject(BRICK).build();
         MainCatalogue differentMainCatalogue = new MainCatalogue();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -134,7 +136,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentMainCatalogue, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getProjectName().fullProjectName.split("\\s+");
+        String[] keywords = APEAKAPP.getProjectName().fullProjectName.split("\\s+");
         modelManager.updateFilteredProjectList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(mainCatalogue, userPrefs)));
 

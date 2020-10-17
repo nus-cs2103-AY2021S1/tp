@@ -2,12 +2,14 @@ package seedu.address.model.exceptions;
 
 import java.util.Objects;
 
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Status;
 
 /**
  * Signals operations on an invalid scope status.
  */
-public class InvalidScopeException extends RuntimeException {
+public class InvalidScopeException extends ParseException {
     private final Status expected;
     private final Status actual;
 
@@ -15,7 +17,7 @@ public class InvalidScopeException extends RuntimeException {
      * Creates an InvalidScopeException with the expected and actual scope status specified.
      */
     public InvalidScopeException(Status expected, Status actual) {
-        super();
+        super(String.format(Messages.MESSAGE_INVALID_SCOPE_COMMAND, expected, actual));
         this.expected = expected;
         this.actual = actual;
     }

@@ -3,8 +3,13 @@ package seedu.address.model.task;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+
+import seedu.address.model.person.PersonName;
+import seedu.address.model.project.Deadline;
+import seedu.address.model.project.Participation;
 
 /**
  * Represents a Task of a project.
@@ -14,14 +19,15 @@ public class Task {
     public final String taskName;
     private final String description;
     private final LocalDate publishDate;
-    private final LocalDateTime deadline;
+    private final Deadline deadline;
     private final double progress;
     private final boolean isDone;
+    private Set<Participation> assignees;
 
     /**
      * name, progress, and isDone should be present and not null. description and deadline can be null.
      */
-    public Task(String taskName, String description, LocalDateTime deadline, double progress, boolean isDone) {
+    public Task(String taskName, String description, Deadline deadline, double progress, boolean isDone) {
         requireAllNonNull(taskName, progress, isDone);
         this.taskName = taskName;
         this.description = description;
@@ -29,6 +35,7 @@ public class Task {
         this.deadline = deadline;
         this.progress = progress;
         this.isDone = isDone;
+        this.assignees = new HashSet<>();
     }
 
     public String getTaskName() {
@@ -43,7 +50,7 @@ public class Task {
         return publishDate;
     }
 
-    public LocalDateTime getDeadline() {
+    public Deadline getDeadline() {
         return deadline;
     }
 
@@ -51,8 +58,32 @@ public class Task {
         return progress;
     }
 
+    public Set<Participation> getAssignees() {
+        return assignees;
+    }
+
     public boolean isDone() {
         return isDone;
+    }
+
+    public boolean hasAssignee(Participation assignee) {
+        return assignees.contains(assignee);
+    }
+
+    /**
+     * Checks if the task has an assignee whose name matches the given name.
+     *
+     * @param assigneeName the assignee's name to look for
+     * @return true if this task has an assignee whose name matches the given name,
+     * and false otherwise
+     */
+    public boolean hasAssigneeWhoseNameIs(PersonName assigneeName) {
+        return assignees.stream()
+            .anyMatch(assignee -> assignee.getAssigneeName().equals(assigneeName));
+    }
+
+    public boolean addAssignee(Participation assignee) {
+        return assignees.add(assignee);
     }
 
     /**
@@ -68,10 +99,10 @@ public class Task {
         }
         Task task = (Task) o;
         return Double.compare(task.getProgress(), getProgress()) == 0
-                && getTaskName().equals(task.getTaskName())
-                && (getDescription() == task.getDescription() || getDescription().equals(task.getDescription()))
-                && getPublishDate().equals(task.getPublishDate())
-                && Objects.equals(getDeadline(), task.getDeadline());
+            && getTaskName().equals(task.getTaskName())
+            && (getDescription() == task.getDescription() || getDescription().equals(task.getDescription()))
+            && getPublishDate().equals(task.getPublishDate())
+            && Objects.equals(getDeadline(), task.getDeadline());
     }
 
     @Override

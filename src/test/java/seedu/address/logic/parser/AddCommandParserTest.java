@@ -30,12 +30,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_REPOURL_B;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_MODEL;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalProjects.AMY;
-import static seedu.address.testutil.TypicalProjects.BOB;
+import static seedu.address.testutil.TypicalProjects.AI;
+import static seedu.address.testutil.TypicalProjects.BOT;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.global.AddCommand;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDescription;
@@ -49,7 +49,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Project expectedProject = new ProjectBuilder(BOB).withTags(VALID_PROJECT_TAG_FIEND).withTasks(
+        Project expectedProject = new ProjectBuilder(BOT).withTags(VALID_PROJECT_TAG_FIEND).withTasks(
             VALID_PROJECT_TAG_DG).build();
 
         // whitespace only preamble
@@ -79,7 +79,7 @@ public class AddCommandParserTest {
             + TASK_DESC_DG, new AddCommand(expectedProject));
 
         // multiple project tags - all accepted
-        Project expectedProjectMultipleTags = new ProjectBuilder(BOB).withTags(VALID_PROJECT_TAG_FIEND,
+        Project expectedProjectMultipleTags = new ProjectBuilder(BOT).withTags(VALID_PROJECT_TAG_FIEND,
             VALID_PROJECT_TAG_HANG)
             .build();
         assertParseSuccess(parser, PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B + REPOURL_DESC_B
@@ -88,7 +88,7 @@ public class AddCommandParserTest {
             expectedProjectMultipleTags));
 
         // multiple tasks - all accepted
-        Project expectedProjectMultipleTasks = new ProjectBuilder(BOB).withTasks(VALID_PROJECT_TAG_DG, VALID_TASK_MODEL)
+        Project expectedProjectMultipleTasks = new ProjectBuilder(BOT).withTasks(VALID_PROJECT_TAG_DG, VALID_TASK_MODEL)
             .build();
         assertParseSuccess(parser, PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B + REPOURL_DESC_B
                 + PROJECT_DESCRIPTION_DESC_BOB
@@ -99,7 +99,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Project expectedProject = new ProjectBuilder(AMY).withTags().build();
+        Project expectedProject = new ProjectBuilder(AI).withTags().build();
         assertParseSuccess(parser, PROJECT_NAME_DESC_AMY + DEADLINE_DESC_A + REPOURL_DESC_A
                 + PROJECT_DESCRIPTION_DESC_AMY
                 + TASK_DESC_DG + TASK_DESC_MODEL, new AddCommand(expectedProject));

@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -33,6 +34,12 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of projects */
     ObservableList<Project> getFilteredProjectList();
+
+    /**
+     * Gets the project to be displayed on dashboard.
+     * @return the project to be displayed on dashboard.
+     */
+    Optional<Project> getProjectToBeDisplayedOnDashBoard();
 
     /**
      * Returns the user prefs' main catalogue file path.

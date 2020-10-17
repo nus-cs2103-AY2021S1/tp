@@ -1,52 +1,52 @@
 {
   "_comment": "MainCatalogue save file which contains the same Project values as in TypicalProjects#getTypicalMainCatalogue()",
   "projects" : [ {
-    "projectName" : "Alice Pauline",
+    "projectName" : "Apeakapp",
     "deadline": "21-03-2020 00:00:00",
     "repoUrl": "https://github.com/a/a.git",
-    "projectDescription" : "123, Jurong West Ave 6, #08-111",
-    "projectTagged" : [ "friends" ],
+    "projectDescription" : "An app for you to speak your mind",
+    "projectTagged" : [ "linguistics" ],
     "occupied" : [ "Write DG", "Write user stories" ]
   }, {
-    "projectName" : "Benson Meier",
+    "projectName" : "Brick No Meier",
     "deadline": "21-03-2020 00:00:00",
     "repoUrl": "https://github.com/b/b.git",
-    "projectDescription" : "311, Clementi Ave 2, #02-25",
-    "projectTagged" : [ "owesMoney", "friends" ],
+    "projectDescription" : "To destroy the brick and mortar",
+    "projectTagged" : [ "amazon", "evil" ],
     "occupied" : [ "Practice presentation" ]
   }, {
-    "projectName" : "Carl Kurz",
+    "projectName" : "Caractive",
     "deadline": "21-03-2020 00:00:00",
     "repoUrl": "https://github.com/c/c.git",
-    "projectDescription" : "wall street",
-    "projectTagged" : [ ],
-    "occupied" : [ "Read info pack" ]
+    "projectDescription" : "best car app for tesla",
+    "projectTagged" : [ "electric" ],
+    "occupied" : [ "Integrate with tesla" ]
   }, {
-    "projectName" : "Daniel Meier",
+    "projectName" : "Dayum Snap",
     "deadline": "21-03-2020 00:00:00",
     "repoUrl": "https://github.com/d/d.git",
-    "projectDescription" : "10th street",
-    "projectTagged" : [ "friends" ],
+    "projectDescription" : "yet another stories app",
+    "projectTagged" : [ "instagram" , "snapchat" ],
     "occupied" : [ ]
   }, {
-    "projectName" : "Elle Meyer",
+    "projectName" : "Elfie save",
     "deadline":"21-03-2020 00:00:00",
     "repoUrl": "https://github.com/e/e.git",
-    "projectDescription" : "michegan ave",
+    "projectDescription" : "save elves from persecution",
     "projectTagged" : [ ],
     "occupied" : [ ]
   }, {
-    "projectName" : "Fiona Kunz",
+    "projectName" : "Fans",
     "deadline": "21-03-2020 00:00:00",
     "repoUrl": "https://github.com/f/f.git",
-    "projectDescription" : "little tokyo",
+    "projectDescription" : "an app only for fans",
     "projectTagged" : [ ],
     "occupied" : [ ]
   }, {
-    "projectName" : "George Best",
+    "projectName" : "Gerry Mander",
     "deadline": "21-03-2020 00:00:00",
     "repoUrl": "https://github.com/g/g.git",
-    "projectDescription" : "4th street",
+    "projectDescription" : "Call us to rig any election",
     "projectTagged" : [ ],
     "occupied" : [ ]
   } ]

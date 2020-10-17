@@ -12,13 +12,25 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 
 ## Contents
 
-- Features before project initialisation
+- Features in global scope
   - Get help `help` 
+  - Exit application `exit`
+  
+- Features in catalogue scope
   - Features associated with initialising project 
     - Creating new project `new project `
     - Start working on an existing project `start `
-    
-- Features after project initialisation
+  
+- Features in project scope
+  - Task related features
+    - Check the project dashboard `dashboard `
+    - List all tasks `list`
+    - Delete a task `delete `
+    - Locate tasks by keyword `find `
+    - Give a task a certain level of priority `prioritise `
+    - Viewing tasks allocated to a team member `view `
+    - Assign task to a team member `assign `
+    - Filter tasks by assignee/deadline/task name `filter `
   - Teammate related features 
     - Create new teammate `new teammate `
     - Add existing teammates of other projects to participate in this project `involves `
@@ -26,6 +38,8 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
     - Update participation details (tasks and project-specific information) `updatept participation `
     - Remove a teammate in the project `remove teammate `
     - View tasks allocated to a particular teammate `task participants `
+  - Scoping related features 
+    - Return to main catalogue `leave`
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -66,10 +80,14 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  
+* One and only one Item in parenthesis should be supplied by user
+
+  e.g. `(ta/ASSIGNEE NAME)||(td/DEADLINE)||(tn/TASK NAME)` can be used as "ta/Alice", "td/31-12-2020 10:00:00" or as "tn/group meeting", but not as "ta/Alice td/31-12-2020" or "".
 
 </div>
 
-## **Features** before project initialisation 
+## **Features** in global scope
 
 ### Viewing help : `help`
 
@@ -79,14 +97,15 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+## **Features** in catalogue scope
+
 ### Creating a new project `add project `
 Adds a project to the project list.
 
 Format: `add project n/NAME d/DUEDATE t/TEAM`
 TEAM is any number of names separated by “ “ spaces.
 
-Examples: `add project n/Taskmania d/2020-09-09 t/Niaaz Lucas Jiayu` Adds a new project with the projectName Taskmania, due
- date 9 Sep 2020 with team members, Niaaz, Lucas and Jiayu.
+Examples: `add project n/Taskmania d/2020-09-09 t/Niaaz Lucas Jiayu` Adds a new project with the projectName Taskmania, due date 9 Sep 2020 with team members, Niaaz, Lucas and Jiayu.
 
 ### Starting work on an existing project `start `
 Initialises the project specified.
@@ -98,15 +117,15 @@ Format: `start INDEX`
 
 Examples: `start 2` Initialises the second project in the project list.
 
-## **Features** after project initialisation
+## **Features** in project scope
 
-### Task-related features
-#### Checking the project dashboard `dashboard `
+### **Task**-related features
+#### Check the project dashboard `dashboard `
 Shows a summary of the important information regarding the project.
 
 Format: `dashboard`
 
-#### Listing all tasks `list`
+#### List all tasks `list`
 
 Shows a list of all tasks in the task list sorted by priority.
 
@@ -118,7 +137,7 @@ Instruction:
 
 Outcome: A list of tasks will be shown. 
 
-#### Deleting a task `delete `
+#### Delet a task `delete `
 
 Deletes the specified task from your task list.
 
@@ -138,7 +157,7 @@ Instruction:
 
 Outcome: The task is removed from the list.
 
-#### Locating tasks by keyword `find `
+#### Locate tasks by keyword `find `
 
 Finds tasks whose descriptions contain the given keyword.
 
@@ -153,7 +172,7 @@ Instruction:
 
 Outcome: List of tasks with the projectName containing the keyword will be shown.
 
-#### Giving a task a certain level of priority `prioritise `
+#### Give a task a certain level of priority `prioritise `
 
 Assigns a level of priority to the specified task.
 
@@ -171,13 +190,38 @@ Instruction:
 
 Outcome: The task is assigned with the priority level.
 
-#### Viewing tasks allocated to a team member `view `
+#### View tasks allocated to a team member `view `
 Displays a list of tasks allocated to the specified members.
 
 Format: `view NAME`
-- NAME refers to the projectName of the team member when it was first input during project creation.
+- `NAME` refers to the projectName of the team member when it was first input during project creation.
 
 Example: `view Niaaz` Displays a list of tasks allocated to Niaaz.
+
+#### Assign tasks to a team member `assign `
+Assigns a task to a team member. A task can be assigned to multiple members, and a member can have multiple tasks.
+
+Format: `assign INDEX NAME`
+- `INDEX` refers to the task index in the current displaying list of tasks.
+- `NAME` refers to the projectName of the team member.
+
+Example: `assign 1 Niaaz` Assigns the task currently with index 1 to Niaaz.
+
+#### Filter tasks by assignee/deadline/task name `filter `
+
+Filter tasks by assignee, deadline or task name. 
+
+Format: ``filter (ta/ASSIGNEE NAME)||(td/DEADLINE)||(tn/TASK NAME)``
+
+- `filter (ta/ASSIGNEE NAME)` retrieves all tasks that have assignee named `ASSIGNEE NAME`
+- `filter (td/DEADLINE)` retrieves all tasks whose deadlines are`DEADLINE`
+- `filter (tn/TASK NAME)` retrieves all tasks whose task names contain `TASK NAME`
+
+Example: 
+
+1. `filter ta/Alice` Displays filtered list of tasks that have assignee named Alice.
+2. `filter td/31-12-2020 10:00:00` Displays filtered list of tasks whose deadlines are at 10am on 31/12/2020.
+3. `filter tn/group meeting` Displays filtered list of tasks whose task names contain "group meeting".
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -207,7 +251,7 @@ Format: `updatetm NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]`
 
 Example: `updatetm Lucas p/12345678` Resets the contact number of `Lucas` to `12345678`
 
-#### Update participation details (tasks and project-specific information) `updatept participation `
+#### Update participation details (tasks and project-specific information) `update participation `
 Updates the participation details of the teammate, such as his/her role
 
 Format: `updatept NAME [r/ROLE]`
@@ -230,6 +274,12 @@ Format: `task participants TASK_NUMBER`
 
 Example: `task participants 1` Displays the teammates that are assigned to do task 1
 
+### **Scoping**-related features
+#### Return to main catalogue `leave`
+Leaves the current project view page and return to the main catalogue of all projects
+
+Format: `leave`
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -242,17 +292,20 @@ contains the data of your previous Taskmania home folder.
 
 Action | Format, Examples | Scope
 --------|------------------|-------
-**Get Help** | `help` | any scope
-**Add Project** | `add project n/NAME d/DUEDATE t/TEAM` <br> e.g., `add project n/Taskmania d/2020-09-09 t/Niaaz Lucas` | global scope
-**Start** | `start INDEX`<br> e.g., `start 3` | global scope
-**List Out The List Of Tasks** | `list` | project-specific scope
-**Delete Task** | `delete INDEX` <br> eg. `delete 2` | project-specific scope
-**Find KEYWORD** | `find KEYWORD` <br> eg. `find read` | project-specific scope
-**Give A Task A Priority Level** | `prioritise INDEX1, INDEX2` <br> eg. `prioritise 2,3` | project-specific scope 
-**New Teammate** | `new NAME p/PHONE_NUMBER e/EMAIL` <br> e.g., `new Lucas p/94311421 e/lucastai98@gmail.com` | project-specific scope
-**Involve Teammate** | `involves NAME` <br> e.g., `involves Lucase` | project-specific scope
-**Update Teammate** | `updatetm NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `updatetm Lucas p/12345678` | project-specific scope
-**Update Participation** | `updatept NAME [r/ROLE]` <br> e.g., `updatept Lucas r/LEADER` | project-specific scope
-**Remove Teammate** | `removetm NAME` <br> e.g., `removetm Lucas` | project-specific scope
-**View Teammates of Task** | `task participants TASK_NUMBER` <br> e.g., `task participants 1` | project-specific scope
+**Get Help** | `help` | global scope
+**Add Project** | `add project n/NAME d/DUEDATE t/TEAM` <br> e.g., `add project n/Taskmania d/2020-09-09 t/Niaaz Lucas` | catalogue scope
+**Start** | `start INDEX`<br> e.g., `start 3` | catalogue scope
+**List Out The List Of Tasks** | `list` | project scope
+**Delete Task** | `delete INDEX` <br> eg. `delete 2` | project scope
+**Find KEYWORD** | `find KEYWORD` <br> eg. `find read` | project scope
+**Give A Task A Priority Level** | `prioritise INDEX1, INDEX2` <br> eg. `prioritise 2,3` | project scope 
+**Assign A Task To A Teammate** | `assign INDEX NAME` <br> e.g. `assign 1 Niaaz` | project scope
+**Filter Tasks by Assignee/Deadline/Task Name** | ``filter (ta/ASSIGNEE NAME)||(td/DEADLINE)||(tn/TASK NAME)``<br>e.g. `filter ta/Alice` | project scope 
+**New Teammate** | `new NAME p/PHONE_NUMBER e/EMAIL` <br> e.g., `new Lucas p/94311421 e/lucastai98@gmail.com` | project scope
+**Involve Teammate** | `involves NAME` <br> e.g., `involves Lucase` | project scope
+**Update Teammate** | `updatetm NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `updatetm Lucas p/12345678` | project scope
+**Update Participation** | `updatept NAME [r/ROLE]` <br> e.g., `updatept Lucas r/LEADER` | project scope
+**Remove Teammate** | `removetm NAME` <br> e.g., `removetm Lucas` | project scope
+**View Teammates of Task** | `task participants TASK_NUMBER` <br> e.g., `task participants 1` | project scope
+**Return To Catalogue Page** | `leave` | project scope
 

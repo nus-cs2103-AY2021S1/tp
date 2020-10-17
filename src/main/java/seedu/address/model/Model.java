@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -103,4 +104,16 @@ public interface Model {
      * Quits the current project view.
      */
     void quit();
+
+    /**
+     * Updates the project to be displayed on dashboard.
+     * @param project project to be displayed on dashboard
+     */
+    void updateProjectToBeDisplayedOnDashboard(Project project);
+
+    /**
+     * Gets the project to be displayed on dashboard.
+     * @return project to be displayed on dashboard wrapped in Optional box.
+     */
+    Optional<Project> getProjectToBeDisplayedOnDashboard();
 }

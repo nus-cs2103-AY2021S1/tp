@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalProjects.ALICE;
+import static seedu.address.testutil.TypicalProjects.APEAKAPP;
 import static seedu.address.testutil.TypicalProjects.HOON;
 import static seedu.address.testutil.TypicalProjects.IDA;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
@@ -75,7 +75,7 @@ public class JsonMainCatalogueStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addProject(HOON);
-        original.removeProject(ALICE);
+        original.removeProject(APEAKAPP);
         jsonMainCatalogueStorage.saveMainCatalogue(original, filePath);
         readBack = jsonMainCatalogueStorage.readMainCatalogue(filePath).get();
         assertEquals(original, new MainCatalogue(readBack));

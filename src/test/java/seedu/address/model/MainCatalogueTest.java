@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIP
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_DG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_HANG;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalProjects.ALICE;
+import static seedu.address.testutil.TypicalProjects.APEAKAPP;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
 
 import java.util.Arrays;
@@ -20,7 +20,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.exceptions.InvalidScopeException;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
@@ -50,11 +49,12 @@ public class MainCatalogueTest {
     @Test
     public void resetData_withDuplicateProjects_throwsDuplicateProjectException() {
         // Two projects with the same identity fields
-        Project editedAlice = new ProjectBuilder(ALICE).withProjectDescription(VALID_PROJECT_DESCRIPTION_BOT).withTags(
+        Project editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(
+            VALID_PROJECT_DESCRIPTION_BOT).withTags(
             VALID_PROJECT_TAG_HANG)
                 .withTasks(VALID_PROJECT_TAG_DG)
                 .build();
-        List<Project> newProjects = Arrays.asList(ALICE, editedAlice);
+        List<Project> newProjects = Arrays.asList(APEAKAPP, editedAlice);
         MainCatalogueStub newData = new MainCatalogueStub(newProjects);
 
         assertThrows(DuplicateProjectException.class, () -> mainCatalogue.resetData(newData));
@@ -67,19 +67,21 @@ public class MainCatalogueTest {
 
     @Test
     public void hasProject_projectNotInMainCatalogue_returnsFalse() {
-        assertFalse(mainCatalogue.hasProject(ALICE));
+        assertFalse(
+            mainCatalogue.hasProject(APEAKAPP));
     }
 
     @Test
     public void hasProject_projectInMainCatalogue_returnsTrue() {
-        mainCatalogue.addProject(ALICE);
-        assertTrue(mainCatalogue.hasProject(ALICE));
+        mainCatalogue.addProject(APEAKAPP);
+        assertTrue(mainCatalogue.hasProject(APEAKAPP));
     }
 
     @Test
     public void hasProject_projectWithSameIdentityFieldsInMainCatalogue_returnsTrue() {
-        mainCatalogue.addProject(ALICE);
-        Project editedAlice = new ProjectBuilder(ALICE).withProjectDescription(VALID_PROJECT_DESCRIPTION_BOT).withTags(
+        mainCatalogue.addProject(APEAKAPP);
+        Project editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(
+            VALID_PROJECT_DESCRIPTION_BOT).withTags(
             VALID_PROJECT_TAG_HANG)
                 .withTasks(VALID_PROJECT_TAG_DG)
                 .build();
@@ -94,29 +96,9 @@ public class MainCatalogueTest {
     @Test
     public void enterQuit_correctScope_success() {
         try {
-            mainCatalogue.addProject(ALICE);
-            mainCatalogue.enter(ALICE);
+            mainCatalogue.addProject(APEAKAPP);
+            mainCatalogue.enter(APEAKAPP);
             mainCatalogue.quit();
-        } catch (Exception e) {
-            fail();
-        }
-    }
-
-    @Test
-    public void enterQuit_incorrectScope_throwInvalidScopeException() {
-        mainCatalogue.addProject(ALICE);
-        try {
-            mainCatalogue.quit();
-        } catch (InvalidScopeException e) {
-            assertEquals(new InvalidScopeException(Status.PROJECT, Status.CATALOGUE), e);
-        } catch (Exception e) {
-            fail();
-        }
-        mainCatalogue.enter(ALICE);
-        try {
-            mainCatalogue.enter(ALICE);
-        } catch (InvalidScopeException e) {
-            assertEquals(new InvalidScopeException(Status.CATALOGUE, Status.PROJECT), e);
         } catch (Exception e) {
             fail();
         }
@@ -124,13 +106,13 @@ public class MainCatalogueTest {
 
     @Test
     public void enter_nonExistingProject_throwProjectNotFoundException() {
-        assertThrows(ProjectNotFoundException.class, () -> mainCatalogue.enter(ALICE));
+        assertThrows(ProjectNotFoundException.class, () -> mainCatalogue.enter(APEAKAPP));
     }
 
     @Test
     public void enter_sameButNotEqualProject_success() {
-        mainCatalogue.addProject(ALICE);
-        Project adapted = new ProjectBuilder(ALICE).withTags().build();
+        mainCatalogue.addProject(APEAKAPP);
+        Project adapted = new ProjectBuilder(APEAKAPP).withTags().build();
         try {
             mainCatalogue.enter(adapted);
         } catch (Exception e) {
