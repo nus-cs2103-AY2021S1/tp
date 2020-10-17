@@ -11,8 +11,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
-import javafx.scene.effect.Glow;
-import javafx.scene.effect.Reflection;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -50,9 +48,9 @@ public class PieChartDisplay extends UiPart<Region> {
         pieChartDisplay.setTitle(feedbackToUser.getQuestion().map(Object::toString)
                 .orElseGet(() -> "No Question to display"));
 
-        PieChart.Data correctPie = new PieChart.Data("Correct (" + correctRate +"%)", timesTestedCorrect);
+        PieChart.Data correctPie = new PieChart.Data("Correct (" + correctRate + "%)", timesTestedCorrect);
         PieChart.Data wrongPie = new PieChart.Data(
-                "Incorrect (" + incorrectRate +"%)", timesTested - timesTestedCorrect);
+                "Incorrect (" + incorrectRate + "%)", timesTested - timesTestedCorrect);
 
         ObservableList<PieChart.Data> data = FXCollections.observableArrayList(correctPie, wrongPie);
 
