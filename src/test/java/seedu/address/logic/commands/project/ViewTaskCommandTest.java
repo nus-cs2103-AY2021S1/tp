@@ -2,24 +2,23 @@ package seedu.address.logic.commands.project;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.project.Participation;
-import seedu.address.model.project.Project;
-import seedu.address.model.task.Task;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
 
-import java.util.HashMap;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
@@ -59,9 +58,10 @@ public class ViewTaskCommandTest {
     public void execute_validIndexFilteredList_success() {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+        model.enter(project);
+        project.updateTaskFilter(x -> true);
         Task taskToView = project.getFilteredTaskList().get(INDEX_SECOND_TASK.getZeroBased());
         project.updateTaskFilter(task -> task.getTaskName().contains(taskToView.getTaskName()));
-        model.enter(project);
 
         ViewTaskCommand viewTaskCommand = new ViewTaskCommand(INDEX_FIRST_TASK);
 
