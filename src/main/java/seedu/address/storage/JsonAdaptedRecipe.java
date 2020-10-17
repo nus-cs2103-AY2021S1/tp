@@ -30,7 +30,6 @@ class JsonAdaptedRecipe {
     private final String productName;
     private final String productQuantity;
     private final String description;
-    private final boolean isDeleted;
 
     /**
      * Constructs a {@code JsonAdaptedRecipe} with the given recipe details.
@@ -41,14 +40,12 @@ class JsonAdaptedRecipe {
                              @JsonProperty("productId") int productId,
                              @JsonProperty("productName") String productName,
                              @JsonProperty("productQuantity") String productQuantity,
-                             @JsonProperty("description") String description,
-                             @JsonProperty("isDeleted") boolean isDeleted) {
+                             @JsonProperty("description") String description) {
         this.id = id;
         this.productId = productId;
         this.productName = productName;
         this.productQuantity = productQuantity;
         this.description = description;
-        this.isDeleted = isDeleted;
         if (ingredients != null) {
             this.ingredients.addAll(ingredients);
         }
@@ -63,7 +60,6 @@ class JsonAdaptedRecipe {
         productName = source.getProductName();
         productQuantity = source.getProductQuantity().value;
         description = source.getDescription();
-        isDeleted = source.isDeleted();
         List<Ingredient> ingredientList = source.getIngredients().asUnmodifiableObservableList();
         ingredients.addAll(ingredientList.stream()
                 .map(JsonAdaptedIngredient::new)
@@ -93,7 +89,7 @@ class JsonAdaptedRecipe {
         }
         final ProductQuantity modelQuantity = new ProductQuantity(productQuantity);
 
-        return new Recipe(id, modelIngredients, productId, productName, modelQuantity, description, isDeleted);
+        return new Recipe(id, modelIngredients, productId, productName, modelQuantity, description);
     }
 
 }

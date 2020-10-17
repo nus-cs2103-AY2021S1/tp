@@ -25,24 +25,20 @@ public class Recipe extends InventoryComponent {
     private final String productName;
     private final ProductQuantity productQuantity;
     private final String description;
-    private final boolean isDeleted;
 
     /**
      * Every field must be present and not null.
      */
     public Recipe(int id, IngredientList ingredients, int productId, String productName,
-                  ProductQuantity productQuantity, String description, boolean isDeleted) {
-        requireAllNonNull(id, ingredients, productId, productQuantity, description, isDeleted);
+                  ProductQuantity productQuantity, String description) {
+        requireAllNonNull(id, ingredients, productId, productQuantity, description);
         this.id = id;
         this.ingredients = ingredients;
         this.productId = productId;
         this.productName = productName;
         this.productQuantity = productQuantity;
         this.description = description;
-        this.isDeleted = isDeleted;
-        if (!isDeleted) {
-            idCounter++;
-        }
+        idCounter++;
     }
 
     public static int getIdCounter() {
@@ -76,15 +72,12 @@ public class Recipe extends InventoryComponent {
         return description;
     }
 
-    public boolean isDeleted() {
-        return isDeleted;
-    }
 
     /**
      * Returns a deleted form of the same recipe.
      */
     public Recipe delete() {
-        return new Recipe(id, ingredients, productId, productName, productQuantity, description, true);
+        return new Recipe(id, ingredients, productId, productName, productQuantity, description);
     }
 
     /**
@@ -94,14 +87,14 @@ public class Recipe extends InventoryComponent {
      */
     public PrintableRecipe print(ObservableList<Item> filteredItemList) {
         return new PrintableRecipe(this.id, this.ingredients, this.productId, this.productName,
-                this.productQuantity, this.description, this.isDeleted, filteredItemList);
+                this.productQuantity, this.description, filteredItemList);
     }
 
     /**
      * Creates a new recipe with same fields and updated product name. Used for editing items.
      */
     public Recipe setProductName(String updatedProductName) {
-        return new Recipe(id, ingredients, productId, updatedProductName, productQuantity, description, isDeleted);
+        return new Recipe(id, ingredients, productId, updatedProductName, productQuantity, description);
     }
 
     /**
@@ -138,13 +131,12 @@ public class Recipe extends InventoryComponent {
                 && otherRecipe.getProductId() == getProductId()
                 && otherRecipe.getProductName().equals(getProductName())
                 && otherRecipe.getProductQuantity().equals(getProductQuantity())
-                && otherRecipe.description.equals(getDescription())
-                && otherRecipe.isDeleted() == isDeleted();
+                && otherRecipe.description.equals(getDescription());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, ingredients, productId, productQuantity, description, isDeleted);
+        return Objects.hash(id, ingredients, productId, productQuantity, description);
     }
 
     @Override

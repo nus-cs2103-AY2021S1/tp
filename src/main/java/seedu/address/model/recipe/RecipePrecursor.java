@@ -53,7 +53,7 @@ public class RecipePrecursor {
     }
 
     public Recipe toRecipe(int productId, IngredientList ingredients) {
-        return new Recipe(id, ingredients, productId, productName, productQuantity, description, false);
+        return new Recipe(id, ingredients, productId, productName, productQuantity, description);
     }
 
     @Override

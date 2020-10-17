@@ -73,6 +73,6 @@ public class RecipeBuilder {
      */
     public Recipe build() {
         return new Recipe(id, ingredients, 0, "Apple",
-                quantity, description, false);
+                quantity, description);
     }
 }

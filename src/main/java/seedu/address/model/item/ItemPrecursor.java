@@ -62,7 +62,7 @@ public class ItemPrecursor {
     }
 
     public Item toItem(Set<Integer> locationIds, Set<Integer> recipeIds) {
-        return new Item(id, name, quantity, description, locationIds, recipeIds, tags, false);
+        return new Item(id, name, quantity, description, locationIds, recipeIds, tags);
     }
 
 

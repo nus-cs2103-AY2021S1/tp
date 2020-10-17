@@ -104,7 +104,7 @@ public class EditItemCommand extends Command {
         Set<Integer> recipes = Set.copyOf(itemToEdit.getRecipeIds());
         Set<Tag> tags = itemToEdit.getTags();
 
-        return new Item(id, updatedName, updatedQuantity, updatedDescription, locations, recipes, tags, false);
+        return new Item(id, updatedName, updatedQuantity, updatedDescription, locations, recipes, tags);
     }
 
     @Override

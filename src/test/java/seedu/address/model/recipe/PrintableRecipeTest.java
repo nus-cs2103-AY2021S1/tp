@@ -14,7 +14,7 @@ public class PrintableRecipeTest {
     @Test
     public void getPrintableIngredientsTest() {
         PrintableRecipe printableRecipe = new PrintableRecipe(1, TypicalIngredients.getTypicalIngredientList(),
-                1, "pr", new ProductQuantity("1"), "pr", false,
+                1, "pr", new ProductQuantity("1"), "pr",
                 FXCollections.observableList(TypicalItems.getTypicalItems()));
     }
 }
