@@ -8,6 +8,7 @@ import static quickcache.logic.commands.CommandTestUtil.INVALID_OPTION_NON_ALPHA
 import static quickcache.logic.commands.CommandTestUtil.OPTION_DESC_TWO;
 import static quickcache.logic.commands.CommandTestUtil.VALID_ANSWER_TWO;
 import static quickcache.logic.commands.CommandTestUtil.VALID_OPTION_TWO;
+import static quickcache.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static quickcache.testutil.TypicalIndexes.INDEX_FIRST_MCQ_FLASHCARD;
 import static quickcache.testutil.TypicalIndexes.INDEX_FIRST_OPEN_ENDED_FLASHCARD;
 
@@ -28,39 +29,39 @@ class TestCommandParserTest {
     @Test
     public void parse_noInput_failure() {
         // no index specified
-        CommandParserTestUtil.assertParseFailure(parser, "a", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "a", MESSAGE_INVALID_FORMAT);
 
         // no index and no option/answer specified
-        CommandParserTestUtil.assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
 
         // no answer specified
-        CommandParserTestUtil.assertParseFailure(parser, "1", TestCommand.MESSAGE_NO_OPTION_OR_ANSWER_PROVIDED);
+        assertParseFailure(parser, "1", TestCommand.MESSAGE_NO_OPTION_OR_ANSWER_PROVIDED);
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        CommandParserTestUtil.assertParseFailure(parser, "-5" + ANSWER_DESC_TWO, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + ANSWER_DESC_TWO, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        CommandParserTestUtil.assertParseFailure(parser, "0" + ANSWER_DESC_TWO, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + ANSWER_DESC_TWO, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
-        CommandParserTestUtil.assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble
-        CommandParserTestUtil.assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // empty answer
-        CommandParserTestUtil.assertParseFailure(parser, "1" + INVALID_ANSWER_DESC, Answer.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_ANSWER_DESC, Answer.MESSAGE_CONSTRAINTS);
 
         // empty option
-        CommandParserTestUtil.assertParseFailure(parser, "1" + INVALID_OPTION_DESC, Option.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_OPTION_DESC, Option.MESSAGE_CONSTRAINTS);
         // non-alphanumeric option
-        CommandParserTestUtil.assertParseFailure(parser, "1" + INVALID_OPTION_NON_ALPHANUMERIC_DESC,
+        assertParseFailure(parser, "1" + INVALID_OPTION_NON_ALPHANUMERIC_DESC,
             Option.MESSAGE_CONSTRAINTS);
     }
 
