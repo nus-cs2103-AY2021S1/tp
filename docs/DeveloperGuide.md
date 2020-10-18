@@ -217,6 +217,8 @@ Step 5. The user executes `leave` command to go to the parent status.
 Currently the application is at `PROJECT` status, so after execution of `leave` command, the new status would be `CATALOGUE`.
 The `leave` command calls `quit` method.
 
+![ScopingStep5](images/ScopingStep5.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
