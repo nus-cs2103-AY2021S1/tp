@@ -17,7 +17,7 @@ import seedu.address.model.task.Task;
 /**
  * Parses input {@code String} and creates a TaskFilterCommand object.
  */
-public class FilterCommandParser implements Parser<TaskFilterCommand> {
+public class TaskFilterCommandParser implements Parser<TaskFilterCommand> {
 
     /**
      * Parses the given input {@code String}.

@@ -95,7 +95,7 @@ public class MainCatalogueParser {
 
         case TaskFilterCommand.COMMAND_WORD:
             if (status != Status.CATALOGUE) {
-                return new FilterCommandParser().parse(arguments);
+                return new TaskFilterCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }

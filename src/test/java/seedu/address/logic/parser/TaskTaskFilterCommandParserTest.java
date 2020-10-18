@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.project.TaskFilterCommand;
 
-class TaskFilterCommandParserTest {
+class TaskTaskFilterCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
         String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskFilterCommand.MESSAGE_USAGE);
 
-    private FilterCommandParser parser = new FilterCommandParser();
+    private TaskFilterCommandParser parser = new TaskFilterCommandParser();
     @Test
     public void parse_missingParts_failure() {
         // empty user input
