@@ -13,7 +13,12 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.model.task.DateTime;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
+import seedu.address.model.task.Title;
+import seedu.address.model.task.Type;
 
 public class FindCommandParserTest {
 
@@ -61,4 +66,16 @@ public class FindCommandParserTest {
         assertParseFailure(parser, " desc:abc date:  ", MESSAGE_EMPTY_SEARCH_PHRASE);
     }
 
+    @Test
+    public void parse_argsWrongFormat_returnsFalse() {
+        // throw error if argument is invalid
+        assertParseFailure(parser, " title:@@", Title.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " desc:@@", Description.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " type:123", Type.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " status:comple", Status.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " date:01-01-202", DateTime.MESSAGE_CONSTRAINTS);
+
+        // one of the attribute is invalid
+        assertParseFailure(parser, " title:abc# date: desc:edf", Title.MESSAGE_CONSTRAINTS);
+    }
 }
