@@ -58,15 +58,9 @@ public class EditRecipeCommandTest {
                 .withIngredient(VALID_INGREDIENT_MARGARITAS, VALID_QUANTITY_MARGARITAS)
               .build();
 
-<<<<<<< HEAD:src/test/java/seedu/address/logic/commands/EditRecipeCommandTest.java
-        EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withIngredient(VALID_INGREDIENT_BOB, VALID_QUANTITY_BOB).build();
-        EditRecipeCommand editRecipeCommand = new EditRecipeCommand(indexLastRecipe, descriptor);
-=======
         EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withName(VALID_NAME_MARGARITAS)
                 .withIngredient(VALID_INGREDIENT_MARGARITAS, VALID_QUANTITY_MARGARITAS).build();
-        EditCommand editCommand = new EditCommand(indexLastRecipe, descriptor);
->>>>>>> 87d382ec766cc16ee80bf67caf27dbf62638cda7:src/test/java/seedu/address/logic/commands/EditCommandTest.java
+        EditRecipeCommand editRecipeCommand = new EditRecipeCommand(indexLastRecipe, descriptor);
 
         String expectedMessage = String.format(EditRecipeCommand.MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe);
 
@@ -81,7 +75,7 @@ public class EditRecipeCommandTest {
         EditRecipeCommand editRecipeCommand = new EditRecipeCommand(INDEX_FIRST_RECIPE, new EditRecipeDescriptor());
         Recipe editedRecipe = model.getFilteredRecipeList().get(INDEX_FIRST_RECIPE.getZeroBased());
 
-        String expectedMessage = String.format(EditRecipeCommand.MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe);
+        String expectedMessage = String.format(EditRecipeCommand.MESSAGE_NOT_EDITED, editedRecipe);
 
         Model expectedModel = new ModelManager(new WishfulShrinking(model.getWishfulShrinking()), new UserPrefs());
 
@@ -93,15 +87,9 @@ public class EditRecipeCommandTest {
         showRecipeAtIndex(model, INDEX_FIRST_RECIPE);
 
         Recipe recipeInFilteredList = model.getFilteredRecipeList().get(INDEX_FIRST_RECIPE.getZeroBased());
-<<<<<<< HEAD:src/test/java/seedu/address/logic/commands/EditRecipeCommandTest.java
-        Recipe editedRecipe = new RecipeBuilder(recipeInFilteredList).withName(VALID_NAME_BOB).build();
-        EditRecipeCommand editRecipeCommand = new EditRecipeCommand(INDEX_FIRST_RECIPE,
-                new EditRecipeDescriptorBuilder().withName(VALID_NAME_BOB).build());
-=======
         Recipe editedRecipe = new RecipeBuilder(recipeInFilteredList).withName(VALID_NAME_MARGARITAS).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_RECIPE,
+        EditRecipeCommand editRecipeCommand = new EditRecipeCommand(INDEX_FIRST_RECIPE,
                 new EditRecipeDescriptorBuilder().withName(VALID_NAME_MARGARITAS).build());
->>>>>>> 87d382ec766cc16ee80bf67caf27dbf62638cda7:src/test/java/seedu/address/logic/commands/EditCommandTest.java
 
         String expectedMessage = String.format(EditRecipeCommand.MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe);
 
@@ -135,13 +123,8 @@ public class EditRecipeCommandTest {
     @Test
     public void execute_invalidRecipeIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredRecipeList().size() + 1);
-<<<<<<< HEAD:src/test/java/seedu/address/logic/commands/EditRecipeCommandTest.java
-        EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withName(VALID_NAME_BOB).build();
-        EditRecipeCommand editRecipeCommand = new EditRecipeCommand(outOfBoundIndex, descriptor);
-=======
         EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withName(VALID_NAME_MARGARITAS).build();
-        EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
->>>>>>> 87d382ec766cc16ee80bf67caf27dbf62638cda7:src/test/java/seedu/address/logic/commands/EditCommandTest.java
+        EditRecipeCommand editRecipeCommand = new EditRecipeCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editRecipeCommand, model, Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
     }
@@ -157,32 +140,20 @@ public class EditRecipeCommandTest {
         // ensures that outOfBoundIndex is still in bounds of recipe collection list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getWishfulShrinking().getRecipeList().size());
 
-<<<<<<< HEAD:src/test/java/seedu/address/logic/commands/EditRecipeCommandTest.java
         EditRecipeCommand editRecipeCommand = new EditRecipeCommand(outOfBoundIndex,
-                new EditRecipeDescriptorBuilder().withName(VALID_NAME_BOB).build());
-=======
-        EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditRecipeDescriptorBuilder().withName(VALID_NAME_MARGARITAS).build());
->>>>>>> 87d382ec766cc16ee80bf67caf27dbf62638cda7:src/test/java/seedu/address/logic/commands/EditCommandTest.java
 
         assertCommandFailure(editRecipeCommand, model, Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-<<<<<<< HEAD:src/test/java/seedu/address/logic/commands/EditRecipeCommandTest.java
-        final EditRecipeCommand standardCommand = new EditRecipeCommand(INDEX_FIRST_RECIPE, DESC_AMY);
-
-        // same values -> returns true
-        EditRecipeDescriptor copyDescriptor = new EditRecipeDescriptor(DESC_AMY);
-        EditRecipeCommand commandWithSameValues = new EditRecipeCommand(INDEX_FIRST_RECIPE, copyDescriptor);
-=======
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_RECIPE, DESC_NOODLE);
+        final EditRecipeCommand standardCommand = new EditRecipeCommand(INDEX_FIRST_RECIPE, DESC_NOODLE);
 
         // same values -> returns true
         EditRecipeDescriptor copyDescriptor = new EditRecipeDescriptor(DESC_NOODLE);
-        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_RECIPE, copyDescriptor);
->>>>>>> 87d382ec766cc16ee80bf67caf27dbf62638cda7:src/test/java/seedu/address/logic/commands/EditCommandTest.java
+        EditRecipeCommand commandWithSameValues = new EditRecipeCommand(INDEX_FIRST_RECIPE, copyDescriptor);
+
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -195,17 +166,10 @@ public class EditRecipeCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-<<<<<<< HEAD:src/test/java/seedu/address/logic/commands/EditRecipeCommandTest.java
-        assertFalse(standardCommand.equals(new EditRecipeCommand(INDEX_SECOND_RECIPE, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditRecipeCommand(INDEX_SECOND_RECIPE, DESC_NOODLE)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditRecipeCommand(INDEX_FIRST_RECIPE, DESC_BOB)));
-=======
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_RECIPE, DESC_NOODLE)));
-
-        // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_RECIPE, DESC_MARGARITAS)));
->>>>>>> 87d382ec766cc16ee80bf67caf27dbf62638cda7:src/test/java/seedu/address/logic/commands/EditCommandTest.java
+        assertFalse(standardCommand.equals(new EditRecipeCommand(INDEX_FIRST_RECIPE, DESC_MARGARITAS)));
     }
 
 }

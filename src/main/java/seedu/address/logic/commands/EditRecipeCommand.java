@@ -57,7 +57,7 @@ public class EditRecipeCommand extends Command {
             + PREFIX_TAG + "delicious";
 
     public static final String MESSAGE_EDIT_RECIPE_SUCCESS = "Edited Recipe: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "No edit made. At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the Recipe collection.";
 
     private final Index index;
@@ -93,7 +93,12 @@ public class EditRecipeCommand extends Command {
 
         model.setRecipe(recipeToEdit, editedRecipe);
         model.updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPES);
+        if (recipeToEdit.isSameRecipe(editedRecipe)) {
+            return new CommandResult(String.format(MESSAGE_NOT_EDITED, editedRecipe));
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe));
+
+
     }
 
     /**
@@ -164,7 +169,7 @@ public class EditRecipeCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, ingredients, calories, tags);
+            return CollectionUtil.isAnyNonNull(name, instruction, ingredients, calories, recipeImage, tags);
         }
 
         public void setName(Name name) {
@@ -237,7 +242,6 @@ public class EditRecipeCommand extends Command {
 
             // state check
             EditRecipeDescriptor e = (EditRecipeDescriptor) other;
-
             return getName().equals(e.getName())
                     && getInstruction().equals(e.getInstruction())
                     && getRecipeImage().equals(e.getRecipeImage())

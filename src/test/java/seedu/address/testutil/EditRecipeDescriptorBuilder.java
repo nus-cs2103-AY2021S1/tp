@@ -80,6 +80,22 @@ public class EditRecipeDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code image} of a {@code EditRecipeDescriptorBuilder} that we are building.
+     */
+    public EditRecipeDescriptorBuilder withImage(String image) {
+        descriptor.setRecipeImage(image);
+        return this;
+    }
+
+    /**
+     * Parses the {@code instruction} of a {@code EditRecipeDescriptorBuilder} that we are building.
+     */
+    public EditRecipeDescriptorBuilder withInstruction(String instruction) {
+        descriptor.setInstruction(instruction);
+        return this;
+    }
+
     public EditRecipeDescriptor build() {
         return descriptor;
     }

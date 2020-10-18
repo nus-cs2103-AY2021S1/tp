@@ -16,7 +16,12 @@ import java.util.Objects;
  */
 public class Ingredient {
     public static final String MESSAGE_CONSTRAINTS =
-            "Ingredients should only contain alphanumeric characters and spaces, and it should not be blank";
+            "1. Ingredient name is compulsory and should consist of only alphanumeric characters.\n"
+                    + "2. Each ingredient is separated by a comma.\n"
+                    + "3. Each ingredient has an optional field quantity that is separated by a spaced followed "
+                    + "by a hyphen.\n"
+                    + "4. Ingredient quantity should only consist of alphanumeric, full stop and forward slashes" +
+                    ". ";
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.

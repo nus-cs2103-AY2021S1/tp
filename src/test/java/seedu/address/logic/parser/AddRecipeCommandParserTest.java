@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_MARGA
 import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_NOODLE;
 import static seedu.address.logic.commands.CommandTestUtil.INSTRUCTION_DESC_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.INSTRUCTION_DESC_NOODLE;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_CALORIES_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.NEGATIVE_CALORIES_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_INGREDIENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -33,6 +33,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddRecipeCommand;
 import seedu.address.model.commons.Calories;
+import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.tag.Tag;
@@ -132,10 +133,10 @@ public class AddRecipeCommandParserTest {
         // invalid ingredients
         assertParseFailure(parser, NAME_DESC_MARGARITAS + INVALID_INGREDIENT_DESC + CALORIES_DESC_MARGARITAS
                 + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS
-                + TAG_DESC_MARGARITAS, ParserUtil.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_MARGARITAS, Ingredient.MESSAGE_CONSTRAINTS);
 
         // invalid calories
-        assertParseFailure(parser, NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + INVALID_CALORIES_DESC
+        assertParseFailure(parser, NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + NEGATIVE_CALORIES_DESC
                 + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS,
                 Calories.MESSAGE_CONSTRAINTS);
 

@@ -29,7 +29,7 @@ public class EditIngredientCommand extends Command {
             + PREFIX_INGREDIENT + "bread, oranges" + PREFIX_QUANTITY + "2kg" + ", cheese ";
 
     public static final String MESSAGE_EDIT_INGREDIENT_SUCCESS = "Edited Ingredient: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "No edit made. At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_INGREDIENT = "This recipe already exists in the Recipe " +
             "collection.";
 
@@ -67,6 +67,9 @@ public class EditIngredientCommand extends Command {
 
         model.setIngredient(ingredientToEdit, editedIngredient);
         model.updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPES);
+        if (ingredientToEdit.isSameIngredient(editedIngredient)) {
+            return new CommandResult(String.format(MESSAGE_NOT_EDITED, editedIngredient));
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_INGREDIENT_SUCCESS, editedIngredient));
     }
 

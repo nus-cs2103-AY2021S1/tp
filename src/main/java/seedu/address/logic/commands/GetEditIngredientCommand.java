@@ -19,7 +19,7 @@ public class GetEditIngredientCommand extends Command {
             + "Parameters: " + "INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_EDIT_INGREDIENT_SUCCESS = "Ingredient to edit shown: %1$s";
+    public static final String MESSAGE_GET_EDIT_INGREDIENT_SUCCESS = "Ingredient to edit shown: %1$s";
 
     private final Index toEdit;
 
@@ -39,7 +39,7 @@ public class GetEditIngredientCommand extends Command {
         Ingredient ingredientToEdit = lastShownList.get(toEdit.getZeroBased());
         int ingredientPositionToEdit = lastShownList.indexOf(ingredientToEdit) + 1;
         CommandResult commandResult =
-                new CommandResult(MESSAGE_EDIT_INGREDIENT_SUCCESS + ingredientToEdit.toString(),
+                new CommandResult(String.format(MESSAGE_GET_EDIT_INGREDIENT_SUCCESS, ingredientToEdit.toString()),
                 false, false, false, false, false,
                 false, true);
         commandResult.setCommandBox(ingredientToEdit.stringify(ingredientPositionToEdit));
@@ -49,7 +49,7 @@ public class GetEditIngredientCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof GetEditRecipeCommand // instanceof handles nulls
+                || (other instanceof GetEditIngredientCommand // instanceof handles nulls
                 && toEdit.equals(((GetEditIngredientCommand) other).toEdit)); // state check
     }
 }

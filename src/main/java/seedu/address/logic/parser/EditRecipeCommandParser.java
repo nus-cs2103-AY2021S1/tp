@@ -19,6 +19,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditRecipeCommand;
 import seedu.address.logic.commands.EditRecipeCommand.EditRecipeDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.tag.Tag;
 
@@ -58,8 +59,8 @@ public class EditRecipeCommandParser implements Parser<EditRecipeCommand> {
             editRecipeDescriptor.setIngredient(ingredients);
         }
         if (argMultimap.getValue(PREFIX_CALORIES).isPresent()) {
-            Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-            editRecipeDescriptor.setTags(tags);
+            Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).get());
+            editRecipeDescriptor.setCalories(calories);
         }
         if (argMultimap.getValue(PREFIX_INSTRUCTION).isPresent()) {
             String instructions = argMultimap.getValue(PREFIX_INSTRUCTION).get();

@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.GetEditIngredientCommand.MESSAGE_GET_EDIT_INGREDIENT_SUCCESS;
+import static seedu.address.logic.commands.GetEditRecipeCommand.MESSAGE_GET_EDIT_RECIPE_SUCCESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSTRUCTION;
@@ -10,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_IMAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INGREDIENT;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +35,15 @@ import seedu.address.testutil.EditRecipeDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public enum Field {
+        INGREDIENT, RECIPE_NAME, CALORIES, TAG, INDEX, INSTRUCTIONS, RECIPE_IMAGE,
+        INGREDIENT_NAME, INGREDIENT_QUANTITY
+    }
+
+    public enum Number {
+        NEGATIVE, NON_INTEGER, ZERO
+    }
+
     //SANDWICH
     public static final String VALID_INGREDIENT_SANDWICH = "Kaiser Rolls Or Other Bread";
     public static final String VALID_QUANTITY_SANDWICH = "2 whole";
@@ -39,7 +51,7 @@ public class CommandTestUtil {
     // NOODLE
     public static final String VALID_NAME_NOODLE = "Buttery Lemon Parsley Noodles";
     public static final String VALID_INGREDIENT_NOODLE = "Pasta fettuccine";
-    public static final String VALID_QUANTITY_NOODLE = "1 pound";
+    public static final String VALID_QUANTITY_NOODLE = "1/2 pound";
     public static final Integer VALID_CALORIES_NOODLE = 180;
     public static final String VALID_INSTRUCTION_NOODLE = "Cook the noodles according to package instructions. "
             + "(If using angel hair, stop just short of the al dente stage.) Drain and set aside. "
@@ -59,12 +71,14 @@ public class CommandTestUtil {
     public static final String INSTRUCTION_DESC_NOODLE = " " + PREFIX_INSTRUCTION + VALID_INSTRUCTION_NOODLE;
     public static final String RECIPE_IMAGE_DESC_NOODLE = " " + PREFIX_RECIPE_IMAGE + VALID_RECIPE_IMAGE_NOODLE;
     public static final String TAG_DESC_NOODLE = " " + PREFIX_TAG + VALID_TAG_NOODLE;
+    public static final String DESC_NOODLE_USER_INPUT = NAME_DESC_NOODLE + INGREDIENT_DESC_NOODLE + CALORIES_DESC_NOODLE
+            + INSTRUCTION_DESC_NOODLE + RECIPE_IMAGE_DESC_NOODLE + TAG_DESC_NOODLE;
 
 
     // MARGARITAS
     public static final String VALID_NAME_MARGARITAS = "Mango Margaritas";
     public static final String VALID_INGREDIENT_MARGARITAS = "Mango Chunks Drained";
-    public static final String VALID_QUANTITY_MARGARITAS = "2 jars";
+    public static final String VALID_QUANTITY_MARGARITAS = "2.5 jars";
     public static final Integer VALID_CALORIES_MARGARITAS = 80;
     public static final String VALID_INSTRUCTION_MARGARITAS = "Zest the limes and lay the zest on a plate. "
             + "If you have the time, let the zest dry out for ten minutes or so. "
@@ -89,34 +103,209 @@ public class CommandTestUtil {
     public static final String INSTRUCTION_DESC_MARGARITAS = " " + PREFIX_INSTRUCTION + VALID_INSTRUCTION_MARGARITAS;
     public static final String RECIPE_IMAGE_DESC_MARGARITAS = " " + PREFIX_RECIPE_IMAGE + VALID_RECIPE_IMAGE_MARGARITAS;
     public static final String TAG_DESC_MARGARITAS = " " + PREFIX_TAG + VALID_TAG_MARGARITAS;
+    public static final String DESC_MARGARITAS_USER_INPUT =
+            NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS + INSTRUCTION_DESC_MARGARITAS
+            + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
 
-    //Invalid
+    //Invalid Recipe Name with prefix
     public static final String INVALID_NAME_DESC = " "
-            + PREFIX_NAME + "Butter&Chicken"; // '&' not allowed in names
-    public static final String INVALID_INGREDIENT_DESC = " "
-            + PREFIX_INGREDIENT + " "; // not allowed in to blank the ingredients
-    public static final String INVALID_CALORIES_DESC = " " + PREFIX_CALORIES + "-1"; // negative number
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "healthy*"; // '*' not allowed in tags
+            + PREFIX_NAME + "Butter & Chicken!"; // only alphanumeric characters allowed
+    public static final String MISSING_NAME_DESC = " " + PREFIX_NAME;
+
+    //Invalid Ingredient with prefix
+    public static final String INVALID_INGREDIENT_DESC = " " + PREFIX_INGREDIENT
+            + "Chicken!"; // only alphanumeric characters allowed
+    public static final String INVALID_INGREDIENT_QUANTITY = " " + PREFIX_QUANTITY
+            + "2@3a"; // only alphanumeric, full stop, forward slash allowed
+    public static final String MISSING_INGREDIENT_DESC = " " + PREFIX_INGREDIENT;
+
+    //Invalid Calories with prefix
+    public static final String NEGATIVE_CALORIES_DESC = " " + PREFIX_CALORIES
+            + "-1"; // only positive integers allowed
+    public static final String NON_INTEGER_CALORIES_DESC = " " + PREFIX_CALORIES
+            + "1.1"; // only positive numbers allowed
+    public static final String ZERO_CALORIES_DESC = " " + PREFIX_CALORIES
+            + "0"; // only positive numbers allowed
+    public static final String MISSING_CALORIES_DESC = " " + PREFIX_CALORIES;
+
+    //Invalid Tags with prefix
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG
+            + "healthy*"; // only alphanumeric characters allowed
+    public static final String MISSING_TAG_DESC = " " + PREFIX_TAG;
+
+    //Invalid Instructions
+    public static final String MISSING_INSTRUCTIONS_DESC = " " + PREFIX_INSTRUCTION;
+
+    //Invalid Recipe Image
+    public static final String MISSING_IMAGE_DESC = " " + PREFIX_RECIPE_IMAGE;
+
+    //Invalid Recipe Index
+    public static final String NEGATIVE_RECIPE_INDEX = "-1";
+    public static final String NON_INTEGER_RECIPE_INDEX = "1.1";
+    public static final String ZERO_RECIPE_INDEX = "0";
+
+    public static final String INGREDIENT_INDEX = "1";
+
+    public static final String missingIngredientField(Field field) {
+        switch (field) {
+        case INDEX:
+            return INGREDIENT_DESC_MARGARITAS;
+        case INGREDIENT_NAME:
+            return INGREDIENT_INDEX + " " + PREFIX_QUANTITY + VALID_QUANTITY_MARGARITAS;
+        case INGREDIENT_QUANTITY:
+            return INGREDIENT_INDEX + " " + PREFIX_INGREDIENT + VALID_INGREDIENT_MARGARITAS;
+        default:
+            System.out.println("Should not enter here");
+            return null;
+        }
+    }
+
+    public static final String invalidIngredientField(Field field) {
+        switch (field) {
+        case INGREDIENT_NAME:
+            return INGREDIENT_INDEX + " " + INVALID_INGREDIENT_DESC
+                    + " " + PREFIX_QUANTITY + VALID_QUANTITY_MARGARITAS;
+        case INGREDIENT_QUANTITY:
+            return INGREDIENT_INDEX + " " + PREFIX_INGREDIENT + VALID_INGREDIENT_MARGARITAS
+                    + INVALID_INGREDIENT_QUANTITY;
+        default:
+            System.out.println("Should not enter here");
+            return null;
+        }
+    }
+
+    public static final String invalidIngredientIndexField(Number num) {
+        switch (num) {
+        case ZERO:
+            return ZERO_RECIPE_INDEX + INGREDIENT_DESC_MARGARITAS;
+        case NON_INTEGER:
+            return NON_INTEGER_RECIPE_INDEX + INGREDIENT_DESC_MARGARITAS;
+        case NEGATIVE:
+            return NEGATIVE_RECIPE_INDEX + INGREDIENT_DESC_MARGARITAS;
+        default:
+            System.out.println("Should not enter here");
+            return null;
+        }
+    }
+
+    public static final String RECIPE_INDEX = "1";
+
+    public static final String missingRecipeField(Field field) {
+        switch (field) {
+            case INGREDIENT:
+                return RECIPE_INDEX + NAME_DESC_MARGARITAS + MISSING_INGREDIENT_DESC + CALORIES_DESC_MARGARITAS
+                        + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
+            case RECIPE_NAME:
+                return RECIPE_INDEX + MISSING_NAME_DESC + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS
+                        + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
+            case TAG:
+                return RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS
+                        + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + MISSING_TAG_DESC;
+            case CALORIES:
+                return RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + MISSING_CALORIES_DESC
+                        + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
+
+            case INSTRUCTIONS:
+                return RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS
+                        + MISSING_INSTRUCTIONS_DESC + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
+
+            case RECIPE_IMAGE:
+                return RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS
+                        + INSTRUCTION_DESC_MARGARITAS + MISSING_IMAGE_DESC + TAG_DESC_MARGARITAS;
+
+            case INDEX:
+                return NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS
+                        + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
+
+            default:
+                    System.out.println("Not supposed to enter here");
+                    return null;
+        }
+    }
+
+    public static final String invalidRecipeIndexField(Number num) {
+        switch (num) {
+        case ZERO:
+            return ZERO_RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS
+                    + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
+        case NON_INTEGER:
+            return NON_INTEGER_RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS
+                    + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
+        case NEGATIVE:
+            return NEGATIVE_RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS
+                    + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
+        default:
+            System.out.println("Should not enter here");
+            return null;
+        }
+    }
+
+    public static final String invalidRecipeCalorieField(Number num) {
+        switch (num) {
+            case ZERO:
+                return RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + ZERO_CALORIES_DESC
+                        + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
+            case NON_INTEGER:
+                return RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + NON_INTEGER_CALORIES_DESC
+                        + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
+            case NEGATIVE:
+                return RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + NEGATIVE_CALORIES_DESC
+                        + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
+            default:
+                System.out.println("Should not enter here");
+                return null;
+        }
+    }
+
+    public static final String invalidRecipeField(Field field) {
+        switch (field) {
+        case INGREDIENT:
+            return RECIPE_INDEX + NAME_DESC_MARGARITAS + INVALID_INGREDIENT_DESC + CALORIES_DESC_MARGARITAS
+                    + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
+        case RECIPE_NAME:
+            return RECIPE_INDEX + INVALID_NAME_DESC + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS
+                    + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
+        case TAG:
+            return RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS
+                    + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + INVALID_TAG_DESC;
+        default:
+            System.out.println("Not supposed to enter here");
+            return null;
+        }
+    }
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-<<<<<<< HEAD
-    public static final EditRecipeCommand.EditRecipeDescriptor DESC_AMY;
-    public static final EditRecipeCommand.EditRecipeDescriptor DESC_BOB;
-=======
-    public static final EditCommand.EditRecipeDescriptor DESC_NOODLE;
-    public static final EditCommand.EditRecipeDescriptor DESC_MARGARITAS;
->>>>>>> 87d382ec766cc16ee80bf67caf27dbf62638cda7
+    public static final EditRecipeCommand.EditRecipeDescriptor DESC_NOODLE;
+    public static final EditRecipeCommand.EditRecipeDescriptor DESC_MARGARITAS;
 
     static {
         DESC_NOODLE = new EditRecipeDescriptorBuilder().withName(VALID_NAME_NOODLE)
                 .withIngredient(VALID_INGREDIENT_NOODLE, VALID_QUANTITY_NOODLE)
                 .withCalories(VALID_CALORIES_NOODLE)
+                .withImage(VALID_RECIPE_IMAGE_NOODLE)
+                .withInstruction(VALID_INSTRUCTION_NOODLE)
                 .withTags(VALID_TAG_NOODLE).build();
         DESC_MARGARITAS = new EditRecipeDescriptorBuilder().withName(VALID_NAME_MARGARITAS)
                 .withIngredient(VALID_INGREDIENT_MARGARITAS, VALID_QUANTITY_MARGARITAS)
                 .withCalories(VALID_CALORIES_MARGARITAS)
+                .withImage(VALID_RECIPE_IMAGE_MARGARITAS)
+                .withInstruction(VALID_INSTRUCTION_MARGARITAS)
                 .withTags(VALID_TAG_NOODLE).build();
+    }
+
+    public static final EditIngredientCommand.EditIngredientDescriptor DESC_INGREDIENT_NOODLE;
+    public static final EditIngredientCommand.EditIngredientDescriptor DESC_INGREDIENT_MARGARITAS;
+
+    static {
+        DESC_INGREDIENT_NOODLE = new EditIngredientCommand.EditIngredientDescriptor();
+        DESC_INGREDIENT_NOODLE.setIngredient(new Ingredient(VALID_INGREDIENT_NOODLE,
+                VALID_QUANTITY_NOODLE));
+
+        DESC_INGREDIENT_MARGARITAS = new EditIngredientCommand.EditIngredientDescriptor();
+        DESC_INGREDIENT_MARGARITAS.setIngredient(new Ingredient(VALID_INGREDIENT_MARGARITAS,
+                VALID_QUANTITY_MARGARITAS));
     }
 
     /**
@@ -203,4 +392,31 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredConsumptionList().size());
     }
+
+    /**
+     * Updates command box of command result to hold the edit ingredient command string.
+     */
+    public static void showEditIngredientCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                                        Ingredient ingredientToEdit, Model expectedModel) {
+        String editIngredientCommandString = ingredientToEdit.stringify(INDEX_FIRST_INGREDIENT.getOneBased());
+        CommandResult expectedCommandResult = new CommandResult(String.format(MESSAGE_GET_EDIT_INGREDIENT_SUCCESS,
+                ingredientToEdit.toString()), false, false, false, false,
+                false, false, true);
+        expectedCommandResult.setCommandBox(editIngredientCommandString);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Updates command box of command result to hold the edit recipe command string.
+     */
+    public static void showEditRecipeCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                                        Recipe recipeToEdit, Model expectedModel) {
+        String editRecipeCommandString = recipeToEdit.stringify(INDEX_FIRST_INGREDIENT.getOneBased());
+        CommandResult expectedCommandResult = new CommandResult(String.format(MESSAGE_GET_EDIT_RECIPE_SUCCESS,
+                recipeToEdit.toString()), false, false, false, false,
+                false, true, false);
+        expectedCommandResult.setCommandBox(editRecipeCommandString);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
 }
