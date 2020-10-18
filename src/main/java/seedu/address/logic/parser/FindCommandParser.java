@@ -14,6 +14,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.SchoolContainsKeywordsPredicate;
+import seedu.address.model.student.Year;
 import seedu.address.model.student.YearMatchPredicate;
 
 /**
@@ -51,10 +52,9 @@ public class FindCommandParser implements Parser<FindCommand> {
             findStudentDescriptor.setSchoolPredicate(new SchoolContainsKeywordsPredicate(schoolKeywordsList));
         }
         if (argMultimap.getValue(PREFIX_YEAR).isPresent()) {
-            String year = argMultimap.getValue(PREFIX_YEAR).get();
-            String[] yearKeywords = year.split("\\s+");
-            List<String> yearKeywordsList = List.of(yearKeywords);
-            findStudentDescriptor.setYearPredicate(new YearMatchPredicate(yearKeywordsList));
+            String stringYear = argMultimap.getValue(PREFIX_YEAR).get();
+            Year year = ParserUtil.parseYear(stringYear);
+            findStudentDescriptor.setYearPredicate(new YearMatchPredicate(year));
         }
 
         if (!findStudentDescriptor.isAnyPredicatePresent()) {
