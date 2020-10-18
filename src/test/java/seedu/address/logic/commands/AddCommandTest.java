@@ -190,7 +190,7 @@ public class AddCommandTest {
         };
 
         @Override
-        public void deleteOrderItem(OrderItem target){
+        public void removeOrderItem(OrderItem target){
 
         };
 

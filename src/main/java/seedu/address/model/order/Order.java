@@ -83,8 +83,24 @@ public class Order implements Iterable<OrderItem> {
      */
     public void remove(OrderItem toRemove) {
         requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
+        if (!contains(toRemove)) {
             throw new OrderItemNotFoundException();
+        }
+        int index = internalList.indexOf(toRemove);
+        if (index == -1) {
+            throw new OrderItemNotFoundException();
+        }
+        OrderItem existingItem = internalList.get(index);
+        int currQty = existingItem.getQuantity();
+        int newQty = currQty - toRemove.getQuantity();
+
+        if (!OrderItem.isValidQuantity(newQty)) {
+            // Remove all
+            internalList.remove(toRemove);
+        } else {
+            // Reduce
+            OrderItem reduce = new OrderItem(toRemove, newQty);
+            setOrderItem(existingItem, reduce);
         }
     }
 

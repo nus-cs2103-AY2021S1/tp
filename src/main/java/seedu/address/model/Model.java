@@ -151,7 +151,7 @@ public interface Model {
      * Deletes the given orderItem.
      * The orderItem must exist in the order manager.
      */
-    void deleteOrderItem(OrderItem target);
+    void removeOrderItem(OrderItem target);
 
     /**
      * Adds the given orderItem.
