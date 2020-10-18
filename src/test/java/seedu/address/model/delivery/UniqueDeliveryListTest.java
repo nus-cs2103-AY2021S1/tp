@@ -44,7 +44,7 @@ public class UniqueDeliveryListTest {
         Delivery editedCopy = new DeliveryBuilder(KELVIN)
             .withOrder(VALID_ORDER_AARON)
             .build();
-        assertTrue(uniqueDeliveryList.contains(editedCopy));
+        assertFalse(uniqueDeliveryList.contains(editedCopy));
     }
 
     @Test

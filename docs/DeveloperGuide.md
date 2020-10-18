@@ -370,7 +370,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3c. InventoryBook detects a duplicate after editing.
 
   * 3c1. InventoryBook shows an error message.
- 
+
         Use case resumes at step 2.
 
 ### Non-Functional Requirements
@@ -442,8 +442,17 @@ testers are expected to do more *exploratory* testing.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Test case: First time user running OneShelf <br>
+   Expected: OneShelf will load a sample data file.
+   
+1. Dealing with corrupted data files
+
+   1. Prerequisite: There is an existing json file (inventorybook.json or deliverybook.json)
+
+   1. Test case: Delete some mandatory field in the json file and launch OneShelf <br>
+      Expected: OneShelf will load a new empty json file respectively
+
 
 1. _{ more test cases …​ }_

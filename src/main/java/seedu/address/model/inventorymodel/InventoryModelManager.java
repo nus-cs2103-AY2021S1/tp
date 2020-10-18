@@ -137,15 +137,6 @@ public class InventoryModelManager implements InventoryModel {
         return filteredItems;
     }
 
-    /**
-     * Returns an unmodifiable view of the list of {@code Item} backed by the internal list of
-     * {@code versionedInventoryBook}
-     */
-    @Override
-    public ObservableList<Delivery> getFilteredDeliveryList() {
-        return filteredDeliveries;
-    }
-
     @Override
     public void updateFilteredItemList(Predicate<Item> predicate) {
         requireNonNull(predicate);

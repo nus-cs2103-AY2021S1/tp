@@ -22,6 +22,7 @@ import seedu.address.model.item.ItemContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code ItemFindCommand}.
  */
 public class ItemFindCommandTest {
+
     private InventoryModel inventoryModel = new InventoryModelManager(getTypicalInventoryBook(), new UserPrefs());
     private InventoryModel expectedInventoryModel =
             new InventoryModelManager(getTypicalInventoryBook(), new UserPrefs());

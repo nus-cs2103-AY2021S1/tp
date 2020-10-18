@@ -8,7 +8,11 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
+<<<<<<< HEAD
 import seedu.address.logic.commands.deliverycommand.DeliveryClearCommand;
+=======
+import seedu.address.logic.commands.deliverycommand.DeliveryAddCommand;
+>>>>>>> master
 import seedu.address.logic.commands.deliverycommand.DeliveryFindCommand;
 import seedu.address.logic.commands.deliverycommand.DeliveryListCommand;
 import seedu.address.logic.commands.help.HelpCommand;
@@ -19,6 +23,7 @@ import seedu.address.logic.commands.itemcommand.ItemEditCommand;
 import seedu.address.logic.commands.itemcommand.ItemFindCommand;
 import seedu.address.logic.commands.itemcommand.ItemListCommand;
 import seedu.address.logic.commands.itemcommand.ItemRemoveCommand;
+import seedu.address.logic.parser.deliveryparser.DeliveryAddCommandParser;
 import seedu.address.logic.parser.deliveryparser.DeliveryFindCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.itemparser.ItemAddCommandParser;
@@ -76,6 +81,9 @@ public class OneShelfBookParser {
             return new ItemListCommand();
 
             // Delivery command words
+        case DeliveryAddCommand.COMMAND_WORD:
+            return new DeliveryAddCommandParser().parse(arguments);
+
         case DeliveryFindCommand.COMMAND_WORD:
             return new DeliveryFindCommandParser().parse(arguments);
 

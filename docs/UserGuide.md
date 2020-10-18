@@ -7,12 +7,11 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
- OneShelf is a desktop application for you to manage all of restaurant inventories,
- table reservations and pending deliveries. 
- It is easy to build and customise your inventories by using 
- only Command Line Interface. If you are a busy restaurant manager 
- who prefers to use the Command Line Interface and needs to keep 
- track of multiple items, OneShelf is for you!
+ OneShelf is a desktop application for you to manage all of restaurant inventories, table reservations and pending deliveries. 
+It is easy to build and customise your inventories by using 
+only Command Line Interface. If you are a busy restaurant manager 
+who prefers to use the Command Line Interface and needs to keep 
+track of multiple items, OneShelf is for you!
 
 
 
@@ -90,7 +89,11 @@ Format: `add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]...​`
 A item can have any number of tags (including 0)
 </div>
 
+### Adding a delivery: `add-d`
 
+Adds delivery to OneShelf
+
+Format: `add-d n/NAME, p/PHONE, a/ADDRESS, o/ORDER`
 
 ### Removing quantity from an item: `remove-i`
 
@@ -106,7 +109,7 @@ Examples:
 
 ### Listing all items : `list-i` or `list-d`
 
-Shows a list of all items in the Inventory book or delivery book respectively.
+Shows a list of all items in the Inventory book or Delivery book respectively.
 
 Format: `list-i` or `list-d`
 
@@ -201,7 +204,7 @@ Format: `exit`
 
 ### Saving the data
 
-InventoryBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+OneShelf data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Scroll through command history
 
@@ -273,8 +276,9 @@ Notify the user if a certain stock is below threshold
 
 
 
-#### Inventory summary
+#### Delivery summary
 | Action    | Format, Examples                                                                                    |
 |-----------|-----------------------------------------------------------------------------------------------------|
+|**Add Deliveries**    | `add-d` <br> e.g `add-d n/Alex Yeoh p/87438807 a/Blk 30 Geylang Street 29, #06-40 o/2x Chicken Rice, 1x Ice Milo`
 |**List Deliveries**   | `list-d`
 |**Find in Deliveries**  | `find-d PREFIX KEYWORD [MORE_KEYWORDS]` <br> e.g., `find-d n/Alex`           |
