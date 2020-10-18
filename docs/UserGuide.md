@@ -1,5 +1,5 @@
 ---
-## NUStorage User Guide
+### NUStorage User Guide
 
 By: `AY2021S1-CS2103T-T11-3` Since:`September 2020`
 
@@ -7,14 +7,14 @@ By: `AY2021S1-CS2103T-T11-3` Since:`September 2020`
 - [Introduction](#introduction) 
 - [Quick start](#quick-start) 
 - [Features](#features) 
-    - [Add items to inventory: `add_inventory`](#add-items-to-inventory---add-inventory-) 
-    - [Remove items from inventory: `delete_inventory`](#remove-items-from-inventory---delete-inventory-) 
-    - [Edit record in inventory: `edit_inventory`](#edit-record-in-inventory---edit-inventory-) 
-    - [List inventory records: `list_inventory`](#list-inventory-records---list-inventory-) 
-    - [Add finance records: `add_finance`](#add-finance-records---add-finance-) 
-    - [Delete finance records: `delete_finance`](#delete-finance-records---delete-finance-) 
-    - [List finance records: `list_finance`](#list-finance-records---list-finance-) 
-    - [Quit the programme: `exit`](#quit-the-programme---exit-) 
+    * [Add items to inventory: `add_inventory`](#add-items-to-inventory---add-inventory-) 
+    * [Remove items from inventory: `delete_inventory`](#remove-items-from-inventory---delete-inventory-) 
+    * [Edit record in inventory: `edit_inventory`](#edit-record-in-inventory---edit-inventory-) 
+    * [List inventory records: `list_inventory`](#list-inventory-records---list-inventory-) 
+    * [Add finance records: `add_finance`](#add-finance-records---add-finance-) 
+    * [Delete finance records: `delete_finance`](#delete-finance-records---delete-finance-) 
+    * [List finance records: `list_finance`](#list-finance-records---list-finance-) 
+    * [Quit the programme: `exit`](#quit-the-programme---exit-) 
 - [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
