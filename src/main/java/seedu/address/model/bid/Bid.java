@@ -7,6 +7,17 @@ import seedu.address.model.id.PropertyId;
 
 public class Bid {
 
+    public static final String MESSAGE_CONSTRAINTS_BID_AMOUNT =
+            "Bid Amount should only contain numerical values, and it should not be blank";
+
+    public static final String MESSAGE_CONSTRAINTS_PROPERTY_ID =
+            "Property Id should only contain one alphanumeric characters "
+                    + "followed by numerical characters, and it should not be blank";
+
+    public static final String MESSAGE_CONSTRAINTS_BIDDER_ID =
+            "Bidder Id should only contain one alphanumeric characters "
+                     + "followed by numerical characters, and it should not be blank";
+
     public static final String DEFAULT_PROPERTY_ID = "P0";
     private PropertyId propertyId;
     private BidderId bidderId;
@@ -85,7 +96,7 @@ public class Bid {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Added bid of $")
+        builder.append("Bid of $")
                 .append(getBidAmount())
                 .append(" by ")
                 .append(getBidderId())
