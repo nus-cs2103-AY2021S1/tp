@@ -165,6 +165,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void clearOrder() {
+
+        }
+
+        @Override
         public void updateFilteredFoodList(Predicate<Food> predicate, int index) {
 
         }

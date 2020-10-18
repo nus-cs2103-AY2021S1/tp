@@ -186,6 +186,12 @@ public interface Model {
     ObservableList<Food> getFilteredFoodList(int index);
 
     /**
+     * Clears the order.
+     */
+    void clearOrder();
+
+
+    /**
      * Updates the filter of the filtered food list at the corresponding index to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
