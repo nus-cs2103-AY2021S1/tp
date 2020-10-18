@@ -15,8 +15,8 @@ public class DetailedItem extends Item {
      * Constructs a detailed item based on the given fields.
      */
     public DetailedItem(int id, String name, Quantity quantity, String description, Set<Integer> locationIds,
-                Set<Integer> recipeIds, Set<Tag> tags, boolean isDeleted) {
-        super(id, name, quantity, description, locationIds, recipeIds, tags, isDeleted);
+                Set<Integer> recipeIds, Set<Tag> tags) {
+        super(id, name, quantity, description, locationIds, recipeIds, tags);
     }
 
     @Override

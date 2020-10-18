@@ -33,7 +33,6 @@ class JsonAdaptedItem {
     private final List<Integer> locationIds = new ArrayList<>();
     private final List<Integer> recipeIds = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final boolean isDeleted;
 
     /**
      * Constructs a {@code JsonAdaptedItem} with the given item details.
@@ -45,13 +44,11 @@ class JsonAdaptedItem {
                            @JsonProperty("description") String description,
                            @JsonProperty("locationIds") List<Integer> locationIds,
                            @JsonProperty("recipeIds") List<Integer> recipeIds,
-                           @JsonProperty("tags") List<JsonAdaptedTag> tagged,
-                           @JsonProperty("isDeleted") boolean isDeleted) {
+                           @JsonProperty("tags") List<JsonAdaptedTag> tagged) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
         this.description = description;
-        this.isDeleted = isDeleted;
         if (locationIds != null) {
             this.locationIds.addAll(locationIds);
         }
@@ -71,7 +68,6 @@ class JsonAdaptedItem {
         name = source.getName();
         quantity = source.getQuantity().value;
         description = source.getDescription();
-        isDeleted = source.isDeleted();
         locationIds.addAll(new ArrayList<>(source.getLocationIds()));
         recipeIds.addAll(new ArrayList<>(source.getRecipeIds()));
         tagged.addAll(source.getTags().stream()
@@ -103,7 +99,7 @@ class JsonAdaptedItem {
         final Set<Integer> modelLocationIds = new HashSet<>(locationIds);
         final Set<Integer> modelRecipeIds = new HashSet<>(recipeIds);
         return new Item(id, name, modelQuantity, description, modelLocationIds,
-                modelRecipeIds, modelTags, isDeleted);
+                modelRecipeIds, modelTags);
     }
 
 }
