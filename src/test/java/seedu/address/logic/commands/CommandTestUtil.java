@@ -15,6 +15,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.bid.Bid;
+import seedu.address.model.bid.BidContainsKeywordsPredicate;
 import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.calendar.VenueContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -113,6 +115,20 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the bid at the given {@code targetIndex} in the
+     * {@code model}'s bid book.
+     */
+    public static void showBidAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredBidList().size());
+
+        Bid bid = model.getFilteredBidList().get(targetIndex.getZeroBased());
+        final String[] splitName = bid.getPropertyId().split("\\s+");
+        model.updateFilteredBidList(new BidContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredBidList().size());
     }
 
     /**

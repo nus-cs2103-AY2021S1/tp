@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.BidBook;
 import seedu.address.model.bid.Bid;
+import seedu.address.model.bidbook.BidBook;
 
 public class TypicalBid {
 
