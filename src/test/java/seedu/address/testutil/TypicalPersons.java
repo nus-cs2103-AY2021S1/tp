@@ -1,20 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.TeammateTestUtil.TEAMMATE_ADDRESS_DESC_A;
-import static seedu.address.logic.commands.TeammateTestUtil.TEAMMATE_ADDRESS_DESC_B;
-import static seedu.address.logic.commands.TeammateTestUtil.TEAMMATE_ADDRESS_DESC_C;
-import static seedu.address.logic.commands.TeammateTestUtil.TEAMMATE_EMAIL_DESC_A;
-import static seedu.address.logic.commands.TeammateTestUtil.TEAMMATE_EMAIL_DESC_B;
-import static seedu.address.logic.commands.TeammateTestUtil.TEAMMATE_EMAIL_DESC_C;
-import static seedu.address.logic.commands.TeammateTestUtil.TEAMMATE_GIT_USERNAME_DESC_A;
-import static seedu.address.logic.commands.TeammateTestUtil.TEAMMATE_GIT_USERNAME_DESC_B;
-import static seedu.address.logic.commands.TeammateTestUtil.TEAMMATE_GIT_USERNAME_DESC_C;
-import static seedu.address.logic.commands.TeammateTestUtil.TEAMMATE_NAME_DESC_A;
-import static seedu.address.logic.commands.TeammateTestUtil.TEAMMATE_NAME_DESC_B;
-import static seedu.address.logic.commands.TeammateTestUtil.TEAMMATE_NAME_DESC_C;
-import static seedu.address.logic.commands.TeammateTestUtil.TEAMMATE_PHONE_DESC_A;
-import static seedu.address.logic.commands.TeammateTestUtil.TEAMMATE_PHONE_DESC_B;
-import static seedu.address.logic.commands.TeammateTestUtil.TEAMMATE_PHONE_DESC_C;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_ADDRESS_A;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_ADDRESS_B;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_ADDRESS_C;
@@ -30,6 +15,7 @@ import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_NAME_
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_PHONE_A;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_PHONE_B;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_PHONE_C;
+
 import seedu.address.model.person.Person;
 
 /**
@@ -47,14 +33,14 @@ public class TypicalPersons {
         .withEmail(VALID_TEAMMATE_EMAIL_A)
         .withAddress(VALID_TEAMMATE_ADDRESS_A).build();
 
-    public static Person DESC_B = new PersonBuilder()
+    public static final Person DESC_B = new PersonBuilder()
         .withPersonName(VALID_TEAMMATE_NAME_B)
         .withGitUserName(VALID_TEAMMATE_GIT_USERNAME_B)
         .withPhone(VALID_TEAMMATE_PHONE_B)
         .withEmail(VALID_TEAMMATE_EMAIL_B)
         .withAddress(VALID_TEAMMATE_ADDRESS_B).build();
 
-    public static Person DESC_C = new PersonBuilder()
+    public static final Person DESC_C = new PersonBuilder()
         .withPersonName(VALID_TEAMMATE_NAME_C)
         .withGitUserName(VALID_TEAMMATE_GIT_USERNAME_C)
         .withPhone(VALID_TEAMMATE_PHONE_C)

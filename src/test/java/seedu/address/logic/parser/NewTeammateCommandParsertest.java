@@ -15,9 +15,9 @@ import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_EMAIL
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_GIT_USERNAME_A;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_NAME_A;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_PHONE_A;
-import static seedu.address.testutil.TypicalPersons.DESC_A;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalPersons.DESC_A;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,6 +28,9 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonName;
 import seedu.address.model.person.Phone;
 
+/**
+ * Contains tests for NewTeammateCommandParser (interactions with NewTeammateCommand)
+ */
 public class NewTeammateCommandParsertest {
     private NewTeammateCommandParser parser = new NewTeammateCommandParser();
 
@@ -49,19 +52,19 @@ public class NewTeammateCommandParsertest {
             + TEAMMATE_EMAIL_DESC_A + TEAMMATE_ADDRESS_DESC_A, expectedMessage);
 
         // missing git prefix
-        assertParseFailure(parser,  TEAMMATE_NAME_DESC_A + VALID_TEAMMATE_GIT_USERNAME_A + TEAMMATE_PHONE_DESC_A
+        assertParseFailure(parser, TEAMMATE_NAME_DESC_A + VALID_TEAMMATE_GIT_USERNAME_A + TEAMMATE_PHONE_DESC_A
             + TEAMMATE_EMAIL_DESC_A + TEAMMATE_ADDRESS_DESC_A, expectedMessage);
 
         // missing phone prefix
-        assertParseFailure(parser,  TEAMMATE_NAME_DESC_A + TEAMMATE_GIT_USERNAME_DESC_A + VALID_TEAMMATE_PHONE_A
+        assertParseFailure(parser, TEAMMATE_NAME_DESC_A + TEAMMATE_GIT_USERNAME_DESC_A + VALID_TEAMMATE_PHONE_A
             + TEAMMATE_EMAIL_DESC_A + TEAMMATE_ADDRESS_DESC_A, expectedMessage);
 
         // missing email prefix
-        assertParseFailure(parser,  TEAMMATE_NAME_DESC_A + TEAMMATE_GIT_USERNAME_DESC_A + TEAMMATE_PHONE_DESC_A
+        assertParseFailure(parser, TEAMMATE_NAME_DESC_A + TEAMMATE_GIT_USERNAME_DESC_A + TEAMMATE_PHONE_DESC_A
             + VALID_TEAMMATE_EMAIL_A + TEAMMATE_ADDRESS_DESC_A, expectedMessage);
 
         // missing address prefix
-        assertParseFailure(parser,  TEAMMATE_NAME_DESC_A + TEAMMATE_GIT_USERNAME_DESC_A + TEAMMATE_PHONE_DESC_A
+        assertParseFailure(parser, TEAMMATE_NAME_DESC_A + TEAMMATE_GIT_USERNAME_DESC_A + TEAMMATE_PHONE_DESC_A
             + TEAMMATE_EMAIL_DESC_A + VALID_TEAMMATE_ADDRESS_A, expectedMessage);
     }
 

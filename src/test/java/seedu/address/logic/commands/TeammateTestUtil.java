@@ -5,11 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_GIT_USERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_PHONE;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
 
 public class TeammateTestUtil {
-
     // Raw input data testcases
     public static final String VALID_TEAMMATE_NAME_A = "Jack Nicholson";
     public static final String VALID_TEAMMATE_NAME_B = "Tate Mcrae";
