@@ -124,6 +124,15 @@ public class ModelManager implements Model {
         return versionedResiReg.isAllocated(student);
     }
 
+    /**
+     * Returns true if an allocation relating to {@code room} exists in the address book.
+     */
+    @Override
+    public boolean isAllocated(Room room) {
+        requireNonNull(room);
+        return versionedResiReg.isAllocated(room);
+    }
+
     @Override
     public void setRoom(Room target, Room editedRoom) {
         requireAllNonNull(target, editedRoom);
@@ -134,15 +143,6 @@ public class ModelManager implements Model {
     public boolean hasRoom(Room room) {
         requireNonNull(room);
         return versionedResiReg.hasRoom(room);
-    }
-
-    /**
-     * Returns true if an allocation relating to {@code room} exists in the address book.
-     */
-    @Override
-    public boolean isAllocated(Room room) {
-        requireNonNull(room);
-        return versionedResiReg.isAllocated(room);
     }
 
     @Override

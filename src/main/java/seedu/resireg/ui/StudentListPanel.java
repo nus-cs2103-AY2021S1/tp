@@ -8,7 +8,6 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.resireg.commons.core.LogsCenter;
-import seedu.resireg.logic.commands.AllocateCommand;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;

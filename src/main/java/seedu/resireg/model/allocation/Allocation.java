@@ -43,11 +43,17 @@ public class Allocation {
         return studentId;
     }
 
+    /**
+     * Returns true if the allocation is related to {@code room}.
+     */
     public boolean isRelatedTo(Room room) {
         return room.getFloor().equals(getFloor())
                 && room.getRoomNumber().equals(getRoomNumber());
     }
 
+    /**
+     * Returns true if the allocation is related to {@code student}.
+     */
     public boolean isRelatedTo(Student student) {
         return student.getStudentId().equals(getStudentId());
     }
@@ -93,11 +99,11 @@ public class Allocation {
 
     @Override
     public String toString() {
-        return getFloor() +
-                " Floor: " +
-                getRoomNumber() +
-                " Room Number: " +
-                getStudentId() +
-                " Student ID: ";
+        return getFloor()
+                + " Floor: "
+                + getRoomNumber()
+                + " Room Number: "
+                + getStudentId()
+                + " Student ID: ";
     }
 }

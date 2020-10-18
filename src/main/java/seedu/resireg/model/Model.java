@@ -91,6 +91,11 @@ public interface Model {
     boolean isAllocated(Student student);
 
     /**
+     * Returns true if an allocation with the {@code room} exists in the address book.
+     */
+    boolean isAllocated(Room room);
+
+    /**
      * Replaces the given room {@code target} with {@code editedRoom}.
      * {@code target} must exist in the address book.
      * The room identity of {@code editedStudent} must not be the same as another existing room
@@ -102,11 +107,6 @@ public interface Model {
      * Returns true if a room with the same data as {@code room} exists in the address book.
      */
     boolean hasRoom(Room room);
-
-    /**
-     * Returns true if an allocation with the {@code room} exists in the address book.
-     */
-    boolean isAllocated(Room room);
 
     /**
      * Returns true if an allocation with the same identity as {@code allocation} exists in the address book.

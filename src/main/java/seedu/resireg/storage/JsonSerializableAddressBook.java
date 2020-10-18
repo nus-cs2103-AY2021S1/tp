@@ -12,8 +12,8 @@ import seedu.resireg.commons.exceptions.IllegalValueException;
 import seedu.resireg.model.AddressBook;
 import seedu.resireg.model.ReadOnlyAddressBook;
 import seedu.resireg.model.room.Room;
-import seedu.resireg.model.student.Student;
 import seedu.resireg.model.allocation.Allocation;
+import seedu.resireg.model.student.Student;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.

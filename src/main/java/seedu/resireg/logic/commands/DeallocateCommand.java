@@ -10,7 +10,6 @@ import seedu.resireg.commons.core.index.Index;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.allocation.Allocation;
-import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
 
 

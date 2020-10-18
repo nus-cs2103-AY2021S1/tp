@@ -1,17 +1,17 @@
 package seedu.resireg.model.allocation;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.resireg.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.resireg.model.allocation.exceptions.DuplicateAllocationException;
 import seedu.resireg.model.allocation.exceptions.AllocationNotFoundException;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
-
-import java.util.Iterator;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.resireg.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * A list of allocations that enforces uniqueness between its elements and does not allow nulls.
@@ -37,6 +37,31 @@ public class UniqueAllocationList implements Iterable<Allocation> {
     public boolean contains(Allocation toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameAllocation);
+    }
+
+    /**
+     * Returns true if the allocation list contains the {@code student} identifier.
+     */
+    public boolean contains(Student student) {
+        for (Allocation allocation : internalList) {
+            if (allocation.getStudentId().equals(student.getStudentId())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns true if the allocation list contains the {@code room} identifier.
+     */
+    public boolean contains(Room room) {
+        for (Allocation allocation : internalList) {
+            if (allocation.getFloor().equals(room.getFloor())
+                    && allocation.getRoomNumber().equals(room.getRoomNumber())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -99,31 +124,6 @@ public class UniqueAllocationList implements Iterable<Allocation> {
             throw new DuplicateAllocationException();
         }
         internalList.setAll(allocations);
-    }
-
-    /**
-     * Returns true if the allocation list contains the {@code student} identifier.
-     */
-    public boolean contains(Student student) {
-        for (Allocation allocation : internalList) {
-            if (allocation.getStudentId().equals(student.getStudentId())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Returns true if the allocation list contains the {@code room} identifier.
-     */
-    public boolean contains(Room room) {
-        for (Allocation allocation : internalList) {
-            if (allocation.getFloor().equals(room.getFloor())
-                    && allocation.getRoomNumber().equals(room.getRoomNumber())) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**

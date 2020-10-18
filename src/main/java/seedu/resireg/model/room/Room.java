@@ -8,7 +8,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.resireg.model.room.roomtype.RoomType;
-import seedu.resireg.model.student.Student;
 import seedu.resireg.model.tag.Tag;
 
 /**

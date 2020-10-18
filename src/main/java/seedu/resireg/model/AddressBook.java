@@ -128,6 +128,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         return allocations.contains(student);
     }
 
+    /**
+     * Returns true if an allocation relating to {@code room} exists in the address book.
+     */
+    public boolean isAllocated(Room room) {
+        requireNonNull(room);
+        return allocations.contains(room);
+    }
+
+
     //// room-level operations
 
     /**
@@ -164,15 +173,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removeRoom(Room key) {
         rooms.remove(key);
     }
-
-    /**
-     * Returns true if an allocation relating to {@code room} exists in the address book.
-     */
-    public boolean isAllocated(Room room) {
-        requireNonNull(room);
-        return allocations.contains(room);
-    }
-
 
     //// allocation-level operations
 

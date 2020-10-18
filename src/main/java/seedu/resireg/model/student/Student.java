@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.faculty.Faculty;
 import seedu.resireg.model.tag.Tag;
 
