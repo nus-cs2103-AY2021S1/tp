@@ -15,7 +15,10 @@ Open this document in a modern internet browser (Mozilla Firefox, Google Chrome,
 :bulb: **Tip:** This indicates that the following text consists of tips to better utilise MG
 
 </div>
-<div markdown="block" class="alert alert-info"></div>
+**:information_source: Notes about the command format:**<br>
+<div markdown="block" class="alert alert-info">
+
+
 
 This indicates important reference notes for the current feature we are looking at
 
