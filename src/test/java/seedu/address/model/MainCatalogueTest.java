@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_BOT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_B;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_A;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_DG;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_HANG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProjects.APEAKAPP;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
@@ -51,8 +51,8 @@ public class MainCatalogueTest {
     public void resetData_withDuplicateProjects_throwsDuplicateProjectException() {
         // Two projects with the same identity fields
         Project editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(
-            VALID_PROJECT_DESCRIPTION_BOT).withTags(
-            VALID_PROJECT_TAG_HANG)
+            VALID_PROJECT_DESCRIPTION_B).withTags(
+            VALID_PROJECT_TAG_A)
                 .withTasks(VALID_PROJECT_TAG_DG)
                 .build();
         List<Project> newProjects = Arrays.asList(APEAKAPP, editedAlice);
@@ -82,8 +82,8 @@ public class MainCatalogueTest {
     public void hasProject_projectWithSameIdentityFieldsInMainCatalogue_returnsTrue() {
         mainCatalogue.addProject(APEAKAPP);
         Project editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(
-            VALID_PROJECT_DESCRIPTION_BOT).withTags(
-            VALID_PROJECT_TAG_HANG)
+            VALID_PROJECT_DESCRIPTION_B).withTags(
+            VALID_PROJECT_TAG_A)
                 .withTasks(VALID_PROJECT_TAG_DG)
                 .build();
         assertTrue(mainCatalogue.hasProject(editedAlice));

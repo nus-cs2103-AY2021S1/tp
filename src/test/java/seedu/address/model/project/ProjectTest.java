@@ -2,11 +2,11 @@ package seedu.address.model.project;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_BOT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_BOT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_B;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_B;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_B;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_A;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_DG;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_HANG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REPOURL_B;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_MODEL;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -35,28 +35,28 @@ public class ProjectTest {
 
         // different deadline and repoUrl -> returns false
         Project editedAlice = new ProjectBuilder(APEAKAPP)
-                .withDeadline(VALID_DEADLINE_BOT).withRepoUrl(VALID_REPOURL_B).build();
+                .withDeadline(VALID_DEADLINE_B).withRepoUrl(VALID_REPOURL_B).build();
         assertFalse(APEAKAPP.isSameProject(editedAlice));
 
         // different name -> returns false
-        editedAlice = new ProjectBuilder(APEAKAPP).withProjectName(VALID_PROJECT_NAME_BOT).build();
+        editedAlice = new ProjectBuilder(APEAKAPP).withProjectName(VALID_PROJECT_NAME_B).build();
         assertFalse(APEAKAPP.isSameProject(editedAlice));
 
         // same name, same deadline, different attributes -> returns true
         editedAlice = new ProjectBuilder(APEAKAPP).withRepoUrl(VALID_REPOURL_B).withProjectDescription(
-            VALID_PROJECT_DESCRIPTION_BOT)
-                .withTags(VALID_PROJECT_TAG_HANG).withTasks(VALID_PROJECT_TAG_DG).build();
+            VALID_PROJECT_DESCRIPTION_B)
+                .withTags(VALID_PROJECT_TAG_A).withTasks(VALID_PROJECT_TAG_DG).build();
         assertTrue(APEAKAPP.isSameProject(editedAlice));
 
         // same name, same repoUrl, different attributes -> returns true
-        editedAlice = new ProjectBuilder(APEAKAPP).withDeadline(VALID_DEADLINE_BOT)
-                .withProjectDescription(VALID_PROJECT_DESCRIPTION_BOT)
-                .withTags(VALID_PROJECT_TAG_HANG).withTasks(VALID_PROJECT_TAG_DG).build();
+        editedAlice = new ProjectBuilder(APEAKAPP).withDeadline(VALID_DEADLINE_B)
+                .withProjectDescription(VALID_PROJECT_DESCRIPTION_B)
+                .withTags(VALID_PROJECT_TAG_A).withTasks(VALID_PROJECT_TAG_DG).build();
         assertTrue(APEAKAPP.isSameProject(editedAlice));
 
         // same name, same deadline, same repoUrl, different attributes -> returns true
-        editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(VALID_PROJECT_DESCRIPTION_BOT).withTags(
-            VALID_PROJECT_TAG_HANG)
+        editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(VALID_PROJECT_DESCRIPTION_B).withTags(
+            VALID_PROJECT_TAG_A)
                 .withTasks(VALID_PROJECT_TAG_DG).build();
         assertTrue(APEAKAPP.isSameProject(editedAlice));
     }
@@ -80,11 +80,11 @@ public class ProjectTest {
         assertFalse(APEAKAPP.equals(BOT));
 
         // different name -> returns false
-        Project editedAlice = new ProjectBuilder(APEAKAPP).withProjectName(VALID_PROJECT_NAME_BOT).build();
+        Project editedAlice = new ProjectBuilder(APEAKAPP).withProjectName(VALID_PROJECT_NAME_B).build();
         assertFalse(APEAKAPP.equals(editedAlice));
 
         // different deadline -> returns false
-        editedAlice = new ProjectBuilder(APEAKAPP).withDeadline(VALID_DEADLINE_BOT).build();
+        editedAlice = new ProjectBuilder(APEAKAPP).withDeadline(VALID_DEADLINE_B).build();
         assertFalse(APEAKAPP.equals(editedAlice));
 
         // different repoUrl -> returns false
@@ -92,11 +92,11 @@ public class ProjectTest {
         assertFalse(APEAKAPP.equals(editedAlice));
 
         // different address -> returns false
-        editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(VALID_PROJECT_DESCRIPTION_BOT).build();
+        editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(VALID_PROJECT_DESCRIPTION_B).build();
         assertFalse(APEAKAPP.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new ProjectBuilder(APEAKAPP).withTags(VALID_PROJECT_TAG_HANG).build();
+        editedAlice = new ProjectBuilder(APEAKAPP).withTags(VALID_PROJECT_TAG_A).build();
         assertFalse(APEAKAPP.equals(editedAlice));
 
         // different tasks -> returns false

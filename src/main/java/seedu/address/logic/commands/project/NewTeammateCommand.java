@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_PHONE;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
@@ -43,12 +42,11 @@ public class NewTeammateCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
         toAdd.addProject(project);
         project.addParticipation(toAdd);
-
 
         return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS, toAdd.getGitUserNameString()));
     }
