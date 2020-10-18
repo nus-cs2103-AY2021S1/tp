@@ -37,7 +37,8 @@ public class NewTeammateCommand extends Command {
     /**
      * Creates an new teammate that is associated with the project
      */
-    public NewTeammateCommand(String name, String gitUserName, String phone, String email, String address) throws ParseException {
+    public NewTeammateCommand(String name, String gitUserName, String phone, String email, String address)
+        throws ParseException {
         requireAllNonNull(name, gitUserName, phone, email, address);
 
         PersonName personName = ParsePersonUtil.parsePersonName(name);

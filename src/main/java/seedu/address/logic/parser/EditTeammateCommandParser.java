@@ -51,7 +51,8 @@ public class EditTeammateCommandParser implements Parser<EditTeammateCommand> {
                 argMultimap.getValue(PREFIX_TEAMMATE_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_TEAMMATE_PHONE).isPresent()) {
-            editTeammateDescriptor.setPhone(ParsePersonUtil.parsePhone(argMultimap.getValue(PREFIX_TEAMMATE_PHONE).get()));
+            editTeammateDescriptor.setPhone(ParsePersonUtil.parsePhone(argMultimap.getValue(PREFIX_TEAMMATE_PHONE)
+                .get()));
         }
         if (argMultimap.getValue(PREFIX_TEAMMATE_EMAIL).isPresent()) {
             editTeammateDescriptor.setEmail(ParsePersonUtil.parseEmail(argMultimap
@@ -79,7 +80,8 @@ public class EditTeammateCommandParser implements Parser<EditTeammateCommand> {
         if (teammates.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> teammateSet = teammates.size() == 1 && teammates.contains("") ? Collections.emptySet() : teammates;
+        Collection<String> teammateSet = teammates.size() == 1 && teammates.contains("") ? Collections.emptySet()
+            : teammates;
         return Optional.of(ParserUtil.parseTasks(teammates));
     }
 }

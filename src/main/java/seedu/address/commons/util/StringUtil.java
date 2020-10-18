@@ -66,6 +66,13 @@ public class StringUtil {
         }
     }
 
+    /**
+     * Returns true if {@code s} represents an Integer
+     * e.g. 1, 2, 3, ..., {@code Integer.MAX_VALUE} <br>
+     * Will return false for any non Integer input
+     * @param s Must be string
+     * @return boolean
+     */
     public static boolean isInteger(String s) {
         requireNonNull(s);
 

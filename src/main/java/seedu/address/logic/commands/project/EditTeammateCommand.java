@@ -224,7 +224,7 @@ public class EditTeammateCommand extends Command {
         public Optional<HashMap<ProjectName, Participation>> getParticipation() {
             return (listOfParticipations != null)
                 ? Optional.of(listOfParticipations)
-                :Optional.empty();
+                : Optional.empty();
         }
 
         @Override
