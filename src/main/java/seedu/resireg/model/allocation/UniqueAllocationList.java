@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.resireg.model.allocation.exceptions.DuplicateAllocationException;
 import seedu.resireg.model.allocation.exceptions.AllocationNotFoundException;
+import seedu.resireg.model.allocation.exceptions.DuplicateAllocationException;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
 
