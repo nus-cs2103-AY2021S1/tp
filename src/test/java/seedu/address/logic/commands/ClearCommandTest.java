@@ -33,7 +33,7 @@ public class ClearCommandTest {
         model.setOrderManager(new OrderManager());
         OrderItem orderItem = new OrderItem(new Food("Prata", 1, new HashSet<>()), 1);
         model.addOrderItem(orderItem);
-        model.deleteOrderItem(orderItem);
+        model.clearOrder();
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_EMPTY_ORDER, expectedModel);
     }
 

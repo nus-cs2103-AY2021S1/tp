@@ -212,7 +212,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteOrderItem(OrderItem target) {
+    public void removeOrderItem(OrderItem target) {
         orderManager.removeOrderItem(target);
     }
 

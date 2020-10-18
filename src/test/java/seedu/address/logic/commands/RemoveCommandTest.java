@@ -38,7 +38,7 @@ public class RemoveCommandTest {
         RemoveCommand removeCommand = new RemoveCommand(first);
         List<OrderItem> lastShownList = model.getFilteredOrderItemList();
         OrderItem orderItemToRemove = lastShownList.get(first.getZeroBased());
-        String expectedMessage = String.format(RemoveCommand.MESSAGE_DELETE_ORDERITEM_SUCCESS, orderItemToRemove);
+        String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_ORDERITEM_SUCCESS, orderItemToRemove);
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -51,10 +51,12 @@ public class RemoveCommandTest {
         Index first = Index.fromOneBased(1);
         RemoveCommand removeCommand = new RemoveCommand(first, 1);
         OrderItem item = new OrderItem("Hashybrownies", 4.20, new HashSet<>(), 2);
-        String expectedMessage = String.format(RemoveCommand.MESSAGE_CUT_ORDERITEM_SUCCESS, item);
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.addOrderItem(item);
+
+        item.setQuantity(1);
+        String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_ORDERITEM_SUCCESS, item);
 
         assertCommandSuccess(removeCommand, model, expectedMessage, expectedModel);
     }
@@ -66,18 +68,6 @@ public class RemoveCommandTest {
         RemoveCommand removeCommand = new RemoveCommand(outOfBoundIndex);
 
         assertCommandFailure(removeCommand, model, ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void execute_invalidQuantity_throwsCommandException() {
-        Model model = initialiseModel();
-        Index first = Index.fromOneBased(1);
-        // ensures that Index is still in bounds of order item list
-        assertTrue(first.getZeroBased() < model.getFilteredOrderItemList().size());
-
-        RemoveCommand removeCommand = new RemoveCommand(first, 0);
-
-        assertCommandFailure(removeCommand, model, ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_QUANTITY);
     }
 
     @Test
