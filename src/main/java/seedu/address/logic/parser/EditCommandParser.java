@@ -26,13 +26,14 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_EDIT_NAME, PREFIX_NAME, PREFIX_ZOOM_LINK,
-                PREFIX_TAG);
+                PREFIX_TAG, PREFIX_MODULAR_CREDITS);
         ArgumentMultimap argMultimap = tokenizer.tokenize();
 
         String moduleName;
         moduleName = argMultimap.getValue(PREFIX_EDIT_NAME).get();
 
         EditModuleDescriptor editModuleDescriptor = new EditModuleDescriptor();
+
 
         /*if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editModuleDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
@@ -53,7 +54,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_ZOOM_LINK).isPresent()) {
             editModuleDescriptor.setZoomLink(ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_ZOOM_LINK).get()));
         }
-
+        if (argMultimap.getValue(PREFIX_MODULAR_CREDITS).isPresent()) {
+            editModuleDescriptor.setModularCredits(ParserUtil
+                    .parseModularCredits(argMultimap.getValue(PREFIX_MODULAR_CREDITS).get()));
+        }
         if (!editModuleDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }

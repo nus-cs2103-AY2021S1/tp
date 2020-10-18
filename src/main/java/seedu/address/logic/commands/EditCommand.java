@@ -10,6 +10,7 @@ import java.util.*;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
@@ -92,7 +93,9 @@ public class EditCommand extends Command {
         ModuleName moduleName = editModuleDescriptor.getModuleName().orElse(moduleToEdit.getName());
         ZoomLink zoomLink = editModuleDescriptor.getZoomLink().orElse(moduleToEdit.getLink());
         GradeTracker gradeTracker = editModuleDescriptor.getGradeTracker().orElse((moduleToEdit.getGradeTracker()));
-        return new Module(moduleName, zoomLink, gradeTracker, updatedTags);
+        ModularCredits modularCredits = editModuleDescriptor
+                .getModularCredits().orElse((moduleToEdit.getModularCredits()));
+        return new Module(moduleName, zoomLink, gradeTracker, updatedTags, modularCredits);
 
     }
 
@@ -130,6 +133,7 @@ public class EditCommand extends Command {
         private ModuleName moduleName;
         private ZoomLink zoomLink;
         private GradeTracker gradeTracker;
+        private ModularCredits modularCredits;
 
         public EditModuleDescriptor() {}
 
@@ -144,6 +148,7 @@ public class EditCommand extends Command {
             setModuleName(toCopy.moduleName);
             setZoomLink(toCopy.zoomLink);
             setGradeTracker(toCopy.gradeTracker);
+            setModularCredits(toCopy.modularCredits);
         }
 
         /*
@@ -151,7 +156,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(moduleName, zoomLink);
+            return CollectionUtil.isAnyNonNull(moduleName, zoomLink, modularCredits);
         }
 
         /*public void setName(Name name) {
@@ -200,6 +205,14 @@ public class EditCommand extends Command {
             this.gradeTracker = gradeTracker;
         }
 
+        /**
+         * Sets {@code modularCredits} to this object's {@code modularCredits}.
+         * A defensive copy of {@code modularCredits} is used internally.
+         */
+        public void setModularCredits(ModularCredits modularCredits) {
+            this.modularCredits = modularCredits;
+        }
+
         public Optional<ModuleName> getModuleName() {
             return Optional.ofNullable(moduleName);
         }
@@ -210,6 +223,15 @@ public class EditCommand extends Command {
 
         public Optional<GradeTracker> getGradeTracker() {
             return Optional.ofNullable(gradeTracker);
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<ModularCredits> getModularCredits() {
+            return Optional.ofNullable(modularCredits);
         }
 
         @Override
@@ -232,7 +254,8 @@ public class EditCommand extends Command {
             //       && getTags().equals(e.getTags());
             return getModuleName().equals(e.getModuleName())
                     && getZoomLink().equals(e.getZoomLink())
-                    && getGradeTracker().equals(e.getGradeTracker());
+                    && getGradeTracker().equals(e.getGradeTracker())
+                    && getModularCredits().equals(e.getModularCredits());
         }
     }
 }
