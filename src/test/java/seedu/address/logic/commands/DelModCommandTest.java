@@ -182,7 +182,17 @@ class DelModCommandTest {
         }
 
         @Override
+        public boolean isEmptyPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean isEmptyModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearContacts() {
             throw new AssertionError("This method should not be called.");
         }
 

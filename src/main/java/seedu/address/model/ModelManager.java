@@ -15,6 +15,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -110,6 +111,16 @@ public class ModelManager implements Model {
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public boolean isEmptyPersonList() {
+        return addressBook.getPersonList().isEmpty();
+    }
+
+    @Override
+    public void clearContacts() {
+        addressBook.clearContacts();
     }
 
     @Override
