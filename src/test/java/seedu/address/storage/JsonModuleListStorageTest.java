@@ -6,7 +6,6 @@ import static seedu.address.testutil.Assert.assertThrows;*/
 // import static seedu.address.testutil.TypicalPersons.ALICE;
 // import static seedu.address.testutil.TypicalPersons.HOON;
 // import static seedu.address.testutil.TypicalPersons.IDA;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 //import java.io.IOException;
 import java.nio.file.Path;
@@ -16,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 //import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ModuleList;
+
 //import seedu.address.model.ReadOnlyAddressBook;
 
 public class JsonModuleListStorageTest {
@@ -63,7 +62,7 @@ public class JsonModuleListStorageTest {
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        ModuleList original = getTypicalAddressBook();
+        // ModuleList original = getTypicalContactList();
         JsonModuleListStorage jsonAddressBookStorage = new JsonModuleListStorage(filePath);
 
         // Save in new file and read back

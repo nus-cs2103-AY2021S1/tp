@@ -28,6 +28,7 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
+    public static final String VALID_TELEGRAM_AMY = "@amytele";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
@@ -45,7 +46,8 @@ public class CommandTestUtil {
 
     public static final String VALID_MODULENAME_CS2103T = "CS2103T";
     public static final String VALID_MODULENAME_ES2660 = "ES2660";
-    public static final String VALID_ZOOMLINK_CS2103T = "www.cs2103tzoom.us";
+    public static final String VALID_ZOOMLINK_SAMPLE =
+            "https://nus-sg.zoom.us/j/99432271156?pwd=SW4wRkcvYXVuVlpGSWl2b3NjaE1Sdz09";
     public static final String VALID_ZOOMLINK_ES2660 = "www.es2660zoom.us";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

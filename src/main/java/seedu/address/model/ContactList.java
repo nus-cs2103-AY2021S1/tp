@@ -63,6 +63,7 @@ public class ContactList implements ReadOnlyContactList {
      * The contact must not already exist in the contact list.
      */
     public void addContact(Contact m) {
+        requireNonNull(m);
         contacts.add(m);
     }
     /**

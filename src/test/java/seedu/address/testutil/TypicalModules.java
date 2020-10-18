@@ -2,7 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_ES2660;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_SAMPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_ES2660;
 
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class TypicalModules {
 
     // Manually added - Modules's details found in {@code CommandTestUtil}
     public static final Module CS2103 = new ModuleBuilder().withName(VALID_MODULENAME_CS2103T)
-        .withZoomLink(VALID_ZOOMLINK_CS2103T).build();
+        .withZoomLink(VALID_ZOOMLINK_SAMPLE).build();
     public static final Module ES2660 = new ModuleBuilder().withName(VALID_MODULENAME_ES2660)
         .withZoomLink(VALID_ZOOMLINK_ES2660).build();
 
