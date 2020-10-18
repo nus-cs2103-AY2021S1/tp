@@ -202,8 +202,10 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return moduleList.equals(other.moduleList)
+                && contactList.equals(other.contactList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredModules.equals(other.filteredModules);
+                && filteredModules.equals(other.filteredModules)
+                && filteredContacts.equals(other.filteredContacts);
     }
 
 }
