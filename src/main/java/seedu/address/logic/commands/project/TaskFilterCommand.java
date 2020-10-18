@@ -17,8 +17,8 @@ import seedu.address.model.task.Task;
 /**
  * Filters tasks by assignee's name, task name or deadline.
  */
-public class FilterCommand extends Command {
-    public static final String COMMAND_WORD = "filter";
+public class TaskFilterCommand extends Command {
+    public static final String COMMAND_WORD = "filtertask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Filter and show tasks with given predicate\n"
@@ -38,7 +38,7 @@ public class FilterCommand extends Command {
      * Creates a filter command with the given predicate.
      * @param predicate the predicate used to filter tasks
      */
-    public FilterCommand(Predicate<Task> predicate) {
+    public TaskFilterCommand(Predicate<Task> predicate) {
         requireNonNull(predicate);
         this.predicate = predicate;
     }
