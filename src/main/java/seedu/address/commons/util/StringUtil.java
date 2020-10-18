@@ -14,12 +14,12 @@ public class StringUtil {
 
     /**
      * Returns true if the {@code sentence} is a subsequence of the {@code word}.
-     *   Ignores case, and a full match is not necessary.
+     *   Ignores case, and a full match is not necessary. Partial matching will be done.
      *   <br>examples:<pre>
      *       containsWordIgnoreCase("ABc def", "abc") == true
      *       containsWordIgnoreCase("ABc def", "DEF") == true
-     *       containsWordIgnoreCase("ABc def", "ab") == true
-     *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
+     *       containsWordIgnoreCase("ABc def", "gh") == false
+     *       containsWordIgnoreCase("ABc def", "AB") == true //partial matching
      *       </pre>
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty, must be a single word
@@ -46,8 +46,8 @@ public class StringUtil {
             String checkingStringLower = testString.toLowerCase();
             String checkingStringUpper = testString.toUpperCase();
 
-            subSeqFlagLower = isSubSequenceFound(preppedWordLower, checkingStringLower);
-            subSeqFlagUpper = isSubSequenceFound(preppedWordUpper, checkingStringUpper);
+            subSeqFlagLower = isSubSequencePresent(preppedWordLower, checkingStringLower);
+            subSeqFlagUpper = isSubSequencePresent(preppedWordUpper, checkingStringUpper);
             if (subSeqFlagLower || subSeqFlagUpper) {
                 checkFlag = true;
             }
@@ -55,7 +55,7 @@ public class StringUtil {
         return checkFlag;
     }
 
-    private static boolean isSubSequenceFound(String firstString, String secondString) {
+    private static boolean isSubSequencePresent(String firstString, String secondString) {
         int j = 0;
         int firstStringLength = firstString.length();
         int secondStringLength = secondString.length();
