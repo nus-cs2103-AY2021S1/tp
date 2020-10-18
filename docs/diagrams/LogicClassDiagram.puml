@@ -8,6 +8,7 @@ package Logic {
 
 package Parser {
 Interface Parser <<Interface>>
+enum "<<enumeration>>\nStatus" as Status
 Class MainCatalogueParser
 Class XYZCommandParser
 Class CliSyntax
@@ -36,6 +37,7 @@ HiddenOutside ..> Logic
 
 LogicManager .up.|> Logic
 LogicManager -->"1" MainCatalogueParser
+MainCatalogueParser .right.> Status
 MainCatalogueParser .left.> XYZCommandParser: creates >
 
 XYZCommandParser ..> XYZCommand : creates >
