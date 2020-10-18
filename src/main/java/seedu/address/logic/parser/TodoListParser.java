@@ -1,5 +1,8 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,9 +21,6 @@ import seedu.address.logic.parser.todolistparsers.DeleteTodoParser;
 import seedu.address.logic.parser.todolistparsers.EditTodoParser;
 import seedu.address.logic.parser.todolistparsers.FindTodoParser;
 import seedu.address.logic.parser.todolistparsers.ViewTodoParser;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 public class TodoListParser {
     /**
@@ -44,38 +44,38 @@ public class TodoListParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-            case AddTodoCommand.COMMAND_WORD:
-                return new AddTodoParser().parse(arguments);
+        case AddTodoCommand.COMMAND_WORD:
+            return new AddTodoParser().parse(arguments);
 
-            case EditTodoCommand.COMMAND_WORD:
-                return new EditTodoParser().parse(arguments);
+        case EditTodoCommand.COMMAND_WORD:
+            return new EditTodoParser().parse(arguments);
 
-            case DeleteTodoCommand.COMMAND_WORD:
-                return new DeleteTodoParser().parse(arguments);
+        case DeleteTodoCommand.COMMAND_WORD:
+            return new DeleteTodoParser().parse(arguments);
 
-            //case ClearCommand.COMMAND_WORD:
-            //return new ClearCommand();
+        //case ClearCommand.COMMAND_WORD:
+        //return new ClearCommand();
 
-            case FindTodoCommand.COMMAND_WORD:
-                return new FindTodoParser().parse(arguments);
+        case FindTodoCommand.COMMAND_WORD:
+            return new FindTodoParser().parse(arguments);
 
-            case ListTodoCommand.COMMAND_WORD:
-                return new ListTodoCommand();
+        case ListTodoCommand.COMMAND_WORD:
+            return new ListTodoCommand();
 
-            //case ExitCommand.COMMAND_WORD:
-            //return new ExitCommand();
+        //case ExitCommand.COMMAND_WORD:
+        //return new ExitCommand();
 
-            case HelpTodoCommand.COMMAND_WORD:
-                return new HelpTodoCommand();
+        case HelpTodoCommand.COMMAND_WORD:
+            return new HelpTodoCommand();
 
-            case ViewTodoCommand.COMMAND_WORD:
-                return new ViewTodoParser().parse(arguments);
+        case ViewTodoCommand.COMMAND_WORD:
+            return new ViewTodoParser().parse(arguments);
 
-            //case AddAssignmentCommand.COMMAND_WORD:
-            //return new AddAssignmentParser().parse(arguments);
+        //case AddAssignmentCommand.COMMAND_WORD:
+        //return new AddAssignmentParser().parse(arguments);
 
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 }
