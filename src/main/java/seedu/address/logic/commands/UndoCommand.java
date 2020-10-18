@@ -20,7 +20,7 @@ public class UndoCommand extends Command {
     private final HistoryStack historyStack;
 
     /**
-     * Creates an UndoCommand that undos the last action
+     * Creates an UndoCommand that undoes the last action
      */
     public UndoCommand() {
         historyStack = HistoryStack.getHistoryStack();

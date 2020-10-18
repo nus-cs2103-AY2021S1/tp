@@ -46,6 +46,10 @@ public class HistoryStack {
         return historyStack.size();
     }
 
+    public void clearHistory() {
+        historyStack.clear();
+    }
+
     @Override
     public String toString() {
         return Arrays.toString(historyStack.toArray());
