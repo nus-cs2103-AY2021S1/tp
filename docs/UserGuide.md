@@ -1,12 +1,27 @@
 ---
-layout: page
-title: User Guide
+# NUStorage User Guide
+
+By: `CS2103T-T11-3` Since:`September 2019`
+
+### Table of content
+
+1. [Introduction](#introduction)
+1. [Quick start](#quick-start)
+1. [Features](#features)
+    1. [Add items to inventory: `add_inventory`](#add-items-to-inventory---add-inventory-)
+    1. [Remove items from inventory: `delete_inventory`](#remove-items-from-inventory---delete-inventory-)
+    1. [Edit record in inventory: `edit_inventory`](#edit-record-in-inventory---edit-inventory-)
+    1. [List inventory records: `list_inventory`](#list-inventory-records---list-inventory-)
+    1. [Add finance records: `add_finance`](#add-finance-records---add-finance-)
+    1. [Delete finance records: `delete_finance`](#delete-finance-records---delete-finance-)
+    1. [List finance records: `list_finance`](#list-finance-records---list-finance-)
+    1. [Quit the programme: `exit`](#quit-the-programme---exit-)
+1. [Command summary](#command-summary)
+
 ---
 
+## Introduction
 NUStorage is a desktop application for __managing inventory, finance transactions and accounts__.
-
-* Table of Contents
-{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -15,7 +30,7 @@ NUStorage is a desktop application for __managing inventory, finance transaction
 1. Make sure you have Java 11 installed
 1. Download the NUStorage.jar from <here>.
 1. Copy the jar file to the folder you want to use as the home folder for your application.
-1. Double-click on the jar file to start the app. The GUI should look something like this: <insert picture here>
+1. Double-click on the jar file to start the app. The GUI should look something like this: ![Startup of NUStorage](./images/NUStorage.png)
 1. Type the command in the command box and press enter to execute.
     - Some commands you can try are:
         - `list_inventory` to list inventory records
@@ -64,7 +79,7 @@ Format: `edit_inventory INDEX [i/ITEM_NAME] [q/QUANTITY]`
 
 
 #### List inventory records: `list_inventory`
-Display all records in the current inventory
+Display all records in the inventory
 
 Format: `list_inventory`
 
