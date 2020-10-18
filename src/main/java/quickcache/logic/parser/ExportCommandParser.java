@@ -2,6 +2,9 @@ package quickcache.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import quickcache.commons.core.Messages;
 import quickcache.logic.commands.ExportCommand;
 import quickcache.logic.parser.exceptions.ParseException;
@@ -28,6 +31,7 @@ public class ExportCommandParser implements Parser<ExportCommand> {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                 ExportCommand.MESSAGE_USAGE), pe);
         }
-        return new ExportCommand(fileName);
+        Path path = Paths.get("export", fileName);
+        return new ExportCommand(path);
     }
 }
