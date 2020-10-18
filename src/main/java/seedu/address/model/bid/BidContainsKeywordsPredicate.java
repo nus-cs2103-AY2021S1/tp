@@ -18,9 +18,9 @@ public class BidContainsKeywordsPredicate implements Predicate<Bid> {
     @Override
     public boolean test(Bid bid) {
         return (keywords.stream().anyMatch(keyword ->
-                StringUtil.containsWordIgnoreCase(bid.getPropertyId(), keyword)))
+                StringUtil.containsWordIgnoreCase(bid.getPropertyId().toString(), keyword)))
                 || (keywords.stream().anyMatch(keyword ->
-                StringUtil.containsWordIgnoreCase(bid.getBidderId(), keyword)));
+                StringUtil.containsWordIgnoreCase(bid.getBidderId().toString(), keyword)));
     }
 
     @Override

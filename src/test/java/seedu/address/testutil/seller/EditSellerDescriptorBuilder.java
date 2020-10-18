@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.sellercommands.EditSellerCommand.EditSellerDescriptor;
 import seedu.address.model.id.Id;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.seller.Seller;
@@ -68,7 +69,7 @@ public class EditSellerDescriptorBuilder {
      * that we are building.
      */
     public EditSellerDescriptorBuilder withId(String id) {
-        descriptor.setId(new Id(id));
+        descriptor.setId(new SellerId(id));
         return this;
     }
 

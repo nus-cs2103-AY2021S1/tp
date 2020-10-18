@@ -14,6 +14,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.id.IdParserUtil;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -40,10 +41,10 @@ public class EditBidCommandParser implements Parser<EditBidCommand> {
 
         EditBidDescriptor editBidDescriptor = new EditBidDescriptor();
         if (argMultimap.getValue(PREFIX_PROPERTY_ID).isPresent()) {
-            editBidDescriptor.setPropertyId(ParserUtil.parsePropertyId(argMultimap.getValue(PREFIX_PROPERTY_ID).get()));
+            editBidDescriptor.setPropertyId(IdParserUtil.parsePropertyId(argMultimap.getValue(PREFIX_PROPERTY_ID).get()));
         }
         if (argMultimap.getValue(PREFIX_CLIENT).isPresent()) {
-            editBidDescriptor.setBidderId(ParserUtil.parseBidderId(argMultimap.getValue(PREFIX_CLIENT).get()));
+            editBidDescriptor.setBidderId(IdParserUtil.parseBidderId(argMultimap.getValue(PREFIX_CLIENT).get()));
         }
         if (argMultimap.getValue(PREFIX_MONEY).isPresent()) {
             editBidDescriptor.setBidAmount(ParserUtil.parseBidAmount(argMultimap.getValue(PREFIX_MONEY).get()));

@@ -125,7 +125,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredBidList().size());
 
         Bid bid = model.getFilteredBidList().get(targetIndex.getZeroBased());
-        final String[] splitName = bid.getPropertyId().split("\\s+");
+        final String[] splitName = bid.getPropertyId().toString().split("\\s+");
         model.updateFilteredBidList(new BidContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredBidList().size());

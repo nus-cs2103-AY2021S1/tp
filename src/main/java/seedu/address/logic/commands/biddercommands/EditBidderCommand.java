@@ -20,7 +20,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.EntityType;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.id.Id;
+import seedu.address.model.id.BidderId;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.bidder.Bidder;
@@ -89,8 +89,8 @@ public class EditBidderCommand extends Command {
         Name updatedName = editBidderDescriptor.getName().orElse(bidderToEdit.getName());
         Phone updatedPhone = editBidderDescriptor.getPhone().orElse(bidderToEdit.getPhone());
         Set<Tag> updatedTags = editBidderDescriptor.getTags().orElse(bidderToEdit.getTags());
-        Id updatedId = editBidderDescriptor.getId().orElse(bidderToEdit.getId());
-        return new Bidder(updatedName, updatedPhone, updatedTags, updatedId);
+        BidderId updatedBidderId = editBidderDescriptor.getId().orElse(bidderToEdit.getId());
+        return new Bidder(updatedName, updatedPhone, updatedTags, updatedBidderId);
     }
 
 
@@ -122,7 +122,7 @@ public class EditBidderCommand extends Command {
         private Name name;
         private Phone phone;
         private Set<Tag> tags;
-        private Id id;
+        private BidderId id;
 
         public EditBidderDescriptor() {}
 
@@ -134,7 +134,7 @@ public class EditBidderCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setTags(toCopy.tags);
-            setId(toCopy.id);
+            setBidderId(toCopy.id);
         }
 
         /**
@@ -177,11 +177,11 @@ public class EditBidderCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
-        public void setId(Id id) {
+        public void setBidderId(BidderId id) {
             this.id = id;
         }
 
-        public Optional<Id> getId() {
+        public Optional<BidderId> getId() {
             return (id != null) ? Optional.of(id) : Optional.empty();
         }
 

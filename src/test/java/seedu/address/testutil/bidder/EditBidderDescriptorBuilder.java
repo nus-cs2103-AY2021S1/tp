@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.biddercommands.EditBidderCommand.EditBidderDescriptor;
+import seedu.address.model.id.BidderId;
 import seedu.address.model.id.Id;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -34,7 +35,7 @@ public class EditBidderDescriptorBuilder {
         descriptor.setName(bidder.getName());
         descriptor.setPhone(bidder.getPhone());
         descriptor.setTags(bidder.getTags());
-        descriptor.setId(bidder.getId());
+        descriptor.setBidderId(bidder.getId());
     }
 
     /**
@@ -68,7 +69,7 @@ public class EditBidderDescriptorBuilder {
      * that we are building.
      */
     public EditBidderDescriptorBuilder withId(String id) {
-        descriptor.setId(new Id(id));
+        descriptor.setBidderId(new BidderId(id));
         return this;
     }
 

@@ -21,6 +21,7 @@ import seedu.address.logic.commands.EntityType;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.id.Id;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.seller.Seller;
@@ -89,7 +90,7 @@ public class EditSellerCommand extends Command {
         Name updatedName = editSellerDescriptor.getName().orElse(sellerToEdit.getName());
         Phone updatedPhone = editSellerDescriptor.getPhone().orElse(sellerToEdit.getPhone());
         Set<Tag> updatedTags = editSellerDescriptor.getTags().orElse(sellerToEdit.getTags());
-        Id updatedId = editSellerDescriptor.getId().orElse(sellerToEdit.getId());
+        SellerId updatedId = editSellerDescriptor.getId().orElse(sellerToEdit.getId());
         return new Seller(updatedName, updatedPhone, updatedTags, updatedId);
     }
 
@@ -122,7 +123,7 @@ public class EditSellerCommand extends Command {
         private Name name;
         private Phone phone;
         private Set<Tag> tags;
-        private Id id;
+        private SellerId id;
 
         public EditSellerDescriptor() {}
 
@@ -177,11 +178,11 @@ public class EditSellerCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
-        public void setId(Id id) {
+        public void setId(SellerId id) {
             this.id = id;
         }
 
-        public Optional<Id> getId() {
+        public Optional<SellerId> getId() {
             return (id != null) ? Optional.of(id) : Optional.empty();
         }
 
