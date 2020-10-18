@@ -2,7 +2,11 @@ package seedu.fma.model.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.fma.model.util.SampleDataUtil.getSampleExercises;
 
+import java.util.Arrays;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.fma.model.LogBook;
@@ -12,6 +16,10 @@ import seedu.fma.model.log.Log;
 import seedu.fma.model.log.Rep;
 
 class SampleDataUtilTest {
+    @BeforeEach
+    public void setUp() {
+        new LogBook().setExercises(Arrays.asList(getSampleExercises()));
+    }
 
     @Test
     void testGetSampleLogs() {
@@ -36,8 +44,8 @@ class SampleDataUtilTest {
             new Exercise(new Name("Run 100m"), 30),
             new Exercise(new Name("Stretch"), 20),
         };
-        for (int i = 0; i < SampleDataUtil.getSampleExercises().length; i++) {
-            assertEquals(sampleExercises[i], SampleDataUtil.getSampleExercises()[i]);
+        for (int i = 0; i < getSampleExercises().length; i++) {
+            assertEquals(sampleExercises[i], getSampleExercises()[i]);
         }
     }
 

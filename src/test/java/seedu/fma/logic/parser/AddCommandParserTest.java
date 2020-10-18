@@ -17,15 +17,19 @@ import static seedu.fma.logic.commands.CommandTestUtil.VALID_LOG_A;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_A;
 import static seedu.fma.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.fma.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.fma.model.util.SampleDataUtil.getSampleExercises;
 
 import java.time.Clock;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Arrays;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.fma.logic.commands.AddCommand;
+import seedu.fma.model.LogBook;
 import seedu.fma.model.log.Log;
 import seedu.fma.model.log.Rep;
 import seedu.fma.model.util.Name;
@@ -35,6 +39,11 @@ import seedu.fma.testutil.LogBuilder;
 public class AddCommandParserTest {
     private final AddCommandParser parser = new AddCommandParser();
     private final Clock fixedClock = Clock.fixed(Instant.now(), ZoneId.of("GMT+8"));
+
+    @BeforeEach
+    public void setUp() {
+        new LogBook().setExercises(Arrays.asList(getSampleExercises()));
+    }
 
     @Test
     public void parse_allFieldsPresent_success() {
