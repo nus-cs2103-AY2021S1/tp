@@ -11,15 +11,15 @@ Open this document in a modern internet browser (Mozilla Firefox, Google Chrome,
 
 
 ##  Table of Contents:
+* `Quick Start`
+* `Features`
+* `FAQ`
+* `Command summary`
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** Press Ctrl-F to open the find prompt in your browser. You can type in keywords such as `add` or `edit` to quickly navigate to those parts of the document.
 
 </div>
-* `Quick Start`
-* `Features`
-* `FAQ`
-* `Command summary`
 
 --------------------------------------------------------------------------------------------------------------------
 
