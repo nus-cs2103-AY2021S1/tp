@@ -68,6 +68,17 @@ public class Module {
     /**
      * Represents the module object constructor.
      * @param name name of module
+     * @param zoomLink zoom link attached to module
+     */
+    public Module(ModuleName name, ZoomLink zoomLink) {
+        this.name = name;
+        this.zoomLink = zoomLink;
+        this.gradeTracker = new GradeTracker();
+    }
+
+    /**
+     * Represents the module object constructor.
+     * @param name name of module
      * @param tags tag attached to module
      */
     public Module(ModuleName name, Set<Tag> tags) {
