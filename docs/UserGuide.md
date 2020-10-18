@@ -1,9 +1,9 @@
 ---
-### NUStorage User Guide
+# NUStorage User Guide
 
 By: `AY2021S1-CS2103T-T11-3` Since:`September 2020`
 
-### Table of content
+## Table of content
 - [Introduction](#introduction)
 - [Quick start](#quick-start)
 - [Features](#features)
