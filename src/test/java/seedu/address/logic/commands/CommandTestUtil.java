@@ -44,6 +44,15 @@ public class CommandTestUtil {
         NEGATIVE, NON_INTEGER, ZERO
     }
 
+    public static final EditIngredientCommand.EditIngredientDescriptor DESC_INGREDIENT_MARGARITAS;
+    public static final EditIngredientCommand.EditIngredientDescriptor DESC_INGREDIENT_NOODLE;
+
+    public static final EditRecipeCommand.EditRecipeDescriptor DESC_MARGARITAS;
+    public static final EditRecipeCommand.EditRecipeDescriptor DESC_NOODLE;
+
+    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
+
     //SANDWICH
     public static final String VALID_INGREDIENT_SANDWICH = "Kaiser Rolls Or Other Bread";
     public static final String VALID_QUANTITY_SANDWICH = "2 whole";
@@ -145,7 +154,15 @@ public class CommandTestUtil {
     public static final String ZERO_RECIPE_INDEX = "0";
 
     public static final String INGREDIENT_INDEX = "1";
+    public static final String RECIPE_INDEX = "1";
 
+
+    /**
+     * Generate the arguments of a recipe with all recipe fields except the recipe
+     * field taken as argument.
+     * @param field recipe field to leave out of the recipe.
+     * @return
+     */
     public static final String missingIngredientField(Field field) {
         switch (field) {
         case INDEX:
@@ -160,6 +177,12 @@ public class CommandTestUtil {
         }
     }
 
+    /**
+     * Generate the arguments of a recipe with all valid recipe fields except one
+     * invalid field specified by the argument.
+     * @param field recipe field to be invalid in the recipe.
+     * @return
+     */
     public static final String invalidIngredientField(Field field) {
         switch (field) {
         case INGREDIENT_NAME:
@@ -174,6 +197,12 @@ public class CommandTestUtil {
         }
     }
 
+    /**
+     * Generate the arguments of a ingredient with three types of invalid index:
+     * zero index, non-integer index and negative index specified by the argument
+     * @param num type of invalid index.
+     * @return String.
+     */
     public static final String invalidIngredientIndexField(Number num) {
         switch (num) {
         case ZERO:
@@ -188,51 +217,64 @@ public class CommandTestUtil {
         }
     }
 
-    public static final String RECIPE_INDEX = "1";
-
+    /**
+     * Generate the arguments of a recipe with all valid fields except one missing
+     * field specified by the argument.
+     * @param field type of field to omit
+     * @return String
+     */
     public static final String missingRecipeField(Field field) {
         switch (field) {
-            case INGREDIENT:
-                return RECIPE_INDEX + NAME_DESC_MARGARITAS + MISSING_INGREDIENT_DESC + CALORIES_DESC_MARGARITAS
-                        + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
-            case RECIPE_NAME:
-                return RECIPE_INDEX + MISSING_NAME_DESC + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS
-                        + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
-            case TAG:
-                return RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS
-                        + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + MISSING_TAG_DESC;
-            case CALORIES:
-                return RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + MISSING_CALORIES_DESC
-                        + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
+        case INGREDIENT:
+            return RECIPE_INDEX + NAME_DESC_MARGARITAS + MISSING_INGREDIENT_DESC + CALORIES_DESC_MARGARITAS
+                    + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
+        case RECIPE_NAME:
+            return RECIPE_INDEX + MISSING_NAME_DESC + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS
+                + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
+        case TAG:
+            return RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS
+                + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + MISSING_TAG_DESC;
+        case CALORIES:
+            return RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + MISSING_CALORIES_DESC
+                + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
 
-            case INSTRUCTIONS:
-                return RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS
-                        + MISSING_INSTRUCTIONS_DESC + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
+        case INSTRUCTIONS:
+            return RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS
+                + MISSING_INSTRUCTIONS_DESC + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
 
-            case RECIPE_IMAGE:
-                return RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS
-                        + INSTRUCTION_DESC_MARGARITAS + MISSING_IMAGE_DESC + TAG_DESC_MARGARITAS;
+        case RECIPE_IMAGE:
+            return RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS
+                + INSTRUCTION_DESC_MARGARITAS + MISSING_IMAGE_DESC + TAG_DESC_MARGARITAS;
 
-            case INDEX:
-                return NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS
-                        + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
+        case INDEX:
+            return NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS
+                + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
 
-            default:
-                    System.out.println("Not supposed to enter here");
-                    return null;
+        default:
+            System.out.println("Not supposed to enter here");
+            return null;
         }
     }
 
+    /**
+     * Generate the arguments of a recipe with three types of invalid index:
+     * zero index, non-integer index and negative index specified by the argument
+     * @param num type of invalid index.
+     * @return String.
+     */
     public static final String invalidRecipeIndexField(Number num) {
         switch (num) {
         case ZERO:
-            return ZERO_RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS
-                    + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
+            return ZERO_RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS
+                    + CALORIES_DESC_MARGARITAS + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS
+                    + TAG_DESC_MARGARITAS;
         case NON_INTEGER:
-            return NON_INTEGER_RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS
+            return NON_INTEGER_RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS
+                    + CALORIES_DESC_MARGARITAS
                     + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
         case NEGATIVE:
-            return NEGATIVE_RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS
+            return NEGATIVE_RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS
+                    + CALORIES_DESC_MARGARITAS
                     + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
         default:
             System.out.println("Should not enter here");
@@ -240,23 +282,35 @@ public class CommandTestUtil {
         }
     }
 
+    /**
+     * Generate the arguments of a ingredient with three types of invalid calorie:
+     * zero index, non-integer index and negative index specified by the argument
+     * @param num type of invalid calorie.
+     * @return String.
+     */
     public static final String invalidRecipeCalorieField(Number num) {
         switch (num) {
-            case ZERO:
-                return RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + ZERO_CALORIES_DESC
-                        + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
-            case NON_INTEGER:
-                return RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + NON_INTEGER_CALORIES_DESC
-                        + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
-            case NEGATIVE:
-                return RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + NEGATIVE_CALORIES_DESC
-                        + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
-            default:
-                System.out.println("Should not enter here");
-                return null;
+        case ZERO:
+            return RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + ZERO_CALORIES_DESC
+                    + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
+        case NON_INTEGER:
+            return RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + NON_INTEGER_CALORIES_DESC
+                    + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
+        case NEGATIVE:
+            return RECIPE_INDEX + NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + NEGATIVE_CALORIES_DESC
+                    + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
+        default:
+            System.out.println("Should not enter here");
+            return null;
         }
     }
 
+    /**
+     * Generate the arguments of a recipe with all valid fields except one
+     * which is specified by the argument.
+     * @param field recipe field to be invalid.
+     * @return String.
+     */
     public static final String invalidRecipeField(Field field) {
         switch (field) {
         case INGREDIENT:
@@ -274,38 +328,28 @@ public class CommandTestUtil {
         }
     }
 
-    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
-    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
-
-    public static final EditRecipeCommand.EditRecipeDescriptor DESC_NOODLE;
-    public static final EditRecipeCommand.EditRecipeDescriptor DESC_MARGARITAS;
-
     static {
-        DESC_NOODLE = new EditRecipeDescriptorBuilder().withName(VALID_NAME_NOODLE)
-                .withIngredient(VALID_INGREDIENT_NOODLE, VALID_QUANTITY_NOODLE)
-                .withCalories(VALID_CALORIES_NOODLE)
-                .withImage(VALID_RECIPE_IMAGE_NOODLE)
-                .withInstruction(VALID_INSTRUCTION_NOODLE)
-                .withTags(VALID_TAG_NOODLE).build();
         DESC_MARGARITAS = new EditRecipeDescriptorBuilder().withName(VALID_NAME_MARGARITAS)
                 .withIngredient(VALID_INGREDIENT_MARGARITAS, VALID_QUANTITY_MARGARITAS)
                 .withCalories(VALID_CALORIES_MARGARITAS)
                 .withImage(VALID_RECIPE_IMAGE_MARGARITAS)
                 .withInstruction(VALID_INSTRUCTION_MARGARITAS)
                 .withTags(VALID_TAG_NOODLE).build();
+        DESC_NOODLE = new EditRecipeDescriptorBuilder().withName(VALID_NAME_NOODLE)
+                .withIngredient(VALID_INGREDIENT_NOODLE, VALID_QUANTITY_NOODLE)
+                .withCalories(VALID_CALORIES_NOODLE)
+                .withImage(VALID_RECIPE_IMAGE_NOODLE)
+                .withInstruction(VALID_INSTRUCTION_NOODLE)
+                .withTags(VALID_TAG_NOODLE).build();
     }
 
-    public static final EditIngredientCommand.EditIngredientDescriptor DESC_INGREDIENT_NOODLE;
-    public static final EditIngredientCommand.EditIngredientDescriptor DESC_INGREDIENT_MARGARITAS;
-
     static {
-        DESC_INGREDIENT_NOODLE = new EditIngredientCommand.EditIngredientDescriptor();
-        DESC_INGREDIENT_NOODLE.setIngredient(new Ingredient(VALID_INGREDIENT_NOODLE,
-                VALID_QUANTITY_NOODLE));
-
         DESC_INGREDIENT_MARGARITAS = new EditIngredientCommand.EditIngredientDescriptor();
         DESC_INGREDIENT_MARGARITAS.setIngredient(new Ingredient(VALID_INGREDIENT_MARGARITAS,
                 VALID_QUANTITY_MARGARITAS));
+        DESC_INGREDIENT_NOODLE = new EditIngredientCommand.EditIngredientDescriptor();
+        DESC_INGREDIENT_NOODLE.setIngredient(new Ingredient(VALID_INGREDIENT_NOODLE,
+                VALID_QUANTITY_NOODLE));
     }
 
     /**

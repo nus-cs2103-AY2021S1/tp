@@ -7,12 +7,12 @@ import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_MARGA
 import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_NOODLE;
 import static seedu.address.logic.commands.CommandTestUtil.INSTRUCTION_DESC_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.INSTRUCTION_DESC_NOODLE;
-import static seedu.address.logic.commands.CommandTestUtil.NEGATIVE_CALORIES_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_INGREDIENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_NOODLE;
+import static seedu.address.logic.commands.CommandTestUtil.NEGATIVE_CALORIES_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.RECIPE_IMAGE_DESC_MARGARITAS;

@@ -1,13 +1,5 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.recipe.Ingredient;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -16,6 +8,15 @@ import static seedu.address.logic.commands.CommandTestUtil.showIngredientAtIndex
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INGREDIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_INGREDIENT;
 import static seedu.address.testutil.TypicalIngredients.getTypicalWishfulShrinking;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.recipe.Ingredient;
 
 public class GetEditIngredientCommandTest {
     private Model model = new ModelManager(getTypicalWishfulShrinking(), new UserPrefs());
@@ -43,23 +44,23 @@ public class GetEditIngredientCommandTest {
         assertCommandFailure(getEditIngredientCommand, model, Messages.MESSAGE_INVALID_INGREDIENT_DISPLAYED_INDEX);
     }
 
-//    @Test
-//    public void execute_validIndexFilteredList_success() {
-//        showIngredientAtIndex(model, INDEX_FIRST_INGREDIENT);
-//
-//        Ingredient ingredientToDelete =
-//                model.getFilteredIngredientList().get(INDEX_FIRST_INGREDIENT.getZeroBased());
-//        DeleteIngredientCommand deleteIngredientCommand = new DeleteIngredientCommand(INDEX_FIRST_INGREDIENT);
-//
-//        String expectedMessage = String.format(DeleteIngredientCommand.MESSAGE_DELETE_INGREDIENT_SUCCESS,
-//                ingredientToDelete);
-//
-//        Model expectedModel = new ModelManager(model.getWishfulShrinking(), new UserPrefs());
-//        expectedModel.deleteIngredient(ingredientToDelete);
-//        showNoIngredient(expectedModel);
-//
-//        assertCommandSuccess(deleteIngredientCommand, model, expectedMessage, expectedModel);
-//    }
+    //@Test
+    //public void execute_validIndexFilteredList_success() {
+    //    showIngredientAtIndex(model, INDEX_FIRST_INGREDIENT);
+    //
+    //    Ingredient ingredientToDelete =
+    //            model.getFilteredIngredientList().get(INDEX_FIRST_INGREDIENT.getZeroBased());
+    //    DeleteIngredientCommand deleteIngredientCommand = new DeleteIngredientCommand(INDEX_FIRST_INGREDIENT);
+    //
+    //    String expectedMessage = String.format(DeleteIngredientCommand.MESSAGE_DELETE_INGREDIENT_SUCCESS,
+    //            ingredientToDelete);
+    //
+    //    Model expectedModel = new ModelManager(model.getWishfulShrinking(), new UserPrefs());
+    //    expectedModel.deleteIngredient(ingredientToDelete);
+    //    showNoIngredient(expectedModel);
+    //
+    //    assertCommandSuccess(deleteIngredientCommand, model, expectedMessage, expectedModel);
+    //}
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
@@ -99,12 +100,12 @@ public class GetEditIngredientCommandTest {
         assertFalse(getEditIngredientFirstCommand.equals(getEditIngredientSecondCommand));
     }
 
-//    /**
-//     * Updates {@code model}'s filtered list to show no one.
-//     */
-//    private void showNoIngredient(Model model) {
-//        model.updateFilteredIngredientList(p -> false);
-//
-//        assertTrue(model.getFilteredIngredientList().isEmpty());
-//    }
+    ///**
+    // * Updates {@code model}'s filtered list to show no one.
+    // */
+    //private void showNoIngredient(Model model) {
+    //    model.updateFilteredIngredientList(p -> false);
+    //
+    //    assertTrue(model.getFilteredIngredientList().isEmpty());
+    //}
 }

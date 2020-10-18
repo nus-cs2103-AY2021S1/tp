@@ -100,21 +100,21 @@ public class Recipe {
      * @return String
      */
     public String stringify(int position) {
-        String COMMAND_WORD = EditRecipeCommand.COMMAND_WORD;
+        String commandWord = EditRecipeCommand.COMMAND_WORD;
         String recipeName = PREFIX_NAME.toString() + name;
         String ingredients = PREFIX_INGREDIENT.toString() + stringifyIngredients(this.ingredients);
         String calories = PREFIX_CALORIES.toString() + this.calories.getValue();
         String instructions = PREFIX_INSTRUCTION + this.instruction;
         String image = PREFIX_RECIPE_IMAGE + this.recipeImage;
         String tags = stringifyTags(this.tags);
-        return COMMAND_WORD + " " + position + " " + recipeName + " " + ingredients + " " + calories
+        return commandWord + " " + position + " " + recipeName + " " + ingredients + " " + calories
                 + " " + instructions + " " + image + " " + tags;
     }
 
     private String stringifyIngredients(ArrayList<Ingredient> ingredients) {
         int len = ingredients.size();
         String ingredientsResult = "";
-        for (int i = 0; i < len; i ++) {
+        for (int i = 0; i < len; i++) {
             Ingredient ingt = ingredients.get(i);
             if (i == len - 1) {
                 ingredientsResult += ingt.parseToString();

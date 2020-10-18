@@ -7,7 +7,11 @@ import seedu.address.logic.commands.GetEditRecipeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class GetEditRecipeCommandParser implements Parser<GetEditRecipeCommand> {
-
+    /**
+     * Parses the given {@code String} of arguments in the context of the GetEditRecipeCommand
+     * and returns a GetEditRecipeCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public GetEditRecipeCommand parse(String args) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);

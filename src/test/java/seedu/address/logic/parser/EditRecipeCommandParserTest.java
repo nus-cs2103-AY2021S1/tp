@@ -24,7 +24,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_NOODLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_NOODLE;
 import static seedu.address.logic.commands.CommandTestUtil.ZERO_CALORIES_DESC;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
@@ -117,7 +116,7 @@ public class EditRecipeCommandParserTest {
 
         //The test cases testing for one invalid field
         // invalid ingredient specified
-        assertParseFailure(parser, RECIPE_INDEX + " " +  INVALID_INGREDIENT_DESC,
+        assertParseFailure(parser, RECIPE_INDEX + " " + INVALID_INGREDIENT_DESC,
                 Ingredient.MESSAGE_CONSTRAINTS);
 
         // invalid tag specified
@@ -125,7 +124,7 @@ public class EditRecipeCommandParserTest {
                 Tag.MESSAGE_CONSTRAINTS);
 
         // invalid recipe name specified
-        assertParseFailure(parser,RECIPE_INDEX + " " + INVALID_NAME_DESC,
+        assertParseFailure(parser, RECIPE_INDEX + " " + INVALID_NAME_DESC,
                 Name.MESSAGE_CONSTRAINTS);
 
         // invalid recipe calorie specified: zero
@@ -145,13 +144,13 @@ public class EditRecipeCommandParserTest {
         // of the {@code Recipe} being edited,
         // parsing it together with a invalid tag results in error
         assertParseFailure(parser, RECIPE_INDEX + TAG_DESC_MARGARITAS
-        + TAG_DESC_NOODLE + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
+            + TAG_DESC_NOODLE + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, RECIPE_INDEX + TAG_DESC_MARGARITAS
-                + TAG_DESC_NOODLE + MISSING_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
+            + TAG_DESC_NOODLE + MISSING_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, RECIPE_INDEX + INVALID_TAG_DESC
-                + TAG_DESC_NOODLE + TAG_DESC_MARGARITAS, Tag.MESSAGE_CONSTRAINTS);
+            + TAG_DESC_NOODLE + TAG_DESC_MARGARITAS, Tag.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, RECIPE_INDEX + TAG_DESC_MARGARITAS
-                + MISSING_TAG_DESC + TAG_DESC_NOODLE, Tag.MESSAGE_CONSTRAINTS);
+            + MISSING_TAG_DESC + TAG_DESC_NOODLE, Tag.MESSAGE_CONSTRAINTS);
 
 
         // multiple invalid values, but only the invalid value captured is ordered
@@ -170,15 +169,15 @@ public class EditRecipeCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_THIRD_RECIPE;
-        String userInput_noodle = targetIndex.getOneBased() + DESC_NOODLE_USER_INPUT;
-        EditRecipeDescriptor descriptor_noodle = DESC_NOODLE;
-        EditRecipeCommand expectedCommand_noodle = new EditRecipeCommand(targetIndex, descriptor_noodle);
-        assertParseSuccess(parser, userInput_noodle, expectedCommand_noodle);
+        String userInputNoodle = targetIndex.getOneBased() + DESC_NOODLE_USER_INPUT;
+        EditRecipeDescriptor descriptorNoodle = DESC_NOODLE;
+        EditRecipeCommand expectedCommandNoodle = new EditRecipeCommand(targetIndex, descriptorNoodle);
+        assertParseSuccess(parser, userInputNoodle, expectedCommandNoodle);
 
-        String userInput_margaritas = targetIndex.getOneBased() + DESC_MARGARITAS_USER_INPUT;
-        EditRecipeDescriptor descriptor_margaritas = DESC_MARGARITAS;
-        EditRecipeCommand expectedCommand_margaritas = new EditRecipeCommand(targetIndex, descriptor_margaritas);
-        assertParseSuccess(parser, userInput_margaritas, expectedCommand_margaritas);
+        String userInputMargaritas = targetIndex.getOneBased() + DESC_MARGARITAS_USER_INPUT;
+        EditRecipeDescriptor descriptorMargaritas = DESC_MARGARITAS;
+        EditRecipeCommand expectedCommandMargaritas = new EditRecipeCommand(targetIndex, descriptorMargaritas);
+        assertParseSuccess(parser, userInputMargaritas, expectedCommandMargaritas);
 
     }
 
@@ -186,11 +185,11 @@ public class EditRecipeCommandParserTest {
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_RECIPE;
         String userInput = targetIndex.getOneBased() + INGREDIENT_DESC_BOB
-<<<<<<< HEAD
-=======
+        <<<<<<< HEAD
+        =======
                 + CALORIES_DESC_BOB + INSTRUCTION_DESC_BOB + RECIPE_IMAGE_DESC_BOB
                 + TAG_DESC_BOB;
->>>>>>> 28ef26c6db44f8717ea885749a69ad068c33a886
+        >>>>>>> 28ef26c6db44f8717ea885749a69ad068c33a886
 
         EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withIngredient(VALID_INGREDIENT_BOB)
                 .build();
@@ -199,25 +198,25 @@ public class EditRecipeCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }*/
 
-//    @Test
-//    public void parse_oneMissingField_success() {
-//        // no ingredient specified
-//        String recipeWithoutIngredient =
-//                CommandTestUtil.missingRecipeField(CommandTestUtil.Field.INGREDIENT);
-//        assertParseSuccess(parser, recipeWithoutIngredient, Ingredient.MESSAGE_CONSTRAINTS);
-//
-//        // no tag specified
-//        String recipeWithoutTag = CommandTestUtil.missingRecipeField(CommandTestUtil.Field.TAG);
-//        assertParseSuccess(parser, recipeWithoutTag, Tag.MESSAGE_CONSTRAINTS);
-//
-//        // no instruction specified
-//        String recipeWithoutInstructions = CommandTestUtil.missingRecipeField(CommandTestUtil.Field.INSTRUCTIONS);
-//        assertParseSuccess(parser, recipeWithoutInstructions, MESSAGE_INVALID_FORMAT);
-//
-//        // no recipe name specified
-//        String recipeWithoutName = CommandTestUtil.missingRecipeField(CommandTestUtil.Field.RECIPE_NAME);
-//        assertParseSuccess(parser, recipeWithoutName, Name.MESSAGE_CONSTRAINTS);
-//    }
+    //@Test
+    //public void parse_oneMissingField_success() {
+    //    // no ingredient specified
+    //    String recipeWithoutIngredient =
+    //            CommandTestUtil.missingRecipeField(CommandTestUtil.Field.INGREDIENT);
+    //    assertParseSuccess(parser, recipeWithoutIngredient, Ingredient.MESSAGE_CONSTRAINTS);
+    //
+    //    // no tag specified
+    //    String recipeWithoutTag = CommandTestUtil.missingRecipeField(CommandTestUtil.Field.TAG);
+    //    assertParseSuccess(parser, recipeWithoutTag, Tag.MESSAGE_CONSTRAINTS);
+    //
+    //    // no instruction specified
+    //    String recipeWithoutInstructions = CommandTestUtil.missingRecipeField(CommandTestUtil.Field.INSTRUCTIONS);
+    //    assertParseSuccess(parser, recipeWithoutInstructions, MESSAGE_INVALID_FORMAT);
+    //
+    //    // no recipe name specified
+    //    String recipeWithoutName = CommandTestUtil.missingRecipeField(CommandTestUtil.Field.RECIPE_NAME);
+    //    assertParseSuccess(parser, recipeWithoutName, Name.MESSAGE_CONSTRAINTS);
+    //}
 
     @Test
     public void parse_oneFieldSpecified_success() {

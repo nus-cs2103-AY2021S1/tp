@@ -1,12 +1,13 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.GetEditRecipeCommand;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INGREDIENT;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.GetEditRecipeCommand;
 
 public class GetEditRecipeCommandParserTest {
     private GetEditRecipeCommandParser parser = new GetEditRecipeCommandParser();

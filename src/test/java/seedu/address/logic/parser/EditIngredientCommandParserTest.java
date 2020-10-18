@@ -1,11 +1,5 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.CommandTestUtil;
-import seedu.address.logic.commands.EditIngredientCommand;
-import seedu.address.model.recipe.Ingredient;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_INGREDIENT_NOODLE;
 import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_NOODLE;
@@ -17,6 +11,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INGREDIENT;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.CommandTestUtil;
+import seedu.address.logic.commands.EditIngredientCommand;
+import seedu.address.model.recipe.Ingredient;
 
 public class EditIngredientCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
@@ -88,11 +89,11 @@ public class EditIngredientCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_INGREDIENT;
-        String userInput_ingredient = targetIndex.getOneBased() + INGREDIENT_DESC_NOODLE;
-        EditIngredientCommand.EditIngredientDescriptor descriptor_ingredient = DESC_INGREDIENT_NOODLE;
-        EditIngredientCommand expectedCommand_ingredient = new EditIngredientCommand(targetIndex,
-                descriptor_ingredient);
-        assertParseSuccess(parser, userInput_ingredient, expectedCommand_ingredient);
+        String userInputIngredient = targetIndex.getOneBased() + INGREDIENT_DESC_NOODLE;
+        EditIngredientCommand.EditIngredientDescriptor descriptorIngredient = DESC_INGREDIENT_NOODLE;
+        EditIngredientCommand expectedCommandIngredient = new EditIngredientCommand(targetIndex,
+                descriptorIngredient);
+        assertParseSuccess(parser, userInputIngredient, expectedCommandIngredient);
     }
 
 }

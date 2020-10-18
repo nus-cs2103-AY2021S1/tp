@@ -17,7 +17,6 @@ import seedu.address.logic.commands.EatRecipeCommand;
 import seedu.address.logic.commands.EditIngredientCommand;
 import seedu.address.logic.commands.EditRecipeCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.GetEditRecipeCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListConsumptionCommand;
 import seedu.address.logic.commands.ListIngredientsCommand;

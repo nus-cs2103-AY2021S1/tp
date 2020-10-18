@@ -1,14 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.logic.commands.EditIngredientCommand;
-import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Ingredient;
-import seedu.address.model.tag.Tag;
-
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class EditIngredientDescriptorBuilder {
     private EditIngredientCommand.EditIngredientDescriptor descriptor;

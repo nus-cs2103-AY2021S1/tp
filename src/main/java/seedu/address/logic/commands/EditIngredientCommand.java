@@ -1,19 +1,19 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RECIPES;
+
+import java.util.List;
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.recipe.Ingredient;
-
-import java.util.List;
-import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RECIPES;
 
 public class EditIngredientCommand extends Command {
 
@@ -30,8 +30,8 @@ public class EditIngredientCommand extends Command {
 
     public static final String MESSAGE_EDIT_INGREDIENT_SUCCESS = "Edited Ingredient: %1$s";
     public static final String MESSAGE_NOT_EDITED = "No edit made. At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_INGREDIENT = "This recipe already exists in the Recipe " +
-            "collection.";
+    public static final String MESSAGE_DUPLICATE_INGREDIENT = "This recipe already exists in the Recipe "
+            + "collection.";
 
     private final Index index;
     private final EditIngredientCommand.EditIngredientDescriptor editIngredientDescriptor;

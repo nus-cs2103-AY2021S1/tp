@@ -1,15 +1,12 @@
 package seedu.address.model.recipe;
 
-import seedu.address.logic.commands.EditIngredientCommand;
-import seedu.address.logic.commands.EditRecipeCommand;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import java.util.Objects;
 
-//import static seedu.address.commons.util.AppUtil.checkArgument;
+import seedu.address.logic.commands.EditIngredientCommand;
 
 /**
  * Represents a Recipe's ingredients in the Wishful Shrinking.
@@ -20,8 +17,8 @@ public class Ingredient {
                     + "2. Each ingredient is separated by a comma.\n"
                     + "3. Each ingredient has an optional field quantity that is separated by a spaced followed "
                     + "by a hyphen.\n"
-                    + "4. Ingredient quantity should only consist of alphanumeric, full stop and forward slashes" +
-                    ". ";
+                    + "4. Ingredient quantity should only consist of alphanumeric, full stop and forward slashes"
+                    + ". ";
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
@@ -90,6 +87,10 @@ public class Ingredient {
                 && test.getQuantity().matches(VALIDATION_REGEX_QUANTITY);
     }
 
+    /**
+     * Parses the Ingredient Object into string in the command format.
+     * @return String
+     */
     public String parseToString() {
         if (quantity != "") {
             return value + " -" + quantity;
@@ -98,11 +99,16 @@ public class Ingredient {
         }
     }
 
+    /**
+     * Get the command format of an Ingredient object.
+     * @param position index of ingredient in the ingredient list.
+     * @return String
+     */
     public String stringify(int position) {
-        String COMMAND_WORD = EditIngredientCommand.COMMAND_WORD;
+        String commandWord = EditIngredientCommand.COMMAND_WORD;
         String ingredientValue = PREFIX_INGREDIENT + getValue();
         String quantity = PREFIX_QUANTITY + getQuantity();
-        return COMMAND_WORD + " " + position + " " + ingredientValue + " " + quantity;
+        return commandWord + " " + position + " " + ingredientValue + " " + quantity;
     }
 
     @Override

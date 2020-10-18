@@ -70,7 +70,7 @@ public class ParserUtil {
                 ingName = trimmedIngredient.substring(0, indexOfDash).trim();
                 ingQuantity = trimmedIngredient.substring(indexOfDash + 1).trim();
             }
-            if ((ingName != "" && !ingName.matches(VALIDATION_REGEX))|| (ingQuantity != ""
+            if ((ingName != "" && !ingName.matches(VALIDATION_REGEX)) || (ingQuantity != ""
                     && !ingQuantity.matches(VALIDATION_REGEX_QUANTITY))) {
                 throw new ParseException(Ingredient.MESSAGE_CONSTRAINTS);
             }

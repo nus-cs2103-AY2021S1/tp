@@ -1,13 +1,5 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.recipe.Recipe;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -16,6 +8,15 @@ import static seedu.address.logic.commands.CommandTestUtil.showRecipeAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_RECIPE;
 import static seedu.address.testutil.TypicalRecipes.getTypicalWishfulShrinking;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.recipe.Recipe;
 
 public class GetEditRecipeCommandTest {
     private Model model = new ModelManager(getTypicalWishfulShrinking(), new UserPrefs());
@@ -43,23 +44,23 @@ public class GetEditRecipeCommandTest {
         assertCommandFailure(getEditRecipeCommand, model, Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
     }
 
-//    @Test
-//    public void execute_validIndexFilteredList_success() {
-//        showRecipeAtIndex(model, INDEX_FIRST_Recipe);
-//
-//        Recipe RecipeToDelete =
-//                model.getFilteredRecipeList().get(INDEX_FIRST_Recipe.getZeroBased());
-//        DeleteRecipeCommand deleteRecipeCommand = new DeleteRecipeCommand(INDEX_FIRST_Recipe);
-//
-//        String expectedMessage = String.format(DeleteRecipeCommand.MESSAGE_DELETE_Recipe_SUCCESS,
-//                RecipeToDelete);
-//
-//        Model expectedModel = new ModelManager(model.getWishfulShrinking(), new UserPrefs());
-//        expectedModel.deleteRecipe(RecipeToDelete);
-//        showNoRecipe(expectedModel);
-//
-//        assertCommandSuccess(deleteRecipeCommand, model, expectedMessage, expectedModel);
-//    }
+    //@Test
+    //public void execute_validIndexFilteredList_success() {
+    //    showRecipeAtIndex(model, INDEX_FIRST_Recipe);
+    //
+    //    Recipe RecipeToDelete =
+    //            model.getFilteredRecipeList().get(INDEX_FIRST_Recipe.getZeroBased());
+    //    DeleteRecipeCommand deleteRecipeCommand = new DeleteRecipeCommand(INDEX_FIRST_Recipe);
+    //
+    //    String expectedMessage = String.format(DeleteRecipeCommand.MESSAGE_DELETE_Recipe_SUCCESS,
+    //            RecipeToDelete);
+    //
+    //    Model expectedModel = new ModelManager(model.getWishfulShrinking(), new UserPrefs());
+    //    expectedModel.deleteRecipe(RecipeToDelete);
+    //    showNoRecipe(expectedModel);
+    //
+    //    assertCommandSuccess(deleteRecipeCommand, model, expectedMessage, expectedModel);
+    //}
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {

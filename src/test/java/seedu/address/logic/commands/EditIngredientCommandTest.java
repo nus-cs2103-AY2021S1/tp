@@ -1,16 +1,5 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.WishfulShrinking;
-import seedu.address.model.recipe.Ingredient;
-import seedu.address.testutil.EditIngredientDescriptorBuilder;
-import seedu.address.testutil.IngredientBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_INGREDIENT_MARGARITAS;
@@ -23,6 +12,18 @@ import static seedu.address.logic.commands.CommandTestUtil.showIngredientAtIndex
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INGREDIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_INGREDIENT;
 import static seedu.address.testutil.TypicalIngredients.getTypicalWishfulShrinking;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.WishfulShrinking;
+import seedu.address.model.recipe.Ingredient;
+import seedu.address.testutil.EditIngredientDescriptorBuilder;
+import seedu.address.testutil.IngredientBuilder;
 
 public class EditIngredientCommandTest {
     private Model model = new ModelManager(getTypicalWishfulShrinking(), new UserPrefs());
@@ -49,8 +50,8 @@ public class EditIngredientCommandTest {
         Index indexLastIngredient = Index.fromOneBased(model.getFilteredIngredientList().size());
         Ingredient lastIngredient = model.getFilteredIngredientList().get(indexLastIngredient.getZeroBased());
 
-        IngredientBuilder IngredientInList = new IngredientBuilder(lastIngredient);
-        Ingredient editedIngredient = IngredientInList.withValue(VALID_INGREDIENT_MARGARITAS)
+        IngredientBuilder ingredientInList = new IngredientBuilder(lastIngredient);
+        Ingredient editedIngredient = ingredientInList.withValue(VALID_INGREDIENT_MARGARITAS)
                 .build();
 
         EditIngredientCommand.EditIngredientDescriptor descriptor =
@@ -81,26 +82,26 @@ public class EditIngredientCommandTest {
         assertCommandSuccess(editIngredientCommand, model, expectedMessage, expectedModel);
     }
 
-//    @Test
-//    public void execute_filteredList_success() {
-//        showIngredientAtIndex(model, INDEX_FIRST_INGREDIENT);
-//
-//        Ingredient IngredientInFilteredList =
-//                model.getFilteredIngredientList().get(INDEX_FIRST_INGREDIENT.getZeroBased());
-//        Ingredient editedIngredient =
-//                new IngredientBuilder(IngredientInFilteredList).withValue(VALID_NAME_MARGARITAS).build();
-//        EditIngredientCommand editIngredientCommand = new EditIngredientCommand(INDEX_FIRST_INGREDIENT,
-//                new EditIngredientDescriptorBuilder().withIngredient(new Ingredient(VALID_NAME_MARGARITAS))
-//                        .build());
-//
-//        String expectedMessage = String.format(EditIngredientCommand.MESSAGE_EDIT_INGREDIENT_SUCCESS,
-//                editedIngredient);
-//
-//        Model expectedModel = new ModelManager(new WishfulShrinking(model.getWishfulShrinking()), new UserPrefs());
-//        expectedModel.setIngredient(model.getFilteredIngredientList().get(0), editedIngredient);
-//
-//        assertCommandSuccess(editIngredientCommand, model, expectedMessage, expectedModel);
-//    }
+    //@Test
+    //public void execute_filteredList_success() {
+    //    showIngredientAtIndex(model, INDEX_FIRST_INGREDIENT);
+    //
+    //    Ingredient IngredientInFilteredList =
+    //            model.getFilteredIngredientList().get(INDEX_FIRST_INGREDIENT.getZeroBased());
+    //    Ingredient editedIngredient =
+    //            new IngredientBuilder(IngredientInFilteredList).withValue(VALID_NAME_MARGARITAS).build();
+    //    EditIngredientCommand editIngredientCommand = new EditIngredientCommand(INDEX_FIRST_INGREDIENT,
+    //            new EditIngredientDescriptorBuilder().withIngredient(new Ingredient(VALID_NAME_MARGARITAS))
+    //                    .build());
+    //
+    //    String expectedMessage = String.format(EditIngredientCommand.MESSAGE_EDIT_INGREDIENT_SUCCESS,
+    //            editedIngredient);
+    //
+    //    Model expectedModel = new ModelManager(new WishfulShrinking(model.getWishfulShrinking()), new UserPrefs());
+    //    expectedModel.setIngredient(model.getFilteredIngredientList().get(0), editedIngredient);
+    //
+    //    assertCommandSuccess(editIngredientCommand, model, expectedMessage, expectedModel);
+    //}
 
     @Test
     public void execute_duplicateIngredientUnfilteredList_failure() {
@@ -118,10 +119,10 @@ public class EditIngredientCommandTest {
         showIngredientAtIndex(model, INDEX_FIRST_INGREDIENT);
 
         // edit Ingredient in filtered list into a duplicate in Ingredient collection
-        Ingredient IngredientInList =
+        Ingredient ingredientInList =
                 model.getWishfulShrinking().getIngredientList().get(INDEX_SECOND_INGREDIENT.getZeroBased());
         EditIngredientCommand editIngredientCommand = new EditIngredientCommand(INDEX_FIRST_INGREDIENT,
-                new EditIngredientDescriptorBuilder(IngredientInList).build());
+                new EditIngredientDescriptorBuilder(ingredientInList).build());
 
         assertCommandFailure(editIngredientCommand, model, EditIngredientCommand.MESSAGE_DUPLICATE_INGREDIENT);
     }
@@ -177,9 +178,11 @@ public class EditIngredientCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditIngredientCommand(INDEX_SECOND_INGREDIENT, DESC_INGREDIENT_NOODLE)));
+        assertFalse(standardCommand.equals(new EditIngredientCommand(INDEX_SECOND_INGREDIENT,
+                DESC_INGREDIENT_NOODLE)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditIngredientCommand(INDEX_FIRST_INGREDIENT, DESC_INGREDIENT_MARGARITAS)));
+        assertFalse(standardCommand.equals(new EditIngredientCommand(INDEX_FIRST_INGREDIENT,
+                DESC_INGREDIENT_MARGARITAS)));
     }
 }
