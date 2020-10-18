@@ -175,6 +175,20 @@ would be thrown and an error message would be shown on the GUI.
 Step 1. The user launches the application. The default status of scope is `CATALOGUE`, and `project` in `MainCatalogue` is initialized to an empty `Optional` object.
 
 ![ScopingStep1](images/ScopingStep1.png)
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** At this stage, commands at non-`CATALOGUE` level cannot be executed.
+
+</div>
+The following sequence diagram shows how scoping works in the application.
+
+![ScopingSequence](images/ScopeSequence.png)
+
+Step 2. The user executes `start 3` command to view the details of the project of index 3 in the main catalogue. The `start` command
+calls `enter`, causing a switch of scoping status and assignment of `project` of focus in `MainCatalogue`.
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
