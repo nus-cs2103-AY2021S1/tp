@@ -7,16 +7,19 @@ McGymmy (MG) is a **desktop app for Software Engineers who need help managing th
 If you can type fast, McGymmy can log your food intake faster than traditional GUI apps. MG aims to help users track their caloric and macronutrient intake in an efficient way that does not interfere with one's workflow.
 
 This document aims to showcase all of MG's commands.
-This document is best viewed in a modern internet browser (Mozilla Firefox, Google Chrome, or Microsoft Edge).
+Open this document in a modern internet browser (Mozilla Firefox, Google Chrome, or Microsoft Edge).
 
+
+##  Table of Contents:
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** Press Ctrl-F to open the find prompt in your browser. You can type in keywords such as `add` or `edit` to quickly navigate to those parts of the document.
 
 </div>
-
-* Table of Contents
-{:toc}
+* `Quick Start`
+* `Features`
+* `FAQ`
+* `Command summary`
 
 --------------------------------------------------------------------------------------------------------------------
 
