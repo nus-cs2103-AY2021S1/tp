@@ -222,9 +222,13 @@ The `leave` command calls `quit` method.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The `leave` command calls `quit` method in model, causing a switching of level and updates the project and task of focus.
 
 </div>
-The following sequence diagram shows the execution of leave command.
+The following sequence diagram shows the execution of leave command. Note that the leave command will do nothing if the application is already in the `CATALOGUE` scope.
 
 ![LeaveCommandSequence](images/LeaveCommandSequence.png)
+
+The following activity diagram summarizes the scoping features when a user executes a new command:
+
+![ScopingActivityDiagram](images/ScopingActivityDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
