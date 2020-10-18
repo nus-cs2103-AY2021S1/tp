@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.person.GitUserName;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonName;
 import seedu.address.model.task.Task;
@@ -90,8 +91,8 @@ public class Participation {
         }
         return p;
     }
-    public PersonName getAssigneeName() {
-        return this.getPerson().getPersonName();
+    public GitUserName getAssigneeName() {
+        return this.getPerson().getGitUserName();
     }
     public Project getProject() {
         Project p = null;

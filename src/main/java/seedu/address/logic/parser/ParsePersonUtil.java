@@ -2,9 +2,12 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.core.index.GitUserIndex;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GitUserName;
 import seedu.address.model.person.PersonName;
 import seedu.address.model.person.Phone;
 
@@ -14,6 +17,19 @@ import seedu.address.model.person.Phone;
 public class ParsePersonUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    /**
+     * Parses {@code gitUserName} into an {@code GitUserIndex} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static GitUserIndex parseGitUserIndex(String gitUserName) throws ParseException {
+        String trimmedGitUserName = gitUserName.trim();
+        if (StringUtil.isInteger(trimmedGitUserName)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return new GitUserIndex(gitUserName);
+    }
 
     /**
      * Parses a {@code String personName} into a {@code PersonName}.
@@ -28,6 +44,21 @@ public class ParsePersonUtil {
             throw new ParseException(PersonName.MESSAGE_CONSTRAINTS);
         }
         return new PersonName(trimmedPersonName);
+    }
+
+    /**
+     * Parses a {@code String gitUserName} into a {@code GitUserName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code personName} is invalid.
+     */
+    public static GitUserName parseGitUserName(String gitUserName) throws ParseException {
+        requireNonNull(gitUserName);
+        String trimmedGitUserName = gitUserName.trim();
+        if (!GitUserName.isValidGitUserName(gitUserName)) {
+            throw new ParseException(GitUserName.MESSAGE_CONSTRAINTS);
+        }
+        return new GitUserName(trimmedGitUserName);
     }
 
     /**
@@ -74,6 +105,8 @@ public class ParsePersonUtil {
         }
         return new Address(trimmedaddress);
     }
+
+
 
 
 }

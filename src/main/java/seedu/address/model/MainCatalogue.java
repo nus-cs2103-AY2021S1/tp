@@ -7,7 +7,6 @@ import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.Status;
 import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.task.Task;
 

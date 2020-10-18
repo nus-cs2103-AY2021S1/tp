@@ -34,12 +34,13 @@ Given below are my contributions to the project.
     * allowed the GUI to output different status of ProjectCard;
     * added relevant test cases.
 
-* **New Feature**: Added navigation commands. (Pull request: Pull request [\#63](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/63))
+* **New Feature**: Added navigation commands. (Pull request: Pull request [\#63](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/63), [\#120](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/120))
   * What changes made: 
-    * created StartCommand and LeaveCommand;
+    * created StartCommand, ViewTaskCommand and LeaveCommand;
     * created relevant parsers;
     * allowed change of scope status and ProjectCard status by these commands;
-    * added relevant test cases.
+    * added relevant test cases;
+    * fixed bugs to accommodate later implementations.
 
 * **New Feature**: Added assign command. (Pull request: Pull request [\#87](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/87))
   * What changes made: 
@@ -57,13 +58,13 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added the teammate-related features' guide. (Pull Request [\#46](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/46))
-    * Added the guide for leave and assign. (Pull Request [\#89](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/89))
+    * Added the guide for scoping commands. (Pull Request [\#89](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/89), [\#122](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/122))
   * Developer Guide:
     * Wrote the Use Cases for first draft of Project Management System. (Pull Request [\#49](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/49))
+    * Wrote the design of `Model` component. (Pull Request [\#124](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/124))
+    * Wrote the implentation of scoping features. (Pull Request [\#126](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/126))
 
 * **Community**:
   * Updated the first draft for `AboutUs.md`. (Pull Request [\#46](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/46))
 
 * **Tools**:
-
-* _{you can add/remove categories in the list above}_

@@ -2,7 +2,15 @@ package seedu.address.model.project;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -42,7 +50,7 @@ public class Project {
      */
     public Project(ProjectName projectName, Deadline deadline, RepoUrl repoUrl, ProjectDescription projectDescription,
                    Set<ProjectTag> projectTags,
-                   HashMap<PersonName, Participation> listOfParticipations, Set<Task> tasks, Set<Meeting> meetings) {
+                   HashMap<GitUserName, Participation> listOfParticipations, Set<Task> tasks, Set<Meeting> meetings) {
         requireAllNonNull(projectName, deadline, repoUrl, projectDescription, projectTags,
                  tasks);
         this.projectName = projectName;
@@ -104,7 +112,7 @@ public class Project {
      */
     public Set<Person> getAttendeesOfMeeting(Meeting meeting) {
         HashSet<Person> attendees = new HashSet<>();
-        for (Map.Entry<PersonName, Participation> entry: listOfParticipations.entrySet()) {
+        for (Map.Entry<GitUserName, Participation> entry: listOfParticipations.entrySet()) {
             attendees.add(entry.getValue().getPerson());
         }
         return attendees;
@@ -130,21 +138,21 @@ public class Project {
      */
     public void addParticipation(Person p) {
         listOfParticipations.put(
-            p.getPersonName(), new Participation(p.getPersonName().toString(), projectName.toString()));
+            p.getGitUserName(), new Participation(p.getGitUserName, projectName.toString()));
     }
 
     /**
      * Checks whether the project contains a member of the given name.
      */
-    public boolean hasParticipation(String name) {
-        return listOfParticipations.containsKey(new PersonName(name));
+    public boolean hasParticipation(String gitUserName) {
+        return listOfParticipations.containsKey(new GitUserName(gitUserName));
     }
 
     /**
      * Gets the Participation with the member name.
      */
-    public Participation getParticipation(String name) {
-        return listOfParticipations.get(new PersonName(name));
+    public Participation getParticipation(String gitUserName) {
+        return listOfParticipations.get(new GitUserName(gitUserName));
     }
 
     /**
@@ -155,11 +163,11 @@ public class Project {
     }
 
     /**
-     * Deletes the Participation with the member name.
+     * Deletes the Participation with the member Git UserName.
      */
-    public void deleteParticipation(String name) {
-        if (listOfParticipations.containsKey(new PersonName(name))) {
-            listOfParticipations.remove(new PersonName(name));
+    public void deleteParticipation(String gitUserName) {
+        if (listOfParticipations.containsKey(new GitUserName(gitUserName))) {
+            listOfParticipations.remove(new GitUserName(gitUserName));
         }
     }
 
@@ -168,11 +176,49 @@ public class Project {
      */
     public List<Person> getTeammates() {
         List<Person> listOfPersons = new ArrayList<>();
-        for (Map.Entry<PersonName, Participation> entry: listOfParticipations.entrySet()) {
+        for (Map.Entry<GitUserName, Participation> entry: listOfParticipations.entrySet()) {
             Person p = entry.getValue().getPerson();
             listOfPersons.add(p);
         }
         return listOfPersons;
+    }
+
+    /**
+     * Checks if name is in teammate list
+     * TODO: IMPROVE THE WAY A TEAMMATE IS FOUND IN THE LIST
+     */
+    public boolean getTeammatePresence(GitUserIndex gitUserIndex) {
+        boolean teammatePresent = false;
+        List<Person> listOfTeammates = this.getTeammates();
+        for (Person teammate : listOfTeammates) {
+            if (teammate.getGitUserNameString().equals(gitUserIndex.getGitUserName())) {
+                teammatePresent = true;
+                break;
+            }
+        }
+        return teammatePresent;
+    }
+
+    /**
+     * returns the index of teammate found in the list
+     */
+    public int getTeammateIndex(GitUserIndex gitUserIndex) {
+        List<Person> listOfTeammates = this.getTeammates();
+        for (int i = 0; i < listOfTeammates.size(); i++) {
+            if (listOfTeammates.get(i).getGitUserNameString().equals(gitUserIndex.getGitUserName())) {
+                return i;
+            }
+        }
+        //never reached
+        return -1;
+    }
+
+    /**
+     * Removes Teammate from Project
+     * TODO: UPDATE STORAGE BY REMOVING TEAMMATE
+     */
+    public void removeParticipation(Person teammate) {
+        listOfParticipations.remove(teammate.getGitUserName());
     }
 
     /**
@@ -192,8 +238,8 @@ public class Project {
         }
 
         return otherProject != null
-                && otherProject.getProjectName().equals(getProjectName())
-                && (otherProject.getDeadline().equals(getDeadline()) || otherProject.getRepoUrl().equals(getRepoUrl()));
+            && otherProject.getProjectName().equals(getProjectName())
+            && (otherProject.getDeadline().equals(getDeadline()) || otherProject.getRepoUrl().equals(getRepoUrl()));
     }
 
     /**
@@ -212,11 +258,11 @@ public class Project {
 
         Project otherProject = (Project) other;
         return otherProject.getProjectName().equals(getProjectName())
-                && otherProject.getDeadline().equals(getDeadline())
-                && otherProject.getRepoUrl().equals(getRepoUrl())
-                && otherProject.getProjectDescription().equals(getProjectDescription())
-                && otherProject.getProjectTags().equals(getProjectTags())
-                && otherProject.getTasks().equals(getTasks());
+            && otherProject.getDeadline().equals(getDeadline())
+            && otherProject.getRepoUrl().equals(getRepoUrl())
+            && otherProject.getProjectDescription().equals(getProjectDescription())
+            && otherProject.getProjectTags().equals(getProjectTags())
+            && otherProject.getTasks().equals(getTasks());
     }
 
     @Override
@@ -229,14 +275,14 @@ public class Project {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(" Project Name: ")
-                .append(getProjectName())
-                .append(" Deadline: ")
-                .append(getDeadline())
-                .append(" Email: ")
-                .append(getRepoUrl())
-                .append(" ProjectDescription: ")
-                .append(getProjectDescription())
-                .append(" Project Tags: ");
+            .append(getProjectName())
+            .append(" Deadline: ")
+            .append(getDeadline())
+            .append(" Email: ")
+            .append(getRepoUrl())
+            .append(" ProjectDescription: ")
+            .append(getProjectDescription())
+            .append(" Project Tags: ");
         getProjectTags().forEach(builder::append);
         builder.append(" Tasks: ");
         getTasks().forEach(builder::append);

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Project's name in the main catalogue.
+ * Represents a Person's name.
  * Guarantees: immutable; is valid as declared in {@link #isValidPersonName(String)}
  */
 public class PersonName {

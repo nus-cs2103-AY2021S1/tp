@@ -28,16 +28,17 @@ import seedu.address.model.task.Task;
  * {@code DeleteCommand}.
  */
 public class AssignCommandTest {
+
     @Test
     public void execute_validIndexInvalidPerson_throwsCommandException() {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
-        project.deleteParticipation(ALICE.getPersonName().fullPersonName);
+        project.deleteParticipation(ALICE.getGitUserNameString());
 
-        AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_TASK, ALICE.getPersonName().fullPersonName);
+        AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_TASK, ALICE.getGitUserNameString());
         assertCommandFailure(assignCommand, model,
-                String.format(Messages.MESSAGE_MEMBER_NOT_PRESENT, ALICE.getPersonName()));
+            String.format(Messages.MESSAGE_MEMBER_NOT_PRESENT, ALICE.getGitUserName()));
     }
 
     @Test
@@ -47,7 +48,7 @@ public class AssignCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(project.getFilteredTaskList().size() + 1);
         model.enter(project);
         project.addParticipation(ALICE);
-        AssignCommand assignCommand = new AssignCommand(outOfBoundIndex, ALICE.getPersonName().fullPersonName);
+        AssignCommand assignCommand = new AssignCommand(outOfBoundIndex, ALICE.getGitUserNameString());
 
         assertCommandFailure(assignCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
@@ -59,12 +60,12 @@ public class AssignCommandTest {
         model.enter(project);
         project.addParticipation(ALICE);
         Task taskToAssign = project.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        Participation assignee = project.getParticipation(ALICE.getPersonName().fullPersonName);
+        Participation assignee = project.getParticipation(ALICE.getGitUserNameString());
         assignee.addTask(taskToAssign);
-        AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_TASK, ALICE.getPersonName().fullPersonName);
+        AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_TASK, ALICE.getGitUserNameString());
 
         assertCommandFailure(assignCommand, model, String.format(
-                Messages.MESSAGE_REASSIGNMENT_OF_SAME_TASK_TO_SAME_PERSON, assignee.getPerson().getPersonName()));
+                Messages.MESSAGE_REASSIGNMENT_OF_SAME_TASK_TO_SAME_PERSON, assignee.getAssigneeName()));
     }
 
     @Test
@@ -76,8 +77,8 @@ public class AssignCommandTest {
         ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
 
         Task taskToAssign = project.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        Participation assignee = project.getParticipation(ALICE.getPersonName().fullPersonName);
-        AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_TASK, ALICE.getPersonName().fullPersonName);
+        Participation assignee = project.getParticipation(ALICE.getGitUserNameString());
+        AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_TASK, ALICE.getGitUserNameString());
 
 
         String expectedMessage = String.format(AssignCommand.MESSAGE_ASSIGN_TASK_SUCCESS, taskToAssign, assignee);
@@ -90,7 +91,7 @@ public class AssignCommandTest {
         expectedModel.setProject(project, projectCopy);
         expectedModel.enter(projectCopy);
         expectedModel.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased())
-                .getParticipation(ALICE.getPersonName().fullPersonName).addTask(taskToAssign);
+                .getParticipation(ALICE.getGitUserNameString()).addTask(taskToAssign);
 
         assertCommandSuccess(assignCommand, model, expectedMessage, expectedModel);
     }
@@ -103,10 +104,10 @@ public class AssignCommandTest {
         project.addParticipation(ALICE);
         project.updateTaskFilter(x -> true);
         Task taskToAssign = project.getFilteredTaskList().get(INDEX_SECOND_TASK.getZeroBased());
-        Participation assignee = project.getParticipation(ALICE.getPersonName().fullPersonName);
+        Participation assignee = project.getParticipation(ALICE.getGitUserNameString());
         project.updateTaskFilter(task -> task.getTaskName().contains(taskToAssign.getTaskName()));
         ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
-        AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_TASK, ALICE.getPersonName().fullPersonName);
+        AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_TASK, ALICE.getGitUserNameString());
         String expectedMessage = String.format(AssignCommand.MESSAGE_ASSIGN_TASK_SUCCESS, taskToAssign, assignee);
 
         Project projectCopy = new Project(project.getProjectName(), project.getDeadline(),
@@ -116,14 +117,14 @@ public class AssignCommandTest {
         expectedModel.setProject(project, projectCopy);
         expectedModel.enter(projectCopy);
         expectedModel.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased())
-                .getParticipation(ALICE.getPersonName().fullPersonName).addTask(taskToAssign);
+                .getParticipation(ALICE.getGitUserNameString()).addTask(taskToAssign);
 
         assertCommandSuccess(assignCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void equals() {
-        String name = ALICE.getPersonName().fullPersonName;
+        String name = ALICE.getGitUserNameString();
         AssignCommand assignFirstCommand = new AssignCommand(INDEX_FIRST_TASK, name);
         AssignCommand assignSecondCommand = new AssignCommand(INDEX_SECOND_TASK, name);
         AssignCommand assignNullPerson = new AssignCommand(INDEX_FIRST_TASK, "");

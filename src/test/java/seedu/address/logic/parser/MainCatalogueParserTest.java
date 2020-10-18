@@ -42,10 +42,10 @@ import seedu.address.logic.commands.project.LeaveCommand;
 import seedu.address.logic.commands.project.NewTeammateCommand;
 import seedu.address.logic.commands.project.ViewTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Status;
 import seedu.address.model.exceptions.InvalidScopeException;
 import seedu.address.model.project.NameContainsKeywordsPredicate;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.Status;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.ProjectBuilder;
@@ -132,16 +132,16 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_assign() throws Exception {
         AssignCommand command = (AssignCommand) parser.parseCommand(
-                AssignCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased() + " " + ALICE.getPersonName(),
+                AssignCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased() + " " + ALICE.getGitUserName(),
                 Status.PROJECT);
-        assertEquals(new AssignCommand(INDEX_FIRST_TASK, ALICE.getPersonName().toString()), command);
+        assertEquals(new AssignCommand(INDEX_FIRST_TASK, ALICE.getGitUserNameString()), command);
     }
 
     @Test
     public void parseCommand_filter() throws Exception {
         // FilterCommand does not have equal method as one cannot compare two predicates unless they are identical
         assertTrue(parser.parseCommand(FilterCommand.COMMAND_WORD + " "
-            + PREFIX_TASK_FILTER_BY_ASSIGNEE + ALICE.getPersonName(), Status.PROJECT) instanceof FilterCommand);
+            + PREFIX_TASK_FILTER_BY_ASSIGNEE + ALICE.getGitUserName(), Status.PROJECT) instanceof FilterCommand);
         assertTrue(parser.parseCommand(FilterCommand.COMMAND_WORD + " "
             + PREFIX_TASK_FILTER_BY_DEADLINE + VALID_TASK_DEADLINE, Status.PROJECT) instanceof FilterCommand);
         assertTrue(parser.parseCommand(FilterCommand.COMMAND_WORD + " "
