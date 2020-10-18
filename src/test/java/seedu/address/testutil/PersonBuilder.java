@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GitUserName;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonName;
 import seedu.address.model.person.Phone;
@@ -12,11 +13,13 @@ import seedu.address.model.person.Phone;
 public class PersonBuilder {
 
     public static final String DEFAULT_PERSON_NAME = "Alice Pauline";
+    public static final String DEFAULT_GIT_USERNAME = "Alice32";
     public static final String DEFAULT_PHONE = "88888888";
     public static final String DEFAULT_EMAIL = "alicepauline@sample.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private PersonName personName;
+    private GitUserName gitUserName;
     private Phone phone;
     private Email email;
     private Address address;
@@ -26,6 +29,7 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         personName = new PersonName(DEFAULT_PERSON_NAME);
+        gitUserName = new GitUserName(DEFAULT_GIT_USERNAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
@@ -36,6 +40,7 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         personName = personToCopy.getPersonName();
+        gitUserName = personToCopy.getGitUserName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
@@ -46,6 +51,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withPersonName(String personName) {
         this.personName = new PersonName(personName);
+        return this;
+    }
+
+    /**
+     * Sets the {@code GitUserName} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGitUserName(String gitUserName) {
+        this.gitUserName = new GitUserName(gitUserName);
         return this;
     }
 
@@ -74,7 +87,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(personName, phone, email, address);
+        return new Person(personName, gitUserName, phone, email, address);
     }
 
 }

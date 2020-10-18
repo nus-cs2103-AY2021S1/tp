@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.person.PersonName;
+import seedu.address.model.person.GitUserName;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Participation;
 
@@ -73,13 +73,13 @@ public class Task {
     /**
      * Checks if the task has an assignee whose name matches the given name.
      *
-     * @param assigneeName the assignee's name to look for
+     * @param assigneeGitUserName the assignee's name to look for
      * @return true if this task has an assignee whose name matches the given name,
      * and false otherwise
      */
-    public boolean hasAssigneeWhoseNameIs(PersonName assigneeName) {
+    public boolean hasAssigneeWhoseNameIs(GitUserName assigneeGitUserName) {
         return assignees.stream()
-            .anyMatch(assignee -> assignee.getAssigneeName().equals(assigneeName));
+            .anyMatch(assignee -> assignee.getAssigneeName().equals(assigneeGitUserName));
     }
 
     public boolean addAssignee(Participation assignee) {
