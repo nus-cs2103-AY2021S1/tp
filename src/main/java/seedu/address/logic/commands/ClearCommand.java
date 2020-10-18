@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.Model;
-import seedu.address.model.order.OrderManager;
 
 /**
  * Clears the address book.
@@ -22,7 +21,7 @@ public class ClearCommand extends Command {
         if (model.getOrderSize() == 0) {
             return new CommandResult(MESSAGE_EMPTY_ORDER);
         }
-        model.setOrderManager(new OrderManager());
+        model.clearOrder();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

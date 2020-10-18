@@ -256,6 +256,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void clearOrder() {
+        orderManager.setOrder(new ArrayList<>());
+    }
+
+    @Override
     public void updateFilteredFoodList(Predicate<Food> predicate, int index) {
         if (!this.menuManagers.isEmpty()) {
             filteredFoods = new FilteredList<>(this.menuManagers.get(index).getFoodList());
