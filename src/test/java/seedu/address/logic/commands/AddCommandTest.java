@@ -269,6 +269,16 @@ public class AddCommandTest {
         public void updateFilteredVendorList(Predicate<Vendor> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public int getOrderHistorySize() {
+            return 0;
+        }
+
+        @Override
+        public void undoOrder() {
+
+        }
     }
 
     /**
