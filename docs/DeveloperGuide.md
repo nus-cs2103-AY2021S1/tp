@@ -201,7 +201,14 @@ The `viewtask` command calls `enterTask`, causing a switch of scoping status and
 
 ![ScopingStep3](images/ScopingStep3.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `viewtask` command calls `enterTask` method in model, causing a switching of level and updates the task of focus.
 
+</div>
+The following sequence diagram shows the execution of view task command.
+
+![ViewTaskCommandSequence](images/ViewTaskCommandSequence.png)
+
+Step 4. The user executes `start 2` command to view details of project of index 2 in the current list of projects instead.
 
 ### \[Proposed\] Undo/redo feature
 
