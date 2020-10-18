@@ -38,8 +38,8 @@ Open this document in a modern internet browser (Mozilla Firefox, Google Chrome,
 
 Thank you for using MG. We sincerely hope that MG plays apart to help you achieve a healthier lifestyle.
 We understand that MG may be a little different from traditional GUI applications and it may be a little difficult to start using it initially.
-Thus we recommend you to start by
-First understanding how MG works at a high level at the Quick start section.Then, explore the features section.
+Thus we recommend you to start by first understanding how MG works at a high level at the Quick start section. Then, explore the Features section.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
