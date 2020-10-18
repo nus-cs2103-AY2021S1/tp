@@ -28,9 +28,9 @@ class ExportCommandTest {
 
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
     private static final String TEST_FILE_NAME = "test_export.json";
-    private final Model model = new ModelManager(getTypicalQuickCache(), new UserPrefs());
     @TempDir
     public Path temporaryFolder;
+    private final Model model = new ModelManager(getTypicalQuickCache(), new UserPrefs());
 
     @Test
     public void execute_unfilteredList_success() throws Exception {

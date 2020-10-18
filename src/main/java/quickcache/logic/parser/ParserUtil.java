@@ -167,6 +167,12 @@ public class ParserUtil {
         return new Option(trimmedOption);
     }
 
+    /**
+     * Parses {@code String fileName} into a {@code String}.
+     * Leading and trailing white spaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code fileName} is invalid.
+     */
     public static String parseFileName(String fileName) throws ParseException {
         requireNonNull(fileName);
         String trimmedFileName = fileName.trim();
