@@ -7,9 +7,10 @@ import java.util.regex.Pattern;
 public class Year {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Year should contain only the type of school and a number representing the level. The type"
-            + "of school can only be one of \"secondary\", \"Secondary\", \"sec\", \"Sec\", \"s\", \"S\""
-            + "\"primary\", \"Primary\", \"pri\", \"Pri\", \"p\", \"P\" and the level must be valid";
+            "Year should contain the type of school and a number representing the level. The type "
+            + "of school can only be one of \"secondary\", \"Secondary\", \"sec\", \"Sec\", \"s\", \"S\" "
+            + "\"primary\", \"Primary\", \"pri\", \"Pri\", \"p\", \"P\", \"j\", \"J\", \"JC\", \"Jc\", \"jc\""
+            + " and the level must be valid for the type of school.";
 
     public static final String VALIDATION_REGEX = "((secondary|sec|s|Secondary|Sec|S)\\s*([1-5])|"
         + "(primary|pri|p|Primary|Pri|P)\\s*([1-6])|(jc|Jc|j|J|JC)\\s*([1-2]))\\s*";
