@@ -15,6 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GitUserName;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonName;
 import seedu.address.model.person.Phone;
 
@@ -57,7 +58,8 @@ public class NewTeammateCommandParser implements Parser<NewTeammateCommand> {
         Address address = ParsePersonUtil.parseAddress(argMultimap
             .getValue(PREFIX_TEAMMATE_ADDRESS).get());
 
-        return new NewTeammateCommand(name, gitUserName, phone, email, address);
+        Person teammate = new Person(name, gitUserName, phone, email, address);
+        return new NewTeammateCommand(teammate);
     }
 
 
