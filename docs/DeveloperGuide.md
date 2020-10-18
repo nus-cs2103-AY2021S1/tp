@@ -196,6 +196,11 @@ The following sequence diagram shows the execution of start command.
 
 ![StartCommandSequence](images/StartCommandSequence.png)
 
+Step 3. The user executes `viewtask 5` command to view the details of the task of index 5 in the filtered task list of current project.
+The `viewtask` command calls `enterTask`, causing a switch of scoping status and assignment of `taskOnView` in the current project.
+
+![ScopingStep3](images/ScopingStep3.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
