@@ -256,7 +256,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void clearOrderItemList() {
+    public void clearOrder() {
         orderManager.setOrder(new ArrayList<>());
     }
 

@@ -165,7 +165,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void clearOrderItemList() {
+        public void clearOrder() {
 
         }
 

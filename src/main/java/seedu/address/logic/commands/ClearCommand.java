@@ -21,7 +21,7 @@ public class ClearCommand extends Command {
         if (model.getOrderSize() == 0) {
             return new CommandResult(MESSAGE_EMPTY_ORDER);
         }
-        model.clearOrderItemList();
+        model.clearOrder();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

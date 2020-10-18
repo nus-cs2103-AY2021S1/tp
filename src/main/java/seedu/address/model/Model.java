@@ -186,9 +186,9 @@ public interface Model {
     ObservableList<Food> getFilteredFoodList(int index);
 
     /**
-     * Clears the orderItemList.
+     * Clears the order.
      */
-    void clearOrderItemList();
+    void clearOrder();
 
 
     /**
