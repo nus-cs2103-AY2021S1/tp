@@ -195,6 +195,8 @@ public class ModelManager implements Model {
         menuManagers.get(index).setFood(target, editedFood);
     }
 
+    //=========== OrderManager ================================================================================
+
     @Override
     public void setOrderManager(ReadOnlyOrderManager orderManager) {
         this.orderManager.resetData(orderManager);
@@ -226,6 +228,16 @@ public class ModelManager implements Model {
     public void setOrderItem(OrderItem target, OrderItem editedOrderItem) {
         requireAllNonNull(target, editedOrderItem);
         orderManager.setOrderItem(target, editedOrderItem);
+    }
+
+    @Override
+    public int getOrderHistorySize() {
+        return orderManager.getOrderHistorySize();
+    }
+
+    @Override
+    public void undoOrder() {
+        orderManager.undoChanges();
     }
 
     //=========== Filtered Vendor List Accessors =============================================================

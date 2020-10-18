@@ -3,6 +3,7 @@ package seedu.address.model.order;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Stack;
 
 import javafx.collections.ObservableList;
 
@@ -12,6 +13,7 @@ import javafx.collections.ObservableList;
  */
 public class OrderManager implements ReadOnlyOrderManager {
 
+    private final Stack<Order> orderHistory; // head of orderHistory
     private final Order order;
 
     /*
@@ -22,7 +24,9 @@ public class OrderManager implements ReadOnlyOrderManager {
      *   among constructors.
      */
     {
+        orderHistory = new Stack<>();
         order = new Order();
+        saveChanges();
     }
 
     public OrderManager() {}
@@ -35,6 +39,19 @@ public class OrderManager implements ReadOnlyOrderManager {
         resetData(toBeCopied);
     }
 
+    private void saveChanges() {
+        orderHistory.add(order.makeCopy());
+    }
+
+    /**
+     * Undoes the last change to the order.
+     */
+    public void undoChanges() {
+        assert(orderHistory.size() > 1);
+        orderHistory.pop();
+        order.setOrder(orderHistory.peek().makeCopy());
+    }
+
     //// list overwrite operations
 
     /**
@@ -43,6 +60,7 @@ public class OrderManager implements ReadOnlyOrderManager {
      */
     public void setOrder(List<OrderItem> orderItems) {
         this.order.setOrderItems(orderItems);
+        saveChanges();
     }
 
     /**
@@ -70,6 +88,7 @@ public class OrderManager implements ReadOnlyOrderManager {
      */
     public void addOrderItem(OrderItem f) {
         order.add(f);
+        saveChanges();
     }
 
 
@@ -83,6 +102,7 @@ public class OrderManager implements ReadOnlyOrderManager {
         requireNonNull(editedOrderItem);
 
         order.setOrderItem(target, editedOrderItem);
+        saveChanges();
     }
 
     /**
@@ -91,6 +111,11 @@ public class OrderManager implements ReadOnlyOrderManager {
      */
     public void removeOrderItem(OrderItem key) {
         order.remove(key);
+        saveChanges();
+    }
+
+    public int getOrderHistorySize() {
+        return orderHistory.size();
     }
 
     //// util methods
