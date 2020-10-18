@@ -2,9 +2,10 @@ package seedu.address.model.calendar;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-public class CalendarPaperwork extends CalendarMeeting {
+import seedu.address.model.id.BidderId;
+import seedu.address.model.id.PropertyId;
 
-    private static final String PREFIX = "p";
+public class CalendarPaperwork extends CalendarMeeting {
 
     /**
      * Constructor for paperwork meeting.
@@ -13,7 +14,7 @@ public class CalendarPaperwork extends CalendarMeeting {
      * @param calendarTime Calendar Time.
      * @param calendarVenue Calendar Venue.
      */
-    public CalendarPaperwork(CalendarBidderId calendarBidderId, CalendarPropertyId calendarPropertyId,
+    public CalendarPaperwork(BidderId calendarBidderId, PropertyId calendarPropertyId,
                              CalendarTime calendarTime, CalendarVenue calendarVenue) {
         super(calendarBidderId, calendarPropertyId, calendarTime, calendarVenue);
         requireAllNonNull(calendarBidderId, calendarPropertyId, calendarTime, calendarVenue);

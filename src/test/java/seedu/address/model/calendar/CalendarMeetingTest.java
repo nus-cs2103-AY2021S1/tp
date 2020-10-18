@@ -5,25 +5,28 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.id.BidderId;
+import seedu.address.model.id.PropertyId;
+
 class CalendarMeetingTest {
 
-    private CalendarMeeting firstMeeting = new CalendarMeeting(new CalendarBidderId("b1"),
-            new CalendarPropertyId("p1"), new CalendarTime("12 Oct 2020"),
+    private CalendarMeeting firstMeeting = new CalendarMeeting(new BidderId("B1"),
+            new PropertyId("P1"), new CalendarTime("12 Oct 2020"),
             new CalendarVenue("bedok"));
-    private CalendarMeeting firstMeetingIdentical = new CalendarMeeting(new CalendarBidderId("b1"),
-            new CalendarPropertyId("p1"), new CalendarTime("12 Oct 2020"),
+    private CalendarMeeting firstMeetingIdentical = new CalendarMeeting(new BidderId("B1"),
+            new PropertyId("P1"), new CalendarTime("12 Oct 2020"),
             new CalendarVenue("bedok"));
-    private CalendarMeeting firstMeetingDiff = new CalendarMeeting(new CalendarBidderId("b2"),
-            new CalendarPropertyId("p2"), new CalendarTime("15 Oct 2020"),
+    private CalendarMeeting firstMeetingDiff = new CalendarMeeting(new BidderId("B2"),
+            new PropertyId("P2"), new CalendarTime("15 Oct 2020"),
             new CalendarVenue("tampines"));
-    private CalendarViewing meetingDiffViewingType = new CalendarViewing(new CalendarBidderId("b2"),
-            new CalendarPropertyId("p2"), new CalendarTime("15 Oct 2020"),
+    private CalendarViewing meetingDiffViewingType = new CalendarViewing(new BidderId("B2"),
+            new PropertyId("P2"), new CalendarTime("15 Oct 2020"),
             new CalendarVenue("tampines"));
-    private CalendarAdmin meetingDiffAdminType = new CalendarAdmin(new CalendarBidderId("b2"),
-            new CalendarPropertyId("p2"), new CalendarTime("15 Oct 2020"),
+    private CalendarAdmin meetingDiffAdminType = new CalendarAdmin(new BidderId("B2"),
+            new PropertyId("P2"), new CalendarTime("15 Oct 2020"),
             new CalendarVenue("tampines"));
-    private CalendarPaperwork meetingDiffPaperworkType = new CalendarPaperwork(new CalendarBidderId("b2"),
-            new CalendarPropertyId("p2"), new CalendarTime("15 Oct 2020"),
+    private CalendarPaperwork meetingDiffPaperworkType = new CalendarPaperwork(new BidderId("B2"),
+            new PropertyId("P2"), new CalendarTime("15 Oct 2020"),
             new CalendarVenue("tampines"));
 
     @Test

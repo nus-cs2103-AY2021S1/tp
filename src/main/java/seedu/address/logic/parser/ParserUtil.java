@@ -9,8 +9,6 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.calendar.CalendarBidderId;
-import seedu.address.model.calendar.CalendarPropertyId;
 import seedu.address.model.calendar.CalendarTime;
 import seedu.address.model.calendar.CalendarVenue;
 import seedu.address.model.person.Name;
@@ -155,30 +153,6 @@ public class ParserUtil {
         requireNonNull(time);
         String trimmedTime = time.trim();
         return new CalendarTime(trimmedTime);
-    }
-
-    /**
-     * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code phone} is invalid.
-     */
-    public static CalendarPropertyId parseCalendarPropertyId(String propertyId) throws ParseException {
-        requireNonNull(propertyId);
-        String trimmedpropertyId = propertyId.trim();
-        return new CalendarPropertyId(trimmedpropertyId);
-    }
-
-    /**
-     * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code phone} is invalid.
-     */
-    public static CalendarBidderId parseCalendarBidderId(String bidderId) throws ParseException {
-        requireNonNull(bidderId);
-        String trimmedbidderId = bidderId.trim();
-        return new CalendarBidderId(trimmedbidderId);
     }
 
     /**

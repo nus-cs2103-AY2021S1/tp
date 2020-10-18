@@ -15,10 +15,8 @@ import seedu.address.model.bid.Bid;
 import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
 import seedu.address.model.calendar.CalendarAdmin;
-import seedu.address.model.calendar.CalendarBidderId;
 import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.calendar.CalendarPaperwork;
-import seedu.address.model.calendar.CalendarPropertyId;
 import seedu.address.model.calendar.CalendarTime;
 import seedu.address.model.calendar.CalendarVenue;
 import seedu.address.model.calendar.CalendarViewing;
@@ -165,11 +163,11 @@ public class SampleDataUtil {
     // ================= MEETING ==================
     public static CalendarMeeting[] getSampleMeetings() {
         return new CalendarMeeting[] {
-            new CalendarPaperwork(new CalendarBidderId("b1"), new CalendarPropertyId("p2"),
+            new CalendarPaperwork(new BidderId("B1"), new PropertyId("P2"),
                         new CalendarTime("15 OCT 2020"), new CalendarVenue("Marina Bay")),
-            new CalendarAdmin(new CalendarBidderId("b5"), new CalendarPropertyId("p6"),
+            new CalendarAdmin(new BidderId("B5"), new PropertyId("P6"),
                         new CalendarTime("19 OCT 2020"), new CalendarVenue("Bedok")),
-            new CalendarViewing(new CalendarBidderId("b11"), new CalendarPropertyId("p8"),
+            new CalendarViewing(new BidderId("B11"), new PropertyId("P8"),
                         new CalendarTime("21 OCT 2020"), new CalendarVenue("Tampines"))
         };
     }

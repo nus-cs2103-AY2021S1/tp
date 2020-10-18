@@ -2,6 +2,9 @@ package seedu.address.model.calendar;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import seedu.address.model.id.BidderId;
+import seedu.address.model.id.PropertyId;
+
 
 /**
  * Represents a meeting in the calendar book.
@@ -9,15 +12,12 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  */
 public class CalendarMeeting {
 
-    private static final String PREFIX = "p";
-    // TODO: should be managed somewhere else to access last id in storage
-
     // Identity fields
     protected boolean isPaperWork;
     protected boolean isViewing;
     protected boolean isAdmin;
-    private final CalendarBidderId calendarBidderId;
-    private final CalendarPropertyId calendarPropertyId;
+    private final BidderId calendarBidderId;
+    private final PropertyId calendarPropertyId;
     private final CalendarTime calendarTime;
     private final CalendarVenue calendarVenue;
     private boolean isMeeting;
@@ -26,7 +26,7 @@ public class CalendarMeeting {
     /**
      * Every field must be present and not null.
      */
-    public CalendarMeeting(CalendarBidderId calendarBidderId, CalendarPropertyId calendarPropertyId,
+    public CalendarMeeting(BidderId calendarBidderId, PropertyId calendarPropertyId,
                            CalendarTime calendarTime, CalendarVenue calendarVenue) {
         requireAllNonNull(calendarBidderId, calendarPropertyId, calendarTime, calendarVenue);
         this.calendarBidderId = calendarBidderId;
@@ -56,11 +56,11 @@ public class CalendarMeeting {
         }
     }
 
-    public CalendarBidderId getCalendarBidderId() {
+    public BidderId getCalendarBidderId() {
         return this.calendarBidderId;
     }
 
-    public CalendarPropertyId getCalendarPropertyId() {
+    public PropertyId getCalendarPropertyId() {
         return this.calendarPropertyId;
     }
 

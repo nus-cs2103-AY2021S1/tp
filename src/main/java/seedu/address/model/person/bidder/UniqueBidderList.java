@@ -10,7 +10,6 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.id.BidderId;
-import seedu.address.model.id.Id;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -55,7 +54,7 @@ public class UniqueBidderList implements Iterable<Bidder> {
         internalList.add(toAdd);
     }
 
-    public Id getLatestId() {
+    public BidderId getLatestId() {
         if (internalList.size() == 0) {
             return new BidderId(1);
         }

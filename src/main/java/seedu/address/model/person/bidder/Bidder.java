@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
 public class Bidder extends ClientPerson {
 
     public static final BidderId DEFAULT_BIDDER_ID = new BidderId(0);
-    public final BidderId bidderId;
+    public BidderId bidderId;
 
     public Bidder(Name name, Phone phone, Set<Tag> tags) {
         super(name, phone, tags, DEFAULT_BIDDER_ID);
@@ -46,6 +46,11 @@ public class Bidder extends ClientPerson {
     @Override
     public BidderId getId() {
         return bidderId;
+    }
+
+    public void setId(BidderId updatedId) {
+        super.setId(updatedId);
+        this.bidderId = updatedId;
     }
 
     /**

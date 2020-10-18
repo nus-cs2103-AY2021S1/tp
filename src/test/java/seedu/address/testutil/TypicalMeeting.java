@@ -19,32 +19,32 @@ import seedu.address.model.calendar.CalendarMeeting;
  */
 public class TypicalMeeting {
 
-    public static final CalendarMeeting ALICE = new MeetingBuilder().withName("Alice Pauline")
-            .withPhone("94351253").withId("S", 1)
-            .withTags("friends").build();
-    public static final CalendarMeeting BENSON = new MeetingBuilder().withName("Benson Meier")
-            .withTags("owesMoney").withId("S", 2).build();
-    public static final CalendarMeeting CARL = new MeetingBuilder().withName("Carl Kurz")
-            .withPhone("95352563").withPhone("9482442").withId("S", 3).build();
-    public static final CalendarMeeting DANIEL = new MeetingBuilder().withName("Daniel Meier")
-            .withPhone("87652533").withTags("friends").withId("S", 4).build();
-    public static final CalendarMeeting ELLE = new MeetingBuilder().withName("Elle Meyer")
-            .withPhone("9482224").withId("S", 5)
+    public static final CalendarMeeting ALICE = new MeetingBuilder().withPropertyId("P1")
+            .withBidderId("B1").withVenue("Alice's Wonderland")
+            .withTime("friends").build();
+    public static final CalendarMeeting BENSON = new MeetingBuilder().withPropertyId("P2")
+            .withTime("owesMoney").withVenue("Beverly Hills").build();
+    public static final CalendarMeeting CARL = new MeetingBuilder().withPropertyId("P3")
+            .withBidderId("B2").withVenue("Carl Town").build();
+    public static final CalendarMeeting DANIEL = new MeetingBuilder().withPropertyId("P4")
+            .withBidderId("B3").withTime("friends").withVenue("Dempsy hill").build();
+    public static final CalendarMeeting ELLE = new MeetingBuilder().withPropertyId("P5")
+            .withBidderId("B4").withVenue("Easton Avenue")
             .build();
-    public static final CalendarMeeting FIONA = new MeetingBuilder().withName("Fiona Kunz")
-            .withPhone("9482427").withId("S", 6)
+    public static final CalendarMeeting FIONA = new MeetingBuilder().withPropertyId("P6")
+            .withBidderId("B5").withVenue("Fiona Road")
             .build();
     public static final CalendarMeeting GEORGE = new MeetingBuilder()
-            .withName("George Best").withPhone("9482442")
-            .withId("S", 7)
+            .withPropertyId("P7").withBidderId("B6")
+            .withVenue("George Town")
             .build();
 
     // Manually added - Meeting's details found in {@code CommandTestUtil}
-    public static final CalendarMeeting AMY = new MeetingBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withTags(VALID_TAG_FRIEND).withId("S", 12)
+    public static final CalendarMeeting AMY = new MeetingBuilder().withPropertyId("P1").withBidderId("B1")
+            .withTime(VALID_TAG_FRIEND).withVenue("S Avenue")
             .build();
-    public static final CalendarMeeting BOB = new MeetingBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withTags(VALID_TAG_HUSBAND).withId("S", 13)
+    public static final CalendarMeeting BOB = new MeetingBuilder().withPropertyId("P2").withBidderId("B2")
+            .withTime(VALID_TAG_HUSBAND).withVenue("Serangoon")
             .build();
 
     /**

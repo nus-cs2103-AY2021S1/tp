@@ -9,7 +9,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.id.Id;
 import seedu.address.model.id.SellerId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
@@ -55,7 +54,7 @@ public class UniqueSellerList implements Iterable<Seller> {
         internalList.add(toAdd);
     }
 
-    public Id getLatestId() {
+    public SellerId getLatestId() {
         if (internalList.size() == 0) {
             return new SellerId(1);
         }

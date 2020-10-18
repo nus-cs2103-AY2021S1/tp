@@ -2,7 +2,6 @@ package seedu.address.model.person.seller;
 
 import java.util.Set;
 
-import seedu.address.model.id.Id;
 import seedu.address.model.id.SellerId;
 import seedu.address.model.person.ClientPerson;
 import seedu.address.model.person.Name;
@@ -16,7 +15,7 @@ import seedu.address.model.tag.Tag;
 public class Seller extends ClientPerson {
 
     public static final SellerId DEFAULT_SELLER_ID = new SellerId(0);
-    private final SellerId sellerId;
+    private SellerId sellerId;
 
     public Seller(Name name, Phone phone, Set<Tag> tags) {
         super(name, phone, tags, DEFAULT_SELLER_ID);
@@ -47,6 +46,11 @@ public class Seller extends ClientPerson {
     @Override
     public SellerId getId() {
         return sellerId;
+    }
+
+    public void setId(SellerId updatedId) {
+        super.setId(updatedId);
+        this.sellerId = updatedId;
     }
 
     /**
