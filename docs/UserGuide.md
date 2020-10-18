@@ -59,35 +59,35 @@ NUStorage is a desktop application for __managing inventory, finance transaction
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-#### Add items to inventory: `add_inventory`
+### Add items to inventory: `add_inventory`
 Add and store items into the inventory
 
 Format: `add_inventory i/ITEM_NAME q/QUANTITY [c/ITEM_COST]`
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### Remove items from inventory: `delete_inventory`
+### Remove items from inventory: `delete_inventory`
 Remove specified record from the inventory
 
 Format: `delete_inventory INDEX`
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### Edit record in inventory: `edit_inventory`
+### Edit record in inventory: `edit_inventory`
 Edit specified record in the inventory
 
 Format: `edit_inventory INDEX [i/ITEM_NAME] [q/QUANTITY]`
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### List inventory records: `list_inventory`
+### List inventory records: `list_inventory`
 Display all records in the inventory
 
 Format: `list_inventory`
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### Add finance records: `add_finance`
+### Add finance records: `add_finance`
 Add and store finance record into the account
 
 Date and time are default to current location's datetime unless specified
@@ -96,7 +96,7 @@ Format: `add_finance amt/AMOUNT [at/[DATE] [TIME]]`
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### Delete finance records: `delete_finance`
+### Delete finance records: `delete_finance`
 
 Delete specified finance record from the account
 
@@ -104,7 +104,7 @@ Format: `delete_finance INDEX`
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### List finance records: `list_finance`
+### List finance records: `list_finance`
 
 Display all finance records in the account
 
@@ -112,7 +112,7 @@ Format: `list_finance`
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### Quit the programme: `exit`
+### Quit the programme: `exit`
 
 Save data locally in a data file and exit the programme
 
