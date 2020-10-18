@@ -161,7 +161,15 @@ opposed to `Quantity`, which only accepts non-negative integers. However, the fi
 modified `Item` cannot be below 0.
 
 `AddQuantityToItemCommand` is dependent on `EditItemCommand` and utilises it to execute its
-intended behaviour.
+intended behaviour. It builds a `EditItemDescriptor` by searching for the `Item`'s attributes.
+Using the current `Quantity` and the user-input, it calculates an updated `Quantity`. It then
+constructs and executes an `EditItemCommand` to replace the `Item`'s `Quantity` with the
+updated value.
+
+The sequence diagram for the execution of an `AddQuantityToItemCommand` is as follows:
+
+The `Item` with name banana is denoted as `itemBanana`, and the original quantity assumed to be `20`.
+![AddQuantityToItemCommandSequenceDiagram](images/AddQuantityToItemCommandSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
