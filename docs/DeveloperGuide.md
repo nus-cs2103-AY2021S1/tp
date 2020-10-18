@@ -187,6 +187,7 @@ The following sequence diagram shows how scoping works in the application.
 Step 2. The user executes `start 3` command to view the details of the project of index 3 in the main catalogue. The `start` command
 calls `enter`, causing a switch of scoping status and assignment of `project` of focus in `MainCatalogue`.
 
+![ScopingStep2](images/ScopingStep2.png)
 
 
 ### \[Proposed\] Undo/redo feature
