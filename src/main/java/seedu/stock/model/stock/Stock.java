@@ -31,10 +31,7 @@ public class Stock {
         this.source = source;
         this.quantity = quantity;
         this.location = location;
-        List<Note> notes = new ArrayList<>();
-        Note defaultNote = new Note("");
-        notes.add(defaultNote);
-        this.notes = notes;
+        this.notes = new ArrayList<>();
     }
 
     /**

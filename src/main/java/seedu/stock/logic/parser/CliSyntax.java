@@ -16,6 +16,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_SERIAL_NUMBER = new Prefix("sn/");
     public static final Prefix PREFIX_NEW_QUANTITY = new Prefix("nq/");
     public static final Prefix PREFIX_INCREMENT_QUANTITY = new Prefix("iq/");
+    public static final Prefix PREFIX_NOTE = new Prefix("note/");
 
     /* Prefix values descriptions */
     public static final String PREFIX_NAME_DESCRIPTION = "<name>";
@@ -23,6 +24,7 @@ public class CliSyntax {
     public static final String PREFIX_LOCATION_DESCRIPTION = "<location>";
     public static final String PREFIX_QUANTITY_DESCRIPTION = "<quantity>";
     public static final String PREFIX_SERIAL_NUMBER_DESCRIPTION = "<serial number>";
+    public static final String PREFIX_NOTE_DESCRIPTION = "<note>";
 
     /**
      * Returns a list containing all possible prefixes.
@@ -38,7 +40,37 @@ public class CliSyntax {
         allPrefixes.add(PREFIX_SERIAL_NUMBER);
         allPrefixes.add(PREFIX_NEW_QUANTITY);
         allPrefixes.add(PREFIX_INCREMENT_QUANTITY);
+        allPrefixes.add(PREFIX_NOTE);
         return allPrefixes;
+    }
+
+    /**
+     * Returns an array containing all possible prefixes.
+     *
+     * @return An array containing all possible prefixes.
+     */
+    public static Prefix[] getAllPossiblePrefixesAsArray() {
+        List<Prefix> allPrefixes = getAllPossiblePrefixes();
+        Prefix[] allPrefixesInArray = allPrefixes.toArray(new Prefix[0]);
+        return allPrefixesInArray;
+    }
+
+    /**
+     * Returns an array containing all invalid prefixes for the command.
+     *
+     * @param validPrefixes prefixes that are valid for the command
+     * @return An array containing all invalid prefixes for the command.
+     */
+    public static Prefix[] getInvalidPrefixesForCommand(Prefix[] validPrefixes) {
+        List<Prefix> allPossiblePrefixes = getAllPossiblePrefixes();
+
+        for (Prefix prefix : validPrefixes) {
+            allPossiblePrefixes.remove(prefix);
+        }
+
+        Prefix[] allInvalidPrefixes = allPossiblePrefixes.toArray(new Prefix[0]);
+
+        return allInvalidPrefixes;
     }
 
     /**
@@ -58,6 +90,8 @@ public class CliSyntax {
             return PREFIX_QUANTITY_DESCRIPTION;
         } else if (prefix.equals(PREFIX_SERIAL_NUMBER)) {
             return PREFIX_SERIAL_NUMBER_DESCRIPTION;
+        } else if (prefix.equals(PREFIX_NOTE)) {
+            return PREFIX_NOTE_DESCRIPTION;
         } else {
             return "";
         }

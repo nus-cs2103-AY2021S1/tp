@@ -13,6 +13,7 @@ import seedu.stock.logic.commands.FindCommand;
 import seedu.stock.logic.commands.FindExactCommand;
 import seedu.stock.logic.commands.HelpCommand;
 import seedu.stock.logic.commands.ListCommand;
+import seedu.stock.logic.commands.NoteCommand;
 import seedu.stock.logic.commands.UpdateCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 
@@ -95,6 +96,13 @@ public class StockBookParser {
         case FindExactCommand.COMMAND_WORD:
             try {
                 return new FindExactCommandParser().parse(arguments);
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
+
+        case NoteCommand.COMMAND_WORD:
+            try {
+                return new NoteCommandParser().parse(arguments);
             } catch (ParseException ex) {
                 return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
             }

@@ -34,6 +34,7 @@ public class Note {
     public static boolean isValidNote(String test) {
         return test.matches(VALIDATION_REGEX);
     }
+
     @Override
     public String toString() {
         return value;

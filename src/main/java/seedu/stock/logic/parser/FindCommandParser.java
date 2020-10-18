@@ -1,13 +1,8 @@
 package seedu.stock.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
+import static seedu.stock.logic.parser.CliSyntax.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,44 +23,67 @@ import seedu.stock.model.stock.predicates.SourceContainsKeywordsPredicate;
  */
 public class FindCommandParser implements Parser<FindCommand> {
 
+    private final static Prefix[] allPossiblePrefixes = getAllPossiblePrefixesAsArray();
+    private final static Prefix[] validPrefixesForFind = { PREFIX_NAME, PREFIX_LOCATION,
+            PREFIX_SOURCE, PREFIX_SERIAL_NUMBER };
+    private final static Prefix[] invalidPrefixesForFind =
+            getInvalidPrefixesForCommand(validPrefixesForFind);
+
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER, PREFIX_LOCATION,
-                        PREFIX_QUANTITY, PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY);
+                ArgumentTokenizer.tokenize(args, allPossiblePrefixes);
 
         // Check if command format is correct
-        if (!isAnyPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER)
-                || isAnyPrefixPresent(argMultimap, PREFIX_NEW_QUANTITY, PREFIX_INCREMENT_QUANTITY, PREFIX_QUANTITY)
+        if (!isAnyPrefixPresent(argMultimap, validPrefixesForFind)
+                || isAnyPrefixPresent(argMultimap, invalidPrefixesForFind)
+                || isDuplicatePrefixPresent(argMultimap, validPrefixesForFind)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
-
-        List<Prefix> prefixes = CliSyntax.getAllPossiblePrefixes();
-        // Check for duplicate prefixes
-        for (Prefix prefix: prefixes) {
-            if (argMultimap.getAllValues(prefix).size() >= 2) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-            }
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindCommand.MESSAGE_USAGE));
         }
 
         // Get the predicates to test to find stocks wanted
         List<Predicate<Stock>> predicatesToTest =
-                parsePrefixAndKeywords(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER);
+                parsePrefixAndKeywords(argMultimap, validPrefixesForFind);
 
         return new FindCommand(predicatesToTest);
     }
 
     /**
-     * Returns true if any one of the prefixes does not contain an empty {@code Optional} value
-     * in the given {@code ArgumentMultimap}.
+     * Returns true if any one of the prefixes does not contain
+     * an empty {@code Optional} value in the given {@code ArgumentMultimap}.
+     * @param argumentMultimap map of prefix to keywords entered by user
+     * @param prefixes prefixes to parse
+     * @return boolean true if a prefix specified is present
      */
-    private static boolean isAnyPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    private static boolean isAnyPrefixPresent(
+            ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix ->
+                argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if duplicate prefixes are present when parsing command.
+     * @param argumentMultimap map of prefix to keywords entered by user
+     * @param prefixes prefixes to parse
+     * @return boolean true if duplicate prefix is present
+     */
+    private static boolean isDuplicatePrefixPresent(
+            ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+
+        // Check for duplicate prefixes
+        for (Prefix prefix: prefixes) {
+            if (argumentMultimap.getAllValues(prefix).size() >= 2) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -74,8 +92,8 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @param prefixes prefixes to parse
      * @return list of predicates to filter stocks
      */
-    private static List<Predicate<Stock>> parsePrefixAndKeywords(ArgumentMultimap argumentMultimap,
-                                                                 Prefix... prefixes) {
+    private static List<Predicate<Stock>> parsePrefixAndKeywords(
+            ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes)
                 .filter(prefix -> argumentMultimap.getValue(prefix).isPresent())
                 .map(prefix -> getPredicate(prefix, argumentMultimap.getValue(prefix).get()))

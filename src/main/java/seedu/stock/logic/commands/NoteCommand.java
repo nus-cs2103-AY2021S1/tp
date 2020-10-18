@@ -16,7 +16,7 @@ import java.util.Optional;
  */
 public class NoteCommand extends Command {
 
-    public static final String COMMAND_WORD = "addnote";
+    public static final String COMMAND_WORD = "note";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a note to the stock identified "
             + "by the serial number of the stock.\n"

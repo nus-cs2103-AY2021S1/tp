@@ -15,6 +15,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.util.Objects.requireNonNull;
 import seedu.stock.logic.commands.FindExactCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.Stock;
@@ -34,6 +35,7 @@ public class FindExactCommandParser implements Parser<FindExactCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindExactCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER, PREFIX_LOCATION,
                         PREFIX_QUANTITY, PREFIX_NEW_QUANTITY, PREFIX_INCREMENT_QUANTITY);
