@@ -16,6 +16,9 @@ import quickcache.model.flashcard.Flashcard;
 import quickcache.storage.JsonQuickCacheStorage;
 import quickcache.storage.QuickCacheStorage;
 
+/**
+ * Saves the last shown flashcard list into a specified file.
+ */
 public class ExportCommand extends Command {
 
     private static final Logger logger = LogsCenter.getLogger(ExportCommand.class);
@@ -28,13 +31,18 @@ public class ExportCommand extends Command {
         + "Example: " + COMMAND_WORD + " CS2103_Flashcards.json";
 
     public static final String MESSAGE_EXPORT_FLASHCARDS_SUCCESS =
-        "Flashcards exported to: %s1$s.json";
+        "Flashcards exported to: %1$s";
 
     public static final String MESSAGE_EXPORT_FLASHCARDS_FAILURE =
-        "Flashcards were unable to be exported to: %s1$s.json";
+        "Flashcards were unable to be exported to: %1$s";
 
     private final String fileName;
 
+    /**
+     * Instantiates an export command.
+     *
+     * @param fileName String representation of the fileName to save last shown flashcard list to.
+     */
     public ExportCommand(String fileName) {
         requireNonNull(fileName);
         this.fileName = fileName;
