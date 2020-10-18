@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_DESCRIPTION_BANANA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_APPLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_BANANA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_BANANA;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalItems.APPLE;
@@ -47,7 +49,7 @@ public class EditItemCommandTest {
 
         EditItemCommand.EditItemDescriptor descriptor = new EditItemCommand.EditItemDescriptor();
         descriptor.setQuantity(new Quantity(VALID_ITEM_QUANTITY_BANANA));
-        EditItemCommand eic = new EditItemCommand("Apple", descriptor);
+        EditItemCommand eic = new EditItemCommand(VALID_ITEM_NAME_APPLE, descriptor);
         String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, apple);
 
         // expected model should contain the edited apple
@@ -69,7 +71,7 @@ public class EditItemCommandTest {
         EditItemCommand.EditItemDescriptor descriptor = new EditItemCommand.EditItemDescriptor();
         descriptor.setQuantity(new Quantity(VALID_ITEM_QUANTITY_BANANA));
         descriptor.setDescription(VALID_ITEM_DESCRIPTION_BANANA);
-        EditItemCommand eic = new EditItemCommand("Apple", descriptor);
+        EditItemCommand eic = new EditItemCommand(VALID_ITEM_NAME_APPLE, descriptor);
         String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, apple);
 
         // expected model should contain the edited apple
@@ -95,7 +97,7 @@ public class EditItemCommandTest {
         expectedModelStub = new ModelStubWithItemList(expectedItemList);
 
         // edit command has empty descriptor with no fields specified
-        EditItemCommand eic = new EditItemCommand("Apple", new EditItemCommand.EditItemDescriptor());
+        EditItemCommand eic = new EditItemCommand(VALID_ITEM_NAME_APPLE, new EditItemCommand.EditItemDescriptor());
 
         assertThrows(CommandException.class, () -> eic.execute(modelStub),
                 EditItemCommand.MESSAGE_NOT_EDITED);
@@ -108,14 +110,14 @@ public class EditItemCommandTest {
     @Test
     public void execute_duplicateItem_failure() {
         itemList.addItem(apple);
-        Item banana = new ItemBuilder(APPLE).withName("Banana").build();
+        Item banana = new ItemBuilder(APPLE).withName(VALID_ITEM_NAME_BANANA).build();
         itemList.addItem(banana);
         modelStub = new ModelStubWithItemList(itemList); // model now has apple and banana
 
         EditItemCommand.EditItemDescriptor descriptor = new EditItemCommand.EditItemDescriptor();
         descriptor.setName(banana.getName());
         // This command tries to modify apple to be named banana, which is already in the model
-        EditItemCommand eic = new EditItemCommand("Apple", descriptor);
+        EditItemCommand eic = new EditItemCommand(VALID_ITEM_NAME_APPLE, descriptor);
 
         // expected model should be the same as the model
         expectedItemList.addItem(apple);
@@ -131,12 +133,12 @@ public class EditItemCommandTest {
     public void equals() {
         EditItemCommand.EditItemDescriptor descName = new EditItemCommand.EditItemDescriptor();
         descName.setName("x");
-        EditItemCommand editName = new EditItemCommand("Apple", descName);
+        EditItemCommand editName = new EditItemCommand(VALID_ITEM_NAME_APPLE, descName);
 
         // same values -> returns true
         EditItemCommand.EditItemDescriptor descName2 = new EditItemCommand.EditItemDescriptor();
         descName2.setName("x");
-        EditItemCommand editName2 = new EditItemCommand("Apple", descName2);
+        EditItemCommand editName2 = new EditItemCommand(VALID_ITEM_NAME_APPLE, descName2);
         assertTrue(editName.equals(editName2));
 
         // same object -> returns true
@@ -149,12 +151,12 @@ public class EditItemCommandTest {
         assertFalse(editName.equals(new ListItemCommand()));
 
         // different name -> returns false
-        assertFalse(editName.equals(new EditItemCommand("Banana", descName)));
+        assertFalse(editName.equals(new EditItemCommand(VALID_ITEM_NAME_BANANA, descName)));
 
         // different descriptor -> returns false
         EditItemCommand.EditItemDescriptor descQuant = new EditItemCommand.EditItemDescriptor();
         descQuant.setQuantity(new Quantity("1"));
-        assertFalse(editName.equals(new EditItemCommand("Apple", descQuant)));
+        assertFalse(editName.equals(new EditItemCommand(VALID_ITEM_NAME_APPLE, descQuant)));
     }
 
     /**
