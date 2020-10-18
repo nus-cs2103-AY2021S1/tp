@@ -10,26 +10,24 @@ import seedu.address.commons.util.StringUtil;
  * Tests that a {@code Assignment}'s {@code Name} matches any of the keywords given.
  */
 public class DeadlineContainsKeywordsPredicate implements Predicate<Assignment> {
-    private final Deadline deadline;
+    private final List<String> keywords;
 
-    public DeadlineContainsKeywordsPredicate(Deadline deadline) {
-        this.deadline = deadline;
+    public DeadlineContainsKeywordsPredicate(List<String> keywords) {
+        this.keywords = keywords;
     }
 
     @Override
     public boolean test(Assignment assignment) {
-        List<Deadline> listForm = new ArrayList<>();
-        listForm.add(deadline);
-        return listForm.stream()
+        return keywords.stream()
                 .anyMatch(keyword -> StringUtil
-                        .containsWordIgnoreCase(assignment.getDeadline().value, deadline.toString()));
+                        .containsWordIgnoreCase(assignment.getDeadline().value, keyword));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeadlineContainsKeywordsPredicate // instanceof handles nulls
-                && deadline.equals(((DeadlineContainsKeywordsPredicate) other).deadline)); // state check
+                && keywords.equals(((DeadlineContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }

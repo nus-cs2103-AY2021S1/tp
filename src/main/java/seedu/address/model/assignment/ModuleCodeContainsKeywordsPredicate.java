@@ -7,26 +7,24 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class ModuleCodeContainsKeywordsPredicate implements Predicate<Assignment> {
-    private final ModuleCode moduleCode;
+    private final List<String> keywords;
 
-    public ModuleCodeContainsKeywordsPredicate(ModuleCode moduleCode) {
-        this.moduleCode = moduleCode;
+    public ModuleCodeContainsKeywordsPredicate(List<String> keywords) {
+        this.keywords = keywords;
     }
 
     @Override
     public boolean test(Assignment assignment) {
-        List<ModuleCode> listForm = new ArrayList<>();
-        listForm.add(moduleCode);
-        return listForm.stream()
+        return keywords.stream()
                 .anyMatch(keyword -> StringUtil
-                        .containsWordIgnoreCase(assignment.getModuleCode().moduleCode, moduleCode.toString()));
+                        .containsWordIgnoreCase(assignment.getModuleCode().moduleCode, keyword));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ModuleCodeContainsKeywordsPredicate // instanceof handles nulls
-                && moduleCode.equals(((ModuleCodeContainsKeywordsPredicate) other).moduleCode)); // state check
+                && keywords.equals(((ModuleCodeContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }
