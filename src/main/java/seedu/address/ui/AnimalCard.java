@@ -54,10 +54,8 @@ public class AnimalCard extends UiPart<Region> {
         this.animal = animal;
         index.setText(displayedIndex + ". ");
         name.setText(animal.getName().fullName);
-        identity.setText("ID: " + animal.getId().value);
-        species.setText("Species: " + animal.getSpecies().value);
-        medicalCondition.setText("Medical details: ");
-        feedTime.setText("Feeding times: ");
+        identity.setText(animal.getId().value);
+        species.setText(animal.getSpecies().value);
         animal.getMedicalConditions().stream()
                 .sorted(Comparator.comparing(medicalCondition -> medicalCondition.medicalConditionName))
                 .forEach(medicalCondition -> medicalConditions.getChildren()
@@ -65,7 +63,7 @@ public class AnimalCard extends UiPart<Region> {
         animal.getFeedTimes().stream()
                 .sorted(new FeedTimeComparator())
                 .forEach(feedTime -> feedTimes.getChildren()
-                        .add(new Label(feedTime.feedTime)));
+                        .add(new Label(feedTime.feedTime + " hrs")));
     }
 
     @Override
