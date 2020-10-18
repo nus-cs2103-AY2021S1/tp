@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddAssignmentCommand;
 import seedu.address.logic.commands.AddContactCommand;
+import seedu.address.logic.commands.AddGradeCommand;
 import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.commands.AddZoomLinkCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -91,6 +92,9 @@ public class ModuleListParser {
 
         case AddContactCommand.COMMAND_WORD:
             return new AddContactParser().parse(arguments);
+
+        case AddGradeCommand.COMMAND_WORD:
+            return new AddGradeParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
