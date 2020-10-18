@@ -203,7 +203,12 @@ public class AddCommandTest {
         @Override
         public ObservableList<OrderItem> getFilteredOrderItemList() {
             return null;
-        };
+        }
+
+        @Override
+        public int getOrderSize() {
+            return 0;
+        }
 
         @Override
         public void updateFilteredOrderItemList(Predicate<OrderItem> predicate){

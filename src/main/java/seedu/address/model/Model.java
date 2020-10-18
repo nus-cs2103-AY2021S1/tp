@@ -197,6 +197,8 @@ public interface Model {
      */
     ObservableList<OrderItem> getFilteredOrderItemList();
 
+    public int getOrderSize();
+
     /**
      * Updates the filter of the filtered orderItem list at the
      * corresponding index to filter by the given {@code predicate}.

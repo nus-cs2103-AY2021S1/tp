@@ -50,8 +50,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
+        String removeCommand = "remove 9";
+        assertCommandException(removeCommand, ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
     }
 
     @Test
