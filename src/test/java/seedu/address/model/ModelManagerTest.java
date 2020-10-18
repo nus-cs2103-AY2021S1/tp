@@ -112,18 +112,18 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void isEmptyModuleList_moduleListNotEmpty_returnsFalse(){
+    public void isEmptyModuleList_moduleListNotEmpty_returnsFalse() {
         modelManager.addModule(CS1101S);
         assertFalse(modelManager.isEmptyModuleList());
     }
 
     @Test
-    public void isEmptyModuleList_moduleListEmpty_returnsTrue(){
+    public void isEmptyModuleList_moduleListEmpty_returnsTrue() {
         assertTrue(modelManager.isEmptyModuleList());
     }
 
     @Test
-    public void clearModules_returnsTrue(){
+    public void clearModules_returnsTrue() {
         modelManager.addModule(CS1101S);
         modelManager.clearMod();
         assertTrue(modelManager.isEmptyModuleList());
@@ -135,18 +135,18 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void isEmptyPersonList_personListNotEmpty_returnsFalse(){
+    public void isEmptyPersonList_personListNotEmpty_returnsFalse() {
         modelManager.addPerson(ALICE);
         assertFalse(modelManager.isEmptyPersonList());
     }
 
     @Test
-    public void isEmptyPersonList_persontListEmpty_returnsTrue(){
+    public void isEmptyPersonList_persontListEmpty_returnsTrue() {
         assertTrue(modelManager.isEmptyPersonList());
     }
 
     @Test
-    public void clearContacts_returnsTrue(){
+    public void clearContacts_returnsTrue() {
         modelManager.addPerson(ALICE);
         modelManager.clearContacts();
         assertTrue(modelManager.isEmptyPersonList());
