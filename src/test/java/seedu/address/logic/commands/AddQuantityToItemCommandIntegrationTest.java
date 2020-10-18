@@ -1,6 +1,13 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_QUANTITY_DECREMENT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DECREASED_QUANTITY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INCREASED_QUANTITY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_APPLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_ORIGINAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_DECREMENT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_INCREMENT;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertInventoryCommandFailure;
 import static seedu.address.testutil.TypicalItems.APPLE;
@@ -30,7 +37,7 @@ public class AddQuantityToItemCommandIntegrationTest {
     public void setUp() {
         model = new ModelManager(new ItemList(), new LocationList(), new RecipeList(), new UserPrefs());
         expectedModel = new ModelManager(new ItemList(), new LocationList(), new RecipeList(), new UserPrefs());
-        apple = new ItemBuilder(APPLE).withQuantity("50").build();
+        apple = new ItemBuilder(APPLE).withQuantity(VALID_ITEM_QUANTITY_ORIGINAL).build();
         model.addItem(apple);
     }
 
@@ -44,11 +51,11 @@ public class AddQuantityToItemCommandIntegrationTest {
      */
     @Test
     public void execute_addQuantity_success() {
-        AddQuantityToItemCommand aic = new AddQuantityToItemCommand("Apple", 10);
+        AddQuantityToItemCommand aic = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, VALID_QUANTITY_INCREMENT);
         String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, apple);
 
         // expected model should contain the edited apple
-        Item editedApple = new ItemBuilder(APPLE).withQuantity("60").build();
+        Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_INCREASED_QUANTITY).build();
         expectedModel.addItem(editedApple);
 
         assertCommandSuccess(aic, model, expectedMessage, expectedModel);
@@ -59,11 +66,11 @@ public class AddQuantityToItemCommandIntegrationTest {
      */
     @Test
     public void execute_decreaseQuantity_success() {
-        AddQuantityToItemCommand aic = new AddQuantityToItemCommand("Apple", -10);
+        AddQuantityToItemCommand aic = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, VALID_QUANTITY_DECREMENT);
         String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, apple);
 
         // expected model should contain the edited apple
-        Item editedApple = new ItemBuilder(APPLE).withQuantity("40").build();
+        Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_DECREASED_QUANTITY).build();
         expectedModel.addItem(editedApple);
 
         assertCommandSuccess(aic, model, expectedMessage, expectedModel);
@@ -74,7 +81,7 @@ public class AddQuantityToItemCommandIntegrationTest {
      */
     @Test
     public void execute_decreaseQuantityToNegative_throwsException() {
-        AddQuantityToItemCommand aic = new AddQuantityToItemCommand("Apple", -60);
+        AddQuantityToItemCommand aic = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, INVALID_QUANTITY_DECREMENT);
         String expectedMessage = AddQuantityToItemCommand.MESSAGE_NEGATIVE_QUANTITY;
 
         assertInventoryCommandFailure(aic, model, expectedMessage);

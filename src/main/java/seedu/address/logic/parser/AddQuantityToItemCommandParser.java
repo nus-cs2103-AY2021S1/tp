@@ -9,6 +9,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import seedu.address.logic.commands.AddQuantityToItemCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new AddQuantityToItemCommand object
+ */
 public class AddQuantityToItemCommandParser implements Parser<AddQuantityToItemCommand> {
 
     /**
