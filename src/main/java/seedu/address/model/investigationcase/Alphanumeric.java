@@ -3,6 +3,8 @@ package seedu.address.model.investigationcase;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Objects;
+
 public abstract class Alphanumeric {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -13,7 +15,7 @@ public abstract class Alphanumeric {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String alphaNum;
+    private final String alphaNum;
 
     /**
      * Constructs a {@code Name}.
@@ -24,6 +26,10 @@ public abstract class Alphanumeric {
         requireNonNull(alphaNum);
         checkArgument(isValidAlphanum(alphaNum, canBeBlank), MESSAGE_CONSTRAINTS);
         this.alphaNum = alphaNum;
+    }
+
+    public String getAlphaNum() {
+        return alphaNum;
     }
 
     /**
@@ -49,6 +55,6 @@ public abstract class Alphanumeric {
 
     @Override
     public int hashCode() {
-        return alphaNum.hashCode();
+        return Objects.hash(alphaNum);
     }
 }

@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 /**
  * Represents a Document's reference in an investigation case.
@@ -15,11 +16,9 @@ public class Reference {
 
     public static final String MESSAGE_CONSTRAINTS =
             "File should be placed in the ./data/reference folder. Please only enter the file name.";
-
     private static final String DEFAULT_FILEPATH = "./references/";
     private final Path path;
     private final String fileName;
-
 
     /**
      * Constructs a {@code Reference}.
@@ -37,13 +36,12 @@ public class Reference {
      * Returns true if a given file path exists.
      */
     public static boolean isValidReference(String fileName) {
-        if (fileName.equals("")) {
+        if (fileName.isEmpty()) {
             return false;
         }
         Path filePath = Paths.get(DEFAULT_FILEPATH + fileName);
         return Files.exists(filePath);
     }
-
 
     @Override
     public String toString() {
@@ -59,7 +57,7 @@ public class Reference {
 
     @Override
     public int hashCode() {
-        return path.hashCode();
+        return Objects.hash(path);
     }
 
     public String getFileName() {

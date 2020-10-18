@@ -13,10 +13,10 @@ import seedu.address.model.investigationcase.Reference;
  */
 class JsonAdaptedDocument {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "DOCUMENT's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Document's %s field is missing!";
 
-    private String name;
-    private String reference;
+    private final String name;
+    private final String reference;
 
     /**
      * Constructs a {@code JsonAdaptedDocument} with the given {@code documentStorageName }.
@@ -31,7 +31,7 @@ class JsonAdaptedDocument {
      * Converts a given {@code Document} into this class for Jackson use.
      */
     public JsonAdaptedDocument(Document source) {
-        name = source.getName().alphaNum;
+        name = source.getName().getAlphaNum();
         reference = source.getReference().getFileName();
     }
 

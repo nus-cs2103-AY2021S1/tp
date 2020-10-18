@@ -29,7 +29,7 @@ public class JsonAdaptedWitness {
      * Converts a given {@code Witness} into this class for Jackson use.
      */
     public JsonAdaptedWitness(Witness source) {
-        witnessName = source.getName().toString();
+        witnessName = source.getName().getAlphaNum();
     }
 
     @JsonValue

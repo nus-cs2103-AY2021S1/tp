@@ -44,7 +44,7 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.investigationCase = investigationCase;
         id.setText(displayedIndex + ". ");
-        name.setText(investigationCase.getTitle().alphaNum);
+        name.setText(investigationCase.getTitle().getAlphaNum());
         status.setText(investigationCase.getStatus().name());
         investigationCase.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

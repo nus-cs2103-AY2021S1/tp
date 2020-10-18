@@ -12,6 +12,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.casecommands.AddCaseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.state.StateManager;
 import seedu.address.model.investigationcase.Case;
 import seedu.address.model.investigationcase.Description;
 import seedu.address.model.investigationcase.Document;
@@ -25,6 +26,8 @@ import seedu.address.model.tag.Tag;
 public class AddCaseCommandParser implements Parser<AddCaseCommand> {
     @Override
     public AddCaseCommand parse(String args) throws ParseException {
+        assert(StateManager.atMainPage()) : "Program should be at main page";
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_STATUS, PREFIX_TAG);
 
