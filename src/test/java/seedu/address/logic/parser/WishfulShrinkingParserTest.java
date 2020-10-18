@@ -29,6 +29,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListConsumptionCommand;
 import seedu.address.logic.commands.ListIngredientsCommand;
 import seedu.address.logic.commands.ListRecipesCommand;
+import seedu.address.logic.commands.RecommendCommand;
 import seedu.address.logic.commands.SearchIngredientCommand;
 import seedu.address.logic.commands.SearchRecipeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -142,6 +143,12 @@ public class WishfulShrinkingParserTest {
     public void parseCommand_listConsumption() throws Exception {
         assertTrue(parser.parseCommand(ListConsumptionCommand.COMMAND_WORD) instanceof ListConsumptionCommand);
         assertTrue(parser.parseCommand(ListConsumptionCommand.COMMAND_WORD + " 3") instanceof ListConsumptionCommand);
+    }
+
+    @Test
+    public void parseCommand_recommend() throws Exception {
+        assertTrue(parser.parseCommand(RecommendCommand.COMMAND_WORD) instanceof RecommendCommand);
+        assertTrue(parser.parseCommand(RecommendCommand.COMMAND_WORD + " 3") instanceof RecommendCommand);
     }
 
     @Test
