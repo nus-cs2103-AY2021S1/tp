@@ -18,6 +18,8 @@ import seedu.resireg.logic.commands.HelpCommand;
 import seedu.resireg.logic.commands.ListCommand;
 import seedu.resireg.logic.commands.ListRoomCommand;
 import seedu.resireg.logic.commands.ReallocateCommand;
+import seedu.resireg.logic.commands.RedoCommand;
+import seedu.resireg.logic.commands.UndoCommand;
 import seedu.resireg.logic.parser.AddCommandParser;
 import seedu.resireg.logic.parser.AddressBookParser;
 import seedu.resireg.logic.parser.AllocateCommandParser;
@@ -61,6 +63,8 @@ public class CommandMapper {
                 new DeallocateCommandParser()::parse);
         commandMap.addCommand(ReallocateCommand.COMMAND_WORD, ReallocateCommand.HELP,
                 new ReallocateCommandParser()::parse);
+        commandMap.addCommand(RedoCommand.COMMAND_WORD, RedoCommand.HELP, unused -> new RedoCommand());
+        commandMap.addCommand(UndoCommand.COMMAND_WORD, UndoCommand.HELP, unused -> new UndoCommand());
 
         parser = new AddressBookParser(commandMap.getCommandWordToParserMap());
     }

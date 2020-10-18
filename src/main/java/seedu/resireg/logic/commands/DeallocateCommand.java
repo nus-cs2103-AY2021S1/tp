@@ -7,6 +7,7 @@ import java.util.List;
 
 import seedu.resireg.commons.core.Messages;
 import seedu.resireg.commons.core.index.Index;
+import seedu.resireg.logic.CreateEditCopy;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.room.Room;
@@ -57,14 +58,19 @@ public class DeallocateCommand extends Command {
             throw new CommandException(MESSAGE_STUDENT_NOT_ALLOCATED);
         }
 
-        studentToDeallocate.unsetRoom();
-        roomToDeallocate.unsetStudent();
+        Student studentToEdit = CreateEditCopy.createCopiedStudent(studentToDeallocate);
+        Room roomToEdit = CreateEditCopy.createCopiedRoom(roomToDeallocate);
 
-        model.setStudent(studentToDeallocate, studentToDeallocate);
-        model.setRoom(roomToDeallocate, roomToDeallocate);
+        studentToEdit.unsetRoom();
+        roomToEdit.unsetStudent();
+
+        model.setStudent(studentToDeallocate, studentToEdit);
+        model.setRoom(roomToDeallocate, roomToEdit);
 
         model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredRoomList(Model.PREDICATE_SHOW_ALL_ROOMS);
+
+        model.saveStateResiReg();
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, roomToDeallocate.getRoomLabel(),
             studentToDeallocate.getName().fullName));

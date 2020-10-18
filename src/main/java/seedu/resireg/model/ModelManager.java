@@ -20,7 +20,7 @@ import seedu.resireg.model.student.Student;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final VersionedResiReg versionedResiReg;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
     private final FilteredList<Room> filteredRooms;
@@ -34,10 +34,10 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        versionedResiReg = new VersionedResiReg(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
-        filteredRooms = new FilteredList<>(this.addressBook.getRoomList());
+        filteredStudents = new FilteredList<>(versionedResiReg.getStudentList());
+        filteredRooms = new FilteredList<>(versionedResiReg.getRoomList());
     }
 
     public ModelManager() {
@@ -83,28 +83,28 @@ public class ModelManager implements Model {
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+        versionedResiReg.resetData(addressBook);
     }
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+        return versionedResiReg;
     }
 
     @Override
     public boolean hasStudent(Student student) {
         requireNonNull(student);
-        return addressBook.hasStudent(student);
+        return versionedResiReg.hasStudent(student);
     }
 
     @Override
     public void deleteStudent(Student target) {
-        addressBook.removeStudent(target);
+        versionedResiReg.removeStudent(target);
     }
 
     @Override
     public void addStudent(Student student) {
-        addressBook.addStudent(student);
+        versionedResiReg.addStudent(student);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -112,20 +112,20 @@ public class ModelManager implements Model {
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
 
-        addressBook.setStudent(target, editedStudent);
+        versionedResiReg.setStudent(target, editedStudent);
     }
 
     @Override
     public void setRoom(Room target, Room editedRoom) {
         requireAllNonNull(target, editedRoom);
 
-        addressBook.setRoom(target, editedRoom);
+        versionedResiReg.setRoom(target, editedRoom);
     }
 
     @Override
     public boolean hasRoom(Room room) {
         requireNonNull(room);
-        return addressBook.hasRoom(room);
+        return versionedResiReg.hasRoom(room);
     }
 
     //=========== Filtered Student List Accessors =============================================================
@@ -162,6 +162,34 @@ public class ModelManager implements Model {
         filteredRooms.setPredicate(predicate);
     }
 
+    //=========== Undo/Redo =============================================================
+
+    @Override
+    public boolean canUndoResiReg() {
+        return versionedResiReg.canUndo();
+    }
+
+    @Override
+    public boolean canRedoResiReg() {
+        return versionedResiReg.canRedo();
+    }
+
+    @Override
+    public void undoResiReg() {
+        versionedResiReg.undo();
+    }
+
+    @Override
+    public void redoResiReg() {
+        versionedResiReg.redo();
+    }
+
+    @Override
+    public void saveStateResiReg() {
+        versionedResiReg.save();
+    }
+
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -176,7 +204,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return versionedResiReg.equals(other.versionedResiReg)
                 && userPrefs.equals(other.userPrefs)
                 && filteredStudents.equals(other.filteredStudents)
                 && filteredRooms.equals(other.filteredRooms);

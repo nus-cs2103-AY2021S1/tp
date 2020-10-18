@@ -121,4 +121,29 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredRoomList(Predicate<Room> predicate);
+
+    /**
+     * Returns true if the model has previous ResiReg states to restore.
+     */
+    boolean canUndoResiReg();
+
+    /**
+     * Returns true if the model has undone ResiReg states to restore.
+     */
+    boolean canRedoResiReg();
+
+    /**
+     * Restores the model's ResiReg to its previous state.
+     */
+    void undoResiReg();
+
+    /**
+     * Restores the mode's ResiReg to its previously undone state.
+     */
+    void redoResiReg();
+
+    /**
+     * Saves the current ResiReg state for undo/redo.
+     */
+    void saveStateResiReg();
 }

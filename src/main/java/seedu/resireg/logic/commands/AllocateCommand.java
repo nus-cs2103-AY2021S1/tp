@@ -8,6 +8,7 @@ import java.util.List;
 
 import seedu.resireg.commons.core.Messages;
 import seedu.resireg.commons.core.index.Index;
+import seedu.resireg.logic.CreateEditCopy;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.room.Room;
@@ -76,14 +77,19 @@ public class AllocateCommand extends Command {
             throw new CommandException(MESSAGE_ROOM_ALREADY_ALLOCATED);
         }
 
-        studentToAllocate.setRoom(roomToAllocate);
-        roomToAllocate.setStudent(studentToAllocate);
+        Student studentToEdit = CreateEditCopy.createCopiedStudent(studentToAllocate);
+        Room roomToEdit = CreateEditCopy.createCopiedRoom(roomToAllocate);
 
-        model.setStudent(studentToAllocate, studentToAllocate);
-        model.setRoom(roomToAllocate, roomToAllocate);
+        studentToEdit.setRoom(roomToEdit);
+        roomToEdit.setStudent(studentToEdit);
+
+        model.setStudent(studentToAllocate, studentToEdit);
+        model.setRoom(roomToAllocate, roomToEdit);
 
         model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredRoomList(Model.PREDICATE_SHOW_ALL_ROOMS);
+
+        model.saveStateResiReg();
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, roomToAllocate.getRoomLabel(),
             studentToAllocate.getName().fullName));
@@ -96,4 +102,5 @@ public class AllocateCommand extends Command {
                 && studentIndex.equals(((AllocateCommand) other).studentIndex)
                 && roomIndex.equals(((AllocateCommand) other).roomIndex));
     }
+
 }
