@@ -24,18 +24,21 @@ public class Patient {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Appointment> appointments = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Nric nric, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, nric, email, address, tags);
+    public Patient(Name name, Nric nric, Phone phone, Email email, Address address,
+                   Set<Tag> tags, Set<Appointment> appointments) {
+        requireAllNonNull(name, phone, nric, email, address, tags, appointments);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.nric = nric;
         this.tags.addAll(tags);
+        this.appointments.addAll(appointments);
     }
 
     public Name getName() {
@@ -64,6 +67,14 @@ public class Patient {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable appointment set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Appointment> getAppointments() {
+        return Collections.unmodifiableSet(appointments);
     }
 
     /**
@@ -101,7 +112,8 @@ public class Patient {
                 && otherPatient.getEmail().equals(getEmail())
                 && otherPatient.getAddress().equals(getAddress())
                 && otherPatient.getNric().equals(getNric())
-                && otherPatient.getTags().equals(getTags());
+                && otherPatient.getTags().equals(getTags())
+                && otherPatient.getAppointments().equals(getAppointments());
     }
 
     @Override
@@ -124,7 +136,8 @@ public class Patient {
                 .append(getAddress())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
+        builder.append(" Appointments: ");
+        getAppointments().forEach(builder::append);
         return builder.toString();
     }
-
 }
