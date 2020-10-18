@@ -20,7 +20,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 **How the architecture components interact with each other**
 
 ### OverAll components
-<img src="images/OverViewClassDiagram.png" width="200px">
+<img src="images/overallUML.png" width="500px">
 
 [Enter description here]
 
