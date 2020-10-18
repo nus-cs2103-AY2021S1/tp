@@ -49,6 +49,12 @@ public class UniquePersonListTest {
     }
 
     @Test
+    public void clearAll_returnsTrue() {
+        uniquePersonList.clearAll();
+        assertEquals(uniquePersonList, new UniquePersonList());
+    }
+
+    @Test
     public void add_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePersonList.add(null));
     }

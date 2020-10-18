@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddModCommand;
+import seedu.address.logic.commands.CclearCommand;
 import seedu.address.logic.commands.ClistCommand;
 import seedu.address.logic.commands.DelModCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -24,6 +25,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindModCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.MclearCommand;
 import seedu.address.logic.commands.MlistCommand;
 import seedu.address.logic.commands.ResetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -120,9 +122,19 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_clearContacts() throws Exception {
+        assertTrue(parser.parseCommand(CclearCommand.COMMAND_WORD) instanceof CclearCommand);
+    }
+
+    @Test
     public void parseCommand_listModules() throws Exception {
         assertTrue(parser.parseCommand(MlistCommand.COMMAND_WORD) instanceof MlistCommand);
         assertTrue(parser.parseCommand(MlistCommand.COMMAND_WORD + " 3") instanceof MlistCommand);
+    }
+
+    @Test
+    public void parseCommand_clearModules() throws Exception {
+        assertTrue(parser.parseCommand(MclearCommand.COMMAND_WORD) instanceof MclearCommand);
     }
 
     @Test
