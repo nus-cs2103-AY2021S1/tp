@@ -18,10 +18,9 @@ import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Entry} objects to be used in tests.
  */
 public class TypicalEntries {
-
     public static final Expense BUY_FLOWER_POTS = new ExpenseBuilder()
             .withDescription("bought flower pots")
             .withAmount("49.99")

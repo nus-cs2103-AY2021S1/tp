@@ -12,7 +12,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of CommonCents data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -21,7 +21,7 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code CommonCentsStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(CommonCentsStorage commonCentsStorage, UserPrefsStorage userPrefsStorage) {
         super();
@@ -47,7 +47,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ CommonCents methods ==============================
 
     @Override
     public Path getCommonCentsFilePath() {
@@ -71,9 +71,9 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveCommonCents(ReadOnlyCommonCents addressBook, Path filePath) throws IOException {
+    public void saveCommonCents(ReadOnlyCommonCents commonCents, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        commonCentsStorage.saveCommonCents(addressBook, filePath);
+        commonCentsStorage.saveCommonCents(commonCents, filePath);
     }
 
 }
