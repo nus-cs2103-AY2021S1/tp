@@ -26,7 +26,7 @@ public class ExportCommand extends Command {
     public static final String COMMAND_WORD = "export";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Exports a the last opened set of flashcard to specified file. "
+        + ": Exports the last opened set of flashcards to specified file. "
         + "Parameters: FILE_NAME\n"
         + "Example: " + COMMAND_WORD + " CS2103_Flashcards.json";
 
