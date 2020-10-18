@@ -2,6 +2,8 @@ package seedu.stock.model.stock;
 
 import static seedu.stock.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -17,6 +19,7 @@ public class Stock {
     private final Source source;
     private final Quantity quantity;
     private final Location location;
+    private final List<Note> notes;
 
     /**
      * Every field must be present and not null.
@@ -28,6 +31,24 @@ public class Stock {
         this.source = source;
         this.quantity = quantity;
         this.location = location;
+        List<Note> notes = new ArrayList<>();
+        Note defaultNote = new Note("");
+        notes.add(defaultNote);
+        this.notes = notes;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    private Stock(Name name, SerialNumber serialNumber, Source source, Quantity quantity,
+                 Location location, List<Note> notes) {
+        requireAllNonNull(name, serialNumber, source, quantity, location);
+        this.name = name;
+        this.serialNumber = serialNumber;
+        this.source = source;
+        this.quantity = quantity;
+        this.location = location;
+        this.notes = notes;
     }
 
     public Name getName() {
@@ -48,6 +69,18 @@ public class Stock {
 
     public Location getLocation() {
         return location;
+    }
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public String notesToString(List<Note> notes) {
+        StringBuilder builder = new StringBuilder();
+        for(Note note : notes) {
+            builder.append("- ").append(note);
+        }
+        return builder.toString();
     }
 
     public void setSerialNumber(String serialNumber) {
@@ -94,7 +127,7 @@ public class Stock {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, serialNumber, quantity, source, location);
+        return Objects.hash(name, serialNumber, quantity, source, location, notes);
     }
 
     @Override
@@ -108,7 +141,9 @@ public class Stock {
                 .append(" Quantity: ")
                 .append(getQuantity())
                 .append(" Location: ")
-                .append(getLocation());
+                .append(getLocation())
+                .append(" Note: ")
+                .append(notesToString(getNotes()));
         return builder.toString();
     }
 
