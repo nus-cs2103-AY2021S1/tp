@@ -23,7 +23,7 @@ public class DeliveryAddCommand extends DeliveryCommand {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "QUANTITY "
-            + PREFIX_ADDRESS + "SUPPLIER "
+            + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_ORDER + "ORDER\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Alex Yeoh "
@@ -66,4 +66,3 @@ public class DeliveryAddCommand extends DeliveryCommand {
                 && toAdd.equals(((DeliveryAddCommand) other).toAdd));
     }
 }
-
