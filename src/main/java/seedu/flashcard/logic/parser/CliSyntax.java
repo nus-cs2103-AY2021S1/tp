@@ -9,5 +9,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_QUESTION = new Prefix("q/");
     public static final Prefix PREFIX_ANSWER = new Prefix("a/");
     public static final Prefix PREFIX_CATEGORY = new Prefix("c/");
+    public static final Prefix PREFIX_NOTE = new Prefix("n/");
 
 }

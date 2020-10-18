@@ -2,10 +2,12 @@
   "flashcards" : [ {
     "question" : "What does SDLC stand for?",
     "answer" : "Software development life cycle",
-    "category" : "SDLC"
+    "category" : "SDLC",
+    "note": ""
   }, {
     "question" : "What does SDLC stand for?",
     "answer" : "Software development life cycle",
-    "category" : "SDLC"
+    "category" : "SDLC",
+    "note": ""
   } ]
 }

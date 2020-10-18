@@ -13,6 +13,7 @@ import seedu.flashcard.commons.util.StringUtil;
 import seedu.flashcard.logic.parser.exceptions.ParseException;
 import seedu.flashcard.model.flashcard.Answer;
 import seedu.flashcard.model.flashcard.Category;
+import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
 
 /**
@@ -94,6 +95,16 @@ public class ParserUtil {
         List<Category> categoryList = new ArrayList<>();
         categoryList.addAll(categorySet);
         return categoryList;
+    }
+
+    /**
+     * Parses a {@code String note} into a {@code Note}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Note parseNote(String note) {
+        requireNonNull(note);
+        String trimmedNote = note.trim();
+        return new Note(trimmedNote);
     }
 
     //    /**

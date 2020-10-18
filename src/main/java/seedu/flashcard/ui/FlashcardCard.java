@@ -34,6 +34,8 @@ public class FlashcardCard extends UiPart<Region> {
     @FXML
     private Label category;
     @FXML
+    private Label note;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -46,6 +48,12 @@ public class FlashcardCard extends UiPart<Region> {
         question.setText(flashcard.getQuestion().toString());
         answer.setText(flashcard.getAnswer().toString());
         category.setText(flashcard.getCategory().toString());
+        if (flashcard.getNote().toString().length() > 0) {
+            note.setText(flashcard.getNote().toString());
+        } else {
+            note.setVisible(false);
+        }
+
     }
 
     @Override

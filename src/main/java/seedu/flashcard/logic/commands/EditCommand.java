@@ -3,6 +3,7 @@ package seedu.flashcard.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.flashcard.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
@@ -17,6 +18,7 @@ import seedu.flashcard.model.Model;
 import seedu.flashcard.model.flashcard.Answer;
 import seedu.flashcard.model.flashcard.Category;
 import seedu.flashcard.model.flashcard.Flashcard;
+import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
 
 
@@ -33,7 +35,8 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_QUESTION + "QUESTION] "
             + "[" + PREFIX_ANSWER + "ANSWER] "
-            + "[" + PREFIX_CATEGORY + "CATEGORY]\n"
+            + "[" + PREFIX_CATEGORY + "CATEGORY]"
+            + "[" + PREFIX_NOTE + "NOTE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_QUESTION + "What does the S in SOLID stand for? "
             + PREFIX_ANSWER + "Single responsibility principle";
@@ -89,8 +92,8 @@ public class EditCommand extends Command {
         Question updatedQuestion = editFlashcardDescriptor.getQuestion().orElse(flashcardToEdit.getQuestion());
         Answer updatedAnswer = editFlashcardDescriptor.getAnswer().orElse(flashcardToEdit.getAnswer());
         Category updatedCategory = editFlashcardDescriptor.getCategory().orElse(flashcardToEdit.getCategory());
-
-        return new Flashcard(updatedQuestion, updatedAnswer, updatedCategory);
+        Note updatedNote = editFlashcardDescriptor.getNote().orElse(flashcardToEdit.getNote());
+        return new Flashcard(updatedQuestion, updatedAnswer, updatedCategory, updatedNote);
     }
 
     @Override
@@ -119,6 +122,7 @@ public class EditCommand extends Command {
         private Question question;
         private Answer answer;
         private Category category;
+        private Note note;
 
         public EditFlashcardDescriptor() {}
 
@@ -130,13 +134,14 @@ public class EditCommand extends Command {
             setQuestion(toCopy.question);
             setAnswer(toCopy.answer);
             setCategory(toCopy.category);
+            setNote(toCopy.note);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(question, answer, category);
+            return CollectionUtil.isAnyNonNull(question, answer, category, note);
         }
 
         public void setQuestion(Question question) {
@@ -163,6 +168,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(category);
         }
 
+        public void setNote(Note note) {
+            this.note = note;
+        }
+
+        public Optional<Note> getNote() {
+            return Optional.ofNullable(note);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -180,7 +193,8 @@ public class EditCommand extends Command {
 
             return getQuestion().equals(e.getQuestion())
                     && getAnswer().equals(e.getAnswer())
-                    && getCategory().equals(e.getCategory());
+                    && getCategory().equals(e.getCategory())
+                    && getNote().equals(e.getNote());
         }
     }
 }

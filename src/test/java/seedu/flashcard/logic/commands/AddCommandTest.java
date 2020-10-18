@@ -71,7 +71,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addOopCommand.equals(null));
 
-        // different person -> returns false
+        // different flashcard -> returns false
         assertFalse(addOopCommand.equals(addSimpleCommand));
     }
 

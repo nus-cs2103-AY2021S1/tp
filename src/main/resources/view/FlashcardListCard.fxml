@@ -38,6 +38,7 @@
         </padding>
       </HBox>
       <Label fx:id="answer" styleClass="cell_small_label" text="\$answer" />
+      <Label fx:id="note" styleClass="cell_small_label" text="\$note"/>
     </VBox>
   </GridPane>
 </HBox>

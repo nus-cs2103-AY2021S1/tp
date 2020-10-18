@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_ANSWER_2;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_CATEGORY_2;
+import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_NOTE_1;
+import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_NOTE_2;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_QUESTION_2;
 import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_1;
 import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_2;
@@ -28,6 +30,10 @@ public class FlashcardTest {
 
         // different answer -> returns true
         editedFlashcardOne = new FlashcardBuilder(FLASHCARD_1).withAnswer(VALID_ANSWER_2).build();
+        assertTrue(FLASHCARD_1.isSameQuestion(editedFlashcardOne));
+
+        // different note -> returns true
+        editedFlashcardOne = new FlashcardBuilder(FLASHCARD_1).withNote(VALID_NOTE_1).build();
         assertTrue(FLASHCARD_1.isSameQuestion(editedFlashcardOne));
     }
 
@@ -59,6 +65,10 @@ public class FlashcardTest {
 
         // different category -> returns false
         editedFlashcardOne = new FlashcardBuilder(FLASHCARD_1).withCategory(VALID_CATEGORY_2).build();
+        assertFalse(FLASHCARD_1.equals(editedFlashcardOne));
+
+        // different note -> returns false
+        editedFlashcardOne = new FlashcardBuilder(FLASHCARD_1).withNote(VALID_NOTE_2).build();
         assertFalse(FLASHCARD_1.equals(editedFlashcardOne));
     }
 }

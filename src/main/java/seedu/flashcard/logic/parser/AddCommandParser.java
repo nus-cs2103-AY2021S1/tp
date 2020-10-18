@@ -3,6 +3,7 @@ package seedu.flashcard.logic.parser;
 import static seedu.flashcard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_QUESTION;
 
 import java.util.stream.Stream;
@@ -12,6 +13,7 @@ import seedu.flashcard.logic.parser.exceptions.ParseException;
 import seedu.flashcard.model.flashcard.Answer;
 import seedu.flashcard.model.flashcard.Category;
 import seedu.flashcard.model.flashcard.Flashcard;
+import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
 
 /**
@@ -26,7 +28,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_QUESTION, PREFIX_ANSWER, PREFIX_CATEGORY);
+                ArgumentTokenizer.tokenize(args, PREFIX_QUESTION, PREFIX_ANSWER, PREFIX_CATEGORY, PREFIX_NOTE);
         if (!arePrefixesPresent(argMultimap, PREFIX_QUESTION, PREFIX_ANSWER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
@@ -35,7 +37,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Question question = ParserUtil.parseQuestion(argMultimap.getValue(PREFIX_QUESTION).get());
         Answer answer = ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get());
         Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).orElse("General"));
-        Flashcard flashcard = new Flashcard(question, answer, category);
+        Note note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).orElse(""));
+        Flashcard flashcard = new Flashcard(question, answer, category, note);
         return new AddCommand(flashcard);
     }
 

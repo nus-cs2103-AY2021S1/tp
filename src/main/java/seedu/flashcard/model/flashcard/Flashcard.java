@@ -16,15 +16,17 @@ public class Flashcard {
     // Data fields
     private final Answer answer;
     private final Category category;
+    private final Note note;
 
     /**
      * Every field must be present and not null.
      */
-    public Flashcard(Question question, Answer answer, Category category) {
-        requireAllNonNull(question, answer, category);
+    public Flashcard(Question question, Answer answer, Category category, Note note) {
+        requireAllNonNull(question, answer, category, note);
         this.question = question;
         this.answer = answer;
         this.category = category;
+        this.note = note;
     }
 
     public Question getQuestion() {
@@ -37,6 +39,10 @@ public class Flashcard {
 
     public Category getCategory() {
         return category;
+    }
+
+    public Note getNote() {
+        return note;
     }
 
 
@@ -78,7 +84,8 @@ public class Flashcard {
 
         return otherFlashcard.getQuestion().equals(getQuestion())
                 && otherFlashcard.getAnswer().equals(getAnswer())
-                && otherFlashcard.getCategory().equals(getCategory());
+                && otherFlashcard.getCategory().equals(getCategory())
+                && otherFlashcard.getNote().equals(getNote());
     }
 
     @Override
@@ -96,6 +103,10 @@ public class Flashcard {
                 .append(getQuestion())
                 .append(" Answer: ")
                 .append(getAnswer());
+        if (getNote().toString().length() > 0) {
+            builder.append(" Note: ")
+                    .append(getNote());
+        }
         return builder.toString();
     }
 
