@@ -19,12 +19,14 @@ public class RecipeContainsIngredientsPredicate extends RecipeContainsKeywordsPr
     @Override
     public boolean test(Recipe recipe) {
         String ingredients = recipe.getIngredient().stream().map(Object::toString).collect(Collectors.joining(","));
+
         if (keywords.isEmpty()) {
             return false;
-        } else {
-            return keywords.stream()
-                    .allMatch(keyword -> StringUtil.containsWordIgnoreCase(ingredients, keyword));
         }
+
+        return keywords.stream()
+                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(ingredients, keyword));
+
     }
 
     @Override
