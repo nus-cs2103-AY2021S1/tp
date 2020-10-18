@@ -34,6 +34,10 @@ import seedu.address.model.person.Phone;
 public class NewTeammateCommandParsertest {
     private NewTeammateCommandParser parser = new NewTeammateCommandParser();
 
+    /**
+     * Parses all fields
+     * Tests that all fields are required
+     */
     @Test
     public void parse_allFieldsPresent_success() {
         Person expectedPerson = DESC_A;
@@ -43,6 +47,10 @@ public class NewTeammateCommandParsertest {
             + TEAMMATE_EMAIL_DESC_A + TEAMMATE_ADDRESS_DESC_A, new NewTeammateCommand(expectedPerson));
     }
 
+    /**
+     * Parses when different fields are missing
+     * Checks that the parse fails when each field is missing
+     */
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, NewTeammateCommand.MESSAGE_USAGE);
@@ -68,6 +76,10 @@ public class NewTeammateCommandParsertest {
             + TEAMMATE_EMAIL_DESC_A + VALID_TEAMMATE_ADDRESS_A, expectedMessage);
     }
 
+    /**
+     * Parses when different fields give incorrect input
+     * Checks that the parse fails when each field is missing
+     */
     @Test
     public void parse_invalidValue_failure() {
         // invalid personname
