@@ -21,7 +21,7 @@ public class DocumentCard extends UiPart<Region> {
 
     public final Document document;
 
-    @javafx.fxml.FXML
+    @FXML
     private HBox cardPane;
     @FXML
     private Label filename;
