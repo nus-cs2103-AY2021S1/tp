@@ -279,12 +279,12 @@ public class EditCommand extends Command {
 
             return getTitle().equals(e.getTitle())
                     && getStatus().equals(e.getStatus())
-                    && getDescription().equals(e.getDescription())
+                    //&& getDescription().equals(e.getDescription())
                     && getStatus().equals(e.getStatus())
-                    && getSuspects().equals(e.getSuspects())
-                    && getVictims().equals(e.getVictims())
-                    && getWitnesses().equals(e.getWitnesses())
-                    && getDocuments().equals(e.getDocuments())
+                    //&& getSuspects().equals(e.getSuspects())
+                    //&& getVictims().equals(e.getVictims())
+                    //&& getWitnesses().equals(e.getWitnesses())
+                    //&& getDocuments().equals(e.getDocuments())
                     && getTags().equals(e.getTags());
         }
 
