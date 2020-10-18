@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Name;
+import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.module.grade.Assignment;
@@ -157,5 +158,19 @@ public class ParserUtil {
             throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_RESULT_CONSTRAINTS);
         }
         return trimmedAssignmentResult;
+    }
+
+    /**
+     * Parses a {@code String modularCredits}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static ModularCredits parseModularCredits(String modularCredits) throws ParseException {
+        double trimmedModularCredits;
+        if (!ModularCredits.isValidModularCredits(modularCredits)) {
+            throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_RESULT_CONSTRAINTS);
+        } else {
+            trimmedModularCredits = Double.parseDouble(modularCredits.trim());
+        }
+        return new ModularCredits(trimmedModularCredits);
     }
 }

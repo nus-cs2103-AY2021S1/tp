@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
@@ -34,10 +35,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
         ModuleName moduleName = ParserUtil.parseModuleName(argMultimap.getValue(PREFIX_NAME).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        int modularCredits = 4;
+        ModularCredits modularCredits;
         if (arePrefixesPresent(argMultimap, PREFIX_MODULAR_CREDITS)
                 && argMultimap.getPreamble().isEmpty()) {
-            modularCredits = Integer.parseInt(argMultimap.getValue(PREFIX_MODULAR_CREDITS).get());
+            modularCredits = ParserUtil.parseModularCredits(argMultimap.getValue(PREFIX_MODULAR_CREDITS).get());
+        } else {
+            modularCredits = new ModularCredits();
         }
         if (argMultimap.getValue(PREFIX_ZOOM_LINK).isPresent()) {
             ZoomLink zoomLink = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_ZOOM_LINK).get());
