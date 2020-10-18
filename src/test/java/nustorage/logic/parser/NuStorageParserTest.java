@@ -29,7 +29,7 @@ import nustorage.testutil.EditPersonDescriptorBuilder;
 import nustorage.testutil.PersonBuilder;
 import nustorage.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class NuStorageParserTest {
 
     private final NuStorageParser parser = new NuStorageParser();
 
