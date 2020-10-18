@@ -8,7 +8,6 @@ import java.util.Optional;
 
 import com.eva.commons.core.Messages;
 import com.eva.commons.core.index.Index;
-import com.eva.logic.commands.AddCommand;
 import com.eva.logic.commands.Command;
 import com.eva.logic.commands.DeleteCommand;
 import com.eva.logic.parser.exceptions.ParseException;
@@ -35,7 +34,7 @@ public class DeleteCommandParser implements Parser<Command> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE_2), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE_2), pe);
         }
 
 

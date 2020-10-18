@@ -22,6 +22,12 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
+    public static final String MESSAGE_USAGE_2 = COMMAND_WORD
+            + ": Deletes the person identified by the index number used in the displayed person list.\n"
+            + "Parameters: INDEX (must be a positive integer) and Prefix 'c-' if deleting comment "
+            + "along with t: title to delete\n"
+            + "Example: " + COMMAND_WORD + " 1 c- t:title 1";
+
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
     private final Index targetIndex;
