@@ -92,6 +92,6 @@ public class ItemBuilder {
      */
     public Item build() {
         return new Item(id, name, quantity, description,
-                new HashSet<>(), recipes, new HashSet<>(), false);
+                new HashSet<>(), recipes, new HashSet<>());
     }
 }

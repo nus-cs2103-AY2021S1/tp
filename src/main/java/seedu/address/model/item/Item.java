@@ -30,14 +30,13 @@ public class Item extends InventoryComponent {
     private final List<Integer> locationIds = new ArrayList<>();
     private final List<Integer> recipeIds = new ArrayList<>();
     private final Set<Tag> tags = new HashSet<>();
-    private final boolean isDeleted;
 
     /**
      * Every field must be present and not null.
      */
     public Item(int id, String name, Quantity quantity, String description, Set<Integer> locationIds,
-                Set<Integer> recipeIds, Set<Tag> tags, boolean isDeleted) {
-        requireAllNonNull(id, name, quantity, description, locationIds, recipeIds, tags, isDeleted);
+                Set<Integer> recipeIds, Set<Tag> tags) {
+        requireAllNonNull(id, name, quantity, description, locationIds, recipeIds, tags);
         this.id = id;
         this.name = name;
         this.quantity = quantity;
@@ -45,7 +44,6 @@ public class Item extends InventoryComponent {
         this.locationIds.addAll(locationIds);
         this.recipeIds.addAll(recipeIds);
         this.tags.addAll(tags);
-        this.isDeleted = isDeleted;
         if (!this.getType().equals(DisplayedInventoryType.DETAILED_ITEM)) {
             idCounter++;
         }
@@ -87,10 +85,6 @@ public class Item extends InventoryComponent {
         return Collections.unmodifiableSet(tags);
     }
 
-    public boolean isDeleted() {
-        return isDeleted;
-    }
-
     /**
      * Adds Recipe Id to item's recipe ids.
      *
@@ -126,24 +120,6 @@ public class Item extends InventoryComponent {
     }
 
     /**
-     * Returns true if both items have same name, and can be replaced.
-     *
-     * @param otherItem Other item to compare to this item.
-     * @return true if the item of this name can be replaced.
-     */
-    public boolean isReplacable(Item otherItem) {
-        return isSameItem(otherItem) && this.isDeleted();
-    }
-
-    /**
-     * Returns a deleted form of the same recipe.
-     */
-    public Item delete() {
-        return new Item(id, name, quantity, description, Set.copyOf(locationIds),
-                Set.copyOf(recipeIds), tags, true);
-    }
-
-    /**
      * Returns true if both items have the same name and data fields.
      * This defines a stronger notion of equality between two items.
      */
@@ -164,13 +140,12 @@ public class Item extends InventoryComponent {
                 && otherItem.getDescription().equals(getDescription())
                 && otherItem.getLocationIds().equals(getLocationIds())
                 && otherItem.getRecipeIds().equals(getRecipeIds())
-                && otherItem.getTags().equals(getTags())
-                && otherItem.isDeleted() == isDeleted();
+                && otherItem.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, quantity, description, locationIds, recipeIds, tags, isDeleted);
+        return Objects.hash(id, name, quantity, description, locationIds, recipeIds, tags);
     }
 
     @Override
@@ -183,7 +158,7 @@ public class Item extends InventoryComponent {
      */
     public DetailedItem detailedItem() {
         return new DetailedItem(id, name, quantity, description, Set.copyOf(locationIds),
-                Set.copyOf(recipeIds), tags, isDeleted);
+                Set.copyOf(recipeIds), tags);
     }
 
     @Override

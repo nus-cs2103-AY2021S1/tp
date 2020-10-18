@@ -128,11 +128,6 @@ public class LogicManager implements Logic {
      * Returns the relevant inventory list containing inventory of {@code inventoryType} to be displayed.
      */
     public ArrayList<InventoryComponent> getInventoryList(DisplayedInventoryType inventoryType) {
-        if (!inventoryType.equals(DisplayedInventoryType.DETAILED_ITEM)) {
-            // ViewDetailsCommand already updates for viewing of one item
-            model.updateFilteredItemList(item -> !item.isDeleted());
-            model.updateFilteredRecipeList(recipe -> !recipe.isDeleted());
-        }
         ArrayList<InventoryComponent> inventoryList = new ArrayList<>();
         switch(inventoryType) {
         case ITEMS:
