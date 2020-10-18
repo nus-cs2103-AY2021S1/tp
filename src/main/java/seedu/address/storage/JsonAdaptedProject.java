@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonName;
 import seedu.address.model.project.*;
 import seedu.address.model.tag.ProjectTag;
@@ -133,7 +134,13 @@ class JsonAdaptedProject {
             modelProjectTags, null, modelTasks, modelMeetings);
 
         for (JsonParticipation participation : participations) {
-            p.addParticipation(participation.toModelType().getPerson());
+
+            Participation part = participation.toModelType();
+
+            Person person = part.getPerson();
+            p.addExistingParticipation(part);
+            person.addProject(p);
+
         }
         return p;
     }

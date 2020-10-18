@@ -45,7 +45,7 @@ public class JsonAdaptedProjectTest {
     public void toModelType_invalidProjectName_throwsIllegalValueException() {
         JsonAdaptedProject project =
                 new JsonAdaptedProject(INVALID_PROJECT_NAME, VALID_DEADLINE, VALID_REPOURL, VALID_PROJECT_DESCRIPTION,
-                    VALID_PROJECT_TAGS, VALID_TASKS);
+                    VALID_PROJECT_TAGS, VALID_TASKS, null);
         String expectedMessage = ProjectName.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }

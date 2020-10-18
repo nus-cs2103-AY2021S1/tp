@@ -2,21 +2,14 @@ package seedu.address.model.project;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.core.index.GitUserIndex;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.person.GitUserName;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonName;
 import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 
@@ -37,7 +30,7 @@ public class Project {
     // Data fields
     private final ProjectDescription projectDescription;
     private final Set<ProjectTag> projectTags = new HashSet<>();
-    private final HashMap<PersonName, Participation> listOfParticipations = new HashMap<>();
+    private final HashMap<GitUserName, Participation> listOfParticipations = new HashMap<>();
     private Predicate<Task> taskFilter = TRUE_TASK_PREDICATE;
     private final Set<Task> tasks = new HashSet<>();
     private final Set<Meeting> meetings = new HashSet<>();
@@ -138,8 +131,17 @@ public class Project {
      */
     public void addParticipation(Person p) {
         listOfParticipations.put(
-            p.getGitUserName(), new Participation(p.getGitUserName, projectName.toString()));
+            p.getGitUserName(), new Participation(p.getGitUserNameString(), projectName.toString()));
     }
+
+    /**
+     * Adds an existing participation instance to a project
+     */
+    public void addExistingParticipation(Participation p) {
+        listOfParticipations.put(
+                p.getPerson().getGitUserName(), p);
+    }
+
 
     /**
      * Checks whether the project contains a member of the given name.
@@ -157,6 +159,7 @@ public class Project {
 
     /**
      * Gets the list of Participations.
+     * @return
      */
     public Collection<Participation> getParticipationList() {
         return listOfParticipations.values();

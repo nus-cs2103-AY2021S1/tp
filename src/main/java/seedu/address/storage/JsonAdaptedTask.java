@@ -65,6 +65,7 @@ class JsonAdaptedTask {
     public Task toModelType() throws IllegalValueException {
         Task task = new Task(taskName, description, deadline, progress, isDone);
         task.setPublishDate(publishDate);
+        assignees.forEach(task::addAssignee);
         return task;
     }
 

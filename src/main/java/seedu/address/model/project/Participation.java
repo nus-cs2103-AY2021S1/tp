@@ -65,6 +65,14 @@ public class Participation {
         tasks.add(task);
         this.getProject().addTask(task);
     }
+
+    /**
+     * Removes task from the person
+     * @param task  task to be removed
+     */
+    public void deleteTask(Task task) {
+        tasks.remove(task);
+    }
     /**
      * Checks whether the person is an attendee of the meeting.
      * @param meeting   meeting to check
@@ -85,7 +93,7 @@ public class Participation {
     public Person getPerson() {
         Person p = null;
         for(int i = 0 ; i<Person.allPeople.size();i++){
-            if(Person.allPeople.get(i).getPersonName().toString().equals(person)){
+            if(Person.allPeople.get(i).getGitUserNameString().equals(person)){
                 p = Person.allPeople.get(i);
             }
         }

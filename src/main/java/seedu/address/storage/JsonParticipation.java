@@ -21,7 +21,7 @@ import seedu.address.model.task.Task;
  */
 class JsonParticipation {
 
-    private final String person;
+    private final JsonAdaptedPerson person;
     private final String project;
     private final Role role;
     private List<JsonAdaptedTask> tasks = new ArrayList<>();
@@ -31,10 +31,10 @@ class JsonParticipation {
      * Constructs a {@code JsonAdaptedTask} with the given {@code taskName}.
      */
     @JsonCreator
-    public JsonParticipation(@JsonProperty("person") String person,
+    public JsonParticipation(@JsonProperty("person") JsonAdaptedPerson person,
                              @JsonProperty("project") String project,
                              @JsonProperty("role")Role role,
-                             @JsonProperty("tasks hashcode")List<JsonAdaptedTask> tasks
+                             @JsonProperty("tasks")List<JsonAdaptedTask> tasks
 //                             @JsonProperty("meetings")Set<Meeting> meetings
     ) {
         this.person = person;
@@ -48,7 +48,7 @@ class JsonParticipation {
      * Converts a given {@code Task} into this class for Jackson use.
      */
     public JsonParticipation(Participation source) {
-        person = source.getPerson().getPersonName().toString();
+        person = new JsonAdaptedPerson(source.getPerson());
         project = source.getProject().getProjectName().toString();
         role = source.getRole();
         tasks.addAll(source.getTasks().stream()
@@ -63,14 +63,17 @@ class JsonParticipation {
      * @throws IllegalValueException if there were any data constraints violated in the adapted participation.
      */
     public Participation toModelType() throws IllegalValueException {
-        Person temp = new Person(new PersonName(person), new Phone("98765432"),new Email("pb@gmail.com"),new Address("temp"));
-        Participation p = new Participation(person,project);
 
-        for (JsonAdaptedTask task : tasks) {
-            p.addTask(task.toModelType());
+        Person p = person.toModelType();
+
+        Participation part = new Participation(p.getGitUserNameString(), project);
+
+        for (JsonAdaptedTask jsonTask : tasks) {
+            Task task = jsonTask.toModelType();
+            part.addTask(task);
         }
 
-        return p;
+        return part;
     }
 
 }

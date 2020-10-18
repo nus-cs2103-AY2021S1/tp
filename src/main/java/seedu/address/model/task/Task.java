@@ -71,6 +71,9 @@ public class Task {
     public boolean hasAssignee(Participation assignee) {
         return assignees.contains(assignee.getPerson().toString());
     }
+    public boolean hasAnyAssignee() {
+        return !assignees.isEmpty();
+    }
 
     /**
      * Checks if the task has an assignee whose name matches the given name.
@@ -84,8 +87,8 @@ public class Task {
             .anyMatch(assignee -> assignee.equals(assigneeGitUserName.toString()));
     }
 
-    public boolean addAssignee(Participation assignee) {
-        return assignees.add(assignee.getAssigneeName().toString());
+    public boolean addAssignee(String assignee) {
+        return assignees.add(assignee);
     }
 
     /**
