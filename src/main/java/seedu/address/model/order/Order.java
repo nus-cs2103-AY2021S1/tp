@@ -32,6 +32,17 @@ public class Order implements Iterable<OrderItem> {
     }
 
     /**
+     * Returns a copy of the order. The orderItems are also copies.
+     */
+    public Order makeCopy() {
+        Order newOrder = new Order();
+        for (OrderItem orderItem: internalList) {
+            newOrder.add(orderItem.makeCopy());
+        }
+        return newOrder;
+    }
+
+    /**
      * Adds OrderItem to the list.
      */
     public void add(OrderItem toAdd) {

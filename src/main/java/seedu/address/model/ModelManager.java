@@ -230,6 +230,16 @@ public class ModelManager implements Model {
         orderManager.setOrderItem(target, editedOrderItem);
     }
 
+    @Override
+    public int getOrderHistorySize() {
+        return orderManager.getOrderHistorySize();
+    }
+
+    @Override
+    public void undoOrder() {
+        orderManager.undoChanges();
+    }
+
     //=========== Filtered Vendor List Accessors =============================================================
 
     /**

@@ -205,6 +205,10 @@ public interface Model {
 
     public int getOrderSize();
 
+    public int getOrderHistorySize();
+
+    public void undoOrder();
+
     /**
      * Updates the filter of the filtered orderItem list at the
      * corresponding index to filter by the given {@code predicate}.

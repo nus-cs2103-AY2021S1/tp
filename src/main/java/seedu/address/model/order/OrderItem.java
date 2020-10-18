@@ -34,6 +34,9 @@ public class OrderItem extends Food {
         this.quantity = quantity;
     }
 
+    public OrderItem makeCopy() {
+        return new OrderItem(getName(), getPrice(), getTags(), getQuantity());
+    }
 
     public int getQuantity() {
         return quantity;
