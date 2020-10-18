@@ -52,7 +52,7 @@ public class UniqueTodoList implements Iterable<Task> {
     /**
      * Replaces the task {@code target} in the list with {@code editedTask}.
      * {@code target} must exist in the list.
-     * The task's name, type, and date of {@code editedTask} must not be the same as another
+     * The name of the task {@code editedTask} must not be the same as another
      * existing task in the list.
      */
     public void setTask(Task target, Task editedTask) {
