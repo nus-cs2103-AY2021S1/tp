@@ -189,6 +189,12 @@ calls `enter`, causing a switch of scoping status and assignment of `project` of
 
 ![ScopingStep2](images/ScopingStep2.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `start` command calls `enter` method in model, causing a switching of level and updates the project of focus.
+
+</div>
+The following sequence diagram shows the execution of start command.
+
+![StartCommandSequence](images/StartCommandSequence.png)
 
 ### \[Proposed\] Undo/redo feature
 
