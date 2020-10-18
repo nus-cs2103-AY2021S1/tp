@@ -11,21 +11,23 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.AnimalBuilder;
 
-public class NameContainsKeywordsPredicateTest {
+public class AnimalContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        NameContainsKeywordsPredicate firstPredicate = new NameContainsKeywordsPredicate(firstPredicateKeywordList);
-        NameContainsKeywordsPredicate secondPredicate = new NameContainsKeywordsPredicate(secondPredicateKeywordList);
+        AnimalContainsKeywordsPredicate firstPredicate = new AnimalContainsKeywordsPredicate(firstPredicateKeywordList);
+        AnimalContainsKeywordsPredicate secondPredicate =
+                new AnimalContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        NameContainsKeywordsPredicate firstPredicateCopy = new NameContainsKeywordsPredicate(firstPredicateKeywordList);
+        AnimalContainsKeywordsPredicate firstPredicateCopy =
+                new AnimalContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -39,37 +41,42 @@ public class NameContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() {
+    public void test_animalContainsKeywords_returnsTrue() {
         // One keyword
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(
+        AnimalContainsKeywordsPredicate predicate = new AnimalContainsKeywordsPredicate(
                 Collections.singletonList("Ahmeng"));
         assertTrue(predicate.test(new AnimalBuilder().withName("Ahmeng Buttercup").build()));
 
         // Multiple keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Ahmeng", "Buttercup"));
+        predicate = new AnimalContainsKeywordsPredicate(Arrays.asList("Ahmeng", "Buttercup"));
         assertTrue(predicate.test(new AnimalBuilder().withName("Ahmeng Buttercup").build()));
 
+        // Multiple keywords which match in different fields (NEW)
+        predicate = new AnimalContainsKeywordsPredicate(Arrays.asList("000123", "Reticulated", "Python"));
+        assertTrue(predicate.test(new AnimalBuilder().withName("Buttercup").withId("000123")
+                .withSpecies("Reticulated Python").build()));
+
         // Only one matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Buttercup", "Coco"));
+        predicate = new AnimalContainsKeywordsPredicate(Arrays.asList("Buttercup", "Coco"));
         assertTrue(predicate.test(new AnimalBuilder().withName("Buttercup Coco").build()));
 
         // Mixed-case keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("ahMeNg", "buTTercup"));
+        predicate = new AnimalContainsKeywordsPredicate(Arrays.asList("ahMeNg", "buTTercup"));
         assertTrue(predicate.test(new AnimalBuilder().withName("Ahmeng Buttercup").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
+        AnimalContainsKeywordsPredicate predicate = new AnimalContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new AnimalBuilder().withName("Ahmeng").build()));
 
         // Non-matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Coco"));
+        predicate = new AnimalContainsKeywordsPredicate(Arrays.asList("Coco"));
         assertFalse(predicate.test(new AnimalBuilder().withName("Ahmeng Buttercup").build()));
 
-        // Keywords match ID and species, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("000123", "Reticulated", "Python"));
+        // Multiple non-matching keywords (NEW)
+        predicate = new AnimalContainsKeywordsPredicate(Arrays.asList("0000123", "Reti", "Anaconda"));
         assertFalse(predicate.test(new AnimalBuilder().withName("Buttercup").withId("000123")
                 .withSpecies("Reticulated Python").build()));
     }
