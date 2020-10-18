@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Item's quantity in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidQuantity(String)}
  */
-public class Quantity {
+public class Quantity implements Comparable<Quantity> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity should only contain numbers, and it should be at least 1 digit long, \n"
@@ -92,4 +92,8 @@ public class Quantity {
         return value.hashCode();
     }
 
+    @Override
+    public int compareTo(Quantity o) {
+        return Double.compare(Double.parseDouble(value), Double.parseDouble(o.value));
+    }
 }

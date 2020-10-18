@@ -25,7 +25,7 @@ public class ItemComparator implements Comparator<Item> {
         } else if (percentageQuantity1 > percentageQuantity2) {
             return 1;
         } else {
-            return 0;
+            return quantity1.compareTo(quantity2);
         }
     }
 }
