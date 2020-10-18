@@ -24,14 +24,14 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.catalogue.AddCommand;
-import seedu.address.logic.commands.catalogue.ClearCommand;
-import seedu.address.logic.commands.catalogue.DeleteCommand;
-import seedu.address.logic.commands.catalogue.EditCommand;
-import seedu.address.logic.commands.catalogue.EditCommand.EditProjectDescriptor;
-import seedu.address.logic.commands.catalogue.FindCommand;
-import seedu.address.logic.commands.catalogue.ListCommand;
-import seedu.address.logic.commands.catalogue.StartCommand;
+import seedu.address.logic.commands.global.AddCommand;
+import seedu.address.logic.commands.global.ClearCommand;
+import seedu.address.logic.commands.global.DeleteCommand;
+import seedu.address.logic.commands.global.EditCommand;
+import seedu.address.logic.commands.global.EditCommand.EditProjectDescriptor;
+import seedu.address.logic.commands.global.FindCommand;
+import seedu.address.logic.commands.global.ListCommand;
+import seedu.address.logic.commands.global.StartCommand;
 import seedu.address.logic.commands.global.ExitCommand;
 import seedu.address.logic.commands.global.HelpCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
