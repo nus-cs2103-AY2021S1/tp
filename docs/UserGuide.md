@@ -29,7 +29,8 @@ NUStorage is a desktop application for __managing inventory, finance transaction
 1. Make sure you have Java 11 installed
 1. Download the NUStorage.jar from <here>.
 1. Copy the jar file to the folder you want to use as the home folder for your application.
-1. Double-click on the jar file to start the app. The GUI should look something like this: ![Start of NUStorage](images/NUStorage v.12.png)
+1. Double-click on the jar file to start the app. The GUI should look something like this:
+![Start of NUStorage](images/NUStorage.png)
 1. Type the command in the command box and press enter to execute.
     - Some commands you can try are:
         - `list_inventory` to list inventory records
