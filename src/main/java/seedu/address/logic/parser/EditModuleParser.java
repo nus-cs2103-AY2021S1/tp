@@ -8,22 +8,22 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditModuleDescriptor;
+import seedu.address.logic.commands.EditModuleCommand;
+import seedu.address.logic.commands.EditModuleCommand.EditModuleDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class EditCommandParser implements Parser<EditCommand> {
+public class EditModuleParser implements Parser<EditModuleCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditCommand parse(String args) throws ParseException {
+    public EditModuleCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_EDIT_NAME, PREFIX_NAME, PREFIX_ZOOM_LINK,
                 PREFIX_TAG);
@@ -55,10 +55,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         if (!editModuleDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditModuleCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(moduleName, editModuleDescriptor);
+        return new EditModuleCommand(moduleName, editModuleDescriptor);
     }
 
     /**
