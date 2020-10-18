@@ -1,5 +1,6 @@
 package seedu.address.logic.parser.todolistparsers;
 
+import seedu.address.logic.commands.todolistcommands.FindTodoCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
