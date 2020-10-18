@@ -37,9 +37,9 @@ import seedu.address.logic.commands.global.StartCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
 import seedu.address.logic.commands.project.AssignCommand;
 import seedu.address.logic.commands.project.EditTaskCommand;
-import seedu.address.logic.commands.project.TaskFilterCommand;
 import seedu.address.logic.commands.project.LeaveCommand;
 import seedu.address.logic.commands.project.NewTeammateCommand;
+import seedu.address.logic.commands.project.TaskFilterCommand;
 import seedu.address.logic.commands.project.ViewTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Status;
@@ -72,7 +72,7 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PROJECT.getOneBased(), Status.CATALOGUE);
+            DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PROJECT.getOneBased(), Status.CATALOGUE);
         assertEquals(new DeleteCommand(INDEX_FIRST_PROJECT), command);
     }
 
@@ -82,7 +82,7 @@ public class MainCatalogueParserTest {
         EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(project).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PROJECT.getOneBased() + " " + ProjectUtil.getEditProjectDescriptorDetails(descriptor),
-                Status.CATALOGUE);
+            Status.CATALOGUE);
         assertEquals(new EditCommand(INDEX_FIRST_PROJECT, descriptor), command);
     }
 
@@ -98,7 +98,7 @@ public class MainCatalogueParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")), Status.CATALOGUE);
+            FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")), Status.CATALOGUE);
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
@@ -119,7 +119,7 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_start() throws Exception {
         StartCommand command = (StartCommand) parser.parseCommand(
-                StartCommand.COMMAND_WORD + " " + INDEX_FIRST_PROJECT.getOneBased(), Status.CATALOGUE);
+            StartCommand.COMMAND_WORD + " " + INDEX_FIRST_PROJECT.getOneBased(), Status.CATALOGUE);
         assertEquals(new StartCommand(INDEX_FIRST_PROJECT), command);
     }
 
@@ -132,8 +132,8 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_assign() throws Exception {
         AssignCommand command = (AssignCommand) parser.parseCommand(
-                AssignCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased() + " " + ALICE.getGitUserName(),
-                Status.PROJECT);
+            AssignCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased() + " " + ALICE.getGitUserName(),
+            Status.PROJECT);
         assertEquals(new AssignCommand(INDEX_FIRST_TASK, ALICE.getGitUserNameString()), command);
     }
 
@@ -151,7 +151,7 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_viewtask() throws Exception {
         ViewTaskCommand command = (ViewTaskCommand) parser.parseCommand(
-                ViewTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased(), Status.PROJECT
+            ViewTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased(), Status.PROJECT
         );
         assertEquals(new ViewTaskCommand(INDEX_FIRST_TASK), command);
     }
@@ -165,7 +165,7 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand",
-                Status.CATALOGUE));
+            Status.CATALOGUE));
     }
 
     @Test
@@ -173,8 +173,8 @@ public class MainCatalogueParserTest {
 
         try {
             parser.parseCommand(
-                    AssignCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased() + " " + ALICE.getPersonName(),
-                    Status.CATALOGUE);
+                AssignCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased() + " " + ALICE.getPersonName(),
+                Status.CATALOGUE);
             fail();
         } catch (Exception e) {
             assertEquals(new InvalidScopeException(Status.PROJECT, Status.CATALOGUE), e);
@@ -191,7 +191,7 @@ public class MainCatalogueParserTest {
 
         try {
             parser.parseCommand(NewTeammateCommand.COMMAND_WORD + " "
-                    + PersonUtil.getCommandInfo(ALICE), Status.CATALOGUE);
+                + PersonUtil.getCommandInfo(ALICE), Status.CATALOGUE);
             fail();
         } catch (Exception e) {
             assertEquals(new InvalidScopeException(Status.PROJECT, Status.CATALOGUE), e);
@@ -199,7 +199,7 @@ public class MainCatalogueParserTest {
 
         try {
             parser.parseCommand(AddTaskCommand.COMMAND_WORD + " "
-                    + TaskUtil.getTaskCommand(PLAN_MEETING), Status.CATALOGUE);
+                + TaskUtil.getTaskCommand(PLAN_MEETING), Status.CATALOGUE);
             fail();
         } catch (Exception e) {
             assertEquals(new InvalidScopeException(Status.PROJECT, Status.CATALOGUE), e);
@@ -207,7 +207,7 @@ public class MainCatalogueParserTest {
 
         try {
             parser.parseCommand(EditTaskCommand.COMMAND_WORD + " " + PREFIX_TASK_PROGRESS
-                    + " " + VALID_TASK_PROGRESS_HALF, Status.CATALOGUE);
+                + " " + VALID_TASK_PROGRESS_HALF, Status.CATALOGUE);
             fail();
         } catch (Exception e) {
             assertEquals(new InvalidScopeException(Status.PROJECT, Status.CATALOGUE), e);
@@ -215,7 +215,7 @@ public class MainCatalogueParserTest {
 
         try {
             parser.parseCommand(ViewTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased(),
-                    Status.CATALOGUE);
+                Status.CATALOGUE);
             fail();
         } catch (Exception e) {
             assertEquals(new InvalidScopeException(Status.PROJECT, Status.CATALOGUE), e);
