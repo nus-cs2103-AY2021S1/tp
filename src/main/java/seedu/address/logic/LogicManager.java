@@ -18,6 +18,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyMainCatalogue;
 import seedu.address.model.Status;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 
@@ -80,6 +81,11 @@ public class LogicManager implements Logic {
     @Override
     public Optional<Project> getProjectToBeDisplayedOnDashBoard() {
         return model.getProjectToBeDisplayedOnDashboard();
+    }
+
+    @Override
+    public Optional<Task> getTaskToBeDisplayedOnDashboard() {
+        return model.getTaskToBeDisplayedOnDashboard();
     }
 
     @Override

@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the main catalogue data.
@@ -24,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Project> filteredProjects;
     private Optional<Project> projectToBeDisplayedOnDashboard;
+    private Optional<Task> taskToBeDisplayedOnDashboard;
 
     /**
      * Initializes a ModelManager with the given mainCatalogue and userPrefs.
@@ -133,6 +135,12 @@ public class ModelManager implements Model {
         mainCatalogue.quit();
     }
 
+    @Override
+    public void enterTask(Task task) {
+        mainCatalogue.enterTask(task);
+        updateTaskToBeDisplayedOnDashboard(task);
+    }
+
     //=========== Filtered Project List Accessors =============================================================
 
     /**
@@ -184,5 +192,16 @@ public class ModelManager implements Model {
     @Override
     public Optional<Project> getProjectToBeDisplayedOnDashboard() {
         return projectToBeDisplayedOnDashboard;
+    }
+
+    @Override
+    public void updateTaskToBeDisplayedOnDashboard(Task task) {
+        requireNonNull(task);
+        this.taskToBeDisplayedOnDashboard = Optional.of(task);
+    }
+
+    @Override
+    public Optional<Task> getTaskToBeDisplayedOnDashboard() {
+        return taskToBeDisplayedOnDashboard;
     }
 }

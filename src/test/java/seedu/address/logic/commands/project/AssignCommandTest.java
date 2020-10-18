@@ -49,7 +49,7 @@ public class AssignCommandTest {
         project.addParticipation(ALICE);
         AssignCommand assignCommand = new AssignCommand(outOfBoundIndex, ALICE.getPersonName().fullPersonName);
 
-        assertCommandFailure(assignCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+        assertCommandFailure(assignCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
@@ -101,6 +101,7 @@ public class AssignCommandTest {
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
         project.addParticipation(ALICE);
+        project.updateTaskFilter(x -> true);
         Task taskToAssign = project.getFilteredTaskList().get(INDEX_SECOND_TASK.getZeroBased());
         Participation assignee = project.getParticipation(ALICE.getPersonName().fullPersonName);
         project.updateTaskFilter(task -> task.getTaskName().contains(taskToAssign.getTaskName()));

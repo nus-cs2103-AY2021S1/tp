@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
 
 /**
  * The API of the Model component.
@@ -106,6 +107,11 @@ public interface Model {
     void quit();
 
     /**
+     * Enters the designated task of the current project.
+     */
+    void enterTask(Task task);
+
+    /**
      * Updates the project to be displayed on dashboard.
      * @param project project to be displayed on dashboard
      */
@@ -116,4 +122,14 @@ public interface Model {
      * @return project to be displayed on dashboard wrapped in Optional box.
      */
     Optional<Project> getProjectToBeDisplayedOnDashboard();
+
+    /**
+     * Updates the task to be displayed on dashboard.
+     */
+    void updateTaskToBeDisplayedOnDashboard(Task task);
+
+    /**
+     * Gets the task to be displayed on dashboard.
+     */
+    Optional<Task> getTaskToBeDisplayedOnDashboard();
 }

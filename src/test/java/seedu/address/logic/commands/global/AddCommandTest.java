@@ -24,6 +24,7 @@ import seedu.address.model.ReadOnlyMainCatalogue;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Status;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.ProjectBuilder;
 
 public class AddCommandTest {
@@ -167,6 +168,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void enterTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateProjectToBeDisplayedOnDashboard(Project project) {
             throw new AssertionError("This method should not be called.");
         }
@@ -174,6 +180,16 @@ public class AddCommandTest {
         @Override
         public Optional<Project> getProjectToBeDisplayedOnDashboard() {
             return Optional.empty();
+        }
+
+        @Override
+        public void updateTaskToBeDisplayedOnDashboard(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Task> getTaskToBeDisplayedOnDashboard() {
+            throw new AssertionError("This method should not be called.");
         }
     }
 
