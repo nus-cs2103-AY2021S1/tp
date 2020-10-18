@@ -50,7 +50,7 @@ public class ModuleCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(module.getName().fullName);
         zoomLink.setText(module.getLink().getLink());
-        modularCredits.setText(Integer.toString(module.getModularCredits()));
+        modularCredits.setText(module.getModularCredits().toString());
         //module.getTags().stream()
         //        .sorted(Comparator.comparing(tag -> tag.tagName))
         //        .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

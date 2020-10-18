@@ -13,24 +13,30 @@ public class ModularCredits {
      *
      * @param modularCredits A number in string form
      */
-    public ModularCredits(String modularCredits) {
+    public ModularCredits(double modularCredits) {
         requireNonNull(modularCredits);
-        double convertedModuleCredits;
-        try {
-            convertedModuleCredits = Double.parseDouble(modularCredits);
-            checkArgument(isValidModularCredits(convertedModuleCredits), MESSAGE_CONSTRAINTS);
-        } catch (NumberFormatException e) {
-            checkArgument(false, MESSAGE_CONSTRAINTS);
-            convertedModuleCredits = DEFAULT_MODULAR_CREDITS;
-        }
-        this.moduleCredits = convertedModuleCredits;
+        checkArgument(isValidModularCredits(Double.toString(modularCredits)), MESSAGE_CONSTRAINTS);
+        this.moduleCredits = modularCredits;
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Constructs a {@code ModularCredits} with the default modular credits value.
      */
-    public static boolean isValidModularCredits(double test) {
-        return test >= 0;
+    public ModularCredits() {
+        moduleCredits = DEFAULT_MODULAR_CREDITS;
+    }
+
+    /**
+     * Returns true if a given double is a valid modular credits value.
+     */
+    public static boolean isValidModularCredits(String test) {
+        double convertedModuleCredits;
+        try {
+            convertedModuleCredits = Double.parseDouble(test);
+            return convertedModuleCredits >= 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     @Override
