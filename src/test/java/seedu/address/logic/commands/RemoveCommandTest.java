@@ -20,9 +20,9 @@ import seedu.address.model.order.OrderItem;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
- * {@code DeleteCommand}.
+ * {@code RemoveCommand}.
  */
-public class DeleteCommandTest {
+public class RemoveCommandTest {
 
 
     private Model initialiseModel() {
@@ -36,37 +36,37 @@ public class DeleteCommandTest {
     public void execute_validIndex_success() {
         Model model = initialiseModel();
         Index first = Index.fromOneBased(1);
-        DeleteCommand deleteCommand = new DeleteCommand(first);
+        RemoveCommand removeCommand = new RemoveCommand(first);
         List<OrderItem> lastShownList = model.getFilteredOrderItemList();
-        OrderItem orderItemToDelete = lastShownList.get(first.getZeroBased());
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ORDERITEM_SUCCESS, orderItemToDelete);
+        OrderItem orderItemToRemove = lastShownList.get(first.getZeroBased());
+        String expectedMessage = String.format(RemoveCommand.MESSAGE_DELETE_ORDERITEM_SUCCESS, orderItemToRemove);
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(removeCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_validQuantity_success() {
         Model model = initialiseModel();
         Index first = Index.fromOneBased(1);
-        DeleteCommand deleteCommand = new DeleteCommand(first, 1);
+        RemoveCommand removeCommand = new RemoveCommand(first, 1);
         OrderItem item = new OrderItem("Hashybrownies", 4.20, new HashSet<>(), 2);
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_CUT_ORDERITEM_SUCCESS, item);
+        String expectedMessage = String.format(RemoveCommand.MESSAGE_CUT_ORDERITEM_SUCCESS, item);
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.addOrderItem(item);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(removeCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndex_throwsCommandException() {
         Model model = initialiseModel();
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredVendorList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        RemoveCommand removeCommand = new RemoveCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
+        assertCommandFailure(removeCommand, model, Messages.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
     }
 
     @Test
@@ -76,31 +76,31 @@ public class DeleteCommandTest {
         // ensures that Index is still in bounds of order item list
         assertTrue(first.getZeroBased() < model.getFilteredOrderItemList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(first, 0);
+        RemoveCommand removeCommand = new RemoveCommand(first, 0);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ORDERITEM_DISPLAYED_QUANTITY);
+        assertCommandFailure(removeCommand, model, Messages.MESSAGE_INVALID_ORDERITEM_DISPLAYED_QUANTITY);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(Index.fromOneBased(1));
-        DeleteCommand deleteSecondCommand = new DeleteCommand(Index.fromOneBased(2));
+        RemoveCommand removeFirstCommand = new RemoveCommand(Index.fromOneBased(1));
+        RemoveCommand removeSecondCommand = new RemoveCommand(Index.fromOneBased(2));
 
         // same object -> returns true
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+        assertTrue(removeFirstCommand.equals(removeFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(Index.fromOneBased(1));
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+        RemoveCommand removeFirstCommandCopy = new RemoveCommand(Index.fromOneBased(1));
+        assertTrue(removeFirstCommand.equals(removeFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(1));
+        assertFalse(removeFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(deleteFirstCommand.equals(null));
+        assertFalse(removeFirstCommand.equals(null));
 
         // different vendor -> returns false
-        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+        assertFalse(removeFirstCommand.equals(removeSecondCommand));
     }
 
     /**

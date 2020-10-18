@@ -13,13 +13,13 @@ import seedu.address.model.order.OrderItem;
 /**
  * Deletes a vendor identified using it's displayed index from the address book.
  */
-public class DeleteCommand extends Command {
+public class RemoveCommand extends Command {
 
     // TODO: Update delete to remove.
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "remove";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the order item identified by the index number used in the displayed menu list.\n"
+            + ": Removes the order item identified by the index number used in the displayed menu list.\n"
             + "Parameters: \n"
             + "1. INDEX (must be a positive integer)\n"
             + "2. INDEX (must be a positive integer) QUANTITY (must be a positive integer)\n"
@@ -27,7 +27,7 @@ public class DeleteCommand extends Command {
             + "1. " + COMMAND_WORD + " 1\n"
             + "2. " + COMMAND_WORD + " 1 2";
 
-    public static final String MESSAGE_DELETE_ORDERITEM_SUCCESS = "Deleted order item: %1$s";
+    public static final String MESSAGE_DELETE_ORDERITEM_SUCCESS = "Removed order item: %1$s";
     public static final String MESSAGE_CUT_ORDERITEM_SUCCESS = "Reduced order item: %1$s";
 
     private final Index targetIndex;
@@ -36,7 +36,7 @@ public class DeleteCommand extends Command {
     /**
      * Creates a DeleteCommand to delete the OrderItem at the specified {@code targetIndex} and remove all its quantity
      */
-    public DeleteCommand(Index targetIndex) {
+    public RemoveCommand(Index targetIndex) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
         this.quantity = Integer.MAX_VALUE;
@@ -46,7 +46,7 @@ public class DeleteCommand extends Command {
      * Creates a DeleteCommand to delete the OrderItem at the specified {@code targetIndex} and remove its quantity by
      * the specified {@code quantity}
      */
-    public DeleteCommand(Index targetIndex, int quantity) {
+    public RemoveCommand(Index targetIndex, int quantity) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
         this.quantity = quantity;
@@ -85,7 +85,7 @@ public class DeleteCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                || (other instanceof RemoveCommand // instanceof handles nulls
+                && targetIndex.equals(((RemoveCommand) other).targetIndex)); // state check
     }
 }
