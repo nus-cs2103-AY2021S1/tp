@@ -14,6 +14,7 @@ import seedu.address.logic.commands.property.AddPropertyCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.id.IdParserUtil;
@@ -55,7 +56,7 @@ public class AddPropertyCommandParser implements Parser<AddPropertyCommand> {
                 .get());
         SellerId sellerId = IdParserUtil.parseSellerId(argMultimap.getValue(PREFIX_PROPERTY_SELLER_ID)
                 .get());
-        Price askingPrice = PropertyParserUtil.parseAskingPrice(argMultimap.getValue(PREFIX_PROPERTY_ASKING_PRICE)
+        Price askingPrice = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PROPERTY_ASKING_PRICE)
                 .get());
         PropertyType propertyType = PropertyParserUtil.parsePropertyType(argMultimap.getValue(PREFIX_PROPERTY_TYPE)
                 .get());

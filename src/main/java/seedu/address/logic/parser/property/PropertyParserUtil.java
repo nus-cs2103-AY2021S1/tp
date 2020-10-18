@@ -3,7 +3,6 @@ package seedu.address.logic.parser.property;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.price.Price;
 import seedu.address.model.property.Address;
 import seedu.address.model.property.IsRental;
 import seedu.address.model.property.PropertyName;
@@ -42,26 +41,6 @@ public class PropertyParserUtil {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(trimmedAddress);
-    }
-
-    /**
-     * Parses a {@code String askingPrice} into an {@code Price}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code askingPrice} is invalid.
-     */
-    public static Price parseAskingPrice(String askingPrice) throws ParseException {
-        requireNonNull(askingPrice);
-        String trimmedAskingPrice = askingPrice.trim();
-        try {
-            double doublePrice = Double.parseDouble(trimmedAskingPrice);
-            if (!Price.isValidPrice(doublePrice)) {
-                throw new ParseException(Price.MESSAGE_CONSTRAINTS);
-            }
-            return new Price(doublePrice);
-        } catch (NumberFormatException e) {
-            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
-        }
     }
 
     /**

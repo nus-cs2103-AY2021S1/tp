@@ -5,16 +5,15 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.bid.Bid;
 import seedu.address.model.calendar.CalendarTime;
 import seedu.address.model.calendar.CalendarVenue;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.price.Price;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -132,56 +131,23 @@ public class ParserUtil {
         return trimmedType;
     }
 
-    //=========== Bids ================================================================================
-
     /**
-     * trims off any excess white spaces for a given string
-     * @param propertyId string to trim
-     * @return a string that has no white spaces on the sides
-     * @throws ParseException If the property id is in the wrong format.
+     * Parses a {@code String askingPrice} into an {@code Price}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code askingPrice} is invalid.
      */
-    public static String parsePropertyId(String propertyId) throws ParseException {
-        requireNonNull(propertyId);
-        if (Pattern.matches("[a-zA-Z][0-9]+", propertyId)) {
-            String trimmedPropertyId = propertyId.trim();
-            return trimmedPropertyId;
-        } else {
-            throw new ParseException(Bid.MESSAGE_CONSTRAINTS_PROPERTY_ID);
-        }
-
-    }
-
-    /**
-     * trims off any excess white spaces for a given string
-     * @param bidderId string to trim
-     * @return a string that has no white spaces on the sides
-     * @throws ParseException If the bidder id is in the wrong format.
-     */
-    public static String parseBidderId(String bidderId) throws ParseException {
-        requireNonNull(bidderId);
-        if (Pattern.matches("[a-zA-Z][0-9]+", bidderId)) {
-            String trimmedBidderId = bidderId.trim();
-            return trimmedBidderId;
-        } else {
-            throw new ParseException(Bid.MESSAGE_CONSTRAINTS_BIDDER_ID);
-        }
-    }
-
-    /**
-     *  trims off any excess white spaces for a given string
-     * @param bidAmount string to trim
-     * @return a string that has no white spaces on the sides
-     * @throws ParseException If the bidAmount is in the wrong format.
-     */
-    public static double parseBidAmount(String bidAmount) throws ParseException {
-        requireNonNull(bidAmount);
-        String trimmedBidAmount = bidAmount.trim();
+    public static Price parsePrice(String askingPrice) throws ParseException {
+        requireNonNull(askingPrice);
+        String trimmedAskingPrice = askingPrice.trim();
         try {
-            double numericalBidAmount = Double.parseDouble(trimmedBidAmount);
-            return numericalBidAmount;
+            double doublePrice = Double.parseDouble(trimmedAskingPrice);
+            if (!Price.isValidPrice(doublePrice)) {
+                throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+            }
+            return new Price(doublePrice);
         } catch (NumberFormatException e) {
-            throw new ParseException(Bid.MESSAGE_CONSTRAINTS_BID_AMOUNT);
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         }
     }
-
 }

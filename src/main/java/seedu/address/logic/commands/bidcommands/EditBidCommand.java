@@ -20,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.id.BidderId;
 import seedu.address.model.id.PropertyId;
+import seedu.address.model.price.Price;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -89,7 +90,7 @@ public class EditBidCommand extends Command {
         PropertyId updatedPropertyId = editBidDescriptor.getPropertyId().orElse(bidToEdit.getPropertyId());
         BidderId updatedBidderId = editBidDescriptor.getBidderId().orElse(bidToEdit.getBidderId());
         double test = 345.55;
-        double updatedBidAmount = editBidDescriptor.getBidAmount().orElse(bidToEdit.getBidAmount());
+        Price updatedBidAmount = editBidDescriptor.getBidAmount().orElse(bidToEdit.getBidAmount());
 
         return new Bid(updatedPropertyId, updatedBidderId, updatedBidAmount);
     }
@@ -120,7 +121,7 @@ public class EditBidCommand extends Command {
 
         private PropertyId propertyId;
         private BidderId bidderId;
-        private Double bidAmount;
+        private Price bidAmount;
 
 
         public EditBidDescriptor() {}
@@ -158,11 +159,11 @@ public class EditBidCommand extends Command {
             return Optional.ofNullable(bidderId);
         }
 
-        public void setBidAmount(Double bidAmount) {
+        public void setBidAmount(Price bidAmount) {
             this.bidAmount = bidAmount;
         }
 
-        public Optional<Double> getBidAmount() {
+        public Optional<Price> getBidAmount() {
             return Optional.ofNullable(bidAmount);
         }
 

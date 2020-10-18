@@ -7,6 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.id.BidderId;
 import seedu.address.model.id.PropertyId;
+import seedu.address.model.price.Price;
 
 public class JsonAdaptedBid {
 
@@ -39,7 +40,7 @@ public class JsonAdaptedBid {
     public JsonAdaptedBid(Bid source) {
         propertyId = source.getPropertyId().toString();
         bidderId = source.getBidderId().toString();
-        bidAmount = source.getBidAmount();
+        bidAmount = source.getBidAmount().price;
     }
 
     /**
@@ -62,6 +63,7 @@ public class JsonAdaptedBid {
         if (bidAmount == 0) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "450443"));
         }
-        return new Bid(modelPropertyId, modelBidderId, bidAmount);
+        Price modelBidAmount = new Price(bidAmount);
+        return new Bid(modelPropertyId, modelBidderId, modelBidAmount);
     }
 }
