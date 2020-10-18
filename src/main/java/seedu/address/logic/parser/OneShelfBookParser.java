@@ -8,11 +8,8 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
-<<<<<<< HEAD
-import seedu.address.logic.commands.deliverycommand.DeliveryClearCommand;
-=======
 import seedu.address.logic.commands.deliverycommand.DeliveryAddCommand;
->>>>>>> master
+import seedu.address.logic.commands.deliverycommand.DeliveryClearCommand;
 import seedu.address.logic.commands.deliverycommand.DeliveryFindCommand;
 import seedu.address.logic.commands.deliverycommand.DeliveryListCommand;
 import seedu.address.logic.commands.help.HelpCommand;
