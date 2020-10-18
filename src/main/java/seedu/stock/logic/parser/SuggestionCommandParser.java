@@ -16,7 +16,6 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_STATISTICS_TYPE;
 
-
 import java.util.List;
 import java.util.Random;
 
