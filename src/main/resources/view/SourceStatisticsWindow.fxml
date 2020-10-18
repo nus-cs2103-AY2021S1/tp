@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.stage.*?>
+
+<?import javafx.scene.image.Image?>
+
+<?import java.net.URL?>
+<fx:root resizable="true" title="Statistics" type="javafx.stage.Stage"
+         xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <icons>
+        <Image url="@/images/piechart_icon.png"/>
+    </icons>
+    <scene>
+        <Scene>
+            <AnchorPane>
+                <stylesheets>
+                    <URL value="@DarkTheme.css"/>
+                </stylesheets>
+                <PieChart fx:id="sourceStatisticsPieChart" minHeight="600.0" minWidth="700.0"
+                          xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+                </PieChart>
+            </AnchorPane>
+        </Scene>
+    </scene>
+</fx:root>
