@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
-import seedu.address.history.CommandHistory;
+import seedu.address.history.HistoryManager;
 import seedu.address.history.History;
 import seedu.address.history.exception.HistoryException;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -46,14 +46,14 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Makes a {@code CommandHistory} object with COMMAND_HISTORY_LIMIT
-     * @return {@code CommandHistory} object
+     * Makes a {@code HistoryManager} object with COMMAND_HISTORY_LIMIT
+     * @return {@code HistoryManager} object
      * @see seedu.address.ui.CommandBox#COMMAND_HISTORY_LIMIT
      */
-    private CommandHistory makeCommandHistory() {
-        CommandHistory tempHistory;
+    private HistoryManager makeCommandHistory() {
+        HistoryManager tempHistory;
         try {
-            tempHistory = new CommandHistory(COMMAND_HISTORY_LIMIT);
+            tempHistory = new HistoryManager(COMMAND_HISTORY_LIMIT);
         } catch (HistoryException historyException) {
             tempHistory = null;
             System.err.println(historyException);

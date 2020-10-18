@@ -37,8 +37,9 @@ The rest of the App consists of four components.
 
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#inventoryModel-component): Holds the data of the App in memory.
+* [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`History`**](#command-history-traversal): Records user's command history and allows for traversal.
 
 Each of the four components,
 
@@ -80,7 +81,7 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `Parser` API to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a item).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -102,16 +103,9 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores OneShelf's data.
+* exposes an unmodifiable `ObservableList` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
-
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) inventoryModel is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
-
 
 ### Storage component
 
@@ -135,7 +129,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Command History Traversal
 Much like Window's Command Prompt, OneShelf supports traversal of command history with the arrow up and down key.
-There is a `History` interface that is implemented by `CommandHistory` class which stores `commandHistory` up to its `lengthLimit`
+There is a `History` interface that is implemented by `HistoryManager` class which stores `commandHistory` up to its `lengthLimit`
 
 In order to replicate Window's Command Prompt's History traversal behaviour, a `hasReturnedCurrentCommandBefore` boolean is required to prevent the first `previousCommand()`
 method call to return `commandHistory`'s 2nd last command instead of the last command.
