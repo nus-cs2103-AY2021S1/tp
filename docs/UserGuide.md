@@ -6,6 +6,14 @@ title: User Guide
 McGymmy (MG) is a **desktop app for Software Engineers who need help managing their diet, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). <br>
 If you can type fast, McGymmy can log your diet and exercise tasks, goals and progress done faster than traditional GUI apps.
 
+This document is best viewed in a modern internet browser (Mozilla Firefox, Google Chrome, or Microsoft Edge).
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** Press Ctrl-F to open the find prompt in your browser. You can type in keywords such as `add` or `edit` to quickly navigate to those parts of the document.
+
+</div>
+
 * Table of Contents
 {:toc}
 
