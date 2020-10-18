@@ -6,7 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.EditItemCommand.EditItemDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -33,6 +35,8 @@ public class AddQuantityToItemCommand extends Command {
     public static final String MESSAGE_ITEM_NOT_PROVIDED = "Item name must be provided.";
     public static final String MESSAGE_QUANTITY_NOT_PROVIDED = "Quantity must be provided.";
     public static final String MESSAGE_NEGATIVE_QUANTITY = "Quantity will become negative.";
+
+    private static final Logger logger = LogsCenter.getLogger(AddQuantityToItemCommand.class);
 
     private final String itemName;
     private final int quantity; // store as int to support negative
@@ -61,8 +65,10 @@ public class AddQuantityToItemCommand extends Command {
 
         Item itemToEdit;
         itemToEdit = itemList.stream()
-                .findFirst()// Get the first (and only) item matching or else throw Error
+                .findFirst() // Get the first (and only) item matching or else throw Error
                 .orElseThrow(()-> new CommandException(MESSAGE_ITEM_NOT_FOUND));
+        assert(itemToEdit != null);
+        assert(itemToEdit.getQuantity() != null);
 
         if ((Integer.parseInt(itemToEdit.getQuantity().value) + quantity) < 0) {
             throw new CommandException(MESSAGE_NEGATIVE_QUANTITY);
@@ -70,6 +76,8 @@ public class AddQuantityToItemCommand extends Command {
 
         Quantity updatedQuantity = new Quantity(Integer.toString(Integer.parseInt(itemToEdit.getQuantity().value)
                 + quantity));
+        assert(Integer.parseInt(updatedQuantity.value) >= 0);
+
         EditItemDescriptor editItemDescriptor = new EditItemDescriptor();
 
         editItemDescriptor.setName(itemToEdit.getName());
@@ -78,6 +86,8 @@ public class AddQuantityToItemCommand extends Command {
         editItemDescriptor.setTags(itemToEdit.getTags());
 
         EditItemCommand editItemCommand = new EditItemCommand(itemName, editItemDescriptor);
+
+        logger.info(itemToEdit.getName() + "'s quantity changed to " + updatedQuantity + ".");
 
         return editItemCommand.execute(model);
     }
