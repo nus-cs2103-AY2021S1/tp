@@ -2,9 +2,9 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.ArgumentMultimapUtil.isOnlyOnePrefixPresent;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_FILTER_BY_ASSIGNEE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_FILTER_BY_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_FILTER_BY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_ASSIGNEE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 
 import java.util.function.Predicate;
 
@@ -28,30 +28,30 @@ public class TaskFilterCommandParser implements Parser<TaskFilterCommand> {
     @Override
     public TaskFilterCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_TASK_FILTER_BY_ASSIGNEE,
-                PREFIX_TASK_FILTER_BY_DEADLINE, PREFIX_TASK_FILTER_BY_NAME);
+            ArgumentTokenizer.tokenize(args, PREFIX_TASK_ASSIGNEE,
+                PREFIX_TASK_DEADLINE, PREFIX_TASK_NAME);
 
-        if (!isOnlyOnePrefixPresent(argMultimap, PREFIX_TASK_FILTER_BY_ASSIGNEE,
-            PREFIX_TASK_FILTER_BY_DEADLINE, PREFIX_TASK_FILTER_BY_NAME)) {
+        if (!isOnlyOnePrefixPresent(argMultimap, PREFIX_TASK_ASSIGNEE,
+            PREFIX_TASK_DEADLINE, PREFIX_TASK_NAME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskFilterCommand.MESSAGE_USAGE));
         }
 
         Predicate<Task> predicate = task -> true;
 
-        if (argMultimap.getValue(PREFIX_TASK_FILTER_BY_ASSIGNEE).isPresent()) {
+        if (argMultimap.getValue(PREFIX_TASK_ASSIGNEE).isPresent()) {
             GitUserName assigneeGitUserName = ParsePersonUtil.parseGitUserName(argMultimap
-                .getValue(PREFIX_TASK_FILTER_BY_ASSIGNEE).get());
+                .getValue(PREFIX_TASK_ASSIGNEE).get());
             predicate = task -> task.hasAssigneeWhoseGitNameIs(assigneeGitUserName);
         }
 
-        if (argMultimap.getValue(PREFIX_TASK_FILTER_BY_DEADLINE).isPresent()) {
-            Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_TASK_FILTER_BY_DEADLINE).get());
+        if (argMultimap.getValue(PREFIX_TASK_DEADLINE).isPresent()) {
+            Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_TASK_DEADLINE).get());
             predicate = task -> task.getDeadline().equals(deadline);
         }
 
-        if (argMultimap.getValue(PREFIX_TASK_FILTER_BY_NAME).isPresent()) {
+        if (argMultimap.getValue(PREFIX_TASK_NAME).isPresent()) {
             predicate = task -> task.getTaskName()
-                .contains(argMultimap.getValue(PREFIX_TASK_FILTER_BY_NAME).get());
+                .contains(argMultimap.getValue(PREFIX_TASK_NAME).get());
         }
 
         return new TaskFilterCommand(predicate);

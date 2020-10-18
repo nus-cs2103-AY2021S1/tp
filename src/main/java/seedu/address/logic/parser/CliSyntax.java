@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 
+import java.util.function.Predicate;
+
 /**
  * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
  */
@@ -14,12 +16,12 @@ public class CliSyntax {
     public static final Prefix PREFIX_PROJECT_TAG = new Prefix("tg/");
     public static final Prefix PREFIX_TASK = new Prefix("tk/");
     public static final Prefix PREFIX_MEETING = new Prefix("mt/");
+    // Prefixes related to Task
+    public static final Prefix PREFIX_TASK_ASSIGNEE = new Prefix("ta/");
+    public static final Prefix PREFIX_TASK_NAME = new Prefix("tn/");
+    public static final Prefix PREFIX_TASK_DEADLINE = new Prefix("td/");
+    public static final Prefix PREFIX_TASK_PROGRESS = new Prefix("tp/");
     public static final Prefix PREFIX_TASK_IS_DONE = new Prefix("done/");
-    public static final Prefix PREFIX_TASK_PROGRESS = new Prefix("p/");
-    // Prefixes related to task filters
-    public static final Prefix PREFIX_TASK_FILTER_BY_ASSIGNEE = new Prefix("ta/");
-    public static final Prefix PREFIX_TASK_FILTER_BY_NAME = new Prefix("tn/");
-    public static final Prefix PREFIX_TASK_FILTER_BY_DEADLINE = new Prefix("td/");
     // Prefixes related to meeting filters
     public static final Prefix PREFIX_MEETING_FILTER_BY_NAME = new Prefix("mtn");
     // Prefixes related to Teammate

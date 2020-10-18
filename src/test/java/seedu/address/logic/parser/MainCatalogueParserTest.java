@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_FILTER_BY_ASSIGNEE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_FILTER_BY_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_FILTER_BY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_ASSIGNEE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PROGRESS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
@@ -141,11 +141,11 @@ public class MainCatalogueParserTest {
     public void parseCommand_filter() throws Exception {
         // TaskFilterCommand does not have equal method as one cannot compare two predicates unless they are identical
         assertTrue(parser.parseCommand(TaskFilterCommand.COMMAND_WORD + " "
-            + PREFIX_TASK_FILTER_BY_ASSIGNEE + ALICE.getGitUserName(), Status.PROJECT) instanceof TaskFilterCommand);
+            + PREFIX_TASK_ASSIGNEE + ALICE.getGitUserName(), Status.PROJECT) instanceof TaskFilterCommand);
         assertTrue(parser.parseCommand(TaskFilterCommand.COMMAND_WORD + " "
-            + PREFIX_TASK_FILTER_BY_DEADLINE + VALID_TASK_DEADLINE, Status.PROJECT) instanceof TaskFilterCommand);
+            + PREFIX_TASK_DEADLINE + VALID_TASK_DEADLINE, Status.PROJECT) instanceof TaskFilterCommand);
         assertTrue(parser.parseCommand(TaskFilterCommand.COMMAND_WORD + " "
-            + PREFIX_TASK_FILTER_BY_NAME + VALID_TASK_NAME, Status.PROJECT) instanceof TaskFilterCommand);
+            + PREFIX_TASK_NAME + VALID_TASK_NAME, Status.PROJECT) instanceof TaskFilterCommand);
     }
 
     @Test
@@ -182,7 +182,7 @@ public class MainCatalogueParserTest {
 
         try {
             parser.parseCommand(
-                TaskFilterCommand.COMMAND_WORD + " " + PREFIX_TASK_FILTER_BY_ASSIGNEE + ALICE.getPersonName(),
+                TaskFilterCommand.COMMAND_WORD + " " + PREFIX_TASK_ASSIGNEE + ALICE.getPersonName(),
                 Status.CATALOGUE);
             fail();
         } catch (Exception e) {
