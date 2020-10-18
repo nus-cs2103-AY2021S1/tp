@@ -19,7 +19,7 @@ public class Appointment {
     }
 
     /**
-     * @param timeString
+     * @param timeString appointment time
      * @return an Appointment object with date specified by the given String
      */
     public Appointment setTime(String timeString) {

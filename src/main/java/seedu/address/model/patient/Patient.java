@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Patient in the address book.
+ * Represents a Patient in Hospify.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Patient {
@@ -42,22 +42,27 @@ public class Patient {
     }
 
     public Name getName() {
+        assert name != null : "Name should not be empty";
         return name;
     }
 
     public Phone getPhone() {
+        assert phone != null : "Phone number should not be empty";
         return phone;
     }
 
     public Email getEmail() {
+        assert email != null : "Email should not be empty";
         return email;
     }
 
     public Address getAddress() {
+        assert address != null : "Address should not be empty";
         return address;
     }
 
     public Nric getNric() {
+        assert nric != null : "Nric should not be empty";
         return nric;
     }
 

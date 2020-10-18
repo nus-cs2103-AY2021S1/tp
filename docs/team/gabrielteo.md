@@ -9,12 +9,17 @@ Hospify is an application to help maintain medical records.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to `find` a patient.
-  * What it does: allows the user to find a patient's medical records.
-  * Justification: This feature provides a convenient way to access patients' medical records.
-  * Highlights: The implementation does not require changes to existing commands.
+* **New Features**: 
+  * Added the ability to `find` a patient.
+    * What it does: Allows the user to find a patient's medical records.
+    * Justification: This feature provides a convenient way to access patients' medical records.
+    * Highlights: The implementation does not require changes to existing commands.
+  * Added Appointment Class. (Pull requests [\#80](), [\#87]())
+    * What it does: The user is now able to schedule and store new appointments for patients.
+    * Justification: This feature provides added functionality to keep track of appointment for patients.
+    * Highlights: The implementation requires changes to the UI and some classes.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=GabrielTeo&tabRepo=AY2021S1-CS2103T-W15-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
 * **Project management**:
 
