@@ -90,16 +90,20 @@ public class AddCommandParser {
 
         // looks weird, but basically this extracts the /qty and /expiry arguments (if present),
         // then constructs the command from it -- while returning any intermediate error messages.
-        return Result.transpose(qtys
-            .stream()
-            .findFirst()
-            .map(Quantity::parse))
-            .then(qty -> Result.transpose(exps
+        try {
+            return Result.transpose(qtys
                 .stream()
                 .findFirst()
-                .map(e -> Result.of(e)))
-                .map(exp -> createAddIngredientCommand(name, qty, exp))
-            );
+                .map(Quantity::parse))
+                .then(qty -> Result.transpose(exps
+                    .stream()
+                    .findFirst()
+                    .map(e -> Result.of(e)))
+                    .map(exp -> createAddIngredientCommand(name, qty, exp))
+                );
+        } catch (Exception e) {
+            return Result.error(e.getMessage());
+        }
     }
 
     /**
