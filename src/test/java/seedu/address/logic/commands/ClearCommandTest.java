@@ -31,9 +31,9 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.setOrderManager(new OrderManager());
         model.setOrderManager(new OrderManager());
-        OrderItem instantiate = new OrderItem(new Food("Prata", 1, new HashSet<>()), 1);
-        model.addOrderItem(instantiate);
-        model.deleteOrderItem(instantiate);
+        OrderItem orderItem = new OrderItem(new Food("Prata", 1, new HashSet<>()), 1);
+        model.addOrderItem(orderItem);
+        model.deleteOrderItem(orderItem);
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_EMPTY_ORDER, expectedModel);
     }
 
