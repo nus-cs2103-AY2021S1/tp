@@ -39,6 +39,7 @@ public class FindExactCommand extends Command {
      * @param predicates list of predicates to filter stocks
      */
     public FindExactCommand(List<Predicate<Stock>> predicates) {
+        requireNonNull(predicates);
         this.predicates = predicates;
         this.combinedPredicates = predicates.stream().reduce(x -> true, Predicate::and);
     }

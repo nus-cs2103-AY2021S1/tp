@@ -54,7 +54,7 @@ public class UpdateCommand extends Command {
 
     public static final String MESSAGE_UPDATE_STOCK_SUCCESS = "Updated Stock: %1$s";
     public static final String MESSAGE_NOT_UPDATED = "At least one field to update must be provided.";
-    public static final String MESSAGE_DUPLICATE_STOCK = "This stock already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_STOCK = "This stock already exists in the stock book.";
     public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND = "Stock with given serial number does not exists";
     public static final String MESSAGE_TOO_MANY_QUANTITY_PREFIXES = "You can only use one of the prefix iq/ or nq/";
 
@@ -89,7 +89,7 @@ public class UpdateCommand extends Command {
         List<Stock> stocksToUpdate = new ArrayList<>();
         List<Stock> updatedStocks = new ArrayList<>();
 
-        // FInd stocks to be updated
+        // Find stocks to be updated
         for (Stock currentStock : lastShownStocks) {
             String currentStockSerialNumber = currentStock.getSerialNumber().getSerialNumberAsString();
             boolean anyMatches = false;

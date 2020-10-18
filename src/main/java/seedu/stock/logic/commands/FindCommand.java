@@ -39,6 +39,7 @@ public class FindCommand extends Command {
      * @param predicates list of predicates to filter stocks
      */
     public FindCommand(List<Predicate<Stock>> predicates) {
+        requireNonNull(predicates);
         this.predicates = predicates;
         this.combinedPredicates = predicates.stream().reduce(x -> false, Predicate::or);
     }
