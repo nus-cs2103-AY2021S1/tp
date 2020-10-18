@@ -72,8 +72,9 @@ public class DeallocateCommand extends Command {
 
         model.saveStateResiReg();
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toDeallocate.getFloor(), toDeallocate.getRoomNumber(),
-            studentToDeallocate.getName().fullName));
+        return new CommandResult(String.format(MESSAGE_SUCCESS,
+                toDeallocate.getFloor().toString()+':'+toDeallocate.getRoomNumber(),
+                studentToDeallocate.getName().fullName));
     }
 
     @Override
