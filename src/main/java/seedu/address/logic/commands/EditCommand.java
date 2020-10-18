@@ -18,6 +18,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -82,8 +83,24 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        // update address book
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        // update meeting book
+        List<Meeting> filteredMeetingList = model.getFilteredMeetingList().stream()
+                .filter(meeting -> meeting.getMembers().contains(personToEdit)).map(meeting -> {
+                    Set<Person> updatedMembers = new HashSet<>(meeting.getMembers());
+                    updatedMembers.remove(personToEdit);
+                    updatedMembers.add(editedPerson);
+                    Meeting updatedMeeting = new Meeting(meeting.getMeetingName(), meeting.getDate(),
+                            meeting.getTime(), updatedMembers);
+                    model.setMeeting(meeting, updatedMeeting);
+                    return updatedMeeting;
+                }).collect(Collectors.toList());
+
+        // todo update module book
+
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
