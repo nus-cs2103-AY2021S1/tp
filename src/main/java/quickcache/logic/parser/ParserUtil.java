@@ -2,6 +2,8 @@ package quickcache.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.nio.file.InvalidPathException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -27,6 +29,8 @@ import quickcache.model.flashcard.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    public static final String MESSAGE_INVALID_FILE_NAME = "Filename is invalid.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -161,5 +165,17 @@ public class ParserUtil {
             throw new ParseException(Option.MESSAGE_CONSTRAINTS);
         }
         return new Option(trimmedOption);
+    }
+
+    public static String parseFileName(String fileName) throws ParseException {
+        requireNonNull(fileName);
+        String trimmedFileName = fileName.trim();
+        try {
+            // Tries to determine if the file name is valid
+            Paths.get(trimmedFileName);
+        } catch (InvalidPathException ipe) {
+            throw new ParseException(MESSAGE_INVALID_FILE_NAME);
+        }
+        return trimmedFileName;
     }
 }

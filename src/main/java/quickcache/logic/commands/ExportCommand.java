@@ -36,8 +36,6 @@ public class ExportCommand extends Command {
     private final String fileName;
 
     public ExportCommand(String fileName) {
-        // quickcache.json is used to store the main data
-        assert !fileName.equals("quickcache.json");
         requireNonNull(fileName);
         this.fileName = fileName;
     }
@@ -47,8 +45,7 @@ public class ExportCommand extends Command {
         requireNonNull(model);
         List<Flashcard> lastShownList = model.getFilteredFlashcardList();
         // Initialize storage at user defined file name
-        QuickCacheStorage storage = new JsonQuickCacheStorage(Paths.get("data", fileName));
-        //
+        QuickCacheStorage storage = new JsonQuickCacheStorage(Paths.get("export", fileName));
         QuickCache lastShownQuickCache = new QuickCache();
         lastShownQuickCache.setFlashcards(lastShownList);
         try {
