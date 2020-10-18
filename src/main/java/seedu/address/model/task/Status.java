@@ -10,7 +10,7 @@ public class Status {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Values must be either 'complete' or 'incomplete'";
+            "Value of status must be either 'complete' or 'incomplete'";
     public final State value;
 
     /**
