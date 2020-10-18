@@ -41,7 +41,7 @@ public class JsonAdaptedAppointment {
      */
     public Appointment toModelType() throws IllegalValueException {
         if (!Appointment.isValidAppointment(appointmentName)) {
-            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Appointment.MESSAGE_CONSTRAINTS);
         }
         return new Appointment().setTime(appointmentName);
     }
