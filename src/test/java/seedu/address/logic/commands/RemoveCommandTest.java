@@ -11,8 +11,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -27,7 +27,6 @@ public class RemoveCommandTest {
 
     private Model initialiseModel() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        // Vendor vendorReference = model.getFilteredVendorList().get(INDEX_FIRST_VENDOR.getZeroBased());
         model.addOrderItem(new OrderItem("Hashybrownies", 4.20, new HashSet<>(), 3));
         return model;
     }
@@ -66,7 +65,7 @@ public class RemoveCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredVendorList().size() + 1);
         RemoveCommand removeCommand = new RemoveCommand(outOfBoundIndex);
 
-        assertCommandFailure(removeCommand, model, Messages.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
+        assertCommandFailure(removeCommand, model, ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
     }
 
     @Test
@@ -78,7 +77,7 @@ public class RemoveCommandTest {
 
         RemoveCommand removeCommand = new RemoveCommand(first, 0);
 
-        assertCommandFailure(removeCommand, model, Messages.MESSAGE_INVALID_ORDERITEM_DISPLAYED_QUANTITY);
+        assertCommandFailure(removeCommand, model, ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_QUANTITY);
     }
 
     @Test
