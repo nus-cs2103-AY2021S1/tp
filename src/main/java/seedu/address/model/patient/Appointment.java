@@ -7,7 +7,7 @@ import java.time.format.DateTimeParseException;
 public class Appointment {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Appointment times should follow the format (yyyy-MM-dd HH:mm)";
+            "Appointment times should follow the format (dd/MM/yyyy HH:mm)";
     private final LocalDateTime time;
 
     public Appointment() {
@@ -47,7 +47,7 @@ public class Appointment {
 
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy h:mm a");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         return time.format(formatter);
     }
 
