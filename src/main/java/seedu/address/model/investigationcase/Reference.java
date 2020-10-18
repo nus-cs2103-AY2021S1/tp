@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 public class Reference {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "File should be placed in the ./data/reference folder. Please only enter the file name.";
+            "File should be placed in the ./reference folder. Please only enter the file name.";
 
     private static final String DEFAULT_FILEPATH = "./references/";
     private final Path path;

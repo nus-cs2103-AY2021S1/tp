@@ -66,6 +66,15 @@ public class FileUtil {
     }
 
     /**
+     * Creates directories of a specified path
+     */
+    public static void createDirectories(Path folderPath) throws IOException {
+        if (folderPath != null) {
+            Files.createDirectories(folderPath);
+        }
+    }
+
+    /**
      * Assumes file exists
      */
     public static String readFromFile(Path file) throws IOException {

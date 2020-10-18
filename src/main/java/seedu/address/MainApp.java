@@ -46,9 +46,11 @@ public class MainApp extends Application {
     protected Model model;
     protected Config config;
 
+
     @Override
     public void init() throws Exception {
         logger.info("=============================[ Initializing AddressBook ]===========================");
+
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -80,6 +82,9 @@ public class MainApp extends Application {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
+                //add reference sample data to reference storage
+                storage.addReferenceTestFile();
+
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
@@ -96,6 +101,7 @@ public class MainApp extends Application {
     private void initLogging(Config config) {
         LogsCenter.init(config);
     }
+
 
     /**
      * Returns a {@code Config} using the file at {@code configFilePath}. <br>
