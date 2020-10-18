@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.deliverycommand.DeliveryAddCommand;
+import seedu.address.logic.commands.deliverycommand.DeliveryClearCommand;
 import seedu.address.logic.commands.deliverycommand.DeliveryFindCommand;
 import seedu.address.logic.commands.deliverycommand.DeliveryListCommand;
 import seedu.address.logic.commands.help.HelpCommand;
@@ -77,7 +78,6 @@ public class OneShelfBookParser {
             return new ItemListCommand();
 
             // Delivery command words
-
         case DeliveryAddCommand.COMMAND_WORD:
             return new DeliveryAddCommandParser().parse(arguments);
 
@@ -86,6 +86,9 @@ public class OneShelfBookParser {
 
         case DeliveryListCommand.COMMAND_WORD:
             return new DeliveryListCommand();
+
+        case DeliveryClearCommand.COMMAND_WORD:
+            return new DeliveryClearCommand();
 
             // General command words
         case ExitCommand.COMMAND_WORD:
