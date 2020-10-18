@@ -79,7 +79,7 @@ public class Task {
      */
     public boolean hasAssigneeWhoseGitNameIs(GitUserName assigneeGitUserName) {
         return assignees.stream()
-            .anyMatch(assignee -> assignee.getAssigneeName().equals(assigneeGitUserName));
+            .anyMatch(assignee -> assignee.getAssigneeGitName().equals(assigneeGitUserName));
     }
 
     public boolean addAssignee(Participation assignee) {

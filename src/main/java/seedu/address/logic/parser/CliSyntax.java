@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+
 /**
  * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
  */
@@ -19,6 +20,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_TASK_FILTER_BY_ASSIGNEE = new Prefix("ta/");
     public static final Prefix PREFIX_TASK_FILTER_BY_NAME = new Prefix("tn/");
     public static final Prefix PREFIX_TASK_FILTER_BY_DEADLINE = new Prefix("td/");
+    // Prefixes related to meeting filters
+    public static final Prefix PREFIX_MEETING_FILTER_BY_NAME = new Prefix("mtn");
     // Prefixes related to Teammate
     public static final Prefix PREFIX_TEAMMATE_ADDRESS = new Prefix("ma/");
     public static final Prefix PREFIX_TEAMMATE_EMAIL = new Prefix("me/");

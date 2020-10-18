@@ -18,7 +18,7 @@ import seedu.address.model.task.Task;
  * Filters tasks by assignee's name, task name or deadline.
  */
 public class TaskFilterCommand extends Command {
-    public static final String COMMAND_WORD = "filtertask";
+    public static final String COMMAND_WORD = "filtert";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Filter and show tasks with given predicate\n"
