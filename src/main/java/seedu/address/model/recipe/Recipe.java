@@ -72,14 +72,6 @@ public class Recipe extends InventoryComponent {
         return description;
     }
 
-
-    /**
-     * Returns a deleted form of the same recipe.
-     */
-    public Recipe delete() {
-        return new Recipe(id, ingredients, productId, productName, productQuantity, description);
-    }
-
     /**
      * Generates a printable recipe for display.
      * @param filteredItemList The current item list which ingredients reference to.
