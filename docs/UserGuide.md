@@ -9,6 +9,15 @@ If you can type fast, McGymmy can log your food intake faster than traditional G
 This document aims to showcase all of MG's commands.
 Open this document in a modern internet browser (Mozilla Firefox, Google Chrome, or Microsoft Edge).
 
+##  Legends for icons:
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** This indicates that the following text consists of tips to better utilise MG
+
+</div>
+<div markdown="block" class="alert alert-info">
+
+This indicates important reference notes for the current feature we are looking at
 
 ##  Table of Contents:
 * `Quick Start`
