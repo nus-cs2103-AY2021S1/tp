@@ -10,7 +10,6 @@ import quickcache.logic.commands.AddOpenEndedQuestionCommand;
 import quickcache.model.flashcard.Flashcard;
 import quickcache.model.flashcard.Tag;
 
-
 /**
  * A utility class for Flashcard.
  */

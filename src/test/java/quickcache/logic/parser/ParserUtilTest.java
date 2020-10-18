@@ -22,10 +22,10 @@ public class ParserUtilTest {
     private static final String INVALID_ANSWER = " ";
     private static final String INVALID_TAG = " ";
 
-    private static final String VALID_QUESTION = "Rachel Walker";
-    private static final String VALID_ANSWER = "123 Main Street #0505";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_QUESTION = "Is this a question?";
+    private static final String VALID_ANSWER = "yes";
+    private static final String VALID_TAG_1 = "CS2103T";
+    private static final String VALID_TAG_2 = "HardModule";
 
     private static final String WHITESPACE = " \t\r\n";
 
