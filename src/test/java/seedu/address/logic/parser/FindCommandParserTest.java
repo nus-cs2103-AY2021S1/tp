@@ -36,16 +36,16 @@ public class FindCommandParserTest {
         predicate.setKeyword(PREFIX_TITLE, "Meet Alice");
         predicate.setKeyword(PREFIX_DESCRIPTION, "play");
         predicate.setKeyword(PREFIX_TYPE, "todo");
-        predicate.setKeyword(PREFIX_DATE_TIME, "01-01-2020 23:59");
+        predicate.setKeyword(PREFIX_DATE_TIME, "01-01-2020");
         predicate.setKeyword(PREFIX_STATUS, "incomplete");
         FindCommand expectedFindCommand = new FindCommand(predicate);
         assertParseSuccess(parser,
-                " title:Meet Alice desc:play type:todo date:01-01-2020 23:59 status: incomplete",
+                " title:Meet Alice desc:play type:todo date:01-01-2020 status: incomplete",
                 expectedFindCommand);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser,
-                " \n title:Meet Alice  \t desc:play \t\t\t type: todo \n date: \t 01-01-2020 23:59 "
+                " \n title:Meet Alice  \t desc:play \t\t\t type: todo \n date: \t 01-01-2020 "
                         + "\n status:incomplete",
                 expectedFindCommand);
     }
@@ -74,6 +74,7 @@ public class FindCommandParserTest {
         assertParseFailure(parser, " type:123", Type.SEARCH_CONSTRAINTS);
         assertParseFailure(parser, " status:comple", Status.SEARCH_CONSTRAINTS);
         assertParseFailure(parser, " date:01-01-202", DateTime.SEARCH_CONSTRAINTS);
+        assertParseFailure(parser, " date:13", DateTime.SEARCH_CONSTRAINTS);
 
         // one of the attribute is invalid
         assertParseFailure(parser, " title:abc# date: desc:edf", Title.SEARCH_CONSTRAINTS);
