@@ -29,12 +29,10 @@ public class StatusBarFooter extends UiPart<Region> {
     /**
      * Creates a {@code StatusBarFooter} with the given {@code Path}.
      */
-    public StatusBarFooter(Path inventoryLocation, Path deliveryLocation) {
+    public StatusBarFooter() {
         super(FXML);
         this.displayString = null;
         initialize();
-//        saveLocationStatus.setText(Paths.get(".").resolve(inventoryLocation).toString()
-//                + " and " + Paths.get(".").resolve(deliveryLocation).toString());
     }
 
     /**
@@ -43,6 +41,7 @@ public class StatusBarFooter extends UiPart<Region> {
      * @param display the displayed text.
      */
     public void setDisplayString(String display) {
+        //@@author tanweijie123-reused
         setDisplayString(display, 3);
     }
 
@@ -56,8 +55,11 @@ public class StatusBarFooter extends UiPart<Region> {
         this.displayString = new Pair<>(display, LocalDateTime.now().plusSeconds(seconds));
     }
 
+    /**
+     * Initializes the local date time.
+     */
     private void initialize() {
-        //Reference: https://stackoverflow.com/questions/42383857/javafx-live-time-and-date/42384436
+        //Solution below adapted from: https://stackoverflow.com/questions/42383857/javafx-live-time-and-date/42384436
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             LocalDateTime currentTime = LocalDateTime.now();
             checkDisplayValidity();
