@@ -127,11 +127,17 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        studentListPanel = new StudentListPanel(
+                logic.getFilteredStudentList(),
+                logic.getFilteredAllocationList(),
+                logic.getFilteredRoomList());
         studentListPanelPlaceholder.getChildren()
                 .add(studentListPanel.getRoot());
 
-        roomListPanel = new RoomListPanel(logic.getFilteredRoomList());
+        roomListPanel = new RoomListPanel(
+                logic.getFilteredRoomList(),
+                logic.getFilteredAllocationList(),
+                logic.getFilteredStudentList());
         roomListPanelPlaceholder.getChildren()
                 .add(roomListPanel.getRoot());
 
