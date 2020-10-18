@@ -14,10 +14,12 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.MainCatalogueParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyMainCatalogue;
 import seedu.address.model.Status;
 import seedu.address.model.project.Project;
 import seedu.address.storage.Storage;
+import seedu.address.storage.StorageManager;
 
 /**
  * The main LogicManager of the app.
@@ -37,6 +39,15 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         mainCatalogueParser = new MainCatalogueParser();
+    }
+
+    public static void main(String[] args) {
+        Logic logic = new LogicManager(new ModelManager(), new StorageManager(null, null));
+        try {
+            logic.execute("start 3");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     @Override

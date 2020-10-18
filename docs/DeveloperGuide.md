@@ -201,6 +201,8 @@ The `viewtask` command calls `enterTask`, causing a switch of scoping status and
 
 ![ScopingStep3](images/ScopingStep3.png)
 
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
