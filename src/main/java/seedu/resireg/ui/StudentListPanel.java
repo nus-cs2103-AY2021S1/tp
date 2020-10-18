@@ -74,6 +74,7 @@ public class StudentListPanel extends UiPart<Region> {
                         relatedRoom.getFloor(),
                         relatedRoom.getRoomNumber()).getRoot());
             }
+            studentListView.refresh();
         }
     }
 }
