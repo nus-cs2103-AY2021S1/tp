@@ -25,7 +25,7 @@ public class JsonSerializablePivotTest {
         JsonSerializablePivot dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializablePivot.class).get();
         Pivot pivotFromFile = dataFromFile.toModelType();
-        Pivot typicalPersonsPivot = TypicalCases.getTypicalAddressBook();
+        Pivot typicalPersonsPivot = TypicalCases.getTypicalPivot();
         assertEquals(pivotFromFile, typicalPersonsPivot);
     }
 

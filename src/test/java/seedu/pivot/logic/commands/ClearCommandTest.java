@@ -1,7 +1,7 @@
 package seedu.pivot.logic.commands;
 
 import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.pivot.testutil.TypicalCases.getTypicalAddressBook;
+import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +13,7 @@ import seedu.pivot.model.UserPrefs;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyPivot_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -21,10 +21,10 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setAddressBook(new Pivot());
+    public void execute_nonEmptyPivot_success() {
+        Model model = new ModelManager(getTypicalPivot(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalPivot(), new UserPrefs());
+        expectedModel.setPivotBook(new Pivot());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

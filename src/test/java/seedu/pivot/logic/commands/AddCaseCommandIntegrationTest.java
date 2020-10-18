@@ -2,7 +2,7 @@ package seedu.pivot.logic.commands;
 
 import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.pivot.testutil.TypicalCases.getTypicalAddressBook;
+import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,14 +23,14 @@ public class AddCaseCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalPivot(), new UserPrefs());
     }
 
     @Test
     public void execute_newCase_success() {
         Case validCase = new CaseBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPivot(), new UserPrefs());
         expectedModel.addCase(validCase);
 
         assertCommandSuccess(new AddCaseCommand(validCase), model,
@@ -39,7 +39,7 @@ public class AddCaseCommandIntegrationTest {
 
     @Test
     public void execute_duplicateCase_throwsCommandException() {
-        Case caseInList = model.getAddressBook().getCaseList().get(0);
+        Case caseInList = model.getPivot().getCaseList().get(0);
         assertCommandFailure(new AddCaseCommand(caseInList), model, AddCaseCommand.MESSAGE_DUPLICATE_CASE);
     }
 

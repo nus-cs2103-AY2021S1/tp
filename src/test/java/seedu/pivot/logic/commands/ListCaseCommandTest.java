@@ -2,7 +2,7 @@ package seedu.pivot.logic.commands;
 
 import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.pivot.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.pivot.testutil.TypicalCases.getTypicalAddressBook;
+import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
 import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -23,8 +23,8 @@ public class ListCaseCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalPivot(), new UserPrefs());
+        expectedModel = new ModelManager(model.getPivot(), new UserPrefs());
     }
 
     @Test

@@ -2,7 +2,7 @@ package seedu.pivot.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.pivot.testutil.TypicalCases.getTypicalAddressBook;
+import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
 
 import java.nio.file.Path;
 
@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonPivotStorage addressBookStorage = new JsonPivotStorage(getTempFilePath("ab"));
+        JsonPivotStorage pivotStorage = new JsonPivotStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(pivotStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,20 +48,20 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void pivotReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonPivotStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonPivotStorageTest} class.
          */
-        Pivot original = getTypicalAddressBook();
+        Pivot original = getTypicalPivot();
         storageManager.savePivot(original);
         ReadOnlyPivot retrieved = storageManager.readPivot().get();
         assertEquals(original, new Pivot(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
+    public void getPivotFilePath() {
         assertNotNull(storageManager.getPivotFilePath());
     }
 

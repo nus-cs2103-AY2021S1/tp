@@ -42,10 +42,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonPivotStorage addressBookStorage =
-                new JsonPivotStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonPivotStorage pivotStorage =
+                new JsonPivotStorage(temporaryFolder.resolve("pivot.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(pivotStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -70,12 +70,12 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonPivotStorage addressBookStorage =
-                new JsonPivotIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonPivotIoExceptionThrowingStub
+        JsonPivotStorage pivotStorage =
+                new JsonPivotIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionPivot.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(pivotStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -128,7 +128,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPivot(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -154,7 +154,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void savePivot(ReadOnlyPivot addressBook, Path filePath) throws IOException {
+        public void savePivot(ReadOnlyPivot pivot, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

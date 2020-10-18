@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.savePivot(model.getAddressBook());
+            storage.savePivot(model.getPivot());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -56,7 +56,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ReadOnlyPivot getPivot() {
-        return model.getAddressBook();
+        return model.getPivot();
     }
 
     @Override
@@ -66,7 +66,7 @@ public class LogicManager implements Logic {
 
     @Override
     public Path getPivotFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getPivotFilePath();
     }
 
     @Override

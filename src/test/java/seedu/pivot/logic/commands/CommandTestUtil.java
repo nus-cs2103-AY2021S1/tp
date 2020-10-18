@@ -93,11 +93,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        Pivot expectedPivot = new Pivot(actualModel.getAddressBook());
+        Pivot expectedPivot = new Pivot(actualModel.getPivot());
         List<Case> expectedFilteredList = new ArrayList<>(actualModel.getFilteredCaseList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedPivot, actualModel.getAddressBook());
+        assertEquals(expectedPivot, actualModel.getPivot());
         assertEquals(expectedFilteredList, actualModel.getFilteredCaseList());
     }
     /**

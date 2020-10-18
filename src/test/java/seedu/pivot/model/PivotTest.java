@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.pivot.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.pivot.testutil.Assert.assertThrows;
 import static seedu.pivot.testutil.TypicalCases.ALICE;
-import static seedu.pivot.testutil.TypicalCases.getTypicalAddressBook;
+import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -36,8 +36,8 @@ public class PivotTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        Pivot newData = getTypicalAddressBook();
+    public void resetData_withValidReadOnlyPivot_replacesData() {
+        Pivot newData = getTypicalPivot();
         pivot.resetData(newData);
         assertEquals(newData, pivot);
     }
@@ -58,18 +58,18 @@ public class PivotTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInPivot_returnsFalse() {
         assertFalse(pivot.hasCase(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInPivot_returnsTrue() {
         pivot.addCase(ALICE);
         assertTrue(pivot.hasCase(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasPerson_personWithSameIdentityFieldsInPivot_returnsTrue() {
         pivot.addCase(ALICE);
         Case editedAlice = new CaseBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(pivot.hasCase(editedAlice));
@@ -81,7 +81,7 @@ public class PivotTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyPivot whose persons list can violate interface constraints.
      */
     private static class PivotStub implements ReadOnlyPivot {
         private final ObservableList<Case> cases = FXCollections.observableArrayList();

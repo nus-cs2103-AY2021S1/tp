@@ -37,20 +37,20 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getPivotFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setPivotFilePath(Path addressBookFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyPivot addressBook);
+    void setPivotBook(ReadOnlyPivot addressBook);
 
     /** Returns the AddressBook */
-    ReadOnlyPivot getAddressBook();
+    ReadOnlyPivot getPivot();
 
     /**
      * Returns true if a case with the same identity as {@code case} exists in the address book.

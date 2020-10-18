@@ -64,9 +64,9 @@ public class TypicalCases {
     private TypicalCases() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code Pivot} with all the typical persons.
      */
-    public static Pivot getTypicalAddressBook() {
+    public static Pivot getTypicalPivot() {
         Pivot ab = new Pivot();
         for (Case investigationCase : getTypicalPersons()) {
             ab.addCase(investigationCase);

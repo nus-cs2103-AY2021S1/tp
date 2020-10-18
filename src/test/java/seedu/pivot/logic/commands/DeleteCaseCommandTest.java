@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.pivot.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.pivot.testutil.TypicalCases.getTypicalAddressBook;
+import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
 import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.pivot.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
@@ -25,7 +25,7 @@ import seedu.pivot.model.investigationcase.Case;
  */
 public class DeleteCaseCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPivot(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -34,7 +34,7 @@ public class DeleteCaseCommandTest {
 
         String expectedMessage = String.format(DeleteCaseCommand.MESSAGE_DELETE_CASE_SUCCESS, caseToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getPivot(), new UserPrefs());
         expectedModel.deleteCase(caseToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -57,7 +57,7 @@ public class DeleteCaseCommandTest {
 
         String expectedMessage = String.format(DeleteCaseCommand.MESSAGE_DELETE_CASE_SUCCESS, caseToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPivot(), new UserPrefs());
         expectedModel.deleteCase(caseToDelete);
         showNoPerson(expectedModel);
 
@@ -70,7 +70,7 @@ public class DeleteCaseCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getCaseList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getPivot().getCaseList().size());
 
         DeleteCommand deleteCommand = new DeleteCaseCommand(outOfBoundIndex);
 

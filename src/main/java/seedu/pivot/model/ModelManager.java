@@ -15,7 +15,7 @@ import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.investigationcase.Case;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the PIVOT data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -25,15 +25,15 @@ public class ModelManager implements Model {
     private final FilteredList<Case> filteredCases;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given PIVOT and userPrefs.
      */
-    public ModelManager(ReadOnlyPivot addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyPivot pivot, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(pivot, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with PIVOT: " + pivot + " and user prefs " + userPrefs);
 
-        this.pivot = new Pivot(addressBook);
+        this.pivot = new Pivot(pivot);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredCases = new FilteredList<>(this.pivot.getCaseList());
     }
@@ -67,25 +67,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getPivotFilePath() {
         return userPrefs.getPivotFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setPivotFilePath(addressBookFilePath);
+    public void setPivotFilePath(Path pivotFilePath) {
+        requireNonNull(pivotFilePath);
+        userPrefs.setPivotFilePath(pivotFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== PIVOT ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyPivot addressBook) {
-        this.pivot.resetData(addressBook);
+    public void setPivotBook(ReadOnlyPivot pivot) {
+        this.pivot.resetData(pivot);
     }
 
     @Override
-    public ReadOnlyPivot getAddressBook() {
+    public ReadOnlyPivot getPivot() {
         return pivot;
     }
 
@@ -117,7 +117,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Case} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedPivot}
      */
     @Override
     public ObservableList<Case> getFilteredCaseList() {

@@ -15,7 +15,7 @@ import seedu.pivot.commons.util.JsonUtil;
 import seedu.pivot.model.ReadOnlyPivot;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access PIVOT data stored as a json file on the hard disk.
  */
 public class JsonPivotStorage implements PivotStorage {
 
@@ -45,14 +45,14 @@ public class JsonPivotStorage implements PivotStorage {
     public Optional<ReadOnlyPivot> readPivot(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializablePivot> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializablePivot> jsonPivot = JsonUtil.readJsonFile(
                 filePath, JsonSerializablePivot.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonPivot.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonPivot.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -60,8 +60,8 @@ public class JsonPivotStorage implements PivotStorage {
     }
 
     @Override
-    public void savePivot(ReadOnlyPivot addressBook) throws IOException {
-        savePivot(addressBook, filePath);
+    public void savePivot(ReadOnlyPivot pivot) throws IOException {
+        savePivot(pivot, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonPivotStorage implements PivotStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void savePivot(ReadOnlyPivot addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void savePivot(ReadOnlyPivot pivot, Path filePath) throws IOException {
+        requireNonNull(pivot);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializablePivot(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializablePivot(pivot), filePath);
     }
 
 }

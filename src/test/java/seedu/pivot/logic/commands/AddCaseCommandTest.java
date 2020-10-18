@@ -101,12 +101,12 @@ public class AddCaseCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getPivotFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setPivotFilePath(Path pivotFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -116,12 +116,12 @@ public class AddCaseCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyPivot newData) {
+        public void setPivotBook(ReadOnlyPivot newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyPivot getAddressBook() {
+        public ReadOnlyPivot getPivot() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -188,7 +188,7 @@ public class AddCaseCommandTest {
         }
 
         @Override
-        public ReadOnlyPivot getAddressBook() {
+        public ReadOnlyPivot getPivot() {
             return new Pivot();
         }
     }

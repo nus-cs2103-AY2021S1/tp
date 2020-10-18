@@ -8,7 +8,7 @@ import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.pivot.testutil.TypicalCases.CARL;
 import static seedu.pivot.testutil.TypicalCases.ELLE;
 import static seedu.pivot.testutil.TypicalCases.FIONA;
-import static seedu.pivot.testutil.TypicalCases.getTypicalAddressBook;
+import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +24,8 @@ import seedu.pivot.model.investigationcase.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPivot(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalPivot(), new UserPrefs());
 
     @Test
     public void equals() {
