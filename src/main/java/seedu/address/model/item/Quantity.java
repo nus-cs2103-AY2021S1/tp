@@ -66,6 +66,15 @@ public class Quantity {
         return new Quantity(Integer.toString(value));
     }
 
+    /**
+     * divides a Quantity's value from another quantity's value
+     * @param quantity another quantity
+     * @return double that represents the fraction after division
+     */
+    public double divideBy(Quantity quantity) {
+        return Double.parseDouble(this.value) / Double.parseDouble(quantity.value);
+    }
+
     @Override
     public String toString() {
         return value;

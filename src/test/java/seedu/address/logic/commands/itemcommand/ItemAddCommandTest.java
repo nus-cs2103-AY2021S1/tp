@@ -16,6 +16,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
@@ -171,6 +172,11 @@ public class ItemAddCommandTest {
 
         @Override
         public void updateFilteredItemList(Predicate<Item> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public SortedList<Item> getSortedItemList() {
             throw new AssertionError("This method should not be called.");
         }
     }

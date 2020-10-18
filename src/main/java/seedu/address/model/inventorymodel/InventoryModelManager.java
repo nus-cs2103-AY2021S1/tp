@@ -7,14 +7,13 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.delivery.Delivery;
 import seedu.address.model.item.Item;
 
 /**
@@ -26,7 +25,6 @@ public class InventoryModelManager implements InventoryModel {
     private final InventoryBook inventoryBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Item> filteredItems;
-    private final FilteredList<Delivery> filteredDeliveries;
 
     /**
      * Initializes a InventoryModelManager with the given inventoryBook and userPrefs.
@@ -40,8 +38,6 @@ public class InventoryModelManager implements InventoryModel {
         this.inventoryBook = new InventoryBook(inventoryBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredItems = new FilteredList<>(this.inventoryBook.getItemList());
-        // temporary for delivery
-        filteredDeliveries = new FilteredList<>(FXCollections.observableArrayList());
     }
 
     public InventoryModelManager() {
@@ -126,7 +122,7 @@ public class InventoryModelManager implements InventoryModel {
         inventoryBook.setItem(target, editedItem);
     }
 
-    //=========== Filtered Item List Accessors =============================================================
+    //=========== Item List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Item} backed by the internal list of
@@ -141,6 +137,11 @@ public class InventoryModelManager implements InventoryModel {
     public void updateFilteredItemList(Predicate<Item> predicate) {
         requireNonNull(predicate);
         filteredItems.setPredicate(predicate);
+    }
+
+    @Override
+    public SortedList<Item> getSortedItemList() {
+        return new SortedList<Item>(filteredItems, ITEM_COMPARATOR);
     }
 
     @Override

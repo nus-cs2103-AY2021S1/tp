@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
@@ -78,6 +79,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Item> getFilteredItemList() {
         return inventoryModel.getFilteredItemList();
+    }
+
+    @Override
+    public SortedList<Item> getSortedItemList() {
+        return inventoryModel.getSortedItemList();
     }
 
     @Override

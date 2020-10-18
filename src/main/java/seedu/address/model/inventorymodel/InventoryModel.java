@@ -1,11 +1,14 @@
 package seedu.address.model.inventorymodel;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.model.Model;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.comparator.ItemComparator;
 
 /**
  * The API of the InventoryModel component.
@@ -13,6 +16,9 @@ import seedu.address.model.item.Item;
 public interface InventoryModel extends Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Item> PREDICATE_SHOW_ALL_ITEMS = unused -> true;
+
+    /** {@code Comparator} that returns a ItemComparator */
+    Comparator<Item> ITEM_COMPARATOR = new ItemComparator();
 
     /**
      * Returns the user prefs' inventory book file path.
@@ -73,4 +79,7 @@ public interface InventoryModel extends Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredItemList(Predicate<Item> predicate);
+
+    /** Returns an unmodifiable view of the sorted item list*/
+    SortedList<Item> getSortedItemList();
 }
