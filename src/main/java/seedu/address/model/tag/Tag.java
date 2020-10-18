@@ -34,7 +34,7 @@ public class Tag {
 
     /**
      * Returns tag name.
-     * @return
+     * @return String.
      */
     public String getTagName() {
         return tagName;
