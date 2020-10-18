@@ -126,13 +126,13 @@ public interface Model {
     void addMeeting(Meeting meeting);
 
     /**
-     * Returns true if a meeting with the same meeting name as {@code meeting} exists in the address book.
+     * Returns true if a meeting with the same meeting name as {@code meeting} exists in the meeting book.
      */
     boolean hasMeetingName(MeetingName meetingName);
 
     /**
      * Deletes the given meeting.
-     * The person must exist in the address book.
+     * The person must exist in the meeting book.
      */
     void deleteMeeting(Meeting targetMeeting);
 
@@ -140,7 +140,7 @@ public interface Model {
      * Replaces the given meeting {@code target} with {@code editedMeeting}.
      * {@code target} must exist in the meeting book.
      * The meeting identity of {@code editedMeeting} must not be the same
-     * as another existing meeting in the address book.
+     * as another existing meeting in the meeting book.
      */
     void setMeeting(Meeting target, Meeting editedMeeting);
 
