@@ -20,7 +20,7 @@ public class StatusBarFooter extends UiPart<Region> {
     private static final String FXML = "StatusBarFooter.fxml";
 
     @FXML
-    private Label saveLocationStatus;
+    private Label saveDateTime;
 
     private Pair<String, LocalDateTime> displayString;
 
@@ -62,9 +62,9 @@ public class StatusBarFooter extends UiPart<Region> {
             LocalDateTime currentTime = LocalDateTime.now();
             checkDisplayValidity();
             if (displayString == null) {
-                saveLocationStatus.setText(currentTime.format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss")));
+                saveDateTime.setText(currentTime.format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss")));
             } else {
-                saveLocationStatus.setText(currentTime.format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss"))
+                saveDateTime.setText(currentTime.format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss"))
                         + " - " + displayString.getKey());
             }
         }), new KeyFrame(Duration.seconds(1)));
