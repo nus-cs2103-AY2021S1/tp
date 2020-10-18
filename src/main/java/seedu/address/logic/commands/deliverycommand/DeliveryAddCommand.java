@@ -22,7 +22,7 @@ public class DeliveryAddCommand extends DeliveryCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a delivery to the delivery book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "QUANTITY "
+            + PREFIX_PHONE + "PHONE "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_ORDER + "ORDER\n"
             + "Example: " + COMMAND_WORD + " "
