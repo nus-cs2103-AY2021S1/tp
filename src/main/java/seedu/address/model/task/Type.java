@@ -30,7 +30,8 @@ public class Type {
     public static final String ACCEPTED_TYPES = listAcceptedTypes();
     public static final String MESSAGE_CONSTRAINTS = String.format("Type can only be one of the following: %s.",
             ACCEPTED_TYPES);
-
+    public static final String SEARCH_CONSTRAINTS = String.format("Search phrase for Type can only be one of "
+            + "the following: %s.", ACCEPTED_TYPES);
     public final String value;
 
     /**
@@ -67,8 +68,7 @@ public class Type {
         for (TypeOfTask types : TypeOfTask.values()) {
             listOfAcceptedTypes.add(types.toString());
         }
-        String acceptedTypes = String.join(", ", listOfAcceptedTypes);
-        return acceptedTypes;
+        return String.join(", ", listOfAcceptedTypes);
     }
 
     @Override

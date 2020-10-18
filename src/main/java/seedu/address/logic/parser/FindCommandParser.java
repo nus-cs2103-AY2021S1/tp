@@ -66,19 +66,19 @@ public class FindCommandParser implements Parser<FindCommand> {
                 throw new ParseException(MESSAGE_EMPTY_SEARCH_PHRASE);
             }
             if (prefix.equals(PREFIX_TITLE) && !Title.isValidTitle(trimmed)) {
-                throw new ParseException(Title.MESSAGE_CONSTRAINTS);
+                throw new ParseException(Title.SEARCH_CONSTRAINTS);
             }
             if (prefix.equals(PREFIX_DESCRIPTION) && !Description.isValidDescription(trimmed)) {
-                throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+                throw new ParseException(Description.SEARCH_CONSTRAINTS);
             }
             if (prefix.equals(PREFIX_TYPE) && !Type.isValidType(trimmed)) {
-                throw new ParseException(Type.MESSAGE_CONSTRAINTS);
+                throw new ParseException(Type.SEARCH_CONSTRAINTS);
             }
-            if (prefix.equals(PREFIX_DATE_TIME) && !DateTime.isValidDateTime(trimmed)) {
-                throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+            if (prefix.equals(PREFIX_DATE_TIME) && !DateTime.isValidSearchPhrase(trimmed)) {
+                throw new ParseException(DateTime.SEARCH_CONSTRAINTS);
             }
             if (prefix.equals(PREFIX_STATUS) && State.toState(trimmed) == null) {
-                throw new ParseException(Status.MESSAGE_CONSTRAINTS);
+                throw new ParseException(Status.SEARCH_CONSTRAINTS);
             }
         }
         values.forEach(val -> predicate.setKeyword(prefix, val));

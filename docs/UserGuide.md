@@ -126,7 +126,7 @@ Available attributes in v1.3 include:
 * `title:` find all tasks with the search phrase in the given title
 * `desc:` find all tasks with the search phrase in the given description
 * `type:` find all tasks of the given type
-* `date:` find all tasks with the given date and time
+* `date:` find all tasks with the given date and/or time
 * `status:` find all tasks with the given status
 
 Examples:

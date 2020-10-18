@@ -69,13 +69,13 @@ public class FindCommandParserTest {
     @Test
     public void parse_argsWrongFormat_returnsFalse() {
         // throw error if argument is invalid
-        assertParseFailure(parser, " title:@@", Title.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, " desc:@@", Description.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, " type:123", Type.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, " status:comple", Status.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, " date:01-01-202", DateTime.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " title:@@", Title.SEARCH_CONSTRAINTS);
+        assertParseFailure(parser, " desc:@@", Description.SEARCH_CONSTRAINTS);
+        assertParseFailure(parser, " type:123", Type.SEARCH_CONSTRAINTS);
+        assertParseFailure(parser, " status:comple", Status.SEARCH_CONSTRAINTS);
+        assertParseFailure(parser, " date:01-01-202", DateTime.SEARCH_CONSTRAINTS);
 
         // one of the attribute is invalid
-        assertParseFailure(parser, " title:abc# date: desc:edf", Title.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " title:abc# date: desc:edf", Title.SEARCH_CONSTRAINTS);
     }
 }
