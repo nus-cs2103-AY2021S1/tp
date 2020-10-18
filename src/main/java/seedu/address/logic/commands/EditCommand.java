@@ -105,9 +105,11 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(patientToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(patientToEdit.getTags());
         Set<Appointment> appointments = patientToEdit.getAppointments();
+        Set<Appointment> updatedAppointments = new HashSet<>();
+        updatedAppointments.addAll(appointments);
 
         return new Patient(updatedName, updatedNric, updatedPhone,
-                updatedEmail, updatedAddress, updatedTags, appointments);
+                updatedEmail, updatedAddress, updatedTags, updatedAppointments);
     }
 
     @Override

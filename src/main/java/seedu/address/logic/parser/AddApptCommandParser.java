@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
@@ -24,6 +25,7 @@ public class AddApptCommandParser implements Parser<AddApptCommand> {
      */
     public AddApptCommand parse(String args) throws ParseException {
         logger.info("----------------[STRING TO PARSE][" + args + "]");
+        logger.log(Level.INFO, "Start parsing");
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_APPOINTMENT);
