@@ -77,6 +77,9 @@ public class JsonAdaptedDelivery {
         if (order == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Order.class.getSimpleName()));
         }
+        if (!Order.isValidOrder(order)) {
+            throw new IllegalValueException(Order.MESSAGE_CONSTRAINTS);
+        }
         final Order modelOrder = new Order(order);
 
         return new Delivery(modelName, modelPhone, modelAddress, modelOrder);

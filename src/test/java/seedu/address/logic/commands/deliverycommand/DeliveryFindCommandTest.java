@@ -25,6 +25,7 @@ import seedu.address.model.deliverymodel.DeliveryModelManager;
 import seedu.address.testutil.DeliveryBuilder;
 
 class DeliveryFindCommandTest {
+
     private static final Delivery KELVIN = new DeliveryBuilder().withName("Kelvin")
             .withPhone("91234332")
             .withAddress("Clementi Blk 235 #11-111")
