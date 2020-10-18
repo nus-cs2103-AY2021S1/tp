@@ -219,6 +219,13 @@ The `leave` command calls `quit` method.
 
 ![ScopingStep5](images/ScopingStep5.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `leave` command calls `quit` method in model, causing a switching of level and updates the project and task of focus.
+
+</div>
+The following sequence diagram shows the execution of leave command.
+
+![LeaveCommandSequence](images/LeaveCommandSequence.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
