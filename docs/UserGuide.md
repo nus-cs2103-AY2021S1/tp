@@ -4,17 +4,17 @@
 By: `AY2021S1-CS2103T-T11-3` Since:`September 2020`
 
 ### Table of content
-- [Introduction](#introduction) 
-- [Quick start](#quick-start) 
-- [Features](#features) 
-    * [Add items to inventory: `add_inventory`](#add-items-to-inventory) 
-    * [Remove items from inventory: `delete_inventory`](#remove-items-from-inventory) 
-    * [Edit record in inventory: `edit_inventory`](#edit-record-in-inventory) 
-    * [List inventory records: `list_inventory`](#list-inventory-records) 
-    * [Add finance records: `add_finance`](#add-finance-records) 
-    * [Delete finance records: `delete_finance`](#delete-finance-records) 
-    * [List finance records: `list_finance`](#list-finance-records) 
-    * [Quit the programme: `exit`](#quit-the-programme) 
+- [Introduction](#introduction)
+- [Quick start](#quick-start)
+- [Features](#features)
+    + [Add items to inventory: `add_inventory`](#add-items-to-inventory---add-inventory-)
+    + [Remove items from inventory: `delete_inventory`](#remove-items-from-inventory---delete-inventory-)
+    + [Edit record in inventory: `edit_inventory`](#edit-record-in-inventory---edit-inventory-)
+    + [List inventory records: `list_inventory`](#list-inventory-records---list-inventory-)
+    + [Add finance records: `add_finance`](#add-finance-records---add-finance-)
+    + [Delete finance records: `delete_finance`](#delete-finance-records---delete-finance-)
+    + [List finance records: `list_finance`](#list-finance-records---list-finance-)
+    + [Quit the programme: `exit`](#quit-the-programme---exit-)
 - [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -40,8 +40,6 @@ NUStorage is a desktop application for __managing inventory, finance transaction
         - `bye` to exit programme
     - Refer to the feature list below for details of each command.
 
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -60,29 +58,34 @@ NUStorage is a desktop application for __managing inventory, finance transaction
   * `amt/200`
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
 #### Add items to inventory: `add_inventory`
 Add and store items into the inventory
 
 Format: `add_inventory i/ITEM_NAME q/QUANTITY [c/ITEM_COST]`
 
+--------------------------------------------------------------------------------------------------------------------
 
 #### Remove items from inventory: `delete_inventory`
 Remove specified record from the inventory
 
 Format: `delete_inventory INDEX`
 
+--------------------------------------------------------------------------------------------------------------------
 
 #### Edit record in inventory: `edit_inventory`
 Edit specified record in the inventory
 
 Format: `edit_inventory INDEX [i/ITEM_NAME] [q/QUANTITY]`
 
+--------------------------------------------------------------------------------------------------------------------
 
 #### List inventory records: `list_inventory`
 Display all records in the inventory
 
 Format: `list_inventory`
 
+--------------------------------------------------------------------------------------------------------------------
 
 #### Add finance records: `add_finance`
 Add and store finance record into the account
@@ -91,6 +94,7 @@ Date and time are default to current location's datetime unless specified
 
 Format: `add_finance amt/AMOUNT [at/[DATE] [TIME]]`
 
+--------------------------------------------------------------------------------------------------------------------
 
 #### Delete finance records: `delete_finance`
 
@@ -98,6 +102,7 @@ Delete specified finance record from the account
 
 Format: `delete_finance INDEX`
 
+--------------------------------------------------------------------------------------------------------------------
 
 #### List finance records: `list_finance`
 
@@ -105,6 +110,7 @@ Display all finance records in the account
 
 Format: `list_finance`
 
+--------------------------------------------------------------------------------------------------------------------
 
 #### Quit the programme: `exit`
 
