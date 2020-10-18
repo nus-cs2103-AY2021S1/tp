@@ -22,7 +22,7 @@ public class TaskFilterCommandParser implements Parser<TaskFilterCommand> {
     /**
      * Parses the given input {@code String}.
      * @param args  the user input
-     * @return      the filter command whose predicate correspond to the user input
+     * @return      the filter command whose predicate corresponds to the user input
      * @throws ParseException   if the user input does not follow the format
      */
     @Override
@@ -51,7 +51,7 @@ public class TaskFilterCommandParser implements Parser<TaskFilterCommand> {
 
         if (argMultimap.getValue(PREFIX_TASK_FILTER_BY_NAME).isPresent()) {
             predicate = task -> task.getTaskName()
-                .contains(argMultimap.getValue(PREFIX_TASK_FILTER_BY_NAME).get().trim());
+                .contains(argMultimap.getValue(PREFIX_TASK_FILTER_BY_NAME).get());
         }
 
         return new TaskFilterCommand(predicate);

@@ -13,7 +13,7 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.project.Project;
 
 /**
- * Filters meetings by assignee's name, task name or deadline.
+ * Filters meetings by meeting name.
  */
 public class MeetingFilterCommand extends Command {
     public static final String COMMAND_WORD = "filterm";
