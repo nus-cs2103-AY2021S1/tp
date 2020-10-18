@@ -57,6 +57,18 @@ Refer to the features below for details of each command.
 
 **:information_source: Notes about the command format:**<br>
 
+A typical *command* in *McGymmy* consists of a *Command Word* followed by several *parameters*.
+
+For example in `add -n scrambled eggs -p 100`, `add` is a *Command Word* and `-n scrambled eggs` and `-p 100` are *parameters*.
+
+**How to intepret the each command's format**:
+
+We will follow the following convention for each command's format:
+
+`COMMAND_WORD PARAMETERS [OPTIONAL_PARAMETERS]`, e.g. `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE]`.
+
+* `COMMAND_WORD` is the name of the command to be executed, and is always the first word in the *command*.
+
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add -n NAME -p PROTEIN`, `NAME` and `PROTEIN` are parameters which can be used as `add bacon -p 200`.
 
@@ -66,8 +78,8 @@ Refer to the features below for details of each command.
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[commnand;]…​` can be used as ` ` (i.e. 0 times), `delete 1;`, `delete 2; delete 1;` etc.
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `-c CARBS -p PROTEIN`, `-p PROTEIN -c CARBS` is also acceptable.
+* Parameters and optional parameters can be in any order.<br>
+  e.g. if the command specifies `-c CARBS -p PROTEIN [-f FATS]`, `-p PROTEIN [-f FATS] -c CARBS` is also acceptable.
 
 </div>
 
