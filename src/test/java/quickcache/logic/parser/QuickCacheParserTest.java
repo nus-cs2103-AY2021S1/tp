@@ -3,7 +3,9 @@ package quickcache.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static quickcache.logic.commands.EditCommand.EditFlashcardDescriptor;
+import static quickcache.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static quickcache.testutil.Assert.assertThrows;
+import static quickcache.testutil.TypicalFlashcards.RANDOM1;
 import static quickcache.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 
 import org.junit.jupiter.api.Test;
@@ -14,10 +16,12 @@ import quickcache.logic.commands.ClearCommand;
 import quickcache.logic.commands.DeleteCommand;
 import quickcache.logic.commands.EditCommand;
 import quickcache.logic.commands.ExitCommand;
+import quickcache.logic.commands.ExportCommand;
 import quickcache.logic.commands.HelpCommand;
 import quickcache.logic.commands.ListCommand;
 import quickcache.logic.commands.OpenCommand;
 import quickcache.logic.commands.StatsCommand;
+import quickcache.logic.commands.TestCommand;
 import quickcache.logic.parser.exceptions.ParseException;
 import quickcache.model.flashcard.Flashcard;
 import quickcache.testutil.EditFlashcardDescriptorBuilder;
@@ -97,6 +101,22 @@ public class QuickCacheParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_test() throws Exception {
+        assertTrue(parser.parseCommand(TestCommand.COMMAND_WORD
+            + " "
+            + INDEX_FIRST_FLASHCARD.getOneBased()
+            + " "
+            + PREFIX_ANSWER
+            + RANDOM1.getAnswer()
+        ) instanceof TestCommand);
+    }
+
+    @Test
+    public void parseCommand_export() throws Exception {
+        assertTrue(parser.parseCommand(ExportCommand.COMMAND_WORD + " test.json") instanceof ExportCommand);
     }
 
     @Test
