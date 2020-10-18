@@ -2,10 +2,13 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelReader;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -56,9 +59,18 @@ public class RecipeCard extends UiPart<Region> {
         name.setText(recipe.getName().fullName);
         instruction.setText(recipe.getInstruction());
 
-        //Image image = new Image(recipe.getRecipeImage());
-        //recipeImageView = new ImageView(image);
-        recipeImage.setImage(new Image(recipe.getRecipeImage()));
+        Image rawImage = new Image(recipe.getRecipeImage(), 340, 0, true, true);
+        PixelReader reader = rawImage.getPixelReader();
+        WritableImage newImage = new WritableImage(reader, 0, 0, 310, 150);
+        recipeImage.setImage(newImage);
+        recipeImage.setPreserveRatio(true);
+
+        //Responsive resizing
+        ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
+            recipeImage.setFitWidth(getRoot().getWidth() - 10);
+        };
+        getRoot().widthProperty().addListener(stageSizeListener);
+
         ingredients.setText(recipe.getIngredient().stream()
                 .map(item -> item.getQuantity() + " " + item.getValue())
                 .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a));

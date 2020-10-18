@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelReader;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.consumption.Consumption;
@@ -45,7 +47,10 @@ public class ConsumptionCard extends UiPart<Region> {
         this.consumption = consumption;
         id.setText(displayedIndex + ". ");
         name.setText(consumption.getRecipe().getName().fullName);
-        recipeImageView.setImage(new Image(consumption.getRecipe().getRecipeImage()));
+        Image rawImage = new Image(consumption.getRecipe().getRecipeImage(), 340, 0, true, true);
+        PixelReader reader = rawImage.getPixelReader();
+        WritableImage newImage = new WritableImage(reader, 0, 0, 310, 150);
+        recipeImageView.setImage(newImage);
         calories.setText(consumption.getRecipe().getCalories().value.toString() + " cal");
     }
 

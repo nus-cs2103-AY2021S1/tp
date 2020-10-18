@@ -1,0 +1,26 @@
+@startuml
+!include style.puml
+
+box AddRecipe LOGIC_COLOR_T1
+participant ":AddRecipeCommand" as AddRecipeCommand LOGIC_COLOR
+end box
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":WishfulShrinking" as WishfulShrinking MODEL_COLOR
+end box
+
+[-> AddRecipeCommand : execute(add recipe)
+activate AddRecipeCommand
+AddRecipeCommand -> ModelManager : addRecipe(recipe)
+
+
+activate ModelManager
+ModelManager -> WishfulShrinking : addRecipe(recipe)
+activate WishfulShrinking
+WishfulShrinking -> ModelManager
+deactivate WishfulShrinking
+ModelManager -> AddRecipeCommand
+deactivate ModelManager
+[<--AddRecipeCommand
+deactivate AddRecipeCommand
+@enduml
