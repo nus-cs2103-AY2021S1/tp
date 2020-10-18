@@ -230,6 +230,18 @@ The following activity diagram summarizes the scoping features when a user execu
 
 ![ScopingActivityDiagram](images/ScopingActivityDiagram.png)
 
+#### Design consideration:
+
+##### Aspect: How the scope is checked
+
+* **Alternative 1 (current choice):** Parses a command only if the scoping is valid.
+  * Pros: Easy to implement.
+  * Cons: May increase coupling because parser needs to know the status.
+
+* **Alternative 2:** Checks the validity of scope of a command upon execution.
+  * Pros: Will not increase coupling with parser.
+  * Cons: The scoping features of each command are not explicitly seen, and may increase coupling with command.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
