@@ -438,8 +438,3 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect add commands to try: `add`, `add_record`, `add_inventory i/MacBook` <br>
         Expected: No record is added. Error details shown in the status message.
-
-
-
-
-[]: images/UiComponent.png
