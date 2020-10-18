@@ -56,15 +56,15 @@ public class FindCommandParser implements Parser<FindCommand> {
                 }
                 return new FindCommand(new ModuleCodeContainsKeywordsPredicate(Arrays.asList(keywords)));
             }
-            if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
-                //not working yet
-                keywords = argMultimap.getValue(PREFIX_DEADLINE).get()
-                        .split("(?<!\\G\\S+)\\s");
-                for (String keyword : keywords) {
-                    Deadline deadline = ParserUtil.parseDeadline(keyword);
-                }
-                return new FindCommand(new DeadlineContainsKeywordsPredicate(Arrays.asList(keywords)));
-            }
+//            if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
+//                //not working yet
+//                keywords = argMultimap.getValue(PREFIX_DEADLINE).get()
+//                        .split("(?<!\\G\\S+)\\s");
+//                for (String keyword : keywords) {
+//                    Deadline deadline = ParserUtil.parseDeadline(keyword);
+//                }
+//                return new FindCommand(new DeadlineContainsKeywordsPredicate(Arrays.asList(keywords)));
+//            }
 
         } catch (ParseException pe) {
             throw new ParseException(
