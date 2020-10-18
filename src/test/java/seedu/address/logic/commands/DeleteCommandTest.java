@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalMeetings.getTypicalMeetingBook;
+import static seedu.address.testutil.TypicalMeetings.getTypicalMeetingBookWithMember;
 import static seedu.address.testutil.TypicalModules.getTypicalModuleBook;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
@@ -24,13 +25,16 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
+ * Contains integration tests (interaction with the Model, Meetings, UndoCommand, RedoCommand,) and unit tests for
  * {@code DeleteCommand}.
  */
 public class DeleteCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalMeetingBook(), getTypicalModuleBook(),
         new UserPrefs());
+
+    private Model modelWithMembersInMeetings = new ModelManager(getTypicalAddressBook(),
+            getTypicalMeetingBookWithMember(), getTypicalModuleBook(), new UserPrefs());
 
     @Test
     public void execute_validNameUnfilteredList_success() {
@@ -81,6 +85,21 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(new Name("123"));
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED);
+    }
+
+    /**
+     * Delete the contact and meeting containing the contact will be updated.
+     */
+    @Test
+    public void execute_validNameAndNameInOneMeeting_success() {
+        Person personToDelete = ALICE;
+        DeleteCommand deleteCommand = new DeleteCommand(personToDelete.getName());
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+
+        Model expectedModel = model;
+        model.deletePerson(personToDelete);
+
+        assertCommandSuccess(deleteCommand, modelWithMembersInMeetings, expectedMessage, expectedModel);
     }
 
     @Test
