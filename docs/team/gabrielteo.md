@@ -41,6 +41,7 @@ Given below are my contributions to the project.
     * Added Use cases.
     * Added Non-functional requirements.
     * Added Glossary.
+    * Added Appointment feature and implementation details. (Pull requests [\#94]())
 
 * **Contributions to team-based tasks**:
   * Set up the product website
