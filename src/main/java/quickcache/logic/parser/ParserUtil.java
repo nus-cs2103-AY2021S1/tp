@@ -170,6 +170,9 @@ public class ParserUtil {
     public static String parseFileName(String fileName) throws ParseException {
         requireNonNull(fileName);
         String trimmedFileName = fileName.trim();
+        if (trimmedFileName.isEmpty()) {
+            throw new ParseException(MESSAGE_INVALID_FILE_NAME);
+        }
         try {
             // Tries to determine if the file name is valid
             Paths.get(trimmedFileName);
