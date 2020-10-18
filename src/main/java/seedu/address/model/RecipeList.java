@@ -98,7 +98,7 @@ public class RecipeList implements ReadOnlyRecipeList {
      * {@code recipe} must exist in the recipe list.
      */
     public void deleteRecipe(Recipe recipe) {
-        recipes.delete(recipe);
+        recipes.remove(recipe);
     }
 
     //// util methods

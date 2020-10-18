@@ -81,19 +81,6 @@ public class UniqueItemList implements Iterable<Item> {
         }
     }
 
-    /**
-     * Deletes the equivalent item from the list and sets deleted flag to true
-     * The item must exist in the list.
-     * @param toDelete item to delete from the list
-     */
-    public void delete(Item toDelete) {
-        requireNonNull(toDelete);
-
-        if (!internalList.remove(toDelete)) {
-            throw new ItemNotFoundException();
-        }
-    }
-
     public void setItems(UniqueItemList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

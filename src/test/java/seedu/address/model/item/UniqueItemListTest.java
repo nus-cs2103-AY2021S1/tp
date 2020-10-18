@@ -71,7 +71,7 @@ public class UniqueItemListTest {
     public void delete() {
         UniqueItemList uList = new UniqueItemList();
         uList.add(APPLE);
-        uList.delete(APPLE);
+        uList.remove(APPLE);
         // Make sure item is not in the list
         assertFalse(uList.contains(APPLE));
     }
@@ -80,7 +80,7 @@ public class UniqueItemListTest {
     public void delete_throwsItemNotFoundException() {
         UniqueItemList uList = new UniqueItemList();
         uList.add(APPLE);
-        assertThrows(ItemNotFoundException.class, ()-> uList.delete(BANANA));
+        assertThrows(ItemNotFoundException.class, ()-> uList.remove(BANANA));
     }
 
     @Test

@@ -73,8 +73,7 @@ public class DeleteItemCommandTest {
         // Perform a manual deletion of all matching recipes
         expectedModelStub.deleteItem(itemToDelete);
         List<Recipe> recipeList = new ArrayList<>(expectedModelStub.getFilteredRecipeList());
-        recipeList.removeIf(y -> y.isDeleted()
-                || !y.getProductName().equals(itemToDelete.getName())
+        recipeList.removeIf(y -> !y.getProductName().equals(itemToDelete.getName())
                 && y.getIngredients()
                 .asUnmodifiableObservableList()
                 .stream()

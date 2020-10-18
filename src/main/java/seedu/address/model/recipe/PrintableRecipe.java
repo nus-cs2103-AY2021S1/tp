@@ -15,9 +15,9 @@ public class PrintableRecipe extends Recipe {
      * Every field must be present and not null.
      */
     public PrintableRecipe(int id, IngredientList ingredients, int productId, String productName,
-                           ProductQuantity productQuantity, String description, boolean isDeleted,
+                           ProductQuantity productQuantity, String description,
                            ObservableList<Item> filteredItemList) {
-        super(id, ingredients, productId, productName, productQuantity, description, isDeleted);
+        super(id, ingredients, productId, productName, productQuantity, description);
         StringBuilder sb = new StringBuilder();
         ingredients.forEach(ingredient -> sb.append(ingredient.toString(filteredItemList)).append(" "));
         this.printableIngredientList = sb.toString();

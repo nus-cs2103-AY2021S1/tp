@@ -89,7 +89,7 @@ public class ItemList implements ReadOnlyItemList {
      * {@code item} must exist in the item list.
      */
     public void deleteItem(Item recipe) {
-        items.delete(recipe);
+        items.remove(recipe);
     }
 
     /**
