@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.catalogue;
+package seedu.address.logic.commands.global;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;

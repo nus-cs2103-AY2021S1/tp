@@ -11,6 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyMainCatalogue;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.Status;
+import seedu.address.model.task.Task;
 
 /**
  * API of the Logic component
@@ -40,6 +41,11 @@ public interface Logic {
      * @return the project to be displayed on dashboard.
      */
     Optional<Project> getProjectToBeDisplayedOnDashBoard();
+
+    /**
+     * Gets the task to be displayed on dashboard.
+     */
+    Optional<Task> getTaskToBeDisplayedOnDashboard();
 
     /**
      * Returns the user prefs' main catalogue file path.

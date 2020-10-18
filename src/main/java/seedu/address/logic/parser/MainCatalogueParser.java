@@ -23,6 +23,7 @@ import seedu.address.logic.commands.project.EditTeammateCommand;
 import seedu.address.logic.commands.project.FilterCommand;
 import seedu.address.logic.commands.project.LeaveCommand;
 import seedu.address.logic.commands.project.NewTeammateCommand;
+import seedu.address.logic.commands.project.ViewTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exceptions.InvalidScopeException;
 import seedu.address.model.project.Status;
@@ -53,86 +54,87 @@ public class MainCatalogueParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        if (status == Status.CATALOGUE) {
-            switch (commandWord) {
+        switch (commandWord) {
 
-            case AddCommand.COMMAND_WORD:
-                return new AddCommandParser().parse(arguments);
+        case AddCommand.COMMAND_WORD:
+            return new AddCommandParser().parse(arguments);
 
-            case EditCommand.COMMAND_WORD:
-                return new EditCommandParser().parse(arguments);
+        case EditCommand.COMMAND_WORD:
+            return new EditCommandParser().parse(arguments);
 
-            case DeleteCommand.COMMAND_WORD:
-                return new DeleteCommandParser().parse(arguments);
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommandParser().parse(arguments);
 
-            case ClearCommand.COMMAND_WORD:
-                return new ClearCommand();
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
 
-            case FindCommand.COMMAND_WORD:
-                return new FindCommandParser().parse(arguments);
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
 
-            case ListCommand.COMMAND_WORD:
-                return new ListCommand();
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
 
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
-            case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
-            case StartCommand.COMMAND_WORD:
-                return new StartCommandParser().parse(arguments);
+        case StartCommand.COMMAND_WORD:
+            return new StartCommandParser().parse(arguments);
 
-            case LeaveCommand.COMMAND_WORD:
-            case AssignCommand.COMMAND_WORD:
-            case FilterCommand.COMMAND_WORD:
-                throw new InvalidScopeException(Status.PROJECT, Status.CATALOGUE);
+        case LeaveCommand.COMMAND_WORD:
+            return new LeaveCommand();
 
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
-            }
-        } else if (status == Status.PROJECT) {
-            switch (commandWord) {
-
-            case LeaveCommand.COMMAND_WORD:
-                return new LeaveCommand();
-
-            case AssignCommand.COMMAND_WORD:
+        case AssignCommand.COMMAND_WORD:
+            if (status != Status.CATALOGUE) {
                 return new AssignCommandParser().parse(arguments);
-
-            case NewTeammateCommand.COMMAND_WORD:
-                return new NewTeammateCommandParser().parse(arguments);
-
-            case FilterCommand.COMMAND_WORD:
-                return new FilterCommandParser().parse(arguments);
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
-
-            case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
-
-            case AddTaskCommand.COMMAND_WORD:
-                return new AddTaskCommandParser().parse(arguments);
-
-            case EditTaskCommand.COMMAND_WORD:
-                return new EditTaskCommandParser().parse(arguments);
-
-            case EditTeammateCommand.COMMAND_WORD:
-                return new EditTeammateCommandParser().parse(arguments);
-
-            case DeleteCommand.COMMAND_WORD:
-            case ClearCommand.COMMAND_WORD:
-            case FindCommand.COMMAND_WORD:
-            case ListCommand.COMMAND_WORD:
-            case StartCommand.COMMAND_WORD:
-            case AddCommand.COMMAND_WORD:
-            case EditCommand.COMMAND_WORD:
-                throw new InvalidScopeException(Status.CATALOGUE, Status.PROJECT);
-
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            } else {
+                throw new InvalidScopeException(Status.PROJECT, status);
             }
-        } else {
+
+        case FilterCommand.COMMAND_WORD:
+            if (status != Status.CATALOGUE) {
+                return new FilterCommandParser().parse(arguments);
+            } else {
+                throw new InvalidScopeException(Status.PROJECT, status);
+            }
+
+        case NewTeammateCommand.COMMAND_WORD:
+            if (status != Status.CATALOGUE) {
+                return new NewTeammateCommandParser().parse(arguments);
+            } else {
+                throw new InvalidScopeException(Status.PROJECT, status);
+            }
+
+        case AddTaskCommand.COMMAND_WORD:
+            if (status != Status.CATALOGUE) {
+                return new AddTaskCommandParser().parse(arguments);
+            } else {
+                throw new InvalidScopeException(Status.PROJECT, status);
+            }
+
+        case EditTaskCommand.COMMAND_WORD:
+            if (status != Status.CATALOGUE) {
+                return new EditTaskCommandParser().parse(arguments);
+            } else {
+                throw new InvalidScopeException(Status.PROJECT, status);
+            }
+
+        case EditTeammateCommand.COMMAND_WORD:
+            if (status != Status.CATALOGUE) {
+                return new EditTeammateCommandParser().parse(arguments);
+            } else {
+                throw new InvalidScopeException(Status.PROJECT, status);
+            }
+        case ViewTaskCommand.COMMAND_WORD:
+            if (status != Status.CATALOGUE) {
+                return new ViewTaskCommandParser().parse(arguments);
+            } else {
+                throw new InvalidScopeException(Status.PROJECT, status);
+            }
+
+        default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }

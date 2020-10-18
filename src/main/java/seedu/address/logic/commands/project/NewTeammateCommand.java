@@ -52,7 +52,7 @@ public class NewTeammateCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Project project = model.getFilteredProjectList().get(0);
+        Project project = model.getProjectToBeDisplayedOnDashboard().get();
         teammate.addProject(project);
         project.addParticipation(teammate);
 

@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.Status;
 import seedu.address.model.project.UniqueProjectList;
+import seedu.address.model.task.Task;
 
 /**
  * Wraps all data at the main-catalogue level
@@ -116,8 +117,21 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
 
     @Override
     public void quit() {
-        status = Status.CATALOGUE;
-        this.project = Optional.empty();
+        if (status == Status.PROJECT) {
+            status = Status.CATALOGUE;
+            this.project = Optional.empty();
+        } else if (status == Status.TASK) {
+            status = Status.PROJECT;
+            project.get().updateTaskOnView(null);
+        } else if (status == Status.CATALOGUE) {
+            this.project = Optional.empty();
+        }
+    }
+
+    @Override
+    public void enterTask(Task task) {
+        status = Status.TASK;
+        project.get().updateTaskOnView(task);
     }
 
     //// util methods

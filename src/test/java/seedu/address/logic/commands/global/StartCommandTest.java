@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.catalogue;
+package seedu.address.logic.commands.global;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -20,47 +20,47 @@ import seedu.address.model.project.Project;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
- * {@code DeleteCommand}.
+ * {@code StartCommand}.
  */
-public class DeleteCommandTest {
+public class StartCommandTest {
 
     private Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Project projectToDelete = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PROJECT);
+        Project projectToStart = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+        StartCommand startCommand = new StartCommand(INDEX_FIRST_PROJECT);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete);
+        String expectedMessage = String.format(StartCommand.MESSAGE_START_PROJECT_SUCCESS, projectToStart);
 
         ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
-        expectedModel.deleteProject(projectToDelete);
+        expectedModel.enter(projectToStart);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(startCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredProjectList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        StartCommand startCommand = new StartCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+        assertCommandFailure(startCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
         showProjectAtIndex(model, INDEX_FIRST_PROJECT);
 
-        Project projectToDelete = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PROJECT);
+        Project projectToStart = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+        StartCommand startCommand = new StartCommand(INDEX_FIRST_PROJECT);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete);
+        String expectedMessage = String.format(StartCommand.MESSAGE_START_PROJECT_SUCCESS, projectToStart);
 
         Model expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
-        expectedModel.deleteProject(projectToDelete);
-        showNoProject(expectedModel);
+        expectedModel.enter(projectToStart);
+        showProjectAtIndex(expectedModel, INDEX_FIRST_PROJECT);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(startCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -71,39 +71,30 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of main catalogue list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getProjectCatalogue().getProjectList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        StartCommand startCommand = new StartCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+        assertCommandFailure(startCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PROJECT);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PROJECT);
+        StartCommand startFirstCommand = new StartCommand(INDEX_FIRST_PROJECT);
+        StartCommand startSecondCommand = new StartCommand(INDEX_SECOND_PROJECT);
 
         // same object -> returns true
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+        assertTrue(startFirstCommand.equals(startFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PROJECT);
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+        StartCommand startFirstCommandCopy = new StartCommand(INDEX_FIRST_PROJECT);
+        assertTrue(startFirstCommand.equals(startFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(1));
+        assertFalse(startFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(deleteFirstCommand.equals(null));
+        assertFalse(startFirstCommand.equals(null));
 
         // different project -> returns false
-        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
-    }
-
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoProject(Model model) {
-        model.updateFilteredProjectList(p -> false);
-
-        assertTrue(model.getFilteredProjectList().isEmpty());
+        assertFalse(startFirstCommand.equals(startSecondCommand));
     }
 }

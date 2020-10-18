@@ -50,7 +50,7 @@ public class AssignCommandTest {
         project.addParticipation(ALICE);
         AssignCommand assignCommand = new AssignCommand(outOfBoundIndex, ALICE.getGitUserNameString());
 
-        assertCommandFailure(assignCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+        assertCommandFailure(assignCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
@@ -69,7 +69,7 @@ public class AssignCommandTest {
     }
 
     @Test
-    public void execute_validIndexValidPerson_success() {
+    public void execute_validIndexValidPersonUnfilteredList_success() {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
@@ -96,7 +96,31 @@ public class AssignCommandTest {
         assertCommandSuccess(assignCommand, model, expectedMessage, expectedModel);
     }
 
-    // TODO: May add test cases for filtered/unfiltered list of tasks after filters are implemented
+    @Test
+    public void execute_validIndexValidPersonFilteredList_success() {
+        Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
+        Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+        model.enter(project);
+        project.addParticipation(ALICE);
+        project.updateTaskFilter(x -> true);
+        Task taskToAssign = project.getFilteredTaskList().get(INDEX_SECOND_TASK.getZeroBased());
+        Participation assignee = project.getParticipation(ALICE.getGitUserNameString());
+        project.updateTaskFilter(task -> task.getTaskName().contains(taskToAssign.getTaskName()));
+        ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
+        AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_TASK, ALICE.getGitUserNameString());
+        String expectedMessage = String.format(AssignCommand.MESSAGE_ASSIGN_TASK_SUCCESS, taskToAssign, assignee);
+
+        Project projectCopy = new Project(project.getProjectName(), project.getDeadline(),
+                project.getRepoUrl(), project.getProjectDescription(), project.getProjectTags(),
+                new HashMap<>(), project.getTasks(), project.getMeetings());
+        projectCopy.addParticipation(ALICE);
+        expectedModel.setProject(project, projectCopy);
+        expectedModel.enter(projectCopy);
+        expectedModel.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased())
+                .getParticipation(ALICE.getGitUserNameString()).addTask(taskToAssign);
+
+        assertCommandSuccess(assignCommand, model, expectedMessage, expectedModel);
+    }
 
     @Test
     public void equals() {

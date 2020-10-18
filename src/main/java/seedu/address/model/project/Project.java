@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -40,6 +41,9 @@ public class Project {
     private final Set<Task> tasks = new HashSet<>();
     private final Set<Meeting> meetings = new HashSet<>();
 
+    // Display helper
+    private Optional<Task> taskOnView;
+
     /**
      * Every field must be present and not null.
      */
@@ -56,6 +60,7 @@ public class Project {
         this.listOfParticipations.putAll(listOfParticipations);
         this.tasks.addAll(tasks);
         this.meetings.addAll(meetings);
+        this.taskOnView = Optional.empty();
     }
 
     public ProjectName getProjectName() {
@@ -88,6 +93,12 @@ public class Project {
     }
     public void updateTaskFilter(Predicate<Task> predicate) {
         this.taskFilter = predicate;
+    }
+    public Optional<Task> getTaskOnView() {
+        return taskOnView;
+    }
+    public void updateTaskOnView(Task t) {
+        taskOnView = Optional.of(t);
     }
 
     /**
@@ -144,6 +155,15 @@ public class Project {
     public void deleteParticipation(String gitUserName) {
         if (listOfParticipations.containsKey(new GitUserName(gitUserName))) {
             listOfParticipations.remove(new GitUserName(gitUserName));
+        }
+    }
+
+    /**
+     * Deletes the Participation with the member name.
+     */
+    public void deleteParticipation(String name) {
+        if (listOfParticipations.containsKey(new PersonName(name))) {
+            listOfParticipations.remove(new PersonName(name));
         }
     }
 
