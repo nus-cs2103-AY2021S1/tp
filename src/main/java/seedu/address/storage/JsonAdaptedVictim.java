@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.investigationcase.Name;
@@ -20,7 +20,7 @@ public class JsonAdaptedVictim {
      * Constructs a {@code JsonAdaptedVictim} with the given {@code name}.
      */
     @JsonCreator
-    public JsonAdaptedVictim(String name) {
+    public JsonAdaptedVictim(@JsonProperty("name") String name) {
         this.name = name;
     }
 
@@ -29,11 +29,6 @@ public class JsonAdaptedVictim {
      */
     public JsonAdaptedVictim(Victim source) {
         name = source.getName().alphaNum;
-    }
-
-    @JsonValue
-    public String getVictimName() {
-        return name;
     }
 
     /**

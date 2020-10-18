@@ -11,8 +11,8 @@ public abstract class OpenCommand extends Command {
 
     public static final String COMMAND_WORD = "open";
 
-    //to be updated when with open doc functionality
-    public static final Object MESSAGE_USAGE = COMMAND_WORD
+    // TODO: to be updated when with open doc functionality
+    public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Opens the item of a specified type, identified by the index number"
             + " used in the displayed list.\n"
             + "Format: '" + COMMAND_WORD + " TYPE'\n\n"

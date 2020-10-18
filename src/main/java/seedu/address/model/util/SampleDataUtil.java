@@ -31,29 +31,29 @@ public class SampleDataUtil {
             List.of(new Document(new Name("name"), new Reference("test1.txt")));
     private static List<Suspect> sampleSuspects = getSuspectList("Alex", "Bernice");
     private static List<Victim> sampleVictims = getVictimList("Tom", "John");
-    private static Description sampleDescription = new Description("");
+    private static Description sampleDescription = new Description("7 people arrested for rioting");
 
     public static Case[] getSampleCases() {
         return new Case[] {
             new Case(new Title("Ang Mo Kio Car Theft"), sampleDescription,
                     Status.createStatus("active"), sampleDocuments,
-                    new ArrayList<>(), sampleVictims,
+                    sampleSuspects, sampleVictims,
                     sampleWitnesses, getTagSet()),
             new Case(new Title("Bishan Shopping Theft"), sampleDescription,
                     Status.createStatus("closed"), sampleDocuments,
-                    new ArrayList<>(), sampleVictims, sampleWitnesses, getTagSet()),
+                    sampleSuspects, sampleVictims, sampleWitnesses, getTagSet()),
             new Case(new Title("Cha Bee Hoon Stall Fire"), sampleDescription,
                     Status.createStatus("cold"), sampleDocuments,
-                    new ArrayList<>(), sampleVictims, sampleWitnesses, getTagSet()),
+                    sampleSuspects, sampleVictims, sampleWitnesses, getTagSet()),
             new Case(new Title("Dhoby Ghaut Murder Case"), sampleDescription,
                     Status.createStatus("active"), sampleDocuments,
-                    new ArrayList<>(), sampleVictims, sampleWitnesses, getTagSet()),
+                    sampleSuspects, sampleVictims, sampleWitnesses, getTagSet()),
             new Case(new Title("IceCream Man Harassment"), sampleDescription,
                     Status.createStatus("active"), sampleDocuments,
-                    new ArrayList<>(), sampleVictims, sampleWitnesses, getTagSet()),
+                    sampleSuspects, sampleVictims, sampleWitnesses, getTagSet()),
             new Case(new Title("Roti Prata Shop Robbery"), sampleDescription,
                     Status.createStatus("active"), sampleDocuments,
-                    new ArrayList<>(), sampleVictims, sampleWitnesses, getTagSet())
+                    sampleSuspects, sampleVictims, sampleWitnesses, getTagSet())
         };
     }
 
@@ -75,7 +75,7 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a Witness list containing the list of strings given.
+     * Returns a witness list containing the list of strings given.
      */
     public static List<Witness> getWitnessList(String... strings) {
         return Arrays.stream(strings)
@@ -95,8 +95,8 @@ public class SampleDataUtil {
     /**
      * Returns a victim list containing the list of strings given.
      */
-    public static List<Victim> getVictimList(String... strings) {
-        return Arrays.stream(strings)
+    public static List<Victim> getVictimList(String... victims) {
+        return Arrays.stream(victims)
                 .map(string -> new Victim(new Name(string)))
                 .collect(Collectors.toList());
     }

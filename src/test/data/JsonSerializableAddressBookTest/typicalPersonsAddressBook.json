@@ -8,9 +8,15 @@
       "name" : "name",
       "reference" : "test1.txt"
     } ],
-    "witnesses": ["Janice"],
-    "suspects": [],
-    "victims" : [ "Tom" ],
+    "witnesses": [ {
+      "name" : "Janice"
+    } ],
+    "suspects": [ {
+      "name" : "Peter"
+    } ],
+    "victims" : [ {
+      "name" : "Tom"
+    } ],
     "tagged" : [ "friends" ]
   }, {
     "title" : "Benson Meier",
@@ -20,9 +26,13 @@
       "name" : "name",
       "reference" : "test1.txt"
     } ],
-    "witnesses": ["Mary"],
+    "witnesses": [ {
+      "name" : "Mary"
+    } ],
     "suspects": [],
-    "victims" : [ "Tom" ],
+    "victims" : [ {
+      "name" : "Tom"
+    } ],
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "title" : "Carl Kurz",

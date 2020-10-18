@@ -65,7 +65,7 @@ public class LogicManagerTest {
     public void execute_validCommand_success() throws Exception {
         //TODO: check that the state is empty first.
         String listCommand = ListCommand.COMMAND_WORD + " " + TYPE_CASE;
-        assertCommandSuccess(listCommand, ListCaseCommand.MESSAGE_SUCCESS, model);
+        assertCommandSuccess(listCommand, ListCaseCommand.MESSAGE_LIST_CASE_SUCCESS, model);
     }
 
     @Test
