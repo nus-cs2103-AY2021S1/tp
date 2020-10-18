@@ -56,24 +56,6 @@ public class CliSyntax {
     }
 
     /**
-     * Returns an array containing all invalid prefixes for the command.
-     *
-     * @param validPrefixes prefixes that are valid for the command
-     * @return An array containing all invalid prefixes for the command.
-     */
-    public static Prefix[] getInvalidPrefixesForCommand(Prefix[] validPrefixes) {
-        List<Prefix> allPossiblePrefixes = getAllPossiblePrefixes();
-
-        for (Prefix prefix : validPrefixes) {
-            allPossiblePrefixes.remove(prefix);
-        }
-
-        Prefix[] allInvalidPrefixes = allPossiblePrefixes.toArray(new Prefix[0]);
-
-        return allInvalidPrefixes;
-    }
-
-    /**
      * Returns the default parameter description of a certain prefix.
      *
      * @param prefix The prefix that needs parameter description.

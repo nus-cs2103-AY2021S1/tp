@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommandWords {
-    public static final String ADD_COMMAND_WORD = "add";
-    public static final String CLEAR_COMMAND_WORD = "clear";
-    public static final String DELETE_COMMAND_WORD = "delete";
-    public static final String EXIT_COMMAND_WORD = "exit";
-    public static final String FIND_COMMAND_WORD = "find";
-    public static final String FIND_EXACT_COMMAND_WORD = "findexact";
-    public static final String HELP_COMMAND_WORD = "help";
-    public static final String LIST_COMMAND_WORD = "list";
-    public static final String UPDATE_COMMAND_WORD = "update";
+    public static final String ADD_COMMAND_WORD = AddCommand.COMMAND_WORD;
+    public static final String CLEAR_COMMAND_WORD = ClearCommand.COMMAND_WORD;
+    public static final String DELETE_COMMAND_WORD = DeleteCommand.COMMAND_WORD;
+    public static final String EXIT_COMMAND_WORD = ExitCommand.COMMAND_WORD;
+    public static final String FIND_COMMAND_WORD = FindCommand.COMMAND_WORD;
+    public static final String FIND_EXACT_COMMAND_WORD = FindExactCommand.COMMAND_WORD;
+    public static final String HELP_COMMAND_WORD = HelpCommand.COMMAND_WORD;
+    public static final String LIST_COMMAND_WORD = ListCommand.COMMAND_WORD;
+    public static final String UPDATE_COMMAND_WORD = UpdateCommand.COMMAND_WORD;
+    public static final String NOTE_COMMAND_WORD = NoteCommand.COMMAND_WORD;
 
     /**
      * Returns all command words existing in Warenager.
@@ -30,6 +31,7 @@ public class CommandWords {
         allCommandWords.add(HELP_COMMAND_WORD);
         allCommandWords.add(LIST_COMMAND_WORD);
         allCommandWords.add(UPDATE_COMMAND_WORD);
+        allCommandWords.add(NOTE_COMMAND_WORD);
         return allCommandWords;
     }
 }

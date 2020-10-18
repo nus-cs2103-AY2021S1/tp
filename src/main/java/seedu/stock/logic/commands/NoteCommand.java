@@ -23,8 +23,8 @@ public class NoteCommand extends Command {
             + "Parameters:\n"
             + "sn/ [SERIAL NUMBER]\n"
             + "note/ [NOTE]\n"
-            + "Example: " + COMMAND_WORD + "sn/111111"
-            + "note/ Arrives every thursday 6pm.";
+            + "Example: " + COMMAND_WORD + " sn/111111"
+            + " note/ Arrives every thursday 6pm.";
 
     public static final String MESSAGE_ADD_NOTE_SUCCESS = "Added note to Stock: %1$s";
     public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND = "Stock with given serial number does not exists";

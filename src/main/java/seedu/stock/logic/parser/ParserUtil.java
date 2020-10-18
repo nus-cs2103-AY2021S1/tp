@@ -13,6 +13,7 @@ import seedu.stock.commons.util.StringUtil;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.Location;
 import seedu.stock.model.stock.Name;
+import seedu.stock.model.stock.Note;
 import seedu.stock.model.stock.Quantity;
 import seedu.stock.model.stock.QuantityAdder;
 import seedu.stock.model.stock.SerialNumber;
@@ -99,6 +100,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String note} into a {@code Note}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code note} is invalid.
+     */
+    public static Note parseNote(String note) throws ParseException {
+        requireNonNull(note);
+        String trimmedNote = note.trim();
+        if (!Note.isValidNote(trimmedNote)) {
+            throw new ParseException(Note.MESSAGE_CONSTRAINTS);
+        }
+        return new Note(trimmedNote);
+    }
+
+    /**
      * Parses a {@code String serialNumber} into an {@code SerialNumber}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -154,4 +170,23 @@ public class ParserUtil {
         }
         return listOfPrefixes;
     }
+
+    /**
+     * Returns an array containing all invalid prefixes for the command.
+     *
+     * @param validPrefixes prefixes that are valid for the command
+     * @return An array containing all invalid prefixes for the command.
+     */
+    public static Prefix[] getInvalidPrefixesForCommand(Prefix[] validPrefixes) {
+        List<Prefix> allPossiblePrefixes = CliSyntax.getAllPossiblePrefixes();
+
+        for (Prefix prefix : validPrefixes) {
+            allPossiblePrefixes.remove(prefix);
+        }
+
+        Prefix[] allInvalidPrefixes = allPossiblePrefixes.toArray(new Prefix[0]);
+
+        return allInvalidPrefixes;
+    }
+
 }

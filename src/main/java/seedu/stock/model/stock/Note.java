@@ -10,7 +10,7 @@ import static seedu.stock.commons.util.AppUtil.checkArgument;
 public class Note {
     public final String value;
     public static final String MESSAGE_CONSTRAINTS =
-            "A note can take any values, and it should not be only whitespaces.";
+            "Invalid field format!\nA note can take any values, and it should not be only whitespaces.";
     /*
      * The first character of the note must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.

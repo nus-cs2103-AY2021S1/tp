@@ -2,7 +2,9 @@ package seedu.stock.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.stock.logic.parser.CliSyntax.*;
+
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 
 import seedu.stock.logic.commands.NoteCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
@@ -15,7 +17,7 @@ public class NoteCommandParser implements Parser<NoteCommand> {
 
     private final static Prefix[] validPrefixesForNote = { PREFIX_NOTE, PREFIX_SERIAL_NUMBER };
     private final static Prefix[] invalidPrefixesForNote =
-            getInvalidPrefixesForCommand(validPrefixesForNote);
+            ParserUtil.getInvalidPrefixesForCommand(validPrefixesForNote);
 
     @Override
     public NoteCommand parse(String args) throws ParseException {
@@ -34,7 +36,7 @@ public class NoteCommandParser implements Parser<NoteCommand> {
         String serialNumberInput = argMultimap.getValue(PREFIX_SERIAL_NUMBER).get();
         SerialNumber serialNumber = new SerialNumber(serialNumberInput);
         String noteInput = argMultimap.getValue(PREFIX_NOTE).get();
-        Note noteToAdd = new Note(noteInput);
+        Note noteToAdd = ParserUtil.parseNote(noteInput);
 
         return new NoteCommand(serialNumber, noteToAdd);
     }

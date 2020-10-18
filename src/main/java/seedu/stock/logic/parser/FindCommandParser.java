@@ -2,7 +2,10 @@ package seedu.stock.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.stock.logic.parser.CliSyntax.*;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,11 +26,11 @@ import seedu.stock.model.stock.predicates.SourceContainsKeywordsPredicate;
  */
 public class FindCommandParser implements Parser<FindCommand> {
 
-    private final static Prefix[] allPossiblePrefixes = getAllPossiblePrefixesAsArray();
+    private final static Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
     private final static Prefix[] validPrefixesForFind = { PREFIX_NAME, PREFIX_LOCATION,
             PREFIX_SOURCE, PREFIX_SERIAL_NUMBER };
     private final static Prefix[] invalidPrefixesForFind =
-            getInvalidPrefixesForCommand(validPrefixesForFind);
+            ParserUtil.getInvalidPrefixesForCommand(validPrefixesForFind);
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
