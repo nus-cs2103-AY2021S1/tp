@@ -33,11 +33,10 @@ Open this document in a modern internet browser (Mozilla Firefox, Google Chrome,
 :bulb: **Tip:** Press Ctrl-F to open the find prompt in your browser. You can type in keywords such as `add` or `edit` to quickly navigate to those parts of the document.
 
 </div>
---------------------------------------------------------------------------------------------------------------------
 
 ## A little note from the developers
 
-Thank you for showing interest in MG. We sincerely hope that MG plays apart to help you achieve a healthier lifestyle.
+Thank you for using MG. We sincerely hope that MG plays apart to help you achieve a healthier lifestyle.
 We understand that MG may be a little different from traditional GUI applications and it may be a little difficult to start using it initially.
 Thus we recommend you to start by
 First understanding how MG works at a high level at the Quick start section.Then, explore the features section.
