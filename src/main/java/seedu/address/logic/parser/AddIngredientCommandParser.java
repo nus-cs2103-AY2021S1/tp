@@ -29,6 +29,8 @@ public class AddIngredientCommandParser implements Parser<AddIngredientCommand> 
         }
 
         String ingredientString = ParserUtil.parseIngredient(argMultimap.getValue(PREFIX_INGREDIENT).get());
+        assert ingredientString.length() != 0 : "ingredientString should not be empty";
+
         ArrayList<Ingredient> ingredients = IngredientParser.parse(ingredientString);
 
         return new AddIngredientCommand(ingredients);

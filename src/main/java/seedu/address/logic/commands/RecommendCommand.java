@@ -5,6 +5,8 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INGREDIENTS;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.Model;
@@ -21,9 +23,11 @@ public class RecommendCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Recommended recipes (according to fridge)" + "\n";
 
+    private static Logger logger = Logger.getLogger("RecommendLogger");
 
     @Override
     public CommandResult execute(Model model) {
+        logger.log(Level.INFO, "going to start recommending");
         requireNonNull(model);
         RecommendPredicate pred = new RecommendPredicate(getIngredients(model));
         model.updateFilteredRecipeList(pred);
@@ -32,6 +36,7 @@ public class RecommendCommand extends Command {
         for (int i = 0; i < recipes.size(); i++) {
             builder.append((i + 1) + ". " + recipes.get(i).toString() + "\n");
         }
+        logger.log(Level.INFO, "end of recommending");
         return new CommandResult(MESSAGE_SUCCESS + builder.toString(), false, false, true, false, false);
     }
 
