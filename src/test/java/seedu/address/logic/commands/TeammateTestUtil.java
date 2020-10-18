@@ -31,7 +31,7 @@ public class TeammateTestUtil {
     public static final String VALID_TEAMMATE_ADDRESS_B = "4 Hacker Way";
     public static final String VALID_TEAMMATE_ADDRESS_C = "13 Three Quarters";
 
-    // User input with prefixes
+    // Valid User input with prefixes
     public static final String TEAMMATE_NAME_DESC_A = " " + PREFIX_TEAMMATE_NAME + VALID_TEAMMATE_NAME_A;
     public static final String TEAMMATE_NAME_DESC_B = " " + PREFIX_TEAMMATE_NAME + VALID_TEAMMATE_NAME_B;
     public static final String TEAMMATE_NAME_DESC_C = " " + PREFIX_TEAMMATE_NAME + VALID_TEAMMATE_NAME_C;
@@ -55,14 +55,12 @@ public class TeammateTestUtil {
     public static final String TEAMMATE_ADDRESS_DESC_B = " " + PREFIX_TEAMMATE_ADDRESS + VALID_TEAMMATE_ADDRESS_B;
     public static final String TEAMMATE_ADDRESS_DESC_C = " " + PREFIX_TEAMMATE_ADDRESS + VALID_TEAMMATE_ADDRESS_C;
 
-
-
-
-
-
-
-
-
-
+    // Invalid user input with prefixes
+    public static final String INVALID_TEAMMATE_NAME_DESC_A = " " + PREFIX_TEAMMATE_NAME + "jack#$%";
+    public static final String INVALID_TEAMMATE_GIT_USERNAME_DESC_A = " " + PREFIX_TEAMMATE_GIT_USERNAME
+        + "May Theresa";
+    public static final String INVALID_TEAMMATE_PHONE_DESC_A = " " + PREFIX_TEAMMATE_PHONE + "3818djfjjd";
+    public static final String INVALID_TEAMMATE_EMAIL_DESC_A = " " + PREFIX_TEAMMATE_EMAIL + "hey @";
+    public static final String INVALID_TEAMMATE_ADDRESS_DESC_A = " " + PREFIX_TEAMMATE_ADDRESS + "  the Platform  ";
 
 }
