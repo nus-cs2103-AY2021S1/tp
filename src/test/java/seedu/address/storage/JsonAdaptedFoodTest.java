@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.storage.JsonAdaptedFood.INVALID_PRICE_FORMAT;
 import static seedu.address.storage.JsonAdaptedFood.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -22,6 +23,7 @@ public class JsonAdaptedFoodTest {
 
     private static final String VALID_NAME = "Egg Prata";
     private static final double VALID_PRICE = 1.20;
+    private static final double INVALID_PRICE = -1.20;
     private static final String INVALID_TAG = "#tasty";
     private static final List<JsonAdaptedTag> VALID_TAGS = EGG_PRATA.getTags().stream()
             .map(JsonAdaptedTag::new)
@@ -40,6 +42,13 @@ public class JsonAdaptedFoodTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, food::toModelType);
     }
+
+    @Test
+    public void toModelType_invalidPrice_throwsIllegalValueException() {
+        JsonAdaptedFood food = new JsonAdaptedFood(VALID_NAME, INVALID_PRICE, VALID_TAGS);
+        assertThrows(IllegalValueException.class, INVALID_PRICE_FORMAT, food::toModelType);
+    }
+
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {

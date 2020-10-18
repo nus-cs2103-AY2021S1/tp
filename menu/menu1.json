@@ -1,11 +1,12 @@
 {
-  "persons" : [ {
-    "name" : "Menu Yeoh",
-    "phone" : "87438807",
-    "email" : "alexyeoh@example.com",
-    "address" : "Blk 30 Geylang Street 29, #06-40",
-    "tagged" : ["iloveprata"],
-    "itemName": "Naan",
-    "quantity": 2
-  }]
+  "foods" : [ {
+    "name" : "Prata",
+    "price": 1.2,
+    "tagged" : ["iloveprata"]
+  },
+    {
+      "name" : "Milo",
+      "price": 1.5,
+      "tagged" : ["iloveprata"]
+    }]
 }

@@ -1,0 +1,12 @@
+{
+  "foods" : [ {
+    "name" : "Prata",
+    "price": 1,
+    "tagged" : ["classic"]
+  },
+    {
+      "name" : "Prata",
+      "price": 1,
+      "tagged" : ["classic"]
+    }]
+}
