@@ -211,7 +211,11 @@ The following sequence diagram shows the execution of view task command.
 Step 4. The user executes `start 2` command to view details of project of index 2 in the current list of projects instead.
 The scope is switched to `PROJECT`, project of focus is updated to a new project and the task on view is updated to empty.
 
+![ScopingStep4](images/ScopingStep4.png)
 
+Step 5. The user executes `leave` command to go to the parent status.
+Currently the application is at `PROJECT` status, so after execution of `leave` command, the new status would be `CATALOGUE`.
+The `leave` command calls `quit` method.
 
 ### \[Proposed\] Undo/redo feature
 
