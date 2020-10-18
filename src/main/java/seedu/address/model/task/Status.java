@@ -10,7 +10,7 @@ public class Status {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "The value is from the enum class State";
+            "Values must be either 'complete' or 'incomplete'";
     public final State value;
 
     /**

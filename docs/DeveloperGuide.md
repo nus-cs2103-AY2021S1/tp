@@ -288,7 +288,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
     1. User requests to add a specific task to the list.
-
+    
     2. PlaNus adds the task.
 
   Use case ends.
@@ -309,11 +309,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
     1. User requests to list tasks.
-
+    
     2. PlaNus shows a list of tasks.
-
+    
     3. User requests to delete a specific task in the list.
-
+    
     4. PlaNus deletes the task.
 
   Use case ends.
@@ -337,7 +337,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
     1. User requests to list tasks.
-
+    
     2. PlaNus shows a list of tasks.
 
   Use case ends.
@@ -355,7 +355,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
     1. User requests help.
-
+    
     2. PlaNus shows available commands.
 
   Use case ends.
@@ -367,11 +367,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
     1. User requests to list tasks.
-
+    
     2. PlaNus shows a list of tasks.
-
+    
     3. User requests to mark a specific tasks in the list as done.
-
+    
     4. PlaNus marks the task as done.
 
   Use case ends.
@@ -391,22 +391,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
     1. User requests to find task with specified search phrase(s) in specified attribute(s).
-
+    
     2. PlaNus shows a list of tasks that match the specified search phrase(s) in the specified attribute(s).
 
   Use case ends.
 
 **Extensions**
 
+- 1a. The search phrase is empty or consists of only white spaces.
+
+  - 1a1. PlaNus shows an error message.
+
+    Use case ends.
+
+- 1b. The search phrase is in invalid format or includes invalid characters.
+
+    - 1b1. PlaNus shows an error message.
+
+        Use case ends.
+
 - 2a. The list is empty.
 
-    Use case ends.
-  
-- 2b. The search phrase is empty or consists of only white spaces.
-
-  - 2b1. PlaNus shows an error message.
-
-    Use case ends.
+    ​	Use case ends.
 
 <br>
 
@@ -415,7 +421,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
     1. User requests to edit values of specified attribute(s) of a task.
-
+    
     2. PlaNus shows task with updated attribute(s).
 
   Use case ends.
@@ -440,7 +446,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
     1. User requests to exit application.
-
+    
     2. PlaNus exits application.
 
   Use case ends.

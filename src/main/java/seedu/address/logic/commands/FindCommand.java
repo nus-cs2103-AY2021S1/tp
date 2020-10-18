@@ -15,7 +15,7 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks with the specified attribute"
-            + "containing the specified search phrase (case-insensitive)"
+            + "containing the specified valid search phrase (case-insensitive)"
             + "and displays them as a list with index numbers.\n"
             + "Parameters: ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...\n"
             + "For list of all available attribute, please refer to the user guide by typing 'help' command\n"
