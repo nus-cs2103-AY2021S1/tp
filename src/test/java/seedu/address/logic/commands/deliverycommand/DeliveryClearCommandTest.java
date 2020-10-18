@@ -1,18 +1,14 @@
 package seedu.address.logic.commands.deliverycommand;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalDeliveries.getTypicalDeliveryBook;
+
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.itemcommand.ItemClearCommand;
+
 import seedu.address.model.UserPrefs;
 import seedu.address.model.deliverymodel.DeliveryBook;
 import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.deliverymodel.DeliveryModelManager;
-import seedu.address.model.inventorymodel.InventoryBook;
-import seedu.address.model.inventorymodel.InventoryModel;
-import seedu.address.model.inventorymodel.InventoryModelManager;
-
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalDeliveries.getTypicalDeliveryBook;
-import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
 
 public class DeliveryClearCommandTest {
 
