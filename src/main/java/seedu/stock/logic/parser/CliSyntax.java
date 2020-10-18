@@ -16,6 +16,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_SERIAL_NUMBER = new Prefix("sn/");
     public static final Prefix PREFIX_NEW_QUANTITY = new Prefix("nq/");
     public static final Prefix PREFIX_INCREMENT_QUANTITY = new Prefix("iq/");
+    public static final Prefix PREFIX_STATISTICS_TYPE = new Prefix("st/");
 
     /* Prefix values descriptions */
     public static final String PREFIX_NAME_DESCRIPTION = "<name>";
@@ -23,6 +24,8 @@ public class CliSyntax {
     public static final String PREFIX_LOCATION_DESCRIPTION = "<location>";
     public static final String PREFIX_QUANTITY_DESCRIPTION = "<quantity>";
     public static final String PREFIX_SERIAL_NUMBER_DESCRIPTION = "<serial number>";
+    public static final String PREFIX_STATISTICS_TYPE_DESCRIPTION = "<statistics type>";
+
 
     /**
      * Returns a list containing all possible prefixes.
@@ -38,6 +41,7 @@ public class CliSyntax {
         allPrefixes.add(PREFIX_SERIAL_NUMBER);
         allPrefixes.add(PREFIX_NEW_QUANTITY);
         allPrefixes.add(PREFIX_INCREMENT_QUANTITY);
+        allPrefixes.add(PREFIX_STATISTICS_TYPE);
         return allPrefixes;
     }
 
@@ -58,6 +62,8 @@ public class CliSyntax {
             return PREFIX_QUANTITY_DESCRIPTION;
         } else if (prefix.equals(PREFIX_SERIAL_NUMBER)) {
             return PREFIX_SERIAL_NUMBER_DESCRIPTION;
+        } else if (prefix.equals(PREFIX_STATISTICS_TYPE)) {
+            return PREFIX_STATISTICS_TYPE_DESCRIPTION;
         } else {
             return "";
         }

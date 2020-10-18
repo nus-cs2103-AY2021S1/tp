@@ -88,7 +88,7 @@ public class StockBookParser {
 
         case StatisticsCommand.COMMAND_WORD:
             try {
-                return new StatisticsParser().parse(arguments);
+                return new StatisticsCommandParser().parse(arguments);
             } catch (ParseException ex) {
                 return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
             }

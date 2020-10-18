@@ -14,6 +14,8 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_STATISTICS_TYPE;
+
 
 import java.util.List;
 import java.util.Random;
@@ -280,7 +282,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
      * @param argMultimap The parsed user input fields.
      */
     private void generateStatisticsSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
-        List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_SERIAL_NUMBER);
+        List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_STATISTICS_TYPE);
         toBeDisplayed.append(STATISTICS_COMMAND_WORD);
 
         for (int i = 0; i < allowedPrefixes.size(); i++) {
@@ -288,9 +290,9 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             if (!argMultimap.getValue(currentPrefix).isPresent()) {
                 toBeDisplayed.append(" " + currentPrefix + CliSyntax.getDefaultDescription(currentPrefix));
             }
-            List<String> keywords = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
-            for (String serialNumber : keywords) {
-                toBeDisplayed.append(" " + currentPrefix + serialNumber);
+            List<String> keywords = argMultimap.getAllValues(PREFIX_STATISTICS_TYPE);
+            for (String statisticsType : keywords) {
+                toBeDisplayed.append(" " + currentPrefix + statisticsType);
             }
         }
 
