@@ -28,7 +28,7 @@ import nustorage.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class NuStorageParser {
 
     /**
      * Used for initial separation of command word and args.
