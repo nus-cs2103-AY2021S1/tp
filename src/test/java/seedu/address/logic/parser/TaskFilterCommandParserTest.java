@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.project.TaskFilterCommand;
 
-class TaskTaskFilterCommandParserTest {
+class TaskFilterCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
         String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskFilterCommand.MESSAGE_USAGE);
 
@@ -17,5 +17,5 @@ class TaskTaskFilterCommandParserTest {
         // empty user input
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
-    //TODO: will add more when meeting filter is implemented
+
 }
