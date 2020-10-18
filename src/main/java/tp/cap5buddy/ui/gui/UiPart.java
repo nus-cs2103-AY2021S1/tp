@@ -7,20 +7,21 @@ import java.net.URL;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
-import tp.cap5buddy.MainApp;
 
 
 public abstract class UiPart {
     public static final String FXML_FILE_FOLDER = "/view/tp/";
     private final FXMLLoader fxmlLoader = new FXMLLoader();
 
+    /*
     /**
      * Constructs a UiPart with the specified FXML file within {@link #FXML_FILE_FOLDER} and root object.
      * @see #UiPart(URL, AnchorPane)
-     */
+     *
     public UiPart(String fxmlFileName, AnchorPane root) {
         this(getFxmlFileUrl(fxmlFileName), root);
     }
+    */
     /**
      * Constructs a UiPart with the specified FXML file URL and root object.
      * The FXML file must not specify the {@code fx:controller} attribute.
@@ -29,15 +30,17 @@ public abstract class UiPart {
         loadFxmlFile(fxmlFileUrl, root);
     }
 
+    /*
     /**
      * Returns the FXML file URL for the specified FXML file name within {@link #FXML_FILE_FOLDER}.
-     */
+     *
     private static URL getFxmlFileUrl(String fxmlFileName) {
         requireNonNull(fxmlFileName);
         String fxmlFileNameWithFolder = FXML_FILE_FOLDER + fxmlFileName;
-        URL fxmlFileUrl = MainApp.class.getResource(fxmlFileNameWithFolder);
+        // URL fxmlFileUrl = MainApp.class.getResource(fxmlFileNameWithFolder);
         return requireNonNull(fxmlFileUrl);
     }
+    */
     /**
      * Loads the object hierarchy from a FXML document.
      * @param location Location of the FXML document.
