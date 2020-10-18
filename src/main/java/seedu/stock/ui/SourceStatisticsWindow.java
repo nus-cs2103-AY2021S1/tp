@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import seedu.stock.commons.core.LogsCenter;
 
@@ -19,6 +20,9 @@ public class SourceStatisticsWindow extends UiPart<Stage> {
 
     @FXML
     private PieChart sourceStatisticsPieChart;
+
+    @FXML
+    private AnchorPane anchorPane;
 
     /**
      * Creates a new source statistics window.
@@ -85,6 +89,7 @@ public class SourceStatisticsWindow extends UiPart<Stage> {
             int value = set.getValue();
             sourceStatisticsPieChart.getData().add(new PieChart.Data(name, value));
         });
+        sourceStatisticsPieChart.layout();
     }
 
     /**

@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javafx.collections.ObservableList;
-import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
 import seedu.stock.model.stock.Stock;
 
