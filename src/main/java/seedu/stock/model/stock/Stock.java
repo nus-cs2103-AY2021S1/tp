@@ -83,6 +83,18 @@ public class Stock {
         return builder.toString();
     }
 
+    public Stock addNote(Note noteToAdd) {
+        Name name = this.name;
+        SerialNumber serialNumber = this.serialNumber;
+        Source source = this.source;
+        Quantity quantity = this.quantity;
+        Location location = this.location;
+        List<Note> notesToUpdate = this.notes;
+        notesToUpdate.add(noteToAdd);
+
+        return new Stock(name, serialNumber, source, quantity, location, notesToUpdate);
+    }
+
     public void setSerialNumber(String serialNumber) {
         this.serialNumber = new SerialNumber(serialNumber);
     }

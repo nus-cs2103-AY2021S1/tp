@@ -8,6 +8,9 @@ import seedu.stock.model.stock.Note;
 import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Stock;
 
+import java.util.List;
+import java.util.Optional;
+
 /**
  * Adds a note to an existing stock in the stock book.
  */
@@ -24,6 +27,7 @@ public class NoteCommand extends Command {
             + "note/ Arrives every thursday 6pm.";
 
     public static final String MESSAGE_ADD_NOTE_SUCCESS = "Added note to Stock: %1$s";
+    public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND = "Stock with given serial number does not exists";
 
     private final SerialNumber serialNumber;
     private final Note note;
@@ -38,17 +42,56 @@ public class NoteCommand extends Command {
         this.note = note;
     }
 
+    /**
+     * Executes the note command and returns the result.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return The result of successful execution.
+     * @throws CommandException If there are any errors.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return null;
+        List<Stock> lastShownStocks = model.getFilteredStockList();
+        Optional<Stock> stockToAddNote = Optional.empty();
+        // Find the stock to add note to
+        for (Stock currentStock : lastShownStocks) {
+            String currentStockSerialNumber = currentStock.getSerialNumber().getSerialNumberAsString();
+            if (currentStockSerialNumber.equals(serialNumber.getSerialNumberAsString())) {
+                stockToAddNote = Optional.of(currentStock);
+                break;
+            }
+        }
+
+        if(stockToAddNote.isEmpty()) {
+            throw new CommandException(MESSAGE_SERIAL_NUMBER_NOT_FOUND);
+        }
+
+        Stock stockWithAddedNote = createStockWithAddedNote(stockToAddNote.get(), note);
+        model.setStock(stockToAddNote.get(), stockWithAddedNote);
+
+        return new CommandResult(generateSuccessMessage(stockWithAddedNote));
     }
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code personToEdit}.
+     * Creates the stock with added note.
+     *
+     * @param stockToAddNote The stock in the list to be updated.
+     * @param noteToAdd The note to be added to stock.
+     * @return The stock with updated attributes.
      */
-    private String generateSuccessMessage(Stock stockToAddNote) {
-        return String.format(MESSAGE_ADD_NOTE_SUCCESS, stockToAddNote);
+    private static Stock createStockWithAddedNote(Stock stockToAddNote, Note noteToAdd) {
+        assert stockToAddNote != null;
+        stockToAddNote.addNote(noteToAdd);
+
+        return stockToAddNote;
+    }
+
+    /**
+     * Generates a command execution success message when the note is added to
+     * {@code stockToAddNote}.
+     */
+    private String generateSuccessMessage(Stock stockWithAddedNote) {
+        return String.format(MESSAGE_ADD_NOTE_SUCCESS, stockWithAddedNote);
     }
 
     @Override
@@ -62,8 +105,8 @@ public class NoteCommand extends Command {
             return false;
         }
         // state check
-        NoteCommand e = (NoteCommand) other;
-        return serialNumber.equals(e.serialNumber)
-                && note.equals(e.note);
+        NoteCommand otherNoteCommand = (NoteCommand) other;
+        return serialNumber.equals(otherNoteCommand.serialNumber)
+                && note.equals(otherNoteCommand.note);
     }
 }
