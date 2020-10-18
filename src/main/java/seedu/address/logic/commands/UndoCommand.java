@@ -6,18 +6,19 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Undo the most recent command.
+ * Undoes the most recent command.
  */
 public class UndoCommand extends Command {
 
     public static final String COMMAND_WORD = "undo";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + "Undo the most recent command "
+            + "Undo the most recent command that affects the data. "
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_UNDO_SUCCESS = "Successfully undo the most recent command";
-    public static final String MESSAGE_UNDO_FAIL = "Cannot undo";
+    public static final String MESSAGE_UNDO_SUCCESS = "Successfully undo the most recent command "
+            + "that affects the data.";
+    public static final String MESSAGE_UNDO_FAIL = "No recent command that affects the data.";
 
     /**
      * Constructs a UndoCommand to undo the most recent command.
@@ -29,15 +30,16 @@ public class UndoCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         Model previousModel = model.getPreviousModel();
         if (previousModel == null) {
             throw new CommandException(MESSAGE_UNDO_FAIL);
-        } else {
-            model.setAddressBook(previousModel.getAddressBook());
-            model.setUserPrefs(previousModel.getUserPrefs());
-            model.setPreviousModel(previousModel.getPreviousModel());
-            return new CommandResult(MESSAGE_UNDO_SUCCESS);
         }
+
+        model.setAddressBook(previousModel.getAddressBook());
+        model.setUserPrefs(previousModel.getUserPrefs());
+        model.setPreviousModel(previousModel.getPreviousModel());
+        return new CommandResult(MESSAGE_UNDO_SUCCESS);
     }
 
     @Override

@@ -57,7 +57,6 @@ public class ModelManager implements Model {
 
     @Override
     public void preUpdateModel() {
-        System.out.println("CAK");
         this.previousModel = new ModelManager(this.addressBook, this.userPrefs, this.previousModel);
     }
 
