@@ -16,6 +16,11 @@ public class SellerId extends Id {
         super(PREFIX_SELLER_ID, idNumber);
     }
 
+    /**
+     * Constructs a SellerId from a string.
+     *
+     * @param id The Id in string format.
+     */
     public SellerId(String id) {
         super(id);
         requireNonNull(id);

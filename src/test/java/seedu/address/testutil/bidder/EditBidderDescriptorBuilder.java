@@ -6,7 +6,6 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.biddercommands.EditBidderCommand.EditBidderDescriptor;
 import seedu.address.model.id.BidderId;
-import seedu.address.model.id.Id;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.bidder.Bidder;

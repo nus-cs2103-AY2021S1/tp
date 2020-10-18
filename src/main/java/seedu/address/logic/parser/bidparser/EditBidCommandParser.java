@@ -41,7 +41,8 @@ public class EditBidCommandParser implements Parser<EditBidCommand> {
 
         EditBidDescriptor editBidDescriptor = new EditBidDescriptor();
         if (argMultimap.getValue(PREFIX_PROPERTY_ID).isPresent()) {
-            editBidDescriptor.setPropertyId(IdParserUtil.parsePropertyId(argMultimap.getValue(PREFIX_PROPERTY_ID).get()));
+            editBidDescriptor.setPropertyId(IdParserUtil.parsePropertyId(argMultimap.getValue(PREFIX_PROPERTY_ID)
+                    .get()));
         }
         if (argMultimap.getValue(PREFIX_CLIENT).isPresent()) {
             editBidDescriptor.setBidderId(IdParserUtil.parseBidderId(argMultimap.getValue(PREFIX_CLIENT).get()));

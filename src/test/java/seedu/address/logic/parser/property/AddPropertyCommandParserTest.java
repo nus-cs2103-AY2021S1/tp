@@ -33,8 +33,6 @@ import static seedu.address.model.property.Property.DEFAULT_PROPERTY_ID;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.property.AddPropertyCommand;
-import seedu.address.model.id.Id;
-import seedu.address.model.id.PropertyId;
 import seedu.address.model.id.SellerId;
 import seedu.address.model.price.Price;
 import seedu.address.model.property.IsRental;

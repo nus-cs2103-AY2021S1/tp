@@ -3,7 +3,6 @@ package seedu.address.model.person.bidder;
 import java.util.Set;
 
 import seedu.address.model.id.BidderId;
-import seedu.address.model.id.Id;
 import seedu.address.model.person.ClientPerson;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -16,8 +15,15 @@ import seedu.address.model.tag.Tag;
 public class Bidder extends ClientPerson {
 
     public static final BidderId DEFAULT_BIDDER_ID = new BidderId(0);
-    public BidderId bidderId;
+    private BidderId bidderId;
 
+    /**
+     * Constructs the bidder with name, phone and tags.
+     *
+     * @param name The name of the bidder.
+     * @param phone The phone number.
+     * @param tags Tags.
+     */
     public Bidder(Name name, Phone phone, Set<Tag> tags) {
         super(name, phone, tags, DEFAULT_BIDDER_ID);
         this.bidderId = DEFAULT_BIDDER_ID;

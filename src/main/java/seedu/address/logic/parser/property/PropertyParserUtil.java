@@ -3,9 +3,6 @@ package seedu.address.logic.parser.property;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.id.Id;
-import seedu.address.model.id.PropertyId;
-import seedu.address.model.id.SellerId;
 import seedu.address.model.price.Price;
 import seedu.address.model.property.Address;
 import seedu.address.model.property.IsRental;

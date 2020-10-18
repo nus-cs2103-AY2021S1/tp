@@ -16,6 +16,11 @@ public class BidderId extends Id {
         super(PREFIX_BIDDER_ID, idNumber);
     }
 
+    /**
+     * Constructs a BidderId object from a string.
+     *
+     * @param id The id in string format.
+     */
     public BidderId(String id) {
         super(id);
         requireNonNull(id);

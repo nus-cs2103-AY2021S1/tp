@@ -32,8 +32,8 @@ public class Property {
     /**
      * Every field must be present and not null.
      */
-    public Property(PropertyId propertyId, PropertyName propertyName, SellerId sellerId, Address address, Price askingPrice,
-                    PropertyType propertyType, IsRental isRental, IsClosedDeal isClosedDeal) {
+    public Property(PropertyId propertyId, PropertyName propertyName, SellerId sellerId, Address address,
+                    Price askingPrice, PropertyType propertyType, IsRental isRental, IsClosedDeal isClosedDeal) {
         requireAllNonNull(propertyId, propertyName, sellerId, address, askingPrice, propertyType,
                 isRental, isClosedDeal);
         this.propertyId = propertyId;

@@ -17,6 +17,13 @@ public class Seller extends ClientPerson {
     public static final SellerId DEFAULT_SELLER_ID = new SellerId(0);
     private SellerId sellerId;
 
+    /**
+     * Constructs a Seller from name, phone and tags.
+     *
+     * @param name The name of the seller.
+     * @param phone The phone number.
+     * @param tags Tags.
+     */
     public Seller(Name name, Phone phone, Set<Tag> tags) {
         super(name, phone, tags, DEFAULT_SELLER_ID);
         this.sellerId = DEFAULT_SELLER_ID;

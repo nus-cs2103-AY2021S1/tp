@@ -16,6 +16,11 @@ public class PropertyId extends Id {
         super(PREFIX_PROPERTY_ID, idNumber);
     }
 
+    /**
+     * Constructs a PropertyId from a string.
+     *
+     * @param id The Id in string format.
+     */
     public PropertyId(String id) {
         super(id);
         requireNonNull(id);
