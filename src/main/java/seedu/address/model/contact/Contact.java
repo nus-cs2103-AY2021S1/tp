@@ -26,12 +26,12 @@ public class Contact {
     /**
      * Every field must be present and not null.
      */
-    public Contact(Name name, Email email, Telegram telegramUsername, Set<Tag> tags) {
-        requireAllNonNull(name, email, tags);
+    public Contact(Name name, Email email, Telegram telegramUsername) {
+        requireAllNonNull(name, email, telegramUsername);
         this.name = name;
         this.email = email;
         this.telegramUsername = telegramUsername;
-        this.tags.addAll(tags);
+        // this.tags.addAll(tags);
     }
 
     public Name getName() {
