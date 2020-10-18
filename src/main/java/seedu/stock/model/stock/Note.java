@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.stock.commons.util.AppUtil.checkArgument;
 
 /**
- * Represent's note of a stock in the stock book.
+ * Represents note of a stock in the stock book.
  * Guarantees: immutable; is valid as declared in {@link #isValidNote(String)}
  */
 public class Note {

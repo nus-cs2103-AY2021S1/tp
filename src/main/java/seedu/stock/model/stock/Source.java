@@ -31,7 +31,7 @@ public class Source {
     //    + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
     // Condition can be refined later.
     public static final String MESSAGE_CONSTRAINTS =
-            "Locations can take any values, and it should not be blank";
+            "A source can take any values, and it should not be blank";
 
     /*
      * The first character of the source must not be a whitespace,
