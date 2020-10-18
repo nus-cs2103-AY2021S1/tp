@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.Status;
 import seedu.address.model.task.Task;
 
 /**

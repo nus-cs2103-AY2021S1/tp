@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.Status;
+import seedu.address.model.Status;
 
 /**
  * Signals operations on an invalid scope status.

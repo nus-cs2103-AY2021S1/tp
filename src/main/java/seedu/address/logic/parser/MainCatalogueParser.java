@@ -24,8 +24,8 @@ import seedu.address.logic.commands.project.LeaveCommand;
 import seedu.address.logic.commands.project.NewTeammateCommand;
 import seedu.address.logic.commands.project.ViewTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Status;
 import seedu.address.model.exceptions.InvalidScopeException;
-import seedu.address.model.project.Status;
 
 /**
  * Parses user input.
