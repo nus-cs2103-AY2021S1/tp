@@ -6,7 +6,7 @@ import java.util.Optional;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Quantity;
 
-public class ItemComparator implements Comparator<Item> {
+public class ItemQuantityPercentageComparator implements Comparator<Item> {
     @Override
     public int compare(Item item1, Item item2) {
         Quantity quantity1 = item1.getQuantity();

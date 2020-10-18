@@ -8,7 +8,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.model.Model;
 import seedu.address.model.item.Item;
-import seedu.address.model.item.comparator.ItemComparator;
+import seedu.address.model.item.comparator.ItemNameComparator;
+import seedu.address.model.item.comparator.ItemQuantityPercentageComparator;
 
 /**
  * The API of the InventoryModel component.
@@ -18,7 +19,7 @@ public interface InventoryModel extends Model {
     Predicate<Item> PREDICATE_SHOW_ALL_ITEMS = unused -> true;
 
     /** {@code Comparator} that returns a ItemComparator */
-    Comparator<Item> ITEM_COMPARATOR = new ItemComparator();
+    Comparator<Item> ITEM_COMPARATOR = new ItemQuantityPercentageComparator().thenComparing(new ItemNameComparator());
 
     /**
      * Returns the user prefs' inventory book file path.
