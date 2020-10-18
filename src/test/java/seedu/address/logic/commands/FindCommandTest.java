@@ -18,12 +18,16 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.student.*;
+import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.model.student.SchoolContainsKeywordsPredicate;
+import seedu.address.model.student.SchoolType;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.Year;
+import seedu.address.model.student.YearMatchPredicate;
 import seedu.address.testutil.FindStudentDescriptorBuilder;
 
 /**

@@ -1,8 +1,8 @@
 package seedu.address.model.student;
 
-import java.util.regex.Pattern;
-
 import static java.util.Objects.requireNonNull;
+
+import java.util.regex.Pattern;
 
 public class Year {
 
@@ -22,6 +22,12 @@ public class Year {
     private final SchoolType schoolType;
     private final Integer level;
 
+    /**
+     * Constructs a {@code Year}.
+     *
+     * @param schoolType A valid school type
+     * @param level A valid level
+     */
     public Year(SchoolType schoolType, Integer level) {
         requireNonNull(schoolType);
         requireNonNull(level);

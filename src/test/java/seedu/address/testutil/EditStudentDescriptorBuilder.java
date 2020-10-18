@@ -1,8 +1,12 @@
 package seedu.address.testutil;
 
 import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
-import seedu.address.logic.parser.ParserUtil;
-import seedu.address.model.student.*;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.School;
+import seedu.address.model.student.SchoolType;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.Year;
 
 /**
  * A utility class to help with building EditStudentDescriptor objects.

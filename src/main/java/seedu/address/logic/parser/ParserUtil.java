@@ -113,14 +113,20 @@ public class ParserUtil {
         return new Year(schoolType, level);
     }
 
+    /**
+     * Parses a {@code String schoolType} into a {@code SchoolType}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code schoolType} is invalid.
+     */
     public static SchoolType parseSchoolType(String schoolType) throws ParseException {
         requireNonNull(schoolType);
         String trimmed = schoolType.trim().toLowerCase();
         if (!SchoolType.isValidSchoolType(trimmed)) {
             throw new ParseException(SchoolType.SCHOOL_TYPE_CONSTRANTS);
-        };
+        }
         checkArgument(SchoolType.isValidSchoolType(trimmed), SchoolType.SCHOOL_TYPE_CONSTRANTS);
-        return SchoolType.lookupTable.get(trimmed);
+        return SchoolType.LOOKUP_TABLE.get(trimmed);
     }
 
     /**

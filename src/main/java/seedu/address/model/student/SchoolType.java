@@ -1,11 +1,6 @@
 package seedu.address.model.student;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-
 import java.util.Map;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public enum SchoolType {
 
@@ -33,7 +28,7 @@ public enum SchoolType {
             + "\"primary\", \"Primary\", \"pri\", \"Pri\", \"p\", \"P\", "
             + "\"jc\", \"Jc\", \"JC\", \"j\", \"J\"";
 
-    public static final Map<String, SchoolType> lookupTable = Map.ofEntries(
+    public static final Map<String, SchoolType> LOOKUP_TABLE = Map.ofEntries(
             Map.entry("pri", PRIMARY),
             Map.entry("primary", PRIMARY),
             Map.entry("p", PRIMARY),
@@ -45,7 +40,7 @@ public enum SchoolType {
     );
 
     public static boolean isValidSchoolType(String schoolType) {
-        return lookupTable.containsKey(schoolType.toLowerCase());
+        return LOOKUP_TABLE.containsKey(schoolType.toLowerCase());
     }
 
 }

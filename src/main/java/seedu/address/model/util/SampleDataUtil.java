@@ -7,7 +7,13 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.ReadOnlyReeve;
 import seedu.address.model.Reeve;
-import seedu.address.model.student.*;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.Question;
+import seedu.address.model.student.School;
+import seedu.address.model.student.SchoolType;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.Year;
 import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.admin.ClassTime;

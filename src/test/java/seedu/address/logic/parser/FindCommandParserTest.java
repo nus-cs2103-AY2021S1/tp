@@ -5,12 +5,15 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.model.student.*;
+import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.model.student.SchoolContainsKeywordsPredicate;
+import seedu.address.model.student.SchoolType;
+import seedu.address.model.student.Year;
+import seedu.address.model.student.YearMatchPredicate;
 import seedu.address.testutil.FindStudentDescriptorBuilder;
 
 public class FindCommandParserTest {

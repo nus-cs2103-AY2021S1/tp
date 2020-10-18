@@ -1,6 +1,27 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDITIONAL_DETAILS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDITIONAL_DETAILS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_TIME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_TIME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_VENUE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_VENUE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FEE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FEE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PAYMENT_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PAYMENT_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_LEVEL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_LEVEL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_TYPE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_TYPE_BOB;
 import static seedu.address.testutil.StudentBuilder.DEFAULT_QUESTION_MATH;
 import static seedu.address.testutil.StudentBuilder.DEFAULT_QUESTION_NEWTON;
 
