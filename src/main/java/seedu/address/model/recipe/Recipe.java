@@ -1,6 +1,12 @@
 package seedu.address.model.recipe;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INSTRUCTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_IMAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,6 +14,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.logic.commands.EditRecipeCommand;
 import seedu.address.model.commons.Calories;
 import seedu.address.model.tag.Tag;
 
@@ -86,6 +93,50 @@ public class Recipe {
                 && otherRecipe.getIngredient().equals(getIngredient())
                 && otherRecipe.getCalories().equals(getCalories())
                 && otherRecipe.getTags().equals(getTags());
+    }
+
+    /**
+     * Converts a recipe to its command string.
+     * @return String
+     */
+    public String stringify(int position) {
+        String commandWord = EditRecipeCommand.COMMAND_WORD;
+        String recipeName = PREFIX_NAME.toString() + name;
+        String ingredients = PREFIX_INGREDIENT.toString() + stringifyIngredients(this.ingredients);
+        String calories = PREFIX_CALORIES.toString() + this.calories.getValue();
+        String instructions = PREFIX_INSTRUCTION + this.instruction;
+        String image = PREFIX_RECIPE_IMAGE + this.recipeImage;
+        String tags = stringifyTags(this.tags);
+        return commandWord + " " + position + " " + recipeName + " " + ingredients + " " + calories
+                + " " + instructions + " " + image + " " + tags;
+    }
+
+    private String stringifyIngredients(ArrayList<Ingredient> ingredients) {
+        int len = ingredients.size();
+        String ingredientsResult = "";
+        for (int i = 0; i < len; i++) {
+            Ingredient ingt = ingredients.get(i);
+            if (i == len - 1) {
+                ingredientsResult += ingt.parseToString();
+            } else {
+                ingredientsResult += ingt.parseToString() + ", ";
+            }
+        }
+        return ingredientsResult;
+    }
+
+    private String stringifyTags(Set<Tag> set) {
+        int size = set.size();
+        String tags = PREFIX_TAG.toString();
+        for (Tag tag: set) {
+            if (size == 1) {
+                tags += tag.getTagName();
+            } else {
+                tags += tag.getTagName() + " " + PREFIX_TAG;
+            }
+            size--;
+        }
+        return tags;
     }
 
     /**
