@@ -42,8 +42,9 @@ public class NewTeammateCommand extends Command {
     /**
      * Creates an new teammate that is associated with the project
      */
-    public NewTeammateCommand(PersonName name, GitUserName gitUserName, Phone phone, Email email, Address address) {
-        toAdd = new Person(name, gitUserName, phone, email, address);
+    public NewTeammateCommand(Person person) {
+        requireNonNull(person);
+        toAdd = person;
     }
 
     @Override
