@@ -19,13 +19,14 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedFood {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Food's %s field is missing!";
+    public static final String INVALID_PRICE_FORMAT = "Price must be a double and non-negative.";
 
     private final String name;
     private final double price;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedVendor} with the given vendor details.
+     * Constructs a {@code JsonAdaptedFood} with the given food details.
      */
     @JsonCreator
     public JsonAdaptedFood(@JsonProperty("name") String name, @JsonProperty("price") double price,
@@ -54,9 +55,9 @@ class JsonAdaptedFood {
      * @throws IllegalValueException if there were any data constraints violated in the adapted food.
      */
     public Food toModelType() throws IllegalValueException {
-        final List<Tag> vendorTags = new ArrayList<>();
+        final List<Tag> foodTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            vendorTags.add(tag.toModelType());
+            foodTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -64,9 +65,9 @@ class JsonAdaptedFood {
         }
 
         if (!Food.isValidPrice(price)) {
-            throw new IllegalValueException("Price must be a double.");
+            throw new IllegalValueException("Price must be a double and non-negative.");
         }
-        final Set<Tag> modelTags = new HashSet<>(vendorTags);
+        final Set<Tag> modelTags = new HashSet<>(foodTags);
         return new Food(name, price, modelTags);
     }
 

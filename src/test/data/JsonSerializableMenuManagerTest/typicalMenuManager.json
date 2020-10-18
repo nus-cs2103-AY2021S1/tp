@@ -1,0 +1,27 @@
+{
+  "foods" : [ {
+    "name" : "Prata",
+    "price": 1,
+    "tagged" : ["classic"]
+  },
+    {
+      "name" : "Milo",
+      "price": 1.5,
+      "tagged" : ["Iced"]
+    },
+    {
+      "name": "Nasi Goreng",
+      "price": 4.5,
+      "tagged": ["Bestseller"]
+    },
+    {
+      "name": "Nuggets",
+      "price": 3.2,
+      "tagged": ["six"]
+    },
+    {
+      "name": "Cheese Prata",
+      "price": 1.6,
+      "tagged": ["cheesy"]
+    }]
+}
