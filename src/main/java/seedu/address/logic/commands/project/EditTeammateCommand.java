@@ -53,7 +53,7 @@ public class EditTeammateCommand extends Command {
         + PREFIX_TEAMMATE_EMAIL + "lucaskia@gmail.com "
         + PREFIX_TEAMMATE_ADDRESS + "13 lay road";
 
-    public static final String MESSAGE_EDIT_TEAMMATE_SUCCESS = "Edited Teammate: %1$s";
+    public static final String MESSAGE_EDIT_TEAMMATE_SUCCESS = "Teammate has been edited: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final GitUserIndex gitUserIndex;
