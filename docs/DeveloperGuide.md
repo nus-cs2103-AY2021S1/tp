@@ -5,9 +5,8 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
-#Developer Guide
-
-This is the developer guide for `Inventoryinator` a brownfield project evolved from [AddressBook3](https://github.com/nus-cs2103-AY2021S1/tp).
+This is the developer guide for `Inventoryinator` a brownfield project evolved
+from [AddressBook3](https://github.com/nus-cs2103-AY2021S1/tp).
 ![inventoryinator](images/inventoryinator.jpg)
 
 Inventoryinator is a **desktop app for game inventories, optimized for use via a Command Line Interface** (CLI) 
@@ -39,9 +38,12 @@ Refer to the guide [UserGuide](UserGuide.md).
 
 ![Archietecture Diagram](images/ArchitectureDiagram.png)
 
-The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
+The ***Architecture Diagram*** given above explains the high-level design of the App.
+Given below is a quick overview of each component.
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-F13-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-F13-1/tp/blob/master/src/main/java/seedu/address/Main.java)
+and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java).
+It is responsible for:
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -57,9 +59,11 @@ The rest of the App consists of four components.
 Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding
+API `interface` mentioned in the previous point.
 
-For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
+For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface
+and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
@@ -79,9 +83,13 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-F13-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`,
+`StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
+are in the `src/main/resources/view` folder. For example, the layout of the
+[`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -141,77 +149,94 @@ Classes used by multiple components are stored in the `seedu.addressbook.commons
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Quantity feature
+
+`AddQuantityToItemCommand` facilitates the addition of a user-input quantity to an existing `Item`.
+This command is a specific invocation of an `EditItemCommand` that only modifies the `Item`'s quantity,
+and instead of replacing the quantity by a new value in `EditItemCommand`, the user-input quantity
+is added to the existing `Item`'s `Quantity`.
+
+This added `Quantity` can be negative and this is why `int` is used in `AddQuantityToItemCommand` as
+opposed to `Quantity`, which only accepts non-negative integers. However, the final `Quantity` of the
+modified `Item` cannot be below 0.
+
+`AddQuantityToItemCommand` is dependent on `EditItemCommand` and utilises it to execute its
+intended behaviour.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedInventoryinator`. It extends `Inventoryinator`
- with an undo/redo history, stored internally as an `inventoryinatorStateList` and `currentStatePointer`.
-  Additionally, it implements the following operations:
+`VersionedInventory` facilitates the proposed undo/redo feature. It extends `Inventory`, with
+comprises: `ItemList`, `LocationList` and `RecipeList` and contains the entire `Inventory`'s undo/redo history,
+stored internally as an `inventoryStateList` and `currentStatePointer`.
 
-* `VersionedInventoryinator#commit()` — Saves the current inventory state in its history.
-* `VersionedInventoryinator#undo()` — Restores the previous inventory state from its history.
-* `VersionedInventoryinator#redo()` — Restores a previously undone inventory state from its history.
+Additionally, it implements the following operations:
 
-These operations are exposed in the `Model` interface as `Model#commitInventoryinator()`, `Model#undoInventoryinator()` and `Model#redoInventoryinator()` respectively.
+* `VersionedInventory#commit()` — Saves the current inventory state in its history.
+* `VersionedInventory#undo()` — Restores the previous inventory state from its history.
+* `VersionedInventory#redo()` — Restores a previously undone inventory state from its history.
+
+These operations are exposed in the `Model` interface as `Model#commitInventory()`, `Model#undoInventory()` and
+`Model#redoInventory()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedInventoryinator` will be initialized with
- the initial inventory state, and the `currentStatePointer` pointing to that single inventory state.
+Step 1. The user launches the application for the first time. The `VersionedInventory` will be initialized with
+the initial inventory state, and the `currentStatePointer` pointing to that single inventory state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `deli Bob’s 28th finger` command to delete the matching item in the inventory. The `deli`
-command calls `Model#commitInventoryinator()`, causing
- the modified state of the inventory after the `deli Bob’s 28th finger` command executes to be
- saved in the `inventoryinatorStateList`, and the `currentStatePointer` is shifted to the newly inserted inventory state.
+Step 2. The user executes `deli Bob’s 28th finger` (a `DeleteItemCommand`) command to delete the matching item in
+the inventory. The `deli` command calls `Model#commitInventory()`, causing the modified state of the inventory
+after the `deli Bob’s 28th finger` command executes to be saved in the `inventoryStateList`, and the
+`currentStatePointer` is shifted to the newly inserted inventory state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `addi Bob’s 6th regret -q 8` to add a new item.
- The `addi` command also calls `Model#commitInventoryinator()`, causing another modified inventory state to be
-  saved into the `inventoryinatorStateList`.
+Step 3. The user executes `addi Bob’s 6th regret -q 8` (a `AddItemCommand`) to add a new item.
+The `addi` command also calls `Model#commitInventory()`, causing another modified inventory state to be
+saved into the `inventoryStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-**Note:** If a command fails its execution, it will not call `Model#commitInventoryinator()`, so the inventory
- state will not be saved into the `inventoryinatorStateList`.
+**Note:** If a command fails its execution, it will not call `Model#commitInventory()`, so the inventory
+state will not be saved into the `inventoryStateList`.
 
-Step 4. The user now decides that adding the item was a mistake, and decides to undo that action by executing the `undo` command.
- The `undo` command will call `Model#undoInventoryinator()`, which will shift the `currentStatePointer` once to the
- left, pointing it to the previous inventory state, and restores the inventory to that state.
+Step 4. The user now decides that adding the item was a mistake, and decides to undo that action by executing the
+`undo` command. The `undo` command will call `Model#undoInventory()`, which will shift the `currentStatePointer`
+once to the left, pointing it to the previous inventory state, and restores the inventory to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial Inventoryinator state, then there are 
-no previous Inventoryinator states to restore. The `undo` command uses `Model#canUndoinventoryinator()` to check if this
+**Note:** If the `currentStatePointer` is at index 0, pointing to the initial `Inventory` state, then there are 
+no previous `Inventory` states to restore. The `undo` command uses `Model#canUndoinventory()` to check if this
 is the case. If so, it will return an error to the user rather than attempting to perform the undo.
 
 The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a
- limitation of PlantUML, the lifeline reaches the end of diagram.
+limitation of PlantUML, the lifeline reaches the end of diagram.
 
-The `redo` command does the opposite — it calls `Model#redoInventoryinator()`, which shifts the `currentStatePointer`
- once to the right, pointing to the previously undone state, and restores the inventory to that state.
+The `redo` command does the opposite — it calls `Model#redoInventory()`, which shifts the `currentStatePointer`
+once to the right, pointing to the previously undone state, and restores the inventory to that state.
 
-**Note:** If the `currentStatePointer` is at index `inventoryinatorStateList.size() - 1`, pointing to the
- latest inventory state, then there are no undone Inventoryinator states to restore. The `redo` command uses
-  `Model#canRedoInventoryinator()` to check if this is the case. If so, it will return an error to the user
-   rather than attempting to perform the redo.
+**Note:** If the `currentStatePointer` is at index `inventoryStateList.size() - 1`, pointing to the
+latest inventory state, then there are no undone `Inventory` states to restore. The `redo` command uses
+`Model#canRedoInventory()` to check if this is the case. If so, it will return an error to the user
+rather than attempting to perform the redo.
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the inventory, such as `list`,
- will usually not call `Model#commitInventoryinator()`, `Model#undoInventoryinator()` or `Model#redoInventoryinator()`.
- Thus, the `inventoryinatorStateList` remains unchanged.
+will usually not call `Model#commitInventory()`, `Model#undoInventory()` or `Model#redoInventory()`.
+Thus, the `inventoryinatorStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitInventoryinator()`. Since the `currentStatePointer`
- is not pointing at the end of the `inventoryinatorStateList`, all inventory states after the `currentStatePointer`
-  will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the
-   behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitInventory()`. Since the `currentStatePointer`
+is not pointing at the end of the `inventoryStateList`, all inventory states after the `currentStatePointer`
+will be purged. Reason: It no longer makes sense to redo the `addi Bob’s 6th regret -q 8` command. This is the
+behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -227,21 +252,13 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `deli/delr`, just save the item/recipe being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-* **Alternative 3:** Store a LinkedList of Negations of non-viewing commands.
-  * Pros: Similar to **Alternative 2** but instead of an explicit undo for each command, store a
-   size k LeakyStack of commands. This is easier to implement, but may be impacted by complex symantics of
-    implementing macro commands. 
-  * Cons: Harder to implement.
-
-### \[Proposed\] Data archiving
-
-TODO
-
+* **Alternative 2:** Store a stack of commands that have been run.
+  * Pros: We store a stack of commands which is added to whenever the user runs a new command that
+          modifies the inventory state. When undo is invoked, the stack is popped and added to a
+          redo stack, and the command will be negated and run. When redo is invoked, the redo stack
+          is popped and the command is run.
+  * Cons: Harder to implement as each command has to be negated individually. This has considerably
+          many edge cases to consider.
 
 --------------------------------------------------------------------------------------------------------------------
 
