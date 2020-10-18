@@ -13,6 +13,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -20,6 +22,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
+import seedu.address.model.student.Question;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
@@ -62,7 +65,8 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ParserUtil.parseAdditionalDetails(argMultimap.getAllValues(PREFIX_DETAILS));
 
         Admin admin = new Admin(classVenue, classTime, fee, paymentDate, detailList);
-        Student student = new Student(name, phone, school, year, admin);
+        List<Question> questions = new ArrayList<>();
+        Student student = new Student(name, phone, school, year, admin, questions);
         return new AddCommand(student);
     }
 

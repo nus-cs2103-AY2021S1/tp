@@ -20,7 +20,7 @@ public class PaymentDate {
 
     private static final DateTimeFormatter INPUT_DEF = DateTimeFormatter.ofPattern("d/M/yy");
     private static final DateTimeFormatter INPUT_ALT = DateTimeFormatter.ofPattern("d/M/yyyy");
-    private static final DateTimeFormatter OUTPUT = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
+    private static final DateTimeFormatter OUTPUT = DateTimeFormatter.ofPattern("dd MMM yyyy");
 
     public final LocalDate lastPaid;
 

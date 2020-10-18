@@ -16,6 +16,11 @@ public class CliSyntax {
     public static final Prefix PREFIX_PAYMENT = new Prefix("d/");
     public static final Prefix PREFIX_DETAILS = new Prefix("a/");
 
+    /* Prefix for question commands */
+    public static final Prefix PREFIX_ADD_QUESTION = new Prefix("a/");
+    public static final Prefix PREFIX_SOLVE_QUESTION = new Prefix("s/");
+    public static final Prefix PREFIX_DELETE_QUESTION = new Prefix("d/");
+
     public static final Prefix[] COMPULSORY_PREFIXES = new Prefix[] {PREFIX_NAME, PREFIX_PHONE,
         PREFIX_SCHOOL, PREFIX_YEAR, PREFIX_VENUE, PREFIX_TIME, PREFIX_FEE, PREFIX_PAYMENT};
 
@@ -25,12 +30,6 @@ public class CliSyntax {
     public static final Prefix[] FIND_SUPPORTED_PREFIXES =
             new Prefix[] {PREFIX_NAME, PREFIX_SCHOOL, PREFIX_YEAR};
 
-    /**
-     * Returns a list of all CLI syntax definitions.
-     */
-    public static Prefix[] valuesOf() {
-        return new Prefix[] {PREFIX_NAME, PREFIX_PHONE, PREFIX_SCHOOL,
-            PREFIX_YEAR, PREFIX_VENUE, PREFIX_TIME, PREFIX_DETAILS,
-            PREFIX_FEE, PREFIX_PAYMENT};
-    }
+    public static final Prefix[] QUESTION_COMMAND_PREFIXES =
+            new Prefix[] {PREFIX_ADD_QUESTION, PREFIX_SOLVE_QUESTION, PREFIX_DELETE_QUESTION};
 }

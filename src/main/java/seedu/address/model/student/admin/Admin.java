@@ -13,19 +13,6 @@ import java.util.Set;
  */
 public class Admin {
 
-    /*
-     * A placeholder Admin object until it has been fully integrated.
-     * To remove when no longer needed.
-     */
-    private static Admin placeholder;
-    static {
-        ClassVenue venue = new ClassVenue("Placeholder venue");
-        ClassTime time = new ClassTime("1 0000-2359");
-        Fee fee = new Fee("123");
-        PaymentDate date = new PaymentDate("1/1/01");
-        placeholder = new Admin(venue, time, fee, date, new HashSet<>());
-    }
-
     private final ClassVenue classVenue;
     private final ClassTime classTime;
     private final Fee fee;
@@ -63,10 +50,6 @@ public class Admin {
 
     public Set<AdditionalDetail> getDetails() {
         return details;
-    }
-
-    public static Admin getPlaceholder() {
-        return placeholder;
     }
 
     /**

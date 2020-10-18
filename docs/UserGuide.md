@@ -26,8 +26,8 @@ Reeve is a desktop app for **private tutors to manage the details of their stude
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`add n/Alex p/93211234 s/Commonwealth Secondary School y/Secondary 2 v/Blk 33 West Coast Rd #21-214 
-   t/1 1430-1630 a/Alex is quiet m/www.zoom123.com sb/Mathematics` : Adds a student named `Alex` to Reeve.
+   * **`add`**`add n/Alex p/93211234 s/Commonwealth Secondary School y/Primary 6 v/Blk 33 West Coast Rd #21-214 
+   t/1 1430-1630 f/25 d/12/12/2020` : Adds a student named `Alex` to Reeve.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -69,19 +69,21 @@ Format: `help`
 
 ### Adding a student: `add`
 
-Adds a student to Reeve. (written by: Alex and Hogan)
+Adds a student to Reeve. (Written by: Alex and Hogan)
 
-Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/VENUE t/TIME 
-[a/ADDITIONAL_DETAILS] [m/MEETING_LINK] [sb/SUBJECT]`
+Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/LAST_PAYMENT_DATE [a/ADDITIONAL_DETAILS]`
 
-<div markdown="span" class="alert alert-primary">:information_source: **Note:**
-The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}
+<div markdown="block" class="alert alert-info">
+
+:information_source: The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}<br>
+
 </div>
 
 Example:
-* `add n/Alex p/93211234 s/Commonwealth Secondary School y/Secondary 2 v/Blk 33 West Coast Rd #21-214 t/1 1430-1630 `
-* `add n/John p/98765432 s/Newton Primary School y/Primary 5 v/Blk 123 East Coast Rd #02-345 t/3 1600-1830 
-a/John likes chocolate m/www.zoom987.com sb/English`
+* `add n/Alex p/93211234 s/Commonwealth Secondary School y/Primary 6 v/Blk 33 West Coast Rd #21-214 
+t/1 1430-1630 f/25 d/12/12/2020`
+* `add n/John Doe p/98765432 s/Woodlands Secondary School y/Secondary 2 v/347 Woodlands Ave 3, Singapore 730347 
+t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
 
 ### Listing all students : `list`
 
@@ -89,16 +91,16 @@ Shows a list of all students in Reeve.
 
 Format: `list`
 
-
-
 ### Editing a student : `edit`
 
 Edits an existing student in Reeve (Written by: Vaishak).
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/PAYMENT_DATE] [a/ADDITIONAL_DETAILS] `
 
-<div markdown="span" class="alert alert-primary">:information_source: **Note:**
-The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}
+<div markdown="block" class="alert alert-info">
+
+:information_source: The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}<br>
+
 </div>
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
@@ -112,8 +114,7 @@ Examples:
 
 ### Locating students: `find`
 
-(written by: Ying Gao)
-Finds students who satisfy the given search criteria.
+Finds students who satisfy the given search criteria. (Written by: Choon Siong)
 
 Format: `find [n/NAME] [s/SCHOOL] [y/YEAR]`
 
@@ -126,7 +127,6 @@ Format: `find [n/NAME] [s/SCHOOL] [y/YEAR]`
 * For the year, students with a year that contains any keywords specified for the year will be considered to match for the year.
 * Only students matching all criteria specified will be returned (i.e `AND` search).
 
-(written by: Choon Siong)
 Examples:
 * `find n/Alex david` matches `Alex David`, `alex david` and `Alex david`.
 * `find n/Alex david` does not match `Alexis Davinder`.
@@ -135,7 +135,43 @@ Examples:
 * `find y/sec 3` matches `sec 3`, `Secondary 3`
 * `find y/sec 3` matches `sec 4`
 * `find n/alex s/yishun y/sec 3` searches for all students who match all of `n/alex`, `s/yishun` and `y/sec 3`.
-* 
+
+### Finding students with overdue fees: `overdue`
+
+Finds students whose date of last payment is more than a month ago. (Written by: Ying Gao)
+
+Format: `unpaid`
+
+### Recording questions from a student: `question`
+
+(written by: Ying Gao)
+Adds, resolves or remove questions from a specified student.
+
+Format: `question INDEX [a/QUESTION_ADD] [s/QUESTION_INDEX] [d/QUESTION_INDEX]`
+
+* Exactly one of the optional fields must be present.
+* The index and question index **must be positive integers** 1, 2, 3, …​
+* The `a/` field adds a new unanswered question to the student at the specified `INDEX`.
+* The `s/` field marks an unanswered question, of the student at the specified `INDEX`, at the specified 
+`QUESTION_INDEX` as solved.
+* The `d/` field deletes the question at the specified `QUESTION_INDEX` from the student at the specified `INDEX`.
+
+Examples:
+* `question 1 a/How do birds fly?` records "How do birds fly?" as a new question from the 1st student in Reeve.
+* `question 2 s/3` marks the 3rd question of the 2nd student in Reeve as answered.
+* `question 1 d/2` removes the 2nd question from the 1st student in Reeve.
+
+### Listing lessons schedule on a particular date: `schedule`
+
+(written by:Alex Chua)
+List the students that the user has class with on the given date.
+
+Format: `schedule DATE`
+
+* Date must be in the format of **dd/mm/yyyy**.
+
+Examples:
+* `schedule 20/11/2020` outputs a list of students who has lessons with the user on that date
 
 ### Deleting a student : `delete`
 
@@ -167,10 +203,6 @@ Format: `exit`
 
 Reeve data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Archiving data files `[coming in v2.0]`
-
-_{explain the feature here}_
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -184,7 +216,7 @@ _{explain the feature here}_
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [a/ADDITIONAL_DETAILS] [m/MEETING_LINK] [sb/SUBJECT]​` <br> e.g., `add n/John p/98765432 s/Newton Primary School y/Primary 5 v/Blk 123 East Coast Rd #02-345 t/3 1600-1830 a/John likes chocolate m/www.zoom987.com sb/English`
+**Add** | `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/LAST_PAYMENT_DATE [a/ADDITIONAL_DETAILS]​` <br> e.g., `add n/John Doe p/98765432 s/Woodlands Secondary School y/Secondary 2 v/347 Woodlands Ave 3, Singapore 730347 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE] [n/NAME] [p/PHONE] [v/CLASS_VENUE] [s/SCHOOL] [sb/SUBJECT] [y/YEAR] [t/CLASS_TIME] [a/ADDITIONAL_DETAILS]`<br> e.g.,`edit 1 n/Alex p/99999999 s/Meridian Junior College`

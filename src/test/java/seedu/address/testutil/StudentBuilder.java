@@ -1,10 +1,13 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
+import seedu.address.model.student.Question;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
@@ -25,11 +28,14 @@ public class StudentBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_SCHOOL = "NUS High School";
     public static final String DEFAULT_YEAR = "4";
-    public static final String DEFAULT_CLASS_VENUE = "Placeholder venue";
-    public static final String DEFAULT_CLASS_TIME = "1 0000-2359";
-    public static final String DEFAULT_FEE = "123";
-    public static final String DEFAULT_PAYMENT_DATE = "1/1/01";
-    public static final String DEFAULT_DETAIL = "smart";
+    public static final String DEFAULT_CLASS_VENUE = "311, Clementi Ave 2, #02-25";
+    public static final String DEFAULT_CLASS_TIME = "1 1500-1700";
+    public static final String DEFAULT_FEE = "21";
+    public static final String DEFAULT_PAYMENT_DATE = "21/05/2020";
+    public static final String DEFAULT_ADDITIONAL_DETAILS_MONEY = "owesMoney";
+    public static final String DEFAULT_ADDITIONAL_DETAILS_FRIEND = "friends";
+    public static final String DEFAULT_QUESTION_NEWTON = "What is Newton's Second Law?";
+    public static final String DEFAULT_QUESTION_MATH = "How do you inverse a matrix?";
 
     // Identity fields
     private Name name;
@@ -42,7 +48,9 @@ public class StudentBuilder {
     private ClassTime time;
     private Fee fee;
     private PaymentDate paymentDate;
-    private Set<AdditionalDetail> details;
+    private Set<AdditionalDetail> details = new HashSet<>();
+
+    private List<Question> questions = new ArrayList<>();
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -57,7 +65,15 @@ public class StudentBuilder {
         time = new ClassTime(DEFAULT_CLASS_TIME);
         fee = new Fee(DEFAULT_FEE);
         paymentDate = new PaymentDate(DEFAULT_PAYMENT_DATE);
-        details = new HashSet<>();
+        List.of(DEFAULT_ADDITIONAL_DETAILS_MONEY, DEFAULT_ADDITIONAL_DETAILS_FRIEND)
+                .stream()
+                .map(AdditionalDetail::new)
+                .forEach(details::add);
+
+        List.of(DEFAULT_QUESTION_NEWTON, DEFAULT_QUESTION_MATH)
+                .stream()
+                .map(Question::new)
+                .forEach(questions::add);
     }
 
     /**
@@ -74,7 +90,9 @@ public class StudentBuilder {
         time = studentAdmin.getClassTime();
         fee = studentAdmin.getFee();
         paymentDate = studentAdmin.getPaymentDate();
-        details = studentAdmin.getDetails();
+        details.addAll(studentAdmin.getDetails());
+
+        questions.addAll(studentToCopy.getQuestions());
     }
 
     /**
@@ -151,11 +169,28 @@ public class StudentBuilder {
     }
 
     /**
+     * Sets the {@code Questions} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withQuestions(String... questions) {
+        this.questions = SampleDataUtil.getQuestions(questions);
+        return this;
+    }
+
+    /**
+     * Sets some {@code Questions} as solved for the {@code Student} that we are building.
+     */
+    public StudentBuilder withSolved(String... questions) {
+        this.questions = SampleDataUtil.getSolvedQuestions(questions);
+        return this;
+    }
+
+    /**
      * Builds a {@code Student} based on the given information.
      */
     public Student build() {
         return new Student(name, phone, school, year,
-                new Admin(venue, time, fee, paymentDate, details));
+                new Admin(venue, time, fee, paymentDate, details),
+                questions);
     }
 
 }

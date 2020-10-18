@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -42,19 +41,19 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String name = argMultimap.getValue(PREFIX_NAME).get();
             String[] nameKeywords = name.split("\\s+");
-            List<String> nameKeywordsList = Arrays.asList(nameKeywords);
+            List<String> nameKeywordsList = List.of(nameKeywords);
             findStudentDescriptor.setNamePredicate(new NameContainsKeywordsPredicate(nameKeywordsList));
         }
         if (argMultimap.getValue(PREFIX_SCHOOL).isPresent()) {
             String school = argMultimap.getValue(PREFIX_SCHOOL).get();
             String[] schoolKeywords = school.split("\\s+");
-            List<String> schoolKeywordsList = Arrays.asList(schoolKeywords);
+            List<String> schoolKeywordsList = List.of(schoolKeywords);
             findStudentDescriptor.setSchoolPredicate(new SchoolContainsKeywordsPredicate(schoolKeywordsList));
         }
         if (argMultimap.getValue(PREFIX_YEAR).isPresent()) {
             String year = argMultimap.getValue(PREFIX_YEAR).get();
             String[] yearKeywords = year.split("\\s+");
-            List<String> yearKeywordsList = Arrays.asList(yearKeywords);
+            List<String> yearKeywordsList = List.of(yearKeywords);
             findStudentDescriptor.setYearPredicate(new YearMatchPredicate(yearKeywordsList));
         }
 
