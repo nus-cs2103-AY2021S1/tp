@@ -16,7 +16,13 @@ end box
 [-> LogicManager : execute("delete 1")
 activate LogicManager
 
-LogicManager -> MainCatalogueParser : parseCommand("delete 1")
+LogicManager -> Model: getStatus()
+activate Model
+
+Model --> LogicManager: status
+deactivate Model
+
+LogicManager -> MainCatalogueParser : parseCommand("delete 1", status)
 activate MainCatalogueParser
 
 create DeleteCommandParser
