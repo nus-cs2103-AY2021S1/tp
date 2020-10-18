@@ -8,6 +8,7 @@ public class CliSyntax {
     /* Prefix definitions */
 
     // items start here
+    public static final Prefix PREFIX_ORIGINAL_ITEM_NAME = new Prefix("-o ");
     public static final Prefix PREFIX_ITEM_NAME = new Prefix("-n ");
     public static final Prefix PREFIX_ITEM_QUANTITY = new Prefix("-q ");
     public static final Prefix PREFIX_ITEM_DESCRIPTION = new Prefix("-d ");

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_DESCRIPTION_BANANA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_BANANA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_BANANA;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -11,7 +12,6 @@ import static seedu.address.testutil.TypicalRecipes.APPLE_PIE;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.ItemList;
 import seedu.address.model.LocationList;
 import seedu.address.model.Model;
@@ -48,7 +48,7 @@ public class EditItemCommandIntegrationTest {
         EditItemCommand.EditItemDescriptor descriptor = new EditItemCommand.EditItemDescriptor();
         descriptor.setQuantity(new Quantity(VALID_ITEM_QUANTITY_BANANA));
         descriptor.setDescription(VALID_ITEM_DESCRIPTION_BANANA);
-        EditItemCommand eic = new EditItemCommand(Index.fromZeroBased(0), descriptor);
+        EditItemCommand eic = new EditItemCommand(VALID_ITEM_NAME_APPLE, descriptor);
         String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, apple);
 
         // expected model should contain the edited apple
@@ -68,7 +68,7 @@ public class EditItemCommandIntegrationTest {
     public void execute_withRecipeList_success() {
         EditItemCommand.EditItemDescriptor descriptor = new EditItemCommand.EditItemDescriptor();
         descriptor.setName(VALID_ITEM_NAME_BANANA);
-        EditItemCommand eic = new EditItemCommand(Index.fromZeroBased(0), descriptor);
+        EditItemCommand eic = new EditItemCommand(VALID_ITEM_NAME_APPLE, descriptor);
         String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, VALID_ITEM_NAME_BANANA);
         model.addRecipe(APPLE_PIE);
 
@@ -86,21 +86,9 @@ public class EditItemCommandIntegrationTest {
     @Test
     public void execute_noFieldSpecified_failure() {
         // edit command has empty descriptor with no fields specified
-        EditItemCommand eic = new EditItemCommand(Index.fromZeroBased(0), new EditItemCommand.EditItemDescriptor());
+        EditItemCommand eic = new EditItemCommand(VALID_ITEM_NAME_APPLE, new EditItemCommand.EditItemDescriptor());
 
         assertInventoryCommandFailure(eic, model, EditItemCommand.MESSAGE_NOT_EDITED);
-    }
-
-    /**
-     * Tests for failure when index is out of range of the number of items.
-     */
-    @Test
-    public void execute_invalidIndex_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredItemList().size() + 1);
-        EditItemCommand.EditItemDescriptor descriptor = new EditItemCommand.EditItemDescriptor();
-        descriptor.setQuantity(new Quantity(VALID_ITEM_QUANTITY_BANANA));
-        EditItemCommand eic = new EditItemCommand(outOfBoundIndex, descriptor);
-        assertInventoryCommandFailure(eic, model, EditItemCommand.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
     }
 
     /**
@@ -108,12 +96,12 @@ public class EditItemCommandIntegrationTest {
      */
     @Test
     public void execute_duplicateItem_failure() {
-        Item banana = new ItemBuilder(APPLE).withName("Banana").build();
+        Item banana = new ItemBuilder(APPLE).withName(VALID_ITEM_NAME_BANANA).build();
         model.addItem(banana); // model now has apple and banana
         EditItemCommand.EditItemDescriptor descriptor = new EditItemCommand.EditItemDescriptor();
         descriptor.setName(banana.getName());
         // This command tries to modify apple to be named banana, which is already in the model
-        EditItemCommand eic = new EditItemCommand(Index.fromZeroBased(0), descriptor);
+        EditItemCommand eic = new EditItemCommand(VALID_ITEM_NAME_APPLE, descriptor);
         assertInventoryCommandFailure(eic, model, EditItemCommand.MESSAGE_DUPLICATE_ITEM);
     }
 }

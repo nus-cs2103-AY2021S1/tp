@@ -37,6 +37,15 @@ public class CommandTestUtil {
     public static final String VALID_ITEM_LOCATION_PEACH_ORCHARD = "Bob's peach orchard";
     public static final String VALID_ITEM_LOCATION_SPINACH_GARDEN = "Bob's spinach garden";
 
+    public static final String VALID_ITEM_QUANTITY_ORIGINAL = "50";
+    public static final int VALID_QUANTITY_INT = 100;
+    public static final int VALID_QUANTITY_INT_ALT = 200;
+    public static final int VALID_QUANTITY_INCREMENT = 10;
+    public static final String VALID_INCREASED_QUANTITY = "60";
+    public static final int VALID_QUANTITY_DECREMENT = -50;
+    public static final String VALID_DECREASED_QUANTITY = "0";
+    public static final int INVALID_QUANTITY_DECREMENT = -51;
+
     // recipe
     public static final String VALID_RECIPE_PRODUCT_NAME_APPLE_PIE = "Apple Pie";
     public static final String VALID_RECIPE_PRODUCT_NAME_BANANA_PIE = "Banana Pie";

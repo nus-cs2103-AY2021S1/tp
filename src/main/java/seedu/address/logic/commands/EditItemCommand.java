@@ -4,15 +4,16 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORIGINAL_ITEM_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -28,9 +29,10 @@ public class EditItemCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the item "
-            + "at the index number used in the displayed item list. "
+            + "given the item name. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: "
+            + "[" + PREFIX_ORIGINAL_ITEM_NAME + "NAME] "
             + "[" + PREFIX_ITEM_NAME + "NAME] "
             + "[" + PREFIX_ITEM_QUANTITY + "QUANTITY] "
             + "[" + PREFIX_ITEM_DESCRIPTION + "DESCRIPTION] \n"
@@ -40,33 +42,41 @@ public class EditItemCommand extends Command {
     public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the item list.";
-    public static final String MESSAGE_INVALID_ITEM_DISPLAYED_INDEX = "The index must be a positive integer.";
+    public static final String MESSAGE_ITEM_NOT_FOUND = "Item is not found in the item list.";
+    public static final String MESSAGE_NO_ORIGINAL_ITEM = "Original item name must be present!";
 
-    private final Index index;
+    private final String itemName;
     private final EditItemDescriptor editItemDescriptor;
 
     /**
-     * @param index of the item in the filtered item list to edit
+     * @param itemName of the item in the filtered item list to edit
      * @param editItemDescriptor details to edit the item with
      */
-    public EditItemCommand(Index index, EditItemDescriptor editItemDescriptor) {
-        requireNonNull(index);
+    public EditItemCommand(String itemName, EditItemDescriptor editItemDescriptor) {
+        requireNonNull(itemName);
         requireNonNull(editItemDescriptor);
 
-        this.index = index;
+        this.itemName = itemName;
         this.editItemDescriptor = new EditItemDescriptor(editItemDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Item> lastShownList = model.getFilteredItemList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+        List<Item> itemList = new ArrayList<>(model.getFilteredItemList());
+
+        // filter to only get matching and not deleted items
+        itemList.removeIf(x -> !x.getName().equals(itemName));
+        if (itemList.isEmpty()) {
+            throw new CommandException(MESSAGE_ITEM_NOT_FOUND);
         }
 
-        Item itemToEdit = lastShownList.get(index.getZeroBased());
+        Item itemToEdit;
+        itemToEdit = itemList.stream()
+                .findFirst()// Get the first (and only) item matching or else throw Error
+                .orElseThrow(()-> new CommandException(MESSAGE_ITEM_NOT_FOUND));
+
         Item editedItem = createEditedItem(itemToEdit, editItemDescriptor);
 
         if (!editItemDescriptor.isAnyFieldEdited()) {
@@ -81,7 +91,6 @@ public class EditItemCommand extends Command {
         if (editItemDescriptor.getName().isPresent()) {
             model.updateRecipeNames(itemToEdit.getName(), editItemDescriptor.getName().get());
         }
-
         model.setItem(itemToEdit, editedItem);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
 
@@ -121,7 +130,7 @@ public class EditItemCommand extends Command {
 
         // state check
         EditItemCommand e = (EditItemCommand) other;
-        return index.equals(e.index)
+        return itemName.equals(e.itemName)
                 && editItemDescriptor.equals(e.editItemDescriptor);
     }
 
