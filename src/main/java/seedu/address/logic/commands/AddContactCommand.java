@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -31,6 +31,11 @@ public class AddContactCommand extends Command {
 
     private final Contact toAdd;
 
+    /**
+     * Creates and initialises a new AddContactCommand for the addition of a new contact.
+     *
+     * @param contact Contact to be added.
+     */
     public AddContactCommand(Contact contact) {
         requireNonNull(contact);
         toAdd = contact;
