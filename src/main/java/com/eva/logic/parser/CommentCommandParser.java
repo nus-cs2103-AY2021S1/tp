@@ -1,6 +1,7 @@
 package com.eva.logic.parser;
 
 import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static com.eva.logic.parser.CliSyntax.PREFIX_ADDORDELETE_COMMENT;
 import static com.eva.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static com.eva.model.comment.CommentCliSyntax.PREFIX_ADD;
 import static com.eva.model.comment.CommentCliSyntax.PREFIX_DELETE;
@@ -56,6 +57,64 @@ public class CommentCommandParser {
         }
     }
 
+    /**
+     * For consolidated add commands.
+     * @param args
+     * @return commentCommand
+     * @throws ParseException when there are missing fields
+     */
+    public CommentCommand parseAdd(String args) throws ParseException {
+        requireNonNull(args);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_ADDORDELETE_COMMENT);
+
+        Index index;
+
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CommentCommand.MESSAGE_USAGE), pe);
+        }
+
+
+        CommentCommand.CommentPersonDescriptor commentPersonDescriptor = new CommentCommand.CommentPersonDescriptor();
+        parseCommentsForEdit(argMultimap.getAllValues(PREFIX_ADDORDELETE_COMMENT))
+                .ifPresent(commentPersonDescriptor::setComments);
+        if (!commentPersonDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        }
+        return new AddCommentCommand(index, commentPersonDescriptor);
+    }
+
+    /**
+     * For consolidated delete commands
+     * @param args
+     * @throws ParseException
+     */
+    public CommentCommand parseDelete(String args) throws ParseException {
+        requireNonNull(args);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_ADDORDELETE_COMMENT);
+
+        Index index;
+
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CommentCommand.MESSAGE_USAGE), pe);
+        }
+
+        CommentCommand.CommentPersonDescriptor commentPersonDescriptor =
+                new CommentCommand.CommentPersonDescriptor();
+        parseCommentsForEdit(argMultimap.getAllValues(PREFIX_ADDORDELETE_COMMENT))
+                .ifPresent(commentPersonDescriptor::setComments);
+        if (!commentPersonDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        }
+
+        return new DeleteCommentCommand(index, commentPersonDescriptor);
+
+    }
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
