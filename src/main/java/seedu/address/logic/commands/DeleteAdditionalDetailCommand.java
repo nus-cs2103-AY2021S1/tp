@@ -14,21 +14,23 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.admin.AdditionalDetail;
 
-public class AddAdditionalDetailCommand extends AdditionalDetailCommand {
+public class DeleteAdditionalDetailCommand extends AdditionalDetailCommand {
 
-    public static final String MESSAGE_SUCCESS = "New additional detail added to student: %1$s";
+    public static final String MESSAGE_SUCCESS = "Question removed: %1$s";
+    public static final String MESSAGE_BAD_QUESTION_INDEX = "There is no question at this index";
 
-    private final Index index;
-    private final AdditionalDetail detailToAdd;
+    private final Index studentIndex;
+    private final Index detailIndex;
 
     /**
-     * Creates an AddAdditionalDetailCommand to add the specified {@code AdditionalDetail} to the student
-     * at the specified {@code Index}.
+     * Constructs a DeleteQuestionCommand to remove a specified {@code Question} from a {@code Student}.
+     * @param studentIndex
+     * @param detailIndex
      */
-    public AddAdditionalDetailCommand(Index index, AdditionalDetail detailToAdd) {
-        requireAllNonNull(index, detailToAdd);
-        this.index = index;
-        this.detailToAdd = detailToAdd;
+    public DeleteAdditionalDetailCommand(Index studentIndex, Index detailIndex) {
+        requireAllNonNull(studentIndex, detailIndex);
+        this.studentIndex = studentIndex;
+        this.detailIndex = detailIndex;
     }
 
     /**
@@ -43,20 +45,23 @@ public class AddAdditionalDetailCommand extends AdditionalDetailCommand {
         requireNonNull(model);
 
         List<Student> lastShownList = model.getFilteredPersonList();
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (studentIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        Student studentToAddDetail = lastShownList.get(index.getZeroBased());
+        Student studentToAddDetail = lastShownList.get(studentIndex.getZeroBased());
+        if (detailIndex.getZeroBased() >= studentToAddDetail.getDetails().size()) {
+            throw new CommandException(MESSAGE_BAD_QUESTION_INDEX);
+        }
 
         List<AdditionalDetail> details = new ArrayList<>(studentToAddDetail.getDetails());
-        details.add(detailToAdd);
+        AdditionalDetail removedDetail = details.remove(detailIndex.getZeroBased());
 
         Student updatedStudent = super.updateStudentDetail(studentToAddDetail, details);
 
         model.setPerson(studentToAddDetail, updatedStudent);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, detailToAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, removedDetail));
     }
 
     @Override
@@ -65,11 +70,11 @@ public class AddAdditionalDetailCommand extends AdditionalDetailCommand {
             return true;
         }
 
-        if (!(obj instanceof AddAdditionalDetailCommand)) {
+        if (!(obj instanceof DeleteAdditionalDetailCommand)) {
             return false;
         }
 
-        AddAdditionalDetailCommand other = (AddAdditionalDetailCommand) obj;
-        return index.equals(other.index) && detailToAdd.equals(other.detailToAdd);
+        DeleteAdditionalDetailCommand other = (DeleteAdditionalDetailCommand) obj;
+        return studentIndex.equals(other.studentIndex) && detailIndex.equals(other.detailIndex);
     }
 }
