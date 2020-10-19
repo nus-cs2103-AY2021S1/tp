@@ -20,5 +20,5 @@ JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonCliniCalStorage .left.|> CliniCalStorage
 JsonCliniCalStorage .down.> JsonSerializableCliniCalStorage
 JsonSerializableCliniCalStorage .right.> JsonSerializablePatient
-JsonSerializablePatient .right.> JsonAdaptedTag
+JsonSerializablePatient .right.> JsonAdaptedAllergy
 @enduml
