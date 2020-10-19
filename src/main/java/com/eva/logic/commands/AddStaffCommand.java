@@ -27,9 +27,9 @@ public class AddStaffCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney"
-            + PREFIX_COMMENT + "t: Title d: {Date} desc: Description";
+            + PREFIX_TAG + "Team:business dev "
+            + PREFIX_TAG + "performing well"
+            + PREFIX_COMMENT + "t: Leave Request d: {12/02/2020} desc: pending";
     public static final String MESSAGE_SUCCESS = "New staff added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This staff already exists in the eva database";
 

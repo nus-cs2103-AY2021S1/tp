@@ -13,7 +13,7 @@ public class ApplicationStatus {
     public static final String MESSAGE_CONSTRAINTS =
             "Application Status should only contain the words: processing, accepted, rejected. It should not be blank";
     public static final String[] POSSIBLE_STATUSES = {"received", "processing", "accepted", "rejected"};
-    private String status;
+    public String value;
 
     /**
      * Creates an object representing the application status of the applicant.
@@ -24,7 +24,7 @@ public class ApplicationStatus {
         requireNonNull(status);
         status = status.strip().toLowerCase();
         checkArgument(isValidApplicationStatus(status), MESSAGE_CONSTRAINTS);
-        this.status = status;
+        this.value = status;
     }
 
     /**
@@ -41,25 +41,25 @@ public class ApplicationStatus {
      * Sets the application status to processing.
      */
     public void setProcessing() {
-        this.status = POSSIBLE_STATUSES[1];
+        this.value = POSSIBLE_STATUSES[1];
     }
 
     /**
      * Sets the application status to accepted.
      */
     public void setAccepted() {
-        this.status = POSSIBLE_STATUSES[2];
+        this.value = POSSIBLE_STATUSES[2];
     }
 
     /**
      * Sets the application status to rejected.
      */
     public void setRejected() {
-        this.status = POSSIBLE_STATUSES[3];
+        this.value = POSSIBLE_STATUSES[3];
     }
 
     @Override
     public String toString() {
-        return status;
+        return value;
     }
 }
