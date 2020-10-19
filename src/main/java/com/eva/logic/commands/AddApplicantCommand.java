@@ -1,12 +1,16 @@
 package com.eva.logic.commands;
 
+import static com.eva.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static com.eva.logic.parser.CliSyntax.PREFIX_COMMENT;
+import static com.eva.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static com.eva.logic.parser.CliSyntax.PREFIX_NAME;
+import static com.eva.logic.parser.CliSyntax.PREFIX_PHONE;
+import static com.eva.logic.parser.CliSyntax.PREFIX_TAG;
+import static java.util.Objects.requireNonNull;
+
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.model.Model;
 import com.eva.model.person.applicant.Applicant;
-import com.eva.model.person.staff.Staff;
-
-import static com.eva.logic.parser.CliSyntax.*;
-import static java.util.Objects.requireNonNull;
 
 public class AddApplicantCommand extends Command {
     public static final String COMMAND_WORD = "addapplicant";

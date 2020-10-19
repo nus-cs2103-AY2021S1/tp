@@ -7,8 +7,10 @@ import static com.eva.model.comment.CommentCliSyntax.PREFIX_DESC;
 import static com.eva.model.comment.CommentCliSyntax.PREFIX_TITLE;
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import com.eva.commons.core.index.Index;

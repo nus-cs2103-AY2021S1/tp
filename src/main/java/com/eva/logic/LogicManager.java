@@ -81,7 +81,9 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Applicant> getFilteredApplicantList() { return model.getFilteredApplicantList(); }
+    public ObservableList<Applicant> getFilteredApplicantList() {
+        return model.getFilteredApplicantList();
+    }
 
     @Override
     public Path getEvaDatabaseFilePath() {

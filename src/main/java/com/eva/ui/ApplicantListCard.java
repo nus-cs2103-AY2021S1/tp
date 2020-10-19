@@ -1,15 +1,17 @@
 package com.eva.ui;
 
+import java.util.Comparator;
+import java.util.Optional;
+
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.applicant.InterviewDate;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
-import java.util.Comparator;
-import java.util.Optional;
 
 /**
  * An UI component that displays information of a {@code Staff}.
@@ -61,7 +63,7 @@ public class ApplicantListCard extends UiPart<Region> {
         phone.setText(applicant.getPhone().value);
         address.setText(applicant.getAddress().value);
         email.setText(applicant.getEmail().value);
-        applicationStatus.setText(applicant.getApplicationStatus().value);
+        applicationStatus.setText(applicant.getApplicationStatus().toString());
         interviewDate.setText(interviewDateToDisplay(applicant.getInterviewDate()));
         tags.getChildren().add(new Label("staff"));
         applicant.getTags().stream()

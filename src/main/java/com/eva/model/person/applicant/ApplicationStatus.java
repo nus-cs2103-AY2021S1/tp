@@ -13,7 +13,7 @@ public class ApplicationStatus {
     public static final String MESSAGE_CONSTRAINTS =
             "Application Status should only contain the words: processing, accepted, rejected. It should not be blank";
     public static final String[] POSSIBLE_STATUSES = {"received", "processing", "accepted", "rejected"};
-    public String value;
+    private String value;
 
     /**
      * Creates an object representing the application status of the applicant.
