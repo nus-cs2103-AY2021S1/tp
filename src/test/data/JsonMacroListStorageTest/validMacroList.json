@@ -1,14 +1,11 @@
 {
-  "macrolist": [
-    {
-      "name": "first",
-      "arguments":  ["a", "b"],
-      "commands": ["list", "help"]
-    },
-    {
-      "name": "second",
-      "arguments":  ["c", "d"],
-      "commands": ["clear"]
-    }
-  ]
+  "macros" : [ {
+    "name" : "first",
+    "rawCommands" : [ "list", "help" ],
+    "macroArguments" : [ "a", "b" ]
+  }, {
+    "name" : "second",
+    "rawCommands" : [ "clear" ],
+    "macroArguments" : [ "c", "d" ]
+  } ]
 }

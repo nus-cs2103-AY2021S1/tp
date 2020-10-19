@@ -2,8 +2,6 @@ package jimmy.mcgymmy.logic.macro;
 
 import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 
-import java.util.Set;
-
 import org.junit.jupiter.api.Test;
 
 import jimmy.mcgymmy.logic.macro.exceptions.DuplicateMacroException;

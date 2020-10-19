@@ -1,0 +1,7 @@
+{
+  "macros" : [ {
+    "name" : "poop",
+    "rawCommands" : [ "list" ],
+    "macroArguments" : [ "-a", "-b" ]
+  } ]
+}

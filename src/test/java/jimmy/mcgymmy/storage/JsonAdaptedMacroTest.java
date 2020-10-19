@@ -1,8 +1,10 @@
 package jimmy.mcgymmy.storage;
 
 import static jimmy.mcgymmy.testutil.Assert.assertThrows;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.logic.macro.Macro;
 
@@ -10,7 +12,7 @@ public class JsonAdaptedMacroTest {
     @Test
     public void validMacro_success() throws Exception {
         String name = "test";
-        String[] macroArguments = new String[]{"a","b"};
+        String[] macroArguments = new String[]{"a", "b"};
         String[] rawCommands = new String[]{"add -n \\a -f \\b"};
         JsonAdaptedMacro jsonAdaptedMacro = new JsonAdaptedMacro(name, macroArguments, rawCommands);
         Macro macro = new Macro(name, macroArguments, rawCommands);

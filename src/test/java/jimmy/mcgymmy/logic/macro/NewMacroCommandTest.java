@@ -3,8 +3,6 @@ package jimmy.mcgymmy.logic.macro;
 import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Set;
-
 import org.junit.jupiter.api.Test;
 
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;

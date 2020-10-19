@@ -156,6 +156,16 @@ public class PrimitiveCommandParser {
         commandTable.put(name, commandSupplier);
     }
 
+    /**
+     * Removes a new command into the parser.
+     * Package private for testing purposes.
+     * @param name            Name of command to be removed
+     */
+    static void removeCommand(String name) {
+        commandTable.remove(name);
+        commandDescriptionTable.remove(name);
+    }
+
     public static Set<String> getRegisteredCommands() {
         Set<String> result = new HashSet<>(commandTable.keySet());
         result.add("help");
