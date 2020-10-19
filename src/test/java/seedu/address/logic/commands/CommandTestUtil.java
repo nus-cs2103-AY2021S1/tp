@@ -27,8 +27,10 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_ARCHIE = "Archie";
     public static final String VALID_NAME_BAILEY = "Bailey";
+    public static final String VALID_NAME_PASHA = "Pasha";
     public static final String VALID_ID_ARCHIE = "000123";
     public static final String VALID_ID_BAILEY = "000456";
+    public static final String VALID_ID_PASHA = "001234";
     public static final String VALID_SPECIES_ARCHIE = "German Shepherd";
     public static final String VALID_SPECIES_BAILEY = "Golden Retriever";
     public static final String VALID_MEDICAL_CONDITION_ARTHRITIS = "arthritis";
