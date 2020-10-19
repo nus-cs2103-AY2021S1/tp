@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.module.grade.Grade;
 import seedu.address.model.module.grade.GradeTracker;
 
 /**
@@ -39,7 +40,7 @@ public class JsonAdaptedGradeTracker {
         assignments.addAll(source.getAssignments().stream()
                 .map(JsonAdaptedAssignment::new)
                 .collect(Collectors.toList()));
-        this.grade = source.getGrade();
+        this.grade = source.getGrade().gradeResult;
     }
 
     /**
@@ -57,13 +58,13 @@ public class JsonAdaptedGradeTracker {
             }
         }
         if (Double.isNaN(grade)) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    "grade"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Grade.class.getSimpleName()));
         }
-        if (!GradeTracker.isValidGrade(grade)) {
+        if (!Grade.isValidGrade(grade)) {
             throw new IllegalValueException(GradeTracker.MESSAGE_INVALID_GRADE);
         }
-        modelGradeTracker.setGrade(grade);
+        final Grade modelGrade = new Grade(grade);
+        modelGradeTracker.setGrade(modelGrade);
         return modelGradeTracker;
     }
 }
