@@ -59,7 +59,7 @@ public class ItemFindCommandTest {
         String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 0);
         ItemContainsKeywordsPredicate predicate = preparePredicate(" ");
         ItemFindCommand command = new ItemFindCommand(predicate);
-        expectedInventoryModel.updateFilteredAndSortedItemList(predicate);
+        expectedInventoryModel.updateItemListFilter(predicate);
         assertCommandSuccess(command, inventoryModel, expectedMessage, expectedInventoryModel);
         assertEquals(Collections.emptyList(), inventoryModel.getFilteredAndSortedItemList());
     }

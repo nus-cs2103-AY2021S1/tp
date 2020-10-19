@@ -104,7 +104,7 @@ public class ItemDeleteCommandTest {
      * Updates {@code model}'s filtered list to show no one.
      */
     private void showNoItem(InventoryModel inventoryModel) {
-        inventoryModel.updateFilteredAndSortedItemList(p -> false);
+        inventoryModel.updateItemListFilter(p -> false);
 
         assertTrue(inventoryModel.getFilteredAndSortedItemList().isEmpty());
     }

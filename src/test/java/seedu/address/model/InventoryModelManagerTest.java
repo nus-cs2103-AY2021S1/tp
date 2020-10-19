@@ -122,12 +122,12 @@ public class InventoryModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = CHICKEN.getName().fullName.split("\\s+");
-        modelManager.updateFilteredAndSortedItemList(new ItemContainsKeywordsPredicate(Arrays.asList(keywords),
+        modelManager.updateItemListFilter(new ItemContainsKeywordsPredicate(Arrays.asList(keywords),
                 PREFIX_NAME));
         assertFalse(modelManager.equals(new InventoryModelManager(inventoryBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredAndSortedItemList(PREDICATE_SHOW_ALL_ITEMS);
+        modelManager.updateItemListFilter(PREDICATE_SHOW_ALL_ITEMS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

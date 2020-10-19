@@ -210,7 +210,7 @@ public class CommandTestUtil {
 
         Item item = inventoryModel.getFilteredAndSortedItemList().get(targetIndex.getZeroBased());
         final String[] splitName = item.getName().fullName.split("\\s+");
-        inventoryModel.updateFilteredAndSortedItemList(
+        inventoryModel.updateItemListFilter(
                 new ItemContainsKeywordsPredicate(Arrays.asList(splitName[0]), PREFIX_NAME));
 
         assertEquals(1, inventoryModel.getFilteredAndSortedItemList().size());

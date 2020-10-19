@@ -93,7 +93,7 @@ public class Quantity implements Comparable<Quantity> {
     }
 
     @Override
-    public int compareTo(Quantity o) {
-        return Double.compare(Double.parseDouble(value), Double.parseDouble(o.value));
+    public int compareTo(Quantity quantity) {
+        return Double.compare(Double.parseDouble(value), Double.parseDouble(quantity.value));
     }
 }

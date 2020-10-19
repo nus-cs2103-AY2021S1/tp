@@ -61,7 +61,7 @@ public class ItemRemoveCommand extends ItemCommand {
 
         List<Item> lastShownList = inventoryModel.getFilteredAndSortedItemList();
 
-        if (index.getZeroBased() >= lastShownList.size() && index.getZeroBased() < 0) {
+        if (index.getZeroBased() >= lastShownList.size() || index.getZeroBased() < 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
         }
 
@@ -78,7 +78,7 @@ public class ItemRemoveCommand extends ItemCommand {
         }
 
         inventoryModel.setItem(itemToEdit, editedItem);
-        inventoryModel.updateFilteredAndSortedItemList(PREDICATE_SHOW_ALL_ITEMS);
+        inventoryModel.updateItemListFilter(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem));
     }
 
