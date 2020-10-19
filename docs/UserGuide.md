@@ -18,18 +18,6 @@ Open this document in a modern internet browser (Mozilla Firefox, Google Chrome,
 :information_source:  :This indicates important notes for current feature we are looking at<br>
 <div markdown="block" class="alert alert-info">
 
-
-
-
-
-##  Table of Contents:
-* `A little note from the developers`
-* `Quick Start`
-* `Features`
-* `FAQ`
-* `Command summary`
-<div markdown="span" class="alert alert-primary">
-
 :bulb: **Tip:** Press Ctrl-F to open the find prompt in your browser. You can type in keywords such as `add` or `edit` to quickly navigate to those parts of the document.
 
 </div>
@@ -39,6 +27,9 @@ Open this document in a modern internet browser (Mozilla Firefox, Google Chrome,
 Thank you for using MG. We sincerely hope that MG plays apart to help you achieve a healthier lifestyle.
 We understand that MG may be a little different from traditional GUI applications and it may be a little difficult to start using it initially.
 Thus we recommend you to start by first understanding how MG works at a high level at the Quick start section. Then, explore the Features section.
+
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
