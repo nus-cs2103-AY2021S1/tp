@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PREFIX;
-import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_KEYWORD;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.DEPARTMENT_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DEPARTMENT_DESC_BOB;
@@ -46,11 +45,12 @@ import seedu.address.model.person.predicates.TagContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
-    private FindCommandParser parser = new FindCommandParser();
+    private final FindCommandParser parser = new FindCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", MESSAGE_EMPTY_KEYWORD);
+        assertParseFailure(parser, "     ",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test
