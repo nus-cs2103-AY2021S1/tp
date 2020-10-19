@@ -64,7 +64,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         this.commandWord = commandWord;
         faultyCommandWord = "";
         headerErrorMessage = splitHeaderAndBody[0];
-        bodyErrorMessage = splitHeaderAndBody[1];
+        bodyErrorMessage = splitHeaderAndBody.length < 2 ? "" : splitHeaderAndBody[1];
     }
 
     /**
@@ -188,9 +188,11 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_SERIAL_NUMBER,
                 PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY, PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION);
         toBeDisplayed.append(UPDATE_COMMAND_WORD);
+        boolean isIncrementQuantityPresent = argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).isPresent();
+        boolean isNewQuantityPresent = argMultimap.getValue(PREFIX_NEW_QUANTITY).isPresent();
 
-        if (argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).isPresent()
-                && argMultimap.getValue(PREFIX_NEW_QUANTITY).isPresent()) {
+        if (isIncrementQuantityPresent == isNewQuantityPresent) {
+            // both present or both not present
             int removeRng = new Random().nextInt(2);
             if (removeRng == 0) {
                 allowedPrefixes.remove(PREFIX_INCREMENT_QUANTITY);
@@ -209,8 +211,16 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
 
         for (int i = 1; i < allowedPrefixes.size(); i++) {
             Prefix currentPrefix = allowedPrefixes.get(i);
-            if (argMultimap.getValue(currentPrefix).isPresent()) {
-                toBeDisplayed.append(" " + currentPrefix + argMultimap.getValue(currentPrefix).get());
+            boolean isPresent = argMultimap.getValue(currentPrefix).isPresent();
+            String description = "";
+            if (isPresent) {
+                description = argMultimap.getValue(currentPrefix).get();
+            }
+            boolean isEmpty = description.equals("");
+            if (!isEmpty) {
+                toBeDisplayed.append(" " + currentPrefix + description);
+            } else if (isEmpty && isPresent) {
+                toBeDisplayed.append(" " + currentPrefix + CliSyntax.getDefaultDescription(currentPrefix));
             }
         }
 
@@ -263,7 +273,9 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             }
             List<String> keywords = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
             for (String serialNumber : keywords) {
-                toBeDisplayed.append(" " + currentPrefix + serialNumber);
+                boolean isEmpty = serialNumber.equals("");
+                String description = isEmpty ? CliSyntax.getDefaultDescription(currentPrefix) : serialNumber;
+                toBeDisplayed.append(" " + currentPrefix + description);
             }
         }
 
@@ -315,10 +327,15 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
 
         for (int i = 0; i < allowedPrefixes.size(); i++) {
             Prefix currentPrefix = allowedPrefixes.get(i);
+            String description = "";
             if (argMultimap.getValue(currentPrefix).isPresent()) {
-                toBeDisplayed.append(" " + currentPrefix + argMultimap.getValue(currentPrefix).get());
-            } else {
+                description = argMultimap.getValue(currentPrefix).get();
+            }
+            boolean isEmpty = description.equals("");
+            if (isEmpty) {
                 toBeDisplayed.append(" " + currentPrefix + CliSyntax.getDefaultDescription(currentPrefix));
+            } else {
+                toBeDisplayed.append(" " + currentPrefix + description);
             }
         }
 
