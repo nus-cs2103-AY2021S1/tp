@@ -27,7 +27,7 @@ import seedu.address.testutil.AssignmentBuilder;
  */
 public class RemindCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), null);
 
     @Test
     public void constructor_nullAssignment_throwsNullPointerException() {
@@ -41,7 +41,7 @@ public class RemindCommandTest {
 
         String expectedMessage = String.format(RemindCommand.MESSAGE_REMIND_ASSIGNMENT_SUCCESS, assignmentToRemind);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), null);
         expectedModel.setAssignment(model.getFilteredAssignmentList().get(0), assignmentToRemind);
 
         assertCommandSuccess(remindCommand, model, expectedMessage, expectedModel);
@@ -64,7 +64,7 @@ public class RemindCommandTest {
 
         String expectedMessage = String.format(RemindCommand.MESSAGE_REMIND_ASSIGNMENT_SUCCESS, assignmentToRemind);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), null);
         expectedModel.setAssignment(model.getFilteredAssignmentList().get(0), assignmentToRemind);
 
         assertCommandSuccess(remindCommand, model, expectedMessage, expectedModel);

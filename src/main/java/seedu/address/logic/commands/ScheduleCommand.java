@@ -25,7 +25,7 @@ import seedu.address.model.assignment.Task;
 import seedu.address.model.lesson.Lesson;
 
 /**
- * Schedule an assignment identified using it's displayed index from the address book.
+ * Schedules an assignment identified using it's displayed index from the address book.
  */
 public class ScheduleCommand extends Command {
 
