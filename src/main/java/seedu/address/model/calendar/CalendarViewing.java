@@ -20,6 +20,22 @@ public class CalendarViewing extends CalendarMeeting {
         super.isViewing = true;
     }
 
+    /**
+     * Returns true if either the venue, time, bidderId and propertyId is the same.
+     *
+     * @param other The other property.
+     * @return True if both property objects represent the same meeting.
+     */
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof CalendarViewing // instanceof handles nulls
+                && this.calendarBidderId.equals(((CalendarViewing) other).getCalendarBidderId())
+                && this.calendarPropertyId.equals(((CalendarViewing) other).getCalendarPropertyId())
+                && this.calendarTime.equals(((CalendarViewing) other).getCalendarTime())
+                && this.calendarVenue.equals(((CalendarViewing) other).getCalendarVenue())); // state check
+    }
+
     @Override
     public String toString() {
         return super.toString();
