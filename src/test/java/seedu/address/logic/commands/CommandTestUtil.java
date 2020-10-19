@@ -3,6 +3,9 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -41,7 +44,28 @@ public class CommandTestUtil {
     public static final String VALID_DATE_SIT_UP = "10-10-2020";
     public static final String VALID_CALORIES_SIT_UP = "100";
 
+    public static final String NAME_DESC_PUSH_UP = " " + PREFIX_NAME + VALID_NAME_PUSH_UP;
+    public static final String DESCRIPTION_DESC_PUSH_UP = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_PUSH_UP;
+    public static final String DATE_DESC_PUSH_UP = " " + PREFIX_DATE + VALID_DATE_PUSH_UP;
+    public static final String CALORIES_DESC_PUSH_UP = " " + PREFIX_CALORIES + VALID_CALORIES_PUSH_UP;
 
+    public static final String NAME_DESC_SIT_UP = " " + PREFIX_NAME + VALID_NAME_SIT_UP;
+    public static final String DESCRIPTION_DESC_SIT_UP = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_SIT_UP;
+    public static final String DATE_DESC_SIT_UP = " " + PREFIX_DATE + VALID_DATE_SIT_UP;
+    public static final String CALORIES_DESC_SIT_UP = " " + PREFIX_CALORIES + VALID_CALORIES_SIT_UP;
+
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_DATE_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_CALORIES_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+
+    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
+    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    public static final UpdateExerciseCommand.EditExerciseDescriptor DESC_PUSH_UP;
+    public static final UpdateExerciseCommand.EditExerciseDescriptor DESC_SIT_UP;
+
+    // AB3
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -64,22 +88,17 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_EXERCISE_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
-    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
-    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+    //    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
+    //    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
-
-
-    public static final UpdateExerciseCommand.EditExerciseDescriptor DESC_PUSH_UP;
-    public static final UpdateExerciseCommand.EditExerciseDescriptor DESC_SIT_UP;
-
 
     static {
         // Calo
@@ -89,7 +108,6 @@ public class CommandTestUtil {
         DESC_SIT_UP = new EditExerciseDescriptorBuilder().withName(VALID_NAME_SIT_UP)
                 .withDescription(VALID_DESCRIPTION_SIT_UP).withDate(VALID_DATE_SIT_UP)
                 .withCalories(VALID_CALORIES_SIT_UP).build();
-
 
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -104,7 +122,6 @@ public class CommandTestUtil {
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
-
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
                                             Model expectedModel) {
         try {
@@ -133,33 +150,24 @@ public class CommandTestUtil {
         }
     }
 
-
-
     /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
-
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
                                             Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
-
-
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(CommandForExercise, ExerciseModel,
-     * CommandResult, ExerciseModel)}
-     * that takes a string {@code expectedMessage}.
+     * Convenience wrapper that takes a string {@code expectedMessage}.
      */
-    public static void assertCommandSuccess(CommandForExercise command,
-                                            ExerciseModel actualModel, String expectedMessage,
-            ExerciseModel expectedModel) {
+    public static void assertCommandSuccess(CommandForExercise command, ExerciseModel actualModel,
+                                            String expectedMessage, ExerciseModel expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
-
 
     /**
      * Executes the given {@code command}, confirms that <br>
@@ -211,18 +219,15 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
-
     /**
-     * Updates {@code model}'s filtered list to show only the exercise at the given {@code targetIndex} in the
-     * {@code model}'s exercise book.
+     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * {@code model}'s address book.
      */
     public static void showExerciseAtIndex(ExerciseModel model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredExerciseList().size());
-
         Exercise exercise = model.getFilteredExerciseList().get(targetIndex.getZeroBased());
         final String[] splitName = exercise.getName().fullName.split("\\s+");
         model.updateFilteredExerciseList(new NameContainsKeywordsPredicateForExercise(Arrays.asList(splitName[0])));
-
         assertEquals(1, model.getFilteredExerciseList().size());
     }
 }

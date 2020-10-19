@@ -4,12 +4,16 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+/**
+ * Represents an exercise in the exercise book.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Exercise {
-    // identity field
+    // Identity fields
     private final Name name;
     private final Date date;
 
-    // data field
+    // Data fields
     private final Description description;
     private final Calories calories;
 
@@ -77,8 +81,16 @@ public class Exercise {
                 && otherExercise.getCalories().equals(getCalories());
     }
 
-    public boolean isSameExercise(Exercise other) {
-        return this.equals(other);
+    /**
+     * Returns true if both exercises of the same name have at least one other identity field that is the same.
+     * This defines a weaker notion of equality between two exercises.
+     */
+    public boolean isSameExercise(Exercise otherExercise) {
+        if (otherExercise == this) {
+            return true;
+        }
+        return otherExercise != null
+                && otherExercise.getName().equals(getName())
+                && (otherExercise.getDate().equals(getDate()));
     }
-
 }
