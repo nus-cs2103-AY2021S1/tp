@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.nio.file.Path;
 
@@ -29,6 +31,8 @@ public class SnapCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Current ZooKeep Book saved as %s";
 
+    public static final String MESSAGE_ERROR = "Could not save data to file: ";
+
     private final String fileName;
 
     public SnapCommand(String fileName) {
@@ -37,6 +41,8 @@ public class SnapCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+
         Path zooKeepBookFilePath = model.getUserPrefs().getZooKeepBookFilePath();
         ZooKeepBookStorage zooKeepBookStorage = new JsonZooKeepBookStorage(zooKeepBookFilePath);
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(zooKeepBookFilePath);
@@ -48,7 +54,7 @@ public class SnapCommand extends Command {
             Path savePath = Path.of("data", fileName);
             storage.saveZooKeepBook(zooKeepBook, savePath);
         } catch (IOException ioe) {
-            throw new CommandException("Error saving");
+            throw new CommandException(String.format(MESSAGE_ERROR + ioe, ioe));
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, fileName));
