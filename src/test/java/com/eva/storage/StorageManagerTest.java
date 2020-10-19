@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.nio.file.Path;
 
-import com.eva.model.person.Person;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -15,6 +14,7 @@ import com.eva.commons.core.GuiSettings;
 import com.eva.model.EvaDatabase;
 import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.UserPrefs;
+import com.eva.model.person.Person;
 
 public class StorageManagerTest {
 
