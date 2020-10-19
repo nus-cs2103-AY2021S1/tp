@@ -11,7 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.module.Module;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -20,25 +22,35 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final ModuleList moduleList;
+    private final ContactList contactList;
+    private final TodoList todoList;
     private final UserPrefs userPrefs;
     private final FilteredList<Module> filteredModules;
+    private final FilteredList<Contact> filteredContacts;
+    private final FilteredList<Task> filteredTasks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyModuleList moduleList, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyModuleList moduleList, ReadOnlyContactList contactList, ReadOnlyTodoList todoList,
+                ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(moduleList, userPrefs);
+        requireAllNonNull(moduleList, todoList, userPrefs);
 
-        logger.fine("Initializing with module list: " + moduleList + " and user prefs " + userPrefs);
+        logger.fine("Initializing with module list: " + moduleList + " and todo list" + todoList
+                + " and user prefs " + userPrefs);
 
         this.moduleList = new ModuleList(moduleList);
+        this.contactList = new ContactList(contactList);
+        this.todoList = new TodoList(todoList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredModules = new FilteredList<Module>(this.moduleList.getModuleList());
+        filteredContacts = new FilteredList<Contact>(this.contactList.getContactList());
+        filteredTasks = new FilteredList<Task>(this.todoList.getTodoList());
     }
 
     public ModelManager() {
-        this(new ModuleList(), new UserPrefs());
+        this(new ModuleList(), new ContactList(), new TodoList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -112,6 +124,78 @@ public class ModelManager implements Model {
         moduleList.setModule(target, editedModule);
     }
 
+    //=========== Contact List ================================================================================
+
+    @Override
+    public void setContactList(ReadOnlyContactList contactList) {
+        this.contactList.resetData(contactList);
+    }
+
+    @Override
+    public ReadOnlyContactList getContactList() {
+        return contactList;
+    }
+
+    @Override
+    public boolean hasContact(Contact contact) {
+        requireNonNull(contact);
+        return contactList.hasContact(contact);
+    }
+
+    @Override
+    public void deleteContact(Contact target) {
+        contactList.removeContact(target);
+    }
+
+    @Override
+    public void addContact(Contact contact) {
+        contactList.addContact(contact);
+        updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
+    }
+
+    @Override
+    public void setContact(Contact target, Contact editedContact) {
+        requireAllNonNull(target, editedContact);
+
+        contactList.setContact(target, editedContact);
+    }
+
+    //=========== Todo List =============================================================
+
+    @Override
+    public void setTodoList(ReadOnlyTodoList todoList) {
+        this.todoList.resetData(todoList);
+    }
+
+    @Override
+    public ReadOnlyTodoList getTodoList() {
+        return todoList;
+    }
+
+    @Override
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return todoList.hasTask(task);
+    }
+
+    @Override
+    public void deleteTask(Task target) {
+        todoList.removeTask(target);
+    }
+
+    @Override
+    public void addTask(Task task) {
+        todoList.addTask(task);
+        updateFilteredTodoList(PREDICATE_SHOW_ALL_TASKS);
+    }
+
+    @Override
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
+        todoList.setTask(target, editedTask);
+    }
+
     //=========== Filtered Module List Accessors =============================================================
 
     /**
@@ -127,6 +211,31 @@ public class ModelManager implements Model {
     public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Contact} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Contact> getFilteredContactList() {
+        return filteredContacts;
+    }
+
+    @Override
+    public void updateFilteredContactList(Predicate<Contact> predicate) {
+        requireNonNull(predicate);
+        filteredContacts.setPredicate(predicate);
+    }
+
+    public ObservableList<Task> getFilteredTodoList() {
+        return filteredTasks;
+    }
+
+    @Override
+    public void updateFilteredTodoList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
     }
 
     @Override
@@ -145,7 +254,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return moduleList.equals(other.moduleList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredModules.equals(other.filteredModules);
+                && filteredModules.equals(other.filteredModules)
+                && filteredContacts.equals(other.filteredContacts)
+                && filteredTasks.equals(other.filteredTasks);
     }
 
 }
