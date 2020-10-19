@@ -140,8 +140,11 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedMcGymmy`. It extends `McGymmy` with an undo/redo history, stored internally as a `McGymmy` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `ModelManager`. 
+It stores multiple versions of `McGymmy` in a stack, with the most recent version on top.
+Additionally, it implements the following operations:
 
+* `ModelManager#canUndo()` - Checks if there are any older McGymmy states.
 * `VersionedMcGymmy#commit()` — Saves the current McGymmy state in its history.
 * `VersionedMcGymmy#undo()` — Restores the previous McGymmy state from its history.
 * `VersionedMcGymmy#redo()` — Restores a previously undone McGymmy state from its history.
