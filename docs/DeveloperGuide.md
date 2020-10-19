@@ -102,7 +102,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores the wishful shrinking data.
 * exposes an unmodifiable `ObservableList<Recipe>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -148,6 +148,71 @@ The following sequence diagram shows how the undo operation works:
 
 #### Design consideration:
 * Workflow must be consistent with other adding commands e.g add ingredients, consumption.
+
+### Eat recipe feature
+
+Eat Recipe feature is used to record the user daily consumption. This feature will work with list consumption 
+feature to output the total calories' user ate. 
+
+#### Implementation
+Substitutability is used in Command and Parser:
+* `EatRecipeCommand` extends `Command`
+* `EatRecipeCommandParser` implements `Parser<EatRecipeCommand>`
+
+Given bellow is the simplified step on how eat recipe is done:
+
+Step 1:
+
+User input is change into command.
+![EatRecipeStep1](images/EatRecipeStep1.png)
+
+Step 2:
+
+Execute the command (make a copy of recipe from recipeList).
+![EatRecipeStep2](images/EatRecipeStep2.png)
+
+Step 3:
+
+Add the copy recipe into consumptionList.
+![EatRecipeStep3](images/EatRecipeStep3.png)
+
+
+The following sequence diagram shows how eat recipe operation works when `execute(eatR 1)` API call:
+
+![EatRecipeSequenceDiagram](images/EatRecipeSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** The lifeline for `EatRecipeCommandParser` should end at the destroy marker (X) but due to a limitation of 
+PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+1. UI receives the user input.
+1. `LogicManager` receive user input and undergoes logic operation for output.
+1. `LogicManager` will pass the input to `WishfulShrinkingParser`.
+1. `WishfulShrinkingParser` create `EatRecipeCommandParser` to parse and validate the user input.
+1. `EatRecipeCommandParser` create `EatRecipeCommand` with successfully parsed input.
+1. `LogicManager` execute `EatRecipeCommand`.
+1. `EatRecipeCommand` get the list of recipe.
+1. Get related recipe detail using the user input.
+1. Pass the recipe to `Model` which responsible in adding it to consumption list.
+1. `EatRecipeCommand` return a `CommandResult` back to `LogicManager`.
+1. UI receive and output `CommandResult` to user.
+
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** Delete a recipe in recipeList would not affect the consumptionList
+</div>
+
+#### Design consideration:
+##### Aspect 1: Concern while adding a new feature
+* Workflow must be consistent with other adding commands e.g. add recipe and ingredient.
+##### Aspect 2: What are the informations to extract from a recipe and save in consumptionList 
+* **Alternative 1 (current choice):** Saves all the informations in recipe.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Saves the recipe's data that going to use while listing consumption.
+  * Pros: Will use less memory (only the information being used is copied into consumptionList).
+  * Cons: Not future proof (need to restructure the whole command if wanted to show more information from the recipe)
+
 
 ### \[Proposed\] Data archiving
 

@@ -1,0 +1,92 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WishfulShrinkingParser" as WishfulShrinkingParser LOGIC_COLOR
+participant ":EatRecipeCommandParser" as EatRecipeCommandParser LOGIC_COLOR
+participant "command :EatRecipeCommand" as EatRecipeCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":WishfulShrinking" as WishfulShrinking MODEL_COLOR
+participant ":ConsumptionList" as ConsumptionList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("eatR 1")
+activate LogicManager
+
+LogicManager -> WishfulShrinkingParser : parseCommand("eatR 1")
+activate WishfulShrinkingParser
+
+create EatRecipeCommandParser
+WishfulShrinkingParser -> EatRecipeCommandParser
+activate EatRecipeCommandParser
+
+EatRecipeCommandParser --> WishfulShrinkingParser
+deactivate EatRecipeCommandParser
+
+WishfulShrinkingParser -> EatRecipeCommandParser : parse("1")
+activate EatRecipeCommandParser
+
+create EatRecipeCommand
+EatRecipeCommandParser -> EatRecipeCommand
+activate EatRecipeCommand
+
+EatRecipeCommand --> EatRecipeCommandParser : command
+deactivate EatRecipeCommand
+
+EatRecipeCommandParser --> WishfulShrinkingParser : command
+deactivate EatRecipeCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EatRecipeCommandParser -[hidden]-> WishfulShrinkingParser
+destroy EatRecipeCommandParser
+
+WishfulShrinkingParser --> LogicManager : command
+deactivate WishfulShrinkingParser
+
+LogicManager -> EatRecipeCommand : execute()
+activate EatRecipeCommand
+
+EatRecipeCommand -> Model : getFilteredRecipeList()
+activate Model
+
+Model --> EatRecipeCommand : List<Recipe>
+deactivate Model
+
+Model --> EatRecipeCommand
+deactivate Model
+
+EatRecipeCommand -> Model : addConsumption(1)
+activate Model
+
+Model -> WishfulShrinking : addConsumption(1)
+activate WishfulShrinking
+
+WishfulShrinking --> ConsumptionList: eat(1)
+activate ConsumptionList
+
+ConsumptionList --> WishfulShrinking
+deactivate ConsumptionList
+
+WishfulShrinking --> Model
+deactivate WishfulShrinking
+
+Model --> EatRecipeCommand
+deactivate Model
+
+create CommandResult
+EatRecipeCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EatRecipeCommand
+deactivate CommandResult
+
+EatRecipeCommand --> LogicManager : result
+deactivate EatRecipeCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
