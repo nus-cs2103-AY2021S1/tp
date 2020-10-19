@@ -2,8 +2,8 @@ package com.eva.logic.parser.comment;
 
 import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static com.eva.logic.parser.CliSyntax.PREFIX_COMMENT;
-import static com.eva.model.comment.CommentCliSyntax.PREFIX_ADD;
-import static com.eva.model.comment.CommentCliSyntax.PREFIX_DELETE;
+import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_ADD;
+import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_DELETE;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;

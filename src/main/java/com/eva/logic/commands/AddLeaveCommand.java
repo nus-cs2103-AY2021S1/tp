@@ -1,8 +1,7 @@
 package com.eva.logic.commands;
 
-import static com.eva.logic.parser.CliSyntax.PREFIX_INDEX;
-import static com.eva.logic.parser.CliSyntax.PREFIX_LEAVE_END;
-import static com.eva.logic.parser.CliSyntax.PREFIX_LEAVE_START;
+import static com.eva.logic.parser.CliSyntax.PREFIX_LEAVE;
+import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_DATE;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -21,27 +20,29 @@ public class AddLeaveCommand extends Command {
     public static final String COMMAND_WORD = "addl";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds leave taken to the record of the staff taking leave "
+            + ": Adds specified leave(s) taken to the record of the staff taking leave "
             + "identified by the index number used in the displayed person list.\n"
             + "Parameters: "
-            + PREFIX_INDEX + "INDEX (must be a positive integer) "
-            + PREFIX_LEAVE_START + "LEAVE START DATE "
-            + PREFIX_LEAVE_END + "LEAVE END DATE (optional)"
+            + "INDEX (must be a positive integer) "
+            + PREFIX_LEAVE + PREFIX_DATE + "LEAVE START DATE "
+            + PREFIX_DATE + "LEAVE END DATE (optional)"
             + "Example: " + COMMAND_WORD
-            + " " + PREFIX_INDEX + "1 "
-            + PREFIX_LEAVE_START + "08/10/2020 "
-            + PREFIX_LEAVE_END + "10/10/2020 ";
+            + " 1 "
+            + PREFIX_LEAVE + PREFIX_DATE + "08/10/2020 "
+            + PREFIX_DATE + "10/10/2020 "
+            + PREFIX_LEAVE + PREFIX_DATE + "20/10/2020 ";
 
     public static final String MESSAGE_SUCCESS = "Leave recorded: %1$s took %2$s";
-    public static final String MESSAGE_DUPLICATE_RECORD = "This leave record already exists for this staff member.";
+    public static final String MESSAGE_DUPLICATE_RECORD = "This staff: %s "
+            + "has already taken leave during this period: %s";
 
     private final Index targetIndex;
-    private final Leave toAdd;
+    private final List<Leave> toAdd;
 
     /**
      * Creates an AddLeaveCommand to add the given leave to the {@code Staff} identified by the given index.
      */
-    public AddLeaveCommand(Index targetIndex, Leave leave) {
+    public AddLeaveCommand(Index targetIndex, List<Leave> leave) {
         requireNonNull(targetIndex);
         requireNonNull(leave);
         this.targetIndex = targetIndex;
@@ -59,12 +60,16 @@ public class AddLeaveCommand extends Command {
         }
 
         Staff staffToTakeLeave = lastShownList.get(targetIndex.getZeroBased());
-
-        if (model.hasStaffLeave(staffToTakeLeave, toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_RECORD);
+        StringBuilder sb = new StringBuilder();
+        for (Leave leave : toAdd) {
+            if (model.hasStaffLeave(staffToTakeLeave, leave)) {
+                throw new CommandException(
+                        String.format(MESSAGE_DUPLICATE_RECORD, staffToTakeLeave.getName(), leave.toErrorMessage()));
+            }
+            model.addStaffLeave(staffToTakeLeave, leave);
+            sb.append(leave.toString()).append(", ");
         }
 
-        model.addStaffLeave(staffToTakeLeave, toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, staffToTakeLeave, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, staffToTakeLeave.getName(), sb));
     }
 }

@@ -73,7 +73,7 @@ public class StaffCard extends UiPart<Region> {
 
     private Label leaveToDisplay(Leave leave) {
         return new Label(
-            leave.startDate == leave.endDate
+            leave.startDate.equals(leave.endDate)
                 ? dateToString(leave.startDate)
                 : String.format(
                     "%s to %s", dateToString(leave.startDate), dateToString(leave.endDate)));

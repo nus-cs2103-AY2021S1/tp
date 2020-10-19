@@ -1,13 +1,10 @@
 package com.eva.logic.parser.leave;
 
-import static com.eva.logic.parser.CliSyntax.PREFIX_INDEX;
-import static com.eva.logic.parser.CliSyntax.PREFIX_LEAVE_END;
-import static com.eva.logic.parser.CliSyntax.PREFIX_LEAVE_START;
+import static com.eva.logic.parser.CliSyntax.PREFIX_LEAVE;
 import static com.eva.logic.parser.ParserUtil.arePrefixesPresent;
 import static com.eva.logic.parser.ParserUtil.parseIndex;
-import static com.eva.logic.parser.ParserUtil.parseLeave;
+import static com.eva.logic.parser.ParserUtil.parseLeaveArgs;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.eva.commons.core.Messages;
@@ -31,26 +28,22 @@ public class AddLeaveCommandParser implements Parser<AddLeaveCommand> {
      */
     @Override
     public AddLeaveCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_INDEX, PREFIX_LEAVE_START, PREFIX_LEAVE_END);
+        ArgumentMultimap leaveArgMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_LEAVE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_INDEX, PREFIX_LEAVE_START)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(leaveArgMultimap, PREFIX_LEAVE)
+                || leaveArgMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddLeaveCommand.MESSAGE_USAGE));
         }
 
         try {
-            Index index = parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
+            Index index = parseIndex(leaveArgMultimap.getPreamble()); // errors if index is invalid.
 
-            List<String> dates = new ArrayList<>();
-            dates.add(argMultimap.getValue(PREFIX_LEAVE_START).get());
+            List<String> leaveArgsList = leaveArgMultimap.getAllValues(PREFIX_LEAVE);
+            List<Leave> leaves = parseLeaveArgs(leaveArgsList);
 
-            if (argMultimap.getValue(PREFIX_LEAVE_END).isPresent()) {
-                dates.add(argMultimap.getValue(PREFIX_LEAVE_END).get());
-            }
-            Leave leave = parseLeave(dates);
-            return new AddLeaveCommand(index, leave);
+            return new AddLeaveCommand(index, leaves);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddLeaveCommand.MESSAGE_USAGE));
