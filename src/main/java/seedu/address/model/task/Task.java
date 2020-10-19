@@ -163,21 +163,21 @@ public class Task {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder
-            .append(" *Name: ")
-            .append(getName())
-            .append("\n")
-            .append(" *Tag: ")
-            .append(getTag())
-            .append("\n")
-            .append(" *Priority: ")
-            .append(getPriority())
-            .append("\n")
-            .append(" *Date: ")
-            .append(getDate())
-            .append("\n")
-            .append("Status: ")
-            .append(getStatus())
-            .append("\n");
+                .append(" *Name: ")
+                .append(getName())
+                .append("\n")
+                .append(" *Tag: ")
+                .append(getTag())
+                .append("\n")
+                .append(" *Priority: ")
+                .append(getPriority())
+                .append("\n")
+                .append(" *Date: ")
+                .append(getDate())
+                .append("\n")
+                .append("Status: ")
+                .append(getStatus())
+                .append("\n");
         return builder.toString();
     }
 
