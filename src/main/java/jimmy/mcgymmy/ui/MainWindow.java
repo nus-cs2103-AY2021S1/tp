@@ -64,6 +64,12 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    @FXML
+    private StackPane summaryPanelPlaceholder;
+
+    @FXML
+    private SummaryDisplay summaryPanel;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -139,6 +145,9 @@ public class MainWindow extends UiPart<Stage> {
         commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
+        summaryPanel = new SummaryDisplay();
+        summaryPanelPlaceholder.getChildren().add(summaryPanel.getRoot());
+
         //Set the date value to today's date
         datePicker.setValue(LocalDate.now());
 
@@ -146,9 +155,6 @@ public class MainWindow extends UiPart<Stage> {
         datePicker.valueProperty().addListener((observable, oldDate, newDate)-> {
             setDate();
         });
-
-        //Hide the datepicker for now
-        //datePicker.setVisible(false);
     }
 
     /**
@@ -286,10 +292,11 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            //Todo Update total calories based on current filtered list
 
             return commandResult;
         } catch (CommandException | ParseException e) {
