@@ -6,23 +6,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.stock.commons.exceptions.IllegalValueException;
 import seedu.stock.model.stock.Location;
 import seedu.stock.model.stock.Name;
+import seedu.stock.model.stock.Note;
 import seedu.stock.model.stock.Quantity;
 import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Source;
 import seedu.stock.model.stock.Stock;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Jackson-friendly version of {@link Stock}.
  */
 class JsonAdaptedStock {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Stock's %s field is missing!";
 
     private final String name;
     private final String serialNumber;
     private final String source;
     private final String quantity;
     private final String location;
+    private final List<String> notes;
 
     /**
      * Constructs a {@code JsonAdaptedStock} with the given person details.
@@ -30,12 +35,13 @@ class JsonAdaptedStock {
     @JsonCreator
     public JsonAdaptedStock(@JsonProperty("name") String name, @JsonProperty("serialNumber") String serialNumber,
                             @JsonProperty("source") String source, @JsonProperty("quantity") String quantity,
-                            @JsonProperty("location") String location) {
+                            @JsonProperty("location") String location, @JsonProperty("notes") List<String> notes) {
         this.name = name;
         this.serialNumber = serialNumber;
         this.source = source;
         this.quantity = quantity;
         this.location = location;
+        this.notes = notes;
     }
 
     /**
@@ -47,10 +53,11 @@ class JsonAdaptedStock {
         this.source = source.getSource().value;
         quantity = source.getQuantity().quantity;
         location = source.getLocation().value;
+        notes = source.getNotesValues();
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Stock} object.
+     * Converts this Jackson-friendly adapted stock object into the model's {@code Stock} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted stock.
      */
@@ -98,7 +105,25 @@ class JsonAdaptedStock {
         }
         final Location modelLocation = new Location(location);
 
+        if (notes.size() > 0) {
+            List<Note> modelNotesList = new ArrayList<>();
+            for (String note : notes) {
+                if (note == null) {
+                    throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                            Note.class.getSimpleName()));
+                }
+                if (!Note.isValidNote(note)) {
+                    throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
+                }
+                final Note modelNote = new Note(note);
+                modelNotesList.add(modelNote);
+            }
+
+            return new Stock(modelName, modelSerialNumber, modelSource, modelQuantity, modelLocation, modelNotesList);
+        }
+
         return new Stock(modelName, modelSerialNumber, modelSource, modelQuantity, modelLocation);
+
     }
 
 }

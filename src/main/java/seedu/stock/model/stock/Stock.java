@@ -37,7 +37,7 @@ public class Stock {
     /**
      * Every field must be present and not null.
      */
-    private Stock(Name name, SerialNumber serialNumber, Source source, Quantity quantity,
+    public Stock(Name name, SerialNumber serialNumber, Source source, Quantity quantity,
                  Location location, List<Note> notes) {
         requireAllNonNull(name, serialNumber, source, quantity, location);
         this.name = name;
@@ -70,6 +70,14 @@ public class Stock {
 
     public List<Note> getNotes() {
         return notes;
+    }
+
+    public List<String> getNotesValues() {
+        List<String> notesList = new ArrayList<>();
+        for(Note note : notes) {
+            notesList.add(note.value);
+        }
+        return notesList;
     }
 
     public String notesToString(List<Note> notes) {

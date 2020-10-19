@@ -52,10 +52,14 @@ public class StockCard extends UiPart<Region> {
         quantity.setText(stock.getQuantity().quantity);
         source.setText(stock.getSource().value);
         locationStored.setText(stock.getLocation().value);
-        StringBuilder allNotesAppended = new StringBuilder();
-        stock.getNotes().forEach(note -> allNotesAppended
-                .append("-").append(note.value).append("\n"));
-        notes.setText(allNotesAppended.toString());
+
+        if (stock.getNotes().size() != 0) {
+            StringBuilder allNotesAppended = new StringBuilder();
+            stock.getNotesValues().forEach(note -> allNotesAppended
+                    .append("-").append(note).append("\n"));
+            notes.setText(allNotesAppended.toString());
+        }
+
     }
 
     @Override

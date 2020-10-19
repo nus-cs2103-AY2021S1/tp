@@ -50,7 +50,10 @@
 
       <HBox>
         <Label fx:id="notesHeader" styleClass="cell_small_label_header" text="Notes: " />
-        <Label fx:id="notes" styleClass="cell_small_label" text="\$notes" />
+      </HBox>
+
+      <HBox>
+        <Label fx:id="notes" styleClass="cell_small_label" />
       </HBox>
 
     </VBox>

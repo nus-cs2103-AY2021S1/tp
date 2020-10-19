@@ -20,7 +20,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     public DeleteCommand parse(String args) throws ParseException {
         try {
-            Set<SerialNumber> serialNumberSet = ParserUtil.parseSerialNumber(args);
+            Set<SerialNumber> serialNumberSet = ParserUtil.parseSerialNumberSet(args);
             return new DeleteCommand(serialNumberSet);
         } catch (ParseException pe) {
             throw new ParseException(

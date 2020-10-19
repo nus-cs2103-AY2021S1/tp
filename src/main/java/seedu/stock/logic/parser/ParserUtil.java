@@ -115,12 +115,27 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String serialNumber} into a {@code SerialNumber}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code serialNumber} is invalid.
+     */
+    public static SerialNumber parseSerialNumber(String serialNumber) throws ParseException {
+        requireNonNull(serialNumber);
+        String trimmedSerialNumber = serialNumber.trim();
+        if (!SerialNumber.isValidSerialNumber(trimmedSerialNumber)) {
+            throw new ParseException(Note.MESSAGE_CONSTRAINTS);
+        }
+        return new SerialNumber(trimmedSerialNumber);
+    }
+
+    /**
      * Parses a {@code String serialNumber} into an {@code SerialNumber}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code serialNumber} is invalid.
      */
-    public static Set<SerialNumber> parseSerialNumber(String serialNumber) throws ParseException {
+    public static Set<SerialNumber> parseSerialNumberSet(String serialNumber) throws ParseException {
         requireNonNull(serialNumber);
         String trimmedSerialNumber = serialNumber.trim();
         String[] withoutPrefix = trimmedSerialNumber.split("sn/");

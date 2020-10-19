@@ -149,7 +149,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             break;
 
         case NoteCommand.COMMAND_WORD:
-            generateAddNoteSuggestion(toBeDisplayed, argMultimap);
+            generateNoteSuggestion(toBeDisplayed, argMultimap);
             break;
 
         default:
@@ -259,17 +259,15 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
      * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
      * @param argMultimap The parsed user input fields.
      */
-    private void generateAddNoteSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
+    private void generateNoteSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
         List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(
                 PREFIX_SERIAL_NUMBER, PREFIX_NOTE);
         toBeDisplayed.append(NOTE_COMMAND_WORD);
 
-        for (Prefix currentPrefix : allowedPrefixes) {
-            if (argMultimap.getValue(currentPrefix).isPresent()) {
-                toBeDisplayed.append(" ").append(currentPrefix).append(argMultimap.getValue(currentPrefix).get());
-            } else {
-                toBeDisplayed.append(" ").append(CliSyntax.getDefaultDescription(currentPrefix));
-            }
+        for (int i = 0; i < allowedPrefixes.size(); i++) {
+            Prefix currentPrefix = allowedPrefixes.get(i);
+            toBeDisplayed.append(" ").append(currentPrefix)
+                    .append(CliSyntax.getDefaultDescription(currentPrefix));
         }
 
         if (!bodyErrorMessage.equals("")) {
