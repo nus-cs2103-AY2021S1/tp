@@ -9,10 +9,13 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.contact.Email;
+import seedu.address.model.contact.Name;
+import seedu.address.model.contact.Telegram;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
+import seedu.address.model.module.grade.Assignment;
+import seedu.address.model.module.grade.Grade;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -63,6 +66,21 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String telegramUsername} into an {@code Telegram}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code telegramUsername} is invalid.
+     */
+    public static Telegram parseTelegram(String telegramUsername) throws ParseException {
+        requireNonNull(telegramUsername);
+        String trimmedTelegram = telegramUsername.trim();
+        if (!Telegram.isValidTelegram(trimmedTelegram)) {
+            throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
+        }
+        return new Telegram(trimmedTelegram);
     }
 
     /**
@@ -120,5 +138,53 @@ public class ParserUtil {
             throw new ParseException(ZoomLink.MESSAGE_CONSTRAINTS);
         }
         return new ZoomLink(trimmedZoomLink);
+    }
+
+    /**
+     * Parses a {@code String assignmentName}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static String parseAssignmentName(String assignmentName) throws ParseException {
+        String trimmedAssignmentName = assignmentName.trim();
+        if (!Assignment.isValidAssignmentName(trimmedAssignmentName)) {
+            throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_NAME_CONSTRAINTS);
+        }
+        return trimmedAssignmentName;
+    }
+
+    /**
+     * Parses a {@code String assignmentPercentage}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static double parseAssignmentPercentage(String assignmentPercentage) throws ParseException {
+        double trimmedAssignmentPercentage = Double.parseDouble(assignmentPercentage.trim());
+        if (!Assignment.isValidAssignmentPercentage(trimmedAssignmentPercentage)) {
+            throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_PERCENTAGE_CONSTRAINTS);
+        }
+        return trimmedAssignmentPercentage;
+    }
+
+    /**
+     * Parses a {@code String assignmentResult}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static double parseAssignmentResult(String assignmentResult) throws ParseException {
+        double trimmedAssignmentResult = Double.parseDouble(assignmentResult.trim());
+        if (!Assignment.isValidAssignmentResult(trimmedAssignmentResult)) {
+            throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_RESULT_CONSTRAINTS);
+        }
+        return trimmedAssignmentResult;
+    }
+
+    /**
+     * Parses a {@code String grade}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static double parseGrade(String grade) throws ParseException {
+        double trimmedGrade = Double.parseDouble(grade.trim());
+        if (!Grade.isValidGrade(trimmedGrade)) {
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedGrade;
     }
 }
