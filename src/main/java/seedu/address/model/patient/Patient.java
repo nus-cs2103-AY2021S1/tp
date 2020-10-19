@@ -25,12 +25,13 @@ public class Patient {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Appointment> appointments = new HashSet<>();
+    private final MedicalRecord medicalRecord;
 
     /**
      * Every field must be present and not null.
      */
     public Patient(Name name, Nric nric, Phone phone, Email email, Address address,
-                   Set<Tag> tags, Set<Appointment> appointments) {
+                   Set<Tag> tags, Set<Appointment> appointments, MedicalRecord medicalRecord) {
         requireAllNonNull(name, phone, nric, email, address, tags, appointments);
         this.name = name;
         this.phone = phone;
@@ -39,6 +40,7 @@ public class Patient {
         this.nric = nric;
         this.tags.addAll(tags);
         this.appointments.addAll(appointments);
+        this.medicalRecord = medicalRecord;
     }
 
     public Name getName() {
@@ -64,6 +66,10 @@ public class Patient {
     public Nric getNric() {
         assert nric != null : "Nric should not be empty";
         return nric;
+    }
+
+    public MedicalRecord getMedicalRecord() {
+        return medicalRecord;
     }
 
     /**
@@ -118,13 +124,14 @@ public class Patient {
                 && otherPatient.getAddress().equals(getAddress())
                 && otherPatient.getNric().equals(getNric())
                 && otherPatient.getTags().equals(getTags())
-                && otherPatient.getAppointments().equals(getAppointments());
+                && otherPatient.getAppointments().equals(getAppointments())
+                && otherPatient.getMedicalRecord().equals(getMedicalRecord());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, nric, phone, email, address, tags, appointments);
+        return Objects.hash(name, nric, phone, email, address, tags, appointments, medicalRecord);
     }
 
     @Override
@@ -143,6 +150,8 @@ public class Patient {
         getTags().forEach(builder::append);
         builder.append(" Appointments: ");
         getAppointments().forEach(builder::append);
+        builder.append(" Medical Record URL: ")
+                .append(getMedicalRecord());
         return builder.toString();
     }
 }

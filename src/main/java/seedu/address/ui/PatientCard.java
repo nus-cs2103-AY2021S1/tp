@@ -3,7 +3,10 @@ package seedu.address.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -42,6 +45,10 @@ public class PatientCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Button copyButton;
+    @FXML
+    private Label copyButtonNotification;
 
     /**
      * Creates a {@code PatientCard} with the given {@code Patient} and index to display.
@@ -76,5 +83,17 @@ public class PatientCard extends UiPart<Region> {
         PatientCard card = (PatientCard) other;
         return id.getText().equals(card.id.getText())
                 && patient.equals(card.patient);
+    }
+
+    /**
+     * Copies the URL to the user guide to the clipboard.
+     */
+    @FXML
+    private void copyUrl() {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent url = new ClipboardContent();
+        copyButtonNotification.setText("Link Copied!");
+        url.putString(patient.getMedicalRecord().value);
+        clipboard.setContent(url);
     }
 }

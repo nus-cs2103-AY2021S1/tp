@@ -4,6 +4,7 @@
     "nric" : "S0000004A",
     "phone": "9482424",
     "email": "hans@example.com",
-    "address": "4th street"
+    "address": "4th street",
+    "medical record": "www.samplerecord.com/hospify01"
   } ]
 }
