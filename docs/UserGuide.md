@@ -99,7 +99,7 @@ Format: `addPicture INDEX f/FILE_PATH`
 
 Examples:
 *  `addPicture 1 f/data/profile_picture.png` Replaces existing profile picture with 'profile_picture.png' for the 1st patient
-*  `addPicture 2 f/downloads/profile_picture.png` Replaces existing profile picture with 'profile_picture.png' found in 
+*  `addPicture 2 f/downloads/profile_picture.png` Replaces existing profile picture with 'profile_picture.png' found in
                                                   'downloads' folder for the 2nd patient
 
 #### Adding profile picture using drag and drop:
@@ -188,17 +188,17 @@ Exits the program.
 
 Format: `exit`
 
-#### Undoing the previous command: `undo` 
+#### Undoing the previous command: `undo`
 
-Reverts the previous command given by the user. 
+Reverts the previous command given by the user.
 
 Format: `undo`
 
-#### Redoing a command : `redo` 
+#### Redoing a command : `redo`
 
-Redoes the most recent command that the user has undone. 
+Redoes the most recent command that the user has undone.
 
-Format: `redo` 
+Format: `redo`
 
 #### Retrieve past commands using command line interface: `history`
 

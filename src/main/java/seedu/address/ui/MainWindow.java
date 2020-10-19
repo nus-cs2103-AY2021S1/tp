@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PatientListPanel patientListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CalendarDisplay calendarDisplay;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -46,6 +47,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane resultDisplayPlaceholder;
+
+    @FXML
+    private StackPane calendarDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -121,6 +125,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        calendarDisplay = new CalendarDisplay();
+        calendarDisplayPlaceholder.getChildren().add(calendarDisplay.getRoot());
     }
 
     /**
