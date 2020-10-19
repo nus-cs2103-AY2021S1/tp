@@ -11,7 +11,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.category.Category;
-import seedu.address.logic.commands.AddAccountCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ExitCommand;
