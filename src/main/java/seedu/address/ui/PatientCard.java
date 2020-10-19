@@ -78,6 +78,7 @@ public class PatientCard extends UiPart<Region> {
         File profilePic = new File(thisProfilePic.toString());
 
         try {
+            assert profilePic != null : "Profile picture cannot be null";
             FileInputStream fileInputStream = new FileInputStream(profilePic);
             Image finalProfilePic = new Image(fileInputStream);
             profilePicture.setImage(finalProfilePic);
@@ -115,6 +116,7 @@ public class PatientCard extends UiPart<Region> {
         Dragboard dragboard = event.getDragboard();
         List<File> fileToTransfer = dragboard.getFiles();
         File imageFile = fileToTransfer.get(0);
+        assert imageFile != null : "Profile picture cannot be null";
         FileInputStream fileInputStream = new FileInputStream(imageFile);
         Image image = new Image(fileInputStream);
         profilePicture.setImage(image);
