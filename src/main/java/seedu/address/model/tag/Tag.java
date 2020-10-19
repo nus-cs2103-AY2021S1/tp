@@ -4,6 +4,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.description.Description;
+
 /**
  * Represents a Tag in the HelloFile.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -16,13 +18,26 @@ public class Tag {
     // Data fields
     private final FileAddress fileAddress;
 
+    private final Description description;
+
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null, escept description.
      */
     public Tag(TagName tagName, FileAddress fileAddress) {
         requireAllNonNull(tagName, fileAddress);
         this.tagName = tagName;
         this.fileAddress = fileAddress;
+        this.description = new Description("");
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Tag(TagName tagName, FileAddress fileAddress, Description description) {
+        requireAllNonNull(tagName, fileAddress, description);
+        this.tagName = tagName;
+        this.fileAddress = fileAddress;
+        this.description = description;
     }
 
     public TagName getTagName() {
@@ -31,6 +46,10 @@ public class Tag {
 
     public FileAddress getFileAddress() {
         return fileAddress;
+    }
+
+    public Description getDescription() {
+        return description;
     }
 
     /**
@@ -47,7 +66,7 @@ public class Tag {
     }
     /**
      * Returns true if both tag have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * This defines a stronger notion of equality between two tags.
      */
     @Override
     public boolean equals(Object other) {
