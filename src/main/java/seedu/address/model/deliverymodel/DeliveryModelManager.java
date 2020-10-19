@@ -1,9 +1,13 @@
 package seedu.address.model.deliverymodel;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_REDO_LIMIT_REACHED;
+import static seedu.address.commons.core.Messages.MESSAGE_UNDO_LIMIT_REACHED;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -19,6 +23,9 @@ import seedu.address.model.delivery.Delivery;
 public class DeliveryModelManager implements DeliveryModel {
     private static final Logger logger = LogsCenter.getLogger(DeliveryModelManager.class);
 
+    private List<DeliveryBook> deliveryBookStateList = new ArrayList<>(MODEL_DEFAULT_STATES_LIMIT);
+    private int deliveryBookStatePointer = -1;
+    private int statesLimit = MODEL_DEFAULT_STATES_LIMIT;
     private final DeliveryBook deliveryBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Delivery> filteredDeliveries;
@@ -62,11 +69,6 @@ public class DeliveryModelManager implements DeliveryModel {
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         userPrefs.setGuiSettings(guiSettings);
-    }
-
-    @Override
-    public void setStatesLimit(int limit) {
-        deliveryBook.setStatesLimit(limit);
     }
 
     @Override
@@ -134,19 +136,66 @@ public class DeliveryModelManager implements DeliveryModel {
 
     //=========== Redo/Undo ===============================================================================
 
+    /**
+     * Copies the current {@code InventoryBook} in the state list.
+     */
     @Override
     public void commit() {
-        deliveryBook.commit();
+        assert deliveryBookStatePointer < deliveryBookStateList.size();
+        assert deliveryBookStateList.size() <= statesLimit;
+
+        if (canRedo()) {
+            deliveryBookStateList = deliveryBookStateList.subList(0, deliveryBookStatePointer + 1);
+        }
+        if (deliveryBookStateIsFull()) {
+            deliveryBookStateList.remove(0);
+            deliveryBookStatePointer--;
+        }
+        deliveryBookStateList.add(new DeliveryBook(deliveryBook));
+        deliveryBookStatePointer++;
     }
 
+    /**
+     * Shifts the current {@code InventoryBook} to the previous one in the state list.
+     */
     @Override
     public void undo() throws UndoRedoLimitReachedException {
-        deliveryBook.undo();
+        if (canUndo()) {
+            deliveryBookStatePointer--;
+            deliveryBook.resetData(deliveryBookStateList.get(deliveryBookStatePointer));
+        } else {
+            throw new UndoRedoLimitReachedException(MESSAGE_UNDO_LIMIT_REACHED);
+        }
+    }
+
+    /**
+     * Shifts the current {@code InventoryBook} to the next one in the state list.
+     */
+    @Override
+    public void redo() throws UndoRedoLimitReachedException {
+        if (canRedo()) {
+            deliveryBookStatePointer++;
+            deliveryBook.resetData(deliveryBookStateList.get(deliveryBookStatePointer));
+        } else {
+            throw new UndoRedoLimitReachedException(MESSAGE_REDO_LIMIT_REACHED);
+        }
     }
 
     @Override
-    public void redo() throws UndoRedoLimitReachedException {
-        deliveryBook.redo();
+    public void setStatesLimit(int limit) {
+        statesLimit = limit;
+    }
+
+    private boolean canUndo() {
+        return deliveryBookStatePointer > 0;
+    }
+
+    private boolean canRedo() {
+        return deliveryBookStatePointer < deliveryBookStateList.size() - 1;
+    }
+
+    private boolean deliveryBookStateIsFull() {
+        return deliveryBookStateList.size() >= statesLimit;
     }
 
 
