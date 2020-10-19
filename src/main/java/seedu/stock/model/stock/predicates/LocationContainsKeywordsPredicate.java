@@ -19,7 +19,7 @@ public class LocationContainsKeywordsPredicate implements Predicate<Stock> {
 
     /**
      * Returns true if the location field of stock matches or contains
-     * any of the keywords.
+     * all of the keywords.
      * @param stock stock to test
      * @return boolean true if location field matches keywords
      */
@@ -27,8 +27,13 @@ public class LocationContainsKeywordsPredicate implements Predicate<Stock> {
     public boolean test(Stock stock) {
         String stockLocation = stock.getLocation().value.toLowerCase();
 
-        return keywords.stream()
-                .anyMatch(keyword -> stockLocation.contains(keyword.toLowerCase()));
+        if (!keywords.isEmpty() && keywords.stream().noneMatch(String::isEmpty)) {
+            // test returns true if stock's location contains all of the keywords specified
+            return keywords.stream()
+                    .allMatch(keyword -> stockLocation.contains(keyword.toLowerCase()));
+        } else {
+            return false;
+        }
     }
 
     @Override

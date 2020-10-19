@@ -10,8 +10,8 @@ import static seedu.stock.logic.commands.CommandTestUtil.VALID_SERIAL_NUMBER_BAN
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_SOURCE_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.stock.testutil.TypicalStocks.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
-import static seedu.stock.testutil.TypicalStocks.getTypicalStocksSerialNumbers;
 
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +31,7 @@ import seedu.stock.testutil.UpdateStockDescriptorBuilder;
  */
 public class UpdateCommandTest {
 
-    private SerialNumberSetsBook serialNumbers = getTypicalStocksSerialNumbers();
+    private SerialNumberSetsBook serialNumbers = getTypicalSerialNumberSetsBook();
     private Model model = new ModelManager(getTypicalStockBook(), new UserPrefs(), serialNumbers);
 
     @Test

@@ -2,7 +2,9 @@ package seedu.stock.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.stock.commons.core.Messages;
@@ -111,7 +113,7 @@ public class ParserUtil {
         if (withoutPrefix.length < 2) {
             throw new ParseException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
-        Set<SerialNumber> serialNumberSet = new HashSet<>();
+        Set<SerialNumber> serialNumberSet = new LinkedHashSet<>();
 
         for (int i = 1; i < withoutPrefix.length; i++) {
             String currentSerialNumberInString = withoutPrefix[i];
@@ -137,5 +139,19 @@ public class ParserUtil {
             throw new ParseException(QuantityAdder.MESSAGE_CONSTRAINTS);
         }
         return new QuantityAdder(trimmedValue);
+    }
+
+    /**
+     * Returns a list containing all the prefixes provided by the input.
+     *
+     * @param prefixes The prefixes to be added into the list.
+     * @return The list containing all the prefixes.
+     */
+    public static List<Prefix> generateListOfPrefixes(Prefix ... prefixes) {
+        List<Prefix> listOfPrefixes = new ArrayList<>();
+        for (Prefix prefix : prefixes) {
+            listOfPrefixes.add(prefix);
+        }
+        return listOfPrefixes;
     }
 }

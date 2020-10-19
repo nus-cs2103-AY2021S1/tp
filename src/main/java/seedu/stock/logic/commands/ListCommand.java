@@ -12,7 +12,11 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_SUCCESS = "Listing all stocks in inventory";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all stocks in the inventory \n"
+            + "Parameters: No parameters\n"
+            + "Example: " + COMMAND_WORD;
 
 
     @Override

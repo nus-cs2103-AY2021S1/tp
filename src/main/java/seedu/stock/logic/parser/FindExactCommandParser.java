@@ -15,7 +15,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.stock.logic.commands.FindCommand;
+import seedu.stock.logic.commands.FindExactCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.Stock;
 import seedu.stock.model.stock.predicates.LocationContainsKeywordsPredicate;
@@ -24,40 +24,40 @@ import seedu.stock.model.stock.predicates.SerialNumberContainsKeywordsPredicate;
 import seedu.stock.model.stock.predicates.SourceContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FindExactCommand object
  */
-public class FindCommandParser implements Parser<FindCommand> {
+public class FindExactCommandParser implements Parser<FindExactCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public FindCommand parse(String args) throws ParseException {
+    public FindExactCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER, PREFIX_LOCATION,
-                        PREFIX_QUANTITY, PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY);
+                        PREFIX_QUANTITY, PREFIX_NEW_QUANTITY, PREFIX_INCREMENT_QUANTITY);
 
         // Check if command format is correct
         if (!isAnyPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER)
-                || isAnyPrefixPresent(argMultimap, PREFIX_NEW_QUANTITY, PREFIX_INCREMENT_QUANTITY, PREFIX_QUANTITY)
+                || isAnyPrefixPresent(argMultimap, PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY, PREFIX_QUANTITY)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindExactCommand.MESSAGE_USAGE));
         }
 
         List<Prefix> prefixes = CliSyntax.getAllPossiblePrefixes();
         // Check for duplicate prefixes
         for (Prefix prefix: prefixes) {
             if (argMultimap.getAllValues(prefix).size() >= 2) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindExactCommand.MESSAGE_USAGE));
             }
         }
 
-        // Get the predicates to test to find stocks wanted
+        // Get the predicates to test to find the stocks that match
         List<Predicate<Stock>> predicatesToTest =
                 parsePrefixAndKeywords(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER);
 
-        return new FindCommand(predicatesToTest);
+        return new FindExactCommand(predicatesToTest);
     }
 
     /**

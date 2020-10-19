@@ -1,19 +1,16 @@
 package seedu.stock.ui;
 
+import java.util.Map;
 import java.util.logging.Logger;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextInputControl;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.stock.commons.core.GuiSettings;
 import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.logic.Logic;
 import seedu.stock.logic.commands.CommandResult;
+import seedu.stock.logic.commands.SourceStatisticsCommand;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.logic.parser.exceptions.ParseException;
 
@@ -34,12 +31,10 @@ public class MainWindow extends UiPart<Stage> {
     private StockListPanel stockListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private SourceStatisticsWindow sourceStatisticsWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
-
-    @FXML
-    private MenuItem helpMenuItem;
 
     @FXML
     private StackPane stockListPanelPlaceholder;
@@ -63,53 +58,22 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
-        setAccelerators();
-
         helpWindow = new HelpWindow();
+        //TODO add all the stats window here
+        sourceStatisticsWindow = new SourceStatisticsWindow();
     }
 
     public Stage getPrimaryStage() {
         return primaryStage;
     }
 
-    private void setAccelerators() {
-        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
-    }
 
-    /**
-     * Sets the accelerator of a MenuItem.
-     * @param keyCombination the KeyCombination value of the accelerator
-     */
-    private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
-        menuItem.setAccelerator(keyCombination);
-
-        /*
-         * TODO: the code below can be removed once the bug reported here
-         * https://bugs.openjdk.java.net/browse/JDK-8131666
-         * is fixed in later version of SDK.
-         *
-         * According to the bug report, TextInputControl (TextField, TextArea) will
-         * consume function-key events. Because CommandBox contains a TextField, and
-         * ResultDisplay contains a TextArea, thus some accelerators (e.g F1) will
-         * not work when the focus is in them because the key event is consumed by
-         * the TextInputControl(s).
-         *
-         * For now, we add following event filter to capture such key events and open
-         * help window purposely so to support accelerators even when focus is
-         * in CommandBox or ResultDisplay.
-         */
-        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getTarget() instanceof TextInputControl && keyCombination.match(event)) {
-                menuItem.getOnAction().handle(new ActionEvent());
-                event.consume();
-            }
-        });
-    }
 
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+
         stockListPanel = new StockListPanel(logic.getFilteredStockList());
         stockListPanelPlaceholder.getChildren().add(stockListPanel.getRoot());
 
@@ -121,6 +85,7 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
     }
 
     /**
@@ -147,6 +112,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the SourceStatisticsWindow or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleSourceStatistics(Map<String, Integer> statisticsData) {
+        if (!sourceStatisticsWindow.isShowing()) {
+            sourceStatisticsWindow.show(statisticsData);
+        } else {
+            sourceStatisticsWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -160,6 +137,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        sourceStatisticsWindow.hide();
         primaryStage.hide();
     }
 
@@ -172,6 +150,7 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.stock.logic.Logic#execute(String)
      */
+    @FXML
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
@@ -180,6 +159,21 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowStatistics()) {
+                String type = commandResult.getStatisticsType();
+                Map<String, Integer> statisticsData = commandResult.getStatisticsData();
+
+                switch (type) {
+
+                case SourceStatisticsCommand.STATISTICS_TYPE:
+                    handleSourceStatistics(statisticsData);
+                    break;
+
+                default:
+                    throw new CommandException("Unsupported statistics type!");
+                }
             }
 
             if (commandResult.isExit()) {
@@ -193,4 +187,6 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
 }
+

@@ -2,11 +2,12 @@ package seedu.stock.ui;
 
 import java.util.logging.Logger;
 
+import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import seedu.stock.commons.core.LogsCenter;
 
@@ -15,17 +16,102 @@ import seedu.stock.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String HELP = "HELP \n---------------------------\n";
+    public static final String ADD = "---------------------------\nADD \n---------------------------\n";
+    public static final String LIST = "---------------------------\nLIST \n---------------------------\n";
+    public static final String DELETE = "---------------------------\nDELETE\n---------------------------\n";
+    public static final String FIND = "---------------------------\nFIND\n---------------------------\n";
+    public static final String FINDEXACT = "---------------------------\nFINDEXACT\n---------------------------\n";
+    public static final String UPDATE = "---------------------------\nUPDATE\n---------------------------\n";
+    public static final String EXIT = "---------------------------\nEXIT\n---------------------------\n";
+
+    public static final String HELP_DESCRIPTION =
+            "format: \nhelp\n\n";
+
+    public static final String ADD_DESCRIPTION =
+            "format: \nadd n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>\n\n";
+
+    public static final String LIST_DESCRIPTION =
+            "format: \nlist\n\n";
+
+    public static final String DELETE_DESCRIPTION =
+            "format: \ndelete sn/<serial number>\n\n"
+            + "format (multiple): \ndelete sn/<serial number> sn/<serial number 2> \n\n";
+
+    public static final String FIND_DESCRIPTION =
+            "format(any combination of): \nfind n/<name> sn/<serial number> l/<location> s/<source>\n\n";
+
+    public static final String FINDEXACT_DESCRIPTION =
+            "format(any combination of): \nfindexact n/<name> sn/<serial number> l/<location> s/<source>\n\n";
+
+    public static final String UPDATE_DESCRIPTION =
+            "format: \nupdate sn/<Serial Number of product> (followed by combination of any):\n"
+                    + "iq/<+/-><quantity to increment/decrement> nq/<new quantity> n/<new name>\n"
+                    + "l/<new location in warehouse> s/<new source of stock>\n"
+                    + "NOTE: only either of iq/ or nq/ can be provided.\n";
+
+    public static final String EXIT_DESCRIPTION = "format: \nexit\n\n";
+
+    public static final String DISCLAIMER = "---------------------------\nFor more information refer to the guide :";
+    public static final String USERGUIDE_URL = "https://ay2021s1-cs2103t-t15-3.github.io/tp/UserGuide.html";
+    public static final Hyperlink USERGUIDE_LINK = new Hyperlink(USERGUIDE_URL);
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
     @FXML
-    private Button copyButton;
+    private Label addMethod;
+
+    @FXML
+    private Label addMessage;
+
+    @FXML
+    private Label listMethod;
+
+    @FXML
+    private Label listMessage;
+
+    @FXML
+    private Label deleteMethod;
+
+    @FXML
+    private Label deleteMessage;
+
+    @FXML
+    private Label findMethod;
+
+    @FXML
+    private Label findMessage;
+
+    @FXML
+    private Label findExactMethod;
+
+    @FXML
+    private Label findExactMessage;
+
+    @FXML
+    private Label updateMethod;
+
+    @FXML
+    private Label updateMessage;
+
+    @FXML
+    private Label exitMethod;
+
+    @FXML
+    private Label exitMessage;
+
+    @FXML
+    private Label helpMethod;
 
     @FXML
     private Label helpMessage;
+
+    @FXML
+    private Label url;
+
+    @FXML
+    private Label disclaimer;
 
     /**
      * Creates a new HelpWindow.
@@ -34,7 +120,68 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
+
+        //Help Method
+        helpMethod.setText(HELP);
+        helpMethod.setStyle("-fx-font-size: 130%;");
+        helpMessage.setText(HELP_DESCRIPTION);
+
+        //Add Method
+        addMethod.setText(ADD);
+        addMethod.setStyle("-fx-font-size: 130%;");
+        addMessage.setText(ADD_DESCRIPTION);
+
+        //List Method
+        listMethod.setText(LIST);
+        listMethod.setStyle("-fx-font-size: 130%;");
+        listMessage.setText(LIST_DESCRIPTION);
+
+        //Delete Method
+        deleteMethod.setText(DELETE);
+        deleteMethod.setStyle("-fx-font-size: 130%;");
+        deleteMessage.setText(DELETE_DESCRIPTION);
+
+        //Update Method
+        updateMethod.setText(UPDATE);
+        updateMethod.setStyle("-fx-font-size: 130%;");
+        updateMessage.setText(UPDATE_DESCRIPTION);
+
+        //Find Method
+        findMethod.setText(FIND);
+        findMethod.setStyle("-fx-font-size: 130%;");
+        findMessage.setText(FIND_DESCRIPTION);
+
+        //FindExact Method
+        findExactMethod.setText(FINDEXACT);
+        findExactMethod.setStyle("-fx-font-size: 130%;");
+        findExactMessage.setText(FINDEXACT_DESCRIPTION);
+
+        //Exit Method
+        exitMethod.setText(EXIT);
+        exitMethod.setStyle("-fx-font-size: 130%;");
+        exitMessage.setText(EXIT_DESCRIPTION);
+
+
+        //Disclaimer on where to click
+        disclaimer.setText(DISCLAIMER);
+        disclaimer.setStyle("-fx-font-size: 110%;");
+
+        // setting the colours for the link
+        url.setText(USERGUIDE_URL);
+        url.setStyle("-fx-text-fill: #0b6ae0;");
+        url.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Application a = new Application() {
+
+                    @Override
+                    public void start(Stage stage) {
+                    }
+                };
+                a.getHostServices().showDocument(USERGUIDE_LINK.getText());
+
+            }
+        });
     }
 
     /**
@@ -89,14 +236,5 @@ public class HelpWindow extends UiPart<Stage> {
         getRoot().requestFocus();
     }
 
-    /**
-     * Copies the URL to the user guide to the clipboard.
-     */
-    @FXML
-    private void copyUrl() {
-        final Clipboard clipboard = Clipboard.getSystemClipboard();
-        final ClipboardContent url = new ClipboardContent();
-        url.putString(USERGUIDE_URL);
-        clipboard.setContent(url);
-    }
+
 }

@@ -1,7 +1,6 @@
 package seedu.stock.logic.parser;
 
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.stock.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,7 +10,10 @@ import seedu.stock.logic.commands.Command;
 import seedu.stock.logic.commands.DeleteCommand;
 import seedu.stock.logic.commands.ExitCommand;
 import seedu.stock.logic.commands.FindCommand;
+import seedu.stock.logic.commands.FindExactCommand;
 import seedu.stock.logic.commands.HelpCommand;
+import seedu.stock.logic.commands.ListCommand;
+import seedu.stock.logic.commands.StatisticsCommand;
 import seedu.stock.logic.commands.UpdateCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 
@@ -44,31 +46,69 @@ public class StockBookParser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            try {
+                return new AddCommandParser().parse(arguments);
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            try {
+                return new HelpCommandParser().parse(arguments);
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
 
         case UpdateCommand.COMMAND_WORD:
-            return new UpdateCommandParser().parse(arguments);
+            try {
+                return new UpdateCommandParser().parse(arguments);
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
 
         //        case ClearCommand.COMMAND_WORD:
         //            return new ClearCommand();
-        //
-        //        case ListCommand.COMMAND_WORD:
-        //            return new ListCommand();
+
+        case ListCommand.COMMAND_WORD:
+            try {
+                return new ListCommandParser().parse(arguments);
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
 
         case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            try {
+                return new DeleteCommandParser().parse(arguments);
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
+
+        case StatisticsCommand.COMMAND_WORD:
+            try {
+                return new StatisticsCommandParser().parse(arguments);
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
 
         case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+            try {
+                return new FindCommandParser().parse(arguments);
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
+
+        case FindExactCommand.COMMAND_WORD:
+            try {
+                return new FindExactCommandParser().parse(arguments);
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
 
         default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            return new SuggestionCommandParser(commandWord).parse(arguments);
         }
     }
 
