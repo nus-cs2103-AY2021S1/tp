@@ -1,11 +1,10 @@
 package seedu.address.model.tag;
 
-import seedu.address.model.description.Description;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.io.File;
 import java.util.Objects;
+
+import seedu.address.model.description.Description;
 
 /**
  * Represents a Tag in the HelloFile.
@@ -22,7 +21,7 @@ public class Tag {
     private final Description description;
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null, escept description.
      */
     public Tag(TagName tagName, FileAddress fileAddress) {
         requireAllNonNull(tagName, fileAddress);
@@ -31,8 +30,11 @@ public class Tag {
         this.description = new Description("");
     }
 
+    /**
+     * Every field must be present and not null.
+     */
     public Tag(TagName tagName, FileAddress fileAddress, Description description) {
-        requireAllNonNull(tagName,fileAddress,description);
+        requireAllNonNull(tagName, fileAddress, description);
         this.tagName = tagName;
         this.fileAddress = fileAddress;
         this.description = description;

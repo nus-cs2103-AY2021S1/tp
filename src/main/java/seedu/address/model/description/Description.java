@@ -16,6 +16,11 @@ public class Description {
 
     private String description;
 
+    /**
+     * Constructs a new Description for TagName.
+     *
+     * @param description Tag description
+     */
     public Description(String description) {
         requireNonNull(description);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
