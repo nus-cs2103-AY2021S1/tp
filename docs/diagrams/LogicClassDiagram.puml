@@ -8,7 +8,7 @@ package Logic {
 
 package Parser {
 Interface Parser <<Interface>>
-Class AddressBookParser
+Class OneShelfBookParser
 Class XYZCommandParser
 Class CliSyntax
 Class ParserUtil
@@ -18,9 +18,15 @@ Class Prefix
 }
 
 package Command {
+Class ItemXYZCommand
+Class DeliveryXYZCommand
+Class HelpXYZCommand
 Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
+Class "{abstract}\nItemCommand" as ItemCommand
+Class "{abstract}\nDeliveryCommand" as DeliveryCommand
+Class "{abstract}\nHelpCommand" as HelpCommand
 }
 
 Interface Logic <<Interface>>
@@ -35,10 +41,9 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .up.|> Logic
-LogicManager -->"1" AddressBookParser
-AddressBookParser .left.> XYZCommandParser: creates >
+LogicManager -->"1" OneShelfBookParser
+OneShelfBookParser .left.> XYZCommandParser: creates >
 
-XYZCommandParser ..> XYZCommand : creates >
 XYZCommandParser ..|> Parser
 XYZCommandParser ..> ArgumentMultimap
 XYZCommandParser ..> ArgumentTokenizer
@@ -48,12 +53,26 @@ CliSyntax ..> Prefix
 XYZCommandParser ..> ParserUtil
 ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix
+
+XYZCommandParser ..> ItemXYZCommand : creates >
+ItemXYZCommand -up-|> ItemCommand
+ItemCommand -up-|> Command
+
+XYZCommandParser ..> DeliveryXYZCommand : creates >
+DeliveryXYZCommand -up-|> DeliveryCommand
+DeliveryCommand -up-|> Command
+
+XYZCommandParser ..> HelpXYZCommand : creates >
+HelpXYZCommand -up-|> HelpCommand
+HelpCommand -up-|> Command
+
+XYZCommandParser ..> XYZCommand : creates >
 XYZCommand -up-|> Command
-LogicManager .left.> Command : executes >
+
+LogicManager ..> Command : executes >
 
 LogicManager --> Model
 Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
