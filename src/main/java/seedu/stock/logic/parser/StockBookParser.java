@@ -13,11 +13,8 @@ import seedu.stock.logic.commands.FindCommand;
 import seedu.stock.logic.commands.FindExactCommand;
 import seedu.stock.logic.commands.HelpCommand;
 import seedu.stock.logic.commands.ListCommand;
-<<<<<<< HEAD
 import seedu.stock.logic.commands.NoteCommand;
-=======
 import seedu.stock.logic.commands.StatisticsCommand;
->>>>>>> edf3ef60739d8fbddafbdae256c8fd9ef53a0f01
 import seedu.stock.logic.commands.UpdateCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 
