@@ -105,7 +105,7 @@ public class Flashcard {
                 && otherFlashcard.getAnswer().equals(getAnswer())
                 && otherFlashcard.getCategory().equals(getCategory())
                 && otherFlashcard.getNote().equals(getNote())
-                && otherFlashcard.isFavourite() == isFavourite();
+                && (otherFlashcard.isFavourite() == isFavourite());
     }
 
     @Override

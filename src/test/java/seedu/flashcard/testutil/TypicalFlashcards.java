@@ -13,13 +13,13 @@ import seedu.flashcard.model.flashcard.Flashcard;
 public class TypicalFlashcards {
 
     public static final Flashcard FLASHCARD_1 = new FlashcardBuilder().withQuestion("What does SDLC stand for?")
-            .withAnswer("Software development life cycle").withCategory("SDLC")
+            .withAnswer("Software development life cycle").withCategory("SDLC").withFavouriteStatus(false)
             .build();
 
     public static final Flashcard FLASHCARD_2 = new FlashcardBuilder()
             .withQuestion("What is a revision control software?")
             .withAnswer("It is the software tool that automate the process of Revision Control")
-            .withCategory("Revision History")
+            .withCategory("Revision History").withFavouriteStatus(true)
             .build();
 
     public static final Flashcard FLASHCARD_3 = new FlashcardBuilder()

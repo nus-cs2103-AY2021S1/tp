@@ -47,16 +47,14 @@ public class FavCommand extends Command {
         Flashcard flashcardToFavourite = lastShownList.get(targetIndex.getZeroBased());
         assert flashcardToFavourite != null : "Index is invalid";
 
-        Flashcard favouredFlashcard = createFavouriteFlashcard(flashcardToFavourite);
-        model.setFlashcard(flashcardToFavourite, favouredFlashcard);
-        return new CommandResult(String.format(MESSAGE_FAVOURITE_FLASHCARD_SUCCESS, favouredFlashcard));
+        Flashcard favouritedFlashcard = createFavouriteFlashcard(flashcardToFavourite);
+
+        model.setFlashcard(flashcardToFavourite, favouritedFlashcard);
+
+        return new CommandResult(String.format(MESSAGE_FAVOURITE_FLASHCARD_SUCCESS, favouritedFlashcard));
     }
 
     private static Flashcard createFavouriteFlashcard(Flashcard flashcardToFavourite) {
-        if (flashcardToFavourite.isFavourite()) {
-            return flashcardToFavourite;
-        }
-
         Question question = flashcardToFavourite.getQuestion();
         Answer answer = flashcardToFavourite.getAnswer();
         Category category = flashcardToFavourite.getCategory();

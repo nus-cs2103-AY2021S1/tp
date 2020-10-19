@@ -20,17 +20,20 @@ class JsonAdaptedFlashcard {
     private String answer;
     private String category;
     private String note;
+    private String isFavourite;
 
     /**
      * Constructs a {@code JsonAdaptedFlashcard} with the given flashcard details.
      */
     @JsonCreator
     public JsonAdaptedFlashcard(@JsonProperty("question") String question, @JsonProperty("answer") String answer,
-                                @JsonProperty("category") String category, @JsonProperty("note") String note) {
+                                @JsonProperty("category") String category, @JsonProperty("note") String note,
+                                @JsonProperty("favourite") String isFavourite) {
         this.question = question;
         this.answer = answer;
         this.category = category;
         this.note = note;
+        this.isFavourite = isFavourite;
     }
 
     /**
@@ -41,6 +44,7 @@ class JsonAdaptedFlashcard {
         answer = source.getAnswer().toString();
         category = source.getCategory().toString();
         note = source.getNote().toString();
+        isFavourite = Boolean.toString(source.isFavourite());
     }
 
     /**
@@ -82,7 +86,9 @@ class JsonAdaptedFlashcard {
         }
         final Note modelNote = new Note(note);
 
-        return new Flashcard(modelQuestion, modelAnswer, modelCategory, modelNote);
+        final Boolean modelIsFavourite = Boolean.parseBoolean(isFavourite);
+
+        return new Flashcard(modelQuestion, modelAnswer, modelCategory, modelNote, modelIsFavourite);
     }
 
 }

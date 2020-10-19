@@ -52,9 +52,6 @@ public class UnfavCommand extends Command {
     }
 
     private static Flashcard createUnfavouredFlashcard(Flashcard flashcardToUnfavourite) {
-        if (!flashcardToUnfavourite.isFavourite()) {
-            return flashcardToUnfavourite;
-        }
 
         Question question = flashcardToUnfavourite.getQuestion();
         Answer answer = flashcardToUnfavourite.getAnswer();

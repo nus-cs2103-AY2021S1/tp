@@ -15,11 +15,13 @@ public class FlashcardBuilder {
     public static final String DEFAULT_ANSWER = "Object oriented programming";
     public static final String DEFAULT_CATEGORY = "General";
     public static final String DEFAULT_NOTE = "";
+    public static final boolean DEFAULT_FAVOURITE_STATUS = false;
 
     private Question question;
     private Answer answer;
     private Category category;
     private Note note;
+    private boolean isFavourite;
 
     /**
      * Creates a {@code FlashcardBuilder} with the default details.
@@ -29,6 +31,7 @@ public class FlashcardBuilder {
         answer = new Answer(DEFAULT_ANSWER);
         category = new Category(DEFAULT_CATEGORY);
         note = new Note(DEFAULT_NOTE);
+        isFavourite = DEFAULT_FAVOURITE_STATUS;
     }
 
     /**
@@ -39,6 +42,7 @@ public class FlashcardBuilder {
         answer = flashcardToCopy.getAnswer();
         category = flashcardToCopy.getCategory();
         note = flashcardToCopy.getNote();
+        isFavourite = flashcardToCopy.isFavourite();
     }
 
     /**
@@ -73,8 +77,16 @@ public class FlashcardBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code isFavourite} status of the {@code Flashcard} that we are building.
+     */
+    public FlashcardBuilder withFavouriteStatus(boolean isFavourite) {
+        this.isFavourite = isFavourite;
+        return this;
+    }
+
     public Flashcard build() {
-        return new Flashcard(question, answer, category, note);
+        return new Flashcard(question, answer, category, note, isFavourite);
     }
 
 }

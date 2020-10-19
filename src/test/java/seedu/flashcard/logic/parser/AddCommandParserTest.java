@@ -45,7 +45,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // standard flashcard without category and note
+        // standard flashcard without category, note and isFavourite
         assertParseSuccess(parser, SPACE + PREFIX_QUESTION + VALID_QUESTION_3 + PREFIX_ANSWER
                 + VALID_ANSWER_3, new AddCommand(FLASHCARD_3));
 
