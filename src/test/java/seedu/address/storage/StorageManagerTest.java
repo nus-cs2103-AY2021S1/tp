@@ -15,6 +15,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.storage.bidderstorage.JsonBidderAddressBookStorage;
+import seedu.address.storage.bidstorage.JsonBidBookStorage;
 import seedu.address.storage.calendar.JsonMeetingBookStorage;
 import seedu.address.storage.property.JsonPropertyBookStorage;
 import seedu.address.storage.sellerstorage.JsonSellerAddressBookStorage;

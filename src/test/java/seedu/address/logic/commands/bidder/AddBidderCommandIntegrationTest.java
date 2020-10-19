@@ -11,11 +11,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.biddercommands.AddBidderCommand;
-import seedu.address.model.BidBook;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.bidbook.BidBook;
 import seedu.address.model.person.bidder.Bidder;
 import seedu.address.testutil.bidder.BidderBuilder;
 

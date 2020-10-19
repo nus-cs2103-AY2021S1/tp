@@ -11,14 +11,15 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddBidCommand;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.bidcommands.AddBidCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.BidBook;
 import seedu.address.model.ModelStub;
-import seedu.address.model.ReadOnlyBidBook;
 import seedu.address.model.bid.Bid;
+import seedu.address.model.bidbook.BidBook;
+import seedu.address.model.bidbook.ReadOnlyBidBook;
 import seedu.address.testutil.bids.BidBuilder;
+
 
 public class AddBidCommandTest {
 

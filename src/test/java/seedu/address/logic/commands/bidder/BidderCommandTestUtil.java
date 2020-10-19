@@ -14,11 +14,13 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.biddercommands.EditBidderCommand.EditBidderDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.bidder.Bidder;
+import seedu.address.testutil.bidder.EditBidderDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -30,6 +32,7 @@ public class BidderCommandTestUtil {
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_TAG_BIDDER = "bidder";
+    public static final String VALID_ID_BIDDER = "B0";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -44,6 +47,17 @@ public class BidderCommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    public static final EditBidderDescriptor DESC_AMY;
+    public static final EditBidderDescriptor DESC_BOB;
+
+    static {
+        DESC_AMY = new EditBidderDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withTags(VALID_TAG_BIDDER)
+                .withId(VALID_ID_BIDDER).build();
+        DESC_BOB = new EditBidderDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_BIDDER)
+                .withId(VALID_ID_BIDDER).build();
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
