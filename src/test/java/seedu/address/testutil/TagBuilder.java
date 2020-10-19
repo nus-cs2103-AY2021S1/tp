@@ -1,9 +1,13 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
 
+import seedu.address.model.description.Description;
 import seedu.address.model.tag.FileAddress;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagName;
+
 
 /**
  * A utility class to help with building Tag objects.
@@ -15,6 +19,8 @@ public class TagBuilder {
 
     private TagName tagName;
     private FileAddress fileAddress;
+    //TODO:NEED TO MODIFY DESCRIPTIONS
+    private Set<Description> descriptions = new HashSet<Description>();
 
 
     /**
@@ -51,7 +57,8 @@ public class TagBuilder {
         return this;
     }
 
+    //TODO:NEED TO MODIFY DESCRIPTION
     public Tag build() {
-        return new Tag(tagName, fileAddress);
+        return new Tag(tagName, fileAddress, descriptions);
     }
 }
