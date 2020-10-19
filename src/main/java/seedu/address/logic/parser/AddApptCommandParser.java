@@ -43,7 +43,7 @@ public class AddApptCommandParser implements Parser<AddApptCommand> {
         if (argMultimap.getValue(PREFIX_APPOINTMENT).isPresent()) {
             appointment = ParserUtil.parseAppointment(argMultimap.getValue(PREFIX_APPOINTMENT).get());
         }
-        assert !appointment.equals(new Appointment());
+        assert !appointment.equals(new Appointment()) : "Appointment should not be empty!";
 
         return new AddApptCommand(index, appointment);
     }
