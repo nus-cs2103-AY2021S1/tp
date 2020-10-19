@@ -129,9 +129,9 @@ _{coming soon}_
 Action | Format, Examples
 --------|------------------
 **Help**   | `help`
-**Vendor** | `vendor INDEX` <br> e.g., `vendor 2` 
+**Vendor** | `vendor INDEX` <br> e.g., `vendor 2`
 **Menu**   | `menu` <br> e.g., `menu`
-**Total** | `total` <br> e.g., `total` 
-**Add**    | `add INDEX [QUANTITY]` <br> e.g., `add 2 2` 
-**Delete** | `delete INDEX [QUANTITY]`<br> e.g., `delete 3 1` 
-**Submit**| `submit` <br> e.g., `submit` 
+**Total** | `total` <br> e.g., `total`
+**Add**    | `add INDEX [QUANTITY]` <br> e.g., `add 2 2`
+**Delete** | `delete INDEX [QUANTITY]`<br> e.g., `delete 3 1`
+**Submit**| `submit` <br> e.g., `submit`
