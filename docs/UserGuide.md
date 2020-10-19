@@ -9,7 +9,7 @@ If you can type fast, McGymmy can log your food intake faster than traditional G
 This document aims to showcase all of MG's commands.
 Open this document in a modern internet browser (Mozilla Firefox, Google Chrome, or Microsoft Edge).
 
-##  Icon Legend:
+##  Icon Legend
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** This indicates that the following text consists of tips to better utilise MG
@@ -219,7 +219,7 @@ Examples:
 
 ![delete command example](images/CommandImagesForUG/Delete.png)
 
-### Importing another save file
+### Importing another save file: `import`
 
 Imports a previously saved file into McGymmy
 
@@ -239,7 +239,7 @@ For those who are more inclined to use a gui to import:
 
 ![GUI import command example](images/CommandImagesForUG/ImportGUI.png)
 
-### Exporting your save file to a folder
+### Exporting your save file to a folder `export`
 
 Imports a previously saved file into McGymmy
 
@@ -278,8 +278,6 @@ Format: `exit`
 Adds a macro to run several commands in succession.
 
 *__WARNING:__* this is an advanced feature!
-
-*__NOTE:__* allows you to use one of the arguments as a command, allowing you to build higher order commands but also potentially infinite loops.
 
 Arguments to the macro can be substituted in the commands using the syntax:
 \ARGUMENT_NAME.
