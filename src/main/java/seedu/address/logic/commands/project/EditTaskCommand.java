@@ -1,9 +1,9 @@
 package seedu.address.logic.commands.project;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_IS_DONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PROGRESS;
 
@@ -38,12 +38,12 @@ public class EditTaskCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_PROJECT_NAME + "TASKNAME] "
-            + "[" + PREFIX_DEADLINE + "DEADLINE] "
+            + "[" + PREFIX_TASK_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_PROJECT_DESCRIPTION + "TASKDESCRIPTION] "
             + "[" + PREFIX_TASK_PROGRESS + "TASK PROGRESS]...\n"
             + "[" + PREFIX_TASK_IS_DONE + "TASK STATUS]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DEADLINE + "29-02-2020 00:00:00 ";
+            + PREFIX_TASK_DEADLINE + "29-02-2020 00:00:00 ";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited TASK: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

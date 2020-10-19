@@ -2,8 +2,8 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.ArgumentMultimapUtil.arePrefixesPresent;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_IS_DONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PROGRESS;
 
@@ -39,7 +39,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
                 ParserUtil.parseTaskBasicInformation(argMultimap.getValue(PREFIX_TASK_PROGRESS).get()));
         boolean taskStatus = Boolean.parseBoolean(
                 ParserUtil.parseTaskBasicInformation(argMultimap.getValue(PREFIX_TASK_IS_DONE).get()));
-        Deadline taskDeadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).orElse(null));
+        Deadline taskDeadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_TASK_DEADLINE).orElse(null));
         Task task = new Task(taskName, null, taskDeadline, taskProgress, taskStatus);
 
         return new AddTaskCommand(task);
