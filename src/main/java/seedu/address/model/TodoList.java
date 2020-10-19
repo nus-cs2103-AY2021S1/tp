@@ -54,7 +54,7 @@ public class TodoList implements ReadOnlyTodoList {
     //// task-level operation
 
     /**
-     * Returns true if a task with the same name, type, and date as {@code tasks} exists in the todo list.
+     * Returns true if a task with the same name as {@code tasks} exists in the todo list.
      */
     public boolean hasTask(Task task) {
         requireNonNull(task);
@@ -80,7 +80,7 @@ public class TodoList implements ReadOnlyTodoList {
     /**
      * Replaces the given task {@code target} in the list with {@code editedTask}.
      * {@code target} must exist in the todo list.
-     * The task's name, type, and date of {@code editedTask} must not be the same as another
+     * The name of the task {@code editedTask} must not be the same as another
      * existing task in the todo list.
      */
     public void setTask(Task target, Task editedTask) {

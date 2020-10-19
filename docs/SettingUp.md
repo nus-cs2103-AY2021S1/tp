@@ -16,6 +16,7 @@ title: Setting up and getting started
 Follow the steps in the following guide precisely. Things will not work out if you deviate in some steps.
 </div>
 
+
 1. Ensure that you have Java JDK 11 installed on your OS.
 2. Download the JAR file of the program [_here_](https://github.com/AY2021S1-CS2103T-F12-3)
 3. Save the file into a folder name **CAP5.0Buddy** in any directory.
@@ -61,3 +62,42 @@ Exception in thread "main" java.lang.UnsupportedClassVersionError: mattbot/Launc
 ```
 Solution:
 Make sure that you have Java JDK 11 installed on your computer. If not, you can uninstall your current java and reinstall from the above link, or [_here_](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
+=======
+First, **fork** this repo, and **clone** the fork into your computer.
+
+If you plan to use Intellij IDEA (highly recommended):
+1. **Configure the JDK**: Follow the guide [_[se-edu/guides] IDEA: Configuring the JDK_](https://se-education.org/guides/tutorials/intellijJdk.html) to to ensure Intellij is configured to use **JDK 11**.
+1. **Import the project as a Gradle project**: Follow the guide [_[se-edu/guides] IDEA: Importing a Gradle project_](https://se-education.org/guides/tutorials/intellijImportGradleProject.html) to import the project into IDEA.<br>
+  :exclamation: Note: Importing a Gradle project is slightly different from importing a normal Java project.
+1. **Verify the setup**:
+   1. Run the `seedu.address.Main` and try a few commands.
+   1. [Run the tests](Testing.md) to ensure they all pass.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Before writing code
+
+1. **Configure the coding style**
+
+   If using IDEA, follow the guide [_[se-edu/guides] IDEA: Configuring the code style_](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to set up IDEA's coding style to match ours.
+
+   <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+
+   Optionally, you can follow the guide [_[se-edu/guides] Using Checkstyle_](https://se-education.org/guides/tutorials/checkstyle.html) to find how to use the CheckStyle within IDEA e.g., to report problems _as_ you write code.
+   </div>
+
+1. **Set up CI**
+
+   This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those files, it will run the CI for your project automatically at each push to the `master` branch or to any PR. No set up required.
+
+1. **Learn the design**
+
+   When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [AddressBook’s architecture](DeveloperGuide.md#architecture).
+
+1. **Do the tutorials**
+   These tutorials will help you get acquainted with the codebase.
+
+   * [Tracing code](tutorials/TracingCode.md)
+   * [Removing fields](tutorials/RemovingFields.md)
+   * [Adding a new command](tutorials/AddRemark.md)
+
