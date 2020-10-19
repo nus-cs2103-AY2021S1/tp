@@ -14,7 +14,7 @@ import java.util.Objects;
  * Represents a ClassTime in Reeve.
  * Guarantees: immutable; is valid as declared in {@link #isValidClassTime(String)}
  */
-public class ClassTime {
+public class ClassTime implements Comparable<ClassTime> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Class Time should follow the following format: {int: day_of_week} {int: start_time}-{int: end_time}";
@@ -125,4 +125,19 @@ public class ClassTime {
         return Objects.hash(dayOfWeek, startTime, endTime);
     }
 
+    @Override
+    public int compareTo(ClassTime o) {
+        // same dayOfWeek => need to compare specific time
+        if (this.dayOfWeek.equals(o.dayOfWeek)) {
+
+            if (this.startTime.isBefore(o.startTime)) {
+                return -1; // start time is earlier
+            }
+            // Here we are assuming there are no overlapping classTimes
+            // i.e. there are no clash
+            return 1; // start time is later
+
+        }
+        return this.dayOfWeek.getValue() - o.dayOfWeek.getValue();
+    }
 }
