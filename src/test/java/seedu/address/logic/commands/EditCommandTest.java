@@ -53,7 +53,6 @@ public class EditCommandTest {
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastAnimal = Index.fromOneBased(model.getFilteredAnimalList().size());
         Animal lastAnimal = model.getFilteredAnimalList().get(indexLastAnimal.getZeroBased());
-        System.out.println(lastAnimal.getId());
         AnimalBuilder animalInList = new AnimalBuilder(lastAnimal);
         Animal editedAnimal = animalInList.withName(VALID_NAME_PASHA).withId(VALID_ID_PASHA)
                 .withMedicalConditions(VALID_MEDICAL_CONDITION_ARTHRITIS).build();
