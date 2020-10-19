@@ -95,6 +95,8 @@ public class StorageManager implements Storage {
      */
     public static String addPictureToProfile(String patientName, File profilePic) {
         try {
+            assert patientName != "" || profilePic != null : "Patient name cannot be blank."
+                                                            + "Profile picture cannot be null.";
             String profilePicPath = profilePic.getPath();
             String profilePicExtension = FilenameUtils.getExtension(profilePicPath);
             //TODO: replace hardcoded path
@@ -102,10 +104,12 @@ public class StorageManager implements Storage {
                                      + profilePicExtension;
 
             byte[] profilePicInBytes = FileUtils.readFileToByteArray(profilePic);
+            assert profilePicInBytes != null : "Profile picture cannot be null";
             String profilePicInString = Base64.getEncoder().encodeToString(profilePicInBytes);
 
             File finalProfilePic = new File(destinationPath);
             byte[] decodedBytes = Base64.getDecoder().decode(profilePicInString);
+            assert decodedBytes != null : "Profile picture cannot be null";
             FileUtils.writeByteArrayToFile(finalProfilePic, decodedBytes);
             return destinationPath;
         } catch (IOException error) {
