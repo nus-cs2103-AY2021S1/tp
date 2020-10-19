@@ -1,7 +1,12 @@
 package seedu.fma.model.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.fma.model.util.SampleDataUtil.getSampleExercises;
 
+import java.util.Arrays;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.fma.model.LogBook;
@@ -11,17 +16,21 @@ import seedu.fma.model.log.Log;
 import seedu.fma.model.log.Rep;
 
 class SampleDataUtilTest {
+    @BeforeEach
+    public void setUp() {
+        new LogBook().setExercises(Arrays.asList(getSampleExercises()));
+    }
 
     @Test
     void testGetSampleLogs() {
         Log[] sampleLogs = {
-            new Log(Exercise.find(new Name("Sit ups")), new Rep("30"), new Comment("My abs hurt :(")),
-            new Log(Exercise.find(new Name("Pull ups")), new Rep("10"), new Comment("-"))
+            new Log(LogBook.getExercise(new Name("Sit ups")), new Rep("30"), new Comment("My abs hurt :(")),
+            new Log(LogBook.getExercise(new Name("Pull ups")), new Rep("10"), new Comment("-"))
         };
 
         for (int i = 0; i < SampleDataUtil.getSampleLogs().length; i++) {
             // TODO: Need to check date time for logs
-            assertTrue(SampleDataUtil.getSampleLogs()[i].getExercise().equals(sampleLogs[i].getExercise()));
+            assertEquals(sampleLogs[i].getExercise(), SampleDataUtil.getSampleLogs()[i].getExercise());
         }
     }
 
@@ -35,8 +44,8 @@ class SampleDataUtilTest {
             new Exercise(new Name("Run 100m"), 30),
             new Exercise(new Name("Stretch"), 20),
         };
-        for (int i = 0; i < SampleDataUtil.getSampleExercises().length; i++) {
-            assertTrue(SampleDataUtil.getSampleExercises()[i].equals(sampleExercises[i]));
+        for (int i = 0; i < getSampleExercises().length; i++) {
+            assertEquals(sampleExercises[i], getSampleExercises()[i]);
         }
     }
 

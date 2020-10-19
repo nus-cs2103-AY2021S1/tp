@@ -14,9 +14,9 @@ public class SampleDataUtil {
 
     public static Log[] getSampleLogs() {
         return new Log[] {
-            new Log(Exercise.find(new Name("Sit ups")),
+            new Log(LogBook.getExercise(new Name("Sit ups")),
                     new Rep("30"), new Comment("My abs hurt :(")),
-            new Log(Exercise.find(new Name("Pull ups")),
+            new Log(LogBook.getExercise(new Name("Pull ups")),
                     new Rep("10"), new Comment("-"))
         };
     }
@@ -36,6 +36,9 @@ public class SampleDataUtil {
         LogBook sampleLogbook = new LogBook();
         for (Log sampleLog : getSampleLogs()) {
             sampleLogbook.addLog(sampleLog);
+        }
+        for (Exercise sampleExercise : getSampleExercises()) {
+            sampleLogbook.addExercise(sampleExercise);
         }
         return sampleLogbook;
     }

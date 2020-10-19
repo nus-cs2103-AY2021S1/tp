@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.fma.commons.exceptions.IllegalValueException;
+import seedu.fma.model.LogBook;
 import seedu.fma.model.exercise.Exercise;
 import seedu.fma.model.exercise.exceptions.ExerciseNotFoundException;
 import seedu.fma.model.log.Comment;
@@ -60,7 +61,7 @@ class JsonAdaptedLog {
         }
         Exercise modelExercise;
         try {
-            modelExercise = Exercise.find(new Name(exercise));
+            modelExercise = LogBook.getExercise(new Name(exercise));
         } catch (ExerciseNotFoundException e) {
             throw new IllegalValueException(Exercise.MESSAGE_CONSTRAINTS);
         }

@@ -4,5 +4,24 @@
     "dateTime" : "2020-10-12T15:25:41.514384900",
     "rep" : "invalid30",
     "comment" : "My abs hurt :("
+  } ],
+  "exercises" : [ {
+    "name" : "Flying kicks",
+    "caloriesPerRep" : 15
+  }, {
+    "name" : "Sit ups",
+    "caloriesPerRep" : 30
+  }, {
+    "name" : "Pull ups",
+    "caloriesPerRep" : 20
+  }, {
+    "name" : "Jumping jacks",
+    "caloriesPerRep" : 15
+  }, {
+    "name" : "Run 100m",
+    "caloriesPerRep" : 30
+  }, {
+    "name" : "Stretch",
+    "caloriesPerRep" : 20
   } ]
 }
