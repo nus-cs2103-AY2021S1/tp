@@ -136,6 +136,17 @@ Examples:
 
 ![add command example](images/CommandImagesForUG/Add.png)
 
+### Clearing all food items : `clear`
+
+Clear all items in McGymmy.
+
+* Clear all items in McGymmy.
+* All additional inputs after clear are discarded.
+
+Format: `clear`
+
+![clear command example](images/CommandImagesForUG/Clear.png)
+
 ### Tagging food items : `tag`
 
 Tags a food item in McGymmy.
@@ -298,6 +309,7 @@ McGymmy's data is saved in the hard disk automatically after any command that ch
 Action     | Format, Examples
 -----------|------------------
 **Add**    | `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE]` <br> e.g., `add Chicken Rice -p 10 -f 5 -c 23 -d 02/09/2020`
+**Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [-n NAME] [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE]`<br> e.g.,`edit 2 -n Chicken Rice -p 30 -f 50 -c 60 -d 02/09/2020`
 **List**   | `list`
