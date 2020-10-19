@@ -3,6 +3,7 @@ package jimmy.mcgymmy.model;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.Stack;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -20,6 +21,8 @@ import jimmy.mcgymmy.model.food.Food;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+
+    private static final Stack<ReadOnlyMcGymmy> mcGymmyStack = new Stack<>();
 
     private final McGymmy mcGymmy;
     private final UserPrefs userPrefs;
@@ -87,6 +90,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setMcGymmy(ReadOnlyMcGymmy mcGymmy) {
+        mcGymmyStack.push(new McGymmy(this.mcGymmy));
         this.mcGymmy.resetData(mcGymmy);
     }
 
@@ -98,11 +102,13 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteFood(Index index) {
+        mcGymmyStack.push(new McGymmy(mcGymmy));
         mcGymmy.removeFood(index);
     }
 
     @Override
     public void addFood(Food food) {
+        mcGymmyStack.push(new McGymmy(mcGymmy));
         mcGymmy.addFood(food);
         updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
     }
@@ -110,8 +116,24 @@ public class ModelManager implements Model {
     @Override
     public void setFood(Index index, Food editedFood) {
         CollectionUtil.requireAllNonNull(index, editedFood);
-
+        mcGymmyStack.push(new McGymmy(mcGymmy));
         mcGymmy.setFood(index, editedFood);
+    }
+
+    @Override
+    public boolean canUndo() {
+        return !mcGymmyStack.empty();
+    }
+
+    /**
+     * Undo the previous change to mcGymmy
+     */
+    @Override
+    public void undo() {
+        if (canUndo()) {
+            mcGymmy.resetData(mcGymmyStack.pop());
+            updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
+        }
     }
 
     //=========== Filtered Food List Accessors =============================================================
@@ -126,7 +148,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredFoodList(Predicate<Food> predicate) {
+    public void  updateFilteredFoodList(Predicate<Food> predicate) {
         requireNonNull(predicate);
         filteredFoodItems.setPredicate(predicate);
     }
