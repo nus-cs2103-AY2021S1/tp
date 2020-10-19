@@ -70,6 +70,7 @@ public class LogicManager implements Logic {
                                                                                    IllegalValueException {
         requireNonNull(patient);
         requireNonNull(profilePic);
+        assert patient != null || profilePic != null : "Patient and profile picture cannot be null";
         int patientIndex = 1;
         ObservableList<Patient> listOfPatients = model.getFilteredPatientList();
         for (Patient thisPatient: listOfPatients) {
