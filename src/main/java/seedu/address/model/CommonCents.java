@@ -59,10 +59,10 @@ public class CommonCents implements ReadOnlyCommonCents {
         setAccounts(newData.getAccountList());
     }
 
-    //// person-level operations
+    //// account-level operations
 
     /**
-     * Returns true if an account with the same identity as {@code account} exists in the address book.
+     * Returns true if an account with the same identity as {@code account} exists in the Common Cents.
      */
     public boolean hasAccount(Account account) {
         requireNonNull(account);

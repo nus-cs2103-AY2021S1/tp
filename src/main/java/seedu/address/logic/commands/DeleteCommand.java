@@ -26,7 +26,7 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) c/CATEGORY\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_CATEGORY + "revenue";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Entry: %1$s";
+    public static final String MESSAGE_DELETE_ENTRY_SUCCESS = "Deleted Entry: %1$s";
 
     private final Index targetIndex;
     private final Category category;
@@ -64,7 +64,7 @@ public class DeleteCommand extends Command {
             activeAccount.deleteRevenue(toDelete);
         }
         model.setAccount(activeAccount.getAccount());
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, category));
+        return new CommandResult(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, category));
     }
 
     @Override

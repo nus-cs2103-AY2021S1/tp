@@ -113,11 +113,13 @@ public class ActiveAccountManager implements ActiveAccount {
 
     @Override
     public void updateFilteredExpenseList(Predicate<Expense> predicate) {
+        requireNonNull(predicate);
         this.filteredExpenses.setPredicate(predicate);
     }
 
     @Override
     public void updateFilteredRevenueList(Predicate<Revenue> predicate) {
+        requireNonNull(predicate);
         this.filteredRevenues.setPredicate(predicate);
     }
 

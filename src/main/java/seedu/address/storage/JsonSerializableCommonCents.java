@@ -14,7 +14,7 @@ import seedu.address.model.ReadOnlyCommonCents;
 import seedu.address.model.account.Account;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable CommonCents that is serializable to JSON format.
  */
 @JsonRootName(value = "commoncents")
 public class JsonSerializableCommonCents {
@@ -41,7 +41,7 @@ public class JsonSerializableCommonCents {
     }
 
     /**
-     * Converts this address book into the model's {@code CommonCents} object.
+     * Converts this Common Cents into the model's {@code CommonCents} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

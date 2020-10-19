@@ -36,7 +36,7 @@ public class RevenueTest {
         tags.add(new Tag("craft"));
         tags.add(new Tag("art"));
 
-        assertThrows(IllegalArgumentException.class, () -> new Expense(description, new Amount(amount), tags));
+        assertThrows(IllegalArgumentException.class, () -> new Revenue(description, new Amount(amount), tags));
     }
 
 }
