@@ -4,7 +4,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.ArgumentMultimapUtil.isOnlyOnePrefixPresent;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_ASSIGNEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_IS_DONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PROGRESS;
 
 import java.util.function.Predicate;
 
@@ -29,10 +31,10 @@ public class TaskFilterCommandParser implements Parser<TaskFilterCommand> {
     public TaskFilterCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_TASK_ASSIGNEE,
-                PREFIX_TASK_DEADLINE, PREFIX_TASK_NAME);
+                PREFIX_TASK_DEADLINE, PREFIX_TASK_NAME, PREFIX_TASK_PROGRESS, PREFIX_TASK_IS_DONE);
 
         if (!isOnlyOnePrefixPresent(argMultimap, PREFIX_TASK_ASSIGNEE,
-            PREFIX_TASK_DEADLINE, PREFIX_TASK_NAME)) {
+            PREFIX_TASK_DEADLINE, PREFIX_TASK_NAME, PREFIX_TASK_PROGRESS, PREFIX_TASK_IS_DONE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskFilterCommand.MESSAGE_USAGE));
         }
 
@@ -43,15 +45,23 @@ public class TaskFilterCommandParser implements Parser<TaskFilterCommand> {
                 .getValue(PREFIX_TASK_ASSIGNEE).get());
             predicate = task -> task.hasAssigneeWhoseGitNameIs(assigneeGitUserName);
         }
-
         if (argMultimap.getValue(PREFIX_TASK_DEADLINE).isPresent()) {
             Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_TASK_DEADLINE).get());
             predicate = task -> task.getDeadline().equals(deadline);
         }
-
         if (argMultimap.getValue(PREFIX_TASK_NAME).isPresent()) {
             predicate = task -> task.getTaskName()
                 .contains(argMultimap.getValue(PREFIX_TASK_NAME).get());
+        }
+        if (argMultimap.getValue(PREFIX_TASK_PROGRESS).isPresent()) {
+            double progress = Double.parseDouble(
+                ParserUtil.parseTaskBasicInformation(argMultimap.getValue(PREFIX_TASK_PROGRESS).get()));
+            predicate = task -> task.getProgress() == progress;
+        }
+        if (argMultimap.getValue(PREFIX_TASK_IS_DONE).isPresent()) {
+            boolean isDone = Boolean.parseBoolean(
+                ParserUtil.parseTaskBasicInformation(argMultimap.getValue(PREFIX_TASK_IS_DONE).get()));
+            predicate = task -> task.isDone() == isDone;
         }
 
         return new TaskFilterCommand(predicate);

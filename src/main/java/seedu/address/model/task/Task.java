@@ -16,6 +16,13 @@ import seedu.address.model.project.Participation;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Task {
+    public static final String MESSAGE_CONSTRAINTS =
+        "Attributes should only contain alphanumeric characters and spaces, and it should not be blank";
+    /*
+     * The first character of an attribute must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public final String taskName;
     private final String description;
     private final LocalDate publishDate;
@@ -38,6 +45,12 @@ public class Task {
         this.assignees = new HashSet<>();
     }
 
+    /**
+     * Returns true if a given string is a valid attribute.
+     */
+    public static boolean isValidAttribute(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
     public String getTaskName() {
         return taskName;
     }
@@ -85,7 +98,7 @@ public class Task {
     public boolean addAssignee(Participation assignee) {
         return assignees.add(assignee);
     }
-    
+
     /**
      * Returns true if all fields are equal.
      */
