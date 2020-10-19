@@ -2,9 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.task.TaskSearchCriteriaPredicate;
+
+import java.util.logging.Logger;
 
 /**
  * Finds and lists all tasks in the TodoList whose name contains any of the argument keywords.
@@ -19,6 +22,8 @@ public class FindTaskCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " lab06 midterm quiz";
 
+    private final Logger logger = LogsCenter.getLogger(FindTaskCommand.class);
+
     private final TaskSearchCriteriaPredicate predicate;
 
     public FindTaskCommand(TaskSearchCriteriaPredicate predicate) {
@@ -29,6 +34,7 @@ public class FindTaskCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredTodoList(predicate);
+        logger.info("The following tasks matching all search criteria by the user have been found");
         return new CommandResult(
                 String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTodoList().size()));
     }
