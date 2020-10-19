@@ -17,6 +17,8 @@ import seedu.address.logic.commands.global.HelpCommand;
 import seedu.address.logic.commands.global.ListCommand;
 import seedu.address.logic.commands.global.StartCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
+import seedu.address.logic.commands.project.AllMeetingsCommand;
+import seedu.address.logic.commands.project.AllTasksCommand;
 import seedu.address.logic.commands.project.AssignCommand;
 import seedu.address.logic.commands.project.EditTaskCommand;
 import seedu.address.logic.commands.project.EditTeammateCommand;
@@ -93,7 +95,18 @@ public class MainCatalogueParser {
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
-
+        case AllTasksCommand.COMMAND_WORD:
+            if (status != Status.CATALOGUE) {
+                return new AllTasksCommand();
+            } else {
+                throw new InvalidScopeException(Status.PROJECT, status);
+            }
+        case AllMeetingsCommand.COMMAND_WORD:
+            if (status != Status.CATALOGUE) {
+                return new AllMeetingsCommand();
+            } else {
+                throw new InvalidScopeException(Status.PROJECT, status);
+            }
         case TaskFilterCommand.COMMAND_WORD:
             if (status != Status.CATALOGUE) {
                 return new TaskFilterCommandParser().parse(arguments);

@@ -95,8 +95,14 @@ public class Project {
     public void updateTaskFilter(Predicate<Task> predicate) {
         this.taskFilter = predicate;
     }
+    public void showAllTasks() {
+        this.taskFilter = SHOW_ALL_TASKS_PREDICATE;
+    }
     public void updateMeetingFilter(Predicate<Meeting> predicate) {
         this.meetingFilter = predicate;
+    }
+    public void showAllMeetings() {
+        this.meetingFilter = SHOW_ALL_MEETINGS_PREDICATE;
     }
     public Optional<Task> getTaskOnView() {
         return taskOnView;
