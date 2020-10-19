@@ -1,6 +1,7 @@
 package seedu.address.model.module;
 
 import seedu.address.model.module.grade.Assignment;
+import seedu.address.model.module.grade.Grade;
 import seedu.address.model.module.grade.GradeTracker;
 
 /**
@@ -108,6 +109,21 @@ public class Module {
     public Module addAssignment(Assignment assignment) {
         if (!gradeTracker.isDuplicateAssignment(assignment)) {
             gradeTracker.addAssignment(assignment);
+            return new Module(name, zoomLink, gradeTracker);
+        } else {
+            return this;
+        }
+    }
+
+    /**
+     * Adds a grade to the GradeTracker of the module.
+     *
+     * @param grade grade to add to grade tracker.
+     * @return Module a new module with the grade added.
+     */
+    public Module addGrade(Grade grade) {
+        if (Grade.isValidGrade(grade.gradeResult)) {
+            gradeTracker.setGrade(grade);
             return new Module(name, zoomLink, gradeTracker);
         } else {
             return this;

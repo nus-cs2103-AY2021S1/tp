@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Tracks the assignments and final grade for a module.
+ * Represents an association class that tracks the assignments and grade for a module.
  */
 public class GradeTracker {
     public static final String MESSAGE_INVALID_GRADE =
@@ -12,21 +12,21 @@ public class GradeTracker {
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT =
             "Assignments cannot be repeated.";
     private final List<Assignment> assignments;
-    private double grade;
+    private Grade grade;
 
     /**
      * Creates a GradeTracker that stores the assignments and grades for a module.
      */
     public GradeTracker() {
         this.assignments = new ArrayList<>();
-        this.grade = 0;
+        this.grade = new Grade(0);
     }
 
-    public void setGrade(double newGrade) {
+    public void setGrade(Grade newGrade) {
         this.grade = newGrade;
     }
 
-    public double getGrade() {
+    public Grade getGrade() {
         return grade;
     }
 
@@ -39,27 +39,22 @@ public class GradeTracker {
     }
 
     /**
-     * Checks if the grade can be placed into the grade tracker.
-     *
-     * @param test grade to be checked.
-     * @return true if the grade is valid.
-     */
-    public static boolean isValidGrade(double test) {
-        if (test >= 0 && test <= 1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
      * Checks if the Grade Tracker is valid.
      *
      * @param gradeTracker grade tracker to check.
      * @return true if the grade tracker is valid.
      */
     public static boolean isValidGradeTracker(GradeTracker gradeTracker) {
-        if (GradeTracker.isValidGrade(gradeTracker.getGrade())) {
+        boolean areAssignmentsValid = true;
+        for (Assignment eachAssignment: gradeTracker.assignments) {
+            if (!Assignment.isValidAssignmentResult(eachAssignment.assignmentResult)
+                    && Assignment.isValidAssignmentName(eachAssignment.assignmentName)
+                    && Assignment.isValidAssignmentPercentage(eachAssignment.assignmentPercentage)) {
+                areAssignmentsValid = false;
+                break;
+            }
+        }
+        if (Grade.isValidGrade(gradeTracker.grade.gradeResult) && areAssignmentsValid) {
             return true;
         } else {
             return false;
