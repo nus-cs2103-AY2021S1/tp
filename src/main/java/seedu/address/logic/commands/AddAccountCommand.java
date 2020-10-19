@@ -1,8 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_NAME;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.account.Account;
 import seedu.address.model.account.ActiveAccount;
@@ -16,6 +18,7 @@ public class AddAccountCommand extends Command {
             + PREFIX_NAME + "ACCOUNT NAME ";
 
     public static final String MESSAGE_SUCCESS = "New account added! %1$s";
+    public static final String MESSAGE_DUPLICATE_ACCOUNT = "This account already exists in the app!";
 
     public final Account account;
 
@@ -28,8 +31,13 @@ public class AddAccountCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, ActiveAccount activeAccount) {
-        requireNonNull(model);
+    public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
+        requireAllNonNull(model, activeAccount);
+
+        if (model.hasAccount(this.account)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ACCOUNT);
+        }
+
         model.addAccount(this.account);
         return new CommandResult(String.format(MESSAGE_SUCCESS, this.account));
 

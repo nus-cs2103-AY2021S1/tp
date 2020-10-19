@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
 
 import javafx.collections.ObservableList;
@@ -41,7 +41,7 @@ public class DeleteCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
-        requireNonNull(model);
+        requireAllNonNull(model, activeAccount);
 
         ObservableList<Expense> expenseList = activeAccount.getFilteredExpenseList();
         ObservableList<Revenue> revenueList = activeAccount.getFilteredRevenueList();

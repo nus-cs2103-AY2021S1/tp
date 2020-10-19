@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_DESCRIPTION;
@@ -47,7 +48,7 @@ public class AddCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) {
-        requireNonNull(model);
+        requireAllNonNull(model, activeAccount);
 
         if (this.entry instanceof Expense) {
             activeAccount.addExpense((Expense) entry);
