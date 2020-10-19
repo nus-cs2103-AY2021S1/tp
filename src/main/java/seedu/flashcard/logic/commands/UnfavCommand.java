@@ -15,14 +15,14 @@ import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
 
 /**
- * Unfavourites a flashcard identified using it's displayed index from the list of flashcards.
+ * Unfavourite a flashcard identified using it's displayed index from the list of flashcards.
  */
 public class UnfavCommand extends Command {
 
     public static final String COMMAND_WORD = "unfav";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Unfavourites the flashcard identified by the index number used in the displayed flashcard list.\n"
+            + ": Unfavourite the flashcard identified by the index number used in the displayed flashcard list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
