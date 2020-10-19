@@ -1,5 +1,6 @@
 package seedu.address.model.person.predicates;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -31,6 +32,11 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
         return other == this // short circuit if same object
                 || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(keywords.toArray());
     }
 
 }

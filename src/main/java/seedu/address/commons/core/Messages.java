@@ -10,5 +10,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_MODULES_LISTED = "%1$d modules listed!";
+    public static final String MESSAGE_EMPTY_KEYWORD = "Keyword cannot be empty";
+    public static final String MESSAGE_DUPLICATE_PREFIX = "Prefix %s has a duplicate";
 
 }

@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
@@ -25,16 +28,48 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " alice liddel "
             + PREFIX_DEPARTMENT + " computing";
 
-    private final Predicate<Person> predicate;
+    private final List<Predicate<Person>> predicates;
 
+    /**
+     * Constructs a {@code FindCommand} from the given {@code predicate}.
+     * @param predicate The searching parameter used in finding contacts.
+     */
     public FindCommand(Predicate<Person> predicate) {
-        this.predicate = predicate;
+        List<Predicate<Person>> predicateList = new ArrayList<>();
+        predicateList.add(predicate);
+        this.predicates = predicateList;
+    }
+
+    /**
+     * Constructs a {@code FindCommand} from the given list of {@code predicates}.
+     * @param predicates The searching parameters used in finding contacts.
+     */
+    public FindCommand(List<Predicate<Person>> predicates) {
+        this.predicates = predicates;
+    }
+
+    /**
+     * Returns a composed predicate that represents a short-circuiting logical AND of {@code predicates}.
+     */
+    public static Predicate<Person> composePredicates(List<Predicate<Person>> predicates) {
+
+        if (predicates.size() == 1) {
+            return predicates.get(0);
+        }
+
+        Predicate<Person> composedPredicate = person -> true;
+
+        for (Predicate<Person> p: predicates) {
+            composedPredicate = composedPredicate.and(p);
+        }
+
+        return composedPredicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredPersonList(composePredicates(predicates));
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
@@ -43,7 +78,12 @@ public class FindCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                && predicates.equals(((FindCommand) other).predicates)); // state check
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(predicates.toArray());
     }
 
 }

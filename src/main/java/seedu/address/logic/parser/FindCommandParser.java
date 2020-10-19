@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PREFIX;
+import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_KEYWORD;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -10,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -35,62 +38,43 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEPARTMENT, PREFIX_OFFICE,
-                        PREFIX_REMARK, PREFIX_TAG);
+            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEPARTMENT, PREFIX_OFFICE,
+                PREFIX_REMARK, PREFIX_TAG);
+
+        List<Predicate<Person>> predicates = new ArrayList<>();
 
         if (!areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DEPARTMENT, PREFIX_OFFICE,
-                PREFIX_REMARK, PREFIX_TAG)) {
+            PREFIX_REMARK, PREFIX_TAG)) {
 
             String trimmedArgs = args.trim();
             if (trimmedArgs.isEmpty()) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                throw new ParseException(MESSAGE_EMPTY_KEYWORD);
             }
 
             String[] nameKeywords = trimmedArgs.split("\\s+");
-
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
 
-        String[] keywords;
-        List<Predicate<Person>> predicates = new ArrayList<>();
-
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            keywords = argMultimap.getValue(PREFIX_NAME).get().split("\\s+");
-            predicates.add(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        if (argMultimap.getValue(PREFIX_DEPARTMENT).isPresent()) {
-            keywords = argMultimap.getValue(PREFIX_DEPARTMENT).get().split("\\s+");
-            predicates.add(new DepartmentContainsKeywordsPredicate(Arrays.asList(keywords)));
-        }
+        checkDuplicatePrefix(argMultimap, PREFIX_NAME, PREFIX_DEPARTMENT, PREFIX_OFFICE,
+            PREFIX_REMARK, PREFIX_TAG);
 
-        if (argMultimap.getValue(PREFIX_OFFICE).isPresent()) {
-            keywords = argMultimap.getValue(PREFIX_OFFICE).get().split("\\s+");
-            predicates.add(new OfficeContainsKeywordsPredicate(Arrays.asList(keywords)));
-        }
+        getKeywords(argMultimap, PREFIX_NAME)
+            .ifPresent(k -> predicates.add(new NameContainsKeywordsPredicate(Arrays.asList(k))));
+        getKeywords(argMultimap, PREFIX_DEPARTMENT)
+            .ifPresent(k -> predicates.add(new DepartmentContainsKeywordsPredicate(Arrays.asList(k))));
+        getKeywords(argMultimap, PREFIX_OFFICE)
+            .ifPresent(k -> predicates.add(new OfficeContainsKeywordsPredicate(Arrays.asList(k))));
+        getKeywords(argMultimap, PREFIX_REMARK)
+            .ifPresent(k -> predicates.add(new RemarkContainsKeywordsPredicate(Arrays.asList(k))));
+        getKeywords(argMultimap, PREFIX_TAG)
+            .ifPresent(k -> predicates.add(new TagContainsKeywordsPredicate(Arrays.asList(k))));
 
-        if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
-            keywords = argMultimap.getValue(PREFIX_REMARK).get().split("\\s+");
-            predicates.add(new RemarkContainsKeywordsPredicate(Arrays.asList(keywords)));
-        }
-
-        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            keywords = argMultimap.getValue(PREFIX_TAG).get().split("\\s+");
-            predicates.add(new TagContainsKeywordsPredicate(Arrays.asList(keywords)));
-        }
-
-        if (predicates.size() == 1) {
-            return new FindCommand(predicates.get(0));
-        }
-
-        Predicate<Person> composedPredicate = person -> true;
-
-        for (Predicate<Person> p: predicates) {
-            composedPredicate = composedPredicate.and(p);
-        }
-
-        return new FindCommand(composedPredicate);
+        return new FindCommand(predicates);
     }
 
     /**
@@ -99,5 +83,40 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     private static boolean areAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Throws a {@code ParseException} if there is a blank keyword.
+     */
+    private void checkKeywords(String[] keywords) throws ParseException {
+        if (Stream.of(keywords).anyMatch(String::isBlank)) {
+            throw new ParseException(MESSAGE_EMPTY_KEYWORD);
+        }
+    }
+
+    /**
+     * Throws a {@code ParseException} if there is a duplicate prefix.
+     */
+    private void checkDuplicatePrefix(ArgumentMultimap argumentMultimap, Prefix... prefixes)
+        throws ParseException {
+        for (Prefix p : prefixes) {
+            if (argumentMultimap.getAllValues(p).size() > 1) {
+                throw new ParseException(String.format(MESSAGE_DUPLICATE_PREFIX, p));
+            }
+        }
+    }
+
+    /**
+     * Returns keywords stored as the value of {@code prefix}.
+     */
+    private Optional<String[]> getKeywords(ArgumentMultimap argMultimap, Prefix prefix) throws ParseException {
+        if (argMultimap.getValue(prefix).isEmpty()) {
+            return Optional.empty();
+        }
+
+        String[] keywords;
+        keywords = argMultimap.getValue(prefix).get().split("\\s+");
+        checkKeywords(keywords);
+        return Optional.of(keywords);
     }
 }
