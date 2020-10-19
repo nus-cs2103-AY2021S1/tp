@@ -26,7 +26,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
     public AddTaskCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_PROJECT_NAME, PREFIX_TASK_PROGRESS,
-                        PREFIX_TASK_IS_DONE);
+                        PREFIX_TASK_IS_DONE, PREFIX_TASK_DEADLINE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT_NAME,
                 PREFIX_TASK_PROGRESS, PREFIX_TASK_IS_DONE)
@@ -39,7 +39,10 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
                 ParserUtil.parseTaskBasicInformation(argMultimap.getValue(PREFIX_TASK_PROGRESS).get()));
         boolean taskStatus = Boolean.parseBoolean(
                 ParserUtil.parseTaskBasicInformation(argMultimap.getValue(PREFIX_TASK_IS_DONE).get()));
-        Deadline taskDeadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_TASK_DEADLINE).orElse(null));
+        Deadline taskDeadline = null;
+        if (argMultimap.getValue(PREFIX_TASK_DEADLINE).isPresent()) {
+            taskDeadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_TASK_DEADLINE).orElse(null));
+        }
         Task task = new Task(taskName, null, taskDeadline, taskProgress, taskStatus);
 
         return new AddTaskCommand(task);
