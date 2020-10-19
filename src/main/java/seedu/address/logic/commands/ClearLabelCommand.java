@@ -17,7 +17,6 @@ import seedu.address.model.person.Person;
 
 public class ClearLabelCommand extends Command {
     public static final String COMMAND_WORD = "label clear";
-    public static final String MESSAGE_SUCCESS = "All contacts have been cleared!";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears all labels of the person specified.\n"
             + "Parameters: NAME (must be name of person existing in ModDuke) "
             + "Example: " + COMMAND_WORD + " "
