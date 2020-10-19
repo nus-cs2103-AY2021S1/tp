@@ -163,7 +163,7 @@ public class ParserUtilTest {
         // throws error if null character is part of the file name string
         assertThrows(ParseException.class, () -> ParserUtil.parseFileName("\0"));
     }
-    
+
     public void parseKeywords_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseKeywords(null));
     }
