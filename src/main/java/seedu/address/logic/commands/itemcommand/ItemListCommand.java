@@ -23,7 +23,7 @@ public class ItemListCommand extends ItemCommand {
         requireNonNull(model);
         requireInventoryModel(model);
         InventoryModel inventoryModel = (InventoryModel) model;
-        inventoryModel.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
+        inventoryModel.updateFilteredAndSortedItemList(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

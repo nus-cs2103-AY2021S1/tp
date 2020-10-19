@@ -105,13 +105,13 @@ public class InventoryModelManager implements InventoryModel {
     @Override
     public void addItem(Item item) {
         inventoryBook.addItem(item);
-        updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
+        updateFilteredAndSortedItemList(PREDICATE_SHOW_ALL_ITEMS);
     }
 
     @Override
     public Item addOnExistingItem(Item item) {
         Item combinedItem = inventoryBook.addOnExistingItem(item);
-        updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
+        updateFilteredAndSortedItemList(PREDICATE_SHOW_ALL_ITEMS);
         return combinedItem;
     }
 
@@ -129,19 +129,14 @@ public class InventoryModelManager implements InventoryModel {
      * {@code versionedInventoryBook}
      */
     @Override
-    public ObservableList<Item> getFilteredItemList() {
-        return filteredItems;
+    public ObservableList<Item> getFilteredAndSortedItemList() {
+        return new SortedList<>(filteredItems, ITEM_COMPARATOR);
     }
 
     @Override
-    public void updateFilteredItemList(Predicate<Item> predicate) {
+    public void updateFilteredAndSortedItemList(Predicate<Item> predicate) {
         requireNonNull(predicate);
         filteredItems.setPredicate(predicate);
-    }
-
-    @Override
-    public SortedList<Item> getSortedItemList() {
-        return new SortedList<Item>(filteredItems, ITEM_COMPARATOR);
     }
 
     @Override

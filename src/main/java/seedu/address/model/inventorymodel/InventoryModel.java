@@ -5,7 +5,6 @@ import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.SortedList;
 import seedu.address.model.Model;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.comparator.ItemNameComparator;
@@ -72,15 +71,12 @@ public interface InventoryModel extends Model {
      */
     void setItem(Item target, Item editedItem);
 
-    /** Returns an unmodifiable view of the filtered item list */
-    ObservableList<Item> getFilteredItemList();
+    /** Returns an unmodifiable view of the filtered and sorted item list */
+    ObservableList<Item> getFilteredAndSortedItemList();
 
     /**
-     * Updates the filter of the filtered item list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered and sorted item list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredItemList(Predicate<Item> predicate);
-
-    /** Returns an unmodifiable view of the sorted item list*/
-    SortedList<Item> getSortedItemList();
+    void updateFilteredAndSortedItemList(Predicate<Item> predicate);
 }

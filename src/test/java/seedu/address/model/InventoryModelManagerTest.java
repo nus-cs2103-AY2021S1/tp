@@ -93,7 +93,7 @@ public class InventoryModelManagerTest {
 
     @Test
     public void getFilteredItemList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredItemList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredAndSortedItemList().remove(0));
     }
 
     @Test
@@ -122,11 +122,12 @@ public class InventoryModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = CHICKEN.getName().fullName.split("\\s+");
-        modelManager.updateFilteredItemList(new ItemContainsKeywordsPredicate(Arrays.asList(keywords), PREFIX_NAME));
+        modelManager.updateFilteredAndSortedItemList(new ItemContainsKeywordsPredicate(Arrays.asList(keywords),
+                PREFIX_NAME));
         assertFalse(modelManager.equals(new InventoryModelManager(inventoryBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
+        modelManager.updateFilteredAndSortedItemList(PREDICATE_SHOW_ALL_ITEMS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

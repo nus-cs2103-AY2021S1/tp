@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_CHICKE
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_CHICKEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_DUCK;
+import static seedu.address.model.inventorymodel.InventoryModel.ITEM_COMPARATOR;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,7 +48,7 @@ public class TypicalItems {
             .withTags("seafood")
             .build();
     public static final Item BEEF = new ItemBuilder().withName("Beef")
-            .withSupplier("Cold Storage")
+            .withSupplier("No Supplier")
             .withQuantity("41")
             .withTags("meat")
             .build();
@@ -89,6 +90,9 @@ public class TypicalItems {
     }
 
     public static List<Item> getTypicalItems() {
-        return new ArrayList<>(Arrays.asList(CHICKEN, DUCK_WITH_MAX_QUANTITY, SALMON, BROCCOLI, CRAB, BEEF, PORK));
+        List<Item> typicalItems = new ArrayList<>(Arrays.asList(CHICKEN, SALMON, BROCCOLI,
+                CRAB, BEEF, PORK, DUCK_WITH_MAX_QUANTITY));
+        typicalItems.sort(ITEM_COMPARATOR);
+        return typicalItems;
     }
 }
