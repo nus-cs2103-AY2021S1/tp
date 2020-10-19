@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.model.Model;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.comparator.ItemNameComparator;

@@ -37,8 +37,7 @@ public class ItemFindCommand extends ItemCommand {
 
         inventoryModel.updateFilteredItemList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW,
-                        inventoryModel.getFilteredAndSortedItemList().size()));
+                String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW, inventoryModel.getFilteredAndSortedItemList().size()));
     }
 
     @Override
