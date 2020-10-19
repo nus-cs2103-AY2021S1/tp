@@ -18,6 +18,7 @@ import seedu.address.logic.commands.EditContactCommand;
 import seedu.address.logic.commands.EditModuleCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ViewModuleCommand;
@@ -91,6 +92,9 @@ public class ModuleListParser {
 
         case AddContactCommand.COMMAND_WORD:
             return new AddContactParser().parse(arguments);
+
+        case FindTaskCommand.COMMAND_WORD:
+            return new FindTaskParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

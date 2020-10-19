@@ -5,16 +5,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.TaskSearchCriteriaPredicate;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * Parses input arguments and creates a new FindTaskCommand object
@@ -22,9 +22,10 @@ import java.util.stream.Stream;
 public class FindTaskParser implements Parser<FindTaskCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a FindCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * Parses the given {@code String} of arguments in the context of the FindTaskCommand
+     * and returns a FindTaskCommand object for execution.
+     *
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public FindTaskCommand parse(String args) throws ParseException {
         ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME,
@@ -35,8 +36,8 @@ public class FindTaskParser implements Parser<FindTaskCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTaskCommand.MESSAGE_USAGE));
         }
-        String keywords = argMultiMap.getValue(PREFIX_NAME).orElse("");
-        List<String> searchKeywordList = convertKeywordsIntoList(keywords);
+        String searchKeywords = argMultiMap.getValue(PREFIX_NAME).orElse("");
+        List<String> searchKeywordList = convertKeywordsIntoList(searchKeywords);
 
         String dateAsString = argMultiMap.getValue(PREFIX_DATE).orElse("");
         Date searchDate = parseSearchDate(dateAsString);
@@ -56,7 +57,7 @@ public class FindTaskParser implements Parser<FindTaskCommand> {
      * @param keywords String containing search keywords provided by the user.
      * @return Empty list if no search keywords was provided, otherwise a list of search keywords is returned.
      */
-    public List<String> convertKeywordsIntoList(String keywords) {
+    private List<String> convertKeywordsIntoList(String keywords) {
         if (keywords.isEmpty()) {
             return new ArrayList<>();
         } else {
@@ -71,7 +72,7 @@ public class FindTaskParser implements Parser<FindTaskCommand> {
      * @return Date object representing the search date. If no date was provided, null is returned.
      * @throws ParseException If the date provided is incorrect or invalid.
      */
-    public Date parseSearchDate(String date) throws ParseException {
+    private Date parseSearchDate(String date) throws ParseException {
         if (date.isEmpty()) {
             return null;
         } else {
@@ -80,13 +81,13 @@ public class FindTaskParser implements Parser<FindTaskCommand> {
     }
 
     /**
-     * Parses the search priority provided by the user if it exists.
+     * Parses the search priority criteria provided by the user if it exists.
      *
-     * @param priority String containing the search priority.
+     * @param priority String containing the search priority criteria.
      * @return Priority object representing the search priority. If no priority was provided, null is returned.
      * @throws ParseException If the priority provided is incorrect or invalid.
      */
-    public Priority parseSearchPriority(String priority) throws ParseException {
+    private Priority parseSearchPriority(String priority) throws ParseException {
         if (priority.isEmpty()) {
             return null;
         } else {

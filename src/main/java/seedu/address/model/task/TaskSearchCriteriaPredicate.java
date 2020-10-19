@@ -1,20 +1,30 @@
 package seedu.address.model.task;
 
-import seedu.address.commons.util.StringUtil;
-
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.address.commons.util.StringUtil;
 
 /**
  * Tests that a {@code Task} matches all of the search conditions and criteria provided by the user.
  */
 public class TaskSearchCriteriaPredicate implements Predicate<Task> {
 
+    /** List of keywords provided by users to find tasks with matching task name. */
     private final List<String> taskSearchNames;
+    /** Search date provided by users to find tasks with matching task date. */
     private final Date taskSearchDate;
+    /** Priority provided by users to find tasks with matching task priority. */
     private final Priority taskSearchPriority;
     // private final Type taskType;
 
+    /**
+     * Creates and initialises a new TaskSearchCriteriaPredicate object.
+     *
+     * @param taskSearchNames List of strings representing search keywords to search for matching tasks.
+     * @param taskSearchDate Date object used to search for matching tasks.
+     * @param taskSearchPriority Priority object used to search for matching tasks.
+     */
     public TaskSearchCriteriaPredicate(List<String> taskSearchNames, Date taskSearchDate,
                                        Priority taskSearchPriority) {
         this.taskSearchNames = taskSearchNames;
@@ -25,7 +35,6 @@ public class TaskSearchCriteriaPredicate implements Predicate<Task> {
 
     @Override
     public boolean test(Task task) {
-
         if (!taskSearchNames.isEmpty() && !hasMatchingName(task)) {
             return false;
         }
@@ -78,6 +87,6 @@ public class TaskSearchCriteriaPredicate implements Predicate<Task> {
                 && taskSearchNames.equals(((TaskSearchCriteriaPredicate) other).taskSearchNames)) // state check
                 && taskSearchDate.equals(((TaskSearchCriteriaPredicate) other).taskSearchDate)
                 && taskSearchPriority.equals(((TaskSearchCriteriaPredicate) other).taskSearchPriority);
-                // && taskType.equals(((TaskSearchCriteriaPredicate) other).taskType);
+        // && taskType.equals(((TaskSearchCriteriaPredicate) other).taskType);
     }
 }
