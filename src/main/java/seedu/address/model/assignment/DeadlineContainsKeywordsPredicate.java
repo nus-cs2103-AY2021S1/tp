@@ -1,13 +1,12 @@
 package seedu.address.model.assignment;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Assignment}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Assignment}'s {@code Deadline} matches any of the keywords given.
  */
 public class DeadlineContainsKeywordsPredicate implements Predicate<Assignment> {
     private final List<String> keywords;

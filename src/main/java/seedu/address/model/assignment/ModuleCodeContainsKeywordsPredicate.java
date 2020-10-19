@@ -2,10 +2,12 @@ package seedu.address.model.assignment;
 
 import seedu.address.commons.util.StringUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+/**
+ * Tests that a {@code Assignment}'s {@code ModuleCode} matches any of the keywords given.
+ */
 public class ModuleCodeContainsKeywordsPredicate implements Predicate<Assignment> {
     private final List<String> keywords;
 
