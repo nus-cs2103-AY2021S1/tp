@@ -3,6 +3,9 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.address.commons.core.Messages.MESSAGE_REDO_LIMIT_REACHED;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.RedoCommand.MESSAGE_REDO_ACKNOWLEDGEMENT;
 import static seedu.address.testutil.TypicalDeliveries.getTypicalDeliveryBook;
 import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
 
@@ -55,6 +58,104 @@ class UndoRedoAndModelsIntegrationTest {
         assertDoesNotThrow(() -> actualModels.redo());
         assertEquals(actualModels, expectedModels);
     }
+
+    @Test
+    void execute_undoTwiceThenRedoWithThreeStates_success() {
+        Models actualModels = new ModelsManager(makeTestInventoryModel(), makeTestDeliveryModel());
+        Models expectedModels = new ModelsManager(makeTestInventoryModel(), makeTestDeliveryModel());
+
+        Item testItem = new ItemBuilder().build();
+        Delivery testDelivery = new DeliveryBuilder().build();
+
+        // add item and commit
+        actualModels.getInventoryModel().addItem(testItem);
+        expectedModels.getInventoryModel().addItem(testItem);
+        actualModels.commit();
+        expectedModels.commit();
+
+        // add item to actualModels and commit
+        actualModels.getDeliveryModel().addDelivery(testDelivery);
+        actualModels.commit();
+
+        // undo twice
+        assertDoesNotThrow(() -> {
+            new UndoCommand().execute(actualModels);
+            new UndoCommand().execute(actualModels);
+        });
+
+        // redo and compare
+        assertCommandSuccess(new RedoCommand(), actualModels, MESSAGE_REDO_ACKNOWLEDGEMENT, expectedModels);
+    }
+
+    @Test
+    void execute_undoTwiceThenRedoWithTwoStates_success() {
+        Models actualModels = new ModelsManager(makeTestInventoryModel(), makeTestDeliveryModel());
+        Models expectedModels = new ModelsManager(makeTestInventoryModel(), makeTestDeliveryModel());
+
+        Item testItem = new ItemBuilder().build();
+
+        // add item and commit actualModels
+        actualModels.getInventoryModel().addItem(testItem);
+        expectedModels.getInventoryModel().addItem(testItem);
+        actualModels.commit();
+
+        // undo twice
+        assertDoesNotThrow(() -> new UndoCommand().execute(actualModels));
+        assertDoesNotThrow(() -> new UndoCommand().execute(actualModels));
+
+        // redo and compare
+        assertCommandSuccess(new RedoCommand(), actualModels, MESSAGE_REDO_ACKNOWLEDGEMENT, expectedModels);
+    }
+
+    @Test
+    void execute_undoTwiceThenRedoTwiceWithThreeStates_success() {
+        Models actualModels = new ModelsManager(makeTestInventoryModel(), makeTestDeliveryModel());
+        Models expectedModels = new ModelsManager(makeTestInventoryModel(), makeTestDeliveryModel());
+
+        Item testItem = new ItemBuilder().build();
+        Delivery testDelivery = new DeliveryBuilder().build();
+
+        // add item and commit actualModels
+        actualModels.getInventoryModel().addItem(testItem);
+        expectedModels.getInventoryModel().addItem(testItem);
+        actualModels.commit();
+
+        // add delivery and commit actualModels
+        actualModels.getDeliveryModel().addDelivery(testDelivery);
+        expectedModels.getDeliveryModel().addDelivery(testDelivery);
+        actualModels.commit();
+
+        // undo twice
+        assertDoesNotThrow(() -> new UndoCommand().execute(actualModels));
+        assertDoesNotThrow(() -> new UndoCommand().execute(actualModels));
+
+        // redo twice and compare
+        assertDoesNotThrow(() -> new RedoCommand().execute(actualModels));
+        assertCommandSuccess(new RedoCommand(), actualModels, MESSAGE_REDO_ACKNOWLEDGEMENT, expectedModels);
+    }
+
+    @Test
+    void execute_undoThenRedoTwiceWithThreeStates_success() {
+        Models actualModels = new ModelsManager(makeTestInventoryModel(), makeTestDeliveryModel());
+        Models expectedModels = new ModelsManager(makeTestInventoryModel(), makeTestDeliveryModel());
+
+        Item testItem = new ItemBuilder().build();
+
+        // add item and commit actualModels
+        actualModels.getInventoryModel().addItem(testItem);
+        expectedModels.getInventoryModel().addItem(testItem);
+        actualModels.commit();
+
+        // undo once
+        assertDoesNotThrow(() -> new UndoCommand().execute(actualModels));
+
+        // redo once and compare
+        assertCommandSuccess(new RedoCommand(), actualModels, MESSAGE_REDO_ACKNOWLEDGEMENT, expectedModels);
+
+        // redo again
+        assertCommandSuccess(new RedoCommand(), actualModels, MESSAGE_REDO_LIMIT_REACHED, expectedModels);
+    }
+
     private InventoryModel makeTestInventoryModel() {
         return new InventoryModelManager(getTypicalInventoryBook(), new UserPrefs());
     }
