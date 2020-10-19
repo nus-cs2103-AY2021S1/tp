@@ -495,18 +495,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The given command is invalid.
     * 1a1. CliniCal shows an error message.
 
-  Use case resumes at step 1.
+    Use case resumes at step 1.
   
-**Use case: UC05 - Add a patient's profile picture using drag and drop**
+### Use case: UC05 - Add a patient's profile picture using drag and drop
   
   **MSS**
   
-1. User selects the desired profile picture and drags it onto the specified patient profile in CliniCal.
+1.  User selects the desired profile picture and drags it onto the specified patient profile in CliniCal.
 2.  User releases mouse button.
 3.  CliniCal adds the profile picture to the specified patient.
 4.  CliniCal shows an updated list of patients.
   
-      Use case ends.
+    Use case ends.
   
   **Extensions**
   
@@ -518,7 +518,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b. The profile picture is not dragged onto a valid space that represents patient profile in CliniCal.
      * 1b1. Patient profile picture is not updated.
      
-         Use case resumes at step 1.
+    Use case resumes at step 1.
+         
+### Use case: UC06 - Undo a command
+
+**MSS**
+   
+1. User keys in command to undo the previous command.
+2. CliniCal shows the command that has been undone.
+
+    Use case ends.
+    
+**Extensions**
+    
+  * 1a. There are no more previous commands to undo.<br>
+    Use case ends.
+
+### Use case: UC07 - Redo a command
+
+**MSS**
+   
+1. User keys in command to redo the previous undone command.
+2. CliniCal shows the command that has been redone.
+
+    Use case ends.
+    
+**Extensions**
+    
+  * 1a. There are no more commands to redo.<br>
+  Use case ends.
 
 *{More to be added}*
 
