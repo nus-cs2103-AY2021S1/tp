@@ -3,6 +3,7 @@ package jimmy.mcgymmy.logic.commands;
 import static jimmy.mcgymmy.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +17,8 @@ import jimmy.mcgymmy.testutil.TypicalFoods;
  */
 class ImportCommandTest {
 
-    private static final String VALID_FILE = "src\\test\\data\\JsonSerializableMcGymmyTest\\typicalFoodMcGymmy.json";
+    private static final String VALID_FILE = Paths
+            .get("src", "test", "data", "JsonSerializableMcGymmyTest", "typicalFoodMcGymmy.json").toString();
 
     @Test
     public void validImport_success() {
