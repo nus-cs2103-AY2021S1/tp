@@ -139,6 +139,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteStaffLeave(Staff target, Leave leave) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasStaffLeave(Staff target, Leave leave) {
             throw new AssertionError("This method should not be called.");
         }
