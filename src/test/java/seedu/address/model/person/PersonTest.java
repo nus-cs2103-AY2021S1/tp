@@ -9,11 +9,11 @@ import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_EMAIL
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_GIT_USERNAME_A;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_NAME_A;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_PHONE_A;
-import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_PHONE_B;
 import static seedu.address.testutil.TypicalPersons.DESC_A;
 import static seedu.address.testutil.TypicalPersons.DESC_B;
 
 import java.util.Objects;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
