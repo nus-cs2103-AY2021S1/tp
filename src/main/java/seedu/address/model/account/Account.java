@@ -153,9 +153,8 @@ public class Account implements ReadOnlyAccount {
 
     @Override
     public String toString() {
-        return expenses.asUnmodifiableObservableList().size() + " expenses\n"
+        return "Account Name: " + name.toString() + " " + expenses.asUnmodifiableObservableList().size() + " expenses"
                 + revenues.asUnmodifiableObservableList().size() + " revenues";
-        // TODO: refine later
     }
 
     @Override
