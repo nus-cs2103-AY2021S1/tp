@@ -28,6 +28,12 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD+ " d/1200 24-10-2020 25-10-2020"
             + "The example above finds all assignments due on 24 October 2020 and 25 October 2020 and finds all "
             + "assignments due at 1200";
+    public static final String INVALID_MODULE_CODE_MESSAGE =
+            "Module codes should begin with 2 or 3 alphabets, have 4 numbers and may end with an alphabet.\n"
+            + "It should not be left empty.";
+    public static final String INVALID_DATE_OR_TIME_MESSAGE =
+            "Deadline field should have date or time keywords in the format dd-MM-yyyy or HHmm.\n"
+                    + "It should not be left empty.";
 
 
 
