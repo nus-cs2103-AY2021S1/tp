@@ -4,10 +4,18 @@ package seedu.address.model.event;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+/**
+ * Represents the container that stores the start and end time of an Event.
+ */
 public class EventTime {
     private final LocalDateTime start;
     private final LocalDateTime end;
 
+    /**
+     * Creates an EventTime object that stores the start and end time.
+     * @param start
+     * @param end
+     */
     public EventTime(LocalDateTime start, LocalDateTime end) {
         this.start = start;
         this.end = end;

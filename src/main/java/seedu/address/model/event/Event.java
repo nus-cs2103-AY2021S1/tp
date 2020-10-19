@@ -1,11 +1,12 @@
 package seedu.address.model.event;
 
-import seedu.address.model.tag.Tag;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
+import seedu.address.model.tag.Tag;
+
 
 /**
  * Represents an Event to that keep tracks of the start and end time and date.
@@ -16,6 +17,11 @@ public class Event {
     private final EventTime time;
     private final Set<Tag> tags = new HashSet<>();
 
+    /**
+     * Creates a Event object with the specified name and the start and end timings.
+     * @param name
+     * @param time
+     */
     public Event(EventName name, EventTime time) {
         assert(name != null);
         this.name = name;

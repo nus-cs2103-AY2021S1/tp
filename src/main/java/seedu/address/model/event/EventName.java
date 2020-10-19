@@ -17,6 +17,10 @@ public class EventName {
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     private final String name;
 
+    /**
+     * Creates a EventName object that represents the name of a Event.
+     * @param name
+     */
     public EventName(String name) {
         assert(name != null);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
@@ -40,7 +44,7 @@ public class EventName {
     public boolean equals(Object otherName) {
         if (otherName == null) {
             return false;
-        } else if (this == otherName){
+        } else if (this == otherName) {
             return true;
         } else {
             return otherName instanceof EventName
