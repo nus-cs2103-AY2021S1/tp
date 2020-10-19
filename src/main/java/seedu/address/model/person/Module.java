@@ -20,11 +20,15 @@ public class Module {
      * The first character of the module must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
+
+    // TODO make a module ID class?
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     private final String moduleId;
     private List<TutorialGroup> tutorialGroups;
     private TaskList taskList;
+    private int totalStudents = 0;
+    private int totalGroups = 0;
 
     /**
      * Constructs an {@code Module}.
@@ -50,6 +54,14 @@ public class Module {
 
     public String getModuleId() {
         return this.moduleId;
+    }
+
+    public int getTotalStudents() {
+        return this.totalStudents;
+    }
+
+    public int getTotalGroups() {
+        return this.totalGroups;
     }
 
     public void addTutorialGroup(TutorialGroup tutorialGroup) {

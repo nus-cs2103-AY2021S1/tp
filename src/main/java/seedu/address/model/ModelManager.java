@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Module;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -19,27 +19,26 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final ModuleList moduleList;
     private final UserPrefs userPrefs;
-    // private final ModuleList moduleList;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Module> filteredModules;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyModuleList moduleList, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(moduleList, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + moduleList + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.moduleList = new ModuleList(moduleList);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredModules = new FilteredList<>(this.moduleList.getModuleList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new ModuleList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -67,55 +66,50 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getModuleListFilePath() {
         return userPrefs.getAddressBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setModuleListFilePath(Path moduleListFilePath) {
+        requireNonNull(moduleListFilePath);
+        userPrefs.setAddressBookFilePath(moduleListFilePath);
     }
 
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setModuleList(ReadOnlyModuleList moduleList) {
+        this.moduleList.resetData(moduleList);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyModuleList getModuleList() {
+        return moduleList;
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasModule(Module module) {
+        requireNonNull(module);
+        return moduleList.hasModule(module);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteModule(Module target) {
+        moduleList.removeModule(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addModule(Module module) {
+        moduleList.addModule(module);
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
     @Override
-    public void addTutorialGroup(TutorialGroup tutorialGroup) {
-        addressBook.addTutorialGroup(tutorialGroup);
-    }
+    public void setModule(Module target, Module editedModule) {
+        requireAllNonNull(target, editedModule);
 
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+        moduleList.setModule(target, editedModule);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -125,15 +119,26 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Module> getFilteredModuleList() {
+        return filteredModules;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredModules.setPredicate(predicate);
     }
+
+    //    @Override
+    //    public void addTutorialGroup(TutorialGroup tutorialGroup) {
+    //        moduleList.addTutorialGroup(tutorialGroup);
+    //    }
+    //
+    //    @Override
+    //    public boolean hasTutorialGroup(TutorialGroup tutorialGroup) {
+    //        requireAllNonNull(tutorialGroup);
+    //        return moduleList.hasTutorialGroup(tutorialGroup);
+    //    }
 
     @Override
     public boolean equals(Object obj) {
@@ -149,9 +154,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return moduleList.equals(other.moduleList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredModules.equals(other.filteredModules);
     }
 
 }

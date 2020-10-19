@@ -4,10 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Module;
+import seedu.address.model.TutorialGroup;
 
-public class ModuleCard extends UiPart<Region> {
-    private static final String FXML = "ModuleListCard.fxml";
+public class TutorialGroupCard extends UiPart<Region> {
+    private static final String FXML = "TutorialGroupListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -17,31 +17,36 @@ public class ModuleCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Module module;
+    public final TutorialGroup tutorialGroup;
 
     @FXML
     private HBox cardPane;
     @FXML
-    private Label moduleId;
+    private Label groupId;
     @FXML
     private Label id;
     @FXML
-    private Label totalStudents;
+    private Label startTime;
     @FXML
-    private Label totalGroups;
+    private Label endTime;
+    @FXML
+    private Label duration;
     //    @FXML
     //    private FlowPane tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public ModuleCard(Module module, int displayedIndex) {
+    public TutorialGroupCard(TutorialGroup tutorialGroup, int displayedIndex) {
         super(FXML);
-        this.module = module;
+        this.tutorialGroup = tutorialGroup;
         id.setText(displayedIndex + ". ");
-        moduleId.setText(module.getModuleId());
-        totalStudents.setText("Total Students: " + module.getTotalStudents());
-        totalGroups.setText("Total Groups: " + module.getTotalGroups());
+        groupId.setText(tutorialGroup.getId());
+        //totalStudents.setText("Total Students: " + module.getTotalStudents());
+        startTime.setText(tutorialGroup.getStartTime().toString());
+        endTime.setText(tutorialGroup.getEndTime().toString());
+        duration.setText("" + tutorialGroup.getDurationInHours());
+
         //        person.getTags().stream()
         //                .sorted(Comparator.comparing(tag -> tag.tagName))
         //                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -55,13 +60,13 @@ public class ModuleCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ModuleCard)) {
+        if (!(other instanceof TutorialGroupCard)) {
             return false;
         }
 
         // state check
-        ModuleCard card = (ModuleCard) other;
+        TutorialGroupCard card = (TutorialGroupCard) other;
         return id.getText().equals(card.id.getText())
-                && module.equals(card.module);
+                && tutorialGroup.equals(card.tutorialGroup);
     }
 }
