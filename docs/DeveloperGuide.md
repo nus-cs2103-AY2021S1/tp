@@ -267,10 +267,36 @@ Aspect: Image type
 
 _{more aspects and alternatives to be added}_
 
-### 3.3 \[Proposed\] Data archiving
+
+
+
+
+
+
+
+
+### 3.3 View Command History feature
+
+#### 3.3.1 Implementation
+This feature allows users to view the history of recently used commands. CliniCal will store all entered commands, even if the command is written in a wrong format or failed to execute.
+
+This feature comprise of `HistoryCommand` and `CommandHistory` classes. Given below is an example usage scenario and how the mechanism behaves at each step.
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+### 3.4 \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 

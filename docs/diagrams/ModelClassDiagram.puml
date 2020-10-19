@@ -28,6 +28,10 @@ Package Tag {
 Class Tag
 Class ColorTag
 }
+
+
+Package History {
+Class CommandHistory
 }
 
 Class HiddenOutside #FFFFFF
@@ -42,6 +46,7 @@ ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 CliniCal *--> "1" UniquePatientList
+CliniCal *--> "1" CommandHistory
 UniquePatientList o--> "*" Patient
 Patient *--> Name
 Patient *--> Phone
