@@ -50,6 +50,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         Set<Tag> tagsToMatch = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         List<String> questionKeywords = ParserUtil.parseKeywords(argMultimap.getAllValues(PREFIX_QUESTION));
 
+        assert !(tagsToMatch.isEmpty() && questionKeywords.isEmpty());
+
         FlashcardPredicate predicate = getFlashcardPredicate(tagsToMatch, questionKeywords);
 
         return new FindCommand(predicate);
@@ -65,6 +67,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (!questionKeywords.isEmpty()) {
             predicates.add(new QuestionContainsKeywordsPredicate(questionKeywords));
         }
+
+        assert !predicates.isEmpty();
         return new FlashcardPredicate(predicates);
     }
 
