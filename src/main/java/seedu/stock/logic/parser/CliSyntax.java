@@ -17,6 +17,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_NEW_QUANTITY = new Prefix("nq/");
     public static final Prefix PREFIX_INCREMENT_QUANTITY = new Prefix("iq/");
     public static final Prefix PREFIX_NOTE = new Prefix("nt/");
+    public static final Prefix PREFIX_NOTE_INDEX = new Prefix("ni/");
     public static final Prefix PREFIX_STATISTICS_TYPE = new Prefix("st/");
 
 
@@ -27,6 +28,7 @@ public class CliSyntax {
     public static final String PREFIX_QUANTITY_DESCRIPTION = "<quantity>";
     public static final String PREFIX_SERIAL_NUMBER_DESCRIPTION = "<serial number>";
     public static final String PREFIX_NOTE_DESCRIPTION = "<note>";
+    public static final String PREFIX_NOTE_INDEX_DESCRIPTION = "<note index>";
     public static final String PREFIX_STATISTICS_TYPE_DESCRIPTION = "<statistics type>";
 
     /**
@@ -44,6 +46,7 @@ public class CliSyntax {
         allPrefixes.add(PREFIX_NEW_QUANTITY);
         allPrefixes.add(PREFIX_INCREMENT_QUANTITY);
         allPrefixes.add(PREFIX_NOTE);
+        allPrefixes.add(PREFIX_NOTE_INDEX);
         allPrefixes.add(PREFIX_STATISTICS_TYPE);
         return allPrefixes;
     }
@@ -78,6 +81,8 @@ public class CliSyntax {
             return PREFIX_SERIAL_NUMBER_DESCRIPTION;
         } else if (prefix.equals(PREFIX_NOTE)) {
             return PREFIX_NOTE_DESCRIPTION;
+        } else if (prefix.equals(PREFIX_NOTE_INDEX)) {
+            return PREFIX_NOTE_INDEX_DESCRIPTION;
         } else if (prefix.equals(PREFIX_STATISTICS_TYPE)) {
             return PREFIX_STATISTICS_TYPE_DESCRIPTION;
         } else {

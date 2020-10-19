@@ -22,9 +22,9 @@ public class NoteCommand extends Command {
             + "by the serial number of the stock.\n"
             + "Parameters:\n"
             + "sn/ [SERIAL NUMBER]\n"
-            + "note/ [NOTE]\n"
+            + "nt/ [NOTE]\n"
             + "Example: " + COMMAND_WORD + " sn/111111"
-            + " note/ Arrives every thursday 6pm.";
+            + " nt/ Arrives every thursday 6pm.";
 
     public static final String MESSAGE_ADD_NOTE_SUCCESS = "Added note to Stock: %1$s";
     public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND = "Stock with given serial number does not exists";
@@ -81,9 +81,9 @@ public class NoteCommand extends Command {
      */
     private static Stock createStockWithAddedNote(Stock stockToAddNote, Note noteToAdd) {
         assert stockToAddNote != null;
-        stockToAddNote.addNote(noteToAdd);
+        Stock stockWithAddedNote = stockToAddNote.addNote(noteToAdd);
 
-        return stockToAddNote;
+        return stockWithAddedNote;
     }
 
     /**

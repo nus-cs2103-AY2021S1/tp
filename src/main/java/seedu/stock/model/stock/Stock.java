@@ -100,6 +100,25 @@ public class Stock {
         return new Stock(name, serialNumber, source, quantity, location, notesToUpdate);
     }
 
+    public Stock deleteNote(int indexOfNoteToDelete) {
+        Name name = this.name;
+        SerialNumber serialNumber = this.serialNumber;
+        Source source = this.source;
+        Quantity quantity = this.quantity;
+        Location location = this.location;
+        List<Note> notesToUpdate = this.notes;
+        Stock updatedStock;
+        if (indexOfNoteToDelete == 0) {
+            updatedStock = new Stock(name, serialNumber, source, quantity, location);
+        } else {
+            notesToUpdate.remove(indexOfNoteToDelete - 1);
+            updatedStock = new Stock(name, serialNumber, source, quantity, location, notesToUpdate);
+        }
+
+        return updatedStock;
+
+    }
+
     public void setSerialNumber(String serialNumber) {
         this.serialNumber = new SerialNumber(serialNumber);
     }
