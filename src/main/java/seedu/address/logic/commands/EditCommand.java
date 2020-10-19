@@ -1,11 +1,15 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAILS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -19,87 +23,123 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.Question;
+import seedu.address.model.student.School;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.Year;
+import seedu.address.model.student.admin.AdditionalDetail;
+import seedu.address.model.student.admin.Admin;
+import seedu.address.model.student.admin.ClassTime;
+import seedu.address.model.student.admin.ClassVenue;
+import seedu.address.model.student.admin.Fee;
+import seedu.address.model.student.admin.PaymentDate;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing student in Reeve.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the student identified "
+            + "by the index number used in the displayed student list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_SCHOOL + "SCHOOL] "
+            + "[" + PREFIX_YEAR + "YEAR]"
+            + "[" + PREFIX_VENUE + "CLASS_VENUE]"
+            + "[" + PREFIX_TIME + "CLASS_TIME]"
+            + "[" + PREFIX_FEE + "FEE]"
+            + "[" + PREFIX_PAYMENT + "PAYMENT_DATE]"
+            + "[" + PREFIX_DETAILS + "ADDITIONAL_DETAILS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_VENUE + "Anderson Junior College"
+            + PREFIX_TIME + "2 1300-1400";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in Reeve.";
+
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditStudentDescriptor editStudentDescriptor;
+    private final EditAdminDescriptor editAdminDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the student in the filtered student list to edit
+     * @param editStudentDescriptor details to edit the student with
+     * @param editAdminDescriptor admin details to edit the student with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditStudentDescriptor editStudentDescriptor,
+                       EditAdminDescriptor editAdminDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editStudentDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editStudentDescriptor = new EditStudentDescriptor(editStudentDescriptor);
+        this.editAdminDescriptor = new EditAdminDescriptor(editAdminDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Student studentToEdit = lastShownList.get(index.getZeroBased());
+        Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor, editAdminDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!studentToEdit.isSameStudent(editedStudent) && model.hasPerson(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(studentToEdit, editedStudent);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Student} with the details of {@code studenttoEdit}
+     * edited with {@code editStudentDescriptor} and {@code editAdminDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Student createEditedStudent(Student studentToEdit, EditStudentDescriptor editStudentDescriptor,
+                                               EditAdminDescriptor editAdminDescriptor) {
+        assert studentToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
+        Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
+        School updatedSchool = editStudentDescriptor.getSchool().orElse(studentToEdit.getSchool());
+        Year updatedYear = editStudentDescriptor.getYear().orElse(studentToEdit.getYear());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        Admin updatedAdmin;
+        if (editAdminDescriptor.isAnyFieldEdited()) {
+            ClassTime updatedClassTime = editAdminDescriptor.getClassTime()
+                    .orElse(studentToEdit.getAdmin().getClassTime());
+            ClassVenue updatedClassVenue = editAdminDescriptor.getClassVenue()
+                    .orElse(studentToEdit.getAdmin().getClassVenue());
+            Fee updatedFee = editAdminDescriptor.getFee()
+                    .orElse(studentToEdit.getAdmin().getFee());
+            PaymentDate updatedPaymentDate = editAdminDescriptor.getPaymentDate()
+                    .orElse(studentToEdit.getAdmin().getPaymentDate());
+            Set<AdditionalDetail> updatedAdditionalDetails = editAdminDescriptor.getAdditionalDetails()
+                    .orElse(studentToEdit.getAdmin().getDetails());
+            updatedAdmin = new Admin(updatedClassVenue, updatedClassTime, updatedFee, updatedPaymentDate,
+                    updatedAdditionalDetails);
+        } else {
+            updatedAdmin = studentToEdit.getAdmin();
+        }
+
+        // Questions should not be edited through this command
+        List<Question> questions = studentToEdit.getQuestions();
+        return new Student(updatedName, updatedPhone, updatedSchool, updatedYear, updatedAdmin, questions);
     }
 
     @Override
@@ -117,39 +157,37 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editStudentDescriptor.equals(e.editStudentDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the student with. Each non-empty field value will replace the
+     * corresponding field value of the student.
      */
-    public static class EditPersonDescriptor {
+    public static class EditStudentDescriptor {
+
         private Name name;
         private Phone phone;
-        private Email email;
-        private Address address;
-        private Set<Tag> tags;
+        private School school;
+        private Year year;
 
-        public EditPersonDescriptor() {}
+        public EditStudentDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditStudentDescriptor(EditStudentDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setSchool(toCopy.school);
+            setYear(toCopy.year);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, school, year);
         }
 
         public void setName(Name name) {
@@ -168,37 +206,20 @@ public class EditCommand extends Command {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setSchool(School school) {
+            this.school = school;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<School> getSchool() {
+            return Optional.ofNullable(school);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setYear(Year year) {
+            this.year = year;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Year> getYear() {
+            return Optional.ofNullable(year);
         }
 
         @Override
@@ -209,18 +230,119 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditStudentDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditStudentDescriptor e = (EditStudentDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getSchool().equals(e.getSchool())
+                    && getYear().equals(e.getYear());
         }
     }
+
+    public static class EditAdminDescriptor {
+
+        private ClassTime time;
+        private ClassVenue venue;
+        private Fee fee;
+        private PaymentDate paymentDate;
+        private Set<AdditionalDetail> details;
+
+        public EditAdminDescriptor() {}
+
+        /**
+         * Copy constructor.
+         * A defensive copy of {@code details} is used internally.
+         */
+        public EditAdminDescriptor(EditAdminDescriptor toCopy) {
+            setTime(toCopy.time);
+            setVenue(toCopy.venue);
+            setFee(toCopy.fee);
+            setPaymentDate(toCopy.paymentDate);
+            setAdditionalDetails(toCopy.details);
+        }
+
+        /**
+         * Returns true if at least one field is edited.
+         */
+        public boolean isAnyFieldEdited() {
+            return CollectionUtil.isAnyNonNull(time, venue, fee, paymentDate, details);
+        }
+
+        public void setTime(ClassTime time) {
+            this.time = time;
+        }
+
+        public Optional<ClassTime> getClassTime() {
+            return Optional.ofNullable(time);
+        }
+
+        public void setVenue(ClassVenue venue) {
+            this.venue = venue;
+        }
+
+        public Optional<ClassVenue> getClassVenue() {
+            return Optional.ofNullable(venue);
+        }
+
+        public void setFee(Fee fee) {
+            this.fee = fee;
+        }
+
+        public Optional<Fee> getFee() {
+            return Optional.ofNullable(fee);
+        }
+
+        public void setPaymentDate(PaymentDate paymentDate) {
+            this.paymentDate = paymentDate;
+        }
+
+        public Optional<PaymentDate> getPaymentDate() {
+            return Optional.ofNullable(paymentDate);
+        }
+
+        /**
+         * Sets {@code details} to this object's {@code details}.
+         * A defensive copy of {@code details} is used internally.
+         */
+        public void setAdditionalDetails(Set<AdditionalDetail> details) {
+            this.details = (details != null) ? new HashSet<>(details) : null;
+        }
+
+        /**
+         * Returns an unmodifiable detail set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code details} is null.
+         */
+        public Optional<Set<AdditionalDetail>> getAdditionalDetails() {
+            return Optional.ofNullable(details).map(Collections::unmodifiableSet);
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof EditAdminDescriptor)) {
+                return false;
+            }
+
+            // state check
+            EditAdminDescriptor e = (EditAdminDescriptor) other;
+
+            return getClassVenue().equals(e.getClassVenue())
+                    && getClassTime().equals(e.getClassTime())
+                    && getFee().equals(e.getFee())
+                    && getPaymentDate().equals(e.getPaymentDate())
+                    && getAdditionalDetails().equals(e.getAdditionalDetails());
+        }
+    }
+
 }

@@ -9,11 +9,16 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.Question;
+import seedu.address.model.student.School;
+import seedu.address.model.student.Year;
+import seedu.address.model.student.admin.AdditionalDetail;
+import seedu.address.model.student.admin.ClassTime;
+import seedu.address.model.student.admin.ClassVenue;
+import seedu.address.model.student.admin.Fee;
+import seedu.address.model.student.admin.PaymentDate;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -25,6 +30,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -66,59 +72,135 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String school} into a {@code School}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static School parseSchool(String school) throws ParseException {
+        requireNonNull(school);
+        String trimmedSchool = school.trim();
+        if (!School.isValidSchool(trimmedSchool)) {
+            throw new ParseException(School.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new School(trimmedSchool);
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String year} into a {@code Year}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code year} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static Year parseYear(String year) throws ParseException {
+        requireNonNull(year);
+        String trimmedYear = year.trim();
+        if (!Year.isValidYear(trimmedYear)) {
+            throw new ParseException(Year.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Year(trimmedYear);
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * Parses a {@code String question} into a {@code Question}.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static Question parseQuestion(String question) throws ParseException {
+        requireNonNull(question);
+        String trimmedQuestion = question.trim();
+        if (!Question.isValidQuestion(trimmedQuestion)) {
+            throw new ParseException(Question.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Question(trimmedQuestion);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses a {@code String venue} into a {@code ClassVenue}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code venue} is invalid.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static ClassVenue parseClassVenue(String venue) throws ParseException {
+        requireNonNull(venue);
+        String trimmedVenue = venue.trim();
+        if (!ClassVenue.isValidClassVenue(trimmedVenue)) {
+            throw new ParseException(ClassVenue.MESSAGE_CONSTRAINTS);
         }
-        return tagSet;
+        return new ClassVenue(trimmedVenue);
     }
+
+    /**
+     * Parses a {@code String time} into a {@code ClassTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code time} is invalid.
+     */
+    public static ClassTime parseClassTime(String time) throws ParseException {
+        requireNonNull(time);
+        String trimmedTime = time.trim();
+        if (!ClassTime.isValidClassTime(trimmedTime)) {
+            throw new ParseException(ClassTime.MESSAGE_CONSTRAINTS);
+        } else if (!ClassTime.isValidStartAndEndTime(trimmedTime)) {
+            throw new ParseException(ClassTime.TIME_CONSTRAINTS);
+        }
+        return new ClassTime(trimmedTime);
+    }
+
+    /**
+     * Parses a {@code String fee} into a {@code Fee}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code fee} is invalid.
+     */
+    public static Fee parseFee(String fee) throws ParseException {
+        requireNonNull(fee);
+        String trimmedFee = fee.trim();
+        if (!Fee.isValidFee(trimmedFee)) {
+            throw new ParseException(Fee.MESSAGE_CONSTRAINTS);
+        }
+        return new Fee(trimmedFee);
+    }
+
+    /**
+     * Parses a {@code String paymentDate} into a {@code PaymentDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code paymentDate} is invalid.
+     */
+    public static PaymentDate parsePaymentDate(String paymentDate) throws ParseException {
+        requireNonNull(paymentDate);
+        String trimmedPaymentDate = paymentDate.trim();
+        if (!PaymentDate.isValidDate(trimmedPaymentDate)) {
+            throw new ParseException(PaymentDate.MESSAGE_CONSTRAINTS);
+        }
+        return new PaymentDate(trimmedPaymentDate);
+    }
+
+    /**
+     * Parses a {@code String detail} into a {@code AdditionalDetail}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code detail} is invalid.
+     */
+    public static AdditionalDetail parseAdditionalDetail(String detail) throws ParseException {
+        requireNonNull(detail);
+        String trimmedDetail = detail.trim();
+        if (!AdditionalDetail.isValidAdditionalDetail(trimmedDetail)) {
+            throw new ParseException(AdditionalDetail.MESSAGE_CONSTRAINTS);
+        }
+        return new AdditionalDetail(trimmedDetail);
+    }
+
+    /**
+     * Parses {@code Collection<String> additionalDetails} into a {@code Set<Tag>}.
+     */
+    public static Set<AdditionalDetail> parseAdditionalDetails(Collection<String> additionalDetails)
+            throws ParseException {
+        requireNonNull(additionalDetails);
+        final Set<AdditionalDetail> detailSet = new HashSet<>();
+        for (String detail : additionalDetails) {
+            detailSet.add(parseAdditionalDetail(detail));
+        }
+        return detailSet;
+    }
+
 }

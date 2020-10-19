@@ -1,0 +1,29 @@
+{
+  "students": [ {
+    "name": "Valid Student",
+    "phone": "9482424",
+    "school": "NUS High School",
+    "year": "Year 6",
+    "admin" : {
+      "classVenue": "Kent Ridge Road",
+      "classTime": "1 1500-1700",
+      "fee": "12.01",
+      "paymentDate": "20/12/2020",
+      "additionalDetails": ["He's valid"]
+    },
+    "questions" : []
+  }, {
+    "name": "Student With Invalid Phone Field",
+    "phone": "948asdf2424",
+    "school": "NUS High School",
+    "year": "Year 6",
+    "admin": {
+      "classVenue": "Kent Ridge Road",
+      "classTime": "1 1500-1700",
+      "fee": "12.01",
+      "paymentDate": "20/12/2020",
+      "additionalDetails": ["He's valid"]
+    },
+    "questions":  []
+  } ]
+}

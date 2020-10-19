@@ -82,7 +82,7 @@ The `UI` component,
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -151,11 +151,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th student in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -163,7 +163,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -208,7 +208,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -269,34 +269,52 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `Reeve` and the **Actor** is the `Tutor (User)`, unless specified otherwise)
 
-**Use case: UC01 - Adding a student**
+**UC01: Adding a student**
 
 **MSS**
 
-1. User enters a command to add a student with student details.
-2. Reeve saves student data into the students list and displays a success message.
-<br> Use case ends.
+1.  User enters a command to add a student with student details.
+2.  Reeve saves student data into the students list and displays a success message.
+
+    Use case ends.
 
 **Extensions**
 
 * 1a. User provides input with missing compulsory fields.
-  * 1a1. Reeve requests for appropriate input.
-<br> Use case resumes from step 1.
+    * 1a1. Reeve requests for appropriate input.
+
+      Use case resumes from step 1.
         	
 * 1b. User provides input with invalid format.
-  * 1b1. Reeve requests for appropriate input with valid format.
-<br> Use case resumes from step 1.
+    * 1b1. Reeve requests for appropriate input with valid format.
+      
+      Use case resumes from step 1.
         	
-**Use case: Searching for a student**
+**UC02: Searching for a student**
 
 **MSS**
 
 1.  User enters a command to find all students that match the given search parameter (name, school, year or subject).
-2.  Reeve displays all students matching the criteria.
-
+2.  Reeve displays all students matching the criteria. 
+    
     Use case ends.
 
-**Use case: Editing a student's details**
+**Extensions**
+
+* 1a. User provides input with invalid data into the search parameter.
+    * 1a1. Reeve displays erroneous field and expected format.       
+      
+      Use case resumes at step 1.      
+* 1b. User provides input without a search parameter.
+    * 1a1. Reeve displays a message indicating a search parameter was not provided.       
+      
+      Use case resumes at step 1.
+* 1c. No students match the given criteria.
+    * 1c1. Reeve displays a message indicating no match found.    
+      
+      Use case ends.
+
+**UC03: Editing a student's details**
 
 **MSS**
 
@@ -310,11 +328,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty.
-
   Use case ends.
 
 * 3a. User provides input with invalid index.
-
     * 3a1. Reeve requests for input with valid index.
 
       Use case resumes at step 2.
@@ -327,7 +343,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 	
 	  Use case resumes at step 2.
 
-**Use case: Deleting a person**
+**UC04: Deleting a student**
 
 **MSS**
 
@@ -345,12 +361,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. User provides input with invalid index.
-
     * 3a1. Reeve displays an error message.
 
       Use case resumes at step 2.
     
-**Use case: Listing all students** 
+**UC05: Listing all students** 
 
 **MSS**
 
@@ -360,7 +375,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
  
 
-**Use case: Clearing all student records**
+**UC06: Clearing all student records**
 
 **MSS**
 
@@ -413,17 +428,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a student
 
-1. Deleting a person while all persons are being shown
+1. Deleting a student while all students are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
