@@ -8,7 +8,7 @@ title: OneShelf
 
 ![Ui](images/Ui.png)
 
-**OneShelf** is a desktop application for you to manage all of restaurant inventories, 
+**OneShelf** is a desktop application for you to manage all of restaurant inventories,
 table reservations and pending deliveries. It is easy to build and customise your inventories
 by using only Command Line Interface. If you are a busy restaurant manager who prefers
 to use the Command Line Interface and needs to keep track of multiple items,

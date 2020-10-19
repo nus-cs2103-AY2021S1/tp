@@ -1,0 +1,14 @@
+{
+  "_comment": "DeliveryBook save file which contains the same Item values as in TypicalDelivery#TypicalDeliverBook()",
+  "deliveries" : [ {
+    "name" : "Kelvin",
+    "phone" : "91234332",
+    "address" : "Clementi Blk 235 #11-111",
+    "order" : "Char Kway Teow"
+  }, {
+    "name" : "Marcus",
+    "phone" : "8198264",
+    "address" : "Jurong Blk 231 #15-123",
+    "order" : "Seafood Hor Fun x5"
+  } ]
+}

@@ -7,7 +7,7 @@ table reservations and pending deliveries. It is easy to build and customise you
 by using only Command Line Interface. If you are a busy restaurant manager who prefers
 to use the Command Line Interface and needs to keep track of multiple items,
  **OneShelf** is for you!
- 
+
  ![Ui](docs/images/Ui.png)
 
 # Site Map

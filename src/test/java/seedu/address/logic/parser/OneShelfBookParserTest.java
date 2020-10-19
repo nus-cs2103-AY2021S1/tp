@@ -14,6 +14,9 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.deliverycommand.DeliveryClearCommand;
+import seedu.address.logic.commands.deliverycommand.DeliveryFindCommand;
+import seedu.address.logic.commands.deliverycommand.DeliveryListCommand;
 import seedu.address.logic.commands.help.HelpCommand;
 import seedu.address.logic.commands.itemcommand.ItemAddCommand;
 import seedu.address.logic.commands.itemcommand.ItemClearCommand;
@@ -23,6 +26,7 @@ import seedu.address.logic.commands.itemcommand.ItemFindCommand;
 import seedu.address.logic.commands.itemcommand.ItemListCommand;
 import seedu.address.logic.commands.itemcommand.ItemRemoveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.delivery.DeliveryContainsKeywordsPredicate;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.ItemContainsKeywordsPredicate;
 import seedu.address.testutil.EditItemDescriptorBuilder;
@@ -44,6 +48,9 @@ public class OneShelfBookParserTest {
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ItemClearCommand.COMMAND_WORD) instanceof ItemClearCommand);
         assertTrue(parser.parseCommand(ItemClearCommand.COMMAND_WORD + " 3") instanceof ItemClearCommand);
+
+        assertTrue(parser.parseCommand(DeliveryClearCommand.COMMAND_WORD) instanceof DeliveryClearCommand);
+        assertTrue(parser.parseCommand(DeliveryClearCommand.COMMAND_WORD + " 3") instanceof DeliveryClearCommand);
     }
 
     @Test
@@ -74,6 +81,12 @@ public class OneShelfBookParserTest {
         ItemFindCommand command = (ItemFindCommand) parser.parseCommand(
                 ItemFindCommand.COMMAND_WORD + " " + "n/chicken");
         assertEquals(new ItemFindCommand(new ItemContainsKeywordsPredicate(keywords, PREFIX_NAME)), command);
+
+        List<String> deliveryKeywords = Collections.singletonList("KELVIN");
+        DeliveryFindCommand deliveryCommand = (DeliveryFindCommand) parser.parseCommand(
+                DeliveryFindCommand.COMMAND_WORD + " " + "n/Kelvin");
+        assertEquals(new DeliveryFindCommand(
+                new DeliveryContainsKeywordsPredicate(deliveryKeywords, PREFIX_NAME)), deliveryCommand);
     }
 
     @Test
@@ -95,6 +108,9 @@ public class OneShelfBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ItemListCommand.COMMAND_WORD) instanceof ItemListCommand);
         assertTrue(parser.parseCommand(ItemListCommand.COMMAND_WORD + " 3") instanceof ItemListCommand);
+
+        assertTrue(parser.parseCommand(DeliveryListCommand.COMMAND_WORD) instanceof DeliveryListCommand);
+        assertTrue(parser.parseCommand(DeliveryListCommand.COMMAND_WORD + " 3") instanceof DeliveryListCommand);
     }
 
     @Test
