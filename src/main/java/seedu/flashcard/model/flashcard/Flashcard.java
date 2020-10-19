@@ -35,6 +35,7 @@ public class Flashcard {
 
     /**
      * Overloaded constructor for creating a flashcard when flashcard is favourited/unfavourited.
+     * All fields must be present and not null.
      */
     public Flashcard(Question question, Answer answer, Category category, Note note, boolean isFavourite) {
         requireAllNonNull(question, answer, category, note, isFavourite);
