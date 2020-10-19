@@ -43,6 +43,23 @@ public class FavCommandTest {
     }
 
     @Test
+    public void execute_validIndexFilteredList_success() {
+        showFlashcardAtIndex(model, INDEX_FIRST_FLASHCARD);
+
+        Flashcard flashcardToFavourite = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
+        FavCommand favCommand = new FavCommand(INDEX_FIRST_FLASHCARD);
+
+        Flashcard favouritedFlashcard = new FlashcardBuilder(flashcardToFavourite).withFavouriteStatus(true).build();
+
+        String expectedMessage = String.format(FavCommand.MESSAGE_FAVOURITE_FLASHCARD_SUCCESS, favouritedFlashcard);
+
+        Model expectedModel = new ModelManager(new FlashcardDeck(model.getFlashcardDeck()), new UserPrefs());
+        expectedModel.setFlashcard(model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased()), favouritedFlashcard);
+
+        assertCommandSuccess(favCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_invalidIndexUnfilteredListFavouriteFlashcard_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredFlashcardList().size() + 1);
         FavCommand favCommand = new FavCommand(outOfBoundIndex);

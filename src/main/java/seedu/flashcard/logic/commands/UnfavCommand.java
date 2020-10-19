@@ -46,6 +46,11 @@ public class UnfavCommand extends Command {
         Flashcard flashcardToUnfavourite = lastShownList.get(targetIndex.getZeroBased());
         assert flashcardToUnfavourite != null : "Index is invalid";
 
+
+        if (!flashcardToUnfavourite.isFavourite()) {
+            return new CommandResult(String.format(MESSAGE_UNFAVOURITE_FLASHCARD_SUCCESS, flashcardToUnfavourite));
+        }
+
         Flashcard unfavouredFlashcard = createUnfavouredFlashcard(flashcardToUnfavourite);
         model.setFlashcard(flashcardToUnfavourite, unfavouredFlashcard);
         return new CommandResult(String.format(MESSAGE_UNFAVOURITE_FLASHCARD_SUCCESS, unfavouredFlashcard));
