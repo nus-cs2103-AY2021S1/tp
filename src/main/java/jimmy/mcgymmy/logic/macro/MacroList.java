@@ -2,11 +2,13 @@ package jimmy.mcgymmy.logic.macro;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import jimmy.mcgymmy.logic.macro.exceptions.DuplicateMacroException;
+import jimmy.mcgymmy.logic.parser.PrimitiveCommandParser;
 
 /**
  * TODO: 1. save list in file/serialize? 2. add default shortcut macros.
@@ -19,11 +21,11 @@ public class MacroList {
 
     /**
      * creates a new MacroList
-     * @param commandNames set of command names that have been taken.
      */
-    public MacroList(Set<String> commandNames) {
+    public MacroList() {
         this.macros = new HashMap<>();
-        this.commandNames = commandNames;
+        this.commandNames = new HashSet<>(PrimitiveCommandParser.getRegisteredCommands());
+        this.commandNames.add("macro");
     }
 
     public boolean hasMacro(String name) {

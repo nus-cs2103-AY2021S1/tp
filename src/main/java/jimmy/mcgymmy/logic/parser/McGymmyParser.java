@@ -28,9 +28,7 @@ public class McGymmyParser {
      */
     public McGymmyParser() {
         this.primitiveCommandParser = new PrimitiveCommandParser();
-        Set<String> takenNames = new HashSet<>(this.primitiveCommandParser.getRegisteredCommands());
-        takenNames.add("macro");
-        this.macroList = new MacroList(takenNames);
+        this.macroList = new MacroList();
     }
 
     /**
