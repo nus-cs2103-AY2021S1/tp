@@ -76,6 +76,40 @@ This section describes some noteworthy details on how certain features are imple
 
 ### \[Proposed\] Data archiving
 
+### \[Proposed\] Calculate CAP feature
+
+#### Proposed Implementation
+
+The proposed calculate CAP function is facilitated by `CalculateCapCommand`. It extends Command with a counter for total 
+grade points and modular credits, both stored internally `gradePoints` and `modularCredits` respectively. Additionally, it implements the following operations:
+
+* `CalculateCapCommand#accumulate(ModuleList)` - Loops through a given `ModuleList` and updates the grade points and 
+modular credits count accordingly.
+
+* `CalculateCapCommand#calculateCap()` - Calculates CAP based the grade points and modular credits counter.
+
+The following sequence diagram shows how the calculate cap operation works:
+![CalculateCapSequenceDiagram](images/CalculateCapSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CalculateCapCommand` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+#### Design consideration:
+
+##### Aspect: Information used to calculate cap
+* Alternative 1 (current choice): Calculates based on academic information on mods tagged as completed.
+    * Pros : Easy to implement
+    * Cons : User has to manually input every module taken
+    
+* Alternative 2 : Prompts user for academic information used for last calculated cap and stores it.
+    * Pros : 
+        * User does not need to input uncessary modules.
+        * Will use less memory.(e.g Modules that the user is not currently taking does not need to be added by user).
+    
+    * Cons : Will require additional storage.
+    
+   
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -117,6 +151,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | delete a module                | remove modules that are completed                      |
 | `* *`    | user                                       | find a module by name          | locate details of a module without having to go through the entire list |
 | `* *`    | user                                       | add a zoom link to a module    | keep track and retrieve it easily                      |
+| `* *`    | user                                       | calculate my cumulative average point   | plan my academic progress for the future      |
 | `*`      | user who is overloading                    | sort modules by name           | locate a module easily                                 |
 
 *{More to be added}*
