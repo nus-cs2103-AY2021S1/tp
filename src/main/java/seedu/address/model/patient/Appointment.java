@@ -8,26 +8,33 @@ public class Appointment {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Appointment times should follow the format (dd/MM/yyyy HH:mm)";
-    public final LocalDateTime value;
+    private final LocalDateTime time;
+
+    public Appointment() {
+        time = LocalDateTime.MIN;
+    }
+
+    public Appointment(LocalDateTime appointment) {
+        time = appointment;
+    }
 
     /**
-     * Constructs an appointment with a given appointment time.
-     *
-     * @param appointment A valid appointment.
+     * @param timeString appointment time
+     * @return an Appointment object with date specified by the given String
      */
-    public Appointment(String appointment) {
+    public Appointment setTime(String timeString) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HH:mm");
-        value = LocalDateTime.parse(appointment, formatter);
+        return new Appointment(LocalDateTime.parse(timeString, formatter));
     }
 
     /**
      * Returns true if a given string is a valid Appointment.
      */
-    public static boolean isValidAppointment(String test) {
+    public static boolean isValidAppointment(String input) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HH:mm");
         LocalDateTime localDateTime;
         try {
-            localDateTime = LocalDateTime.parse(test, formatter);
+            localDateTime = LocalDateTime.parse(input, formatter);
         } catch (DateTimeParseException e) {
             return false;
         }
@@ -40,20 +47,20 @@ public class Appointment {
 
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy h:mm a");
-        return value.format(formatter);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HH:mm");
+        return time.format(formatter);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Appointment // instanceof handles nulls
-                && value.equals(((Appointment) other).value)); // state check
+                && time.equals(((Appointment) other).time)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return time.hashCode();
     }
 
 }

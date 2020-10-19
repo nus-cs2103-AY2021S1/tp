@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Appointment;
 import seedu.address.model.patient.Email;
+import seedu.address.model.patient.MedicalRecord;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Phone;
@@ -128,6 +129,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String appointment} into a {@code Appointment}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code appointment} is invalid.
+     */
+    public static Appointment parseAppointment(String appointment) throws ParseException {
+        requireNonNull(appointment);
+        String trimmedAppointment = appointment.trim();
+        if (!Appointment.isValidAppointment(trimmedAppointment)) {
+            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
+        }
+        return new Appointment().setTime(trimmedAppointment);
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
@@ -140,21 +156,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String appointment} into a {@code Appointment}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code appointment} is invalid.
-     */
-    public static Appointment parseAppointment(String appointment) throws ParseException {
-        requireNonNull(appointment);
-        String trimmedAppointment = appointment.trim();
-        if (!Appointment.isValidAppointment(trimmedAppointment)) {
-            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
-        }
-        return new Appointment(trimmedAppointment);
-    }
-
-    /**
      * Parses {@code Collection<String> appointments} into a {@code Set<Appointment>}.
      */
     public static Set<Appointment> parseAppointments(Collection<String> appointments) throws ParseException {
@@ -164,5 +165,20 @@ public class ParserUtil {
             appointmentSet.add(parseAppointment(appointmentTime));
         }
         return appointmentSet;
+    }
+
+    /**
+     * Parses a {@code String url} into an {@code MedicalRecord}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code url} is invalid.
+     */
+    public static MedicalRecord parseMedicalRecord(String url) throws ParseException {
+        requireNonNull(url);
+        String trimmedUrl = url.trim();
+        if (!MedicalRecord.isValidUrl(trimmedUrl)) {
+            throw new ParseException(MedicalRecord.MESSAGE_CONSTRAINTS);
+        }
+        return new MedicalRecord(trimmedUrl);
     }
 }

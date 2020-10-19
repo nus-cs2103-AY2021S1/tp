@@ -70,7 +70,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'hospify.jar'
 }
 
 defaultTasks 'clean', 'test'
