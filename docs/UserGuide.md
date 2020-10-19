@@ -247,10 +247,13 @@ Import a previously saved file into McGymmy
 
 Format: `import FILEPATH`
 
-* Import the saved file at FILEPATH
+* Import the saved file at `FILEPATH`
 
 Examples:
-* import c:/mcgymmy/save_file.json
+* `import c:/mcgymmy/save_file.json`
+    * This imports `save_file.json` into McGymmy
+
+![Import command example](images/CommandImagesForUG/Import.png)
 
 
 ### Exiting the program : `exit`
