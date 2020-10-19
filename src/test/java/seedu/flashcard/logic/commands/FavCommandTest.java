@@ -54,7 +54,8 @@ public class FavCommandTest {
         String expectedMessage = String.format(FavCommand.MESSAGE_FAVOURITE_FLASHCARD_SUCCESS, favouritedFlashcard);
 
         Model expectedModel = new ModelManager(new FlashcardDeck(model.getFlashcardDeck()), new UserPrefs());
-        expectedModel.setFlashcard(model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased()), favouritedFlashcard);
+        expectedModel.setFlashcard(model.getFilteredFlashcardList()
+                .get(INDEX_FIRST_FLASHCARD.getZeroBased()), favouritedFlashcard);
 
         assertCommandSuccess(favCommand, model, expectedMessage, expectedModel);
     }

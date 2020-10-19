@@ -46,6 +46,25 @@ public class UnfavCommandTest {
     }
 
     @Test
+    public void execute_validIndexFilteredList_success() {
+        showFlashcardAtIndex(model, INDEX_SECOND_FLASHCARD);
+
+        Flashcard flashcardToUnfavourite = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
+        UnfavCommand unfavCommand = new UnfavCommand(INDEX_FIRST_FLASHCARD);
+
+        Flashcard unfavouritedFlashcard = new FlashcardBuilder(flashcardToUnfavourite)
+                .withFavouriteStatus(false).build();
+
+        String expectedMessage = String.format(UnfavCommand.MESSAGE_UNFAVOURITE_FLASHCARD_SUCCESS,
+                unfavouritedFlashcard);
+
+        Model expectedModel = new ModelManager(new FlashcardDeck(model.getFlashcardDeck()), new UserPrefs());
+        expectedModel.setFlashcard(model.getFilteredFlashcardList().get(0), unfavouritedFlashcard);
+
+        assertCommandSuccess(unfavCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredFlashcardList().size() + 1);
         UnfavCommand unfavCommand = new UnfavCommand(outOfBoundIndex);
