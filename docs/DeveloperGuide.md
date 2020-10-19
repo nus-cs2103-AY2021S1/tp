@@ -262,33 +262,35 @@ The following activity diagram summarizes what happens when a user executes a ne
     <em style="color:#CC5500">Figure 17. Activity Diagram for User Execution of Command</em>
 </p>
 
-#### 3.1.2 Design consideration:
+#### 3.1.2 Design consideration
 
 ##### 3.1.2.1 Aspect: Execution of undo/redo
 
 * **Current Implementation:** Saves the entire patient details in CliniCal application.
 
-  * Pros: Easy to implement as the entire list of patients would be saved.
+  * Pros: It is easier to implement as the entire list of patients would be saved. The list of patients can then be 
+  easily loaded to be used or saved for future use by `Model`.
   
-  * Cons: May have performance issues in terms of memory usage.
+  * Cons: This may have performance issues in terms of memory usage.
 
 * **Alternative Implementation:** Undo/redo function is handled by each individual command.
 
-  * Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
+  * Pros: The application will use less memory (e.g. for `delete`, just save the patient being deleted).
   
   * Cons: The implementation of undo/redo for each specific command must be correct.
   
   ##### 3.1.2.2 Aspect: Choice of data structure to store CliniCal application states
   
-  * **Current Implementation:** List with a pointer to the current CliniCal state
+ * **Current Implementation:** List with `currentStatePointer` pointing to the current CliniCal state.
   
-    * Pros: Easier to implement as the previous state can be easily accessed by the pointer
+    * Pros: It is easier to implement as only a single List is required and all states can be accessed.
     
-    * Cons: Requires keep track of the current state and purging of redundant states.
+    * Cons: This requires constant updating of the `CliniCalStateList` such as purging of redundant states.
   
-  * **Alternative Implementation:** Stack
+ * **Alternative Implementation:** Two Stacks - CommandsExecutedStack and RedoStack
   
-    * Pros: The more intuitive solution as a stack follows the first in last out principle.
+    * Pros: The more intuitive solution as a stack follows the First In Last Out principle. There would be no need for 
+    any `currentStatePointer` since the current state would be at the top of the stacks.
     
     * Cons: Harder to implement as two separate stacks would have to be tracked and there would be more dependencies to 
     implement before and after the execution of every command.
