@@ -26,8 +26,8 @@ import seedu.address.model.task.Task;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Project {
-    private static final Predicate<Task> TRUE_TASK_PREDICATE = task -> true;
-
+    private static final Predicate<Task> SHOW_ALL_TASKS_PREDICATE = task -> true;
+    private static final Predicate<Meeting> SHOW_ALL_MEETINGS_PREDICATE = meeting -> true;
     // Identity fields
     private final ProjectName projectName;
     private final Deadline deadline;
@@ -37,7 +37,8 @@ public class Project {
     private final ProjectDescription projectDescription;
     private final Set<ProjectTag> projectTags = new HashSet<>();
     private final HashMap<GitUserName, Participation> listOfParticipations = new HashMap<>();
-    private Predicate<Task> taskFilter = TRUE_TASK_PREDICATE;
+    private Predicate<Task> taskFilter = SHOW_ALL_TASKS_PREDICATE;
+    private Predicate<Meeting> meetingFilter = SHOW_ALL_MEETINGS_PREDICATE;
     private final Set<Task> tasks = new HashSet<>();
     private final Set<Meeting> meetings = new HashSet<>();
 
@@ -93,6 +94,9 @@ public class Project {
     }
     public void updateTaskFilter(Predicate<Task> predicate) {
         this.taskFilter = predicate;
+    }
+    public void updateMeetingFilter(Predicate<Meeting> predicate) {
+        this.meetingFilter = predicate;
     }
     public Optional<Task> getTaskOnView() {
         return taskOnView;
@@ -209,12 +213,18 @@ public class Project {
     }
 
     /**
-     * Returns the list of tasks that is last shown.
+     * Returns the filtered list of tasks that is last shown.
      */
     public List<Task> getFilteredTaskList() {
         return tasks.stream().filter(taskFilter).collect(Collectors.toList());
     }
 
+    /**
+     * Returns the filtered list of meetings that is last shown.
+     */
+    public List<Meeting> getFilteredMeetingList() {
+        return meetings.stream().filter(meetingFilter).collect(Collectors.toList());
+    }
     /**
      * Returns true if both projects of the same projectName have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two projects.

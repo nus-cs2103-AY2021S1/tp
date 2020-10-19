@@ -77,9 +77,9 @@ public class Task {
      * @return true if this task has an assignee whose name matches the given name,
      * and false otherwise
      */
-    public boolean hasAssigneeWhoseNameIs(GitUserName assigneeGitUserName) {
+    public boolean hasAssigneeWhoseGitNameIs(GitUserName assigneeGitUserName) {
         return assignees.stream()
-            .anyMatch(assignee -> assignee.getAssigneeName().equals(assigneeGitUserName));
+            .anyMatch(assignee -> assignee.getAssigneeGitName().equals(assigneeGitUserName));
     }
 
     public boolean addAssignee(Participation assignee) {
