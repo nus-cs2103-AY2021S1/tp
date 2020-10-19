@@ -34,11 +34,11 @@ public class SampleDataUtil {
 
     public static ReadOnlyLogBook getSampleLogBook() {
         LogBook sampleLogbook = new LogBook();
-        for (Log sampleLog : getSampleLogs()) {
-            sampleLogbook.addLog(sampleLog);
-        }
         for (Exercise sampleExercise : getSampleExercises()) {
             sampleLogbook.addExercise(sampleExercise);
+        }
+        for (Log sampleLog : getSampleLogs()) {
+            sampleLogbook.addLog(sampleLog);
         }
         return sampleLogbook;
     }
