@@ -52,6 +52,7 @@ public class TaskBuilder {
         description = taskToCopy.getDescription();
         type = taskToCopy.getType();
         tags = new HashSet<>(taskToCopy.getTags());
+        status = taskToCopy.getStatus();
     }
 
     /**
