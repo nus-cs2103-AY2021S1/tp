@@ -90,7 +90,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setMcGymmy(ReadOnlyMcGymmy mcGymmy) {
-        mcGymmyStack.push(new McGymmy(this.mcGymmy));
+        addCurrentStateToHistory();
         this.mcGymmy.resetData(mcGymmy);
     }
 
@@ -102,13 +102,13 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteFood(Index index) {
-        mcGymmyStack.push(new McGymmy(mcGymmy));
+        addCurrentStateToHistory();
         mcGymmy.removeFood(index);
     }
 
     @Override
     public void addFood(Food food) {
-        mcGymmyStack.push(new McGymmy(mcGymmy));
+        addCurrentStateToHistory();
         mcGymmy.addFood(food);
         updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
     }
@@ -116,7 +116,7 @@ public class ModelManager implements Model {
     @Override
     public void setFood(Index index, Food editedFood) {
         CollectionUtil.requireAllNonNull(index, editedFood);
-        mcGymmyStack.push(new McGymmy(mcGymmy));
+        addCurrentStateToHistory();
         mcGymmy.setFood(index, editedFood);
         updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
     }
@@ -135,6 +135,10 @@ public class ModelManager implements Model {
             mcGymmy.resetData(mcGymmyStack.pop());
             updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
         }
+    }
+
+    private void addCurrentStateToHistory() {
+        mcGymmyStack.push(new McGymmy(mcGymmy));
     }
 
     //=========== Filtered Food List Accessors =============================================================
