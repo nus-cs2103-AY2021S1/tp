@@ -55,7 +55,7 @@ public class CommandTestUtil {
     public static final String CALORIES_DESC_SIT_UP = " " + PREFIX_CALORIES + VALID_CALORIES_SIT_UP;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_DESCRIPTION_DESC = "";
     public static final String INVALID_DATE_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_CALORIES_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
 
