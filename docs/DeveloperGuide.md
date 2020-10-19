@@ -243,6 +243,89 @@ The following activity diagram summarizes the scoping features when a user execu
   * Pros: Will not increase coupling with parser.
   * Cons: The scoping features of each command are not explicitly seen, and may increase coupling with command.
 
+### Filtering feature
+
+#### Implementation
+
+The implementation of task filter and meeting filter is similar. We will use task filter as an example to explain how the filtering mechanism works. The task filtering mechanism is facilitated by the predicte `taskFilter` kept in the Project class. When `UI` component requested for the filtered and sorted task list, the task list filtered by the `taskFilter` will be returned. 
+
+Tasks can be filtered by following attributes of a Task (using command `filtert PREFIX/ATTRIBUTE`):
+
+- the Github user name `GitUserName` of one of the task's assignees (prefix: `ta/`)
+- the task's name: `taskName` (prefix: `tn/`)
+- the task's deadline: `deadline` (prefix: `td/`)
+- the task's progress: `progress` (prefix: `tp/`)
+- whether the task is done: `isDone` (prefix: `done/`)
+
+The predicate is generated in the `TaskFilterCommandParser` and encapsulated by the `TaskFilterCommand` that the paser returns. When the `TaskFilterCommand` is executed, the `taskFilter` of the current project will be updated and  `UI` will be refreshed automatically.
+
+When the user want to clear the filter using `allt` , the `taskFilter` of the current project will be changed to a predicate that always returns true. Then, the `UI` will correspondingly show all the tasks in the current project.
+
+Given below is an example usage scenario and how the task filtering mechanism behaves at each step:
+
+Step 1. The user uses `start` to open a project called "Taskmania". Suppose there are currently three tasks in this project: `task1`, `task2`, and `task3`. There are three persons involved: a person named "Tan Chia Qian" whose Github username is "TCQian", a person named "Tian Fang" whose Github username is "T-Fang" and a person named "Li Jiayu" whose Github username is "lll-jy".  `task1` is assigned to "Tan Chia Qian" and "Tian Fang", `task2` is assigned to "Tian Fang", and `task3` is assigned to "Li Jiayu".
+
+![FilterStep1](images/FilterStep1.png)
+
+</div>
+
+Step 2. The user executes `filtert ta/T-Fang` command to find all tasks that have assignee whose Github username is "T-Fang". the command is eventually passed to `TaskFilterCommandParser` and the parser will identify the type of the filtering condition using the prefix entered and create the corresponding task predicate. In this case, `ta/` indicates that a predicate that filter tasks by their assignees' Github usernames should be created. Then when the `TaskFilterCommand` return by the parser is executed by the `LogicManager`, the `TaskFilterCommand` will get the current project ("Taskmania") from the `Model` and update the `taskFilter` predicate inside the "Taskmania" project. Therefore, the filtered task list of "Taskmania" will only contain `task1` and `task2`.
+
+![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `TaskFilterCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+</div>
+
+Step 3. After seeing tasks that has been assign to "Tian Fang", the user wants to take a look at other tasks in "Taskmania". The user executes `allt` to see all the tasks in the "Taskmania". the `MainCataloguePaser` parses the command and creates a `AllTasksCommand`. When the `AllTasksCommand` is executed, it will get the current project ("Taskmania") from the `Model` and call the `showAllTasks()` method inside the "Taskmania" project. Then the `taskFilter` inside "Taskmania" will be replaced by a predicate that always returns true and all the tasks will be shown.
+
+![AllTasksSequenceDiagram](images/AllTasksSequenceDiagram.png)
+
+</div>
+
+In the example above, the users can also filter the task list in different ways and the `taskFilter` predicate in "Taskmania" will be updated correspondingly:
+
+- `filtert tn/Filter` : `task2` and `task3` will be displayed
+- `filtert tp/50`: `task3` will be displayed
+- `filtert done/false`:`task1` and `task3` will be displayed
+- `filtert td/19-10-2020 13:30:00 `:`task1` will be displayed
+
+The following activity diagram summarizes what happens when a user executes a task filter command:
+
+![TaskFilterActivityDiagram](images/TaskFilterActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Which attribute of assignees should be used to filter tasks
+
+* **Alternative 1 (current choice):** Assignee's Github username
+  * Pros: Avoid viewing tasks of another person with the same personName. (Github username is unique)
+  * Cons: The user might not always remember the GitHub usernames of team members.
+
+* **Alternative 2:** Assignee's personName
+  * Pros: More intuitive when there are no team members with the same name.
+  * Cons: If two team members have the same name, the task filter by their name will display tasks that have been assigned to any of them.
+
+##### Aspect: Whether to clear filter when user re-enters the project
+
+* **Alternative 1 (current choice):** Keep filters and display filtered tasks/meetings when the user re-enters the project
+  * Pros: Task/meeting list remains unchanged (e.g. the user don't have to filter everytime (s)he re-enters the same project if (s)he only wants to see tasks assigned to him/her ) .
+  * Cons: Users might forget there are other tasks if they don't use `allt` to check.
+* **Alternative 2:** Clear filter when the user re-enters the project
+  * Pros: The user always gets to see all the tasks every time (s)he enters the project.
+  * Cons: The user have to filter everytime (s)he re-enters the same project if (s)he only wants to see tasks assigned to him/her.
+
+##### Aspect: Which data structure is better for filtering tasks in a project
+
+* **Alternative 1 (current choice):** Use `Set<Task>` to store the tasks
+  * Pros: There will be no duplicated tasks in the `set`.
+  * Cons: Need extra steps to convert the set into a `Stream`, and convert the `Stream` into a  `List`.
+
+* **Alternative 2:** Use `List<Task>`to
+  * Pros: Has built-in method to filter the task list.
+  * Cons: The same task might be duplicated in the `List`.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -801,5 +884,4 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
 1. _{ more test cases …​ }_
