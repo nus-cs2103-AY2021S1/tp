@@ -35,6 +35,10 @@ public class FlashcardTest {
         // different note -> returns true
         editedFlashcardOne = new FlashcardBuilder(FLASHCARD_1).withNote(VALID_NOTE_1).build();
         assertTrue(FLASHCARD_1.isSameQuestion(editedFlashcardOne));
+
+        // different isFavourite status -> returns true
+        editedFlashcardOne = new FlashcardBuilder(FLASHCARD_1).withFavouriteStatus(true).build();
+        assertTrue(FLASHCARD_1.isSameQuestion(editedFlashcardOne));
     }
 
     @Test
@@ -69,6 +73,10 @@ public class FlashcardTest {
 
         // different note -> returns false
         editedFlashcardOne = new FlashcardBuilder(FLASHCARD_1).withNote(VALID_NOTE_2).build();
+        assertFalse(FLASHCARD_1.equals(editedFlashcardOne));
+
+        // different isFavourite status -> returns false
+        editedFlashcardOne = new FlashcardBuilder(FLASHCARD_1).withFavouriteStatus(true).build();
         assertFalse(FLASHCARD_1.equals(editedFlashcardOne));
     }
 }
