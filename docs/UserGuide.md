@@ -59,7 +59,7 @@ and pressing Enter will open the help window.<br>
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -96,24 +96,25 @@ Example:
 * `delete 2 c/revenue`
 
 
-<!-- ### Editing an expense : `edit`
+<!-- ### Editing an entry (expense/revenue) : `edit`
 
 Edits an entry in the tracker.
 
-* Edits an entry that matches the expense name and changes the initial amount with the either entry in a/MONEY_AMT (if any), the initial name to the entry in n/EXPENSE_NAME (if any) or both if both entries are keyed in
-* The tags n/ and a/ have to be used to indicate which field specifies EXPENSE_NAME and which field specifies MONEY_AMT
-* Order of whether `[n/EXPENSE_NAME]` or `[a/MONEY_AMT]` would not affect the edit command so long as the `n/` and `a/` tags are used, e.g. `edit 2 n/Cash paid at Zouk a/200` would have the same effect as `edit 2 a/200 and n/Cash paid at Zouk`.
-* The index must be a positive integer 1, 2, 3, and must be within the range of the number of entries (e.g. if there are 10 entries, the `INDEX` given cannot be > 10)
+* Edits an entry that matches the entry name and changes the parameters of an entry depending on which are specified
+* The tags d/ and a/ have to be used to indicate which field specifies DESCRIPTION and which field specifies AMOUNT
+* The index must be a positive integer 1, 2, 3, and must be within the range of the number of entries 
+(e.g. if there are 10 entries, the `INDEX` given cannot be > 10)
 
 Formats:
-* `edit 1 c/revenue d/description a/amount t/tag
-   edit 2 c/expense d/description
-   edit 3 c/revenue a/amount`
+* `edit 1 c/CATEGORY d/DESCRIPTION a/AMOUNT t/TAG
+   edit 2 c/CATEGORY d/DESCRIPTION
+   edit 3 c/CATEGORY a/AMOUNT`
 
 Example:
-* `edit 2 n/eating McSpicy a/8.60` changes the name and the amount of entry 2 to `eating McSpicy` and `$8.60` respectively
-* `edit 2 n/eating McNuggets` changes the name of entry 2 to `eating McNuggets`
-* `edit 2 a/5.50` changes the amount of entry 2 to `$5.50`
+* `edit 2 c/expense n/buy McSpicy a/8.60` changes the name and the amount of entry 2 to `eating McSpicy` and `$8.60` 
+respectively
+* `edit 2 c/revenue n/sell McNuggets` changes the name of entry 2 to `sell McNuggets`
+* `edit 2 c/expense a/5.50` changes the amount of entry 2 to `$5.50`
 
 
 ### Locating expenses by name: `find`
@@ -122,7 +123,8 @@ Find expenses that have the given keyword in their names.
 
 * The search is case-sensitive. e.g `grocery` will match `grocery` but not `Grocery`.
 * Only the expense name is searched.
-* Expenses matching at least one keyword will be returned (i.e. OR search). e.g. `Food` will return `Hawker Food`, `Restaurant Food`
+* Expenses matching at least one keyword will be returned (i.e. OR search). e.g. `Food` will return `Hawker Food`, 
+`Restaurant Food`
 
 Format:
 * `find KEYWORD [MORE_KEYWORDS]`
@@ -144,9 +146,9 @@ Format: `exit`
 Action | Format, Examples
 --------|------------------
 **Help** | `help`
-**Add** | `add c/CATEGORY  n/EXPENSE_NAME a/EXPENSE_AMT`
-**Remove** | `remove ENTRY_NUM`<br>`remove n/EXPENSE_NAME`
-**Edit** | `edit ENTRY_NUM n/EXPENSE_NAME a/MONEY_AMT`
+**Add** | `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
+**Delete** | `delete ENTRY_INDEX c/CATEGORY`
 **Exit** | `exit`
 
-<!--**Find** | `find KEYWORD [MORE_KEYWORDS]`-->
+<!-- **Edit** | `edit ENTRY_NUM n/EXPENSE_NAME a/MONEY_AMT` -->
+<!-- **Find** | `find KEYWORD [MORE_KEYWORDS]` -->
