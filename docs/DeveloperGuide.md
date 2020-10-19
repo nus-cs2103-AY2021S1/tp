@@ -309,10 +309,35 @@ Aspect: How commands is stored
        * User do not need to view invalid commands.
    * Cons:
        * User cannot check what went wrong with the previous command.
-
-### 3.4 Up Down Arrow Keys feature
+       
+### 3.4 Clear Command History feature
 
 #### 3.4.1 Implementation
+This feature allows users to clear history of recently used commands. 
+
+The mechanism utilises the `CommandHistory#clearHistory` to clear all stored commands from `commandHistory`.
+
+This feature comprise of the `ClearHistoryCommand` and `CommandHistory` classes. Given below is an example usage scenario and how the mechanism behaves at each step.
+
+![ClearHistorySequenceDiagram](images/ClearHistorySequenceDiagram.png)
+
+Step 1. User inputs "clearhistory" to execute the clear history command.
+
+Step 2. After successful parsing of user input, the `ClearHistoryCommand#execute(Model model)` method is called.
+
+Step 3. The `CommandHistory#clearHistory` is then called which will clear all commands stored in `commandHistory`.
+
+#### 3.4.2 Design Considerations
+Aspect: How do we clear command history
+* Use of stack ADT
+    * Pros: 
+        * Easy to implement clear function.
+    * Con:
+        * Command history is not persistent so recently used commands is only kept during the same usage.
+
+### 3.5 Up Down Arrow Keys feature
+
+#### 3.5.1 Implementation
 This feature allows users to navigate and reuse past commands using up and down arrow keys.
 
 The mechanism utilises the `CommandHistory#peekNext()` and `CommandHistory#peekPrev()`. Given below is an example usage scenario and how the up/down arrow key mechanism behaves at each step.
@@ -342,7 +367,7 @@ The following sequence diagram shows how the up down arrow key mechanism works:
 
 ![UpDownArrowKeySequenceDiagram](images/UpDownArrowKeySequenceDiagram.png)
 
-#### 3.4.2 Design Considerations
+#### 3.5.2 Design Considerations
 Aspect: How commands are stored
 * Alternative 1 (current choice): Peek through all entered commands (including those in wrong format or fails to execute)
     * Pros:
@@ -357,30 +382,6 @@ Aspect: How commands are stored
     * Cons:
         * Users cannot edit invalid commands and will need to spend more time to retype the valid command.
         
-### 3.5 Clear Command History feature
-
-#### 3.5.1 Implementation
-This feature allows users to clear history of recently used commands. 
-
-The mechanism utilises the `CommandHistory#clearHistory` to clear all stored commands from `commandHistory`.
-
-This feature comprise of the `ClearHistoryCommand` and `CommandHistory` classes. Given below is an example usage scenario and how the mechanism behaves at each step.
-
-![ClearHistorySequenceDiagram](images/ClearHistorySequenceDiagram.png)
-
-Step 1. User inputs "clearhistory" to execute the clear history command.
-
-Step 2. After successful parsing of user input, the `ClearHistoryCommand#execute(Model model)` method is called.
-
-Step 3. The `CommandHistory#clearHistory` is then called which will clear all commands stored in `commandHistory`.
-
-#### 3.5.2 Design Considerations
-Aspect: How do we clear command history
-* Use of stack ADT
-    * Pros: 
-        * Easy to implement clear function.
-    * Con:
-        * Command history is not persistent so recently used commands is only kept during the same usage.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **4. Documentation**
@@ -540,7 +541,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
      
          Use case resumes at step 1.
 
-*{More to be added}*
+### Use case: UC08 - View command history
+
+**MSS**
+
+1. User requests to list command history.
+2. CliniCal shows a list of recently used commands from the command history.
+
+      Use case ends.
+
+**Extensions**
+
+* 2a. The command history is empty.
+
+  Use case ends.
+      
+### Use case: UC09 - Clear command history
+
+**MSS**
+
+1. User requests to clear command history.
+2. CliniCal shows a message that the command history is cleared.
+
+      Use case ends.
 
 ## **Appendix D: Non-Functional Requirements**
 
