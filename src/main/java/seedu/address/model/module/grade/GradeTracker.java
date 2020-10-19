@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Tracks the assignments and final grade for a module.
+ * Represents an association class that tracks the assignments and grade for a module.
  */
 public class GradeTracker {
     public static final String MESSAGE_INVALID_GRADE =
