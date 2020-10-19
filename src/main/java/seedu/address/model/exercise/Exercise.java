@@ -21,7 +21,7 @@ public class Exercise {
      * Every field except for calories must be present and not null.
      */
     public Exercise(Name name, Description description, Date date, Calories calories) {
-        requireAllNonNull(name, description, date);
+        requireAllNonNull(name, description, date, calories);
         this.name = name;
         this.description = description;
         this.date = date;
