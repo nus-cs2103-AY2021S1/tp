@@ -5,7 +5,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
+import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.Admin;
 
 /**
@@ -57,6 +59,10 @@ public class Student {
 
     public List<Question> getQuestions() {
         return questions;
+    }
+
+    public Set<AdditionalDetail> getDetails() {
+        return admin.getDetails();
     }
 
     /**

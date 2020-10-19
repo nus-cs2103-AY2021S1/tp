@@ -16,6 +16,11 @@ public class CliSyntax {
     public static final Prefix PREFIX_PAYMENT = new Prefix("d/");
     public static final Prefix PREFIX_DETAILS = new Prefix("a/");
 
+    /* Prefix for additionalDetail commands */
+    public static final Prefix PREFIX_ADD_DETAIL = new Prefix("a/");
+    public static final Prefix PREFIX_EDIT_DETAIL = new Prefix("e/");
+    public static final Prefix PREFIX_DELETE_DETAIL = new Prefix("d/");
+
     /* Prefix for question commands */
     public static final Prefix PREFIX_ADD_QUESTION = new Prefix("a/");
     public static final Prefix PREFIX_SOLVE_QUESTION = new Prefix("s/");
