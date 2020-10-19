@@ -11,7 +11,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import quickcache.commons.core.LogsCenter;
 import quickcache.commons.core.Messages;
 import quickcache.commons.core.index.Index;
 import quickcache.commons.util.CollectionUtil;
@@ -50,6 +52,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_FLASHCARD = "This Flashcard already exists in the address book.";
     public static final String MESSAGE_DIFFERENT_TYPE = "The question do not have choices";
+    private static final Logger logger = LogsCenter.getLogger(EditCommand.class);
 
     private final Index index;
     private final EditFlashcardDescriptor editFlashcardDescriptor;
@@ -96,6 +99,7 @@ public class EditCommand extends Command {
                     throw new CommandException("Answer must be smaller than number of choices");
                 }
             } catch (NumberFormatException e) {
+                logger.info("Answer is not integer" + updatedAnswer.getValue());
                 throw new CommandException("Answer must be integer");
             }
             Answer finalAnswer = new Answer(updatedChoices[ans - 1].getValue());
@@ -119,6 +123,7 @@ public class EditCommand extends Command {
         Flashcard editedFlashcard = createEditedFlashcard(flashcardToEdit, editFlashcardDescriptor);
 
         if (flashcardToEdit.isSameFlashcard(editedFlashcard) || model.hasFlashcard(editedFlashcard)) {
+            logger.info("Edited flashcard is already inside the QuickCache");
             throw new CommandException(MESSAGE_DUPLICATE_FLASHCARD);
         }
 
