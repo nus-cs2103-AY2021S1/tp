@@ -7,6 +7,7 @@ public class CommandWords {
     public static final String ADD_COMMAND_WORD = "add";
     public static final String CLEAR_COMMAND_WORD = "clear";
     public static final String DELETE_COMMAND_WORD = "delete";
+    public static final String STATISTICS_COMMAND_WORD = "stats";
     public static final String EXIT_COMMAND_WORD = "exit";
     public static final String FIND_COMMAND_WORD = "find";
     public static final String FIND_EXACT_COMMAND_WORD = "findexact";
@@ -24,6 +25,7 @@ public class CommandWords {
         allCommandWords.add(ADD_COMMAND_WORD);
         allCommandWords.add(CLEAR_COMMAND_WORD);
         allCommandWords.add(DELETE_COMMAND_WORD);
+        allCommandWords.add(STATISTICS_COMMAND_WORD);
         allCommandWords.add(EXIT_COMMAND_WORD);
         allCommandWords.add(FIND_COMMAND_WORD);
         allCommandWords.add(FIND_EXACT_COMMAND_WORD);
