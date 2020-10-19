@@ -121,7 +121,7 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(title, dateTime, description, type, tags);
+        return new Task(title, dateTime, description, type, tags, status);
     }
 
 }
