@@ -368,7 +368,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. Hospify requests for the correct data.
     * 1a2. Admin enters new data.
-    
+  
       Steps 1a1-1a2 are repeated until the data entered are correct.
 
       Use case resumes at step 2.
@@ -390,7 +390,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. Hospify requests for the correct data.
     * 1a2. Admin enters new data.
-    
+
       Steps 1a1-1a2 are repeated until the data entered are correct.
 
       Use case resumes at step 2.
@@ -412,7 +412,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2a1. Hospify requests for the correct data.
     * 2a2. Admin enters new data.
-    
+
       Steps 2a1-2a2 are repeated until the data entered are correct.
 
       Use case resumes at step 3.

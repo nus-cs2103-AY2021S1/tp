@@ -13,7 +13,7 @@ Given below are my contributions to the project.
   * What it does: allows the user to all new record.
 
 * **Code contributed**: [RepoSense link]()
-  * Added new test cases 
+  * Added new test cases
 
 * **Project management**:
 
@@ -22,7 +22,7 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
   * Developer Guide:
-  
+
   * Readme
     * Add Readme for Hospify
 

@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Hospify is a desktop app for a digital medical record management solution. 
+Hospify is a desktop app for a digital medical record management solution.
 
 * Table of Contents
 {:toc}
@@ -121,7 +121,7 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
-  
+
 * `find bernice s0000003a` returns `Bernice Yu`, `Charlotte Oliveiro`
   ![result for 'find bernice s0000003a'](images/findbernices0000003aResult.png)
 
