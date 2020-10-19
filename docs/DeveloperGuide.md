@@ -683,8 +683,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
       Use case resumes at step 2.
 
-*{More to be added}*
-
 #### Use case: Using the help command
 
 **MSS**
@@ -702,6 +700,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
      Use case resumes at step 1.
 
+#### Use case: Suggestion feature
+
+**MSS**
+
+1. User types in command.
+2. Warenager detects command format is invalid.
+3. Warenager shows command suggestion to the user.
+
+   Use case ends.
+
+**Extensions**
+* 2a. The command word user provided is not valid.
+
+    * 2a1. Warenager calculates the most related command word to suggest.
+    
+    Use case resumes at step 3.
+
+* 2b. The command word provided is valid, but the prefixes are not.
+
+    * 2b1. Warenager prepares to suggest the command word along with only the valid prefixes.
+    
+    Use case resumes at step 3.
+
+* 2c. The command word provided is valid, but the some prefixes are missing.
+
+    * 2c1. Warenager prepares to suggest the command word along with only the missing prefixes.
+    
+    Use case resumes at step 3.
 
 #### Use case: Exit Warenager
 
