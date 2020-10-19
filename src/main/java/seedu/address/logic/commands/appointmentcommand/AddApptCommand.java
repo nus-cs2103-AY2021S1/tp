@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.AppointmentCommand;
+package seedu.address.logic.commands.appointmentcommand;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
