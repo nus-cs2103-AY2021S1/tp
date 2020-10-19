@@ -100,7 +100,7 @@ We will follow the following convention for each command's format:
 
 ### Viewing help : `help`
 
-Displays in the terminal information on the available commands.
+Displays information on the available commands in the terminal.
 
 Format: `help [COMMAND]`
 
@@ -112,7 +112,7 @@ Examples:
 
 ### Adding a food item: `add`
 
-Adds a food item to McGymmy
+Adds a food item to McGymmy.
 
 Format: `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE]`
 
