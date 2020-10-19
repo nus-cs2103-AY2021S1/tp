@@ -9,7 +9,7 @@ If you can type fast, McGymmy can log your food intake faster than traditional G
 This document aims to showcase all of MG's commands.
 Open this document in a modern internet browser (Mozilla Firefox, Google Chrome, or Microsoft Edge).
 
-##  Legends for icons:
+##  Icon Legend:
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** This indicates that the following text consists of tips to better utilise MG
@@ -130,9 +130,9 @@ Examples:
 * `add -n Wonton Mee -c 10`
 * `add -n Sushi -d 20/04/2020`
 
-*__NOTE:__* The default value for protein, fats and carbs is 0. The default date is the day in which the food item is added
+:information_source:  The default value for protein, fats and carbs is 0. The default date is the day in which the food item is added.<br>
 
-*__NOTE:__* To view the list of supported date formats, see *Appendix A*
+:information_source:  To view the list of supported date formats, see *Appendix A*.<br>
 
 ![add command example](images/CommandImagesForUG/Add.png)
 
@@ -203,7 +203,7 @@ Examples:
 Examples:
 *  `edit 3 -n banana -p 120` Changes the `name` and `protein` values of the 3rd item in the list to `banana` and `120` respectively.
 
-*__NOTE:__* To view the list of supported date formats, see *Appendix A*
+:information_source:  To view the list of supported date formats, see *Appendix A*.<br>
 
 ![edit command example](images/CommandImagesForUG/Edit.png)
 
