@@ -1,5 +1,6 @@
 package com.eva.logic.commands;
 
+import static com.eva.commons.util.CollectionUtil.requireAllNonNull;
 import static com.eva.logic.parser.CliSyntax.PREFIX_LEAVE;
 import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_DATE;
 import static java.util.Objects.requireNonNull;
@@ -43,8 +44,7 @@ public class AddLeaveCommand extends Command {
      * Creates an AddLeaveCommand to add the given leave to the {@code Staff} identified by the given index.
      */
     public AddLeaveCommand(Index targetIndex, List<Leave> leave) {
-        requireNonNull(targetIndex);
-        requireNonNull(leave);
+        requireAllNonNull(targetIndex, leave);
         this.targetIndex = targetIndex;
         this.toAdd = leave;
     }

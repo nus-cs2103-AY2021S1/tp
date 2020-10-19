@@ -9,6 +9,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.eva.logic.parser.exceptions.ParseException;
+
 public class DateUtil {
     public static final String MESSAGE_CONSTRAINTS = "Given date could not be parsed.\n"
             + "Date should be in the format: dd/MM/yyyy";
@@ -30,6 +32,20 @@ public class DateUtil {
     public static LocalDate dateParsed(String dateStr) {
         checkArgument(isValidDate(dateStr), MESSAGE_CONSTRAINTS);
         return LocalDate.parse(dateStr, DATE_TIME_FORMATTER);
+    }
+
+    /**
+     * Returns a parsed LocalDate.
+     * @param dateStr The str to be parsed.
+     * @throws ParseException if {@code dateStr} is invalid.
+     */
+    public static LocalDate dateParsed(String dateStr, String errorMessage) throws ParseException {
+        try {
+            checkArgument(isValidDate(dateStr), MESSAGE_CONSTRAINTS);
+            return LocalDate.parse(dateStr, DATE_TIME_FORMATTER);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(errorMessage);
+        }
     }
 
     /**

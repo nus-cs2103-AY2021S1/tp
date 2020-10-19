@@ -1,6 +1,8 @@
 package com.eva.model;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import com.eva.commons.core.GuiSettings;
@@ -90,9 +92,21 @@ public interface Model {
     void addStaffLeave(Staff target, Leave leave);
 
     /**
-     * Returns true if a staff with the same identity as {@code staff} exists in the address book.
+     * Deletes the given leave from the given staff.
+     * {@code leave} must already exist in the staff's {@code leaves}.
+     */
+    void deleteStaffLeave(Staff target, Leave leave);
+
+    /**
+     * Returns true if a staff with the same identity as {@code staff} has the same leave as {@code leave}.
      */
     boolean hasStaffLeave(Staff target, Leave leave);
+
+    /**
+     * Returns true if a staff with the same identity as {@code staff} has the same leave as {@code leave}.
+     * @return
+     */
+    Optional<Leave> hasLeaveDate(Staff target, LocalDate date);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
