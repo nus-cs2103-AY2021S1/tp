@@ -1,21 +1,9 @@
 ---
-# NUStorage User Guide
-
-By: `AY2021S1-CS2103T-T11-3` Since:`September 2020`
-
-## Table of content
-- [Introduction](#introduction)
-- [Quick start](#quick-start)
-- [Features](#features)
-    + [Add items to inventory: `add_inventory`](#add-items-to-inventory-add_inventory)
-    + [Remove items from inventory: `delete_inventory`](#remove-items-from-inventory-delete_inventory)
-    + [Edit record in inventory: `edit_inventory`](#edit-record-in-inventory-edit_inventory)
-    + [List inventory records: `list_inventory`](#list-inventory-records-list_inventory)
-    + [Add finance records: `add_finance`](#add-finance-records-add_finance)
-    + [Delete finance records: `delete_finance`](#delete-finance-records-delete_finance)
-    + [List finance records: `list_finance`](#list-finance-records-list_finance)
-    + [Quit the programme: `exit`](#quit-the-programme-exit)
-- [Command summary](#command-summary)
+layout: page
+title: User Guide
+---
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
