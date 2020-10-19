@@ -27,6 +27,7 @@ import jimmy.mcgymmy.testutil.FoodBuilder;
 public class EditCommandTest {
     private static final String VALID_NAME_BOB = "Robert Donald";
     private static final String VALID_PROTEIN_BOB = "99999999";
+    private static final String VALID_DATE = "12-04-2020";
     private Model model = new ModelManager(getTypicalMcGymmy(), new UserPrefs());
 
     @Test
@@ -39,7 +40,8 @@ public class EditCommandTest {
                 new CommandParserTestUtil.OptionalParameterStub<>("n", editedFood.getName()),
                 new CommandParserTestUtil.OptionalParameterStub<>("p", editedFood.getProtein()),
                 new CommandParserTestUtil.OptionalParameterStub<>("f", editedFood.getFat()),
-                new CommandParserTestUtil.OptionalParameterStub<>("c", editedFood.getCarbs())
+                new CommandParserTestUtil.OptionalParameterStub<>("c", editedFood.getCarbs()),
+                new CommandParserTestUtil.OptionalParameterStub<>("d", editedFood.getDate())
         );
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FOOD_SUCCESS, editedFood);
@@ -64,7 +66,34 @@ public class EditCommandTest {
                 new CommandParserTestUtil.OptionalParameterStub<>("n", editedFood.getName()),
                 new CommandParserTestUtil.OptionalParameterStub<>("p", editedFood.getProtein()),
                 new CommandParserTestUtil.OptionalParameterStub<>("f"),
-                new CommandParserTestUtil.OptionalParameterStub<>("c")
+                new CommandParserTestUtil.OptionalParameterStub<>("c"),
+                new CommandParserTestUtil.OptionalParameterStub<>("d")
+        );
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FOOD_SUCCESS, editedFood);
+
+        Model expectedModel = new ModelManager(new McGymmy(model.getMcGymmy()), new UserPrefs());
+        expectedModel.setFood(indexLastFood, editedFood);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_dateSpecifiedUnfilteredList_success() {
+        Index indexLastFood = Index.fromOneBased(model.getFilteredFoodList().size());
+        Food lastFood = model.getFilteredFoodList().get(indexLastFood.getZeroBased());
+
+        FoodBuilder foodInList = new FoodBuilder(lastFood);
+        Food editedFood = foodInList.withDate(VALID_DATE).build();
+
+        EditCommand editCommand = new EditCommand();
+        editCommand.setParameters(
+                new CommandParserTestUtil.ParameterStub<>("", indexLastFood),
+                new CommandParserTestUtil.OptionalParameterStub<>("n"),
+                new CommandParserTestUtil.OptionalParameterStub<>("p"),
+                new CommandParserTestUtil.OptionalParameterStub<>("f"),
+                new CommandParserTestUtil.OptionalParameterStub<>("c"),
+                new CommandParserTestUtil.OptionalParameterStub<>("d", editedFood.getDate())
         );
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FOOD_SUCCESS, editedFood);
@@ -83,7 +112,8 @@ public class EditCommandTest {
                 new CommandParserTestUtil.OptionalParameterStub<>("n"),
                 new CommandParserTestUtil.OptionalParameterStub<>("p"),
                 new CommandParserTestUtil.OptionalParameterStub<>("f"),
-                new CommandParserTestUtil.OptionalParameterStub<>("c")
+                new CommandParserTestUtil.OptionalParameterStub<>("c"),
+                new CommandParserTestUtil.OptionalParameterStub<>("d")
         );
 
         String expectedMessage = EditCommand.MESSAGE_NOT_EDITED;
@@ -104,7 +134,8 @@ public class EditCommandTest {
                 new CommandParserTestUtil.OptionalParameterStub<>("n", editedFood.getName()),
                 new CommandParserTestUtil.OptionalParameterStub<>("p"),
                 new CommandParserTestUtil.OptionalParameterStub<>("f"),
-                new CommandParserTestUtil.OptionalParameterStub<>("c")
+                new CommandParserTestUtil.OptionalParameterStub<>("c"),
+                new CommandParserTestUtil.OptionalParameterStub<>("d")
         );
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FOOD_SUCCESS, editedFood);
@@ -124,7 +155,8 @@ public class EditCommandTest {
                 new CommandParserTestUtil.OptionalParameterStub<>("n", firstFood.getName()),
                 new CommandParserTestUtil.OptionalParameterStub<>("p", firstFood.getProtein()),
                 new CommandParserTestUtil.OptionalParameterStub<>("f", firstFood.getFat()),
-                new CommandParserTestUtil.OptionalParameterStub<>("c", firstFood.getCarbs())
+                new CommandParserTestUtil.OptionalParameterStub<>("c", firstFood.getCarbs()),
+                new CommandParserTestUtil.OptionalParameterStub<>("d", firstFood.getDate())
         );
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FOOD_SUCCESS, firstFood);
@@ -147,7 +179,8 @@ public class EditCommandTest {
                 new CommandParserTestUtil.OptionalParameterStub<>("n", foodInList.getName()),
                 new CommandParserTestUtil.OptionalParameterStub<>("p", foodInList.getProtein()),
                 new CommandParserTestUtil.OptionalParameterStub<>("f", foodInList.getFat()),
-                new CommandParserTestUtil.OptionalParameterStub<>("c", foodInList.getCarbs())
+                new CommandParserTestUtil.OptionalParameterStub<>("c", foodInList.getCarbs()),
+                new CommandParserTestUtil.OptionalParameterStub<>("d", foodInList.getDate())
         );
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FOOD_SUCCESS, foodInList);
@@ -166,7 +199,8 @@ public class EditCommandTest {
                 new CommandParserTestUtil.OptionalParameterStub<>("n"),
                 new CommandParserTestUtil.OptionalParameterStub<>("p"),
                 new CommandParserTestUtil.OptionalParameterStub<>("f"),
-                new CommandParserTestUtil.OptionalParameterStub<>("c")
+                new CommandParserTestUtil.OptionalParameterStub<>("c"),
+                new CommandParserTestUtil.OptionalParameterStub<>("d")
         );
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_FOOD_DISPLAYED_INDEX);
@@ -189,11 +223,10 @@ public class EditCommandTest {
                 new CommandParserTestUtil.OptionalParameterStub<>("n"),
                 new CommandParserTestUtil.OptionalParameterStub<>("p"),
                 new CommandParserTestUtil.OptionalParameterStub<>("f"),
-                new CommandParserTestUtil.OptionalParameterStub<>("c")
+                new CommandParserTestUtil.OptionalParameterStub<>("c"),
+                new CommandParserTestUtil.OptionalParameterStub<>("d")
         );
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_FOOD_DISPLAYED_INDEX);
     }
-
-
 }
