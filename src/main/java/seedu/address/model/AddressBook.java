@@ -30,7 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Patients in the {@code toBeCopied}
+     * Creates an Hospify using the Patients in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -59,7 +59,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// patient-level operations
 
     /**
-     * Returns true if a patient with the same identity as {@code patient} exists in the address book.
+     * Returns true if a patient with the same identity as {@code patient} exists in Hospify.
      */
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
@@ -67,8 +67,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a patient to the address book.
-     * The patient must not already exist in the address book.
+     * Adds a patient to Hospify.
+     * The patient must not already exist in Hospify.
      */
     public void addPatient(Patient p) {
         patients.add(p);
@@ -76,9 +76,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given patient {@code target} in the list with {@code editedPatient}.
-     * {@code target} must exist in the address book.
-     * The patient identity of {@code editedPatient} must not be the same as another existing patient in the
-     * address book.
+     * {@code target} must exist in Hospify.
+     * The patient identity of {@code editedPatient} must not be the same as another existing patient in
+     * Hospify.
      */
     public void setPatient(Patient target, Patient editedPatient) {
         requireNonNull(editedPatient);
@@ -88,7 +88,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in Hospify.
      */
     public void removePatient(Patient key) {
         patients.remove(key);

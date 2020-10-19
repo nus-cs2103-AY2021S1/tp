@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Patient in the address book.
+ * Represents a Patient in Hospify.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Patient {
@@ -25,12 +25,13 @@ public class Patient {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Appointment> appointments = new HashSet<>();
+    private final MedicalRecord medicalRecord;
 
     /**
      * Every field must be present and not null.
      */
     public Patient(Name name, Nric nric, Phone phone, Email email, Address address,
-                   Set<Tag> tags, Set<Appointment> appointments) {
+                   Set<Tag> tags, Set<Appointment> appointments, MedicalRecord medicalRecord) {
         requireAllNonNull(name, phone, nric, email, address, tags, appointments);
         this.name = name;
         this.phone = phone;
@@ -39,26 +40,36 @@ public class Patient {
         this.nric = nric;
         this.tags.addAll(tags);
         this.appointments.addAll(appointments);
+        this.medicalRecord = medicalRecord;
     }
 
     public Name getName() {
+        assert name != null : "Name should not be empty";
         return name;
     }
 
     public Phone getPhone() {
+        assert phone != null : "Phone number should not be empty";
         return phone;
     }
 
     public Email getEmail() {
+        assert email != null : "Email should not be empty";
         return email;
     }
 
     public Address getAddress() {
+        assert address != null : "Address should not be empty";
         return address;
     }
 
     public Nric getNric() {
+        assert nric != null : "Nric should not be empty";
         return nric;
+    }
+
+    public MedicalRecord getMedicalRecord() {
+        return medicalRecord;
     }
 
     /**
@@ -113,13 +124,14 @@ public class Patient {
                 && otherPatient.getAddress().equals(getAddress())
                 && otherPatient.getNric().equals(getNric())
                 && otherPatient.getTags().equals(getTags())
-                && otherPatient.getAppointments().equals(getAppointments());
+                && otherPatient.getAppointments().equals(getAppointments())
+                && otherPatient.getMedicalRecord().equals(getMedicalRecord());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, nric, phone, email, address, tags);
+        return Objects.hash(name, nric, phone, email, address, tags, appointments, medicalRecord);
     }
 
     @Override
@@ -138,6 +150,8 @@ public class Patient {
         getTags().forEach(builder::append);
         builder.append(" Appointments: ");
         getAppointments().forEach(builder::append);
+        builder.append(" Medical Record URL: ")
+                .append(getMedicalRecord());
         return builder.toString();
     }
 }

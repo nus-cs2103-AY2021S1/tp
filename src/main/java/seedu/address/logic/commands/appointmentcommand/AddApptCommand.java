@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.AppointmentCommand;
+package seedu.address.logic.commands.appointmentcommand;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
@@ -17,6 +17,7 @@ import seedu.address.model.Model;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Appointment;
 import seedu.address.model.patient.Email;
+import seedu.address.model.patient.MedicalRecord;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
@@ -83,11 +84,12 @@ public class AddApptCommand extends Command {
         Set<Tag> updatedTags = patientToAddAppt.getTags();
         Set<Appointment> appointments = patientToAddAppt.getAppointments();
         Set<Appointment> updatedAppointments = new HashSet<>();
+        MedicalRecord updatedMedicalRecord = patientToAddAppt.getMedicalRecord();
         updatedAppointments.addAll(appointments);
         updatedAppointments.add(appointment);
 
         return new Patient(updatedName, updatedNric, updatedPhone, updatedEmail, updatedAddress,
-                updatedTags, updatedAppointments);
+                updatedTags, updatedAppointments, updatedMedicalRecord);
     }
 
     @Override
