@@ -16,6 +16,8 @@ import seedu.address.model.student.admin.AdditionalDetail;
 
 public class DeleteAdditionalDetailCommand extends AdditionalDetailCommand {
 
+    public static final String COMMAND_WORD = AdditionalDetailCommand.COMMAND_WORD + " delete";
+
     public static final String MESSAGE_SUCCESS = "Detail removed: %1$s";
     public static final String MESSAGE_BAD_DETAIL_INDEX = "There is no detail at this index";
 

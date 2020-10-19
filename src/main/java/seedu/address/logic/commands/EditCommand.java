@@ -12,11 +12,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -129,7 +126,7 @@ public class EditCommand extends Command {
                     .orElse(studentToEdit.getAdmin().getFee());
             PaymentDate updatedPaymentDate = editAdminDescriptor.getPaymentDate()
                     .orElse(studentToEdit.getAdmin().getPaymentDate());
-            Set<AdditionalDetail> updatedAdditionalDetails = editAdminDescriptor.getAdditionalDetails()
+            List<AdditionalDetail> updatedAdditionalDetails = editAdminDescriptor.getAdditionalDetails()
                     .orElse(studentToEdit.getAdmin().getDetails());
             updatedAdmin = new Admin(updatedClassVenue, updatedClassTime, updatedFee, updatedPaymentDate,
                     updatedAdditionalDetails);
@@ -250,7 +247,7 @@ public class EditCommand extends Command {
         private ClassVenue venue;
         private Fee fee;
         private PaymentDate paymentDate;
-        private Set<AdditionalDetail> details;
+        private List<AdditionalDetail> details;
 
         public EditAdminDescriptor() {}
 
@@ -309,17 +306,16 @@ public class EditCommand extends Command {
          * Sets {@code details} to this object's {@code details}.
          * A defensive copy of {@code details} is used internally.
          */
-        public void setAdditionalDetails(Set<AdditionalDetail> details) {
-            this.details = (details != null) ? new HashSet<>(details) : null;
+        public void setAdditionalDetails(List<AdditionalDetail> details) {
+            this.details = (details != null) ? new ArrayList<>(details) : null;
         }
 
         /**
-         * Returns an unmodifiable detail set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
+         * Returns list of additionalDetails.
          * Returns {@code Optional#empty()} if {@code details} is null.
          */
-        public Optional<Set<AdditionalDetail>> getAdditionalDetails() {
-            return Optional.ofNullable(details).map(Collections::unmodifiableSet);
+        public Optional<List<AdditionalDetail>> getAdditionalDetails() {
+            return Optional.ofNullable(details);
         }
 
         @Override

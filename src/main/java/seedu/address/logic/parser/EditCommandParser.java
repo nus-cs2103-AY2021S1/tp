@@ -15,8 +15,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
@@ -116,7 +116,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      * If {@code details} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<AdditionalDetail>} containing zero details.
      */
-    private Optional<Set<AdditionalDetail>> parseDetailsForEdit(Collection<String> details) throws ParseException {
+    private Optional<List<AdditionalDetail>> parseDetailsForEdit(Collection<String> details) throws ParseException {
         assert details != null;
 
         if (details.isEmpty()) {

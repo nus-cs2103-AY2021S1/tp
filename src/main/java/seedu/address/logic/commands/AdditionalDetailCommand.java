@@ -1,16 +1,14 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_DETAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE_DETAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT_DETAIL;
+
 import java.util.List;
 
 import seedu.address.model.student.Student;
 import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.Admin;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_DETAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE_DETAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT_DETAIL;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE_QUESTION;
 
 public abstract class AdditionalDetailCommand extends Command {
 

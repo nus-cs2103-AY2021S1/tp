@@ -16,6 +16,8 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 public class EditAdditionalDetailCommand extends AdditionalDetailCommand {
 
+    public static final String COMMAND_WORD = AdditionalDetailCommand.COMMAND_WORD + " edit";
+
     public static final String MESSAGE_SUCCESS = "Detail edited: %1$s";
     public static final String MESSAGE_BAD_DETAIL_INDEX = "There is no detail at this index";
 
@@ -53,6 +55,10 @@ public class EditAdditionalDetailCommand extends AdditionalDetailCommand {
         }
 
         Student studentToAddDetail = lastShownList.get(studentIndex.getZeroBased());
+
+        if (detailIndex.getZeroBased() >= studentToAddDetail.getDetails().size()) {
+            throw new CommandException(MESSAGE_BAD_DETAIL_INDEX);
+        }
 
         List<AdditionalDetail> details = new ArrayList<>(studentToAddDetail.getDetails());
         details.set(detailIndex.getZeroBased(), detailToAdd);

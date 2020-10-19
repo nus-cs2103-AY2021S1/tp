@@ -16,6 +16,8 @@ import seedu.address.model.student.admin.AdditionalDetail;
 
 public class AddAdditionalDetailCommand extends AdditionalDetailCommand {
 
+    public static final String COMMAND_WORD = AdditionalDetailCommand.COMMAND_WORD + " add";
+
     public static final String MESSAGE_SUCCESS = "New detail added to student: %1$s";
 
     private final Index index;
