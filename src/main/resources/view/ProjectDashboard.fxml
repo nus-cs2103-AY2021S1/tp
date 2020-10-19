@@ -15,7 +15,7 @@
             <Insets bottom="5" left="15" right="5" top="5" />
          </padding>
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="91.0" prefWidth="700.0" spacing="5">
+            <HBox fx:id="projectDashboardPane" alignment="CENTER_LEFT" prefHeight="91.0" prefWidth="700.0" spacing="5">
                <children>
                   <Label id="dashboardLabel" fx:id="projectName" prefHeight="84.0" prefWidth="693.0" styleClass="cell_big_label" stylesheets="@Extensions.css" text="\$first" HBox.hgrow="ALWAYS">
                      <font>

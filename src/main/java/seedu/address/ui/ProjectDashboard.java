@@ -28,7 +28,7 @@ public class ProjectDashboard extends UiPart<Region> {
     public final Project project;
 
     @FXML
-    private HBox dashboardPane;
+    private HBox projectDashboardPane;
     @FXML
     private Label projectName;
     @FXML
@@ -51,7 +51,7 @@ public class ProjectDashboard extends UiPart<Region> {
     private FlowPane tasks;
 
     /**
-     * Creates a {@code ProjectDashboardCode} with the given {@code Project} and index to display.
+     * Creates a {@code ProjectDashboardCode} with the given {@code Project} to display.
      */
     public ProjectDashboard(Optional<Project> project) {
         super(FXML);

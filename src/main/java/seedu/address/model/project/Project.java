@@ -94,13 +94,13 @@ public class Project {
     public void updateTaskFilter(Predicate<Task> predicate) {
         this.taskFilter = predicate;
     }
-    public Optional<Task> getTaskOnView() {
-        return taskOnView;
-    }
     public void updateTaskOnView(Task t) {
         taskOnView = Optional.of(t);
     }
-
+    public Optional<Task> getTaskOnView() {
+        return this.taskOnView;
+    }
+    
     /**
      * Gets all attendees of a specific meeting
      */

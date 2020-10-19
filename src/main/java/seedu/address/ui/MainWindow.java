@@ -24,6 +24,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String EMPTY_PROJECT_DASHBOARD_MSG = "No project to be shown here.";
+    private static final String EMPTY_ATTRIBUTES_DASHBOARD_MSG = "No detail to be shown here.";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -33,7 +35,9 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ProjectListPanel projectListPanel;
     private ProjectDashboard projectDashboard;
-    private EmptyProjectDashboard emptyProjectDashboard;
+    private EmptyDashboard emptyProjectDashboard;
+    private TaskDashboard taskDashboard;
+    private EmptyDashboard emptyAttributesDashboard;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -48,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane projectDashboardPlaceHolder;
+    
+    @FXML
+    private StackPane projectAttributesDashboardPlaceHolder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -119,11 +126,15 @@ public class MainWindow extends UiPart<Stage> {
         projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
 
         if (logic.getProjectToBeDisplayedOnDashBoard().isEmpty()) {
-            emptyProjectDashboard = new EmptyProjectDashboard();
+            emptyProjectDashboard = new EmptyDashboard(EMPTY_PROJECT_DASHBOARD_MSG);
             projectDashboardPlaceHolder.getChildren().add(emptyProjectDashboard.getRoot());
+            emptyAttributesDashboard = new EmptyDashboard(EMPTY_ATTRIBUTES_DASHBOARD_MSG);
+            projectAttributesDashboardPlaceHolder.getChildren().add(emptyAttributesDashboard.getRoot());
         } else {
             projectDashboard = new ProjectDashboard(logic.getProjectToBeDisplayedOnDashBoard());
             projectDashboardPlaceHolder.getChildren().add(projectDashboard.getRoot());
+            taskDashboard = new TaskDashboard(logic.getProjectToBeDisplayedOnDashBoard());
+            projectAttributesDashboardPlaceHolder.getChildren().add(taskDashboard.getRoot());
         }
 
         resultDisplay = new ResultDisplay();

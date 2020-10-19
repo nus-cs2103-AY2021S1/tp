@@ -7,9 +7,8 @@ import javafx.scene.layout.Region;
 /**
  * An UI component that displays message of a empty dashboard.
  */
-public class EmptyProjectDashboard extends UiPart<Region> {
-    private static final String FXML = "EmptyProjectDashboard.fxml";
-    private static final String EMPTY_DASHBOARD_MSG = "No project to be shown here.";
+public class EmptyDashboard extends UiPart<Region> {
+    private static final String FXML = "EmptyDashboard.fxml";
 
     @FXML
     private Label message;
@@ -17,9 +16,9 @@ public class EmptyProjectDashboard extends UiPart<Region> {
     /**
      * Creates a {@code ProjectDashboardCode} with the given {@code Project} and index to display.
      */
-    public EmptyProjectDashboard() {
+    public EmptyDashboard(String msg) {
         super(FXML);
-        message.setText(EMPTY_DASHBOARD_MSG);
+        message.setText(msg);
     }
 
     @Override
@@ -30,12 +29,13 @@ public class EmptyProjectDashboard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EmptyProjectDashboard)) {
+        if (!(other instanceof EmptyDashboard)) {
             return false;
         }
 
         // state check
-        EmptyProjectDashboard card = (EmptyProjectDashboard) other;
+        EmptyDashboard card = (EmptyDashboard) other;
         return message.getText().equals(card.message.getText());
     }
+    
 }

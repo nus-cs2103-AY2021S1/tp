@@ -19,6 +19,7 @@
     -fx-text-fill: white;
 }
 
+----------------------------------------- Project Dashboard ---------------------------------------------------
 #dashboardLabel {
     -fx-font: 50pt"Arial";
 }
@@ -52,5 +53,30 @@
 }
 
 #dashboardH3 {
+    -fx-font: 25pt"Arial";
+}
+
+----------------------------------------- Task Dashboard ---------------------------------------------------
+#taskLabel {
+    -fx-font: 50pt"Arial";
+}
+
+#taskDesc {
+    -fx-font: 25pt"Arial";
+}
+
+#taskPD {
+    -fx-font: 25pt"Arial";
+}
+
+#taskDeadline {
+    -fx-font: 25pt"Arial";
+}
+
+#taskProgress {
+    -fx-font: 25pt"Arial";
+}
+
+#taskH1 {
     -fx-font: 25pt"Arial";
 }
