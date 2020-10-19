@@ -16,6 +16,8 @@ import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.module.grade.Assignment;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Date;
+import seedu.address.model.task.Priority;
 import seedu.address.model.task.TaskName;
 
 /**
@@ -189,5 +191,40 @@ public class ParserUtil {
             throw new ParseException(TaskName.MESSAGE_CONSTRAINTS);
         }
         return new TaskName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static Date parseTaskDate(String date) throws ParseException {
+        if (!Date.isValidDate(date)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return new Date(date);
+    }
+
+    /**
+     * Parses a {@code String priority} into a {@code Priority}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code priority} is invalid.
+     */
+    public static Priority parseTaskPriority(String priority) throws ParseException {
+        String priorityAllUpperCase = priority.toUpperCase();
+        switch(priorityAllUpperCase) {
+        case("HIGHEST"):
+            return Priority.HIGHEST;
+        case("HIGH"):
+            return Priority.HIGH;
+        case("NORMAL"):
+            return Priority.NORMAL;
+        case("LOW"):
+            return Priority.LOW;
+        default:
+            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+        }
     }
 }

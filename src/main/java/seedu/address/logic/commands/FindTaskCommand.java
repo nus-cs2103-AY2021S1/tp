@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.task.NameContainsKeywordPredicate;
+import seedu.address.model.task.TaskSearchCriteriaPredicate;
 
 /**
  * Finds and lists all tasks in the TodoList whose name contains any of the argument keywords.
@@ -19,9 +19,9 @@ public class FindTaskCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " lab06 midterm quiz";
 
-    private final NameContainsKeywordPredicate predicate;
+    private final TaskSearchCriteriaPredicate predicate;
 
-    public FindTaskCommand(NameContainsKeywordPredicate predicate) {
+    public FindTaskCommand(TaskSearchCriteriaPredicate predicate) {
         this.predicate = predicate;
     }
 
