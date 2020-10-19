@@ -31,6 +31,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX = "The order item index provided is invalid";
     public static final String MESSAGE_INVALID_ORDERITEM_DISPLAYED_QUANTITY = "The order item quantity "
             + "provided is invalid";
+    public static final String MESSAGE_INSUFFICENT_ARGUMENTS = "%s command requires at least %s argument.";
 
 
     /**

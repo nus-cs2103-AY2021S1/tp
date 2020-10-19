@@ -87,7 +87,6 @@ public class MenuManagerTest {
      */
     private static class MenuManagerStub implements ReadOnlyMenuManager {
         private final ObservableList<Food> foods = FXCollections.observableArrayList();
-        //        private final ObservableList<Vendor> vendors = FXCollections.observableArrayList();
 
         MenuManagerStub(Collection<Food> foods) {
             this.foods.setAll(foods);
@@ -97,11 +96,6 @@ public class MenuManagerTest {
         public ObservableList<Food> getFoodList() {
             return foods;
         }
-
-        //        @Override
-        //        public ObservableList<Vendor> getVendorList() {
-        //            return vendors;
-        //        }
     }
 
 }
