@@ -133,6 +133,34 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Suggestion Feature
+
+The mechanism for suggestion feature is facilitated by `SuggestionCommandParser, SuggestionCommand, SuggestionUtil`.
+
+#### SuggestionCommand
+
+`SuggestionCommand` class extends `Command` interface. `SuggestionCommand` class is tasked with creating a new `CommandResult`
+with the suggestion message to be displayed to the user as its argument. The suggestion message to be displayed
+is gathered from the result of the parsing stage for suggestion.
+
+#### SuggestionCommandParser
+`SugestionCommandParser` class extends `Parser` interface. `SuggestionCommandParser` class is tasked with parsing the 
+user inputs and generate a new `SuggestionCommand`. The main logic of the suggestion feature is encapsulated here.
+
+`SuggestionCommandParser` receives the user input, along with either the faulty command word or parsing error messages
+from another `Parser` object. The `parse` method inside the `SuggestionCommandParser` will then try to infer the best
+possible correct command format using the minimum edit distance heuristic provided inside `SuggestionUtil`.
+
+Some of the important operations implemented here are:
+
+* `SuggestionCommandParser#parse()`
+  Parses the user input and parsing error messages thrown from another `Parser` and returns a new `SuggestionCommand`
+  with the suggestion to be shown as its argument. The inference for the command word to be suggested is made in here.
+  After the correct command word is inferred, then it will call helper functions to generate the suggestion messages.
+* `SuggestionCommandParser#generateAddSuggestion()`
+  Generates the suggestion message for an add command.
+  
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
