@@ -19,20 +19,20 @@ class JsonAdaptedModule {
 
     private final String name;
     private final String zoomLink;
-    private final GradeTracker gradeTracker;
+    private final JsonAdaptedGradeTracker gradeTracker;
     //private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedModule} with the given person details.
+     * Constructs a {@code JsonAdaptedModule} with the given module details.
      */
     @JsonCreator
     public JsonAdaptedModule(@JsonProperty("name") String name,
                              @JsonProperty("zoomLink") String zoomLink,
-                             @JsonProperty("gradeTracker") GradeTracker storedGradeTracker) {
+                             @JsonProperty("gradeTracker") JsonAdaptedGradeTracker storedGradeTracker) {
         this.name = name;
         this.zoomLink = zoomLink;
         if (storedGradeTracker == null) {
-            this.gradeTracker = new GradeTracker();
+            this.gradeTracker = new JsonAdaptedGradeTracker(new GradeTracker());
         } else {
             this.gradeTracker = storedGradeTracker;
         }
@@ -43,12 +43,12 @@ class JsonAdaptedModule {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Module} into this class for Jackson use.
      */
     public JsonAdaptedModule(Module source) {
         name = source.getName().fullName;
         zoomLink = source.getLink().value;
-        gradeTracker = source.getGradeTracker();
+        gradeTracker = new JsonAdaptedGradeTracker(source.getGradeTracker());
         //tagging temporarily removed
         /*tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -86,7 +86,7 @@ class JsonAdaptedModule {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     GradeTracker.class.getSimpleName()));
         }
-        if (!GradeTracker.isValidGradeTracker(gradeTracker)) {
+        if (!GradeTracker.isValidGradeTracker(gradeTracker.toModelType())) {
             throw new IllegalValueException(GradeTracker.MESSAGE_INVALID_GRADE);
         }
         //email and tagging removed temporarily
@@ -99,7 +99,7 @@ class JsonAdaptedModule {
         final Email modelEmail = new Email(email);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);*/
-        return new Module(modelName, modelLink, gradeTracker);
+        return new Module(modelName, modelLink, gradeTracker.toModelType());
     }
 
 }
