@@ -1,6 +1,8 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_ADDRESS_A;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_EMAIL_A;
@@ -18,8 +20,28 @@ import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
 
+    @Test
+    public void execute_isValidUpdateFields() {
+        String expectedPersonName = "updatedName";
+        String expectedPhone = "9291";
+        String expectedEmail = "expect@gmail.com";
+        String expectedAddress = "expected street";
 
+        String expectedString = " Person name: updatedName"
+            + " Git Username: Sparrow32"
+            + " Phone: 9291"
+            + " Email: expect@gmail.com"
+            + " Address: expected street";
 
+        Person teammate = new PersonBuilder(DESC_A).build();
+
+        teammate.updatePersonName(expectedPersonName);
+        teammate.updatePhone(expectedPhone);
+        teammate.updateEmail(expectedEmail);
+        teammate.updateAddress(expectedAddress);
+
+        assertEquals(expectedString, teammate.toString());
+    }
 
     @Test
     public void execute_isValidFields() {
@@ -29,11 +51,11 @@ public class PersonTest {
         String expectedEmail = VALID_TEAMMATE_EMAIL_A;
         String expectedAddress = VALID_TEAMMATE_ADDRESS_A;
 
-        assertTrue(DESC_A.getPersonName().toString().equals(expectedPersonName));
-        assertTrue(DESC_A.getGitUserName().toString().equals(expectedGitUserName));
-        assertTrue(DESC_A.getPhone().toString().equals(expectedPhone));
-        assertTrue(DESC_A.getEmail().toString().equals(expectedEmail));
-        assertTrue(DESC_A.getAddress().toString().equals(expectedAddress));
+        assertEquals(expectedPersonName, DESC_A.getPersonName().toString());
+        assertEquals(expectedGitUserName, DESC_A.getGitUserName().toString());
+        assertEquals(expectedPhone, DESC_A.getPhone().toString());
+        assertEquals(expectedEmail, DESC_A.getEmail().toString());
+        assertEquals(expectedAddress, DESC_A.getAddress().toString());
 
     }
 
@@ -80,40 +102,40 @@ public class PersonTest {
     @Test
     public void equals() {
         // same object -> returns true
-        assertTrue(DESC_A.equals(DESC_A));
+        assertEquals(DESC_A, DESC_A);
 
         // null -> returns false
-        assertFalse(DESC_A.equals(null));
+        assertNotEquals(DESC_A, null);
 
         // same values, different objects -> return true
         Person descACopy = new PersonBuilder(DESC_A).build();
-        assertTrue(DESC_A.equals(descACopy));
+        assertEquals(descACopy, DESC_A);
 
         // different type -> return false
-        assertFalse(DESC_A.equals(5));
+        assertNotEquals(DESC_A, 5);
 
         // same type, different objects -> return false
-        assertFalse(DESC_A.equals(DESC_B));
+        assertNotEquals(DESC_B, DESC_A);
 
         // different PersonName
         Person editedDescAPersonName = new PersonBuilder(DESC_A).withPersonName("Niaaz").build();
-        assertFalse(DESC_A.equals(editedDescAPersonName));
+        assertNotEquals(editedDescAPersonName, DESC_A);
 
         // different gitUserName
         Person editedDescAGitUserName = new PersonBuilder(DESC_A).withGitUserName("Geniaaz982").build();
-        assertFalse(DESC_A.equals(editedDescAGitUserName));
+        assertNotEquals(editedDescAGitUserName, DESC_A);
 
         // different phone
         Person editedDescAPhone = new PersonBuilder(DESC_A).withPhone("3728271").build();
-        assertFalse(DESC_A.equals(editedDescAPhone));
+        assertNotEquals(editedDescAPhone, DESC_A);
 
         // different email
         Person editedDescAEmail = new PersonBuilder(DESC_A).withEmail("pb@gmail.com").build();
-        assertFalse(DESC_A.equals(editedDescAEmail));
+        assertNotEquals(editedDescAEmail, DESC_A);
 
         // different address
         Person editedDescAAddress = new PersonBuilder(DESC_A).withAddress("247 pasir ris").build();
-        assertFalse(DESC_A.equals(editedDescAAddress));
+        assertNotEquals(editedDescAAddress, DESC_A);
     }
 
     @Test
@@ -126,7 +148,7 @@ public class PersonTest {
 
         String resultString = DESC_A.toString();
 
-        assertTrue(expectedString.equals(resultString));
+        assertEquals(resultString, expectedString);
     }
 
 }
