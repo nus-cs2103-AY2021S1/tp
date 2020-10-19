@@ -95,23 +95,38 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ### Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+![Structure of the Model Component](images/newModelClassDiagram.png) <br>
+Structure of the Model Component
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/inventoryModel/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-The `Model`,
+`Models`,
 
-* stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
+* stores a `InventoryModel` and a `DeliveryModel` that represents the model for Inventory and Delivery respectively.
+* used for undo/redo feature
 
+`Model`
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) inventoryModel is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+* stores a `UserPref` object that represents the users preference
 
-</div>
+`InventoryModelManager`
 
+* stores a comparator used to sort the filtered list 
+* stores the inventory book data
+* exposes an unmodifiable `ObservableList<Item>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+
+`DeliveryModelManager`
+
+* stores the delivery book data
+* exposes an unmodifiable `ObservableList<Delivery>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+
+We organised the different data classes into packages (eg.Items) which we will list out the collection of class of that data object
+
+![Structure of the Item Component](images/ItemClassDiagram.png) <br>
+Structure of Items Object
+
+![Structure of the Delivery Component](images/DeliveryClassDiagram.png) <br>
+Structure of Delivery Object
 
 ### Storage component
 
