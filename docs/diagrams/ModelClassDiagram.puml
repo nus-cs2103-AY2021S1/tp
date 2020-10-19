@@ -17,16 +17,23 @@ Class ReadOnlyUserPrefs
 
 Package Patient {
 Class Patient
-Class Address
-Class Email
 Class Name
 Class Phone
+Class IcNumber
+Class Address
+Class Email
+Class ProfilePicture
+Class Sex
+Class BloodType
 Class UniquePatientList
 }
 
 Package Tag {
-Class Tag
 Class ColorTag
+}
+
+Package Allergy {
+Class Allergy
 }
 }
 
@@ -38,22 +45,30 @@ CliniCal .up.|> ReadOnlyCliniCal
 ModelManager .up.|> Model
 Model .right.> ObservableList
 ModelManager o--> "1" CliniCal
-ModelManager o-left-> "1" UserPrefs
+ModelManager o-right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 CliniCal *--> "1" UniquePatientList
 UniquePatientList o--> "*" Patient
 Patient *--> Name
 Patient *--> Phone
-Patient *--> Email
+Patient *--> IcNumber
 Patient *--> Address
+Patient *--> Email
+Patient *--> ProfilePicture
+Patient *--> Sex
+Patient *--> BloodType
+Patient *--> "*" Allergy
 Patient *--> ColorTag
-Patient *--> "*" Tag
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
+Phone -[hidden]right-> IcNumber
+IcNumber -[hidden]right-> Address
 Address -[hidden]right-> Email
-ColorTag -[hidden]right->Tag
+Email -[hidden]right-> ProfilePicture
+ProfilePicture -[hidden]right-> Sex
+Sex -[hidden]right-> BloodType
+Allergy -[hidden]right-> BloodType
 
 ModelManager -->"1" Patient : filtered list
 @enduml

@@ -5,17 +5,16 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 CliniCal *-right-> "1" UniquePatientList
-CliniCal *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniquePatientList
-UniqueTagList -[hidden]down- UniquePatientList
+CliniCal *-right-> "1" UniqueAllergyList
+UniqueAllergyList -[hidden]down- UniquePatientList
+UniqueAllergyList -[hidden]down- UniquePatientList
 
-UniqueTagList *-right-> "*" Tag
+UniqueAllergyList *-right-> "*" Allergy
 UniquePatientList o-right-> Patient
 
-Patient -up-> "*" Tag
+Patient -up-> "*" Allergy
 
 Patient *--> Name
 Patient *--> Phone
-Patient *--> Email
-Patient *--> Address
+Patient *--> IcNumber
 @enduml
