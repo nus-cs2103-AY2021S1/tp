@@ -105,6 +105,36 @@ public class Task {
     }
 
     /**
+     * Returns true if both task have the same date.
+     *
+     * @param otherTask other task to be compared
+     * @return true if both task have the same date.
+     */
+    public boolean hasSameDate(Task otherTask) {
+        return getDate().equals(otherTask.getDate());
+    }
+
+    /**
+     * Returns true if both task have the same priority.
+     *
+     * @param otherTask other task to be compared
+     * @return true if both task have the same priority.
+     */
+    public boolean hasSamePriority(Task otherTask) {
+        return getPriority().equals(otherTask.getPriority());
+    }
+
+    /**
+     * Returns true if both task have the same tag(s).
+     *
+     * @param otherTask other task to be compared
+     * @return true if both task have the same tag(s).
+     */
+    public boolean hasSameTag(Task otherTask) {
+        return getTag().equals(otherTask.getTag());
+    }
+
+    /**
      * Checks if two tasks are equal.
      * This defines a stronger equality between two tasks.
      *
@@ -133,21 +163,21 @@ public class Task {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder
-                .append(" *Name: ")
-                .append(getName())
-                .append("\n")
-                .append(" *Tag: ")
-                .append(getTag())
-                .append("\n")
-                .append(" *Priority: ")
-                .append(getPriority())
-                .append("\n")
-                .append(" *Date: ")
-                .append(getDate())
-                .append("\n")
-                .append("Status: ")
-                .append(getStatus())
-                .append("\n");
+            .append(" *Name: ")
+            .append(getName())
+            .append("\n")
+            .append(" *Tag: ")
+            .append(getTag())
+            .append("\n")
+            .append(" *Priority: ")
+            .append(getPriority())
+            .append("\n")
+            .append(" *Date: ")
+            .append(getDate())
+            .append("\n")
+            .append("Status: ")
+            .append(getStatus())
+            .append("\n");
         return builder.toString();
     }
 
