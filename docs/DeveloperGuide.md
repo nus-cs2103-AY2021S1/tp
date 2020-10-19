@@ -265,22 +265,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `Calo` and the **Actor** is the `user`, unless specified otherwise)
 
   #### **Use case: add an exercise**
-  
+
   *MSS*
-  
+
 1.  User requests to add an exercise
 
 2.  Calo adds the exercise
-  
   Use case ends.
-      
+
 #### **Use case: Find exercises with a keyword**
 
 *MSS*
 
 1.  User requests to find exercises with a keyword
 2.  Calo shows a list of exercises which contain the keyword
-
     Use case ends.
 
 *Extensions*
@@ -289,23 +287,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       1a1. Calo shows a message indicating that no such exercise exists.<br>
     Use case ends.
 </p>
-  
+
 #### **Use case: Update an exercise**
 
 *MSS*
 
 1.  User requests to update a specific exercise in the list
 2.  Calo updates the exercise
-
-    Use case ends.  
-
+    Use case ends.<br>
 *Extensions*
 <p>
     1a. The index is invalid<br>
       1a1. Calo shows a message indicating that no such exercise exists.<br>
     Use case ends.
 </p>
-  
+
 #### **Use case: Delete an exercise**
 
 *MSS*
@@ -321,31 +317,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       1a1. Calo shows a message indicating that no such exercise exists.<br>
     Use case ends.
 </p>
-  
+
   #### **Use case: Archive data**
   *MSS*
-    
   1.  User requests to archive data to a different file location
   2.  Calo archives data to the specified location
-      Use case ends.
-  
+    Use case ends.
+
 *Extensions*
 <p>
     1a. User does not have permission to create file at specified location <br>
       1a1. Calo shows a message indicating that file cannot be created at specified file.<br>
     Use case ends.
 </p>
-  
+
   #### **Use case: List exercises**
-  
-  *MSS*
-  
+
+  *MSS*<br>
   1.  User requests to list exercises
   2.  Calo shows a list of exercises
       Use case ends.
 
 ### Non-Functional Requirements
-
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 exercise items without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
@@ -353,8 +346,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Exercise**: an exercise record entered by the user, consisting of exercise name, description, and date (optionally calories) 
-
+* **Exercise**: an exercise record entered by the user, consisting of exercise name, description, and date (optionally calories)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -367,44 +359,29 @@ testers are expected to do more *exploratory* testing.
 </div>
 
 ### Launch and shutdown
-
 1. Initial launch
-
    1. Download the jar file and copy into an empty folder
-
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
 1. Saving window preferences
-
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
 1. _{ more test cases …​ }_
 
 ### Deleting a person
-
 1. Deleting a person while all persons are being shown
-
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
    1. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
 1. _{ more test cases …​ }_
 
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
-
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
 1. _{ more test cases …​ }_
