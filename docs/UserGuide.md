@@ -100,19 +100,19 @@ We will follow the following convention for each command's format:
 
 ### Viewing help : `help`
 
-Shows all help commands in the terminal.
+Displays in the terminal information on the available commands.
 
 Format: `help [COMMAND]`
 
 Examples:
-* `help add`
-* `help`
+* `help` - this will display all available commands.
+* `help add` - this will display a help message specific to the `add` command.
 
 ![help message](images/CommandImagesForUG/Help.png)
 
 ### Adding a food item: `add`
 
-Add food item to McGymmy
+Adds a food item to McGymmy
 
 Format: `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE]`
 
@@ -130,10 +130,10 @@ Examples:
 
 ### Clearing all food items : `clear`
 
-Clear all items in McGymmy.
+Removes all food items in McGymmy.
 
-* Clear all items in McGymmy.
-* All additional inputs after clear are discarded.
+* Items are removed permanently.
+* All additional input after the *command word* `clear` will be ignored. E.g. `clear` and `clear 123` will have the same effect.
 
 Format: `clear`
 
@@ -143,7 +143,9 @@ Format: `clear`
 
 Tags a food item in McGymmy.
 
-* Tags `TAG_NAME` for food item at the specified `INDEX`. The index refers to the index number shown in the displayed food list. The index **must be a positive integer** 1, 2, 3, …​
+* Tags `TAG_NAME` for food item at the specified `INDEX`.
+* The index refers to the index number shown in the displayed food list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Format: `tag INDEX -t TAG_NAME`
 
@@ -153,7 +155,9 @@ Format: `tag INDEX -t TAG_NAME`
 
 Untags a food item in McGymmy.
 
-* Untags `TAG_NAME` for food item at the specified `INDEX`. The index refers to the index number shown in the displayed food list. The index **must be a positive integer** 1, 2, 3, …​
+* Untags `TAG_NAME` for food item at the specified `INDEX`.
+* The index refers to the index number shown in the displayed food list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Format: `untag INDEX -t TAG_NAME`
 
@@ -161,9 +165,9 @@ Format: `untag INDEX -t TAG_NAME`
 
 ### Finding a food item: `find`
 
-Find specified foods within McGymmy with a keyword
+Finds food items based on the keywords supplied.
 
-* Finds all food within McGymmy with a keyword
+* Filters the displayed list of food items to only include food items containing the supplied keywords.
 
 Format: `find KEYWORDS`
 
@@ -173,8 +177,8 @@ Format: `find KEYWORDS`
 
 Shows a list of all food items in McGymmy.
 
-* List all food items in McGymmy
-* All additional inputs after list are discarded.
+* Lists all food items in McGymmy
+* All additional input after the *command word* `list` will be ignored. E.g. `list` and `list 123` will have the same effect.
 
 Format: `list`
 
@@ -182,13 +186,14 @@ Format: `list`
 
 ### Editing a food item : `edit`
 
-Edit the food item details based on the index.
+Edits the details of a food item at the specified index.
 
 Format: `edit INDEX [-n NAME] [-p PROTEIN] [-c CARBS] [-f FATS] [-d DATE]`
 
 Examples: 
 
-* Edits the food item at the specified `INDEX`. The index refers to the index number shown in the displayed food list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the food item at the specified `INDEX`. The index refers to the index number shown in the displayed food list.
+* The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -201,7 +206,7 @@ Examples:
 
 ### Deleting a food item: `delete`
 
-Deletes the specified food from McGymmy.
+Deletes a food item at the specified index.
 
 Format: `delete INDEX`
 
@@ -213,6 +218,60 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd food item in McGymmy.
 
 ![delete command example](images/CommandImagesForUG/Delete.png)
+
+### Importing another save file
+
+Imports a previously saved file into McGymmy
+
+Format: `import FILEPATH`
+
+* Imports the saved file at `FILEPATH`
+
+Examples:
+* `import c:/mcgymmy/save_file.json` imports `save_file.json` into McGymmy
+
+![Import command example](images/CommandImagesForUG/Import.png)
+
+For those who are more inclined to use a gui to import:
+* Click on file
+* Click on Import
+* Navigate using the GUI to the save file
+
+![GUI import command example](images/CommandImagesForUG/ImportGUI.png)
+
+### Exporting your save file to a folder
+
+Imports a previously saved file into McGymmy
+
+Format: `import DIRPATH [-o FILENAME]`
+
+* Exports the saved file to `DIRPATH` with `FILENAME`
+* Default filename is `mcgymmy.json`
+
+Examples:
+* `export c:/mcgymmy` exports the save file as `mcgymmy.json` to `c:/mcgymmy`
+* `export c:/mcgymmy -o save_file` exports the save file as `save_file.json` to `c:/mcgymmy`
+
+![Export command example](images/CommandImagesForUG/Export.png)
+
+For those who are more inclined to use a gui to export:
+* Click on file
+* Click on Export
+* Navigate using the GUI to the save file
+
+![GUI export command example](images/CommandImagesForUG/ExportGUI.png)
+
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+* Exits McGymmy and closes the McGymmy window.
+* Data will be automatically saved (see also section on *Saving the data* below).
+* All additional input after the *command word* `exit` will be ignored. E.g. `exit` and `exit 123` will have the same effect.
+
+Format: `exit`
+
 
 ### Creating a macro command : `macro`
 
@@ -245,57 +304,6 @@ Examples:
 
 ![Macro command example](images/CommandImagesForUG/Macro.png)
 
-### Importing another save file
-
-Import a previously saved file into McGymmy
-
-Format: `import FILEPATH`
-
-* Import the saved file at `FILEPATH`
-
-Examples:
-* `import c:/mcgymmy/save_file.json` imports `save_file.json` into McGymmy
-
-![Import command example](images/CommandImagesForUG/Import.png)
-
-For those who are more inclined to use a gui to import:
-* Click on file
-* Click on Import
-* Navigate using the GUI to the save file
-
-![GUI import command example](images/CommandImagesForUG/ImportGUI.png)
-
-### Exporting your save file to a folder
-
-Import a previously saved file into McGymmy
-
-Format: `import DIRPATH [-o FILENAME]`
-
-* Export the saved file to `DIRPATH` with `FILENAME`
-* Default filename is `mcgymmy.json`
-
-Examples:
-* `export c:/mcgymmy` exports the save file as `mcgymmy.json` to `c:/mcgymmy`
-* `export c:/mcgymmy -o save_file` exports the save file as `save_file.json` to `c:/mcgymmy`
-
-![Export command example](images/CommandImagesForUG/Export.png)
-
-For those who are more inclined to use a gui to export:
-* Click on file
-* Click on Export
-* Navigate using the GUI to the save file
-
-![GUI export command example](images/CommandImagesForUG/ExportGUI.png)
-
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-* Exits McGymmy
-* All additional inputs after exit are discarded.
-
-Format: `exit`
 
 ### Saving the data
 
