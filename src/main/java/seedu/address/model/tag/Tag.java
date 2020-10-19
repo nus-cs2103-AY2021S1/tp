@@ -1,7 +1,10 @@
 package seedu.address.model.tag;
 
+import seedu.address.model.description.Description;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.File;
 import java.util.Objects;
 
 /**
@@ -16,6 +19,8 @@ public class Tag {
     // Data fields
     private final FileAddress fileAddress;
 
+    private final Description description;
+
     /**
      * Every field must be present and not null.
      */
@@ -23,6 +28,14 @@ public class Tag {
         requireAllNonNull(tagName, fileAddress);
         this.tagName = tagName;
         this.fileAddress = fileAddress;
+        this.description = new Description("");
+    }
+
+    public Tag(TagName tagName, FileAddress fileAddress, Description description) {
+        requireAllNonNull(tagName,fileAddress,description);
+        this.tagName = tagName;
+        this.fileAddress = fileAddress;
+        this.description = description;
     }
 
     public TagName getTagName() {
@@ -31,6 +44,10 @@ public class Tag {
 
     public FileAddress getFileAddress() {
         return fileAddress;
+    }
+
+    public Description getDescription() {
+        return description;
     }
 
     /**

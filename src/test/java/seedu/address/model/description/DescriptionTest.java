@@ -25,7 +25,7 @@ class DescriptionTest {
         assertThrows(NullPointerException.class, () -> Description.isValidDescription(null));
 
         // invalid name
-        assertFalse(Description.isValidDescription("")); // empty string
+        assertTrue(Description.isValidDescription("")); // empty string
         assertFalse(Description.isValidDescription(" ")); // spaces only
         assertFalse(Description.isValidDescription("^")); // only non-alphanumeric characters
         assertFalse(Description.isValidDescription("CS2103T*")); // contains non-alphanumeric characters
