@@ -56,6 +56,23 @@ public class CalendarMeeting {
         }
     }
 
+    /**
+     * Creates the type of meeting based on the meeting type.
+     * @return CalendarMeeting of the specific meeting type.
+     */
+    public CalendarMeeting createMeeting(String type, CalendarBidderId bidderId,
+                                         CalendarPropertyId propertyId, CalendarTime time, CalendarVenue venue) {
+        if (type.equalsIgnoreCase("Paperwork")) {
+            return new CalendarPaperwork(bidderId, propertyId, time, venue);
+        } else if (type.equalsIgnoreCase("Admin")) {
+            return new CalendarAdmin(bidderId, propertyId, time, venue);
+        } else if (type.equalsIgnoreCase("Viewing")) {
+            return new CalendarViewing(bidderId, propertyId, time, venue);
+        } else {
+            return new CalendarMeeting(bidderId, propertyId, time, venue);
+        }
+    }
+
     public CalendarBidderId getCalendarBidderId() {
         return this.calendarBidderId;
     }
@@ -101,7 +118,6 @@ public class CalendarMeeting {
                 && ((otherMeeting.getCalendarTime() == getCalendarTime()))
                 && ((otherMeeting.getCalendarBidderId() == getCalendarBidderId()));
     }
-
 
     @Override
     public String toString() {
