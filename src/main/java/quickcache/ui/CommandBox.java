@@ -1,5 +1,8 @@
 package quickcache.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -18,6 +21,8 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+    private List<String> pastCommands;
+    private int pointer = 0;
 
     @FXML
     private TextField commandTextField;
@@ -28,6 +33,8 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
+        this.pastCommands = new ArrayList<>(16);
+        pastCommands.add("");
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
     }
@@ -38,10 +45,71 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void handleCommandEntered() {
         try {
-            commandExecutor.execute(commandTextField.getText());
+            String input = commandTextField.getText();
+            updatePointerAndPastCommandsList(input);
+            commandExecutor.execute(input);
             commandTextField.setText("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
+        }
+    }
+
+    /**
+     * Handles the updating of past commands and pointer position after executing a particular input.
+     *
+     * @param input The input executed.
+     */
+    private void updatePointerAndPastCommandsList(String input) {
+        if (pointer < pastCommands.size() - 1) {
+            pointer = pastCommands.size() - 1;
+        }
+        if (!input.isBlank()) {
+            this.pastCommands.set(pastCommands.size() - 1, input);
+            pastCommands.add("");
+            pointer++;
+        }
+    }
+
+    /**
+     * Handles the Up and Down arrow buttons pressed events.
+     */
+    @FXML
+    private void handleKeyEvent() {
+        commandTextField.setOnKeyPressed(event -> {
+            switch(event.getCode()) {
+            case UP:
+                decrementPointer();
+                break;
+            case DOWN:
+                incrementPointer();
+                break;
+            default:
+                // Do Nothing
+            }
+        });
+    }
+
+    /**
+     * Move pointer one position front
+     */
+    private void incrementPointer() {
+        if (pointer < pastCommands.size() - 1) {
+            pointer++;
+            String textToDisplay = pastCommands.get(pointer);
+            commandTextField.setText(textToDisplay);
+            commandTextField.positionCaret(textToDisplay.length());
+        }
+    }
+
+    /**
+     * Move pointer one position back
+     */
+    private void decrementPointer() {
+        if (pointer > 0) {
+            pointer--;
+            String textToDisplay = pastCommands.get(pointer);
+            commandTextField.setText(textToDisplay);
+            commandTextField.positionCaret(textToDisplay.length());
         }
     }
 
