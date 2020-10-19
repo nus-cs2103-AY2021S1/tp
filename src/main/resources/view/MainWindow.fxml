@@ -43,13 +43,13 @@
           <VBox>
             <VBox fx:id="staffList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
               <padding>
-                <Insets bottom="10" />
+                <Insets bottom="5" />
               </padding>
               <StackPane fx:id="staffListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
             </VBox>
 
             <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                       minHeight="60" prefHeight="60" maxHeight="60">
+                       minHeight="70" prefHeight="70" maxHeight="70">
               <padding>
                 <Insets top="5" bottom="5" />
               </padding>
