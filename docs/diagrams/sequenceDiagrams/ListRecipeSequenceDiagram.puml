@@ -1,0 +1,84 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InventoryParser" as InventoryParser LOGIC_COLOR
+participant ":ListRecipeCommandParser" as ListRecipeCommandParser LOGIC_COLOR
+participant ":ListRecipeCommand" as ListRecipeCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("listr")
+activate LogicManager
+
+LogicManager -> InventoryParser : parseCommand("listr")
+activate InventoryParser
+
+create ListRecipeCommandParser
+InventoryParser -> ListRecipeCommandParser
+activate ListRecipeCommandParser
+
+create ListRecipeCommand
+ListRecipeCommandParser -> ListRecipeCommand
+activate ListRecipeCommand
+
+ListRecipeCommand --> ListRecipeCommandParser :
+deactivate ListRecipeCommand
+
+ListRecipeCommandParser --> InventoryParser :
+deactivate ListRecipeCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ListRecipeCommandParser -[hidden]-> InventoryParser
+destroy ListRecipeCommandParser
+
+InventoryParser --> LogicManager :
+deactivate InventoryParser
+
+LogicManager -> ListRecipeCommand : execute()
+activate ListRecipeCommand
+
+alt Recipe list is empty
+    ListRecipeCommand -[hidden]-> Model :
+    activate Model
+    Model --> ListRecipeCommand : error message
+    deactivate Model
+else Recipe list is not empty
+    ListRecipeCommand -[hidden]->  Model
+    activate Model
+    Model --> ListRecipeCommand : success message
+    deactivate Model
+end
+
+
+create CommandResult
+ListRecipeCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListRecipeCommand
+deactivate CommandResult
+
+ListRecipeCommand --> LogicManager : CommandResult
+deactivate ListRecipeCommand
+ListRecipeCommand -[hidden]-> LogicManager
+destroy ListRecipeCommand
+
+
+[<--LogicManager
+
+[-> LogicManager : getInventoryList(RECIPES)
+activate Model
+LogicManager --> Model : getFilteredRecipeList()
+Model --> LogicManager :
+deactivate Model
+
+CommandResult -[hidden]-> LogicManager
+destroy CommandResult
+[<--LogicManager : InventoryList
+deactivate LogicManager
+@enduml

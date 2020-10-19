@@ -115,7 +115,7 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the Inventoryinator data
-* exposes an unmodifiable `ObservableList<Item>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Item>` and `ObservableList<Recipe>` which can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
@@ -140,6 +140,45 @@ Classes used by multiple components are stored in the `seedu.addressbook.commons
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### List item/recipe feature
+
+The list item/recipe feature allows the user to toggle between viewing the list of all items or recipes in the 
+current inventory. The view detailed item feature allows the user to view the details of the item.
+
+#### Implementation
+
+There are three main view modes available: the existing item list, existing recipe list, and detailed item view.
+
+In `InventoryMainWindow`, whenever a command is executed, the `InventoryListPanel` is refreshed, to be filled with the relevant inventory list.
+This list is retrieved by `getInventoryList` in `LogicManager`, based on the current view mode.
+
+For list item, list recipe and view details commands, the relevant display mode is stored in the `CommandResult`. 
+Upon execution, `InventoryMainWindow` will store the display mode, and pass on to the `InventoryListPanel` and `LogicManager`.
+
+For all other commands, they return a `CommandResult` with `UNCHANGED` as the inventory type. 
+This indicates that the view mode should not be changed. The same type of inventory list (updated accordingly)
+will be retrieved and displayed.
+
+Given below is an example usage of list item and list recipes and what is displayed at each step.
+
+Step 1: The user launches the application. By default, the item list is displayed.
+
+Step 2: The user executes `listr` to view the recipe list. The current recipe list is now displayed.
+
+Step 3: The user executes `addi -n Bob’s 6th regret -q 8` to add a new item. The recipe list is still displayed.
+
+Step 4: The user executes `view Bob's 6th regret` to view the details of the item. 
+The detailed item is now displayed, and all other items are removed from view.
+
+Step 5: The user executes `listi` to view the item list. The current item list is now displayed.
+
+//TODO The following sequence diagram shows how the list items operation works:
+
+The following sequence diagram shows how the list recipes operation works:
+
+![ListRecipeSequenceDiagram](images/commandseqdiagrams/ListRecipeSequenceDiagram.png)
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -202,7 +241,7 @@ The `redo` command does the opposite — it calls `Model#redoInventoryinator
   `Model#canRedoInventoryinator()` to check if this is the case. If so, it will return an error to the user
    rather than attempting to perform the redo.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the inventory, such as `list`,
+Step 5. The user then decides to execute the command `listi`. Commands that do not modify the inventory, such as `list`,
  will usually not call `Model#commitInventoryinator()`, `Model#undoInventoryinator()` or `Model#redoInventoryinator()`.
  Thus, the `inventoryinatorStateList` remains unchanged.
 

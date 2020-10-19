@@ -49,14 +49,6 @@ public class InventoryListPanel extends UiPart<Region> {
         itemListView.setCellFactory(listView -> new ItemListViewCell());
     }
 
-    public DisplayedInventoryType getInventoryType() {
-        return this.inventoryType;
-    }
-
-    public void setInventoryType(DisplayedInventoryType inventoryType) {
-        this.inventoryType = inventoryType;
-    }
-
     /**
      * Custom {@code ListCell} that displays the graphics of the current inventory, either {@code Item} using an
      * {@code InventoryCard} or {@code PrintableRecipe} using a {@code RecipeCard}.
