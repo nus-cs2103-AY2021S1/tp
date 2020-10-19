@@ -73,14 +73,11 @@ public interface InventoryModel extends Model {
     void setItem(Item target, Item editedItem);
 
     /** Returns an unmodifiable view of the filtered item list */
-    ObservableList<Item> getFilteredItemList();
+    ObservableList<Item> getFilteredAndSortedItemList();
 
     /**
      * Updates the filter of the filtered item list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredItemList(Predicate<Item> predicate);
-
-    /** Returns an unmodifiable view of the sorted item list*/
-    SortedList<Item> getSortedItemList();
 }

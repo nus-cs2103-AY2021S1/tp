@@ -61,7 +61,7 @@ public class ItemFindCommandTest {
         ItemFindCommand command = new ItemFindCommand(predicate);
         expectedInventoryModel.updateFilteredItemList(predicate);
         assertCommandSuccess(command, inventoryModel, expectedMessage, expectedInventoryModel);
-        assertEquals(Collections.emptyList(), inventoryModel.getFilteredItemList());
+        assertEquals(Collections.emptyList(), inventoryModel.getFilteredAndSortedItemList());
     }
 
     /**

@@ -93,7 +93,7 @@ public class InventoryModelManagerTest {
 
     @Test
     public void getFilteredItemList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredItemList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredAndSortedItemList().remove(0));
     }
 
     @Test
