@@ -1,9 +1,5 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_DETAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE_DETAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT_DETAIL;
-
 import java.util.List;
 
 import seedu.address.model.student.Student;

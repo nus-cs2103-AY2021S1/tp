@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_DETAIL_COMMAND;
+import static seedu.address.logic.commands.HelpCommand.MESSAGE_USAGE;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -21,7 +22,7 @@ public class AdditionalDetailCommandParser {
        final Matcher matcher = commandFormat.matcher(userInput.trim());
        if (!matcher.matches()) {
            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                   AdditionalDetailCommand.MESSAGE_USAGE));
+                   MESSAGE_USAGE));
        }
 
        final String commandWord = matcher.group("commandWord");
@@ -30,7 +31,7 @@ public class AdditionalDetailCommandParser {
        switch (commandWord) {
 
        case AddAdditionalDetailCommand.COMMAND_WORD:
-            return new AddAdditionalCommandParser().parse(arguments);
+            return new AddAdditionalDetailCommandParser().parse(arguments);
        case DeleteAdditionalDetailCommand.COMMAND_WORD:
 
        case EditAdditionalDetailCommand.COMMAND_WORD:

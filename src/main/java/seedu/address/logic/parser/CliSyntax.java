@@ -16,15 +16,14 @@ public class CliSyntax {
     public static final Prefix PREFIX_PAYMENT = new Prefix("d/");
     public static final Prefix PREFIX_DETAILS = new Prefix("a/");
 
-    /* Prefix for additionalDetail commands */
-    public static final Prefix PREFIX_ADD_DETAIL = new Prefix("add/");
-    public static final Prefix PREFIX_EDIT_DETAIL = new Prefix("edit/");
-    public static final Prefix PREFIX_DELETE_DETAIL = new Prefix("delete/");
-
     /* Prefix for question commands */
     public static final Prefix PREFIX_ADD_QUESTION = new Prefix("a/");
     public static final Prefix PREFIX_SOLVE_QUESTION = new Prefix("s/");
     public static final Prefix PREFIX_DELETE_QUESTION = new Prefix("d/");
+
+    /* Prefix for additionalDetail commands */
+    public static final Prefix PREFIX_DETAIL_INDEX = new Prefix("i/");
+    public static final Prefix PREFIX_DETAIL_TEXT = new Prefix("d/");
 
     public static final Prefix[] COMPULSORY_PREFIXES = new Prefix[] {PREFIX_NAME, PREFIX_PHONE,
         PREFIX_SCHOOL, PREFIX_YEAR, PREFIX_VENUE, PREFIX_TIME, PREFIX_FEE, PREFIX_PAYMENT};
@@ -37,4 +36,7 @@ public class CliSyntax {
 
     public static final Prefix[] QUESTION_COMMAND_PREFIXES =
             new Prefix[] {PREFIX_ADD_QUESTION, PREFIX_SOLVE_QUESTION, PREFIX_DELETE_QUESTION};
+
+    public static final Prefix[] ADDITIONAL_DETAIL_COMMAND_PREFIXES =
+            new Prefix[] {PREFIX_DETAIL_INDEX, PREFIX_DETAIL_TEXT};
 }
