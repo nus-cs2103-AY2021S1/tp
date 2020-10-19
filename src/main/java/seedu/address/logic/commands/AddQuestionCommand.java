@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +40,7 @@ public class AddQuestionCommand extends QuestionCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Student> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredStudentList();
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
@@ -54,9 +54,9 @@ public class AddQuestionCommand extends QuestionCommand {
         questions.add(questionToAdd);
         Student replacement = new Student(asker.getName(), asker.getPhone(),
                 asker.getSchool(), asker.getYear(), asker.getAdmin(), questions);
-        model.setPerson(asker, replacement);
+        model.setStudent(asker, replacement);
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, questionToAdd));
     }
 
