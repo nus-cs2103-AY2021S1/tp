@@ -31,7 +31,7 @@ public class AddStaffCommand extends Command {
             + PREFIX_TAG + "owesMoney"
             + PREFIX_COMMENT + "t: Title d: {Date} desc: Description";
     public static final String MESSAGE_SUCCESS = "New staff added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This staff already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This staff already exists in the eva database";
 
     private final Staff toAdd;
 
