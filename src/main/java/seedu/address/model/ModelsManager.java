@@ -20,7 +20,6 @@ public class ModelsManager implements Models {
     private DeliveryModel deliveryModel;
     private InventoryModel inventoryModel;
     private Map<String, Model> modelMap;
-    private int modelStatesLimit = 20; // default is 20
 
     /**
      * Initialise a {@code ModelManager} to hold empty models
@@ -94,6 +93,8 @@ public class ModelsManager implements Models {
      */
     @Override
     public void setStatesLimit(int limit) {
+        assert limit >= 1;
+
         for (Model model: modelMap.values()) {
             model.setStatesLimit(limit);
         }

@@ -142,6 +142,7 @@ public class DeliveryModelManager implements DeliveryModel {
     @Override
     public void commit() {
         assert deliveryBookStatePointer < deliveryBookStateList.size();
+        assert deliveryBookStateList.size() <= statesLimit;
 
         if (canRedo()) {
             deliveryBookStateList = deliveryBookStateList.subList(0, deliveryBookStatePointer + 1);
