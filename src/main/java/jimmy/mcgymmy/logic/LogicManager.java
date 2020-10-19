@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        mcGymmyParser = new McGymmyParser();
+        this.mcGymmyParser = new McGymmyParser();
     }
 
     @Override
@@ -46,6 +46,7 @@ public class LogicManager implements Logic {
         commandResult = executable.execute(model);
 
         try {
+            storage.saveMacroList(mcGymmyParser.getMacroList());
             storage.saveMcGymmy(model.getMcGymmy());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);

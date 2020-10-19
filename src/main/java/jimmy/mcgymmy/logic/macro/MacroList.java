@@ -1,6 +1,8 @@
 package jimmy.mcgymmy.logic.macro;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -46,5 +48,9 @@ public class MacroList {
 
     public Macro getMacro(String name) {
         return this.macros.get(name);
+    }
+
+    public List<Macro> getAsList() {
+        return new ArrayList<>(this.macros.values());
     }
 }
