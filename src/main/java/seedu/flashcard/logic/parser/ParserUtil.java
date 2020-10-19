@@ -15,6 +15,7 @@ import seedu.flashcard.model.flashcard.Answer;
 import seedu.flashcard.model.flashcard.Category;
 import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
+import seedu.flashcard.model.flashcard.Rating;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -105,6 +106,19 @@ public class ParserUtil {
         requireNonNull(note);
         String trimmedNote = note.trim();
         return new Note(trimmedNote);
+    }
+
+    /**
+     * Parses a {@code String rating} into a {@code Rating}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Rating parseRating(String rating) throws ParseException {
+        requireNonNull(rating);
+        String trimmedRating = rating.trim();
+        if (!Rating.isValidRating(trimmedRating)) {
+            throw new ParseException(Rating.MESSAGE_CONSTRAINTS);
+        }
+        return new Rating(trimmedRating);
     }
 
     //    /**

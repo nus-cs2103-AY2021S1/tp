@@ -5,6 +5,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import seedu.flashcard.model.flashcard.Flashcard;
 
 /**
@@ -36,6 +38,12 @@ public class FlashcardCard extends UiPart<Region> {
     @FXML
     private Label note;
     @FXML
+    private TextFlow ratingPane;
+    @FXML
+    private Text rating;
+    @FXML
+    private Text ratingIcon;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -52,6 +60,13 @@ public class FlashcardCard extends UiPart<Region> {
             note.setText(flashcard.getNote().toString());
         } else {
             note.setVisible(false);
+        }
+        if (flashcard.getRating().toString().length() > 0) {
+            rating.setText(flashcard.getRating().toString());
+            ratingIcon.setText(" \uD83D\uDFCA");
+        } else {
+            ratingPane.setVisible(false);
+            ratingPane.managedProperty().bind(ratingPane.visibleProperty());
         }
 
     }

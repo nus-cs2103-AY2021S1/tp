@@ -9,6 +9,8 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.text.Text?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
@@ -39,6 +41,12 @@
       </HBox>
       <Label fx:id="answer" styleClass="cell_small_label" text="\$answer" />
       <Label fx:id="note" styleClass="cell_small_label" text="\$note"/>
+      <TextFlow fx:id="ratingPane">
+        <Text fx:id="rating" text="\$rating"></Text>
+        <Text fx:id="ratingIcon"></Text>
+      </TextFlow>
+
+
     </VBox>
   </GridPane>
 </HBox>

@@ -17,16 +17,18 @@ public class Flashcard {
     private final Answer answer;
     private final Category category;
     private final Note note;
+    private final Rating rating;
 
     /**
      * Every field must be present and not null.
      */
-    public Flashcard(Question question, Answer answer, Category category, Note note) {
-        requireAllNonNull(question, answer, category, note);
+    public Flashcard(Question question, Answer answer, Category category, Note note, Rating rating) {
+        requireAllNonNull(question, answer, category, note, rating);
         this.question = question;
         this.answer = answer;
         this.category = category;
         this.note = note;
+        this.rating = rating;
     }
 
     public Question getQuestion() {
@@ -43,6 +45,10 @@ public class Flashcard {
 
     public Note getNote() {
         return note;
+    }
+
+    public Rating getRating() {
+        return rating;
     }
 
 
@@ -85,13 +91,14 @@ public class Flashcard {
         return otherFlashcard.getQuestion().equals(getQuestion())
                 && otherFlashcard.getAnswer().equals(getAnswer())
                 && otherFlashcard.getCategory().equals(getCategory())
-                && otherFlashcard.getNote().equals(getNote());
+                && otherFlashcard.getNote().equals(getNote())
+                && otherFlashcard.getRating().equals(getRating());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(question, answer, category);
+        return Objects.hash(question, answer, category, note, rating);
     }
 
     @Override
@@ -106,6 +113,10 @@ public class Flashcard {
         if (getNote().toString().length() > 0) {
             builder.append(" Note: ")
                     .append(getNote());
+        }
+        if (getRating().toString().length() > 0) {
+            builder.append(" Rating: ")
+                    .append(getRating());
         }
         return builder.toString();
     }
