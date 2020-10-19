@@ -3,6 +3,7 @@ package seedu.address.model.deliverymodel;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_REDO_LIMIT_REACHED;
 import static seedu.address.commons.core.Messages.MESSAGE_UNDO_LIMIT_REACHED;
+import static seedu.address.model.Model.MODEL_DEFAULT_STATES_LIMIT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +14,12 @@ import seedu.address.model.delivery.Delivery;
 import seedu.address.model.delivery.UniqueDeliveryList;
 
 public class DeliveryBook implements ReadOnlyDeliveryBook {
-    private static List<DeliveryBook> deliveryBookStateList = new ArrayList<>();
+    private static List<DeliveryBook> deliveryBookStateList = new ArrayList<>(MODEL_DEFAULT_STATES_LIMIT);
     private static int deliveryBookStatePointer = -1;
 
     private final UniqueDeliveryList deliveries;
 
-    private int statesLimit = 20; // set to 20 by default
+    private int statesLimit = MODEL_DEFAULT_STATES_LIMIT;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication

@@ -7,6 +7,7 @@ import seedu.address.logic.commands.exceptions.UndoRedoLimitReachedException;
  * API of a Model component
  */
 public interface Model {
+    int MODEL_DEFAULT_STATES_LIMIT = 20;
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
