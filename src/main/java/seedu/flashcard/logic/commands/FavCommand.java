@@ -16,7 +16,7 @@ import seedu.flashcard.model.flashcard.Question;
 
 
 /**
- * Favourite a flashcard identified using it's displayed index from the list of flashcards.
+ * Favourites a flashcard identified using it's displayed index from the list of flashcards.
  */
 public class FavCommand extends Command {
 

@@ -37,7 +37,7 @@ public class Flashcard {
      * Overloaded constructor for creating a flashcard when flashcard is favourited/unfavourited.
      */
     public Flashcard(Question question, Answer answer, Category category, Note note, boolean isFavourite) {
-        requireAllNonNull(question, answer, category, note);
+        requireAllNonNull(question, answer, category, note, isFavourite);
         this.question = question;
         this.answer = answer;
         this.category = category;
