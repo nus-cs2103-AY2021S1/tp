@@ -38,7 +38,66 @@ Coming soon.
 
 ## **Implementation**
 
-Coming soon.
+### \[Proposed\] Priority Feature
+
+#### Proposed Implementation
+
+The proposed priority feature would involve the UI javafx feature as well as a newly implemented field for the Clientlist. 
+
+Additionally, the priority feature would come with a command that sorts the entire list based on the priorities set for the Clientlist.
+
+Note : The proposed sort feature will ONLY involve the UI in filtering BASED on the priority of the individuals rather than other fields. This means that sorting or filtering a list would NOT affect deleting or editing commands on users that are currently not shown in the filtered or sorted list. 
+
+It would implement the following commands:
+<to be filled in>
+<filter /p important first or important last>
+
+These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. As the application is pre-loaded with data, it would look like this: <Insert png>
+    
+Step 2: The user decides to add a client into the clientlist. The user would set the priority of the user as 1 for example. 
+Based on what the user has added, we would append/attach/add a box of a predetermined type and shape into the personcard fxml, changing the design of it. If we are unable to append any objects to the personcard fxml, we can redesign different personcard fxml files and add them based on the tag that the user has created.
+
+Step 3. The user decides to filter the application based on a certain priority. In this case, we will assume that the priority would be 4 (High)
+
+Firstly, there would need to be a comparator to be able to build it. 
+
+Implementation idea 1: Changing the UI to use a FilteredList object only. 
+To implement this, we would create a FilteredList fxml object and set the items inside into the ListView object that is currently used for the PersonListPanel class. 
+https://stackoverflow.com/questions/30915007/javafx-filteredlist-filtering-based-on-property-of-items-in-the-list
+
+However, the problem with this is that the FilteredList currently looks different compared to what the ListView looks like, so this might break/ not work. It is still worth a try since it is relatively easy to implement. 
+
+But the problem after this would be trying to get the listener to work, I.E: telling when one should start to filter the listfilter object or whatnot. Therefore, an extra class would have to be created to handle that.
+
+Implementation idea 2: Changing the way objects are added into the ListView object. 
+
+The idea behind this would be to restart the entire list, and only ADD in objects to the ListView UI based on what is being filtered. I prefer this idea but I have not really implemented it. This is because we would have to create a filter class WITHIN the UI, which deals with the filtering of the clients based on the different steps being done. This idea can be supported because since the filterer is based on the UI only, and would not affect any changes inside the clientlist, and would be valid as part of the UI implementation. 
+
+We have decided to change the colors of the boxes based on the 
+We have decided to prioritise the implementation of the filter function based on the UI only and not affect other classes since the filtering should not "delete" or modify any other values inside the listview.  
+
+The following sequence diagram shows how the Priority operation works:
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+#### Design consideration:
+
+##### Aspect: How Priority filter works.
+
+* **Alternative 1 (current choice):** Saves the entire address book.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Individual command knows how to undo/redo by
+  itself.
+  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
+
+_{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
