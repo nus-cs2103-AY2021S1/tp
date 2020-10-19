@@ -8,10 +8,7 @@ import static com.eva.model.comment.CommentCliSyntax.PREFIX_TITLE;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Stream;
 
 import com.eva.commons.core.index.Index;
@@ -23,6 +20,7 @@ import com.eva.model.person.Address;
 import com.eva.model.person.Email;
 import com.eva.model.person.Name;
 import com.eva.model.person.Phone;
+import com.eva.model.person.applicant.InterviewDate;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.tag.Tag;
 
@@ -201,5 +199,17 @@ public class ParserUtil {
      */
     public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Parses {@code String leaveDates} into a {@code Leave}.
+     * Leading and trailing whitespaces will be trimmed.
+     * Assumption: no more than 2 leave dates are entered.
+     */
+    public static InterviewDate parseInterviewDate(String value) throws ParseException {
+        if (!DateUtil.isValidDate(value.trim())) {
+            throw new ParseException(InterviewDate.MESSAGE_CONSTRAINTS);
+        }
+        return new InterviewDate(value.trim());
     }
 }
