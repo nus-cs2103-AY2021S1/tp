@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalModules.CS2101;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.ModuleBuilder;
@@ -161,6 +162,6 @@ public class UniqueModuleListTest {
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-                -> uniqueModuleList.asUnmodifiableObservableList().remove(0));
+            -> uniqueModuleList.asUnmodifiableObservableList().remove(0));
     }
 }

@@ -2,8 +2,8 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_ES2660;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_SAMPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_ES2660;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_SAMPLE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,9 +18,9 @@ import seedu.address.model.module.Module;
 public class TypicalModules {
 
     public static final Module CS2030 = new ModuleBuilder().withName("CS2030")
-        .withZoomLink("www.zoom.us").build();
+        .withZoomLink("www.nus-sg.zoom.us/advguigaivu").build();
     public static final Module CS2101 = new ModuleBuilder().withName("CS2101")
-        .withZoomLink("www.zoom.us").build();
+        .withZoomLink("www.nus-sg.zoom.us/avhiavha").build();
     public static final Module CS2105 = new ModuleBuilder().withName("CS2105")
         .withZoomLink("www.zoom.us").build();
     public static final Module CS1101S = new ModuleBuilder().withName("CS1101S")
