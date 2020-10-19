@@ -34,9 +34,11 @@ public class ItemFindCommand extends ItemCommand {
         requireNonNull(models.getInventoryModel());
 
         InventoryModel inventoryModel = models.getInventoryModel();
-        inventoryModel.updateFilteredItemList(predicate);
+        inventoryModel.updateItemListFilter(predicate);
+
         return new CommandResult(
-                String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW, inventoryModel.getFilteredItemList().size()));
+                String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW,
+                        inventoryModel.getFilteredAndSortedItemList().size()));
     }
 
     @Override

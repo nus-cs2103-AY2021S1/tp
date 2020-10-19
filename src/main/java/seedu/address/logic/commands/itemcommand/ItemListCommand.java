@@ -21,7 +21,7 @@ public class ItemListCommand extends ItemCommand {
         requireNonNull(models);
         requireNonNull(models.getInventoryModel());
 
-        models.getInventoryModel().updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
+        models.getInventoryModel().updateItemListFilter(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
