@@ -8,17 +8,14 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
-import javax.swing.*;
 import java.util.Comparator;
 import java.util.Optional;
-
-import static com.eva.commons.util.DateUtil.dateToString;
 
 /**
  * An UI component that displays information of a {@code Staff}.
  */
-public class ApplicantCard extends UiPart<Region> {
-    private static final String FXML = "StaffListCard.fxml";
+public class ApplicantListCard extends UiPart<Region> {
+    private static final String FXML = "ApplicantListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -56,7 +53,7 @@ public class ApplicantCard extends UiPart<Region> {
     /**
      * Creates a {@code Applicant Card} with the given {@code Applicant} and index to display.
      */
-    public ApplicantCard(Applicant applicant, int displayedIndex) {
+    public ApplicantListCard(Applicant applicant, int displayedIndex) {
         super(FXML);
         this.applicant = applicant;
         id.setText(displayedIndex + ". ");
@@ -88,12 +85,12 @@ public class ApplicantCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ApplicantCard)) {
+        if (!(other instanceof ApplicantListCard)) {
             return false;
         }
 
         // state check
-        ApplicantCard card = (ApplicantCard) other;
+        ApplicantListCard card = (ApplicantListCard) other;
         return id.getText().equals(card.id.getText())
                 && applicant.equals(card.applicant);
     }

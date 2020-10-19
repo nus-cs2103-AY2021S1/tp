@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  * Panel containing the list of staffs.
  */
 public class ApplicantListPanel extends UiPart<Region> {
-    private static final String FXML = "StaffListPanel.fxml";
+    private static final String FXML = "ApplicantListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
@@ -41,7 +41,7 @@ public class ApplicantListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ApplicantCard(applicant, getIndex() + 1).getRoot());
+                setGraphic(new ApplicantListCard(applicant, getIndex() + 1).getRoot());
             }
         }
     }
