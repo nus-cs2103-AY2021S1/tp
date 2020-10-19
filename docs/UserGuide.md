@@ -43,7 +43,7 @@ Common Cents is your convenient at-hand expense-tracking tool, meant for anyone 
 **Notes about the command format:**<br>
 
 * Words in UPPERCASE are the parameters to be supplied by the user.<br>
-  e.g. in `add C/CATEGORY...`, `CATEGORY` is a parameter which can be used as `add c/REVENUE...`
+  e.g. in `add c/CATEGORY...`, `CATEGORY` is a parameter which can be used as `add c/REVENUE...`
 
 * Items in square brackets are optional.<br>
   e.g `...a/AMOUNT [t/TAG]` can be used as `...a/50.10 t/Supplies` or as `...a/50.10`.
