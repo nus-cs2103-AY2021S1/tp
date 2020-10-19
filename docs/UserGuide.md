@@ -303,7 +303,9 @@ Action     | Format, Examples
 **Find**   | `find KEYWORDS` <br> e.g., `find chicken`
 **Tag**    | `tag INDEX -t TAG_NAME` <br> e.g., `tag 1 -t Lunch`
 **UnTag**  | `untag INDEX -t TAG_NAME` <br> e.g., `untag 1 -t Lunch`
-**Macro**  | `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​` <br> e.g., `macro lunch; add Chicken
+**Macro**  | `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​` <br> e.g., `macro lunch; add Chicken`
+**Import** | `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​` <br> e.g., `import c:/mcgymmy/save_file.json`
+**Export** | `import DIRPATH [-o FILENAME]` <br> e.g., `export c:/mcgymmy -o save_file`
 **Exit**   | `exit`
 
 ## Appendix A
