@@ -130,10 +130,9 @@ public class AddressBookParser {
         case EditMeetingCommand.COMMAND_WORD:
             return new EditMeetingCommandParser().parse(arguments);
 
-
         case ListMeetingCommand.COMMAND_WORD:
             return new ListMeetingCommand();
-            
+
         case FindMeetingCommand.COMMAND_WORD:
             return new FindMeetingCommandParser().parse(arguments);
 
