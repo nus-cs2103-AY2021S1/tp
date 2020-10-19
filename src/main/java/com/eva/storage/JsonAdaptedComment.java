@@ -22,10 +22,7 @@ class JsonAdaptedComment {
      */
     @JsonCreator
     public JsonAdaptedComment(String description) {
-//        System.out.println(description);
-//        System.out.println(description.split("\\|")[0]);
         this.date = LocalDate.parse(description.split("\\|", 3)[1]);
-//        System.out.println(this.date);
         this.description = description.split("\\|", 3)[2];
         this.title = description.split("\\|", 3)[0];
     }
