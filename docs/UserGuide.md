@@ -41,6 +41,8 @@ QuickCache is a **desktop app for managing flashcards, optimized for use via a C
    * **`delete`**`3` : Deletes the 3rd flashcard shown in the current list.
 
    * **`clear`** : Deletes all FlashCards.
+   
+   * **`export`**`science-questions.json` : Exports current list of flashcard to a file named `science-questions.json` in the `export` folder.
 
    * **`exit`** : Exits the app.
 
@@ -190,6 +192,16 @@ Clears all entries from QuickCache.
 
 Format: `clear`
 
+### Exporting a set of flashcards : `export`
+
+Exports the current list of flashcard into a file.
+
+Format: `export FILE_NAME`
+
+* Exports the previously shown list of flashcards.
+* The output file follows the name specified in `FILE_NAME`.
+* The output file can be found in the `export` folder.
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -222,4 +234,5 @@ Action | Format, Examples
 **List** | `list`
 **Find** | `find KEYWORDS` <br> e.g., `find CS2100 MCQ`
 **Help** | `help`
+**Export** | `export FILE_NAME` <br> e.g., `export science-questions.json`
 **Exit** | `exit`
