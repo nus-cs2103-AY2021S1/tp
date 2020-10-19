@@ -44,34 +44,46 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         try {
-            if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            if (argMultimap.getValue(PREFIX_NAME).isPresent() && argMultimap.getPreamble().isEmpty()) {
                 keywords = argMultimap.getValue(PREFIX_NAME).get().split("\\s+");
+                for (String keyword : keywords) {
+                    ParserUtil.parseName(keyword);
+                }
                 return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
             }
-            if (argMultimap.getValue(PREFIX_MODULE_CODE).isPresent()) {
+            if (argMultimap.getValue(PREFIX_MODULE_CODE).isPresent() && argMultimap.getPreamble().isEmpty()) {
                 keywords = argMultimap.getValue(PREFIX_MODULE_CODE).get().split("\\s+");
                 for (String keyword : keywords) {
-                    System.out.println(keyword);
-                    ModuleCode moduleCode = ParserUtil.parseModuleCode(keyword);
+                    ParserUtil.parseModuleCode(keyword);
                 }
                 return new FindCommand(new ModuleCodeContainsKeywordsPredicate(Arrays.asList(keywords)));
             }
-//            if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
-//                //not working yet
-//                keywords = argMultimap.getValue(PREFIX_DEADLINE).get()
-//                        .split("(?<!\\G\\S+)\\s");
-//                for (String keyword : keywords) {
-//                    Deadline deadline = ParserUtil.parseDeadline(keyword);
-//                }
-//                return new FindCommand(new DeadlineContainsKeywordsPredicate(Arrays.asList(keywords)));
-//            }
-
-        } catch (ParseException pe) {
+            if (argMultimap.getValue(PREFIX_DEADLINE).isPresent() && argMultimap.getPreamble().isEmpty()) {
+                keywords = argMultimap.getValue(PREFIX_DEADLINE).get()
+                        .split("\\s+");
+                for (String keyword : keywords) {
+                    if (!(isTimeFormat(keyword) || isDateFormat(keyword))) {
+                        throw new ParseException(
+                                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    }
+                }
+                return new FindCommand(new DeadlineContainsKeywordsPredicate(Arrays.asList(keywords)));
+            }
+        }
+        catch (ParseException pe) {
             throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-        //have to edit this
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        throw new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    private static boolean isDateFormat(String keyword) {
+        return keyword.matches("\\d{2}-\\d{2}-\\d{4}");
+    }
+
+    private static boolean isTimeFormat(String keyword) {
+        return keyword.matches("\\d{4}");
     }
 
     private static boolean moreThanOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

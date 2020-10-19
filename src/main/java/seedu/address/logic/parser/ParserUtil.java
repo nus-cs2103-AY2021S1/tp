@@ -9,6 +9,8 @@ import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.ModuleCode;
 import seedu.address.model.assignment.Name;
 
+import java.time.LocalDateTime;
+
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
