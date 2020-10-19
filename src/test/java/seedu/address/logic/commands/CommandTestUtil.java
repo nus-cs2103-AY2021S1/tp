@@ -172,13 +172,12 @@ public class CommandTestUtil {
     }
 
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, InventoryModel, CommandResult, InventoryModel)} and
-     * {@link #assertCommandSuccess(Command, DeliveryModel, CommandResult, DeliveryModel)} that takes a
-     * string {@code expectedMessage}.for commands that use {@code Models}.
+     * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualModels} matches {@code expectedModels}
      */
     public static void assertCommandSuccess(Command command, Models actualModels,
-                                            String expectedMessage, Models expectedModels) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+                                            CommandResult expectedCommandResult, Models expectedModels) {
         try {
             CommandResult result = command.execute(actualModels);
             assertEquals(expectedCommandResult, result);
@@ -186,7 +185,17 @@ public class CommandTestUtil {
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
+    }
 
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Models, CommandResult, Models)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertCommandSuccess(Command command, Models actualModels,
+                                            String expectedMessage,
+                                            Models expectedModels) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertCommandSuccess(command, actualModels, expectedCommandResult, expectedModels);
     }
 
     /**

@@ -38,6 +38,7 @@ public class ModelsManager implements Models {
         this.deliveryModel = deliveryModel;
         this.inventoryModel = inventoryModel;
         modelMap = initialiseModelMap();
+        commit();
     }
 
     /**
