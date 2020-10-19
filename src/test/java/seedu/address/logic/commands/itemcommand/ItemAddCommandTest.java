@@ -174,11 +174,6 @@ public class ItemAddCommandTest {
         public void updateFilteredItemList(Predicate<Item> predicate) {
             throw new AssertionError("This method should not be called.");
         }
-
-        @Override
-        public SortedList<Item> getSortedItemList() {
-            throw new AssertionError("This method should not be called.");
-        }
     }
 
     /**
