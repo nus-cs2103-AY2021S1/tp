@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.contactlistparsers;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
@@ -15,11 +15,6 @@ import seedu.address.logic.commands.contactlistcommands.FindContactCommand;
 import seedu.address.logic.commands.contactlistcommands.HelpContactCommand;
 import seedu.address.logic.commands.contactlistcommands.ListContactCommand;
 import seedu.address.logic.commands.contactlistcommands.ViewContactCommand;
-import seedu.address.logic.parser.contactlistparsers.AddContactParser;
-import seedu.address.logic.parser.contactlistparsers.DeleteContactParser;
-import seedu.address.logic.parser.contactlistparsers.EditContactParser;
-import seedu.address.logic.parser.contactlistparsers.FindContactParser;
-import seedu.address.logic.parser.contactlistparsers.ViewContactParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class ContactListParser {
