@@ -40,7 +40,6 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
         return new DeleteCommand(index, category);
 
-
     }
 
     /**
