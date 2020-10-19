@@ -153,7 +153,7 @@ public class Account implements ReadOnlyAccount {
 
     @Override
     public String toString() {
-        return "Account Name: " + name.toString();
+        return "Name: " + name.toString();
     }
 
     @Override

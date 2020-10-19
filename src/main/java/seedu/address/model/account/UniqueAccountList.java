@@ -24,6 +24,7 @@ import seedu.address.model.account.exceptions.DuplicateAccountException;
  */
 public class UniqueAccountList implements Iterable<Account> {
     private static final int ACCOUNT_NOT_FOUND_INDEX = -1;
+    private static final String NEW_LINE = "\n";
 
     private final ObservableList<Account> internalList = FXCollections.observableArrayList();
     private final ObservableList<Account> internalUnmodifiableList =

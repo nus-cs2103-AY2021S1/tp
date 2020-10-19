@@ -12,6 +12,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListAccountCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -41,6 +42,7 @@ public class CommonCentsParser {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
+        // Entry-level Commands
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
@@ -53,8 +55,12 @@ public class CommonCentsParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        // Account-level Commands
         case AddAccountCommand.COMMAND_WORD:
             return new AddAccountCommandParser().parse(arguments);
+
+        case ListAccountCommand.COMMAND_WORD:
+            return new ListAccountCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
