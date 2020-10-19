@@ -171,6 +171,7 @@ Format: `find KEYWORDS`
 Shows a list of all food items in McGymmy.
 
 * List all food items in McGymmy
+* All additional inputs after list are discarded.
 
 Format: `list`
 
@@ -275,6 +276,7 @@ Examples:
 Exits the program.
 
 * Exits McGymmy
+* All additional inputs after exit are discarded.
 
 Format: `exit`
 
