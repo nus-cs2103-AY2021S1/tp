@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **1. Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide: [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -17,7 +17,11 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### 2.1 Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+<p align="center">
+    <img src="images/ArchitectureDiagram.png" width="450" />
+    <br>
+    <em style="color:#CC5500">Figure 1. Architecture Diagram</em>
+</p>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -28,17 +32,17 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 </div>
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W11-4/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W11-4/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At App launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#26-common-classes) represents a collection of classes used by multiple other components.
 
-The rest of the App consists of four components.
+The rest of the App consists of four components:
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+1. [**`UI`**](#22-ui-component): The UI of the App.
+2. [**`Logic`**](#23-logic-component): The command executor.
+3. [**`Model`**](#24-model-component): Holds the data of the App in memory.
+4. [**`Storage`**](#25-storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
@@ -47,19 +51,31 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+<p align="center">
+    <img src="images/LogicClassDiagram.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 2. Class Diagram of Logic Component</em>
+</p>
 
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<p align="center">
+    <img src="images/ArchitectureSequenceDiagram.png" width="574" />
+    <br>
+    <em style="color:#CC5500">Figure 3. Execution diagram for "delete 1" command</em>
+</p>
 
 The sections below give more details of each component.
 
 ### 2.2 UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<p align="center">
+    <img src="images/UiClassDiagram.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 4. Structure of the UI Component</em>
+</p>
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-W11-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -75,27 +91,39 @@ The `UI` component,
 
 ### 2.3 Logic component
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+<p align="center">
+    <img src="images/LogicClassDiagram.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 5. Structure of the Logic Component</em>
+</p>
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-W11-4/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `CliniCalParser` class to parse the user command.
-1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a patient).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+`Logic` uses the `CliniCalParser` class to parse the user command.
+This results in a `Command` object which is executed by the `LogicManager`.
+The command execution can affect the `Model` (e.g. adding a patient).
+The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+
+In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+<p align="center">
+    <img src="images/DeleteSequenceDiagram.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 6. Logic Component Interactions for "delete 1" Command</em>
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### 2.4 Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+<p align="center">
+    <img src="images/ModelClassDiagram.png"/>
+    <em style="color:#CC5500">Figure 7. Structure of the Model Component</em>
+</p>
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W11-4/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -107,14 +135,20 @@ The `Model`,
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has an `Allergy` list in the `CliniCal` application, which `Patient` references. This allows `CliniCal` to only require one `Allergy` object per unique `Allergy`, instead of each `Patient` needing their own `Allergy` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+<div align="center" markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has an `Allergy` list in the `CliniCal` application, which `Patient` references. This allows `CliniCal` to only require one `Allergy` object per unique `Allergy`, instead of each `Patient` needing their own `Allergy` object.
+    <img src="images/BetterModelClassDiagram.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 8. Alternative structure for Model component</em>
 </div>
 
 
 ### 2.5 Storage component
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+<p align="center">
+    <img src="images/StorageClassDiagram.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 9. Structure of the Storage Component </em>
+</p>
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W11-4/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -132,7 +166,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### 3.1 Undo/redo feature
+### 3.1 Undo/Redo feature
 
 #### 3.1.1 Implementation
 
@@ -148,15 +182,27 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 
 Step 1. The user launches the application for the first time. The `VersionedCliniCal` will be initialized with the initial CliniCal application state, and the `currentStatePointer` pointing to that single CliniCal application state.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+<p align="center">
+    <img src="images/UndoRedoState0.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 10. Initial CliniCalStateList</em>
+</p>
 
 Step 2. The user executes `delete 5` command to delete the 5th patient in the patient data list. The `delete` command calls `Model#commitCliniCal()`, causing the modified state of the CliniCal application after the `delete 5` command executes to be saved in the `CliniCalStateList`, and the `currentStatePointer` is shifted to the newly inserted CliniCal application state.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+<p align="center">
+    <img src="images/UndoRedoState1.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 11. CliniCalStateList after "delete 5" command</em>
+</p>
 
 Step 3. The user executes `add n/David …​` to add a new patient. The `add` command also calls `Model#commitCliniCal()`, causing another modified CliniCal application state to be saved into the `CliniCalStateList`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+<p align="center">
+    <img src="images/UndoRedoState2.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 12. CliniCalStateList after "add n/David" command</em>
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitCliniCal()`, so the CliniCal application state will not be saved into the `CliniCalStateList`.
 
@@ -164,7 +210,11 @@ Step 3. The user executes `add n/David …​` to add a new patient. The `add` c
 
 Step 4. The user now decides that adding the patient was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoCliniCal()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous CliniCal application state, and restores the CliniCal application to that state.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+<p align="center">
+    <img src="images/UndoRedoState3.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 13. CliniCalStateList after undo command</em>
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial CliniCal state, then there are no previous CliniCal states to restore. The `undo` command uses `Model#canUndoCliniCal()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
@@ -173,7 +223,11 @@ than attempting to perform the undo.
 
 The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+<p align="center">
+    <img src="images/UndoSequenceDiagram.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 14. Logic and Model Component Interactions for Undo Command</em>
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -187,38 +241,83 @@ The `redo` command does the opposite — it calls `Model#redoCliniCal()`, wh
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the CliniCal application, such as `list`, will usually not call `Model#commitCliniCal()`, `Model#undoCliniCal()` or `Model#redoCliniCal()`. Thus, the `CliniCalStateList` remains unchanged.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+<p align="center">
+    <img src="images/UndoRedoState4.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 15. CliniCalStateList after list command</em>
+</p>
 
 Step 6. The user executes `clear`, which calls `Model#commitCliniCal()`. Since the `currentStatePointer` is not pointing at the end of the `CliniCalStateList`, all CliniCal application states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+<p align="center">
+    <img src="images/UndoRedoState5.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 16. CliniCalStateList after clear command</em>
+</p>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+<p align="center">
+    <img src="images/CommitActivityDiagram.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 17. Activity Diagram for User Execution of Command</em>
+</p>
 
-#### 3.1.2 Design consideration:
+#### 3.1.2 Design consideration
 
-##### 3.1.2.1 Aspect: How undo & redo executes
+##### 3.1.2.1 Aspect: Execution of undo/redo
 
-* **Alternative 1 (current choice):** Saves the entire patient details in CliniCal application.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+* **Current Implementation:** Saves the entire patient details in CliniCal application.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+  * Pros:
+       * It is easier to implement as the entire list of patients would be saved. The list of patients can then be 
+  easily loaded to be used or saved for future use by `Model`.
+  
+  * Cons:
+       * This may have performance issues in terms of memory usage.
+
+* **Alternative Implementation:** Undo/redo function is handled by each individual command.
+
+  * Pros:
+       * The application will use less memory (e.g. for `delete`, just save the patient being deleted).
+  
+  * Cons:
+       * The implementation of undo/redo for each specific command must be correct.
+  
+##### 3.1.2.2 Aspect: Choice of data structure to store CliniCal application states
+  
+ * **Current Implementation:** List with `currentStatePointer` pointing to the current CliniCal state.
+  
+    * Pros:
+         * It is easier to implement as only a single List is required and all states can be accessed.
+    
+    * Cons:
+         * This requires constant updating of the `CliniCalStateList` such as purging of redundant states.
+  
+ * **Alternative Implementation:** Two Stacks - CommandsExecutedStack and RedoStack
+  
+    * Pros:
+         * The more intuitive solution as a stack follows the Last In First Out principle. There would be no need for 
+    any `currentStatePointer` since the current state would be at the top of the stacks.
+    
+    * Cons:
+         * Harder to implement as two separate stacks would have to be tracked and there would be more dependencies to 
+    implement before and after the execution of every command.
 
 ### 3.2 Add Profile Picture feature
+
 #### 3.2.1 Implementation
 
 This feature allows users to add image files to serve as the patient's profile picture. The mechanism utilises the `StorageManager#addPictureToProfile`
 method to update the patients' profile pictures.
 
-This feature comprise of the `AddProfilePictureCommand` class. Given below is an example usage scenario and how the mechanism behaves at each step.
+This feature comprises the `AddProfilePictureCommand` class. Given below is an example usage scenario and how the mechanism behaves at each step.
 
-![AddProfilePictureSequenceDiagram](images/AddProfilePictureSequenceDiagram.png)
+<p align="center">
+    <img src="images/AddProfilePictureSequenceDiagram.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 18. Logic Component Interactions for AddProfilePicture Command</em>
+</p>
 
 Step 1. User input is parsed to obtain the patient index and file path of the desired profile picture.
 
@@ -232,37 +331,47 @@ Step 5. As a result of the successful update of the patient's profile picture, a
 
 #### 3.2.2 Design consideration
 
-Aspect: Choice of component to save the profile pictures
+##### 3.2.2.1 Aspect: Choice of component to save the profile pictures
 
-* Current Implementation: Save image file through `StorageManager`.
+* **Current Implementation:** Save image file through `StorageManager`.
 
-    * Pro: Mechanism can be extended from the existing architecture that the project is built upon (AB3).
+    * Pros:
+         * Mechanism can be extended from the existing architecture that the project is built upon (AB3).
 
-    * Con: There is a need to implement additional exception handling mechanism to inform the user in cases where invalid file path is provided.
+    * Cons:
+        * There is a need to implement additional exception handling mechanism to inform the user in cases where invalid file path is provided.
 
-* Alternative considered: Save image files through a new standalone class eg. `ImageCommand`. This class handles all mechanism related to profile pictures.
+* **Alternative Implementation:** Save image files through a new standalone class eg. `ImageCommand`. This class handles all mechanism related to profile pictures.
 
-    * Pro: Exception handling is simplified as informing the user of invalid file path will be similar to when an invalid command is given.
+    * Pros:
+        * Exception handling is simplified as informing the user of invalid file path will be similar to when an invalid command is given.
 
-    * Con: It is harder to store and update patient's profile pictures. New dependencies need to be created to associate with
-    the newly created `ImageCommand` class. Thus, our team decided to implement the first alternative as it follows the existing
-    architecture closely and minimizes the risk of breaking the existing architecture.
+    * Cons:
+        * It is harder to store and update patient's profile pictures. 
+        * New dependencies need to be created to associate with the newly created `ImageCommand` class.
+        * Thus, our team decided to implement the first alternative as it follows the existing architecture closely and minimizes the risk of breaking the existing architecture.
 
-Aspect: Image type
+##### 3.2.2.2 Aspect: Image type
 
-* Current Implementation: All types of files are accepted, including `.jpg` and `.png`.
+* **Current Implementation:** All types of files are accepted, including `.jpg` and `.png`.
 
-    * Pro: User do not need to convert `.jpg` to `.png` file or vice versa before setting desired image file as profile picture. This enhances usability.
+    * Pros:
+        * User do not need to convert `.jpg` to `.png` file or vice versa before setting desired image file as profile picture.
+        * This enhances usability.
     
-    * Con: Non-image files are still stored in 'data' folder even though the patient's profile picture in CliniCal will not be updated visually.
+    * Cons: 
+        * Non-image files are still stored in 'data' folder even though the patient's profile picture in CliniCal will not be updated visually.
 
-* Alternative Implementation: Accept only some types of files i.e `.jpg` and `.png`.
+* **Alternative Implementation:** Accept only some types of files i.e `.jpg` and `.png`.
 
-    * Pro: Acts as a form of validation check and non-image files will not be stored in the 'data' folder. This helps to save disk space.
+    * Pros: 
+        * Acts as a form of validation check and non-image files will not be stored in the 'data' folder. This helps to save disk space.
 
-    * Con: User is only limited to certain types of image files. As such, our team decided to implement the first alternative
-    as this design maximizes application usability. User will not need to spend additional time converting their images into accepted file types. 
-    Furthermore, our team assessed that users can easily delete non-image files from the 'data' folder if the need arises.
+    * Cons: 
+        * User is only limited to certain types of image files. 
+        * As such, our team decided to implement the first alternative as this design maximizes application usability. 
+        * User will not need to spend additional time converting their images into accepted file types. 
+        * Furthermore, our team assessed that users can easily delete non-image files from the 'data' folder if the need arises.
 
 _{more aspects and alternatives to be added}_
 
@@ -276,9 +385,13 @@ due to its Last In First Out (LIFO) property which allows the most recently used
 
 The mechanism utilises the `CommandHistory#getCommandHistory()` to retrieve a list of past used commands from `commandHistory`.
 
-This feature comprise of the `HistoryCommand` and `CommandHistory` classes. Given below is an example usage scenario and how the mechanism behaves at each step.
+This feature comprises the `HistoryCommand` and `CommandHistory` classes. Given below is an example usage scenario and how the mechanism behaves at each step.
 
-![HistorySequenceDiagram](images/HistorySequenceDiagram.png)
+<p align="center">
+    <img src="images/HistorySequenceDiagram.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 19. Logic Component Interactions for History Command</em>
+</p>
 
 Step 1. User inputs "history" to execute the history command.
 
@@ -289,24 +402,30 @@ Step 3. The `CommandHistory#getCommandHistory()` is then called which will retur
 Step 4. As a result of successful retrieval of the command history, a `CommandResult` object is instantiated and returned to `LogicManager`.
 
 #### 3.3.2 Design Considerations
-Aspect: What data structure to store commands
-* Use of stack ADT
+
+##### 3.3.2.1 Aspect: Choice of data structure to store commands
+* **Current Implementation:** Use of stack ADT
+
    * Pros:
        * Most recently used command will show up at the top of the list. Also known as Last In First Out (LIFO) method.
    * Cons:
        * Data stored in stack is not persistent.
 
-Aspect: How commands is stored
-* Alternative 1 (current choice): Store all entered commands
+##### 3.3.2.2 Aspect: How commands are stored
+* **Current Implementation:** Store all entered commands
+
    * Pros: 
-       * Easy to implement.
-       * User can check what went wrong with the previous command.
-   * Cons:
-       * Will need more memory to store both valid and invalid commands.
+       * It is easy to implement.
+       * The user can check what went wrong with the previous command.
        
-* Alternative 2: Store only commands that are successfully executed
+   * Cons:
+       * The application will need more memory to store both valid and invalid commands.
+       
+* **Alternative Implementation:** Store only commands that are successfully executed
+
    * Pros: 
        * User do not need to view invalid commands.
+       
    * Cons:
        * User cannot check what went wrong with the previous command.
        
@@ -317,9 +436,13 @@ This feature allows users to clear history of recently used commands.
 
 The mechanism utilises the `CommandHistory#clearHistory` to clear all stored commands from `commandHistory`.
 
-This feature comprise of the `ClearHistoryCommand` and `CommandHistory` classes. Given below is an example usage scenario and how the mechanism behaves at each step.
+This feature comprises the `ClearHistoryCommand` and `CommandHistory` classes. Given below is an example usage scenario and how the mechanism behaves at each step.
 
-![ClearHistorySequenceDiagram](images/ClearHistorySequenceDiagram.png)
+<p align="center">
+    <img src="images/ClearHistorySequenceDiagram.png"/>
+    <br>
+    <em style="color:#CC5500">Figure 20. Logic Component Interactions for ClearHistory Command</em>
+</p>
 
 Step 1. User inputs "clearhistory" to execute the clear history command.
 
@@ -328,14 +451,16 @@ Step 2. After successful parsing of user input, the `ClearHistoryCommand#execute
 Step 3. The `CommandHistory#clearHistory` is then called which will clear all commands stored in `commandHistory`.
 
 #### 3.4.2 Design Considerations
-Aspect: How do we clear command history
-* Use of stack ADT
+##### 3.4.2.1 Aspect: Choice of Data Structure to clear commands
+* **Current Implementation:** Use of stack ADT
+
     * Pros: 
         * Easy to implement clear function.
-    * Con:
+        
+    * Cons:
         * Command history is not persistent so recently used commands is only kept during the same usage.
 
-### 3.5 Up Down Arrow Keys feature
+### 3.5 Peek Commands With Arrow Keys feature
 
 #### 3.5.1 Implementation
 This feature allows users to navigate and reuse past commands using up and down arrow keys.
@@ -344,38 +469,59 @@ The mechanism utilises the `CommandHistory#peekNext()` and `CommandHistory#peekP
 
 Step 1. The user launches the application for the first time. The `CommandHistory` will be initialised with the initial state, and the currentStatePointer pointing to that single state.
 
-![UpDownArrowKeyState0](images/UpDownArrowKeyState0.png)
+<p align="center">
+    <img src="images/UpDownArrowKeyState0.png" width="350"/>
+    <br>
+    <em style="color:#CC5500">Figure 21. Initial CommandHistory</em>
+</p>
 
 Step 2. The user executes `delete 5` command to delete the 5th patient in the patient data list. 
 The Logic Manager calls `CommandHistory#addUsedCommand()` to add a new command to the stack named `commandHistory`.
 
-![UpDownArrowKeyState1](images/UpDownArrowKeyState1.png)
+<p align="center">
+    <img src="images/UpDownArrowKeyState1.png" width="350"/>
+    <br>
+    <em style="color:#CC5500">Figure 22. CommandHistory after "delete 5" command</em>
+</p>
 
 Step 3. The user now decides to reuse `delete 5` in the command history and press the up arrow key (↑). 
 The actionListener of the TextField will detect the up arrow key being pressed and calls `CommandHistory#peekNext()`.
 This will shift the currentStatePointer to the right, pointing to the `delete 5` command and returns it.
 
-![UpDownArrowKeyState2](images/UpDownArrowKeyState2.png)
+<p align="center">
+    <img src="images/UpDownArrowKeyState2.png" width="350"/>
+    <br>
+    <em style="color:#CC5500">Figure 23. CommandHistory after pressing up arrow</em>
+</p>
 
 Step 4. The user now decides not to reuse `delete 5` and go back to the previous command before `delete 5`, i.e. empty. 
 The user will now press the down arrow key (↓) and the actionListener of the TextField will detect the down arrow key being pressed and calls `CommandHistory#peekPrev()`.
 This will shift the currentStatePointer to the left, pointing to the initial state that is empty and returns it.
 
-![UpDownArrowKeyState3](images/UpDownArrowKeyState3.png)
+<p align="center">
+    <img src="images/UpDownArrowKeyState3.png" width="350"/>
+    <br>
+    <em style="color:#CC5500">Figure 24. CommandHistory after pressing down arrow</em>
+</p>
 
 The following sequence diagram shows how the up down arrow key mechanism works:
 
-![UpDownArrowKeySequenceDiagram](images/UpDownArrowKeySequenceDiagram.png)
+<p align="center">
+    <img src="images/UpDownArrowKeySequenceDiagram.png" width="400"/>
+    <br>
+    <em style="color:#CC5500">Figure 25. Ui Component Interactions for Peeking Commands</em>
+</p>
+
 
 #### 3.5.2 Design Considerations
-Aspect: How commands are stored
-* Alternative 1 (current choice): Peek through all entered commands (including those in wrong format or fails to execute)
+##### 3.5.2.1 Aspect: How commands are stored
+* **Current Implementation:** Peek through all entered commands (including those in wrong format or fails to execute)
     * Pros:
         * Users can edit invalid commands.
         * Users can reuse the same command without typing it all out again.
     * Cons:
         * Only works if the past commands are previously used during the same usage session.
- * Alternative 2: Peek through commands that can be successfully executed
+ * **Alternative Implementation:** Peek through commands that can be successfully executed
     * Pros:
         * All past commands reused are valid and can be reused safely.
         * Users require less time to peek through all commands stored in commandHistory as it does not include invalid commands.
@@ -385,19 +531,19 @@ Aspect: How commands are stored
 --------------------------------------------------------------------------------------------------------------------
 
 ## **4. Documentation**
-* [Documentation guide](Documentation.md)
+Refer to the guide: [_Documentation Guide_](Documentation.md)
 
 ## **5. Testing**
-* [Testing guide](Testing.md)
+Refer to the guide: [_Testing guide_](Testing.md)
 
 ## **6. Logging**
-* [Logging guide](Logging.md)
+Refer to the guide: [_Logging guide_](Logging.md)
 
 ## **7. Configuration**
-* [Configuration guide](Configuration.md)
+Refer to the guide: [_Configuration guide_](Configuration.md)
 
 ## **8. Dev-ops**
-* [DevOps guide](DevOps.md)
+Refer to the guide: [_DevOps guide_](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -439,7 +585,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `CliniCal` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Delete a patient**
+### Use case: UC01 - Delete a patient
 
 **MSS**
 
@@ -462,7 +608,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC02 - Add a patient**
+### Use case: UC02 - Add a patient
 
 **MSS**
 
@@ -478,7 +624,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 1.
 
-**Use case: UC03 - Edit a patient**
+### Use case: UC03 - Edit a patient
 
 **MSS**
 
@@ -501,7 +647,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at Step 3.
 
-**Use case: UC04 - Add a patient's profile picture using command line interface**
+### Use case: UC04 - Add a patient's profile picture using command line interface
 
 **MSS**
 
@@ -516,18 +662,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The given command is invalid.
     * 1a1. CliniCal shows an error message.
 
-  Use case resumes at step 1.
+    Use case resumes at step 1.
   
-**Use case: UC05 - Add a patient's profile picture using drag and drop**
+### Use case: UC05 - Add a patient's profile picture using drag and drop
   
   **MSS**
   
-1. User selects the desired profile picture and drags it onto the specified patient profile in CliniCal.
+1.  User selects the desired profile picture and drags it onto the specified patient profile in CliniCal.
 2.  User releases mouse button.
 3.  CliniCal adds the profile picture to the specified patient.
 4.  CliniCal shows an updated list of patients.
   
-      Use case ends.
+    Use case ends.
   
   **Extensions**
   
@@ -539,7 +685,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b. The profile picture is not dragged onto a valid space that represents patient profile in CliniCal.
      * 1b1. Patient profile picture is not updated.
      
-         Use case resumes at step 1.
+    Use case resumes at step 1.
+         
+### Use case: UC06 - Undo a command
+
+**MSS**
+   
+1. User keys in command to undo the previous command.
+2. CliniCal shows the command that has been undone.
+
+    Use case ends.
+    
+**Extensions**
+    
+  * 1a. There are no more previous commands to undo.<br>
+    Use case ends.
+
+### Use case: UC07 - Redo a command
+
+**MSS**
+   
+1. User keys in command to redo the previous undone command.
+2. CliniCal shows the command that has been redone.
+
+    Use case ends.
+    
+**Extensions**
+    
+  * 1a. There are no more commands to redo.<br>
+  Use case ends.
 
 ### Use case: UC08 - View command history
 
@@ -552,9 +726,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The command history is empty.
-
-  Use case ends.
+* 2a. The command history is empty.<br>
+    Use case ends.
       
 ### Use case: UC09 - Clear command history
 
