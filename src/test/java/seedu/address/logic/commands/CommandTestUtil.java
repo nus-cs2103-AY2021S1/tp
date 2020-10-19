@@ -172,6 +172,24 @@ public class CommandTestUtil {
     }
 
     /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, InventoryModel, CommandResult, InventoryModel)} and
+     * {@link #assertCommandSuccess(Command, DeliveryModel, CommandResult, DeliveryModel)} that takes a
+     * string {@code expectedMessage}.for commands that use {@code Models}.
+     */
+    public static void assertCommandSuccess(Command command, Models actualModels,
+                                            String expectedMessage, Models expectedModels) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        try {
+            CommandResult result = command.execute(actualModels);
+            assertEquals(expectedCommandResult, result);
+            assertEquals(expectedModels, actualModels);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+
+    }
+
+    /**
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>

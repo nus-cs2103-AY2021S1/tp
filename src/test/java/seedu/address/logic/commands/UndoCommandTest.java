@@ -1,28 +1,30 @@
-//package seedu.address.logic.commands;
-//
-//import static seedu.address.commons.core.Messages.MESSAGE_UNDO_LIMIT_REACHED;
-//import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-//import static seedu.address.logic.commands.UndoCommand.MESSAGE_UNDO_ACKNOWLEDGEMENT;
-//import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
-//
-//import org.junit.jupiter.api.Test;
-//
-//import seedu.address.model.UserPrefs;
-//import seedu.address.model.deliverymodel.DeliveryModel;
-//import seedu.address.model.deliverymodel.DeliveryModelManager;
-//import seedu.address.model.inventorymodel.InventoryModel;
-//import seedu.address.model.inventorymodel.InventoryModelManager;
-//
-//class UndoCommandTest {
-//
-//    @Test
-//    void execute_emptyInventoryModel_success() {
-//        InventoryModel actualInventoryModel = new InventoryModelManager();
-//        InventoryModel expectedInventoryModel = new InventoryModelManager();
-//        assertCommandSuccess(
-//                new UndoCommand(), actualInventoryModel, MESSAGE_UNDO_LIMIT_REACHED, expectedInventoryModel);
-//    }
-//
+package seedu.address.logic.commands;
+
+import static seedu.address.commons.core.Messages.MESSAGE_UNDO_LIMIT_REACHED;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.UndoCommand.MESSAGE_UNDO_ACKNOWLEDGEMENT;
+import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.Models;
+import seedu.address.model.ModelsManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.deliverymodel.DeliveryModel;
+import seedu.address.model.deliverymodel.DeliveryModelManager;
+import seedu.address.model.inventorymodel.InventoryModel;
+import seedu.address.model.inventorymodel.InventoryModelManager;
+
+class UndoCommandTest {
+
+    @Test
+    void execute_emptyInventoryModel_success() {
+        Models actualModels = new ModelsManager();
+        Models expectedModels = new ModelsManager();
+        assertCommandSuccess(
+                new UndoCommand(), actualModels, MESSAGE_UNDO_LIMIT_REACHED, expectedModels);
+    }
+
 //    @Test
 //    void execute_nothingToUndo_success() {
 //        InventoryModel inventoryModel =
@@ -44,5 +46,5 @@
 //        assertCommandSuccess(
 //                new UndoCommand(), inventoryModel, MESSAGE_UNDO_ACKNOWLEDGEMENT, inventoryModel);
 //    }
-//
-//}
+
+}

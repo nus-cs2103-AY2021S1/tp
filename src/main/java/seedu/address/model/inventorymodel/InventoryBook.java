@@ -18,12 +18,8 @@ import seedu.address.model.item.UniqueItemList;
  * Duplicates are not allowed (by .isSameItem comparison)
  */
 public class InventoryBook implements ReadOnlyInventoryBook {
-    private static List<InventoryBook> inventoryBookStateList = new ArrayList<>(MODEL_DEFAULT_STATES_LIMIT);
-    private static int inventoryBookStatePointer = -1;
 
     private final UniqueItemList items;
-
-    private int statesLimit = MODEL_DEFAULT_STATES_LIMIT;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -108,68 +104,6 @@ public class InventoryBook implements ReadOnlyInventoryBook {
      */
     public void removeItem(Item key) {
         items.remove(key);
-    }
-
-    //// undo-redo operations
-
-    /**
-     * Copies the current {@code InventoryBook} in the state list.
-     */
-    public void commit() {
-        assert inventoryBookStatePointer < inventoryBookStateList.size();
-
-        if (canRedo()) {
-            inventoryBookStateList = inventoryBookStateList.subList(0, inventoryBookStatePointer + 1);
-        }
-        if (inventoryBookStateIsFull()) {
-            inventoryBookStateList.remove(0);
-            inventoryBookStatePointer--;
-        }
-
-        inventoryBookStateList.add(new InventoryBook(this));
-        inventoryBookStatePointer++;
-    }
-
-    /**
-     * Shifts the current {@code InventoryBook} to the previous one in the state list.
-     * @throws UndoRedoLimitReachedException if there is nothing left to undo
-     */
-    public void undo() throws UndoRedoLimitReachedException {
-        if (canUndo()) {
-            inventoryBookStatePointer--;
-            resetData(inventoryBookStateList.get(inventoryBookStatePointer));
-        } else {
-            throw new UndoRedoLimitReachedException(MESSAGE_UNDO_LIMIT_REACHED);
-        }
-    }
-
-    /**
-     * Shifts the current {@code InventoryBook} to the next one in the state list.
-     * @throws UndoRedoLimitReachedException if there is nothing left to redo
-     */
-    public void redo() throws UndoRedoLimitReachedException {
-        if (canRedo()) {
-            inventoryBookStatePointer++;
-            resetData(inventoryBookStateList.get(inventoryBookStatePointer));
-        } else {
-            throw new UndoRedoLimitReachedException(MESSAGE_REDO_LIMIT_REACHED);
-        }
-    }
-
-    public void setStatesLimit(int limit) {
-        statesLimit = limit;
-    }
-
-    private boolean canUndo() {
-        return inventoryBookStatePointer > 0;
-    }
-
-    private boolean canRedo() {
-        return inventoryBookStatePointer < inventoryBookStateList.size() - 1;
-    }
-
-    private boolean inventoryBookStateIsFull() {
-        return inventoryBookStateList.size() >= statesLimit;
     }
 
     //// util methods

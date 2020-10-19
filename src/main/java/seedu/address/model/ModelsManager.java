@@ -134,4 +134,17 @@ public class ModelsManager implements Models {
         tempMap.put(INVENTORY_MODEL_KEY, inventoryModel);
         return tempMap;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (!(obj instanceof ModelsManager)) {
+            return false;
+        } else {
+            DeliveryModel objDeliveryModel = ((ModelsManager) obj).getDeliveryModel();
+            InventoryModel objInventoryModel = ((ModelsManager) obj).getInventoryModel();
+            return objDeliveryModel.equals(this.deliveryModel) && objInventoryModel.equals(this.inventoryModel);
+        }
+    }
 }
