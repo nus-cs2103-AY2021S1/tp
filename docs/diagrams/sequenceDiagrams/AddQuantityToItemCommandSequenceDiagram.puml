@@ -27,7 +27,7 @@ activate AddQuantityToItemCommandParser
 AddQuantityToItemCommandParser --> InventoryinatorParser
 deactivate AddQuantityToItemCommandParser
 
-InventoryinatorParser -> AddQuantityToItemCommandParser : parse("addq -n banana -q 50")
+InventoryinatorParser -> AddQuantityToItemCommandParser : parse("-n banana -q 50")
 activate AddQuantityToItemCommandParser
 
 create AddQuantityToItemCommand
@@ -74,7 +74,7 @@ deactivate EditItemCommand
 AddQuantityToItemCommand --> LogicManager : result
 deactivate AddQuantityToItemCommand
 
-destroy CommandResult
+destroy EditItemCommand
 [<--LogicManager
 deactivate LogicManager
 @enduml
