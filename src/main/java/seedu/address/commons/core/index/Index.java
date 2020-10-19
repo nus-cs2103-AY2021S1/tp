@@ -1,5 +1,7 @@
 package seedu.address.commons.core.index;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+
 /**
  * Represents a zero-based or one-based index.
  *
@@ -43,6 +45,20 @@ public class Index {
      */
     public static Index fromOneBased(int oneBasedIndex) {
         return new Index(oneBasedIndex - 1);
+    }
+
+    /**
+     * Return true if the targetIndexes contains duplicate Index, else return false.
+     */
+    public static boolean hasDuplicateIndex(Index[] targetIndexes) throws CommandException {
+        for (int i = 0; i < targetIndexes.length; i++) {
+            for (int j = i + 1; j < targetIndexes.length; j++) {
+                if (targetIndexes[i].equals(targetIndexes[j])) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override

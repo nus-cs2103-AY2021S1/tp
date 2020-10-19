@@ -95,8 +95,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteTask(Task target) {
-        planus.removeTask(target);
+    public void deleteTask(Task[] targets) {
+        planus.removeTask(targets);
     }
 
     @Override

@@ -129,7 +129,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deleteTask(Task target) {
+        public void deleteTask(Task[] targets) {
             throw new AssertionError("This method should not be called.");
         }
 
