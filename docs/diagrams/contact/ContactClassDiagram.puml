@@ -1,0 +1,21 @@
+@startuml
+
+!include ../style.puml
+skinparam arrowThickness 0.6
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package contact {
+    Class Contact
+}
+
+class Name
+class Email
+class Telegram
+
+Contact *--"1" Name
+Contact *--"0..1" Email
+Contact *--"0..1" Telegram
+
+
+@enduml

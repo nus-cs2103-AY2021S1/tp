@@ -1,0 +1,25 @@
+@startuml
+
+start
+
+:User executes an AddContactCommand;
+
+if () then ([command arguments are valid])
+        :Create an AddContactCommand with the newly created Contact as a field;
+        :Execute AddContactCommand;
+        if() then ([the Contact object created exists in the Contact List])
+            :Throw an exception;
+            :Update UI and inform users that the Contact could not be added;
+        else ([else])
+            :Add the Contact into the user's contact list;
+            :Update UI to display newly added Contact;
+        endif
+else ([else])
+        :Throw an exception;
+        :Update UI and inform users of the invalid command;
+
+endif
+
+stop
+
+@enduml
