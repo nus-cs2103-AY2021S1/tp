@@ -12,11 +12,13 @@ import seedu.flashcard.logic.commands.Command;
 import seedu.flashcard.logic.commands.DeleteCommand;
 import seedu.flashcard.logic.commands.EditCommand;
 import seedu.flashcard.logic.commands.ExitCommand;
+import seedu.flashcard.logic.commands.FavCommand;
 import seedu.flashcard.logic.commands.FilterCommand;
 import seedu.flashcard.logic.commands.FindCommand;
 import seedu.flashcard.logic.commands.HelpCommand;
 import seedu.flashcard.logic.commands.ListCommand;
 import seedu.flashcard.logic.commands.ReviewCommand;
+import seedu.flashcard.logic.commands.UnfavCommand;
 import seedu.flashcard.logic.parser.exceptions.ParseException;
 
 /**
@@ -75,6 +77,12 @@ public class FlashcardDeckParser {
 
         case ReviewCommand.COMMAND_WORD:
             return new ReviewCommand();
+
+        case FavCommand.COMMAND_WORD:
+            return new FavCommandParser().parse(arguments);
+
+        case UnfavCommand.COMMAND_WORD:
+            return new UnfavCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
