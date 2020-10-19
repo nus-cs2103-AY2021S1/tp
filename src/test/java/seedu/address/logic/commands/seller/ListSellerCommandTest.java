@@ -12,11 +12,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.sellercommands.ListSellerCommand;
-import seedu.address.model.BidBook;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.bidbook.BidBook;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
  */

@@ -7,6 +7,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.EntityType;
+import seedu.address.ui.bid.BidListPanel;
 import seedu.address.ui.bidder.BidderListPanel;
 import seedu.address.ui.property.PropertyListPanel;
 import seedu.address.ui.seller.SellerListPanel;

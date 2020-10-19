@@ -12,14 +12,22 @@ public class Messages {
 
     // ------------------------- BIDDER ---------------------------
     public static final String MESSAGE_INVALID_BIDDER_DISPLAYED_INDEX = "The bidder index provided is invalid";
+    public static final String MESSAGE_BIDDERS_LISTED_OVERVIEW = "%1$d bidders listed!";
 
     // ------------------------- SELLER ---------------------------
     public static final String MESSAGE_INVALID_SELLER_DISPLAYED_INDEX = "The seller index provided is invalid";
+    public static final String MESSAGE_SELLERS_LISTED_OVERVIEW = "%1$d sellers listed!";
 
     // ------------------------- PROPERTY -------------------------
     public static final String MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX = "The property index provided is invalid";
 
     // ------------------------- MEETING -------------------------
     public static final String MESSAGE_INVALID_MEETING_DISPLAYED_INDEX = "The meeting index provided is invalid";
+
+    // ------------------------- BID -------------------------
+    public static final String MESSAGE_INVALID_BID_DISPLAYED_INDEX = "The bid index provided is invalid";
+    public static final String MESSAGE_INVALID_COMMAND_INPUT = "Invalid command input! \n%1$s";
+    public static final String MESSAGE_BIDS_LISTED_OVERVIEW = "%1$d bids listed!";
+    public static final String MESSAGE_BIDS_LISTED_FAILURE = "Unable to find any related Bids. Displaying full list.";
 
 }
