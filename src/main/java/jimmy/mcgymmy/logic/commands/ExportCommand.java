@@ -3,6 +3,7 @@ package jimmy.mcgymmy.logic.commands;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.logging.Logger;
 
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
@@ -56,7 +57,7 @@ public class ExportCommand extends Command {
         }
 
         //Add the mcgymmy filename to export
-        path = Path.of(path.toString() + filename);
+        path = Paths.get(path.toString(), filename);
         JsonMcGymmyStorage mcGymmyStorage = new JsonMcGymmyStorage(path);
         try {
             mcGymmyStorage.saveMcGymmy(model.getMcGymmy());
