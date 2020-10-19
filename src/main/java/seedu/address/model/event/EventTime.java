@@ -13,8 +13,8 @@ public class EventTime {
 
     /**
      * Creates an EventTime object that stores the start and end time.
-     * @param start
-     * @param end
+     * @param start start time and date.
+     * @param end end time and date.
      */
     public EventTime(LocalDateTime start, LocalDateTime end) {
         this.start = start;
