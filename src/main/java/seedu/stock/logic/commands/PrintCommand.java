@@ -1,8 +1,6 @@
 package seedu.stock.logic.commands;
 
-import javafx.collections.ObservableList;
-import seedu.stock.model.Model;
-import seedu.stock.model.stock.Stock;
+import static java.util.Objects.requireNonNull;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -11,7 +9,9 @@ import java.nio.file.Path;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import seedu.stock.model.Model;
+import seedu.stock.model.stock.Stock;
 
 /**
  * Copies all stocks in the inventory into a csv file.
@@ -92,7 +92,7 @@ public class PrintCommand extends Command {
      * @return String of the given stock in the csv format.
      */
     public String makeFileCreationTime() {
-        SimpleDateFormat formatter= new SimpleDateFormat("dd/MM/yy 'at' HH:mm.");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy 'at' HH:mm.");
         Date date = new Date(System.currentTimeMillis());
 
         return new StringBuilder()

@@ -1,9 +1,9 @@
 package seedu.stock.logic.parser;
 
+import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.stock.logic.commands.PrintCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
-
-import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new PrintCommand object
