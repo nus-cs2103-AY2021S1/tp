@@ -20,7 +20,6 @@ public class ModelsManager implements Models {
     private DeliveryModel deliveryModel;
     private InventoryModel inventoryModel;
     private Map<String, Model> modelMap;
-    private int modelStatesLimit = 20; // default is 20
 
     /**
      * Initialise a {@code ModelManager} to hold empty models
@@ -38,6 +37,7 @@ public class ModelsManager implements Models {
         this.deliveryModel = deliveryModel;
         this.inventoryModel = inventoryModel;
         modelMap = initialiseModelMap();
+        commit();
     }
 
     /**
@@ -93,6 +93,8 @@ public class ModelsManager implements Models {
      */
     @Override
     public void setStatesLimit(int limit) {
+        assert limit >= 1;
+
         for (Model model: modelMap.values()) {
             model.setStatesLimit(limit);
         }
@@ -133,5 +135,18 @@ public class ModelsManager implements Models {
         tempMap.put(DELIVERY_MODEL_KEY, deliveryModel);
         tempMap.put(INVENTORY_MODEL_KEY, inventoryModel);
         return tempMap;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (!(obj instanceof ModelsManager)) {
+            return false;
+        } else {
+            DeliveryModel objDeliveryModel = ((ModelsManager) obj).getDeliveryModel();
+            InventoryModel objInventoryModel = ((ModelsManager) obj).getInventoryModel();
+            return objDeliveryModel.equals(this.deliveryModel) && objInventoryModel.equals(this.inventoryModel);
+        }
     }
 }

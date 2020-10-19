@@ -1,9 +1,13 @@
 package seedu.address.model.inventorymodel;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_REDO_LIMIT_REACHED;
+import static seedu.address.commons.core.Messages.MESSAGE_UNDO_LIMIT_REACHED;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -23,9 +27,13 @@ import seedu.address.model.item.Item;
 public class InventoryModelManager implements InventoryModel {
     private static final Logger logger = LogsCenter.getLogger(InventoryModelManager.class);
 
+    private List<InventoryBook> inventoryBookStateList = new ArrayList<>(MODEL_DEFAULT_STATES_LIMIT);
+    private int inventoryBookStatePointer = -1;
+    private int statesLimit = MODEL_DEFAULT_STATES_LIMIT;
     private final InventoryBook inventoryBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Item> filteredItems;
+
 
     /**
      * Initializes a InventoryModelManager with the given inventoryBook and userPrefs.
@@ -67,11 +75,6 @@ public class InventoryModelManager implements InventoryModel {
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         userPrefs.setGuiSettings(guiSettings);
-    }
-
-    @Override
-    public void setStatesLimit(int limit) {
-        inventoryBook.setStatesLimit(limit);
     }
 
     @Override
@@ -147,19 +150,68 @@ public class InventoryModelManager implements InventoryModel {
 
     //=========== Redo/Undo ===============================================================================
 
+    /**
+     * Copies the current {@code InventoryBook} in the state list.
+     */
     @Override
     public void commit() {
-        inventoryBook.commit();
+        assert inventoryBookStatePointer < inventoryBookStateList.size();
+
+        if (canRedo()) {
+            inventoryBookStateList = inventoryBookStateList.subList(0, inventoryBookStatePointer + 1);
+        }
+        if (inventoryBookStateIsFull()) {
+            inventoryBookStateList.remove(0);
+            inventoryBookStatePointer--;
+        }
+
+        inventoryBookStateList.add(new InventoryBook(inventoryBook));
+        inventoryBookStatePointer++;
     }
 
+    /**
+     * Shifts the current {@code InventoryBook} to the previous one in the state list.
+     * @throws UndoRedoLimitReachedException if there is nothing left to undo
+     */
     @Override
     public void undo() throws UndoRedoLimitReachedException {
-        inventoryBook.undo();
+        if (canUndo()) {
+            inventoryBookStatePointer--;
+            inventoryBook.resetData(inventoryBookStateList.get(inventoryBookStatePointer));
+        } else {
+            throw new UndoRedoLimitReachedException(MESSAGE_UNDO_LIMIT_REACHED);
+        }
+    }
+
+    /**
+     * Shifts the current {@code InventoryBook} to the next one in the state list.
+     * @throws UndoRedoLimitReachedException if there is nothing left to redo
+     */
+    @Override
+    public void redo() throws UndoRedoLimitReachedException {
+        if (canRedo()) {
+            inventoryBookStatePointer++;
+            inventoryBook.resetData(inventoryBookStateList.get(inventoryBookStatePointer));
+        } else {
+            throw new UndoRedoLimitReachedException(MESSAGE_REDO_LIMIT_REACHED);
+        }
     }
 
     @Override
-    public void redo() throws UndoRedoLimitReachedException {
-        inventoryBook.redo();
+    public void setStatesLimit(int limit) {
+        statesLimit = limit;
+    }
+
+    private boolean canUndo() {
+        return inventoryBookStatePointer > 0;
+    }
+
+    private boolean canRedo() {
+        return inventoryBookStatePointer < inventoryBookStateList.size() - 1;
+    }
+
+    private boolean inventoryBookStateIsFull() {
+        return inventoryBookStateList.size() >= statesLimit;
     }
 
     @Override

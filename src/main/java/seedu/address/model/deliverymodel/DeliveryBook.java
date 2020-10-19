@@ -1,25 +1,16 @@
 package seedu.address.model.deliverymodel;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_REDO_LIMIT_REACHED;
-import static seedu.address.commons.core.Messages.MESSAGE_UNDO_LIMIT_REACHED;
-import static seedu.address.model.Model.MODEL_DEFAULT_STATES_LIMIT;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.logic.commands.exceptions.UndoRedoLimitReachedException;
 import seedu.address.model.delivery.Delivery;
 import seedu.address.model.delivery.UniqueDeliveryList;
 
 public class DeliveryBook implements ReadOnlyDeliveryBook {
-    private static List<DeliveryBook> deliveryBookStateList = new ArrayList<>(MODEL_DEFAULT_STATES_LIMIT);
-    private static int deliveryBookStatePointer = -1;
 
     private final UniqueDeliveryList deliveries;
-
-    private int statesLimit = MODEL_DEFAULT_STATES_LIMIT;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -103,65 +94,6 @@ public class DeliveryBook implements ReadOnlyDeliveryBook {
     @Override
     public ObservableList<Delivery> getDeliveryList() {
         return deliveries.asUnmodifiableObservableList();
-    }
-
-    //// undo-redo operations
-
-    /**
-     * Copies the current {@code InventoryBook} in the state list.
-     */
-    public void commit() {
-        assert deliveryBookStatePointer < deliveryBookStateList.size();
-
-        if (canRedo()) {
-            deliveryBookStateList = deliveryBookStateList.subList(0, deliveryBookStatePointer + 1);
-        }
-        if (deliveryBookStateIsFull()) {
-            deliveryBookStateList.remove(0);
-            deliveryBookStatePointer--;
-        }
-        deliveryBookStateList.add(new DeliveryBook(this));
-        deliveryBookStatePointer++;
-    }
-
-    /**
-     * Shifts the current {@code InventoryBook} to the previous one in the state list.
-     */
-    public void undo() throws UndoRedoLimitReachedException {
-        if (canUndo()) {
-            deliveryBookStatePointer--;
-            resetData(deliveryBookStateList.get(deliveryBookStatePointer));
-        } else {
-            throw new UndoRedoLimitReachedException(MESSAGE_UNDO_LIMIT_REACHED);
-        }
-    }
-
-    /**
-     * Shifts the current {@code InventoryBook} to the next one in the state list.
-     */
-    public void redo() throws UndoRedoLimitReachedException {
-        if (canRedo()) {
-            deliveryBookStatePointer++;
-            resetData(deliveryBookStateList.get(deliveryBookStatePointer));
-        } else {
-            throw new UndoRedoLimitReachedException(MESSAGE_REDO_LIMIT_REACHED);
-        }
-    }
-
-    public void setStatesLimit(int limit) {
-        statesLimit = limit;
-    }
-
-    private boolean canUndo() {
-        return deliveryBookStatePointer > 0;
-    }
-
-    private boolean canRedo() {
-        return deliveryBookStatePointer < deliveryBookStateList.size() - 1;
-    }
-
-    private boolean deliveryBookStateIsFull() {
-        return deliveryBookStateList.size() >= statesLimit;
     }
 
     @Override
