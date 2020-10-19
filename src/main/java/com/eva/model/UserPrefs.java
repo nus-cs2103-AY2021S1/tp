@@ -16,6 +16,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
     private Path personDatabaseFilePath = Paths.get("data" , "personDatabase.json");
     private Path staffDatabaseFilePath = Paths.get("data" , "staffDatabase.json");
+    private Path applicantDatabaseFilePath = Paths.get("data" , "applicantDatabase.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -64,6 +65,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setStaffDatabaseFilePath(Path staffDatabaseFilePath) {
         requireNonNull(staffDatabaseFilePath);
         this.staffDatabaseFilePath = personDatabaseFilePath;
+    }
+
+    public Path getApplicantDatabaseFilePath() {
+        return applicantDatabaseFilePath;
+    }
+
+    public void setApplicantDatabaseFilePath(Path applicantDatabaseFilePath) {
+        requireNonNull(applicantDatabaseFilePath);
+        this.applicantDatabaseFilePath = applicantDatabaseFilePath;
     }
 
     @Override

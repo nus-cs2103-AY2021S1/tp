@@ -1,10 +1,5 @@
 package com.eva.logic.commands;
 
-import static com.eva.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static com.eva.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static com.eva.logic.parser.CliSyntax.PREFIX_NAME;
-import static com.eva.logic.parser.CliSyntax.PREFIX_PHONE;
-import static com.eva.logic.parser.CliSyntax.PREFIX_TAG;
 import static com.eva.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static java.util.Objects.requireNonNull;
 
@@ -25,46 +20,36 @@ import com.eva.model.person.Email;
 import com.eva.model.person.Name;
 import com.eva.model.person.Person;
 import com.eva.model.person.Phone;
+import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.tag.Tag;
 
+public class CommentCommand extends Command {
 
-/**
- * Edits the details of an existing person in the address book.
- */
-public class EditCommand extends Command {
-
-    public static final String COMMAND_WORD = "edit";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
-
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String COMMAND_WORD = "comment";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds or delete comment to person"
+            + "To add: key in '-a t: {Title} d: {Date} desc: {Description}'"
+            + "and to delete, key in '-d t:{TitletoDelete}'";
+    public static final String MESSAGE_ADD_COMMENT_SUCCESS = "Commented on Person: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DELETE_COMMENT_SUCCESS = "Deleted comment on Person: %1$s";
 
-    private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+
+
+    public final Index index;
+    public final CommentCommand.CommentPersonDescriptor commentPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * Creates CommentCommand object
+     * @param index index of person being commented on
+     * @param commentPersonDescriptor details of person once comments are done
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public CommentCommand(Index index,
+                          CommentCommand.CommentPersonDescriptor commentPersonDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(commentPersonDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.commentPersonDescriptor = new CommentCommand.CommentPersonDescriptor(commentPersonDescriptor);
     }
 
     @Override
@@ -77,7 +62,7 @@ public class EditCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Person editedPerson = createEditedPerson(personToEdit, commentPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -85,76 +70,57 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_ADD_COMMENT_SUCCESS, editedPerson));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * Creates and returns a {@code Person} with
+     * the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit,
+                                             CommentCommand.CommentPersonDescriptor commentPersonDescriptor)
+            throws CommandException {
         assert personToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Set<Comment> updatedComments = editPersonDescriptor.getComments().orElse(personToEdit.getComments());
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedComments);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
-            return false;
-        }
-
-        // state check
-        EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+        throw new CommandException("Shouldn't come here");
     }
 
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
-    public static class EditPersonDescriptor {
+    public static class CommentPersonDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
         private Set<Tag> tags;
         private Set<Comment> comments;
+        private Set<Leave> leaves;
 
-        public EditPersonDescriptor() {}
+
+        public CommentPersonDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public CommentPersonDescriptor(CommentCommand.CommentPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setComments(toCopy.comments);
+            setLeaves(toCopy.leaves);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, comments);
         }
 
         public void setName(Name name) {
@@ -210,6 +176,18 @@ public class EditCommand extends Command {
             this.comments = (comments != null) ? new HashSet<>(comments) : null;
         }
 
+        public Set<Comment> getComments() {
+            return (comments != null) ? comments : null;
+        }
+
+        public void setLeaves(Set<Leave> leaves) {
+            this.leaves = (leaves != null) ? new HashSet<>(leaves) : null;
+        }
+
+        public Set<Leave> getLeaves() {
+            return (leaves != null) ? leaves : new HashSet<>();
+        }
+
 
         @Override
         public boolean equals(Object other) {
@@ -219,22 +197,18 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditCommand.EditPersonDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditCommand.EditPersonDescriptor e = (EditCommand.EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
-        }
-
-        public Optional<Set<Comment>> getComments() {
-            return (comments != null) ? Optional.of(Collections.unmodifiableSet(comments)) : Optional.empty();
         }
     }
 }

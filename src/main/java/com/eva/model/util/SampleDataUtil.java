@@ -1,18 +1,22 @@
 package com.eva.model.util;
 
-
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.eva.model.EvaDatabase;
 import com.eva.model.ReadOnlyEvaDatabase;
+import com.eva.model.comment.Comment;
 import com.eva.model.person.Address;
 import com.eva.model.person.Email;
 import com.eva.model.person.Name;
 import com.eva.model.person.Person;
 import com.eva.model.person.Phone;
+import com.eva.model.person.applicant.Applicant;
+import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.tag.Tag;
@@ -25,22 +29,22 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
+                getTagSet("friends"), getCommentSet("title 1|2010-10-10|hi")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
+                getTagSet("colleagues", "friends"), getCommentSet("title 2|2010-11-10|hi", "title 3|2010-12-10|hi")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
+                getTagSet("neighbours"), getCommentSet("title 4|2010-09-10|hi", "title 5|2010-08-10|hi")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
+                getTagSet("family"), getCommentSet("title 6|2010-10-10|hi")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
+                getTagSet("classmates"), getCommentSet("title 7|2010-07-10|hi")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+                getTagSet("colleagues"), getCommentSet("title 8|2011-11-10|hi"))
         };
     }
 
@@ -50,6 +54,13 @@ public class SampleDataUtil {
         return Arrays.stream(getSamplePersons())
                 .map(person -> new Staff(person, leaves))
                 .toArray(Staff[]::new);
+    }
+
+    public static Applicant[] getSampleApplicants() {
+        // TODO: Add some meaningful interview date samples
+        return Arrays.stream(getSamplePersons())
+                .map(person -> new Applicant(person, null, new ApplicationStatus("received")))
+                .toArray(Applicant[]::new);
     }
 
     public static ReadOnlyEvaDatabase<Person> getSamplePersonDatabase() {
@@ -68,12 +79,27 @@ public class SampleDataUtil {
         return sampleAb;
     }
 
+    public static ReadOnlyEvaDatabase<Applicant> getSampleApplicantDatabase() {
+        EvaDatabase<Applicant> sampleAb = new EvaDatabase<>();
+        for (Applicant samplePerson : getSampleApplicants()) {
+            sampleAb.addPerson(samplePerson);
+        }
+        return sampleAb;
+    }
+
     /**
      * Returns a tag set containing the list of strings given.
      */
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Tag::new)
+                .collect(Collectors.toSet());
+    }
+    public static Set<Comment> getCommentSet(String... strings) {
+        List<String> list = Arrays.asList(strings);
+        return list.stream()
+                .map(string -> new Comment(LocalDate.parse(string.split("\\|", 3)[1]),
+                        string.split("\\|", 3)[2], string.split("\\|", 3)[0]))
                 .collect(Collectors.toSet());
     }
 

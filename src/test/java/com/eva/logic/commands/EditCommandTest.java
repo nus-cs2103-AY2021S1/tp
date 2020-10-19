@@ -10,6 +10,7 @@ import static com.eva.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static com.eva.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static com.eva.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static com.eva.testutil.TypicalPersons.getTypicalApplicantDatabase;
 import static com.eva.testutil.TypicalPersons.getTypicalPersonDatabase;
 import static com.eva.testutil.TypicalPersons.getTypicalStaffDatabase;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -33,7 +34,8 @@ import com.eva.testutil.PersonBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
+            getTypicalApplicantDatabase(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -46,6 +48,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(
                 new EvaDatabase<>(model.getPersonDatabase()),
                 new EvaDatabase<>(model.getStaffDatabase()),
+                new EvaDatabase<>(model.getApplicantDatabase()),
                 new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
@@ -70,6 +73,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(
                 new EvaDatabase<>(model.getPersonDatabase()),
                 new EvaDatabase<>(model.getStaffDatabase()),
+                new EvaDatabase<>(model.getApplicantDatabase()),
                 new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
 
@@ -86,6 +90,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(
                 new EvaDatabase<>(model.getPersonDatabase()),
                 new EvaDatabase<>(model.getStaffDatabase()),
+                new EvaDatabase<>(model.getApplicantDatabase()),
                 new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -105,6 +110,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(
                 new EvaDatabase<>(model.getPersonDatabase()),
                 new EvaDatabase<>(model.getStaffDatabase()),
+                new EvaDatabase<>(model.getApplicantDatabase()),
                 new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 

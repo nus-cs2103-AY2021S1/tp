@@ -20,6 +20,8 @@ import java.util.stream.Collectors;
 
 import com.eva.model.EvaDatabase;
 import com.eva.model.person.Person;
+import com.eva.model.person.applicant.Applicant;
+import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 
@@ -35,7 +37,8 @@ public class TypicalPersons {
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends")
+            .withComments("title 1|2010-10-10|hi").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
@@ -86,6 +89,17 @@ public class TypicalPersons {
         return ab;
     }
 
+    /**
+     * Returns an {@code EvaDatabase} with all the typical applicants.
+     */
+    public static EvaDatabase<Applicant> getTypicalApplicantDatabase() {
+        EvaDatabase<Applicant> ab = new EvaDatabase<>();
+        for (Applicant applicant : getTypicalApplicants()) {
+            ab.addPerson(applicant);
+        }
+        return ab;
+    }
+
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
@@ -95,6 +109,13 @@ public class TypicalPersons {
         Set<Leave> leaves = new HashSet<>();
         return getTypicalPersons().stream()
                 .map(person -> new Staff(person, leaves))
+                .collect(Collectors.toList());
+    }
+
+    public static List<Applicant> getTypicalApplicants() {
+        ApplicationStatus status = new ApplicationStatus("received");
+        return getTypicalPersons().stream()
+                .map(person -> new Applicant(person, null, status))
                 .collect(Collectors.toList());
     }
 }

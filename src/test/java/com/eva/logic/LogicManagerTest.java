@@ -45,7 +45,8 @@ public class LogicManagerTest {
     public void setUp() {
         JsonEvaStorage addressBookStorage =
                 new JsonEvaStorage(temporaryFolder.resolve("personDatabase.json"),
-                        temporaryFolder.resolve("staffDatabase.json"));
+                        temporaryFolder.resolve("staffDatabase.json"),
+                        temporaryFolder.resolve("applicantDatabase.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -130,7 +131,8 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getPersonDatabase(), model.getStaffDatabase(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPersonDatabase(), model.getStaffDatabase(),
+                model.getApplicantDatabase(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -152,7 +154,7 @@ public class LogicManagerTest {
      */
     private static class JsonEvaIoExceptionThrowingStub extends JsonEvaStorage {
         private JsonEvaIoExceptionThrowingStub(Path filePath) {
-            super(filePath, filePath);
+            super(filePath, filePath, filePath);
         }
 
         @Override

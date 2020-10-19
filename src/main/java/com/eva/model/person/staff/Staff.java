@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.eva.model.comment.Comment;
 import com.eva.model.person.Address;
 import com.eva.model.person.Email;
 import com.eva.model.person.Name;
@@ -30,9 +31,10 @@ public class Staff extends Person {
      * @param email
      * @param address
      * @param tags
+     * @param comments
      */
-    public Staff(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        super(name, phone, email, address, tags);
+    public Staff(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Comment> comments) {
+        super(name, phone, email, address, tags, comments);
     }
 
     /**
@@ -44,15 +46,22 @@ public class Staff extends Person {
      * @param tags
      * @param leaves
      */
-    public Staff(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Leave> leaves) {
-        super(name, phone, email, address, tags);
+
+    public Staff(Name name, Phone phone, Email email, Address address,
+                 Set<Tag> tags, Set<Leave> leaves, Set<Comment> comments) {
+        super(name, phone, email, address, tags, comments);
         requireNonNull(leaves);
         this.leaves.addAll(leaves);
     }
 
-
+    /**
+     * Creates a Staff object from a Person Object.
+     * @param person
+     * @param leaves
+     */
     public Staff(Person person, Set<Leave> leaves) {
-        this(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(), person.getTags(), leaves);
+        this(person.getName(), person.getPhone(), person.getEmail(),
+                person.getAddress(), person.getTags(), leaves, person.getComments());
     }
 
     public Set<Leave> getLeaves() {
@@ -62,4 +71,5 @@ public class Staff extends Person {
     public LeaveBalance getLeaveBalance() {
         return leaveBalance;
     }
+
 }

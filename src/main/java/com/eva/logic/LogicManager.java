@@ -58,9 +58,15 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyEvaDatabase getEvaDatabase() {
+    public ReadOnlyEvaDatabase<Person> getEvaDatabase() {
         return model.getPersonDatabase();
     }
+
+    @Override
+    public ReadOnlyEvaDatabase<Staff> getStaffDataBase() {
+        return model.getStaffDatabase();
+    }
+
 
     @Override
     public ObservableList<Person> getFilteredPersonList() {
@@ -74,7 +80,12 @@ public class LogicManager implements Logic {
 
     @Override
     public Path getEvaDatabaseFilePath() {
-        return model.getEvaDatabaseFilePath();
+        return model.getPersonDatabaseFilePath();
+    }
+
+    @Override
+    public Path getStaffDatabaseFilePath() {
+        return model.getStaffDatabaseFilePath();
     }
 
     @Override
