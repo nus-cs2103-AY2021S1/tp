@@ -1,6 +1,7 @@
 package seedu.fma.testutil;
 
 import static seedu.fma.model.util.SampleDataUtil.getSampleExercises;
+import static seedu.fma.testutil.TypicalExercises.getTypicalExercises;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -61,6 +62,9 @@ public class TypicalLogs {
      */
     public static LogBook getTypicalLogBook() {
         LogBook ab = new LogBook();
+        for (Exercise exercise : getTypicalExercises()) {
+            ab.addExercise(exercise);
+        }
         for (Log log : getTypicalLogs()) {
             ab.addLog(log);
         }

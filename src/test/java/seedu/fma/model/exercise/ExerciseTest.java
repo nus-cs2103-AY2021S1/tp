@@ -1,13 +1,11 @@
 package seedu.fma.model.exercise;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_JUMPING_JACKS;
-import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_SIT_UP;
 import static seedu.fma.testutil.Assert.assertThrows;
-import static seedu.fma.testutil.TypicalExercises.JUMPING_JACK;
-import static seedu.fma.testutil.TypicalExercises.SIT_UP;
+import static seedu.fma.testutil.TypicalExercises.EXERCISE_A;
+import static seedu.fma.testutil.TypicalExercises.EXERCISE_C;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,47 +31,33 @@ public class ExerciseTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Exercise exerciseCopy = new ExerciseBuilder(SIT_UP).build();
-        assertTrue(SIT_UP.equals(exerciseCopy));
+        Exercise exerciseCopy = new ExerciseBuilder(EXERCISE_A).build();
+        assertEquals(exerciseCopy, EXERCISE_A);
 
         // same object -> returns true
-        assertTrue(exerciseCopy.equals(exerciseCopy));
+        assertEquals(exerciseCopy, exerciseCopy);
 
         // different object -> returns false
-        assertFalse(SIT_UP.equals(new ExerciseNotFoundException()));
+        assertNotEquals(new ExerciseNotFoundException(), EXERCISE_A);
 
         // null -> returns false
-        assertFalse(SIT_UP.equals(null));
+        assertNotEquals(EXERCISE_A, null);
 
         // different exercise -> returns false
-        assertFalse(SIT_UP.equals(JUMPING_JACK));
+        assertNotEquals(EXERCISE_C, EXERCISE_A);
 
         // different name -> returns false
-        Exercise editedSitUp = new ExerciseBuilder(SIT_UP).withName(VALID_EXERCISE_JUMPING_JACKS).build();
-        assertFalse(SIT_UP.equals(editedSitUp));
-    }
-
-    @Test
-    public void find_validSearchString_returnTrue() {
-        // existing values -> returns true
-        assertTrue(new Exercise(new Name(VALID_EXERCISE_SIT_UP), 15)
-                .equals(Exercise.find(new Name(VALID_EXERCISE_SIT_UP))));
-    }
-
-    @Test
-    public void find_invalidSearchString_throwsExerciseNotFoundException() {
-        String invalidSearchString = "non existent exercise";
-        // non existing values -> returns ExerciseNotFound exception
-        assertThrows(ExerciseNotFoundException.class, () -> Exercise.find(new Name(invalidSearchString)));
+        Exercise editedSitUp = new ExerciseBuilder(EXERCISE_A).withName(VALID_EXERCISE_JUMPING_JACKS).build();
+        assertNotEquals(editedSitUp, EXERCISE_A);
     }
 
     @Test
     void testHashCode() {
-        assertTrue(SIT_UP.hashCode() == SIT_UP.hashCode());
+        assertEquals(EXERCISE_A.hashCode(), EXERCISE_A.hashCode());
     }
 
     @Test
     void testToString() {
-        assertEquals("Sit ups CaloriesPerRep: 20", SIT_UP.toString());
+        assertEquals("Flying kicks CaloriesPerRep: 15", EXERCISE_A.toString());
     }
 }

@@ -20,5 +20,24 @@
     "dateTime" : "2020-04-04T04:04:00",
     "rep" : "56",
     "comment" : "typical"
+  } ],
+  "exercises" : [ {
+    "name" : "Flying kicks",
+    "caloriesPerRep" : 15
+  }, {
+    "name" : "Sit ups",
+    "caloriesPerRep" : 30
+  }, {
+    "name" : "Pull ups",
+    "caloriesPerRep" : 20
+  }, {
+    "name" : "Jumping jacks",
+    "caloriesPerRep" : 15
+  }, {
+    "name" : "Run 100m",
+    "caloriesPerRep" : 30
+  }, {
+    "name" : "Stretch",
+    "caloriesPerRep" : 20
   } ]
 }

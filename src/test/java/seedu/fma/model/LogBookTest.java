@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.fma.model.exercise.Exercise;
 import seedu.fma.model.log.Log;
 import seedu.fma.model.log.exceptions.DuplicateLogException;
 import seedu.fma.testutil.LogBuilder;
@@ -95,6 +96,7 @@ public class LogBookTest {
      */
     private static class LogBookStub implements ReadOnlyLogBook {
         private final ObservableList<Log> logs = FXCollections.observableArrayList();
+        private final ObservableList<Exercise> exercises = FXCollections.observableArrayList();
 
         LogBookStub(Collection<Log> logs) {
             this.logs.setAll(logs);
@@ -103,6 +105,11 @@ public class LogBookTest {
         @Override
         public ObservableList<Log> getLogList() {
             return logs;
+        }
+
+        @Override
+        public ObservableList<Exercise> getExerciseList() {
+            return exercises;
         }
     }
 }
