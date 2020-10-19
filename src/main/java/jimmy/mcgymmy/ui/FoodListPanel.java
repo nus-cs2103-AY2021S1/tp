@@ -43,7 +43,7 @@ public class FoodListPanel extends UiPart<Region> {
     }
 
     private void updateCurrentCalories() {
-        //Calculate the current calories when the list is added.
+        //Calculate the current calories when the list is changed.
         currentCalories = foodListView.getItems()
                 .stream()
                 .map(Food::getCalories)
