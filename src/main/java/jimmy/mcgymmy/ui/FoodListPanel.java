@@ -32,15 +32,22 @@ public class FoodListPanel extends UiPart<Region> {
         //Add listener to update the current calories whenever there is a change.
         foodList.addListener((ListChangeListener<Food>) c -> {
             if (c.next()) {
-                currentCalories =
-                        c.getList().stream().map(Food::getCalories).reduce(Integer::sum).orElseGet(() -> 0);
+                updateCurrentCalories();
             }
         });
-
-        //Calculate the current calories when the list is added.
-        currentCalories = foodList.stream().map(Food::getCalories).reduce(Integer::sum).orElseGet(() -> 0);
         foodListView.setItems(foodList);
         foodListView.setCellFactory(listView -> new FoodListViewCell());
+
+        //Update calories at the start
+        updateCurrentCalories();
+    }
+
+    private void updateCurrentCalories() {
+        //Calculate the current calories when the list is added.
+        currentCalories = foodListView.getItems()
+                .stream()
+                .map(Food::getCalories)
+                .reduce(Integer::sum).orElseGet(() -> 0);
     }
 
     /**
