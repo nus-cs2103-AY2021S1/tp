@@ -2,7 +2,6 @@ package quickcache.model.flashcard;
 
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static quickcache.logic.commands.CommandTestUtil.VALID_ANSWER_TWO;
 import static quickcache.logic.commands.CommandTestUtil.VALID_QUESTION_TWO;
@@ -14,25 +13,6 @@ import org.junit.jupiter.api.Test;
 import quickcache.testutil.FlashcardBuilder;
 
 class FlashcardTest {
-
-    @Test
-    public void constructor_negativeTimesTested_throwsIllegalArgumentException() {
-        // negative times tested
-        assertThrows(IllegalArgumentException.class, () -> new FlashcardBuilder(RANDOM1)
-            .withStatistics(new Statistics(-1, 0)).build());
-
-        // negative times tested correct
-        assertThrows(
-            IllegalArgumentException.class, () -> new FlashcardBuilder(RANDOM1)
-                .withStatistics(new Statistics(0, -1)).build());
-    }
-
-    @Test
-    public void constructor_timesTestedLessThanTimesTestedCorrect_throwsIllegalArgumentException() {
-        assertThrows(
-            IllegalArgumentException.class, () -> new FlashcardBuilder(RANDOM1)
-                .withStatistics(new Statistics(0, 1)).build());
-    }
 
     @Test
     public void isSameFlashcard() {
@@ -66,7 +46,7 @@ class FlashcardTest {
         // different type -> returns false
         assertFalse(RANDOM1.equals(5));
 
-        // different person -> returns false
+        // different flashcard -> returns false
         assertFalse(RANDOM1.equals(RANDOM2));
 
         // different answer -> returns false

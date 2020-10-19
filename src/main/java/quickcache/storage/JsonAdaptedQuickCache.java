@@ -110,7 +110,6 @@ class JsonAdaptedQuickCache {
                 throw new IllegalValueException(
                         String.format(MISSING_FIELD_MESSAGE_FORMAT, Choice.class.getSimpleName()));
             }
-            final Question modelQuestion = new MultipleChoiceQuestion(question, choices);
 
             if (answer == null) {
                 throw new IllegalValueException(
@@ -121,6 +120,10 @@ class JsonAdaptedQuickCache {
             }
             final Answer modelAnswer = new Answer(answer);
 
+            final Question modelQuestion = new MultipleChoiceQuestion(question, choices, modelAnswer);
+
+
+
             if (statistics == null) {
                 throw new IllegalValueException(
                         String.format(MISSING_FIELD_MESSAGE_FORMAT, Integer.class.getSimpleName()));
@@ -130,7 +133,7 @@ class JsonAdaptedQuickCache {
 
             final Set<Tag> modelTags = new HashSet<>(flashcardTags);
 
-            return new Flashcard(modelQuestion, modelAnswer, modelTags, modelStatistics);
+            return new Flashcard(modelQuestion, modelTags, modelStatistics);
 
         } else if (type.equals(OpenEndedQuestion.TYPE)) {
 
@@ -141,9 +144,6 @@ class JsonAdaptedQuickCache {
             if (!OpenEndedQuestion.isValidQuestion(question)) {
                 throw new IllegalValueException(Answer.MESSAGE_CONSTRAINTS);
             }
-
-            final Question modelQuestion = new OpenEndedQuestion(question);
-
             if (answer == null) {
                 throw new IllegalValueException(
                         String.format(MISSING_FIELD_MESSAGE_FORMAT, Answer.class.getSimpleName()));
@@ -152,6 +152,10 @@ class JsonAdaptedQuickCache {
                 throw new IllegalValueException(Answer.MESSAGE_CONSTRAINTS);
             }
             final Answer modelAnswer = new Answer(answer);
+
+            final Question modelQuestion = new OpenEndedQuestion(question, modelAnswer);
+
+
 
             if (statistics == null) {
                 throw new IllegalValueException(
@@ -162,7 +166,7 @@ class JsonAdaptedQuickCache {
 
             final Set<Tag> modelTags = new HashSet<>(flashcardTags);
 
-            return new Flashcard(modelQuestion, modelAnswer, modelTags, modelStatistics);
+            return new Flashcard(modelQuestion, modelTags, modelStatistics);
 
         } else {
             throw new IllegalValueException(String.format(INVALID_TYPE));

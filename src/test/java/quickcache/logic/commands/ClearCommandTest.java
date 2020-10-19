@@ -11,7 +11,7 @@ import quickcache.testutil.TypicalFlashcards;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyQuickCache_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -19,7 +19,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyQuickCache_success() {
         Model model = new ModelManager(TypicalFlashcards.getTypicalQuickCache(), new UserPrefs());
         Model expectedModel = new ModelManager(TypicalFlashcards.getTypicalQuickCache(), new UserPrefs());
         expectedModel.setQuickCache(new QuickCache());
