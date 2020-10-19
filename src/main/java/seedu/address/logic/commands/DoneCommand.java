@@ -44,7 +44,7 @@ public class DoneCommand extends Command {
         checkDuplicateIndex();
         for (int i = 0; i < targetIndexes.length; i++) {
             if (targetIndexes[i].getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+                throw new CommandException(Messages.MESSAGE_INVALID_TASKS_DISPLAYED_INDEX);
             }
             tasksToMarkAsDone[i] = lastShownList.get(targetIndexes[i].getZeroBased());
         }
