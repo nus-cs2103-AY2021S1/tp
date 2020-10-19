@@ -140,20 +140,22 @@ Examples:
 
 #### Locating patients by name: `find`
 
-Finds patients whose names contain any of the given keywords.
+Finds patients whose names or IC number contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* You can search for the patient's name or IC number. 
+* Patient will be matched even if the keyword matches the search parameters only partially e.g. `Han` will match `Hans`, `9123456` will match `s9123456z`.
 * Patients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
 * `find John` returns `john` and `John Doe`
+* `find ben` returns `benjamin`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find 9123456` returns the patient with IC number `s9123456z`
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 #### Deleting a patient: `delete`
