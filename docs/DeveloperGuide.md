@@ -266,11 +266,122 @@ Aspect: Image type
 
 _{more aspects and alternatives to be added}_
 
-### 3.3 \[Proposed\] Data archiving
+### 3.3 View Command History feature
 
-_{Explain here how the data archiving feature will be implemented}_
+#### 3.3.1 Implementation
+This feature allows users to view history of recently used commands. 
 
+All entered user inputs (including those in format format or fails to execute) will be stored into a Stack data structure named `commandHistory` 
+due to its Last In First Out (LIFO) property which allows the most recently used command to display first.
 
+The mechanism utilises the `CommandHistory#getCommandHistory()` to retrieve a list of past used commands from `commandHistory`.
+
+This feature comprise of the `HistoryCommand` and `CommandHistory` classes. Given below is an example usage scenario and how the mechanism behaves at each step.
+
+![HistorySequenceDiagram](images/HistorySequenceDiagram.png)
+
+Step 1. User inputs "history" to execute the history command.
+
+Step 2. After successful parsing of user input, the `HistoryCommand#execute(Model model)` method is called.
+
+Step 3. The `CommandHistory#getCommandHistory()` is then called which will return a list of past used commands arranged in the ascending order of time last used.
+
+Step 4. As a result of successful retrieval of the command history, a `CommandResult` object is instantiated and returned to `LogicManager`.
+
+#### 3.3.2 Design Considerations
+Aspect: What data structure to store commands
+* Use of stack ADT
+   * Pros:
+       * Most recently used command will show up at the top of the list. Also known as Last In First Out (LIFO) method.
+   * Cons:
+       * Data stored in stack is not persistent.
+
+Aspect: How commands is stored
+* Alternative 1 (current choice): Store all entered commands
+   * Pros: 
+       * Easy to implement.
+       * User can check what went wrong with the previous command.
+   * Cons:
+       * Will need more memory to store both valid and invalid commands.
+       
+* Alternative 2: Store only commands that are successfully executed
+   * Pros: 
+       * User do not need to view invalid commands.
+   * Cons:
+       * User cannot check what went wrong with the previous command.
+       
+### 3.4 Clear Command History feature
+
+#### 3.4.1 Implementation
+This feature allows users to clear history of recently used commands. 
+
+The mechanism utilises the `CommandHistory#clearHistory` to clear all stored commands from `commandHistory`.
+
+This feature comprise of the `ClearHistoryCommand` and `CommandHistory` classes. Given below is an example usage scenario and how the mechanism behaves at each step.
+
+![ClearHistorySequenceDiagram](images/ClearHistorySequenceDiagram.png)
+
+Step 1. User inputs "clearhistory" to execute the clear history command.
+
+Step 2. After successful parsing of user input, the `ClearHistoryCommand#execute(Model model)` method is called.
+
+Step 3. The `CommandHistory#clearHistory` is then called which will clear all commands stored in `commandHistory`.
+
+#### 3.4.2 Design Considerations
+Aspect: How do we clear command history
+* Use of stack ADT
+    * Pros: 
+        * Easy to implement clear function.
+    * Con:
+        * Command history is not persistent so recently used commands is only kept during the same usage.
+
+### 3.5 Up Down Arrow Keys feature
+
+#### 3.5.1 Implementation
+This feature allows users to navigate and reuse past commands using up and down arrow keys.
+
+The mechanism utilises the `CommandHistory#peekNext()` and `CommandHistory#peekPrev()`. Given below is an example usage scenario and how the up/down arrow key mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `CommandHistory` will be initialised with the initial state, and the currentStatePointer pointing to that single state.
+
+![UpDownArrowKeyState0](images/UpDownArrowKeyState0.png)
+
+Step 2. The user executes `delete 5` command to delete the 5th patient in the patient data list. 
+The Logic Manager calls `CommandHistory#addUsedCommand()` to add a new command to the stack named `commandHistory`.
+
+![UpDownArrowKeyState1](images/UpDownArrowKeyState1.png)
+
+Step 3. The user now decides to reuse `delete 5` in the command history and press the up arrow key (↑). 
+The actionListener of the TextField will detect the up arrow key being pressed and calls `CommandHistory#peekNext()`.
+This will shift the currentStatePointer to the right, pointing to the `delete 5` command and returns it.
+
+![UpDownArrowKeyState2](images/UpDownArrowKeyState2.png)
+
+Step 4. The user now decides not to reuse `delete 5` and go back to the previous command before `delete 5`, i.e. empty. 
+The user will now press the down arrow key (↓) and the actionListener of the TextField will detect the down arrow key being pressed and calls `CommandHistory#peekPrev()`.
+This will shift the currentStatePointer to the left, pointing to the initial state that is empty and returns it.
+
+![UpDownArrowKeyState3](images/UpDownArrowKeyState3.png)
+
+The following sequence diagram shows how the up down arrow key mechanism works:
+
+![UpDownArrowKeySequenceDiagram](images/UpDownArrowKeySequenceDiagram.png)
+
+#### 3.5.2 Design Considerations
+Aspect: How commands are stored
+* Alternative 1 (current choice): Peek through all entered commands (including those in wrong format or fails to execute)
+    * Pros:
+        * Users can edit invalid commands.
+        * Users can reuse the same command without typing it all out again.
+    * Cons:
+        * Only works if the past commands are previously used during the same usage session.
+ * Alternative 2: Peek through commands that can be successfully executed
+    * Pros:
+        * All past commands reused are valid and can be reused safely.
+        * Users require less time to peek through all commands stored in commandHistory as it does not include invalid commands.
+    * Cons:
+        * Users cannot edit invalid commands and will need to spend more time to retype the valid command.
+        
 --------------------------------------------------------------------------------------------------------------------
 
 ## **4. Documentation**
@@ -430,7 +541,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
      
          Use case resumes at step 1.
 
-*{More to be added}*
+### Use case: UC08 - View command history
+
+**MSS**
+
+1. User requests to list command history.
+2. CliniCal shows a list of recently used commands from the command history.
+
+      Use case ends.
+
+**Extensions**
+
+* 2a. The command history is empty.
+
+  Use case ends.
+      
+### Use case: UC09 - Clear command history
+
+**MSS**
+
+1. User requests to clear command history.
+2. CliniCal shows a message that the command history is cleared.
+
+      Use case ends.
 
 ## **Appendix D: Non-Functional Requirements**
 
