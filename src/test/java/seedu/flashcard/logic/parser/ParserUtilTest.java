@@ -12,6 +12,7 @@ import seedu.flashcard.model.flashcard.Answer;
 import seedu.flashcard.model.flashcard.Category;
 import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
+import seedu.flashcard.model.flashcard.Rating;
 
 public class ParserUtilTest {
     private static final String INVALID_QUESTION = " ";
@@ -22,6 +23,7 @@ public class ParserUtilTest {
     private static final String VALID_ANSWER = "Software development life cycle";
     private static final String VALID_CATEGORY = "SDLC";
     private static final String VALID_NOTE = "Note";
+    private static final String VALID_RATING = "2";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -120,16 +122,35 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseNote_validValueWithoutWhitespace_returnsCategory() throws Exception {
+    public void parseNote_validValueWithoutWhitespace_returnsNote() throws Exception {
         Note expectedNote = new Note(VALID_NOTE);
         assertEquals(expectedNote, ParserUtil.parseNote(VALID_NOTE));
     }
 
 
     @Test
-    public void parseNote_validValueWithWhitespace_returnsTrimmedCategory() throws Exception {
+    public void parseNote_validValueWithWhitespace_returnsTrimmedNote() throws Exception {
         String noteWithWhitespace = WHITESPACE + VALID_NOTE + WHITESPACE;
         Note expectedNote = new Note(VALID_NOTE);
         assertEquals(expectedNote, ParserUtil.parseNote(noteWithWhitespace));
+    }
+
+    @Test
+    public void parseRating_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRating((String) null));
+    }
+
+    @Test
+    public void parseRating_validValueWithoutWhitespace_returnsRating() throws Exception {
+        Rating expectedRating = new Rating(VALID_RATING);
+        assertEquals(expectedRating, ParserUtil.parseRating(VALID_RATING));
+    }
+
+
+    @Test
+    public void parseRating_validValueWithWhitespace_returnsTrimmedRating() throws Exception {
+        String ratingWithWhitespace = WHITESPACE + VALID_RATING + WHITESPACE;
+        Rating expectedRating = new Rating(VALID_RATING);
+        assertEquals(expectedRating, ParserUtil.parseRating(ratingWithWhitespace));
     }
 }

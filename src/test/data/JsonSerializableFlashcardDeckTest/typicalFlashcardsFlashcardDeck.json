@@ -4,16 +4,19 @@
     "question" : "What does SDLC stand for?",
     "answer" : "Software development life cycle",
     "category" : "SDLC",
-    "note": ""
+    "note": "",
+    "rating": "2"
   }, {
     "question" : "What is a revision control software?",
     "answer" : "It is the software tool that automate the process of Revision Control",
     "category" : "Revision history",
-    "note": ""
+    "note": "",
+    "rating": ""
   }, {
     "question" :"It is recommended that assertions to be used liberally in the code. True or False?",
     "answer" : "True",
     "category" : "General",
-    "note": ""
+    "note": "",
+    "rating": ""
   } ]
 }
