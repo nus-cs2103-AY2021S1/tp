@@ -1,15 +1,10 @@
 package seedu.address.model.deliverymodel;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_REDO_LIMIT_REACHED;
-import static seedu.address.commons.core.Messages.MESSAGE_UNDO_LIMIT_REACHED;
-import static seedu.address.model.Model.MODEL_DEFAULT_STATES_LIMIT;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.logic.commands.exceptions.UndoRedoLimitReachedException;
 import seedu.address.model.delivery.Delivery;
 import seedu.address.model.delivery.UniqueDeliveryList;
 

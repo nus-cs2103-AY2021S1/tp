@@ -1,6 +1,13 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.address.testutil.TypicalDeliveries.getTypicalDeliveryBook;
+import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.exceptions.UndoRedoLimitReachedException;
 import seedu.address.model.Models;
 import seedu.address.model.ModelsManager;
@@ -13,10 +20,6 @@ import seedu.address.model.inventorymodel.InventoryModelManager;
 import seedu.address.model.item.Item;
 import seedu.address.testutil.DeliveryBuilder;
 import seedu.address.testutil.ItemBuilder;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.TypicalDeliveries.getTypicalDeliveryBook;
-import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
 
 class UndoRedoAndModelsIntegrationTest {
 

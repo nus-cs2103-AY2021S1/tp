@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.commons.core.Messages.*;
+import static seedu.address.commons.core.Messages.MESSAGE_EARLY_TEST_FAILURE;
+import static seedu.address.commons.core.Messages.MESSAGE_REDO_LIMIT_REACHED;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.RedoCommand.MESSAGE_REDO_ACKNOWLEDGEMENT;
 import static seedu.address.testutil.TypicalDeliveries.getTypicalDeliveryBook;

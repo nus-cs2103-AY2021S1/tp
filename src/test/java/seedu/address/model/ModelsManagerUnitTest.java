@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalDeliveries.getTypicalDeliveryBook;
 import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.deliverymodel.DeliveryModelManager;
 import seedu.address.model.inventorymodel.InventoryModel;
@@ -15,7 +16,7 @@ import seedu.address.model.inventorymodel.InventoryModelManager;
 class ModelsManagerUnitTest {
 
     @Test
-    void setStatesLimit_statesLimitIs0_IndexOutOfBoundException() {
+    void setStatesLimit_statesLimitIs0_assertionError() {
         Models models = new ModelsManager(makeTestInventoryModel(), makeTestDeliveryModel());
         assertThrows(AssertionError.class, () -> {
             models.setStatesLimit(0);
