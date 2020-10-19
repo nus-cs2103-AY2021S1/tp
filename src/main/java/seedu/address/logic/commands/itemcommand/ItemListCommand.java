@@ -3,10 +3,8 @@ package seedu.address.logic.commands.itemcommand;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.inventorymodel.InventoryModel.PREDICATE_SHOW_ALL_ITEMS;
 
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
-import seedu.address.model.Model;
-import seedu.address.model.inventorymodel.InventoryModel;
+import seedu.address.model.Models;
 
 /**
  * Lists all items in the inventory book to the user.
@@ -19,11 +17,11 @@ public class ItemListCommand extends ItemCommand {
 
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        requireInventoryModel(model);
-        InventoryModel inventoryModel = (InventoryModel) model;
-        inventoryModel.updateItemListFilter(PREDICATE_SHOW_ALL_ITEMS);
+    public CommandResult execute(Models models) {
+        requireNonNull(models);
+        requireNonNull(models.getInventoryModel());
+
+        models.getInventoryModel().updateItemListFilter(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

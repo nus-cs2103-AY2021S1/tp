@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.exceptions.UndoRedoLimitReachedException;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.item.Item;
@@ -66,6 +67,11 @@ public class InventoryModelManager implements InventoryModel {
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         userPrefs.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public void setStatesLimit(int limit) {
+        inventoryBook.setStatesLimit(limit);
     }
 
     @Override
@@ -137,6 +143,23 @@ public class InventoryModelManager implements InventoryModel {
     public void updateItemListFilter(Predicate<Item> predicate) {
         requireNonNull(predicate);
         filteredItems.setPredicate(predicate);
+    }
+
+    //=========== Redo/Undo ===============================================================================
+
+    @Override
+    public void commit() {
+        inventoryBook.commit();
+    }
+
+    @Override
+    public void undo() throws UndoRedoLimitReachedException {
+        inventoryBook.undo();
+    }
+
+    @Override
+    public void redo() throws UndoRedoLimitReachedException {
+        inventoryBook.redo();
     }
 
     @Override

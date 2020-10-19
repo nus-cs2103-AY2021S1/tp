@@ -11,7 +11,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
-import seedu.address.model.Model;
+import seedu.address.model.Models;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Metric;
@@ -54,11 +54,10 @@ public class ItemRemoveCommand extends ItemCommand {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        requireInventoryModel(model);
-        InventoryModel inventoryModel = (InventoryModel) model;
-
+    public CommandResult execute(Models models) throws CommandException {
+        requireNonNull(models);
+        requireNonNull(models.getInventoryModel());
+        InventoryModel inventoryModel = models.getInventoryModel();
         List<Item> lastShownList = inventoryModel.getFilteredAndSortedItemList();
 
         if (index.getZeroBased() >= lastShownList.size() || index.getZeroBased() < 0) {
@@ -79,6 +78,7 @@ public class ItemRemoveCommand extends ItemCommand {
 
         inventoryModel.setItem(itemToEdit, editedItem);
         inventoryModel.updateItemListFilter(PREDICATE_SHOW_ALL_ITEMS);
+        models.commit();
         return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem));
     }
 

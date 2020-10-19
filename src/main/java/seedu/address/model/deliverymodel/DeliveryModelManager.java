@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.exceptions.UndoRedoLimitReachedException;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.delivery.Delivery;
@@ -61,6 +62,11 @@ public class DeliveryModelManager implements DeliveryModel {
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         userPrefs.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public void setStatesLimit(int limit) {
+        deliveryBook.setStatesLimit(limit);
     }
 
     @Override
@@ -125,6 +131,24 @@ public class DeliveryModelManager implements DeliveryModel {
         requireNonNull(predicate);
         filteredDeliveries.setPredicate(predicate);
     }
+
+    //=========== Redo/Undo ===============================================================================
+
+    @Override
+    public void commit() {
+        deliveryBook.commit();
+    }
+
+    @Override
+    public void undo() throws UndoRedoLimitReachedException {
+        deliveryBook.undo();
+    }
+
+    @Override
+    public void redo() throws UndoRedoLimitReachedException {
+        deliveryBook.redo();
+    }
+
 
     @Override
     public boolean equals(Object obj) {
