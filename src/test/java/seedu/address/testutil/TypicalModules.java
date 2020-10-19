@@ -18,21 +18,21 @@ import seedu.address.model.module.Module;
 public class TypicalModules {
 
     public static final Module CS2030 = new ModuleBuilder().withName("CS2030")
-        .withZoomLink("www.nus-sg.zoom.us/advguigaivu").build();
+        .withZoomLink("https://nus-sg.zoom.us/advguigaivu").build();
     public static final Module CS2101 = new ModuleBuilder().withName("CS2101")
-        .withZoomLink("www.nus-sg.zoom.us/avhiavha").build();
+        .withZoomLink("https://nus-sg.zoom.us/avhiavha").build();
     public static final Module CS2105 = new ModuleBuilder().withName("CS2105")
-        .withZoomLink("www.zoom.us").build();
+        .withZoomLink("https://nus-sg.zoom.us/j/abvua").build();
     public static final Module CS1101S = new ModuleBuilder().withName("CS1101S")
-        .withZoomLink("www.zoom.us").build();
+        .withZoomLink("https://nus-sg.zoom.us/j/aadvhuadva").build();
     public static final Module IS1103 = new ModuleBuilder().withName("IS1103")
-        .withZoomLink("www.zoom.us").build();
+        .withZoomLink("https://nus-sg.zoom.us/j/abvuaasvu").build();
 
     // Manually added
     public static final Module CS1231S = new ModuleBuilder().withName("CS1231S")
-        .withZoomLink("www.zoom.us").build();
+        .withZoomLink("https://nus-sg.zoom.us/j/abvavkasua").build();
     public static final Module MA1101R = new ModuleBuilder().withName("MA1101R")
-        .withZoomLink("www.zoom.us").build();
+        .withZoomLink("https://nus-sg.zoom.us/j/abvuaavuhauv").build();
 
     // Manually added - Modules's details found in {@code CommandTestUtil}
     public static final Module CS2103 = new ModuleBuilder().withName(VALID_MODULENAME_CS2103T)

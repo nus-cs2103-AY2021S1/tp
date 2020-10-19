@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 // import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2030;
-import static seedu.address.testutil.TypicalModules.CS2101;
+// import static seedu.address.testutil.TypicalModules.CS2101;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.testutil.ModuleListBuilder;
+// import seedu.address.testutil.ModuleListBuilder;
 
 public class ModelManagerTest {
 
@@ -94,7 +94,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        ModuleList moduleList = new ModuleListBuilder().withModule(CS2030).withModule(CS2101).build();
+        // ModuleList moduleList = new ModuleListBuilder().withModule(CS2030).withModule(CS2101).build();
         ModuleList differentModuleList = new ModuleList();
         UserPrefs userPrefs = new UserPrefs();
 

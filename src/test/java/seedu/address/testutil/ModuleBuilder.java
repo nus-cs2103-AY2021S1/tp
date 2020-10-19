@@ -10,7 +10,7 @@ import seedu.address.model.module.ZoomLink;
 public class ModuleBuilder {
 
     public static final String DEFAULT_MODULENAME = "CS2103T";
-    public static final String DEFAULT_ZOOMLINK = "www.zoom.us";
+    public static final String DEFAULT_ZOOMLINK = "https://nus-sg.zoom.us/abvuavhua";
 
     private ModuleName moduleName;
     private ZoomLink zoomLink;

@@ -27,15 +27,10 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-<<<<<<< HEAD
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_TELEGRAM_AMY = "@amytele";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-=======
-    public static final String VALID_TELEGRAM_AMY = "@amytele";
->>>>>>> branch-Contact-test
+
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TELEGRAM_AMY = "@amytele";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -52,7 +47,7 @@ public class CommandTestUtil {
     public static final String VALID_MODULENAME_ES2660 = "ES2660";
     public static final String VALID_ZOOMLINK_SAMPLE =
             "https://nus-sg.zoom.us/j/99432271156?pwd=SW4wRkcvYXVuVlpGSWl2b3NjaE1Sdz09";
-    public static final String VALID_ZOOMLINK_ES2660 = "www.es2660zoom.us";
+    public static final String VALID_ZOOMLINK_ES2660 = "https://nus-sg.zoom.us/asygfcyuas";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

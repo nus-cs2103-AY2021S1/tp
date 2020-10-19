@@ -11,7 +11,7 @@ public class ZoomLink {
 
     public static final String MESSAGE_CONSTRAINTS = "Zoom links should be of the format www.nus-sg.zoom.us/[path]";
     public static final String ZOOM_LINK_DOMAIN = "https://nus-sg.zoom.us/";
-    public static final String ZOOM_LINK_PATH = "[a-zA-Z0-0?=/]+";
+    public static final String ZOOM_LINK_PATH = "[a-zA-Z0-9?=/]+";
     public static final String VALIDATION_REGEX = ZOOM_LINK_DOMAIN + ZOOM_LINK_PATH;
 
     public final String value;

@@ -34,7 +34,7 @@ public class ZoomLinkTest {
 
         // valid name
         assertTrue(ZoomLink.isValidZoomLink(
-                "https://nus-sg.zoom.us/j/6396489185?pwd=a0NSY3ZhcFgzbkcrd0ptN1FZbnpRQT09"));
+                "https://nus-sg.zoom.us/j/63nakassdvb"));
 
     }
 }
