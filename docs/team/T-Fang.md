@@ -42,6 +42,7 @@ Given below are my contributions to the project.
         * Added more prefixes
         * Updated relevant parser
 * **Enhancements to existing features**: Add Deadline support to AddTaskCommand and task filter
+    (Pull Request [\#139](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/139))
     * What changes made: 
         * Allowed user to create tasks with deadlines(optional)
         * Fully supported filter tasks by deadline
