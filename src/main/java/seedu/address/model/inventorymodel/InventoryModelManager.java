@@ -7,14 +7,14 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.exceptions.UndoRedoLimitReachedException;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.delivery.Delivery;
 import seedu.address.model.item.Item;
 
 /**
@@ -26,7 +26,6 @@ public class InventoryModelManager implements InventoryModel {
     private final InventoryBook inventoryBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Item> filteredItems;
-    private final FilteredList<Delivery> filteredDeliveries;
 
     /**
      * Initializes a InventoryModelManager with the given inventoryBook and userPrefs.
@@ -40,8 +39,6 @@ public class InventoryModelManager implements InventoryModel {
         this.inventoryBook = new InventoryBook(inventoryBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredItems = new FilteredList<>(this.inventoryBook.getItemList());
-        // temporary for delivery
-        filteredDeliveries = new FilteredList<>(FXCollections.observableArrayList());
     }
 
     public InventoryModelManager() {
@@ -70,6 +67,11 @@ public class InventoryModelManager implements InventoryModel {
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         userPrefs.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public void setStatesLimit(int limit) {
+        inventoryBook.setStatesLimit(limit);
     }
 
     @Override
@@ -109,13 +111,13 @@ public class InventoryModelManager implements InventoryModel {
     @Override
     public void addItem(Item item) {
         inventoryBook.addItem(item);
-        updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
+        updateItemListFilter(PREDICATE_SHOW_ALL_ITEMS);
     }
 
     @Override
     public Item addOnExistingItem(Item item) {
         Item combinedItem = inventoryBook.addOnExistingItem(item);
-        updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
+        updateItemListFilter(PREDICATE_SHOW_ALL_ITEMS);
         return combinedItem;
     }
 
@@ -126,21 +128,38 @@ public class InventoryModelManager implements InventoryModel {
         inventoryBook.setItem(target, editedItem);
     }
 
-    //=========== Filtered Item List Accessors =============================================================
+    //=========== Item List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Item} backed by the internal list of
      * {@code versionedInventoryBook}
      */
     @Override
-    public ObservableList<Item> getFilteredItemList() {
-        return filteredItems;
+    public ObservableList<Item> getFilteredAndSortedItemList() {
+        return new SortedList<>(filteredItems, ITEM_COMPARATOR);
     }
 
     @Override
-    public void updateFilteredItemList(Predicate<Item> predicate) {
+    public void updateItemListFilter(Predicate<Item> predicate) {
         requireNonNull(predicate);
         filteredItems.setPredicate(predicate);
+    }
+
+    //=========== Redo/Undo ===============================================================================
+
+    @Override
+    public void commit() {
+        inventoryBook.commit();
+    }
+
+    @Override
+    public void undo() throws UndoRedoLimitReachedException {
+        inventoryBook.undo();
+    }
+
+    @Override
+    public void redo() throws UndoRedoLimitReachedException {
+        inventoryBook.redo();
     }
 
     @Override

@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.model.Models;
+import seedu.address.model.ModelsManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.InventoryModelManager;
@@ -19,10 +21,10 @@ import seedu.address.model.item.Item;
 import seedu.address.model.item.Quantity;
 import seedu.address.testutil.ItemBuilder;
 
-
 public class ItemRemoveCommandTest {
 
     private InventoryModel inventoryModel = new InventoryModelManager(getTypicalInventoryBook(), new UserPrefs());
+    private Models models = initialiseModels();
 
     @Test
     public void constructor_nullItem_throwsNullPointerException() {
@@ -34,14 +36,16 @@ public class ItemRemoveCommandTest {
 
     @Test
     public void execute_itemAcceptedByModel_removeSuccessful() throws CommandException {
-        Item afterRemoveItem = new ItemBuilder().withName("Chicken")
-                .withSupplier("Giant")
-                .withQuantity("2")
+        Item afterRemoveItem = new ItemBuilder().withName("Duck")
+                .withSupplier("Cold Storage")
+                .withQuantity("23")
                 .withTags("meat")
+                .withMaxQuantity("500")
                 .build();
         Quantity quantity = new ItemBuilder().withQuantity("10").build().getQuantity();
 
-        CommandResult commandResult = new ItemRemoveCommand(INDEX_FIRST_ITEM, quantity).execute(inventoryModel);
+        CommandResult commandResult = new ItemRemoveCommand(INDEX_FIRST_ITEM, quantity)
+                .execute(models);
 
         assertEquals(String.format(ItemRemoveCommand.MESSAGE_EDIT_ITEM_SUCCESS, afterRemoveItem),
                 commandResult.getFeedbackToUser());
@@ -61,6 +65,12 @@ public class ItemRemoveCommandTest {
         assertFalse(removeTwo.equals(removeThree));
 
         assertFalse(removeOne.equals(removeFour));
+    }
+
+    private Models initialiseModels() {
+        Models tempModels = new ModelsManager();
+        tempModels.setInventoryModel(inventoryModel);
+        return tempModels;
     }
 
 }

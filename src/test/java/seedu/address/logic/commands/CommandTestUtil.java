@@ -21,11 +21,15 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.itemcommand.ItemEditCommand;
 import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.model.Models;
+import seedu.address.model.ModelsManager;
 import seedu.address.model.delivery.Delivery;
 import seedu.address.model.deliverymodel.DeliveryBook;
 import seedu.address.model.deliverymodel.DeliveryModel;
+import seedu.address.model.deliverymodel.DeliveryModelManager;
 import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.model.inventorymodel.InventoryModel;
+import seedu.address.model.inventorymodel.InventoryModelManager;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.ItemContainsKeywordsPredicate;
 import seedu.address.testutil.EditItemDescriptorBuilder;
@@ -118,7 +122,8 @@ public class CommandTestUtil {
                                             CommandResult expectedCommandResult,
                                             InventoryModel expectedInventoryModel) {
         try {
-            CommandResult result = command.execute(actualInventoryModel);
+            Models models = new ModelsManager(actualInventoryModel, new DeliveryModelManager());
+            CommandResult result = command.execute(models);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedInventoryModel, actualInventoryModel);
         } catch (CommandException ce) {
@@ -135,7 +140,8 @@ public class CommandTestUtil {
                                             CommandResult expectedCommandResult,
                                             DeliveryModel expectedDeliveryModel) {
         try {
-            CommandResult result = command.execute(actualDeliveryModel);
+            Models models = new ModelsManager(new InventoryModelManager(), actualDeliveryModel);
+            CommandResult result = command.execute(models);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedDeliveryModel, actualDeliveryModel);
         } catch (CommandException ce) {
@@ -176,11 +182,12 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         InventoryBook expectedInventoryBook = new InventoryBook(actualInventoryModel.getInventoryBook());
-        List<Item> expectedFilteredList = new ArrayList<>(actualInventoryModel.getFilteredItemList());
+        List<Item> expectedFilteredList = new ArrayList<>(actualInventoryModel.getFilteredAndSortedItemList());
+        Models models = new ModelsManager(actualInventoryModel, new DeliveryModelManager());
 
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualInventoryModel));
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(models));
         assertEquals(expectedInventoryBook, actualInventoryModel.getInventoryBook());
-        assertEquals(expectedFilteredList, actualInventoryModel.getFilteredItemList());
+        assertEquals(expectedFilteredList, actualInventoryModel.getFilteredAndSortedItemList());
     }
 
     /**
@@ -195,25 +202,26 @@ public class CommandTestUtil {
         // only do so by copying its components.
         DeliveryBook expectedDeliveryBook = new DeliveryBook(actualDeliveryModel.getDeliveryBook());
         List<Delivery> expectedFilteredList = new ArrayList<>(actualDeliveryModel.getFilteredDeliveryList());
+        Models models = new ModelsManager(new InventoryModelManager(), actualDeliveryModel);
 
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualDeliveryModel));
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(models));
         assertEquals(expectedDeliveryBook, actualDeliveryModel.getDeliveryBook());
         assertEquals(expectedFilteredList, actualDeliveryModel.getFilteredDeliveryList());
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the item at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered and sorted list to show only the item at the given {@code targetIndex} in the
      * {@code model}'s inventory book.
      */
     public static void showItemAtIndex(InventoryModel inventoryModel, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < inventoryModel.getFilteredItemList().size());
+        assertTrue(targetIndex.getZeroBased() < inventoryModel.getFilteredAndSortedItemList().size());
 
-        Item item = inventoryModel.getFilteredItemList().get(targetIndex.getZeroBased());
+        Item item = inventoryModel.getFilteredAndSortedItemList().get(targetIndex.getZeroBased());
         final String[] splitName = item.getName().fullName.split("\\s+");
-        inventoryModel.updateFilteredItemList(
+        inventoryModel.updateItemListFilter(
                 new ItemContainsKeywordsPredicate(Arrays.asList(splitName[0]), PREFIX_NAME));
 
-        assertEquals(1, inventoryModel.getFilteredItemList().size());
+        assertEquals(1, inventoryModel.getFilteredAndSortedItemList().size());
     }
 
 }

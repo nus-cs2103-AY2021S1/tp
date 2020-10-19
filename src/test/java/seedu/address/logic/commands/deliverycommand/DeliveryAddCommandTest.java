@@ -17,11 +17,14 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.model.Models;
+import seedu.address.model.ModelsManager;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.delivery.Delivery;
 import seedu.address.model.deliverymodel.DeliveryBook;
 import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.deliverymodel.ReadOnlyDeliveryBook;
+import seedu.address.model.inventorymodel.InventoryModelManager;
 import seedu.address.testutil.DeliveryBuilder;
 
 public class DeliveryAddCommandTest {
@@ -35,9 +38,11 @@ public class DeliveryAddCommandTest {
     public void execute_deliveryAcceptedByModel_addSuccessful() throws CommandException {
         DeliveryAddCommandTest.DeliveryModelStubAcceptingDeliveriesAdded modelStub =
                 new DeliveryAddCommandTest.DeliveryModelStubAcceptingDeliveriesAdded();
+        Models models = new ModelsManager(new InventoryModelManager(), modelStub);
         Delivery validDelivery = new DeliveryBuilder().build();
 
-        CommandResult commandResult = new DeliveryAddCommand(validDelivery).execute(modelStub);
+
+        CommandResult commandResult = new DeliveryAddCommand(validDelivery).execute(models);
 
         assertEquals(String.format(DeliveryAddCommand.MESSAGE_SUCCESS, validDelivery),
                 commandResult.getFeedbackToUser());
@@ -89,6 +94,24 @@ public class DeliveryAddCommandTest {
 
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setStatesLimit(int limit) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commit() {
+            return;
+        }
+        @Override
+        public void undo() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void redo() {
             throw new AssertionError("This method should not be called.");
         }
 

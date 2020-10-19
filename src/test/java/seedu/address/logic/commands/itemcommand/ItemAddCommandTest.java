@@ -19,7 +19,10 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.model.Models;
+import seedu.address.model.ModelsManager;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.deliverymodel.DeliveryModelManager;
 import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
@@ -41,9 +44,10 @@ public class ItemAddCommandTest {
     @Test
     public void execute_itemAcceptedByModel_addSuccessful() throws CommandException {
         ItemModelStubAcceptingInventoryAdded modelStub = new ItemModelStubAcceptingInventoryAdded();
+        Models models = new ModelsManager(modelStub, new DeliveryModelManager());
         Item validItem = new ItemBuilder().build();
 
-        CommandResult commandResult = new ItemAddCommand(validItem).execute(modelStub);
+        CommandResult commandResult = new ItemAddCommand(validItem).execute(models);
 
         assertEquals(String.format(seedu.address.logic.commands.itemcommand.ItemAddCommand.MESSAGE_SUCCESS, validItem),
                 commandResult.getFeedbackToUser());
@@ -55,8 +59,9 @@ public class ItemAddCommandTest {
         Item currentItem = new ItemBuilder().withName("Chicken").withQuantity("2").build();
         Item finalItem = new ItemBuilder().withName("Chicken").withQuantity("4").build();
         InventoryModelStub modelStub = new ItemModelStubAcceptingDuplicatingInventory(currentItem);
+        Models models = new ModelsManager(modelStub, new DeliveryModelManager());
 
-        CommandResult commandResult = new ItemAddCommand(currentItem).execute(modelStub);
+        CommandResult commandResult = new ItemAddCommand(currentItem).execute(models);
 
         assertEquals(String.format(ItemAddCommand.MESSAGE_ITEM_ADDED_TO_INVENTORY, finalItem),
                 commandResult.getFeedbackToUser());
@@ -67,8 +72,9 @@ public class ItemAddCommandTest {
         Item currentItem = new ItemBuilder().withName("Chicken").withQuantity("2").withMaxQuantity("500").build();
         Item finalItem = new ItemBuilder().withName("Chicken").withQuantity("4").withMaxQuantity("5000").build();
         InventoryModelStub modelStub = new ItemModelStubRejectingDuplicatingMaxQuantityInventory(currentItem);
+        Models models = new ModelsManager(modelStub, new DeliveryModelManager());
 
-        assertThrows(CommandException.class, () -> new ItemAddCommand(finalItem).execute(modelStub));
+        assertThrows(CommandException.class, () -> new ItemAddCommand(finalItem).execute(models));
     }
 
     @Test
@@ -120,6 +126,11 @@ public class ItemAddCommandTest {
         }
 
         @Override
+        public void setStatesLimit(int limit) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Path getInventoryBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
@@ -165,14 +176,23 @@ public class ItemAddCommandTest {
         }
 
         @Override
-        public ObservableList<Item> getFilteredItemList() {
+        public ObservableList<Item> getFilteredAndSortedItemList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredItemList(Predicate<Item> predicate) {
+        public void updateItemListFilter(Predicate<Item> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void commit() { }
+
+        @Override
+        public void undo() { }
+
+        @Override
+        public void redo() { }
     }
 
     /**

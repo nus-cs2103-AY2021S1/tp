@@ -3,9 +3,8 @@ package seedu.address.logic.commands.itemcommand;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
-import seedu.address.model.Model;
+import seedu.address.model.Models;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.item.ItemContainsKeywordsPredicate;
 
@@ -30,14 +29,16 @@ public class ItemFindCommand extends ItemCommand {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        requireInventoryModel(model);
-        InventoryModel inventoryModel = (InventoryModel) model;
+    public CommandResult execute(Models models) {
+        requireNonNull(models);
+        requireNonNull(models.getInventoryModel());
 
-        inventoryModel.updateFilteredItemList(predicate);
+        InventoryModel inventoryModel = models.getInventoryModel();
+        inventoryModel.updateItemListFilter(predicate);
+
         return new CommandResult(
-                String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW, inventoryModel.getFilteredItemList().size()));
+                String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW,
+                        inventoryModel.getFilteredAndSortedItemList().size()));
     }
 
     @Override

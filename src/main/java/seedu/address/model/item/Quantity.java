@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Item's quantity in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidQuantity(String)}
  */
-public class Quantity {
+public class Quantity implements Comparable<Quantity> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity should only contain numbers, and it should be at least 1 digit long, \n"
@@ -66,6 +66,15 @@ public class Quantity {
         return new Quantity(Integer.toString(value));
     }
 
+    /**
+     * divides a Quantity's value from another quantity's value
+     * @param quantity another quantity
+     * @return double that represents the fraction after division
+     */
+    public double divideBy(Quantity quantity) {
+        return Double.parseDouble(this.value) / Double.parseDouble(quantity.value);
+    }
+
     @Override
     public String toString() {
         return value;
@@ -83,4 +92,8 @@ public class Quantity {
         return value.hashCode();
     }
 
+    @Override
+    public int compareTo(Quantity quantity) {
+        return Double.compare(Double.parseDouble(value), Double.parseDouble(quantity.value));
+    }
 }

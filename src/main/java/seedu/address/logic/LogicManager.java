@@ -9,11 +9,11 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.itemcommand.ItemCommand;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.OneShelfBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
+import seedu.address.model.Models;
+import seedu.address.model.ModelsManager;
 import seedu.address.model.delivery.Delivery;
 import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.deliverymodel.ReadOnlyDeliveryBook;
@@ -29,6 +29,7 @@ public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
+    private final Models models;
     private final InventoryModel inventoryModel;
     private final DeliveryModel deliveryModel;
     private final Storage storage;
@@ -38,8 +39,12 @@ public class LogicManager implements Logic {
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
     public LogicManager(InventoryModel inventoryModel, DeliveryModel deliveryModel, Storage storage) {
+        assert inventoryModel != null && deliveryModel != null;
+
         this.inventoryModel = inventoryModel;
         this.deliveryModel = deliveryModel;
+        models = new ModelsManager(inventoryModel, deliveryModel);
+        models.commit();
         this.storage = storage;
         oneShelfBookParser = new OneShelfBookParser();
     }
@@ -50,7 +55,7 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = oneShelfBookParser.parseCommand(commandText);
-        commandResult = command.execute(getAppropriateModel(command));
+        commandResult = command.execute(models);
 
         try {
             storage.saveInventoryBook(inventoryModel.getInventoryBook());
@@ -62,22 +67,14 @@ public class LogicManager implements Logic {
         return commandResult;
     }
 
-    private Model getAppropriateModel(Command command) {
-        if (command instanceof ItemCommand) {
-            return inventoryModel;
-        } else {
-            return deliveryModel;
-        }
-    }
-
     @Override
     public ReadOnlyInventoryBook getInventoryBook() {
         return inventoryModel.getInventoryBook();
     }
 
     @Override
-    public ObservableList<Item> getFilteredItemList() {
-        return inventoryModel.getFilteredItemList();
+    public ObservableList<Item> getFilteredAndSortedItemList() {
+        return inventoryModel.getFilteredAndSortedItemList();
     }
 
     @Override

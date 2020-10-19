@@ -70,7 +70,7 @@ public class MainApp extends Application {
         initLogging(config);
 
         inventoryModel = initInventoryModelManager(storage, userPrefs);
-        deliveryModel = initDeliveryManager(storage, userPrefs);
+        deliveryModel = initDeliveryModelManager(storage, userPrefs);
 
         logic = new LogicManager(inventoryModel, deliveryModel, storage);
 
@@ -108,7 +108,7 @@ public class MainApp extends Application {
      * The data from the sample delivery book will be used instead if {@code storage}'s delivery book is not found,
      * or an empty delivery book will be used instead if errors occur when reading {@code storage}'s delivery book.
      */
-    private DeliveryModel initDeliveryManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+    private DeliveryModel initDeliveryModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyDeliveryBook> deliveryBookOptional;
         ReadOnlyDeliveryBook initialData;
         try {

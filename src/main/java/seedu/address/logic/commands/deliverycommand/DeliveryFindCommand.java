@@ -3,9 +3,8 @@ package seedu.address.logic.commands.deliverycommand;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
-import seedu.address.model.Model;
+import seedu.address.model.Models;
 import seedu.address.model.delivery.DeliveryContainsKeywordsPredicate;
 import seedu.address.model.deliverymodel.DeliveryModel;
 
@@ -30,11 +29,11 @@ public class DeliveryFindCommand extends DeliveryCommand {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        requireDeliveryModel(model);
+    public CommandResult execute(Models models) {
+        requireNonNull(models);
+        requireNonNull(models.getDeliveryModel());
+        DeliveryModel deliveryModel = models.getDeliveryModel();
 
-        DeliveryModel deliveryModel = (DeliveryModel) model;
         deliveryModel.updateFilteredDeliveryList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_DELIVERIES_LISTED_OVERVIEW,

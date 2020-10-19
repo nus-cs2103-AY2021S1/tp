@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
-import seedu.address.model.Model;
+import seedu.address.model.Models;
 import seedu.address.model.delivery.Delivery;
 import seedu.address.model.deliverymodel.DeliveryModel;
 
@@ -46,17 +46,18 @@ public class DeliveryAddCommand extends DeliveryCommand {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        requireDeliveryModel(model);
-        DeliveryModel deliveryModel = (DeliveryModel) model;
+    public CommandResult execute(Models models) throws CommandException {
+        requireNonNull(models);
+        requireNonNull(models.getDeliveryModel());
+        DeliveryModel deliveryModel = models.getDeliveryModel();
 
         if (deliveryModel.hasDelivery(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_DELIVERY);
-        } else {
-            deliveryModel.addDelivery(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         }
+
+        deliveryModel.addDelivery(toAdd);
+        models.commit();
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override
