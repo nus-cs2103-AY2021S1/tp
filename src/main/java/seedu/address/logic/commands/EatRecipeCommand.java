@@ -40,7 +40,7 @@ public class EatRecipeCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        assert(targetIndex.getZeroBased() > 0);
+        assert(targetIndex.getZeroBased() >= 0);
         List<Recipe> lastShownList = model.getFilteredRecipeList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
