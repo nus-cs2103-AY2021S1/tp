@@ -42,6 +42,7 @@ public class ImportCommand extends Command {
 
     /**
      * Instantiates an import command.
+     *
      * @param path {@code Path} representation of the destination file to import from.
      */
     public ImportCommand(Path path) {
@@ -50,6 +51,12 @@ public class ImportCommand extends Command {
         this.storage = new JsonQuickCacheStorage(path);
     }
 
+    /**
+     * Instantiates an import command.
+     *
+     * @param path {@code Path} representation of the destination file to import from.
+     * @param storage {@code QuickCacheStorage} to use for saving operations.
+     */
     public ImportCommand(Path path, QuickCacheStorage storage) {
         requireNonNull(path);
         this.path = path;
