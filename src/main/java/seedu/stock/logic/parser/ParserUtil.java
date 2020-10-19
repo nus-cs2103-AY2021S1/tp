@@ -124,7 +124,7 @@ public class ParserUtil {
         requireNonNull(serialNumber);
         String trimmedSerialNumber = serialNumber.trim();
         if (!SerialNumber.isValidSerialNumber(trimmedSerialNumber)) {
-            throw new ParseException(Note.MESSAGE_CONSTRAINTS);
+            throw new ParseException(SerialNumber.MESSAGE_CONSTRAINTS);
         }
         return new SerialNumber(trimmedSerialNumber);
     }
