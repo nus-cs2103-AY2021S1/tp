@@ -151,8 +151,12 @@ public class ParserUtil {
     public static Path parseFile(String filepath) throws ParseException {
 
         //If filepath is invalid or does not exist throw an exception
-        if (!FileUtil.isValidPath(filepath) | !FileUtil.isFileExists(Path.of(filepath))) {
-            throw new ParseException("Invalid Filepath");
+        if (!FileUtil.isValidPath(filepath)) {
+            throw new ParseException(String.format("Invalid Filepath %s", filepath));
+        }
+
+        if (!FileUtil.isFileExists(Path.of(filepath))) {
+            throw new ParseException(String.format("File at %s does not exist", filepath));
         }
 
         //Return Path object of file
