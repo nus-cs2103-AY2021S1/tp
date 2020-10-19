@@ -1,7 +1,6 @@
 # User Guide
 
-Common Cents is your convenient at-hand expense-tracking tool, meant for anyone who runs a small-scale business. 
-With just a few commands, Common Cents will keep track, categorise and calculate your income and expenditure for you!
+Common Cents is your convenient at-hand expense-tracking tool, meant for anyone who runs a small-scale business. With just a few commands, Common Cents will keep track, categorise and calculate your income and expenditure for you!
 
 * Quick Start
 * Features
@@ -23,8 +22,7 @@ With just a few commands, Common Cents will keep track, categorise and calculate
 
 1. Copy the file to the folder you want to use as the _home folder_ for CommonCents.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. 
-Note how the app contains some sample expenses and income.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample expenses and income.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** 
@@ -88,8 +86,7 @@ Format: `delete ENTRY_INDEX c/CATEGORY`
 
 * Deletes the entry at the specified INDEX.
 * The index refers to the index number shown in the displayed entry lists.
-* The index must be a positive integer 1, 2, 3, and must be within the range of the number of entries 
-(e.g. if there are 10 entries, the INDEX given cannot be > 10)
+* The index must be a positive integer 1, 2, 3, and must be within the range of the number of entries (e.g. if there are 10 entries, the INDEX given cannot be > 10)
 
 Example:
 * `delete 1 c/expense`
@@ -102,8 +99,7 @@ Edits an entry in the tracker.
 
 * Edits an entry that matches the entry name and changes the parameters of an entry depending on which are specified
 * The tags d/ and a/ have to be used to indicate which field specifies DESCRIPTION and which field specifies AMOUNT
-* The index must be a positive integer 1, 2, 3, and must be within the range of the number of entries 
-(e.g. if there are 10 entries, the `INDEX` given cannot be > 10)
+* The index must be a positive integer 1, 2, 3, and must be within the range of the number of entries (e.g. if there are 10 entries, the `INDEX` given cannot be > 10)
 
 Formats:
 * `edit 1 c/CATEGORY d/DESCRIPTION a/AMOUNT t/TAG
@@ -111,8 +107,7 @@ Formats:
    edit 3 c/CATEGORY a/AMOUNT`
 
 Example:
-* `edit 2 c/expense n/buy McSpicy a/8.60` changes the name and the amount of entry 2 to `eating McSpicy` and `$8.60` 
-respectively
+* `edit 2 c/expense n/buy McSpicy a/8.60` changes the name and the amount of entry 2 to `eating McSpicy` and `$8.60` respectively
 * `edit 2 c/revenue n/sell McNuggets` changes the name of entry 2 to `sell McNuggets`
 * `edit 2 c/expense a/5.50` changes the amount of entry 2 to `$5.50`
 
@@ -123,8 +118,7 @@ Find expenses that have the given keyword in their names.
 
 * The search is case-sensitive. e.g `grocery` will match `grocery` but not `Grocery`.
 * Only the expense name is searched.
-* Expenses matching at least one keyword will be returned (i.e. OR search). e.g. `Food` will return `Hawker Food`, 
-`Restaurant Food`
+* Expenses matching at least one keyword will be returned (i.e. OR search). e.g. `Food` will return `Hawker Food`, `Restaurant Food`
 
 Format:
 * `find KEYWORD [MORE_KEYWORDS]`
