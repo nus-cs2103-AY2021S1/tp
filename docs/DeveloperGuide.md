@@ -108,17 +108,57 @@ The `Model`,
 
 ### Storage component
 
+This section shows the structure and logic of the storage component of NUStorage. All storage-related classes are stored in the package `nustorage.storage`. 
+
+Given below is the class diagram of the `storage` component.
+
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+The storage component comprises three different sections:
 
-The `Storage` component,
-* can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+1. The `UserPrefStorage` section:
+    - loads the user preferences and settings on start up.
+    - stores the user preferences and settings upon exiting .
+
+2. The `FinanceAccountStorage` section:
+    - loads the previously saved finance records on start up.
+    - stores new finance records as they are added / logged into the software.
+    
+3. The `InventoryStorage` section:
+    - loads the previously saved inventory records on start up.
+    - stores new inventory records as they are added / logged into the software.
+
+
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T11-3/tp/blob/master/src/main/java/nustorage/storage/Storage.java)
+
+* Saving inventory:
+
+    * Given below is the **activity** diagram for saving the inventory. Saving finance account works similarly.
+    This diagram shows the decision pathways of the storage component when saving inventory.
+    
+        ![Activity Diagram for saving inventory](images/SavingInventoryActivityDiagram.png)
+
+    * The following is the **sequence** diagram for saving the inventory. Saving finance account works similarly.
+    This diagram shows the function calls between classes when saving inventory.
+    
+        ![Sequence Diagram for loading finance](images/SaveInventorySequenceDiagram.png)
+
+* Loading finance account:
+
+    * Given below is the **activity** diagram for loading the finance account on start up. Loading inventory works similarly.
+    This diagram shows the decision pathways of the storage component when loading finance account.
+    
+        ![Activity Diagram for loading finance account](images/LoadingFinanceActivityDiagram.png)
+    
+    * The following is the **sequence** diagram for loading the finance account. Loading inventory works similarly.
+    This diagram shows the function calls between classes when loading finance account.
+    
+        ![Sequence Diagram for loading finance](images/LoadFinanceSequenceDiagram.png)
+
 
 ### Common classes
 
-Classes used by multiple components are in the `nustoragebook.commons` package.
+Classes used by multiple components are in the `nustorage.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
