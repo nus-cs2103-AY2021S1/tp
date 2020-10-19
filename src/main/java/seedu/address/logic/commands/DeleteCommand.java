@@ -32,7 +32,7 @@ public class DeleteCommand extends Command {
     private final Category category;
 
     /**
-     * Creates an DeleteCommand to add the specified {@code Entry}
+     * Creates an DeleteCommand to delete the specified {@code Entry}
      */
     public DeleteCommand(Index targetIndex, Category category) {
         this.targetIndex = targetIndex;
@@ -48,12 +48,11 @@ public class DeleteCommand extends Command {
         int index = targetIndex.getZeroBased();
         boolean isExpense = this.category.isExpense();
         boolean isRevenue = this.category.isRevenue();
-        boolean isInvalidIndex = isExpense
-                ? (index >= expenseList.size())
-                : (index >= revenueList.size());
+        boolean isInvalidExpenseIndex = isExpense && (index >= expenseList.size());
+        boolean isInvalidRevenueIndex = isRevenue && (index >= revenueList.size());
 
-        if (isInvalidIndex) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
+        if (isInvalidExpenseIndex || isInvalidRevenueIndex) {
+            throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_INDEX);
         }
 
         if (isExpense) {
@@ -71,6 +70,7 @@ public class DeleteCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                && targetIndex.equals(((DeleteCommand) other).targetIndex))
+                && category.equals(((DeleteCommand) other).category); // state check
     }
 }

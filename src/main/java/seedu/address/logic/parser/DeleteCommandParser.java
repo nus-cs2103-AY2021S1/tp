@@ -39,8 +39,6 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
 
         return new DeleteCommand(index, category);
-
-
     }
 
     /**
