@@ -3,6 +3,7 @@ package seedu.address.model.deliverymodel;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_REDO_LIMIT_REACHED;
 import static seedu.address.commons.core.Messages.MESSAGE_UNDO_LIMIT_REACHED;
+import static seedu.address.model.Model.MODEL_STATE_LIMIT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,6 +114,10 @@ public class DeliveryBook implements ReadOnlyDeliveryBook {
         if (!deliveryBookStateList.isEmpty()) {
             deliveryBookStateList = deliveryBookStateList.subList(0, deliveryBookStatePointer + 1);
         }
+        if (deliveryBookStateIsFull()) {
+            deliveryBookStateList.remove(0);
+            deliveryBookStatePointer--;
+        }
         deliveryBookStateList.add(new DeliveryBook(this));
         deliveryBookStatePointer++;
     }
@@ -147,6 +152,10 @@ public class DeliveryBook implements ReadOnlyDeliveryBook {
 
     private boolean canRedo() {
         return deliveryBookStatePointer < deliveryBookStateList.size() - 1;
+    }
+
+    private boolean deliveryBookStateIsFull() {
+        return deliveryBookStateList.size() >= MODEL_STATE_LIMIT;
     }
 
     @Override

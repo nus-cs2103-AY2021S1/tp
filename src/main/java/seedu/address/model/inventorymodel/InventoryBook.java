@@ -3,6 +3,7 @@ package seedu.address.model.inventorymodel;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_REDO_LIMIT_REACHED;
 import static seedu.address.commons.core.Messages.MESSAGE_UNDO_LIMIT_REACHED;
+import static seedu.address.model.Model.MODEL_STATE_LIMIT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,6 +118,11 @@ public class InventoryBook implements ReadOnlyInventoryBook {
         if (!inventoryBookStateList.isEmpty()) {
             inventoryBookStateList = inventoryBookStateList.subList(0, inventoryBookStatePointer + 1);
         }
+        if (inventoryBookStateIsFull()) {
+            inventoryBookStateList.remove(0);
+            inventoryBookStatePointer--;
+        }
+
         inventoryBookStateList.add(new InventoryBook(this));
         inventoryBookStatePointer++;
     }
@@ -153,6 +159,10 @@ public class InventoryBook implements ReadOnlyInventoryBook {
 
     private boolean canRedo() {
         return inventoryBookStatePointer < inventoryBookStateList.size() - 1;
+    }
+
+    private boolean inventoryBookStateIsFull() {
+        return inventoryBookStateList.size() >= MODEL_STATE_LIMIT;
     }
 
     //// util methods
