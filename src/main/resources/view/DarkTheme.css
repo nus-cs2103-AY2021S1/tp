@@ -169,7 +169,7 @@
 .result-display {
     -fx-background-color: #363c43;
     -fx-font-family: "monospace";
-    -fx-font-size: 14pt;
+    -fx-font-size: 11pt;
     -fx-text-fill: white;
 }
 
@@ -258,6 +258,37 @@
 
 .button:default:hover {
     -fx-background-color: derive(-fx-focus-color, 30%);
+}
+
+.chart {
+    -fx-padding: 0 5 20 5;
+    -fx-font-family: "Segoe UI", Aileron, Arial, sans-serif;
+    -fx-background-color: #363636;
+}
+
+.chart-content {
+    -fx-padding: 0 5 20 5;
+}
+
+.chart-pie-label {
+     -fx-font-size: 15;
+     -fx-fill: #FFFFFF;
+}
+
+.chart-area-symbol{
+    -fx-background-radius: 0;
+}
+
+.chart-label {
+    -fx-font-size: 15;
+    -fx-font-color: #FFFFFF;
+}
+
+.chart-title {
+    -fx-padding: 30 0 0 0;
+    -fx-font-size: 25;
+    -fx-text-fill: #FFFFFF;
+    -fx-underline: true;
 }
 
 .dialog-pane {

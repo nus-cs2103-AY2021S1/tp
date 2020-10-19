@@ -13,7 +13,11 @@ import seedu.stock.logic.commands.FindCommand;
 import seedu.stock.logic.commands.FindExactCommand;
 import seedu.stock.logic.commands.HelpCommand;
 import seedu.stock.logic.commands.ListCommand;
+<<<<<<< HEAD
 import seedu.stock.logic.commands.NoteCommand;
+=======
+import seedu.stock.logic.commands.StatisticsCommand;
+>>>>>>> edf3ef60739d8fbddafbdae256c8fd9ef53a0f01
 import seedu.stock.logic.commands.UpdateCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 
@@ -82,6 +86,13 @@ public class StockBookParser {
         case DeleteCommand.COMMAND_WORD:
             try {
                 return new DeleteCommandParser().parse(arguments);
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
+
+        case StatisticsCommand.COMMAND_WORD:
+            try {
+                return new StatisticsCommandParser().parse(arguments);
             } catch (ParseException ex) {
                 return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
             }
