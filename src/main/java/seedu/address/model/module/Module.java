@@ -1,6 +1,7 @@
 package seedu.address.model.module;
 
 import seedu.address.model.module.grade.Assignment;
+import seedu.address.model.module.grade.Grade;
 import seedu.address.model.module.grade.GradeTracker;
 
 /**
@@ -115,7 +116,22 @@ public class Module {
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
+     * Adds a grade to the GradeTracker of the module.
+     *
+     * @param grade grade to add to grade tracker.
+     * @return Module a new module with the grade added.
+     */
+    public Module addGrade(Grade grade) {
+        if (Grade.isValidGrade(grade.gradeResult)) {
+            gradeTracker.setGrade(grade);
+            return new Module(name, zoomLink, gradeTracker);
+        } else {
+            return this;
+        }
+    }
+
+    /**
+     * Returns true if both modules have the same name.
      * This defines a weaker notion of equality between two modules.
      */
     public boolean isSameModule(Module otherModule) {
@@ -130,6 +146,26 @@ public class Module {
     @Override
     public String toString() {
         return String.format("The zoom link for %s is %s", getName(), getLink());
+    }
+
+    /**
+     * Returns true if both modules have the same identity and data fields.
+     * This defines a stronger notion of equality between two modules.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Module)) {
+            return false;
+        }
+
+        Module otherModule = (Module) other;
+        return otherModule.getName().equals(getName())
+                && otherModule.getLink().equals(getLink())
+                && otherModule.getGradeTracker().equals(getGradeTracker());
     }
 
 }
