@@ -16,9 +16,11 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DoneCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -55,6 +57,14 @@ public class PlanusParserTest {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_TASK), command);
+    }
+
+    @Test
+    public void parseCommand_done() throws Exception {
+        DoneCommand command = (DoneCommand) parser.parseCommand(
+                DoneCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
+        Index[] indexes = {INDEX_FIRST_TASK};
+        assertEquals(new DoneCommand(indexes), command);
     }
 
     @Test
