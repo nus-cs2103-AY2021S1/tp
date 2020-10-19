@@ -15,6 +15,7 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 
 import jimmy.mcgymmy.commons.core.index.Index;
+import jimmy.mcgymmy.commons.util.FileUtil;
 import jimmy.mcgymmy.commons.util.StringUtil;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
 import jimmy.mcgymmy.model.date.Date;
@@ -140,6 +141,27 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String filepath} into an {@code File}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code filepath} is invalid.
+     */
+    public static Path parseFile(String filepath) throws ParseException {
+
+        //If filepath is invalid or does not exist throw an exception
+        if (!FileUtil.isValidPath(filepath)) {
+            throw new ParseException(String.format("Invalid Filepath %s", filepath));
+        }
+
+        if (!FileUtil.isFileExists(Path.of(filepath))) {
+            throw new ParseException(String.format("File at %s does not exist", filepath));
+        }
+
+        //Return Path object of file
+        return Path.of(filepath);
     }
 
     /**
