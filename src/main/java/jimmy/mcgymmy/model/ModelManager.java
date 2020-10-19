@@ -118,6 +118,7 @@ public class ModelManager implements Model {
         CollectionUtil.requireAllNonNull(index, editedFood);
         mcGymmyStack.push(new McGymmy(mcGymmy));
         mcGymmy.setFood(index, editedFood);
+        updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
     }
 
     @Override

@@ -112,7 +112,6 @@ public class EditCommand extends Command {
         Food editedFood = new Food(newName, newProtein, newFat, newCarb, tags, newDate);
 
         model.setFood(index, editedFood);
-        model.updateFilteredFoodList(Model.PREDICATE_SHOW_ALL_FOODS);
         return new CommandResult(String.format(MESSAGE_EDIT_FOOD_SUCCESS, editedFood));
     }
 }
