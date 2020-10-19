@@ -1,11 +1,11 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.logic.commands.exceptions.UndoRedoLimitReachedException;
 import seedu.address.logic.commands.results.CommandResult;
-import seedu.address.model.deliverymodel.DeliveryModel;
-import seedu.address.model.inventorymodel.InventoryModel;
+import seedu.address.model.Models;
 
 public class UndoCommand extends Command {
 
@@ -14,14 +14,13 @@ public class UndoCommand extends Command {
     public static final String MESSAGE_UNDO_ACKNOWLEDGEMENT = "Reverted to previous state";
 
     @Override
-    public CommandResult execute(InventoryModel inventoryModel, DeliveryModel deliveryModel) {
-        requireAllNonNull(inventoryModel, deliveryModel);
+    public CommandResult execute(Models models) {
+        requireNonNull(models);
 
         String message = MESSAGE_UNDO_ACKNOWLEDGEMENT;
 
         try {
-            inventoryModel.undo();
-            deliveryModel.undo();
+            models.undo();
         } catch (UndoRedoLimitReachedException e) {
             message = e.getMessage();
         }

@@ -1,11 +1,13 @@
 package seedu.address.logic.commands.itemcommand;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.logic.commands.results.CommandResult;
-import seedu.address.model.deliverymodel.DeliveryModel;
+import seedu.address.model.Models;
 import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.model.inventorymodel.InventoryModel;
+import seedu.address.model.inventorymodel.InventoryModelManager;
 
 /**
  * Clears the inventory book.
@@ -17,12 +19,13 @@ public class ItemClearCommand extends ItemCommand {
 
 
     @Override
-    public CommandResult execute(InventoryModel inventoryModel, DeliveryModel deliveryModel) {
-        requireAllNonNull(inventoryModel, deliveryModel);
+    public CommandResult execute(Models models) {
+        requireNonNull(models);
+        requireNonNull(models.getInventoryModel());
+        InventoryModel inventoryModel = models.getInventoryModel();
 
         inventoryModel.setInventoryBook(new InventoryBook());
-        inventoryModel.commit();
-        deliveryModel.commit();
+        models.commit();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

@@ -108,6 +108,8 @@ public class DeliveryBook implements ReadOnlyDeliveryBook {
      * Copies the current {@code InventoryBook} in the state list.
      */
     public void commit() {
+        assert deliveryBookStatePointer < deliveryBookStateList.size();
+
         if (!deliveryBookStateList.isEmpty()) {
             deliveryBookStateList = deliveryBookStateList.subList(0, deliveryBookStatePointer + 1);
         }

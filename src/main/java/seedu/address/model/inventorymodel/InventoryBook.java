@@ -112,6 +112,8 @@ public class InventoryBook implements ReadOnlyInventoryBook {
      * Copies the current {@code InventoryBook} in the state list.
      */
     public void commit() {
+        assert inventoryBookStatePointer < inventoryBookStateList.size();
+
         if (!inventoryBookStateList.isEmpty()) {
             inventoryBookStateList = inventoryBookStateList.subList(0, inventoryBookStatePointer + 1);
         }

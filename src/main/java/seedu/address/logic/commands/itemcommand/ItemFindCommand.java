@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.results.CommandResult;
-import seedu.address.model.deliverymodel.DeliveryModel;
+import seedu.address.model.Models;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.item.ItemContainsKeywordsPredicate;
 
@@ -29,9 +29,11 @@ public class ItemFindCommand extends ItemCommand {
     }
 
     @Override
-    public CommandResult execute(InventoryModel inventoryModel, DeliveryModel deliveryModel) {
-        requireNonNull(inventoryModel);
+    public CommandResult execute(Models models) {
+        requireNonNull(models);
+        requireNonNull(models.getInventoryModel());
 
+        InventoryModel inventoryModel = models.getInventoryModel();
         inventoryModel.updateFilteredItemList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW, inventoryModel.getFilteredItemList().size()));

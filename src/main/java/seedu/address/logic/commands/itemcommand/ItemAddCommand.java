@@ -11,7 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
-import seedu.address.model.deliverymodel.DeliveryModel;
+import seedu.address.model.Models;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.item.Item;
 
@@ -53,8 +53,10 @@ public class ItemAddCommand extends ItemCommand {
     }
 
     @Override
-    public CommandResult execute(InventoryModel inventoryModel, DeliveryModel deliveryModel) throws CommandException {
-        requireAllNonNull(inventoryModel, deliveryModel);
+    public CommandResult execute(Models models) throws CommandException {
+        requireNonNull(models);
+        requireNonNull(models.getInventoryModel());
+        InventoryModel inventoryModel = models.getInventoryModel();
 
         CommandResult commandResult;
 
@@ -70,8 +72,7 @@ public class ItemAddCommand extends ItemCommand {
             commandResult = new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         }
 
-        inventoryModel.commit();
-        deliveryModel.commit();
+        models.commit();
 
         return commandResult;
     }

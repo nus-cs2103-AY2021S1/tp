@@ -1,11 +1,11 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.logic.commands.exceptions.UndoRedoLimitReachedException;
 import seedu.address.logic.commands.results.CommandResult;
-import seedu.address.model.deliverymodel.DeliveryModel;
-import seedu.address.model.inventorymodel.InventoryModel;
+import seedu.address.model.Models;
 
 public class RedoCommand extends Command {
     public static final String COMMAND_WORD = "redo";
@@ -13,14 +13,13 @@ public class RedoCommand extends Command {
     public static final String MESSAGE_REDO_ACKNOWLEDGEMENT = "Redone command";
 
     @Override
-    public CommandResult execute(InventoryModel inventoryModel, DeliveryModel deliveryModel) {
-        requireAllNonNull(inventoryModel, deliveryModel);
+    public CommandResult execute(Models models) {
+        requireNonNull(models);
 
         String message = MESSAGE_REDO_ACKNOWLEDGEMENT;
 
         try {
-            inventoryModel.redo();
-            deliveryModel.redo();
+            models.redo();
         } catch (UndoRedoLimitReachedException e) {
             message = e.getMessage();
         }

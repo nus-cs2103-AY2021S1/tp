@@ -4,8 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.inventorymodel.InventoryModel.PREDICATE_SHOW_ALL_ITEMS;
 
 import seedu.address.logic.commands.results.CommandResult;
-import seedu.address.model.deliverymodel.DeliveryModel;
-import seedu.address.model.inventorymodel.InventoryModel;
+import seedu.address.model.Models;
 
 /**
  * Lists all items in the inventory book to the user.
@@ -18,10 +17,11 @@ public class ItemListCommand extends ItemCommand {
 
 
     @Override
-    public CommandResult execute(InventoryModel inventoryModel, DeliveryModel deliveryModel) {
-        requireNonNull(inventoryModel);
+    public CommandResult execute(Models models) {
+        requireNonNull(models);
+        requireNonNull(models.getInventoryModel());
 
-        inventoryModel.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
+        models.getInventoryModel().updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

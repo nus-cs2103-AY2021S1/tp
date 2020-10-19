@@ -12,6 +12,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.OneShelfBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Models;
+import seedu.address.model.ModelsManager;
 import seedu.address.model.delivery.Delivery;
 import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.deliverymodel.ReadOnlyDeliveryBook;
@@ -27,6 +29,7 @@ public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
+    private final Models models;
     private final InventoryModel inventoryModel;
     private final DeliveryModel deliveryModel;
     private final Storage storage;
@@ -39,9 +42,9 @@ public class LogicManager implements Logic {
         assert inventoryModel != null && deliveryModel != null;
 
         this.inventoryModel = inventoryModel;
-        inventoryModel.commit();
         this.deliveryModel = deliveryModel;
-        deliveryModel.commit();
+        models = new ModelsManager(inventoryModel, deliveryModel);
+        models.commit();
         this.storage = storage;
         oneShelfBookParser = new OneShelfBookParser();
     }
@@ -52,7 +55,7 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = oneShelfBookParser.parseCommand(commandText);
-        commandResult = command.execute(inventoryModel, deliveryModel);
+        commandResult = command.execute(models);
 
         try {
             storage.saveInventoryBook(inventoryModel.getInventoryBook());
