@@ -24,8 +24,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.animal.Animal;
+import seedu.address.model.animal.AnimalContainsKeywordsPredicate;
 import seedu.address.model.animal.Id;
-import seedu.address.model.animal.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AnimalBuilder;
 import seedu.address.testutil.AnimalUtil;
 import seedu.address.testutil.EditAnimalDescriptorBuilder;
@@ -74,7 +74,7 @@ public class ZooKeepBookParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new AnimalContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

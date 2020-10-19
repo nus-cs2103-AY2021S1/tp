@@ -17,7 +17,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ZooKeepBook;
 import seedu.address.model.animal.Animal;
-import seedu.address.model.animal.NameContainsKeywordsPredicate;
+import seedu.address.model.animal.AnimalContainsKeywordsPredicate;
 import seedu.address.testutil.EditAnimalDescriptorBuilder;
 
 /**
@@ -117,7 +117,7 @@ public class CommandTestUtil {
 
         Animal animal = model.getFilteredAnimalList().get(targetIndex.getZeroBased());
         final String[] splitName = animal.getName().fullName.split("\\s+");
-        model.updateFilteredAnimalList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredAnimalList(new AnimalContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredAnimalList().size());
     }
