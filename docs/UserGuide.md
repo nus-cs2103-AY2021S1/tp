@@ -27,7 +27,7 @@ Wishful Shrinking is a **desktop app for managing your diet, keeping track of yo
 
    * **`recipe`** : Lists all recipes.
 
-   * **`addR`**` n/salad i/lettuce, carrots, olive oil` : Adds a `salad` recipe to Wishful Shrinking.
+   * **`addR`**` n/salad i/lettuce, carrots, olive oil c/40` : Adds a `salad` recipe to Wishful Shrinking.
 
    * **`deleteR`**`3` : Deletes the 3rd recipe shown in the current list.
 
@@ -44,7 +44,16 @@ Wishful Shrinking is a **desktop app for managing your diet, keeping track of yo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/TITLE`, `TITLE` is a parameter which can be used as `addR n/salad`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `addR n/salad`.
+  
+* Items in square brackets are optional.<br>
+  e.g `n/NAME [t/TAG]` can be used as `n/Salad t/healthy` or as `n/Salad`.
+
+* Items with `…`​ after them can be used more than 1 times.<br>
+  e.g. `[t/TAG]…​` can be used as `t/healthy`, `t/healthy t/low calories` etc.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME i/INGREDIENTS`, `i/INGREDIENTS n/NAME` is also acceptable.
 </div>
 
 ### Viewing help : `help`
@@ -67,11 +76,14 @@ Format: `exit`
 
 Adds a recipe to Recipes Collection.
 
-Format: `addR n/TITLE i/INGREDIENTS`
+Format: `addR n/TITLE i/INGREDIENT[, MORE INGREDIENT] c/CALORIES img/IMAGE inst/INSTRUCTION... [t/TAG]...`
+
+* `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole
+    * there is  a compulsory space before `-` 
 
 Examples:
-* `addR n/salad i/lettuce, carrots, olive oil`
-* `addR n/sandwiches i/breads, cheese`
+* `addR n/salad i/lettuce, tomato, olive oil c/40`
+* `addR n/sandwiches i/breads, cheese -2 sclices c/80`
 
 
 ### Listing all recipes : `list`
@@ -188,6 +200,13 @@ Examples:
 * `searchR n/salad` followed by `eatR 1` deletes the 1st recipe in the results of the `search` command.
 
 
+### Listing all recipes eaten : `list`
+
+Shows a list of all recipes eat by the user.
+
+Format: `calories`
+
+
 ### Deleting a recipe eaten: `deleteC`
 
 Deletes the specified recipe from consumption list.
@@ -207,7 +226,7 @@ Examples:
 Wishful Shrinking data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 
-### Remark `[coming in v1.3]`
+### Remark `[coming in v1.4]`
 
 _{give a remark to the recipe}_
 
@@ -228,15 +247,16 @@ _{give a remark to the recipe}_
 
 Features | Format, Examples
 --------|------------------
-**Add recipe** | `addR n/TITLE i/INGREDIENTS` <br> e.g., `addR n/salad i/lettuce, carrots, olive oil`
+**Add recipe** | `addR n/TITLE i/INGREDIENT[, MORE INGREDIENT] c/CALORIES img/IMAGE inst/INSTRUCTION... [t/TAG]...` <br> e.g., `addR n/salad i/lettuce, carrots, olive oil c/80`
 **Add Ingredient to the fridge** | `addF i/INGREDIENTS` <br> e.g., `addF i/banana, green peas, salmon fish`
 **Delete recipe** | `deleteR INDEX`<br> e.g., `deleteR 3`
 **Delete Ingredient from the fridge** | `deleteF INDEX`<br> e.g., `deleteF 3`
 **Delete recipe eaten**| `deleteC INDEX` <br> e.g., `deleteC 3`
-**Search recipe** | `searchR i/INGREDIENT` OR `searchR n/TITLE` OR `searchR t/TAG` <br> e.g., `searchR i/lettuce` `searchR n/salad` `searchR t/healthy`
+**Search recipe** | `searchR i/INGREDIENT` OR `searchR n/TITLE` OR `searchR t/TAG` <br> e.g. `searchR i/lettuce`, `searchR n/salad`, `searchR t/healthy`
 **Search Ingredient in the fridge** | `searchF KEYWORD`<br> e.g., `searchF avocado`
 **List recipe** | `recipe`
 **List ingredients in the fridge** | `fridge`
+**List recipes eaten** | `calories`
 **Recommend recipe** | `recommend`
 **Eat recipe**| `eatR INDEX` <br> e.g., `eatR 3`
 **Help** | `help`
