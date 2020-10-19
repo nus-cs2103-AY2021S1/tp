@@ -68,7 +68,7 @@ public class DoneCommandTest {
 
         DoneCommand doneCommand = new DoneCommand(indexes);
 
-        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASKS_DISPLAYED_INDEX);
     }
 
     @Test
@@ -97,7 +97,7 @@ public class DoneCommandTest {
 
         DoneCommand doneCommand = new DoneCommand(indexes);
 
-        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASKS_DISPLAYED_INDEX);
     }
 
     @Test
@@ -130,7 +130,7 @@ public class DoneCommandTest {
 
         DoneCommand doneCommand = new DoneCommand(indexes);
 
-        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASKS_DISPLAYED_INDEX);
     }
 
     @Test
@@ -140,7 +140,7 @@ public class DoneCommandTest {
 
         DoneCommand doneCommand = new DoneCommand(indexes);
 
-        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASKS_DISPLAYED_INDEX);
     }
 
     @Test
@@ -151,7 +151,7 @@ public class DoneCommandTest {
 
         DoneCommand doneCommand = new DoneCommand(indexes);
 
-        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASKS_DISPLAYED_INDEX);
     }
 
     @Test
