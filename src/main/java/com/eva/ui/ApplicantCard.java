@@ -2,8 +2,6 @@ package com.eva.ui;
 
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.applicant.InterviewDate;
-import com.eva.model.person.staff.Staff;
-import com.eva.model.person.staff.leave.Leave;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
