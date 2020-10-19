@@ -181,6 +181,7 @@ public class ParserUtil {
         requireNonNull(projectName);
         String trimmedProjectName = projectName.trim();
         if (!ProjectName.isValidProjectName(trimmedProjectName)) {
+            System.out.println("now parsing: " + projectName);
             throw new ParseException(ProjectName.MESSAGE_CONSTRAINTS);
         }
         return trimmedProjectName;

@@ -82,6 +82,19 @@ public class Task {
             .anyMatch(assignee -> assignee.getAssigneeGitName().equals(assigneeGitUserName));
     }
 
+    /**
+     * Checks if the task is due on the given deadline.
+     * @param deadline  the given deadline to check
+     * @return  true if the task is due on the given deadline, and false otherwise
+     */
+    public boolean isDueOn(Deadline deadline) {
+        assert (deadline != null);
+        if (this.deadline == null) {
+            return false;
+        } else {
+            return this.deadline.equals(deadline);
+        }
+    }
     public boolean addAssignee(Participation assignee) {
         return assignees.add(assignee);
     }

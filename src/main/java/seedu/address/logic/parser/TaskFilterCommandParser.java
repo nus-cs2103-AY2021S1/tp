@@ -46,7 +46,7 @@ public class TaskFilterCommandParser implements Parser<TaskFilterCommand> {
 
         if (argMultimap.getValue(PREFIX_TASK_DEADLINE).isPresent()) {
             Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_TASK_DEADLINE).get());
-            predicate = task -> task.getDeadline().equals(deadline);
+            predicate = task -> task.isDueOn(deadline);
         }
 
         if (argMultimap.getValue(PREFIX_TASK_NAME).isPresent()) {

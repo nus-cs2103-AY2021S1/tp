@@ -81,7 +81,7 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
   
 * One and only one Item in parenthesis should be supplied by user
 
-  e.g. `(ta/ASSIGNEE NAME)||(td/DEADLINE)||(tn/TASK NAME)` can be used as "ta/Alice", "td/31-12-2020 10:00:00" or as "tn/group meeting", but not as "ta/Alice td/31-12-2020" or "".
+  e.g. `(ta/ASSIGNEE NAME)||(td/DEADLINE)||(tn/TASK NAME)` can be used as "ta/Alice", "td/31-12-2020 10:00:00" or as "tn/group meeting", but not as "ta/Alice td/31-12-2020 10:00:00" or "".
 
 **:information_source: Notes about scoping:**<br>
 
