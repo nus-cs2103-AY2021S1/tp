@@ -59,7 +59,7 @@ public class AnimalCard extends UiPart<Region> {
         identity.setText(animal.getId().value);
         species.setText(animal.getSpecies().value);
 
-        if (!animal.getFeedTimes().isEmpty()) {
+        if (!animal.getMedicalConditions().isEmpty()) {
             animal.getMedicalConditions().stream()
                     .sorted(Comparator.comparing(medicalCondition -> medicalCondition.medicalConditionName))
                     .forEach(medicalCondition -> medicalConditions.getChildren()
