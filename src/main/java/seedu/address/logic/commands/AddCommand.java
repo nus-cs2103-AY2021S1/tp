@@ -12,13 +12,13 @@ import seedu.address.model.Model;
 import seedu.address.model.animal.Animal;
 
 /**
- * Adds a animal to the address book.
+ * Adds a animal to the zookeep book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an animal to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an animal to the zookeep book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_ID + "ID "
@@ -33,7 +33,7 @@ public class AddCommand extends Command {
             + PREFIX_FEED_TIME + "1400 ";
 
     public static final String MESSAGE_SUCCESS = "New animal added: %1$s";
-    public static final String MESSAGE_DUPLICATE_ANIMAL = "This animal already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_ANIMAL = "This animal already exists in the zookeep book";
 
     private final Animal toAdd;
 
