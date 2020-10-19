@@ -255,6 +255,13 @@ Examples:
 
 ![Import command example](images/CommandImagesForUG/Import.png)
 
+### Exporting your save file to a folder
+
+Import a previously saved file into McGymmy
+
+Format: `import DIRPATH [-o FILENAME]`
+
+* Export the saved file to `DIRPATH` with `FILENAME`
 
 ### Exiting the program : `exit`
 
