@@ -180,8 +180,6 @@ public class ItemAddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        //=========== Redo/Undo ===============================================================================
-
         @Override
         public void commit() { }
 
