@@ -18,8 +18,11 @@ public class Flashcard {
     private final Category category;
     private final Note note;
 
+    // State fields
+    private final boolean isFavourite;
+
     /**
-     * Every field must be present and not null.
+     * Identity and Data fields must be present and not null.
      */
     public Flashcard(Question question, Answer answer, Category category, Note note) {
         requireAllNonNull(question, answer, category, note);
@@ -27,6 +30,19 @@ public class Flashcard {
         this.answer = answer;
         this.category = category;
         this.note = note;
+        this.isFavourite = false;
+    }
+
+    /**
+     * Overloaded constructor for creating a flashcard when flashcard is favourited/unfavourited.
+     */
+    public Flashcard(Question question, Answer answer, Category category, Note note, boolean isFavourite) {
+        requireAllNonNull(question, answer, category, note);
+        this.question = question;
+        this.answer = answer;
+        this.category = category;
+        this.note = note;
+        this.isFavourite = isFavourite;
     }
 
     public Question getQuestion() {
@@ -45,6 +61,9 @@ public class Flashcard {
         return note;
     }
 
+    public boolean isFavourite() {
+        return isFavourite;
+    }
 
     /**
      * Returns true if the input is the correct answer.
@@ -85,7 +104,8 @@ public class Flashcard {
         return otherFlashcard.getQuestion().equals(getQuestion())
                 && otherFlashcard.getAnswer().equals(getAnswer())
                 && otherFlashcard.getCategory().equals(getCategory())
-                && otherFlashcard.getNote().equals(getNote());
+                && otherFlashcard.getNote().equals(getNote())
+                && otherFlashcard.isFavourite() == isFavourite();
     }
 
     @Override
