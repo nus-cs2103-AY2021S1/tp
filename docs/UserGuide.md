@@ -48,11 +48,17 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com d/Computer Science o/B01-A3`
 * `add n/Betsy Crowe p/98765431 e/betsycrowe@example.com d/Data Science o/COM1-02-03 t/lecturer t/friend`
 
-### Listing all contacts : `list`
+### Listing all contacts : `clist`
 
 Shows a list of all contacts in FaculType.
 
-Format: `list`
+Format: `clist`
+
+### Listing all modules : `mlist`
+
+Shows a list of all modules in FaculType.
+
+Format: `mlist`
 
 ### Editing a contact : `edit`
 
@@ -212,13 +218,18 @@ FaculType data is saved in the hard disk automatically after any command that ch
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL d/DEPARTMENT o/OFFICE [t/TAG]…​` <br> e.g., `add n/Betsy Crowe p/98765431 e/betsycrowe@example.com d/Data Science t/senior lecturer t/friend`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL d/DEPARTMENT o/OFFICE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe p/98765431 e/betsycrowe@example.com d/Data Science t/senior lecturer t/friend`
 **Reset** | `reset`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [o/OFFICE] [t/TAG]…​`<br> e.g.,`edit 1 d/Computing b/COM2`
-**Remark** | `remark INDEX [r/REMARK]`<br> e.g., `remark 1 r/Wears red glasses`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Addmod** | `addmod m/MODULE_CODE n/MODULE_NAME`<br> e.g., `addmod m/CS2103 n/Software Engineering`
-**Delmod** | `delmod m/MODULE_CODE`<br> e.g., `delmod m/CS2103`
-**List** | `list`
+**Delete** | `delete INDEX`<br> e.g. `delete 3`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [o/OFFICE] [t/TAG]…​`<br> e.g. `edit 1 d/Computing b/COM2`
+**Remark** | `remark INDEX [r/REMARK]`<br> e.g. `remark 1 r/Wears red glasses`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
+**Add modules** | `addmod m/MODULE_CODE n/MODULE_NAME`<br> e.g. `addmod m/CS2103 n/Software Engineering`
+**Delete modules** | `delmod m/MODULE_CODE`<br> e.g. `delmod m/CS2103`
+**Find modules** | `findmod KEYWORD [MORE_KEYWORDS]` <br> e.g. `findmod CS2103`
+**List all contacts and modules** | `list`
+**List all contacts** | `clist`
+**List all modules** | `mlist`
+**Assign** | `assign INDEX m/MODULE_CODE [MORE MODULE_CODES]` <br> e.g. `assign 3 m/CS2100 m/CS2106`
 **Help** | `help`
+**Exit** | `exit`

@@ -64,16 +64,16 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
-     */
-    void deletePerson(Person target);
-
-    /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Person person);
+
+    /**
+     * Deletes the given person.
+     * The person must exist in the address book.
+     */
+    void deletePerson(Person target);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -83,16 +83,14 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /**
-     * Removes the module with the given module code {@code targetModuleCode}.
-     * The module with the {@code targetModuleCode} must exist in the address book.
+     * Clear all modules from the module list.
+     * The list must have at least one module.
      */
-    void deleteMod(ModuleCode targetModuleCode);
+    void clearMod();
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
-    /** Returns an unmodifiable view of the filtered module list */
-    UniqueModuleList getModuleList();
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -100,15 +98,15 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Updates the filter of the filtered module list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredModuleList(Predicate<Module> predicate);
-
-    /**
      * Returns true if a module with the same identity as {@code module} exists in the address book.
      */
     boolean hasModule(Module module);
+
+    /**
+     * Returns true if module list is empty.
+     * @return
+     */
+    boolean isEmptyModuleList();
 
     /**
      * Adds the given module.
@@ -116,6 +114,11 @@ public interface Model {
      */
     void addModule(Module module);
 
+    /**
+     * Removes the module with the given {@code moduleCode}.
+     * Module with the {@code moduleCode} must exist in the address book.
+     */
+    void deleteModule(ModuleCode moduleCode);
 
     /**
      * Assigns an {@code instructor} to the module with the given {@code moduleCode}.
@@ -126,4 +129,12 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Module> getFilteredModuleList();
 
+    /**
+     * Updates the filter of the filtered module list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredModuleList(Predicate<Module> predicate);
+
+    /** Returns an unmodifiable view of the filtered module list */
+    UniqueModuleList getModuleList();
 }

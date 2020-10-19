@@ -357,6 +357,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
       Use case resumes at step 2.
       
+**Use case: Find a contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  FaculType shows a list of contacts
+3.  User requests to find a specific contact
+4.  FaculType shows the contact(s)
+
+    Use case ends.
+   
+**Extensions**
+
+*  2a. The list is empty.
+   
+   Use case ends.
+      
 **Use case: Add or update a remark**
 
 **MSS**
@@ -382,6 +399,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
 **Use case: Add a module**
 
+**MSS**
+
 1.  User requests to add a module to the module list
 2.  FaculType adds the module
 
@@ -397,11 +416,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Delete a module**
 
+**MSS**
+
 1.  FaculType shows a list of modules
 2.  User requests to delete a module
 3.  FaculType deletes the module
 
     Use case ends.
+
+**Extensions**
     
 *   1a. The module list is empty.
     
@@ -412,7 +435,58 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. FaculType shows an error message.
     
     Use case resumes at step 1.
+    
+**Use case: Find a module**
 
+**MSS**
+
+1.  User requests to list all modules
+2.  FaculType shows a list of all modules
+3.  User requests to find a specific module
+4.  FaculType shows the module(s)
+
+   Use case ends.
+   
+**Extensions**
+
+*  2a. The module list is empty.
+   
+   Use case ends.
+
+**Use case: Assign a contact to a module**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  FaculType shows the list of contacts
+3.  User requests to list modules
+4.  FaculType shows the list of modules
+5.  User requests to assign a contact to a module
+6.  FaculType assigns the contact to the module
+
+    Use case ends.
+    
+**Extensions**
+
+*   2a. The contact list is empty.
+
+    Use case ends.
+    
+*   4a. The module list is empty.
+
+    Use case ends.
+    
+*   5a. The given contact does not exist.
+    
+    *   5a1. FaculType shows an error message.
+    
+    Use case resumes at step 4.
+        
+*   5b. The given module does not exist.
+
+    * 5b2. FaculType shows an error message.
+    
+    Use case resumes at step 4.
 
 ### Non-Functional Requirements
 

@@ -120,9 +120,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteMod(ModuleCode targetCode) {
-        requireNonNull(targetCode);
-        addressBook.removeModule(targetCode);
+    public void deleteModule(ModuleCode moduleCode) {
+        requireNonNull(moduleCode);
+        addressBook.removeModule(moduleCode);
+    }
+
+    @Override
+    public boolean isEmptyModuleList() {
+        return modules.isEmptyList();
+    }
+
+    @Override
+    public void clearMod() {
+        addressBook.clearMod();
     }
 
     /**
@@ -137,6 +147,7 @@ public class ModelManager implements Model {
     @Override
     public void addModule(Module module) {
         addressBook.addModule(module);
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
     @Override
