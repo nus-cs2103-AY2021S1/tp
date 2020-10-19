@@ -8,9 +8,6 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.contactlistcommands.AddContactCommand;
-import seedu.address.logic.commands.contactlistcommands.DeleteContactCommand;
-import seedu.address.logic.commands.contactlistcommands.EditContactCommand;
 import seedu.address.logic.commands.contactlistcommands.FindContactCommand;
 import seedu.address.logic.commands.contactlistcommands.HelpContactCommand;
 import seedu.address.logic.commands.contactlistcommands.ListContactCommand;
