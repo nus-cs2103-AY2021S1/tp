@@ -135,6 +135,35 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseFileName_validValueWithoutWhiteSpace_returnsFileName() throws Exception {
+        String expectedFileName = "test.json";
+        String validFileNameInput = expectedFileName;
+        assertEquals(expectedFileName, ParserUtil.parseFileName(validFileNameInput));
+    }
+
+    @Test
+    public void parseFileName_validValueWithWhiteSpace_returnsTrimmedFileName() throws Exception {
+        String expectedFileName = "test.json";
+        String validFileNameInput = " " + expectedFileName;
+        assertEquals(expectedFileName, ParserUtil.parseFileName(validFileNameInput));
+    }
+
+    @Test
+    public void parseFileName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseFileName(null));
+    }
+
+    @Test
+    public void parseFileName_empty_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseFileName(""));
+    }
+
+    @Test
+    public void parseFileName_invalid_throwsParseException() {
+        // throws error if null character is part of the file name string
+        assertThrows(ParseException.class, () -> ParserUtil.parseFileName("\0"));
+    }
+
     public void parseKeywords_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseKeywords(null));
     }
