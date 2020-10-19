@@ -157,6 +157,7 @@ public class ParserUtil {
 
         //Return Path object of file
         return Path.of(filepath);
+    }
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.
