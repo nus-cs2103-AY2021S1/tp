@@ -309,7 +309,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Update existing item quantity or tags**
+**Use case: Adding existing item's quantity or tags**
 
 **MSS**
 
@@ -331,6 +331,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. InventoryBook adds a new item into the inventory.
 
   Use case ends.
+  
+ * 1c. InventoryBook detects existing item name and supplier.
+    * 1c1. InventoryBook adds on existing item name and supplier's with input quantity.
 
 **Use case: Editing an item**
 
