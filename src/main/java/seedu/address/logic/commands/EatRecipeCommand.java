@@ -16,7 +16,7 @@ public class EatRecipeCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a recipe to the daily consumption. "
             + "Parameters:  INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + "1";
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_EAT_RECIPE_SUCCESS = "Eat %1$s";
 
@@ -40,6 +40,7 @@ public class EatRecipeCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        assert(targetIndex.getZeroBased() > 0);
         List<Recipe> lastShownList = model.getFilteredRecipeList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {

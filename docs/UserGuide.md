@@ -72,7 +72,7 @@ Format: `exit`
 
 ## Recipe
 
-### Adding a recipe: `add`
+### Adding a recipe: `addR`
 
 Adds a recipe to Recipes Collection.
 
@@ -86,14 +86,14 @@ Examples:
 * `addR n/sandwiches i/breads, cheese -2 sclices c/80`
 
 
-### Listing all recipes : `list`
+### Listing all recipes : `recipes`
 
 Shows a list of all recipes in the Recipes Collection.
 
-Format: `recipe`
+Format: `recipes`
 
 
-### Deleting a recipe : `delete`
+### Deleting a recipe : `deleteR`
 
 Deletes the specified recipe from Recipes Collection.
 
@@ -147,14 +147,14 @@ Examples:
 * `addF i/banana, green peas, salmon fish`
 
 
-### Listing all ingredients : `list`
+### Listing all ingredients : `fridge`
 
 Shows a list of all ingredients in the fridge.
 
 Format: `fridge`
 
 
-### Deleting an ingredient : `delete`
+### Deleting an ingredient : `deleteF`
 
 Deletes the specified ingredient from Fridge.
 
@@ -185,7 +185,7 @@ Examples:
 
 ## Consumption
 
-### Eating a recipe : `add`
+### Eating a recipe : `eatR`
 
 Add the specified recipe to the Consumption Collection from Recipes Collection.
 
@@ -200,7 +200,7 @@ Examples:
 * `searchR n/salad` followed by `eatR 1` deletes the 1st recipe in the results of the `search` command.
 
 
-### Listing all recipes eaten : `list`
+### Listing all recipes eaten : `calories`
 
 Shows a list of all recipes eat by the user.
 

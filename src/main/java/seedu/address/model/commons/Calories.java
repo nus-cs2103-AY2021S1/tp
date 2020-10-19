@@ -17,6 +17,7 @@ public class Calories {
      */
     public Calories(Integer calories) {
         requireNonNull(calories);
+        assert(calories >= 0);
         value = calories;
     }
 
