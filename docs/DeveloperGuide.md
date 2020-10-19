@@ -328,7 +328,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `CliniCal` and the **Actor** is the `user`, unless specified otherwise)
 
-#### **Use case: UC01 - Delete a patient**
+**Use case: UC01 - Delete a patient**
 
 **MSS**
 
@@ -351,7 +351,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### **Use case: UC02 - Add a patient**
+**Use case: UC02 - Add a patient**
 
 **MSS**
 
@@ -367,7 +367,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 1.
 
-#### **Use case: UC03 - Edit a patient**
+**Use case: UC03 - Edit a patient**
 
 **MSS**
 
@@ -390,7 +390,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at Step 3.
 
-#### **Use case: UC04 - Add a patient's profile picture using command line interface**
+**Use case: UC04 - Add a patient's profile picture using command line interface**
 
 **MSS**
 
