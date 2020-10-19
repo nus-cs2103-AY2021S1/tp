@@ -262,6 +262,14 @@ Import a previously saved file into McGymmy
 Format: `import DIRPATH [-o FILENAME]`
 
 * Export the saved file to `DIRPATH` with `FILENAME`
+* Default filename is `mcgymmy.json`
+
+Examples:
+* `export c:/mcgymmy` exports the save file as `mcgymmy.json` to `c:/mcgymmy`
+* `export c:/mcgymmy -o save_file` exports the save file as `save_file.json` to `c:/mcgymmy`
+
+![Export command example](images/CommandImagesForUG/Export.png)
+
 
 ### Exiting the program : `exit`
 
