@@ -6,6 +6,7 @@ import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_QUESTION;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_RATING;
 
 import seedu.flashcard.commons.core.index.Index;
 import seedu.flashcard.logic.commands.EditCommand;
@@ -27,7 +28,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_QUESTION, PREFIX_ANSWER, PREFIX_CATEGORY, PREFIX_NOTE);
+                ArgumentTokenizer.tokenize(args, PREFIX_QUESTION, PREFIX_ANSWER, PREFIX_CATEGORY, PREFIX_NOTE,
+                        PREFIX_RATING);
 
         Index index;
 
@@ -50,6 +52,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_NOTE).isPresent()) {
             editFlashcardDescriptor.setNote(ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_RATING).isPresent()) {
+            editFlashcardDescriptor.setRating(ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get()));
         }
 
         if (!editFlashcardDescriptor.isAnyFieldEdited()) {

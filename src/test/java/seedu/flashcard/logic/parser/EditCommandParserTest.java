@@ -4,6 +4,7 @@ import static seedu.flashcard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 import static seedu.flashcard.logic.commands.CommandTestUtil.INVALID_ANSWER_DESC;
 import static seedu.flashcard.logic.commands.CommandTestUtil.INVALID_CATEGORY_DESC;
 import static seedu.flashcard.logic.commands.CommandTestUtil.INVALID_QUESTION_DESC;
+import static seedu.flashcard.logic.commands.CommandTestUtil.INVALID_RATING_DESC;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_ANSWER_4;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_ANSWER_4_DESC;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_ANSWER_5;
@@ -19,6 +20,8 @@ import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_QUESTION_4;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_QUESTION_4_DESC;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_QUESTION_5;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_QUESTION_5_DESC;
+import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_RATING_2;
+import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_RATING_2_DESC;
 import static seedu.flashcard.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.flashcard.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.flashcard.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
@@ -33,6 +36,7 @@ import seedu.flashcard.logic.commands.EditCommand.EditFlashcardDescriptor;
 import seedu.flashcard.model.flashcard.Answer;
 import seedu.flashcard.model.flashcard.Category;
 import seedu.flashcard.model.flashcard.Question;
+import seedu.flashcard.model.flashcard.Rating;
 import seedu.flashcard.testutil.EditFlashcardDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -75,6 +79,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_QUESTION_DESC, Question.MESSAGE_CONSTRAINTS); // invalid question
         assertParseFailure(parser, "1" + INVALID_ANSWER_DESC, Answer.MESSAGE_CONSTRAINTS); // invalid answer
         assertParseFailure(parser, "1" + INVALID_CATEGORY_DESC, Category.MESSAGE_CONSTRAINTS); // invalid category
+        assertParseFailure(parser, "1" + INVALID_RATING_DESC, Rating.MESSAGE_CONSTRAINTS); // invalid rating
 
         // invalid question followed by valid answer
         assertParseFailure(parser, "1" + INVALID_QUESTION_DESC + VALID_ANSWER_4_DESC, Question.MESSAGE_CONSTRAINTS);
@@ -92,10 +97,11 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_FLASHCARD;
         String userInput = targetIndex.getOneBased() + VALID_QUESTION_4_DESC + VALID_ANSWER_4_DESC
-                + VALID_CATEGORY_4_DESC + VALID_NOTE_4_DESC;
+                + VALID_CATEGORY_4_DESC + VALID_NOTE_4_DESC + VALID_RATING_2_DESC;
 
         EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_4)
-                .withAnswer(VALID_ANSWER_4).withCategory(VALID_CATEGORY_4).withNote(VALID_NOTE_2).build();
+                .withAnswer(VALID_ANSWER_4).withCategory(VALID_CATEGORY_4).withNote(VALID_NOTE_2)
+                .withRating(VALID_RATING_2).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -132,6 +138,18 @@ public class EditCommandParserTest {
         // category
         userInput = targetIndex.getOneBased() + VALID_CATEGORY_4_DESC;
         descriptor = new EditFlashcardDescriptorBuilder().withCategory(VALID_CATEGORY_4).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        //note
+        userInput = targetIndex.getOneBased() + VALID_NOTE_4_DESC;
+        descriptor = new EditFlashcardDescriptorBuilder().withNote(VALID_NOTE_2).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        //rating
+        userInput = targetIndex.getOneBased() + VALID_RATING_2_DESC;
+        descriptor = new EditFlashcardDescriptorBuilder().withRating(VALID_RATING_2).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

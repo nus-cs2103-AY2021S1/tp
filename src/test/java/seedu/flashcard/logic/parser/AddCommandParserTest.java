@@ -4,12 +4,14 @@ import static seedu.flashcard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 import static seedu.flashcard.logic.commands.CommandTestUtil.INVALID_ANSWER_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.INVALID_CATEGORY_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.INVALID_QUESTION_1;
+import static seedu.flashcard.logic.commands.CommandTestUtil.INVALID_RATING_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_ANSWER_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_ANSWER_3;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_CATEGORY_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_NOTE_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_QUESTION_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_QUESTION_3;
+import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_RATING_2;
 import static seedu.flashcard.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.flashcard.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_1;
@@ -21,26 +23,30 @@ import seedu.flashcard.logic.commands.AddCommand;
 import seedu.flashcard.model.flashcard.Answer;
 import seedu.flashcard.model.flashcard.Category;
 import seedu.flashcard.model.flashcard.Question;
+import seedu.flashcard.model.flashcard.Rating;
 
 public class AddCommandParserTest {
     public static final String PREFIX_ANSWER = " a/";
     public static final String PREFIX_CATEGORY = " c/";
     public static final String PREFIX_QUESTION = " q/";
     public static final String PREFIX_NOTE = " n/";
+    public static final String PREFIX_RATING = " r/";
     public static final String SPACE = " ";
 
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        // standard flashcard with category and note
+        // standard flashcard with category, note and rating
         assertParseSuccess(parser, SPACE + PREFIX_QUESTION + VALID_QUESTION_1 + PREFIX_ANSWER
-                 + VALID_ANSWER_1 + PREFIX_CATEGORY + VALID_CATEGORY_1 + PREFIX_NOTE + VALID_NOTE_1,
+                 + VALID_ANSWER_1 + PREFIX_CATEGORY + VALID_CATEGORY_1 + PREFIX_NOTE + VALID_NOTE_1 + PREFIX_RATING
+                        + VALID_RATING_2,
                 new AddCommand(FLASHCARD_1));
 
         // flashcard with input arguments in reversed order, with category and note
         assertParseSuccess(parser, SPACE + PREFIX_ANSWER + VALID_ANSWER_1 + PREFIX_QUESTION + VALID_QUESTION_1
-                 + PREFIX_CATEGORY + VALID_CATEGORY_1 + PREFIX_NOTE + VALID_NOTE_1, new AddCommand(FLASHCARD_1));
+                 + PREFIX_CATEGORY + VALID_CATEGORY_1 + PREFIX_RATING + VALID_RATING_2 + PREFIX_NOTE + VALID_NOTE_1,
+                new AddCommand(FLASHCARD_1));
     }
 
     @Test
@@ -80,5 +86,10 @@ public class AddCommandParserTest {
         // invalid category
         assertParseFailure(parser, SPACE + PREFIX_QUESTION + VALID_QUESTION_1 + PREFIX_ANSWER
                 + VALID_ANSWER_1 + PREFIX_CATEGORY + INVALID_CATEGORY_1, Category.MESSAGE_CONSTRAINTS);
+
+        // invalid rating
+        assertParseFailure(parser, SPACE + PREFIX_QUESTION + VALID_QUESTION_1 + PREFIX_ANSWER
+                + VALID_ANSWER_1 + PREFIX_CATEGORY + VALID_CATEGORY_1 + PREFIX_RATING + INVALID_RATING_1,
+                Rating.MESSAGE_CONSTRAINTS);
     }
 }

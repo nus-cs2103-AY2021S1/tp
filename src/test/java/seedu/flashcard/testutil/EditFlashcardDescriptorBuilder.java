@@ -6,6 +6,7 @@ import seedu.flashcard.model.flashcard.Category;
 import seedu.flashcard.model.flashcard.Flashcard;
 import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
+import seedu.flashcard.model.flashcard.Rating;
 
 /**
  * A utility class to help with building EditFlashcardDescriptor objects.
@@ -31,6 +32,7 @@ public class EditFlashcardDescriptorBuilder {
         descriptor.setAnswer(flashcard.getAnswer());
         descriptor.setCategory(flashcard.getCategory());
         descriptor.setNote(flashcard.getNote());
+        descriptor.setRating(flashcard.getRating());
     }
 
     /**
@@ -65,6 +67,13 @@ public class EditFlashcardDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Rating} of the {@code EditFlashcardDescriptor} that we are building.
+     */
+    public EditFlashcardDescriptorBuilder withRating(String rating) {
+        descriptor.setRating(new Rating(rating));
+        return this;
+    }
 
     public EditFlashcardDescriptor build() {
         return descriptor;

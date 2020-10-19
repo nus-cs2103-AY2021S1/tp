@@ -17,6 +17,7 @@ public class Flashcard {
     private final Answer answer;
     private final Category category;
     private final Note note;
+    private final Rating rating;
 
     // State fields
     private final boolean isFavourite;
@@ -24,12 +25,13 @@ public class Flashcard {
     /**
      * Identity and Data fields must be present and not null.
      */
-    public Flashcard(Question question, Answer answer, Category category, Note note) {
-        requireAllNonNull(question, answer, category, note);
+    public Flashcard(Question question, Answer answer, Category category, Note note, Rating rating) {
+        requireAllNonNull(question, answer, category, note, rating);
         this.question = question;
         this.answer = answer;
         this.category = category;
         this.note = note;
+        this.rating = rating;
         this.isFavourite = false;
     }
 
@@ -37,12 +39,14 @@ public class Flashcard {
      * Overloaded constructor for creating a flashcard when flashcard is favourited/unfavourited.
      * All fields must be present and not null.
      */
-    public Flashcard(Question question, Answer answer, Category category, Note note, boolean isFavourite) {
-        requireAllNonNull(question, answer, category, note, isFavourite);
+    public Flashcard(Question question, Answer answer, Category category, Note note, Rating rating,
+                     boolean isFavourite) {
+        requireAllNonNull(question, answer, category, note, rating, isFavourite);
         this.question = question;
         this.answer = answer;
         this.category = category;
         this.note = note;
+        this.rating = rating;
         this.isFavourite = isFavourite;
     }
 
@@ -60,6 +64,10 @@ public class Flashcard {
 
     public Note getNote() {
         return note;
+    }
+
+    public Rating getRating() {
+        return rating;
     }
 
     public boolean isFavourite() {
@@ -106,13 +114,14 @@ public class Flashcard {
                 && otherFlashcard.getAnswer().equals(getAnswer())
                 && otherFlashcard.getCategory().equals(getCategory())
                 && otherFlashcard.getNote().equals(getNote())
-                && (otherFlashcard.isFavourite() == isFavourite());
+                && otherFlashcard.getRating().equals(getRating())
+                && otherFlashcard.isFavourite() == isFavourite();
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(question, answer, category);
+        return Objects.hash(question, answer, category, note, rating, isFavourite);
     }
 
     @Override
@@ -128,6 +137,12 @@ public class Flashcard {
             builder.append(" Note: ")
                     .append(getNote());
         }
+        if (getRating().toString().length() > 0) {
+            builder.append(" Rating: ")
+                    .append(getRating());
+        }
+        builder.append(" Favourite: ")
+                .append(isFavourite());
         return builder.toString();
     }
 

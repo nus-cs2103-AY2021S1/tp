@@ -9,6 +9,8 @@ import seedu.flashcard.model.flashcard.Category;
 import seedu.flashcard.model.flashcard.Flashcard;
 import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
+import seedu.flashcard.model.flashcard.Rating;
+
 /**
  * Jackson-friendly version of {@link Flashcard}.
  */
@@ -20,6 +22,7 @@ class JsonAdaptedFlashcard {
     private String answer;
     private String category;
     private String note;
+    private String rating;
     private String isFavourite;
 
     /**
@@ -28,11 +31,12 @@ class JsonAdaptedFlashcard {
     @JsonCreator
     public JsonAdaptedFlashcard(@JsonProperty("question") String question, @JsonProperty("answer") String answer,
                                 @JsonProperty("category") String category, @JsonProperty("note") String note,
-                                @JsonProperty("favourite") String isFavourite) {
+                                @JsonProperty("rating") String rating, @JsonProperty("favourite") String isFavourite) {
         this.question = question;
         this.answer = answer;
         this.category = category;
         this.note = note;
+        this.rating = rating;
         this.isFavourite = isFavourite;
     }
 
@@ -44,6 +48,7 @@ class JsonAdaptedFlashcard {
         answer = source.getAnswer().toString();
         category = source.getCategory().toString();
         note = source.getNote().toString();
+        rating = source.getRating().toString();
         isFavourite = Boolean.toString(source.isFavourite());
     }
 
@@ -86,9 +91,17 @@ class JsonAdaptedFlashcard {
         }
         final Note modelNote = new Note(note);
 
-        final Boolean modelIsFavourite = Boolean.parseBoolean(isFavourite);
+        if (rating == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Rating.class.getSimpleName()));
+        }
+        if (!Rating.isValidRating(rating)) {
+            throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
+        }
+        final Rating modelRating = new Rating(rating);
 
-        return new Flashcard(modelQuestion, modelAnswer, modelCategory, modelNote, modelIsFavourite);
+        final Boolean modelIsFavourite = Boolean.parseBoolean(isFavourite);
+        return new Flashcard(modelQuestion, modelAnswer, modelCategory, modelNote, modelRating, modelIsFavourite);
     }
 
 }
