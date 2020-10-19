@@ -73,6 +73,7 @@ public class Contact {
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
+    /*
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -89,6 +90,7 @@ public class Contact {
                 && otherPerson.getTelegramUsername().equals(getTelegramUsername())
                 && otherPerson.getTags().equals(getTags());
     }
+    */
 
     @Override
     public int hashCode() {
