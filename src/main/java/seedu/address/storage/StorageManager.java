@@ -96,7 +96,7 @@ public class StorageManager implements Storage {
     public static String addPictureToProfile(String patientName, File profilePic) {
         try {
             assert patientName != "" || profilePic != null : "Patient name cannot be blank."
-                                                            + "Profile picture cannot be null";
+                                                            + "Profile picture cannot be null.";
             String profilePicPath = profilePic.getPath();
             String profilePicExtension = FilenameUtils.getExtension(profilePicPath);
             //TODO: replace hardcoded path
