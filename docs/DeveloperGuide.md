@@ -107,9 +107,8 @@ The `Model`,
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `CliniCal` application, which `Patient` references. This allows `CliniCal` to only require one `Tag` object per unique `Tag`, instead of each `Patient` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has an `Allergy` list in the `CliniCal` application, which `Patient` references. This allows `CliniCal` to only require one `Allergy` object per unique `Allergy`, instead of each `Patient` needing their own `Allergy` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
 </div>
 
 
@@ -329,7 +328,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `CliniCal` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Delete a patient**
+#### **Use case: UC01 - Delete a patient**
 
 **MSS**
 
@@ -352,7 +351,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC02 - Add a patient**
+#### **Use case: UC02 - Add a patient**
 
 **MSS**
 
@@ -368,7 +367,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 1.
 
-**Use case: UC03 - Edit a patient**
+#### **Use case: UC03 - Edit a patient**
 
 **MSS**
 
@@ -391,7 +390,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at Step 3.
 
-**Use case: UC04 - Add a patient's profile picture using command line interface**
+#### **Use case: UC04 - Add a patient's profile picture using command line interface**
 
 **MSS**
 
@@ -476,7 +475,19 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### F.2 Deleting a patient
+### F.2 Adding a patient
+
+1. Adding a new patient to the list
+
+   1. Test case: `add n/John Doe p/12345678 i/s1234567a`<br>
+      Expected: A patient named John Doe should be added into the list with his phone number and IC number.
+
+   1. Test case: `add`<br>
+      Expected: No patient is added. Error details shown in the status message. Status bar remains the same.
+
+1. _{ more test cases …​ }_
+
+### F.3 Deleting a patient
 
 1. Deleting a patient while all patients are being shown
 
@@ -493,7 +504,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### F.3 Saving data
+### F.4 Saving data
 
 1. Dealing with missing/corrupted data files
 
