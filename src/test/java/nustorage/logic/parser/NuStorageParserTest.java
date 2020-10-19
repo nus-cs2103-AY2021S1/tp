@@ -29,9 +29,9 @@ import nustorage.testutil.EditPersonDescriptorBuilder;
 import nustorage.testutil.PersonBuilder;
 import nustorage.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class NuStorageParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final NuStorageParser parser = new NuStorageParser();
 
     @Test
     public void parseCommand_add() throws Exception {

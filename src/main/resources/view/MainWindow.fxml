@@ -53,7 +53,7 @@
                     <AnchorPane fx:id="inventoryPanelPlaceholder" />
                   </content>
                 </Tab>
-                <Tab fx:id="financeTab" text="FInance">
+                <Tab fx:id="financeTab" text="Finance">
                   <content>
                     <AnchorPane fx:id="financeListPanelPlaceholder" />
                   </content>

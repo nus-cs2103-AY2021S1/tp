@@ -1,12 +1,26 @@
 ---
-layout: page
-title: User Guide
----
+# NUStorage User Guide
 
-NUStorage is a desktop application for __managing inventory, transaction records and accounts__.
+By: `AY2021S1-CS2103T-T11-3` Since:`September 2020`
 
-* Table of Contents
-{:toc}
+## Table of content
+- [Introduction](#introduction)
+- [Quick start](#quick-start)
+- [Features](#features)
+    + [Add items to inventory: `add_inventory`](#add-items-to-inventory-add_inventory)
+    + [Remove items from inventory: `delete_inventory`](#remove-items-from-inventory-delete_inventory)
+    + [Edit record in inventory: `edit_inventory`](#edit-record-in-inventory-edit_inventory)
+    + [List inventory records: `list_inventory`](#list-inventory-records-list_inventory)
+    + [Add finance records: `add_finance`](#add-finance-records-add_finance)
+    + [Delete finance records: `delete_finance`](#delete-finance-records-delete_finance)
+    + [List finance records: `list_finance`](#list-finance-records-list_finance)
+    + [Quit the programme: `exit`](#quit-the-programme-exit)
+- [Command summary](#command-summary)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Introduction
+NUStorage is a desktop application for __managing inventory, finance transactions and accounts__.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -15,17 +29,16 @@ NUStorage is a desktop application for __managing inventory, transaction records
 1. Make sure you have Java 11 installed
 1. Download the NUStorage.jar from <here>.
 1. Copy the jar file to the folder you want to use as the home folder for your application.
-1. Double-click on the jar file to start the app. The GUI should look something like this: <insert picture here>
+1. Double-click on the jar file to start the app. The GUI should look something like this:
+![Start of NUStorage](images/NUStorage.png)
 1. Type the command in the command box and press enter to execute.
     - Some commands you can try are:
-        - `list_inventory` to list inventory items
+        - `list_inventory` to list inventory records
         - `list_finance` to list finance records
-        - `add_inventory i/laptop q/2` to add 2 laptops to inventory
-        - `add_finance amt/120.17` to add an outbound transaction of $120.17
+        - `add_inventory i/Logitech G400 q/20 c/69` to add 20 Logitech G400 gaming mouse that cost $69 to the inventory
+        - `add_finance amt/120.17` to add an inbound transaction of $120.17
         - `bye` to exit programme
     - Refer to the feature list below for details of each command.
-
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -42,69 +55,66 @@ NUStorage is a desktop application for __managing inventory, transaction records
   * `amt/200 at/2020-04-10`
   * `amt/200 at/18:00`
   * `amt/200 at/2020-04-10`
+  * `amt/200`
 </div>
 
-#### Add items into inventory (add): `add_inventory`
-Adds and stores items into the inventory
+--------------------------------------------------------------------------------------------------------------------
+#### Add items to inventory: `add_inventory`
+Add and store items into the inventory
 
-Format: `add_inventory i/ITEM_NAME Q/QUANTITY [c/ITEM_COST]`
+Format: `add_inventory i/ITEM_NAME q/QUANTITY [c/ITEM_COST]`
 
+--------------------------------------------------------------------------------------------------------------------
 
-### Sell items from inventory (remove): `delete_inventory`
-Sells items from the inventory
+#### Remove items from inventory: `delete_inventory`
+Remove specified record from the inventory
 
-Format: `delete_inventory ITEM_NUMBER`
+Format: `delete_inventory INDEX`
 
+--------------------------------------------------------------------------------------------------------------------
 
-### Edit item in inventory (remove): `edit_inventory`
-Edits items in the inventory
+#### Edit record in inventory: `edit_inventory`
+Edit specified record in the inventory
 
-Format: `edit_inventory ITEM_NUMBER [i/ITEM_NAME] [q/QUANTITY]`
+Format: `edit_inventory INDEX [i/ITEM_NAME] [q/QUANTITY]`
 
+--------------------------------------------------------------------------------------------------------------------
 
 #### List inventory records: `list_inventory`
-Shows the items in the current Inventory
+Display all records in the inventory
 
 Format: `list_inventory`
 
-#### List inventory records: `view_inventory_records`
-Shows the movement of inventory
-
-Format: `view_inventory_records`
-
+--------------------------------------------------------------------------------------------------------------------
 
 #### Add finance records: `add_finance`
-Adds and stores finance records into finance records
+Add and store finance record into the account
+
+Date and time are default to current location's datetime unless specified
 
 Format: `add_finance amt/AMOUNT [at/[DATE] [TIME]]`
 
-Note: OPERATOR is either `in` or `out`
-
+--------------------------------------------------------------------------------------------------------------------
 
 #### Delete finance records: `delete_finance`
 
-Adds and stores finance records into finance records
+Delete specified finance record from the account
 
 Format: `delete_finance INDEX`
 
+--------------------------------------------------------------------------------------------------------------------
 
 #### List finance records: `list_finance`
 
-Adds and stores finance records into finance records
+Display all finance records in the account
 
 Format: `list_finance`
 
-
-### Save the current data: `save`
-
-Saves the current data locally into a data file
-
-Format: `save`
-
+--------------------------------------------------------------------------------------------------------------------
 
 #### Quit the programme: `exit`
 
-Exits the programme and save the data locally in a data file
+Save data locally in a data file and exit the programme
 
 Format: `exit`
 
@@ -114,12 +124,11 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-__Add inventory__ | `add_inventory i/ITEM q/QUANTITY c/ITEM_COST`<br> e.g. add_inventory i/MacBook q/200 c/50
+__Add inventory__ | `add_inventory i/ITEM q/QUANTITY [c/ITEM_COST]`<br> e.g. add_inventory i/MacBook pro q/200 c/50
 __Delete inventory__ | `delete_inventory ITEM_NUMBER`<br> e.g. delete_inventory 4
-__Edit inventory__ | `edit_inventory ITEM_NUMBER [i/ITEM_NAME] [q/QUANTITY]`<br> e.g. edit_inventory 3 i/laptops q/10
+__Edit inventory__ | `edit_inventory ITEM_NUMBER [i/ITEM_NAME] [q/QUANTITY]`<br> e.g. edit_inventory 3 i/Lenovo Y50 q/10
 __List inventory__ | `list_inventory`
 __Add finance__ | `add_finance amt/AMOUNT [at/[DATE] [TIME]]`<br> e.g. add_finance amt/420.69 at/2020-04-23
-__Delete finance__ | `delete_finance INDEX`<br> e.g. delete_finance 0
+__Delete finance__ | `delete_finance INDEX`<br> e.g. delete_finance 2
 __List finance__ | `list_finance`
-__Save file__ | `save`
 __Exit programme__ | `exit`
