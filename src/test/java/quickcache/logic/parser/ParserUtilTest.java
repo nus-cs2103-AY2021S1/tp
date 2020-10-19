@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 
 import quickcache.logic.parser.exceptions.ParseException;
 import quickcache.model.flashcard.Answer;
-import quickcache.model.flashcard.OpenEndedQuestion;
 import quickcache.model.flashcard.Tag;
 
 
@@ -61,14 +60,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseQuestion_validValueWithoutWhitespace_returnsQuestion() throws Exception {
-        OpenEndedQuestion expectedQuestion = new OpenEndedQuestion(VALID_QUESTION);
+        String expectedQuestion = VALID_QUESTION;
         assertEquals(expectedQuestion, ParserUtil.parseQuestion(VALID_QUESTION));
     }
 
     @Test
     public void parseQuestion_validValueWithWhitespace_returnsTrimmedQuestion() throws Exception {
         String questionWithWhitespace = WHITESPACE + VALID_QUESTION + WHITESPACE;
-        OpenEndedQuestion expectedQuestion = new OpenEndedQuestion(VALID_QUESTION);
+        String expectedQuestion = VALID_QUESTION;
         assertEquals(expectedQuestion, ParserUtil.parseQuestion(questionWithWhitespace));
     }
 

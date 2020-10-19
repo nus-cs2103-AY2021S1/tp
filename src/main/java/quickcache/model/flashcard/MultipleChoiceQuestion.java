@@ -16,26 +16,26 @@ public class MultipleChoiceQuestion implements Question {
 
     public static final String TYPE = "MCQ";
 
-    public static final String VALIDATION_REGEX = "[^\\s].*";
-
     public static final String MESSAGE_CONSTRAINTS = "MultipleChoiceQuestion can take any values, "
             + "and it should not be blank";
 
     private final Choice[] choices;
     private final String value;
+    private final Answer answer;
 
     /**
      * A constructor to create MCQ Question object.
      */
-    public MultipleChoiceQuestion(String question, Choice... choices) {
+    public MultipleChoiceQuestion(String question, Answer answer, Choice... choices) {
         this.value = question;
         this.choices = choices;
+        this.answer = answer;
     }
 
     /**
      * A constructor to create MCQ Question object.
      */
-    public MultipleChoiceQuestion(String question, List<String> choices) {
+    public MultipleChoiceQuestion(String question, List<String> choices, Answer answer) {
         this.value = question;
         List<Choice> choicesArray = new ArrayList<Choice>();
         for (String c : choices) {
@@ -47,10 +47,16 @@ public class MultipleChoiceQuestion implements Question {
             newChoicesArray[i] = new Choice(choices.get(i));
         }
         this.choices = newChoicesArray;
+        this.answer = answer;
     }
 
     public static boolean isValidQuestion(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public Question copyQuestion(String question, Answer answer) {
+        return new MultipleChoiceQuestion(question, answer, this.choices);
     }
 
     @Override
@@ -60,6 +66,26 @@ public class MultipleChoiceQuestion implements Question {
 
     public Optional<Choice[]> getChoices() {
         return Optional.ofNullable(this.choices);
+    }
+
+    @Override
+    public Answer getAnswer() {
+        return this.answer;
+    }
+
+    @Override
+    public Answer getAnswerOrIndex() {
+        for (int i = 0; i < choices.length; i++) {
+            if (this.answer.getValue().toLowerCase().equals(choices[i].getValue().toLowerCase())) {
+                return new Answer(String.valueOf(i + 1));
+            }
+        }
+        return this.answer;
+    }
+
+    @Override
+    public boolean checkAnswer(Answer answer) {
+        return this.answer.checkAnswer(answer);
     }
 
     @Override
@@ -91,7 +117,8 @@ public class MultipleChoiceQuestion implements Question {
         } else if (o instanceof MultipleChoiceQuestion) {
             MultipleChoiceQuestion temp = (MultipleChoiceQuestion) o;
             return this.toString().equals(temp.toString())
-                    && Arrays.equals(this.getChoices().get(), temp.getChoices().get());
+                    && Arrays.equals(this.getChoices().get(), temp.getChoices().get())
+                    && this.answer.equals(temp.answer);
         }
         return false;
     }

@@ -31,29 +31,26 @@ public class SampleDataUtil {
         Choice choice12 = new Choice("A module that doesn't involve TCP");
         return new Flashcard[]{
             new Flashcard(new MultipleChoiceQuestion("What is CS2103T?",
+                    new Answer("Software Engineering module for NUS students"),
                 choice1,
                 choice2,
                 choice3,
                 choice4
-            ),
-                new Answer("Software Engineering module for NUS students"),
-                getTagSet("MCQ", "GoodQuestion")),
+            ), getTagSet("MCQ", "GoodQuestion")),
             new Flashcard(new MultipleChoiceQuestion("What is CS2100?",
+                    new Answer("Computer Organization module for NUS students"),
                 choice5,
                 choice6,
                 choice7,
                 choice8
-            ),
-                new Answer("Computer Organization module for NUS students"),
-                getTagSet("MCQ", "Assembly")),
+            ), getTagSet("MCQ", "Assembly")),
             new Flashcard(new MultipleChoiceQuestion("What is CS2105?",
+                    new Answer("Introductory module to computer networks for NUS students"),
                 choice9,
                 choice10,
                 choice11,
                 choice12
-            ),
-                new Answer("Introductory module to computer networks for NUS students"),
-                getTagSet("MCQ", "TCPforLife"))
+            ), getTagSet("MCQ", "TCPforLife"))
         };
     }
 
