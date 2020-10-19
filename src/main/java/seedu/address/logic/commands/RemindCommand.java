@@ -13,6 +13,7 @@ import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.ModuleCode;
 import seedu.address.model.assignment.Name;
+import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
 
@@ -78,8 +79,10 @@ public class RemindCommand extends Command {
         ModuleCode updatedModuleCode = assignmentToRemind.getModuleCode();
         Remind updatedRemind = assignmentToRemind.getRemind().setReminder();
         Schedule updatedSchedule = assignmentToRemind.getSchedule();
+        Priority priority = assignmentToRemind.getPriority();
 
-        return new Assignment(updatedName, updatedDeadline, updatedModuleCode, updatedRemind, updatedSchedule);
+        return new Assignment(updatedName, updatedDeadline, updatedModuleCode, updatedRemind, updatedSchedule,
+                priority);
     }
 
     @Override

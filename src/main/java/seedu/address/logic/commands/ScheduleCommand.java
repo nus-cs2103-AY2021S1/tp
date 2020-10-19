@@ -19,6 +19,7 @@ import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.ModuleCode;
 import seedu.address.model.assignment.Name;
+import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
 import seedu.address.model.assignment.Task;
@@ -158,8 +159,10 @@ public class ScheduleCommand extends Command {
         Deadline updatedDeadline = assignmentToSchedule.getDeadline();
         ModuleCode updatedModuleCode = assignmentToSchedule.getModuleCode();
         Remind updatedRemind = assignmentToSchedule.getRemind();
+        Priority priority = assignmentToSchedule.getPriority();
 
-        return new Assignment(updatedName, updatedDeadline, updatedModuleCode, updatedRemind, schedule);
+        return new Assignment(updatedName, updatedDeadline, updatedModuleCode, updatedRemind, schedule,
+                priority);
     }
 
     @Override
