@@ -1,13 +1,13 @@
 package seedu.address.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import seedu.address.logic.commands.exceptions.UndoRedoLimitReachedException;
 import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.deliverymodel.DeliveryModelManager;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.InventoryModelManager;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Class that implements {@code Models} interface. Serves as a wrapper class for all models.
@@ -21,10 +21,18 @@ public class ModelsManager implements Models {
     private InventoryModel inventoryModel;
     private Map<String, Model> modelMap;
 
+    /**
+     * Initialise a {@code ModelManager} to hold empty models
+     */
     public ModelsManager() {
         this(new InventoryModelManager(), new DeliveryModelManager());
     }
 
+    /**
+     * Initialise a {@code ModelManager} to hold the specificied models
+     * @param inventoryModel {@InventoryModel} which the {@ModelManager} stores
+     * @param deliveryModel {@DeliveryModel} which the {@ModelManager} stores
+     */
     public ModelsManager(InventoryModel inventoryModel, DeliveryModel deliveryModel) {
         this.deliveryModel = deliveryModel;
         this.inventoryModel = inventoryModel;

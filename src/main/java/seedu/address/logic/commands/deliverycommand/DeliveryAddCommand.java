@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
-import seedu.address.model.Model;
 import seedu.address.model.Models;
 import seedu.address.model.delivery.Delivery;
 import seedu.address.model.deliverymodel.DeliveryModel;

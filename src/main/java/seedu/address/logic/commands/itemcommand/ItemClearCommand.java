@@ -1,13 +1,11 @@
 package seedu.address.logic.commands.itemcommand;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Models;
 import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.model.inventorymodel.InventoryModel;
-import seedu.address.model.inventorymodel.InventoryModelManager;
 
 /**
  * Clears the inventory book.

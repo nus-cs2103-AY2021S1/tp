@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.itemcommand;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_METRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;

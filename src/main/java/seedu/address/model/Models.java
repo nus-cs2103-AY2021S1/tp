@@ -1,12 +1,10 @@
 package seedu.address.model;
 
+import java.util.Map;
+
 import seedu.address.logic.commands.exceptions.UndoRedoLimitReachedException;
-import seedu.address.model.delivery.Delivery;
 import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.inventorymodel.InventoryModel;
-
-import java.util.List;
-import java.util.Map;
 
 public interface Models {
     /**
