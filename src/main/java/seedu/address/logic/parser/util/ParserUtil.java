@@ -2,8 +2,10 @@ package seedu.address.logic.parser.util;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.category.Category;
@@ -106,4 +108,14 @@ public class ParserUtil {
         return tagSet;
     }
 
+
+    /**
+     * Parses {@code String keywords} into a {@code List<String>}.
+     */
+    public static List<String> parseKeywords(String keywords) {
+        requireNonNull(keywords);
+        String trimmedKeywords = keywords.trim();
+        String[] splitKeywords = trimmedKeywords.split("\\s+");
+        return Arrays.asList(splitKeywords);
+    }
 }
