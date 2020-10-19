@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Appointment;
 import seedu.address.model.patient.Email;
+import seedu.address.model.patient.MedicalRecord;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Phone;
@@ -164,5 +165,20 @@ public class ParserUtil {
             appointmentSet.add(parseAppointment(appointmentTime));
         }
         return appointmentSet;
+    }
+
+    /**
+     * Parses a {@code String url} into an {@code MedicalRecord}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code url} is invalid.
+     */
+    public static MedicalRecord parseMedicalRecord(String url) throws ParseException {
+        requireNonNull(url);
+        String trimmedUrl = url.trim();
+        if (!MedicalRecord.isValidUrl(trimmedUrl)) {
+            throw new ParseException(MedicalRecord.MESSAGE_CONSTRAINTS);
+        }
+        return new MedicalRecord(trimmedUrl);
     }
 }

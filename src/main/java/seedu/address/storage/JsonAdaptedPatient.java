@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Appointment;
 import seedu.address.model.patient.Email;
+import seedu.address.model.patient.MedicalRecord;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
@@ -33,6 +34,7 @@ class JsonAdaptedPatient {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedAppointment> appointed = new ArrayList<>();
+    private final String medicalRecordUrl;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -42,12 +44,14 @@ class JsonAdaptedPatient {
                               @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                              @JsonProperty("appointed") List<JsonAdaptedAppointment> appointed) {
+                              @JsonProperty("appointed") List<JsonAdaptedAppointment> appointed,
+                              @JsonProperty("medicalRecordUrl") String medicalRecordUrl) {
         this.name = name;
         this.nric = nric;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.medicalRecordUrl = medicalRecordUrl;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -71,6 +75,7 @@ class JsonAdaptedPatient {
         appointed.addAll(source.getAppointments().stream()
                 .map(JsonAdaptedAppointment::new)
                 .collect(Collectors.toList()));
+        medicalRecordUrl = source.getMedicalRecord().value;
     }
 
     /**
@@ -129,9 +134,19 @@ class JsonAdaptedPatient {
         }
         final Address modelAddress = new Address(address);
 
+        if (medicalRecordUrl == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    MedicalRecord.class.getSimpleName()));
+        }
+        if (!MedicalRecord.isValidUrl(medicalRecordUrl)) {
+            throw new IllegalValueException(MedicalRecord.MESSAGE_CONSTRAINTS);
+        }
+        final MedicalRecord modelMedicalRecord = new MedicalRecord(medicalRecordUrl);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Appointment> modelAppointments = new HashSet<>(personAppointments);
-        return new Patient(modelName, modelNric, modelPhone, modelEmail, modelAddress, modelTags, modelAppointments);
+        return new Patient(modelName, modelNric, modelPhone, modelEmail, modelAddress,
+                modelTags, modelAppointments, modelMedicalRecord);
     }
 
 }

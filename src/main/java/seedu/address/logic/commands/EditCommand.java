@@ -23,6 +23,7 @@ import seedu.address.model.Model;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Appointment;
 import seedu.address.model.patient.Email;
+import seedu.address.model.patient.MedicalRecord;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
@@ -107,9 +108,11 @@ public class EditCommand extends Command {
         Set<Appointment> appointments = patientToEdit.getAppointments();
         Set<Appointment> updatedAppointments = new HashSet<>();
         updatedAppointments.addAll(appointments);
+        MedicalRecord updatedMedicalRecord = editPersonDescriptor.getMedicalRecord()
+                .orElse(patientToEdit.getMedicalRecord());
 
         return new Patient(updatedName, updatedNric, updatedPhone,
-                updatedEmail, updatedAddress, updatedTags, updatedAppointments);
+                updatedEmail, updatedAddress, updatedTags, updatedAppointments, updatedMedicalRecord);
     }
 
     @Override
@@ -141,6 +144,7 @@ public class EditCommand extends Command {
         private Nric nric;
         private Address address;
         private Set<Tag> tags;
+        private MedicalRecord medicalRecord;
 
         public EditPersonDescriptor() {}
 
@@ -155,13 +159,14 @@ public class EditCommand extends Command {
             setNric(toCopy.nric);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setMedicalRecord(toCopy.medicalRecord);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, medicalRecord);
         }
 
         public void setName(Name name) {
@@ -204,6 +209,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(nric);
         }
 
+        public void setMedicalRecord(MedicalRecord medicalRecord) {
+            this.medicalRecord = medicalRecord;
+        }
+
+        public Optional<MedicalRecord> getMedicalRecord() {
+            return Optional.ofNullable(medicalRecord);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -241,7 +254,8 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getNric().equals(e.getNric())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getMedicalRecord().equals(e.getMedicalRecord());
 
         }
     }
