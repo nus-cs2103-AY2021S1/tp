@@ -73,4 +73,21 @@ public class ClearLabelCommand extends Command {
 
         return new Person(personToClear.getName(), personToClear.getPhone(), personToClear.getEmail(), new HashSet<>());
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ClearLabelCommand)) {
+            return false;
+        }
+
+        // state check
+        ClearLabelCommand e = (ClearLabelCommand) other;
+        return targetName.equals(e.targetName);
+    }
 }
