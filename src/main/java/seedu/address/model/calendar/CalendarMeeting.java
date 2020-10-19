@@ -16,12 +16,11 @@ public class CalendarMeeting {
     protected boolean isPaperWork;
     protected boolean isViewing;
     protected boolean isAdmin;
-    private final BidderId calendarBidderId;
-    private final PropertyId calendarPropertyId;
-    private final CalendarTime calendarTime;
-    private final CalendarVenue calendarVenue;
-    private boolean isMeeting;
-
+    protected final BidderId calendarBidderId;
+    protected final PropertyId calendarPropertyId;
+    protected final CalendarTime calendarTime;
+    protected final CalendarVenue calendarVenue;
+    protected boolean isMeeting;
 
     /**
      * Every field must be present and not null.
@@ -56,6 +55,23 @@ public class CalendarMeeting {
         }
     }
 
+    /**
+     * Creates the type of meeting based on the meeting type.
+     * @return CalendarMeeting of the specific meeting type.
+     */
+    public CalendarMeeting createMeeting(String type, CalendarBidderId bidderId,
+                                         CalendarPropertyId propertyId, CalendarTime time, CalendarVenue venue) {
+        if (type.equalsIgnoreCase("Paperwork")) {
+            return new CalendarPaperwork(bidderId, propertyId, time, venue);
+        } else if (type.equalsIgnoreCase("Admin")) {
+            return new CalendarAdmin(bidderId, propertyId, time, venue);
+        } else if (type.equalsIgnoreCase("Viewing")) {
+            return new CalendarViewing(bidderId, propertyId, time, venue);
+        } else {
+            return new CalendarMeeting(bidderId, propertyId, time, venue);
+        }
+    }
+
     public BidderId getCalendarBidderId() {
         return this.calendarBidderId;
     }
@@ -85,23 +101,20 @@ public class CalendarMeeting {
     }
 
     /**
-     * Returns true if either the property id is the same or if the address is the same.
+     * Returns true if either the venue, time, bidderId and propertyId is the same.
      *
-     * @param otherMeeting The other property.
-     * @return True if both property objects represent the same property.
+     * @param other The other property.
+     * @return True if both property objects represent the same meeting.
      */
-    public boolean isSameMeeting(CalendarMeeting otherMeeting) {
-        if (otherMeeting == this) {
-            return true;
-        }
-
-        return otherMeeting != null
-                && otherMeeting.getCalendarPropertyId().equals(getCalendarPropertyId())
-                && (otherMeeting.getCalendarVenue().equals(getCalendarVenue()))
-                && ((otherMeeting.getCalendarTime() == getCalendarTime()))
-                && ((otherMeeting.getCalendarBidderId() == getCalendarBidderId()));
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof CalendarMeeting // instanceof handles nulls
+                && this.calendarBidderId.equals(((CalendarMeeting) other).getCalendarBidderId())
+                && this.calendarPropertyId.equals(((CalendarMeeting) other).getCalendarPropertyId())
+                && this.calendarTime.equals(((CalendarMeeting) other).getCalendarTime())
+                && this.calendarVenue.equals(((CalendarMeeting) other).getCalendarVenue())); // state check
     }
-
 
     @Override
     public String toString() {
