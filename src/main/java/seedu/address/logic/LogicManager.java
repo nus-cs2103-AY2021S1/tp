@@ -12,8 +12,10 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ZooKeepBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.HistoryStack;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyZooKeepBook;
+import seedu.address.model.ZooKeepBook;
 import seedu.address.model.animal.Animal;
 import seedu.address.storage.Storage;
 
@@ -27,6 +29,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final ZooKeepBookParser zooKeepBookParser;
+    private final HistoryStack historyStack;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -35,6 +38,8 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         zooKeepBookParser = new ZooKeepBookParser();
+        historyStack = HistoryStack.getHistoryStack();
+        historyStack.addToHistory(new ZooKeepBook(model.getZooKeepBook()));
     }
 
     @Override
@@ -45,8 +50,14 @@ public class LogicManager implements Logic {
         Command command = zooKeepBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
+        ReadOnlyZooKeepBook book = model.getZooKeepBook();
+        historyStack.addToHistory(new ZooKeepBook(book));
+
+        logger.info("--------------- ADDED CHANGE TO HISTORY STACK");
+        logger.info(historyStack.toString());
+
         try {
-            storage.saveZooKeepBook(model.getZooKeepBook());
+            storage.saveZooKeepBook(book);
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }

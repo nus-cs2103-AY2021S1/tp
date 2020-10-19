@@ -13,5 +13,4 @@ public interface ReadOnlyZooKeepBook {
      * This list will not contain any duplicate animals.
      */
     ObservableList<Animal> getAnimalList();
-
 }
