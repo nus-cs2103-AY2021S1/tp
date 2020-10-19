@@ -13,7 +13,7 @@ public class Address {
 
     /*
      * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * otherwise " " (a blank string) would become a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 

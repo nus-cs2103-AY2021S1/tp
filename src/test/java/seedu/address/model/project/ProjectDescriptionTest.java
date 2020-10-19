@@ -14,24 +14,25 @@ public class ProjectDescriptionTest {
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidAddress = "";
-        assertThrows(IllegalArgumentException.class, () -> new ProjectDescription(invalidAddress));
+    public void constructor_invalidProjectDescription_throwsIllegalArgumentException() {
+        String projectDescription = "";
+        assertThrows(IllegalArgumentException.class, () -> new ProjectDescription(projectDescription));
     }
 
     @Test
-    public void isValidAddress() {
-        // null address
+    public void isValidProjectDescription() {
+        // null projectDescription
         assertThrows(NullPointerException.class, () -> ProjectDescription.isValidProjectDescription(null));
 
-        // invalid addresses
+        // invalid projectDescription
         assertFalse(ProjectDescription.isValidProjectDescription("")); // empty string
         assertFalse(ProjectDescription.isValidProjectDescription(" ")); // spaces only
+        assertFalse(ProjectDescription.isValidProjectDescription(" this")); // space before project description
 
-        // valid addresses
-        assertTrue(ProjectDescription.isValidProjectDescription("Blk 456, Den Road, #01-355"));
+        // valid projectDescription
+        assertTrue(ProjectDescription.isValidProjectDescription("this project is amazing x10"));
         assertTrue(ProjectDescription.isValidProjectDescription("-")); // one character
-        assertTrue(ProjectDescription.isValidProjectDescription("Leng Inc; 1234 Market St; San Francisco"
-            + " CA 2349879; USA")); // long address
+        assertTrue(ProjectDescription.isValidProjectDescription("Tesla is probably the most overvalued company on "
+            + "the planet, but the sentiment among many investors is the contrary")); // long project description
     }
 }
