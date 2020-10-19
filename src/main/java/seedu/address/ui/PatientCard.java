@@ -44,7 +44,7 @@ public class PatientCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
+    private FlowPane allergies;
     @FXML
     private Button copyButton;
     @FXML
@@ -62,9 +62,9 @@ public class PatientCard extends UiPart<Region> {
         phone.setText(patient.getPhone().value);
         address.setText(patient.getAddress().value);
         email.setText(patient.getEmail().value);
-        patient.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        patient.getAllergies().stream()
+                .sorted(Comparator.comparing(allergy -> allergy.allergyName))
+                .forEach(allergy -> allergies.getChildren().add(new Label(allergy.allergyName)));
     }
 
     @Override

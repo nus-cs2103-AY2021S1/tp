@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.allergy.Allergy;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
 import seedu.address.model.patient.MedicalRecord;
@@ -12,7 +13,6 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
-import seedu.address.model.tag.Tag;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -39,7 +39,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(patient.getPhone());
         descriptor.setEmail(patient.getEmail());
         descriptor.setAddress(patient.getAddress());
-        descriptor.setTags(patient.getTags());
+        descriptor.setAllergies(patient.getAllergies());
         descriptor.setMedicalRecord(patient.getMedicalRecord());
     }
 
@@ -88,8 +88,8 @@ public class EditPersonDescriptorBuilder {
      * that we are building.
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+        Set<Allergy> allergySet = Stream.of(tags).map(Allergy::new).collect(Collectors.toSet());
+        descriptor.setAllergies(allergySet);
         return this;
     }
 

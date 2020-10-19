@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.tag.Tag;
+import seedu.address.model.allergy.Allergy;
 
 /**
  * Represents a Patient in Hospify.
@@ -23,7 +23,7 @@ public class Patient {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Allergy> allergies = new HashSet<>();
     private final Set<Appointment> appointments = new HashSet<>();
     private final MedicalRecord medicalRecord;
 
@@ -31,14 +31,14 @@ public class Patient {
      * Every field must be present and not null.
      */
     public Patient(Name name, Nric nric, Phone phone, Email email, Address address,
-                   Set<Tag> tags, Set<Appointment> appointments, MedicalRecord medicalRecord) {
-        requireAllNonNull(name, phone, nric, email, address, tags, appointments);
+                   Set<Allergy> allergies, Set<Appointment> appointments, MedicalRecord medicalRecord) {
+        requireAllNonNull(name, phone, nric, email, address, allergies, appointments);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.nric = nric;
-        this.tags.addAll(tags);
+        this.allergies.addAll(allergies);
         this.appointments.addAll(appointments);
         this.medicalRecord = medicalRecord;
     }
@@ -76,8 +76,8 @@ public class Patient {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Allergy> getAllergies() {
+        return Collections.unmodifiableSet(allergies);
     }
 
     /**
@@ -123,7 +123,7 @@ public class Patient {
                 && otherPatient.getEmail().equals(getEmail())
                 && otherPatient.getAddress().equals(getAddress())
                 && otherPatient.getNric().equals(getNric())
-                && otherPatient.getTags().equals(getTags())
+                && otherPatient.getAllergies().equals(getAllergies())
                 && otherPatient.getAppointments().equals(getAppointments())
                 && otherPatient.getMedicalRecord().equals(getMedicalRecord());
     }
@@ -131,7 +131,7 @@ public class Patient {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, nric, phone, email, address, tags, appointments, medicalRecord);
+        return Objects.hash(name, nric, phone, email, address, allergies, appointments, medicalRecord);
     }
 
     @Override
@@ -147,7 +147,7 @@ public class Patient {
                 .append(" Address: ")
                 .append(getAddress())
                 .append(" Tags: ");
-        getTags().forEach(builder::append);
+        getAllergies().forEach(builder::append);
         builder.append(" Appointments: ");
         getAppointments().forEach(builder::append);
         builder.append(" Medical Record URL: ")

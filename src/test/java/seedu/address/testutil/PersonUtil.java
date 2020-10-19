@@ -12,8 +12,8 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.allergy.Allergy;
 import seedu.address.model.patient.Patient;
-import seedu.address.model.tag.Tag;
 
 /**
  * A utility class for Person.
@@ -37,8 +37,8 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + patient.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + patient.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + patient.getAddress().value + " ");
-        patient.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        patient.getAllergies().stream().forEach(
+            s -> sb.append(PREFIX_TAG + s.allergyName + " ")
         );
         sb.append(PREFIX_MEDICAL_RECORD + patient.getMedicalRecord().value + " ");
         return sb.toString();
@@ -54,12 +54,12 @@ public class PersonUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
+        if (descriptor.getAllergies().isPresent()) {
+            Set<Allergy> allergies = descriptor.getAllergies().get();
+            if (allergies.isEmpty()) {
                 sb.append(PREFIX_TAG).append(" ");
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                allergies.forEach(s -> sb.append(PREFIX_TAG).append(s.allergyName).append(" "));
             }
         }
         descriptor.getMedicalRecord().ifPresent(url -> sb.append(PREFIX_MEDICAL_RECORD).append(url.value).append(" "));
