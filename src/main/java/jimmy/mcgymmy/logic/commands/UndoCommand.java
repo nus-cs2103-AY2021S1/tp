@@ -1,6 +1,5 @@
 package jimmy.mcgymmy.logic.commands;
 
-import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.model.Model;
 
 public class UndoCommand extends Command {
@@ -11,7 +10,7 @@ public class UndoCommand extends Command {
     public static final String MESSAGE_NOT_UNDOABLE = "Cannot undo anymore.";
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         if (!model.canUndo()) {
             return new CommandResult(MESSAGE_NOT_UNDOABLE);
         }

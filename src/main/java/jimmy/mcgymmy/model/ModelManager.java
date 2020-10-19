@@ -22,7 +22,7 @@ import jimmy.mcgymmy.model.food.Food;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private static final Stack<ReadOnlyMcGymmy> mcGymmyStack = new Stack<>();
+    private final Stack<ReadOnlyMcGymmy> mcGymmyStack = new Stack<>();
 
     private final McGymmy mcGymmy;
     private final UserPrefs userPrefs;
@@ -148,7 +148,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void  updateFilteredFoodList(Predicate<Food> predicate) {
+    public void updateFilteredFoodList(Predicate<Food> predicate) {
         requireNonNull(predicate);
         filteredFoodItems.setPredicate(predicate);
     }

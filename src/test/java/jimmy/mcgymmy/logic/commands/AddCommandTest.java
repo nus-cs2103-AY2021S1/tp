@@ -184,6 +184,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean canUndo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
+        @Override
+        public void undo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Food> getFilteredFoodList() {
             throw new AssertionError("This method should not be called.");
         }
