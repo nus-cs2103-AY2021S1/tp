@@ -16,11 +16,11 @@ public class CalendarMeeting {
     protected boolean isPaperWork;
     protected boolean isViewing;
     protected boolean isAdmin;
-    private final CalendarBidderId calendarBidderId;
-    private final CalendarPropertyId calendarPropertyId;
-    private final CalendarTime calendarTime;
-    private final CalendarVenue calendarVenue;
-    private boolean isMeeting;
+    protected final CalendarBidderId calendarBidderId;
+    protected final CalendarPropertyId calendarPropertyId;
+    protected final CalendarTime calendarTime;
+    protected final CalendarVenue calendarVenue;
+    protected boolean isMeeting;
 
 
     /**
@@ -102,21 +102,19 @@ public class CalendarMeeting {
     }
 
     /**
-     * Returns true if either the property id is the same or if the address is the same.
+     * Returns true if either the venue, time, bidderId and propertyId is the same.
      *
-     * @param otherMeeting The other property.
-     * @return True if both property objects represent the same property.
+     * @param other The other property.
+     * @return True if both property objects represent the same meeting.
      */
-    public boolean isSameMeeting(CalendarMeeting otherMeeting) {
-        if (otherMeeting == this) {
-            return true;
-        }
-
-        return otherMeeting != null
-                && otherMeeting.getCalendarPropertyId().equals(getCalendarPropertyId())
-                && (otherMeeting.getCalendarVenue().equals(getCalendarVenue()))
-                && ((otherMeeting.getCalendarTime() == getCalendarTime()))
-                && ((otherMeeting.getCalendarBidderId() == getCalendarBidderId()));
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof CalendarMeeting // instanceof handles nulls
+                && this.calendarBidderId.equals(((CalendarMeeting) other).getCalendarBidderId())
+                && this.calendarPropertyId.equals(((CalendarMeeting) other).getCalendarPropertyId())
+                && this.calendarTime.equals(((CalendarMeeting) other).getCalendarTime())
+                && this.calendarVenue.equals(((CalendarMeeting) other).getCalendarVenue())); // state check
     }
 
     @Override
