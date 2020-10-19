@@ -73,7 +73,7 @@ public class ItemEditCommand extends ItemCommand {
         requireNonNull(model);
         requireInventoryModel(model);
         InventoryModel inventoryModel = (InventoryModel) model;
-        List<Item> lastShownList = inventoryModel.getFilteredAndSortedItemList();
+        List<Item> lastShownList = inventoryModel.getFilteredItemList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);

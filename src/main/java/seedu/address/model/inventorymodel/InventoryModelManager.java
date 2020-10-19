@@ -129,14 +129,19 @@ public class InventoryModelManager implements InventoryModel {
      * {@code versionedInventoryBook}
      */
     @Override
-    public ObservableList<Item> getFilteredAndSortedItemList() {
-        return new SortedList<Item>(filteredItems, ITEM_COMPARATOR);
+    public ObservableList<Item> getFilteredItemList() {
+        return filteredItems;
     }
 
     @Override
     public void updateFilteredItemList(Predicate<Item> predicate) {
         requireNonNull(predicate);
         filteredItems.setPredicate(predicate);
+    }
+
+    @Override
+    public SortedList<Item> getSortedItemList() {
+        return new SortedList<Item>(filteredItems, ITEM_COMPARATOR);
     }
 
     @Override

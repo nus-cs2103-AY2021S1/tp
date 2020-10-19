@@ -176,11 +176,11 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         InventoryBook expectedInventoryBook = new InventoryBook(actualInventoryModel.getInventoryBook());
-        List<Item> expectedFilteredList = new ArrayList<>(actualInventoryModel.getFilteredAndSortedItemList());
+        List<Item> expectedFilteredList = new ArrayList<>(actualInventoryModel.getFilteredItemList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualInventoryModel));
         assertEquals(expectedInventoryBook, actualInventoryModel.getInventoryBook());
-        assertEquals(expectedFilteredList, actualInventoryModel.getFilteredAndSortedItemList());
+        assertEquals(expectedFilteredList, actualInventoryModel.getFilteredItemList());
     }
 
     /**
@@ -206,14 +206,14 @@ public class CommandTestUtil {
      * {@code model}'s inventory book.
      */
     public static void showItemAtIndex(InventoryModel inventoryModel, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < inventoryModel.getFilteredAndSortedItemList().size());
+        assertTrue(targetIndex.getZeroBased() < inventoryModel.getFilteredItemList().size());
 
-        Item item = inventoryModel.getFilteredAndSortedItemList().get(targetIndex.getZeroBased());
+        Item item = inventoryModel.getFilteredItemList().get(targetIndex.getZeroBased());
         final String[] splitName = item.getName().fullName.split("\\s+");
         inventoryModel.updateFilteredItemList(
                 new ItemContainsKeywordsPredicate(Arrays.asList(splitName[0]), PREFIX_NAME));
 
-        assertEquals(1, inventoryModel.getFilteredAndSortedItemList().size());
+        assertEquals(1, inventoryModel.getFilteredItemList().size());
     }
 
 }

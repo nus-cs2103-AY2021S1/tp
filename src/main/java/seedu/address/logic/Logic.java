@@ -35,8 +35,11 @@ public interface Logic {
      */
     ReadOnlyInventoryBook getInventoryBook();
 
-    /** Returns an unmodifiable view of the filtered and sorted list of items */
-    ObservableList<Item> getFilteredAndSortedItemList();
+    /** Returns an unmodifiable view of the filtered list of items */
+    ObservableList<Item> getFilteredItemList();
+
+    /** Returns an unmodifiable view of the sorted list of items */
+    SortedList<Item> getSortedItemList();
 
     /**
      * Returns the user prefs' inventory book file path.
