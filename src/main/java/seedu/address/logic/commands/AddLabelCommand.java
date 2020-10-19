@@ -82,7 +82,11 @@ public class AddLabelCommand extends Command {
     private static Person createLabelledPerson(Person personToLabel, LabelPersonDescriptor labelPersonDescriptor) {
         assert personToLabel != null;
 
-        Set<Tag> updatedTags = labelPersonDescriptor.getTags().orElse(personToLabel.getTags());
+        Set<Tag> updatedTags = new HashSet<>(personToLabel.getTags());
+
+        if (labelPersonDescriptor.getTags().isPresent()) {
+            updatedTags.addAll(labelPersonDescriptor.getTags().get());
+        }
 
         return new Person(personToLabel.getName(), personToLabel.getPhone(), personToLabel.getEmail(), updatedTags);
     }
