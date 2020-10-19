@@ -258,6 +258,13 @@ Examples:
 
 ![Import command example](images/CommandImagesForUG/Import.png)
 
+For those who are more inclined to use a gui to import:
+* Click on file
+* Click on Import
+* Navigate using the GUI to the save file
+
+![GUI import command example](images/CommandImagesForUG/ImportGUI.png)
+
 ### Exporting your save file to a folder
 
 Import a previously saved file into McGymmy
@@ -272,6 +279,13 @@ Examples:
 * `export c:/mcgymmy -o save_file` exports the save file as `save_file.json` to `c:/mcgymmy`
 
 ![Export command example](images/CommandImagesForUG/Export.png)
+
+For those who are more inclined to use a gui to export:
+* Click on file
+* Click on Export
+* Navigate using the GUI to the save file
+
+![GUI export command example](images/CommandImagesForUG/ExportGUI.png)
 
 
 ### Exiting the program : `exit`
