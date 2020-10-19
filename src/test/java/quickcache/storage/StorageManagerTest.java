@@ -14,6 +14,8 @@
 //import QuickCache;
 //import ReadOnlyQuickCache;
 //import UserPrefs;
+//import quickcache.storage.JsonUserPrefsStorage;
+//import quickcache.storage.StorageManager;
 //
 //public class StorageManagerTest {
 //

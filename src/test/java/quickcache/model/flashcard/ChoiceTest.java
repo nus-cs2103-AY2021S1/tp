@@ -51,7 +51,7 @@ class ChoiceTest {
         // different type -> returns false
         assertFalse(choice.equals(5));
 
-        // different person -> returns false
+        // different choice -> returns false
         assertFalse(choice.equals(choiceDifferent));
     }
 
