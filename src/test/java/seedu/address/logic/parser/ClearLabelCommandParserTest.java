@@ -13,15 +13,13 @@ public class ClearLabelCommandParserTest {
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearLabelCommand.MESSAGE_USAGE);
 
     private ClearLabelCommandParser parser = new ClearLabelCommandParser();
-    @Test
-    public void parse_missingParts_failure() {
-        // no tags field specified
-        assertParseFailure(parser, NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
-    }
 
     @Test
     public void parse_invalidPreamble_failure() {
-        // invalid arguments being parsed as preamble
+        // empty preamble specified
+        assertParseFailure(parser, "", Name.MESSAGE_CONSTRAINTS);
+
+        // invalid name being parsed as preamble
         assertParseFailure(parser, "James&", Name.MESSAGE_CONSTRAINTS);
     }
 }
