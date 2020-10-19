@@ -1,8 +1,6 @@
 package jimmy.mcgymmy.logic.parser;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;

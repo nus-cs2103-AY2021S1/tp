@@ -30,6 +30,7 @@ public class JsonMacroListStorage implements MacroListStorage {
         return filePath;
     }
 
+    @Override
     public Optional<MacroList> readMacroList() throws DataConversionException {
         requireNonNull(filePath);
 
@@ -47,6 +48,7 @@ public class JsonMacroListStorage implements MacroListStorage {
         }
     }
 
+    @Override
     public void saveMacroList(MacroList macroList) throws IOException {
         requireNonNull(macroList);
 
