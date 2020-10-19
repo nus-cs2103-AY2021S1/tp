@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.currentpath.CurrentPath;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,6 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Tag> filteredTags;
+    private final CurrentPath currentPath;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,6 +39,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTags = new FilteredList<>(this.addressBook.getTagList());
+        currentPath = CurrentPath.getInstance();
     }
 
     public ModelManager() {
@@ -78,6 +81,14 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+    public String getCurrentPath() {
+        return currentPath.getAddress();
+    }
+
+    public void setCurrentPath(String currentPath) {
+        assert currentPath != null;
+        this.currentPath.setAddress(currentPath);
+    }
     //=========== AddressBook ================================================================================
 
     @Override
