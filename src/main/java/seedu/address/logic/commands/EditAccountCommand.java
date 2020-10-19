@@ -14,6 +14,9 @@ import seedu.address.model.account.Name;
 import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
 
+/**
+ * Edits the details of an existing account in Common Cents.
+ */
 public class EditAccountCommand extends Command {
     public static final String COMMAND_WORD = "editacc";
 

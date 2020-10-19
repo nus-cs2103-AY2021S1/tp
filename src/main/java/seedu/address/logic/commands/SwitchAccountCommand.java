@@ -12,29 +12,26 @@ import seedu.address.model.account.Account;
 import seedu.address.model.account.ActiveAccount;
 
 /**
- * Deletes an account identified using it's displayed index from CommonCents
+ * Switches the account details on the UI to that of the targeted account
+ * identified using it's displayed index from CommonCents.
  */
-public class DeleteAccountCommand extends Command {
-    public static final String COMMAND_WORD = "deleteacc";
+public class SwitchAccountCommand extends Command {
+    public static final String COMMAND_WORD = "switchacc";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the Account identified by the index number used in the displayed account list.\n"
+            + ": Switches the current account displayed to another account at the targeted index.\n"
             + "Parameters: INDEX (must be a positive integer). "
             + "Example: " + COMMAND_WORD + " 1";
 
-    private static final String MESSAGE_DELETE_ACCOUNT_SUCCESS = "Deleted Account: %1$s";
-    private static final String MESSAGE_ONE_ACCOUNT_LEFT = "You can't delete your only account left!";
-    private static final String MESSAGE_ACTIVE_ACCOUNT = "The account you intend to delete is currently active!";
-
-
-    private static final int SIZE_OF_ACCOUNT_LIST_WITH_ONE_ACCOUNT = 1;
+    private static final String MESSAGE_SWITCH_ACCOUNT_SUCCESS = "Account switch! Current account: %1$s";
+    private static final String MESSAGE_ACTIVE_ACCOUNT = "You are already on the account!";
 
     private final Index targetIndex;
 
     /**
-     * Creates an DeleteAccountCommand to delete the specified {@code Account}
+     * Creates an SwitchAccountCommand to delete the specified {@code Account}
      */
-    public DeleteAccountCommand(Index targetIndex) {
+    public SwitchAccountCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -49,27 +46,22 @@ public class DeleteAccountCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_INDEX);
         }
 
-        boolean leftWithOneAccount = accounts.size() == SIZE_OF_ACCOUNT_LIST_WITH_ONE_ACCOUNT;
-        if (leftWithOneAccount) {
-            throw new CommandException(MESSAGE_ONE_ACCOUNT_LEFT);
-        }
-
         Account currentActiveAccount = activeAccount.getAccount();
-        Account toBeDeleted = accounts.get(index);
-        boolean isAccountActive = currentActiveAccount.isSameAccount(toBeDeleted);
+        Account toBeSwitched = accounts.get(index);
+        boolean isAccountActive = currentActiveAccount.isSameAccount(toBeSwitched);
         if (isAccountActive) {
             throw new CommandException(MESSAGE_ACTIVE_ACCOUNT);
         }
 
-        model.deleteAccount(toBeDeleted);
-        return new CommandResult(String.format(MESSAGE_DELETE_ACCOUNT_SUCCESS, toBeDeleted));
+        activeAccount.setActiveAccount(toBeSwitched);
+        return new CommandResult(String.format(MESSAGE_SWITCH_ACCOUNT_SUCCESS, toBeSwitched));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteAccountCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteAccountCommand) other).targetIndex)); // state check
+                || (other instanceof SwitchAccountCommand // instanceof handles nulls
+                && targetIndex.equals(((SwitchAccountCommand) other).targetIndex)); // state check
     }
 
 }

@@ -9,6 +9,9 @@ import seedu.address.model.Model;
 import seedu.address.model.account.Account;
 import seedu.address.model.account.ActiveAccount;
 
+/**
+ * Adds a entry to the Common Cents.
+ */
 public class AddAccountCommand extends Command {
     public static final String COMMAND_WORD = "newacc";
 

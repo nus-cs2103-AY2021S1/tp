@@ -79,6 +79,16 @@ public class Account implements ReadOnlyAccount {
         setRevenues(newData.getRevenueList());
     }
 
+    /**
+     * Returns a new {@code Account} with the same data as {@code newData}.
+     */
+    public Account copyData() {
+        Account newAccount = new Account(getName());
+        newAccount.setExpenses(getExpenseList());
+        newAccount.setRevenues(getRevenueList());
+        return newAccount;
+    }
+
     //// entry-level operations
 
     /**

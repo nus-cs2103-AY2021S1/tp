@@ -8,6 +8,9 @@ import seedu.address.model.Model;
 import seedu.address.model.account.Account;
 import seedu.address.model.account.ActiveAccount;
 
+/**
+ * Lists all the account in Common Cents oto the user.
+ */
 public class ListAccountCommand extends Command {
     public static final String COMMAND_WORD = "listacc";
     public static final String MESSAGE_SUCCESS_INTRO = "Listed all accounts:";

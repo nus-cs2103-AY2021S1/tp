@@ -15,6 +15,7 @@ import seedu.address.logic.commands.EditAccountCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListAccountCommand;
+import seedu.address.logic.commands.SwitchAccountCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -66,6 +67,9 @@ public class CommonCentsParser {
 
         case DeleteAccountCommand.COMMAND_WORD:
             return new DeleteAccountCommandParser().parse(arguments);
+
+        case SwitchAccountCommand.COMMAND_WORD:
+            return new SwitchAccountCommandParser().parse(arguments);
 
         case ListAccountCommand.COMMAND_WORD:
             return new ListAccountCommand();

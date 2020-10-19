@@ -14,7 +14,7 @@ import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
 
 /**
- * Adds a entry to the Common Cents.
+ * Adds a entry to Common Cents.
  */
 public class AddCommand extends Command {
 

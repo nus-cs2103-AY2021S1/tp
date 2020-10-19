@@ -93,7 +93,8 @@ public class UniqueAccountList implements Iterable<Account> {
             throw new DuplicateAccountException();
         }
 
-        internalList.set(accountIndex, editedAccount);
+        Account copiedAccount = editedAccount.copyData();
+        internalList.set(accountIndex, copiedAccount);
     }
 
     /**
