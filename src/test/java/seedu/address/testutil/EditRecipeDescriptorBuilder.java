@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditCommand.EditRecipeDescriptor;
+import seedu.address.logic.commands.EditRecipeCommand.EditRecipeDescriptor;
 import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Name;
@@ -77,6 +77,22 @@ public class EditRecipeDescriptorBuilder {
     public EditRecipeDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code image} of a {@code EditRecipeDescriptorBuilder} that we are building.
+     */
+    public EditRecipeDescriptorBuilder withImage(String image) {
+        descriptor.setRecipeImage(image);
+        return this;
+    }
+
+    /**
+     * Parses the {@code instruction} of a {@code EditRecipeDescriptorBuilder} that we are building.
+     */
+    public EditRecipeDescriptorBuilder withInstruction(String instruction) {
+        descriptor.setInstruction(instruction);
         return this;
     }
 

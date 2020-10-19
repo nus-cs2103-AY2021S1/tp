@@ -26,6 +26,7 @@ public class ListIngredientsCommand extends Command {
         for (int i = 0; i < ingredients.size(); i++) {
             builder.append((i + 1) + ". " + ingredients.get(i).toString() + "\n");
         }
-        return new CommandResult(MESSAGE_SUCCESS + builder.toString(), false, false, false, true, false);
+        return new CommandResult(MESSAGE_SUCCESS + builder.toString(), false, false,
+                false, true, false, false, false);
     }
 }

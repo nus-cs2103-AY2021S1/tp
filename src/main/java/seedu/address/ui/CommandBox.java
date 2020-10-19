@@ -37,8 +37,12 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void handleCommandEntered() {
         try {
-            commandExecutor.execute(commandTextField.getText());
-            commandTextField.setText("");
+            CommandResult commandResult = commandExecutor.execute(commandTextField.getText());
+            if (commandResult.isEditRecipe() || commandResult.isEditIngredient()) {
+                commandTextField.setText(commandResult.getCommandBox());
+            } else {
+                commandTextField.setText("");
+            }
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }
