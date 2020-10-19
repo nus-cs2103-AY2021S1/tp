@@ -126,7 +126,7 @@ public class Flashcard {
     }
 
     public Flashcard getFlashcardAfterClearStatistics() {
-        return new Flashcard(question, answer, tags, new Statistics());
+        return new Flashcard(question, tags, new Statistics());
     }
 
     public Flashcard getFlashcardAfterTestSuccess() {
