@@ -148,6 +148,9 @@ public class MainWindow extends UiPart<Stage> {
         summaryPanel = new SummaryDisplay();
         summaryPanelPlaceholder.getChildren().add(summaryPanel.getRoot());
 
+        //Update current value to total calories
+        summaryPanel.setTotalCalories(getFoodListPanel().getCurrentCalories());
+
         //Set the date value to today's date
         datePicker.setValue(LocalDate.now());
 
@@ -296,7 +299,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            //Todo Update total calories based on current filtered list
+            summaryPanel.setTotalCalories(getFoodListPanel().getCurrentCalories());
 
             return commandResult;
         } catch (CommandException | ParseException e) {
