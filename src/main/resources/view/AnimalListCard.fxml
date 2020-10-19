@@ -37,11 +37,11 @@
       </HBox>
       <HBox spacing="5" alignment="CENTER_LEFT">
         <Label wrapText="true" styleClass="cell_small_label_description" minWidth="70" text="Medical:" />
-        <FlowPane fx:id="medicalConditions" alignment="CENTER_LEFT"/>
+        <FlowPane fx:id="medicalConditions" prefWrapLength="5000" alignment="CENTER_LEFT"/>
       </HBox>
       <HBox spacing="5" alignment="CENTER_LEFT">
         <Label wrapText="true" styleClass="cell_small_label_description" minWidth="70" text="Feed times:" />
-        <FlowPane fx:id="feedTimes" alignment="CENTER_LEFT"/>
+        <FlowPane fx:id="feedTimes" prefWrapLength="5000" alignment="CENTER_LEFT"/>
       </HBox>
     </VBox>
   </GridPane>
