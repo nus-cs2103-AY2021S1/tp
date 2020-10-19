@@ -34,10 +34,11 @@ public class ItemRemoveCommandTest {
 
     @Test
     public void execute_itemAcceptedByModel_removeSuccessful() throws CommandException {
-        Item afterRemoveItem = new ItemBuilder().withName("Chicken")
-                .withSupplier("Giant")
-                .withQuantity("2")
+        Item afterRemoveItem = new ItemBuilder().withName("Duck")
+                .withSupplier("Cold Storage")
+                .withQuantity("23")
                 .withTags("meat")
+                .withMaxQuantity("500")
                 .build();
         Quantity quantity = new ItemBuilder().withQuantity("10").build().getQuantity();
 

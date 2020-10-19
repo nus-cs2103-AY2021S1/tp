@@ -176,11 +176,11 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         InventoryBook expectedInventoryBook = new InventoryBook(actualInventoryModel.getInventoryBook());
-        List<Item> expectedFilteredList = new ArrayList<>(actualInventoryModel.getFilteredItemList());
+        List<Item> expectedFilteredList = new ArrayList<>(actualInventoryModel.getFilteredAndSortedItemList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualInventoryModel));
         assertEquals(expectedInventoryBook, actualInventoryModel.getInventoryBook());
-        assertEquals(expectedFilteredList, actualInventoryModel.getFilteredItemList());
+        assertEquals(expectedFilteredList, actualInventoryModel.getFilteredAndSortedItemList());
     }
 
     /**
@@ -202,18 +202,18 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the item at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered and sorted list to show only the item at the given {@code targetIndex} in the
      * {@code model}'s inventory book.
      */
     public static void showItemAtIndex(InventoryModel inventoryModel, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < inventoryModel.getFilteredItemList().size());
+        assertTrue(targetIndex.getZeroBased() < inventoryModel.getFilteredAndSortedItemList().size());
 
-        Item item = inventoryModel.getFilteredItemList().get(targetIndex.getZeroBased());
+        Item item = inventoryModel.getFilteredAndSortedItemList().get(targetIndex.getZeroBased());
         final String[] splitName = item.getName().fullName.split("\\s+");
-        inventoryModel.updateFilteredItemList(
+        inventoryModel.updateItemListFilter(
                 new ItemContainsKeywordsPredicate(Arrays.asList(splitName[0]), PREFIX_NAME));
 
-        assertEquals(1, inventoryModel.getFilteredItemList().size());
+        assertEquals(1, inventoryModel.getFilteredAndSortedItemList().size());
     }
 
 }

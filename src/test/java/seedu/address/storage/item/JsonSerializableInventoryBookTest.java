@@ -22,7 +22,7 @@ public class JsonSerializableInventoryBookTest {
 
 
     @Test
-    public void toModelType_typicalPersonsFile_success() throws Exception {
+    public void toModelType_typicalItemsFile_success() throws Exception {
         JsonSerializableInventoryBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_ITEMS_FILE,
                 JsonSerializableInventoryBook.class).get();
         InventoryBook inventoryBookFromFile = dataFromFile.toModelType();

@@ -28,7 +28,7 @@ public class ItemDeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Item itemToDelete = inventoryModel.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
+        Item itemToDelete = inventoryModel.getFilteredAndSortedItemList().get(INDEX_FIRST_ITEM.getZeroBased());
         ItemDeleteCommand deleteCommand = new ItemDeleteCommand(INDEX_FIRST_ITEM);
 
         String expectedMessage = String.format(ItemDeleteCommand.MESSAGE_DELETE_ITEM_SUCCESS, itemToDelete);
@@ -42,7 +42,7 @@ public class ItemDeleteCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(inventoryModel.getFilteredItemList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(inventoryModel.getFilteredAndSortedItemList().size() + 1);
         ItemDeleteCommand deleteCommand = new ItemDeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, inventoryModel, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
@@ -52,7 +52,7 @@ public class ItemDeleteCommandTest {
     public void execute_validIndexFilteredList_success() {
         showItemAtIndex(inventoryModel, INDEX_FIRST_ITEM);
 
-        Item itemToDelete = inventoryModel.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
+        Item itemToDelete = inventoryModel.getFilteredAndSortedItemList().get(INDEX_FIRST_ITEM.getZeroBased());
         ItemDeleteCommand deleteCommand = new ItemDeleteCommand(INDEX_FIRST_ITEM);
 
         String expectedMessage = String.format(ItemDeleteCommand.MESSAGE_DELETE_ITEM_SUCCESS, itemToDelete);
@@ -104,8 +104,8 @@ public class ItemDeleteCommandTest {
      * Updates {@code model}'s filtered list to show no one.
      */
     private void showNoItem(InventoryModel inventoryModel) {
-        inventoryModel.updateFilteredItemList(p -> false);
+        inventoryModel.updateItemListFilter(p -> false);
 
-        assertTrue(inventoryModel.getFilteredItemList().isEmpty());
+        assertTrue(inventoryModel.getFilteredAndSortedItemList().isEmpty());
     }
 }
