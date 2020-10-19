@@ -148,9 +148,12 @@ public class ParserUtil {
                 PREFIX_DELETE, PREFIX_DATE, PREFIX_TITLE, PREFIX_DESC);
         if (argMultiMap.getAllValues(PREFIX_DELETE).size() == 0) {
             String date = argMultiMap.getValue(PREFIX_DATE).get();
+            if (!DateUtil.isValidDate(date)) {
+                throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
+            }
             String title = argMultiMap.getValue(PREFIX_TITLE).get();
             String desc = argMultiMap.getValue(PREFIX_DESC).get();
-            return new Comment(LocalDate.parse(date), desc, title);
+            return new Comment(DateUtil.dateParsed(date), desc, title);
         } else {
             String desc = argMultiMap.getValue(PREFIX_DESC).get();
             return new Comment(desc);
@@ -167,7 +170,7 @@ public class ParserUtil {
         requireNonNull(leaveDates);
         String trimmedDate = leaveDates.get(0).trim();
         if (!DateUtil.isValidDate(trimmedDate)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
         }
         if (leaveDates.size() > 1) {
             String trimmedEndDate = leaveDates.get(1).trim();
@@ -208,7 +211,7 @@ public class ParserUtil {
      */
     public static InterviewDate parseInterviewDate(String value) throws ParseException {
         if (!DateUtil.isValidDate(value.trim())) {
-            throw new ParseException(InterviewDate.MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
         }
         return new InterviewDate(value.trim());
     }
