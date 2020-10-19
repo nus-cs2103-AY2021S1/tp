@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
@@ -16,11 +17,19 @@ import java.util.function.Predicate;
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all assignments"
+            + " by its NAME, MODULE CODE, DEADLINE or PRIORITY. (case-insensitive)"
+            + "Finding is done one field at a time.\n"
+            + "DEADLINE keywords are in the format dd-MM-yyyy or HHmm, which allows finding of assignments by time " +
+            "and date separately.\n"
+            + "Parameters:" + PREFIX_NAME + "NAME [MORE NAMES] or\n"
+            + PREFIX_MODULE_CODE + "MODULE_CODE [MORE MODULE_CODES] or\n"
+            + PREFIX_DEADLINE + "DATE_OR_TIME_OF_DEADLINE [MORE DATE_OR_TIME_OF_DEADLINE]"
+            + "Example: " + COMMAND_WORD+ " d/1200 24-10-2020 25-10-2020"
+            + "The example above finds all assignments due on 24 October 2020 and 25 October 2020 and finds all "
+            + "assignments due at 1200";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all assignments whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+
 
     private final Predicate<Assignment> predicate;
 
