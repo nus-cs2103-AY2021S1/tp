@@ -84,13 +84,13 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
     - Example: `add -ddinner -$10.50 -@24-06-2020 t/Food` Adds the spending to **input date's** record and tags with **input category**
     - Example: `add -ddinner -$10.50 -@20-08-2020 t/Food t/Basic` Adds the spending to **input date's** record and tags with **input categories**
 
-    ![add_example](./images/ug_example/add_example.png) 
+    ![add_example](images/ug_example/add_example.PNG) 
 
 2. **list** <a name="list"></a>
     - Format: `list`
     - Example: `list` Displays all the items in the list.
 
-    ![list_example](./images/ug_example/list_example.png) 
+    ![list_example](images/ug_example/list_example.PNG) 
 
 3. **edit** <a name="edit"></a>
     - Identified by index starting from 1.
@@ -101,7 +101,7 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
     - Example: `edit 1 -dlunch -$12.50`
     - Example: `edit 11 -$12.50 -dlunch -@23-06/2020 t/Food`
     
-    ![edit_example](./images/ug_example/edit_example.png) 
+    ![edit_example](images/ug_example/edit_example.PNG) 
 
 4. **delete** <a name="delete"></a>
     - Deletes a specified existing expense record.
@@ -109,7 +109,7 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
     - Format:  `delete <index>`
     - Example: `delete 11` Deletes the item at index 11 of the list.
     
-    ![delete_example](./images/ug_example/delete_example.png) 
+    ![delete_example](images/ug_example/delete_example.PNG) 
 
 5. **topup** <a name="topup"></a>
     - Increases budget by amount input by user .
@@ -117,7 +117,7 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
     - Format: `topup -$<amount>`
     - Example: `topup -$10` Adds an extra budget of 10 dollars to work with.
     
-    ![topup_example](./images/ug_example/topup_example.png) 
+    ![topup_example](images/ug_example/topup_example.PNG) 
     
 6. **find** <a name="find"></a>
     - Finds expenses with given keywords, date, category by user.
@@ -126,14 +126,14 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
     - Format: `find [-d<description>] [-@<date>] [t/<category>]`
     - Example: `find -dPhone`, `find -dlunch -@01-07-2020 t/Food`
     
-    ![find_example](./images/ug_example/find_example.png)     
+    ![find_example](images/ug_example/find_example.PNG)     
 
 7. **remark** <a name="remark"></a>
     - Adds a remark to an existing expense.
     - Format: `remark <index> r/<remark>`
     - Example: `remark 11 r/Pepper Lunch`
     
-    ![remark_example](./images/ug_example/remark_example.png)   
+    ![remark_example](./images/ug_example/remark_example.PNG)   
      
 ### Fields
 1. **description**
@@ -166,13 +166,12 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
 
 ## Command summary <a name="CommandSummary"></a>
 
-Action | Format, Examples
---------|------------------
-**Add** | `add -d<description> -$<amount_spent> [-@<date>] [t/<category>]` <br> e.g., `add -ddinner -$10.50`, `add -ddinner -$10.50 -@20-08-2020 t/Food`
-**List** | `list`
-**Edit** | `edit <index> [-d<description>] [-$<amount_spent>] [-@<date>] [t/<category>]`<br> e.g.,`edit 1 -dlunch -$12.50`, `edit 1 -$12.50 -dlunch -@11-11/2020 t/Lunch`
-**Delete** | `delete <index>`<br> e.g., `delete 1`
-**Topup** | `topup -$<amount>`<br> e.g., `topup -$200`
-**Find** | `find [-d<description>] [-@<date>] [t/<category>]` <br> e.g., `find -dlunch`, `find -dlunch -@01-07-2020 t/Food`
-**Remark** | `remark <index> r/<remark>` <br> e.g., `remark 11 r/Pepper Lunch`  
---------------------------------------------------------------------------------------------------------------------
+|   Action   | Format, Examples                                                                                                                                              |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|  **Add**   | `add -d<description> -$<amount_spent> [-@<date>] [t/<category>]` <br> e.g., `add -ddinner -$10.50`, `add -ddinner -$10.50 -@20-08-2020 t/Food`                |
+|  **List**  | `list`                                                                                                                                                        |
+|  **Edit**  | `edit <index> [-d<description>] [-$<amount_spent>] [-@<date>] [t/<category>]`<br> e.g.,`edit 1 -dlunch -$12.50`, `edit 1 -$12.50 -dlunch -@11-11/2020 t/Lunch`|
+| **Delete** | `delete <index>`<br> e.g., `delete 1`                                                                                                                         |
+| **Topup**  | `topup -$<amount>`<br> e.g., `topup -$200`                                                                                                                    |
+|  **Find**  | `find [-d<description>] [-@<date>] [t/<category>]` <br> e.g., `find -dlunch`, `find -dlunch -@01-07-2020 t/Food`                                              |
+| **Remark** | `remark <index> r/<remark>` <br> e.g., `remark 11 r/Pepper Lunch`                                                                                             |
