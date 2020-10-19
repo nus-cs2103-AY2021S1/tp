@@ -39,6 +39,8 @@ The role of the **Model** component is to represent all the items and their beha
 The role of the **Ui** component is to handle all the User interface related instructions, which includes the loading of GUI components, the updating
 of these components and displaying the changes.
 
+## Module Tracker
+
 ### UI component
 
 **API** :
@@ -59,6 +61,15 @@ of these components and displaying the changes.
 
 **API** :
 
+## Grades Tracker
+
+## CAP Calculator
+
+## Scheduler
+
+## Contact List
+
+## Todo List
 
 --------------------------------------------------------------------------------------------------------------------
 
