@@ -1,11 +1,10 @@
 package seedu.flashcard.logic.parser;
 
+import static seedu.flashcard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.flashcard.commons.core.index.Index;
-import seedu.flashcard.logic.commands.DeleteCommand;
 import seedu.flashcard.logic.commands.FavCommand;
 import seedu.flashcard.logic.parser.exceptions.ParseException;
-
-import static seedu.flashcard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 public class FavCommandParser implements Parser<FavCommand> {
     @Override

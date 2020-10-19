@@ -6,7 +6,18 @@ import static seedu.flashcard.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.flashcard.logic.commands.*;
+import seedu.flashcard.logic.commands.AddCommand;
+import seedu.flashcard.logic.commands.ClearCommand;
+import seedu.flashcard.logic.commands.Command;
+import seedu.flashcard.logic.commands.DeleteCommand;
+import seedu.flashcard.logic.commands.EditCommand;
+import seedu.flashcard.logic.commands.ExitCommand;
+import seedu.flashcard.logic.commands.FavCommand;
+import seedu.flashcard.logic.commands.FilterCommand;
+import seedu.flashcard.logic.commands.FindCommand;
+import seedu.flashcard.logic.commands.HelpCommand;
+import seedu.flashcard.logic.commands.ListCommand;
+import seedu.flashcard.logic.commands.ReviewCommand;
 import seedu.flashcard.logic.parser.exceptions.ParseException;
 
 /**
