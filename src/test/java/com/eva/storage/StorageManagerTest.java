@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.nio.file.Path;
 
+import com.eva.model.person.Person;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -54,10 +55,10 @@ public class StorageManagerTest {
          * {@link JsonEvaStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonEvaStorageTest} class.
          */
-        EvaDatabase original = getTypicalPersonDatabase();
+        EvaDatabase<Person> original = getTypicalPersonDatabase();
         storageManager.savePersonDatabase(original);
-        ReadOnlyEvaDatabase retrieved = storageManager.readPersonDatabase().get();
-        assertEquals(original, new EvaDatabase(retrieved));
+        ReadOnlyEvaDatabase<Person> retrieved = storageManager.readPersonDatabase().get();
+        assertEquals(original, new EvaDatabase<Person>(retrieved));
     }
 
     @Test
