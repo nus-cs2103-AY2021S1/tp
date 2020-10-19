@@ -104,7 +104,7 @@ public class AddCommandParserTest {
 
         //multiple details - all details accepted
         expectedStudent = new StudentBuilder(BOB)
-                .withDetails(VALID_ADDITIONAL_DETAILS_AMY, VALID_ADDITIONAL_DETAILS_BOB)
+                .withDetails(VALID_ADDITIONAL_DETAILS_BOB, VALID_ADDITIONAL_DETAILS_AMY)
                 .withQuestions()
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + SCHOOL_DESC_BOB

@@ -74,7 +74,7 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a {@code AdditionalDetail} set containing the list of given strings.
+     * Returns a {@code AdditionalDetail} list containing the list of given strings.
      */
     public static List<AdditionalDetail> getDetailList(String... strings) {
         return Arrays.stream(strings)

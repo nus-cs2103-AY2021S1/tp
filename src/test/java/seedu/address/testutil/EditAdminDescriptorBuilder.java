@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -76,8 +76,8 @@ public class EditAdminDescriptorBuilder {
      * that we are building.
      */
     public EditAdminDescriptorBuilder withAdditionalDetails(String... details) {
-        Set<AdditionalDetail> detailSet = Stream.of(details).map(AdditionalDetail::new).collect(Collectors.toSet());
-        descriptor.setAdditionalDetails(detailSet);
+        List<AdditionalDetail> detailList = Stream.of(details).map(AdditionalDetail::new).collect(Collectors.toList());
+        descriptor.setAdditionalDetails(detailList);
         return this;
     }
 

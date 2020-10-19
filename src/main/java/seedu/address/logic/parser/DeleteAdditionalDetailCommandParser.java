@@ -4,9 +4,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.QuestionCommand.MESSAGE_USAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_INDEX;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteAdditionalDetailCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.commons.core.index.Index;
 
 public class DeleteAdditionalDetailCommandParser implements Parser<DeleteAdditionalDetailCommand> {
 
