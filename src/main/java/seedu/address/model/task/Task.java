@@ -85,7 +85,7 @@ public class Task {
     public boolean addAssignee(Participation assignee) {
         return assignees.add(assignee);
     }
-
+    
     /**
      * Returns true if all fields are equal.
      */
