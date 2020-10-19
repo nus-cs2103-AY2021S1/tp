@@ -229,15 +229,15 @@ Format: `macro SHORTCUT ARGUMENT_1 ARGUMENT_2 ... ; COMMAND_1 ARGUMENTS_TO_COMMA
 
 Examples:
 * Example 1
-    * macro addWith100cal p ; add -n \$ -c 100 -p \p
-    * Example usage of this macro: addWith100cal Banana -p 2000
-    * The following command will be executed by the macro: add -n Banana -c 100 -p 2000
-    * i.e. in add -n \$ -c 100 -p \p, \$ and \p will be substituted with Banana and 2000 respectively.
+    * `macro addWith100cal p ; add -n \$ -c 100 -p \p`
+    * Example usage of this macro: `addWith100cal Banana -p 2000`
+    * The following command will be executed by the macro: `add -n Banana -c 100 -p 2000`
+    * i.e. in `add -n \$ -c 100 -p \p`, `\$` and `\p` will be substituted with Banana and 2000 respectively.
     
 * Example 2
-    * macro addFoodWithFries; add -n \$ ; add -n \$ With Fries
-    * Example usage of this macro: addFoodWithFries Ice Cream
-    * The following commands will be executed by the macro: add -n Ice Cream and add -n Ice Cream With Fries.
+    * `macro addFoodWithFries; add -n \$ ; add -n \$ With Fries`
+    * Example usage of this macro: `addFoodWithFries Ice Cream`
+    * The following commands will be executed by the macro: `add -n Ice Cream and add -n Ice Cream With Fries`.
 
 ![Macro command example](images/CommandImagesForUG/Macro.png)
 
