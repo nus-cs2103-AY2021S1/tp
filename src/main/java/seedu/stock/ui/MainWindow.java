@@ -1,5 +1,6 @@
 package seedu.stock.ui;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -10,8 +11,8 @@ import seedu.stock.commons.core.GuiSettings;
 import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.logic.Logic;
 import seedu.stock.logic.commands.CommandResult;
-import seedu.stock.logic.commands.SourceStatisticsCommand;
 import seedu.stock.logic.commands.exceptions.CommandException;
+import seedu.stock.logic.commands.exceptions.SourceCompanyNotFoundException;
 import seedu.stock.logic.parser.exceptions.ParseException;
 
 /**
@@ -31,7 +32,7 @@ public class MainWindow extends UiPart<Stage> {
     private StockListPanel stockListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private SourceStatisticsWindow sourceStatisticsWindow;
+    private StatisticsWindow statisticsWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -59,15 +60,12 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         helpWindow = new HelpWindow();
-        //TODO add all the stats window here
-        sourceStatisticsWindow = new SourceStatisticsWindow();
+        statisticsWindow = new StatisticsWindow();
     }
 
     public Stage getPrimaryStage() {
         return primaryStage;
     }
-
-
 
     /**
      * Fills up all the placeholders of this window.
@@ -113,14 +111,14 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the SourceStatisticsWindow or focuses on it if it's already opened.
+     * Opens the statisticsWindow or focuses on it if it's already opened.
      */
     @FXML
-    public void handleSourceStatistics(Map<String, Integer> statisticsData) {
-        if (!sourceStatisticsWindow.isShowing()) {
-            sourceStatisticsWindow.show(statisticsData);
+    public void handleStatistics(Map<String, Integer> statisticsData, String[] otherStatisticsDetails) {
+        if (!statisticsWindow.isShowing()) {
+            statisticsWindow.show(statisticsData, otherStatisticsDetails);
         } else {
-            sourceStatisticsWindow.focus();
+            statisticsWindow.focus();
         }
     }
 
@@ -137,7 +135,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
-        sourceStatisticsWindow.hide();
+        statisticsWindow.hide();
         primaryStage.hide();
     }
 
@@ -151,7 +149,8 @@ public class MainWindow extends UiPart<Stage> {
      * @see seedu.stock.logic.Logic#execute(String)
      */
     @FXML
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException,
+            SourceCompanyNotFoundException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -162,18 +161,10 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowStatistics()) {
-                String type = commandResult.getStatisticsType();
+                String[] otherStatisticsDetails = commandResult.getOtherStatisticsDetails();
                 Map<String, Integer> statisticsData = commandResult.getStatisticsData();
-
-                switch (type) {
-
-                case SourceStatisticsCommand.STATISTICS_TYPE:
-                    handleSourceStatistics(statisticsData);
-                    break;
-
-                default:
-                    throw new CommandException("Unsupported statistics type!");
-                }
+                System.out.println(Arrays.toString(otherStatisticsDetails));
+                handleStatistics(statisticsData, otherStatisticsDetails);
             }
 
             if (commandResult.isExit()) {
@@ -181,7 +172,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | SourceCompanyNotFoundException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;

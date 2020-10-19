@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import seedu.stock.commons.core.GuiSettings;
 import seedu.stock.logic.commands.CommandResult;
 import seedu.stock.logic.commands.exceptions.CommandException;
+import seedu.stock.logic.commands.exceptions.SourceCompanyNotFoundException;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.ReadOnlyStockBook;
 import seedu.stock.model.stock.Stock;
@@ -21,7 +22,8 @@ public interface Logic {
      * @throws CommandException If an error occurs during command execution.
      * @throws ParseException If an error occurs during parsing.
      */
-    CommandResult execute(String commandText) throws CommandException, ParseException;
+    CommandResult execute(String commandText) throws CommandException, ParseException,
+            SourceCompanyNotFoundException;
 
     /**
      * Returns the StockBook.
