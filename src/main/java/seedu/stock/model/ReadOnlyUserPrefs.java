@@ -13,5 +13,7 @@ public interface ReadOnlyUserPrefs {
 
     Path getStockBookFilePath();
 
+    Path getCsvFilePath();
+
     Path getSerialNumberSetsBookFilePath();
 }
