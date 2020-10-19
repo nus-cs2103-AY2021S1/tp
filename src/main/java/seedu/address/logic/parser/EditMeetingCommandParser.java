@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CALENDAR_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALENDAR_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALENDAR_VENUE;
 
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditMeetingCommand;
 import seedu.address.logic.commands.EditMeetingCommand.EditMeetingDescriptor;
@@ -35,7 +34,8 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditMeetingCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditMeetingCommand.MESSAGE_USAGE), pe);
         }
 
         EditMeetingDescriptor editMeetingDescriptor = new EditMeetingDescriptor();
