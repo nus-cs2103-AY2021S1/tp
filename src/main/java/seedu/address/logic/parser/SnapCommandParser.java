@@ -21,7 +21,7 @@ public class SnapCommandParser implements Parser<SnapCommand> {
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SnapCommand.MESSAGE_USAGE));
-        } else if (!trimmedArgs.matches(VALIDATION_REGEX)) {
+        } else if (!trimmedArgs.matches(VALIDATION_REGEX) || trimmedArgs.length() > 100) {
             throw new ParseException(SnapCommand.MESSAGE_CONSTRAINTS);
         }
 

@@ -13,7 +13,7 @@ import seedu.address.storage.StorageManager;
 import seedu.address.storage.ZooKeepBookStorage;
 
 /**
- * Saves a snapshot of the current zookeep book.
+ * Saves a snapshot of the current zookeep book with a specified file name.
  */
 public class SnapCommand extends Command {
     public static final String COMMAND_WORD = "snap";
@@ -24,8 +24,8 @@ public class SnapCommand extends Command {
             + "Example: " + COMMAND_WORD + " zookeepbook_19-10-2020";
 
     public static final String MESSAGE_CONSTRAINTS =
-            "File name must contain only alphanumeric characters, \"_\" and \"-\"."
-            + " File name must not be empty.";
+            "File name must contain only alphanumeric characters, \"_\" and \"-\".\n"
+            + "File name must not be empty and must be at most 100 characters long.";
 
     public static final String MESSAGE_SUCCESS = "Current ZooKeep Book saved as %s";
 
