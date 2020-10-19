@@ -1,25 +1,27 @@
 package seedu.address.ui;
 
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import java.security.Key;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
  */
 public class CommandBox extends UiPart<Region> {
+
+    private static final Logger logger = LogsCenter.getLogger(CommandBox.class);
 
     public static final String ERROR_STYLE_CLASS = "error";
     public static final String AC_MODE_STYLE_CLASS = "autocomplete-mode";
@@ -44,7 +46,8 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
-        setNameCompletionOn();
+        setAutoCompletionOn();
+        setKeyboardShortcut("CTRL", KeyCode.U, () -> commandTextField.clear());
     }
 
     /**
@@ -64,45 +67,8 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Enables Autocompletion for Names.
      */
-    private void setNameCompletionOn() {
+    private void setAutoCompletionOn() {
         // Placeholder Class
-        class Autocomplete {
-            // TODO: Find a way to rope in names from AddressBook
-            List<String> suggestions;
-            String prefix = "";
-            int index = 0;
-
-            private void nextIndex() {
-                index = index + 1 < suggestions.size() ? index + 1 : 0;
-            }
-
-            private void prevIndex() {
-                index = index - 1 < 0 ? suggestions.size() - 1 : index - 1;
-            }
-
-            public String nextSuggestion() {
-                nextIndex();
-                return suggestions.get(index);
-            }
-
-            public String prevSuggestion() {
-                prevIndex();
-                return suggestions.get(index);
-            }
-
-            public void setSuggestions(List<String> suggestions) {
-                suggestions.add(0, prefix);
-                this.suggestions = suggestions;
-            }
-
-            public void setPrefix(String prefix) {
-                this.prefix = prefix;
-            }
-
-            public boolean isBackToPrefix() {
-                return index == 0;
-            }
-        }
         Autocomplete ac = new Autocomplete();
 
         // Add Text Listener
@@ -113,7 +79,7 @@ public class CommandBox extends UiPart<Region> {
                 String lastTwo = txt.substring(currPos - 2);
 
                 if (!isAutocompleteMode && lastTwo.equals("n/")) {
-                    System.out.println("Trigger Autocomplete");
+                    System.out.println("Autocomplete Triggered");
                     toggleAutocompleteMode();
                     autoCompletePos = newPosition.intValue();
                 }
@@ -121,7 +87,7 @@ public class CommandBox extends UiPart<Region> {
                     if (txt.substring(currPos - 1).isBlank() || currPos < autoCompletePos) {
                         toggleAutocompleteMode();
                         hasSetPrefix = false;
-                        System.out.println("Disable Autocomplete ; unsetPrefix");
+                        System.out.println("Autocomplete Disabled; Prefix unset");
                     }
                 }
             }
@@ -137,15 +103,14 @@ public class CommandBox extends UiPart<Region> {
                 return;
             }
             if (event.getCode() == KeyCode.TAB) {
-                List<String> personList = logic.getFilteredPersonList().stream()
-                        .map(p -> p.getName().fullName).collect(Collectors.toList());
-                ac.setSuggestions(personList);
-
                 if (!hasSetPrefix) {
+                    List<String> personList = logic.getFilteredPersonList().stream()
+                            .map(p -> p.getName().fullName).collect(Collectors.toList());
+                    ac.setList(personList);
                     String prefix = commandTextField.getText().substring(autoCompletePos);
                     ac.setPrefix(prefix);
                     hasSetPrefix = true;
-                    System.out.println("Set Prefix : " + prefix);
+                    System.out.println("Prefix set as : " + prefix);
                 }
 
                 if (event.isShiftDown()) {
@@ -162,7 +127,7 @@ public class CommandBox extends UiPart<Region> {
 
                 if (ac.isBackToPrefix()) {
                     hasSetPrefix = false;
-                    System.out.println("Back to prefix; resetting Prefix");
+                    System.out.println("Iterated back to Prefix; resetting prefix");
                 }
                 event.consume();
             }
@@ -176,7 +141,7 @@ public class CommandBox extends UiPart<Region> {
                 event.consume();
             }
             if (hasSetPrefix && event.getCode() == KeyCode.SPACE) {
-                System.out.println("Space consumed");
+                System.out.println("Space consumed, Autocomplete Result Selected");
                 commandTextField.appendText(" ");
             }
 
@@ -186,7 +151,26 @@ public class CommandBox extends UiPart<Region> {
             if (isAutocompleteMode && event.getCode() == KeyCode.BACK_SPACE) {
                 hasSetPrefix = false;
                 toggleAutocompleteMode();
-                System.out.println("Disable Autocomplete mode : Backspace Trigger");
+                System.out.println("Disabled Autocomplete mode : Backspace Trigger");
+            }
+        }));
+    }
+
+    private void setKeyboardShortcut(String modifier, KeyCode keyCode, Runnable runnable) {
+        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, (event -> {
+            boolean isModifierDown;
+            switch (modifier) {
+                case "CTRL":
+                    isModifierDown = event.isControlDown();
+                    break;
+                case "ALT":
+                    isModifierDown = event.isAltDown();
+                    break;
+                default:
+                    isModifierDown = false;
+            }
+            if (event.getCode() == keyCode && isModifierDown) {
+                runnable.run();
             }
         }));
     }
@@ -251,4 +235,62 @@ public class CommandBox extends UiPart<Region> {
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }
 
+    /**
+     * Class that encapsulates Autocomplete Logic
+     */
+    private class Autocomplete {
+        List<String> fullList;
+        List<String> suggestions;
+        String prefix = "";
+        int index = 0;
+
+        private void nextIndex() {
+            index = index + 1 < suggestions.size() ? index + 1 : 0;
+        }
+
+        private void prevIndex() {
+            index = index - 1 < 0 ? suggestions.size() - 1 : index - 1;
+        }
+
+        public String nextSuggestion() {
+            if (!hasSuggestion()) {
+                return prefix;
+            }
+            nextIndex();
+            return suggestions.get(index);
+        }
+
+        public String prevSuggestion() {
+            if (!hasSuggestion()) {
+                return prefix;
+            }
+            prevIndex();
+            return suggestions.get(index);
+        }
+
+        public boolean hasSuggestion() {
+            return suggestions.size() != 0;
+        }
+
+        public void setList(List<String> fullList) {
+            System.out.println("set list called");
+            this.fullList = fullList;
+            this.suggestions = fullList.stream().collect(Collectors.toList());
+            this.suggestions.add(0, prefix);
+        }
+
+        public void setPrefix(String prefix) {
+            this.index = 0;
+            this.prefix = prefix;
+            suggestions = fullList.stream().filter(x -> x.toLowerCase().startsWith(prefix.toLowerCase()))
+                    .collect(Collectors.toList());
+            suggestions.sort((o1, o2) -> o1.compareTo(o2));
+            suggestions.add(0, prefix);
+            System.out.println("set prefix called");
+        }
+
+        public boolean isBackToPrefix() {
+            return index == 0;
+        }
+    }
 }
