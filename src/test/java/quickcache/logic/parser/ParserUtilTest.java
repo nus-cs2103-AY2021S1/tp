@@ -8,12 +8,12 @@ import static quickcache.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import quickcache.logic.parser.exceptions.ParseException;
 import quickcache.model.flashcard.Answer;
-import quickcache.model.flashcard.OpenEndedQuestion;
 import quickcache.model.flashcard.Tag;
 
 
@@ -61,14 +61,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseQuestion_validValueWithoutWhitespace_returnsQuestion() throws Exception {
-        OpenEndedQuestion expectedQuestion = new OpenEndedQuestion(VALID_QUESTION);
+        String expectedQuestion = VALID_QUESTION;
         assertEquals(expectedQuestion, ParserUtil.parseQuestion(VALID_QUESTION));
     }
 
     @Test
     public void parseQuestion_validValueWithWhitespace_returnsTrimmedQuestion() throws Exception {
         String questionWithWhitespace = WHITESPACE + VALID_QUESTION + WHITESPACE;
-        OpenEndedQuestion expectedQuestion = new OpenEndedQuestion(VALID_QUESTION);
+        String expectedQuestion = VALID_QUESTION;
         assertEquals(expectedQuestion, ParserUtil.parseQuestion(questionWithWhitespace));
     }
 
@@ -163,4 +163,41 @@ public class ParserUtilTest {
         // throws error if null character is part of the file name string
         assertThrows(ParseException.class, () -> ParserUtil.parseFileName("\0"));
     }
+  
+    public void parseKeywords_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseKeywords(null));
+    }
+
+    @Test
+    public void parseKeywords_collectionWithInvalidKeywords_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_QUESTION, INVALID_QUESTION)));
+    }
+
+    @Test
+    public void parseKeywords_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseKeywords(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseKeywords_collectionWithOneSpacedInput_returnsBrokenDownKeywords() {
+        List<String> inputWithWhiteSpacesInbetween = List.of(VALID_QUESTION);
+        List<String> expectedKeywords = Arrays.asList(VALID_QUESTION.split("\\s+"));
+    }
+
+    @Test
+    public void parseKeywords_collectionWithManyNotSpacedInputs_returnsCollectionWithSameContents() throws Exception {
+        String[] notSpacedInputs = VALID_QUESTION.split("\\s+");
+        List<String> inputsWithNoWhiteSpacesInBetween = List.of(notSpacedInputs[0], notSpacedInputs[1]);
+        assertEquals(inputsWithNoWhiteSpacesInBetween, ParserUtil.parseKeywords(inputsWithNoWhiteSpacesInBetween));
+    }
+
+    @Test
+    public void parseKeywords_collectionWithManySpacedInputs_returnsBrokenDownKeywords() throws Exception {
+        String[] notSpacedInputs = VALID_QUESTION.split("\\s+");
+        List<String> spacedInputs = List.of(notSpacedInputs[0] + " " + notSpacedInputs[1],
+                notSpacedInputs[2] + " " + notSpacedInputs[3]);
+        List<String> expectedKeywords = Arrays.asList(notSpacedInputs);
+        assertEquals(expectedKeywords, ParserUtil.parseKeywords(spacedInputs));
+    }
+
 }

@@ -9,7 +9,6 @@ import java.util.Set;
 public class Flashcard {
 
     private final Question question;
-    private final Answer answer;
     private final Set<Tag> tags;
     private final Statistics statistics;
 
@@ -17,12 +16,10 @@ public class Flashcard {
      * A constructor to create flashcard object.
      *
      * @param question Question of the flashcard.
-     * @param answer Answer of the flashcard.
      * @param tags Tags of the flashcard.
      */
-    public Flashcard(Question question, Answer answer, Set<Tag> tags) {
+    public Flashcard(Question question, Set<Tag> tags) {
         this.question = question;
-        this.answer = answer;
         this.tags = tags;
         this.statistics = new Statistics();
     }
@@ -31,13 +28,11 @@ public class Flashcard {
      * A constructor to create flashcard object.
      *
      * @param question Question of the flashcard.
-     * @param answer Answer of the flashcard.
      * @param tags Tags of the flashcard.
      * @param statistics Statistics of the flashcard.
      */
-    public Flashcard(Question question, Answer answer, Set<Tag> tags, Statistics statistics) {
+    public Flashcard(Question question, Set<Tag> tags, Statistics statistics) {
         this.question = question;
-        this.answer = answer;
         this.tags = tags;
         this.statistics = statistics;
     }
@@ -51,14 +46,7 @@ public class Flashcard {
         return question;
     }
 
-    /**
-     * Gets the answer.
-     *
-     * @return the answer.
-     */
-    public Answer getAnswer() {
-        return answer;
-    }
+
 
     /**
      * Checks the given userAnswer with the correct answer.
@@ -67,7 +55,7 @@ public class Flashcard {
      * @return {@code true} if the user's answer is equal to the actual answer.
      */
     public boolean checkAnswer(Answer userAnswer) {
-        return answer.checkAnswer(userAnswer);
+        return question.checkAnswer(userAnswer);
     }
 
     /**
@@ -79,10 +67,20 @@ public class Flashcard {
         return tags;
     }
 
+    public Answer getAnswer() {
+        return this.question.getAnswer();
+    }
+
+    public Answer getAnswerOrIndex() {
+        return this.question.getAnswerOrIndex();
+    }
+
     @Override
     public String toString() {
-        return String.format("Question:\n%s\nAnswer:\n%s", question.getFormatQuestion(), answer.getValue());
+        return String.format("Question:\n%s\nAnswer:\n%s", question.getFormatQuestion(),
+                question.getAnswer().getValue());
     }
+
 
     /**
      * A method to check if otherFlashcard is the same with the current one.
@@ -94,17 +92,17 @@ public class Flashcard {
 
         return otherFlashcard != null
                 && otherFlashcard.getQuestion().equals(getQuestion())
-                && otherFlashcard.getAnswer().equals(getAnswer());
+                && otherFlashcard.getTags().equals(getTags());
     }
 
     /**
-     * Checks if this flashcard contains the tag.
+     * Checks if this flashcard contains all the tags in the given set.
      *
-     * @param tag the tag to be checked.
-     * @return {@code true} if this flashcard has the tag.
+     * @param setOfTags the tags to be checked.
+     * @return {@code true} if this flashcard has all the tags in the set.
      */
-    public boolean matchTag(Tag tag) {
-        return tags.contains(tag);
+    public boolean containsAllTags(Set<Tag> setOfTags) {
+        return tags.containsAll(setOfTags);
     }
 
     /**
@@ -116,8 +114,7 @@ public class Flashcard {
             return true;
         } else if (otherFlashcard instanceof Flashcard) {
             Flashcard other = (Flashcard) otherFlashcard;
-            return other.getAnswer().equals(getAnswer())
-                    && other.getQuestion().equals(getQuestion())
+            return other.getQuestion().equals(getQuestion())
                     && other.getTags().equals(getTags())
                     && other.getStatistics().equals(getStatistics());
         }
@@ -128,13 +125,17 @@ public class Flashcard {
         return statistics;
     }
 
+    public Flashcard getFlashcardAfterClearStatistics() {
+        return new Flashcard(question, answer, tags, new Statistics());
+    }
+
     public Flashcard getFlashcardAfterTestSuccess() {
         Statistics newStats = statistics.incrementTimesTested().incrementTimesTestedCorrect();
-        return new Flashcard(question, answer, tags, newStats);
+        return new Flashcard(question, tags, newStats);
     }
 
     public Flashcard getFlashcardAfterTestFailure() {
         Statistics newStats = statistics.incrementTimesTested();
-        return new Flashcard(question, answer, tags, newStats);
+        return new Flashcard(question, tags, newStats);
     }
 }

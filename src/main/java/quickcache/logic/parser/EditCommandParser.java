@@ -40,8 +40,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                     EditCommand.MESSAGE_USAGE), pe);
         }
 
-        boolean isMcq = argMultimap.getValue(CliSyntax.PREFIX_CHOICE).isPresent();
-        EditCommand.EditFlashcardDescriptor editFlashcardDescriptor = new EditCommand.EditFlashcardDescriptor(isMcq);
+        EditCommand.EditFlashcardDescriptor editFlashcardDescriptor = new EditCommand.EditFlashcardDescriptor();
 
         if (argMultimap.getValue(CliSyntax.PREFIX_QUESTION).isPresent()) {
             editFlashcardDescriptor.setQuestion(

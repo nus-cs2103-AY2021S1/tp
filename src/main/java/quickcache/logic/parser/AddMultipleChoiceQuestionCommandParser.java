@@ -11,7 +11,6 @@ import java.util.stream.Stream;
 
 import quickcache.logic.commands.AddMultipleChoiceQuestionCommand;
 import quickcache.logic.parser.exceptions.ParseException;
-import quickcache.model.flashcard.Answer;
 import quickcache.model.flashcard.Choice;
 import quickcache.model.flashcard.Flashcard;
 import quickcache.model.flashcard.Question;
@@ -48,22 +47,11 @@ public class AddMultipleChoiceQuestionCommandParser implements Parser<AddMultipl
 
         Choice[] choicesList = ParserUtil.parseChoices(argMultimap.getAllValues(PREFIX_CHOICE));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        String questionInString = ParserUtil.parseQuestion(argMultimap.getValue(PREFIX_QUESTION).get());
         Question question = ParserUtil.parseMultipleChoiceQuestion(
-                argMultimap.getValue(PREFIX_QUESTION).get(), choicesList);
-        Answer parsedAnswer = ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get());
+                questionInString, argMultimap.getValue(PREFIX_ANSWER).get(), choicesList);
 
-        int ans;
-        try {
-            ans = Integer.parseInt(parsedAnswer.getValue());
-            if (ans > choicesList.length) {
-                throw new ParseException("Answer must be smaller than number of choices");
-            }
-        } catch (NumberFormatException e) {
-            throw new ParseException("Answer must be integer");
-        }
-
-        Answer answer = new Answer(choicesList[ans - 1].getValue());
-        Flashcard flashcard = new Flashcard(question, answer, tagList);
+        Flashcard flashcard = new Flashcard(question, tagList);
 
         return new AddMultipleChoiceQuestionCommand(flashcard);
     }

@@ -25,7 +25,8 @@ class OpenEndedQuestionTest {
 
     @Test
     public void getChoices() {
-        OpenEndedQuestion openEndedQuestion = new OpenEndedQuestion("Test question?");
+        OpenEndedQuestion openEndedQuestion = new OpenEndedQuestion("Test question?",
+                new Answer("Sample Answer"));
         assertTrue(openEndedQuestion.getChoices().isEmpty());
     }
 

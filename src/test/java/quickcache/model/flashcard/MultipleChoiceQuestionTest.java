@@ -21,7 +21,8 @@ class MultipleChoiceQuestionTest {
         choicesList.add("Choice 2");
         choicesList.add("Choice 3");
         String question = "Which choice is the answer?";
-        MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion(question, choicesList);
+        Answer answer = new Answer("Choice 1");
+        MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion(question, choicesList, answer);
         assertEquals(question, multipleChoiceQuestion.getValue());
         assertEquals(choicesList,
             Arrays.stream(
