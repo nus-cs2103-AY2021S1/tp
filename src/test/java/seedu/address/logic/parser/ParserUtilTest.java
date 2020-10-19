@@ -217,8 +217,10 @@ public class ParserUtilTest {
 
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Allergy> actualAllergySet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Allergy> expectedAllergySet = new HashSet<Allergy>(Arrays.asList(new Allergy(VALID_TAG_1), new Allergy(VALID_TAG_2)));
+        Set<Allergy> actualAllergySet = ParserUtil
+                .parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
+        Set<Allergy> expectedAllergySet = new HashSet<Allergy>(Arrays
+                .asList(new Allergy(VALID_TAG_1), new Allergy(VALID_TAG_2)));
 
         assertEquals(expectedAllergySet, actualAllergySet);
     }

@@ -12,8 +12,8 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.patient.Patient;
 import seedu.address.model.allergy.Allergy;
+import seedu.address.model.patient.Patient;
 
 /**
  * A utility class for Person.
