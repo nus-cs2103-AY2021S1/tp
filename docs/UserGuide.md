@@ -250,8 +250,7 @@ Format: `import FILEPATH`
 * Import the saved file at `FILEPATH`
 
 Examples:
-* `import c:/mcgymmy/save_file.json`
-    * This imports `save_file.json` into McGymmy
+* `import c:/mcgymmy/save_file.json` imports `save_file.json` into McGymmy
 
 ![Import command example](images/CommandImagesForUG/Import.png)
 
