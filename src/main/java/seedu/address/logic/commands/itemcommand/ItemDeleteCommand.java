@@ -37,7 +37,7 @@ public class ItemDeleteCommand extends ItemCommand {
         requireNonNull(model);
         requireInventoryModel(model);
         InventoryModel inventoryModel = (InventoryModel) model;
-        List<Item> lastShownList = inventoryModel.getFilteredAndSortedItemList();
+        List<Item> lastShownList = inventoryModel.getFilteredItemList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
