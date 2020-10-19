@@ -296,7 +296,7 @@ Examples:
     
 * `macro addFoodWithFries; add -n \$ ; add -n \$ With Fries`
     * Example usage of this macro: `addFoodWithFries Ice Cream`
-    * The following commands will be executed by the macro: `add -n Ice Cream and add -n Ice Cream With Fries`.
+    * The following commands will be executed by the macro: `add -n Ice Cream` and `add -n Ice Cream With Fries`.
 
 ![Macro command example](images/CommandImagesForUG/Macro.png)
 
