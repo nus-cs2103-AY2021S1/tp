@@ -16,28 +16,31 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class AdditionalDetailCommandParser {
 
 
-   public AdditionalDetailCommand parseAdditionalDetailCommand(String userInput, Pattern commandFormat)
-           throws ParseException {
+    public AdditionalDetailCommand parseAdditionalDetailCommand(String userInput, Pattern commandFormat)
+            throws ParseException {
 
-       final Matcher matcher = commandFormat.matcher(userInput.trim());
-       if (!matcher.matches()) {
-           throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                   MESSAGE_USAGE));
-       }
+        final Matcher matcher = commandFormat.matcher(userInput.trim());
+        if (!matcher.matches()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    MESSAGE_USAGE));
+        }
 
-       final String commandWord = matcher.group("commandWord");
-       final String arguments = matcher.group("arguments");
+        final String commandWord = matcher.group("commandWord");
+        final String arguments = matcher.group("arguments");
 
-       switch (commandWord) {
+        switch (commandWord) {
 
-       case AddAdditionalDetailCommand.COMMAND_WORD:
+        case AddAdditionalDetailCommand.COMMAND_WORD:
             return new AddAdditionalDetailCommandParser().parse(arguments);
-       case DeleteAdditionalDetailCommand.COMMAND_WORD:
 
-       case EditAdditionalDetailCommand.COMMAND_WORD:
+        case DeleteAdditionalDetailCommand.COMMAND_WORD:
+            return new DeleteAdditionalDetailCommandParser().parse(arguments);
 
-       default:
-           throw new ParseException(MESSAGE_UNKNOWN_DETAIL_COMMAND);
-       }
-   }
+        case EditAdditionalDetailCommand.COMMAND_WORD:
+            return new EditAdditionalDetailCommandParser().parse(arguments);
+
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_DETAIL_COMMAND);
+        }
+    }
 }
