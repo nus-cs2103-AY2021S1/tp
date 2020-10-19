@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindCommand;
@@ -60,8 +61,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (values.size() == 0) {
             return;
         }
-        for (String val : values) {
-            String trimmed = val.trim();
+        // trim values
+        values = values.stream().map(String::trim).collect(Collectors.toList());
+        for (String trimmed : values) {
             if (trimmed.length() == 0) {
                 throw new ParseException(MESSAGE_EMPTY_SEARCH_PHRASE);
             }

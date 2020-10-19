@@ -26,6 +26,9 @@ public class TaskContainsKeywordsPredicate implements Predicate<Task> {
         }
         extendedKeywords.add(keyword);
         keywords.put(attribute, extendedKeywords);
+
+        // assert if attribute is added to keywords
+        assert keywords.containsKey(attribute) : "attribute not added to keywords";
     }
 
     @Override
@@ -63,6 +66,8 @@ public class TaskContainsKeywordsPredicate implements Predicate<Task> {
     }
 
     private boolean isMatched(String prefix, List<String> words, Task task) {
+        // assert prefix is of the desired format
+        assert prefix.charAt(prefix.length() - 1) == ':' : "prefix string is in the wrong format";
         if (prefix.equals("title:")) {
             return words.stream()
                     .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getTitle().title, keyword));
