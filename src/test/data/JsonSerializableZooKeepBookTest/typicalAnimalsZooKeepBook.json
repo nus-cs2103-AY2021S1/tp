@@ -2,37 +2,37 @@
   "_comment": "ZooKeepBook save file which contains the same Animal values as in TypicalAnimals#getTypicalZooKeepBook()",
   "animals" : [ {
     "name" : "Ahmeng",
-    "id" : "000123",
+    "id" : "123",
     "species" : "Orangutan",
     "medicalConditions" : [ "Healthy" ]
   }, {
     "name" : "Buttercup",
-    "id" : "000456",
+    "id" : "456",
     "species" : "Reticulated Python",
     "medicalConditions" : [ "Skin Infection", "Inclusion Body Disease" ]
   }, {
     "name" : "Coco",
-    "id" : "000125",
+    "id" : "125",
     "species" : "Chihuahua",
     "medicalConditions" : [ ]
   }, {
     "name" : "Esther",
-    "id" : "000126",
+    "id" : "126",
     "species" : "Pig",
     "medicalConditions" : [ "Healthy" ]
   }, {
     "name" : "Grecia",
-    "id" : "000001",
+    "id" : "134",
     "species" : "Toucan",
     "medicalConditions" : [ ]
   }, {
     "name" : "Nemo",
-    "id" : "000012",
+    "id" : "1212",
     "species" : "Clownfish",
     "medicalConditions" : [ ]
   }, {
     "name" : "Pasha",
-    "id" : "001234",
+    "id" : "1234",
     "species" : "White Tiger",
     "medicalConditions" : [ ]
   } ]

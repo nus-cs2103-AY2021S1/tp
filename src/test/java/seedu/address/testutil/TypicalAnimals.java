@@ -23,26 +23,26 @@ public class TypicalAnimals {
 
     public static final Animal AHMENG = new AnimalBuilder().withName("Ahmeng")
             .withSpecies("Orangutan")
-            .withId("000123")
+            .withId("123")
             .withMedicalConditions("Healthy").build();
-    public static final Animal BUTTERCUP = new AnimalBuilder().withName("Buttercup").withId("000456")
+    public static final Animal BUTTERCUP = new AnimalBuilder().withName("Buttercup").withId("456")
             .withSpecies("Reticulated Python")
             .withMedicalConditions("Skin Infection", "Inclusion Body Disease").build();
-    public static final Animal COCO = new AnimalBuilder().withName("Coco").withId("000125")
+    public static final Animal COCO = new AnimalBuilder().withName("Coco").withId("125")
             .withSpecies("Chihuahua").build();
-    public static final Animal ESTHER = new AnimalBuilder().withName("Esther").withId("000126")
+    public static final Animal ESTHER = new AnimalBuilder().withName("Esther").withId("126")
             .withSpecies("Pig").withMedicalConditions("Healthy").build();
-    public static final Animal GRECIA = new AnimalBuilder().withName("Grecia").withId("000001")
+    public static final Animal GRECIA = new AnimalBuilder().withName("Grecia").withId("134")
             .withSpecies("Toucan").build();
-    public static final Animal NEMO = new AnimalBuilder().withName("Nemo").withId("000012")
+    public static final Animal NEMO = new AnimalBuilder().withName("Nemo").withId("1212")
             .withSpecies("Clownfish").build();
-    public static final Animal PASHA = new AnimalBuilder().withName("Pasha").withId("001234")
+    public static final Animal PASHA = new AnimalBuilder().withName("Pasha").withId("1234")
             .withSpecies("White Tiger").build();
 
     // Manually added
-    public static final Animal JIAJIA = new AnimalBuilder().withName("JiaJia").withId("000011")
+    public static final Animal JIAJIA = new AnimalBuilder().withName("JiaJia").withId("111")
             .withSpecies("little india").build();
-    public static final Animal KAIKAI = new AnimalBuilder().withName("KaiKai").withId("000023")
+    public static final Animal KAIKAI = new AnimalBuilder().withName("KaiKai").withId("233")
             .withSpecies("chicago ave").build();
 
     // Manually added - Animal's details found in {@code CommandTestUtil}

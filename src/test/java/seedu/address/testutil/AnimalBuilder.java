@@ -19,7 +19,7 @@ import seedu.address.model.util.SampleDataUtil;
 public class AnimalBuilder {
 
     public static final String DEFAULT_NAME = "Ah Meng";
-    public static final String DEFAULT_ID = "000199";
+    public static final String DEFAULT_ID = "199";
     public static final String DEFAULT_SPECIES = "Panthera leo";
 
     private Name name;

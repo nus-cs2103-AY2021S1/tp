@@ -1,12 +1,12 @@
 {
   "animals": [ {
     "name": "Buttercup",
-    "id": "000123",
+    "id": "123",
     "species": "Reticulated Python",
     "medicalConditions": [ "Healthy" ]
   }, {
     "name": "Buttercup",
-    "id": "000123",
+    "id": "123",
     "species": "Anaconda"
   } ]
 }
