@@ -1,15 +1,14 @@
 ---
 layout: page
-title: AddressBook Level-3
+title: NUStorage
 ---
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
+[![Java CI](https://github.com/AY2021S1-CS2103T-T11-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-T11-3/tp/actions)
+[![codecov](https://codecov.io/gh/AY2021S1-CS2103T-T11-3/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2021S1-CS2103T-T11-3/tp)
 
 ![Ui](images/Ui.png)
 
-**NUStorage is a inventory and finances record system.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface). If you can type fast, NUStorage can manage your inventory / finances faster and organize said information better than traditional means (e.g. pen and paper).
-
+**NUStorage is an inventory and finances management system.** It comes with a CLI (Command Line Interface) for users to quickly update their records through simple commands, as well as a GUI that displays the data in a visual, easy to understand format. Through NUStorage, anyone can manage their inventory and finances more efficiently.
 
 **Acknowledgements**
 
