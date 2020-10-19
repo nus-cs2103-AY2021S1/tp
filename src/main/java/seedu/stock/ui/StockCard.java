@@ -37,6 +37,8 @@ public class StockCard extends UiPart<Region> {
     private Label locationStored;
     @FXML
     private Label source;
+    @FXML
+    private Label notes;
 
     /**
      * Creates a {@code StockCode} with the given {@code Stock} and index to display.
@@ -50,6 +52,10 @@ public class StockCard extends UiPart<Region> {
         quantity.setText(stock.getQuantity().quantity);
         source.setText(stock.getSource().value);
         locationStored.setText(stock.getLocation().value);
+        StringBuilder allNotesAppended = new StringBuilder();
+        stock.getNotes().forEach(note -> allNotesAppended
+                .append("-").append(note.value).append("\n"));
+        notes.setText(allNotesAppended.toString());
     }
 
     @Override
