@@ -46,7 +46,7 @@ public class MainWindow extends UiPart<Stage> {
     private OptionListPanel optionListPanel;
     private QuestionDisplay questionDisplay;
 
-    private BarChartDisplay barChartDisplay;
+    private PieChartDisplay pieChartDisplay;
 
     private boolean isOnChangedWindow;
 
@@ -208,10 +208,10 @@ public class MainWindow extends UiPart<Stage> {
 
         displayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        barChartDisplay = new BarChartDisplay();
-        listPanelPlaceholder.getChildren().add(barChartDisplay.getRoot());
+        pieChartDisplay = new PieChartDisplay();
+        listPanelPlaceholder.getChildren().add(pieChartDisplay.getRoot());
 
-        barChartDisplay.displayStatistics(feedbackToUser);
+        pieChartDisplay.displayStatistics(feedbackToUser);
     }
 
     /**
