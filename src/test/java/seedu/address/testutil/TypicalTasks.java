@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.Planus;
+import seedu.address.model.task.State;
 import seedu.address.model.task.Task;
 
 /**
@@ -32,7 +33,7 @@ public class TypicalTasks {
             .withDescription("johnd,example.com").withDateTime("02-02-2020 12:00")
             .withTags("owesMoney", "friends").build();
     public static final Task CARL = new TaskBuilder().withTitle("Carl Kurz").withDateTime("03-03-2020 12:00")
-            .withDescription("heinz,example.com").withType("event").build();
+            .withDescription("heinz,example.com").withType("event").withStatus(State.COMPLETE).build();
     public static final Task DANIEL = new TaskBuilder().withTitle("Daniel Meier").withDateTime("04-04-2020 12:00")
             .withDescription("cornelia,example.com").withType("event").withTags("friends").build();
     public static final Task ELLE = new TaskBuilder().withTitle("Elle Meyer").withDateTime("05-05-2020 12:00")

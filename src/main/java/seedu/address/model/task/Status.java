@@ -37,6 +37,14 @@ public class Status {
         return new Status();
     }
 
+    /**
+     * Return true if the state in param is same as value, else return false.
+     * @param state
+     */
+    public boolean is(State state) {
+        return value.equals(state);
+    }
+
     @Override
     public String toString() {
         return value.toString();
