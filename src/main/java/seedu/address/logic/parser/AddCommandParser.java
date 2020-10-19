@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INSUFFICENT_ARGUMENTS;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
@@ -23,6 +24,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (argList.length == 0 || argList.length > 2) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
+        if (argList.length == 1 && argList[0].equals("")) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    String.format(MESSAGE_INSUFFICENT_ARGUMENTS, AddCommand.COMMAND_WORD, 1)));
+        }
         Index index = ParserUtil.parseIndex(argList[0], "Menu Index");
 
         if (argList.length == 1) {
@@ -33,14 +38,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         return new AddCommand(index, quantity);
 
     }
-
-    //    /**
-    //     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-    //     * {@code ArgumentMultimap}.
-    //     */
-    //    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-    //        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    //    }
 }
 
 

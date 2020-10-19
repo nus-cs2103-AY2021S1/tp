@@ -32,8 +32,23 @@ public class Food {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Checks whether the price of the food is valid.
+     */
     public static boolean isValidPrice(double price) {
-        return price > 0;
+        if (price <= 0) {
+            return false;
+        }
+
+        String priceString = String.valueOf(price);
+        String[] priceArray = priceString.split("\\.");
+
+        // Price with 0 as fractional portion
+        if (priceArray.length == 1) {
+            return true;
+        }
+        assert priceArray.length == 2;
+        return priceArray[1].length() <= 2;
     }
 
     public String getName() {
@@ -50,6 +65,7 @@ public class Food {
     public String getPriceString() {
         return String.format("$%.2f", price);
     }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
