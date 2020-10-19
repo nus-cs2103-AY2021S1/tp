@@ -68,7 +68,6 @@ public class CommandBox extends UiPart<Region> {
      * Enables Autocompletion for Names.
      */
     private void setAutoCompletionOn() {
-        // Placeholder Class
         Autocomplete ac = new Autocomplete();
 
         // Add Text Listener
