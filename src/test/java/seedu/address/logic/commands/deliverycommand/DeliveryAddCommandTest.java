@@ -98,6 +98,11 @@ public class DeliveryAddCommandTest {
         }
 
         @Override
+        public void setStatesLimit(int limit) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void commit() {
             return;
         }

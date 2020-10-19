@@ -7,7 +7,6 @@ import seedu.address.logic.commands.exceptions.UndoRedoLimitReachedException;
  * API of a Model component
  */
 public interface Model {
-    int MODEL_STATE_LIMIT = 20;
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -27,6 +26,11 @@ public interface Model {
      * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Sets the maximum number of states that the model should keep
+     */
+    void setStatesLimit(int limit);
 
     /**
      * Commits the current model to the list of model states

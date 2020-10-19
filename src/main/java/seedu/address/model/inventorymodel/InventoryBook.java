@@ -3,7 +3,6 @@ package seedu.address.model.inventorymodel;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_REDO_LIMIT_REACHED;
 import static seedu.address.commons.core.Messages.MESSAGE_UNDO_LIMIT_REACHED;
-import static seedu.address.model.Model.MODEL_STATE_LIMIT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +19,10 @@ import seedu.address.model.item.UniqueItemList;
 public class InventoryBook implements ReadOnlyInventoryBook {
     private static List<InventoryBook> inventoryBookStateList = new ArrayList<>();
     private static int inventoryBookStatePointer = -1;
+
     private final UniqueItemList items;
+
+    private int statesLimit = 20; // set to 20 by default
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -115,7 +117,7 @@ public class InventoryBook implements ReadOnlyInventoryBook {
     public void commit() {
         assert inventoryBookStatePointer < inventoryBookStateList.size();
 
-        if (!inventoryBookStateList.isEmpty()) {
+        if (canRedo()) {
             inventoryBookStateList = inventoryBookStateList.subList(0, inventoryBookStatePointer + 1);
         }
         if (inventoryBookStateIsFull()) {
@@ -153,6 +155,10 @@ public class InventoryBook implements ReadOnlyInventoryBook {
         }
     }
 
+    public void setStatesLimit(int limit) {
+        statesLimit = limit;
+    }
+
     private boolean canUndo() {
         return inventoryBookStatePointer > 0;
     }
@@ -162,7 +168,7 @@ public class InventoryBook implements ReadOnlyInventoryBook {
     }
 
     private boolean inventoryBookStateIsFull() {
-        return inventoryBookStateList.size() >= MODEL_STATE_LIMIT;
+        return inventoryBookStateList.size() >= statesLimit;
     }
 
     //// util methods

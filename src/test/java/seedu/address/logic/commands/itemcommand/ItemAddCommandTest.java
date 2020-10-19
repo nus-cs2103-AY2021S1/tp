@@ -126,6 +126,11 @@ public class ItemAddCommandTest {
         }
 
         @Override
+        public void setStatesLimit(int limit) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Path getInventoryBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }

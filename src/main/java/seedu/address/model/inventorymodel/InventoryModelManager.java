@@ -70,6 +70,11 @@ public class InventoryModelManager implements InventoryModel {
     }
 
     @Override
+    public void setStatesLimit(int limit) {
+        inventoryBook.setStatesLimit(limit);
+    }
+
+    @Override
     public Path getInventoryBookFilePath() {
         return userPrefs.getInventoryBookFilePath();
     }

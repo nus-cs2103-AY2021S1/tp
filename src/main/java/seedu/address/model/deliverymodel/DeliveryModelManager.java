@@ -65,6 +65,11 @@ public class DeliveryModelManager implements DeliveryModel {
     }
 
     @Override
+    public void setStatesLimit(int limit) {
+        deliveryBook.setStatesLimit(limit);
+    }
+
+    @Override
     public Path getDeliveryBookFilePath() {
         return userPrefs.getDeliveryBookFilePath();
     }
