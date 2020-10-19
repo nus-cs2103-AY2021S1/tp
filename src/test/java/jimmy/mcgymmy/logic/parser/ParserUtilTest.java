@@ -37,7 +37,8 @@ public class ParserUtilTest {
     private static final String VALID_TAG_2 = "neighbour";
 
     private static final String VALID_FILE = "src\\test\\data\\JsonSerializableMcGymmyTest\\typicalFoodMcGymmy.json";
-    private static final String INVALID_FILE_1 = "\"src\\test\\data\\JsonSerializableMcGymmyTest\\typicalFoodMcGymmy.json\"";
+    private static final String INVALID_FILE_1 = "\"src\\test\\data\\JsonSerializableMcGymmyTest"
+            + "\\typicalFoodMcGymmy.json\"";
     private static final String INVALID_FILE_2 = "src\\test\\data\\JsonSerializableMcGymmyTest\\";
 
     private static final String WHITESPACE = " \t\r\n";
