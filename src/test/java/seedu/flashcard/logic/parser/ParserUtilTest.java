@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.flashcard.logic.parser.exceptions.ParseException;
 import seedu.flashcard.model.flashcard.Answer;
 import seedu.flashcard.model.flashcard.Category;
+import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
 
 public class ParserUtilTest {
@@ -20,6 +21,7 @@ public class ParserUtilTest {
     private static final String VALID_QUESTION = "What does SDLC stand for?";
     private static final String VALID_ANSWER = "Software development life cycle";
     private static final String VALID_CATEGORY = "SDLC";
+    private static final String VALID_NOTE = "Note";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -85,8 +87,8 @@ public class ParserUtilTest {
     @Test
     public void parseAnswer_validValueWithWhitespace_returnsTrimmedAnswer() throws Exception {
         String answerWithWhitespace = WHITESPACE + VALID_ANSWER + WHITESPACE;
-        Answer expectedPhone = new Answer(VALID_ANSWER);
-        assertEquals(expectedPhone, ParserUtil.parseAnswer(answerWithWhitespace));
+        Answer expectedAnswer = new Answer(VALID_ANSWER);
+        assertEquals(expectedAnswer, ParserUtil.parseAnswer(answerWithWhitespace));
     }
 
     @Test
@@ -108,7 +110,26 @@ public class ParserUtilTest {
     @Test
     public void parseCategory_validValueWithWhitespace_returnsTrimmedCategory() throws Exception {
         String categoryWithWhitespace = WHITESPACE + VALID_CATEGORY + WHITESPACE;
-        Category expectedAddress = new Category(VALID_CATEGORY);
-        assertEquals(expectedAddress, ParserUtil.parseCategory(categoryWithWhitespace));
+        Category expectedCategory = new Category(VALID_CATEGORY);
+        assertEquals(expectedCategory, ParserUtil.parseCategory(categoryWithWhitespace));
+    }
+
+    @Test
+    public void parseNote_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseNote((String) null));
+    }
+
+    @Test
+    public void parseNote_validValueWithoutWhitespace_returnsCategory() throws Exception {
+        Note expectedNote = new Note(VALID_NOTE);
+        assertEquals(expectedNote, ParserUtil.parseNote(VALID_NOTE));
+    }
+
+
+    @Test
+    public void parseNote_validValueWithWhitespace_returnsTrimmedCategory() throws Exception {
+        String noteWithWhitespace = WHITESPACE + VALID_NOTE + WHITESPACE;
+        Note expectedNote = new Note(VALID_NOTE);
+        assertEquals(expectedNote, ParserUtil.parseNote(noteWithWhitespace));
     }
 }

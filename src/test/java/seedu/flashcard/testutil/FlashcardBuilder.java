@@ -3,6 +3,7 @@ package seedu.flashcard.testutil;
 import seedu.flashcard.model.flashcard.Answer;
 import seedu.flashcard.model.flashcard.Category;
 import seedu.flashcard.model.flashcard.Flashcard;
+import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
 
 /**
@@ -13,10 +14,12 @@ public class FlashcardBuilder {
     public static final String DEFAULT_QUESTION = "What does OOP stand for?";
     public static final String DEFAULT_ANSWER = "Object oriented programming";
     public static final String DEFAULT_CATEGORY = "General";
+    public static final String DEFAULT_NOTE = "";
 
     private Question question;
     private Answer answer;
     private Category category;
+    private Note note;
 
     /**
      * Creates a {@code FlashcardBuilder} with the default details.
@@ -25,6 +28,7 @@ public class FlashcardBuilder {
         question = new Question(DEFAULT_QUESTION);
         answer = new Answer(DEFAULT_ANSWER);
         category = new Category(DEFAULT_CATEGORY);
+        note = new Note(DEFAULT_NOTE);
     }
 
     /**
@@ -34,6 +38,7 @@ public class FlashcardBuilder {
         question = flashcardToCopy.getQuestion();
         answer = flashcardToCopy.getAnswer();
         category = flashcardToCopy.getCategory();
+        note = flashcardToCopy.getNote();
     }
 
     /**
@@ -60,8 +65,16 @@ public class FlashcardBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Note} of the {@code Flashcard} that we are building.
+     */
+    public FlashcardBuilder withNote(String note) {
+        this.note = new Note(note);
+        return this;
+    }
+
     public Flashcard build() {
-        return new Flashcard(question, answer, category);
+        return new Flashcard(question, answer, category, note);
     }
 
 }

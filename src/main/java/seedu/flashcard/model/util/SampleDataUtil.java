@@ -9,6 +9,7 @@ import seedu.flashcard.model.ReadOnlyFlashcardDeck;
 import seedu.flashcard.model.flashcard.Answer;
 import seedu.flashcard.model.flashcard.Category;
 import seedu.flashcard.model.flashcard.Flashcard;
+import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
 import seedu.flashcard.model.tag.Tag;
 
@@ -19,10 +20,10 @@ public class SampleDataUtil {
     public static Flashcard[] getSampleFlashcards() {
         return new Flashcard[] {
             new Flashcard(new Question("What does SDLC stand for?"), new Answer("Software development life cycle"),
-                new Category("SDLC")),
+                new Category("SDLC"), new Note("")),
             new Flashcard(new Question("What is a revision control software?"),
                 new Answer("It is the software tool that automate the process of Revision Control"),
-                new Category("Revision history"))
+                new Category("Revision history"), new Note(""))
         };
     }
 

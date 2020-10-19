@@ -6,6 +6,7 @@ import static seedu.flashcard.logic.commands.CommandTestUtil.DESC_FLASHCARD_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.DESC_FLASHCARD_2;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_ANSWER_4;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_CATEGORY_4;
+import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_NOTE_2;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_QUESTION_4;
 import static seedu.flashcard.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.flashcard.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -56,10 +57,11 @@ public class EditCommandTest {
         FlashcardBuilder flashcardInList = new FlashcardBuilder(lastFlashcard);
         Flashcard editedFlashcard = flashcardInList.withQuestion(VALID_QUESTION_4).withAnswer(VALID_ANSWER_4)
                 .withCategory(VALID_CATEGORY_4)
+                .withNote(VALID_NOTE_2)
                 .build();
 
         EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_4)
-                .withAnswer(VALID_ANSWER_4).withCategory(VALID_CATEGORY_4).build();
+                .withAnswer(VALID_ANSWER_4).withCategory(VALID_CATEGORY_4).withNote(VALID_NOTE_2).build();
         EditCommand editCommand = new EditCommand(indexLastFlashcard, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard);

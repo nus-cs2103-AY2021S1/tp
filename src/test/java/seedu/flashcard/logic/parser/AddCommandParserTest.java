@@ -7,6 +7,7 @@ import static seedu.flashcard.logic.commands.CommandTestUtil.INVALID_QUESTION_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_ANSWER_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_ANSWER_3;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_CATEGORY_1;
+import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_NOTE_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_QUESTION_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_QUESTION_3;
 import static seedu.flashcard.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -25,28 +26,30 @@ public class AddCommandParserTest {
     public static final String PREFIX_ANSWER = " a/";
     public static final String PREFIX_CATEGORY = " c/";
     public static final String PREFIX_QUESTION = " q/";
+    public static final String PREFIX_NOTE = " n/";
     public static final String SPACE = " ";
 
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        // standard flashcard with category
+        // standard flashcard with category and note
         assertParseSuccess(parser, SPACE + PREFIX_QUESTION + VALID_QUESTION_1 + PREFIX_ANSWER
-                 + VALID_ANSWER_1 + PREFIX_CATEGORY + VALID_CATEGORY_1, new AddCommand(FLASHCARD_1));
+                 + VALID_ANSWER_1 + PREFIX_CATEGORY + VALID_CATEGORY_1 + PREFIX_NOTE + VALID_NOTE_1,
+                new AddCommand(FLASHCARD_1));
 
-        // flashcard with input arguments in reversed order, with category
+        // flashcard with input arguments in reversed order, with category and note
         assertParseSuccess(parser, SPACE + PREFIX_ANSWER + VALID_ANSWER_1 + PREFIX_QUESTION + VALID_QUESTION_1
-                 + PREFIX_CATEGORY + VALID_CATEGORY_1, new AddCommand(FLASHCARD_1));
+                 + PREFIX_CATEGORY + VALID_CATEGORY_1 + PREFIX_NOTE + VALID_NOTE_1, new AddCommand(FLASHCARD_1));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // standard flashcard without category
+        // standard flashcard without category and note
         assertParseSuccess(parser, SPACE + PREFIX_QUESTION + VALID_QUESTION_3 + PREFIX_ANSWER
                 + VALID_ANSWER_3, new AddCommand(FLASHCARD_3));
 
-        // flashcard with input arguments in reversed order, without category
+        // flashcard with input arguments in reversed order, without category and note
         assertParseSuccess(parser, SPACE + PREFIX_ANSWER + VALID_ANSWER_3
                 + PREFIX_QUESTION + VALID_QUESTION_3 , new AddCommand(FLASHCARD_3));
     }

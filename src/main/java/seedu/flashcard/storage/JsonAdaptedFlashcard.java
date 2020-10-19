@@ -7,6 +7,7 @@ import seedu.flashcard.commons.exceptions.IllegalValueException;
 import seedu.flashcard.model.flashcard.Answer;
 import seedu.flashcard.model.flashcard.Category;
 import seedu.flashcard.model.flashcard.Flashcard;
+import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
 /**
  * Jackson-friendly version of {@link Flashcard}.
@@ -18,17 +19,18 @@ class JsonAdaptedFlashcard {
     private String question;
     private String answer;
     private String category;
-
+    private String note;
 
     /**
      * Constructs a {@code JsonAdaptedFlashcard} with the given flashcard details.
      */
     @JsonCreator
     public JsonAdaptedFlashcard(@JsonProperty("question") String question, @JsonProperty("answer") String answer,
-                                @JsonProperty("category") String category) {
+                                @JsonProperty("category") String category, @JsonProperty("note") String note) {
         this.question = question;
         this.answer = answer;
         this.category = category;
+        this.note = note;
     }
 
     /**
@@ -38,6 +40,7 @@ class JsonAdaptedFlashcard {
         question = source.getQuestion().toString();
         answer = source.getAnswer().toString();
         category = source.getCategory().toString();
+        note = source.getNote().toString();
     }
 
     /**
@@ -73,7 +76,13 @@ class JsonAdaptedFlashcard {
         }
         final Category modelCategory = new Category(category);
 
-        return new Flashcard(modelQuestion, modelAnswer, modelCategory);
+        if (note == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Note.class.getSimpleName()));
+        }
+        final Note modelNote = new Note(note);
+
+        return new Flashcard(modelQuestion, modelAnswer, modelCategory, modelNote);
     }
 
 }
