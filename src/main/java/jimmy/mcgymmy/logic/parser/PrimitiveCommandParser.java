@@ -1,11 +1,11 @@
 package jimmy.mcgymmy.logic.parser;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -16,11 +16,11 @@ import jimmy.mcgymmy.commons.core.Messages;
 import jimmy.mcgymmy.logic.commands.AddCommand;
 import jimmy.mcgymmy.logic.commands.ClearCommand;
 import jimmy.mcgymmy.logic.commands.Command;
+import jimmy.mcgymmy.logic.commands.CommandExecutable;
 import jimmy.mcgymmy.logic.commands.DeleteCommand;
 import jimmy.mcgymmy.logic.commands.EditCommand;
 import jimmy.mcgymmy.logic.commands.ExitCommand;
 import jimmy.mcgymmy.logic.commands.FindCommand;
-import jimmy.mcgymmy.logic.commands.HelpCommand;
 import jimmy.mcgymmy.logic.commands.ListCommand;
 import jimmy.mcgymmy.logic.commands.TagCommand;
 import jimmy.mcgymmy.logic.commands.UnTagCommand;
@@ -33,27 +33,30 @@ import jimmy.mcgymmy.logic.parser.parameter.ParameterSet;
  */
 public class PrimitiveCommandParser {
     private final Map<String, Supplier<Command>> commandTable;
+    private final Map<String, String> commandDescriptionTable;
     private final CommandLineParser parser;
+    private final PrimitiveCommandHelpUtil helpUtil;
     /**
      * Creates a new McGymmyParser
      */
     public PrimitiveCommandParser() {
         this.commandTable = new HashMap<>();
+        this.commandDescriptionTable = new HashMap<>();
+        this.helpUtil = new PrimitiveCommandHelpUtil(commandTable, commandDescriptionTable);
         this.addDefaultCommands();
         this.parser = new DefaultParser();
     }
 
     private void addDefaultCommands() {
-        this.addCommand(AddCommand.COMMAND_WORD, AddCommand::new);
-        this.addCommand(EditCommand.COMMAND_WORD, EditCommand::new);
-        this.addCommand(DeleteCommand.COMMAND_WORD, DeleteCommand::new);
-        this.addCommand(ClearCommand.COMMAND_WORD, ClearCommand::new);
-        this.addCommand(ExitCommand.COMMAND_WORD, ExitCommand::new);
-        this.addCommand(FindCommand.COMMAND_WORD, FindCommand::new);
-        this.addCommand(ListCommand.COMMAND_WORD, ListCommand::new);
-        this.addCommand(HelpCommand.COMMAND_WORD, HelpCommand::new);
-        this.addCommand(TagCommand.COMMAND_WORD, TagCommand::new);
-        this.addCommand(UnTagCommand.COMMAND_WORD, UnTagCommand::new);
+        this.addCommand(AddCommand.COMMAND_WORD, AddCommand.SHORT_DESCRIPTION, AddCommand::new);
+        this.addCommand(EditCommand.COMMAND_WORD, EditCommand.SHORT_DESCRIPTION, EditCommand::new);
+        this.addCommand(DeleteCommand.COMMAND_WORD, DeleteCommand.SHORT_DESCRIPTION, DeleteCommand::new);
+        this.addCommand(ClearCommand.COMMAND_WORD, ClearCommand.SHORT_DESCRIPTION, ClearCommand::new);
+        this.addCommand(ExitCommand.COMMAND_WORD, ExitCommand.SHORT_DESCRIPTION, ExitCommand::new);
+        this.addCommand(FindCommand.COMMAND_WORD, FindCommand.SHORT_DESCRIPTION, FindCommand::new);
+        this.addCommand(ListCommand.COMMAND_WORD, ListCommand.SHORT_DESCRIPTION, ListCommand::new);
+        this.addCommand(TagCommand.COMMAND_WORD, TagCommand.SHORT_DESCRIPTION, TagCommand::new);
+        this.addCommand(UnTagCommand.COMMAND_WORD, UnTagCommand.SHORT_DESCRIPTION, UnTagCommand::new);
     }
 
     /**
@@ -65,7 +68,7 @@ public class PrimitiveCommandParser {
      * @throws ParseException if a required argument to the command is not supplied
      * @throws ParseException if an argument to the command is not in the correct format
      */
-    public Command parse(String text) throws ParseException {
+    public CommandExecutable parse(String text) throws ParseException {
         ParserUtil.HeadTailString headTail = ParserUtil.HeadTailString.splitString(text);
         if (headTail.getHead().equals("")) {
             throw new ParseException("Please enter a command.");
@@ -83,7 +86,14 @@ public class PrimitiveCommandParser {
      * @throws ParseException if a required argument to the command is not supplied
      * @throws ParseException if an argument to the command is not in the correct format
      */
-    public Command parsePrimitiveCommand(String commandName, String[] arguments) throws ParseException {
+    public CommandExecutable parsePrimitiveCommand(String commandName, String[] arguments) throws ParseException {
+        if (commandName.equals("help")) {
+            if (arguments.length == 1) {
+                return this.helpUtil.newHelpCommand(arguments[0]);
+            } else {
+                return this.helpUtil.newHelpCommand();
+            }
+        }
         if (!this.commandTable.containsKey(commandName)) {
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }
@@ -95,7 +105,7 @@ public class PrimitiveCommandParser {
             this.provideValuesToParameterSet(cmd, parameterSet);
             return result;
         } catch (org.apache.commons.cli.ParseException | ParseException e) {
-            String message = e.getMessage() + "\n" + this.getUsage(commandName, parameterSet);
+            String message = e.getMessage() + "\n" + helpUtil.getUsage(commandName, parameterSet);
             throw new ParseException(message);
         }
     }
@@ -138,36 +148,28 @@ public class PrimitiveCommandParser {
      * @param name            Name of command to be added
      * @param commandSupplier a constructor of the command taking no arguments
      */
-    void addCommand(String name, Supplier<Command> commandSupplier) {
+    void addCommand(String name, String description, Supplier<Command> commandSupplier) {
         assert !this.commandTable.containsKey(name) : name + " command has already been added";
+        this.commandDescriptionTable.put(name, description);
         this.commandTable.put(name, commandSupplier);
     }
 
-    // Creates the usage string using commons-cli's HelpFormatter and the createExampleCommand function
-    private String getUsage(String commandName, ParameterSet parameterSet) {
-        Options options = parameterSet.asOptions();
-        String formattedHelp = ParserUtil.getUsageFromHelpFormatter(commandName,
-                getUnnamedParameterUsage(parameterSet), options);
-        return formattedHelp + "\nEXAMPLE: " + this.createExampleCommand(commandName, parameterSet.getParameterList());
-    }
-
-    private String getUnnamedParameterUsage(ParameterSet parameterSet) {
-        return parameterSet.getUnnamedParameter()
-                .map(param -> String.format("<arg> %s: %s", param.getName(), param.getDescription()))
-                .orElseGet(() -> "");
-    }
-
-    private String createExampleCommand(String commandName, List<AbstractParameter> parameterList) {
-        return commandName + " " + parameterList.stream()
-                .map(p -> p.getFlag().equals("") ? p.getExample() : "-" + p.getFlag() + " " + p.getExample())
-                .collect(Collectors.joining(" "));
-    }
-
     public Set<String> getRegisteredCommands() {
-        return this.commandTable.keySet();
+        Set<String> result = new HashSet<>(this.commandTable.keySet());
+        result.add("help");
+        return result;
     }
 
     public Boolean hasCommand(String command) {
         return this.getRegisteredCommands().contains(command);
+    }
+
+    // for testing
+    Map<String, Supplier<Command>> getCommandTable() {
+        return commandTable;
+    }
+
+    Map<String, String> getCommandDescriptionTable() {
+        return commandDescriptionTable;
     }
 }

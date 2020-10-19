@@ -16,9 +16,10 @@ import jimmy.mcgymmy.logic.commands.DeleteCommand;
 import jimmy.mcgymmy.logic.commands.EditCommand;
 import jimmy.mcgymmy.logic.commands.ExitCommand;
 import jimmy.mcgymmy.logic.commands.FindCommand;
-import jimmy.mcgymmy.logic.commands.HelpCommand;
 import jimmy.mcgymmy.logic.commands.ListCommand;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
+import jimmy.mcgymmy.model.Model;
+import jimmy.mcgymmy.model.ModelManager;
 
 public class PrimitiveCommandParserCommandsTest {
     private final PrimitiveCommandParser parser = new PrimitiveCommandParser();
@@ -26,7 +27,7 @@ public class PrimitiveCommandParserCommandsTest {
     @Test
     public void defaultCommands_added() {
         // if this breaks, you need to add the command in McGymmyParser.addDefaultCommands
-        String[] commands = {"add", "edit", "delete", "clear", "find", "delete", "help", "list"};
+        String[] commands = {"add", "edit", "delete", "clear", "find", "delete", "list"};
         Set<String> registeredCommands = parser.getRegisteredCommands();
         for (String command : commands) {
             assertTrue(registeredCommands.contains(command));
@@ -49,14 +50,9 @@ public class PrimitiveCommandParserCommandsTest {
     }
 
     @Test
-    public void parseCommand_help() throws Exception {
-        assertTrue(parser.parse(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
-    }
-
-    @Test
     public void parseCommand_find() throws Exception {
         String searchString = "haiufas iuaohbfiasduo";
-        Command command = parser.parse(FindCommand.COMMAND_WORD + " " + searchString);
+        Command command = (Command) parser.parse(FindCommand.COMMAND_WORD + " " + searchString);
         assertTrue(command instanceof FindCommand);
         assertEquals(CommandParserTestUtil.commandParameterValue(command, ""), Optional.of(searchString));
     }
@@ -69,7 +65,7 @@ public class PrimitiveCommandParserCommandsTest {
     @Test
     public void parseCommand_delete() throws Exception {
         String indexString = "68";
-        Command command = parser.parse(DeleteCommand.COMMAND_WORD + " " + indexString);
+        Command command = (Command) parser.parse(DeleteCommand.COMMAND_WORD + " " + indexString);
         assertTrue(command instanceof DeleteCommand);
         assertEquals(CommandParserTestUtil.commandParameterValue(command, ""), Optional.of(indexString));
     }
@@ -91,7 +87,7 @@ public class PrimitiveCommandParserCommandsTest {
                 proteinString,
                 fatString,
                 carbString);
-        Command command = parser.parse(commandString);
+        Command command = (Command) parser.parse(commandString);
         assertTrue(command instanceof AddCommand);
         assertEquals(CommandParserTestUtil.commandParameterValue(command, "n"), Optional.of(nameString));
         assertEquals(CommandParserTestUtil.commandParameterValue(command, "p"), Optional.of(proteinString));
@@ -117,7 +113,7 @@ public class PrimitiveCommandParserCommandsTest {
                 proteinString,
                 fatString,
                 carbString);
-        Command command = parser.parse(commandString);
+        Command command = (Command) parser.parse(commandString);
         assertTrue(command instanceof EditCommand);
         assertEquals(CommandParserTestUtil.commandParameterValue(command, ""), Optional.of(indexString));
         assertEquals(CommandParserTestUtil.commandParameterValue(command, "n"), Optional.empty());
@@ -130,5 +126,30 @@ public class PrimitiveCommandParserCommandsTest {
     public void parseCommand_editMissingIndex_failure() {
         String commandString = String.format("%s -n poop", EditCommand.COMMAND_WORD);
         assertThrows(ParseException.class, () -> parser.parse(commandString));
+    }
+
+    @Test
+    public void parseCommand_helpNoArguments() throws Exception {
+        Model model = new ModelManager();
+        PrimitiveCommandHelpUtil helpUtil = new PrimitiveCommandHelpUtil(
+                parser.getCommandTable(),
+                parser.getCommandDescriptionTable());
+        assertEquals(parser.parse("help").execute(model) , helpUtil.newHelpCommand().execute(model));
+    }
+
+    @Test
+    public void parseCommand_helpCommands() throws Exception {
+        // Should suffice to check "help [COMMAND]" works.
+        Model model = new ModelManager();
+        PrimitiveCommandHelpUtil helpUtil = new PrimitiveCommandHelpUtil(
+                parser.getCommandTable(),
+                parser.getCommandDescriptionTable());
+        for (String commandName : parser.getRegisteredCommands()) {
+            if (commandName.equals("help")) {
+                continue;
+            }
+            assertEquals(parser.parse("help " + commandName).execute(model),
+                    helpUtil.newHelpCommand(commandName).execute(model));
+        }
     }
 }

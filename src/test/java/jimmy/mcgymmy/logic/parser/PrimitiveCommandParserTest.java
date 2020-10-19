@@ -25,13 +25,13 @@ public class PrimitiveCommandParserTest {
     private final PrimitiveCommandParser parserWithDummy = new PrimitiveCommandParser();
 
     {
-        parserWithDummy.addCommand("dummy", StubCommand::new);
+        parserWithDummy.addCommand("dummy", "dummy", StubCommand::new);
     }
 
     @Test
     public void parse_dummyCommand_correctType() throws Exception {
         String commandString = String.format("dummy -t1 %s -t2 %s -o1 %s", DUMMY_VALUE_1, DUMMY_VALUE_2, DUMMY_VALUE_3);
-        Command command = parserWithDummy.parse(commandString);
+        Command command = (Command) parserWithDummy.parse(commandString);
         assertTrue(command instanceof StubCommand);
     }
 

@@ -6,6 +6,7 @@ import java.util.Set;
 
 import jimmy.mcgymmy.commons.util.AppUtil;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
+import jimmy.mcgymmy.model.date.Date;
 import jimmy.mcgymmy.model.tag.Tag;
 
 
@@ -26,20 +27,22 @@ public class Food {
     private final Protein protein;
     private final Carbohydrate carbs;
     private final Fat fat;
+    private final Date date;
     private final Set<Tag> tags = new HashSet<>();
 
 
     /**
      * Every field must be present and not null.
      */
-    public Food(Name name, Protein protein, Fat fat, Carbohydrate carbs, Set<Tag> tags) {
-        CollectionUtil.requireAllNonNull(name, protein, carbs, fat);
+    public Food(Name name, Protein protein, Fat fat, Carbohydrate carbs, Set<Tag> tags, Date date) {
+        CollectionUtil.requireAllNonNull(name, protein, carbs, fat, date);
         AppUtil.checkArgument(isValidName(name.toString()), FOOD_NAME_MESSAGE_CONSTRAINT);
         this.name = name;
         this.protein = protein;
         this.carbs = carbs;
         this.fat = fat;
         this.tags.addAll(tags);
+        this.date = date;
     }
 
     // Constructor for convenience
@@ -60,11 +63,33 @@ public class Food {
         this(name, protein, fat, carbs, new HashSet<Tag>());
     }
 
+    /**
+     * Every field must be present and not null.
+     */
+    public Food(Name name, Protein protein, Fat fat, Carbohydrate carbs, Date date) {
+        this(name, protein, fat, carbs, new HashSet<Tag>(), date);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Food(Name name, Protein protein, Fat fat, Carbohydrate carbs, Set<Tag> tags) {
+        this(name, protein, fat, carbs, tags, Date.currentDate());
+    }
+
     private boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
-    // getters : make when needed
+    /**
+     * @return total caloric content of food item
+     */
+    public int getCalories() {
+        return this.getProtein().getTotalCalories()
+                + this.getCarbs().getTotalCalories()
+                + this.getFat().getTotalCalories();
+    }
+
     public Name getName() {
         return this.name;
     }
@@ -81,10 +106,6 @@ public class Food {
         return this.fat;
     }
 
-    public int getCalories() {
-        return getFat().getTotalCalories() + getCarbs().getTotalCalories() + getProtein().getTotalCalories();
-    }
-
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
@@ -95,6 +116,10 @@ public class Food {
 
     public void removeTag(Tag tag) {
         tags.remove(tag);
+    }
+
+    public Date getDate() {
+        return date;
     }
 
     @Override
@@ -115,7 +140,8 @@ public class Food {
                 && this.getName().equals(otherFood.getName())
                 && this.getProtein().equals(otherFood.getProtein())
                 && this.getCarbs().equals(otherFood.getCarbs())
-                && this.getFat().equals(otherFood.getFat());
+                && this.getFat().equals(otherFood.getFat())
+                && this.getDate().equals(otherFood.getDate());
     }
 
     // Displays
