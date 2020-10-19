@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_KEYWORDS;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 import seedu.address.commons.core.category.Category;
 import seedu.address.logic.commands.FindCommand;
@@ -31,7 +30,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         boolean isCategoryPrefixPresent = (argMultimap.getAllValues(PREFIX_CATEGORY).size() > 0);
         boolean isKeywordListNotEmpty = keywords.size() == 1 && keywords.get(0).equals("");
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_KEYWORDS)
+        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_KEYWORDS)
             || isKeywordListNotEmpty
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
@@ -51,14 +50,6 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindCommand(new ExpenseDescriptionContainsKeywordsPredicate(keywords),
                 new RevenueDescriptionContainsKeywordsPredicate(keywords));
         }
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }
