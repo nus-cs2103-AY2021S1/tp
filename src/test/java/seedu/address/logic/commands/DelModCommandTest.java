@@ -6,12 +6,14 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -49,7 +51,7 @@ class DelModCommandTest {
         try {
             CommandResult commandResult = new DelModCommand(NON_EXISTENT_MODULE_CODE).execute(modelStubWithNoModules);
         } catch (CommandException e) {
-            assertEquals(DelModCommand.MESSAGE_MODULE_DOES_NOT_EXIST, e.getMessage());
+            assertEquals(Messages.MESSAGE_MODULE_DOES_NOT_EXIST, e.getMessage());
         }
     }
 
@@ -58,7 +60,7 @@ class DelModCommandTest {
         try {
             CommandResult commandResult = new DelModCommand(NON_EXISTENT_MODULE_CODE).execute(modelStubWithModules);
         } catch (CommandException e) {
-            assertEquals(DelModCommand.MESSAGE_MODULE_DOES_NOT_EXIST, e.getMessage());
+            assertEquals(Messages.MESSAGE_MODULE_DOES_NOT_EXIST, e.getMessage());
         }
     }
 
@@ -157,6 +159,11 @@ class DelModCommandTest {
         }
 
         @Override
+        public void assignInstructor(Person instructor, ModuleCode moduleCode) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public UniqueModuleList getModuleList() {
             return null;
         }
@@ -224,9 +231,7 @@ class DelModCommandTest {
     private class ModuleListStub extends UniqueModuleList {
         private ArrayList<Module> moduleList = new ArrayList<>();
         public void add(Module ... modules) {
-            for (Module module : modules) {
-                moduleList.add(module);
-            }
+            Collections.addAll(moduleList, modules);
         }
         @Override
         public void removeModuleWithCode(ModuleCode toRemove) {
