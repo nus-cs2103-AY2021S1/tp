@@ -120,7 +120,13 @@ public interface Model {
      */
     void deleteModule(ModuleCode moduleCode);
 
-    /** Returns an unmodifiable view of the filtered module list */
+    /**
+     * Assigns an {@code instructor} to the module with the given {@code moduleCode}.
+     * The module with the {@code moduleCode} must exist in the address book.
+     */
+    void assignInstructor(Person instructor, ModuleCode moduleCode);
+
+    /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Module> getFilteredModuleList();
 
     /**
