@@ -85,8 +85,7 @@ public class Event {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" Event Name: ")
+        builder.append(" Event Name: ")
                 .append(getName())
                 .append(" Time/Date: ")
                 .append(getTime())
