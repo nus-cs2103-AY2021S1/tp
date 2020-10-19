@@ -19,8 +19,8 @@ public class JsonAdaptedMacro {
      * Constructs a {@code JsonAdaptedMacro} with the given macro details.
      */
     @JsonCreator
-    public JsonAdaptedMacro(@JsonProperty("name") String name, @JsonProperty("commands") String[] rawCommands,
-                           @JsonProperty("arguments") String[] macroArguments) {
+    public JsonAdaptedMacro(@JsonProperty("name") String name, @JsonProperty("arguments") String[] macroArguments,
+                            @JsonProperty("commands") String[] rawCommands) {
         this.name = name;
         this.rawCommands = rawCommands;
         this.macroArguments = macroArguments;

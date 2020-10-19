@@ -58,7 +58,7 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         McGymmyStorage mcGymmyStorage = new JsonMcGymmyStorage(userPrefs.getMcGymmyFilePath());
-        MacroListStorage macroListStorage = new JsonMacroListStorage(userPrefs.getMcGymmyFilePath());
+        MacroListStorage macroListStorage = new JsonMacroListStorage(userPrefs.getMacroListFilePath());
         storage = new StorageManager(mcGymmyStorage, macroListStorage, userPrefsStorage);
 
         initLogging(config);

@@ -22,11 +22,19 @@ public class McGymmyParser {
     private final PrimitiveCommandParser primitiveCommandParser;
 
     /**
-     * Constructor for McGymmyParser
+     * Constructor for McGymmyParser, but create a new macroList.
      */
     public McGymmyParser() {
+        this(new MacroList());
+    }
+
+    /**
+     * Constructor for McGymmyParser
+     * @param macroList the macroList to supply
+     */
+    public McGymmyParser(MacroList macroList) {
         this.primitiveCommandParser = new PrimitiveCommandParser();
-        this.macroList = new MacroList();
+        this.macroList = macroList;
     }
 
     /**

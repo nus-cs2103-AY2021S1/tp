@@ -25,7 +25,7 @@ class JsonSerializableMacroList {
      * Constructs a {@code JsonSerializableMcGymmy} with the given food.
      */
     @JsonCreator
-    public JsonSerializableMacroList(@JsonProperty("macro") List<JsonAdaptedMacro> macros) {
+    public JsonSerializableMacroList(@JsonProperty("macros") List<JsonAdaptedMacro> macros) {
         this.macros.addAll(macros);
     }
 

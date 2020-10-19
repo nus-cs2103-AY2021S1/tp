@@ -17,21 +17,21 @@ public class NewMacroCommandTest {
 
     @Test
     public void noMacroDeclaration_throwsCommandException() {
-        MacroList macroList = new MacroList(Set.of());
+        MacroList macroList = new MacroList();
         NewMacroCommand newMacroCommand = new NewMacroCommand(macroList, "macro", new String[]{"list"});
         assertThrows(CommandException.class, () -> newMacroCommand.execute(model));
     }
 
     @Test
     public void duplicateDeclaration_throwsCommandException() {
-        MacroList macroList = new MacroList(Set.of("test"));
-        NewMacroCommand newMacroCommand = new NewMacroCommand(macroList, "macro test", new String[]{"list"});
+        MacroList macroList = new MacroList();
+        NewMacroCommand newMacroCommand = new NewMacroCommand(macroList, "macro help", new String[]{"list"});
         assertThrows(CommandException.class, () -> newMacroCommand.execute(model));
     }
 
     @Test
     public void validDeclaration_addsToList() throws Exception {
-        MacroList macroList = new MacroList(Set.of());
+        MacroList macroList = new MacroList();
         NewMacroCommand newMacroCommand = new NewMacroCommand(macroList, "macro test", new String[]{"list"});
         newMacroCommand.execute(model);
         assertTrue(macroList.hasMacro("test"));

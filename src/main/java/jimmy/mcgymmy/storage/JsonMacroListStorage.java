@@ -51,7 +51,6 @@ public class JsonMacroListStorage implements MacroListStorage {
     @Override
     public void saveMacroList(MacroList macroList) throws IOException {
         requireNonNull(macroList);
-
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableMacroList(macroList), filePath);
     }
