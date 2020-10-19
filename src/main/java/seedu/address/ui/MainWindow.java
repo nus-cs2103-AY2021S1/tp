@@ -34,8 +34,6 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-
-    // TODO: Change this to ExpenseListPanel
     private ExpenseListPanel expenseListPanel;
     private RevenueListPanel revenueListPanel;
     private ResultDisplay resultDisplay;

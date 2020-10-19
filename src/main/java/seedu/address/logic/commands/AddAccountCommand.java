@@ -20,7 +20,7 @@ public class AddAccountCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New account added! %1$s";
     private static final String MESSAGE_DUPLICATE_ACCOUNT = "This account already exists in the app!";
 
-    public final Account account;
+    private final Account account;
 
     /**
      * Creates an AddAccountCommand to add the specified {@code Account}

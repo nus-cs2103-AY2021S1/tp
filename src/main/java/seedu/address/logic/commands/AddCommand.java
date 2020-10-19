@@ -36,7 +36,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New entry added! %1$s";
 
-    public final Entry entry;
+    private final Entry entry;
 
     /**
      * Creates an AddCommand to add the specified {@code Entry}
