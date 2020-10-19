@@ -70,7 +70,6 @@ public class Animal {
         }
 
         return otherAnimal != null
-                && otherAnimal.getName().equals(getName())
                 && otherAnimal.getId().equals(getId());
     }
 
