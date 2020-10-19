@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.allergy.Allergy;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Appointment;
 import seedu.address.model.patient.Email;
@@ -18,7 +19,6 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Patient}.
@@ -69,7 +69,7 @@ class JsonAdaptedPatient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
+        tagged.addAll(source.getAllergies().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         appointed.addAll(source.getAppointments().stream()
@@ -84,10 +84,10 @@ class JsonAdaptedPatient {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Patient toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Allergy> personAllergies = new ArrayList<>();
         final List<Appointment> personAppointments = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            personAllergies.add(tag.toModelType());
         }
         for (JsonAdaptedAppointment appointment: appointed) {
             personAppointments.add(appointment.toModelType());
@@ -143,10 +143,10 @@ class JsonAdaptedPatient {
         }
         final MedicalRecord modelMedicalRecord = new MedicalRecord(medicalRecordUrl);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Allergy> modelAllergies = new HashSet<>(personAllergies);
         final Set<Appointment> modelAppointments = new HashSet<>(personAppointments);
         return new Patient(modelName, modelNric, modelPhone, modelEmail, modelAddress,
-                modelTags, modelAppointments, modelMedicalRecord);
+                modelAllergies, modelAppointments, modelMedicalRecord);
     }
 
 }

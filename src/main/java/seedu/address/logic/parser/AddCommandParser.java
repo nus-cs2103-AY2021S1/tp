@@ -23,7 +23,7 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.allergy.Allergy;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -51,11 +51,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Allergy> allergyList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Set<Appointment> appointments = new HashSet<>();
         MedicalRecord medicalRecord = ParserUtil.parseMedicalRecord(argMultimap.getValue(PREFIX_MEDICAL_RECORD).get());
 
-        Patient patient = new Patient(name, nric, phone, email, address, tagList, appointments, medicalRecord);
+        Patient patient = new Patient(name, nric, phone, email, address, allergyList, appointments, medicalRecord);
 
         return new AddCommand(patient);
     }
