@@ -15,6 +15,7 @@ import com.eva.commons.util.FileUtil;
 import com.eva.commons.util.JsonUtil;
 import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.person.Person;
+import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.staff.Staff;
 
 /**
@@ -26,6 +27,7 @@ public class JsonEvaStorage implements EvaStorage {
 
     private Path personDatabaseFilePath;
     private Path staffDatabaseFilePath;
+    private Path applicantDatabaseFilePath;
 
     // for compatibility of tests
 
@@ -40,12 +42,14 @@ public class JsonEvaStorage implements EvaStorage {
 
     /**
      * Initializes with the path for person and staff database.
-     * @param personDatabaseFilePath
-     * @param staffDatabaseFilePath
+     * @param personDatabaseFilePath The path to the person database.
+     * @param staffDatabaseFilePath The path to the staff database.
+     * @param applicantDatabaseFilePath The path to the applicant database.
      */
-    public JsonEvaStorage(Path personDatabaseFilePath, Path staffDatabaseFilePath) {
+    public JsonEvaStorage(Path personDatabaseFilePath, Path staffDatabaseFilePath, Path applicantDatabaseFilePath) {
         this.personDatabaseFilePath = personDatabaseFilePath;
         this.staffDatabaseFilePath = staffDatabaseFilePath;
+        this.applicantDatabaseFilePath = applicantDatabaseFilePath;
     }
 
     public Path getPersonDatabaseFilePath() {
@@ -54,6 +58,10 @@ public class JsonEvaStorage implements EvaStorage {
 
     public Path getStaffDatabaseFilePath() {
         return staffDatabaseFilePath;
+    }
+
+    public Path getApplicantDatabaseFilePath() {
+        return applicantDatabaseFilePath;
     }
 
     @Override
@@ -145,6 +153,53 @@ public class JsonEvaStorage implements EvaStorage {
 
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonStaffDatabase(addressBook), filePath);
+    }
+
+    @Override
+    public Optional<ReadOnlyEvaDatabase<Applicant>> readApplicantDatabase() throws DataConversionException {
+        return readApplicantDatabase(applicantDatabaseFilePath);
+    }
+
+    /**
+     * Similar to {@link #readPersonDatabase()}.
+     *
+     * @param filePath location of the data. Cannot be null.
+     * @throws DataConversionException if the file is not in the correct format.
+     */
+    public Optional<ReadOnlyEvaDatabase<Applicant>> readApplicantDatabase(Path filePath)
+            throws DataConversionException {
+        requireNonNull(filePath);
+
+        Optional<JsonApplicantDatabase> jsonEvaDatabase = JsonUtil.readJsonFile(
+                filePath, JsonApplicantDatabase.class);
+        if (!jsonEvaDatabase.isPresent()) {
+            return Optional.empty();
+        }
+
+        try {
+            return Optional.of(jsonEvaDatabase.get().toModelType());
+        } catch (IllegalValueException ive) {
+            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+            throw new DataConversionException(ive);
+        }
+    }
+
+    @Override
+    public void saveApplicantDatabase(ReadOnlyEvaDatabase<Applicant> addressBook) throws IOException {
+        saveApplicantDatabase(addressBook, applicantDatabaseFilePath);
+    }
+
+    /**
+     * Similar to {@link #saveStaffDatabase(ReadOnlyEvaDatabase)}.
+     *
+     * @param filePath location of the data. Cannot be null.
+     */
+    public void saveApplicantDatabase(ReadOnlyEvaDatabase<Applicant> addressBook, Path filePath) throws IOException {
+        requireNonNull(addressBook);
+        requireNonNull(filePath);
+
+        FileUtil.createIfMissing(filePath);
+        JsonUtil.saveJsonFile(new JsonApplicantDatabase(addressBook), filePath);
     }
 
 }

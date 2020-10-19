@@ -51,6 +51,17 @@ public class Applicant extends Person {
     }
 
     /**
+     * Creates an Applicant object from a Person Object.
+     * @param person
+     * @param interviewDate
+     * @param status
+     */
+    public Applicant(Person person, InterviewDate interviewDate, ApplicationStatus status) {
+        this(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(),
+                person.getTags(), person.getComments(), interviewDate, status);
+    }
+
+    /**
      * Sets the application status of the specific applicant to be accepted.
      */
     public void setApplicantAccepted() {

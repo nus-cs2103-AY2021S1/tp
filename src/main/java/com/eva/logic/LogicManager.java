@@ -80,7 +80,7 @@ public class LogicManager implements Logic {
 
     @Override
     public Path getEvaDatabaseFilePath() {
-        return model.getEvaDatabaseFilePath();
+        return model.getPersonDatabaseFilePath();
     }
 
     @Override
