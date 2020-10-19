@@ -11,17 +11,17 @@ box Model MODEL_COLOR_T1
 participant ":CommandHistory" as CommandHistory MODEL_COLOR
 end box
 
-[-> LogicManager : execute("history")
+[-> LogicManager : execute(history)
 activate LogicManager
 
-LogicManager -> CliniCalParser : parseCommand("history")
+LogicManager -> CliniCalParser : parseCommand(history)
 activate CliniCalParser
 
 create HistoryCommand
 CliniCalParser -> HistoryCommand
 activate HistoryCommand
 
-HistoryCommand --> CliniCalParser
+HistoryCommand --> CliniCalParser : h
 deactivate HistoryCommand
 
 CliniCalParser --> LogicManager : h
