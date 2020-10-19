@@ -96,13 +96,13 @@ public class Flashcard {
     }
 
     /**
-     * Checks if this flashcard contains the tag.
+     * Checks if this flashcard contains all the tags in the given set.
      *
-     * @param tag the tag to be checked.
-     * @return {@code true} if this flashcard has the tag.
+     * @param setOfTags the tags to be checked.
+     * @return {@code true} if this flashcard has all the tags in the set.
      */
-    public boolean matchTag(Tag tag) {
-        return tags.contains(tag);
+    public boolean containsAllTags(Set<Tag> setOfTags) {
+        return tags.containsAll(setOfTags);
     }
 
     /**

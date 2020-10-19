@@ -34,7 +34,7 @@ QuickCache is a **desktop app for managing flashcards, optimized for use via a C
    
    * **`test`**`1 ans/Example answer` : Tests the 1st question shown in the current list with `Example answer` as the answer.
    
-   * **`find`**`Biology` : Finds all Flashcards tagged to the tag `Biology`.
+   * **`find`** `find t/MCQ q/What CS2103T q/is t/GoodQuestion` : Finds all Flashcards tagged to the tag `MCQ` and `GoodQuestion` and has keywords `What`, `CS2103T` and `is` in question.
    
    * **`stats`**`1` : Show stats of the 1st question shown in the current list.
    
@@ -163,15 +163,18 @@ Shows a list of all flashcards currently created.
 
 Format: `list`
 
-### Finding Flashcards by their tags: `find`
+### Finding Flashcards by their tags and/or question: `find`
 
-Finds all Flashcards based on their tags.
+Finds all Flashcards based on their tags and/or question.
 
-Format: `find TAGS`
+Format: `find t/TAG1 t/TAG2 .. q/KEYWORD1 q/KEYWORD2 ..`
 
-* Tags should be seperated by a whitespace between
+* Do not need to use both `t/` and `q/` when finding a flashcard.
+* Tags are case-sensitive.
+* Words in spaced keywords will be treated as individual keywords. Example, the keyword `what is` will be treated as two keywords: `what` and `is`.
+* Keywords do not need to match exact word. Example, the keyword `Wha` will pick up questions containing `What` as a word.
 
-Example: `find CS2100 MCQ` where `CS2100` and `MCQ` are tags.
+Example: `find t/MCQ q/What CS2103T q/is t/GoodQuestion` where `MCQ` and `GoodQuestion` are tags and `What`, `CS2103T` and `is` are keywords.
 
 ### Deleting a flashcard : `delete`
 
@@ -236,6 +239,6 @@ Action | Format, Examples
 **ClearStats** | `clearstats INDEX`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **List** | `list`
-**Find** | `find KEYWORDS` <br> e.g., `find CS2100 MCQ`
+**Find** | `find t/TAG1 t/TAG2 .. q/KEYWORD1 q/KEYWORD2 ..` <br> e.g., `find t/MCQ q/What CS2103T q/is t/GoodQuestion`
 **Help** | `help`
 **Exit** | `exit`

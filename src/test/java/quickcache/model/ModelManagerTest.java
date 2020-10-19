@@ -12,6 +12,7 @@ import static quickcache.testutil.TypicalFlashcards.RANDOM_1_TAG;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
@@ -120,7 +121,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         modelManager.updateFilteredFlashcardList(new FlashcardContainsTagPredicate(
-                Arrays.asList(RANDOM_1_TAG)));
+                new HashSet<>(Arrays.asList(RANDOM_1_TAG))));
         assertFalse(modelManager.equals(new ModelManager(quickCache, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -15,8 +14,8 @@ class QuestionContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
-        List<String> firstPredicateKeywordList = Collections.singletonList("first");
-        List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
+        List<String> firstPredicateKeywordList = prepareKeywordList("first");
+        List<String> secondPredicateKeywordList = prepareKeywordList("first", "second");
 
         QuestionContainsKeywordsPredicate firstPredicate =
             new QuestionContainsKeywordsPredicate(firstPredicateKeywordList);
@@ -42,34 +41,35 @@ class QuestionContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() {
+    public void test_questionContainsKeywords_returnsTrue() {
         // One keyword
         QuestionContainsKeywordsPredicate predicate =
-            new QuestionContainsKeywordsPredicate(Collections.singletonList("CS1101S?"));
+            new QuestionContainsKeywordsPredicate(prepareKeywordList("CS1101S?"));
         assertTrue(predicate.test(new FlashcardBuilder().withQuestion("What is CS1101S?").build()));
 
         // Multiple keywords
-        predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("What", "is", "CS1101S?"));
-        assertTrue(predicate.test(new FlashcardBuilder().withQuestion("What is CS1101S?").build()));
-
-        // Only one matching keyword
-        predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("What", "CS2103T"));
+        predicate = new QuestionContainsKeywordsPredicate(prepareKeywordList("What", "is", "CS1101S?"));
         assertTrue(predicate.test(new FlashcardBuilder().withQuestion("What is CS1101S?").build()));
 
         // Mixed-case keywords
-        predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("WhAt", "iS", "Cs1101s?"));
+        predicate = new QuestionContainsKeywordsPredicate(prepareKeywordList("WhAt", "iS", "Cs1101s?"));
         assertTrue(predicate.test(new FlashcardBuilder().withQuestion("What is CS1101S?").build()));
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        QuestionContainsKeywordsPredicate predicate = new QuestionContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new FlashcardBuilder().withQuestion("CS1101S?").build()));
+    public void test_questionDoesNotContainKeywords_returnsFalse() {
+        // Only one matching keyword
+        QuestionContainsKeywordsPredicate predicate =
+                new QuestionContainsKeywordsPredicate(prepareKeywordList("What", "CS2103T"));
+        assertFalse(predicate.test(new FlashcardBuilder().withQuestion("What is CS1101S?").build()));
 
         // Non-matching keyword
-        predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("Carol"));
+        predicate = new QuestionContainsKeywordsPredicate(prepareKeywordList("Carol"));
         assertFalse(predicate.test(new FlashcardBuilder().withQuestion("What is CS1101S?").build()));
+    }
+
+    private List<String> prepareKeywordList(String... keywords) {
+        return Arrays.asList(keywords);
     }
 
 }
