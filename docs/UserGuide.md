@@ -66,14 +66,9 @@ Shows a list of basic commands (and their usages) supported by Hospify.
 
 Format: `help`
 
-
 ### Adding a patient : `add`
 
-<<<<<<< HEAD
 Adds a patient to Hospify
-=======
-Adds a patient to Hospify.
->>>>>>> 313f603b828ae810b6de8521a89a5a120b0be8eb
 
 Format: `add n/NAME ic/S1234567A p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
