@@ -13,6 +13,12 @@ public abstract class AdditionalDetailCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds, edits or deletes an Additional Detail "
             + "from a student in Reeve. ";
 
+    /**
+     * Creates a new Student, with the provided additional detail.
+     * @param studentToAddDetail student to add detail to.
+     * @param details new list of additional details.
+     * @return updated Student.
+     */
     public Student updateStudentDetail(Student studentToAddDetail, List<AdditionalDetail> details) {
         Admin adminToAddDetail = studentToAddDetail.getAdmin();
         Admin updatedAdmin = new Admin(adminToAddDetail.getClassVenue(), adminToAddDetail.getClassTime(),
