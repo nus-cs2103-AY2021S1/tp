@@ -241,6 +241,18 @@ Examples:
 
 ![Macro command example](images/CommandImagesForUG/Macro.png)
 
+### Importing another save file
+
+Import a previously saved file into McGymmy
+
+Format: `import FILEPATH`
+
+* Import the saved file at FILEPATH
+
+Examples:
+* import c:/mcgymmy/save_file.json
+
+
 ### Exiting the program : `exit`
 
 Exits the program.
