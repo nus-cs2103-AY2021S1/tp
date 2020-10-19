@@ -12,6 +12,7 @@ public class Messages {
     public static final String MESSAGE_REDO_LIMIT_REACHED = "No more commands to redo";
     public static final String MESSAGE_ITEMS_LISTED_OVERVIEW = "%1$d items listed!";
     public static final String MESSAGE_DELIVERIES_LISTED_OVERVIEW = "%1$d deliveries listed!";
+    public static final String MESSAGE_EARLY_TEST_FAILURE = "Test should not have failed at this point!";
     public static final String HELP_START = getHelpStart();
     public static final String HELP_SUMMARY = getHelpSummary();
     public static final String DIVIDER = "======================================================================\n";

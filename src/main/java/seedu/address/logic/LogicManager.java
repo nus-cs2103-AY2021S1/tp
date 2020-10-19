@@ -44,7 +44,6 @@ public class LogicManager implements Logic {
         this.inventoryModel = inventoryModel;
         this.deliveryModel = deliveryModel;
         models = new ModelsManager(inventoryModel, deliveryModel);
-        models.commit();
         this.storage = storage;
         oneShelfBookParser = new OneShelfBookParser();
     }

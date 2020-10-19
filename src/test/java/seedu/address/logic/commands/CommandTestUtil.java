@@ -173,6 +173,33 @@ public class CommandTestUtil {
 
     /**
      * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualModels} matches {@code expectedModels}
+     */
+    public static void assertCommandSuccess(Command command, Models actualModels,
+                                            CommandResult expectedCommandResult, Models expectedModels) {
+        try {
+            CommandResult result = command.execute(actualModels);
+            assertEquals(expectedCommandResult, result);
+            assertEquals(expectedModels, actualModels);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Models, CommandResult, Models)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertCommandSuccess(Command command, Models actualModels,
+                                            String expectedMessage,
+                                            Models expectedModels) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertCommandSuccess(command, actualModels, expectedCommandResult, expectedModels);
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
      * - the inventory book, filtered item list and selected item in {@code actualModel} remain unchanged
