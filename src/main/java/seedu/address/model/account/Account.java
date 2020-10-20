@@ -63,6 +63,20 @@ public class Account implements ReadOnlyAccount {
     }
 
     /**
+     * Clears contents of the revenue list.
+     */
+    public void clearRevenues() {
+        this.revenues.clearRevenues();
+    }
+
+    /**
+     * Clears contents of the expense list.
+     */
+    public void clearExpenses() {
+        this.expenses.clearExpenses();
+    }
+
+    /**
      * Resets the existing data of this {@code Account} with {@code newData}.
      */
     public void resetData(ReadOnlyAccount newData) {

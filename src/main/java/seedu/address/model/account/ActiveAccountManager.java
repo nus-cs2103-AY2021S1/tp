@@ -98,6 +98,16 @@ public class ActiveAccountManager implements ActiveAccount {
         activeAccount.setRevenue(target, editedRevenue);
     }
 
+    @Override
+    public void clearExpenses() {
+        activeAccount.clearExpenses();
+    }
+
+    @Override
+    public void clearRevenues() {
+        activeAccount.clearRevenues();
+    }
+
     //=========== Filtered Account List Accessors =============================================================
 
     @Override
