@@ -16,5 +16,6 @@ public class Messages {
     public static final String MESSAGE_NO_SERIAL_NUMBERS_GIVEN =
             "No serial numbers are provided";
     public static final String MESSAGE_STOCKS_LISTED_OVERVIEW = "%1$d stock listed!";
+    public static final String MESSAGE_SOURCE_COMPANY_NOT_FOUND = "Source company not found!";
 
 }

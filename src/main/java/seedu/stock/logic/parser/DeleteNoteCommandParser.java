@@ -5,13 +5,13 @@ import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE_INDEX;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 
-import seedu.stock.logic.commands.DeleteNoteCommand;
+import seedu.stock.logic.commands.NoteDeleteCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.SerialNumber;
 
 import java.util.stream.Stream;
 
-public class DeleteNoteCommandParser implements Parser<DeleteNoteCommand> {
+public class DeleteNoteCommandParser implements Parser<NoteDeleteCommand> {
 
     private final static String MESSAGE_INVALID_NOTE_INDEX =
             "Invalid field format!\nNote index must be a valid positive integer.";
@@ -21,7 +21,7 @@ public class DeleteNoteCommandParser implements Parser<DeleteNoteCommand> {
             ParserUtil.getInvalidPrefixesForCommand(validPrefixesForDeleteNote);
 
     @Override
-    public DeleteNoteCommand parse(String args) throws ParseException {
+    public NoteDeleteCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, validPrefixesForDeleteNote);
 
@@ -31,7 +31,7 @@ public class DeleteNoteCommandParser implements Parser<DeleteNoteCommand> {
                 || isDuplicatePrefixPresent(argMultimap, validPrefixesForDeleteNote)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteNoteCommand.MESSAGE_USAGE));
+                    NoteDeleteCommand.MESSAGE_USAGE));
         }
 
         String serialNumberInput = argMultimap.getValue(PREFIX_SERIAL_NUMBER).get();
@@ -39,11 +39,11 @@ public class DeleteNoteCommandParser implements Parser<DeleteNoteCommand> {
         String noteIndexInput = argMultimap.getValue(PREFIX_NOTE_INDEX).get();
         if (!noteIndexInput.matches("[0-9]+") || noteIndexInput.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_NOTE_INDEX,
-                    DeleteNoteCommand.MESSAGE_USAGE));
+                    NoteDeleteCommand.MESSAGE_USAGE));
         }
         int noteIndex = Integer.parseInt(noteIndexInput);
 
-        return new DeleteNoteCommand(serialNumber, noteIndex);
+        return new NoteDeleteCommand(serialNumber, noteIndex);
     }
 
     /**

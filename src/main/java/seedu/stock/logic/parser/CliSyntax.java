@@ -30,6 +30,8 @@ public class CliSyntax {
     public static final String PREFIX_NOTE_DESCRIPTION = "<note>";
     public static final String PREFIX_NOTE_INDEX_DESCRIPTION = "<note index>";
     public static final String PREFIX_STATISTICS_TYPE_DESCRIPTION = "<statistics type>";
+    public static final String PREFIX_NEW_QUANTITY_DESCRIPTION = "<new quantity>";
+    public static final String PREFIX_INCREMENT_QUANTITY_DESCRIPTION = "<increment value>";
 
     /**
      * Returns a list containing all possible prefixes.
@@ -85,6 +87,10 @@ public class CliSyntax {
             return PREFIX_NOTE_INDEX_DESCRIPTION;
         } else if (prefix.equals(PREFIX_STATISTICS_TYPE)) {
             return PREFIX_STATISTICS_TYPE_DESCRIPTION;
+        } else if (prefix.equals(PREFIX_NEW_QUANTITY)) {
+            return PREFIX_NEW_QUANTITY_DESCRIPTION;
+        } else if (prefix.equals(PREFIX_INCREMENT_QUANTITY)) {
+            return PREFIX_INCREMENT_QUANTITY_DESCRIPTION;
         } else {
             return "";
         }

@@ -11,13 +11,14 @@ import seedu.stock.commons.util.SuggestionUtil;
 import seedu.stock.logic.commands.AddCommand;
 import seedu.stock.logic.commands.CommandWords;
 import seedu.stock.logic.commands.DeleteCommand;
-import seedu.stock.logic.commands.DeleteNoteCommand;
+import seedu.stock.logic.commands.NoteDeleteCommand;
 import seedu.stock.logic.commands.ExitCommand;
 import seedu.stock.logic.commands.FindCommand;
 import seedu.stock.logic.commands.FindExactCommand;
 import seedu.stock.logic.commands.HelpCommand;
 import seedu.stock.logic.commands.ListCommand;
 import seedu.stock.logic.commands.NoteCommand;
+import seedu.stock.logic.commands.PrintCommand;
 import seedu.stock.logic.commands.StatisticsCommand;
 import seedu.stock.logic.commands.SuggestionCommand;
 import seedu.stock.logic.commands.UpdateCommand;
@@ -54,7 +55,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         this.commandWord = commandWord;
         faultyCommandWord = "";
         headerErrorMessage = splitHeaderAndBody[0];
-        bodyErrorMessage = splitHeaderAndBody[1];
+        bodyErrorMessage = splitHeaderAndBody.length < 2 ? "" : splitHeaderAndBody[1];
     }
 
     /**
@@ -139,8 +140,12 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             generateNoteSuggestion(toBeDisplayed, argMultimap);
             break;
 
-        case DeleteNoteCommand.COMMAND_WORD:
+        case NoteDeleteCommand.COMMAND_WORD:
             generateDeleteNoteSuggestion(toBeDisplayed, argMultimap);
+            break;
+
+        case PrintCommand.COMMAND_WORD:
+            generatePrintSuggestion(toBeDisplayed, argMultimap);
             break;
 
         default:
@@ -186,9 +191,11 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_SERIAL_NUMBER,
                 PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY, PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION);
         toBeDisplayed.append(UPDATE_COMMAND_WORD);
+        boolean isIncrementQuantityPresent = argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).isPresent();
+        boolean isNewQuantityPresent = argMultimap.getValue(PREFIX_NEW_QUANTITY).isPresent();
 
-        if (argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).isPresent()
-                && argMultimap.getValue(PREFIX_NEW_QUANTITY).isPresent()) {
+        if (isIncrementQuantityPresent == isNewQuantityPresent) {
+            // both present or both not present
             int removeRng = new Random().nextInt(2);
             if (removeRng == 0) {
                 allowedPrefixes.remove(PREFIX_INCREMENT_QUANTITY);
@@ -207,8 +214,16 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
 
         for (int i = 1; i < allowedPrefixes.size(); i++) {
             Prefix currentPrefix = allowedPrefixes.get(i);
-            if (argMultimap.getValue(currentPrefix).isPresent()) {
-                toBeDisplayed.append(" " + currentPrefix + argMultimap.getValue(currentPrefix).get());
+            boolean isPresent = argMultimap.getValue(currentPrefix).isPresent();
+            String description = "";
+            if (isPresent) {
+                description = argMultimap.getValue(currentPrefix).get();
+            }
+            boolean isEmpty = description.equals("");
+            if (!isEmpty) {
+                toBeDisplayed.append(" " + currentPrefix + description);
+            } else if (isEmpty && isPresent) {
+                toBeDisplayed.append(" " + currentPrefix + CliSyntax.getDefaultDescription(currentPrefix));
             }
         }
 
@@ -277,7 +292,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
     private void generateDeleteNoteSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
         List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(
                 PREFIX_SERIAL_NUMBER, PREFIX_NOTE_INDEX);
-        toBeDisplayed.append(DELETE_NOTE_COMMAND_WORD);
+        toBeDisplayed.append(NOTE_DELETE_COMMAND_WORD);
 
         for (int i = 0; i < allowedPrefixes.size(); i++) {
             Prefix currentPrefix = allowedPrefixes.get(i);
@@ -288,7 +303,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         if (!bodyErrorMessage.equals("")) {
             toBeDisplayed.append("\n" + bodyErrorMessage);
         } else {
-            toBeDisplayed.append("\n" + DeleteNoteCommand.MESSAGE_USAGE);
+            toBeDisplayed.append("\n" + NoteDeleteCommand.MESSAGE_USAGE);
         }
     }
 
@@ -309,7 +324,9 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             }
             List<String> keywords = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
             for (String serialNumber : keywords) {
-                toBeDisplayed.append(" " + currentPrefix + serialNumber);
+                boolean isEmpty = serialNumber.equals("");
+                String description = isEmpty ? CliSyntax.getDefaultDescription(currentPrefix) : serialNumber;
+                toBeDisplayed.append(" " + currentPrefix + description);
             }
         }
 
@@ -361,10 +378,15 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
 
         for (int i = 0; i < allowedPrefixes.size(); i++) {
             Prefix currentPrefix = allowedPrefixes.get(i);
+            String description = "";
             if (argMultimap.getValue(currentPrefix).isPresent()) {
-                toBeDisplayed.append(" " + currentPrefix + argMultimap.getValue(currentPrefix).get());
-            } else {
+                description = argMultimap.getValue(currentPrefix).get();
+            }
+            boolean isEmpty = description.equals("");
+            if (isEmpty) {
                 toBeDisplayed.append(" " + currentPrefix + CliSyntax.getDefaultDescription(currentPrefix));
+            } else {
+                toBeDisplayed.append(" " + currentPrefix + description);
             }
         }
 
@@ -415,5 +437,15 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
      */
     private void generateExitSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
         toBeDisplayed.append(CommandWords.EXIT_COMMAND_WORD);
+    }
+
+    /**
+     * Generates suggestion for faulty print command.
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param argMultimap The parsed user input fields.
+     */
+    private void generatePrintSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
+        toBeDisplayed.append(CommandWords.PRINT_COMMAND_WORD);
     }
 }

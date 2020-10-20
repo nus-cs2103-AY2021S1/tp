@@ -13,7 +13,7 @@ import java.util.Optional;
 /**
  * Adds a note to an existing stock in the stock book.
  */
-public class DeleteNoteCommand extends Command {
+public class NoteDeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "notedelete";
 
@@ -39,7 +39,7 @@ public class DeleteNoteCommand extends Command {
      * @param serialNumber of the stock in the stock book
      * @param index of note to delete from the stock
      */
-    public DeleteNoteCommand(SerialNumber serialNumber, int index) {
+    public NoteDeleteCommand(SerialNumber serialNumber, int index) {
         requireAllNonNull(serialNumber, index);
 
         this.serialNumber = serialNumber;
@@ -117,7 +117,7 @@ public class DeleteNoteCommand extends Command {
             return false;
         }
         // state check
-        DeleteNoteCommand otherNoteCommand = (DeleteNoteCommand) other;
+        NoteDeleteCommand otherNoteCommand = (NoteDeleteCommand) other;
         return serialNumber.equals(otherNoteCommand.serialNumber)
                 && index == otherNoteCommand.index;
     }

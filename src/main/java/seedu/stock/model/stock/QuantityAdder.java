@@ -19,7 +19,7 @@ public class QuantityAdder {
     public final String valueToBeAdded;
 
     /**
-     * Constructss a new quantity adder object.
+     * Constructs a new quantity adder object.
      *
      * @param valueToBeAdded The value to be added into a quantity object.
      */
