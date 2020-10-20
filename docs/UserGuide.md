@@ -126,14 +126,14 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
     - Format: `find [-d<description>] [-@<date>] [t/<category>]`
     - Example: `find -dPhone`, `find -dlunch -@01-07-2020 t/Food`
 
-    ![find_example](images/ug_example/find_example.PNG)  
+    ![find_example](images/ug_example/find_example.PNG)
 
 7. **remark** <a name="remark"></a>
     - Adds a remark to an existing expense.
     - Format: `remark <index> r/<remark>`
     - Example: `remark 11 r/Pepper Lunch`
 
-    ![remark_example](./images/ug_example/remark_example.PNG)  
+    ![remark_example](./images/ug_example/remark_example.PNG)
 
 ### Fields
 1. **description**

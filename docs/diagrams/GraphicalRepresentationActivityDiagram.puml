@@ -1,0 +1,19 @@
+    @startuml
+    (*) --> "Enter graph command"
+    ---> "Parse command"
+    if "" then
+    --> [valid] Execute graph command
+    --> Retrieve data
+        if "" then
+        --> [empty list] Display default message
+        --> (*)
+        else
+        --> [else] Display formatted graph
+        -->(*)
+        endif
+    else
+    --> [else] Throw exception
+    endif
+    --> (*)
+
+    @enduml
