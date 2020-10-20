@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import seedu.address.model.id.BidderId;
 import seedu.address.model.id.PropertyId;
+import seedu.address.model.price.Price;
 
 public class Bid {
 
@@ -12,15 +13,15 @@ public class Bid {
 
     private PropertyId propertyId;
     private BidderId bidderId;
-    private double bidAmount;
+    private Price bidAmount;
 
     /**
      * Constructor for Bid Object
      * @param propertyId string id of the property to bid for
      * @param bidderId string id of the bidder wanting the property
-     * @param bidAmount double value of the amount the bidder wants the property for
+     * @param bidAmount Price value of the amount the bidder wants the property for
      */
-    public Bid(PropertyId propertyId, BidderId bidderId, double bidAmount) {
+    public Bid(PropertyId propertyId, BidderId bidderId, Price bidAmount) {
         this.propertyId = propertyId;
         this.bidderId = bidderId;
         this.bidAmount = bidAmount;
@@ -34,7 +35,7 @@ public class Bid {
         return bidderId;
     }
 
-    public double getBidAmount() {
+    public Price getBidAmount() {
         return bidAmount;
     }
 
@@ -59,7 +60,7 @@ public class Bid {
         return otherBid != null
                 && otherBid.getPropertyId().equals(getPropertyId())
                 && (otherBid.getBidderId().equals(getBidderId()))
-                && ((otherBid.getBidAmount() == getBidAmount())); // added this in
+                && ((otherBid.getBidAmount().equals(getBidAmount()))); // added this in
     }
 
     @Override
@@ -81,13 +82,13 @@ public class Bid {
         Bid otherBid = (Bid) other;
         return otherBid.getPropertyId().equals(this.getPropertyId())
                 && otherBid.getBidderId().equals(this.getBidderId())
-                && otherBid.getBidAmount() == (this.getBidAmount());
+                && otherBid.getBidAmount().equals(this.getBidAmount());
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Bid of $")
+        builder.append("Bid of ")
                 .append(getBidAmount())
                 .append(" by ")
                 .append(getBidderId())
