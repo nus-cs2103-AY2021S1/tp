@@ -153,6 +153,63 @@ The following sequence diagram shows how the undo operation works:
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Delete recipe feature
+
+#### Implementation
+This feature allows users to delete the recipes they have eaten in the calorie tracker.
+
+Substitutability is used in Command and Parser:
+* `DeleteRecipeCommand` extends `Command`
+* `DeleteRecipeCommandParser` implements `Parser<DeleteRecipeCommand>`
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+Step 1:
+User inputs the delete recipe command to delete recipe from the recipe list.
+
+Step 2:
+After successful parsing of user input, the `DeleteRecipeCommand#execute(Model model)` method is called.
+
+Step 3:
+The recipe that the user has specified by using index will be deleted from the recipe list.
+
+Step 4:
+After the successful deleting of recipes, a `CommandResult` object is instantiated and returned to `LogicManager`.
+
+The following sequence diagram shows how eat recipe operation works when `execute(deleteR 1)` API call:
+
+![DeleteRecipeSequence](images/DeleteRecipeSequence.png)
+
+#### Design consideration:
+##### Aspect 1: Concern while adding a new feature
+* Workflow must be consistent with other deleting commands e.g. delete ingredient and delete consumption.
+
+### List Recipe Feature
+
+#### Implementation
+This feature allows user to list out all the recipes that was saved.
+
+Substitutability is used in Command:
+* `DeleteRecipeCommand` extends `Command`
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+Step 1:
+User inputs the list recipe command to show all recipes from the recipe list.
+
+Step 2:
+After successful parsing of user input, the `ListRecipeCommand#execute(Model model)` method is called.
+
+Step 3:
+After successfully generating a list of recipes, a `CommandResult` object is instantiated and returned to `LogicManager`.
+
+The following sequence diagram shows how eat recipe operation works when `execute(eatR 1)` API call:
+
+![ListRecipeSequence](images/ListRecipeSequence.png)
+
+#### Design consideration:
+##### Aspect 1: Concern while adding a new feature
+* Workflow must be consistent with other listing commands e.g. fridge and calories.
 
 --------------------------------------------------------------------------------------------------------------------
 
