@@ -38,7 +38,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             }
             Set<Tag> tagsToMatch = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
             FlashcardPredicate predicate = getFlashcardPredicate(tagsToMatch);
-            return DeleteCommand.withPredicate(predicate);
+            return DeleteCommand.withPredicate(predicate, tagsToMatch);
         } else {
             try {
                 Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
