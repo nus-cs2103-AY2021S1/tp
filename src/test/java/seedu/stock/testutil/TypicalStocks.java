@@ -32,6 +32,8 @@ public class TypicalStocks {
     public static final SerialNumber SERIAL_NUMBER_SECOND_STOCK = BANANA.getSerialNumber();
     public static final SerialNumber SERIAL_NUMBER_THIRD_STOCK = PINEAPPLE.getSerialNumber();
 
+    public static final String RESERVED_NON_EXISTENCE_SOURCE = "$NON-EXISTENT-SOURCE";
+
     private TypicalStocks() {} // prevents instantiation
 
     /**
@@ -46,7 +48,7 @@ public class TypicalStocks {
     }
 
     public static List<Stock> getTypicalStocks() {
-        return new ArrayList<>(Arrays.asList(APPLE, BANANA));
+        return new ArrayList<>(Arrays.asList(APPLE, BANANA, PINEAPPLE));
     }
 
     public static SerialNumberSetsBook getTypicalSerialNumberSetsBook() {

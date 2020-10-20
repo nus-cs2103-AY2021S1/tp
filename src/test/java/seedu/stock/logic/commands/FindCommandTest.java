@@ -7,6 +7,7 @@ import static seedu.stock.commons.core.Messages.MESSAGE_STOCKS_LISTED_OVERVIEW;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.stock.testutil.TypicalStocks.APPLE;
 import static seedu.stock.testutil.TypicalStocks.BANANA;
+import static seedu.stock.testutil.TypicalStocks.PINEAPPLE;
 import static seedu.stock.testutil.TypicalStocks.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
 
@@ -79,14 +80,14 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleStocksFound() {
-        String expectedMessage = String.format(MESSAGE_STOCKS_LISTED_OVERVIEW, 2);
+        String expectedMessage = String.format(MESSAGE_STOCKS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("A");
         FindCommand command = new FindCommand(Collections.singletonList(predicate));
         // status message to show what user has searched for
         String statusMessage = "Searching for:\n" + predicate.toString();
         expectedModel.updateFilteredStockList(predicate);
         assertCommandSuccess(command, model, statusMessage + "\n" + expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(APPLE, BANANA), model.getFilteredStockList());
+        assertEquals(Arrays.asList(APPLE, BANANA, PINEAPPLE), model.getFilteredStockList());
     }
 
     /**
