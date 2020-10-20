@@ -47,7 +47,12 @@
               </padding>
               <StackPane fx:id="staffListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
             </VBox>
-
+              <VBox fx:id="applicantList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+                <padding>
+                  <Insets bottom="5" />
+                </padding>
+                <StackPane fx:id="applicantListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              </VBox>
             <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
                        minHeight="70" prefHeight="70" maxHeight="70">
               <padding>
@@ -62,6 +67,10 @@
             </StackPane>
           </VBox>
         </SplitPane>
+
+
+
+        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
   </scene>
