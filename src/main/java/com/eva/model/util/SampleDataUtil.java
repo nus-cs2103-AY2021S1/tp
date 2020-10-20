@@ -15,6 +15,8 @@ import com.eva.model.person.Email;
 import com.eva.model.person.Name;
 import com.eva.model.person.Person;
 import com.eva.model.person.Phone;
+import com.eva.model.person.applicant.Applicant;
+import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.tag.Tag;
@@ -54,6 +56,13 @@ public class SampleDataUtil {
                 .toArray(Staff[]::new);
     }
 
+    public static Applicant[] getSampleApplicants() {
+        // TODO: Add some meaningful interview date samples
+        return Arrays.stream(getSamplePersons())
+                .map(person -> new Applicant(person, null, new ApplicationStatus("received")))
+                .toArray(Applicant[]::new);
+    }
+
     public static ReadOnlyEvaDatabase<Person> getSamplePersonDatabase() {
         EvaDatabase<Person> sampleAb = new EvaDatabase<>();
         for (Person samplePerson : getSamplePersons()) {
@@ -65,6 +74,14 @@ public class SampleDataUtil {
     public static ReadOnlyEvaDatabase<Staff> getSampleStaffDatabase() {
         EvaDatabase<Staff> sampleAb = new EvaDatabase<>();
         for (Staff samplePerson : getSampleStaffs()) {
+            sampleAb.addPerson(samplePerson);
+        }
+        return sampleAb;
+    }
+
+    public static ReadOnlyEvaDatabase<Applicant> getSampleApplicantDatabase() {
+        EvaDatabase<Applicant> sampleAb = new EvaDatabase<>();
+        for (Applicant samplePerson : getSampleApplicants()) {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;

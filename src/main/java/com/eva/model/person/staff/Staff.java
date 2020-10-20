@@ -55,7 +55,7 @@ public class Staff extends Person {
     }
 
     /**
-     * Creates Staff Object
+     * Creates a Staff object from a Person Object.
      * @param person
      * @param leaves
      */

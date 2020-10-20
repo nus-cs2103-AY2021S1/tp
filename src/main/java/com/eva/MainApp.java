@@ -20,6 +20,7 @@ import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.ReadOnlyUserPrefs;
 import com.eva.model.UserPrefs;
 import com.eva.model.person.Person;
+import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.util.SampleDataUtil;
 import com.eva.storage.EvaStorage;
@@ -59,8 +60,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        EvaStorage evaStorage = new JsonEvaStorage(
-                userPrefs.getPersonDatabaseFilePath(), userPrefs.getStaffDatabaseFilePath());
+        EvaStorage evaStorage = new JsonEvaStorage(userPrefs.getPersonDatabaseFilePath(),
+                userPrefs.getStaffDatabaseFilePath(), userPrefs.getApplicantDatabaseFilePath());
         storage = new StorageManager(evaStorage, userPrefsStorage);
 
         initLogging(config);
@@ -73,34 +74,41 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s eva database and {@code userPrefs}. <br>
+     * The data from the sample eva database will be used instead if {@code storage}'s eva database is not found,
+     * or an empty eva database will be used instead if errors occur when reading {@code storage}'s eva database.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyEvaDatabase<Person>> personDatabaseOptional;
         ReadOnlyEvaDatabase<Person> initialPersonData;
         Optional<ReadOnlyEvaDatabase<Staff>> staffDatabaseOptional;
         ReadOnlyEvaDatabase<Staff> initialStaffData;
+        Optional<ReadOnlyEvaDatabase<Applicant>> applicantDatabaseOptional;
+        ReadOnlyEvaDatabase<Applicant> initialApplicantData;
         try {
             personDatabaseOptional = storage.readPersonDatabase();
             staffDatabaseOptional = storage.readStaffDatabase();
-            if (!personDatabaseOptional.isPresent() || !staffDatabaseOptional.isPresent()) {
+            applicantDatabaseOptional = storage.readApplicantDatabase();
+            if (personDatabaseOptional.isEmpty() || staffDatabaseOptional.isEmpty()
+                    || applicantDatabaseOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample EvaDatabase");
             }
             initialPersonData = personDatabaseOptional.orElseGet(SampleDataUtil::getSamplePersonDatabase);
             initialStaffData = staffDatabaseOptional.orElseGet(SampleDataUtil::getSampleStaffDatabase);
+            initialApplicantData = applicantDatabaseOptional.orElseGet(SampleDataUtil::getSampleApplicantDatabase);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty EvaDatabase");
             initialPersonData = new EvaDatabase<>();
             initialStaffData = new EvaDatabase<>();
+            initialApplicantData = new EvaDatabase<>();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty EvaDatabase");
             initialPersonData = new EvaDatabase<>();
             initialStaffData = new EvaDatabase<>();
+            initialApplicantData = new EvaDatabase<>();
         }
 
-        return new ModelManager(initialPersonData, initialStaffData, userPrefs);
+        return new ModelManager(initialPersonData, initialStaffData, initialApplicantData, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -183,7 +191,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping eva database ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import com.eva.commons.core.GuiSettings;
 import com.eva.model.person.NameContainsKeywordsPredicate;
 import com.eva.model.person.Person;
+import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.staff.Staff;
 import com.eva.testutil.EvaDatabaseBuilder;
 
@@ -64,14 +65,14 @@ public class ModelManagerTest {
 
     @Test
     public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setEvaDatabaseFilePath(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setPersonDatabaseFilePath(null));
     }
 
     @Test
     public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setEvaDatabaseFilePath(path);
-        assertEquals(path, modelManager.getEvaDatabaseFilePath());
+        modelManager.setPersonDatabaseFilePath(path);
+        assertEquals(path, modelManager.getPersonDatabaseFilePath());
     }
 
     @Test
@@ -100,12 +101,13 @@ public class ModelManagerTest {
         EvaDatabase<Person> addressBook = new EvaDatabaseBuilder<>()
                 .withPerson(ALICE).withPerson(BENSON).build();
         EvaDatabase<Staff> staffDatabase = new EvaDatabase<>();
+        EvaDatabase<Applicant> applicantDatabase = new EvaDatabase<>();
         EvaDatabase<Person> differentAddressBook = new EvaDatabase<>();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, staffDatabase, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, staffDatabase, userPrefs);
+        modelManager = new ModelManager(addressBook, staffDatabase, applicantDatabase, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, staffDatabase, applicantDatabase, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -118,12 +120,13 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, staffDatabase, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook,
+                staffDatabase, applicantDatabase, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, staffDatabase, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, staffDatabase, applicantDatabase, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -131,6 +134,7 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setPersonDatabaseFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, staffDatabase, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook,
+                staffDatabase, applicantDatabase, differentUserPrefs)));
     }
 }

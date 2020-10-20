@@ -9,7 +9,7 @@ import com.eva.model.person.applicant.InterviewDate;
 
 public class ApplicantBuilder extends PersonBuilder {
     public static final String DEFAULT_APPLICATION_STATUS = "received";
-    public static final String DEFAULT_INTERVIEW_DATE = "30122020";
+    public static final String DEFAULT_INTERVIEW_DATE = "30/12/2020";
 
     private Optional<InterviewDate> interviewDate;
     private ApplicationStatus applicationStatus;
@@ -30,6 +30,6 @@ public class ApplicantBuilder extends PersonBuilder {
     @Override
     public Applicant build() {
         return new Applicant(name, phone, email, address, tags, comments,
-                interviewDate.orElse(new InterviewDate(DEFAULT_INTERVIEW_DATE)), applicationStatus);
+                interviewDate, applicationStatus);
     }
 }
