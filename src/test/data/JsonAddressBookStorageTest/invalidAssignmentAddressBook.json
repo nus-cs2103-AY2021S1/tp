@@ -2,6 +2,10 @@
   "assignments": [ {
     "name": "Assignment with invalid name field: C$123!S H*mew0rk",
     "deadline": "02-02-2020 1900",
-    "moduleCode": "CS1231S"
+    "moduleCode": "CS1231S",
+    "suggestedStartTime" : "06-11-2020 0600",
+    "suggestedEndTime" : "06-11-2020 0800",
+    "isReminded" : true,
+    "isScheduled" : true
   } ]
 }

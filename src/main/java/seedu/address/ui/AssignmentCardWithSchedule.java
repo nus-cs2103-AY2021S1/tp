@@ -18,11 +18,11 @@ import seedu.address.model.assignment.Deadline;
 /**
  * An UI component that displays information of a {@code Assignment}.
  */
-public class AssignmentCard extends UiPart<Region> {
+public class AssignmentCardWithSchedule extends UiPart<Region> {
     private static final long MIN_PER_HOUR = 60;
     private static final long HOUR_PER_DAY = 24;
     private static final long DAY_PER_WEEK = 7;
-    private static final String FXML = "AssignmentListCard.fxml";
+    private static final String FXML = "AssignmentListCardWithSchedule.fxml";
     private static final String OVERDUE_STYLE_CLASS = "overdue";
     private static final String DUE_SOON_STYLE_CLASS = "due-soon";
     private static final String DUE_IN_A_WEEK_STYLE_CLASS = "due-in-a-week";
@@ -52,12 +52,16 @@ public class AssignmentCard extends UiPart<Region> {
     @FXML
     private Label dueDate;
     @FXML
+    private Label suggestedStartTime;
+    @FXML
+    private Label suggestedEndTime;
+    @FXML
     private Label priority;
 
     /**
      * Creates a {@code AssignmentCode} with the given {@code Assignment} and index to display.
      */
-    public AssignmentCard(Assignment assignment, int displayedIndex) {
+    public AssignmentCardWithSchedule(Assignment assignment, int displayedIndex) {
         super(FXML);
         this.assignment = assignment;
         id.setText(displayedIndex + ". ");
@@ -65,6 +69,8 @@ public class AssignmentCard extends UiPart<Region> {
         deadline.setText("Deadline: " + assignment.getDeadline().value);
         moduleCode.setText("Module: " + assignment.getModuleCode().moduleCode);
         getDueDate(dueDate, assignment.getDeadline());
+        suggestedStartTime.setText("Start time: " + assignment.getSchedule().getSuggestedStartTime());
+        suggestedEndTime.setText("End time: " + assignment.getSchedule().getSuggestedEndTime());
         priority.setText("Priority: " + assignment.getPriority().toString());
     }
 
@@ -129,12 +135,12 @@ public class AssignmentCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AssignmentCard)) {
+        if (!(other instanceof AssignmentCardWithSchedule)) {
             return false;
         }
 
         // state check
-        AssignmentCard card = (AssignmentCard) other;
+        AssignmentCardWithSchedule card = (AssignmentCardWithSchedule) other;
         return id.getText().equals(card.id.getText())
                 && assignment.equals(card.assignment);
     }

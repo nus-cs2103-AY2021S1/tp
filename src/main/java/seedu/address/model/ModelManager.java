@@ -28,11 +28,12 @@ public class ModelManager implements Model {
     private final FilteredList<Assignment> remindedAssignments;
     private final FilteredList<Lesson> lessons;
     private final FilteredList<Task> filteredTasks;
+    private Model previousModel;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, Model previousModel) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -45,18 +46,29 @@ public class ModelManager implements Model {
                 this.addressBook.getAssignmentList(), PREDICATE_SHOW_ALL_REMINDED_ASSIGNMENTS);
         lessons = new FilteredList<>(this.addressBook.getLessonList());
         filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
+        this.previousModel = previousModel;
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), null);
     }
 
     //=========== UserPrefs ==================================================================================
 
     @Override
+    public void preUpdateModel() {
+        this.previousModel = new ModelManager(this.addressBook, this.userPrefs, this.previousModel);
+    }
+
+    @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         requireNonNull(userPrefs);
         this.userPrefs.resetData(userPrefs);
+    }
+
+    @Override
+    public void setPreviousModel(Model previousModel) {
+        this.previousModel = previousModel;
     }
 
     @Override
@@ -111,20 +123,27 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteAssignment(Assignment target) {
+        preUpdateModel();
         addressBook.removeAssignment(target);
     }
 
     @Override
     public void addAssignment(Assignment assignment) {
+        preUpdateModel();
         addressBook.addAssignment(assignment);
         updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENT);
     }
 
     @Override
     public void setAssignment(Assignment target, Assignment editedAssignment) {
+        preUpdateModel();
         requireAllNonNull(target, editedAssignment);
-
         addressBook.setAssignment(target, editedAssignment);
+    }
+
+    @Override
+    public Model getPreviousModel() {
+        return this.previousModel;
     }
 
     //=========== Filtered Assignment List Accessors =============================================================
@@ -187,7 +206,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredAssignments.equals(other.filteredAssignments);
+                && filteredAssignments.equals(other.filteredAssignments)
+                && (previousModel == null || previousModel.equals(other.previousModel))
+                && (other.previousModel == null || other.previousModel.equals(previousModel));
     }
 
 }

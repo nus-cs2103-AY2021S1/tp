@@ -13,7 +13,9 @@ import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.ModuleCode;
 import seedu.address.model.assignment.Name;
+import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
+import seedu.address.model.assignment.Schedule;
 
 /**
  * Sets reminders for an assignment identified using it's displayed index from the address book.
@@ -23,8 +25,9 @@ public class RemindCommand extends Command {
     public static final String COMMAND_WORD = "remind";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Tags the assignment identified by the index number used in the displayed assignment list."
-            + " Tagged assignments are permanently displayed.\n"
+            + ": Sets reminders for the assignment identified by the index number "
+            + "used in the displayed assignment list."
+            + " Assignments with reminders set are permanently shown in the displayed reminders list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
@@ -35,7 +38,7 @@ public class RemindCommand extends Command {
 
     /**
      * Constructs a RemindCommand to set reminders to the specified assignment.
-     * @param targetIndex index of the assignment in the filtered assignment list to edit
+     * @param targetIndex index of the assignment in the filtered assignment list to remind
      */
     public RemindCommand(Index targetIndex) {
         requireNonNull(targetIndex);
@@ -75,8 +78,11 @@ public class RemindCommand extends Command {
         Deadline updatedDeadline = assignmentToRemind.getDeadline();
         ModuleCode updatedModuleCode = assignmentToRemind.getModuleCode();
         Remind updatedRemind = assignmentToRemind.getRemind().setReminder();
+        Schedule updatedSchedule = assignmentToRemind.getSchedule();
+        Priority priority = assignmentToRemind.getPriority();
 
-        return new Assignment(updatedName, updatedDeadline, updatedModuleCode, updatedRemind);
+        return new Assignment(updatedName, updatedDeadline, updatedModuleCode, updatedRemind, updatedSchedule,
+                priority);
     }
 
     @Override

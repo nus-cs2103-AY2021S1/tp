@@ -23,6 +23,18 @@ public interface Model {
      */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
+    void setPreviousModel(Model previousModel);
+
+    /**
+     * return previous model
+     */
+    Model getPreviousModel();
+
+    /**
+     * before update model
+     */
+    void preUpdateModel();
+
     /**
      * Returns the user prefs.
      */

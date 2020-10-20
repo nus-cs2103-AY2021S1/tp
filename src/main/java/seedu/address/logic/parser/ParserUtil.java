@@ -4,10 +4,12 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.ScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.ModuleCode;
 import seedu.address.model.assignment.Name;
+import seedu.address.model.assignment.Priority;
 
 import java.time.LocalDateTime;
 
@@ -75,6 +77,30 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String num} into a int.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given int is invalid.
+     */
+    public static int parseExpectedTime(String num) throws ParseException {
+        requireNonNull(num);
+        String trimmedNum = num.trim();
+        try {
+            int n = Integer.parseInt(trimmedNum);
+            if (!isValidExpectedTime(n)) {
+                throw new ParseException("Invalid expected time");
+            }
+            return n;
+        } catch (NumberFormatException e) {
+            throw new ParseException("Invalid expected time");
+        }
+    }
+
+    private static boolean isValidExpectedTime(int n) {
+        return (ScheduleCommand.MIN_HOURS <= n && n <= ScheduleCommand.MAX_HOURS);
+    }
+
+    /**
      * Parses a {@code String moduleCode} into an {@code ModuleCode}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -87,6 +113,27 @@ public class ParserUtil {
             throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
         }
         return new ModuleCode(trimmedModuleCode);
+    }
+
+    /**
+     * Parses a {@code String priority} into an {@code Priority}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Priority} is invalid.
+     */
+    public static Priority parsePriority(String priority) throws ParseException {
+        requireNonNull(priority);
+        String priorityLevel = priority.trim().toUpperCase();
+        if (priorityLevel.equals(Priority.LOW_PRIORITY)) {
+            return new Priority(Priority.LOW_PRIORITY);
+        }
+        if (priorityLevel.equals(Priority.MEDIUM_PRIORITY)) {
+            return new Priority(Priority.MEDIUM_PRIORITY);
+        }
+        if (priorityLevel.equals(Priority.HIGH_PRIORITY)) {
+            return new Priority(Priority.HIGH_PRIORITY);
+        }
+        throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
     }
 
 }
