@@ -27,12 +27,16 @@ Given below are my contributions to the project.
   * Justification: A restaurant manager would be more concerned with current time and date rather than the storage data location.
   * (Pull Request [#143](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/143))
 
+* **Added delivery commands**: Allows user to input commands for delivery, specifically are: `list-d`, `clear-d`, `delete-d` and `edit-d`.
+  * What it does: Allows delivery features to work for users.
+  * Justification: A restaurant manager would want to be able to list, clear, delete and edit deliveries.
+  * (Pull Request [#99](https://github.com/AY2021S1-CS2103T-T12-1/tp/issues/99))
+
 * **Enhancements to existing features**:
   * Updated the GUI layout draft 1 (Pull requests [\#42](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/42),
     [\#63](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/64/files))
   * Added unit and integration tests for remove command ([#79](https://github.com/AY2021S1-CS2103T-T12-1/tp/issues/79),
     [#109](https://github.com/AY2021S1-CS2103T-T12-1/tp/issues/109))
-  * Added list implementation to delivery ([#99](https://github.com/AY2021S1-CS2103T-T12-1/tp/issues/99))
   * Added delivery model test cases ([#122](https://github.com/AY2021S1-CS2103T-T12-1/tp/issues/122))
 
 
