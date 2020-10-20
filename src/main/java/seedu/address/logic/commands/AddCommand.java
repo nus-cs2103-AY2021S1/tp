@@ -18,7 +18,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an animal to the zookeep book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an animal to the zookeep book.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_ID + "ID "
