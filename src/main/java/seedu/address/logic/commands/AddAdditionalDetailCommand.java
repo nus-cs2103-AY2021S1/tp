@@ -17,8 +17,9 @@ import seedu.address.model.student.admin.AdditionalDetail;
 
 public class AddAdditionalDetailCommand extends AdditionalDetailCommand {
 
-    public static final String COMMAND_WORD = AdditionalDetailCommand.COMMAND_WORD + " add";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": adds an Additional Detail to the student identified "
+    public static final String COMMAND_WORD = "add";
+    public static final String MESSAGE_USAGE = AdditionalDetailCommand.COMMAND_WORD + " " + COMMAND_WORD
+            + ": adds an Additional Detail to the student identified "
             + "by the index number used in the displayed student list. \n"
             + "Parameters: STUDENT_INDEX (must be a positive integer) "
             + PREFIX_DETAIL_TEXT + "DETAIL\n"
