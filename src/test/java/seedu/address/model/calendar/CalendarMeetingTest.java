@@ -36,6 +36,7 @@ class CalendarMeetingTest {
     void getCalendarBidderId() {
         assertTrue(firstMeeting.getCalendarBidderId().equals(firstMeetingIdentical.getCalendarBidderId()));
         assertFalse(firstMeeting.getCalendarBidderId().equals(firstMeetingDiff.getCalendarBidderId()));
+        assert (firstMeeting.getCalendarBidderId().equals(firstMeetingIdentical.getCalendarBidderId()));
     }
 
     @Test
