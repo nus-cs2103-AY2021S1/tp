@@ -37,7 +37,7 @@ Given below are my contributions to the project.
   * Highlights: This enhancement comes with the ability to add multiple notes to the stock.
   Users will be able to add notes to the stock at any time, without erasing their previous notes.
 
-* **New Feature**: Added the ability to delete one note all all notes from existing a stock in the storage.
+* **New Feature**: Added the ability to delete one note or all notes from existing a stock in the storage.
   * What it does: Allows the user to delete notes from stock.
   * Justification: This feature improves the user experience as user can now delete notes that they
   no longer need from the stock.
