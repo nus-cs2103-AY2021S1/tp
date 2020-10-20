@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.AppointmentCommand;
+package seedu.address.logic.commands.appointmentcommand;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
@@ -14,14 +14,15 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.allergy.Allergy;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Appointment;
 import seedu.address.model.patient.Email;
+import seedu.address.model.patient.MedicalRecord;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
-import seedu.address.model.tag.Tag;
 
 public class AddApptCommand extends Command {
 
@@ -79,14 +80,15 @@ public class AddApptCommand extends Command {
         Email updatedEmail = patientToAddAppt.getEmail();
         Nric updatedNric = patientToAddAppt.getNric();
         Address updatedAddress = patientToAddAppt.getAddress();
-        Set<Tag> updatedTags = patientToAddAppt.getTags();
+        Set<Allergy> updatedAllergies = patientToAddAppt.getAllergies();
         Set<Appointment> appointments = patientToAddAppt.getAppointments();
         Set<Appointment> updatedAppointments = new HashSet<>();
+        MedicalRecord updatedMedicalRecord = patientToAddAppt.getMedicalRecord();
         updatedAppointments.addAll(appointments);
         updatedAppointments.add(appointment);
 
         return new Patient(updatedName, updatedNric, updatedPhone, updatedEmail, updatedAddress,
-                updatedTags, updatedAppointments);
+                updatedAllergies, updatedAppointments, updatedMedicalRecord);
     }
 
     @Override

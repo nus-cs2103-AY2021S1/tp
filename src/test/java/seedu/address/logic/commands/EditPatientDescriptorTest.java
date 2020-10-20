@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_URL_BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -58,6 +59,10 @@ public class EditPatientDescriptorTest {
 
         // different tags -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different url -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withMedicalRecord(VALID_URL_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

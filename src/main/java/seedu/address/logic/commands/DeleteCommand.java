@@ -71,6 +71,7 @@ public class DeleteCommand extends Command {
         }
 
         model.deletePatient(patientToDelete);
+        assert !model.hasPatient(patientToDelete) : "Patient not deleted!";
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, patientToDelete));
     }
 
