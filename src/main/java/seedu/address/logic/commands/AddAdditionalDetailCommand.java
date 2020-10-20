@@ -23,9 +23,10 @@ public class AddAdditionalDetailCommand extends AdditionalDetailCommand {
             + "by the index number used in the displayed student list. \n"
             + "Parameters: STUDENT_INDEX (must be a positive integer) "
             + PREFIX_DETAIL_TEXT + "DETAIL\n"
-            + "Example: " + COMMAND_WORD + " 2 " + PREFIX_DETAIL_TEXT + "Eats sweets in class";
+            + "Example: " + AdditionalDetailCommand.COMMAND_WORD + " " + COMMAND_WORD + " 2 "
+            + PREFIX_DETAIL_TEXT + "Eats sweets in class";
 
-    public static final String MESSAGE_SUCCESS = "New detail added to %s: %1$s";
+    public static final String MESSAGE_SUCCESS = "New detail added to %s: %s";
 
     private final Index index;
     private final AdditionalDetail detailToAdd;

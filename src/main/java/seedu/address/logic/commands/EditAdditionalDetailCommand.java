@@ -23,13 +23,13 @@ public class EditAdditionalDetailCommand extends AdditionalDetailCommand {
             + ": edits an Additional Detail in the student identified "
             + "by the index number used in the displayed student list. \n"
             + "Parameters: STUDENT_INDEX (must be a positive integer) "
-            + PREFIX_DETAIL_INDEX + "DETAIL_INDEX (must be a positive integer)"
+            + PREFIX_DETAIL_INDEX + "DETAIL_INDEX (must be a positive integer) "
             + PREFIX_DETAIL_TEXT + "DETAIL\n"
-            + "Example: " + COMMAND_WORD + " 2 "
+            + "Example: " + AdditionalDetailCommand.COMMAND_WORD + " " + COMMAND_WORD + " 2 "
             + PREFIX_DETAIL_INDEX + "1 "
             + PREFIX_DETAIL_TEXT + "Eats sweets in class";
 
-    public static final String MESSAGE_SUCCESS = "Detail edited for %s: %1$s";
+    public static final String MESSAGE_SUCCESS = "Detail edited for %s: %s";
     public static final String MESSAGE_BAD_DETAIL_INDEX = "There is no detail at this index";
 
     private final Index studentIndex;

@@ -22,11 +22,11 @@ public class DeleteAdditionalDetailCommand extends AdditionalDetailCommand {
             + ": deletes an Additional Detail in the student identified"
             + " by the index number used in the displayed student list. \n"
             + "Parameters: STUDENT_INDEX (must be a positive integer) "
-            + PREFIX_DETAIL_INDEX + "DETAIL_INDEX (must be a positive integer)"
-            + "Example: " + COMMAND_WORD + " 2 "
+            + PREFIX_DETAIL_INDEX + "DETAIL_INDEX (must be a positive integer)\n"
+            + "Example: " + AdditionalDetailCommand.COMMAND_WORD + " " + COMMAND_WORD + " 2 "
             + PREFIX_DETAIL_INDEX + "1";
 
-    public static final String MESSAGE_SUCCESS = "Detail removed from %s: %1$s";
+    public static final String MESSAGE_SUCCESS = "Detail removed from %s: %s";
     public static final String MESSAGE_BAD_DETAIL_INDEX = "There is no detail at this index";
 
     private final Index studentIndex;
