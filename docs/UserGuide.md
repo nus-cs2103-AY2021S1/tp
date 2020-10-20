@@ -75,22 +75,23 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### Adding a staff: `addstaff`
+### **Adding a staff**: `addstaff`
 
 Adds a staff to the application.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]…`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A staff can have any number of tags (including 0)
-A staff can have any number of comments (including 0)
+<div markdown="span" class="alert alert-primary">
+- A staff can have any number of tags (including 0) <br>
+- A staff can have any number of comments (including 0) <br>
+ 
 </div>
 
 Examples:
 * `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `addstaff n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Adding an applicant: `addapplicant`
+### **Adding an applicant**: `addapplicant`
 
 Adds an applicant to the application.
 
