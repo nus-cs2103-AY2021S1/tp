@@ -3,70 +3,120 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COLORTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_PATH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ICNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.CliniCal;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.model.patient.NameContainsKeywordsPredicate;
+import seedu.address.model.patient.Patient;
+import seedu.address.testutil.EditPatientDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
 
+    // for Patient
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
-    public static final String VALID_EMAIL_AMY = "amy@example.com";
-    public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_ICNUMBER_AMY = "S1111111A";
+    public static final String VALID_ICNUMBER_BOB = "S2222222B";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_EMAIL_AMY = "amy@example.com";
+    public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_PROFILE_PICTURE_AMY = "data/stock_picture.png";
+    public static final String VALID_PROFILE_PICTURE_BOB = "data/stock_picture.png";
+    public static final String VALID_SEX_AMY = "F";
+    public static final String VALID_SEX_BOB = "M";
+    public static final String VALID_BLOODTYPE_AMY = "A+";
+    public static final String VALID_BLOODTYPE_BOB = "B+";
+    public static final String VALID_ALLERGY_ASPIRIN = "aspirin";
+    public static final String VALID_ALLERGY_PENICILLIN = "penicillin";
+    public static final String VALID_COLORTAG_ORANGE = "orange";
+    public static final String VALID_COLORTAG_RED = "red";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
-    public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
-    public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+    public static final String ICNUMBER_DESC_AMY = " " + PREFIX_ICNUMBER + VALID_ICNUMBER_AMY;
+    public static final String ICNUMBER_DESC_BOB = " " + PREFIX_ICNUMBER + VALID_ICNUMBER_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
+    public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+    public static final String PROFILE_PICTURE_DESC_AMY = " " + PREFIX_FILE_PATH + VALID_PROFILE_PICTURE_AMY;
+    public static final String PROFILE_PICTURE_DESC_BOB = " " + PREFIX_FILE_PATH + VALID_PROFILE_PICTURE_BOB;
+    public static final String SEX_DESC_AMY = " " + PREFIX_SEX + VALID_SEX_AMY;
+    public static final String SEX_DESC_BOB = " " + PREFIX_SEX + VALID_SEX_BOB;
+    public static final String BLOODTYPE_DESC_AMY = " " + PREFIX_BLOODTYPE + VALID_BLOODTYPE_AMY;
+    public static final String BLOODTYPE_DESC_BOB = " " + PREFIX_BLOODTYPE + VALID_BLOODTYPE_BOB;
+    public static final String ALLERGY_DESC_AMY = " " + PREFIX_ALLERGY + VALID_ALLERGY_ASPIRIN;
+    public static final String ALLERGY_DESC_BOB = " " + PREFIX_ALLERGY + VALID_ALLERGY_PENICILLIN;
+    public static final String COLORTAG_DESC_ORANGE = " " + PREFIX_COLORTAG + VALID_COLORTAG_ORANGE;
+    public static final String COLORTAG_DESC_RED = " " + PREFIX_COLORTAG + VALID_COLORTAG_RED;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_ICNUMBER_DESC = " " + PREFIX_ICNUMBER
+            + "S1234567!"; // '!' not allowed in ic numbers
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_SEX_DESC = " " + PREFIX_SEX + "MF"; // 'MF' not allowed in sex
+    public static final String INVALID_BLOODTYPE_DESC = " " + PREFIX_BLOODTYPE + "C+"; // 'C' not allowed in blood types
+    public static final String INVALID_ALLERGY_DESC = " " + PREFIX_ALLERGY
+            + "penicillin*"; // '*' not allowed in allergies
+
+    public static final String INVALID_PROFILE_PICTURE_AMY = "data/nosuchpictureexists.png";
+    public static final String INVALID_COLORTAG_DESC = " " + PREFIX_COLORTAG + "gibberish"; // non-color name
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCommand.EditPatientDescriptor DESC_AMY;
+    public static final EditCommand.EditPatientDescriptor DESC_BOB;
+
+    // for Visit
+    public static final LocalDate VALID_VISITDATE_ONE = LocalDate.of(2019, 3, 19);
+    public static final LocalDate VALID_VISITDATE_TWO = LocalDate.of(2018, 7, 6);
+    public static final String VALID_DIAGNOSIS_ONE = "Hyperlipidemia";
+    public static final String VALID_DIAGNOSIS_TWO = "Reflux esophagitis";
+    public static final String VALID_PRESCRIPTION_ONE = "Vicodin";
+    public static final String VALID_PRESCRIPTION_TWO = "Synthroid";
+    public static final String VALID_COMMENT_ONE = "Need immediate attention";
+    public static final String VALID_COMMENT_TWO = "No need to follow up";
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_AMY = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
+                .withIcNumber(VALID_ICNUMBER_AMY).withAddress(VALID_ADDRESS_AMY).withEmail(VALID_EMAIL_AMY)
+                .withProfilePicture(VALID_PROFILE_PICTURE_AMY).withSex(VALID_SEX_AMY).withBloodType(VALID_BLOODTYPE_AMY)
+                .withAllergies(VALID_ALLERGY_ASPIRIN)
+                .build();
+        DESC_BOB = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+                .withIcNumber(VALID_ICNUMBER_BOB).withAddress(VALID_ADDRESS_BOB).withEmail(VALID_EMAIL_BOB)
+                .withProfilePicture(VALID_PROFILE_PICTURE_BOB).withSex(VALID_SEX_BOB).withBloodType(VALID_BLOODTYPE_BOB)
+                .withAllergies(VALID_ALLERGY_PENICILLIN)
+                .build();
     }
 
     /**
@@ -99,30 +149,42 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the clinical, filtered patient list and selected patient in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        CliniCal expectedCliniCal = new CliniCal(actualModel.getCliniCal());
+        List<Patient> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPatientList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedCliniCal, actualModel.getCliniCal());
+        assertEquals(expectedFilteredList, actualModel.getFilteredPatientList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered list to show only the patient at the given {@code targetIndex} in the
+     * {@code model}'s clinical.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+    public static void showPatientAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredPatientList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        Patient patient = model.getFilteredPatientList().get(targetIndex.getZeroBased());
+        final String[] splitName = patient.getName().fullName.split("\\s+");
+        model.updateFilteredPatientList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredPatientList().size());
+    }
+
+    /**
+     * Deletes the last patient in {@code model}'s filtered list from {@code model}'s CliniCal.
+     */
+    public static void deleteLastPatient(Model model) {
+        ObservableList<Patient> listOfPatients = model.getFilteredPatientList();
+        Index lastPatientIndex = Index.fromZeroBased(listOfPatients.size() - 1);
+        Patient lastPatient = listOfPatients.get(lastPatientIndex.getZeroBased());
+        model.deletePatient(lastPatient);
+        String deleteLastInput = "delete" + lastPatientIndex.getOneBased();
+        model.commitCliniCal(deleteLastInput);
     }
 
 }

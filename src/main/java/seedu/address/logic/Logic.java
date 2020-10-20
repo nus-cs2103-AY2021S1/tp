@@ -1,14 +1,16 @@
 package seedu.address.logic;
 
+import java.io.File;
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyCliniCal;
+import seedu.address.model.patient.Patient;
 
 /**
  * API of the Logic component
@@ -24,19 +26,29 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
-     *
-     * @see seedu.address.model.Model#getAddressBook()
+     * Executes profile picture transfer and returns the result.
+     * @param patient The patient
+     * @param profilePic The profile picture
+     * @return the result of the command execution.
+     * @throws CommandException If an error occurs during command execution.
+     * @throws IllegalValueException If an error occurs during parsing.
      */
-    ReadOnlyAddressBook getAddressBook();
-
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    CommandResult runImageTransfer(Patient patient, File profilePic) throws CommandException, IllegalValueException;
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the CliniCal.
+     *
+     * @see seedu.address.model.Model#getCliniCal()
      */
-    Path getAddressBookFilePath();
+    ReadOnlyCliniCal getCliniCal();
+
+    /** Returns an unmodifiable view of the filtered list of patients */
+    ObservableList<Patient> getFilteredPatientList();
+
+    /**
+     * Returns the user prefs' CliniCal application file path.
+     */
+    Path getCliniCalFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

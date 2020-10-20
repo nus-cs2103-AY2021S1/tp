@@ -1,0 +1,41 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CliniCalParser" as CliniCalParser LOGIC_COLOR
+participant "ch:ClearHistoryCommand" as ClearHistoryCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":CommandHistory" as CommandHistory MODEL_COLOR
+end box
+
+[-> LogicManager : execute(clearhistory)
+activate LogicManager
+
+LogicManager -> CliniCalParser : parseCommand(clearhistory)
+activate CliniCalParser
+
+create ClearHistoryCommand
+CliniCalParser -> ClearHistoryCommand
+activate ClearHistoryCommand
+
+ClearHistoryCommand --> CliniCalParser : ch
+deactivate ClearHistoryCommand
+
+CliniCalParser --> LogicManager : ch
+deactivate CliniCalParser
+
+LogicManager -> ClearHistoryCommand : execute()
+activate ClearHistoryCommand
+
+ClearHistoryCommand -> CommandHistory : clearHistory()
+activate CommandHistory
+deactivate CommandHistory
+deactivate ClearHistoryCommand
+
+[<--LogicManager
+deactivate LogicManager
+destroy ClearHistoryCommand
+@enduml
