@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.ItemList;
+import seedu.address.model.LocationList;
 import seedu.address.model.Model;
 
 /**
@@ -17,6 +18,8 @@ public class ClearItemCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setItemList(new ItemList());
+        // clears locations as well
+        model.setLocationList(new LocationList());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

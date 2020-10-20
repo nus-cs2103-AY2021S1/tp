@@ -213,4 +213,6 @@ public interface Model {
     void updateRecipeNames(String originalName, String updatedName);
 
     void resetItemFilters();
+
+    void setLocationList(LocationList locationList);
 }

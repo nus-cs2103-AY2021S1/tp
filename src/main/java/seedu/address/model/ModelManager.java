@@ -129,6 +129,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setLocationList(LocationList locationList) {
+        this.locationList.resetData(locationList);
+    }
+
+    @Override
     public void setRecipeList(ReadOnlyRecipeList recipeList) {
         this.recipeList.resetData(recipeList);
     }
