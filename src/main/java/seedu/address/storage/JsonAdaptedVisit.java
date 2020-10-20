@@ -1,9 +1,9 @@
 package seedu.address.storage;
 
-import java.time.LocalDate;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.time.LocalDate;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.patient.Name;
@@ -14,8 +14,8 @@ import seedu.address.model.visit.Visit;
  */
 class JsonAdaptedVisit {
 
-    private final LocalDate visitDate;
-    private final Name patientName;
+    private final String visitDate;
+    private final String patientName;
     private final String diagnosis;
     private final String prescription;
     private final String comment;
@@ -24,24 +24,20 @@ class JsonAdaptedVisit {
      * Constructs a {@code JsonAdaptedVisit} with the given visit details.
      */
     @JsonCreator
-    public JsonAdaptedVisit(@JsonProperty LocalDate visitDate,
-                            @JsonProperty Name patientName,
-                            @JsonProperty String diagnosis,
-                            @JsonProperty String prescription,
-                            @JsonProperty String comment) {
+    public JsonAdaptedVisit(@JsonProperty String visitDate) {
         this.visitDate = visitDate;
-        this.patientName = patientName;
-        this.diagnosis = diagnosis;
-        this.prescription = prescription;
-        this.comment = comment;
+        this.patientName = "placeholder";
+        this.diagnosis = "placeholder";
+        this.prescription = "placeholder";
+        this.comment = "placeholder";
     }
 
     /**
      * Converts a given {@code Visit} into this class for Jackson use.
      */
     public JsonAdaptedVisit(Visit source) {
-        visitDate = source.getVisitDate();
-        patientName = source.getPatientName();
+        visitDate = source.getVisitDate().toString();
+        patientName = source.getPatientName().toString();
         diagnosis = source.getDiagnosis();
         prescription = source.getPrescription();
         comment = source.getComment();
@@ -53,10 +49,11 @@ class JsonAdaptedVisit {
      * @throws IllegalValueException if there were any data constraints violated in the adapted allergy.
      */
     public Visit toModelType() throws IllegalValueException {
-        if (!Visit.isValidVisitDate(visitDate.toString())) {
+        if (!Visit.isValidVisitDate(visitDate)) {
             throw new IllegalValueException(Visit.MESSAGE_CONSTRAINTS);
         }
-        return new Visit(visitDate, new Name(patientName.toString()), diagnosis, prescription, comment);
+        return new Visit(LocalDate.parse(visitDate), new Name(patientName.toString()), diagnosis, prescription,
+            comment);
     }
 
 }

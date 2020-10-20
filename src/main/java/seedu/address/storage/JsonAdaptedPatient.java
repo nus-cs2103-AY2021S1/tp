@@ -34,12 +34,12 @@ class JsonAdaptedPatient {
     private final String name;
     private final String phone;
     private final String icNumber;
+    private final List<JsonAdaptedVisit> visitHistory = new ArrayList<>();
     private final String address;
     private final String email;
     private final String profilePicture;
     private final String sex;
     private final String bloodType;
-    private final List<JsonAdaptedVisit> visitHistory = new ArrayList<>();
     private final List<JsonAdaptedAllergy> tagged = new ArrayList<>();
     private final String color;
 
