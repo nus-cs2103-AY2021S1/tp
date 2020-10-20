@@ -221,7 +221,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 #### Proposed Implementation
 
-The proposed sort mechanism is facilitated by `ModelManager`. It extends `Flashcard` with a review frequency and correctness percentage, stored internally as `reviewFrequency` and `successRate`, based on the review activity done by the user. When the user enters review mode, the user activity will be tracked and the data will be sent and stored inside the individual `Flashcard`. This activity will then be used to facilitate the sort mechanism. 
+The proposed sort mechanism is facilitated by `ModelManager`. `reviewFrequency` and `successRate` attributes is stored internally in `Flashcard`, to keep track of review frequency and correctness percentage respectively based on the review activity done by the user. When the user enters review mode, the user activity will be tracked and the data will be sent and stored inside the individual `Flashcard`. This activity will then be used to facilitate the sort mechanism. 
 
 It implements the following operations:
 * `ModelManager#updateSortedFlashcardList(Comparator <Flashcard>)` - sorts the flashcard list according to a given condition, and updates the flashcard list shown.
@@ -268,6 +268,65 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Using a data structure (e.g. HashMap) to store statistics.
   * Pros: Will use more memory, since the HashMap will have to be committed to local storage too.
   * Cons: We must ensure that the any changes/updates to a flashcard will be reflected in the HashMap.
+
+### Favourite/Unfavourite Feature 
+
+#### Implementation
+
+The favourite/unfavourite mechanism is faciliated by `LogicManager` and `ModelManager`.
+A `isFavourite` attribute is stored internally in `Flashcard`, to keep track of whether the flashcard is favourited. When the user favourites a flashcard, `isFavourite` is set to true, and set to false otherwise. 
+ 
+It implements the following operations:
+* `Flashcard#isFavourite()` - Checks whether the current flashcard is favourited
+* `FavCommand#createFavouriteFlashcard(Flashcard flashcardToFavourite)` - Duplicates the flashcard and set `isFavourite` attribute to `true`
+* `UnfavCommand#createUnfavouriteFlashcard(Flashcard flashcardToUnfavourite)` - Duplicates the flashcard and set `isFavourite` attribute to `false`.
+
+Given below is an example usage scenario and how the favourite/unfavourite mechanism behaves at each step.
+
+Step 1: The user launches the application 
+
+![FavUnfavState0](images/FavUnfavState0.png)
+
+Step 2: The user executes `fav 1` command to favourite the 1st flashcard in the displayed flashcard deck. `fav` Command calls 
+`Flashcard#isFavourite()` method to check whether the flashcard at index 1, `f1`,  has been favourited. If the flashcard is not favourited, 
+`fav` Command calls `FavCommand#createFavouriteFlashcard(f1)` to create a new flashcard, `fav1`,  by duplicating the existing data fields and set the `isFavourite` attribute to `true`.
+`fav` Command then calls `ModelManager#setFlashcard(f1, fav1)` to replace the current flashcard, `f1`,  with the favourited flashcard, `fav1`.
+
+![FavUnfavState1](images/FavUnfavState1.png)
+
+The following sequence diagram shows how the `fav` operation works:
+
+![FavouriteSequenceDiagram](images/FavouriteSequenceDiagram.png)
+
+Step 3: The user executes `unfav 1` command to unfavourite the 1st flashcard in the displayed flashcard deck. `unfav` Command calls 
+`Flashcard#isFavourite()` method to check whether the flashcard at index 1, `fav1`,  has been favourited. `fav1` is favourited in step 2, hence, 
+`unfav` Command calls `UnfavCommand#createUnfavouriteFlashcard(fav1)` to create a new flashcard, `f1`,  by duplicating the existing data fields and set the `isFavourite` attribute to `false`.
+`unfav` Command then calls `ModelManager#setFlashcard(fav1, f1)` to replace the current flashcard, `fav1`,  with the unfavourited flashcard, `f1`.
+
+![FavUnfavState2](images/FavUnfavState2.png)
+
+The following sequence diagram shows how the `unfav` operation works:
+
+![UnfavouriteSequenceDiagram](images/UnfavouriteSequenceDiagram.png)
+
+
+The following activity diagram summarizes what happens when a user executes a favourite/unfavourite command:
+
+![FavouriteUnfavouriteActivityDiagram.png](images/FavouriteUnfavouriteActivityDiagram.png)
+
+
+#### Design consideration:
+
+##### Aspect: How fav & unfav executes
+
+* **Alternative 1 (current choice):** Creates a new flashcard everytime `isFavourite` changes
+  * Pros: Flashcard remains immutable.
+  * Cons: Execution time is longer compared to Alternative 2 since a new flashcard is created if flashcard's state changes.
+
+* **Alternative 2:** Toggle `isFavourite` using a setter such as `setFavouriteStatus` in `Flashcard`.
+  * Pros: Easy to implement as there is no need to create a new flashcard every time the state is changed.
+  * Cons: Flashcard would not be immutable
+
 
 _{more aspects and alternatives to be added}_
 
