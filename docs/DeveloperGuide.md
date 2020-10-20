@@ -183,7 +183,7 @@ After the successful adding of the ingredient, a `CommandResult` object is insta
 * Workflow must be consistent with other adding commands e.g. add recipe and eat recipe for consumption.
 
 ##### Aspect 2: How do we successfully parse the ingredients the user has added with the optional ingredient quantity 
-* **Alternative 1 (current choice):** Add a quantity field in the Ingredient class as well as a IngredientParser class to parse each ingredient added
+* **Alternative 1 (current choice):** Add a quantity field in the Ingredient class as well as a IngredientParser class that parses the user ingredients that the user has input into an arraylist of Ingredient objects
   * Pros: Easy to implement.
   * Cons: The parser may confuse ingredients that have prefixes that Wishful Shrinking uses to identify fields in the names, eg "-" or ","
 
@@ -282,7 +282,7 @@ After the successful recommending of recipes, a `CommandResult` object is instan
 ##### Aspect : How do we quickly and accurately compare ingredients in each recipe and the user's fridge
 * **Alternative 1 (current choice):** Compare the exact ingredients in each recipe to the users ingredients in the fridge
   * Pros: Easy to implement
-  * Cons: Slow to compare, the ingredients might not match if the spellings are different
+  * Cons: Slow to compare, the ingredients might not match if the spellings are different, or if the ingredient has similar names, eg mozarella and cheese. Other than that, if users do not input basic ingredients into their fridge, eg salt and pepper, the recipe might not get recommended to them.
 
 
 --------------------------------------------------------------------------------------------------------------------
