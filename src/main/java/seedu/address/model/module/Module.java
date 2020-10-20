@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -71,13 +70,6 @@ public class Module {
         }
 
         this.instructors.remove(instructor);
-    }
-
-    /**
-     * Returns true if either the code or the name of the module contains the specified keywords.
-     */
-    public boolean codeOrNameContainsKeywords(List<String> keywords) {
-        return this.moduleCode.containsKeywords(keywords) || this.moduleName.containsKeywords(keywords);
     }
 
     /**

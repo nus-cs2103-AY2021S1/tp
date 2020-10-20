@@ -110,6 +110,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    public void clearContacts() {
+        persons.clearAll();
+    }
+
     /**
      * Removes the module with the specified {@code moduleCode} from this {@code AddressBook}.
      * Module with the {@code moduleCode} must exist in the address book.
