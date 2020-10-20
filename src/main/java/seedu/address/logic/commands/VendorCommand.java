@@ -1,15 +1,13 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
-import seedu.address.model.food.Food;
-import seedu.address.model.order.OrderItem;
 import seedu.address.model.vendor.Vendor;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Selects a Vendor to order from.
@@ -38,7 +36,6 @@ public class VendorCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        // Todo: This index value will be that of the chosen vendor. As of now the first menu on the list is chosen
         ObservableList<Vendor> vendors = model.getFilteredVendorList();
         int index = vendorIndex.getZeroBased();
 
@@ -47,7 +44,7 @@ public class VendorCommand extends Command {
         }
 
         model.selectVendor(index);
-        return new CommandResult(String.format(MESSAGE_SELECT_VENDOR_SUCCESS, index));
+        return new CommandResult(String.format(MESSAGE_SELECT_VENDOR_SUCCESS, vendorIndex.getOneBased()));
     }
 
     @Override

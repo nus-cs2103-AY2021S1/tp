@@ -14,4 +14,9 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Vendor> getVendorList();
 
+    /**
+     * Returns an unmodifiable view of the selected vendor index.
+     */
+    int getVendorIndex();
+
 }

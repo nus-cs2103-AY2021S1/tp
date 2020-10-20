@@ -16,6 +16,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueVendorList vendors;
     private final int vendorIndex;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -28,8 +29,10 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     }
 
+    /**
+     * Default vendor index is 0. Assumes that there is at least 1 vendor in the AddressBook.
+     */
     public AddressBook() {
-        //TODO: Default vendor index is 0. Assumes that there is at least 1 vendor in the AddressBook.
         this.vendorIndex = 0;
     }
 
@@ -39,6 +42,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
+    }
+
+    /**
+     * Sets the vendorIndex of the AddressBook to {@code vendorIndex}. This method is only called when
+     * the selectVendor method is called.
+     */
+    private AddressBook(List<Vendor> vendors, int vendorIndex) {
+        setVendors(vendors);
+        this.vendorIndex = vendorIndex;
     }
 
     //// list overwrite operations
@@ -58,14 +70,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
         setVendors(newData.getVendorList());
-    }
-
-    /**
-     * Sets the vendorIndex of the AddressBook to {@code vendorIndex}. This method is only called when
-     * the selectVendor method is called.
-     */
-    private AddressBook(int vendorIndex) {
-        this.vendorIndex = vendorIndex;
     }
 
     //// vendor-level operations
@@ -97,8 +101,20 @@ public class AddressBook implements ReadOnlyAddressBook {
         vendors.setVendor(target, editedVendor);
     }
 
+    /**
+     * Returns a new AddressBook which has the selected vendor from {@code vendorIndex}
+     */
     public AddressBook selectVendor(int vendorIndex) {
-        return new AddressBook(vendorIndex);
+        return new AddressBook(this.getVendorList(), vendorIndex);
+    }
+
+    @Override
+    public int getVendorIndex() {
+        return this.vendorIndex;
+    }
+
+    public Vendor getSelectedVendor() {
+        return this.vendors.asUnmodifiableObservableList().get(vendorIndex);
     }
 
     /**
@@ -126,7 +142,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && vendors.equals(((AddressBook) other).vendors));
+                && vendors.equals(((AddressBook) other).vendors))
+                && this.getVendorIndex() == ((AddressBook) other).getVendorIndex();
     }
 
     @Override

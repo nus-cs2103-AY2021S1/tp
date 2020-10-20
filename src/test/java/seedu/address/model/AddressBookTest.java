@@ -7,6 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalVendors.ALICE;
+import static seedu.address.testutil.TypicalVendors.BENSON;
+import static seedu.address.testutil.TypicalVendors.ELLE;
 import static seedu.address.testutil.TypicalVendors.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -83,6 +85,22 @@ public class AddressBookTest {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getVendorList().remove(0));
     }
 
+    @Test
+    public void selectVendorIndex_validIndex_success() {
+        assertEquals(addressBook.getVendorIndex(), 0);
+        AddressBook newAddressBook = getTypicalAddressBook().selectVendor(1);
+        assertEquals(newAddressBook.getVendorIndex(), 1);
+    }
+
+    @Test
+    public void selectVendor_validIndex_success() {
+        AddressBook addressBook1 = getTypicalAddressBook().selectVendor(1);
+        assertEquals(addressBook1.getSelectedVendor(), BENSON);
+
+        AddressBook addressBook2 = getTypicalAddressBook().selectVendor(4);
+        assertEquals(addressBook2.getSelectedVendor(), ELLE);
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose vendors list can violate interface constraints.
      */
@@ -96,6 +114,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Vendor> getVendorList() {
             return vendors;
+        }
+
+        @Override
+        public int getVendorIndex() {
+            return 0;
         }
     }
 
