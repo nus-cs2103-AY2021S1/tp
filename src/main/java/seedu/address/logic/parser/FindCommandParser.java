@@ -26,15 +26,19 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_KEYWORDS);
-        List<String> keywords = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_KEYWORDS).get());
         boolean isCategoryPrefixPresent = (argMultimap.getAllValues(PREFIX_CATEGORY).size() > 0);
-        boolean isKeywordListNotEmpty = keywords.size() == 1 && keywords.get(0).equals("");
 
         if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_KEYWORDS)
-            || isKeywordListNotEmpty
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
+        List<String> keywords = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_KEYWORDS).get());
+        boolean isKeywordListEmpty = keywords.size() == 1 && keywords.get(0).equals("");
+        if (isKeywordListEmpty) {
+            throw new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.EMPTY_KEYWORD_LIST_MESSAGE));
         }
 
         if (isCategoryPrefixPresent) {

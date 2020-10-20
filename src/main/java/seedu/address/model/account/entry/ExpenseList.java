@@ -75,6 +75,13 @@ public class ExpenseList implements Iterable<Expense> {
     }
 
     /**
+     * Clears all contents of this list.
+     */
+    public void clearExpenses() {
+        internalList.clear();
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Expense> asUnmodifiableObservableList() {

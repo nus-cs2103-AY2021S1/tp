@@ -12,13 +12,16 @@ import seedu.address.model.account.entry.RevenueDescriptionContainsKeywordsPredi
 
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
-
+    public static final String EMPTY_KEYWORD_LIST_MESSAGE = "Keyword list cannot be empty! Here are some examples\n"
+        + "Example 1: " + COMMAND_WORD + " k/canvas cases\n"
+        + "Example 2: " + COMMAND_WORD + " k/canvas c/expense\n"
+        + "Example 3: " + COMMAND_WORD + " k/cases c/revenue\n";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all entries whose descriptions contain any of "
         + "the specified keywords (case-insensitive) and displays them as lists with index numbers.\n"
-        + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-        + "Example 1: " + COMMAND_WORD + "k/canvas cases\n"
-        + "Example 2: " + COMMAND_WORD + "k/canvas c/expense\n"
-        + "Example 3: " + COMMAND_WORD + "k/cases c/revenue\n";
+        + "Parameters: find k/KEYWORD [MORE_KEYWORDS]...\n"
+        + "Example 1: " + COMMAND_WORD + " k/canvas cases\n"
+        + "Example 2: " + COMMAND_WORD + " k/canvas c/expense\n"
+        + "Example 3: " + COMMAND_WORD + " k/cases c/revenue\n";
 
     private final ExpenseDescriptionContainsKeywordsPredicate expensePredicate;
     private final RevenueDescriptionContainsKeywordsPredicate revenuePredicate;

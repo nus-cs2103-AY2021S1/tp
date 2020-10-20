@@ -16,16 +16,19 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.category.Category;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.util.ParserUtil;
+import seedu.address.model.account.Name;
 import seedu.address.model.account.entry.Amount;
 import seedu.address.model.account.entry.Description;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
+    private static final String INVALID_NAME = " ";
     private static final String INVALID_CATEGORY = "expensi";
     private static final String INVALID_DESCRIPTION = " ";
     private static final String INVALID_AMOUNT = "a1";
     private static final String INVALID_TAG = "#friend";
 
+    private static final String VALID_NAME = "Money Maker123";
     private static final String VALID_CATEGORY = "expense";
     private static final String VALID_DESCRIPTION = "bought cooking utensils";
     private static final String VALID_AMOUNT = "1000.39";
@@ -53,6 +56,30 @@ public class ParserUtilTest {
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_ENTRY, ParserUtil.parseIndex("  1  "));
     }
+
+    @Test
+    public void parseName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCategory((String) null));
+    }
+
+    @Test
+    public void parseName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_NAME));
+    }
+
+    @Test
+    public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
+        Name expectedName = new Name(VALID_NAME);
+        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
+    }
+
+    @Test
+    public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
+        Name expectedCategory = new Name(VALID_NAME);
+        assertEquals(expectedCategory, ParserUtil.parseName(nameWithWhitespace));
+    }
+
 
     @Test
     public void parseCategory_null_throwsNullPointerException() {
