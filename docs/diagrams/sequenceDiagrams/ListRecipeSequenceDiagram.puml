@@ -50,12 +50,12 @@ LogicManager -> ListRecipeCommand : execute()
 activate ListRecipeCommand
 
 alt Recipe list is empty
-    ListRecipeCommand -> Model :
+    ListRecipeCommand -> Model
     activate Model
     Model --> ListRecipeCommand : error message
     deactivate Model
 else Recipe list is not empty
-    ListRecipeCommand -[hidden]->  Model
+    ListRecipeCommand -> Model
     activate Model
     Model --> ListRecipeCommand : success message
     deactivate Model

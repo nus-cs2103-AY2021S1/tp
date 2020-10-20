@@ -273,8 +273,8 @@ latest inventory state, then there are no undone `Inventory` states to restore. 
 `Model#canRedoInventory()` to check if this is the case. If so, it will return an error to the user
 rather than attempting to perform the redo.
 
-Step 5. The user then decides to execute the command `listi`. Commands that do not modify the inventory, such as `list`,
-will usually not call `Model#commitInventory()`, `Model#undoInventory()` or `Model#redoInventory()`.
+Step 5. The user then decides to execute the command `listi`. Commands that do not modify the inventory, such as 
+`listi`, will usually not call `Model#commitInventory()`, `Model#undoInventory()` or `Model#redoInventory()`.
 Thus, the `inventoryinatorStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)

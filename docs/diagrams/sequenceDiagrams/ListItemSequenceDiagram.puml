@@ -50,12 +50,12 @@ LogicManager -> ListItemCommand : execute()
 activate ListItemCommand
 
 alt Item list is empty
-    ListItemCommand -> Model :
+    ListItemCommand -> Model
     activate Model
     Model --> ListItemCommand : error message
     deactivate Model
 else Item list is not empty
-    ListItemCommand -[hidden]->  Model
+    ListItemCommand ->  Model
     activate Model
     Model --> ListItemCommand : success message
     deactivate Model
