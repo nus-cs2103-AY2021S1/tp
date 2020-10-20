@@ -25,7 +25,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddModuleCommand;
+import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
 //import seedu.address.model.person.Email;
 //import seedu.address.model.person.Name;
 import seedu.address.model.contact.Contact;

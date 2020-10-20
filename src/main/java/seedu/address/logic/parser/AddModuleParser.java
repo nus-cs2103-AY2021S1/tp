@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddModuleCommand;
+import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.Module;

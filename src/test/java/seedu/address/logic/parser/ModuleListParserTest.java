@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 //import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteModuleCommand;
+import seedu.address.logic.commands.modulelistcommands.DeleteModuleCommand;
 //import seedu.address.logic.commands.EditCommand;
 //import seedu.address.logic.commands.EditCommand.EditModuleDescriptor;
 import seedu.address.logic.commands.ExitCommand;
