@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.Module;
 import seedu.address.model.person.exceptions.DuplicateModuleException;
 import seedu.address.model.person.exceptions.ModuleNotFoundException;
 

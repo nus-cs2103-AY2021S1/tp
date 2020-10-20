@@ -16,7 +16,7 @@ import seedu.address.model.ModuleList;
 import seedu.address.model.ReadOnlyModuleList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TutorialGroup;
-import seedu.address.model.person.Module;
+import seedu.address.model.Module;
 
 public class AddCommandTest {
 
