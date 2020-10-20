@@ -2,6 +2,8 @@ package seedu.expense.ui;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -11,8 +13,6 @@ import javafx.scene.layout.StackPane;
 import seedu.expense.commons.core.LogsCenter;
 import seedu.expense.model.ReadOnlyExpenseBook;
 import seedu.expense.model.budget.Budget;
-
-import java.util.logging.Logger;
 
 /**
  * A ui for the budget balance to be displayed to the user.
