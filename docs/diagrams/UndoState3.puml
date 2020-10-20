@@ -1,0 +1,20 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title After command "undo"
+
+package States {
+    class State1 as "__book0:ReadOnlyZooKeepBook__"
+    class State2 as "__book1:ReadOnlyZooKeepBook__"
+}
+
+State1 -[hidden]up-> State2
+
+Hide State2
+
+class Pointer as "Top of stack" #FFFFF
+
+Pointer -left-> State1
+@end

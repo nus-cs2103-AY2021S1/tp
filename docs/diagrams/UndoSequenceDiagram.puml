@@ -3,49 +3,61 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ZooKeepBookParser" as ZooKeepBookParser LOGIC_COLOR
 participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
+participant ":HistoryStack" as HistoryStack MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
-participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+participant ":ZooKeepBook" as ZooKeepBook MODEL_COLOR
 end box
-[-> LogicManager : execute(undo)
+[-> LogicManager : execute("undo")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(undo)
-activate AddressBookParser
+LogicManager -> ZooKeepBookParser : parseCommand("undo")
+activate ZooKeepBookParser
 
 create UndoCommand
-AddressBookParser -> UndoCommand
+ZooKeepBookParser -> UndoCommand
 activate UndoCommand
 
-UndoCommand --> AddressBookParser
+UndoCommand --> ZooKeepBookParser
 deactivate UndoCommand
 
-AddressBookParser --> LogicManager : u
-deactivate AddressBookParser
+ZooKeepBookParser --> LogicManager : undoCommand
+deactivate ZooKeepBookParser
 
-LogicManager -> UndoCommand : execute()
+LogicManager -> UndoCommand : execute(model)
 activate UndoCommand
 
-UndoCommand -> Model : undoAddressBook()
+UndoCommand -> HistoryStack : removeRecentHistory()
+activate HistoryStack
+
+HistoryStack -> UndoCommand
+deactivate HistoryStack
+
+UndoCommand -> HistoryStack : viewRecentHistory()
+activate HistoryStack
+
+HistoryStack -> UndoCommand : lastState
+deactivate HistoryStack
+
+UndoCommand -> Model : setZooKeepBook(lastState)
 activate Model
 
-Model -> VersionedAddressBook : undo()
-activate VersionedAddressBook
+Model -> ZooKeepBook : resetData(lastState)
+activate ZooKeepBook
 
-VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
-VersionedAddressBook --> Model :
-deactivate VersionedAddressBook
+ZooKeepBook -> Model
+deactivate ZooKeepBook
 
-Model --> UndoCommand
+Model -> UndoCommand
 deactivate Model
 
-UndoCommand --> LogicManager : result
+UndoCommand -> LogicManager : commandResult
 deactivate UndoCommand
-UndoCommand -[hidden]-> LogicManager : result
+
 destroy UndoCommand
 
 [<--LogicManager
