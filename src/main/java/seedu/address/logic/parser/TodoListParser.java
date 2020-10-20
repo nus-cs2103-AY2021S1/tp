@@ -22,7 +22,7 @@ import seedu.address.logic.parser.todolistparsers.EditTaskParser;
 import seedu.address.logic.parser.todolistparsers.FindTaskParser;
 import seedu.address.logic.parser.todolistparsers.ViewTaskParser;
 
-public class TodoListParser {
+public class TodoListParser implements FeatureParser {
     /**
      * Used for initial separation of command word and args.
      */
