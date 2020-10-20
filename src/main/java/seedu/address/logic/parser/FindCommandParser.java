@@ -45,9 +45,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE, PREFIX_MODULE_CODE);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE, PREFIX_MODULE_CODE, PREFIX_PRIORITY);
 
-        if (moreThanOnePrefixPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_DEADLINE)) {
+        if (moreThanOnePrefixPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_DEADLINE, PREFIX_PRIORITY)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
@@ -77,6 +77,13 @@ public class FindCommandParser implements Parser<FindCommand> {
                     }
                 }
                 return new FindCommand(new DeadlineContainsKeywordsPredicate(Arrays.asList(keywords)));
+            }
+            if (argMultimap.getValue(PREFIX_PRIORITY).isPresent() && argMultimap.getPreamble().isEmpty()) {
+                keywords = argMultimap.getValue(PREFIX_PRIORITY).get().split("\\s+");
+                for (String keyword : keywords) {
+                    ParserUtil.parsePriority(keyword);
+                }
+                return new FindCommand(new PriorityContainsKeywordsPredicate(Arrays.asList(keywords)));
             }
         }
         catch (ParseException pe) {
