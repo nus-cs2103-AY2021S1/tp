@@ -93,6 +93,10 @@ public class ZooKeepBook implements ReadOnlyZooKeepBook {
         animals.remove(key);
     }
 
+    public void sortAnimals() {
+        animals.sortAnimals();
+    }
+
     //// util methods
     @Override
     public String toString() {

@@ -76,6 +76,8 @@ public interface Model {
      */
     void setAnimal(Animal target, Animal editedAnimal);
 
+    void sortAnimals();
+
     /** Returns an unmodifiable view of the filtered animal list */
     ObservableList<Animal> getFilteredAnimalList();
 

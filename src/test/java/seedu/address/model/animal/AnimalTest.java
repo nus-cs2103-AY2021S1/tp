@@ -35,7 +35,7 @@ public class AnimalTest {
                 .withSpecies(VALID_SPECIES_BAILEY).build();
         assertFalse(AHMENG.isSameAnimal(editedAhmeng));
 
-        // different name -> returns false
+        // different name -> returns true
         editedAhmeng = new AnimalBuilder(AHMENG).withName(VALID_NAME_BAILEY).build();
         assertTrue(AHMENG.isSameAnimal(editedAhmeng));
 

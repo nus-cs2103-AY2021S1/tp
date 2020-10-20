@@ -112,6 +112,12 @@ public class ModelManager implements Model {
         zooKeepBook.setAnimal(target, editedAnimal);
     }
 
+    @Override
+    public void sortAnimals() {
+        zooKeepBook.sortAnimals();
+        updateFilteredAnimalList(PREDICATE_SHOW_ALL_ANIMALS);
+    }
+
     //=========== Filtered Animal List Accessors =============================================================
 
     /**

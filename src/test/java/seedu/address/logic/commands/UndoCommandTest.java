@@ -143,6 +143,11 @@ public class UndoCommandTest {
         }
 
         @Override
+        public void sortAnimals() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Animal> getFilteredAnimalList() {
             throw new AssertionError("This method should not be called.");
         }
