@@ -52,7 +52,7 @@ public class DeleteCommand extends Command {
         boolean isInvalidRevenueIndex = isRevenue && (index >= revenueList.size());
 
         if (isInvalidExpenseIndex || isInvalidRevenueIndex) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_INDEX);
         }
 
         if (isExpense) {

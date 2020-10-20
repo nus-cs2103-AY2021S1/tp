@@ -46,7 +46,7 @@ public class DeleteAccountCommand extends Command {
         int index = targetIndex.getZeroBased();
         boolean isInvalidIndex = index >= accounts.size();
         if (isInvalidIndex) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_INDEX);
         }
 
         boolean leftWithOneAccount = accounts.size() == SIZE_OF_ACCOUNT_LIST_WITH_ONE_ACCOUNT;
