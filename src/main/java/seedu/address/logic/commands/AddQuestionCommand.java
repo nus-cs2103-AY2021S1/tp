@@ -59,22 +59,11 @@ public class AddQuestionCommand extends QuestionCommand {
             throw new CommandException(MESSAGE_DUPLICATE_QUESTION);
         }
 
-        Student replacement = addQuestionToStudent(asker, model);
+        Student replacement = asker.addQuestion(questionToAdd);
+        model.setPerson(asker, replacement);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         logger.log(Level.INFO, "Execution complete");
         return new CommandResult(String.format(MESSAGE_SUCCESS, replacement.getName(), questionToAdd));
-    }
-
-    /**
-     * Returns the student with a newly added question after updating Reeve.
-     */
-    private Student addQuestionToStudent(Student asker, Model model) {
-        List<Question> questions = new ArrayList<>(asker.getQuestions());
-        questions.add(questionToAdd);
-        Student replacement = new Student(asker.getName(), asker.getPhone(),
-                asker.getSchool(), asker.getYear(), asker.getAdmin(), questions);
-        model.setPerson(asker, replacement);
-        return replacement;
     }
 
     @Override

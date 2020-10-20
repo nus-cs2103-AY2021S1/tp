@@ -133,6 +133,40 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### 5.2 Student questions features
+
+The student questions feature keeps track of questions raised by a student to his tutor. The features comprises of the following commands:
+
+* `AddQuestionCommand` - Adds a question to a specified student
+* `SolveQuestionCommand` - Marks a specified question from a specified student as solved
+* `DeleteQuestionCommand` - Deletes a specified question from a specified student
+
+#### 5.2.1 Add question command
+
+The following describes the flow of how `AddQuestionCommand` is performed.
+
+1. Upon successfully parsing the user input, `AddQuestionCommand#execute(Model model)` is called to check if the student at the specified position exists.
+2. If there is no student at the specified position,  a `CommandException` is thrown and the question will not be added.
+3. If the student exists, `AddQuestionCommand#execute(Model model)` checks if the student already has a similar question recorded.
+4. A unique question is defined solely by its `question` and does not take into account if the question has been solved. If a duplicate question is found, a `CommandException` is thrown and the question will not be added.
+5. If the question is not a duplicate, `Student#getQuestions()` is called to retrieve the list of questions the student has asked before.
+6. The list of questions is copied, and a new `UnsolvedQuestion` is added to the copy.
+7. A new `Student` copy is made, preserving all the information of the student but instead using the modified copy of questions made in Step 6.
+8. `Model#setPerson(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the question added.
+9. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
+
+The following sequence diagram shows how the question adding operation works.
+
+![AddQuestionSequence](images/AddQuestionSequenceDiagram.png)
+
+Figure \___. Sequence diagram for AddQuestionCommand execution
+
+The following activity diagram summarises the flow of events when `AddQuestionCommand` is executed.
+
+![AddQuestionActivity](images/AddQuestionActivityDiagram.png)
+
+Figure \___. Activity diagram for AddQuestionCommand execution
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

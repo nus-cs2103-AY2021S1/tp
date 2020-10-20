@@ -1,11 +1,14 @@
 package seedu.address.model.student;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_YEAR_BOB;
+import static seedu.address.testutil.StudentBuilder.DEFAULT_QUESTION_MATH;
 import static seedu.address.testutil.StudentBuilder.DEFAULT_SOLUTION;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BOB;
@@ -106,4 +109,14 @@ public class StudentTest {
 
         assertFalse(editedAlice.containsQuestion(new UnsolvedQuestion(test3)));
     }
+
+    @Test
+    public void addQuestion() {
+        Student editedAlice = new StudentBuilder(ALICE).withQuestions().build();
+        Student newAlice = editedAlice.addQuestion(new UnsolvedQuestion(DEFAULT_QUESTION_MATH));
+        Student expected = new StudentBuilder(ALICE).withQuestions(DEFAULT_QUESTION_MATH).build();
+        assertNotEquals(editedAlice, newAlice);
+        assertEquals(expected, newAlice);
+    }
+
 }
