@@ -77,12 +77,6 @@ public class JsonUserPrefsStorageTest {
         assertEquals(expected, actual);
     }
 
-    @Test
-    public void readUserPrefs_invalidSavedFilePath_defaultValuesUsed() throws DataConversionException {
-        UserPrefs actual = readUserPrefs("InvalidSavedFilePathUserPref.json").get();
-        assertEquals(new UserPrefs(), actual);
-    }
-
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100, "Dark Theme"));
