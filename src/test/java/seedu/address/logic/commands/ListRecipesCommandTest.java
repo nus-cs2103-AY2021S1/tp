@@ -33,7 +33,7 @@ public class ListRecipesCommandTest {
         ObservableList<Recipe> recipes = model.getFilteredRecipeList();
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < recipes.size(); i++) {
-            builder.append((i + 1) + ". " + recipes.get(i).toString() + "\n");
+            builder.append((i + 1) + ". " + recipes.get(i).getName() + "\n");
         }
         assertCommandSuccess(new ListRecipesCommand(), model,
                 ListRecipesCommand.MESSAGE_SUCCESS + builder.toString(), expectedModel);
@@ -45,7 +45,7 @@ public class ListRecipesCommandTest {
         ObservableList<Recipe> recipes = expectedModel.getFilteredRecipeList();
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < recipes.size(); i++) {
-            builder.append((i + 1) + ". " + recipes.get(i).toString() + "\n");
+            builder.append((i + 1) + ". " + recipes.get(i).getName() + "\n");
         }
         assertCommandSuccess(new ListRecipesCommand(), model,
                 ListRecipesCommand.MESSAGE_SUCCESS + builder.toString(), expectedModel);
