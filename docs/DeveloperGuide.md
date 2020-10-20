@@ -233,6 +233,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Macro Command
 
+![Structure of the Macro Component](images/MacroClassDiagram.png)
 TODO short 1 2 paragraphs + seq diagram here
 
 TODO description of class diagram
@@ -248,6 +249,8 @@ Execution
 1. regex susbtitute
 2. pass list of strings to primitive command parser to get a list of commands. if a parse exception happens this stops and exception is shown to user.
 3. return a lambda that executes all these commands in sequence, concatenates all their messages and shows it to the user. if a command exception occurs at any time, that exception is shown to the user along with: commands that have executed successfully, and commands that have yet to be executed.
+
+![Sequence diagram for macro](images/MacroSequenceDiagram.png)
 
 Considerations
  - alternatively could have done the parsing/compiling on creation of the macro so we don't need a parser during execution, but the implementation is considerably more involved.
