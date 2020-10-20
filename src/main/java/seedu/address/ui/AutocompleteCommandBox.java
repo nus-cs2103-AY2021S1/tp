@@ -1,14 +1,14 @@
 package seedu.address.ui;
 
+import java.util.List;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+
 import javafx.collections.ObservableList;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import seedu.address.logic.Logic;
-import seedu.address.logic.parser.CliSyntax;
 
-import java.util.List;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 public class AutocompleteCommandBox extends CommandBox {
 
@@ -94,7 +94,7 @@ public class AutocompleteCommandBox extends CommandBox {
                 } else {
                     // TAB : Next Suggestion
                     String next = suggestions.nextSuggestion();
-                    int endIndex= this.getCommandTextField().caretPositionProperty().getValue();
+                    int endIndex = this.getCommandTextField().caretPositionProperty().getValue();
                     this.getCommandTextField().replaceText(autoCompletePos, endIndex, next);
                 }
                 if (suggestions.isBackToPrefix()) {
@@ -119,8 +119,7 @@ public class AutocompleteCommandBox extends CommandBox {
         this.getCommandTextField().addEventFilter(KeyEvent.KEY_PRESSED, (event -> {
             if (isAutocompleteMode && (
                     event.getCode() == KeyCode.BACK_SPACE
-                            || event.getCode() == KeyCode.ENTER
-            )) {
+                            || event.getCode() == KeyCode.ENTER)) {
                 hasSetPrefix = false;
                 if (event.getCode() == KeyCode.BACK_SPACE) {
                     return;
@@ -182,10 +181,10 @@ public class AutocompleteCommandBox extends CommandBox {
      * Class that generates suggestions based on given prefix and given list.
      */
     private class Suggestions {
-        List<String> fullList;
-        List<String> suggestions;
-        String prefix = "";
-        int index = 0;
+        private List<String> fullList;
+        private List<String> suggestions;
+        private String prefix = "";
+        private int index = 0;
 
         private void nextIndex() {
             index = index + 1 < suggestions.size() ? index + 1 : 0;

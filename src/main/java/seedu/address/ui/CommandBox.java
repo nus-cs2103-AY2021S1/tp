@@ -6,15 +6,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-import java.util.List;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -60,14 +54,14 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, (event -> {
             boolean isModifierDown;
             switch (modifier) {
-                case "CTRL":
-                    isModifierDown = event.isControlDown();
-                    break;
-                case "ALT":
-                    isModifierDown = event.isAltDown();
-                    break;
-                default:
-                    isModifierDown = false;
+            case "CTRL":
+                isModifierDown = event.isControlDown();
+                break;
+            case "ALT":
+                isModifierDown = event.isAltDown();
+                break;
+            default:
+                isModifierDown = false;
             }
             if (event.getCode() == keyCode && isModifierDown) {
                 runnable.run();
