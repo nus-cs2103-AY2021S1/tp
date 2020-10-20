@@ -17,6 +17,10 @@ public class CurrentPath {
         return currentPath;
     }
 
+    public void resetAddress() {
+        this.address = System.getProperty("user.dir");
+    }
+
     public String getAddress() {
         return this.address;
     }
