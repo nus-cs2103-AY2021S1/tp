@@ -73,10 +73,10 @@ public class ZooKeepBookParser {
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
-            
+
         case SnapCommand.COMMAND_WORD:
             return new SnapCommandParser().parse(arguments);
-            
+
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
 
