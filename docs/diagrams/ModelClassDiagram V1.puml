@@ -1,0 +1,39 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Interface ReadOnlyModuleList <<Interface>>
+Interface ReadOnlyContactList <<Interface>>
+Interface ReadOnlyTodoList <<Interface>>
+Interface Model <<Interface>>
+Interface ObservableList <<Interface>>
+Class ModuleList
+Class ContactList
+Class TodoList
+Class ReadOnlyModuleList
+Class ReadOnlyContactList
+Class ReadOnlyTodoList
+Class Model
+Class ModelManager
+Class UserPrefs
+Class ReadOnlyUserPrefs
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Model
+
+ModuleList .down.|> ReadOnlyModuleList
+ContactList .down.|> ReadOnlyContactList
+TodoList .down.|> ReadOnlyTodoList
+
+ModelManager .up.|> Model
+Model .right.> ObservableList
+ModelManager o---> "1" ModuleList
+ModelManager o---> "1" ContactList
+ModelManager o---> "1" TodoList
+ModelManager o-left-> "1" UserPrefs
+UserPrefs .up.|> ReadOnlyUserPrefs
+
+@enduml
