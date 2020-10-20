@@ -1,0 +1,65 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MainCatalogueParser" as MainCatalogueParser LOGIC_COLOR
+participant "a:AllTasksCommand" as AllTasksCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "Taskmania:Project" as Project MODEL_COLOR
+end box
+
+[-> LogicManager : execute("allt")
+activate LogicManager
+
+LogicManager -> Model: getStatus()
+activate Model
+
+Model --> LogicManager: status
+deactivate Model
+
+LogicManager -> MainCatalogueParser : parseCommand("allt", status)
+activate MainCatalogueParser
+
+create AllTasksCommand
+MainCatalogueParser -> AllTasksCommand
+activate AllTasksCommand
+
+AllTasksCommand --> MainCatalogueParser : a
+deactivate AllTasksCommand
+
+MainCatalogueParser --> LogicManager : a
+deactivate MainCatalogueParser
+
+LogicManager -> AllTasksCommand : execute()
+activate AllTasksCommand
+
+AllTasksCommand -> Model : getProjectToBeDisplayedOnDashboard()
+activate Model
+
+Model --> AllTasksCommand : Taskmania
+deactivate Model
+
+AllTasksCommand -> Project : showAllTasks()
+activate Project
+
+Project --> AllTasksCommand :
+deactivate Project
+
+create CommandResult
+AllTasksCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AllTasksCommand
+deactivate CommandResult
+
+AllTasksCommand --> LogicManager : result
+deactivate AllTasksCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
