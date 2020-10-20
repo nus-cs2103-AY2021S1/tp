@@ -6,23 +6,15 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.ParserUtil;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.food.Food;
-import seedu.address.model.menu.MenuManager;
 import seedu.address.model.order.OrderItem;
-import seedu.address.model.order.OrderManager;
-import seedu.address.testutil.TypicalFoods;
+import seedu.address.testutil.TypicalModel;
 
 public class AddCommandTest {
 
@@ -33,9 +25,7 @@ public class AddCommandTest {
 
     @Test
     public void execute_validIndex_success() {
-        List<MenuManager> menuManagers = new ArrayList<>();
-        menuManagers.add(TypicalFoods.getTypicalMenuManager());
-        Model model = new ModelManager(new AddressBook(), new UserPrefs(), menuManagers, new OrderManager());
+        Model model = TypicalModel.getModelManagerWithMenu();
 
         Index index = Index.fromOneBased(1);
         AddCommand addCommand = new AddCommand(index);
@@ -44,7 +34,7 @@ public class AddCommandTest {
         Food firstItem = menu.get(0);
         OrderItem addedItem = new OrderItem(firstItem, 1);
 
-        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), menuManagers, new OrderManager());
+        Model expectedModel = TypicalModel.getModelManagerWithMenu();
         expectedModel.addOrderItem(addedItem);
         String expectedMessage = String.format(AddCommand.MESSAGE_ADD_FIRST_SUCCESS, addedItem);
 
@@ -53,9 +43,7 @@ public class AddCommandTest {
 
     @Test
     public void execute_validQuantity_success() {
-        List<MenuManager> menuManagers = new ArrayList<>();
-        menuManagers.add(TypicalFoods.getTypicalMenuManager());
-        Model model = new ModelManager(new AddressBook(), new UserPrefs(), menuManagers, new OrderManager());
+        Model model = TypicalModel.getModelManagerWithMenu();
 
         Index first = Index.fromOneBased(2);
         int quantity = 3;
@@ -65,7 +53,7 @@ public class AddCommandTest {
         Food secondItem = menu.get(1);
         OrderItem addedItem = new OrderItem(secondItem, 3);
 
-        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), menuManagers, new OrderManager());
+        Model expectedModel = TypicalModel.getModelManagerWithMenu();
         expectedModel.addOrderItem(addedItem);
         String expectedMessage = String.format(AddCommand.MESSAGE_ADD_FIRST_SUCCESS, addedItem);
 
@@ -74,9 +62,7 @@ public class AddCommandTest {
 
     @Test
     public void execute_invalidIndex_throwsCommandException() {
-        List<MenuManager> menuManagers = new ArrayList<>();
-        menuManagers.add(TypicalFoods.getTypicalMenuManager());
-        Model model = new ModelManager(new AddressBook(), new UserPrefs(), menuManagers, new OrderManager());
+        Model model = TypicalModel.getModelManagerWithMenu();
 
         ObservableList<Food> menu = model.getFilteredFoodList(0);
         Index outOfBoundIndex = Index.fromOneBased(menu.size() + 1);

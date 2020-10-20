@@ -15,23 +15,16 @@ public class RemoveCommandParser implements Parser<RemoveCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public RemoveCommand parse(String args) throws ParseException {
-        try {
-            String trimArgs = args.trim();
-            String[] argList = trimArgs.split(" ");
-            if (argList.length == 0 || argList.length > 2) {
-                throw new ParseException(String.format(ParserUtil.MESSAGE_INVALID_COMMAND_FORMAT,
-                        RemoveCommand.MESSAGE_USAGE));
-            }
-            Index index = ParserUtil.parseIndex(argList[0]);
-            if (argList.length == 1) {
-                return new RemoveCommand(index);
-            } else {
-                int quantity = ParserUtil.parseQuantity(argList[1]);
-                return new RemoveCommand(index, quantity);
-            }
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(ParserUtil.MESSAGE_INVALID_COMMAND_FORMAT, RemoveCommand.MESSAGE_USAGE), pe);
+        String trimArgs = args.trim();
+        String[] argsArr = trimArgs.split(" ");
+        ParserUtil.checkArgsLength(argsArr, RemoveCommand.COMMAND_WORD, RemoveCommand.MESSAGE_USAGE, 1, 2);
+        Index index = ParserUtil.parseIndex(argsArr[0], "Menu Index");
+
+        if (argsArr.length == 1) {
+            return new RemoveCommand(index);
         }
+
+        int quantity = ParserUtil.parseQuantity(argsArr[1]);
+        return new RemoveCommand(index, quantity);
     }
 }
