@@ -2,13 +2,17 @@ package seedu.address.logic.parser.util;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.category.Category;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.account.entry.Amount;
 import seedu.address.model.account.entry.Description;
@@ -104,6 +108,24 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String keywords} into a {@code List<String>}.
+     */
+    public static List<String> parseKeywords(String keywords) {
+        requireNonNull(keywords);
+        String trimmedKeywords = keywords.trim();
+        String[] splitKeywords = trimmedKeywords.split("\\s+");
+        return Arrays.asList(splitKeywords);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }
