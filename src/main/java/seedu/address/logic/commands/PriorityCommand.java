@@ -26,12 +26,12 @@ public class PriorityCommand extends Command {
     public static final String COMMAND_WORD = "priority";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sets priority for the assignment identified by the index number "
+            + ": Sets LOW, MEDIUM or HIGH priority for the assignment identified by the index number "
             + "used in the displayed assignment list.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_PRIORITY + "PRIORITY LEVEL\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PRIORITY + "LOW";
+            + PREFIX_PRIORITY + Priority.LOW_PRIORITY;
 
     public static final String MESSAGE_PRIORITISE_ASSIGNMENT_SUCCESS = "Set priority for Assignment: %1$s";
 
@@ -40,7 +40,8 @@ public class PriorityCommand extends Command {
 
     /**
      * Constructs a PriorityCommand to set priority to the specified assignment.
-     * @param targetIndex index of the assignment in the filtered assignment list to remind
+     * @param targetIndex index of the assignment in the filtered assignment list to prioritise.
+     * @param priority Priority to be tagged to the assignment.
      */
     public PriorityCommand(Index targetIndex, Priority priority) {
         requireNonNull(targetIndex);
@@ -59,11 +60,11 @@ public class PriorityCommand extends Command {
 
         Assignment assignmentToPrioritise = lastShownList.get(targetIndex.getZeroBased());
 
-        Assignment remindedAssignment = createPrioritisedAssignment(assignmentToPrioritise, priority);
+        Assignment prioritisedAssignment = createPrioritisedAssignment(assignmentToPrioritise, priority);
 
-        model.setAssignment(assignmentToPrioritise, remindedAssignment);
+        model.setAssignment(assignmentToPrioritise, prioritisedAssignment);
         model.updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENT);
-        return new CommandResult(String.format(MESSAGE_PRIORITISE_ASSIGNMENT_SUCCESS, remindedAssignment));
+        return new CommandResult(String.format(MESSAGE_PRIORITISE_ASSIGNMENT_SUCCESS, prioritisedAssignment));
     }
 
     /**

@@ -18,7 +18,7 @@ public class Priority {
     public final Level priority;
 
     /**
-     * Constructs a false Priority.
+     * Constructs a none Priority.
      */
     public Priority() {
         priority = Level.NONE;
