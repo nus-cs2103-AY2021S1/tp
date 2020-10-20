@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddProfilePictureCommand;
+import seedu.address.logic.commands.AddVisitCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ClearHistoryCommand;
 import seedu.address.logic.commands.Command;
@@ -87,6 +88,9 @@ public class CliniCalParser {
 
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
+
+        case AddVisitCommand.COMMAND_WORD:
+            return new AddVisitCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
