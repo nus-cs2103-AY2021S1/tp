@@ -3,6 +3,8 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -43,8 +45,32 @@ public class AddressBookParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        final String commandPrefix = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
+        String[] commands = {
+            AddCommand.COMMAND_WORD,
+            EditCommand.COMMAND_WORD,
+            RemoveCommand.COMMAND_WORD,
+            ClearCommand.COMMAND_WORD,
+            FindCommand.COMMAND_WORD,
+            ListCommand.COMMAND_WORD,
+            TotalCommand.COMMAND_WORD,
+            SubmitCommand.COMMAND_WORD,
+            UndoCommand.COMMAND_WORD,
+            ExitCommand.COMMAND_WORD,
+            HelpCommand.COMMAND_WORD
+        };
+
+        ArrayList<String> matchingCommands = new ArrayList<>(Arrays.asList(commands));
+
+        matchingCommands.removeIf(s -> !s.startsWith(commandPrefix));
+
+        String commandWord = "";
+        if (matchingCommands.size() == 1) {
+            commandWord = matchingCommands.get(0);
+        }
+
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
