@@ -1,5 +1,8 @@
 package seedu.stock.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -11,9 +14,6 @@ import seedu.stock.model.stock.Quantity;
 import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Source;
 import seedu.stock.model.stock.Stock;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Jackson-friendly version of {@link Stock}.

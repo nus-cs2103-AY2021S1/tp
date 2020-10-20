@@ -2,13 +2,13 @@ package seedu.stock.logic.commands;
 
 import static seedu.stock.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.List;
+import java.util.Optional;
+
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
 import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Stock;
-
-import java.util.List;
-import java.util.Optional;
 
 /**
  * Adds a note to an existing stock in the stock book.
@@ -66,15 +66,15 @@ public class NoteDeleteCommand extends Command {
             }
         }
 
-        if(stockToDeleteNote.isEmpty()) {
+        if (stockToDeleteNote.isEmpty()) {
             throw new CommandException(MESSAGE_SERIAL_NUMBER_NOT_FOUND);
         }
 
-        if(stockToDeleteNote.get().getNotes().size() == 0) {
+        if (stockToDeleteNote.get().getNotes().size() == 0) {
             throw new CommandException(MESSAGE_STOCK_HAS_NO_NOTE);
         }
 
-        if(index > stockToDeleteNote.get().getNotes().size()) {
+        if (index > stockToDeleteNote.get().getNotes().size()) {
             throw new CommandException(MESSAGE_INVALID_NOTE_INDEX);
         }
 

@@ -1,11 +1,9 @@
 package seedu.stock.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
@@ -15,7 +13,6 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static java.util.Objects.requireNonNull;
 import seedu.stock.logic.commands.FindExactCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.Stock;
@@ -29,10 +26,10 @@ import seedu.stock.model.stock.predicates.SourceContainsKeywordsPredicate;
  */
 public class FindExactCommandParser implements Parser<FindExactCommand> {
 
-    private final static Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
-    private final static Prefix[] validPrefixesForFindExact = { PREFIX_NAME, PREFIX_LOCATION,
-            PREFIX_SOURCE, PREFIX_SERIAL_NUMBER };
-    private final static Prefix[] invalidPrefixesForFindExact =
+    private static final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
+    private static final Prefix[]
+            validPrefixesForFindExact = { PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER };
+    private static final Prefix[] invalidPrefixesForFindExact =
             ParserUtil.getInvalidPrefixesForCommand(validPrefixesForFindExact);
 
     /**

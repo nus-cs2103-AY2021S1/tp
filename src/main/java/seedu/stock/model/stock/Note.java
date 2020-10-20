@@ -8,7 +8,7 @@ import static seedu.stock.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidNote(String)}
  */
 public class Note {
-    public final String value;
+
     public static final String MESSAGE_CONSTRAINTS =
             "A note can take any values, and it should not be only whitespaces.";
     /*
@@ -16,6 +16,8 @@ public class Note {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
+
+    public final String value;
 
     /**
      * Constructs a {@code Note}.

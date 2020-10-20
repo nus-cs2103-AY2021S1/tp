@@ -2,7 +2,6 @@ package seedu.stock.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -58,14 +57,7 @@ public class StockCard extends UiPart<Region> {
         locationStored.setText(stock.getLocation().value);
 
         if (stock.getNotes().size() != 0) {
-            StringBuilder allNotesAppended = new StringBuilder();
-
-            for (int i = 0; i < stock.getNotes().size(); i++) {
-                String note = stock.getNotesValues().get(i);
-                allNotesAppended.append(i+1).append(". ").append(note).append("\n");
-            }
-
-            notes.setText(allNotesAppended.toString());
+            notes.setText(stock.notesToString(stock.getNotes()));
         }
 
     }

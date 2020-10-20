@@ -2,14 +2,14 @@ package seedu.stock.logic.commands;
 
 import static seedu.stock.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.List;
+import java.util.Optional;
+
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
 import seedu.stock.model.stock.Note;
 import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Stock;
-
-import java.util.List;
-import java.util.Optional;
 
 /**
  * Adds a note to an existing stock in the stock book.
@@ -62,7 +62,7 @@ public class NoteCommand extends Command {
             }
         }
 
-        if(stockToAddNote.isEmpty()) {
+        if (stockToAddNote.isEmpty()) {
             throw new CommandException(MESSAGE_SERIAL_NUMBER_NOT_FOUND);
         }
 

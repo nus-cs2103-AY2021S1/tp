@@ -86,11 +86,16 @@ public class Stock {
         return notesList;
     }
 
+    /**
+     * Returns string of all the notes of stock.
+     * @param notes list of notes of stock
+     * @return string with all the notes appended
+     */
     public String notesToString(List<Note> notes) {
         StringBuilder builder = new StringBuilder();
 
         for (int i = 0; i < notes.size(); i++) {
-            builder.append(i+1).append(". ").append(notes.get(i)).append(" ");
+            builder.append(i + 1).append(". ").append(notes.get(i)).append(" ");
         }
 
         return builder.toString();

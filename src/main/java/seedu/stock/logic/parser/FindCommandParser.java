@@ -26,10 +26,10 @@ import seedu.stock.model.stock.predicates.SourceContainsKeywordsPredicate;
  */
 public class FindCommandParser implements Parser<FindCommand> {
 
-    private final static Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
-    private final static Prefix[] validPrefixesForFind = { PREFIX_NAME, PREFIX_LOCATION,
-            PREFIX_SOURCE, PREFIX_SERIAL_NUMBER };
-    private final static Prefix[] invalidPrefixesForFind =
+    private static final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
+    private static final Prefix[]
+            validPrefixesForFind = { PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER };
+    private static final Prefix[] invalidPrefixesForFind =
             ParserUtil.getInvalidPrefixesForCommand(validPrefixesForFind);
 
     /**

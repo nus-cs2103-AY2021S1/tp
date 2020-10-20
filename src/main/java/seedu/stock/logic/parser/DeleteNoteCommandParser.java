@@ -5,19 +5,21 @@ import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE_INDEX;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 
+import java.util.stream.Stream;
+
 import seedu.stock.logic.commands.NoteDeleteCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.SerialNumber;
 
-import java.util.stream.Stream;
+
 
 public class DeleteNoteCommandParser implements Parser<NoteDeleteCommand> {
 
-    private final static String MESSAGE_INVALID_NOTE_INDEX =
-            "Invalid field format!\nNote index must be a valid positive integer.";
+    private static final String MESSAGE_INVALID_NOTE_INDEX =
+            "Note index must be a valid positive integer.";
 
-    private final static Prefix[] validPrefixesForDeleteNote = { PREFIX_SERIAL_NUMBER, PREFIX_NOTE_INDEX };
-    private final static Prefix[] invalidPrefixesForDeleteNote =
+    private static final Prefix[] validPrefixesForDeleteNote = { PREFIX_SERIAL_NUMBER, PREFIX_NOTE_INDEX };
+    private static final Prefix[] invalidPrefixesForDeleteNote =
             ParserUtil.getInvalidPrefixesForCommand(validPrefixesForDeleteNote);
 
     @Override

@@ -2,21 +2,20 @@ package seedu.stock.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
+
+import java.util.stream.Stream;
 
 import seedu.stock.logic.commands.NoteCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.Note;
 import seedu.stock.model.stock.SerialNumber;
 
-import java.util.stream.Stream;
-
 public class NoteCommandParser implements Parser<NoteCommand> {
 
-    private final static Prefix[] validPrefixesForNote = { PREFIX_NOTE, PREFIX_SERIAL_NUMBER };
-    private final static Prefix[] invalidPrefixesForNote =
+    private static final Prefix[] validPrefixesForNote = { PREFIX_NOTE, PREFIX_SERIAL_NUMBER };
+    private static final Prefix[] invalidPrefixesForNote =
             ParserUtil.getInvalidPrefixesForCommand(validPrefixesForNote);
 
     @Override
