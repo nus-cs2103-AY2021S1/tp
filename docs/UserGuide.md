@@ -84,16 +84,18 @@ Examples:
 
 ### Record leave taken by staff: `addleave`
 
-Adds a person to the application.
-Format: `addleave l/d:DATE [d:DATE]`
+Records leave taken by a staff.
+Format: `addleave INDEX l/d:DATE [d:DATE]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Addition of multiple leaves using the same command is supported. A leave can have either one (single day) or two dates (start and end inclusive).
 </div>
 
 Examples:
-* `addleave l/d:08/10/2020 d:10/10/2020 l/d:20/10/2020`
-* `addleave l/d:10/10/2020 d:08/10/2020 l/d:09/09/2020`
+* `list` followed by `addleave 2 l/d:20/10/2020` adds the leave record with the given date(s) to the 2nd person in the shown list.
+* `find Betsy` followed by `addleave 1 l/d:20/10/2020` adds the leave to the 1st person in the results of the `find` command.
+* `addleave 1 l/d:08/10/2020 d:10/10/2020 l/d:20/10/2020`
+* `addleave 2 l/d:10/10/2020 d:08/10/2020 l/d:09/09/2020`
 
 ### Listing all persons : `list`
 
@@ -150,6 +152,20 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the application.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Record leave taken by staff: `deleteleave`
+
+Removes record of leave taken by staff.
+Format: `deleteleave INDEX d:DATE`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Addition of multiple leaves using the same command is supported. A leave can have either one (single day) or two dates (start and end inclusive).
+</div>
+
+Examples:
+* `list` followed by `deleteleave 2 d:09/09/2020` deletes the leave record of which the given date coincides with from the 2nd person in shown list.
+* `find Betsy` followed by `delete 1` deletes the leave from the 1st person in the results of the `find` command.
+* `deleteleave 2 d:09/09/2020`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the application.
@@ -185,9 +201,10 @@ _{explain the feature here}_
 Action | Format, Examples
 --------|------------------
 **AddStaff** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-**AddLeave** | `addleave l/d:DATE [d:DATE]` <br> e.g., `addleave l/d:08/10/2020 d:10/10/2020 l/d:20/10/2020`
+**AddLeave** | `addleave INDEX l/d:DATE [d:DATE]` <br> e.g., `addleave 2 l/d:08/10/2020 d:10/10/2020 l/d:20/10/2020`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
+**DeleteLeave** | `deleteleave INDEX d:DATE`<br> e.g., `deleteleave 1 10/10/2020`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
