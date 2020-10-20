@@ -4,6 +4,7 @@ import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.ModuleCode;
 import seedu.address.model.assignment.Name;
+import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
 
@@ -18,13 +19,14 @@ public class AssignmentBuilder {
     public static final boolean DEFAULT_REMIND = false;
     public static final Deadline DEFAULT_SUGGESTED_START_TIME = new Deadline("01-02-2020 1800");
     public static final Deadline DEFAULT_SUGGESTED_END_TIME = new Deadline("01-02-2020 2100");
-
+    public static final String DEFAULT_PRIORITY = "None";
 
     private Name name;
     private Deadline deadline;
     private ModuleCode moduleCode;
     private Remind remind;
     private Schedule schedule;
+    private Priority priority;
 
     /**
      * Creates a {@code AssignmentBuilder} with the default details.
@@ -35,6 +37,7 @@ public class AssignmentBuilder {
         moduleCode = new ModuleCode(DEFAULT_MODULE_CODE);
         remind = new Remind(DEFAULT_REMIND);
         schedule = new Schedule(DEFAULT_SUGGESTED_START_TIME, DEFAULT_SUGGESTED_END_TIME);
+        priority = new Priority();
     }
 
     /**
@@ -47,6 +50,7 @@ public class AssignmentBuilder {
         moduleCode = assignmentToCopy.getModuleCode();
         remind = assignmentToCopy.getRemind();
         schedule = assignmentToCopy.getSchedule();
+        priority = assignmentToCopy.getPriority();
     }
 
     /**
@@ -91,7 +95,7 @@ public class AssignmentBuilder {
     }
 
     public Assignment build() {
-        return new Assignment(name, deadline, moduleCode, remind, schedule);
+        return new Assignment(name, deadline, moduleCode, remind, schedule, priority);
     }
 
 }
