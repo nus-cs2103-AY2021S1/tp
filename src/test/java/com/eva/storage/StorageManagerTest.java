@@ -14,6 +14,7 @@ import com.eva.commons.core.GuiSettings;
 import com.eva.model.EvaDatabase;
 import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.UserPrefs;
+import com.eva.model.person.Person;
 
 public class StorageManagerTest {
 
@@ -54,10 +55,10 @@ public class StorageManagerTest {
          * {@link JsonEvaStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonEvaStorageTest} class.
          */
-        EvaDatabase original = getTypicalPersonDatabase();
+        EvaDatabase<Person> original = getTypicalPersonDatabase();
         storageManager.savePersonDatabase(original);
-        ReadOnlyEvaDatabase retrieved = storageManager.readPersonDatabase().get();
-        assertEquals(original, new EvaDatabase(retrieved));
+        ReadOnlyEvaDatabase<Person> retrieved = storageManager.readPersonDatabase().get();
+        assertEquals(original, new EvaDatabase<Person>(retrieved));
     }
 
     @Test

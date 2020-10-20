@@ -9,6 +9,7 @@ import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.person.Person;
+import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.staff.Staff;
 
 import javafx.collections.ObservableList;
@@ -43,17 +44,21 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the filtered list of staff */
     ObservableList<Staff> getFilteredStaffList();
+
+    /** Returns an unmodifiable view of the filtered list of applicants */
+    ObservableList<Applicant> getFilteredApplicantList();
 
     /**
      * Returns the user prefs' persons data file path.
      */
     Path getEvaDatabaseFilePath();
-
     /**
      * Returns the user prefs' staff data file path.
      */
     Path getStaffDatabaseFilePath();
+
     /**
      * Returns the user prefs' GUI settings.
      */
