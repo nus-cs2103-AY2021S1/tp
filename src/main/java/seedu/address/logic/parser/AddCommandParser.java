@@ -27,7 +27,6 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         int quantity = ParserUtil.parseQuantity(argsArr[1]);
         return new AddCommand(index, quantity);
-
     }
 }
 
