@@ -77,6 +77,7 @@ Format: `help`
 <a name="adding-a-staff">
 <H3> Adding a staff: <code>addstaff</code></H3> 
 </a> 
+
 Adds a staff to the application.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]…`
@@ -91,18 +92,16 @@ Examples:
 * `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `addstaff n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-<a name="adding-an-applicant">
-<H3> Adding an applicant: <code>addapplicant</code></H3> 
-</a> 
+### Add an applicant
 
 Adds an applicant to the application.
 
 Format: `addapplicant n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG]…​[c/COMMENTS]…`
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** An applicant can have any number of tags (including 0) <br>
-:bulb: **Tip:** An applicant can have any number of comments (including 0) <br>
-:bulb: **Tip:** The interview date is optional. If an interview date is not fixed yet, you can leave it and set it later. <br>
+- An applicant can have any number of tags (including 0) <br>
+- An applicant can have any number of comments (including 0) <br>
+- :bulb: The interview date is optional. If an interview date is not fixed yet, you can leave it and set it later. <br>
 
 </div>
 
