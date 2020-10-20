@@ -79,7 +79,7 @@ public class RetagCommand extends Command {
         model.deleteTag(tagToChange);
 
         //TODO: Adjust the constructor to take
-        Tag newTag = new Tag(newTagName, fileAddress, tagToChange.getDescriptions());
+        Tag newTag = new Tag(newTagName, fileAddress, tagToChange.getLabels());
         // Add new tag
         model.addTag(newTag);
         return new CommandResult(String.format(MESSAGE_RETAG_TAG_SUCCESS, oldTagName, newTagName));

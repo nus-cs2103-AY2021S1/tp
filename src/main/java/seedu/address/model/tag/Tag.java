@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.description.Description;
+import seedu.address.model.label.Label;
 
 /**
  * Represents a Tag in the HelloFile.
@@ -22,16 +22,16 @@ public class Tag {
     // Data fields
     private final FileAddress fileAddress;
 
-    private final Set<Description> descriptions = new HashSet<>();
+    private final Set<Label> labels = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Tag(TagName tagName, FileAddress fileAddress, Set<Description> descriptions) {
-        requireAllNonNull(tagName, fileAddress, descriptions);
+    public Tag(TagName tagName, FileAddress fileAddress, Set<Label> labels) {
+        requireAllNonNull(tagName, fileAddress, labels);
         this.tagName = tagName;
         this.fileAddress = fileAddress;
-        this.descriptions.addAll(descriptions);
+        this.labels.addAll(labels);
     }
 
     public TagName getTagName() {
@@ -42,8 +42,8 @@ public class Tag {
         return fileAddress;
     }
 
-    public Set<Description> getDescriptions() {
-        return Collections.unmodifiableSet(descriptions);
+    public Set<Label> getLabels() {
+        return Collections.unmodifiableSet(labels);
     }
 
     /**
@@ -59,7 +59,7 @@ public class Tag {
         }
         FileAddress absAddress = new FileAddress(file.getAbsolutePath());
 
-        return new Tag(tagName, absAddress, descriptions);
+        return new Tag(tagName, absAddress, labels);
     }
 
     /**
@@ -92,13 +92,13 @@ public class Tag {
         Tag otherTag = (Tag) other;
         return otherTag.getTagName().equals(getTagName())
                 && otherTag.getFileAddress().equals(getFileAddress())
-                && otherTag.getDescriptions().equals(getDescriptions());
+                && otherTag.getLabels().equals(getLabels());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(tagName, fileAddress, descriptions);
+        return Objects.hash(tagName, fileAddress, labels);
     }
 
     @Override
@@ -107,8 +107,8 @@ public class Tag {
         builder.append(getTagName())
                 .append(" FileAddress: ")
                 .append(getFileAddress())
-                .append(" Descriptions: ");
-        getDescriptions().forEach(builder::append);
+                .append(" Labels: ");
+        getLabels().forEach(builder::append);
         return builder.toString();
     }
 
