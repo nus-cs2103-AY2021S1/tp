@@ -1,6 +1,7 @@
 package seedu.address.logic.parser.itemparser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MAX_QUANTITY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_QUANTITY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_SUPPLIER_DESC;
