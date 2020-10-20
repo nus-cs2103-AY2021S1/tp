@@ -25,7 +25,7 @@ import javafx.collections.ObservableList;
 
 public class EvaDatabaseTest {
 
-    private final EvaDatabase evaDatabase = new EvaDatabase();
+    private final EvaDatabase<Person> evaDatabase = new EvaDatabase<>();
 
     @Test
     public void constructor() {
@@ -39,7 +39,7 @@ public class EvaDatabaseTest {
 
     @Test
     public void resetData_withValidReadOnlyEvaDatabase_replacesData() {
-        EvaDatabase newData = getTypicalPersonDatabase();
+        EvaDatabase<Person> newData = getTypicalPersonDatabase();
         evaDatabase.resetData(newData);
         assertEquals(newData, evaDatabase);
     }

@@ -1,8 +1,10 @@
-package com.eva.logic.parser;
+package com.eva.logic.parser.comment;
 
 import com.eva.commons.core.Messages;
 import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.DeleteCommand;
+import com.eva.logic.parser.Parser;
+import com.eva.logic.parser.ParserUtil;
 import com.eva.logic.parser.exceptions.ParseException;
 
 /**

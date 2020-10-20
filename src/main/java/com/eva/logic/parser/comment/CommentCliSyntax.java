@@ -1,4 +1,4 @@
-package com.eva.model.comment;
+package com.eva.logic.parser.comment;
 
 import com.eva.logic.parser.Prefix;
 

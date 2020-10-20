@@ -19,6 +19,11 @@ StorageManager o--> EvaStorage
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonEvaStorage .left.|> EvaStorage
 JsonEvaStorage .down.> JsonSerializableEvaStorage
-JsonSerializableEvaStorage .right.> JsonSerializablePerson
-JsonSerializablePerson .right.> JsonAdaptedTag
+JsonSerializableEvaStorage .down.> JsonAdaptedStaff
+JsonSerializableEvaStorage .down.> JsonAdaptedApplicant
+JsonAdaptedStaff o--> JsonAdaptedPerson
+JsonAdaptedStaff .left.> JsonAdaptedLeave
+JsonAdaptedApplicant o--> JsonAdaptedPerson
+JsonAdaptedPerson .right.> JsonAdaptedTag
+JsonAdaptedPerson .down.> JsonAdaptedComment
 @enduml

@@ -1,13 +1,14 @@
 package com.eva.logic.parser;
 
-import static com.eva.model.comment.CommentCliSyntax.PREFIX_ADD;
-import static com.eva.model.comment.CommentCliSyntax.PREFIX_DATE;
-import static com.eva.model.comment.CommentCliSyntax.PREFIX_DELETE;
-import static com.eva.model.comment.CommentCliSyntax.PREFIX_DESC;
-import static com.eva.model.comment.CommentCliSyntax.PREFIX_TITLE;
+import static com.eva.commons.util.StringUtil.formatForParse;
+import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_ADD;
+import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_DATE;
+import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_DELETE;
+import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_DESC;
+import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_TITLE;
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -17,12 +18,14 @@ import java.util.stream.Stream;
 import com.eva.commons.core.index.Index;
 import com.eva.commons.util.DateUtil;
 import com.eva.commons.util.StringUtil;
+import com.eva.logic.commands.AddLeaveCommand;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.comment.Comment;
 import com.eva.model.person.Address;
 import com.eva.model.person.Email;
 import com.eva.model.person.Name;
 import com.eva.model.person.Phone;
+import com.eva.model.person.applicant.InterviewDate;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.tag.Tag;
 
@@ -150,9 +153,12 @@ public class ParserUtil {
                 PREFIX_DELETE, PREFIX_DATE, PREFIX_TITLE, PREFIX_DESC);
         if (argMultiMap.getAllValues(PREFIX_DELETE).size() == 0) {
             String date = argMultiMap.getValue(PREFIX_DATE).get();
+            if (!DateUtil.isValidDate(date)) {
+                throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
+            }
             String title = argMultiMap.getValue(PREFIX_TITLE).get();
             String desc = argMultiMap.getValue(PREFIX_DESC).get();
-            return new Comment(LocalDate.parse(date), desc, title);
+            return new Comment(DateUtil.dateParsed(date), desc, title);
         } else {
             String desc = argMultiMap.getValue(PREFIX_DESC).get();
             return new Comment(desc);
@@ -167,9 +173,12 @@ public class ParserUtil {
      */
     public static Leave parseLeave(List<String> leaveDates) throws ParseException {
         requireNonNull(leaveDates);
+        if (leaveDates.size() > 2 || leaveDates.size() < 1) {
+            throw new ParseException(AddLeaveCommand.MESSAGE_USAGE);
+        }
         String trimmedDate = leaveDates.get(0).trim();
         if (!DateUtil.isValidDate(trimmedDate)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
         }
         if (leaveDates.size() > 1) {
             String trimmedEndDate = leaveDates.get(1).trim();
@@ -177,6 +186,24 @@ public class ParserUtil {
         } else {
             return new Leave(trimmedDate);
         }
+    }
+
+    /**
+     * Parses the date arguments inside individual leave input
+     * @param leaveArgsList add leave input
+     * @return list of leaves created.
+     * @throws ParseException if the any leaveArgs in {@code leaveArgsList} is invalid.
+     */
+    public static List<Leave> parseLeaveArgs(List<String> leaveArgsList) throws ParseException {
+        requireNonNull(leaveArgsList);
+        ArrayList<Leave> leaves = new ArrayList<>();
+        for (String leaveArgs : leaveArgsList) {
+            ArgumentMultimap dateArgMultimap = ArgumentTokenizer.tokenize(formatForParse(leaveArgs), PREFIX_DATE);
+            List<String> leaveDates = dateArgMultimap.getAllValues(PREFIX_DATE);
+            Leave leave = parseLeave(leaveDates);
+            leaves.add(leave);
+        }
+        return leaves;
     }
 
     /**
@@ -201,5 +228,17 @@ public class ParserUtil {
      */
     public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Parses {@code String leaveDates} into a {@code Leave}.
+     * Leading and trailing whitespaces will be trimmed.
+     * Assumption: no more than 2 leave dates are entered.
+     */
+    public static InterviewDate parseInterviewDate(String value) throws ParseException {
+        if (!DateUtil.isValidDate(value.trim())) {
+            throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
+        }
+        return new InterviewDate(value.trim());
     }
 }

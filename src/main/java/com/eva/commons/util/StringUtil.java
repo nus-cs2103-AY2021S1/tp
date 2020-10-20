@@ -65,4 +65,11 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Formats the given string for tokenizer to recognize it.
+     */
+    public static String formatForParse(String s) {
+        return " " + s;
+    }
 }

@@ -40,7 +40,7 @@ class JsonStaffDatabase {
     }
 
     /**
-     * Converts this address book into the model's {@code EvaDatabase} object.
+     * Converts this eva database for staff into the model's {@code EvaDatabase} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

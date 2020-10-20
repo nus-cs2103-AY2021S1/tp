@@ -60,7 +60,7 @@ public class EvaDatabase<P extends Person> implements ReadOnlyEvaDatabase<P> {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the eva database.
      */
     public boolean hasPerson(P person) {
         requireNonNull(person);
@@ -68,8 +68,8 @@ public class EvaDatabase<P extends Person> implements ReadOnlyEvaDatabase<P> {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a person to the eva database.
+     * The person must not already exist in the eva database.
      */
     public void addPerson(P p) {
         persons.add(p);
@@ -77,8 +77,8 @@ public class EvaDatabase<P extends Person> implements ReadOnlyEvaDatabase<P> {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the eva database.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the eva database.
      */
     public void setPerson(P target, P editedPerson) {
         requireNonNull(editedPerson);
@@ -88,7 +88,7 @@ public class EvaDatabase<P extends Person> implements ReadOnlyEvaDatabase<P> {
 
     /**
      * Removes {@code key} from this {@code EvaDatabase}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the eva database.
      */
     public void removePerson(P key) {
         persons.remove(key);
