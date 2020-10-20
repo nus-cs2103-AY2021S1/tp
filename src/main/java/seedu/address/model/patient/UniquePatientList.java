@@ -122,6 +122,9 @@ public class UniquePatientList implements Iterable<Patient> {
         return internalList.size();
     }
 
+    /**
+     * Sorts the list based on the predicate provided in ascending order.
+     */
     public void sort(Comparator<Patient> comparator) {
         internalList.sort(comparator);
     }

@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.Model;
 
+/**
+ * Sorts the patients in Hospify.
+ */
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
@@ -16,6 +19,9 @@ public class SortCommand extends Command {
 
     private final String predicate;
 
+    /**
+     * Creates a sort command with a predicate input.
+     */
     public SortCommand(String predicate) {
         this.predicate = predicate;
     }

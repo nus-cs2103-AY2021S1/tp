@@ -135,6 +135,9 @@ public class ModelManager implements Model {
         filteredPatients.setPredicate(predicate);
     }
 
+    /**
+     * Sorts the patientList based on the predicate in ascending order.
+     */
     @Override
     public void sort(Comparator<Patient> comparator) {
         addressBook.sort(comparator);
