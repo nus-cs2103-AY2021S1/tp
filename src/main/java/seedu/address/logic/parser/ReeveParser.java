@@ -83,7 +83,7 @@ public class ReeveParser {
             return new OverdueCommand();
 
         case AdditionalDetailCommand.COMMAND_WORD:
-            return new AdditionalDetailCommandParser().parseAdditionalDetailCommand(arguments, BASIC_COMMAND_FORMAT);
+            return new AdditionalDetailCommandParser().parseAdditionalDetailCommand(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
