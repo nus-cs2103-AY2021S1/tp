@@ -24,6 +24,7 @@ import seedu.address.model.account.exceptions.DuplicateAccountException;
  */
 public class UniqueAccountList implements Iterable<Account> {
     private static final int ACCOUNT_NOT_FOUND_INDEX = -1;
+    private static final String NEW_LINE = "\n";
 
     private final ObservableList<Account> internalList = FXCollections.observableArrayList();
     private final ObservableList<Account> internalUnmodifiableList =
@@ -65,17 +66,18 @@ public class UniqueAccountList implements Iterable<Account> {
      */
     public void setAccount(Account target, Account editedAccount) {
         requireAllNonNull(target, editedAccount);
-
+        Account copiedEditedAccount = editedAccount.copyData();
         int index = internalList.indexOf(target);
+
         if (index == ACCOUNT_NOT_FOUND_INDEX) {
             throw new AccountNotFoundException();
         }
 
-        if (!target.isSameAccount(editedAccount) && contains(editedAccount)) {
+        if (!target.isSameAccount(copiedEditedAccount) && contains(copiedEditedAccount)) {
             throw new DuplicateAccountException();
         }
 
-        internalList.set(index, editedAccount);
+        internalList.set(index, copiedEditedAccount);
     }
 
     public void setAccount(Account editedAccount) {
@@ -92,7 +94,8 @@ public class UniqueAccountList implements Iterable<Account> {
             throw new DuplicateAccountException();
         }
 
-        internalList.set(accountIndex, editedAccount);
+        Account copiedAccount = editedAccount.copyData();
+        internalList.set(accountIndex, copiedAccount);
     }
 
     /**

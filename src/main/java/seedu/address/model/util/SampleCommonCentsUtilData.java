@@ -20,8 +20,8 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code CommonCents} with sample data.
  */
 public class SampleCommonCentsUtilData {
-    public static Account getSampleAccount() {
-        Account acc = new Account(new Name("General account"));
+    private static Account[] getSampleAccount() {
+        Account acc = new Account(new Name("Lulu - bizacc"));
         RevenueList accRevenues = new RevenueList();
         accRevenues.add(new Revenue(new Description("earrings sales"),
                 new Amount("13.50"), getTagSet("craft", "accessories")));
@@ -37,25 +37,44 @@ public class SampleCommonCentsUtilData {
         acc.setExpenses(accExpenses
         );
         acc.setRevenues(accRevenues);
-        /*
+
         Account acc2 = new Account(new Name("Lulu - nonbiz acc"));
-        RevenueList acc2Profits = new RevenueList();
-        ExpenseList acc2ExpenseList = new ExpenseList();
-        accExpenses
-        .add(new Expense(new Description("lunch"),
+        ExpenseList acc2Expenses = new ExpenseList();
+        RevenueList acc2Revenues = new RevenueList();
+        acc2Expenses.add(new Expense(new Description("lunch"),
                 new Amount("5.45"), getTagSet("food", "hawker")));
-        accExpenses
-        .add(new Expense(new Description("dinner at Morganfield's"),
+        acc2Expenses.add(new Expense(new Description("dinner at Morganfield's"),
                 new Amount("24.45"), getTagSet("food", "restaurant", "Morganfields")));
-        */
-        return acc;
+        acc2.setExpenses(acc2Expenses);
+        acc2.setRevenues(acc2Revenues);
+        return new Account[]{acc, acc2};
     }
 
     public static ReadOnlyCommonCents getSampleCommonCents() {
         CommonCents sampleCc = new CommonCents();
-        sampleCc.setAccount(getSampleAccount());
-
+        for (Account acc : getSampleAccount()) {
+            sampleCc.addAccount(acc);
+        }
         return sampleCc;
+    }
+
+    /**
+     * Initializes a empty account.
+     * @return A account with no entries.
+     */
+    private static Account initEmptyAccount() {
+        Account acc = new Account(new Name("Default account"));
+        return acc;
+    }
+
+    /**
+     * Initializes a Common Cents with one default account.
+     * @return A Common Cents with a default account with no entries.
+     */
+    public static ReadOnlyCommonCents initEmptyCommonCents() {
+        CommonCents emptyCc = new CommonCents();
+        emptyCc.addAccount(initEmptyAccount());
+        return emptyCc;
     }
 
     /**
