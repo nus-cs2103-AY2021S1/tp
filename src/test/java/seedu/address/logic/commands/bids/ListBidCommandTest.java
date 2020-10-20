@@ -10,7 +10,7 @@ import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddres
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ListBidCommand;
+import seedu.address.logic.commands.bidcommands.ListBidCommand;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;

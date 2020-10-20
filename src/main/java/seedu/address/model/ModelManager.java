@@ -12,6 +12,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.bid.Bid;
+import seedu.address.model.bidbook.BidBook;
+import seedu.address.model.bidbook.ReadOnlyBidBook;
 import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
 import seedu.address.model.calendar.CalendarMeeting;
@@ -210,6 +212,18 @@ public class ModelManager implements Model {
         return bidBook.hasBid(bid);
     }
 
+    @Override
+    public void deleteBid(Bid target) {
+        bidBook.removeBid(target);
+    }
+
+    @Override
+    public void setBid(Bid target, Bid editedBid) {
+        requireAllNonNull(target, editedBid);
+
+        bidBook.setBid(target, editedBid);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -339,8 +353,8 @@ public class ModelManager implements Model {
     //=========== Filtered Person List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
+     * {@code versionedMeetingBook}
      */
     @Override
     public ObservableList<CalendarMeeting> getFilteredMeetingList() {

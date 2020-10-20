@@ -1,4 +1,4 @@
-package seedu.address.model;
+package seedu.address.model.bidbook;
 
 import static java.util.Objects.requireNonNull;
 
@@ -59,6 +59,14 @@ public class BidBook implements ReadOnlyBidBook {
     public void resetData(ReadOnlyBidBook newData) {
         requireNonNull(newData);
         setBids(newData.getBidList());
+    }
+
+    /**
+     * Removes {@code key} from this {@code BidBook}.
+     * {@code key} must exist in the bid book.
+     */
+    public void removeBid(Bid key) {
+        listOfBids.remove(key);
     }
 
     @Override

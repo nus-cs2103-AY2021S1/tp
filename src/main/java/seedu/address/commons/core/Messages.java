@@ -23,5 +23,13 @@ public class Messages {
 
     // ------------------------- MEETING -------------------------
     public static final String MESSAGE_INVALID_MEETING_DISPLAYED_INDEX = "The meeting index provided is invalid";
+    public static final String MESSAGE_MEETINGS_LISTED_OVERVIEW = "%1$d meetings listed!";
+
+
+    // ------------------------- BID -------------------------
+    public static final String MESSAGE_INVALID_BID_DISPLAYED_INDEX = "The bid index provided is invalid";
+    public static final String MESSAGE_INVALID_COMMAND_INPUT = "Invalid command input! \n%1$s";
+    public static final String MESSAGE_BIDS_LISTED_OVERVIEW = "%1$d bids listed!";
+    public static final String MESSAGE_BIDS_LISTED_FAILURE = "Unable to find any related Bids. Displaying full list.";
 
 }
