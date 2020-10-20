@@ -208,7 +208,7 @@ Retrieves a list of past commands that the user had used during the session.
 
 Format: `history`
 
-#### Retrieve and reuse past commands using arrow keys:
+#### Retrieve and reuse past commands using arrow keys
 
 Reuse past commands using the up arrow (↑) and down arrow (↓) keys on the keyboard.
 1. Click on the text field of the command box.
