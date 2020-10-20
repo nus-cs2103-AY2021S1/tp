@@ -42,5 +42,4 @@ deactivate ClearCommand
 
 [<--LogicManager
 deactivate LogicManager
-
 @enduml

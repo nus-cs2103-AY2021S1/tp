@@ -313,7 +313,7 @@ Use case ends
 
 - 3a. The given index is invalid.<br>
    - 3a1. McGymmy shows an error message.
-  
+
     Use case resumes at step 2.
 
 **Use case: UC04 Help**
