@@ -7,15 +7,12 @@ import quickcache.logic.parser.exceptions.ParseException;
 import quickcache.model.flashcard.Flashcard;
 import quickcache.model.flashcard.FlashcardContainsTagPredicate;
 import quickcache.model.flashcard.FlashcardPredicate;
-import quickcache.model.flashcard.QuestionContainsKeywordsPredicate;
 import quickcache.model.flashcard.Tag;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import static quickcache.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
 
 /**

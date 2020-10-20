@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
-import java.util.Set;
 
 import quickcache.commons.core.Messages;
 import quickcache.commons.core.index.Index;
@@ -12,7 +11,6 @@ import quickcache.logic.commands.exceptions.CommandException;
 import quickcache.model.Model;
 import quickcache.model.flashcard.Flashcard;
 import quickcache.model.flashcard.FlashcardPredicate;
-import quickcache.model.flashcard.Tag;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
