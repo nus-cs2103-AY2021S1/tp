@@ -48,7 +48,7 @@ ZooKeep is a desktop app for managing animals under a zookeeper’s care, optimi
 
 </div>
 
-#### Viewing help : `help`
+### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -58,7 +58,7 @@ Format: `help`
 
 ---
 
-#### Adding an animal: `add`
+### Adding an animal: `add`
 
 Adds an animal under the care of the user.
 
@@ -74,7 +74,7 @@ Examples:
 
 ---
 
-#### Listing all animals : `list`
+### Listing all animals : `list`
 
 Lists all animals under the care of the user.
 
@@ -82,21 +82,18 @@ Format: `list`
 
 ---
 
-#### Deleting an animal: `delete`
+### Deleting an animal: `delete`
 
-Deletes the specified animal from the app.
+Deletes the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
 
 Format: `delete i/ID`
-
-* Deletes the animal at the specified `ID`.
-* ID refers to the id number shown in the displayed animal list.
 
 Example:
 * `delete i/193` deletes the individual animal with id 193.
 
 ---
 
-#### Clearing all entries : `clear`
+### Clearing all entries : `clear`
 
 Clears all entries from the app.
 
@@ -104,7 +101,7 @@ Format: `clear`
 
 ---
 
-#### Exiting the program : `exit`
+### Exiting the program : `exit`
 
 Exits the program.
 
@@ -112,14 +109,17 @@ Format: `exit`
 
 ---
 
-#### Saving a snapshot of animal data: `snap`
+### Saving a snapshot of animal data: `snap`
 
 Creates a snapshot of the current zookeep book data, saved as a file with the user specified file name
 
-:information_source: **Constraints**:
+<div markdown="span" class="alert alert-primary">:information_source: **Constraints:**
+
 * File name can only contain alphanumeric characters, hyphens `-` and underscores `_`
 * File name must be at least 1 character long and at most 100 characters long
-* User specified file name must not already exist in the data folder
+* File name must not already exist in the data folder
+
+</div>
 
 Format: `snap FILE_NAME`
 
