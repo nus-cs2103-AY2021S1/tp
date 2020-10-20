@@ -9,6 +9,10 @@ participant "u:UnfavCommand" as UnfavCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
+box Flashcard MODEL_COLOR_T2
+participant "flashcardToUnfavourite:Flashcard" as Flashcard MODEL_COLOR
+end box
+
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
@@ -47,6 +51,12 @@ deactivate FlashcardDeckParser
 
 LogicManager -> UnfavCommand : execute()
 activate UnfavCommand
+
+UnfavCommand -> Flashcard : isFavourite()
+activate Flashcard
+
+Flashcard -> UnfavCommand : isFavourite
+deactivate Flashcard
 
 opt flashcard is favourited
 
