@@ -1,19 +1,41 @@
 package seedu.address.model.item;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_DESCRIPTION_BANANA;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_BANANA;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_BANANA;
+import static org.junit.jupiter.api.Assertions.*;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalItems.APPLE;
 import static seedu.address.testutil.TypicalItems.BANANA;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import seedu.address.testutil.ItemBuilder;
 
 public class ItemTest {
+
+    @BeforeEach
+    public void setUp() {
+        // set static variables back to default
+        Item.setIdCounter(0);
+    }
+
+    /**
+     * Test Set Recipe
+     */
+    @Test
+    public void setItemCounter_expectedItemCounter() {
+        // Default value of counter is 0
+        assertEquals(Item.getIdCounter(), 0);
+        // Set value of counter to some other value
+        Item.setIdCounter(10);
+        assertEquals(Item.getIdCounter(), 10);
+
+        Item i = new ItemBuilder(APPLE).build();
+        // After building new item, recipe counter updates
+        assertEquals(Item.getIdCounter(), 11);
+
+        Assertions.assertThrows(AssertionError.class, () -> Item.setIdCounter(-1));
+    }
 
     /**
      * Tests that UnsupportedOperationException is thrown when

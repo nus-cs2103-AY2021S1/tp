@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.ItemParserUtil.DEFAULT_DESCRIPTION;
 import static seedu.address.logic.parser.ItemParserUtil.DEFAULT_QUANTITY;
 
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 

@@ -2,7 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
@@ -18,10 +20,9 @@ public class ItemParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String DEFAULT_QUANTITY = "0";
-    public static final String DEFAULT_LOCATION = "None";
-    public static final String DEFAULT_TAG = "None";
     public static final String DEFAULT_DESCRIPTION = "None";
     public static final Quantity DEFAULT_QUANTITY_TYPED = new Quantity(DEFAULT_QUANTITY);
+    public static final String REGEX_ENTRIES = ", |,";
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -88,7 +89,8 @@ public class ItemParserUtil {
     public static Set<String> parseLocations(Collection<String> locations) {
         requireNonNull(locations);
         return locations.stream()
-                .flatMap(x -> Arrays.stream(x.split(", "))).collect(Collectors.toSet());
+                .flatMap(x -> Arrays.stream(x.split(REGEX_ENTRIES)))
+                .collect(Collectors.toSet());
     }
 
     /**
@@ -100,7 +102,7 @@ public class ItemParserUtil {
      */
     public static Set<Tag> parseTags(Collection<String> tags) {
         return tags.stream()
-                .flatMap(x -> Arrays.stream(x.split(", ")))
+                .flatMap(x -> Arrays.stream(x.split(REGEX_ENTRIES)))
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }

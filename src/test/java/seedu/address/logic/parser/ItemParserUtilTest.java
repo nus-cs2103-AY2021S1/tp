@@ -12,14 +12,36 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.item.Quantity;
+import seedu.address.model.tag.Tag;
 
 public class ItemParserUtilTest {
     private static final String INVALID_QUANTITY = "-1";
-
     private static final String VALID_NAME = "Apple";
     private static final String VALID_QUANTITY = "1";
     private static final String VALID_DESCRIPTION = "Red and cute.";
     private static final Collection<String> VALID_LOCATIONS = Set.of("City", "Town");
+    private static final Collection<String> VALID_MULTI_LOCATIONS = Set.of("City, Singapore",
+            "Town, Kerning City");
+    private static final Collection<String> VALID_MULTI_LOCATION_PARSED = Set.of("City", "Town",
+            "Singapore", "Kerning City");
+    // Valid tag strings
+    private static final String VALID_BERT = "bert model";
+    private static final String VALID_TUTURU = "tuturu";
+    private static final String VALID_ASD = "asd";
+    private static final String VALID_ABC = "abc";
+    private static final String VALID_123 = "123";
+
+    private static final Tag TAG_BERT = new Tag(VALID_BERT);
+    private static final Tag TAG_TUTURU = new Tag(VALID_TUTURU);
+    private static final Tag TAG_ASD = new Tag(VALID_ASD);
+    private static final Tag TAG_ABC = new Tag(VALID_ABC);
+    private static final Tag TAG_123 = new Tag(VALID_123);
+    private static final Collection<String> VALID_TAG_STRING = Set.of(VALID_ABC);
+    private static final Collection<String> VALID_TAG_MULTI_STRING = Set.of("abc, 123",
+            "asd,tuturu , bert model");
+    private static final Collection<Tag> VALID_TAG_SINGLE_PARSED = Set.of(TAG_ABC);
+    private static final Collection<Tag> VALID_TAG_MULTI_PARSED = Set.of(TAG_ABC, TAG_123,
+            TAG_ASD, TAG_BERT, TAG_TUTURU);
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -106,5 +128,20 @@ public class ItemParserUtilTest {
     @Test
     public void parseLocation_validValue_returnsLocations() {
         assertEquals(VALID_LOCATIONS, ItemParserUtil.parseLocations(VALID_LOCATIONS));
+    }
+
+    @Test
+    public void parseMultiLocation_validValue_returnFlatLocations() {
+        assertEquals(VALID_MULTI_LOCATION_PARSED, ItemParserUtil.parseLocations(VALID_MULTI_LOCATIONS));
+    }
+
+    @Test
+    public void parseTag_validValue_returnsTag() {
+        assertEquals(VALID_TAG_SINGLE_PARSED, ItemParserUtil.parseTags(VALID_TAG_STRING));
+    }
+
+    @Test
+    public void parseMultiTag_validValue_returnsTags() {
+        assertEquals(VALID_TAG_MULTI_PARSED, ItemParserUtil.parseTags(VALID_TAG_MULTI_STRING));
     }
 }

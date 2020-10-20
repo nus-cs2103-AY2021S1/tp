@@ -95,17 +95,19 @@ Will eventually be extended to get help about specific commands.
 
 **SYNOPSIS:**
 	 
-- `addi` **-n** \<**item name**\> \[-q \<qty\>\] \[-d \<desc\>\] \[-l \<location1, location2…\>\] 
+- `addi` **-n** \<**item name**\> \[-q \<qty\>\] \[-d \<desc\>\] \[-l \<location1, location2…\>\] \[-t \<tag1, tag2\>\]
 
 **DESCRIPTION:**
 
 - **q:**	qty indicates quantity to add (default: 1)
 - **d:**	desc indicates description of item (default: “No description given.”)
 - **l:**	locations indicate where item is found 
+- **t:**    user defined **tag** for an item
 
 **EXAMPLE:**
-- `addi` <u>banana</u> -q 44 -d edible banana -l Bob’s banana farm
-- Adds new entry of 44 <u>banana</u>, with description edible <u>banana</u>, found at **location** <u>Bob’s banana farm</u>
+- `addi` <u>banana</u> -q 44 -d edible banana -l Bob’s banana farm -t delicious, consumable
+- Adds new entry of 44 <u>banana</u>, with description edible <u>banana</u>, 
+found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 
 ### Adding a new Recipe: `addr`
 **NAME:**
