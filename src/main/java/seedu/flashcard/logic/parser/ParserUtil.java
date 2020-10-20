@@ -1,6 +1,8 @@
 package seedu.flashcard.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.flashcard.commons.core.Messages.MESSAGE_INVALID_DIAGRAM_FILE_TYPE;
+import static seedu.flashcard.commons.core.Messages.MESSAGE_NON_EXISTENT_DIAGRAM_FILE_TYPE;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,11 +13,7 @@ import java.util.Set;
 import seedu.flashcard.commons.core.index.Index;
 import seedu.flashcard.commons.util.StringUtil;
 import seedu.flashcard.logic.parser.exceptions.ParseException;
-import seedu.flashcard.model.flashcard.Answer;
-import seedu.flashcard.model.flashcard.Category;
-import seedu.flashcard.model.flashcard.Note;
-import seedu.flashcard.model.flashcard.Question;
-import seedu.flashcard.model.flashcard.Rating;
+import seedu.flashcard.model.flashcard.*;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -85,7 +83,6 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> categories} into a {@code List<Category>}.
-     *
      */
     public static List<Category> parseCategories(Collection<String> categories) throws ParseException {
         requireNonNull(categories);
@@ -120,6 +117,24 @@ public class ParserUtil {
         }
         return new Rating(trimmedRating);
     }
+
+    /**
+     * Parses a {@code String diagramFilePath } into a {@code Diagram}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+
+    public static Diagram parseDiagram(String diagramFilePath) throws ParseException {
+        requireNonNull(diagramFilePath);
+        String trimmedDiagramFilePath = diagramFilePath.trim();
+        if(!Diagram.isValidFile(trimmedDiagramFilePath)){
+            throw new ParseException(MESSAGE_NON_EXISTENT_DIAGRAM_FILE_TYPE);
+        }
+        if (!Diagram.isValidImageFileType(trimmedDiagramFilePath)) {
+            throw new ParseException(MESSAGE_INVALID_DIAGRAM_FILE_TYPE);
+        }
+        return new Diagram(trimmedDiagramFilePath);
+    }
+
 
     //    /**
     //     * Parses a {@code String tag} into a {@code Tag}.
