@@ -65,6 +65,26 @@ public class SnapCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, fileName));
     }
 
+    // Overloaded method that accepts a save Path destination for easier testing purposes
+    protected CommandResult execute(Model model, Path path) throws CommandException {
+        requireNonNull(model);
+
+        Path zooKeepBookFilePath = model.getUserPrefs().getZooKeepBookFilePath();
+        ZooKeepBookStorage zooKeepBookStorage = new JsonZooKeepBookStorage(zooKeepBookFilePath);
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(zooKeepBookFilePath);
+
+        try {
+            Storage storage = new StorageManager(zooKeepBookStorage, userPrefsStorage);
+            ReadOnlyZooKeepBook zooKeepBook = model.getZooKeepBook();
+
+            storage.saveZooKeepBook(zooKeepBook, path);
+        } catch (IOException ioe) {
+            throw new CommandException(String.format(MESSAGE_ERROR + ioe, ioe));
+        }
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, fileName));
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

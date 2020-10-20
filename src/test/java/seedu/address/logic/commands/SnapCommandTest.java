@@ -18,6 +18,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.ReadOnlyZooKeepBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.animal.Animal;
+import seedu.address.storage.JsonZooKeepBookStorage;
 import seedu.address.testutil.TypicalAnimals;
 
 public class SnapCommandTest {
@@ -31,12 +32,18 @@ public class SnapCommandTest {
     @Test
     public void execute_validFileName_success() throws Exception {
         ModelStub modelStub = new ModelStub();
-        String validFileName = "zookeepbook_19-10-2020";
+        String validFileName = "ZooKeepBookTest_19-10-2020" + FILE_FORMAT;
+        Path path = Path.of("src", "test", "data", "SnapCommandTest", validFileName);
+        CommandResult commandResult = new SnapCommand(validFileName).execute(modelStub, path);
 
-        CommandResult commandResult = new SnapCommand(validFileName).execute(modelStub);
-
+        // assert that command has executed successfully
         assertEquals(String.format(SnapCommand.MESSAGE_SUCCESS, validFileName + FILE_FORMAT),
                 commandResult.getFeedbackToUser());
+
+        // assert that contents of created file is equal
+        ReadOnlyZooKeepBook expectedBook = modelStub.getZooKeepBook();
+        ReadOnlyZooKeepBook savedBook = new JsonZooKeepBookStorageStub(path).readZooKeepBook().get();
+        assertEquals(expectedBook, savedBook);
     }
 
     @Test
@@ -133,6 +140,28 @@ public class SnapCommandTest {
 
         @Override
         public void updateFilteredAnimalList(Predicate<Animal> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+    }
+
+    private class JsonZooKeepBookStorageStub extends JsonZooKeepBookStorage {
+
+        public JsonZooKeepBookStorageStub(Path filePath) {
+            super(filePath);
+        }
+
+        @Override
+        public Path getZooKeepBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveZooKeepBook(ReadOnlyZooKeepBook zooKeepBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveZooKeepBook(ReadOnlyZooKeepBook zooKeepBook, Path filePath) {
             throw new AssertionError("This method should not be called.");
         }
     }
