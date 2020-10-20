@@ -5,40 +5,31 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.id.PropertyId;
 
-class CalendarPropertyIdTest {
+
+class PropertyIdTest {
 
     @Test
     void testToString() {
-        CalendarPropertyId propertyId = new CalendarPropertyId("p1");
-        String propertyIdTest = "p1";
-        assert (propertyId.propertyId.equals("p1"));
+        PropertyId propertyId = new PropertyId("P1");
+        String propertyIdTest = "P1";
+        assert (propertyId.toString().equals("P1"));
         assertTrue(propertyIdTest.equals(propertyId.toString()));
 
-        CalendarPropertyId propertyIdError = new CalendarPropertyId("p1");
-        String propertyIdDiff = "p2";
+        PropertyId propertyIdError = new PropertyId("P1");
+        String propertyIdDiff = "P2";
         assertFalse(propertyIdDiff.equals(propertyIdError.toString()));
     }
 
     @Test
     void testEquals() {
-        CalendarPropertyId propertyId = new CalendarPropertyId("p1");
-        CalendarPropertyId propertyIdTest = new CalendarPropertyId("p1");
+        PropertyId propertyId = new PropertyId("P1");
+        PropertyId propertyIdTest = new PropertyId("P1");
         assertTrue(propertyIdTest.equals(propertyId));
 
-        CalendarPropertyId propertyIdError = new CalendarPropertyId("p1");
-        CalendarPropertyId propertyIdDiff = new CalendarPropertyId("p2");
+        PropertyId propertyIdError = new PropertyId("P1");
+        PropertyId propertyIdDiff = new PropertyId("P2");
         assertFalse(propertyIdDiff.equals(propertyIdError));
-    }
-
-    @Test
-    void testHashCode() {
-        CalendarPropertyId propertyId = new CalendarPropertyId("p1");
-        CalendarPropertyId propertyIdTest = new CalendarPropertyId("p1");
-        assertTrue(propertyIdTest.hashCode() == propertyId.hashCode());
-
-        CalendarPropertyId propertyIdError = new CalendarPropertyId("p1");
-        CalendarPropertyId propertyIdDiff = new CalendarPropertyId("p2");
-        assertFalse(propertyIdDiff.hashCode() == propertyIdError.hashCode());
     }
 }

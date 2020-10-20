@@ -5,14 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.calendar.CalendarAdmin;
-import seedu.address.model.calendar.CalendarBidderId;
 import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.calendar.CalendarPaperwork;
-import seedu.address.model.calendar.CalendarPropertyId;
 import seedu.address.model.calendar.CalendarTime;
 import seedu.address.model.calendar.CalendarVenue;
 import seedu.address.model.calendar.CalendarViewing;
-import seedu.address.model.person.Name;
+import seedu.address.model.id.BidderId;
+import seedu.address.model.id.PropertyId;
 import seedu.address.model.person.Phone;
 
 
@@ -47,8 +46,8 @@ public class JsonAdaptedMeeting {
      * Converts a given {@code Meeting} into this class for Jackson use.
      */
     public JsonAdaptedMeeting(CalendarMeeting source) {
-        propertyId = source.getCalendarPropertyId().propertyId;
-        bidderId = source.getCalendarBidderId().bidderId;
+        propertyId = source.getCalendarPropertyId().toString();
+        bidderId = source.getCalendarBidderId().toString();
         time = source.getCalendarTime().time;
         venue = source.getCalendarVenue().venue;
         typeOfMeeting = source.checkMeetingType();
@@ -64,21 +63,21 @@ public class JsonAdaptedMeeting {
 
         if (propertyId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    CalendarPropertyId.class.getSimpleName()));
+                    PropertyId.class.getSimpleName()));
         }
-        if (!CalendarPropertyId.isValidPropertyId(propertyId)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!PropertyId.isValidId(propertyId)) {
+            throw new IllegalValueException(PropertyId.MESSAGE_CONSTRAINTS);
         }
-        final CalendarPropertyId modelPropertyId = new CalendarPropertyId(propertyId);
+        final PropertyId modelPropertyId = new PropertyId(propertyId);
 
         if (bidderId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    CalendarBidderId.class.getSimpleName()));
+                    BidderId.class.getSimpleName()));
         }
-        if (!CalendarBidderId.isValidBidderId(bidderId)) {
+        if (!BidderId.isValidId(bidderId)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
-        final CalendarBidderId modelBidderId = new CalendarBidderId(bidderId);
+        final BidderId modelBidderId = new BidderId(bidderId);
 
         if (time == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

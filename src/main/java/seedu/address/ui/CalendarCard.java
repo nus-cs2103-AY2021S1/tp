@@ -47,8 +47,8 @@ public class CalendarCard extends UiPart<Region> {
         this.meeting = meeting;
         id.setText(displayedIndex + ". ");
         typeOfMeeting.setText("Meeting Type: " + getMeetingType(meeting));
-        calenderBidderId.setText("Bidder ID: " + meeting.getCalendarBidderId().bidderId);
-        calenderPropertyId.setText("Property ID: " + meeting.getCalendarPropertyId().propertyId);
+        calenderBidderId.setText("Bidder ID: " + meeting.getCalendarBidderId().toString());
+        calenderPropertyId.setText("Property ID: " + meeting.getCalendarPropertyId().toString());
         time.setText("Time: " + meeting.getCalendarTime().time);
         venue.setText("Venue: " + meeting.getCalendarVenue().venue);
     }

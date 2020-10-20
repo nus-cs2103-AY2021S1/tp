@@ -19,7 +19,7 @@ public class BidderIdContainsKeywordsPredicate implements Predicate<CalendarMeet
     public boolean test(CalendarMeeting calendarMeeting) {
         return keywords.stream()
                 .anyMatch(keyword ->
-                        StringUtil.containsWordIgnoreCase(calendarMeeting.getCalendarBidderId().bidderId, keyword));
+                        StringUtil.containsWordIgnoreCase(calendarMeeting.getCalendarBidderId().toString(), keyword));
     }
 
     @Override

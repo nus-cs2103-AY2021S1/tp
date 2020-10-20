@@ -1,6 +1,5 @@
 package seedu.address.storage.bids;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.bids.TypicalBid.BID_A;
 

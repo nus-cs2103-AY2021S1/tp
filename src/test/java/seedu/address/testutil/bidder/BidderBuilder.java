@@ -3,7 +3,7 @@ package seedu.address.testutil.bidder;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.id.Id;
+import seedu.address.model.id.BidderId;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.bidder.Bidder;
@@ -17,12 +17,12 @@ public class BidderBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final Id DEFAULT_BIDDER_ID = new Id("B", 0);
+    public static final BidderId DEFAULT_BIDDER_ID = new BidderId(0);
 
     private Name name;
     private Phone phone;
     private Set<Tag> tags;
-    private Id id;
+    private BidderId id;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -71,8 +71,8 @@ public class BidderBuilder {
     /**
      * Sets the {@code Id} of the {@code Bidder} that we are building.
      */
-    public BidderBuilder withId(String prefix, int number) {
-        this.id = new Id(prefix, number);
+    public BidderBuilder withId(int number) {
+        this.id = new BidderId(number);
         return this;
     }
 

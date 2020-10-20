@@ -2,6 +2,9 @@ package seedu.address.model.calendar;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import seedu.address.model.id.BidderId;
+import seedu.address.model.id.PropertyId;
+
 
 /**
  * Represents a meeting in the calendar book.
@@ -9,24 +12,20 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  */
 public class CalendarMeeting {
 
-    private static final String PREFIX = "p";
-    // TODO: should be managed somewhere else to access last id in storage
-
     // Identity fields
     protected boolean isPaperWork;
     protected boolean isViewing;
     protected boolean isAdmin;
-    protected final CalendarBidderId calendarBidderId;
-    protected final CalendarPropertyId calendarPropertyId;
+    protected final BidderId calendarBidderId;
+    protected final PropertyId calendarPropertyId;
     protected final CalendarTime calendarTime;
     protected final CalendarVenue calendarVenue;
     protected boolean isMeeting;
 
-
     /**
      * Every field must be present and not null.
      */
-    public CalendarMeeting(CalendarBidderId calendarBidderId, CalendarPropertyId calendarPropertyId,
+    public CalendarMeeting(BidderId calendarBidderId, PropertyId calendarPropertyId,
                            CalendarTime calendarTime, CalendarVenue calendarVenue) {
         requireAllNonNull(calendarBidderId, calendarPropertyId, calendarTime, calendarVenue);
         this.calendarBidderId = calendarBidderId;
@@ -60,8 +59,8 @@ public class CalendarMeeting {
      * Creates the type of meeting based on the meeting type.
      * @return CalendarMeeting of the specific meeting type.
      */
-    public CalendarMeeting createMeeting(String type, CalendarBidderId bidderId,
-                                         CalendarPropertyId propertyId, CalendarTime time, CalendarVenue venue) {
+    public CalendarMeeting createMeeting(String type, BidderId bidderId,
+                                         PropertyId propertyId, CalendarTime time, CalendarVenue venue) {
         if (type.equalsIgnoreCase("Paperwork")) {
             return new CalendarPaperwork(bidderId, propertyId, time, venue);
         } else if (type.equalsIgnoreCase("Admin")) {
@@ -73,11 +72,11 @@ public class CalendarMeeting {
         }
     }
 
-    public CalendarBidderId getCalendarBidderId() {
+    public BidderId getCalendarBidderId() {
         return this.calendarBidderId;
     }
 
-    public CalendarPropertyId getCalendarPropertyId() {
+    public PropertyId getCalendarPropertyId() {
         return this.calendarPropertyId;
     }
 
