@@ -20,7 +20,7 @@ public class PatientTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Patient patient = new PersonBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> patient.getTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> patient.getAllergies().remove(0));
     }
 
     @Test

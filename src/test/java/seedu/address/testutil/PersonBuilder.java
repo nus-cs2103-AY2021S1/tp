@@ -3,14 +3,15 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.allergy.Allergy;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Appointment;
 import seedu.address.model.patient.Email;
+import seedu.address.model.patient.MedicalRecord;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -23,14 +24,16 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_URL = "www.sampleurl.com/01";
 
     private Name name;
     private Nric nric;
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
+    private Set<Allergy> allergies;
     private Set<Appointment> appointments;
+    private MedicalRecord medicalRecord;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -41,8 +44,9 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        allergies = new HashSet<>();
         appointments = new HashSet<>();
+        medicalRecord = new MedicalRecord(DEFAULT_URL);
     }
 
     /**
@@ -54,8 +58,9 @@ public class PersonBuilder {
         phone = patientToCopy.getPhone();
         email = patientToCopy.getEmail();
         address = patientToCopy.getAddress();
-        tags = new HashSet<>(patientToCopy.getTags());
+        allergies = new HashSet<>(patientToCopy.getAllergies());
         appointments = new HashSet<>(patientToCopy.getAppointments());
+        medicalRecord = patientToCopy.getMedicalRecord();
     }
 
     /**
@@ -78,7 +83,7 @@ public class PersonBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+        this.allergies = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -115,8 +120,18 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     *
+     * @param url
+     * @return
+     */
+    public PersonBuilder withMedicalRecord(String url) {
+        this.medicalRecord = new MedicalRecord(url);
+        return this;
+    }
+
     public Patient build() {
-        return new Patient(name, nric, phone, email, address, tags, appointments);
+        return new Patient(name, nric, phone, email, address, allergies, appointments, medicalRecord);
     }
 
 }

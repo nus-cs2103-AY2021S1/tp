@@ -20,14 +20,15 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.allergy.Allergy;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Appointment;
 import seedu.address.model.patient.Email;
+import seedu.address.model.patient.MedicalRecord;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
-import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing person in Hospify.
@@ -103,13 +104,15 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(patientToEdit.getEmail());
         Nric updatedNric = editPersonDescriptor.getNric().orElse(patientToEdit.getNric());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(patientToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(patientToEdit.getTags());
+        Set<Allergy> updatedAllergies = editPersonDescriptor.getAllergies().orElse(patientToEdit.getAllergies());
         Set<Appointment> appointments = patientToEdit.getAppointments();
         Set<Appointment> updatedAppointments = new HashSet<>();
         updatedAppointments.addAll(appointments);
+        MedicalRecord updatedMedicalRecord = editPersonDescriptor.getMedicalRecord()
+                .orElse(patientToEdit.getMedicalRecord());
 
         return new Patient(updatedName, updatedNric, updatedPhone,
-                updatedEmail, updatedAddress, updatedTags, updatedAppointments);
+                updatedEmail, updatedAddress, updatedAllergies, updatedAppointments, updatedMedicalRecord);
     }
 
     @Override
@@ -140,7 +143,8 @@ public class EditCommand extends Command {
         private Email email;
         private Nric nric;
         private Address address;
-        private Set<Tag> tags;
+        private Set<Allergy> allergies;
+        private MedicalRecord medicalRecord;
 
         public EditPersonDescriptor() {}
 
@@ -154,14 +158,15 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setNric(toCopy.nric);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setAllergies(toCopy.allergies);
+            setMedicalRecord(toCopy.medicalRecord);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, allergies, medicalRecord);
         }
 
         public void setName(Name name) {
@@ -204,12 +209,20 @@ public class EditCommand extends Command {
             return Optional.ofNullable(nric);
         }
 
+        public void setMedicalRecord(MedicalRecord medicalRecord) {
+            this.medicalRecord = medicalRecord;
+        }
+
+        public Optional<MedicalRecord> getMedicalRecord() {
+            return Optional.ofNullable(medicalRecord);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setAllergies(Set<Allergy> allergies) {
+            this.allergies = (allergies != null) ? new HashSet<>(allergies) : null;
         }
 
         /**
@@ -217,8 +230,8 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Allergy>> getAllergies() {
+            return (allergies != null) ? Optional.of(Collections.unmodifiableSet(allergies)) : Optional.empty();
         }
 
         @Override
@@ -241,7 +254,8 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getNric().equals(e.getNric())
-                    && getTags().equals(e.getTags());
+                    && getAllergies().equals(e.getAllergies())
+                    && getMedicalRecord().equals(e.getMedicalRecord());
 
         }
     }
