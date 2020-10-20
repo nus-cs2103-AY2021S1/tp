@@ -1,0 +1,33 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Class TodoList
+
+Package Task <<Rectangle>>{
+Class UniqueTodoList
+Class Task
+Class TaskName
+Enum Priority <<enumeration>>
+Class Date
+Enum Status <<enumeration>>
+}
+
+Package Tag {
+Class Tag
+}
+}
+
+TodoList *--> "1" UniqueTodoList
+UniqueTodoList o--> "*" Task
+
+Task *---> "1" TaskName
+Task *---> "0..*" Tag
+Task *---> "0..1" Priority
+Task *---> "0..1" Date
+Task *---> "0..1" Status
+
+@enduml
