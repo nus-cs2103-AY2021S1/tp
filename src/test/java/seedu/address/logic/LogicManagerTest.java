@@ -147,8 +147,6 @@ public class LogicManagerTest {
         private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
-
-        @Override
         public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }

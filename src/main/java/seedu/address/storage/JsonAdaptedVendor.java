@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.menu.Menu;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.vendor.Address;
 import seedu.address.model.vendor.Email;
@@ -29,7 +30,7 @@ class JsonAdaptedVendor {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final String menu;
+    private Menu menu = new Menu();
 
     /**
      * Constructs a {@code JsonAdaptedVendor} with the given vendor details.
@@ -37,7 +38,7 @@ class JsonAdaptedVendor {
     @JsonCreator
     public JsonAdaptedVendor(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("menu") List<JsonAdaptedFood> foodList) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -45,8 +46,7 @@ class JsonAdaptedVendor {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        //TODO add a json version of menu
-        this.menu = null;
+        this.menu.setOrderedFoodList(foodList);
     }
 
     /**
@@ -60,7 +60,7 @@ class JsonAdaptedVendor {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        menu = null;
+        menu = source.getMenu();
         //TODO add a value in menu
     }
 
@@ -105,12 +105,17 @@ class JsonAdaptedVendor {
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
+
+        if (menu == null) {
+            // todo change error message
+            throw new IllegalValueException("MENU CANNOT BE NULL");
+        }
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(vendorTags);
 
         //TODO: check the menu
-        return new Vendor(modelName, modelPhone, modelEmail, modelAddress, modelTags, null);
+        return new Vendor(modelName, modelPhone, modelEmail, modelAddress, modelTags, menu);
     }
 
 }

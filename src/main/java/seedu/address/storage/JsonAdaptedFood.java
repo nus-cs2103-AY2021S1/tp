@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link seedu.address.model.food.Food}.
  */
-class JsonAdaptedFood {
+public class JsonAdaptedFood {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Food's %s field is missing!";
     public static final String INVALID_PRICE_FORMAT = "Price must be a double and non-negative.";

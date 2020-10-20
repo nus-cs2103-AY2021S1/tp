@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalVendors.BENSON;
 import static seedu.address.testutil.TypicalVendors.ELLE;
 import static seedu.address.testutil.TypicalVendors.getTypicalAddressBook;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -74,6 +75,7 @@ public class AddressBookTest {
 
     @Test
     public void hasVendor_vendorWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.setVendors(new ArrayList<>());
         addressBook.addVendor(ALICE);
         Vendor editedAlice = new VendorBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();

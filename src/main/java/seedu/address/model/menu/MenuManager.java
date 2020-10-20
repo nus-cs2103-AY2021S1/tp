@@ -15,7 +15,7 @@ import seedu.address.model.food.Food;
  */
 public class MenuManager implements ReadOnlyMenuManager {
 
-    private final Menu menu;
+    private Menu menu;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -36,6 +36,13 @@ public class MenuManager implements ReadOnlyMenuManager {
     public MenuManager(ReadOnlyMenuManager toBeCopied) {
         this();
         resetData(toBeCopied);
+    }
+
+    /**
+     * Creates a MenuManager using the menu in the {@code toBeCopied}
+     */
+    public MenuManager(Menu toBeCopied) {
+        this.menu = toBeCopied;
     }
 
     //// list overwrite operations
