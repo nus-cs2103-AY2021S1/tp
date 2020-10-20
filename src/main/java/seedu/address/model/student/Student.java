@@ -96,9 +96,26 @@ public class Student {
      * This operation preserves the immutability of the Student class.
      */
     public Student addQuestion(Question question) {
+        assert !containsQuestion(question);
+
+        requireNonNull(question);
         Student replacement = new Student(this);
         replacement.questions.add(question);
         return replacement;
+    }
+
+    /**
+     * Creates a new student object with a modified question replacing the previous question in the list.
+     * This operation preserves the immutability of the Student class.
+     */
+    public Student setQuestion(Question target, Question newQuestion) {
+        assert questions.contains(target);
+        requireAllNonNull(target, newQuestion);
+
+        Student replacement = new Student(this);
+        int location = replacement.questions.indexOf(target);
+        replacement.questions.set(location, newQuestion);
+        return  replacement;
     }
 
     /**

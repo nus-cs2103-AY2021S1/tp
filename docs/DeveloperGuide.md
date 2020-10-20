@@ -149,11 +149,9 @@ The following describes the flow of how `AddQuestionCommand` is performed.
 2. If there is no student at the specified position,  a `CommandException` is thrown and the question will not be added.
 3. If the student exists, `AddQuestionCommand#execute(Model model)` checks if the student already has a similar question recorded.
 4. A unique question is defined solely by its `question` and does not take into account if the question has been solved. If a duplicate question is found, a `CommandException` is thrown and the question will not be added.
-5. If the question is not a duplicate, `Student#getQuestions()` is called to retrieve the list of questions the student has asked before.
-6. The list of questions is copied, and a new `UnsolvedQuestion` is added to the copy.
-7. A new `Student` copy is made, preserving all the information of the student but instead using the modified copy of questions made in Step 6.
-8. `Model#setPerson(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the question added.
-9. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
+5. If the question is not a duplicate, `Student#addQuestion(Question question)` is called to create a modified copy of the student with a newly added question.
+6. `Model#setPerson(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the question added.
+7. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
 
 The following sequence diagram shows how the question adding operation works.
 
@@ -166,6 +164,30 @@ The following activity diagram summarises the flow of events when `AddQuestionCo
 ![AddQuestionActivity](images/AddQuestionActivityDiagram.png)
 
 Figure \___. Activity diagram for AddQuestionCommand execution
+
+#### 5.2.2 Solve question command
+
+The following describes the flow of how `SolveQuestionCommand` is performed.
+
+1. Upon successfully parsing the user input, `SolveQuestionCommand#execute(Model model)` is called to check if the student at the specified position exists.
+2. If there is no student at the specified position,  a `CommandException` is thrown and the question will not be added.
+3. If the student exists, `SolveQuestionCommand#execute(Model model)` checks if there is a question at the specified position.
+4. If the question does not exist, a `CommandException` is thrown and the question will not be resolved.
+5. If the question exists, `Student#setQuestion(Question target, Question newQuestion)` is called to create a modified copy of the student where the specified question has been replaced with a solved version.
+6. `Model#setPerson(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the question added.
+7. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
+
+The following sequence diagram shows how the question solving operation works.
+
+![SolveQuestionSequence](images/SolveQuestionSequenceDiagram.png)
+
+Figure \___. Sequence diagram for SolveQuestionCommand execution
+
+The following activity diagram summarises the flow of events when `AddQuestionCommand` is executed.
+
+![SolveQuestionActivity](images/SolveQuestionActivityDiagram.png)
+
+Figure \___. Activity diagram for SolveQuestionCommand execution
 
 ### \[Proposed\] Undo/redo feature
 

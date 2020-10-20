@@ -1,0 +1,24 @@
+@startuml
+start
+:User executes solve question command;
+:Parses the command;
+if () then ([command is valid])
+    :SolveQuestionCommand is executed;
+        if () then ([student exists])
+            if () then ([question does not exist])
+                :Display invalid question error message;
+            else ([else])
+                :Create student copy;
+                :Create solved version of question;
+                :Set the student copy's question to the solved version;
+                :Replace student with modified copy;
+                :Display success message;
+            endif
+        else ([else])
+            :Display invalid student error message;
+        endif
+else ([command is invalid - missing or invalid arguments])
+    :Display parse error message;
+endif
+stop
+@enduml

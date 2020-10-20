@@ -10,9 +10,9 @@ participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR_T1
-participant "q:Question" as Question MODEL_COLOR_T1
-participant "student:Student" as Student MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "q:UnsolvedQuestion" as Question MODEL_COLOR
+participant "student:Student" as Student MODEL_COLOR
 end box
 
 [--> LogicManager : execute("question 1 a/How do birds fly?")
@@ -57,10 +57,10 @@ deactivate ReeveParser
 LogicManager --> AddQuestionCommand : execute()
 activate AddQuestionCommand
 
-AddQuestionCommand --> Model : getFilteredPersonList()
+AddQuestionCommand --> Model : getPerson(1)
 activate Model
 
-Model --> AddQuestionCommand : lastShownList
+Model --> AddQuestionCommand : student
 deactivate Model
 
 AddQuestionCommand --> Student : addQuestion(q)

@@ -119,4 +119,14 @@ public class StudentTest {
         assertEquals(expected, newAlice);
     }
 
+    @Test
+    public void setQuestion() {
+        Student editedAlice = new StudentBuilder(ALICE).withQuestions(DEFAULT_QUESTION_MATH).build();
+        Student newAlice = editedAlice.setQuestion(new UnsolvedQuestion(DEFAULT_QUESTION_MATH),
+                new SolvedQuestion(DEFAULT_QUESTION_MATH, DEFAULT_SOLUTION));
+        Student expected = new StudentBuilder(ALICE).withSolved(DEFAULT_SOLUTION, DEFAULT_QUESTION_MATH).build();
+        assertNotEquals(editedAlice, newAlice);
+        assertEquals(expected, newAlice);
+    }
+
 }

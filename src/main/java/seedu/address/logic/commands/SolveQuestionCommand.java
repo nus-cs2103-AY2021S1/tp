@@ -57,15 +57,14 @@ public class SolveQuestionCommand extends QuestionCommand {
         Student asker = lastShownList.get(studentIndex.getZeroBased());
         checkQuestionIndex(asker);
 
-        List<Question> questionList = solveQuestion(asker);
-        Student replacement = new Student(asker.getName(), asker.getPhone(), asker.getSchool(),
-                asker.getYear(), asker.getAdmin(), questionList);
-        Question solvedQuestion = questionList.get(questionIndex.getZeroBased());
+        Question target = asker.getQuestions().get(questionIndex.getZeroBased());
+        Question solved = new SolvedQuestion(target.question, solution);
+        Student replacement = asker.setQuestion(target, solved);
 
         model.setPerson(asker, replacement);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         logger.log(Level.INFO, "Execution complete");
-        return new CommandResult(String.format(MESSAGE_SUCCESS, replacement.getName(), solvedQuestion));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, replacement.getName(), solved));
     }
 
     /***
@@ -80,18 +79,6 @@ public class SolveQuestionCommand extends QuestionCommand {
             logger.log(Level.WARNING, "Handling solved question error");
             throw new CommandException(MESSAGE_SOLVED_QUESTION);
         }
-    }
-
-    /**
-     * Marks a Student's question as done and returns the solved question.
-     */
-    private List<Question> solveQuestion(Student asker) {
-        int position = questionIndex.getZeroBased();
-        List<Question> questions = new ArrayList<>(asker.getQuestions());
-        Question toSolve = questions.get(position);
-        questions.set(position, new SolvedQuestion(toSolve.question, solution));
-
-        return questions;
     }
 
     @Override
