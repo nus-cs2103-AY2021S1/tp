@@ -14,7 +14,7 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
 ## Quick Start <a name="QuickStart"></a>
 
 1. Download Java Version 11
-2. Download [Bamboo v1.2](https://github.com/AY2021S1-CS2103-W14-3/tp/releases/tag/v1.2). 
+2. Download [Bamboo v1.2](https://github.com/AY2021S1-CS2103-W14-3/tp/releases/tag/v1.2).
 
 ## Features <a name="Features"></a>
 
@@ -48,17 +48,17 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
     - Tags expenses by their categories
     - Prefix: `t/`
     - [API](#tag)
-    
+
 7. **Expense finding**
-    - Finds expenses by keywords, date, tags 
+    - Finds expenses by keywords, date, tags
     - Command: 'find'
-    - [API](#find)    
-    
+    - [API](#find)
+
 8. **Adding Remark**
     - Adds a remark to an existing expense
     - Command: 'remark"
     -[API](#remark)
-         
+
 9. Save Load Function &lt;Coming Soon v1.2.1&gt;
 10. Password &lt;Coming Soon v1.2.1&gt;
 11. Help command → documentation &lt;Coming Soon v1.2.1&gt;
@@ -84,57 +84,57 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
     - Example: `add -ddinner -$10.50 -@24-06-2020 t/Food` Adds the spending to **input date's** record and tags with **input category**
     - Example: `add -ddinner -$10.50 -@20-08-2020 t/Food t/Basic` Adds the spending to **input date's** record and tags with **input categories**
 
-    ![add_example](images/ug_example/add_example.PNG) 
+    ![add_example](images/ug_example/add_example.PNG)
 
 2. **list** <a name="list"></a>
     - Format: `list`
     - Example: `list` Displays all the items in the list.
 
-    ![list_example](images/ug_example/list_example.PNG) 
+    ![list_example](images/ug_example/list_example.PNG)
 
 3. **edit** <a name="edit"></a>
     - Identified by index starting from 1.
     - Order of arguments is flexible except index.
-    - Edited fields overwrite previous field completely. 
+    - Edited fields overwrite previous field completely.
     - **At least 1, and up to all 3**, fields (description, amount spent, date) of expense must be specified.
     - Format: `edit <index> [-d<description>] [-$<amount_spent>] [-@<date>] [t/<category>]`
     - Example: `edit 1 -dlunch -$12.50`
     - Example: `edit 11 -$12.50 -dlunch -@23-06/2020 t/Food`
-    
-    ![edit_example](images/ug_example/edit_example.PNG) 
+
+    ![edit_example](images/ug_example/edit_example.PNG)
 
 4. **delete** <a name="delete"></a>
     - Deletes a specified existing expense record.
     - Identified by index starting from 1.
     - Format:  `delete <index>`
     - Example: `delete 11` Deletes the item at index 11 of the list.
-    
-    ![delete_example](images/ug_example/delete_example.PNG) 
+
+    ![delete_example](images/ug_example/delete_example.PNG)
 
 5. **topup** <a name="topup"></a>
     - Increases budget by amount input by user .
     - Expenses are subtracted from the budget.
     - Format: `topup -$<amount>`
     - Example: `topup -$10` Adds an extra budget of 10 dollars to work with.
-    
-    ![topup_example](images/ug_example/topup_example.PNG) 
-    
+
+    ![topup_example](images/ug_example/topup_example.PNG)
+
 6. **find** <a name="find"></a>
     - Finds expenses with given keywords, date, category by user.
     - Expenses that fits the criteria will be presented as another list.
     - Keywords and category are case-sensitive.
     - Format: `find [-d<description>] [-@<date>] [t/<category>]`
     - Example: `find -dPhone`, `find -dlunch -@01-07-2020 t/Food`
-    
-    ![find_example](images/ug_example/find_example.PNG)     
+
+    ![find_example](images/ug_example/find_example.PNG)  
 
 7. **remark** <a name="remark"></a>
     - Adds a remark to an existing expense.
     - Format: `remark <index> r/<remark>`
     - Example: `remark 11 r/Pepper Lunch`
-    
-    ![remark_example](./images/ug_example/remark_example.PNG)   
-     
+
+    ![remark_example](./images/ug_example/remark_example.PNG)  
+
 ### Fields
 1. **description**
     - Description of expense made.
@@ -142,14 +142,14 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
     - Prefix: `-d`
     - Format: `-d<description>`
     - Example: `-dlunch`, `-ddinner`
-    
+
 2. **amount**
     - Amount of expense made
     - Works only in complement with [add](#add), [edit](#edit), [find](#find), [topup](#topup)
     - Prefix: `-$`
     - Format: `-$<amount>`
     - Example: `-$2`, `-$1.50`
-    
+
 3. **date**
     - Date at which expense was made
     - Works only in complement with [add](#add), [edit](#edit), [find](#find)
