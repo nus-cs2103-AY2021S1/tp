@@ -24,6 +24,9 @@ import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
 
+/**
+ * Adds an appointment for a patient in Hospify.
+ */
 public class AddApptCommand extends Command {
 
     public static final String COMMAND_WORD = "addAppt";
