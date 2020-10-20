@@ -120,7 +120,7 @@ public class AddAdditionalDetailCommandTest {
         // different index -> return false;
         assertFalse(addAdditionalDetailCommand.equals(new AddAdditionalDetailCommand(INDEX_SECOND_PERSON, testDetail)));
 
-        // different question -> return false;
+        // different detail -> return false;
         AdditionalDetail altDetail = new AdditionalDetail("he watches birds");
         assertFalse(addAdditionalDetailCommand.equals(new AddAdditionalDetailCommand(INDEX_FIRST_PERSON, altDetail)));
     }

@@ -2,11 +2,16 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.commands.DeleteAdditionalDetailCommand.MESSAGE_BAD_DETAIL_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalStudents.ALICE;
+import static seedu.address.testutil.TypicalStudents.BENSON;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -44,7 +49,7 @@ public class DeleteAdditionalDetailCommandTest {
     }
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validStudentIndexUnfilteredList_success() {
         Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withDetails(TEST_DETAIL).build();
         AdditionalDetail additionalDetail = new AdditionalDetail(TEST_DETAIL);
@@ -60,67 +65,90 @@ public class DeleteAdditionalDetailCommandTest {
 
         assertCommandSuccess(deleteAdditionalDetailCommand, model, expectedMessage, expectedModel);
     }
-//
-//    @Test
-//    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-//        Index outOfBounds = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-//        AddAdditionalDetailCommand command = new AddAdditionalDetailCommand(outOfBounds,
-//                new AdditionalDetail(TEST_DETAIL));
-//
-//        assertCommandFailure(command, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
-//    }
-//
-//    @Test
-//    public void execute_validIndexFilteredList_throwsCommandException() {
-//        showPersonAtIndex(model, INDEX_SECOND_PERSON);
-//
-//        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-//        AdditionalDetail detail = new AdditionalDetail(TEST_DETAIL);
-//        Student clone = new StudentBuilder(asker).withDetails().build();
-//        model.setPerson(asker, clone);
-//
-//        AddAdditionalDetailCommand command = new AddAdditionalDetailCommand(INDEX_FIRST_PERSON, detail);
-//        Student expectedStudent = new StudentBuilder(BENSON).withDetails(TEST_DETAIL).build();
-//
-//        String expectedMessage = String.format(AddAdditionalDetailCommand.MESSAGE_SUCCESS, detail);
-//
-//        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
-//        expectedModel.setPerson(clone, expectedStudent);
-//
-//        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-//    }
-//
-//    @Test
-//    public void execute_invalidIndexFilteredList_throwsCommandException() {
-//        showPersonAtIndex(model, INDEX_SECOND_PERSON);
-//
-//        Index outOfBounds = INDEX_SECOND_PERSON;
-//        AdditionalDetail detail = new AdditionalDetail(TEST_DETAIL);
-//        AddAdditionalDetailCommand invalidCommand = new AddAdditionalDetailCommand(outOfBounds, detail);
-//
-//        assertCommandFailure(invalidCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
-//    }
-//
-//    @Test
-//    public void equals() {
-//        AdditionalDetail testDetail = new AdditionalDetail(TEST_DETAIL);
-//        AddAdditionalDetailCommand addAdditionalDetailCommand =
-//                new AddAdditionalDetailCommand(INDEX_FIRST_PERSON, testDetail);
-//
-//        // same object -> return true;
-//        assertTrue(addAdditionalDetailCommand.equals(addAdditionalDetailCommand));
-//
-//        // different object -> return false;
-//        assertFalse(addAdditionalDetailCommand.equals("hello"));
-//
-//        // same fields -> return true;
-//        assertTrue(addAdditionalDetailCommand.equals(new AddAdditionalDetailCommand(INDEX_FIRST_PERSON, testDetail)));
-//
-//        // different index -> return false;
-//        assertFalse(addAdditionalDetailCommand.equals(new AddAdditionalDetailCommand(INDEX_SECOND_PERSON, testDetail)));
-//
-//        // different question -> return false;
-//        AdditionalDetail altDetail = new AdditionalDetail("he watches birds");
-//        assertFalse(addAdditionalDetailCommand.equals(new AddAdditionalDetailCommand(INDEX_FIRST_PERSON, altDetail)));
-//    }
+
+    @Test
+    public void execute_invalidStudentIndexUnfilteredList_throwsCommandException() {
+        Index outOfBoundsStudentIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        DeleteAdditionalDetailCommand command = new DeleteAdditionalDetailCommand(outOfBoundsStudentIndex,
+                TEST_INDEX_FIRST_DETAIL);
+        assertCommandFailure(command, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_invalidDetailIndexUnfilteredList_throwsCommandException() {
+        Index outOfBoundsDetailIndex = Index.fromOneBased(model.getFilteredPersonList().get(0).getDetails().size() + 1);
+        DeleteAdditionalDetailCommand invalidCommand = new DeleteAdditionalDetailCommand(TEST_INDEX_FIRST_STUDENT,
+                outOfBoundsDetailIndex);
+
+        assertCommandFailure(invalidCommand, model, MESSAGE_BAD_DETAIL_INDEX);
+    }
+
+    @Test
+    public void execute_validStudentIndexFilteredList_throwsCommandException() {
+        showPersonAtIndex(model, INDEX_SECOND_PERSON);
+
+        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        AdditionalDetail detail = new AdditionalDetail(TEST_DETAIL);
+        Student clone = new StudentBuilder(asker).withDetails(TEST_DETAIL).build();
+        model.setPerson(asker, clone);
+
+        DeleteAdditionalDetailCommand command = new DeleteAdditionalDetailCommand(INDEX_FIRST_PERSON,
+                TEST_INDEX_FIRST_DETAIL);
+        Student expectedStudent = new StudentBuilder(BENSON).withDetails().build();
+
+        String expectedMessage = String.format(DeleteAdditionalDetailCommand.MESSAGE_SUCCESS, detail);
+
+        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
+        expectedModel.setPerson(clone, expectedStudent);
+
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidStudentIndexFilteredList_throwsCommandException() {
+        showPersonAtIndex(model, INDEX_SECOND_PERSON);
+
+        Index outOfBoundsStudentIndex = INDEX_SECOND_PERSON;
+        DeleteAdditionalDetailCommand invalidCommand = new DeleteAdditionalDetailCommand(outOfBoundsStudentIndex,
+                TEST_INDEX_FIRST_DETAIL);
+
+        assertCommandFailure(invalidCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_invalidDetailIndexFilteredList_throwsCommandException() {
+        showPersonAtIndex(model, INDEX_SECOND_PERSON);
+
+        Index outOfBoundsDetailIndex = Index.fromOneBased(model.getFilteredPersonList().get(0).getDetails().size() + 1);
+        DeleteAdditionalDetailCommand invalidCommand = new DeleteAdditionalDetailCommand(TEST_INDEX_FIRST_STUDENT,
+                outOfBoundsDetailIndex);
+
+        assertCommandFailure(invalidCommand, model, MESSAGE_BAD_DETAIL_INDEX);
+    }
+
+    @Test
+    public void equals() {
+        AdditionalDetail testDetail = new AdditionalDetail(TEST_DETAIL);
+        DeleteAdditionalDetailCommand deleteAdditionalDetailCommand =
+                new DeleteAdditionalDetailCommand(INDEX_FIRST_PERSON, TEST_INDEX_FIRST_DETAIL);
+
+        // same object -> return true;
+        assertTrue(deleteAdditionalDetailCommand.equals(deleteAdditionalDetailCommand));
+
+        // different object -> return false;
+        assertFalse(deleteAdditionalDetailCommand.equals("hello"));
+
+        // same fields -> return true;
+        assertTrue(deleteAdditionalDetailCommand.equals(new DeleteAdditionalDetailCommand(INDEX_FIRST_PERSON,
+                TEST_INDEX_FIRST_DETAIL)));
+
+        // different student index -> return false;
+        assertFalse(deleteAdditionalDetailCommand.equals(new AddAdditionalDetailCommand(INDEX_SECOND_PERSON,
+                testDetail)));
+
+        // different detail index -> return false;
+        AdditionalDetail altDetail = new AdditionalDetail("he watches birds");
+        assertFalse(deleteAdditionalDetailCommand.equals(new DeleteAdditionalDetailCommand(INDEX_FIRST_PERSON,
+                TEST_INDEX_SECOND_DETAIL)));
+    }
 }
