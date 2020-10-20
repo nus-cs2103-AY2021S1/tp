@@ -170,6 +170,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         modules.assignInstructor(instructor, moduleCode);
     }
 
+    public void unassignAllInstructors() {
+        modules.unassignAllInstructors();
+    }
+
     //// util methods
 
     @Override

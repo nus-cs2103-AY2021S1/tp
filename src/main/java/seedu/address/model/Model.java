@@ -126,6 +126,8 @@ public interface Model {
      */
     void assignInstructor(Person instructor, ModuleCode moduleCode);
 
+    void unassignAllInstructors();
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Module> getFilteredModuleList();
 
@@ -137,4 +139,5 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered module list */
     UniqueModuleList getModuleList();
+
 }

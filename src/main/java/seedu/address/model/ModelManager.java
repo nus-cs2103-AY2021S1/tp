@@ -155,6 +155,11 @@ public class ModelManager implements Model {
         addressBook.assignInstructor(instructor, moduleCode);
     }
 
+    @Override
+    public void unassignAllInstructors() {
+        addressBook.unassignAllInstructors();
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

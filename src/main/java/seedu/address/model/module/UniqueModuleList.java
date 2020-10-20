@@ -94,6 +94,17 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
+     * Unassigns all instructors from all modules.
+     */
+    public void unassignAllInstructors() {
+        for (int index = 0; index < internalList.size(); index++) {
+            Module toSet = internalList.get(index);
+            Module moduleWithEmptyInstructors = toSet.moduleWithEmptyInstructors();
+            internalList.set((index), moduleWithEmptyInstructors);
+        }
+    }
+
+    /**
      * Clear all the modules inside the list.
      */
     public void clearAll() {

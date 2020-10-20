@@ -54,6 +54,16 @@ public class Module {
         return Collections.unmodifiableSet(instructors);
     }
 
+    /**
+     * Empties out the instructor list of this module.
+     * @return this module with empty instructors list
+     */
+    public Module moduleWithEmptyInstructors() {
+        Set<Person> emptyInstructors = new HashSet<>();
+        Module newModule = new Module(this.moduleCode, this.moduleName, emptyInstructors);
+        return newModule;
+    }
+
     public void assignInstructor(Person instructor) {
         this.instructors.add(instructor);
     }

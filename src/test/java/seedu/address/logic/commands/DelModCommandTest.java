@@ -163,6 +163,11 @@ class DelModCommandTest {
         }
 
         @Override
+        public void unassignAllInstructors() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public UniqueModuleList getModuleList() {
             return null;
         }

@@ -23,6 +23,7 @@ import seedu.address.logic.commands.MclearCommand;
 import seedu.address.logic.commands.MlistCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.ResetCommand;
+import seedu.address.logic.commands.UnassignallCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -93,6 +94,9 @@ public class AddressBookParser {
 
         case AssignCommand.COMMAND_WORD:
             return new AssignCommandParser().parse(arguments);
+
+        case UnassignallCommand.COMMAND_WORD:
+            return new UnassignallCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
