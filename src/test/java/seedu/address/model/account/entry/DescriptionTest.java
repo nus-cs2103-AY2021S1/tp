@@ -25,7 +25,9 @@ public class DescriptionTest {
 
         // invalid addresses
         assertFalse(Description.isValidDescription("")); // empty string
-        assertFalse(Description.isValidDescription(" ")); // spaces only
+        assertFalse(Description.isValidDescription(" ")); // one space only
+        assertFalse(Description.isValidDescription("    ")); // multiple spaces only
+
 
         // valid addresses
         assertTrue(Description.isValidDescription("buying supplies"));

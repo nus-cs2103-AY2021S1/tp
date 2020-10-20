@@ -14,7 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path commonCentsFilePath = Paths.get("data" , "commonCents.json");
+    private Path commonCentsFilePath = Paths.get("data" , "CommonCents.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -51,9 +51,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return commonCentsFilePath;
     }
 
-    public void setCommonCentsFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.commonCentsFilePath = addressBookFilePath;
+    public void setCommonCentsFilePath(Path commonCentsFilePath) {
+        requireNonNull(commonCentsFilePath);
+        this.commonCentsFilePath = commonCentsFilePath;
     }
 
     @Override

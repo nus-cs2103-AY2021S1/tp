@@ -15,7 +15,6 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.CommonCents;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyCommonCents;
@@ -69,9 +68,9 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s Common Cents and {@code userPrefs}. <br>
+     * The data from the sample Common Cents will be used instead if {@code storage}'s Common Cents is not found,
+     * or an empty Common Cents will be used instead if errors occur when reading {@code storage}'s Common Cents.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyCommonCents> commonCentsOptional;
@@ -84,10 +83,10 @@ public class MainApp extends Application {
             initialData = commonCentsOptional.orElseGet(SampleCommonCentsUtilData::getSampleCommonCents);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty CommonCents");
-            initialData = new CommonCents();
+            initialData = SampleCommonCentsUtilData.initEmptyCommonCents();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty CommonCents");
-            initialData = new CommonCents();
+            initialData = SampleCommonCentsUtilData.initEmptyCommonCents();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -151,7 +150,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty CommonCents");
             initializedPrefs = new UserPrefs();
         }
 

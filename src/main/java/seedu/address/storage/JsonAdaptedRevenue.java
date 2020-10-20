@@ -50,18 +50,18 @@ public class JsonAdaptedRevenue extends JsonAdaptedEntry {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Description.class.getSimpleName()));
         }
+        if (!Description.isValidDescription(description)) {
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+        }
         final Description modelDescription = new Description(description);
 
         if (amount == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Amount.class.getSimpleName()));
         }
-        final Amount modelAmount = new Amount(amount);
-
-        /*
-        if (type == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "type"));
+        if (!Amount.isValidAmount(amount)) {
+            throw new IllegalValueException(String.format(Amount.MESSAGE_CONSTRAINTS));
         }
-        */
+        final Amount modelAmount = new Amount(amount);
         final Set<Tag> modelTags = new HashSet<>(entryTags);
         return new Revenue(modelDescription, modelAmount, modelTags);
     }

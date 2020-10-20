@@ -1,0 +1,17 @@
+{
+  "name" : " ",
+  "expenses" : [ {
+    "description" : "Watercolours",
+    "amount" : "12.10",
+    "tags" : [ "art", "colours" ]
+  }, {
+    "description" : "canvas",
+    "amount" : "20.15",
+    "tags" : [ "art" ]
+  } ],
+  "revenues" : [ {
+    "description" : "flowers",
+    "amount" : "20.00",
+    "tags" : [ "stub" ]
+  } ]
+}

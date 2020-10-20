@@ -42,7 +42,7 @@ public interface Logic {
     ObservableList<Revenue> getFilteredRevenueList();
 
     /**
-     * Returns the user prefs' common cents file path.
+     * Returns the user prefs' Common Cents file path.
      */
     Path getCommonCentsFilePath();
 

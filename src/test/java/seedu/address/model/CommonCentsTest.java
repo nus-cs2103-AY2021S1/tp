@@ -60,6 +60,7 @@ public class CommonCentsTest {
     @Test
     public void hasAccount_accountInCommonCents_returnsTrue() {
         Account account = TypicalEntries.getTypicalAccount();
+        commonCents.addAccount(account);
         assertTrue(commonCents.hasAccount(account));
     }
 
@@ -97,7 +98,7 @@ public class CommonCentsTest {
         commonCents.setAccount(edited);
 
         assertEquals(new Description("bought flower pots"), commonCents.getAccountList()
-            .get(1).getExpenseList().get(0).getDescription());
+            .get(0).getExpenseList().get(0).getDescription());
     }
 
     @Test

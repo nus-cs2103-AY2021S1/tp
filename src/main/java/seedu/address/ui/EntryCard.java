@@ -12,7 +12,7 @@ import seedu.address.model.account.entry.Expense;
 
 public class EntryCard extends UiPart<Node> {
 
-    private static final String FXML = "EntryListCard.FXML";
+    private static final String FXML = "EntryListCard.fxml";
 
     public final Entry entry;
 

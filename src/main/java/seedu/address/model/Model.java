@@ -35,17 +35,17 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' CommonCents file path.
      */
     Path getCommonCentsFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' CommonCents file path.
      */
     void setCommonCentsFilePath(Path commonCentsFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces CommonCents data with the data in {@code commonCents}.
      */
     void setCommonCents(ReadOnlyCommonCents commonCents);
 
@@ -70,8 +70,8 @@ public interface Model {
     void addAccount(Account account);
 
     /**
-     * Replaces the given person {@code target} with {@code editedAccount}.
-     * {@code target} must exist in the address book.
+     * Replaces the given account {@code target} with {@code editedAccount}.
+     * {@code target} must exist in the CommonCents.
      * The account identity of {@code editedAccount} must not be the same as another existing account
      * in the CommonCents.
      */
@@ -79,7 +79,7 @@ public interface Model {
 
     /**
      * Replaces the account in the list with the same name as {@code editedAccount}.
-     * The account with the same name must exist in the money-tracker.
+     * The account with the same name must exist in CommonCents.
      */
     void setAccount(Account editedAccount);
 
