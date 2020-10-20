@@ -160,6 +160,11 @@ public class ModelManager implements Model {
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
+    @Override
+    public void assignInstructor(Person instructor, ModuleCode moduleCode) {
+        addressBook.assignInstructor(instructor, moduleCode);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

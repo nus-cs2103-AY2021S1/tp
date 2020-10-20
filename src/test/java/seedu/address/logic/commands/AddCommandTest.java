@@ -140,17 +140,22 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public void deleteModule(ModuleCode moduleCode) {
-            throw new AssertionError("This method should not be called.");
-        }
-
         public boolean hasModule(Module module) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void addModule(Module module) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteModule(ModuleCode moduleCode) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void assignInstructor(Person instructor, ModuleCode moduleCode) {
             throw new AssertionError("This method should not be called.");
         }
 
