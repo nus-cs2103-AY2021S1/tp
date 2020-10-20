@@ -141,6 +141,26 @@ Classes used by multiple components are stored in the `seedu.addressbook.commons
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### View item feature
+
+The view item feature allows users to view the detailed information of a recorded item, as compared to the default list
+display of all items which may truncate some information.
+
+#### Implementation
+
+During execution of view command, `LogicManager` detects that it is a view command, then has `InventoryParser` parse
+the item name that the user has input using `ViewDetailsCommandParser`. After parsing, `LogicManager` then has 
+`ViewDetailsCommand` filter the list of items such that only the exact item the user has requested remains.
+
+After executing the view command, `LogicManager` sends feedback to `InventoryMainWindow` that the command has a 
+`DisplayedInventoryType` of `DETAILED_ITEM`, which prompts `InventoryListPanel` to change the display card of items
+into a more detailed display card on the GUI.
+
+This is the sequence diagram of view item command:
+
+![ViewItemSequenceDiagram](images/commandseqdiagrams/ViewItemSequenceDiagram.png )
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
