@@ -2,8 +2,10 @@ package seedu.stock.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.stock.model.stock.Stock;
 
 /**
@@ -39,9 +41,11 @@ public class StockCard extends UiPart<Region> {
     private Label source;
     @FXML
     private Label notes;
+    @FXML
+    private VBox notesBox;
 
     /**
-     * Creates a {@code StockCode} with the given {@code Stock} and index to display.
+     * Creates a {@code StockCard} with the given {@code Stock} and index to display.
      */
     public StockCard(Stock stock, int displayedIndex) {
         super(FXML);
