@@ -29,7 +29,11 @@ public class FindCommandTest {
         String expectedMessage = String.format(Messages.MESSAGE_FOOD_LISTED_OVERVIEW, 0);
         FoodContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand();
-        command.setParameters(new CommandParserTestUtil.ParameterStub<>("", predicate));
+        command.setParameters(
+                new CommandParserTestUtil.OptionalParameterStub<>("", predicate),
+                new CommandParserTestUtil.OptionalParameterStub<>("n"),
+                new CommandParserTestUtil.OptionalParameterStub<>("t"),
+                new CommandParserTestUtil.OptionalParameterStub<>("d"));
         expectedModel.updateFilteredFoodList(predicate);
         CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredFoodList());
@@ -40,7 +44,11 @@ public class FindCommandTest {
         String expectedMessage = String.format(Messages.MESSAGE_FOOD_LISTED_OVERVIEW, 2);
         FoodContainsKeywordsPredicate predicate = preparePredicate("CHICKEN fish");
         FindCommand command = new FindCommand();
-        command.setParameters(new CommandParserTestUtil.ParameterStub<>("", predicate));
+        command.setParameters(
+                new CommandParserTestUtil.OptionalParameterStub<>("", predicate),
+                new CommandParserTestUtil.OptionalParameterStub<>("n"),
+                new CommandParserTestUtil.OptionalParameterStub<>("t"),
+                new CommandParserTestUtil.OptionalParameterStub<>("d"));
         expectedModel.updateFilteredFoodList(predicate);
         CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CHICKEN_RICE, CRISPY_FRIED_FISH),
