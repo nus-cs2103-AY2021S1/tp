@@ -21,6 +21,11 @@ public class FindContactCommand extends Command {
 
     private final NameContainsKeywordsPredicate predicate;
 
+    /**
+     * Creates and initialises a FindContactCommand object.
+     *
+     * @param predicate Predicate to test if the Contact contains the search keyword provided by users.
+     */
     public FindContactCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
