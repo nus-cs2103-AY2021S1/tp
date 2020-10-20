@@ -62,7 +62,7 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/AY1920S2-CS2103T-F10-1/main/blob/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ItemListPanel`, `DeliveryListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
