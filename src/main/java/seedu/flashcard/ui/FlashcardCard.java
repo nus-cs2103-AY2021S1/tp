@@ -44,6 +44,8 @@ public class FlashcardCard extends UiPart<Region> {
     @FXML
     private Text ratingIcon;
     @FXML
+    private Text favouriteIcon;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -67,6 +69,11 @@ public class FlashcardCard extends UiPart<Region> {
         } else {
             ratingPane.setVisible(false);
             ratingPane.managedProperty().bind(ratingPane.visibleProperty());
+        }
+        if (flashcard.isFavourite()) {
+            favouriteIcon.setText("\u2661");
+        } else {
+            favouriteIcon.setVisible(false);
         }
 
     }
