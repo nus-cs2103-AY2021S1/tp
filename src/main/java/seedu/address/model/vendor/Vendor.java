@@ -22,7 +22,6 @@ public class Vendor {
      * Every field must be present and not null.
      */
     public Vendor(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Menu menu) {
-        //TODO: CHECK FOR NULL MENU
         requireAllNonNull(name, phone, email, address, tags, menu);
         this.name = name;
         this.phone = phone;
