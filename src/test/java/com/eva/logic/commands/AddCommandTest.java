@@ -165,6 +165,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasLeavePeriod(Staff target, Leave leave) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyEvaDatabase<Person> getPersonDatabase() {
             throw new AssertionError("This method should not be called.");
         }
