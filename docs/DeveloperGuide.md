@@ -144,7 +144,7 @@ This section describes some noteworthy details on how certain features are imple
 ### List item/recipe feature
 
 The list item/recipe feature allows the user to toggle between viewing the list of all items or recipes in the 
-current inventory. The view detailed item feature allows the user to view the details of the item.
+current inventory. 
 
 #### Implementation
 
@@ -173,10 +173,10 @@ The detailed item is now displayed, and all other items are removed from view.
 
 Step 5: The user executes `listi` to view the item list. The current item list is now displayed.
 
-//TODO The following sequence diagram shows how the list items operation works:
+The following sequence diagram shows how the list items operation works:
+![ListItemSequenceDiagram](images/commandseqdiagrams/ListItemSequenceDiagram.png)
 
 The following sequence diagram shows how the list recipes operation works:
-
 ![ListRecipeSequenceDiagram](images/commandseqdiagrams/ListRecipeSequenceDiagram.png)
 
 

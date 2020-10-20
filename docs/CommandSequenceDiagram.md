@@ -22,3 +22,9 @@ understand what is going on under the hood.
 
 ### Delete Recipe Command
 ![DeleteRecipe](images/commandseqdiagrams/DeleteRecipeSequenceDiagram.png)
+
+### List Item Command
+![ListItemSequenceDiagram](images/commandseqdiagrams/ListItemSequenceDiagram.png)
+
+### List Recipe Command
+![ListRecipeSequenceDiagram](images/commandseqdiagrams/ListRecipeSequenceDiagram.png)
