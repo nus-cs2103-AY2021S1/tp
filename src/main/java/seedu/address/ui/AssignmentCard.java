@@ -51,6 +51,8 @@ public class AssignmentCard extends UiPart<Region> {
     private Label moduleCode;
     @FXML
     private Label dueDate;
+    @FXML
+    private Label priority;
 
     /**
      * Creates a {@code AssignmentCode} with the given {@code Assignment} and index to display.
@@ -63,6 +65,7 @@ public class AssignmentCard extends UiPart<Region> {
         deadline.setText("Deadline: " + assignment.getDeadline().value);
         moduleCode.setText("Module: " + assignment.getModuleCode().moduleCode);
         getDueDate(dueDate, assignment.getDeadline());
+        priority.setText("Priority: " + assignment.getPriority().toString());
     }
 
     public void getDueDate(Label label, Deadline deadline) {

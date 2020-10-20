@@ -6,7 +6,26 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+<<<<<<< HEAD
 import seedu.address.logic.commands.*;
+=======
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ImportCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.PrioritizeCommand;
+import seedu.address.logic.commands.RemindCommand;
+import seedu.address.logic.commands.ScheduleCommand;
+import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.UnprioritizeCommand;
+import seedu.address.logic.commands.UnremindCommand;
+>>>>>>> 00ad06273c5d74b0aaa6d956a64a9ec37e090d67
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -69,11 +88,22 @@ public class AddressBookParser {
         case ImportCommand.COMMAND_WORD:
             return new ImportCommandParser().parse(arguments);
 
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
         case ScheduleCommand.COMMAND_WORD:
             return new ScheduleCommandParser().parse(arguments);
 
+<<<<<<< HEAD
         case UnscheduleCommand.COMMAND_WORD:
             return new UnscheduleCommandParser().parse(arguments);
+=======
+        case PrioritizeCommand.COMMAND_WORD:
+            return new PrioritizeCommandParser().parse(arguments);
+
+        case UnprioritizeCommand.COMMAND_WORD:
+            return new UnprioritizeCommandParser().parse(arguments);
+>>>>>>> 00ad06273c5d74b0aaa6d956a64a9ec37e090d67
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

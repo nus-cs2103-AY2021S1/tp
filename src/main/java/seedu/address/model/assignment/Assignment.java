@@ -11,14 +11,17 @@ import java.util.Objects;
 public class Assignment extends Task {
     private final Remind remind;
     private final Schedule schedule;
+    private final Priority priority;
     /**
      * Every field must be present and not null.
      */
-    public Assignment(Name name, Deadline deadline, ModuleCode moduleCode, Remind remind, Schedule schedule) {
+    public Assignment(Name name, Deadline deadline, ModuleCode moduleCode, Remind remind, Schedule schedule,
+                      Priority priority) {
         super(name, deadline, moduleCode);
         requireAllNonNull(name, deadline, moduleCode, remind);
         this.remind = remind;
         this.schedule = schedule;
+        this.priority = priority;
     }
 
     public Schedule getSchedule() {
@@ -31,6 +34,10 @@ public class Assignment extends Task {
 
     public Remind getRemind() {
         return remind;
+    }
+
+    public Priority getPriority() {
+        return priority;
     }
 
     /**
@@ -54,6 +61,13 @@ public class Assignment extends Task {
      */
     public boolean isReminded() {
         return remind.isReminded();
+    }
+
+    /**
+     * Returns true if the assignment already has a priorty. Otherwise, returns false.
+     */
+    public boolean hasPriority() {
+        return priority.hasPriority();
     }
 
     /**

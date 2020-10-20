@@ -8,6 +8,7 @@ import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.ModuleCode;
 import seedu.address.model.assignment.Name;
+import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
 
@@ -25,6 +26,7 @@ class JsonAdaptedAssignment {
     private final boolean isScheduled;
     private final String suggestedStartTime;
     private final String suggestedEndTime;
+    private final String priority;
 
     /**
      * Constructs a {@code JsonAdaptedAssignment} with the given assignment details.
@@ -35,7 +37,8 @@ class JsonAdaptedAssignment {
                                  @JsonProperty("isReminded") boolean isReminded,
                                  @JsonProperty("isScheduled") boolean isScheduled,
                                  @JsonProperty("suggestedStartTime") String suggestedStartTime,
-                                 @JsonProperty("suggestedEndTime") String suggestedEndTime) {
+                                 @JsonProperty("suggestedEndTime") String suggestedEndTime,
+                                 @JsonProperty("priority") String priority) {
         this.name = name;
         this.deadline = deadline;
         this.moduleCode = moduleCode;
@@ -43,6 +46,7 @@ class JsonAdaptedAssignment {
         this.isScheduled = isScheduled;
         this.suggestedStartTime = suggestedStartTime;
         this.suggestedEndTime = suggestedEndTime;
+        this.priority = priority;
     }
 
     /**
@@ -61,6 +65,7 @@ class JsonAdaptedAssignment {
             suggestedStartTime = "";
             suggestedEndTime = "";
         }
+        priority = source.getPriority().toString();
     }
 
     /**
@@ -69,6 +74,12 @@ class JsonAdaptedAssignment {
      * @throws IllegalValueException if there were any data constraints violated in the adapted assignment.
      */
     public Assignment toModelType() throws IllegalValueException {
+        final Priority modelPriority;
+        if (priority == null || priority.equals("")) {
+            modelPriority = new Priority();
+        } else {
+            modelPriority = new Priority(priority);
+        }
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -110,9 +121,10 @@ class JsonAdaptedAssignment {
         if (isScheduled) {
             final Schedule modelSchedule = new Schedule(new Deadline(suggestedStartTime),
                     new Deadline(suggestedEndTime));
-            return new Assignment(modelName, modelDeadline, modelModuleCode, modelRemind, modelSchedule);
+            return new Assignment(modelName, modelDeadline, modelModuleCode, modelRemind, modelSchedule, modelPriority);
         } else {
-            return new Assignment(modelName, modelDeadline, modelModuleCode, modelRemind, new Schedule());
+            return new Assignment(modelName, modelDeadline, modelModuleCode, modelRemind, new Schedule(),
+                    modelPriority);
         }
     }
 }

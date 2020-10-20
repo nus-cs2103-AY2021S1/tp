@@ -13,6 +13,7 @@ import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.ModuleCode;
 import seedu.address.model.assignment.Name;
+import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
 
@@ -54,12 +55,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
         Remind remind = new Remind();
         Schedule schedule = new Schedule();
+        Priority priority = new Priority();
 
         if (isRemindPresent) {
             remind = remind.setReminder();
         }
 
-        Assignment assignment = new Assignment(name, deadline, moduleCode, remind, schedule);
+        Assignment assignment = new Assignment(name, deadline, moduleCode, remind, schedule, priority);
         return new AddCommand(assignment);
     }
 

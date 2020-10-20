@@ -8,6 +8,7 @@ import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.ModuleCode;
 import seedu.address.model.assignment.Name;
+import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
 
@@ -18,6 +19,7 @@ public class SampleDataUtil {
     private static final Remind NOT_REMINDED = new Remind();
     private static final Remind IS_REMINDED = new Remind(true);
     private static final Schedule NOT_SCHEDULED = new Schedule();
+    private static final Priority NO_PRIORITY = new Priority();
     private static final Deadline DEADLINE_OVERDUE = new Deadline(LocalDateTime.now().minusDays(1));
     private static final Deadline DEADLINE_12_HOURS = new Deadline(LocalDateTime.now().plusHours(12));
     private static final Deadline DEADLINE_5_DAYS = new Deadline(LocalDateTime.now().plusDays(5));
@@ -27,17 +29,17 @@ public class SampleDataUtil {
     public static Assignment[] getSampleAssignments() {
         return new Assignment[] {
             new Assignment(new Name("CS1231S Homework"), DEADLINE_5_DAYS,
-                    new ModuleCode("CS1231S"), NOT_REMINDED, getValidScheduleBeforeNextWeek()),
+                    new ModuleCode("CS1231S"), NOT_REMINDED, getValidScheduleBeforeNextWeek(), NO_PRIORITY),
             new Assignment(new Name("CS2103T Quiz"), DEADLINE_12_HOURS,
-                    new ModuleCode("CS2103T"), NOT_REMINDED, NOT_SCHEDULED),
+                    new ModuleCode("CS2103T"), NOT_REMINDED, NOT_SCHEDULED, NO_PRIORITY),
             new Assignment(new Name("CS2106 Lab"), DEADLINE_25_DAYS,
-                    new ModuleCode("CS2106"), IS_REMINDED, NOT_SCHEDULED),
+                    new ModuleCode("CS2106"), IS_REMINDED, NOT_SCHEDULED, NO_PRIORITY),
             new Assignment(new Name("Peer review"), DEADLINE_60_DAYS,
-                    new ModuleCode("CS2101"), NOT_REMINDED, getValidScheduleBeforeNextMonth()),
+                    new ModuleCode("CS2101"), NOT_REMINDED, getValidScheduleBeforeNextMonth(), NO_PRIORITY),
             new Assignment(new Name("IS1103 Mission"), DEADLINE_OVERDUE,
-                    new ModuleCode("IS1103"), IS_REMINDED, NOT_SCHEDULED),
+                    new ModuleCode("IS1103"), IS_REMINDED, NOT_SCHEDULED, NO_PRIORITY),
             new Assignment(new Name("Oral Presentation"), DEADLINE_15_DAYS,
-                    new ModuleCode("CS2101"), NOT_REMINDED, NOT_SCHEDULED)
+                    new ModuleCode("CS2101"), NOT_REMINDED, NOT_SCHEDULED, NO_PRIORITY)
         };
     }
 
