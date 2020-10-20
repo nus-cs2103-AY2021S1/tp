@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.ModuleList;
 import seedu.address.model.Module;
+import seedu.address.model.ModuleList;
 
 /**
  * A utility class containing a list of {@code Module} objects to be used in tests.
