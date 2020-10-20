@@ -38,10 +38,10 @@ ZooKeep is a desktop app for managing animals under a zookeeper’s care, optimi
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Hershey`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/Hershey t/bird` or as `n/Hershey`.
+  e.g `n/NAME [m/MEDICAL CONDITION]` can be used as `n/Hershey m/Healthy` or as `n/Hershey`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/bird`, `t/bird t/timid` etc.
+  e.g. `[f/FEEDING TIME]…​` can be used as ` ` (i.e. 0 times), `f/0600`, `f/0600 f/1800` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME s/SPECIES i/ID`, `n/NAME i/ID s/SPECIES` is also acceptable.
@@ -62,15 +62,15 @@ Format: `help`
 
 Adds an animal under the care of the user.
 
-Format: `add n/NAME s/SPECIES i/ID [t/TAG]…​`
+Format: `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]… [f/FEEDING TIME]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An animal can have any number of tags (including 0).
+An animal can have any number of medical conditions and feeding times (including 0).
 </div>
 
 Examples:
-* `add n/Hershey s/Rufous Hummingbird i/0193`
-* `add n/Lonesome George s/Galapagos Tortoise i/0007 t/herbivore`
+* `add n/Hershey s/Rufous Hummingbird i/193`
+* `add n/Lonesome George s/Galapagos Tortoise i/117 m/Healthy f/1200`
 
 ---
 
@@ -91,8 +91,8 @@ Format: `delete i/ID`
 * Deletes the animal at the specified `ID`.
 * ID refers to the id number shown in the displayed animal list.
 
-Examples:
-* `delete i/0193` deletes the individual animal with id 0193.
+Example:
+* `delete i/193` deletes the individual animal with id 193.
 
 ---
 
@@ -112,9 +112,28 @@ Format: `exit`
 
 ---
 
-#### Saving the data
+#### Saving a snapshot of animal data: `snap`
 
-Animal data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Creates a snapshot of the current zookeep book data, saved as a file with the user specified file name
+
+:information_source: **Constraints**:
+* File name can only contain alphanumeric characters, hyphens `-` and underscores `_`
+* File name must be at least 1 character long and at most 100 characters long
+* User specified file name must not already exist in the data folder
+
+Format: `snap FILE_NAME`
+
+Example:
+* `snap zookeepbook_19-10-2020` saves the current state of the zookeep book data as a file named 
+`zookeepbook_19-10-2020.json`, located in the data folder.
+
+---
+
+#### Manually saving data
+
+Animal data is saved in the hard disk with the preferred file name automatically after any command that changes the data. 
+By default, the preferred file name is `zookeepbook.json`
+There is no need to save manually, though a copy of the current data can be created with the `snap` command. 
 
 ## FAQ
 
@@ -125,9 +144,10 @@ Animal data is saved in the hard disk automatically after any command that chang
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME s/SPECIES i/ID [t/TAG]…​` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/0007 t/herbivore`
+**Add** | `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]…​[f/FEEDING TIME]…` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/117 m/Healthy f/1200`
 **Clear** | `clear`
-**Delete** | `delete i/ID`<br> e.g. `delete i/0193`
+**Delete** | `delete i/ID` <br> e.g. `delete i/193`
 **Exit** | `exit`
 **Help** | `help`
 **List** | `list`
+**Snap** | `snap FILE_NAME` <br> e.g. `snap zookeepbook_19-10-2020`
