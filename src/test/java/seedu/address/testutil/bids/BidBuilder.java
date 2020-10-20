@@ -7,8 +7,8 @@ import seedu.address.model.price.Price;
 
 public class BidBuilder {
 
-    public static final String DEFAULT_PROPERTY_ID = "P01";
-    public static final String DEFAULT_BIDDER_ID = "B01";
+    public static final String DEFAULT_PROPERTY_ID = "P1";
+    public static final String DEFAULT_BIDDER_ID = "B1";
     public static final double DEFAULT_BID_AMOUNT = 45000.30;
 
     private PropertyId propertyId;

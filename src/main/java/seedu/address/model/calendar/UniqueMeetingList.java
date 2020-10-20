@@ -35,7 +35,7 @@ public class UniqueMeetingList implements Iterable<CalendarMeeting> {
      */
     public boolean contains(CalendarMeeting toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameMeeting);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -64,7 +64,7 @@ public class UniqueMeetingList implements Iterable<CalendarMeeting> {
             throw new MeetingNotFoundException();
         }
 
-        if (!target.isSameMeeting(editedMeeting) && contains(editedMeeting)) {
+        if (!target.equals(editedMeeting) && contains(editedMeeting)) {
             throw new DuplicateMeetingException();
         }
 
@@ -130,7 +130,7 @@ public class UniqueMeetingList implements Iterable<CalendarMeeting> {
     private boolean meetingsAreUnique(List<CalendarMeeting> meetings) {
         for (int i = 0; i < meetings.size() - 1; i++) {
             for (int j = i + 1; j < meetings.size(); j++) {
-                if (meetings.get(i).isSameMeeting(meetings.get(j))) {
+                if (meetings.get(i).equals(meetings.get(j))) {
                     return false;
                 }
             }

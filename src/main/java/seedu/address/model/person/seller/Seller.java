@@ -1,5 +1,7 @@
 package seedu.address.model.person.seller;
 
+import static seedu.address.model.id.SellerId.DEFAULT_SELLER_ID;
+
 import java.util.Set;
 
 import seedu.address.model.id.SellerId;
@@ -14,7 +16,6 @@ import seedu.address.model.tag.Tag;
  */
 public class Seller extends ClientPerson {
 
-    public static final SellerId DEFAULT_SELLER_ID = new SellerId(0);
     private SellerId sellerId;
 
     /**

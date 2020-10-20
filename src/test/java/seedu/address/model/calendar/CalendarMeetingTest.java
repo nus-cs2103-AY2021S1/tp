@@ -28,11 +28,15 @@ class CalendarMeetingTest {
     private CalendarPaperwork meetingDiffPaperworkType = new CalendarPaperwork(new BidderId("B2"),
             new PropertyId("P2"), new CalendarTime("15 Oct 2020"),
             new CalendarVenue("tampines"));
+    private CalendarPaperwork meetingPaperworkType = new CalendarPaperwork(new BidderId("B2"),
+            new PropertyId("P2"), new CalendarTime("15 Oct 2020"),
+            new CalendarVenue("tampines"));
 
     @Test
     void getCalendarBidderId() {
         assertTrue(firstMeeting.getCalendarBidderId().equals(firstMeetingIdentical.getCalendarBidderId()));
         assertFalse(firstMeeting.getCalendarBidderId().equals(firstMeetingDiff.getCalendarBidderId()));
+        assert (firstMeeting.getCalendarBidderId().equals(firstMeetingIdentical.getCalendarBidderId()));
     }
 
     @Test
@@ -70,4 +74,11 @@ class CalendarMeetingTest {
         assertFalse(firstMeeting.isAdmin() && firstMeetingDiff.isAdmin());
         assertTrue(meetingDiffAdminType.isAdmin());
     }
+
+    @Test
+    void equals() {
+        assertTrue(firstMeeting.equals(firstMeetingIdentical));
+        assertFalse(firstMeeting.equals(firstMeetingDiff));
+    }
+
 }

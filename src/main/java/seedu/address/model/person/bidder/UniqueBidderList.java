@@ -2,7 +2,7 @@ package seedu.address.model.person.bidder;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.person.bidder.Bidder.DEFAULT_BIDDER_ID;
+import static seedu.address.model.id.BidderId.DEFAULT_BIDDER_ID;
 
 import java.util.Iterator;
 import java.util.List;

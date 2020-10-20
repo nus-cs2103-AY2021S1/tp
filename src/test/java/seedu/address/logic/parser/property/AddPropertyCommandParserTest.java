@@ -28,7 +28,7 @@ import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALI
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_PROPERTY_SELLER_ID_BEDOK;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.model.property.Property.DEFAULT_PROPERTY_ID;
+import static seedu.address.model.id.PropertyId.DEFAULT_PROPERTY_ID;
 
 import org.junit.jupiter.api.Test;
 

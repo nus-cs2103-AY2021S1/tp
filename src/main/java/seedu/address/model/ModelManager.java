@@ -350,11 +350,16 @@ public class ModelManager implements Model {
         meetingBook.setMeeting(target, editedMeeting);
     }
 
+    @Override
+    public void sortMeeting() {
+        //filteredMeetings.sortMeeting();
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
+     * {@code versionedMeetingBook}
      */
     @Override
     public ObservableList<CalendarMeeting> getFilteredMeetingList() {

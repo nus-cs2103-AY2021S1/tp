@@ -7,10 +7,11 @@ public class BidderId extends Id {
 
     public static final String PREFIX_BIDDER_ID = "B";
     public static final String VALIDATION_REGEX = "[B]\\p{Digit}+";
-    public static final String MESSAGE_CONSTRAINTS = "Ids should start with a \""
+    public static final String MESSAGE_CONSTRAINTS = "Bidder Id should start with a \""
             + PREFIX_BIDDER_ID
             + "\", followed by"
             + "some numbers.";
+    public static final BidderId DEFAULT_BIDDER_ID = new BidderId("B0");
 
     public BidderId(int idNumber) {
         super(PREFIX_BIDDER_ID, idNumber);

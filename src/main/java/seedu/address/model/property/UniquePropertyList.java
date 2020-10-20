@@ -2,7 +2,7 @@ package seedu.address.model.property;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.property.Property.DEFAULT_PROPERTY_ID;
+import static seedu.address.model.id.PropertyId.DEFAULT_PROPERTY_ID;
 
 import java.util.Iterator;
 import java.util.List;
