@@ -55,7 +55,7 @@ public class BookmarkCommand extends Command {
         List<SerialNumber> serialNumbers = targetSerialNumbers.stream().collect(Collectors.toList());
         List<String> serials = serialNumbers.stream().map((serial) -> serial.toString().trim())
                 .collect(Collectors.toCollection(ArrayList::new));
-        List<Stock> stocksToBookmark= new ArrayList<>();
+        List<Stock> stocksToBookmark = new ArrayList<>();
         List<Stock> updatedStocks = new ArrayList<>();
 
         // Find stocks to be updated

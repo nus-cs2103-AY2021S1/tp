@@ -134,9 +134,9 @@ public class StockBookParser {
             }
 
         case BookmarkCommand.COMMAND_WORD:
-            try{
+            try {
                 return new BookmarkCommandParser().parse(arguments);
-            } catch (ParseException ex){
+            } catch (ParseException ex) {
                 return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
             }
         default:

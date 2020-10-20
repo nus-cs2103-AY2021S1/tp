@@ -75,7 +75,7 @@ public class Stock {
         return notes;
     }
 
-    public boolean getBookmarked() {return isBookmarked; }
+    public boolean getBookmarked() { return isBookmarked; }
 
     /**
      * Sets the boolean of the isBookmarked of this stock to True .
