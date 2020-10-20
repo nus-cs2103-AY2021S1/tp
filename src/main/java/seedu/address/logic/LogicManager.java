@@ -10,11 +10,11 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.ModuleListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.model.module.Module;
 import seedu.address.storage.Storage;
 
 /**
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final ModuleListParser moduleListParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        moduleListParser = new ModuleListParser();
     }
 
     @Override
@@ -42,30 +42,29 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = moduleListParser.parseCommand(commandText);
         commandResult = command.execute(model);
-
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveModuleList(model.getModuleList());
+            storage.saveContactList(model.getContactList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
-
         return commandResult;
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyModuleList getModuleList() {
+        return model.getModuleList();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Module> getFilteredModuleList() {
+        return model.getFilteredModuleList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getModuleListFilePath() {
         return model.getAddressBookFilePath();
     }
 

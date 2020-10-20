@@ -7,8 +7,11 @@ Cap 5.0 Buddy helps NUS SoC students to keep track of their module details effic
 
 1. [Quick Start](#quick-start)
 2. [Features](#features)
-   1. [Viewing a module](#viewing-a-module)
-   2. [Deleting a module](#deleting-a-module)
+   1. [Adding a module](#adding-a-new-module-add-module)
+   2. [Viewing a module](#viewing-a-module-view)
+   3. [Adding a zoom link to a module](#adding-a-zoom-link-to-a-module-add-zoom)
+   4. [Deleting a module](#deleting-a-module-delete)
+   5. [Editing a module](#editing-a-module--edit-zoom)
 3. [FAQ](#faq)
 4. [Command Summary](#command-summary)
 
@@ -79,12 +82,12 @@ Views a module stored in the system
 
 ### Deleting a module: `delete`
 
-Deletes the specified module from the system
+Deletes the module at the specified position from the system
 
- Format: `delete` **_`[MODULE_NAME]`_**
+ Format: `delete` **_`[MODULE_POSITION]`_**
 
   Examples:
-  * `delete cs2103t` deletes the specified module named `cs2103t`
+  * `delete 1` deletes the module at position `1`
 
 
 ### Editing a module : `edit zoom`
@@ -114,13 +117,9 @@ Examples:
 ## Command summary
 
 Action | Format, Examples
---------|------------------
+--------|------------------ 
 **Add** | `add module KEYWORD`<br> e.g., `add module CS2103T [link]`, `add module CS2103T`
-
 **View** | `view KEYWORD `<br> e.g., `view cs2101` , `view all`
-
-**Delete** | `delete KEYWORD `<br> e.g., `delete cs2101`
-
+**Delete** | `delete KEYWORD `<br> e.g., `delete 3`
 **Edit** | `edit zoom MODULE_NAME ZOOM_LINK`<br> e.g., `edit zoom CS2103T https://sample.zoom.us`
-
 **Add Zoom** | `add zoom MODULE_NAME ZOOM_LINK` <br> e.g., `add zoom cs2103T https://sample.zoom.us`
