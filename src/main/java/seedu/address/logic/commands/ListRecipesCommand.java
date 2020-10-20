@@ -24,6 +24,7 @@ public class ListRecipesCommand extends Command {
         ObservableList<Recipe> recipes = model.getFilteredRecipeList();
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < recipes.size(); i++) {
+            assert(recipes.get(i).getName().toString().length() != 0);
             builder.append((i + 1) + ". " + recipes.get(i).getName() + "\n");
         }
         return new CommandResult(MESSAGE_SUCCESS + builder.toString(), false,

@@ -49,6 +49,7 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
 
         String instruction = argMultimap.getValue(PREFIX_INSTRUCTION).get();
         String recipeImage = argMultimap.getValue(PREFIX_RECIPE_IMAGE).get();
+        assert(recipeImage.length() != 0);
 
         if (recipeImage.length() < 13) {
             recipeImage = "images/default.jpg";
