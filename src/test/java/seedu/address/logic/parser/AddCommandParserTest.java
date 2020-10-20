@@ -42,8 +42,12 @@ public class AddCommandParserTest {
 
         // Index passed is not a non-zero integer
         assertParseFailure(parser, "1.4", String.format(MESSAGE_INVALID_INDEX, "Menu Index"));
+        assertParseFailure(parser, "0", String.format(MESSAGE_INVALID_INDEX, "Menu Index"));
+        assertParseFailure(parser, "-1", String.format(MESSAGE_INVALID_INDEX, "Menu Index"));
 
         // Quantity passed is not a non-zero integer
         assertParseFailure(parser, "1 1.2", MESSAGE_INVALID_QUANTITY);
+        assertParseFailure(parser, "1 0", MESSAGE_INVALID_QUANTITY);
+        assertParseFailure(parser, "1 -1", MESSAGE_INVALID_QUANTITY);
     }
 }
