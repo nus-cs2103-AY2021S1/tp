@@ -11,6 +11,7 @@ import javafx.scene.layout.StackPane;
 import seedu.expense.commons.core.LogsCenter;
 import seedu.expense.model.ReadOnlyExpenseBook;
 import seedu.expense.model.budget.Budget;
+
 import java.util.logging.Logger;
 
 /**
@@ -127,8 +128,8 @@ public class BudgetDisplay extends UiPart<Region> {
             budgetDisplay.setText(budgetBalance());
             progressBar.setProgress(getProgress());
             setBarStyle();
-            logger.info("Progress bar updated. Current progress: " +
-                    String.format("%.02f", getProgress()));
+            logger.info("Progress bar updated. Current progress: "
+                    + String.format("%.02f", getProgress()));
         }
 
     }
