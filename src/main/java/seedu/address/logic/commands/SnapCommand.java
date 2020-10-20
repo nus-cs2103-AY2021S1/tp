@@ -35,7 +35,12 @@ public class SnapCommand extends Command {
 
     private final String fileName;
 
+    /**
+     * Creates a SnapCommand to save the current state of the ZooKeep Book in a file
+     * with a specified file name.
+     */
     public SnapCommand(String fileName) {
+        requireNonNull(fileName);
         this.fileName = fileName + ".json";
     }
 
@@ -47,11 +52,11 @@ public class SnapCommand extends Command {
         ZooKeepBookStorage zooKeepBookStorage = new JsonZooKeepBookStorage(zooKeepBookFilePath);
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(zooKeepBookFilePath);
 
-        Storage storage = new StorageManager(zooKeepBookStorage, userPrefsStorage);
-        ReadOnlyZooKeepBook zooKeepBook = model.getZooKeepBook();
-
         try {
+            Storage storage = new StorageManager(zooKeepBookStorage, userPrefsStorage);
+            ReadOnlyZooKeepBook zooKeepBook = model.getZooKeepBook();
             Path savePath = Path.of("data", fileName);
+
             storage.saveZooKeepBook(zooKeepBook, savePath);
         } catch (IOException ioe) {
             throw new CommandException(String.format(MESSAGE_ERROR + ioe, ioe));
