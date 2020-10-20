@@ -28,7 +28,7 @@ activate QuestionCommandParser
 QuestionCommandParser --> ReeveParser
 deactivate QuestionCommandParser
 
-ReeveParser --> QuestionCommandParser : parse("1 s/ Check textbook")
+ReeveParser --> QuestionCommandParser : parse("1 s/1 Check textbook")
 activate QuestionCommandParser
 
 create SolveQuestionCommand

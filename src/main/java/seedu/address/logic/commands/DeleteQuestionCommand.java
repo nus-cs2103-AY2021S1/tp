@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -56,10 +55,8 @@ public class DeleteQuestionCommand extends QuestionCommand {
             throw new CommandException(MESSAGE_BAD_QUESTION_INDEX);
         }
 
-        List<Question> questionList = new ArrayList<>(asker.getQuestions());
-        Question deleted = questionList.remove(questionIndex.getZeroBased());
-        Student replacement = new Student(asker.getName(), asker.getPhone(), asker.getSchool(),
-                asker.getYear(), asker.getAdmin(), questionList);
+        Question deleted = asker.getQuestions().get(questionIndex.getZeroBased());
+        Student replacement = asker.deleteQuestion(deleted);
 
         model.setPerson(asker, replacement);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

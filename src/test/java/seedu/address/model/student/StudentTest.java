@@ -129,4 +129,18 @@ public class StudentTest {
         assertEquals(expected, newAlice);
     }
 
+    @Test
+    public void deleteQuestion() {
+        Student editedAlice = new StudentBuilder(ALICE).withQuestions(DEFAULT_QUESTION_MATH).build();
+        Student newAlice = editedAlice.deleteQuestion(new UnsolvedQuestion(DEFAULT_QUESTION_MATH));
+        Student expected = new StudentBuilder(ALICE).withQuestions().build();
+        assertNotEquals(editedAlice, newAlice);
+        assertEquals(expected, newAlice);
+
+        editedAlice = new StudentBuilder(ALICE).withSolved(DEFAULT_SOLUTION, DEFAULT_QUESTION_MATH).build();
+        newAlice = editedAlice.deleteQuestion(new SolvedQuestion(DEFAULT_QUESTION_MATH, DEFAULT_SOLUTION));
+        assertNotEquals(editedAlice, newAlice);
+        assertEquals(expected, newAlice);
+    }
+
 }
