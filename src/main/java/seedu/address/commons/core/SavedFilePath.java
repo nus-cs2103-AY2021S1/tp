@@ -56,7 +56,7 @@ public class SavedFilePath {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SavedFilePath // instanceof handles nulls
-                && value.equals(((SavedFilePath) other).value)); // state check
+                && Paths.get(value).equals(Paths.get(((SavedFilePath) other).value))); // state check
     }
 
     @Override
