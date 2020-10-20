@@ -460,7 +460,7 @@ Step 3. The `CommandHistory#clearHistory` is then called which will clear all co
     * Cons:
         * Command history is not persistent so recently used commands is only kept during the same usage.
 
-### 3.5 Peek Commands With Arrow Keys feature
+### 3.5 Retrieve and reuse past commands using arrow keys feature
 
 #### 3.5.1 Implementation
 This feature allows users to navigate and reuse past commands using up and down arrow keys.
