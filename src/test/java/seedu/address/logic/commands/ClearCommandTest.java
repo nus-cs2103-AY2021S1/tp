@@ -14,8 +14,7 @@ import static seedu.address.testutil.TypicalEntries.BUY_FLOWER_POTS;
 import static seedu.address.testutil.TypicalEntries.SELL_FLOWER_POTS;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
- * {@code DeleteCommand}.
+ * Contains integration and unit tests for {@code ClearCommand}.
  */
 public class ClearCommandTest {
 
