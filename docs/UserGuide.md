@@ -1,23 +1,31 @@
----
-layout: page
-title: User Guide
----
+#HelloFile
 
 HelloFile is a desktop app for managing files, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). By being able to tag frequently used files/folders with a short nickname, you will be able to manage and access your files with ease.
 
-* Table of Contents
-{:toc}
+##Table of Contents
+[Getting started](#Getting-Started)<br>
+[Features](#Features)<br>
+[FAQ](#FAQ)<br>
+[Command summary](#Command-summary)<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Getting Started
 
-1. Ensure you have Java 11 or above installed in your computer.
-1. Download the latest hellofile.jar.
-1. Copy the file to the folder you want to use as the home folder for HelloFile to start.
-1. Double-click the file to start the app.
-1. Type the command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
+### Installation
+1. Ensure you have [Java 11](https://www.java.com/en/download/) or above installed in your computer. 
+2. Download the latest HelloFile.jar [here](https://github.com/AY2021S1-CS2103T-F12-1/tp/releases).
 
+### Quick start
+1. Move the file to the folder you intend to use as the home folder for HelloFile.
+2. Double-click the file to start the application. Alternatively, run the command `java -jar hellofile.jar` in command line.
+3. Type `help` into the command box, followed by pressing the `Enter` key to view the supported features.
+
+### Basic workflow
+1. Tag important files with the `tag` command for ease of access.
+2. When trying to access tagged files, instead of navigating to the file location, simply use the `open` command to access the required files.
+3. To find the location of tagged files, simply use the `show` command to get the file path of the file.
+4. To exit the application, either close the application window, or use the `exit` command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -28,36 +36,43 @@ HelloFile is a desktop app for managing files, optimised for use via a Command L
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add t/TAG`, `TAG` is a parameter, such as in the case `add t/Myfile`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `t/TAG [f/FILE_PATH]` can be used as `f/Myfile f/C:\Users` or as `f/Myfile`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items with `…` after them can be used multiple times, i.e. from 0 to an arbituary amount.<br>
+  e.g. `[t/TAG]…` can be used as ` ` (0 times), `t/myfile1`, `t/myfile1 t/myfile2` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `t/TAG f/FILE_PATH`, `f/FILE_PATH t/TAG` is also an acceptable command.
 
-* Each tag name must be unique, but each file can have multiple tags
+* Every tag name must be unique, but a file can have multiple tags.
+
+* Every tag name is case-sensitive. e.g tag name `notes` is different from tag name `Notes`.
+
+* Only the `cd` command accepts relative file path, all other commands require absolute file path.
 
 </div>
 
 ### Viewing help : `help`
 
-Shows a command's usage and format, if no command is specified, show help for all commands.
+Display help for all commands.
 
-Format: `help [c/COMMAND]`
+Format: `help`
 
 ### Adding a tag with filepath : `tag`
 
-Shows a message explaning how to access the help page.
+Tags a file with a unique tag name.
 
-Format: `tag f/FILE_PATH t/TAG_NAME`
+Format: `tag t/TAG_NAME f/FILE_PATH`
 
-### Showing file path of a tag : `show`
+Examples:
+* `tag t/Users f/C:\Users`
 
-Shows the file path of the specified tag.
+### Displaying file path of a tag : `show`
+
+Displays the file path of a specified tag.
 
 Format: `show t/TAG_NAME`
 
@@ -67,7 +82,7 @@ Examples:
 
 ### Accessing a tagged file : `open`
 
-Opens the file specified in the filepath of the tag.
+Opens the file specified by the unique tag name.
 
 Format: `open t/TAG_NAME`
 
@@ -77,7 +92,7 @@ Examples:
 
 ### Removing a tag : `untag`
 
-Removes the file from the list of managed files.
+Removes the tag from the list of managed tag names.
 
 Format: `untag t/TAG_NAME`
 
@@ -86,24 +101,31 @@ Examples:
 
 ### Renaming a tag : `retag`
 
-Renames the tag of the file with a new tag.
+Renames the unique tag name of the file.
 
 Format: `retag o/OLD_TAG_NAME t/NEW_TAG_NAME`
-
-* The command is case-sensitive. e.g `notes` will not match `Notes`
 
 Examples:
 * `retag o/notes t/secret`
 
+### Changing working directory : `cd`
+
+Changes the current working directory.
+
+Format: `cd f/FILE_PATH`
+
+Examples:
+* `retag f/../notes/`
+
 ### Listing all tags : `ls`
 
-Lists all the tags with filepath
+Lists all the managed tags.
 
 Format: `ls`
 
-### Clearing screen : `clear`
+### Clearing all tags : `clear`
 
-Clears the UI/CLI screen.
+Clears the list of managed tags.
 
 Format: `clear`
 
@@ -116,24 +138,29 @@ Format: `exit`
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HelloFile home folder.
-
 **Q**: What if the name or the directory of the file I tagged is changed? Can I still access the file using HelloFile?<br>
-**A**: No. HelloFile cannot trace the file if its name or directory is changed, but if you still want to manage the file, you can tag it again.
+**A**: No. HelloFile is currently unable to track a file if its name or directory is changed. It is necessary to delete the old tag and retag the file.
 
-**Q**: Can tag name be duplicated?<br>
-**A**: No. The tag names must be unique for all files being managed.
+**Q**: What is the structure of the application?<br>
+**A**: It can be found in the Degisn Guide [here](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/docs/DeveloperGuide.md)
+
+**Q**: How to I report a bug?<br>
+**A**: Please create a new issue on [this](https://github.com/AY2021S1-CS2103T-F12-1/tp/issues) webpage.
+
+**Q**: Can I contribute to the project?
+**A**: Sorry, as this is a school project, we are not accepting any contributors at this period.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
 Action | Format, Examples
 --------|------------------
-**Tag** | `tag f/FILE_NAME t/TAG_NAME` <br> e.g., `tag f/c:/myfolder/file.jpg t/newTag`
+**Tag** | `tag t/TAG_NAME f/FILE_PATH` <br> e.g., `tag t/newTag f/c:/myfolder/file.jpg`
 **Show** | `show t/TAG_NAME`
 **Untag** | `untag t/TAG_NAME`
 **Retag** | `retag o/OLD_TAG_NAME t/NEW_TAG_NAME` <br> e.g., `retag o/mytag t/newtag`
+**Changing directory**| `cd f/FILE_PATH`
 **Open** | `open t/TAG_NAME`
 **List** | `ls`
 **Clear** | `clear`
