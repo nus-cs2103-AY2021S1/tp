@@ -24,6 +24,10 @@ public class TopupCommandParser implements Parser<TopupCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_AMOUNT);
 
+        if (!argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TopupCommand.MESSAGE_USAGE));
+        }
+
         Amount amount;
         try {
             amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
