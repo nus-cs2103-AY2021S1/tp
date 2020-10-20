@@ -1,48 +1,43 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import seedu.address.model.tag.Tag;
 
 public class ModelStubWithTagAndTaglist extends ModelStub {
-    private Tag tag;
+    private final List<Tag> tags;
 
-    ModelStubWithTagAndTaglist(Tag tag) {
-        requireNonNull(tag);
-        this.tag = tag;
-    }
-
-    public Tag getTag() {
-        return this.tag;
+    ModelStubWithTagAndTaglist() {
+        tags = new ArrayList<>();
     }
 
     @Override
     public void addTag(Tag tag) {
-        this.tag = tag;
+        tags.add(tag);
     }
 
     @Override
     public void deleteTag(Tag tag) {
+        tags.remove(tag);
+    }
 
+    @Override
+    public boolean hasTag(Tag tag) {
+        return tags.contains(tag);
     }
 
     @Override
     public List<Tag> findFilteredTagList(Predicate<Tag> predicate) {
-        if (predicate.test(tag)) {
-            return List.of(tag);
-        }
-
-        return List.of();
+        return tags.stream().filter(predicate).collect(Collectors.toList());
     }
 
     @Override
     public boolean equals(Object other) {
-        boolean a = other instanceof ModelStubWithTagAndTaglist;
         return other == this // short circuit if same object
                 || (other instanceof ModelStubWithTagAndTaglist // instanceof handles nulls
-                && ((ModelStubWithTagAndTaglist) other).tag.equals(this.tag));
+                && ((ModelStubWithTagAndTaglist) other).tags.equals(this.tags));
     }
 }
