@@ -30,6 +30,7 @@ public class TypicalStocks {
             .build();
     public static final SerialNumber SERIAL_NUMBER_FIRST_STOCK = APPLE.getSerialNumber();
     public static final SerialNumber SERIAL_NUMBER_SECOND_STOCK = BANANA.getSerialNumber();
+    public static final SerialNumber SERIAL_NUMBER_THIRD_STOCK = PINEAPPLE.getSerialNumber();
 
     private TypicalStocks() {} // prevents instantiation
 

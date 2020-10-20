@@ -1,6 +1,7 @@
 package seedu.stock.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -99,30 +100,48 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String serialNumber} into an {@code SerialNumber}.
+     * Parses a {@code String serialNumbers} into an {@code Set<SerialNumber>}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code serialNumber} is invalid.
      */
-    public static Set<SerialNumber> parseSerialNumber(String serialNumber) throws ParseException {
-        requireNonNull(serialNumber);
-        String trimmedSerialNumber = serialNumber.trim();
-        String[] withoutPrefix = trimmedSerialNumber.split("sn/");
-        //a valid array after splitting should be at length 2, index 0 being an empty string and 1
-        //being the actual serial number.
-        if (withoutPrefix.length < 2) {
+    public static Set<SerialNumber> parseSerialNumbers(String serialNumbers) throws ParseException {
+        requireNonNull(serialNumbers);
+
+        //invalid input if it does not start with "sn/" as it is a confirmed invalid header.
+        if (!serialNumbers.trim().startsWith("sn/")) {
+            throw new ParseException(SerialNumber.MESSAGE_CONSTRAINTS);
+        }
+
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(serialNumbers, PREFIX_SERIAL_NUMBER);
+
+        List<String> values = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
+
+        if (values.isEmpty()) {
             throw new ParseException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
+
         Set<SerialNumber> serialNumberSet = new LinkedHashSet<>();
 
-        for (int i = 1; i < withoutPrefix.length; i++) {
-            String currentSerialNumberInString = withoutPrefix[i];
-            if (!SerialNumber.isValidSerialNumber(currentSerialNumberInString)) {
-                throw new ParseException(SerialNumber.MESSAGE_CONSTRAINTS);
-            }
-            serialNumberSet.add(new SerialNumber(currentSerialNumberInString.trim()));
+        for (int i = 0; i < values.size(); i++) {
+            String currentSerialNumberInString = values.get(i);
+            serialNumberSet.add(parseSerialNumber(currentSerialNumberInString));
         }
         return serialNumberSet;
+    }
+
+    /**
+     * Parses and ensures that the serial number provided is in the correct format.
+     *
+     * @param serialNumberInString The serial number to be parsed in string format.
+     * @return The SerialNumber object.
+     * @throws ParseException if the serial number in string format is invalid.
+     */
+    public static SerialNumber parseSerialNumber(String serialNumberInString) throws ParseException {
+        if (!SerialNumber.isValidSerialNumber(serialNumberInString)) {
+            throw new ParseException(SerialNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new SerialNumber(serialNumberInString);
     }
 
     /**
