@@ -62,8 +62,8 @@ like managing staff performance and recruitment of applicants, faster than a typ
 </div>
 
 ## List of commands you can execute <br>
-![Add a staff] (#adding-a-staff) <br>
-![Add a applicant] (#adding-an-applicant) <br>
+[Add a staff] (#adding-a-staff) <br>
+[Add a applicant] (#adding-an-applicant) <br>
 
 
 ### Viewing help : `help`
@@ -74,9 +74,9 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-
-### **Adding a staff**: `addstaff`
-
+<a name="adding-a-staff">
+<H3> Adding a staff: <code>addstaff</code></H3> 
+</a> 
 Adds a staff to the application.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]…`
@@ -91,7 +91,9 @@ Examples:
 * `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `addstaff n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### **Adding an applicant**: `addapplicant`
+<a name="adding-an-applicant">
+<H3> Adding an applicant: <code>addapplicant</code></H3> 
+</a> 
 
 Adds an applicant to the application.
 
