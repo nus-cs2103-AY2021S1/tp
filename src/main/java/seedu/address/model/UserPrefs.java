@@ -1,18 +1,13 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.FileUtil.isFileExists;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
-import java.util.logging.Logger;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.SavedFilePath;
 import seedu.address.model.currentpath.CurrentPath;
 
 /**
@@ -22,32 +17,12 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
-    private Path savedFilePath = Paths.get(CurrentPath.getInstance().getAddress());
-    private static final Logger logger = LogsCenter.getLogger(UserPrefs.class);
+    private SavedFilePath savedFilePath = new SavedFilePath();
 
     /**
      * Creates a {@code UserPrefs} with default values.
      */
     public UserPrefs() {}
-
-    @JsonCreator
-    public UserPrefs(@JsonProperty("guiSettings") GuiSettings guiSettings,
-                     @JsonProperty("addressBookFilePath") String addressBookFilePath,
-                     @JsonProperty("savedFilePath") String savedFilePath) {
-        this.guiSettings = guiSettings;
-        this.addressBookFilePath = Paths.get(addressBookFilePath);
-
-        Path savedPath = Paths.get(savedFilePath);
-        System.out.println("Saved Path :" + savedPath);
-
-        if (isFileExists(savedPath)) {
-            this.savedFilePath = savedPath;
-            CurrentPath.getInstance().setAddress(savedPath.toAbsolutePath().toString());
-        } else {
-            logger.info("Invalid saved file path! Starting with the default file path.");
-            this.savedFilePath = Paths.get(CurrentPath.getInstance().getAddress());
-        }
-    }
 
     /**
      * Creates a {@code UserPrefs} with the prefs in {@code userPrefs}.
@@ -64,6 +39,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        assert savedFilePath != null;
         CurrentPath.getInstance().setAddress(savedFilePath.toString());
     }
 
@@ -85,12 +61,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.addressBookFilePath = addressBookFilePath;
     }
 
-    public Path getSavedFilePath() {
-        return savedFilePath;
-    }
-
     public void setSavedFilePath(Path savedFilePath) {
-        this.savedFilePath = savedFilePath;
+        this.savedFilePath.setValue(savedFilePath.toAbsolutePath().toString());
     }
 
     @Override
@@ -111,7 +83,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath, savedFilePath);
     }
 
     @Override

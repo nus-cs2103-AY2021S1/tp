@@ -8,8 +8,10 @@
       "y" : 100,
       "z" : 99
     },
-    "themeName" : "Galaxy Theme"
+    "themeName" : "Dark Theme"
   },
   "addressBookFilePath" : "addressbook.json",
-  "savedFilePath" : "./"
+  "savedFilePath" : {
+    "value" : "./"
+  }
 }

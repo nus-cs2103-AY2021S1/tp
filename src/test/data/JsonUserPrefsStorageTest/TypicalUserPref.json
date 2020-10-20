@@ -9,5 +9,7 @@
     "themeName" : "Galaxy Theme"
   },
   "addressBookFilePath" : "addressbook.json",
-  "savedFilePath" : "./"
+  "savedFilePath" : {
+    "value" : "./"
+  }
 }

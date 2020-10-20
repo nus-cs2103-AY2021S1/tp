@@ -15,7 +15,6 @@ public class FileUtil {
 
     public static boolean isFileExists(Path file) {
         return Files.exists(file);
-                // && Files.isRegularFile(file);
     }
 
     /**
