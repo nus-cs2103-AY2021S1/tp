@@ -8,8 +8,10 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import seedu.expense.commons.core.LogsCenter;
 import seedu.expense.model.ReadOnlyExpenseBook;
 import seedu.expense.model.budget.Budget;
+import java.util.logging.Logger;
 
 /**
  * A ui for the budget balance to be displayed to the user.
@@ -23,6 +25,7 @@ public class BudgetDisplay extends UiPart<Region> {
     private static final String ORANGE_BAR_STYLE_CLASS = "orange-bar";
     private static final String RED_BAR_STYLE_CLASS = "red-bar";
     private final ReadOnlyExpenseBook expenseBook;
+    private final Logger logger = LogsCenter.getLogger(getClass());
 
     @FXML
     private HBox budgetPlaceHolder;
@@ -68,7 +71,9 @@ public class BudgetDisplay extends UiPart<Region> {
     private double getProgress() {
         Budget budget = expenseBook.getBudget();
         double budgetAmount = budget.getAmount().asDouble();
+        assert budgetAmount >= 0;
         double expensesSum = expenseBook.tallyExpenses();
+        assert expensesSum >= 0;
         return 1 - expensesSum / budgetAmount;
 
     }
@@ -114,9 +119,18 @@ public class BudgetDisplay extends UiPart<Region> {
      * Sets text display to the user and updates the progress bar.
      */
     public void setFeedbackToUser() {
-        budgetDisplay.setText(budgetBalance());
-        progressBar.setProgress(getProgress());
-        setBarStyle();
+        assert getProgress() <= 1;
+        double initialProgress = progressBar.getProgress();
+        double finalProgress = getProgress();
+
+        if (initialProgress != finalProgress) {
+            budgetDisplay.setText(budgetBalance());
+            progressBar.setProgress(getProgress());
+            setBarStyle();
+            logger.info("Progress bar updated. Current progress: " +
+                    String.format("%.02f", getProgress()));
+        }
+
     }
 
 }
