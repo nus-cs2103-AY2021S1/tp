@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private ModuleListPanel moduleListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ContactListPanel contactListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -123,6 +124,10 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+
+        // Waiting for contact list storage to be implemented.
+        // contactListPanel = new ContactListPanel(logic.getFilteredContactList());
+        // contactListPanelPlaceholder.getChildren().add(contactListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
