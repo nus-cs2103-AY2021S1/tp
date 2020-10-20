@@ -17,12 +17,17 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class RecipeBuilder {
 
-    public static final String DEFAULT_NAME = "Alice Pauline";
+    public static final String DEFAULT_NAME = "Sandwich";
     public static final ArrayList<Ingredient> DEFAULT_INGREDIENTS =
-            new ArrayList<>(List.of(new Ingredient("Veggies", ""), new Ingredient("Snakes", "")));
-    public static final Integer DEFAULT_CALORIES = 10;
-    public static final String DEFAULT_INSTRUCTION = "instruction";
-    public static final String DEFAULT_RECIPE_IMAGE = "images/healthy1.jpg";
+            new ArrayList<>(List.of(new Ingredient("Kaiser Rolls Or Other Bread", "2 whole")));
+    public static final Integer DEFAULT_CALORIES = 70;
+    public static final String DEFAULT_INSTRUCTION =
+            "Make egg salad by chopping the hard boiled eggs and mixing in a bowl with mayonnaise, Dijon. "
+            + "Halve the rolls and spread one half with Dijon, the other half with mayonnaise. "
+            + "Sprinkle the mayonnaise-spread half with salt and pepper. "
+            + "Lay cheese and ham on the mustard half; "
+            + "lay avocado, onion slices, tomato slices, egg salad, and lettuce on the other half.";
+    public static final String DEFAULT_RECIPE_IMAGE = "images/sandwich.jpeg";
 
     private Name name;
     private ArrayList<Ingredient> ingredients;

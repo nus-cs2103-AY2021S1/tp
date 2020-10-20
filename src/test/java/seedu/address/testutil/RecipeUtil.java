@@ -4,13 +4,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSTRUCTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_IMAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
 import seedu.address.logic.commands.AddRecipeCommand;
-import seedu.address.logic.commands.EditCommand.EditRecipeDescriptor;
+import seedu.address.logic.commands.EditRecipeCommand.EditRecipeDescriptor;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.tag.Tag;
 
@@ -33,10 +34,17 @@ public class RecipeUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + recipe.getName().fullName + " ");
         sb.append(PREFIX_INGREDIENT + recipe.getIngredient().stream()
-                .map(item -> item.getValue())
+                .map(item -> {
+                    String ingredientString = item.getValue() + " ";
+                    if (item.getValue() != "") {
+                        ingredientString += PREFIX_QUANTITY + item.getQuantity();
+                    }
+                    return ingredientString;
+                })
                 .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a) + " ");
         sb.append(PREFIX_CALORIES + String.valueOf(recipe.getCalories().value) + " ");
         sb.append(PREFIX_INSTRUCTION + recipe.getInstruction() + " ");
+        sb.append(PREFIX_RECIPE_IMAGE + recipe.getRecipeImage() + " ");
         recipe.getTags().stream().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
         return sb.toString();
     }

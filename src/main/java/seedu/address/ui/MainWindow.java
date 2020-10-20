@@ -4,10 +4,8 @@ import java.io.IOException;
 import java.util.logging.Logger;
 
 import com.jfoenix.assets.JFoenixResources;
-import com.jfoenix.controls.JFXDecorator;
-import com.jfoenix.svg.SVGGlyph;
-import com.jfoenix.svg.SVGGlyphLoader;
 
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +16,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -65,6 +64,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+    @FXML
+    private VBox leftPanel;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -125,6 +126,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        fillRecipePanel();
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -175,27 +178,19 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     void show() {
-        new Thread(() -> {
-            try {
-                SVGGlyphLoader.loadGlyphsFont(MainWindow.class.getResourceAsStream("/fonts/icomoon.svg"),
-                        "icomoon.svg");
-            } catch (IOException ioExc) {
-                ioExc.printStackTrace();
-            }
-        }).start();
+        //Responsive resizing
+        ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
+            leftPanel.setPrefWidth(primaryStage.getWidth() / 3);
+        };
+        primaryStage.widthProperty().addListener(stageSizeListener);
 
-        JFXDecorator decorator = new JFXDecorator(primaryStage, container);
-        decorator.setCustomMaximize(true);
-        decorator.setGraphic(new SVGGlyph(""));
-
-        mainScene.setRoot(decorator);
         final ObservableList<String> stylesheets = mainScene.getStylesheets();
         stylesheets.addAll(JFoenixResources.load("css/jfoenix-fonts.css").toExternalForm(),
                 JFoenixResources.load("css/jfoenix-design.css").toExternalForm(),
-                MainWindow.class.getResource("/css/wishful-shrinking.css").toExternalForm());
+                MainWindow.class.getResource("/css/wishful-shrinking.css").toExternalForm(),
+                MainWindow.class.getResource("/css/wishful-shrinking-components.css").toExternalForm());
         primaryStage.show();
     }
-
     /**
      * Closes the application.
      */

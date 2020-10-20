@@ -18,25 +18,10 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Ingredients should be separated by commas, "
-                    + "each ingredient and optional field quantity "
-                    + "separated by a hyphen, should be consisted "
-                    + "of alphanumeric characters only";
     public static final String VALIDATION_REGEX = "[\\w\\s-]+"
             + "(,\\s*[\\w\\s-]*)*";
-    public static final String VALIDATION_REGEX_QUANTITY = "[\\w\\s]*";
+    public static final String VALIDATION_REGEX_QUANTITY = "[\\w\\s\\/\\.]*";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-
-    /**
-     * Checks if ingredient has attributes in the right format.
-     * @param ingredient Ingredient to check.
-     * @return boolean to indicate whether ingredient is valid.
-     */
-    public static boolean isValidIngredient(Ingredient ingredient) {
-        return ingredient.getValue().matches(VALIDATION_REGEX)
-                && ingredient.getQuantity().matches(VALIDATION_REGEX_QUANTITY);
-    }
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -74,11 +59,28 @@ public class ParserUtil {
      */
     public static String parseIngredient(String ingredients) throws ParseException {
         requireNonNull(ingredients);
-        String trimmedIngredient = ingredients.trim();
-        if (!trimmedIngredient.matches(VALIDATION_REGEX)) {
-            throw new ParseException(MESSAGE_CONSTRAINTS);
+        String[] ingredientsArr = ingredients.split(",");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < ingredientsArr.length; i++) {
+            String trimmedIngredient = ingredientsArr[i].trim();
+            String ingName = trimmedIngredient;
+            String ingQuantity = "";
+            int indexOfDash = trimmedIngredient.indexOf("-");
+            if (indexOfDash != -1) {
+                ingName = trimmedIngredient.substring(0, indexOfDash).trim();
+                ingQuantity = trimmedIngredient.substring(indexOfDash + 1).trim();
+            }
+            if ((ingName != "" && !ingName.matches(VALIDATION_REGEX)) || (ingQuantity != ""
+                    && !ingQuantity.matches(VALIDATION_REGEX_QUANTITY))) {
+                throw new ParseException(Ingredient.MESSAGE_CONSTRAINTS);
+            }
+            if (i != ingredientsArr.length - 1) {
+                sb.append(trimmedIngredient + ", ");
+            } else {
+                sb.append(trimmedIngredient);
+            }
         }
-        return trimmedIngredient;
+        return sb.toString();
     }
 
     /**
@@ -91,7 +93,7 @@ public class ParserUtil {
         requireNonNull(quantity);
         String trimmedQuantity = quantity.trim();
         if (!trimmedQuantity.matches(VALIDATION_REGEX_QUANTITY)) {
-            throw new ParseException(MESSAGE_CONSTRAINTS);
+            throw new ParseException(Ingredient.MESSAGE_CONSTRAINTS);
         }
         return trimmedQuantity;
     }

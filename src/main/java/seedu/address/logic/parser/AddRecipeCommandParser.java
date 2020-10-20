@@ -44,13 +44,6 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         String ingredientString = ParserUtil.parseIngredient(argMultimap.getValue(PREFIX_INGREDIENT).get());
         ArrayList<Ingredient> ingredients = IngredientParser.parse(ingredientString);
-
-        //String[] ingredientsToken = ingredientString.split(",");
-        //ArrayList<Ingredient> ingredients = new ArrayList<>();
-        //for (int i = 0; i < ingredientsToken.length; i++) {
-        //ingredients.add(new Ingredient(ingredientsToken[i].trim()));
-        //}
-
         Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

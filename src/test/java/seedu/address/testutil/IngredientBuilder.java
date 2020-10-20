@@ -26,6 +26,7 @@ public class IngredientBuilder {
      */
     public IngredientBuilder(Ingredient ingredientToCopy) {
         value = ingredientToCopy.getValue();
+        quantity = ingredientToCopy.getQuantity();
     }
 
     /**
@@ -54,4 +55,11 @@ public class IngredientBuilder {
         return new Ingredient(value, quantity);
     }
 
+    /**
+     * Builds Ingredient without Quantity
+     * @return built Ingredient
+     */
+    public Ingredient buildWithoutQuantity() {
+        return new Ingredient(value);
+    }
 }

@@ -2,9 +2,10 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import com.jfoenix.controls.JFXListView;
+
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.consumption.Consumption;
@@ -17,7 +18,7 @@ public class ConsumptionListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(ConsumptionListPanel.class);
 
     @javafx.fxml.FXML
-    private ListView<Consumption> consumptionListView;
+    private JFXListView<Consumption> consumptionListView;
 
     /**
      * Creates a {@code ConsumptionListPanel} with the given {@code ObservableList}.
@@ -26,6 +27,7 @@ public class ConsumptionListPanel extends UiPart<Region> {
         super(FXML);
         consumptionListView.setItems(consumptionList);
         consumptionListView.setCellFactory(listView -> new ConsumptionListViewCell());
+        consumptionListView.depthProperty().set(1);
     }
 
     /**

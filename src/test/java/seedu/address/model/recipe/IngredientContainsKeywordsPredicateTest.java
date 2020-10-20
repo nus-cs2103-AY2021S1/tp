@@ -45,19 +45,19 @@ public class IngredientContainsKeywordsPredicateTest {
     public void test_ingredientContainsKeywords_returnsTrue() {
         // One keyword
         IngredientContainsKeywordsPredicate predicate =
-                new IngredientContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new IngredientBuilder().withValue("Alice Bob").build()));
+                new IngredientContainsKeywordsPredicate(Collections.singletonList("Sandwich"));
+        assertTrue(predicate.test(new IngredientBuilder().withValue("Sandwich Bob").build()));
 
         // Multiple keywords
-        predicate = new IngredientContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new IngredientBuilder().withValue("Alice Bob").build()));
+        predicate = new IngredientContainsKeywordsPredicate(Arrays.asList("Sandwich", "Bob"));
+        assertTrue(predicate.test(new IngredientBuilder().withValue("Sandwich Bob").build()));
 
         // Only one matching keyword
         predicate = new IngredientContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new IngredientBuilder().withValue("Alice Carol").build()));
+        assertTrue(predicate.test(new IngredientBuilder().withValue("Sandwich Carol").build()));
         // Mixed-case keywords
         predicate = new IngredientContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new IngredientBuilder().withValue("Alice Bob").build()));
+        assertTrue(predicate.test(new IngredientBuilder().withValue("Sandwich Bob").build()));
     }
 
     @Test

@@ -3,12 +3,13 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-/*
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_AMY;
-*/
+import static seedu.address.logic.commands.CommandTestUtil.CALORIES_DESC_NOODLE;
+import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_NOODLE;
+import static seedu.address.logic.commands.CommandTestUtil.INSTRUCTION_DESC_NOODLE;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_NOODLE;
+import static seedu.address.logic.commands.CommandTestUtil.RECIPE_IMAGE_DESC_NOODLE;
 import static seedu.address.testutil.Assert.assertThrows;
-//import static seedu.address.testutil.TypicalRecipes.AMY;
+import static seedu.address.testutil.TypicalRecipes.NOODLE;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -17,7 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-//import seedu.address.logic.commands.AddRecipeCommand;
+import seedu.address.logic.commands.AddRecipeCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DeleteRecipeCommand;
 import seedu.address.logic.commands.ListRecipesCommand;
@@ -27,11 +28,11 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyWishfulShrinking;
 import seedu.address.model.UserPrefs;
-//import seedu.address.model.recipe.Recipe;
+import seedu.address.model.recipe.Recipe;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.JsonWishfulShrinkingStorage;
 import seedu.address.storage.StorageManager;
-//import seedu.address.testutil.RecipeBuilder;
+import seedu.address.testutil.RecipeBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -69,25 +70,26 @@ public class LogicManagerTest {
         assertCommandSuccess(listCommand, ListRecipesCommand.MESSAGE_SUCCESS, model);
     }
 
-    /*@Test
+    @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonWishfulShrinkingIoExceptionThrowingStub
         JsonWishfulShrinkingStorage wishfulShrinkingStorage =
-                new JsonWishfulShrinkingIoExceptionThrowingStub(temporaryFolder.
-                resolve("ioExceptionWishfulShrinking.json"));
+                new JsonWishfulShrinkingIoExceptionThrowingStub(temporaryFolder
+                .resolve("ioExceptionWishfulShrinking.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(wishfulShrinkingStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addRecipeCommand = AddRecipeCommand.COMMAND_WORD + NAME_DESC_AMY + INGREDIENT_DESC_AMY;
-        Recipe expectedRecipe = new RecipeBuilder(AMY).build();
+        String addRecipeCommand = AddRecipeCommand.COMMAND_WORD + NAME_DESC_NOODLE + INGREDIENT_DESC_NOODLE
+                + INSTRUCTION_DESC_NOODLE + CALORIES_DESC_NOODLE + RECIPE_IMAGE_DESC_NOODLE;
+        Recipe expectedRecipe = new RecipeBuilder(NOODLE).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addRecipe(expectedRecipe);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addRecipeCommand, CommandException.class, expectedMessage, expectedModel);
-    }*/
+    }
 
     @Test
     public void getFilteredRecipeList_modifyList_throwsUnsupportedOperationException() {

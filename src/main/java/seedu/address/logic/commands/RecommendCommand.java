@@ -32,7 +32,8 @@ public class RecommendCommand extends Command {
         for (int i = 0; i < recipes.size(); i++) {
             builder.append((i + 1) + ". " + recipes.get(i).getName() + "\n");
         }
-        return new CommandResult(MESSAGE_SUCCESS + builder.toString(), false, false, true, false, false);
+        return new CommandResult(MESSAGE_SUCCESS + builder.toString(), false, false,
+                true, false, false, false, false);
     }
 
     /**

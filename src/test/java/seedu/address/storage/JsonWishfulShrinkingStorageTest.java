@@ -1,11 +1,13 @@
 package seedu.address.storage;
 
 //import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalRecipes.ALICE;
-import static seedu.address.testutil.TypicalRecipes.HOON;
-import static seedu.address.testutil.TypicalRecipes.IDA;
+import static seedu.address.testutil.TypicalRecipes.BURGER;
+import static seedu.address.testutil.TypicalRecipes.SANDWICH;
+import static seedu.address.testutil.TypicalRecipes.SOUP;
 import static seedu.address.testutil.TypicalRecipes.getTypicalWishfulShrinking;
 
 import java.io.IOException;
@@ -15,7 +17,7 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-//import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyWishfulShrinking;
 import seedu.address.model.WishfulShrinking;
 
@@ -46,21 +48,21 @@ public class JsonWishfulShrinkingStorageTest {
         assertFalse(readWishfulShrinking("NonExistentFile.json").isPresent());
     }
 
-    /*@Test
+    @Test
     public void read_notJsonFormat_exceptionThrown() {
         assertThrows(DataConversionException.class, () -> readWishfulShrinking("notJsonFormatWishfulShrinking.json"));
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void readWishfulShrinking_invalidRecipeWishfulShrinking_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readWishfulShrinking("invalidRecipeWishfulShrinking.json"));
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void readWishfulShrinking_invalidAndValidRecipeWishfulShrinking_throwDataConversionException() {
         assertThrows(DataConversionException.class, () ->
-        readWishfulShrinking("invalidAndValidRecipeWishfulShrinking.json"));
-    }*/
+            readWishfulShrinking("invalidAndValidRecipeWishfulShrinking.json"));
+    }
 
     @Test
     public void readAndSaveWishfulShrinking_allInOrder_success() throws Exception {
@@ -71,20 +73,20 @@ public class JsonWishfulShrinkingStorageTest {
         // Save in new file and read back
         jsonWishfulShrinkingStorage.saveWishfulShrinking(original, filePath);
         ReadOnlyWishfulShrinking readBack = jsonWishfulShrinkingStorage.readWishfulShrinking(filePath).get();
-        // assertEquals(original, new WishfulShrinking(readBack));
+        assertEquals(original, new WishfulShrinking(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addRecipe(HOON);
-        original.removeRecipe(ALICE);
+        original.addRecipe(BURGER);
+        original.removeRecipe(SANDWICH);
         jsonWishfulShrinkingStorage.saveWishfulShrinking(original, filePath);
         readBack = jsonWishfulShrinkingStorage.readWishfulShrinking(filePath).get();
-        // assertEquals(original, new WishfulShrinking(readBack));
+        assertEquals(original, new WishfulShrinking(readBack));
 
         // Save and read without specifying file path
-        original.addRecipe(IDA);
+        original.addRecipe(SOUP);
         jsonWishfulShrinkingStorage.saveWishfulShrinking(original); // file path not specified
         readBack = jsonWishfulShrinkingStorage.readWishfulShrinking().get(); // file path not specified
-        // assertEquals(original, new WishfulShrinking(readBack));
+        assertEquals(original, new WishfulShrinking(readBack));
 
     }
 

@@ -37,11 +37,18 @@ public class CommandBox extends UiPart<Region> {
      * Handles the Enter button pressed event.
      */
     @FXML
-    private void handleCommandEntered() {
+    private void handleCommandEntered() throws IOException, CommandException, ParseException {
         try {
             commandExecutor.execute(commandTextField.getText());
             commandTextField.setText("");
-        } catch (CommandException | ParseException | IOException e) {
+        } catch (IOException e) {
+            CommandResult commandResult = commandExecutor.execute(commandTextField.getText());
+            if (commandResult.isEditRecipe() || commandResult.isEditIngredient()) {
+                commandTextField.setText(commandResult.getCommandBox());
+            } else {
+                commandTextField.setText("");
+            }
+        } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }
     }
