@@ -33,7 +33,6 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         if (isTagPrefixPresent(argMultimap)) {
             if (!argMultimap.getPreamble().isEmpty()) {
                 // there shouldn't be a preamble together with the tag prefix
-                // TODO: make sure the exception message is correct
                 throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
             }
             Set<Tag> tagsToMatch = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
