@@ -1,7 +1,6 @@
 package seedu.address.testutil.property;
 
 import seedu.address.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
-
 import seedu.address.model.id.SellerId;
 import seedu.address.model.price.Price;
 import seedu.address.model.property.Address;

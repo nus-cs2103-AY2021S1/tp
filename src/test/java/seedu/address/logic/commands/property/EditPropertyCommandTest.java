@@ -19,7 +19,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
@@ -127,7 +126,8 @@ public class EditPropertyCommandTest {
     @Test
     public void execute_duplicatePropertyUnfilteredList_failure() {
         Property firstProperty = model.getFilteredPropertyList().get(INDEX_FIRST_PROPERTY.getZeroBased());
-        EditPropertyCommand.EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder(firstProperty).build();
+        EditPropertyCommand.EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder(firstProperty)
+                .build();
         EditPropertyCommand editCommand = new EditPropertyCommand(INDEX_SECOND_PROPERTY, descriptor);
 
         assertCommandFailure(editCommand, model, EditPropertyCommand.MESSAGE_DUPLICATE_PROPERTY);
@@ -140,25 +140,15 @@ public class EditPropertyCommandTest {
         // edit property in filtered list into a duplicate in address book
         Property propertyInList = model.getPropertyBook().getPropertyList().get(INDEX_SECOND_PROPERTY.getZeroBased());
         EditPropertyCommand editCommand = new EditPropertyCommand(INDEX_FIRST_PROPERTY,
-                new EditPropertyDescriptorBuilder(propertyInList.setId(new PropertyId("P1"))).build());
-
-        try {
-            System.out.println(model.getPropertyBook().getPropertyList().get(INDEX_FIRST_PROPERTY.getZeroBased()));
-            System.out.println(model.getPropertyBook().getPropertyList().get(INDEX_SECOND_PROPERTY.getZeroBased()));
-            System.out.println(model.hasProperty(propertyInList.setId(new PropertyId("P1"))));
-            System.out.println(editCommand.execute(model).getFeedbackToUser());
-            System.out.println(model.getPropertyBook().getPropertyList().get(INDEX_FIRST_PROPERTY.getZeroBased()));
-            System.out.println(model.getPropertyBook().getPropertyList().get(INDEX_SECOND_PROPERTY.getZeroBased()));
-        } catch (CommandException e) {
-            e.printStackTrace();
-        }
+                new EditPropertyDescriptorBuilder(propertyInList.setId(new PropertyId("P2"))).build());
         assertCommandFailure(editCommand, model, EditPropertyCommand.MESSAGE_DUPLICATE_PROPERTY);
     }
 
     @Test
     public void execute_invalidPropertyIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPropertyList().size() + 1);
-        EditPropertyCommand.EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder().withPropertyName(VALID_PROPERTY_NAME_BEDOK).build();
+        EditPropertyCommand.EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder()
+                .withPropertyName(VALID_PROPERTY_NAME_BEDOK).build();
         EditPropertyCommand editCommand = new EditPropertyCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);

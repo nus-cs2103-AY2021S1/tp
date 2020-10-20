@@ -25,8 +25,8 @@ import seedu.address.model.id.SellerId;
 import seedu.address.model.price.Price;
 import seedu.address.model.property.Address;
 import seedu.address.model.property.IsRental;
-import seedu.address.model.property.PropertyName;
 import seedu.address.model.property.Property;
+import seedu.address.model.property.PropertyName;
 import seedu.address.model.property.PropertyType;
 
 /**
@@ -85,6 +85,9 @@ public class EditPropertyCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
         }
 
+        assert propertyToEdit.getPropertyId().equals(editedProperty.getPropertyId());
+        // not allowed to edit property id
+
         model.setProperty(propertyToEdit, editedProperty);
         model.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
         return new CommandResult(String.format(MESSAGE_EDIT_PROPERTY_SUCCESS, editedProperty))
@@ -95,10 +98,12 @@ public class EditPropertyCommand extends Command {
      * Creates and returns a {@code Property} with the details of {@code propertyToEdit}
      * edited with {@code editPropertyDescriptor}.
      */
-    private static Property createEditedProperty(Property propertyToEdit, EditPropertyDescriptor editPropertyDescriptor) {
+    private static Property createEditedProperty(Property propertyToEdit,
+                                                 EditPropertyDescriptor editPropertyDescriptor) {
         assert propertyToEdit != null;
 
-        PropertyName updatedPropertyName = editPropertyDescriptor.getPropertyName().orElse(propertyToEdit.getPropertyName());
+        PropertyName updatedPropertyName = editPropertyDescriptor.getPropertyName()
+                .orElse(propertyToEdit.getPropertyName());
         Address updatedAddress = editPropertyDescriptor.getAddress().orElse(propertyToEdit.getAddress());
         Price updatedAskingPrice = editPropertyDescriptor.getAskingPrice().orElse(propertyToEdit.getAskingPrice());
         SellerId updatedSellerId = editPropertyDescriptor.getSellerId().orElse(propertyToEdit.getSellerId());
