@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Module;
-import seedu.address.model.ModuleList;
-import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.model.ReadOnlyTrackr;
+import seedu.address.model.Trackr;
 
 @JsonRootName(value = "modulelist")
 public class JsonSerializableModuleList {
@@ -32,8 +32,8 @@ public class JsonSerializableModuleList {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableModuleList}.
      */
-    public JsonSerializableModuleList(ReadOnlyModuleList source) {
-        modules.addAll(source.getModuleList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
+    public JsonSerializableModuleList(ReadOnlyTrackr<Module> source) {
+        modules.addAll(source.getList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
     }
 
     /**
@@ -41,14 +41,14 @@ public class JsonSerializableModuleList {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public ModuleList toModelType() throws IllegalValueException {
-        ModuleList moduleList = new ModuleList();
+    public Trackr<Module> toModelType() throws IllegalValueException {
+        Trackr<Module> moduleList = new Trackr<>();
         for (JsonAdaptedModule jsonAdaptedModule : modules) {
             Module module = jsonAdaptedModule.toModelType();
-            if (moduleList.hasModule(module)) {
+            if (moduleList.hasObject(module)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_MODULE);
             }
-            moduleList.addModule(module);
+            moduleList.addObject(module);
         }
         return moduleList;
     }
