@@ -1,5 +1,9 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static seedu.address.testutil.TypicalEntries.BUY_FLOWER_POTS;
+import static seedu.address.testutil.TypicalEntries.SELL_FLOWER_POTS;
+
 import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.category.Category;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -8,10 +12,6 @@ import seedu.address.model.account.ActiveAccount;
 import seedu.address.model.account.ActiveAccountManager;
 import seedu.address.testutil.ModelStub;
 import seedu.address.testutil.TypicalEntries;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.TypicalEntries.BUY_FLOWER_POTS;
-import static seedu.address.testutil.TypicalEntries.SELL_FLOWER_POTS;
 
 /**
  * Contains integration and unit tests for {@code ClearCommand}.
