@@ -48,6 +48,12 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com d/Computer Science o/B01-A3`
 * `add n/Betsy Crowe p/98765431 e/betsycrowe@example.com d/Data Science o/COM1-02-03 t/lecturer t/friend`
 
+### Listing all modules and contacts : `list`
+
+Shows a list of all modules and contacts in FaculType.
+
+Format: `list`
+
 ### Listing all contacts : `clist`
 
 Shows a list of all contacts in FaculType.
@@ -90,22 +96,24 @@ Examples:
 *  `remark 1 r/Wears red glasses` adds the remark “Wears red glasses” to the 1st contact in the list.
 *  `remark 2 r/` erases the remark of the 2nd contact in the list.
 
-### Locating contacts by name: `find`
+### Locating contacts by attributes: `find`
 
-Finds contacts whose names contain any of the given keywords.
+Finds contacts whose names contain all the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find PREFIX KEYWORD... [PREFIX KEYWORD...]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Contacts matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The search is case-insensitive. e.g `chris` will match `Chris`
+* The order of the keywords do not matter. e.g. `Chris Evans` will match `Evans Chris`
+* Sub-words will be matched e.g. `Chri Evan` will match `Chris Evans`
+* Contacts matching at least one keyword will not be returned (i.e. `AND` search).
+  e.g. `Chris Evans` will return only `Chris Evans` and not `Chris Pratt`
+* Name-only search is prefix optional. e.g. `find chris evans` works the same as `find n/chris evans`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find John` returns `John` and `John Doe`
+* `find n/alex yeoh` returns `Alex Yeoh`
+* `find n/victor tan d/computing` returns `Victor Tan` from the department of `Computing` but not `Victor Tan` from
+ `Math`<br>
  
  
 ### Deleting a contact : `delete`
@@ -223,7 +231,7 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g. `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [o/OFFICE] [t/TAG]…​`<br> e.g. `edit 1 d/Computing b/COM2`
 **Remark** | `remark INDEX [r/REMARK]`<br> e.g. `remark 1 r/Wears red glasses`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
+**Find** | `find PREFIX KEYWORD... [PREFIX KEYWORD...]`<br> e.g. `find James Jake`, `find n/Victor Tan d/Math`
 **Add modules** | `addmod m/MODULE_CODE n/MODULE_NAME`<br> e.g. `addmod m/CS2103 n/Software Engineering`
 **Delete modules** | `delmod m/MODULE_CODE`<br> e.g. `delmod m/CS2103`
 **Find modules** | `findmod KEYWORD [MORE_KEYWORDS]` <br> e.g. `findmod CS2103`

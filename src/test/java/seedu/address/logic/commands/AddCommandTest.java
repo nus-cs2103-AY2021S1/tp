@@ -7,7 +7,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -40,7 +40,7 @@ public class AddCommandTest {
         CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(Collections.singletonList(validPerson), modelStub.personsAdded);
     }
 
     @Test

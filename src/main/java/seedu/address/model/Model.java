@@ -104,7 +104,6 @@ public interface Model {
 
     /**
      * Returns true if module list is empty.
-     * @return
      */
     boolean isEmptyModuleList();
 
