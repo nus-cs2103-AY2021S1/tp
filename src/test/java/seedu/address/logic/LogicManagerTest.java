@@ -82,7 +82,7 @@ public class LogicManagerTest {
                 + FILE_ADDRESS_DESC_CS2101;
         Tag expectedTag = new TagBuilder(CS2101).build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addTag(expectedTag);
+        expectedModel.addTag(expectedTag.toAbsolute());
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(tagCommand, CommandException.class, expectedMessage, expectedModel);
     }

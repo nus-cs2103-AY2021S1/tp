@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.File;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Predicate;
@@ -25,6 +26,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Tag> filteredTags;
+    private final FilteredList<File> filteredFiles;
     private final CurrentPath currentPath;
 
     /**
@@ -39,7 +41,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTags = new FilteredList<>(this.addressBook.getTagList());
-        currentPath = CurrentPath.getInstance();
+        filteredFiles = new FilteredList<>(this.addressBook.getObservableFileList());
+        currentPath = new CurrentPath(this.addressBook.getFileList());
     }
 
     public ModelManager() {
@@ -81,14 +84,12 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    public String getCurrentPath() {
-        return currentPath.getAddress();
-    }
-
+    /*
     public void setCurrentPath(String currentPath) {
         assert currentPath != null;
         this.currentPath.setAddress(currentPath);
     }
+    */
     //=========== AddressBook ================================================================================
 
     @Override
@@ -134,6 +135,25 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Tag> getFilteredTagList() {
         return filteredTags;
+    }
+
+    /**
+     * Returns the current path of HelloFile.
+     *
+     * @return the current path
+     */
+    @Override
+    public CurrentPath getCurrentPath() {
+        return currentPath;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code File} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<File> getFilteredFileList() {
+        return filteredFiles;
     }
 
     @Override
