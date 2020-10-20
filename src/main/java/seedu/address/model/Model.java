@@ -64,6 +64,18 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if contact list is empty.
+     * @return
+     */
+    boolean isEmptyPersonList();
+
+    /**
+     * Clear all modules from the contact list.
+     * The list must have at least one contact.
+     */
+    void clearContacts();
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
@@ -104,7 +116,6 @@ public interface Model {
 
     /**
      * Returns true if module list is empty.
-     * @return
      */
     boolean isEmptyModuleList();
 

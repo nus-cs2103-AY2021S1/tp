@@ -12,5 +12,7 @@ public class Messages {
     public static final String MESSAGE_MODULES_LISTED = "%1$d modules listed!";
     public static final String MESSAGE_MODULE_DOES_NOT_EXIST = "This module does not exist in FaculType";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in FaculType";
+    public static final String MESSAGE_EMPTY_KEYWORD = "Keyword cannot be empty";
+    public static final String MESSAGE_DUPLICATE_PREFIX = "Prefix %s has a duplicate";
 
 }

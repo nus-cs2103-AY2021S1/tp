@@ -7,7 +7,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -41,7 +41,7 @@ public class AddModCommandTest {
         CommandResult commandResult = new AddModCommand(validModule).execute(modelStub);
 
         assertEquals(String.format(AddModCommand.MESSAGE_SUCCESS, validModule), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validModule), modelStub.modulesAdded);
+        assertEquals(Collections.singletonList(validModule), modelStub.modulesAdded);
     }
 
     @Test
@@ -178,7 +178,17 @@ public class AddModCommandTest {
         }
 
         @Override
+        public boolean isEmptyPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean isEmptyModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearContacts() {
             throw new AssertionError("This method should not be called.");
         }
 
