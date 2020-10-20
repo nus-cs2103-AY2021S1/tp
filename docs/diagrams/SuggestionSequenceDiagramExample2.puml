@@ -54,7 +54,7 @@ activate SuggestionCommandParser
 loop all command words
     SuggestionCommandParser -> SuggestionUtil : minimumEditDistance()
     activate SuggestionUtil
-    
+
     SuggestionUtil --> SuggestionCommandParser
     deactivate SuggestionUtil
 end
