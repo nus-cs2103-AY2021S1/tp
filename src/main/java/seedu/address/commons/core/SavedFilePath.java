@@ -36,7 +36,6 @@ public class SavedFilePath {
         Path path = Paths.get(value);
         if (isFileExists(path)) {
             this.value = path.toAbsolutePath().toString();
-            CurrentPath.getInstance().setAddress(path.toAbsolutePath().toString());
         } else {
             logger.warning("Invalid saved file path! Starting with the default file path.");
             this.value = CurrentPath.getInstance().getAddress();
