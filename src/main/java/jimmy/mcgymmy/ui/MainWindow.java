@@ -227,7 +227,7 @@ public class MainWindow extends UiPart<Stage> {
             executeCommand(String.format("export %s", directory.toString()));
         } catch (RuntimeException | CommandException | ParseException e) {
             directory = null;
-            logger.info(String.format("User did not select any directory"));
+            logger.info(String.format("User did not select a valid directory"));
             resultDisplay.setFeedbackToUser("Please select a valid directory");
         }
     }
