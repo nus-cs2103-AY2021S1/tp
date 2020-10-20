@@ -13,9 +13,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_TYPE;
 import java.util.Arrays;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyNameContainsKeywordsPredicate;
+import seedu.address.testutil.property.EditPropertyDescriptorBuilder;
 
 public class PropertyCommandTestUtil {
 
@@ -91,6 +93,28 @@ public class PropertyCommandTestUtil {
     public static final String INVALID_PROPERTY_PROPERTY_TYPE = " " + PREFIX_PROPERTY_TYPE + "abc&*";
     public static final String INVALID_PROPERTY_ASKING_PRICE = " " + PREFIX_PROPERTY_ASKING_PRICE + "-20";
     public static final String INVALID_PROPERTY_SELLER_ID = " " + PREFIX_PROPERTY_SELLER_ID + "D1";
+
+    public static final EditPropertyDescriptor DESC_ANCHORVALE;
+    public static final EditPropertyDescriptor DESC_BEDOK;
+
+    static {
+        DESC_ANCHORVALE = new EditPropertyDescriptorBuilder()
+                .withPropertyName(VALID_PROPERTY_NAME_ANCHORVALE)
+                .withAddress(VALID_PROPERTY_ADDRESS_ANCHORVALE)
+                .withSellerId(VALID_PROPERTY_SELLER_ID_ANCHORVALE)
+                .withPropertyType(VALID_PROPERTY_PROPERTY_TYPE_ANCHORVALE)
+                .withAskingPrice(VALID_PROPERTY_ASKING_PRICE_ANCHORVALE)
+                .withIsRental(VALID_PROPERTY_IS_RENTAL_ANCHORVALE)
+                .build();
+        DESC_BEDOK = new EditPropertyDescriptorBuilder()
+                .withPropertyName(VALID_PROPERTY_NAME_BEDOK)
+                .withAddress(VALID_PROPERTY_ADDRESS_BEDOK)
+                .withSellerId(VALID_PROPERTY_SELLER_ID_BEDOK)
+                .withPropertyType(VALID_PROPERTY_PROPERTY_TYPE_BEDOK)
+                .withAskingPrice(VALID_PROPERTY_ASKING_PRICE_BEDOK)
+                .withIsRental(VALID_PROPERTY_IS_RENTAL_BEDOK)
+                .build();
+    }
 
     /**
      * Updates {@code model}'s filtered list to show only the property at the given {@code targetIndex} in the

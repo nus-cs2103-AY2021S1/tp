@@ -20,6 +20,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.EntityType;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.id.PropertyId;
 import seedu.address.model.id.SellerId;
 import seedu.address.model.price.Price;
 import seedu.address.model.property.Address;
@@ -104,9 +105,10 @@ public class EditPropertyCommand extends Command {
         PropertyType updatedPropertyType = editPropertyDescriptor.getPropertyType()
                 .orElse(propertyToEdit.getPropertyType());
         IsRental updatedIsRental = editPropertyDescriptor.getIsRental().orElse(propertyToEdit.getIsRental());
+        PropertyId updatedPropertyId = editPropertyDescriptor.getPropertyId().orElse(propertyToEdit.getPropertyId());
 
-        return new Property(updatedPropertyName, updatedSellerId, updatedAddress, updatedAskingPrice, updatedPropertyType,
-                updatedIsRental, propertyToEdit.isClosedDeal());
+        return new Property(updatedPropertyId, updatedPropertyName, updatedSellerId, updatedAddress,
+                updatedAskingPrice, updatedPropertyType, updatedIsRental, propertyToEdit.isClosedDeal());
     }
 
     @Override
@@ -138,6 +140,7 @@ public class EditPropertyCommand extends Command {
         private PropertyType propertyType;
         private Price askingPrice;
         private IsRental isRental;
+        private PropertyId propertyId;
 
         public EditPropertyDescriptor() {}
 
@@ -151,6 +154,7 @@ public class EditPropertyCommand extends Command {
             setPropertyType(toCopy.propertyType);
             setAskingPrice(toCopy.askingPrice);
             setIsRental(toCopy.isRental);
+            setPropertyId(toCopy.propertyId);
         }
 
         /**
@@ -208,6 +212,14 @@ public class EditPropertyCommand extends Command {
             return Optional.ofNullable(isRental);
         }
 
+        public void setPropertyId(PropertyId propertyId) {
+            this.propertyId = propertyId;
+        }
+
+        public Optional<PropertyId> getPropertyId() {
+            return Optional.ofNullable(propertyId);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -228,7 +240,8 @@ public class EditPropertyCommand extends Command {
                     && getPropertyType().equals(e.getPropertyType())
                     && getAskingPrice().equals(e.getAskingPrice())
                     && getSellerId().equals(e.getSellerId())
-                    && getIsRental().equals(e.getIsRental());
+                    && getIsRental().equals(e.getIsRental())
+                    && getPropertyId().equals(e.getPropertyId());
         }
     }
 }
