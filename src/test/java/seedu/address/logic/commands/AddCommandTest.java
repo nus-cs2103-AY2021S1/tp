@@ -1,20 +1,8 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.function.Predicate;
-
 import org.junit.jupiter.api.Test;
-
-import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.Model;
-import seedu.address.model.Module;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.TutorialGroup;
 
 public class AddCommandTest {
 
@@ -23,6 +11,7 @@ public class AddCommandTest {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
+    // todo: new test
     //    @Test
     //    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
     //        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
@@ -68,9 +57,10 @@ public class AddCommandTest {
     //        assertFalse(addAliceCommand.equals(addBobCommand));
     //    }
 
-    /**
+    /*
      * A default model stub that have all of the methods failing.
      */
+    /*
     private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -93,12 +83,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getModuleListFilePath() {
+        public Path getTrackrFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setModuleListFilePath(Path addressBookFilePath) {
+        public void setTrackrFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -117,19 +107,16 @@ public class AddCommandTest {
         //            throw new AssertionError("This method should not be called.");
         //        }
 
-        // todo: new test
-        /*
+
         @Override
-        public void setModuleList(ReadOnlyModuleList newData) {
+        public void setModuleList(ReadOnlyTrackr<Module> newData) {
             throw new AssertionError("This method should not be called.");
         }
 
-         todo: new test
         @Override
-        public ReadOnlyModuleList getModuleList() {
+        public ReadOnlyTrackr<Module> getModuleList() {
             throw new AssertionError("This method should not be called.");
         }
-         */
 
         @Override
         public boolean hasModule(Module module) {
@@ -156,10 +143,12 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
     }
+     */
 
-    /**
+    /*
      * A Model stub that contains a single person.
      */
+    /*
     private class ModelStubWithModule extends ModelStub {
         private final Module module;
 
@@ -171,13 +160,15 @@ public class AddCommandTest {
         @Override
         public boolean hasModule(Module module) {
             requireNonNull(module);
-            return this.module.isSameModule(module);
+            return this.module.isSame(module);
         }
     }
+     */
 
-    /**
+    /*
      * A Model stub that always accept the person being added.
      */
+    /*
     private class ModelStubAcceptingModuleAdded extends ModelStub {
         final ArrayList<Module> modulesAdded = new ArrayList<>();
         final ArrayList<TutorialGroup> tutorialGroupsAdded = new ArrayList<>();
@@ -196,7 +187,7 @@ public class AddCommandTest {
         @Override
         public boolean hasModule(Module module) {
             requireNonNull(module);
-            return modulesAdded.stream().anyMatch(module::isSameModule);
+            return modulesAdded.stream().anyMatch(module::isSame);
         }
 
         @Override
@@ -205,13 +196,10 @@ public class AddCommandTest {
             modulesAdded.add(module);
         }
 
-        // todo: new test
-        /*
         @Override
         public ReadOnlyModuleList getModuleList() {
             return new ModuleList();
         }
-         */
     }
-
+     */
 }
