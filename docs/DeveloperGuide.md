@@ -161,6 +161,32 @@ The following sequence diagram shows how the find operation works:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
+#### Design consideration:
+
+##### Aspect: Arguments for FindCommand
+
+* **Alternative 1 (current choice):** Completely optional parameters, and ability to `find item` without a `flag`.
+  * Pros: More flexibility for user, not restricted by parameter requirements.
+  * Cons: Harder to implement, breaks general patten of `flag`-less arguments being compulsory parameters.
+
+* **Alternative 2:** Compulsory `flag`-less name parameter
+  * Pros: Easier to implement.
+  * Cons: Less user-friendly, user restricted in use of method
+  
+##### Aspect: How find works
+
+* **Alternative 1 (current choice):** Filters Food with matching instance of at least one (assuming multiple arguments) argument for a given parameter
+  * Pros: Easier to implement and easier to locate more things quickly.
+  * Cons: Harder to locate specific food items.
+
+* **Alternative 2:** Filters Food with matching instance of all arguments for a given parameter
+  * Pros: Can locate specific food items easily; more narrowed-down search.
+  * Cons: More difficult to find something over broad terms.
+  
+* **Alternative 3 (proposed best choice):** Allow variation in type of filtering through another optional parameter.
+  * Pros: Combined Pros of Alternative 1 and 2, gives user greater autonomy.
+  * Cons: Harder to implement, harder to use effectively. 
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
