@@ -102,6 +102,7 @@ public class ItemParserUtil {
      * @return Set of tags used
      */
     public static Set<Tag> parseTags(Collection<String> tags) {
+        requireNonNull(tags);
         return tags.stream()
                 .flatMap(x -> Arrays.stream(x.split(REGEX_ENTRIES)))
                 .map(Tag::new)
