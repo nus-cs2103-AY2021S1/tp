@@ -32,7 +32,7 @@ public class TaskUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_TITLE).append(task.getTitle().title).append(" ");
         sb.append(PREFIX_DATE_TIME).append(task.getDateTime().toString()).append(" ");
-        sb.append(PREFIX_DESCRIPTION).append(task.getDescription().toString()).append(" ");
+        sb.append(PREFIX_DESCRIPTION).append(task.getDescription().value).append(" ");
         sb.append(PREFIX_TYPE).append(task.getType().value).append(" ");
         task.getTags().forEach(
             s -> sb.append(PREFIX_TAG).append(s.tagName).append(" ")
@@ -49,7 +49,7 @@ public class TaskUtil {
         descriptor.getDateTime()
                 .ifPresent(dateTime -> sb.append(PREFIX_DATE_TIME).append(dateTime.toString()).append(" "));
         descriptor.getDescription()
-                .ifPresent(desc -> sb.append(PREFIX_DESCRIPTION).append(desc.toString()).append(" "));
+                .ifPresent(desc -> sb.append(PREFIX_DESCRIPTION).append(desc.value).append(" "));
         descriptor.getType().ifPresent(type -> sb.append(PREFIX_TYPE).append(type.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();

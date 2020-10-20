@@ -60,7 +60,7 @@ class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         title = source.getTitle().title;
         dateTime = source.getDateTime().toString();
-        description = source.getDescription().toString();
+        description = source.getDescription().value;
         type = source.getType().value;
         status = source.getStatus().value.toString();
         tagged.addAll(source.getTags().stream()

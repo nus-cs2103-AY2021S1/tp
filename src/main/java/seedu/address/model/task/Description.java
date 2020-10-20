@@ -23,10 +23,9 @@ public class Description {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum},.!?][\\p{Alnum},.!? ]*";
-    private static final String DEFAULT_DESCRIPTION = "dummy description";
+    private static final String DEFAULT_DESCRIPTION = "";
 
     public final String value;
-    public final boolean isDefault;
 
     /**
      * Constructs a {@code Description}.
@@ -37,7 +36,6 @@ public class Description {
         requireNonNull(description);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
         value = description;
-        isDefault = false;
     }
 
     /**
@@ -46,7 +44,6 @@ public class Description {
      */
     private Description() {
         value = DEFAULT_DESCRIPTION;
-        isDefault = true;
     }
 
     /**
@@ -66,19 +63,14 @@ public class Description {
 
     @Override
     public String toString() {
-        if (isDefault) {
-            assert !value.equals(DEFAULT_DESCRIPTION) : "default description using real description content";
-            return "";
-        }
-        return value; // if default, display an empty string
+        return value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Description // instanceof handles nulls
-                && (value.equals(((Description) other).value)
-                    || isDefault && ((Description) other).isDefault)); // state check
+                && value.equals(((Description) other).value)); // state check
     }
 
     @Override
