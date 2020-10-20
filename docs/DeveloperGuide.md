@@ -136,6 +136,42 @@ Classes used by multiple components are in the `seedu.mcgymmy.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Clear feature
+
+The clear feature extends model with the ability to delete all the items shown in the UI.
+
+#### Implementation
+
+Given below is an example usage scenario and how the clear mechanism works
+
+Step 1. The user has decided that he wants to delete all filtered items based on taggings or names.
+
+Step 2. The user uses the find command to search for the items to delete.
+
+Step 3. The User executes `clear`. 
+The clear command will update the model to delete every occurences of food shown on the UI. 
+Otherwise, a CommandException will be thrown.
+
+Step 4. Storage is then updated to be the same as model.
+
+The following sequence diagram shows how the clear operation works:
+
+![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
+
+#### Design Considerations
+
+##### Aspect: How clear executes
+
+* **Alternative 1 (Current Choice):** A temporary list is used to hold the filtered food items.
+
+    * Pros: Easy to implement
+    * Cons: Requires the user to key in path to file
+    
+* **Alternative 2:** An enhanced for loop can be used to remove all occurences straight from the list.
+
+    * Pros: Cleaner code and smaller and time space complexity
+    * Cons: Code may break if food properties ever changes due to traversal error.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
