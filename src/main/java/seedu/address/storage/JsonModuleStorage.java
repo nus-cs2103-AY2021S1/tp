@@ -12,7 +12,8 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.model.Module;
+import seedu.address.model.ReadOnlyTrackr;
 
 // TODO better JavaDocs
 public class JsonModuleStorage implements ModuleStorage {
@@ -31,7 +32,7 @@ public class JsonModuleStorage implements ModuleStorage {
     }
 
     @Override
-    public Optional<ReadOnlyModuleList> readModuleList() throws DataConversionException {
+    public Optional<ReadOnlyTrackr<Module>> readModuleList() throws DataConversionException {
         return readModuleList(filePath);
     }
 
@@ -40,7 +41,7 @@ public class JsonModuleStorage implements ModuleStorage {
      * @param filePath The filePath containing the moduleList to be read.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyModuleList> readModuleList(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyTrackr<Module>> readModuleList(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableModuleList> jsonModuleList = JsonUtil.readJsonFile(
@@ -58,7 +59,7 @@ public class JsonModuleStorage implements ModuleStorage {
     }
 
     @Override
-    public void saveModuleList(ReadOnlyModuleList moduleList) throws IOException {
+    public void saveModuleList(ReadOnlyTrackr<Module> moduleList) throws IOException {
         saveModuleList(moduleList, filePath);
     }
 
@@ -67,7 +68,7 @@ public class JsonModuleStorage implements ModuleStorage {
      * @param moduleList The moduleList to be saved.
      * @param filePath The filePath at which the moduleList will be saved.
      */
-    public void saveModuleList(ReadOnlyModuleList moduleList, Path filePath) throws IOException {
+    public void saveModuleList(ReadOnlyTrackr<Module> moduleList, Path filePath) throws IOException {
         requireNonNull(moduleList);
         requireNonNull(filePath);
 

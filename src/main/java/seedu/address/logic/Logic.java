@@ -7,8 +7,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
 import seedu.address.model.Module;
-import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.model.ReadOnlyTrackr;
+import seedu.address.model.person.Student;
 
 /**
  * API of the Logic component
@@ -24,19 +26,29 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the student list.
      *
-     * @see seedu.address.model.Model#getModuleList()
+     * @see Model#getStudentList()
      */
-    ReadOnlyModuleList getModuleList();
+    ReadOnlyTrackr<Student> getStudentList();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the filtered list of students */
+    ObservableList<Student> getFilteredStudentList();
+
+    /**
+     * Returns the module list.
+     *
+     * @see Model#getModuleList()
+     */
+    ReadOnlyTrackr<Module> getModuleList();
+
+    /** Returns an unmodifiable view of the filtered list of modules */
     ObservableList<Module> getFilteredModuleList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' trackr file path.
      */
-    Path getModuleListFilePath();
+    Path getTrackrFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
