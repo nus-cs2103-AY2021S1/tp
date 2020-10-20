@@ -289,6 +289,10 @@ The following sequence diagram shows how the suggestion feature works for **Exam
 
 ![Suggestion Example 1](images/SuggestionSequenceDiagramExample1.png)
 
+The following sequence diagram shows how the suggestion feature works for **Example 2**:
+
+![Suggestion Example 2](images/SuggestionSequenceDiagramExample2.png)
+
 #### Minimum Edit Distance Heuristic
 
 The minimum edit distance between two strings is defined as the minimum cost needed to transform one into the other.
