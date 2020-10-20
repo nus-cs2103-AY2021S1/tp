@@ -1,9 +1,12 @@
 package seedu.address.storage;
 
+import java.util.HashSet;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.description.Description;
 import seedu.address.model.tag.FileAddress;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagName;
@@ -63,7 +66,8 @@ class JsonAdaptedTag {
         }
         final FileAddress modelFileAddress = new FileAddress(fileAddress);
 
-        return new Tag(modelName, modelFileAddress);
+        //TODO: NEED TO MODIFY DESCRIPTION
+        return new Tag(modelName, modelFileAddress, new HashSet<Description>());
     }
 
 }
