@@ -195,10 +195,10 @@ public class MainWindow extends UiPart<Stage> {
         try {
             file = fileChooser.showOpenDialog(primaryStage);
             logger.info(String.format("User selected '%s'", file.toString()));
-            //Todo insert command to execute for importing saved data
-        } catch (RuntimeException e) {
+            executeCommand(String.format("import %s", file.toString()));
+        } catch (RuntimeException | CommandException | ParseException e) {
             file = null;
-            logger.info("User did not select a file");
+            logger.info("User did not select a valid file");
             resultDisplay.setFeedbackToUser("Please select a valid import file");
         }
     }
@@ -224,8 +224,8 @@ public class MainWindow extends UiPart<Stage> {
         try {
             directory = directoryChooser.showDialog(primaryStage);
             logger.info(String.format("User selected '%s'", directory.toString()));
-            //Todo insert command to execute for exporting the save data to a directory
-        } catch (RuntimeException e) {
+            executeCommand(String.format("export %s", directory.toString()));
+        } catch (RuntimeException | CommandException | ParseException e) {
             directory = null;
             logger.info(String.format("User did not select any directory"));
             resultDisplay.setFeedbackToUser("Please select a valid directory");
