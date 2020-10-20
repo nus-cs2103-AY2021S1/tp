@@ -1,6 +1,7 @@
 package quickcache.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
 import java.util.Set;
@@ -21,9 +22,16 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the flashcard identified by the index number used in the displayed flashcard list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes flashcards from flashcard list.\n"
+            + "If an INDEX is given, then the flashcard identified by the index number is deleted from the displayed flashcard list.\n"
+            + "If tag prefixes is given, the all flashcards with those tags will be deleted as well.\n"
+            + "An error will be thrown if both index and tag prefixes are given together.\n"
+            + "Parameters (either but not both): \n"
+            + "1. INDEX (must be a positive integer)\n"
+            + "2. [TAGS]\n"
+            + "Examples: \n"
+            + "1. " + COMMAND_WORD + " 1"
+            + "2. " + COMMAND_WORD + " " + PREFIX_TAG + " MCQ";
 
     public static final String MESSAGE_DELETE_FLASHCARD_SUCCESS = "Deleted Flashcard: %1$s";
 
