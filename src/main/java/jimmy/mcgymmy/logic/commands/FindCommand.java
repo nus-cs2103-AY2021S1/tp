@@ -50,6 +50,8 @@ public class FindCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         FoodContainsKeywordsPredicate foodPredicate = foodPredicateParameter.getValue().orElse(null);
+        NameContainsKeywordsPredicate namePredicate = namePredicateParameter.getValue().orElse(null);
+        TagContainsKeywordsPredicate tagPredicate = tagPredicateParameter.getValue().orElse(null);
         model.updateFilteredFoodList(foodPredicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_FOOD_LISTED_OVERVIEW, model.getFilteredFoodList().size()));
