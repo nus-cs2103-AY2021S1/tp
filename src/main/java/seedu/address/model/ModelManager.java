@@ -113,6 +113,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean isEmptyPersonList() {
+        return addressBook.getPersonList().isEmpty();
+    }
+
+    @Override
+    public void clearContacts() {
+        addressBook.clearContacts();
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
@@ -123,6 +133,16 @@ public class ModelManager implements Model {
     public void deleteModule(ModuleCode moduleCode) {
         requireNonNull(moduleCode);
         addressBook.removeModule(moduleCode);
+    }
+
+    @Override
+    public boolean isEmptyModuleList() {
+        return modules.isEmptyList();
+    }
+
+    @Override
+    public void clearMod() {
+        addressBook.clearMod();
     }
 
     /**
@@ -138,6 +158,11 @@ public class ModelManager implements Model {
     public void addModule(Module module) {
         addressBook.addModule(module);
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+    }
+
+    @Override
+    public void assignInstructor(Person instructor, ModuleCode moduleCode) {
+        addressBook.assignInstructor(instructor, moduleCode);
     }
 
     //=========== Filtered Person List Accessors =============================================================

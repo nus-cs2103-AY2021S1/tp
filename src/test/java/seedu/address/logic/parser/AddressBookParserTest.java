@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddModCommand;
+import seedu.address.logic.commands.CclearCommand;
 import seedu.address.logic.commands.ClistCommand;
 import seedu.address.logic.commands.DelModCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -24,6 +25,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindModCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.MclearCommand;
 import seedu.address.logic.commands.MlistCommand;
 import seedu.address.logic.commands.ResetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -31,8 +33,8 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
 import seedu.address.model.module.ModuleInstructorsContainsKeywordsPredicate;
 import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.ModuleUtil;
@@ -128,9 +130,19 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_clearContacts() throws Exception {
+        assertTrue(parser.parseCommand(CclearCommand.COMMAND_WORD) instanceof CclearCommand);
+    }
+
+    @Test
     public void parseCommand_listModules() throws Exception {
         assertTrue(parser.parseCommand(MlistCommand.COMMAND_WORD) instanceof MlistCommand);
         assertTrue(parser.parseCommand(MlistCommand.COMMAND_WORD + " 3") instanceof MlistCommand);
+    }
+
+    @Test
+    public void parseCommand_clearModules() throws Exception {
+        assertTrue(parser.parseCommand(MclearCommand.COMMAND_WORD) instanceof MclearCommand);
     }
 
     @Test

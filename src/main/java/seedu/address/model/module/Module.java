@@ -53,6 +53,10 @@ public class Module {
         return Collections.unmodifiableSet(instructors);
     }
 
+    public void assignInstructor(Person instructor) {
+        this.instructors.add(instructor);
+    }
+
     /**
      * Returns true if both modules have the same code.
      */

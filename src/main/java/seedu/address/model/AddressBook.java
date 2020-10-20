@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Objects;
@@ -71,8 +72,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         setModules(newData.getModuleList());
     }
 
-    //// person-level operations
 
+    //// person-level operations
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -108,6 +109,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    public void clearContacts() {
+        persons.clearAll();
+    }
+
     /**
      * Removes the module with the specified {@code moduleCode} from this {@code AddressBook}.
      * Module with the {@code moduleCode} must exist in the address book.
@@ -122,6 +127,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeModule(Module key) {
         modules.remove(key);
+    }
+
+    /**
+     * Removes all the modules from the list.
+     */
+    public void clearMod() {
+        modules.clearAll();
     }
 
     //// module-level operations
@@ -147,9 +159,19 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The person identity of {@code editedModule} must not be the same as another existing person in the address book.
      */
     public void setModule(Module target, Module editedModule) {
-        requireNonNull(editedModule);
+        requireAllNonNull(target, editedModule);
 
         modules.setModule(target, editedModule);
+    }
+
+    /**
+     * Assigns an {@code instructor} to the module with the given {@code moduleCode}.
+     * The module with the {@code moduleCode} must exist in the address book.
+     */
+    public void assignInstructor(Person instructor, ModuleCode moduleCode) {
+        requireAllNonNull(instructor, moduleCode);
+
+        modules.assignInstructor(instructor, moduleCode);
     }
 
     //// util methods

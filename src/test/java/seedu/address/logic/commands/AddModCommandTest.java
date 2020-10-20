@@ -7,13 +7,14 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -40,7 +41,7 @@ public class AddModCommandTest {
         CommandResult commandResult = new AddModCommand(validModule).execute(modelStub);
 
         assertEquals(String.format(AddModCommand.MESSAGE_SUCCESS, validModule), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validModule), modelStub.modulesAdded);
+        assertEquals(Collections.singletonList(validModule), modelStub.modulesAdded);
     }
 
     @Test
@@ -50,7 +51,7 @@ public class AddModCommandTest {
         ModelStub modelStub = new ModelStubWithModule(validModule);
 
         assertThrows(CommandException.class,
-                AddModCommand.MESSAGE_DUPLICATE_MODULE, () -> addModCommand.execute(modelStub));
+                Messages.MESSAGE_DUPLICATE_MODULE, () -> addModCommand.execute(modelStub));
     }
 
     @Test
@@ -157,6 +158,11 @@ public class AddModCommandTest {
         }
 
         @Override
+        public void assignInstructor(Person instructor, ModuleCode moduleCode) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public UniqueModuleList getModuleList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -172,6 +178,25 @@ public class AddModCommandTest {
         }
 
         @Override
+        public boolean isEmptyPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isEmptyModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearContacts() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearMod() {
+            throw new AssertionError("This method should not be called.");
+        }
+
         public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
