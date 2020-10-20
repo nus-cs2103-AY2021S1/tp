@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -76,7 +77,7 @@ public interface Model {
      */
     void setAnimal(Animal target, Animal editedAnimal);
 
-    void sortAnimals();
+    void sortAnimals(Comparator<Animal> animalComparator);
 
     /** Returns an unmodifiable view of the filtered animal list */
     ObservableList<Animal> getFilteredAnimalList();

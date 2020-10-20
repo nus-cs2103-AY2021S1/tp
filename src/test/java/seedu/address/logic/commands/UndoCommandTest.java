@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -143,7 +144,7 @@ public class UndoCommandTest {
         }
 
         @Override
-        public void sortAnimals() {
+        public void sortAnimals(Comparator<Animal> animalComparator) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -74,7 +74,7 @@ public class ZooKeepBookParser {
             return new UndoCommand();
 
         case SortCommand.COMMAND_WORD:
-            return new SortCommand();
+            return new SortCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

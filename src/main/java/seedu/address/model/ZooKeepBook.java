@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -93,8 +94,8 @@ public class ZooKeepBook implements ReadOnlyZooKeepBook {
         animals.remove(key);
     }
 
-    public void sortAnimals() {
-        animals.sortAnimals();
+    public void sortAnimals(Comparator<Animal> animalComparator) {
+        animals.sortAnimals(animalComparator);
     }
 
     //// util methods

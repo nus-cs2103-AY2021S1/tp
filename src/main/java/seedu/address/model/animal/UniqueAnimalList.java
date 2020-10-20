@@ -103,13 +103,8 @@ public class UniqueAnimalList implements Iterable<Animal> {
     /**
      * Replaces the contents of this list with a sorted list instead.
      */
-    public void sortAnimals() {
-        SortedList<Animal> sortedList = internalList.sorted(new Comparator<Animal>() {
-            @Override
-            public int compare(Animal o1, Animal o2) {
-                return Integer.parseInt(o1.getId().value) - Integer.parseInt(o2.getId().value);
-            }
-        });
+    public void sortAnimals(Comparator<Animal> animalComparator) {
+        SortedList<Animal> sortedList = internalList.sorted(animalComparator);
         internalList.setAll(sortedList);
     }
 

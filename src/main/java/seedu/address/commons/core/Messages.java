@@ -9,5 +9,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_ANIMAL_DISPLAYED_ID = "The animal ID provided is invalid";
     public static final String MESSAGE_ANIMALS_LISTED_OVERVIEW = "%1$d animals listed!";
+    public static final String MESSAGE_INVALID_SORT_KEYWORD = "Please key in a proper sort category";
 
 }
