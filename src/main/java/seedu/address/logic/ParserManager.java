@@ -5,14 +5,21 @@ import seedu.address.logic.parser.ModuleListParser;
 import seedu.address.logic.parser.TodoListParser;
 import seedu.address.logic.parser.contactlistparsers.ContactListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ContactList;
-import seedu.address.model.contact.Contact;
 
+/**
+ * Represents the manager in charge of overseeing all the medium feature parsers.
+ */
 public class ParserManager {
     private final ModuleListParser moduleListParser;
     private final ContactListParser contactListParser;
     private final TodoListParser todoListParser;
 
+    /**
+     * Creates a Container the holds all the medium parsers.
+     * @param moduleListParser parses module related commands.
+     * @param todoListParser parses task related commands.
+     * @param contactListParser parses contact related commands.
+     */
     public ParserManager(ModuleListParser moduleListParser,
                          TodoListParser todoListParser,
                          ContactListParser contactListParser) {
@@ -21,6 +28,12 @@ public class ParserManager {
         this.moduleListParser = moduleListParser;
     }
 
+    /**
+     * Selects which medium parser to be used based on the command word.
+     * @param commandWord the command word of the user input.
+     * @return FeatureParser a medium parser.
+     * @throws ParseException when the command word is invalid.
+     */
     public FeatureParser select(String commandWord) throws ParseException {
         if (commandWord.contains("module")) {
             return this.moduleListParser;
