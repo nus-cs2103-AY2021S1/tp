@@ -152,7 +152,7 @@ The following sequence diagram shows how the undo operation works:
 ### Eat recipe feature
 
 Eat Recipe feature is used to record the user daily consumption. This feature will work with list consumption 
-feature to output the total calories' user ate. 
+feature to output the total calories' user ate . 
 
 #### Implementation
 Substitutability is used in Command and Parser:
