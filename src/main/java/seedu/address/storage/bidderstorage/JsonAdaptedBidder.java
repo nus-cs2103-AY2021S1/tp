@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.id.Id;
+import seedu.address.model.id.BidderId;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.bidder.Bidder;
@@ -86,7 +86,14 @@ public class JsonAdaptedBidder {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        final Id modelId = new Id(id);
+        if (id == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    BidderId.class.getSimpleName()));
+        }
+        if (!BidderId.isValidId(id)) {
+            throw new IllegalValueException(BidderId.MESSAGE_CONSTRAINTS);
+        }
+        final BidderId modelId = new BidderId(id);
 
         return new Bidder(modelName, modelPhone, modelTags, modelId);
     }

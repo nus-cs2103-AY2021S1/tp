@@ -2,14 +2,14 @@ package seedu.address.model.person.seller;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.person.seller.Seller.DEFAULT_SELLER_ID;
+import static seedu.address.model.id.SellerId.DEFAULT_SELLER_ID;
 
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.id.Id;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -54,9 +54,9 @@ public class UniqueSellerList implements Iterable<Seller> {
         internalList.add(toAdd);
     }
 
-    public Id getLatestId() {
+    public SellerId getLatestId() {
         if (internalList.size() == 0) {
-            return new Id("S", 1);
+            return new SellerId(1);
         }
         return this.internalList.get(internalList.size() - 1).getId();
     }

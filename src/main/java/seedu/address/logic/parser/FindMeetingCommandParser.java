@@ -11,14 +11,15 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FindMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.id.IdParserUtil;
 import seedu.address.model.calendar.BidderIdContainsKeywordsPredicate;
-import seedu.address.model.calendar.CalendarBidderId;
-import seedu.address.model.calendar.CalendarPropertyId;
 import seedu.address.model.calendar.CalendarTime;
 import seedu.address.model.calendar.CalendarVenue;
 import seedu.address.model.calendar.PropertyIdContainsKeywordsPredicate;
 import seedu.address.model.calendar.TimeContainsKeywordsPredicate;
 import seedu.address.model.calendar.VenueContainsKeywordsPredicate;
+import seedu.address.model.id.BidderId;
+import seedu.address.model.id.PropertyId;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -47,16 +48,18 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
                         new TimeContainsKeywordsPredicate(Arrays.asList(time.time.split("\\s+"))),
                         null, null);
             } else if (argMultimap.getValue(PREFIX_CALENDAR_BIDDER_ID).isPresent()) {
-                CalendarBidderId bidderId =
-                        ParserUtil.parseCalendarBidderId(argMultimap.getValue(PREFIX_CALENDAR_BIDDER_ID).get());
+                BidderId bidderId =
+                        IdParserUtil.parseBidderId(argMultimap.getValue(PREFIX_CALENDAR_BIDDER_ID).get());
                 return new FindMeetingCommand(null, null,
-                        new BidderIdContainsKeywordsPredicate(Arrays.asList(bidderId.bidderId.split("\\s+"))),
+                        new BidderIdContainsKeywordsPredicate(Arrays.asList(bidderId.toString()
+                                .split("\\s+"))),
                         null);
             } else if (argMultimap.getValue(PREFIX_CALENDAR_PROPERTY_ID).isPresent()) {
-                CalendarPropertyId propertyId =
-                        ParserUtil.parseCalendarPropertyId(argMultimap.getValue(PREFIX_CALENDAR_PROPERTY_ID).get());
+                PropertyId propertyId =
+                        IdParserUtil.parsePropertyId(argMultimap.getValue(PREFIX_CALENDAR_PROPERTY_ID).get());
                 return new FindMeetingCommand(null, null, null,
-                        new PropertyIdContainsKeywordsPredicate(Arrays.asList(propertyId.propertyId.split("\\s+"))));
+                        new PropertyIdContainsKeywordsPredicate(Arrays.asList(propertyId.toString()
+                                .split("\\s+"))));
             }
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindMeetingCommand.MESSAGE_USAGE));
         } catch (ParseException pe) {

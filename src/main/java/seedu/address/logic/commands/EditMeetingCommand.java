@@ -15,11 +15,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.calendar.CalendarBidderId;
 import seedu.address.model.calendar.CalendarMeeting;
-import seedu.address.model.calendar.CalendarPropertyId;
 import seedu.address.model.calendar.CalendarTime;
 import seedu.address.model.calendar.CalendarVenue;
+import seedu.address.model.id.BidderId;
+import seedu.address.model.id.PropertyId;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -88,9 +88,9 @@ public class EditMeetingCommand extends Command {
                                                        EditMeetingDescriptor editMeetingDescriptor) {
         assert meetingToEdit != null;
 
-        CalendarBidderId updatedBidderId =
+        BidderId updatedBidderId =
                 editMeetingDescriptor.getCalendarBidderId().orElse(meetingToEdit.getCalendarBidderId());
-        CalendarPropertyId updatedPropertyId =
+        PropertyId updatedPropertyId =
                 editMeetingDescriptor.getCalendarPropertyId().orElse(meetingToEdit.getCalendarPropertyId());
         CalendarVenue updatedVenue =
                 editMeetingDescriptor.getCalendarVenue().orElse(meetingToEdit.getCalendarVenue());
@@ -124,8 +124,8 @@ public class EditMeetingCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditMeetingDescriptor {
-        private CalendarBidderId bidderId;
-        private CalendarPropertyId propertyId;
+        private BidderId bidderId;
+        private PropertyId propertyId;
         private CalendarTime time;
         private CalendarVenue venue;
 
@@ -149,19 +149,19 @@ public class EditMeetingCommand extends Command {
             return CollectionUtil.isAnyNonNull(bidderId, propertyId, venue, time);
         }
 
-        public void setCalendarBidderId(CalendarBidderId bidderId) {
+        public void setCalendarBidderId(BidderId bidderId) {
             this.bidderId = bidderId;
         }
 
-        public Optional<CalendarBidderId> getCalendarBidderId() {
+        public Optional<BidderId> getCalendarBidderId() {
             return Optional.ofNullable(bidderId);
         }
 
-        public void setCalendarPropertyId(CalendarPropertyId propertyId) {
+        public void setCalendarPropertyId(PropertyId propertyId) {
             this.propertyId = propertyId;
         }
 
-        public Optional<CalendarPropertyId> getCalendarPropertyId() {
+        public Optional<PropertyId> getCalendarPropertyId() {
             return Optional.ofNullable(propertyId);
         }
 
