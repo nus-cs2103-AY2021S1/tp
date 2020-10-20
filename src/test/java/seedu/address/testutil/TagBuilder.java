@@ -7,6 +7,7 @@ import seedu.address.model.label.Label;
 import seedu.address.model.tag.FileAddress;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagName;
+import seedu.address.model.util.SampleDataUtil;
 
 
 /**
@@ -16,11 +17,11 @@ public class TagBuilder {
 
     public static final String DEFAULT_TAG_NAME = "testTag";
     public static final String DEFAULT_FILE_ADDRESS = "./src/test/java/seedu/address/testutil/testFile.bat";
+    public static final String DEFAULT_LABEL = "testLabel";
 
     private TagName tagName;
     private FileAddress fileAddress;
-    //TODO:NEED TO MODIFY DESCRIPTIONS
-    private Set<Label> labels = new HashSet<Label>();
+    private Set<Label> labels;
 
 
     /**
@@ -29,6 +30,7 @@ public class TagBuilder {
     public TagBuilder() {
         tagName = new TagName(DEFAULT_TAG_NAME);
         fileAddress = new FileAddress(DEFAULT_FILE_ADDRESS);
+        labels = new HashSet<>();
     }
 
     /**
@@ -37,11 +39,12 @@ public class TagBuilder {
     public TagBuilder(Tag tagToCopy) {
         tagName = tagToCopy.getTagName();
         fileAddress = tagToCopy.getFileAddress();
+        labels = new HashSet<>(tagToCopy.getLabels());
 
     }
 
     /**
-     * Sets the {@code Name} of the {@code Tag} that we are building.
+     * Sets the {@code TagName} of the {@code Tag} that we are building.
      */
     public TagBuilder withTagName(String tagName) {
         this.tagName = new TagName(tagName);
@@ -57,7 +60,14 @@ public class TagBuilder {
         return this;
     }
 
-    //TODO:NEED TO MODIFY DESCRIPTION
+    /**
+     * Sets the {@code Set<Label>} of the {@code Tag} that we are building.
+     */
+    public TagBuilder withLabels(String ... labels) {
+        this.labels = SampleDataUtil.getLabelSet(labels);
+        return this;
+    }
+
     public Tag build() {
         return new Tag(tagName, fileAddress, labels);
     }

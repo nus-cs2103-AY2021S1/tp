@@ -1,6 +1,8 @@
 package seedu.address.model.util;
 
-import java.util.HashSet;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -19,22 +21,22 @@ public class SampleDataUtil {
         return new Tag[] {
             new Tag(new TagName("Alex Yeoh"),
                 new FileAddress("c:\\a\\b\\alex.txt"),
-                    new HashSet<Label>()),
+                   getLabelSet("AlexLabel")),
             new Tag(new TagName("Bernice Yu"),
                 new FileAddress("c:\\a\\b\\bernice.txt"),
-                new HashSet<Label>()),
+                getLabelSet("BerniceLabel")),
             new Tag(new TagName("Charlotte Oliveiro"),
                 new FileAddress("c:\\a\\b\\charlotte.txt"),
-                new HashSet<Label>()),
+                    getLabelSet("CharlotteLabel")),
             new Tag(new TagName("David Li"),
                 new FileAddress("c:\\a\\b\\david.txt"),
-                new HashSet<Label>()),
+                    getLabelSet("DavidLabel")),
             new Tag(new TagName("Irfan Ibrahim"),
                 new FileAddress("c:\\a\\b\\irfan.txt"),
-                new HashSet<Label>()),
+                    getLabelSet("IrfanLabel")),
             new Tag(new TagName("Roy Balakrishnan"),
                 new FileAddress("c:\\a\\b\\roy.txt"),
-                    new HashSet<Label>())
+                    getLabelSet("RoyLabel"))
         };
     }
 
@@ -44,6 +46,12 @@ public class SampleDataUtil {
             sampleAb.addTag(sampleTag);
         }
         return sampleAb;
+    }
+
+    public static Set<Label> getLabelSet(String... labels) {
+        return Arrays.stream(labels)
+                .map(Label::new)
+                .collect(Collectors.toSet());
     }
 
 
