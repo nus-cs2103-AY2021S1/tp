@@ -37,8 +37,9 @@ The rest of the App consists of four components.
 
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#inventoryModel-component): Holds the data of the App in memory.
+* [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`History`**](#command-history-traversal): Records user's command history and allows for traversal.
 
 Each of the four components,
 
@@ -78,19 +79,19 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `Parser` API to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a item).
+1. The command execution can affect the `Model` (e.g. adding an item).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete-i 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ItemDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
@@ -101,6 +102,7 @@ Structure of the Model Component
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 `Models`,
+
 
 * stores a map of Models(eg. InventoryModel and DeliveryModel)
 * Each model stores the current state of the Book(eg. InventoryModel stores the current state of the InventoryBook)
@@ -153,7 +155,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Command History Traversal
 Much like Window's Command Prompt, OneShelf supports traversal of command history with the arrow up and down key.
-There is a `History` interface that is implemented by `CommandHistory` class which stores `commandHistory` up to its `lengthLimit`
+There is a `History` interface that is implemented by `HistoryManager` class which stores `commandHistory` up to its `lengthLimit`
 
 In order to replicate Window's Command Prompt's History traversal behaviour, a `hasReturnedCurrentCommandBefore` boolean is required to prevent the first `previousCommand()`
 method call to return `commandHistory`'s 2nd last command instead of the last command.
@@ -333,7 +335,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Update existing item quantity or tags**
+**Use case: Adding existing item's quantity or tags**
 
 **MSS**
 
@@ -355,6 +357,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. OneShelf adds a new item into the inventory.
 
   Use case ends.
+  
+ * 1c. InventoryBook detects existing item name and supplier.
+    * 1c1. InventoryBook adds on existing item name and supplier's with input quantity.
 
 **Use case: Editing an item**
 

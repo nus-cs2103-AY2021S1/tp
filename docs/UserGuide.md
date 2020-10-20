@@ -149,7 +149,22 @@ Format: `find-i PREFIX KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find-i n/Chicken` returns `chicken` and `chicken salad` items.
 
+### Locating deliveries by keywords: `find-d`
 
+Finds deliveries whose attributes contain any of the given keywords.
+
+Format: `find-d PREFIX KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `john` will match `JOHN`
+* The order of the keywords does not matter. e.g. `John Lim` will match `Lim John`
+* Name, Phone, Address, Order can be searched
+* Only full words for name will be matched e.g. `Bob` will not match `Bobby`
+* Any phone/address/order containing the search string within them will be matched. e.g. "Holland V" will match "Holland Village"
+* Items matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Bernice Adam` will return `Bernice Yeo`, `Adam Tan`
+
+Examples:
+* `find-d n/John` returns `John Tay` and `John Lim`'s deliveries
 
 ### Deleting an item : `delete-i`
 
@@ -172,25 +187,6 @@ Examples:
 Clears all entries from the Inventory book.
 
 Format: `clear-i`
-
-
-
-### Locating deliveries by keywords: `find-d`
-
-Finds deliveries whose attributes contain any of the given keywords.
-
-Format: `find-d PREFIX KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `john` will match `JOHN`
-* The order of the keywords does not matter. e.g. `John Lim` will match `Lim John`
-* Name, Phone, Address, Order can be searched
-* Only full words for name will be matched e.g. `Bob` will not match `Bobby`
-* Any phone/address/order containing the search string within them will be matched. e.g. "Holland V" will match "Holland Village"
-* Items matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Bernice Adam` will return `Bernice Yeo`, `Adam Tan`
-
-Examples:
-* `find-d n/John` returns `John Tay` and `John Lim`'s deliveries
 
 
 ### Exiting the program : `exit`

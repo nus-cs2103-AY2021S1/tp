@@ -7,7 +7,7 @@ import java.util.Optional;
 
 import seedu.address.history.exception.HistoryException;
 
-public class CommandHistory implements History {
+public class HistoryManager implements History {
     private static final String MESSAGE_LENGTH_LIMIT_AT_LEAST_ONE = "Length of Command History must be at least be 1";
 
     private List<String> commandHistory;
@@ -28,11 +28,11 @@ public class CommandHistory implements History {
     private boolean hasReturnedCurrentCommandBefore;
 
     /**
-     * Constructor for CommandHistory
+     * Constructor for HistoryManager
      * @param lengthLimit length limit of command history. Must be strictly more than 0.
      * @throws HistoryException if lengthLimit is less than or equals to 0.
      */
-    public CommandHistory(int lengthLimit) throws HistoryException {
+    public HistoryManager(int lengthLimit) throws HistoryException {
         if (lengthLimit > 0) {
             this.commandHistory = new ArrayList<>(lengthLimit);
 
@@ -152,8 +152,8 @@ public class CommandHistory implements History {
     public boolean equals(Object o) {
         if (this == o) {
             return true;
-        } else if (o instanceof CommandHistory) {
-            CommandHistory c = (CommandHistory) o;
+        } else if (o instanceof HistoryManager) {
+            HistoryManager c = (HistoryManager) o;
             return c.getCommandHistory().equals(this.commandHistory)
                     && c.getCurrentCommandIndex() == this.currentCommandIndex
                     && c.getLengthLimit() == this.lengthLimit;
