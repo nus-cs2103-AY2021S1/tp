@@ -20,6 +20,7 @@ checkstyle {
     toolVersion = '8.29'
 }
 
+
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport

@@ -30,7 +30,7 @@ public class CommentCommand extends Command {
             + "To add: key in '-a t: {Title} d: {Date} desc: {Description}'"
             + "and to delete, key in '-d t:{TitletoDelete}'";
     public static final String MESSAGE_ADD_COMMENT_SUCCESS = "Commented on Person: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the eva database.";
     public static final String MESSAGE_DELETE_COMMENT_SUCCESS = "Deleted comment on Person: %1$s";
 
 
