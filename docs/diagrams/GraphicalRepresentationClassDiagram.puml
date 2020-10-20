@@ -1,0 +1,22 @@
+@startuml
+
+class ExpenseBook
+class UniqueExpenseList
+class ObservableList
+class Expense
+class PieChartData
+interface ChartData
+class ChartDisplay
+class GraphicalDisplayWindow
+
+hide empty members
+
+ExpenseBook --> UniqueExpenseList
+UniqueExpenseList *--> ObservableList
+ObservableList --> Expense
+ChartData <|-- PieChartData
+ChartData ..> ObservableList
+ChartDisplay --> ChartData
+GraphicalDisplayWindow --> ChartDisplay
+
+@enduml
