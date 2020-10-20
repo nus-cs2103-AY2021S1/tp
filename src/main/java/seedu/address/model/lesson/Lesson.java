@@ -87,7 +87,6 @@ public class Lesson {
         }
         return tasksToAdd;
     }
-    
     /**
      * Returns true if both lessons of the same title have the same start and end date, and the same start and end time.
      */

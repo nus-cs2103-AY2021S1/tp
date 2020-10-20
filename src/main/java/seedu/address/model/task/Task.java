@@ -89,7 +89,8 @@ public class Task {
     }
 
     /**
-     * Returns true if both tasks of the same title and datetime.
+     * Returns true if both tasks of the same title, date and time.
+     * This defines a strong notion of equality between two tasks to allow recurring tasks yet preventing duplicates.
      */
     public boolean isSameTask(Task otherTask) {
         if (otherTask == this) {

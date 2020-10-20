@@ -46,11 +46,11 @@ public class TaskTest {
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameTask(editedAlice));
 
-        // same title, same type, different attributes -> returns true
+        // same title, same type, different attributes -> returns false
 
         editedAlice = new TaskBuilder(ALICE).withDateTime(VALID_DATE_TIME_BOB).withType(VALID_TYPE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameTask(editedAlice));
+        assertFalse(ALICE.isSameTask(editedAlice));
 
         // same title, same dateTime, same type, different attributes -> returns true
         editedAlice = new TaskBuilder(ALICE).withType(VALID_TYPE_BOB).withTags(VALID_TAG_HUSBAND).build();
