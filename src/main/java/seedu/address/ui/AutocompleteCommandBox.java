@@ -66,7 +66,7 @@ public class AutocompleteCommandBox extends CommandBox {
                     autoCompletePos = newPosition.intValue();
                 }
                 if (isAutocompleteMode) {
-                    if (userInput.substring(caretPos - 1).isBlank() || caretPos < autoCompletePos) {
+                    if (caretPos < autoCompletePos) {
                         toggleAutocompleteModeOff();
                         hasSetPrefix = false;
                     }
@@ -108,7 +108,6 @@ public class AutocompleteCommandBox extends CommandBox {
         this.getCommandTextField().addEventFilter(KeyEvent.ANY, (event) -> {
             if (hasSetPrefix
                     && event.getCode() != KeyCode.TAB
-                    && event.getCode() != KeyCode.SPACE
                     && event.getCode() != KeyCode.ENTER
             ) {
                 event.consume();
@@ -121,13 +120,13 @@ public class AutocompleteCommandBox extends CommandBox {
             if (isAutocompleteMode && (
                     event.getCode() == KeyCode.BACK_SPACE
                             || event.getCode() == KeyCode.ENTER
-                            || event.getCode() == KeyCode.SPACE
             )) {
                 hasSetPrefix = false;
-                toggleAutocompleteModeOff();
-                if (event.getCode() != KeyCode.BACK_SPACE) {
-                    removePrefixFromCompletion();
+                if (event.getCode() == KeyCode.BACK_SPACE) {
+                    return;
                 }
+                toggleAutocompleteModeOff();
+                removePrefixFromCompletion();
                 event.consume();
             }
         }));

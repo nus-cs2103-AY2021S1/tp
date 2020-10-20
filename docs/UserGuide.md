@@ -219,12 +219,16 @@ AddressBook data are saved in the hard disk automatically after any command that
 
 ### Autocompletion
 
-Currently Modduke will support autocompletion for name field (PREFIX : `n/` ) in v1.3. Autocomplete mode will be trigger by typing "n/" in 
-CommandBox  and text will turn yellow to show that CommandBox has entered Autocompletion Mode. Use `Tab` to scroll forward and `Shift-Tab`
-to iterate backwards through suggestions. 
-* Note that while in Autocomplete mode you cannot edit suggestions unless you iterated back to your own input.
-* Pressing `Space` will lock in your current selection and take you out of Autocomplete mode.
-* Pressing `Backspace` will take you out of Autocomplete mode.
+Currently Modduke will support autocompletion for the following fields in v1.3.(and their associated trigger phrases)
+
+* Contact Name -  Triggered using `cname/`
+* Module Name -  Triggered using `mdname/`
+* Meeting Name -  Triggered using `mtname/`
+
+Typing in these trigger phrases will turn the text yellow to show that CommandBox has entered Autocompletion Mode. 
+Use `Tab` to scroll forward and `Shift-Tab` to iterate backwards through suggestions. 
+* Note that while in Autocomplete mode you cannot edit suggestions unless you iterated back to your own input or you press `Backspace`.
+* Pressing `Enter` will lock in your current selection and take you out of Autocomplete mode.
 
 ### Command Line Shortcuts
 `Ctrl-U` --- Clears CommandBox
