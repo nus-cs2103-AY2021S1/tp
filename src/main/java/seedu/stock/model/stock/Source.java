@@ -33,7 +33,7 @@ public class Source {
 
     @Override
     public String toString() {
-        return value.substring(0,1).toUpperCase() + value.substring(1);
+        return value.substring(0, 1).toUpperCase() + value.substring(1);
     }
 
     /**
