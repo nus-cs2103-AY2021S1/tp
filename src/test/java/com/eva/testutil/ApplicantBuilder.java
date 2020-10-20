@@ -9,7 +9,7 @@ import com.eva.model.person.applicant.InterviewDate;
 
 public class ApplicantBuilder extends PersonBuilder {
     public static final String DEFAULT_APPLICATION_STATUS = "received";
-    public static final String DEFAULT_INTERVIEW_DATE = "30122020";
+    public static final String DEFAULT_INTERVIEW_DATE = "30/12/2020";
 
     private Optional<InterviewDate> interviewDate;
     private ApplicationStatus applicationStatus;

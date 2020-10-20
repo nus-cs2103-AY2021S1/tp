@@ -1,6 +1,7 @@
 package com.eva.logic.commands;
 
 import static com.eva.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static com.eva.testutil.TypicalPersons.getTypicalApplicantDatabase;
 import static com.eva.testutil.TypicalPersons.getTypicalPersonDatabase;
 import static com.eva.testutil.TypicalPersons.getTypicalStaffDatabase;
 
@@ -23,8 +24,10 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(), new UserPrefs());
+        Model model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
+                getTypicalApplicantDatabase(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
+                getTypicalApplicantDatabase(), new UserPrefs());
         expectedModel.setPersonDatabase(new EvaDatabase<>());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);

@@ -11,6 +11,7 @@ import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.ReadOnlyUserPrefs;
 import com.eva.model.UserPrefs;
 import com.eva.model.person.Person;
+import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.staff.Staff;
 
 /**
@@ -62,6 +63,11 @@ public class StorageManager implements Storage {
     }
 
     @Override
+    public Path getApplicantDatabaseFilePath() {
+        return evaStorage.getApplicantDatabaseFilePath();
+    }
+
+    @Override
     public Optional<ReadOnlyEvaDatabase<Person>> readPersonDatabase() throws DataConversionException, IOException {
         return readPersonDatabase(evaStorage.getPersonDatabaseFilePath());
     }
@@ -107,4 +113,27 @@ public class StorageManager implements Storage {
         evaStorage.saveStaffDatabase(addressBook, filePath);
     }
 
+    @Override
+    public Optional<ReadOnlyEvaDatabase<Applicant>> readApplicantDatabase()
+            throws DataConversionException, IOException {
+        return readApplicantDatabase(evaStorage.getApplicantDatabaseFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyEvaDatabase<Applicant>> readApplicantDatabase(Path filePath)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return evaStorage.readApplicantDatabase(filePath);
+    }
+
+    @Override
+    public void saveApplicantDatabase(ReadOnlyEvaDatabase<Applicant> addressBook) throws IOException {
+        saveApplicantDatabase(addressBook, evaStorage.getApplicantDatabaseFilePath());
+    }
+
+    @Override
+    public void saveApplicantDatabase(ReadOnlyEvaDatabase<Applicant> addressBook, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        evaStorage.saveApplicantDatabase(addressBook, filePath);
+    }
 }

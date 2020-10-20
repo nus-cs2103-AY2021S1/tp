@@ -31,7 +31,7 @@ public class AddApplicationCommand extends Command {
         requireNonNull(model);
         // if (model.hasApplication(toAdd)) // MESSAGE_OVERRIDE
 
-        model.addApplication(toAdd);
+        // model.addApplication(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 }

@@ -20,6 +20,7 @@ import com.eva.model.Model;
 import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.ReadOnlyUserPrefs;
 import com.eva.model.person.Person;
+import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.testutil.PersonBuilder;
@@ -102,7 +103,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getEvaDatabaseFilePath() {
+        public Path getPersonDatabaseFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -112,12 +113,22 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setEvaDatabaseFilePath(Path addressBookFilePath) {
+        public Path getApplicantDatabaseFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPersonDatabaseFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setStaffDatabaseFilePath(Path staffDatabaseFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setApplicantDatabaseFilePath(Path applicantDatabaseFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -208,6 +219,46 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredStaffList(Predicate<Staff> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addApplicant(Applicant person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setApplicantDatabase(ReadOnlyEvaDatabase<Applicant> newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyEvaDatabase<Applicant> getApplicantDatabase() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasApplicant(Applicant person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteApplicant(Applicant target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setApplicant(Applicant target, Applicant editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Applicant> getFilteredApplicantList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredApplicantList(Predicate<Applicant> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
