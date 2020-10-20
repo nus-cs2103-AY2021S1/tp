@@ -3,7 +3,7 @@
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 
-title Initial state
+title After command "unfav 1"
 
 package States {
     class FlashcardDeckState1 as "__fd1:ObservableList<Flashcard>__"
