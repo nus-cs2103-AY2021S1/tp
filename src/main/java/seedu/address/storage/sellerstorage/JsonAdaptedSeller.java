@@ -85,6 +85,13 @@ public class JsonAdaptedSeller {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
+        if (id == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    SellerId.class.getSimpleName()));
+        }
+        if (!SellerId.isValidId(id)) {
+            throw new IllegalValueException(SellerId.MESSAGE_CONSTRAINTS);
+        }
         final SellerId modelId = new SellerId(id);
 
         return new Seller(modelName, modelPhone, modelTags, modelId);
