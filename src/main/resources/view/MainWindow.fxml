@@ -14,6 +14,7 @@
 <?import javafx.stage.Stage?>
 
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.control.Label?>
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Common Cents - If you have it, use it." type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/cc_logo.png" />
@@ -26,6 +27,7 @@
       </stylesheets>
 
       <VBox styleClass="bodybg" stylesheets="@PinkTheme.css">
+
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -35,11 +37,11 @@
           </Menu>
         </MenuBar>
 
-<!--        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">-->
-<!--          <padding>-->
-<!--            <Insets top="5" right="10" bottom="5" left="10" />-->
-<!--          </padding>-->
-<!--        </StackPane>-->
+        <Label fx:id="activeAccountName">
+          <padding>
+            <Insets top="5" left="10" right="10"/>
+          </padding>
+        </Label>
 
       <HBox fx:id="commandBoxPlaceholder" maxHeight="150" minHeight="120" prefHeight="120" styleClass="pane-with-border" VBox.vgrow="NEVER"  >
         <padding>

@@ -3,10 +3,13 @@ package seedu.address.model.account;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Name {
     public static final String MESSAGE_CONSTRAINTS = "Name can take in any values, and it should not be blank";
     public static final String VALIDATION_REGEX = "[^\\s].*";
-    private final String accountName;
+    private final StringProperty accountName = new SimpleStringProperty();
 
     /**
      * Constructs a {@code Name}.
@@ -16,7 +19,7 @@ public class Name {
     public Name(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        accountName = name;
+        accountName.set(name);
     }
 
     /**
@@ -26,9 +29,13 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public StringProperty getName() {
+        return accountName;
+    }
+
     @Override
     public String toString() {
-        return this.accountName;
+        return this.accountName.toString();
     }
 
     @Override
