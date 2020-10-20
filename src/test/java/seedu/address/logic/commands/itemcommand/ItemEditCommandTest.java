@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.itemcommand;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,8 +19,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.itemcommand.ItemClearCommand;
-import seedu.address.logic.commands.itemcommand.ItemEditCommand;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.model.inventorymodel.InventoryModel;
@@ -41,21 +39,21 @@ public class ItemEditCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Item editedItem = new ItemBuilder().build();
         ItemEditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder(editedItem).build();
-        ItemEditCommand editCommand = new ItemEditCommand(INDEX_FIRST_ITEM, descriptor);
+        ItemEditCommand editCommand = new ItemEditCommand(INDEX_SECOND_ITEM, descriptor);
 
         String expectedMessage = String.format(ItemEditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
 
         InventoryModel expectedInventoryModel =
                 new InventoryModelManager(new InventoryBook(inventoryModel.getInventoryBook()), new UserPrefs());
-        expectedInventoryModel.setItem(inventoryModel.getFilteredItemList().get(0), editedItem);
+        expectedInventoryModel.setItem(inventoryModel.getFilteredAndSortedItemList().get(1), editedItem);
 
         assertCommandSuccess(editCommand, inventoryModel, expectedMessage, expectedInventoryModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastItem = Index.fromOneBased(inventoryModel.getFilteredItemList().size());
-        Item lastItem = inventoryModel.getFilteredItemList().get(indexLastItem.getZeroBased());
+        Index indexLastItem = Index.fromOneBased(inventoryModel.getFilteredAndSortedItemList().size());
+        Item lastItem = inventoryModel.getFilteredAndSortedItemList().get(indexLastItem.getZeroBased());
 
         ItemBuilder itemInList = new ItemBuilder(lastItem);
         Item editedItem = itemInList.withName(VALID_NAME_DUCK).withQuantity(VALID_QUANTITY_DUCK)
@@ -77,7 +75,7 @@ public class ItemEditCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         ItemEditCommand editCommand = new ItemEditCommand(INDEX_FIRST_ITEM, new ItemEditCommand.EditItemDescriptor());
-        Item editedItem = inventoryModel.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
+        Item editedItem = inventoryModel.getFilteredAndSortedItemList().get(INDEX_FIRST_ITEM.getZeroBased());
 
         String expectedMessage = String.format(ItemEditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
 
@@ -91,7 +89,7 @@ public class ItemEditCommandTest {
     public void execute_filteredList_success() {
         showItemAtIndex(inventoryModel, INDEX_FIRST_ITEM);
 
-        Item itemInFilteredList = inventoryModel.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
+        Item itemInFilteredList = inventoryModel.getFilteredAndSortedItemList().get(INDEX_FIRST_ITEM.getZeroBased());
         Item editedItem = new ItemBuilder(itemInFilteredList).withName(VALID_NAME_CHICKEN).build();
         ItemEditCommand editCommand = new ItemEditCommand(INDEX_FIRST_ITEM,
                 new EditItemDescriptorBuilder().withName(VALID_NAME_CHICKEN).build());
@@ -100,14 +98,14 @@ public class ItemEditCommandTest {
 
         InventoryModel expectedInventoryModel =
                 new InventoryModelManager(new InventoryBook(inventoryModel.getInventoryBook()), new UserPrefs());
-        expectedInventoryModel.setItem(inventoryModel.getFilteredItemList().get(0), editedItem);
+        expectedInventoryModel.setItem(inventoryModel.getFilteredAndSortedItemList().get(0), editedItem);
 
         assertCommandSuccess(editCommand, inventoryModel, expectedMessage, expectedInventoryModel);
     }
 
     @Test
     public void execute_duplicateItemUnfilteredList_failure() {
-        Item firstItem = inventoryModel.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
+        Item firstItem = inventoryModel.getFilteredAndSortedItemList().get(INDEX_FIRST_ITEM.getZeroBased());
         ItemEditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder(firstItem).build();
         ItemEditCommand editCommand = new ItemEditCommand(INDEX_SECOND_ITEM, descriptor);
 
@@ -120,6 +118,7 @@ public class ItemEditCommandTest {
 
         // edit item in filtered list into a duplicate in inventory book
         Item itemInList = inventoryModel.getInventoryBook().getItemList().get(INDEX_SECOND_ITEM.getZeroBased());
+
         ItemEditCommand editCommand = new ItemEditCommand(INDEX_FIRST_ITEM,
                 new EditItemDescriptorBuilder(itemInList).build());
 
@@ -128,7 +127,7 @@ public class ItemEditCommandTest {
 
     @Test
     public void execute_invalidItemIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(inventoryModel.getFilteredItemList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(inventoryModel.getFilteredAndSortedItemList().size() + 1);
         ItemEditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder()
                 .withName(VALID_NAME_DUCK).build();
         ItemEditCommand editCommand = new ItemEditCommand(outOfBoundIndex, descriptor);

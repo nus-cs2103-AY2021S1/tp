@@ -133,6 +133,17 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Command History Traversal
+Much like Window's Command Prompt, OneShelf supports traversal of command history with the arrow up and down key.
+There is a `History` interface that is implemented by `CommandHistory` class which stores `commandHistory` up to its `lengthLimit`
+
+In order to replicate Window's Command Prompt's History traversal behaviour, a `hasReturnedCurrentCommandBefore` boolean is required to prevent the first `previousCommand()`
+method call to return `commandHistory`'s 2nd last command instead of the last command.
+`hasReturnedCurrentCommandBefore` will be set to true after the initial call of `previousCommand()` and will be reset to false if new commands are added or `nextCommand()` results in a `Optional.empty()`
+
+With `addToHistory(String command)`, `previousCommand()`, `nextCommand()` and `currentCommand()` implemented, a simple `setOnKeyPressed` under `CommandBox` class which checks
+for user's input of arrow up (which calls previousCommand()) and arrow down (which calls nextCommand()) would suffice for GUI implementation.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -359,7 +370,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3c. InventoryBook detects a duplicate after editing.
 
   * 3c1. InventoryBook shows an error message.
- 
+
         Use case resumes at step 2.
 
 ### Non-Functional Requirements
@@ -431,8 +442,17 @@ testers are expected to do more *exploratory* testing.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Test case: First time user running OneShelf <br>
+   Expected: OneShelf will load a sample data file.
+   
+1. Dealing with corrupted data files
+
+   1. Prerequisite: There is an existing json file (inventorybook.json or deliverybook.json)
+
+   1. Test case: Delete some mandatory field in the json file and launch OneShelf <br>
+      Expected: OneShelf will load a new empty json file respectively
+
 
 1. _{ more test cases …​ }_

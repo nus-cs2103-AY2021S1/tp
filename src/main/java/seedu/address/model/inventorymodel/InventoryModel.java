@@ -1,12 +1,14 @@
 package seedu.address.model.inventorymodel;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.Model;
-import seedu.address.model.delivery.Delivery;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.comparator.ItemNameComparator;
+import seedu.address.model.item.comparator.ItemQuantityPercentageComparator;
 
 /**
  * The API of the InventoryModel component.
@@ -14,6 +16,9 @@ import seedu.address.model.item.Item;
 public interface InventoryModel extends Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Item> PREDICATE_SHOW_ALL_ITEMS = unused -> true;
+
+    /** {@code Comparator} that returns a ItemComparator */
+    Comparator<Item> ITEM_COMPARATOR = new ItemQuantityPercentageComparator().thenComparing(new ItemNameComparator());
 
     /**
      * Returns the user prefs' inventory book file path.
@@ -66,15 +71,12 @@ public interface InventoryModel extends Model {
      */
     void setItem(Item target, Item editedItem);
 
-    /** Returns an unmodifiable view of the filtered item list */
-    ObservableList<Item> getFilteredItemList();
-
-    /** Returns an unmodifiable view of the filtered deliveries list */
-    ObservableList<Delivery> getFilteredDeliveryList();
+    /** Returns an unmodifiable view of the filtered and sorted item list */
+    ObservableList<Item> getFilteredAndSortedItemList();
 
     /**
-     * Updates the filter of the filtered item list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered and sorted item list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredItemList(Predicate<Item> predicate);
+    void updateItemListFilter(Predicate<Item> predicate);
 }

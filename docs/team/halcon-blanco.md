@@ -16,7 +16,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * nil
-  
+
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `help` [\#50](https://github.com/AY2021S1-CS2103T-T12-1/tp/issues/50)
