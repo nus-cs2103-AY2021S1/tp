@@ -230,6 +230,75 @@ parses the user's input as a file name and then creates a `SnapCommand` object w
 * We chose to prevent users from creating a snapshot if the specified file name already exists
 as overwriting a file is irreversible and would be disastrous for zookeepers if done unintentionally
 
+### Feeding times feature (by Jeremy)
+
+#### Implementation
+
+The feeding time feature utilizes a TreeSet with a custom comparator.
+
+Each Animal object has a `FeedTimes` TreeSet.
+
+The custom comparator `FeedTimeComparator` compares the integer values of the feeding times, returning them in ascending order.
+
+The feeding times feature allows for the following functionallity:
+
+* Add multiple feeding times to each animal listing.
+* Ensure feeding times are always displayed in chronological order.
+
+The following notable methods are used for the feeding times feature:
+* `parseFeedTimes` (in `ParserUtil` class) - returns a Set of `FeedTime` objects from user input
+* `isValidFeedTime` (in `FeedTime` class) - validates the feeding time to ensure it is in the HHmm format
+
+The parsing and displaying of feeding times were adapted from the Medical Condition field.
+
+Given below is an example usage scenario and how addition of feeding times behaves at each step.
+
+Step 1. The user inputs an add command, specifying feeding times to be added for an Animal (eg. add n/Pikachu i/1307 s/Pokemon f/1234 f/0001 f/2200)
+
+[image of state]
+
+Step 2. The `ZooKeepBook` class receives the user input. `AddCommand.COMMAND_WORD` is used to identify the type of command.
+
+[image of state]
+
+Step 3. The `AddCommandParser` class receives the arguments in the user input. The `ArgumentTokenizer` class is called with the `PREFIX_FEED_TIME` variable.
+
+[image of state]
+
+Step 4. The `ArgumentTokenizer` class returns the feeding times found in the users input. A set of `FeedTime` objects is created by the `parseFeedTimes` method in the `ParserUtil` class.
+
+[image of state]
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** A ParseException is thrown by parseFeedTimes if the feeding time input does not match the defined format.
+</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The TreeSet created by parseFeedTimes utilizes the FeedTimeComparator, ensuring that the set is returned in chronoligcal order.
+</div>
+
+Step 5. An `Animal` object is created with the Set of `FeedTime` objects
+
+
+The following sequence diagram shows how the operation of adding feeding times works:
+
+[image of sequence diagram]
+
+
+The following activity diagram summarizes what happens when feeding times are added to an Animal:
+
+[image of activity diagram]
+
+#### Design consideration:
+
+##### Aspect: How chronological order is maintained
+
+* **Alternative 1 (current choice):** Store the feeding times in chronological order
+  * Pros: Quick to display when retrieving information
+  * Cons: Initial creation and storage of feeding times takes longer
+
+* **Alternative 2:** Sort the feeding times when information is retrieved
+  itself.
+  * Pros: Quick during the initial creation of Animal objects
+  * Cons: Additional processing time required when displaying each Animal object
+
 
 --------------------------------------------------------------------------------------------------------------------
 
