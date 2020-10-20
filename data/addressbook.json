@@ -1,0 +1,74 @@
+{
+  "vendors" : [ {
+    "name" : "Alex Yeoh",
+    "phone" : "87438807",
+    "email" : "alexyeoh@example.com",
+    "address" : "Blk 30 Geylang Street 29, #06-40",
+    "tagged" : [ "friends" ],
+    "menu" : [ {
+      "name" : "Cheese Prata",
+      "price" : 1.7,
+      "tags" : [ {
+        "tagName" : "ilovecheesing"
+      } ]
+    }, {
+      "name" : "Milo",
+      "price" : 1.5,
+      "tags" : [ {
+        "tagName" : "issaMiloDay"
+      } ]
+    }, {
+      "name" : "Teh Peng",
+      "price" : 1.0,
+      "tags" : [ {
+        "tagName" : "Letsbehappy"
+      } ]
+    } ]
+  }, {
+    "name" : "Bernice Yu",
+    "phone" : "99272758",
+    "email" : "berniceyu@example.com",
+    "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
+    "tagged" : [ "colleagues", "friends" ],
+    "menu" : [ {
+      "name" : "Prata",
+      "price" : 1.2,
+      "tags" : [ {
+        "tagName" : "iloveprata"
+      } ]
+    }, {
+      "name" : "Milo",
+      "price" : 1.5,
+      "tags" : [ {
+        "tagName" : "iloveprata"
+      } ]
+    } ]
+  },
+    {
+      "name" : "Alexis Sanchez",
+      "phone" : "874388",
+      "email" : "alexwooooo@example.com",
+      "address" : "Blk 29, #06-40",
+      "tagged" : [ "friends" ],
+      "menu" : [ {
+        "name" : "Yum Stuffz",
+        "price" : 1.9,
+        "tags" : [ {
+          "tagName" : "idk"
+        } ]
+      }, {
+        "name" : "Ameens",
+        "price" : 1.5,
+        "tags" : [ {
+          "tagName" : "iDay"
+        } ]
+      }, {
+        "name" : "Teh Peng Siltao",
+        "price" : 1.0,
+        "tags" : [ {
+          "tagName" : "Letsbehappy"
+        } ]
+      } ]
+    }
+  ]
+}
