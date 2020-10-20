@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -89,20 +92,20 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Student student) {
+    public boolean hasStudent(Student student) {
         requireNonNull(student);
         return reeve.hasStudent(student);
     }
 
     @Override
-    public void deletePerson(Student target) {
+    public void deleteStudent(Student target) {
         reeve.removeStudent(target);
     }
 
     @Override
-    public void addPerson(Student student) {
+    public void addStudent(Student student) {
         reeve.addStudent(student);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -112,22 +115,36 @@ public class ModelManager implements Model {
         reeve.setStudent(target, editedStudent);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    /**
+     * Makes a copy of the student list in reeve, sorts the copied list and replace the current student list with the
+     * sorted list
+     * @param comparator for the student objects, can be comparing based on fields that student has
+     */
+    @Override
+    public void sortStudentList(Comparator<? super Student> comparator) {
+        requireNonNull(comparator);
+        List<Student> lst = new ArrayList<>(reeve.getStudentList());
+        lst.sort(comparator);
+        reeve.setStudents(lst);
+    }
+
+    //=========== Filtered Student List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Student> getFilteredPersonList() {
+    public ObservableList<Student> getFilteredStudentList() {
         return filteredStudents;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Student> predicate) {
+    public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
     }
+
 
     @Override
     public boolean equals(Object obj) {

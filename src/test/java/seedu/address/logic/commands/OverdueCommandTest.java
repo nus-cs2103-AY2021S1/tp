@@ -28,7 +28,7 @@ public class OverdueCommandTest {
         Model model = getDateAdjustedModel(studentsWhoHaveNotPaid);
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, studentsWhoHaveNotPaid);
         Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
-        expectedModel.updateFilteredPersonList(new OverdueFeePredicate());
+        expectedModel.updateFilteredStudentList(new OverdueFeePredicate());
         assertCommandSuccess(new OverdueCommand(), model, expectedMessage, expectedModel);
 
         // multiple students with overdue fees
@@ -36,7 +36,7 @@ public class OverdueCommandTest {
         model = getDateAdjustedModel(studentsWhoHaveNotPaid);
         expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, studentsWhoHaveNotPaid);
         expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
-        expectedModel.updateFilteredPersonList(new OverdueFeePredicate());
+        expectedModel.updateFilteredStudentList(new OverdueFeePredicate());
         assertCommandSuccess(new OverdueCommand(), model, expectedMessage, expectedModel);
 
         // no students with overdue fees
@@ -44,7 +44,7 @@ public class OverdueCommandTest {
         model = getDateAdjustedModel(studentsWhoHaveNotPaid);
         expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, studentsWhoHaveNotPaid);
         expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
-        expectedModel.updateFilteredPersonList(new OverdueFeePredicate());
+        expectedModel.updateFilteredStudentList(new OverdueFeePredicate());
         assertCommandSuccess(new OverdueCommand(), model, expectedMessage, expectedModel);
 
     }

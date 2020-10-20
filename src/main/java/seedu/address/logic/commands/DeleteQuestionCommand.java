@@ -40,7 +40,7 @@ public class DeleteQuestionCommand extends QuestionCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Student> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredStudentList();
         if (studentIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
@@ -56,7 +56,7 @@ public class DeleteQuestionCommand extends QuestionCommand {
                 asker.getYear(), asker.getAdmin(), questionList);
 
         model.setPerson(asker, replacement);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, deleted));
     }
 

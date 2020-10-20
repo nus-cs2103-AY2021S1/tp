@@ -44,7 +44,7 @@ public class AddQuestionCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withQuestions().build();
         Question question = new Question(TEST_QUESTION);
         AddQuestionCommand addQuestionCommand = new AddQuestionCommand(INDEX_FIRST_PERSON, question);
@@ -61,7 +61,7 @@ public class AddQuestionCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBounds = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBounds = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         Question question = new Question(TEST_QUESTION);
         AddQuestionCommand invalidCommand = new AddQuestionCommand(outOfBounds, question);
 
@@ -71,7 +71,7 @@ public class AddQuestionCommandTest {
     @Test
     public void execute_questionAlreadyExists_throwsCommandException() {
         Student asker = new StudentBuilder(ALICE).withQuestions(TEST_QUESTION).build();
-        model.setPerson(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()), asker);
+        model.setPerson(model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased()), asker);
 
         AddQuestionCommand invalidCommand = new AddQuestionCommand(INDEX_FIRST_PERSON, new Question(TEST_QUESTION));
         String expectedMessage = MESSAGE_DUPLICATE_QUESTION;
@@ -83,7 +83,7 @@ public class AddQuestionCommandTest {
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Question question = new Question(TEST_QUESTION);
         Student clone = new StudentBuilder(asker).withQuestions().build();
         model.setPerson(asker, clone);

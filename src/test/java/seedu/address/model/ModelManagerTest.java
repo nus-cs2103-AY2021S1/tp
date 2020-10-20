@@ -11,11 +11,13 @@ import static seedu.address.testutil.TypicalStudents.BOB;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Comparator;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.model.student.Student;
 import seedu.address.testutil.ReeveBuilder;
 
 public class ModelManagerTest {
@@ -74,23 +76,28 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasStudent(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(AMY));
+        assertFalse(modelManager.hasStudent(AMY));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(AMY);
-        assertTrue(modelManager.hasPerson(AMY));
+        modelManager.addStudent(AMY);
+        assertTrue(modelManager.hasStudent(AMY));
+    }
+
+    @Test
+    public void sortStudentList_nullComparator_throsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.sortStudentList(null));
     }
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
     }
 
     @Test
@@ -118,11 +125,11 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = AMY.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(reeve, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
