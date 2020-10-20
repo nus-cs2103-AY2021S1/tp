@@ -40,10 +40,10 @@ public interface Quantity extends Comparable<Quantity> {
 
     /**
      * Convenience function to subtract a quantity from this.
-     * @see #add(Quantity)
      *
      * @param qty the minuend
      * @return    a new Quantity after performing the subtraction.
+     * @see #add(Quantity)
      */
     default Result<? extends Quantity> subtract(Quantity qty) {
         return this.add(qty.negate());
