@@ -282,6 +282,13 @@ Step 12. The suggestion `update sn/<serial number> n/Milk s/<source>` is display
 error and the message usage information. In this case the error is `Invalid command format` and the message usage is from
 `UpdateCommand`.
 
+  
+#### Sequence Diagram
+
+The following sequence diagram shows how the suggestion feature works for **Example 1**:
+
+![Suggestion Example 1](images/SuggestionSequenceDiagramExample1.png)
+
 #### Minimum Edit Distance Heuristic
 
 The minimum edit distance between two strings is defined as the minimum cost needed to transform one into the other.
