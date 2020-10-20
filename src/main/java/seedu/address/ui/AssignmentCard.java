@@ -22,6 +22,7 @@ public class AssignmentCard extends UiPart<Region> {
     private static final long MIN_PER_HOUR = 60;
     private static final long HOUR_PER_DAY = 24;
     private static final long DAY_PER_WEEK = 7;
+    private static final long MIN_DAY_PER_MONTH = 28;
     private static final String FXML = "AssignmentListCard.fxml";
     private static final String OVERDUE_STYLE_CLASS = "overdue";
     private static final String DUE_SOON_STYLE_CLASS = "due-soon";
@@ -85,6 +86,8 @@ public class AssignmentCard extends UiPart<Region> {
             label.setText("Due in " + duration.toHours() + " hours");
         } else if (duration.toDays() < DAY_PER_WEEK) {
             setStyleToIndicateDueInAWeek(label);
+            label.setText("Due in " + duration.toDays() + " days");
+        } else if (duration.toDays() < MIN_DAY_PER_MONTH) {
             label.setText("Due in " + duration.toDays() + " days");
         } else {
             label.setText("");
