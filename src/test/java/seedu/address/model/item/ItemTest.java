@@ -1,7 +1,11 @@
 package seedu.address.model.item;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_DESCRIPTION_BANANA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_BANANA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_BANANA;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalItems.APPLE;
 import static seedu.address.testutil.TypicalItems.BANANA;
@@ -9,6 +13,7 @@ import static seedu.address.testutil.TypicalItems.BANANA;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.testutil.ItemBuilder;
 
 public class ItemTest {

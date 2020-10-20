@@ -15,6 +15,7 @@ import seedu.address.model.item.Quantity;
 import seedu.address.model.tag.Tag;
 
 public class ItemParserUtilTest {
+
     private static final String INVALID_QUANTITY = "-1";
     private static final String VALID_NAME = "Apple";
     private static final String VALID_QUANTITY = "1";
@@ -30,7 +31,7 @@ public class ItemParserUtilTest {
     private static final String VALID_ASD = "asd";
     private static final String VALID_ABC = "abc";
     private static final String VALID_123 = "123";
-
+    //Valid tags
     private static final Tag TAG_BERT = new Tag(VALID_BERT);
     private static final Tag TAG_TUTURU = new Tag(VALID_TUTURU);
     private static final Tag TAG_ASD = new Tag(VALID_ASD);
@@ -142,6 +143,6 @@ public class ItemParserUtilTest {
 
     @Test
     public void parseMultiTag_validValue_returnsTags() {
-        assertEquals(VALID_TAG_MULTI_PARSED, ItemParserUtil.parseTags(VALID_TAG_MULTI_STRING));
+        assertEquals(VALID_TAG_MULTI_PARSED, ItemParserUtil.parseTags(VALID_TAG_MULTI_STRING));)
     }
 }
