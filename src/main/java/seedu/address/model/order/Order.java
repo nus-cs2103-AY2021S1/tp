@@ -57,6 +57,16 @@ public class Order implements Iterable<OrderItem> {
         }
     }
 
+    public OrderItem getOrderItem(String name) {
+        requireNonNull(name);
+        for (OrderItem orderItem: internalList) {
+            if (orderItem.getName().equals(name)) {
+                return orderItem;
+            }
+        }
+        throw new OrderItemNotFoundException();
+    }
+
     /**
      * Replaces the OrderItem {@code target} in the list with {@code editedOrderItem}.
      * {@code target} must exist in the list.

@@ -61,7 +61,8 @@ public class OrderItem extends Food {
 
         return orderItem != null
                 && orderItem.getName().equals(getName())
-                && (orderItem.getPrice() == (getPrice()));
+                && (orderItem.getPrice() == (getPrice()))
+                && (orderItem.getTags().equals(getTags()));
     }
 
     @Override
