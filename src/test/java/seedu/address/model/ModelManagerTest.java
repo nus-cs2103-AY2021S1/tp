@@ -11,13 +11,11 @@ import static seedu.address.testutil.TypicalStudents.BOB;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Comparator;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
-import seedu.address.model.student.Student;
 import seedu.address.testutil.ReeveBuilder;
 
 public class ModelManagerTest {
