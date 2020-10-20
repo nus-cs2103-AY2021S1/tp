@@ -30,6 +30,7 @@ public class ShowApptCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPatientList(predicate);
+        assert model.getFilteredPatientList().size() == 1;
         return new CommandResult(
                 String.format(Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW, model.getFilteredPatientList().size()),
                 false, false, true);
