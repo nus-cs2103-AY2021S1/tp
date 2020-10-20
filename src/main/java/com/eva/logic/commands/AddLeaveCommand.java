@@ -3,6 +3,7 @@ package com.eva.logic.commands;
 import static com.eva.commons.util.CollectionUtil.requireAllNonNull;
 import static com.eva.logic.parser.CliSyntax.PREFIX_LEAVE;
 import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_DATE;
+import static com.eva.model.Model.PREDICATE_SHOW_ALL_STAFFS;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -18,7 +19,7 @@ import com.eva.model.person.staff.leave.Leave;
  * Adds the given leave period to an existing staff member.
  */
 public class AddLeaveCommand extends Command {
-    public static final String COMMAND_WORD = "addl";
+    public static final String COMMAND_WORD = "addleave";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds specified leave(s) taken to the record of the staff taking leave "
@@ -35,7 +36,7 @@ public class AddLeaveCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Leave recorded: %1$s took %2$s";
     public static final String MESSAGE_DUPLICATE_RECORD = "This staff: %s "
-            + "has already taken leave during this period: %s";
+            + "has overlapping leave date during this period: %s";
 
     private final Index targetIndex;
     private final List<Leave> toAdd;
@@ -48,7 +49,7 @@ public class AddLeaveCommand extends Command {
         this.targetIndex = targetIndex;
         this.toAdd = leave;
     }
-
+    // TODO checks for leave balance.
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -62,13 +63,15 @@ public class AddLeaveCommand extends Command {
         Staff staffToTakeLeave = lastShownList.get(targetIndex.getZeroBased());
         StringBuilder sb = new StringBuilder();
         for (Leave leave : toAdd) {
-            if (model.hasStaffLeave(staffToTakeLeave, leave)) {
+            if (model.hasStaffLeave(staffToTakeLeave, leave)
+                    || model.hasLeavePeriod(staffToTakeLeave, leave)) {
                 throw new CommandException(
                         String.format(MESSAGE_DUPLICATE_RECORD, staffToTakeLeave.getName(), leave.toErrorMessage()));
             }
             model.addStaffLeave(staffToTakeLeave, leave);
             sb.append(leave.toString()).append(", ");
         }
+        model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, staffToTakeLeave.getName(), sb));
     }

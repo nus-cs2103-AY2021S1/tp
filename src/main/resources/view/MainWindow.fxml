@@ -51,7 +51,7 @@
               <padding>
                 <Insets bottom="5" />
               </padding>
-              <StackPane fx:id="aplicantListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              <StackPane fx:id="applicantListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
             </VBox>
             <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
                        minHeight="70" prefHeight="70" maxHeight="70">
@@ -67,13 +67,6 @@
             </StackPane>
           </VBox>
         </SplitPane>
-<<<<<<< HEAD
-
-
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-=======
->>>>>>> f38056e6e838f2ee9e04473dbce43d63f375ac47
       </VBox>
     </Scene>
   </scene>
