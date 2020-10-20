@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.bidstorage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.BidBook;
-import seedu.address.model.ReadOnlyBidBook;
 import seedu.address.model.bid.Bid;
+import seedu.address.model.bidbook.BidBook;
+import seedu.address.model.bidbook.ReadOnlyBidBook;
 
 /**
  * An Immutable BidBook that is serializable to JSON format.

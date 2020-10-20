@@ -6,7 +6,7 @@ import static seedu.address.testutil.bids.TypicalBid.BID_A;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.storage.JsonAdaptedBid;
+import seedu.address.storage.bidstorage.JsonAdaptedBid;
 
 
 public class JsonAdaptedBidTest {

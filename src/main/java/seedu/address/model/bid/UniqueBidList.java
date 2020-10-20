@@ -39,6 +39,17 @@ public class UniqueBidList implements Iterable<Bid> {
         return internalBidList.stream().anyMatch(toCheck::isSameBid);
     }
 
+    /**
+     * Removes the equivalent bid from the list.
+     * The bid must exist in the list.
+     */
+    public void remove(Bid toRemove) {
+        requireNonNull(toRemove);
+        if (!internalBidList.remove(toRemove)) {
+            throw new BidNotFoundException();
+        }
+    }
+
 
 
     public void setBid(Bid target, Bid editedBid) {

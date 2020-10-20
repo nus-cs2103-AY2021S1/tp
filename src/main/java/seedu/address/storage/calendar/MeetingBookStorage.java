@@ -6,9 +6,10 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyMeetingManager;
+import seedu.address.model.bidbook.BidBook;
 
 /**
- * Represents a storage for {@link seedu.address.model.BidBook}.
+ * Represents a storage for {@link BidBook}.
  */
 public interface MeetingBookStorage {
     /**
