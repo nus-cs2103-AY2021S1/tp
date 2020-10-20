@@ -339,6 +339,36 @@ After the successful adding of the ingredient, a `CommandResult` object is insta
   * Pros: Easy to implement.
   * Cons: The parser may confuse ingredients that have prefixes that Wishful Shrinking uses to identify fields in the names, eg "-" or ","
 
+### List Ingredients Feature
+
+#### Implementation
+This feature allows user to list out all the ingredients that is saved in the fridge.
+
+Substitutability is used in Command:
+* `ListIngredientCommand` extends `Command`
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+Step 1:
+User inputs the list ingredient command to show all ingredients from the ingredient list.
+
+Step 2:
+After successful parsing of user input, the `ListIngredientCommand#execute(Model model)` method is called.
+
+Step 3:
+After successfully generating a list of recipes, a `CommandResult` object is instantiated and returned to `LogicManager`.
+
+The following sequence diagram shows how list ingredients operation works when `execute(fridge)` API call:
+
+![ListRecipeSequence](images/ListRecipesSequence.png)
+
+#### Design consideration:
+##### Aspect 1: Concern while adding a new feature
+* Workflow must be consistent with other listing commands e.g. fridge and calories.
+
+
+
+
 ### Search Recipe feature
 
 #### Implementation
