@@ -165,6 +165,46 @@ Classes used by multiple components are in the `jimmy.mcgymmy.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Current\] Import feature
+
+The current Import feature is facilitated by `JsonMcGymmyStorage`. 
+It extends model with the ability to override the current data with an imported one. 
+
+#### Current Implementation
+
+Given below is an example usage scenario and how the import mechanism behaves at each step
+
+Step 1. The User just installed his application on his new computer and wants to transfer his old data over
+
+Step 2. The user transfers his previous save file to `C:/McGymmy/saveFile.json`
+
+Step 3. The User executes `import c:/McGymmy/saveFile.json`. 
+The import command will check if the file is valid and exists before calling `JsonMcGymmyStorage`. 
+`JsonMcGymmyStorage` will call `#readMcGymmy` if the read is successful, the old data will be overwritten.
+Otherwise, a CommandException will be thrown.
+
+Step 4. His old data files from his old computer will be overridden by his old data
+
+The following sequence diagram shows how the import operation works:
+
+![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+
+#### Design Considerations
+
+##### Aspect: How import executes
+
+* **Alternative 1 (Current Choice):** User keys in the filepath of the save file
+
+    * Pros: Easy to implement
+    * Cons: Requires the user to key in path to file
+    
+* **Alternative 2:** User keys in path and McGymmy checks subdirectories for valid files
+
+    * Pros: More convenient for the users
+    * Cons: Increased implementation complexity (Prone to bugs), May have performance issues in terms of runtime.
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
