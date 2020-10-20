@@ -191,7 +191,45 @@ The utilities provided inside are:
   Computes the minimum of three integers.
 * `SuggestionUtil#minimumEditDistance()` <br>
   Computes the minimum edit distance between 2 strings.
-  
+
+#### Example Usage Scenario
+
+Given below are some example usage scenarios and how the suggestion mechanism behaves at each step.
+
+Step 1. The user enters `updt n/Milk s/Fairprice` which contains an unknown command word `updt`.
+
+Step 2. The command word `updt` is extracted out in `StockBookParser` and checked if it matches any valid command word.
+
+Step 3. The command word `updt` does not match any valid command word. It is then passed down to `SuggestionCommandParser`
+along with `n/Milk s/Fairprice` and `SuggestionCommandParser#parse()` is invoked.
+
+Step 4. Inside `parse` method, the closest command word to `updt` will be inferred. The inference uses the minimum edit
+distance heuristic. `parse` will count the minimum edit distance from `updt` to every other valid command word.
+
+Step 5. The new valid command word generated is the one with the smallest edit distance to `updt`. The command word
+to be suggested in this case is `update`.
+
+Step 6. `parse` method will call `SuggestionCommandParser#generateUpdateSuggestion()` to generate the suggestion message
+to be displayed to the user.
+
+Step 7. During the generation of suggestion message, `generateUpdateSuggestion` will check first if the compulsory
+prefix exist. In this case the compulsory prefix which is `sn/` does not exist. `sn/<serial number>` is then added to
+the suggestion message.
+
+Step 8. All prefixes the user entered that is valid for `update` command and its arguments are nonempty will then 
+be appended to the suggestion message. If there exist prefix whose argument is empty, then `generateUpdateSuggestion`
+will fill the argument with a default value. In this case, prefixes `n/ s/` are present and their arguments are nonempty.
+`n/Milk s/Fairprice` is then added to the suggestion message.
+
+Step 9. Lastly `generateUpdateSuggestion` will append the usage message for `update` command.
+
+Step 10. `parse` method returns a new `SuggestionCommand` with the suggestion message to be displayed as its argument.
+
+Step 11. `SuggestionCommand` is executed and produces a new `CommandResult` to display the message to the user.
+
+Step 12. The suggestion `update sn/<serial number> n/Milk s/Fairprice` is displayed to the user along with what kind of
+error and the message usage information. In this case the error is `unknown command` and the message usage is from
+`UpdateCommand`.
 
 ### \[Proposed\] Undo/redo feature
 
