@@ -62,6 +62,20 @@ public class DeleteCommand extends Command {
         return new DeleteCommand(predicate, tagsToMatch);
     }
 
+    /**
+     * Create the delete result message for tag delete
+     * @param tags the set of tags that are used for deletion
+     * @return the result message
+     */
+    // Method is currently public static so that it can be used by DeleteCommandTest class
+    // TODO: should this really be a public static method? is there a better way?
+    public static String createDeleteWithTagsMessage(Set<Tag> tags) {
+        StringBuilder sb = new StringBuilder("with tags ");
+        assert tags != null;
+        tags.forEach(tag -> sb.append(tag.toString()).append(" "));
+        return sb.toString().trim();
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -77,7 +91,7 @@ public class DeleteCommand extends Command {
                 model.deleteFlashcard(flashcardToDelete);
             }
 
-            String deleteWithTagsMessage = createDeleteWithTagsMessage();
+            String deleteWithTagsMessage = createDeleteWithTagsMessage(tagsToMatch);
             return new CommandResult(String.format(MESSAGE_DELETE_FLASHCARD_SUCCESS, deleteWithTagsMessage));
         } else {
             List<Flashcard> lastShownList = model.getFilteredFlashcardList();
@@ -91,13 +105,6 @@ public class DeleteCommand extends Command {
             model.deleteFlashcard(flashcardToDelete);
             return new CommandResult(String.format(MESSAGE_DELETE_FLASHCARD_SUCCESS, flashcardToDelete));
         }
-    }
-
-    private String createDeleteWithTagsMessage() {
-        StringBuilder sb = new StringBuilder("with tags ");
-        assert tagsToMatch != null;
-        tagsToMatch.forEach(tag -> sb.append(tag.toString()).append(" "));
-        return sb.toString().trim();
     }
 
     @Override
