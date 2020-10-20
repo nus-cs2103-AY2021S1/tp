@@ -2,6 +2,9 @@ package seedu.address.model.calendar;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import seedu.address.model.id.BidderId;
+import seedu.address.model.id.PropertyId;
+
 public class CalendarAdmin extends CalendarMeeting {
 
     private static final String PREFIX = "a";
@@ -13,7 +16,7 @@ public class CalendarAdmin extends CalendarMeeting {
      * @param calendarTime Calendar Time.
      * @param calendarVenue Calendar Venue.
      */
-    public CalendarAdmin(CalendarBidderId calendarBidderId, CalendarPropertyId calendarPropertyId,
+    public CalendarAdmin(BidderId calendarBidderId, PropertyId calendarPropertyId,
                          CalendarTime calendarTime, CalendarVenue calendarVenue) {
         super(calendarBidderId, calendarPropertyId, calendarTime, calendarVenue);
         requireAllNonNull(calendarBidderId, calendarPropertyId, calendarTime, calendarVenue);

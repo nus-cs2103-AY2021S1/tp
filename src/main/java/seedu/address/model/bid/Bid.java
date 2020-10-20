@@ -2,22 +2,16 @@ package seedu.address.model.bid;
 
 import java.util.Objects;
 
+import seedu.address.model.id.BidderId;
+import seedu.address.model.id.PropertyId;
+
 public class Bid {
 
     public static final String MESSAGE_CONSTRAINTS_BID_AMOUNT =
             "Bid Amount should only contain numerical values, and it should not be blank";
 
-    public static final String MESSAGE_CONSTRAINTS_PROPERTY_ID =
-            "Property Id should only contain one alphanumeric characters "
-                    + "followed by numerical characters, and it should not be blank";
-
-    public static final String MESSAGE_CONSTRAINTS_BIDDER_ID =
-            "Bidder Id should only contain one alphanumeric characters "
-                     + "followed by numerical characters, and it should not be blank";
-
-    public static final String DEFAULT_PROPERTY_ID = "P0";
-    private String propertyId;
-    private String bidderId;
+    private PropertyId propertyId;
+    private BidderId bidderId;
     private double bidAmount;
 
     /**
@@ -26,17 +20,17 @@ public class Bid {
      * @param bidderId string id of the bidder wanting the property
      * @param bidAmount double value of the amount the bidder wants the property for
      */
-    public Bid(String propertyId, String bidderId, double bidAmount) {
+    public Bid(PropertyId propertyId, BidderId bidderId, double bidAmount) {
         this.propertyId = propertyId;
         this.bidderId = bidderId;
         this.bidAmount = bidAmount;
     }
 
-    public String getPropertyId() {
+    public PropertyId getPropertyId() {
         return propertyId;
     }
 
-    public String getBidderId() {
+    public BidderId getBidderId() {
         return bidderId;
     }
 

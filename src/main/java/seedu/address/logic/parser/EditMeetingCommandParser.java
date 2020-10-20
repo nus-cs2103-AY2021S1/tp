@@ -12,6 +12,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditMeetingCommand;
 import seedu.address.logic.commands.EditMeetingCommand.EditMeetingDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.id.IdParserUtil;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -40,11 +41,11 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
 
         EditMeetingDescriptor editMeetingDescriptor = new EditMeetingDescriptor();
         if (argMultimap.getValue(PREFIX_CALENDAR_BIDDER_ID).isPresent()) {
-            editMeetingDescriptor.setCalendarBidderId(ParserUtil.parseCalendarBidderId(
+            editMeetingDescriptor.setCalendarBidderId(IdParserUtil.parseBidderId(
                     argMultimap.getValue(PREFIX_CALENDAR_BIDDER_ID).get()));
         }
         if (argMultimap.getValue(PREFIX_CALENDAR_PROPERTY_ID).isPresent()) {
-            editMeetingDescriptor.setCalendarPropertyId(ParserUtil.parseCalendarPropertyId(
+            editMeetingDescriptor.setCalendarPropertyId(IdParserUtil.parsePropertyId(
                     argMultimap.getValue(PREFIX_CALENDAR_PROPERTY_ID).get()));
         }
         if (argMultimap.getValue(PREFIX_CALENDAR_VENUE).isPresent()) {
