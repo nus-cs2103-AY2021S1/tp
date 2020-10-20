@@ -11,13 +11,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 // import seedu.address.model.contact.Contact;
+import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.module.grade.GradeTracker;
 import seedu.address.model.tag.Tag;
-
-
 
 /**
  * Jackson-friendly version of {@link Module}.
@@ -28,6 +27,7 @@ class JsonAdaptedModule {
 
     private final String name;
     private final String zoomLink;
+    private final String modularCredits;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final JsonAdaptedGradeTracker gradeTracker;
 
@@ -37,7 +37,8 @@ class JsonAdaptedModule {
     @JsonCreator
     public JsonAdaptedModule(@JsonProperty("name") String name,
                              @JsonProperty("zoomLink") String zoomLink,
-                             @JsonProperty("gradeTracker") JsonAdaptedGradeTracker storedGradeTracker) {
+                             @JsonProperty("gradeTracker") JsonAdaptedGradeTracker storedGradeTracker,
+                             @JsonProperty("modularCredits") String storedModularCredits) {
         this.name = name;
         this.zoomLink = zoomLink;
         if (storedGradeTracker == null) {
@@ -48,6 +49,7 @@ class JsonAdaptedModule {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.modularCredits = storedModularCredits;
     }
 
     /**
@@ -64,6 +66,7 @@ class JsonAdaptedModule {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        modularCredits = source.getModularCredits().toString();
     }
 
     /**
@@ -100,17 +103,19 @@ class JsonAdaptedModule {
         if (!GradeTracker.isValidGradeTracker(gradeTracker.toModelType())) {
             throw new IllegalValueException(GradeTracker.MESSAGE_INVALID_GRADE);
         }
+        if (!ModularCredits.isValidModularCredits(modularCredits)) {
+            throw new IllegalValueException(ModularCredits.MESSAGE_CONSTRAINTS);
+        }
         //email and tagging removed temporarily
         /*if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
         if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);*/
-
+        }*/
+        final ModularCredits modelModularCredits = new ModularCredits(Double.parseDouble(modularCredits));
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Module(modelName, modelLink, gradeTracker.toModelType(), modelTags);
+        return new Module(modelName, modelLink, gradeTracker.toModelType(), modelTags, modelModularCredits);
     }
 
 }
