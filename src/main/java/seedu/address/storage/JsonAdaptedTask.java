@@ -55,7 +55,7 @@ class JsonAdaptedTask {
     }
 
     /**
-     * Converts a given {@code Task} into this class for Json use.
+     * Converts a given {@code Task} into this class for Jackson use.
      */
     public JsonAdaptedTask(Task source) {
         title = source.getTitle().title;
@@ -71,7 +71,7 @@ class JsonAdaptedTask {
     }
 
     /**
-     * Converts this Json-friendly adapted task object into the model's {@code Task} object.
+     * Converts this Jackson-friendly adapted task object into the model's {@code Task} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted task.
      */
