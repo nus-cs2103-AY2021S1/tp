@@ -80,6 +80,9 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-W17-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
+We omit details of the `macro` component in this section and will only focus on the parsing and execution of primitive commands.
+For more information on macros please read the section below.
+
 1. `Logic` uses the `McGymmyParser` class to parse the user command.
 1. This results in a `CommandExecutable` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a food item).
@@ -231,6 +234,23 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Macro Command
 
 TODO short 1 2 paragraphs + seq diagram here
+
+TODO description of class diagram
+
+Parsing
+
+1. If command word is `macro`, return a `NewMacroCommand`
+2. Else if command word is an existing macro, call that macro instance's `toCommandExecutable` method and return that.
+3. Else hand over to primitive command parser.
+
+Execution
+
+1. regex susbtitute
+2. pass list of strings to primitive command parser to get a list of commands. if a parse exception happens this stops and exception is shown to user.
+3. return a lambda that executes all these commands in sequence, concatenates all their messages and shows it to the user. if a command exception occurs at any time, that exception is shown to the user along with: commands that have executed successfully, and commands that have yet to be executed.
+
+Considerations
+ - alternatively could have done the parsing/compiling on creation of the macro so we don't need a parser during execution, but the implementation is considerably more involved.
 
 --------------------------------------------------------------------------------------------------------------------
 
