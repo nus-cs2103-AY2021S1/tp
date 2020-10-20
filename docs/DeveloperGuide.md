@@ -149,7 +149,7 @@ Some of the important operations implemented here are:
   Generates a new `CommandResult` with the suggestion message as its argument.
 
 #### SuggestionCommandParser
-`SugestionCommandParser` class extends `Parser` interface. `SuggestionCommandParser` class is tasked with parsing the 
+`SugestionCommandParser` class extends `Parser` interface. `SuggestionCommandParser` class is tasked with parsing the
 user inputs and generate a new `SuggestionCommand`. The main logic of the suggestion feature is encapsulated here.
 
 `SuggestionCommandParser` receives the user input, along with either the faulty command word or parsing error messages
@@ -205,21 +205,21 @@ Step 2. The command word `updt` is extracted out in `StockBookParser` and checke
 Step 3. The command word `updt` does not match any valid command word. It is then passed down to `SuggestionCommandParser`
 along with `n/Milk s/Fairprice` and `SuggestionCommandParser#parse()` is invoked.
 
-Step 4. Inside `SuggestionCommandParser#parse()` method, the closest command word to `updt` will be inferred. 
-The inference uses the minimum edit distance heuristic. `SuggestionCommandParser#parse()` will 
+Step 4. Inside `SuggestionCommandParser#parse()` method, the closest command word to `updt` will be inferred.
+The inference uses the minimum edit distance heuristic. `SuggestionCommandParser#parse()` will
 count the minimum edit distance from `updt` to every other valid command word.
 
 Step 5. The new valid command word generated is the one with the smallest edit distance to `updt`. The command word
 to be suggested in this case is `update`.
 
-Step 6. `SuggestionCommandParser#parse()` method will call `SuggestionCommandParser#generateUpdateSuggestion()` 
+Step 6. `SuggestionCommandParser#parse()` method will call `SuggestionCommandParser#generateUpdateSuggestion()`
 to generate the suggestion message to be displayed to the user.
 
 Step 7. During the generation of suggestion message, `SuggestionCommandParser#generateUpdateSuggestion()` will check
 first if the compulsory prefix exist. In this case the compulsory prefix which is `sn/` does not exist.
 `sn/<serial number>` is then added to the suggestion message.
 
-Step 8. All prefixes the user entered that is valid for `update` command and its arguments are nonempty will then 
+Step 8. All prefixes the user entered that is valid for `update` command and its arguments are nonempty will then
 be appended to the suggestion message. If there exist prefix whose argument is empty, then `SuggestionCommandParser#generateUpdateSuggestion()`
 will fill the argument with a default value. In this case, prefixes `n/ s/` are present and their arguments are nonempty.
 `n/Milk s/Fairprice` is then added to the suggestion message.
@@ -241,10 +241,10 @@ Step 1. The user enters `update n/Milk s/` which contains a valid command word `
 
 Step 2. The command word `update` is extracted out in `StockBookParser` and checked if it matches any valid command word.
 
-Step 3. The command word `update` is a valid command word. Input is then passed to `UpdateCommandParser#parse()`. 
+Step 3. The command word `update` is a valid command word. Input is then passed to `UpdateCommandParser#parse()`.
 
 Step 4. Inside `UpdateCommandParser#parse()`, the user input is then parsed to create a new `UpdateCommand`. However,
-since the compulsory prefix `sn/` is not provided, a `ParseException` will be thrown. 
+since the compulsory prefix `sn/` is not provided, a `ParseException` will be thrown.
 
 Step 5. `ParseException` thrown will be caught in `StockBookParser`. The user input along with parsing error messages
 will then be passed into `SuggestionCommandParser#parse()`.
@@ -252,20 +252,20 @@ will then be passed into `SuggestionCommandParser#parse()`.
 Step 6. Constructor of `SuggestionCommandParser` will separate the parsing error messages header and body and then
 `SuggestionCommandParser#parse()` is invoked.
 
-Step 7. Inside `SuggestionCommandParser#parse()` method, the closest command word to `update` will be inferred. 
-The inference uses the minimum edit distance heuristic. `SuggestionCommandParser#parse()` will 
+Step 7. Inside `SuggestionCommandParser#parse()` method, the closest command word to `update` will be inferred.
+The inference uses the minimum edit distance heuristic. `SuggestionCommandParser#parse()` will
 count the minimum edit distance from `update` to every other valid command word.
 
 Step 8. Since `update` is already a valid command, the inference will generate `update` again.
 
-Step 9. `SuggestionCommandParser#parse()` method will call `SuggestionCommandParser#generateUpdateSuggestion()` 
+Step 9. `SuggestionCommandParser#parse()` method will call `SuggestionCommandParser#generateUpdateSuggestion()`
 to generate the suggestion message to be displayed to the user.
 
 Step 10. During the generation of suggestion message, `SuggestionCommandParser#generateUpdateSuggestion()` will check
 first if the compulsory prefix exist. In this case the compulsory prefix which is `sn/` does not exist.
 `sn/<serial number>` is then added to the suggestion message.
 
-Step 11. All prefixes the user entered that is valid for `update` command and its arguments are nonempty will then 
+Step 11. All prefixes the user entered that is valid for `update` command and its arguments are nonempty will then
 be appended to the suggestion message. If there exist prefix whose argument is empty, then `SuggestionCommandParser#generateUpdateSuggestion()`
 will fill the argument with a default value. In this case, the prefix `n/` is present and its argument is nonempty.
 `n/Milk` is then added to the suggestion message. The prefix `s/` is present, but its argument is empty.
@@ -282,7 +282,7 @@ Step 12. The suggestion `update sn/<serial number> n/Milk s/<source>` is display
 error and the message usage information. In this case the error is `Invalid command format` and the message usage is from
 `UpdateCommand`.
 
-  
+
 #### Sequence Diagram
 
 The following sequence diagram shows how the suggestion feature works for **Example 1**:
@@ -332,7 +332,7 @@ Consider doing all possible editing operations:
   If `i > j`, then we can delete the character at position `i` in `X`.
   Hence, `D(i, j) = D(i - 1, j) + 1` in this case. <br>
   If `i < j`, then we can delete the character at position `j` in `Y`.
-  Hence, `D(i, j) = D(i, j - 1) + 1` in this case. <br> 
+  Hence, `D(i, j) = D(i, j - 1) + 1` in this case. <br>
 * **Substitution**: <br>
   We can change the character at position `i` in X to match the character at position `j` in `Y`, or
   we can change the character at position `j` in `Y` to match the character at position `i` in `X`. <br>
@@ -471,13 +471,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. Warenager shows an error message.
 
       Use case resumes at step 1.
-      
+
 * 1c. The argument to the field header is invalid.
 
     * 1c1. Warenager shows an error message.
 
       Use case resumes at step 1.
-      
+
 * 1d. The given input has multiple required field headers.
 
     * 1d1. Warenager shows an error message.
@@ -513,11 +513,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b1. Warenager shows an error message and tells user which serial numbers are not found.
 
       Use case resumes at step 2.
-      
+
 * 3c. Some inputted serial numbers are not found.
-      
+
      * 3c1. Warenager deletes the found stocks and tells user which serial numbers are not found.
-      
+
        Use case resumes at step 2.
 
 #### Use case: Find a stock by name
@@ -525,7 +525,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to find a stock with name "umbrella".
-2.  Warenager shows a list of stocks with names that 
+2.  Warenager shows a list of stocks with names that
     contain the keyword "umbrella".
 3.  User views desired stock.
 
@@ -533,21 +533,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The given format is missing field header n/.
- 
+
     * 1a1. Warenager shows an error message.
     
       Use case resumes at step 1.
 
-* 1b. The given command is invalid (wrong find command). 
+* 1b. The given command is invalid (wrong find command).
 
     * 1b1. Warenager shows an error message.
-        
+
       Use case resumes at step 1.
-     
+
 * 2a. There is no stock with name that matches keyword.
 
     Use case ends.
-    
+
 #### Use case: Find a stock by serial number
 
 **MSS**
@@ -560,21 +560,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The given format is missing field header sn/.
- 
+
     * 1a1. Warenager shows an error message.
-    
+
      Use case resumes at step 1.
 
-* 1b. The given command is invalid (wrong find command). 
+* 1b. The given command is invalid (wrong find command).
 
     * 1b1. Warenager shows an error message.
-        
+
     Use case resumes at step 1.
-     
+
 * 2a. There is no stock with serial number that matches keyword.
 
     Use case ends.
-    
+
 #### Use case: Find a stock by location stored
 
 **MSS**
@@ -587,21 +587,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The given format is missing field header l/.
- 
+
     * 1a1. Warenager shows an error message.
-    
+
      Use case resumes at step 1.
 
-* 1b. The given command is invalid (wrong find command). 
+* 1b. The given command is invalid (wrong find command).
 
     * 1b1. Warenager shows an error message.
-        
+
     Use case resumes at step 1.
-     
+
 * 2a. There is no stock with storage location that matches keyword.
 
     Use case ends.
-    
+
 #### Use case: Find a stock by source of stock
 
 **MSS**
@@ -614,17 +614,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The given format is missing field header s/.
- 
+
     * 1a1. Warenager shows an error message.
-    
+
      Use case resumes at step 1.
 
-* 1b. The given command is invalid (wrong find command). 
+* 1b. The given command is invalid (wrong find command).
 
     * 1b1. Warenager shows an error message.
-        
+
     Use case resumes at step 1.
-     
+
 * 2a. There is no stock with source that matches keyword.
 
     Use case ends.
@@ -653,39 +653,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 * 3b. The stock with the given serial number is not found.
-    
+
     * 3b1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 * 3c. The given format is missing the field header q/.
-    
+
     * 3c1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 * 3d. The given increment or decrement value is not an integer.
-    
+
     * 3d1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
-      
+ 
 * 3e. The given increment or decrement value exceeds the integer limit.
 
     * 3e1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 * 3f. The given increment value plus the stock's current quantity exceeds the integer limit.
 
     * 3f1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 * 3g. The stock's current quantity minus the given decrement value results in a negative value.
 
     * 3g1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 #### Use case: Rewrite a stock's quantity
@@ -712,33 +712,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 * 3b. The stock with the given serial number is not found.
-    
+
     * 3b1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 * 3c. The given format is missing the field header nq/.
-    
+
     * 3c1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 * 3d. The given quantity value is not an integer.
-    
+
     * 3d1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 * 3e. The given quantity value exceeds the integer limit.
 
     * 3e1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
-      
+
 * 3f. The given quantity value is negative.
 
     * 3f1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 #### Use case: Update the name of a stock.
@@ -765,15 +765,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 * 3b. The stock with the given serial number is not found.
-    
+
     * 3b1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 * 3c. The given format is missing the field header n/.
-    
+
     * 3c1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 #### Use case: Update the location of a stock
@@ -800,15 +800,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 * 3b. The stock with the given serial number is not found.
-    
+
     * 3b1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 * 3c. The given format is missing the field header l/.
-    
+
     * 3c1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 #### Use case: Update the source of a stock
@@ -835,15 +835,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 * 3b. The stock with the given serial number is not found.
-    
+
     * 3b1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 * 3c. The given format is missing the field header s/.
-    
+
     * 3c1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 #### Use case: Using the stats command
@@ -858,29 +858,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The given input has an additional header.
- 
+
     * 1a1. Warenager shows an error message.
-    
+
      Use case resumes at step 1.
 
 * 1b. The given input has a wrong header.
- 
+
     * 1b1. Warenager shows an error message.
-    
+
      Use case resumes at step 1.
 
 * 1c. The given input has a missing header.
- 
+
     * 1c1. Warenager shows an error message.
-    
+
      Use case resumes at step 1.
-     
+
 * 1d. The given input contains fields that cannot be found.
- 
+
     * 1d1. Warenager shows an error message.
-    
+
      Use case resumes at step 1.
-     
+
 #### Use case: Using the help command
 
 **MSS**
@@ -893,9 +893,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The given format has an additional header.
- 
+
     * 1a1. Warenager shows an error message.
-    
+
      Use case resumes at step 1.
 
 #### Use case: Suggestion feature
@@ -912,19 +912,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The command word user provided is not valid.
 
     * 2a1. Warenager calculates the most related command word to suggest.
-    
+
     Use case resumes at step 3.
 
 * 2b. The command word provided is valid, but the prefixes are not.
 
     * 2b1. Warenager prepares to suggest the command word along with only the valid prefixes.
-    
+
     Use case resumes at step 3.
 
 * 2c. The command word provided is valid, but the some prefixes are missing.
 
     * 2c1. Warenager prepares to suggest the command word along with only the missing prefixes.
-    
+
     Use case resumes at step 3.
 
 #### Use case: Exit Warenager
@@ -939,12 +939,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The given format has an additional header.
- 
+
     * 1a1. Warenager shows an error message.
-    
+
      Use case resumes at step 1.
-     
-    
+
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -963,7 +963,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Stock**: Item in the inventory.
-* **Field**: (name, serial number, quantity, location stored, source) of the stock in inventory 
+* **Field**: (name, serial number, quantity, location stored, source) of the stock in inventory
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1002,10 +1002,10 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `add n/Banana s/NUS q/9999 l/`<br>
       Expected: Locations can take any values, and it should not be blank.
       Error details shown in the status message. Status bar remains the same.
-      
+
    1. Test case: ` add n/Banana s/NUS q/9999`<br>
-      Expected: Invalid command format! 
-      add: Adds a stock to the stock book. Parameters: n/NAME s/SOURCE q/QUANTITY l/LOCATION 
+      Expected: Invalid command format!
+      add: Adds a stock to the stock book. Parameters: n/NAME s/SOURCE q/QUANTITY l/LOCATION
       Example: add n/Umbrella s/Kc company q/100 l/section B,
       Error details shown in the status message. Status bar remains the same.
 
@@ -1019,27 +1019,27 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all stocks by default or use the `find` command. Multiple stocks in the list.
 
    1. Test case: `delete sn/1111111`<br>
-      Expected: Stock with the serial number 1111111 is deleted from the inventory. 
+      Expected: Stock with the serial number 1111111 is deleted from the inventory.
       Details of the deleted stock shown in the status message.
-      
+
    1. Test case: `delete sn/1111111 sn/11111111`<br>
-      Expected: Stock with the serial number 1111111 is deleted from the inventory. 
+      Expected: Stock with the serial number 1111111 is deleted from the inventory.
       Duplicate serial number(s) is/are ignored. Details of the deleted stock shown in the status message.
-      
+
    1. Test case: `delete sn/1111111 sn/22222222`<br>
-      Expected: Both stocks with the serial numbers 1111111 and 22222222 are deleted from the inventory. 
+      Expected: Both stocks with the serial numbers 1111111 and 22222222 are deleted from the inventory.
       Details of the deleted stock shown in the status message.
-      
+
    1. Test case: `delete sn/1111111 sn/33333333` (no stock has the serial number `33333333`) <br>
-        Expected: Only the existing stock with the serial number 1111111 is deleted. 
-        Details of this deleted stock shown in the status message.  
+        Expected: Only the existing stock with the serial number 1111111 is deleted.
+        Details of this deleted stock shown in the status message.
         Serial number `33333333` which does not belong to any stock will be shown in status message as well.
-        
+
    1. Test case: `delete 1111111`<br>
-      Expected: No stock deleted due to invalid format from missing sn/. 
+      Expected: No stock deleted due to invalid format from missing sn/.
       Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete sn/absdsa` 
+   1. Other incorrect delete commands to try: `delete`, `delete sn/absdsa`
       (where serial number is not an integer or is a negative integer)<br>
       Expected: Similar to previous.
 
@@ -1050,27 +1050,27 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Multiple stocks in the list. Stock exists in inventory.
 
    1. Test case: `find sn/1111111`<br>
-      Expected: Stock of the serial number 1111111 is displayed from the inventory. 
+      Expected: Stock of the serial number 1111111 is displayed from the inventory.
       Status message shows success of command.
-   
+
    1. Test case: `find n/umbrella`<br>
-      Expected: All stocks with name containing "umbrella" are displayed from the inventory. 
-      Status message shows success of command.  
-         
+      Expected: All stocks with name containing "umbrella" are displayed from the inventory.
+      Status message shows success of command.
+
    1. Test case: `find l/section 3`<br>
-      Expected: All stocks with storage location containing "section 3" are displayed from the inventory. 
-      Status message shows success of command.  
-            
+      Expected: All stocks with storage location containing "section 3" are displayed from the inventory.
+      Status message shows success of command.
+
    1. Test case: `find s/company abc`<br>
-      Expected: All stocks with field source containing "company abc" are displayed from the inventory. 
-      Status message shows success of command.  
+      Expected: All stocks with field source containing "company abc" are displayed from the inventory.
+      Status message shows success of command.
             
    1. Test case: `find 1111111`<br>
       Expected: No stock found due to invalid format from missing field header
-      either n/, sn/, l/ or s/. 
+      either n/, sn/, l/ or s/.
       Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect find commands to try: `find`, `find sn/absdsa` 
+   1. Other incorrect find commands to try: `find`, `find sn/absdsa`
       (where serial number is not an integer or is a negative integer)<br>
       Expected: Similar to previous.
 
@@ -1079,49 +1079,49 @@ testers are expected to do more *exploratory* testing.
 1. Updating a stock from the inventory.
 
     1. Prerequisites: Multiple stocks in the list. Stocks exists in inventory.
-    
+
     1. Test case: `update sn/FLower11 iq/+50`<br>
        Expected: The stock with serial number Flower11 will have an increase of quantity by 50.
        Details of the updated stock is shown in the status message.
-    
+
     1. Test case: `update sn/FLower11 iq/-50`<br>
        Expected: The stock with serial number Flower11 will have a decrease of quantity by 50.
        Details of the updated stock is shown in the status message.
-    
+
     1. Test case: `update sn/Flower11 nq/2103`<br>
        Expected: The stock with serial number Flower11 will have a new quantity 2103.
        Details of the updated stock is shown in the status message.
-    
+
     1. Test case: `update sn/Flower11 n/Rose`
        Expected: The stock with serial number Flower11 will have a new name Rose.
        Details of the updated stock is shown in the status message.
-    
+
     1. Test case: `update sn/Flower11 l/Vase 3`
        Expected: The stock with serial number Flower11 will have a new location Vase 3.
        Details of the updated stock is shown in the status message.
-    
+
     1. Test case: `update sn/2103 s/Flower Distributor Association`
        Expected: The stock with serial number Flower11 will have a new source Flower Distributor Association.
        Details of the updated stock is shown in the status message.
-       
+
     1. Test case: `update sn/FLower11 iq/+50 n/Rose l/Vase 3 s/Flower Distributor Association`
        Expected: The stock with serial number Flower11 will have an increase of quantity by 50, a new name Rose,
        a new location Vase3, a new source Flower Distributor Association.
        Details of the updated stock is shown in the status message.
-    
+
     1. Test case: `update sn/FLower11 sn/Flower12 iq/+50 n/Rose l/Vase 3 s/Flower Distributor Association`
        Expected: The stock with serial number Flower11 and Flower12 will have an increase of quantity by 50, a new name Rose,
        a new location Vase3, a new source Flower Distributor Association.
        Details of the updated stock is shown in the status message.
-       
+
 ### Generate statistics
 
 1. Generating statistics for a target field.
-    
+
     1. Test case: `stats st/source`<br>
        Expected: A pie chart describing the distribution of source companies for the entire inventory is popped up.
        Details of the successful generation of statistics are shown in the status message.
-       
+
     1. Test case: `stats st/source-qt-ntuc` (the source company `ntuc` exists) <br>
        Expected: A pie chart describing the distribution of stocks in `ntuc` is popped up.
        Details of the successful generation of statistics are shown in the status message.
@@ -1130,9 +1130,9 @@ testers are expected to do more *exploratory* testing.
        Expected: No pop ups describing the statistics will be given or shown.
        Error details shown in the status message. Suggestion message will be shown too.
 
-   1. Other incorrect statistics commands to try: `stats`, `stats st/absdsa`, `stats st/source st/source` 
+   1. Other incorrect statistics commands to try: `stats`, `stats st/absdsa`, `stats st/source st/source`
       Expected: Similar to previous.
-       
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files

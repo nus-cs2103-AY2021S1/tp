@@ -80,7 +80,7 @@ Deletes the stock(s) using the stock's serial number from the inventory. Multipl
 * Required fields:
     1. Serial number of product
 
-Format (single): `delete sn/<serial number>`  
+Format (single): `delete sn/<serial number>`
 Format (multiple): `delete sn/<serial number> sn/<serial number 2> ...`
 
 ### Find stocks from inventory: `find`
@@ -96,7 +96,7 @@ Format (any combination of 1,2,3 or 4 of the fields): <br>
 `find sn/<serial number keyword> <(optional) more keywords to be searched in serial number>` <br>
 `find l/<location stored keyword> <(optional) more keywords to be searched in location>` <br>
 `find s/<source keyword> <(optional) more keywords to be searched in source>` <br>
-`find n/<name keyword> <(optional) more keywords> l/<location keyword> <(optional) more keywords> 
+`find n/<name keyword> <(optional) more keywords> l/<location keyword> <(optional) more keywords>
 s/<source keyword> <(optional) more keywords>`
 
 Search criteria: <br>
@@ -133,7 +133,7 @@ Format (any combination of 1,2,3 or 4 of the fields): <br>
 `findexact sn/<serial number keyword> <(optional) more keywords to be searched in serial number>` <br>
 `findexact l/<location stored keyword> <(optional) more keywords to be searched in location>` <br>
 `findexact s/<source keyword> <(optional) more keywords to be searched in source>` <br>
-`findexact n/<name keyword> <(optional) more keywords> l/<location keyword> <(optional) more keywords> 
+`findexact n/<name keyword> <(optional) more keywords> l/<location keyword> <(optional) more keywords>
 s/<source keyword> <(optional) more keywords>`
 
 Search criteria: <br>
@@ -142,7 +142,7 @@ Only stocks that contain all the search keywords for all fields will be displaye
   will match stock with Name: Chick, Source: ntuc. <br>
 * e.g. `findexact n/Chicken sn/1111`
   will match stock with Name: ChickenNuggets, SerialNumber: 1111. <br>
-* e.g. `findexact n/ChickenNuggets abcdef l/section b` 
+* e.g. `findexact n/ChickenNuggets abcdef l/section b`
   will not match stock with Name: ChickenNuggets, Location: section b.<br>
 
 Search is case-insensitive.
@@ -151,7 +151,7 @@ Search is case-insensitive.
 Any stock with fields containing all the search keywords in all the fields searched will be displayed.
 * e.g.
 
-Stock | Details 
+Stock | Details
 ------| --------
 **Stock 1** | Name: banana<br> Serial Number: NTUC1111<br> Source: ntuc<br> Quantity: 5<br> Location in warehouse: Fruits Section
 **Stock 2** | Name: chicken<br> Serial Number: SHENGSIONG1111<br> Source: sheng siong<br> Quantity: 100<br> Location in warehouse: Poultry Section
@@ -206,7 +206,7 @@ Values to be updated are case-sensitive.
 
 Example usages:
 
-Stock | Details 
+Stock | Details
 ------| --------
 **Stock 1** | Name: banana<br> Serial Number: NTUC1111<br> Source: ntuc<br> Quantity: 5<br> Location in warehouse: Fruits Section
 **Stock 2** | Name: chicken<br> Serial Number: SHENGSIONG1111<br> Source: sheng siong<br> Quantity: 100<br> Location in warehouse: Poultry Section
@@ -229,7 +229,7 @@ Generates a statistical view in a pie chart depicting the target fields.
 * Required fields:
     1. Type of statistics to generate and display.
 
-Format: `stats `, followed by one of the following:  
+Format: `stats `, followed by one of the following:
 
 **Command to append** | **What the statistics describes**
 ------| --------
@@ -261,7 +261,7 @@ an error message.
 Example usages:
 
 * `del` <br>
-  Warenager will suggest: `delete sn/<serial number>` 
+  Warenager will suggest: `delete sn/<serial number>`
 * `delt sn/NUS1` <br>
   Warenager will suggest: `delete sn/NUS1`
 * `ad n/Thai Tea s/Fairprice q/100` <br>
