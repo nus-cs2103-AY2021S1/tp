@@ -154,7 +154,7 @@ public class MainWindow extends UiPart<Stage> {
      * Opens Appointment Window.
      */
     public void handleShowAppt() {
-        appointmentWindow.setPatientAppointments(logic.getFilteredPersonList().get(0));
+        appointmentWindow.setAppointmentWindow(logic.getFilteredPersonList().get(0));
         appointmentWindow.show();
     }
 

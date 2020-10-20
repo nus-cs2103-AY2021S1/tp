@@ -15,8 +15,9 @@ import seedu.address.model.patient.Patient;
 
 public class AppointmentWindow extends UiPart<Stage> {
 
-    private final Logger logger = LogsCenter.getLogger(getClass());
     private static final String FXML = "AppointmentWindow.fxml";
+
+    private final Logger logger = LogsCenter.getLogger(getClass());
     private final ObservableList<AppointmentDescription> appointmentDescriptions = FXCollections.observableArrayList();
 
     @FXML
@@ -34,17 +35,29 @@ public class AppointmentWindow extends UiPart<Stage> {
     @FXML
     private FlowPane patientAllergies;
 
-
+    /**
+     * Creates a Appointment Window.
+     */
     public AppointmentWindow() {
         this(new Stage());
     }
 
+    /**
+     * Creates a Appointment Window.
+     *
+     * @param root Creates a Appointment Window with stage as the root.
+     */
     public AppointmentWindow(Stage root) {
         super(FXML, root);
         appointmentTable.setItems(appointmentDescriptions);
     }
 
-    public void setPatientAppointments(Patient patient) {
+    /**
+     * Set the Appointment Window of the patient.
+     *
+     * @param patient Patient information to set.
+     */
+    public void setAppointmentWindow(Patient patient) {
         patientName.setText(patient.getName().fullName);
         patientAddress.setText(patient.getAddress().value);
         patientNric.setText(patient.getNric().value);
@@ -57,6 +70,9 @@ public class AppointmentWindow extends UiPart<Stage> {
                         .getAppointmentDescription())));
     }
 
+    /**
+     * Show the Appointment window.
+     */
     public void show() {
         logger.fine("Showing appointment of patient");
         getRoot().show();
