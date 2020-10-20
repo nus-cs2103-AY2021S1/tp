@@ -21,7 +21,9 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ModuleList;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TodoList;
 import seedu.address.model.UserPrefs;
 import seedu.address.storage.ContactListStorage;
 import seedu.address.storage.JsonContactListStorage;
@@ -82,6 +84,7 @@ public class MainApp extends Application {
         Optional<ReadOnlyModuleList> moduleListOptional;
         ReadOnlyModuleList initialData;
         ReadOnlyContactList initialContactList = initializeContactList(storage);
+        ReadOnlyTodoList initialTodoList = new TodoList();
         try {
             moduleListOptional = storage.readModuleList();
             if (!moduleListOptional.isPresent()) {
