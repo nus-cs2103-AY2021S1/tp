@@ -77,4 +77,5 @@ deactivate AddQuantityToItemCommand
 destroy EditItemCommand
 [<--LogicManager
 deactivate LogicManager
+destroy AddQuantityToItemCommand
 @enduml
