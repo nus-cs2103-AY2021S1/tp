@@ -10,7 +10,7 @@
       "classTime": "1 1500-1700",
       "fee": "21.00",
       "paymentDate": "21/05/2020",
-      "additionalDetails": ["Clever"]
+      "additionalDetails": ["owesMoney", "friends"]
     },
     "questions": [
       "0 | What is Newton's Second Law?",

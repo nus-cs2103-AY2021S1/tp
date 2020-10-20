@@ -36,7 +36,6 @@ public class EditAdminDescriptorBuilder {
         descriptor.setVenue(student.getAdmin().getClassVenue());
         descriptor.setFee(student.getAdmin().getFee());
         descriptor.setPaymentDate(student.getAdmin().getPaymentDate());
-        descriptor.setAdditionalDetails(student.getAdmin().getDetails());
     }
 
     /**
@@ -68,16 +67,6 @@ public class EditAdminDescriptorBuilder {
      */
     public EditAdminDescriptorBuilder withPaymentDate(String paymentDate) {
         descriptor.setPaymentDate(new PaymentDate(paymentDate));
-        return this;
-    }
-
-    /**
-     * Parses the {@code details} into a {@code Set<AdditionalDetail>} and set it to the {@code EditAdminDescriptor}
-     * that we are building.
-     */
-    public EditAdminDescriptorBuilder withAdditionalDetails(String... details) {
-        List<AdditionalDetail> detailList = Stream.of(details).map(AdditionalDetail::new).collect(Collectors.toList());
-        descriptor.setAdditionalDetails(detailList);
         return this;
     }
 

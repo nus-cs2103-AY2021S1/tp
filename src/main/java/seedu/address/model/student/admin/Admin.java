@@ -98,7 +98,7 @@ public class Admin {
                 .append(fee)
                 .append(" Last Paid: ")
                 .append(paymentDate)
-                .append(" Notes: ");
+                .append(" Details: ");
         details.forEach(builder::append);
         return builder.toString();
     }

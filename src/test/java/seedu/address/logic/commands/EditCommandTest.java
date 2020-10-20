@@ -46,8 +46,10 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(new Reeve(model.getReeve()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedStudent);
+        expectedModel.setPerson(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()), editedStudent);
 
+//        System.out.println(model.getFilteredPersonList().get(0));
+//        System.out.println(expectedModel.getFilteredPersonList().get(0));
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 

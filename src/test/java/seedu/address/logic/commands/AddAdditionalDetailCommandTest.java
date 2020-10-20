@@ -34,7 +34,8 @@ public class AddAdditionalDetailCommandTest {
         Index testIndex = INDEX_FIRST_PERSON;
 
         // both arguments null
-        assertThrows(NullPointerException.class, () -> new AddAdditionalDetailCommand(null, null));
+        assertThrows(NullPointerException.class, () ->
+                new AddAdditionalDetailCommand(null, null));
 
         // one argument null
         assertThrows(NullPointerException.class, () ->
