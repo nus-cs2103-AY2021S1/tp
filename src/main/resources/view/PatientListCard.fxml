@@ -26,7 +26,8 @@
       <FlowPane fx:id="allergies" hgap="5.0">
             <VBox.margin>
                <Insets />
-            </VBox.margin></FlowPane>
+            </VBox.margin>
+      </FlowPane>
       <Label fx:id="nric" styleClass="cell_small_label" text="\$nric" />
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
