@@ -261,10 +261,11 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Food> getFilteredFoodList(int index) {
-        if (filteredFoods == null) {
+        //todo the filteredFoods need to be changed
+        if (menuManagers.get(index).getFoodList() == null) {
             updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS, index);
         }
-        return filteredFoods;
+        return menuManagers.get(index).getFoodList();
     }
 
     @Override

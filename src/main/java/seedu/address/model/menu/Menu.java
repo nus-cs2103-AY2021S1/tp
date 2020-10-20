@@ -3,14 +3,18 @@ package seedu.address.model.menu;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.food.Food;
 import seedu.address.model.food.exceptions.DuplicateFoodException;
 import seedu.address.model.food.exceptions.FoodNotFoundException;
+import seedu.address.storage.JsonAdaptedFood;
 
 /**
  * A list of foods that enforces uniqueness between its elements and does not allow nulls.
@@ -97,6 +101,41 @@ public class Menu implements Iterable<Food> {
         }
 
         internalList.setAll(foods);
+    }
+
+    /**
+     * Replaces the contents of this list with {@code foods}.
+     * {@code foods} must not contain duplicate foods.
+     */
+    public void setOrderedFoodList(List<JsonAdaptedFood> foods) {
+        requireAllNonNull(foods);
+        List<Food> foodList = foods.stream().map(x -> {
+            try {
+                return x.toModelType();
+            } catch (IllegalValueException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }).collect(Collectors.toList());
+        if (!foodsAreUnique(foodList)) {
+            throw new DuplicateFoodException();
+        }
+
+        internalList.setAll(foodList);
+    }
+
+    /**
+     * Gets the contents of the list.
+     * {@code foods} must not contain duplicate foods.
+     */
+    public List<JsonAdaptedFood> getFoods() {
+        requireAllNonNull(internalList);
+        ArrayList<JsonAdaptedFood> foodList = new ArrayList<>();
+
+        for (Food food : internalList) {
+            foodList.add(new JsonAdaptedFood(food));
+        }
+        return foodList;
     }
 
     /**

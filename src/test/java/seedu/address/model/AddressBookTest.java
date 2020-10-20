@@ -9,10 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalVendors.ALICE;
 import static seedu.address.testutil.TypicalVendors.getTypicalAddressBook;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -72,6 +69,7 @@ public class AddressBookTest {
 
     @Test
     public void hasVendor_vendorWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.setVendors(new ArrayList<>());
         addressBook.addVendor(ALICE);
         Vendor editedAlice = new VendorBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
