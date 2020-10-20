@@ -84,14 +84,14 @@ Adds a staff to the application.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]…`
 
 <div markdown="span" class="alert alert-primary">
-- A staff can have any number of tags (including 0) <br>
-- A staff can have any number of comments (including 0) <br>
+ - A staff can have any number of tags (including 0) <br>
+ - A staff can have any number of comments (including 0) <br><br>
  
 </div>
 
 Examples:
 * `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `addstaff n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addstaff n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/1234567 t/Role: Developer`
 
 <a name="adding-an-applicant">
 <H3> Adding an applicant: <code>addapplicant</code></H3> 
@@ -102,15 +102,16 @@ Adds an applicant to the application.
 Format: `addapplicant n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG]…​[c/COMMENTS]…`
 
 <div markdown="span" class="alert alert-primary">
-- An applicant can have any number of tags (including 0) <br>
-- An applicant can have any number of comments (including 0) <br>
-- :bulb: The interview date is optional. If an interview date is not fixed yet, you can leave it and set it later. <br>
-
+ - An applicant can have any number of tags (including 0) <br>
+ - An applicant can have any number of comments (including 0) <br>
+ - The interview date has to be in DD/MM/YYYY format <br>
+ - :bulb: **Tip** The interview date is optional. If an interview date is not fixed yet, you can leave it and set it later. <br>
+<br>
 </div>
 
 Examples:
-* `addapplicant n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `addapplicant n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addapplicant n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/22/11/2020`
+* `addapplicant n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/1234567 t/Role: Developer`
 
 ### Record leave taken by staff: `addleave`
 
