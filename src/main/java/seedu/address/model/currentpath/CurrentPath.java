@@ -6,6 +6,8 @@ import java.util.List;
 
 import seedu.address.model.tag.FileAddress;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * CurrentPath contains the current path (a FileAddress) of the HelloFile
  * file explorer. It also contains the list of children files under the path.
@@ -20,6 +22,7 @@ public class CurrentPath {
      * @param fileList the list to be the children file list
      */
     public CurrentPath(FileList fileList) {
+        requireNonNull(fileList);
         address = new FileAddress(System.getProperty("user.dir"));
         childrenFiles = fileList;
         updateChildrenFileList();
@@ -30,6 +33,7 @@ public class CurrentPath {
     }
 
     public void setAddress(FileAddress address) {
+        requireNonNull(address);
         this.address = address;
         updateChildrenFileList();
     }
