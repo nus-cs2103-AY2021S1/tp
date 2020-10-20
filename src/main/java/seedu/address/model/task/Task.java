@@ -64,7 +64,7 @@ public class Task {
         return Optional.ofNullable(this.tags);
     }
 
-    public Task setTag(Set<Tag> tags) {
+    public Task setTags(Set<Tag> tags) {
         return new Task(this.name, tags, this.priority, this.date, this.status);
     }
 
