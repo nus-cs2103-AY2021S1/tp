@@ -261,6 +261,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public int getOrderItemQuantity(int index) {
+        return orderManager.getQuantity(index);
+    }
+
+    @Override
     public void undoOrder() {
         orderManager.undoChanges();
     }

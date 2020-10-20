@@ -214,6 +214,8 @@ public interface Model {
 
     public int getOrderHistorySize();
 
+    public int getOrderItemQuantity(int index);
+
     public void undoOrder();
 
     /**
