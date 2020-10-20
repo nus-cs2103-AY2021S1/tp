@@ -49,11 +49,8 @@ public class DeleteAdditionalDetailCommandTest {
         Student clone = new StudentBuilder(asker).withDetails(TEST_DETAIL).build();
         AdditionalDetail additionalDetail = new AdditionalDetail(TEST_DETAIL);
         DeleteAdditionalDetailCommand deleteAdditionalDetailCommand =
-                new DeleteAdditionalDetailCommand(TEST_INDEX_FIRST_STUDENT, TEST_INDEX_SECOND_DETAIL);
-        Student expectedStudent = new StudentBuilder(ALICE).withDetails(TEST_DETAIL).build();
-        System.out.println("ex: " + expectedStudent);
-        System.out.println("act: "+ asker);
-        System.out.println("act: "+ clone);
+                new DeleteAdditionalDetailCommand(TEST_INDEX_FIRST_STUDENT, TEST_INDEX_FIRST_DETAIL);
+        Student expectedStudent = new StudentBuilder(ALICE).withDetails().build();
         model.setPerson(asker, clone);
 
         String expectedMessage = String.format(DeleteAdditionalDetailCommand.MESSAGE_SUCCESS, additionalDetail);
