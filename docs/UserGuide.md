@@ -83,11 +83,9 @@ Adds a staff to the application.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]…`
 
-<div markdown="span" class="alert alert-primary">
  - A staff can have any number of tags (including 0) <br>
  - A staff can have any number of comments (including 0) <br><br>
  
-</div>
 
 Examples:
 * `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -101,13 +99,12 @@ Adds an applicant to the application.
 
 Format: `addapplicant n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG]…​[c/COMMENTS]…`
 
-<div markdown="span" class="alert alert-primary">
  - An applicant can have any number of tags (including 0) <br>
  - An applicant can have any number of comments (including 0) <br>
  - The interview date has to be in DD/MM/YYYY format <br>
  - :bulb: **Tip** The interview date is optional. If an interview date is not fixed yet, you can leave it and set it later. <br>
 <br>
-</div>
+
 
 Examples:
 * `addapplicant n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/22/11/2020`
