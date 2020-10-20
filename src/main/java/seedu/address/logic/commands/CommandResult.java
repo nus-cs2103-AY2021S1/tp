@@ -35,7 +35,7 @@ public class CommandResult {
      * and showAppointment to false
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, exit,false);
+        this(feedbackToUser, showHelp, exit, false);
     }
 
     /**
