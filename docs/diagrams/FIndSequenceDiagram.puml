@@ -33,14 +33,14 @@ deactivate FindCommand
 
 |||
 
-PrimitiveCommandParser --> FindCommand : getParameterSet
+PrimitiveCommandParser -> FindCommand : getParameterSet
 activate FindCommand
 FindCommand --> PrimitiveCommandParser
 deactivate FindCommand
 
 |||
 
-PrimitiveCommandParser --> PrimitiveCommandParser : provideValuesToParameterSet
+PrimitiveCommandParser -> PrimitiveCommandParser : provideValuesToParameterSet
 activate PrimitiveCommandParser
 PrimitiveCommandParser --> PrimitiveCommandParser
 deactivate PrimitiveCommandParser
@@ -68,7 +68,7 @@ activate TagContainsKeywordsPredicate
 TagContainsKeywordsPredicate --> FindCommand : tagPredicate
 deactivate TagContainsKeywordsPredicate
 
-FindCommand --> FindCommand : Predicate::and
+FindCommand -> FindCommand : Predicate::and
 activate FindCommand
 FindCommand --> FindCommand : combinedPredicate
 deactivate FindCommand

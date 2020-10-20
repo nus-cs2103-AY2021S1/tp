@@ -151,13 +151,15 @@ Step 1. The user launches the application after having used it for a while.
 
 Step 2. The user wants to find what he ate for dinner on a certain date (eg. 21-10-2020).
 
-Step 3. The user executes `find -d 21-10-2020 -t lunch`. The `find` command will check if the inputs are valid (eg. invalid date format, empty input etc.),
+Step 3. The user executes `find -n apple -t fruit`. The `find` command will check if the inputs are valid (eg. invalid date format, empty input etc.),
 before using these inputs to create conditional `Predicate<Food>` instances (eg. `NameContainsKeywordsPredicate`, `DatePredicate`). These `Predicate<Food>`
 objects are combined as a `combinedPredicate` before updating the model's filtered food list with `ModelManager#updateFilteredFoodList(combinedPredicate)`.
 The `Predicate` will be used to `Predicate#test()` food objects stored in `McGymmy` to identify which food items fall under the specification of the `Predicate`.
 The GUI will then display the food items in the filtered list.
 
 The following sequence diagram shows how the find operation works:
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
