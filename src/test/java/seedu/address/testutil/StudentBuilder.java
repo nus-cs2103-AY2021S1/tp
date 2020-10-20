@@ -7,7 +7,6 @@ import java.util.Set;
 
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
-import seedu.address.model.student.Question;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
@@ -17,6 +16,7 @@ import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
 import seedu.address.model.student.admin.Fee;
 import seedu.address.model.student.admin.PaymentDate;
+import seedu.address.model.student.question.Question;
 import seedu.address.model.util.SampleDataUtil;
 
 /**

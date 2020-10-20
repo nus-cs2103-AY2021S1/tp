@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.student.Question;
+import seedu.address.model.student.question.Question;
 
 /**
  * Jackson-friendly version of {@code Question}.

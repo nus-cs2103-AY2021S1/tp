@@ -24,8 +24,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.student.Question;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.question.Question;
 import seedu.address.testutil.StudentBuilder;
 
 public class SolveQuestionCommandTest {

@@ -14,7 +14,7 @@ import seedu.address.logic.commands.DeleteQuestionCommand;
 import seedu.address.logic.commands.QuestionCommand;
 import seedu.address.logic.commands.SolveQuestionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.Question;
+import seedu.address.model.student.question.Question;
 
 /**
  * Parses input arguments and creates a QuestionCommand.

@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalStudents.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.student.question.Question;
 import seedu.address.testutil.StudentBuilder;
 
 public class StudentTest {

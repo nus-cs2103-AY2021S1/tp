@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 import seedu.address.model.student.admin.Admin;
+import seedu.address.model.student.question.Question;
 
 /**
  * Represents a Student in Reeve.

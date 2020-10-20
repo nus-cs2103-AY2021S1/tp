@@ -20,7 +20,7 @@ import seedu.address.logic.commands.AddQuestionCommand;
 import seedu.address.logic.commands.DeleteQuestionCommand;
 import seedu.address.logic.commands.QuestionCommand;
 import seedu.address.logic.commands.SolveQuestionCommand;
-import seedu.address.model.student.Question;
+import seedu.address.model.student.question.Question;
 
 public class QuestionCommandParserTest {
 
