@@ -20,9 +20,9 @@ import seedu.address.model.assignment.Schedule;
 /**
  * Removes priority for an assignment identified using it's displayed index from the address book.
  */
-public class UnprioritiseCommand extends NegateCommand {
+public class UnprioritizeCommand extends NegateCommand {
 
-    public static final String COMMAND_WORD_SUFFIX = "prioritise";
+    public static final String COMMAND_WORD_SUFFIX = "prioritize";
     public static final String COMMAND_WORD = NegateCommand.COMMAND_WORD + COMMAND_WORD_SUFFIX;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -31,14 +31,14 @@ public class UnprioritiseCommand extends NegateCommand {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_UNPRIORITISE_ASSIGNMENT_SUCCESS = "Removed priority for Assignment: %1$s";
-    public static final String MESSAGE_UNPRIORITISE_ASSIGNMENT = "This assignment does not have priority set.";
+    public static final String MESSAGE_UNPRIORITIZE_ASSIGNMENT_SUCCESS = "Removed priority for Assignment: %1$s";
+    public static final String MESSAGE_UNPRIORITIZE_ASSIGNMENT = "This assignment does not have priority set.";
 
     /**
      * Constructs an UnprioritiseCommand to remove priority from the specified assignment.
      * @param targetIndex index of the assignment in the filtered assignment list to remove priority.
      */
-    public UnprioritiseCommand(Index targetIndex) {
+    public UnprioritizeCommand(Index targetIndex) {
         super(targetIndex);
     }
 
@@ -51,31 +51,31 @@ public class UnprioritiseCommand extends NegateCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
         }
 
-        Assignment assignmentToUnprioritise = lastShownList.get(getTargetIndex().getZeroBased());
+        Assignment assignmentToUnprioritize = lastShownList.get(getTargetIndex().getZeroBased());
 
-        if (!assignmentToUnprioritise.hasPriority() && model.hasAssignment(assignmentToUnprioritise)) {
-            throw new CommandException(MESSAGE_UNPRIORITISE_ASSIGNMENT);
+        if (!assignmentToUnprioritize.hasPriority() && model.hasAssignment(assignmentToUnprioritize)) {
+            throw new CommandException(MESSAGE_UNPRIORITIZE_ASSIGNMENT);
         }
 
-        assert(assignmentToUnprioritise.isReminded());
-        Assignment unprioritisedAssignment = createUnprioritisedAssignment(assignmentToUnprioritise);
+        assert(assignmentToUnprioritize.isReminded());
+        Assignment unprioritisedAssignment = createUnprioritizedAssignment(assignmentToUnprioritize);
 
-        model.setAssignment(assignmentToUnprioritise, unprioritisedAssignment);
+        model.setAssignment(assignmentToUnprioritize, unprioritisedAssignment);
         model.updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENT);
-        return new CommandResult(String.format(MESSAGE_UNPRIORITISE_ASSIGNMENT_SUCCESS, unprioritisedAssignment));
+        return new CommandResult(String.format(MESSAGE_UNPRIORITIZE_ASSIGNMENT_SUCCESS, unprioritisedAssignment));
     }
 
     /**
      * Creates and returns an {@code Assignment} with the details of {@code assignmentToUnprioritise}.
      */
-    private static Assignment createUnprioritisedAssignment(Assignment assignmentToUnprioritise) {
-        assert assignmentToUnprioritise != null;
+    private static Assignment createUnprioritizedAssignment(Assignment assignmentToUnprioritize) {
+        assert assignmentToUnprioritize != null;
 
-        Name updatedName = assignmentToUnprioritise.getName();
-        Deadline updatedDeadline = assignmentToUnprioritise.getDeadline();
-        ModuleCode updatedModuleCode = assignmentToUnprioritise.getModuleCode();
-        Remind updatedRemind = assignmentToUnprioritise.getRemind();
-        Schedule updatedSchedule = assignmentToUnprioritise.getSchedule();
+        Name updatedName = assignmentToUnprioritize.getName();
+        Deadline updatedDeadline = assignmentToUnprioritize.getDeadline();
+        ModuleCode updatedModuleCode = assignmentToUnprioritize.getModuleCode();
+        Remind updatedRemind = assignmentToUnprioritize.getRemind();
+        Schedule updatedSchedule = assignmentToUnprioritize.getSchedule();
         Priority priority = new Priority();
 
         return new Assignment(updatedName, updatedDeadline, updatedModuleCode, updatedRemind, updatedSchedule,

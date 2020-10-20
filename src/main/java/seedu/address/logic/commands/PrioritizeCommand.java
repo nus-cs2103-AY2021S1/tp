@@ -21,9 +21,9 @@ import seedu.address.model.assignment.Schedule;
 /**
  * Sets priority for an assignment identified using it's displayed index from the address book.
  */
-public class PriorityCommand extends Command {
+public class PrioritizeCommand extends Command {
 
-    public static final String COMMAND_WORD = "priority";
+    public static final String COMMAND_WORD = "prioritize";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sets LOW, MEDIUM or HIGH priority for the assignment identified by the index number "
@@ -33,7 +33,7 @@ public class PriorityCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PRIORITY + Priority.LOW_PRIORITY;
 
-    public static final String MESSAGE_PRIORITISE_ASSIGNMENT_SUCCESS = "Set priority for Assignment: %1$s";
+    public static final String MESSAGE_PRIORITIZE_ASSIGNMENT_SUCCESS = "Set priority for Assignment: %1$s";
 
     private final Index targetIndex;
     private final Priority priority;
@@ -43,7 +43,7 @@ public class PriorityCommand extends Command {
      * @param targetIndex index of the assignment in the filtered assignment list to prioritise.
      * @param priority Priority to be tagged to the assignment.
      */
-    public PriorityCommand(Index targetIndex, Priority priority) {
+    public PrioritizeCommand(Index targetIndex, Priority priority) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
         this.priority = priority;
@@ -60,24 +60,24 @@ public class PriorityCommand extends Command {
 
         Assignment assignmentToPrioritise = lastShownList.get(targetIndex.getZeroBased());
 
-        Assignment prioritisedAssignment = createPrioritisedAssignment(assignmentToPrioritise, priority);
+        Assignment prioritizedAssignment = createPrioritisedAssignment(assignmentToPrioritise, priority);
 
-        model.setAssignment(assignmentToPrioritise, prioritisedAssignment);
+        model.setAssignment(assignmentToPrioritise, prioritizedAssignment);
         model.updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENT);
-        return new CommandResult(String.format(MESSAGE_PRIORITISE_ASSIGNMENT_SUCCESS, prioritisedAssignment));
+        return new CommandResult(String.format(MESSAGE_PRIORITIZE_ASSIGNMENT_SUCCESS, prioritizedAssignment));
     }
 
     /**
      * Creates and returns a {@code Assignment} with the details of {@code assignmentToPrioritise}.
      */
-    private static Assignment createPrioritisedAssignment(Assignment assignmentToPrioritise, Priority priority) {
-        assert assignmentToPrioritise != null;
+    private static Assignment createPrioritisedAssignment(Assignment assignmentToPrioritize, Priority priority) {
+        assert assignmentToPrioritize != null;
 
-        Name updatedName = assignmentToPrioritise.getName();
-        Deadline updatedDeadline = assignmentToPrioritise.getDeadline();
-        ModuleCode updatedModuleCode = assignmentToPrioritise.getModuleCode();
-        Remind updatedRemind = assignmentToPrioritise.getRemind();
-        Schedule updatedSchedule = assignmentToPrioritise.getSchedule();
+        Name updatedName = assignmentToPrioritize.getName();
+        Deadline updatedDeadline = assignmentToPrioritize.getDeadline();
+        ModuleCode updatedModuleCode = assignmentToPrioritize.getModuleCode();
+        Remind updatedRemind = assignmentToPrioritize.getRemind();
+        Schedule updatedSchedule = assignmentToPrioritize.getSchedule();
         Priority updatedPriority = priority;
 
         return new Assignment(updatedName, updatedDeadline, updatedModuleCode, updatedRemind, updatedSchedule,
