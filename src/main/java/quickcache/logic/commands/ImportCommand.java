@@ -33,7 +33,7 @@ public class ImportCommand extends Command {
     public static final String MESSAGE_IMPORT_FLASHCARD_CORRUPTED_FILE_FAILURE =
         "Flashcards from %1$s are corrupted.";
     public static final String MESSAGE_IMPORT_FLASHCARD_EMPTY_FILE_FAILURE =
-        "The file %1$s is empty.";
+        "The file %1$s is empty or does not exist.";
     public static final String MESSAGE_IMPORT_FLASHCARD_ERROR_READING_FAILURE =
         "There was an error reading the file %1$s.";
     private static final Logger logger = LogsCenter.getLogger(ImportCommand.class);
@@ -75,8 +75,10 @@ public class ImportCommand extends Command {
             additionalFlashcards.forEach((flashcard -> checkAndAddFlashcardToModel(flashcard, model)));
             return new CommandResult(String.format(MESSAGE_IMPORT_FLASHCARD_SUCCESS, path));
         } catch (DataConversionException dce) {
+            logger.info(path + " is corrupted");
             throw new CommandException(String.format(MESSAGE_IMPORT_FLASHCARD_CORRUPTED_FILE_FAILURE, path));
         } catch (IOException ioe) {
+            logger.info("Unable to read from " + path);
             throw new CommandException(String.format(MESSAGE_IMPORT_FLASHCARD_ERROR_READING_FAILURE, path));
         }
     }
@@ -97,8 +99,7 @@ public class ImportCommand extends Command {
             return false;
         }
         ImportCommand that = (ImportCommand) object;
-        return Objects.equals(path, that.path) &&
-            Objects.equals(storage, that.storage);
+        return Objects.equals(path, that.path);
     }
 
 }
