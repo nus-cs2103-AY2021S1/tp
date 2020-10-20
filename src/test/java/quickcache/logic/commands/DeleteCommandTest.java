@@ -11,8 +11,17 @@ import quickcache.model.Model;
 import quickcache.model.ModelManager;
 import quickcache.model.UserPrefs;
 import quickcache.model.flashcard.Flashcard;
+import quickcache.model.flashcard.FlashcardContainsTagPredicate;
+import quickcache.model.flashcard.FlashcardPredicate;
+import quickcache.model.flashcard.Tag;
 import quickcache.testutil.TypicalFlashcards;
 import quickcache.testutil.TypicalIndexes;
+import quickcache.testutil.TypicalTags;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.function.Predicate;
 
 
 /**
@@ -73,6 +82,32 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = DeleteCommand.withIndex(outOfBoundIndex);
 
         CommandTestUtil.assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_validTag_success() {
+        Set<Tag> tagsToMatch = new HashSet<>();
+        tagsToMatch.add(TypicalTags.testTag);
+        FlashcardPredicate flashcardPredicate = prepareFlashcardPredicate(tagsToMatch);
+
+        DeleteCommand deleteCommand = DeleteCommand.withPredicate(flashcardPredicate, tagsToMatch);
+        String deleteWithTagsMessage = DeleteCommand.createDeleteWithTagsMessage(tagsToMatch);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FLASHCARD_SUCCESS, deleteWithTagsMessage);
+
+        ModelManager expectedModel = new ModelManager(model.getQuickCache(), new UserPrefs());
+        expectedModel.updateFilteredFlashcardList(flashcardPredicate);
+        expectedModel.deleteFlashcard(TypicalFlashcards.RANDOM8);
+        expectedModel.deleteFlashcard(TypicalFlashcards.RANDOM9);
+
+        CommandTestUtil.assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    private FlashcardPredicate prepareFlashcardPredicate(Set<Tag> tagsToMatch) {
+        ArrayList<Predicate<Flashcard>> predicates = new ArrayList<>();
+        predicates.add(new FlashcardContainsTagPredicate(tagsToMatch));
+        FlashcardPredicate flashcardPredicate = new FlashcardPredicate(predicates);
+        return flashcardPredicate;
     }
 
     @Test
