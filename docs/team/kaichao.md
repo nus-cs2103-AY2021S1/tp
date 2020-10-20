@@ -19,7 +19,12 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to generate a unique serial number for each newly added stock.
   * What it does: Allows the user to perform commands using serial numbers.
   * Justification: This feature eliminates any confusion that can arise when users reuse field attributes when
-   adding a new stock. Users can then differentiate field inputs clearly when using Warenager commands.    
+   adding a new stock. Users can then differentiate field inputs clearly when using Warenager commands.
+   
+* **New Feature**: Added the ability to display various statistics through a pie chart.
+  * What it does: Allows the user to view relevant statistics for their entire inventory.
+  * Justification: Often statistics are needed for inventory evaluation. The quick overview that this feature
+    provides will help the user obtain the required data for analysis.
 
 * **Reviews & Merging**:
   * Ensured code quality when reviewing pull requests, before approving merge.
