@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.io.IOException;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -35,8 +37,11 @@ public class CommandBox extends UiPart<Region> {
      * Handles the Enter button pressed event.
      */
     @FXML
-    private void handleCommandEntered() {
+    private void handleCommandEntered() throws IOException, CommandException, ParseException {
         try {
+            commandExecutor.execute(commandTextField.getText());
+            commandTextField.setText("");
+        } catch (IOException e) {
             CommandResult commandResult = commandExecutor.execute(commandTextField.getText());
             if (commandResult.isEditRecipe() || commandResult.isEditIngredient()) {
                 commandTextField.setText(commandResult.getCommandBox());
@@ -78,7 +83,7 @@ public class CommandBox extends UiPart<Region> {
          *
          * @see seedu.address.logic.Logic#execute(String)
          */
-        CommandResult execute(String commandText) throws CommandException, ParseException;
+        CommandResult execute(String commandText) throws CommandException, ParseException, IOException;
     }
 
 }
