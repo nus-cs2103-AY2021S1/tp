@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.deliverycommand.DeliveryClearCommand;
 import seedu.address.logic.commands.deliverycommand.DeliveryDeleteCommand;
+import seedu.address.logic.commands.deliverycommand.DeliveryEditCommand;
 import seedu.address.logic.commands.deliverycommand.DeliveryFindCommand;
 import seedu.address.logic.commands.deliverycommand.DeliveryListCommand;
 import seedu.address.logic.commands.help.HelpCommand;
@@ -27,9 +28,13 @@ import seedu.address.logic.commands.itemcommand.ItemFindCommand;
 import seedu.address.logic.commands.itemcommand.ItemListCommand;
 import seedu.address.logic.commands.itemcommand.ItemRemoveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.delivery.Delivery;
 import seedu.address.model.delivery.DeliveryContainsKeywordsPredicate;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.ItemContainsKeywordsPredicate;
+import seedu.address.testutil.DeliveryBuilder;
+import seedu.address.testutil.DeliveryUtil;
+import seedu.address.testutil.EditDeliveryDescriptorBuilder;
 import seedu.address.testutil.EditItemDescriptorBuilder;
 import seedu.address.testutil.ItemBuilder;
 import seedu.address.testutil.ItemUtil;
@@ -72,6 +77,12 @@ public class OneShelfBookParserTest {
         ItemEditCommand command = (ItemEditCommand) parser.parseCommand(ItemEditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_ITEM.getOneBased() + " " + ItemUtil.getEditItemDescriptorDetails(descriptor));
         assertEquals(new ItemEditCommand(INDEX_FIRST_ITEM, descriptor), command);
+
+        Delivery delivery = new DeliveryBuilder().build();
+        DeliveryEditCommand.EditDeliveryDescriptor descriptorDelivery = new EditDeliveryDescriptorBuilder(delivery).build();
+        DeliveryEditCommand command2 = (DeliveryEditCommand) parser.parseCommand(DeliveryEditCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_ITEM.getOneBased() + " " + DeliveryUtil.getEditDeliveryDescriptorDetails(descriptorDelivery));
+        assertEquals(new DeliveryEditCommand(INDEX_FIRST_ITEM, descriptorDelivery), command2);
     }
 
     @Test
