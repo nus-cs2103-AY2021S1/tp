@@ -13,35 +13,35 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditAnimalDescriptor;
+import seedu.address.logic.commands.EditAnimalDescriptor;
+import seedu.address.logic.commands.ReplaceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.animal.Id;
 import seedu.address.model.feedtime.FeedTime;
 import seedu.address.model.medicalcondition.MedicalCondition;
 
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class EditCommandParser implements Parser<EditCommand> {
+public class ReplaceCommandParser implements Parser<ReplaceCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditCommand parse(String args) throws ParseException {
+    public ReplaceCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ID, PREFIX_SPECIES, PREFIX_MEDICAL_CONDITION,
                         PREFIX_FEED_TIME);
 
-        Index index;
+        Id id;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            id = ParserUtil.parseId(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReplaceCommand.MESSAGE_USAGE), pe);
         }
 
         EditAnimalDescriptor editAnimalDescriptor = new EditAnimalDescriptor();
@@ -60,10 +60,10 @@ public class EditCommandParser implements Parser<EditCommand> {
                 .ifPresent(editAnimalDescriptor::setFeedTimes);
 
         if (!editAnimalDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(ReplaceCommand.MESSAGE_NOT_REPLACED);
         }
 
-        return new EditCommand(index, editAnimalDescriptor);
+        return new ReplaceCommand(id, editAnimalDescriptor);
     }
 
     /**

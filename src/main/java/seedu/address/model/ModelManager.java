@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.animal.Animal;
+import seedu.address.model.animal.Id;
 
 /**
  * Represents the in-memory model of the zookeep book data.
@@ -92,6 +94,17 @@ public class ModelManager implements Model {
     public boolean hasAnimal(Animal animal) {
         requireNonNull(animal);
         return zooKeepBook.hasAnimal(animal);
+    }
+
+    @Override
+    public Optional<Animal> getAnimal(Id id) {
+        Animal found = null;
+        for (Animal animal : filteredAnimals) {
+            if (animal.getId().equals(id)) {
+                found = animal;
+            }
+        }
+        return Optional.ofNullable(found);
     }
 
     @Override
