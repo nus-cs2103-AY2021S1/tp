@@ -54,15 +54,31 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Flashcard> lastShownList = model.getFilteredFlashcardList();
+        if (isDeleteByTag) {
+            assert(predicate != null);
+            model.updateFilteredFlashcardList(predicate);
+            List<Flashcard> filteredList = model.getFilteredFlashcardList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
+            // filtered list is a mutable list and the indices change with every model.deleteFlashcard execution
+            // hence a for loop will not possible. A workaround would be to use a while loop
+            while (!filteredList.isEmpty()) {
+                Flashcard flashcardToDelete = filteredList.get(0);
+                model.deleteFlashcard(flashcardToDelete);
+            }
+            // TODO: change the placeholder text
+            return new CommandResult(String.format(MESSAGE_DELETE_FLASHCARD_SUCCESS, "_placeholder text_"));
+        } else {
+            List<Flashcard> lastShownList = model.getFilteredFlashcardList();
+            assert(targetIndex != null);
+
+            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
+            }
+
+            Flashcard flashcardToDelete = lastShownList.get(targetIndex.getZeroBased());
+            model.deleteFlashcard(flashcardToDelete);
+            return new CommandResult(String.format(MESSAGE_DELETE_FLASHCARD_SUCCESS, flashcardToDelete));
         }
-
-        Flashcard flashcardToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteFlashcard(flashcardToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_FLASHCARD_SUCCESS, flashcardToDelete));
     }
 
     @Override
