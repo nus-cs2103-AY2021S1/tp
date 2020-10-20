@@ -53,18 +53,18 @@ public class RemoveCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ObservableList<OrderItem> menu = model.getFilteredOrderItemList();
+        ObservableList<OrderItem> order = model.getFilteredOrderItemList();
         int index = targetIndex.getZeroBased();
 
-        if (menu.size() <= index) {
+        if (order.size() <= index) {
             throw new CommandException(ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
         }
-        OrderItem oldItem = menu.get(index);
+        OrderItem oldItem = order.get(index);
 
-        OrderItem orderItem = new OrderItem(menu.get(index), quantity);
+        OrderItem orderItem = new OrderItem(order.get(index), quantity);
         model.removeOrderItem(orderItem);
 
-        if (menu.size() == index || !menu.get(index).isSameOrderItem(orderItem)) {
+        if (order.size() == index || !order.get(index).isSameOrderItem(orderItem)) {
             orderItem = oldItem;
         }
 
