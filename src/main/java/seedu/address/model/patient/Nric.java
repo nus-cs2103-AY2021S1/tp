@@ -1,9 +1,11 @@
 package seedu.address.model.patient;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- *
+ * Represents a Patient's Nric in Hospify.
+ * Guarantees: immutable; is valid as declared in {@link #isValidNric(String)}
  */
 public class Nric {
 

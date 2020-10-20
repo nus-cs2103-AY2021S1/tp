@@ -14,7 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.patient.Patient;
 
 /**
- * Adds a person to Hospify.
+ * Adds a patient to Hospify.
  */
 public class AddCommand extends Command {
 

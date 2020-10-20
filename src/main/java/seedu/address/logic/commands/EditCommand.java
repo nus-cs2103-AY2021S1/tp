@@ -32,7 +32,7 @@ import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
 
 /**
- * Edits the details of an existing person in Hospify.
+ * Edits the details of an existing patient in Hospify.
  */
 public class EditCommand extends Command {
 

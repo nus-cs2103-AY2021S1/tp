@@ -24,6 +24,9 @@ import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
 
+/**
+ * Adds an appointment for a patient in Hospify.
+ */
 public class AddApptCommand extends Command {
 
     public static final String COMMAND_WORD = "addAppt";
@@ -33,9 +36,11 @@ public class AddApptCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_APPOINTMENT + "APPOINTMENT TIME] \n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_APPOINTMENT + "28/09/2020 20:00 ";
+            + PREFIX_APPOINTMENT + "28/09/2020 20:00";
 
-    public static final String MESSAGE_ADD_APPT_SUCCESS = "Add Appointment Successfully!";
+    public static final String MESSAGE_ADD_APPT_SUCCESS = "Added appointment successfully!";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT =
+            "This patient already has an appointment with this timing";
 
     private final Index index;
     private final Appointment appointment;
@@ -59,6 +64,11 @@ public class AddApptCommand extends Command {
         }
 
         Patient patientToAddAppt = lastShownList.get(index.getZeroBased());
+
+        if (patientToAddAppt.getAppointments().contains(appointment)) {
+            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+        }
+
         Patient changedPatient = createChangedPerson(patientToAddAppt, appointment);
 
         assert !patientToAddAppt.equals(changedPatient) : "changedPatient should be different from original";
