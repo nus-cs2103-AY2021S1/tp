@@ -136,9 +136,9 @@ Classes used by multiple components are in the `seedu.mcgymmy.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Undo feature
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed undo/redo mechanism is facilitated by `ModelManager`. 
 It stores multiple versions of `ReadOnlyMcGymmy` in a stack, with the most recent version on top.
@@ -197,7 +197,7 @@ The following sequence diagram shows how the undo operation works:
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+![AddToHistoryActivityDiagram](images/AddToHistoryActivityDiagram.png)
 
 #### Design consideration:
 
