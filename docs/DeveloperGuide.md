@@ -298,6 +298,19 @@ Step 3. The user can now use the following command to trigget a FindCommand.
   * Cons: May be messy and slower learning users may get confused.
 _{more aspects and alternatives to be added}_
 
+### \[Proposed\] Default Category
+
+The function of the default category is to subsume all "untagged" `expenses` under some category.
+This is especially important for possible occasions such as when the User uses the application without any categories,
+or when the User deletes a category that existing `expenses` are linked to.
+
+#### Proposed Implementation
+
+The default category generally functions the same way as any user-created category, except that it cannot be deleted or
+renamed. It is contained separately from the user-created categories (if any) for this reason. If a new ExpenseBook is
+started, the default category is automatically initialized so that the User can use the full range of the basic
+features even without creating customized categories.
+
 ### \[Proposed\] Graphical Representation Feature
 
 #### Proposed Implementation
