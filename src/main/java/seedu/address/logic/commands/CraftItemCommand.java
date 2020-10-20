@@ -17,7 +17,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
- * DeleteItemCommand represents a delete item command with hidden
+ * CraftItemCommand represents a craft item command with hidden
  * internal logic and the ability to be executed.
  */
 public class CraftItemCommand extends Command {
@@ -35,22 +35,24 @@ public class CraftItemCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "%2$s %1$s crafted";
     public static final String MESSAGE_ITEM_NOT_FOUND = "Item to craft is not found in the item list.";
-    public static final String MESSAGE_CRAFTING_NOT_POSSIBLE = "Crafting is not possible.";
+    public static final String MESSAGE_INVALID_PRODUCT_QUANTITY = "Crafting failed, please enter a valid " +
+            "product quantity";
     public static final String MESSAGE_INSUFFICIENT_INGREDIENTS = "Crafting failed, insufficient " +
             "ingredients in inventory.";
-    private static final String MESSAGE_RECIPE_NOT_FOUND = "Recipe cannot be not found in the recipe list";
-    public static final String MESSAGE_INDEX_NOT_FOUND = "Recipe ID is out of range";
+    public static final String MESSAGE_RECIPE_NOT_FOUND = "Recipe cannot be not found in the recipe list";
+    public static final String MESSAGE_INDEX_OUT_OF_RANGE = "Recipe ID is out of range";
 
     private final String itemName;
     private final int productQuantity;
     private final Index index;
-    private int recipeProductQuantity;
 
     public CraftItemCommand(String itemName, Quantity productQuantity, Index index) {
+        requireNonNull(itemName);
+        requireNonNull(productQuantity);
+        requireNonNull(index);
         this.itemName = itemName;
         this.productQuantity = Integer.parseInt(productQuantity.value);
         this.index = index;
-        this.recipeProductQuantity = 1;
     }
 
     @Override
@@ -82,13 +84,14 @@ public class CraftItemCommand extends Command {
         try {
             recipeToUse = tempRecipeList.get(index.getZeroBased());
         } catch (IndexOutOfBoundsException e) {
-            throw new CommandException(MESSAGE_INDEX_NOT_FOUND); //index out of range
+            throw new CommandException(MESSAGE_INDEX_OUT_OF_RANGE); //index out of range
         }
-        recipeProductQuantity = Integer.parseInt(recipeToUse.getProductQuantity().value);
+
+        int recipeProductQuantity = Integer.parseInt(recipeToUse.getProductQuantity().value);
 
         // check the product quantity
         if (productQuantity == 0 || productQuantity % recipeProductQuantity != 0) {
-            throw new CommandException(MESSAGE_CRAFTING_NOT_POSSIBLE);
+            throw new CommandException(MESSAGE_INVALID_PRODUCT_QUANTITY);
         }
 
         // check if item can be crafted
@@ -98,7 +101,7 @@ public class CraftItemCommand extends Command {
         HashMap<Integer, Integer> requiredIngredients = new HashMap<>();
 
         // check the ingredients quantity
-        if (!checkIngredients(ingredientList, itemList, requiredIngredients)) {
+        if (!checkIngredients(ingredientList, itemList, requiredIngredients, recipeProductQuantity)) {
             throw new CommandException(MESSAGE_INSUFFICIENT_INGREDIENTS);
         }
         // update ingredients, decrease by quantity required since ingredients are consumed
@@ -125,7 +128,7 @@ public class CraftItemCommand extends Command {
      * @return Whether the crafting can be done.
      */
     private boolean checkIngredients(IngredientList ingredientList, ArrayList<Item> itemList,
-                                     HashMap<Integer, Integer> requiredIngredients) {
+                                     HashMap<Integer, Integer> requiredIngredients, int recipeProductQuantity) {
         for (Ingredient ingredient : ingredientList) {
             int itemId = ingredient.getKey();
             int quantityRequired = ingredient.getValue() * productQuantity / recipeProductQuantity;
@@ -137,6 +140,13 @@ public class CraftItemCommand extends Command {
         }
         return true;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof CraftItemCommand // instanceof handles nulls
+                && itemName.equals(((CraftItemCommand) other).itemName)
+                && productQuantity == (((CraftItemCommand) other).productQuantity)
+                && index.equals(((CraftItemCommand) other).index));
+    }
 }
-
-
