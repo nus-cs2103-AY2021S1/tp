@@ -40,6 +40,10 @@ public class LogicManager implements Logic {
         addressBookParser = new AddressBookParser();
     }
 
+    //    public void setVendorIndex(int index) {
+    //        this.vendorIndex = index;
+    //    }
+
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
@@ -47,7 +51,7 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
-
+        this.vendorIndex = model.getVendorIndex();
         //        try {
         //            storage.saveAddressBook(model.getAddressBook());
         //        } catch (IOException ioe) {

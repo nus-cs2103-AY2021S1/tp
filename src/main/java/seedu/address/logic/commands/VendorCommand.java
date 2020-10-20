@@ -43,7 +43,8 @@ public class VendorCommand extends Command {
             throw new CommandException(ParserUtil.MESSAGE_INVALID_VENDOR_DISPLAYED_INDEX);
         }
 
-        model.selectVendor(index);
+        model.setVendorIndex(index);
+
         return new CommandResult(String.format(MESSAGE_SELECT_VENDOR_SUCCESS, vendorIndex.getOneBased()));
     }
 
