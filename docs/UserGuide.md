@@ -150,6 +150,17 @@ Shows total number of patients recorded in Hospify.
 
 Format: `count`
 
+### Sorting the patients : `sort`
+
+Sorts the patients in Hospify based on either name or NRIC in ascending order.
+
+Format: `sort name`<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; or `sort NRIC`
+
+Examples:
+* `sort name` would result in the patients to be sorted by their name in ascending order.
+* `sort NRIC` would result in the patients to be sorted by their NRIC in ascending order.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from Hospify.

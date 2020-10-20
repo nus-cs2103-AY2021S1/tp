@@ -61,8 +61,7 @@ public class AddApptCommand extends Command {
         Patient patientToAddAppt = lastShownList.get(index.getZeroBased());
         Patient changedPatient = createChangedPerson(patientToAddAppt, appointment);
 
-        assert !patientToAddAppt.isSamePatient(changedPatient);
-        assert !model.hasPatient(changedPatient);
+        assert !patientToAddAppt.equals(changedPatient) : "changedPatient should be different from original";
 
         model.setPatient(patientToAddAppt, changedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
@@ -74,7 +73,7 @@ public class AddApptCommand extends Command {
      * edited with {@code editPersonDescriptor}.
      */
     private static Patient createChangedPerson(Patient patientToAddAppt, Appointment appointment) {
-        assert patientToAddAppt != null;
+        assert patientToAddAppt != null : "Patient to add Appointment should not be null!";
 
         Name updatedName = patientToAddAppt.getName();
         Phone updatedPhone = patientToAddAppt.getPhone();
