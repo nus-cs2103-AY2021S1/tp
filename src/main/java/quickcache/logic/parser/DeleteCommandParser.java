@@ -44,7 +44,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             return DeleteCommand.withPredicate(predicate);
         } else {
             try {
-                Index index = ParserUtil.parseIndex(args);
+                Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
                 return DeleteCommand.withIndex(index);
             } catch (ParseException pe) {
                 throw new ParseException(
