@@ -25,7 +25,7 @@ public class AddAdditionalDetailCommand extends AdditionalDetailCommand {
             + PREFIX_DETAIL_TEXT + "DETAIL\n"
             + "Example: " + COMMAND_WORD + " 2 " + PREFIX_DETAIL_TEXT + "Eats sweets in class";
 
-    public static final String MESSAGE_SUCCESS = "New detail added to student: %1$s";
+    public static final String MESSAGE_SUCCESS = "New detail added to %s: %1$s";
 
     private final Index index;
     private final AdditionalDetail detailToAdd;
@@ -65,7 +65,7 @@ public class AddAdditionalDetailCommand extends AdditionalDetailCommand {
 
         model.setPerson(studentToAddDetail, updatedStudent);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, detailToAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, updatedStudent.getName(), detailToAdd));
     }
 
     @Override

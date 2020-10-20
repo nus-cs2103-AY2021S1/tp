@@ -58,7 +58,8 @@ public class DeleteAdditionalDetailCommandTest {
         Student expectedStudent = new StudentBuilder(ALICE).withDetails().build();
         model.setPerson(asker, clone);
 
-        String expectedMessage = String.format(DeleteAdditionalDetailCommand.MESSAGE_SUCCESS, additionalDetail);
+        String expectedMessage = String.format(DeleteAdditionalDetailCommand.MESSAGE_SUCCESS,
+                clone.getName(), additionalDetail);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setPerson(clone, expectedStudent);
@@ -96,7 +97,8 @@ public class DeleteAdditionalDetailCommandTest {
                 TEST_INDEX_FIRST_DETAIL);
         Student expectedStudent = new StudentBuilder(BENSON).withDetails().build();
 
-        String expectedMessage = String.format(DeleteAdditionalDetailCommand.MESSAGE_SUCCESS, detail);
+        String expectedMessage = String.format(DeleteAdditionalDetailCommand.MESSAGE_SUCCESS,
+                clone.getName(), detail);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setPerson(clone, expectedStudent);

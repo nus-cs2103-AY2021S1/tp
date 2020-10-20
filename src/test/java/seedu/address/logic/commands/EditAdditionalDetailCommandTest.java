@@ -72,7 +72,8 @@ public class EditAdditionalDetailCommandTest {
         Student expectedStudent = new StudentBuilder(ALICE).withDetails(TEST_CORRECT_DETAIL).build();
         model.setPerson(asker, clone);
 
-        String expectedMessage = String.format(EditAdditionalDetailCommand.MESSAGE_SUCCESS, additionalDetail);
+        String expectedMessage = String.format(EditAdditionalDetailCommand.MESSAGE_SUCCESS,
+                clone.getName(), additionalDetail);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setPerson(clone, expectedStudent);
@@ -112,7 +113,8 @@ public class EditAdditionalDetailCommandTest {
         Student expectedStudent = new StudentBuilder(BENSON).withDetails(TEST_CORRECT_DETAIL).build();
         model.setPerson(asker, clone);
 
-        String expectedMessage = String.format(EditAdditionalDetailCommand.MESSAGE_SUCCESS, additionalDetail);
+        String expectedMessage = String.format(EditAdditionalDetailCommand.MESSAGE_SUCCESS,
+                clone.getName(), additionalDetail);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setPerson(clone, expectedStudent);

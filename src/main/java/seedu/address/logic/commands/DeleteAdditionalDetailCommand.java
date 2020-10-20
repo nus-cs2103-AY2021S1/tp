@@ -26,7 +26,7 @@ public class DeleteAdditionalDetailCommand extends AdditionalDetailCommand {
             + "Example: " + COMMAND_WORD + " 2 "
             + PREFIX_DETAIL_INDEX + "1";
 
-    public static final String MESSAGE_SUCCESS = "Detail removed: %1$s";
+    public static final String MESSAGE_SUCCESS = "Detail removed from %s: %1$s";
     public static final String MESSAGE_BAD_DETAIL_INDEX = "There is no detail at this index";
 
     private final Index studentIndex;
@@ -71,7 +71,7 @@ public class DeleteAdditionalDetailCommand extends AdditionalDetailCommand {
 
         model.setPerson(studentToAddDetail, updatedStudent);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, removedDetail));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, updatedStudent.getName(), removedDetail));
     }
 
     @Override
