@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PatientListPanel patientListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private AppointmentWindow appointmentWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -66,6 +67,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        appointmentWindow = new AppointmentWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -151,7 +154,8 @@ public class MainWindow extends UiPart<Stage> {
      * Opens Appointment Window.
      */
     public void handleShowAppt() {
-        helpWindow.show();
+        appointmentWindow.setPatientAppointments(logic.getFilteredPersonList().get(0));
+        appointmentWindow.show();
     }
 
     void show() {
@@ -190,7 +194,12 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowAppointment()) {
-                handleShowAppt();
+                if (logic.getFilteredPersonList().size() != 1) {
+                    logger.info("Parse exception: Patient not found - " + commandText);
+                    throw new ParseException("Patient not found");
+                } else {
+                    handleShowAppt();
+                }
             }
 
             if (commandResult.isExit()) {
