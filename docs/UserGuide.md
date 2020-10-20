@@ -29,6 +29,8 @@ like managing staff performance and recruitment of applicants, faster than a typ
 
    * **`addstaff`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a staff named `John Doe` to the application.
 
+   * **`addapplicant`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a staff named `John Doe` to the application.
+
    * **`delete`**`3` : Deletes the 3rd person shown in the current list.
 
    * **`clear`** : Clears the database.
@@ -60,8 +62,8 @@ like managing staff performance and recruitment of applicants, faster than a typ
 </div>
 
 ## List of commands you can execute <br>
-[Add a staff] (#adding-a-staff) <br>
-[Add a applicant] (#adding-an-applicant) <br>
+![Add a staff] (#adding-a-staff) <br>
+![Add a applicant] (#adding-an-applicant) <br>
 
 
 ### Viewing help : `help`
@@ -73,7 +75,7 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### Adding a staff: `add`
+### Adding a staff: `addstaff`
 
 Adds a staff to the application.
 
@@ -85,28 +87,29 @@ A staff can have any number of comments (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `addstaff n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Adding an applicant: `add`
+### Adding an applicant: `addapplicant`
 
 Adds an applicant to the application.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG]…​[c/COMMENTS]…`
+Format: `addapplicant n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG]…​[c/COMMENTS]…`
 
 <div markdown="span" class="alert alert-primary">
 :bulb: **Tip:** An applicant can have any number of tags (including 0) <br>
 :bulb: **Tip:** An applicant can have any number of comments (including 0) <br>
 :bulb: **Tip:** The interview date is optional. If an interview date is not fixed yet, you can leave it and set it later. <br>
+
 </div>
 
 Examples:
-* `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `addstaff n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addapplicant n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `addapplicant n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 ### Record leave taken by staff: `addleave`
 
-Adds a person to the application.
+Adds a leave to the staff that is in eva database.
 Format: `addleave l/d:DATE [d:DATE]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
