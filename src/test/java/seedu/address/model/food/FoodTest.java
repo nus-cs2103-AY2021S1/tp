@@ -58,4 +58,16 @@ public class FoodTest {
         assertEquals(PRATA.getPriceString(), "$1.00");
         assertNotEquals(PRATA.getPriceString(), "$1.20");
     }
+
+    @Test
+    public void invalidPriceTest() {
+        assertFalse(Food.isValidPrice(-2));
+
+        assertTrue(Food.isValidPrice(2));
+        assertTrue(Food.isValidPrice(2.54));
+        assertTrue(Food.isValidPrice(1.2));
+
+        // Price should have only 2 decimal points
+        assertFalse(Food.isValidPrice(2.555));
+    }
 }

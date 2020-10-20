@@ -49,8 +49,7 @@ public class ModelManager implements Model {
         this.orderManager = new OrderManager();
 
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredVendors = new FilteredList<>(this.addressBook.getVendorList());
-
+        this.filteredVendors = new FilteredList<>(this.addressBook.getVendorList());
     }
 
     /**
@@ -72,6 +71,27 @@ public class ModelManager implements Model {
         this.menuManagers = menuManagers;
         this.orderManager = orderManager;
         filteredVendors = new FilteredList<>(this.addressBook.getVendorList());
+    }
+
+    /**
+     * Initializes a ModelManager with the given addressBook, userPrefs, menuManager and orderManager.
+     */
+    public ModelManager(
+            ReadOnlyAddressBook addressBook,
+            ReadOnlyUserPrefs userPrefs,
+            List<MenuManager> menuManagers,
+            OrderManager orderManager, Vendor vendor
+    ) {
+        super();
+        requireAllNonNull(addressBook, userPrefs, menuManagers, orderManager);
+
+        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+
+        this.addressBook = new AddressBook(addressBook);
+        this.userPrefs = new UserPrefs(userPrefs);
+        this.menuManagers = menuManagers;
+        this.orderManager = orderManager;
+        this.filteredVendors = new FilteredList<>(this.addressBook.getVendorList());
     }
 
     public ModelManager() {
@@ -158,6 +178,11 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedVendor);
 
         addressBook.setVendor(target, editedVendor);
+    }
+
+    @Override
+    public AddressBook selectVendor(int vendorIndex) {
+        return this.addressBook.selectVendor(vendorIndex);
     }
 
     //=========== MenuManager ================================================================================

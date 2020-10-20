@@ -31,11 +31,14 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX = "The order item index provided is invalid";
     public static final String MESSAGE_INVALID_ORDERITEM_DISPLAYED_QUANTITY = "The order item quantity "
             + "provided is invalid";
+    public static final String MESSAGE_INSUFFICENT_ARGUMENTS = "%s command requires at least %s argument(s). \n %s";
+    public static final String MESSAGE_TOO_MANY_ARGUMENTS = "%s command should not have more than %s arguments. \n %s";
 
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -50,6 +53,7 @@ public class ParserUtil {
      * Parses {@code oneBasedIndex} into an {@code Index} with indexName
      * and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseIndexException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex, String indexName) throws ParseIndexException {
@@ -63,6 +67,7 @@ public class ParserUtil {
     /**
      * Parses {@code quantity} into an {@code Integer} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseIndexException if the specified quantity is a zero or negative value, or not an Integer.
      */
     public static int parseQuantity(String quantity) throws ParseIndexException {
@@ -158,5 +163,30 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Checks whether the number of arguments are from min to max inclusive.
+     * Throws a ParseException if given String is empty.
+     */
+    public static void checkArgsLength(String[] argsArr, String commandWord, String messageUsage,
+                                       int min, int max) throws ParseException {
+        // Check for empty String
+        if (argsArr.length == 1 && argsArr[0].equals("") || argsArr.length < min) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    String.format(MESSAGE_INSUFFICENT_ARGUMENTS, commandWord, min, messageUsage)));
+        } else if (argsArr.length > max) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    String.format(MESSAGE_TOO_MANY_ARGUMENTS, commandWord, max, messageUsage)));
+        }
+    }
+
+    /**
+     * Checks whether the number of arguments are equal to argNum.
+     * Throws a ParseException if given String is empty.
+     */
+    public static void checkArgsLength(String[] argsArr, String commandWord,
+                                       String messageUsage, int argNum) throws ParseException {
+        checkArgsLength(argsArr, commandWord, messageUsage, argNum, argNum);
     }
 }
