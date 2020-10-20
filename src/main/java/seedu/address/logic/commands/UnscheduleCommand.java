@@ -13,6 +13,7 @@ import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.ModuleCode;
 import seedu.address.model.assignment.Name;
+import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
 
@@ -77,8 +78,9 @@ public class UnscheduleCommand extends NegateCommand {
         ModuleCode updatedModuleCode = assignmentToUnschedule.getModuleCode();
         Remind updatedRemind = assignmentToUnschedule.getRemind();
         Schedule updatedSchedule = new Schedule();
+        Priority updatedPriority = assignmentToUnschedule.getPriority();
 
-        return new Assignment(updatedName, updatedDeadline, updatedModuleCode, updatedRemind, updatedSchedule);
+        return new Assignment(updatedName, updatedDeadline, updatedModuleCode, updatedRemind, updatedSchedule, updatedPriority);
     }
 
     @Override
