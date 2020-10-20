@@ -4,9 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_ARCHIE;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BAILEY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BAILEY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_PASHA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_ARTHRITIS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BAILEY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_PASHA;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAnimalAtIndex;
@@ -52,13 +53,12 @@ public class EditCommandTest {
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastAnimal = Index.fromOneBased(model.getFilteredAnimalList().size());
         Animal lastAnimal = model.getFilteredAnimalList().get(indexLastAnimal.getZeroBased());
-
         AnimalBuilder animalInList = new AnimalBuilder(lastAnimal);
-        Animal editedAnimal = animalInList.withName(VALID_NAME_BAILEY).withId(VALID_ID_BAILEY)
+        Animal editedAnimal = animalInList.withName(VALID_NAME_PASHA).withId(VALID_ID_PASHA)
                 .withMedicalConditions(VALID_MEDICAL_CONDITION_ARTHRITIS).build();
 
-        EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder().withName(VALID_NAME_BAILEY)
-                .withId(VALID_ID_BAILEY).withMedicalConditions(VALID_MEDICAL_CONDITION_ARTHRITIS).build();
+        EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder().withName(VALID_NAME_PASHA)
+                .withId(VALID_ID_PASHA).withMedicalConditions(VALID_MEDICAL_CONDITION_ARTHRITIS).build();
         EditCommand editCommand = new EditCommand(indexLastAnimal, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ANIMAL_SUCCESS, editedAnimal);
@@ -111,7 +111,7 @@ public class EditCommandTest {
     public void execute_duplicateAnimalFilteredList_failure() {
         showAnimalAtIndex(model, INDEX_FIRST_ANIMAL);
 
-        // edit animal in filtered list into a duplicate in address book
+        // edit animal in filtered list into a duplicate in zookeep book
         Animal animalInList = model.getZooKeepBook().getAnimalList().get(INDEX_SECOND_ANIMAL.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ANIMAL,
                 new EditAnimalDescriptorBuilder(animalInList).build());
@@ -130,13 +130,13 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of zookeep book
      */
     @Test
     public void execute_invalidAnimalIndexFilteredList_failure() {
         showAnimalAtIndex(model, INDEX_FIRST_ANIMAL);
         Index outOfBoundIndex = INDEX_SECOND_ANIMAL;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of zookeep book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getZooKeepBook().getAnimalList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,

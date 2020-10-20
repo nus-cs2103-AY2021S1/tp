@@ -19,16 +19,16 @@ import seedu.address.model.medicalcondition.MedicalCondition;
 public class SampleDataUtil {
     public static Animal[] getSampleAnimals() {
         return new Animal[] {
-            new Animal(new Name("Letho"), new Id("000325"),
+            new Animal(new Name("Letho"), new Id("325"),
                 new Species("Blue Tongue Skink"),
                 getMedicalConditionSet("Healthy"), getFeedTimeSet("1234")),
-            new Animal(new Name("Sulyvahn"), new Id("029381"),
+            new Animal(new Name("Sulyvahn"), new Id("29381"),
                 new Species("Boa Constrictor"),
                 getMedicalConditionSet("Inclusion Body Disease"), getFeedTimeSet("0608")),
-            new Animal(new Name("Nemo"), new Id("000001"),
+            new Animal(new Name("Nemo"), new Id("123"),
                 new Species("Clownfish"),
                 getMedicalConditionSet("Healthy"), getFeedTimeSet("1307")),
-            new Animal(new Name("Ivan"), new Id("0242111"),
+            new Animal(new Name("Ivan"), new Id("242111"),
                 new Species("Badger"),
                 getMedicalConditionSet("Healthy"), getFeedTimeSet("1307"))
         };

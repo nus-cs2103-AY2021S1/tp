@@ -71,7 +71,7 @@ public class DeleteCommandTest {
         showAnimalAtIndex(model, INDEX_FIRST_ANIMAL);
 
         Index outOfBoundIndex = INDEX_SECOND_ANIMAL;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of zookeep book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getZooKeepBook().getAnimalList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(OUT_OF_BOUNDS_ID);
