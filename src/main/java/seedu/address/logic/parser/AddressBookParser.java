@@ -18,6 +18,7 @@ import seedu.address.logic.commands.ShowCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.currentpath.CurrentPath;
 
 /**
  * Parses user input.
@@ -42,11 +43,17 @@ public class AddressBookParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
+        //TODO to be deleted later
+        System.out.println(CurrentPath.getInstance().getAddress());
+
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
         case TagCommand.COMMAND_WORD:
+            //TODO to be deleted later
+            CurrentPath.getInstance().setAddress("D:\\\\University\\\\Year 2 Sem 1");
+            System.out.println(CurrentPath.getInstance().getAddress());
             return new TagCommandParser().parse(arguments);
 
         case UntagCommand.COMMAND_WORD:
