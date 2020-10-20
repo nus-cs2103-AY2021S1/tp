@@ -68,6 +68,16 @@ public class ActiveAccountStub implements ActiveAccount {
     }
 
     @Override
+    public void clearExpenses() {
+
+    }
+
+    @Override
+    public void clearRevenues() {
+
+    }
+    
+    @Override
     public ObservableList<Expense> getFilteredExpenseList() {
         return null;
     }
