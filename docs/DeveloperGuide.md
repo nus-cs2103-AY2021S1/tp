@@ -185,7 +185,6 @@ The following sequence diagram shows how eat recipe operation works when `execut
 PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-1. UI receives the user input.
 1. `LogicManager` receive user input and undergoes logic operation for output.
 1. `LogicManager` will pass the input to `WishfulShrinkingParser`.
 1. `WishfulShrinkingParser` create `EatRecipeCommandParser` to parse and validate the user input.
@@ -195,7 +194,6 @@ PlantUML, the lifeline reaches the end of diagram.
 1. Get related recipe detail using the user input.
 1. Pass the recipe to `Model` which responsible in adding it to consumption list.
 1. `EatRecipeCommand` return a `CommandResult` back to `LogicManager`.
-1. UI receive and output `CommandResult` to user.
 
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:** Delete a recipe in recipeList would not affect the consumptionList
@@ -213,6 +211,37 @@ PlantUML, the lifeline reaches the end of diagram.
   * Pros: Will use less memory (only the information being used is copied into consumptionList).
   * Cons: Not future proof (need to restructure the whole command if wanted to show more information from the recipe)
 
+### List Consumption feature
+
+List Consumption feature is used to list out all the recipes that user ate. This feature will also calculate 
+the total calories. 
+
+#### Implementation
+Substitutability is used in Command and Parser:
+* `ListConsumptionCommand` extends `Command`
+
+The following sequence diagram shows how eat recipe operation works when `execute(calories)` API call:
+
+![ListConsumptionSequenceDiagram](images/ListConsumptionSequenceDiagram.png)
+
+1. `LogicManager` receive user input and undergoes logic operation for output.
+1. `LogicManager` will pass the input to `WishfulShrinkingParser`.
+1. `WishfulShrinkingParser` create `ListConsumptionCommandParser` to parse and validate the user input.
+1. `LogicManager` execute `ListConsumptionCommand`.
+1. `ListConsumptionCommand` get the consumption list.
+1. `ListConsumptionCommand` return a `CommandResult` back to `LogicManager`.
+
+#### Design consideration:
+##### Aspect 1: Concern while adding a new feature
+* Workflow must be consistent with other adding commands e.g. list recipe and ingredient.
+##### Aspect 2: What are the informations to list from a recipe in consumption list
+* **Alternative 1 (current choice):** Listing recipe with name and calories.
+  * Pros: Cleaner UI.
+  * Cons: Other details that is not used become an extra data in memory.
+
+* **Alternative 2:** Listing the whole recipe's information.
+  * Pros: All the data saved are being used. 
+  * Cons: Showing too much unimportant information.
 
 ### \[Proposed\] Data archiving
 

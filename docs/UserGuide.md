@@ -254,7 +254,7 @@ Features | Format, Examples
 **Delete recipe eaten**| `deleteC INDEX` <br> e.g., `deleteC 3`
 **Search recipe** | `searchR i/INGREDIENT` OR `searchR n/TITLE` OR `searchR t/TAG` <br> e.g. `searchR i/lettuce`, `searchR n/salad`, `searchR t/healthy`
 **Search Ingredient in the fridge** | `searchF KEYWORD`<br> e.g., `searchF avocado`
-**List recipe** | `recipe`
+**List recipe** | `recipeS`
 **List ingredients in the fridge** | `fridge`
 **List recipes eaten** | `calories`
 **Recommend recipe** | `recommend`

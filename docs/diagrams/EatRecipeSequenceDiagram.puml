@@ -35,7 +35,7 @@ create EatRecipeCommand
 EatRecipeCommandParser -> EatRecipeCommand
 activate EatRecipeCommand
 
-EatRecipeCommand --> EatRecipeCommandParser : command
+EatRecipeCommand --> EatRecipeCommandParser
 deactivate EatRecipeCommand
 
 EatRecipeCommandParser --> WishfulShrinkingParser : command
