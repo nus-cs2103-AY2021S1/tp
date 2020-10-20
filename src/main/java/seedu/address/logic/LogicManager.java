@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
@@ -14,6 +15,7 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.currentpath.CurrentPath;
 import seedu.address.model.tag.Tag;
 import seedu.address.storage.Storage;
 
@@ -62,6 +64,16 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Tag> getFilteredTagList() {
         return model.getFilteredTagList();
+    }
+
+    @Override
+    public CurrentPath getCurrentPath() {
+        return model.getCurrentPath();
+    }
+
+    @Override
+    public ObservableList<File> getFilteredFileList() {
+        return model.getFilteredFileList();
     }
 
     @Override

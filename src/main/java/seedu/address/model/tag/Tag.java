@@ -2,7 +2,11 @@ package seedu.address.model.tag;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.File;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.model.description.Description;
 
@@ -18,26 +22,16 @@ public class Tag {
     // Data fields
     private final FileAddress fileAddress;
 
-    private final Description description;
-
-    /**
-     * Every field must be present and not null, escept description.
-     */
-    public Tag(TagName tagName, FileAddress fileAddress) {
-        requireAllNonNull(tagName, fileAddress);
-        this.tagName = tagName;
-        this.fileAddress = fileAddress;
-        this.description = new Description("");
-    }
+    private final Set<Description> descriptions = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Tag(TagName tagName, FileAddress fileAddress, Description description) {
-        requireAllNonNull(tagName, fileAddress, description);
+    public Tag(TagName tagName, FileAddress fileAddress, Set<Description> descriptions) {
+        requireAllNonNull(tagName, fileAddress, descriptions);
         this.tagName = tagName;
         this.fileAddress = fileAddress;
-        this.description = description;
+        this.descriptions.addAll(descriptions);
     }
 
     public TagName getTagName() {
@@ -48,8 +42,24 @@ public class Tag {
         return fileAddress;
     }
 
-    public Description getDescription() {
-        return description;
+    public Set<Description> getDescriptions() {
+        return Collections.unmodifiableSet(descriptions);
+    }
+
+    /**
+     * Converts the current tag to one with absolute address.
+     *
+     * @return The same tag but with absolute file address.
+     * @throws IllegalArgumentException If file does not exist.
+     */
+    public Tag toAbsolute() {
+        File file = new File(fileAddress.value);
+        if (!file.exists()) {
+            throw new IllegalArgumentException("Tag address not valid!");
+        }
+        FileAddress absAddress = new FileAddress(file.getAbsolutePath());
+
+        return new Tag(tagName, absAddress, descriptions);
     }
 
     /**
@@ -64,6 +74,7 @@ public class Tag {
         return otherTag != null
                 && otherTag.getTagName().equals(getTagName());
     }
+
     /**
      * Returns true if both tag have the same identity and data fields.
      * This defines a stronger notion of equality between two tags.
@@ -80,13 +91,14 @@ public class Tag {
 
         Tag otherTag = (Tag) other;
         return otherTag.getTagName().equals(getTagName())
-                && otherTag.getFileAddress().equals(getFileAddress());
+                && otherTag.getFileAddress().equals(getFileAddress())
+                && otherTag.getDescriptions().equals(getDescriptions());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(tagName, fileAddress);
+        return Objects.hash(tagName, fileAddress, descriptions);
     }
 
     @Override
@@ -94,7 +106,9 @@ public class Tag {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTagName())
                 .append(" FileAddress: ")
-                .append(getFileAddress());
+                .append(getFileAddress())
+                .append(" Descriptions: ");
+        getDescriptions().forEach(builder::append);
         return builder.toString();
     }
 

@@ -2,9 +2,11 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.File;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.currentpath.FileList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -15,6 +17,7 @@ import seedu.address.model.tag.UniqueTagList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueTagList tags;
+    private final FileList files;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         tags = new UniqueTagList();
+        files = new FileList();
     }
 
     public AddressBook() {}
@@ -104,6 +108,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Tag> getTagList() {
         return tags.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public FileList getFileList() {
+        return files;
+    }
+
+    @Override
+    public ObservableList<File> getObservableFileList() {
+        return files.asUnmodifiableObservableList();
     }
 
     @Override

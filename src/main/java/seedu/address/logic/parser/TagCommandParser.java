@@ -4,10 +4,13 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_NAME;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.description.Description;
 import seedu.address.model.tag.FileAddress;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagName;
@@ -33,8 +36,9 @@ public class TagCommandParser implements Parser<TagCommand> {
 
         TagName tagName = ParserUtil.parseTagName(argMultimap.getValue(PREFIX_TAG_NAME).get());
         FileAddress fileAddress = ParserUtil.parseFileAddress(argMultimap.getValue(PREFIX_FILE_ADDRESS).get());
-
-        Tag tag = new Tag(tagName, fileAddress);
+        Set<Description> descriptions = new HashSet<>();
+        //TODO: NEED TO MODIFIY DESCRIPTIONS
+        Tag tag = new Tag(tagName, fileAddress, descriptions);
 
         return new TagCommand(tag);
     }

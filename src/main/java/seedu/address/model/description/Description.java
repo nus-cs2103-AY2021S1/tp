@@ -12,14 +12,14 @@ public class Description {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^$|[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     private String description;
 
     /**
-     * Constructs a new Description for TagName.
+     * Constructs a new {@code Description}
      *
-     * @param description Tag description
+     * @param description A valid description
      */
     public Description(String description) {
         requireNonNull(description);
@@ -62,7 +62,7 @@ public class Description {
 
     @Override
     public String toString() {
-        return description;
+        return "[" + description + "]";
     }
 
     @Override

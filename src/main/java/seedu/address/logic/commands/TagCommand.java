@@ -42,6 +42,7 @@ public class TagCommand extends Command {
     }
 
     private boolean filePresent(FileAddress address) {
+        assert address != null;
         File file = new File(address.value);
         return file.exists();
     }
@@ -67,7 +68,7 @@ public class TagCommand extends Command {
                     String.format(MESSAGE_FILE_NOT_FOUND, toTag.getFileAddress().value));
         }
 
-        model.addTag(toTag);
+        model.addTag(toTag.toAbsolute());
         return new CommandResult(String.format(MESSAGE_SUCCESS, toTag));
     }
 

@@ -1,7 +1,10 @@
 package seedu.address.logic.commands;
 
+import java.io.File;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.currentpath.FileList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -21,6 +24,11 @@ class ModelStubWithAddressBook extends ModelStub {
     public ReadOnlyAddressBook getAddressBook() {
         return ab;
     }
+
+    @Override
+    public boolean hasTag(Tag tag) {
+        return ab.getTagList().contains(tag);
+    }
 }
 
 class AddressBookStubWithTag implements ReadOnlyAddressBook {
@@ -30,6 +38,16 @@ class AddressBookStubWithTag implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Tag> getTagList() {
         return list.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public FileList getFileList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<File> getObservableFileList() {
+        throw new AssertionError("This method should not be called.");
     }
 
     public void addTag(Tag tag) {
