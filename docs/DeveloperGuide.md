@@ -246,7 +246,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 * is sedentary people who sit in front of their computers
 
-**Value proposition**: 
+**Value proposition**:
 * manage food intake faster than a typical mouse/GUI driven app
 * reduce the risk of health issues for people with an unhealthy lifestyle
 * help them develop a healthy lifestyle through diet
@@ -310,10 +310,10 @@ Use case ends
 - 2a. The list is empty<br>
 
     Use case ends.
-    
+
 - 3a. The given index is invalid.<br>
    - 3a1. McGymmy shows an error message.
-    
+  
     Use case resumes at step 2.
 
 **Use case: UC04 Help**
@@ -436,10 +436,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. Delete the 'data' file if any. Relaunch the app by double-clicking the jar file. 
+   1. Delete the 'data' file if any. Relaunch the app by double-clicking the jar file.
    <br>
    Expected: A new data file is generated
-   
+
    1. Open the data file inside the `data` folder using any text editor and edit the file.
    <br>
    Expected: A new empty data file is generated which overwrites the old one.
