@@ -52,6 +52,10 @@ public class InventoryRecord {
         this.financeID = -1;
     }
 
+    public void setFinanceRecord(FinanceRecord financeRecord) {
+        this.financeID = financeRecord.getID();
+    }
+
     /**
      * Increase or decrease the number of this item in stock.
      * @param change Positive or negative integer.
@@ -85,6 +89,10 @@ public class InventoryRecord {
 
     public LocalTime getTime() {
         return dateTime.toLocalTime();
+    }
+
+    public int getFinanceID() {
+        return financeID;
     }
 
     @Override
