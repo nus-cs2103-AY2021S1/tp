@@ -7,6 +7,11 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Purpose of this guide**
+This guide is made to help developers understand how McGymmy works. 
+One of the major goals is to centralise all the jimmy.mcgymmy documentation within McGymmy itself.
+Another major goal is to better help developers extend McGymmy to improve on its features.
+
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
