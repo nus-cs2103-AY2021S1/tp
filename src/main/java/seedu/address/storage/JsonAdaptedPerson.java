@@ -33,10 +33,10 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("personName") String personName,
-                           @JsonProperty("gitUserName")String gitUserName,
-                           @JsonProperty("phone")String phone,
-                           @JsonProperty("email")String email,
-                           @JsonProperty("address")String address){
+                             @JsonProperty("gitUserName") String gitUserName,
+                             @JsonProperty("phone") String phone,
+                             @JsonProperty("email") String email,
+                             @JsonProperty("address") String address) {
 
         this.personName = personName;
         this.gitUserName = gitUserName;

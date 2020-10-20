@@ -181,7 +181,7 @@ public class ParserUtil {
         requireNonNull(info);
         String trimmedInfo = info.trim();
         if (!Task.isValidAttribute(trimmedInfo)) {
-            throw new ParseException(Task.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Task.NAME_MESSAGE_CONSTRAINTS);
         }
         return trimmedInfo;
     }

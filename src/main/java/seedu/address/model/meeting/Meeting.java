@@ -77,6 +77,10 @@ public class Meeting {
         return note;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public Boolean isDone() {
         return isDone;
     }

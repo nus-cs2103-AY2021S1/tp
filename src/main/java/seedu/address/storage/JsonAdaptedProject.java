@@ -1,6 +1,9 @@
 package seedu.address.storage;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -9,8 +12,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonName;
-import seedu.address.model.project.*;
+import seedu.address.model.project.Deadline;
+import seedu.address.model.project.Participation;
+import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDescription;
+import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.RepoUrl;
 import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 
@@ -34,13 +41,13 @@ class JsonAdaptedProject {
      */
     @JsonCreator
     public JsonAdaptedProject(@JsonProperty("projectName") String projectName,
-                                @JsonProperty("deadline") String deadline,
-                                @JsonProperty("repoUrl") String repoUrl,
-                                @JsonProperty("projectDescription") String projectDescription,
-                                @JsonProperty("projectTag") List<JsonAdaptedTag> projectTagged,
-                                @JsonProperty("occupied") List<JsonAdaptedTask> projectOccupied,
-                                @JsonProperty("participations") List<JsonParticipation> participations
-                              ) {
+                              @JsonProperty("deadline") String deadline,
+                              @JsonProperty("repoUrl") String repoUrl,
+                              @JsonProperty("projectDescription") String projectDescription,
+                              @JsonProperty("projectTag") List<JsonAdaptedTag> projectTagged,
+                              @JsonProperty("occupied") List<JsonAdaptedTask> projectOccupied,
+                              @JsonProperty("participations") List<JsonParticipation> participations
+    ) {
         this.projectName = projectName;
         this.deadline = deadline;
         this.repoUrl = repoUrl;
@@ -51,7 +58,7 @@ class JsonAdaptedProject {
         if (projectOccupied != null) {
             this.projectOccupied.addAll(projectOccupied);
         }
-        if(participations !=null){
+        if (participations != null) {
             this.participations.addAll(participations);
         }
     }
@@ -120,7 +127,7 @@ class JsonAdaptedProject {
 
         if (projectDescription == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                ProjectDescription.class.getSimpleName()));
+                    ProjectDescription.class.getSimpleName()));
         }
         if (!ProjectDescription.isValidProjectDescription(projectDescription)) {
             throw new IllegalValueException(ProjectDescription.MESSAGE_CONSTRAINTS);
@@ -131,7 +138,7 @@ class JsonAdaptedProject {
         final Set<Task> modelTasks = new HashSet<>(projectTasks);
         final Set<Meeting> modelMeetings = new HashSet<>(projectMeetings);
         Project p = new Project(modelProjectName, modelDeadline, modelRepoUrl, modelProjectDescription,
-            modelProjectTags, null, modelTasks, modelMeetings);
+                modelProjectTags, null, modelTasks, modelMeetings);
 
         for (JsonParticipation participation : participations) {
 

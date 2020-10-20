@@ -8,10 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_A;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_B;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_A;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_B;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_DG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REPOURL_A;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REPOURL_B;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_MODEL;
 
 import java.util.ArrayList;
 import java.util.Arrays;
