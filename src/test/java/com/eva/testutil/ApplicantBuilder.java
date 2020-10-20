@@ -30,6 +30,6 @@ public class ApplicantBuilder extends PersonBuilder {
     @Override
     public Applicant build() {
         return new Applicant(name, phone, email, address, tags, comments,
-                interviewDate.orElse(new InterviewDate(DEFAULT_INTERVIEW_DATE)), applicationStatus);
+                interviewDate, applicationStatus);
     }
 }

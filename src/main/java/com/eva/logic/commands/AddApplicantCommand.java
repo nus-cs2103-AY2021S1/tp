@@ -10,48 +10,47 @@ import static java.util.Objects.requireNonNull;
 
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.model.Model;
-import com.eva.model.person.staff.Staff;
+import com.eva.model.person.applicant.Applicant;
 
-
-public class AddStaffCommand extends Command {
-    public static final String COMMAND_WORD = "addstaff";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to Eva. "
+public class AddApplicantCommand extends Command {
+    public static final String COMMAND_WORD = "addapplicant";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a applicant to Eva. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_COMMENT + "COMMENT]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "Team:business dev "
-            + PREFIX_TAG + "performing well"
-            + PREFIX_COMMENT + "t: Leave Request d: {12/02/2020} desc: pending";
-    public static final String MESSAGE_SUCCESS = "New staff added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This staff already exists in the eva database";
+            + PREFIX_TAG + "role:business dev"
+            + PREFIX_COMMENT + "t: Good applicant d: {Date} desc: has knowledge on business model frameworks";
+    public static final String MESSAGE_SUCCESS = "New applicant added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This applicant already exists in the eva database";
 
-    private final Staff toAdd;
+    private final Applicant toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Staff}
      */
-    public AddStaffCommand(Staff staff) {
-        requireNonNull(staff);
-        toAdd = staff;
+    public AddApplicantCommand(Applicant applicant) {
+        requireNonNull(applicant);
+        toAdd = applicant;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasStaff(toAdd)) {
+        if (model.hasApplicant(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addStaff(toAdd);
+        model.addApplicant(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 }

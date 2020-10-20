@@ -11,7 +11,7 @@ import com.eva.model.Model;
 import com.eva.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a person identified using it's displayed index from the eva database.
  */
 public class DeleteCommand extends Command {
 

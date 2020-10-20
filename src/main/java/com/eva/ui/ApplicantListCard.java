@@ -1,11 +1,10 @@
 package com.eva.ui;
 
-import static com.eva.commons.util.DateUtil.dateToString;
-
 import java.util.Comparator;
+import java.util.Optional;
 
-import com.eva.model.person.staff.Staff;
-import com.eva.model.person.staff.leave.Leave;
+import com.eva.model.person.applicant.Applicant;
+import com.eva.model.person.applicant.InterviewDate;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -13,11 +12,12 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
+
 /**
- * An UI component that displays information of a {@code Staff}.
+ * An UI component that displays information of a {@code Applicant}.
  */
-public class StaffCard extends UiPart<Region> {
-    private static final String FXML = "StaffListCard.fxml";
+public class ApplicantListCard extends UiPart<Region> {
+    private static final String FXML = "ApplicantListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -27,7 +27,7 @@ public class StaffCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on EvaDatabase level 4</a>
      */
 
-    public final Staff staff;
+    public final Applicant applicant;
 
     @FXML
     private HBox cardPane;
@@ -42,6 +42,10 @@ public class StaffCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label applicationStatus;
+    @FXML
+    private Label interviewDate;
+    @FXML
     private FlowPane comments;
     @FXML
     private FlowPane tags;
@@ -49,34 +53,30 @@ public class StaffCard extends UiPart<Region> {
     private FlowPane leaves;
 
     /**
-     * Creates a {@code StaffCard} with the given {@code Staff} and index to display.
+     * Creates a {@code Applicant Card} with the given {@code Applicant} and index to display.
      */
-    public StaffCard(Staff staff, int displayedIndex) {
+    public ApplicantListCard(Applicant applicant, int displayedIndex) {
         super(FXML);
-        this.staff = staff;
+        this.applicant = applicant;
         id.setText(displayedIndex + ". ");
-        name.setText(staff.getName().fullName);
-        phone.setText(staff.getPhone().value);
-        address.setText(staff.getAddress().value);
-        email.setText(staff.getEmail().value);
-        tags.getChildren().add(new Label("staff"));
-        staff.getTags().stream()
+        name.setText(applicant.getName().fullName);
+        phone.setText(applicant.getPhone().value);
+        address.setText(applicant.getAddress().value);
+        email.setText(applicant.getEmail().value);
+        applicationStatus.setText(applicant.getApplicationStatus().toString());
+        interviewDate.setText(interviewDateToDisplay(applicant.getInterviewDate()));
+        tags.getChildren().add(new Label("applicant"));
+        applicant.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        staff.getLeaves().stream()
-                .sorted(Comparator.comparing(leave -> leave.startDate))
-                .forEach(leave -> leaves.getChildren().add(leaveToDisplay(leave)));
-        staff.getComments().stream()
+        applicant.getComments().stream()
                 .forEach(comment -> comments.getChildren()
                         .add(new Label(comment.toString())));
     }
 
-    private Label leaveToDisplay(Leave leave) {
-        return new Label(
-            leave.startDate == leave.endDate
-                ? dateToString(leave.startDate)
-                : String.format(
-                    "%s to %s", dateToString(leave.startDate), dateToString(leave.endDate)));
+    private String interviewDateToDisplay(Optional<InterviewDate> interviewDateOptional) {
+        return interviewDateOptional.map(date -> "Interview on: " + date.toString())
+                .orElse("Interview Date not set yet.");
     }
 
     @Override
@@ -87,13 +87,13 @@ public class StaffCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof StaffCard)) {
+        if (!(other instanceof ApplicantListCard)) {
             return false;
         }
 
         // state check
-        StaffCard card = (StaffCard) other;
+        ApplicantListCard card = (ApplicantListCard) other;
         return id.getText().equals(card.id.getText())
-                && staff.equals(card.staff);
+                && applicant.equals(card.applicant);
     }
 }

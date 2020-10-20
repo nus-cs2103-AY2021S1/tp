@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 /**
- * Represents a Leave period in the address book.
+ * Represents a Leave period in the eva database.
  * Guarantees: immutable; date is valid if it is made;
  */
 public class Leave {
