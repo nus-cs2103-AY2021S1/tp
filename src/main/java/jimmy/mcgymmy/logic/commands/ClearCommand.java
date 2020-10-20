@@ -18,7 +18,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setMcGymmy(new McGymmy());
+        model.clearFilteredFood();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

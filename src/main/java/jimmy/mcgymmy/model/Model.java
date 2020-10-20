@@ -82,6 +82,11 @@ public interface Model {
     void setFood(Index index, Food editedFood);
 
     /**
+     * Removes all filtered food from Fridge and clears filtered food list
+     */
+    void clearFilteredFood();
+
+    /**
      * Returns an unmodifiable view of the filtered food list
      */
     ObservableList<Food> getFilteredFoodList();

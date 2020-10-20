@@ -3,6 +3,8 @@ package jimmy.mcgymmy.model;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -112,6 +114,22 @@ public class ModelManager implements Model {
         CollectionUtil.requireAllNonNull(index, editedFood);
 
         mcGymmy.setFood(index, editedFood);
+    }
+
+    @Override
+    public void clearFilteredFood() {
+        List<Food> lst = new ArrayList<>();
+
+        for (Food filteredFood : filteredFoodItems) {
+            if (mcGymmy.hasFood(filteredFood)) {
+                lst.add(filteredFood);
+            }
+        }
+        for (Food filteredFood : lst) {
+            mcGymmy.removeFood(filteredFood);
+        }
+
+        filteredFoodItems.clear();
     }
 
     //=========== Filtered Food List Accessors =============================================================
