@@ -22,22 +22,24 @@ import seedu.address.storage.JsonZooKeepBookStorage;
 import seedu.address.testutil.TypicalAnimals;
 
 public class SnapCommandTest {
-    private static final String FILE_FORMAT = ".json";
+    private Path makePath(String fileName) {
+        return Path.of("src", "test", "data", "SnapCommandTest", fileName + SnapCommand.FILE_FORMAT);
+    }
 
     @Test
-    public void constructor_nullFileName_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new SnapCommand(null));
+    public void constructor_nullConstructor_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new SnapCommand(null, null));
     }
 
     @Test
     public void execute_validFileName_success() throws Exception {
         ModelStub modelStub = new ModelStub();
-        String validFileName = "ZooKeepBookTest_19-10-2020" + FILE_FORMAT;
-        Path path = Path.of("src", "test", "data", "SnapCommandTest", validFileName);
-        CommandResult commandResult = new SnapCommand(validFileName).execute(modelStub, path);
+        String validFileName = "ZooKeepBookTest_19-10-2020";
+        Path path = makePath(validFileName);
+        CommandResult commandResult = new SnapCommand(path, validFileName).execute(modelStub);
 
         // assert that command has executed successfully
-        assertEquals(String.format(SnapCommand.MESSAGE_SUCCESS, validFileName + FILE_FORMAT),
+        assertEquals(String.format(SnapCommand.MESSAGE_SUCCESS, validFileName + SnapCommand.FILE_FORMAT),
                 commandResult.getFeedbackToUser());
 
         // assert that contents of created file is equal
@@ -49,17 +51,18 @@ public class SnapCommandTest {
     @Test
     public void equals() {
         final String fileName = "zookeepbook_19-10-2020";
-        SnapCommand snapCommand = new SnapCommand(fileName);
+        Path path = makePath(fileName);
+        SnapCommand snapCommand = new SnapCommand(path, fileName);
 
         // same object -> returns true
         assertTrue(snapCommand.equals(snapCommand));
 
         // same values -> returns true
-        SnapCommand snapCommandCopy = new SnapCommand(fileName);
+        SnapCommand snapCommandCopy = new SnapCommand(path, fileName);
         assertTrue(snapCommand.equals(snapCommandCopy));
 
         // different file names -> returns false
-        SnapCommand snapCommandWithDifferentFileName = new SnapCommand(fileName + "x");
+        SnapCommand snapCommandWithDifferentFileName = new SnapCommand(path, fileName + "x");
         assertFalse(snapCommand.equals(snapCommandWithDifferentFileName));
 
         // different types -> returns false
