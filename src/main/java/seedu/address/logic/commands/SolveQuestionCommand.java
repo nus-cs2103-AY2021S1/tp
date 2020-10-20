@@ -19,7 +19,7 @@ import seedu.address.model.student.Student;
  */
 public class SolveQuestionCommand extends QuestionCommand {
 
-    public static final String MESSAGE_SUCCESS = "Question solved: %1$s";
+    public static final String MESSAGE_SUCCESS = "%1$s's question resolved: %2$s";
     public static final String MESSAGE_SOLVED_QUESTION = "This question was already solved";
     public static final String MESSAGE_BAD_QUESTION_INDEX = "There is no question at this index";
 
@@ -59,7 +59,7 @@ public class SolveQuestionCommand extends QuestionCommand {
 
         model.setPerson(asker, replacement);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, solvedQuestion));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, replacement.getName(), solvedQuestion));
     }
 
     /**

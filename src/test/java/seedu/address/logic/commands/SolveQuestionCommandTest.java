@@ -51,7 +51,8 @@ public class SolveQuestionCommandTest {
         Index question = Index.fromOneBased(1);
         Student expectedStudent = getAnsweredStudent(question, clone);
         Question solved = expectedStudent.getQuestions().get(question.getZeroBased());
-        String expectedMessage = String.format(MESSAGE_SUCCESS, solved);
+        String expectedMessage = String.format(MESSAGE_SUCCESS,
+                expectedStudent.getName(), solved);
 
         SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, question);
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
@@ -79,7 +80,8 @@ public class SolveQuestionCommandTest {
         Index question = Index.fromOneBased(2);
         Student expectedStudent = getAnsweredStudent(question, clone);
         Question solved = expectedStudent.getQuestions().get(question.getZeroBased());
-        String expectedMessage = String.format(MESSAGE_SUCCESS, solved);
+        String expectedMessage = String.format(MESSAGE_SUCCESS,
+                expectedStudent.getName(), solved);
 
         SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, question);
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());

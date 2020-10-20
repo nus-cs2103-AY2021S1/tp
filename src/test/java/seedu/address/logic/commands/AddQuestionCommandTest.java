@@ -51,7 +51,8 @@ public class AddQuestionCommandTest {
         Student expectedStudent = new StudentBuilder(ALICE).withQuestions(TEST_QUESTION).build();
         model.setPerson(asker, clone);
 
-        String expectedMessage = String.format(AddQuestionCommand.MESSAGE_SUCCESS, question);
+        String expectedMessage = String.format(AddQuestionCommand.MESSAGE_SUCCESS,
+                clone.getName(), question);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setPerson(clone, expectedStudent);
@@ -74,9 +75,8 @@ public class AddQuestionCommandTest {
         model.setPerson(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()), asker);
 
         AddQuestionCommand invalidCommand = new AddQuestionCommand(INDEX_FIRST_PERSON, new Question(TEST_QUESTION));
-        String expectedMessage = MESSAGE_DUPLICATE_QUESTION;
 
-        assertCommandFailure(invalidCommand, model, expectedMessage);
+        assertCommandFailure(invalidCommand, model, MESSAGE_DUPLICATE_QUESTION);
     }
 
     @Test
@@ -91,7 +91,8 @@ public class AddQuestionCommandTest {
         AddQuestionCommand addQuestionCommand = new AddQuestionCommand(INDEX_FIRST_PERSON, question);
         Student expectedStudent = new StudentBuilder(BENSON).withQuestions(TEST_QUESTION).build();
 
-        String expectedMessage = String.format(AddQuestionCommand.MESSAGE_SUCCESS, question);
+        String expectedMessage = String.format(AddQuestionCommand.MESSAGE_SUCCESS,
+                expectedStudent.getName(), question);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setPerson(clone, expectedStudent);
@@ -104,9 +105,8 @@ public class AddQuestionCommandTest {
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Index outOfBounds = INDEX_SECOND_PERSON;
         Question question = new Question(TEST_QUESTION);
-        AddQuestionCommand invalidCommand = new AddQuestionCommand(outOfBounds, question);
+        AddQuestionCommand invalidCommand = new AddQuestionCommand(INDEX_SECOND_PERSON, question);
 
         assertCommandFailure(invalidCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }

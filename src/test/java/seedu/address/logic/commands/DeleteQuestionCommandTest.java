@@ -57,7 +57,7 @@ public class DeleteQuestionCommandTest {
         expectedModel.setPerson(clone, expected);
 
         DeleteQuestionCommand command = new DeleteQuestionCommand(INDEX_FIRST_PERSON, questionIndex);
-        String expectedMessage = String.format(MESSAGE_SUCCESS, removed);
+        String expectedMessage = String.format(MESSAGE_SUCCESS, expected.getName(), removed);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
@@ -75,7 +75,7 @@ public class DeleteQuestionCommandTest {
         expectedModel.setPerson(clone, expected);
 
         DeleteQuestionCommand command = new DeleteQuestionCommand(INDEX_FIRST_PERSON, questionIndex);
-        String expectedMessage = String.format(MESSAGE_SUCCESS, removed);
+        String expectedMessage = String.format(MESSAGE_SUCCESS, expected.getName(), removed);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
@@ -95,7 +95,7 @@ public class DeleteQuestionCommandTest {
         expectedModel.setPerson(clone, expected);
 
         DeleteQuestionCommand command = new DeleteQuestionCommand(INDEX_FIRST_PERSON, questionIndex);
-        String expectedMessage = String.format(MESSAGE_SUCCESS, removed);
+        String expectedMessage = String.format(MESSAGE_SUCCESS, expected.getName(), removed);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 

@@ -19,7 +19,7 @@ import seedu.address.model.student.Student;
  */
 public class DeleteQuestionCommand extends QuestionCommand {
 
-    public static final String MESSAGE_SUCCESS = "Question removed: %1$s";
+    public static final String MESSAGE_SUCCESS = "Question removed from %1$s: %2$s";
     public static final String MESSAGE_BAD_QUESTION_INDEX = "There is no question at this index";
 
     private final Index studentIndex;
@@ -57,7 +57,7 @@ public class DeleteQuestionCommand extends QuestionCommand {
 
         model.setPerson(asker, replacement);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, deleted));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, replacement.getName(), deleted));
     }
 
     @Override

@@ -19,7 +19,7 @@ import seedu.address.model.student.Student;
  */
 public class AddQuestionCommand extends QuestionCommand {
 
-    public static final String MESSAGE_SUCCESS = "New question added to student: %1$s";
+    public static final String MESSAGE_SUCCESS = "New question added to student %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_QUESTION = "This student has already asked this question";
 
     private final Index index;
@@ -57,7 +57,7 @@ public class AddQuestionCommand extends QuestionCommand {
         model.setPerson(asker, replacement);
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, questionToAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, replacement.getName(), questionToAdd));
     }
 
     @Override
