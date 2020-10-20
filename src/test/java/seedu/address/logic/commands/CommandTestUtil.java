@@ -40,6 +40,7 @@ public class CommandTestUtil {
     public static final String VALID_PROJECT_TAG_FIEND = "fiend";
     public static final String VALID_PROJECT_TAG_DG = "DG";
     public static final String VALID_TASK_MODEL = "model";
+    public static final String VALID_TEAMMATE = "Codey";
     //TODO: after Parsing of tasks is refined, may update these to be more meaningful
 
     public static final String PROJECT_NAME_DESC_AMY = " " + PREFIX_PROJECT_NAME + VALID_PROJECT_NAME_AI;

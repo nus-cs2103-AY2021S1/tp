@@ -2,7 +2,16 @@ package seedu.address.model.project;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -20,7 +29,7 @@ import seedu.address.model.task.Task;
 public class Project {
     private static final Predicate<Task> TRUE_TASK_PREDICATE = task -> true;
     // List of all Projects
-    public static ArrayList<Project> allProjects = new ArrayList<>();
+    private static ArrayList<Project> allProjects = new ArrayList<>();
 
     // Identity fields
     private final ProjectName projectName;
@@ -31,10 +40,9 @@ public class Project {
     private final ProjectDescription projectDescription;
     private final Set<ProjectTag> projectTags = new HashSet<>();
     private final HashMap<GitUserName, Participation> listOfParticipations = new HashMap<>();
-    private Predicate<Task> taskFilter = TRUE_TASK_PREDICATE;
     private final Set<Task> tasks = new HashSet<>();
     private final Set<Meeting> meetings = new HashSet<>();
-
+    private Predicate<Task> taskFilter = TRUE_TASK_PREDICATE;
     // Display helper
     private Optional<Task> taskOnView;
 
@@ -45,17 +53,17 @@ public class Project {
                    Set<ProjectTag> projectTags,
                    HashMap<GitUserName, Participation> listOfParticipations, Set<Task> tasks, Set<Meeting> meetings) {
         requireAllNonNull(projectName, deadline, repoUrl, projectDescription, projectTags,
-                 tasks);
+                tasks);
         this.projectName = projectName;
         this.deadline = deadline;
         this.repoUrl = repoUrl;
         this.projectDescription = projectDescription;
         this.projectTags.addAll(projectTags);
-        if(listOfParticipations!=null) {
+        if (listOfParticipations != null) {
             this.listOfParticipations.putAll(listOfParticipations);
         }
         this.tasks.addAll(tasks);
-        if(meetings!=null) {
+        if (meetings != null) {
             this.meetings.addAll(meetings);
         }
         this.taskOnView = Optional.empty();
@@ -81,21 +89,31 @@ public class Project {
     public Set<Meeting> getMeetings() {
         return meetings;
     }
+
+    public static ArrayList<Project> getAllProjects() {
+        return allProjects;
+    }
+
     public boolean addMeeting(Meeting meeting) {
         return meetings.add(meeting);
     }
+
     public boolean addTask(Task task) {
         return tasks.add(task);
     }
+
     public boolean deleteTask(Task task) {
         return tasks.remove(task);
     }
+
     public void updateTaskFilter(Predicate<Task> predicate) {
         this.taskFilter = predicate;
     }
+
     public Optional<Task> getTaskOnView() {
         return taskOnView;
     }
+
     public void updateTaskOnView(Task t) {
         taskOnView = Optional.of(t);
     }
@@ -105,11 +123,12 @@ public class Project {
      */
     public Set<Person> getAttendeesOfMeeting(Meeting meeting) {
         HashSet<Person> attendees = new HashSet<>();
-        for (Map.Entry<GitUserName, Participation> entry: listOfParticipations.entrySet()) {
+        for (Map.Entry<GitUserName, Participation> entry : listOfParticipations.entrySet()) {
             attendees.add(entry.getValue().getPerson());
         }
         return attendees;
     }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -131,7 +150,7 @@ public class Project {
      */
     public void addParticipation(Person p) {
         listOfParticipations.put(
-            p.getGitUserName(), new Participation(p.getGitUserNameString(), projectName.toString()));
+                p.getGitUserName(), new Participation(p.getGitUserNameString(), projectName.toString()));
     }
 
     /**
@@ -159,10 +178,20 @@ public class Project {
 
     /**
      * Gets the list of Participations.
+     *
      * @return
      */
     public Collection<Participation> getParticipationList() {
         return listOfParticipations.values();
+    }
+
+    /**
+     * Gets the HashMap of Participations.
+     *
+     * @return
+     */
+    public HashMap<GitUserName, Participation> getParticipationHashMap() {
+        return listOfParticipations;
     }
 
     /**
@@ -179,7 +208,7 @@ public class Project {
      */
     public List<Person> getTeammates() {
         List<Person> listOfPersons = new ArrayList<>();
-        for (Map.Entry<GitUserName, Participation> entry: listOfParticipations.entrySet()) {
+        for (Map.Entry<GitUserName, Participation> entry : listOfParticipations.entrySet()) {
             Person p = entry.getValue().getPerson();
             listOfPersons.add(p);
         }
@@ -241,8 +270,8 @@ public class Project {
         }
 
         return otherProject != null
-            && otherProject.getProjectName().equals(getProjectName())
-            && (otherProject.getDeadline().equals(getDeadline()) || otherProject.getRepoUrl().equals(getRepoUrl()));
+                && otherProject.getProjectName().equals(getProjectName())
+                && (otherProject.getDeadline().equals(getDeadline()) || otherProject.getRepoUrl().equals(getRepoUrl()));
     }
 
     /**
@@ -261,11 +290,11 @@ public class Project {
 
         Project otherProject = (Project) other;
         return otherProject.getProjectName().equals(getProjectName())
-            && otherProject.getDeadline().equals(getDeadline())
-            && otherProject.getRepoUrl().equals(getRepoUrl())
-            && otherProject.getProjectDescription().equals(getProjectDescription())
-            && otherProject.getProjectTags().equals(getProjectTags())
-            && otherProject.getTasks().equals(getTasks());
+                && otherProject.getDeadline().equals(getDeadline())
+                && otherProject.getRepoUrl().equals(getRepoUrl())
+                && otherProject.getProjectDescription().equals(getProjectDescription())
+                && otherProject.getProjectTags().equals(getProjectTags())
+                && otherProject.getTasks().equals(getTasks());
     }
 
     @Override
@@ -278,14 +307,14 @@ public class Project {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(" Project Name: ")
-            .append(getProjectName())
-            .append(" Deadline: ")
-            .append(getDeadline())
-            .append(" Email: ")
-            .append(getRepoUrl())
-            .append(" ProjectDescription: ")
-            .append(getProjectDescription())
-            .append(" Project Tags: ");
+                .append(getProjectName())
+                .append(" Deadline: ")
+                .append(getDeadline())
+                .append(" Email: ")
+                .append(getRepoUrl())
+                .append(" ProjectDescription: ")
+                .append(getProjectDescription())
+                .append(" Project Tags: ");
         getProjectTags().forEach(builder::append);
         builder.append(" Tasks: ");
         getTasks().forEach(builder::append);

@@ -33,6 +33,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalProjects.AI;
 import static seedu.address.testutil.TypicalProjects.BOT;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.global.AddCommand;
@@ -49,57 +51,86 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
+        ArrayList<String> testTask1 = new ArrayList<>();
+        testTask1.add(VALID_PROJECT_TAG_DG);
+        testTask1.add(null);
+        testTask1.add(null);
+        testTask1.add("0");
+        testTask1.add("false");
+        ArrayList<String> testTask2 = new ArrayList<>();
+        testTask2.add(VALID_TASK_MODEL);
+        testTask2.add(null);
+        testTask2.add(null);
+        testTask2.add("0");
+        testTask2.add("false");
         Project expectedProject = new ProjectBuilder(BOT).withTags(VALID_PROJECT_TAG_FIEND).withTasks(
-            VALID_PROJECT_TAG_DG).build();
+                testTask1).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B
-            + REPOURL_DESC_B
-            + PROJECT_DESCRIPTION_DESC_BOB + PROJECT_TAG_DESC_FRIEND + TASK_DESC_DG, new AddCommand(
-            expectedProject));
+                + REPOURL_DESC_B
+                + PROJECT_DESCRIPTION_DESC_BOB + PROJECT_TAG_DESC_FRIEND + TASK_DESC_DG, new AddCommand(
+                expectedProject));
 
         // multiple project names - last name accepted
         assertParseSuccess(parser, PROJECT_NAME_DESC_AMY + PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B
-            + REPOURL_DESC_B + PROJECT_DESCRIPTION_DESC_BOB + PROJECT_TAG_DESC_FRIEND + TASK_DESC_DG, new AddCommand(
-            expectedProject));
+                + REPOURL_DESC_B + PROJECT_DESCRIPTION_DESC_BOB + PROJECT_TAG_DESC_FRIEND + TASK_DESC_DG,
+                new AddCommand(
+                expectedProject));
 
         // multiple deadlines - last deadline accepted
         assertParseSuccess(parser, PROJECT_NAME_DESC_BOB + DEADLINE_DESC_A + DEADLINE_DESC_B
-            + REPOURL_DESC_B + PROJECT_DESCRIPTION_DESC_BOB + PROJECT_TAG_DESC_FRIEND + TASK_DESC_DG, new AddCommand(
-            expectedProject));
+                + REPOURL_DESC_B + PROJECT_DESCRIPTION_DESC_BOB + PROJECT_TAG_DESC_FRIEND + TASK_DESC_DG,
+                new AddCommand(
+                expectedProject));
 
         // multiple repoUrl - last repoUrl accepted
         assertParseSuccess(parser, PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B + REPOURL_DESC_A
-            + REPOURL_DESC_B + PROJECT_DESCRIPTION_DESC_BOB + PROJECT_TAG_DESC_FRIEND + TASK_DESC_DG, new AddCommand(
-            expectedProject));
+                + REPOURL_DESC_B + PROJECT_DESCRIPTION_DESC_BOB + PROJECT_TAG_DESC_FRIEND + TASK_DESC_DG,
+                new AddCommand(
+                expectedProject));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B + REPOURL_DESC_B
-            + PROJECT_DESCRIPTION_DESC_AMY + PROJECT_DESCRIPTION_DESC_BOB + PROJECT_TAG_DESC_FRIEND
-            + TASK_DESC_DG, new AddCommand(expectedProject));
+                + PROJECT_DESCRIPTION_DESC_AMY + PROJECT_DESCRIPTION_DESC_BOB + PROJECT_TAG_DESC_FRIEND
+                + TASK_DESC_DG, new AddCommand(expectedProject));
 
         // multiple project tags - all accepted
         Project expectedProjectMultipleTags = new ProjectBuilder(BOT).withTags(VALID_PROJECT_TAG_FIEND,
-            VALID_PROJECT_TAG_HANG)
-            .build();
-        assertParseSuccess(parser, PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B + REPOURL_DESC_B
-            + PROJECT_DESCRIPTION_DESC_BOB
-            + PROJECT_TAG_DESC_HUSBAND + PROJECT_TAG_DESC_FRIEND + TASK_DESC_DG, new AddCommand(
-            expectedProjectMultipleTags));
-
-        // multiple tasks - all accepted
-        Project expectedProjectMultipleTasks = new ProjectBuilder(BOT).withTasks(VALID_PROJECT_TAG_DG, VALID_TASK_MODEL)
-            .build();
+                VALID_PROJECT_TAG_HANG).withTasks(testTask1)
+                .build();
         assertParseSuccess(parser, PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B + REPOURL_DESC_B
                 + PROJECT_DESCRIPTION_DESC_BOB
-                + PROJECT_TAG_DESC_FRIEND + PROJECT_TAG_DESC_HUSBAND + TASK_DESC_DG + TASK_DESC_MODEL,
-            new AddCommand(expectedProjectMultipleTasks));
+                + PROJECT_TAG_DESC_HUSBAND + PROJECT_TAG_DESC_FRIEND + TASK_DESC_DG, new AddCommand(
+                expectedProjectMultipleTags));
+
+        // multiple tasks - all accepted
+        Project expectedProjectMultipleTasks = new ProjectBuilder(BOT)
+                .withTasks(testTask1, testTask2)
+                .build();
+        assertParseSuccess(parser, PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B + REPOURL_DESC_B
+                        + PROJECT_DESCRIPTION_DESC_BOB
+                        + PROJECT_TAG_DESC_FRIEND + PROJECT_TAG_DESC_HUSBAND + TASK_DESC_DG + TASK_DESC_MODEL,
+                new AddCommand(expectedProjectMultipleTasks));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
+        ArrayList<String> testTask1 = new ArrayList<>();
+        testTask1.add(VALID_PROJECT_TAG_DG);
+        testTask1.add(null);
+        testTask1.add(null);
+        testTask1.add("0");
+        testTask1.add("false");
+        ArrayList<String> testTask2 = new ArrayList<>();
+        testTask2.add(VALID_TASK_MODEL);
+        testTask2.add(null);
+        testTask2.add(null);
+        testTask2.add("0");
+        testTask2.add("false");
+
         // zero tags
-        Project expectedProject = new ProjectBuilder(AI).withTags().build();
+        Project expectedProject = new ProjectBuilder(AI).withTags().withTasks(testTask1, testTask2).build();
         assertParseSuccess(parser, PROJECT_NAME_DESC_AMY + DEADLINE_DESC_A + REPOURL_DESC_A
                 + PROJECT_DESCRIPTION_DESC_AMY
                 + TASK_DESC_DG + TASK_DESC_MODEL, new AddCommand(expectedProject));
@@ -110,69 +141,69 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
         // missing name prefix
         assertParseFailure(parser, VALID_PROJECT_NAME_BOT + DEADLINE_DESC_B + REPOURL_DESC_B
-                + PROJECT_DESCRIPTION_DESC_BOB,
-            expectedMessage);
+                        + PROJECT_DESCRIPTION_DESC_BOB,
+                expectedMessage);
 
         // missing deadline prefix
         assertParseFailure(parser, PROJECT_NAME_DESC_BOB + VALID_DEADLINE_BOT + REPOURL_DESC_B
-                + PROJECT_DESCRIPTION_DESC_BOB,
-            expectedMessage);
+                        + PROJECT_DESCRIPTION_DESC_BOB,
+                expectedMessage);
 
         // missing email prefix
         assertParseFailure(parser, PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B + VALID_REPOURL_B
-                + PROJECT_DESCRIPTION_DESC_BOB,
-            expectedMessage);
+                        + PROJECT_DESCRIPTION_DESC_BOB,
+                expectedMessage);
 
         // missing address prefix
         assertParseFailure(parser, PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B + REPOURL_DESC_B
-                + VALID_PROJECT_DESCRIPTION_BOT,
-            expectedMessage);
+                        + VALID_PROJECT_DESCRIPTION_BOT,
+                expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_PROJECT_NAME_BOT + VALID_DEADLINE_BOT + VALID_REPOURL_B
-                + VALID_PROJECT_DESCRIPTION_BOT,
-            expectedMessage);
+                        + VALID_PROJECT_DESCRIPTION_BOT,
+                expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid project name
         assertParseFailure(parser, INVALID_NAME_DESC + DEADLINE_DESC_B + REPOURL_DESC_B
-            + PROJECT_DESCRIPTION_DESC_BOB
-            + PROJECT_TAG_DESC_HUSBAND + PROJECT_TAG_DESC_FRIEND, ProjectName.MESSAGE_CONSTRAINTS);
+                + PROJECT_DESCRIPTION_DESC_BOB
+                + PROJECT_TAG_DESC_HUSBAND + PROJECT_TAG_DESC_FRIEND, ProjectName.MESSAGE_CONSTRAINTS);
 
         // invalid deadline
         assertParseFailure(parser,
-            PROJECT_NAME_DESC_BOB + INVALID_DEADLINE_DESC + REPOURL_DESC_B
-                + PROJECT_DESCRIPTION_DESC_BOB
-                + PROJECT_TAG_DESC_HUSBAND + PROJECT_TAG_DESC_FRIEND, Deadline.MESSAGE_CONSTRAINTS);
+                PROJECT_NAME_DESC_BOB + INVALID_DEADLINE_DESC + REPOURL_DESC_B
+                        + PROJECT_DESCRIPTION_DESC_BOB
+                        + PROJECT_TAG_DESC_HUSBAND + PROJECT_TAG_DESC_FRIEND, Deadline.MESSAGE_CONSTRAINTS);
 
         // invalid repoUrl
         assertParseFailure(parser,
-            PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B + INVALID_REPOURL_DESC
-                + PROJECT_DESCRIPTION_DESC_BOB
-                + PROJECT_TAG_DESC_HUSBAND + PROJECT_TAG_DESC_FRIEND, RepoUrl.MESSAGE_CONSTRAINTS);
+                PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B + INVALID_REPOURL_DESC
+                        + PROJECT_DESCRIPTION_DESC_BOB
+                        + PROJECT_TAG_DESC_HUSBAND + PROJECT_TAG_DESC_FRIEND, RepoUrl.MESSAGE_CONSTRAINTS);
 
         // invalid project description
         assertParseFailure(parser,
-            PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B + REPOURL_DESC_B + INVALID_PROJECT_DESCRIPTION_DESC
-                + PROJECT_TAG_DESC_HUSBAND + PROJECT_TAG_DESC_FRIEND, ProjectDescription.MESSAGE_CONSTRAINTS);
+                PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B + REPOURL_DESC_B + INVALID_PROJECT_DESCRIPTION_DESC
+                        + PROJECT_TAG_DESC_HUSBAND + PROJECT_TAG_DESC_FRIEND, ProjectDescription.MESSAGE_CONSTRAINTS);
 
         // invalid project tag
         assertParseFailure(parser,
-            PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B + REPOURL_DESC_B + PROJECT_DESCRIPTION_DESC_BOB
-                + INVALID_PROJECT_TAG_DESC + VALID_PROJECT_TAG_FIEND, ProjectTag.MESSAGE_CONSTRAINTS);
+                PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B + REPOURL_DESC_B + PROJECT_DESCRIPTION_DESC_BOB
+                        + INVALID_PROJECT_TAG_DESC + VALID_PROJECT_TAG_FIEND, ProjectTag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + DEADLINE_DESC_B + REPOURL_DESC_B
-                + INVALID_PROJECT_DESCRIPTION_DESC,
-            ProjectName.MESSAGE_CONSTRAINTS);
+                        + INVALID_PROJECT_DESCRIPTION_DESC,
+                ProjectName.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B
-                + REPOURL_DESC_B
-                + PROJECT_DESCRIPTION_DESC_BOB + PROJECT_TAG_DESC_HUSBAND + PROJECT_TAG_DESC_FRIEND,
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                        + REPOURL_DESC_B
+                        + PROJECT_DESCRIPTION_DESC_BOB + PROJECT_TAG_DESC_HUSBAND + PROJECT_TAG_DESC_FRIEND,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
         // TODO: may add task if validation is refined.
     }

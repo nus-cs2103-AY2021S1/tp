@@ -34,12 +34,12 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         }
 
         String taskName = ParserUtil.parseTaskBasicInformation(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
-        double taskProgress = Double.parseDouble(
+        Double taskProgress = Double.parseDouble(
                 ParserUtil.parseTaskBasicInformation(argMultimap.getValue(PREFIX_TASK_PROGRESS).get()));
         boolean taskStatus = Boolean.parseBoolean(
                 ParserUtil.parseTaskBasicInformation(argMultimap.getValue(PREFIX_TASK_IS_DONE).get()));
 
-        Task task = new Task(taskName, "", null, taskProgress, taskStatus);
+        Task task = new Task(taskName, null, (String) null, taskProgress, taskStatus);
 
         return new AddTaskCommand(task);
     }

@@ -1,11 +1,15 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.person.GitUserName;
 import seedu.address.model.project.Deadline;
+import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
@@ -31,6 +35,7 @@ public class ProjectBuilder {
     private Set<ProjectTag> projectTags;
     private Set<Task> tasks;
     private Set<Meeting> meetings;
+    private HashMap<GitUserName, Participation> participations;
 
     /**
      * Creates a {@code ProjectBuilder} with the default details.
@@ -43,6 +48,7 @@ public class ProjectBuilder {
         projectTags = new HashSet<>();
         tasks = new HashSet<>();
         meetings = new HashSet<>();
+        participations = new HashMap<>();
     }
 
     /**
@@ -56,6 +62,8 @@ public class ProjectBuilder {
         projectTags = new HashSet<>(projectToCopy.getProjectTags());
         tasks = new HashSet<>(projectToCopy.getTasks());
         meetings = new HashSet<>(projectToCopy.getMeetings());
+        participations = new HashMap<>();
+        participations.putAll(projectToCopy.getParticipationHashMap());
     }
 
     /**
@@ -70,7 +78,7 @@ public class ProjectBuilder {
      * Parses the {@code projectTags} into a {@code Set<ProjectTag>} and set it to the {@code Project}
      * that we are building.
      */
-    public ProjectBuilder withTags(String ... projectTags) {
+    public ProjectBuilder withTags(String... projectTags) {
         this.projectTags = SampleDataUtil.getTagSet(projectTags);
         return this;
     }
@@ -78,7 +86,7 @@ public class ProjectBuilder {
     /**
      * Parses the {@code tasks} into a {@code Set<Task>} and set it to the {@code Project} that we are building.
      */
-    public ProjectBuilder withTasks(String ... tasks) {
+    public ProjectBuilder withTasks(ArrayList<String>... tasks) {
         this.tasks = SampleDataUtil.getTaskSet(tasks);
         return this;
     }
@@ -86,7 +94,7 @@ public class ProjectBuilder {
     /**
      * Parses the {@code tasks} into a {@code Set<Task>} and set it to the {@code Project} that we are building.
      */
-    public ProjectBuilder withMeetings(String ... meetings) {
+    public ProjectBuilder withMeetings(String... meetings) {
         this.meetings = SampleDataUtil.getMeetingSet(meetings);
         return this;
     }
@@ -116,13 +124,23 @@ public class ProjectBuilder {
     }
 
     /**
+     * Sets the {@code Participation} of the {@code Project} that we are building.
+     */
+    public ProjectBuilder withPeople(String... people) {
+        Arrays.stream(people)
+                .map(name -> new Participation(name, projectName.toString()))
+                .map(participation -> participations.put(participation.getPerson().getGitUserName(), participation));
+        return this;
+    }
+
+    /**
      * Creates a project
      *
      * @return project sample
      */
     public Project build() {
         return new Project(projectName, deadline, repoUrl, projectDescription,
-                projectTags, new HashMap<>(), tasks, meetings);
+                projectTags, participations, tasks, meetings);
     }
 
 }

@@ -8,8 +8,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.GitUserName;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonName;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Participation;
 
@@ -18,23 +16,44 @@ import seedu.address.model.project.Participation;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Task {
+
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String DESCRIPTION_VALIDATION_REGEX = "[^\\s].*";
+
+    public static final String NAME_MESSAGE_CONSTRAINTS =
+            "Task names should only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String DESCRIPTION_MESSAGE_CONSTRAINTS =
+            "Task descriptions should only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String PUBLISH_DATE_MESSAGE_CONSTRAINTS =
+            "Publish date should only be in the format of dd-MM-yyyy";
+    public static final String DEADLINE_MESSAGE_CONSTRAINTS =
+            "Publish date should only be in the format of yyyy-MM-dd";
+    public static final String PROGRESS_MESSAGE_CONSTRAINTS =
+            "Progress values should only contain integers between 0 and 100 inclusive, and it should not be blank";
+    public static final String IS_DONE_MESSAGE_CONSTRAINTS =
+            "Is done values should only contain booleans, and it should not be blank";
+
     public final String taskName;
     private final String description;
     private LocalDate publishDate;
     private final Deadline deadline;
-    private final double progress;
-    private final boolean isDone;
+    private final Double progress;
+    private final Boolean isDone;
     private final Set<String> assignees;
 
     /**
      * name, progress, and isDone should be present and not null. description and deadline can be null.
      */
-    public Task(String taskName, String description, Deadline deadline, double progress, boolean isDone) {
+    public Task(String taskName, String description, String deadline, double progress, boolean isDone) {
         requireAllNonNull(taskName, progress, isDone);
         this.taskName = taskName;
         this.description = description;
         publishDate = LocalDate.now();
-        this.deadline = deadline;
+        if (deadline == null) {
+            this.deadline = null;
+        } else {
+            this.deadline = new Deadline(deadline);
+        }
         this.progress = progress;
         this.isDone = isDone;
         this.assignees = new HashSet<>();
@@ -56,7 +75,7 @@ public class Task {
         return deadline;
     }
 
-    public double getProgress() {
+    public Double getProgress() {
         return progress;
     }
 
@@ -64,13 +83,14 @@ public class Task {
         return assignees;
     }
 
-    public boolean isDone() {
+    public Boolean isDone() {
         return isDone;
     }
 
     public boolean hasAssignee(Participation assignee) {
         return assignees.contains(assignee.getPerson().toString());
     }
+
     public boolean hasAnyAssignee() {
         return !assignees.isEmpty();
     }
@@ -84,11 +104,65 @@ public class Task {
      */
     public boolean hasAssigneeWhoseNameIs(GitUserName assigneeGitUserName) {
         return assignees.stream()
-            .anyMatch(assignee -> assignee.equals(assigneeGitUserName.toString()));
+                .anyMatch(assignee -> assignee.equals(assigneeGitUserName.toString()));
     }
 
     public boolean addAssignee(String assignee) {
         return assignees.add(assignee);
+    }
+
+    /**
+     * Returns true if a given string is a valid name.
+     */
+    public static boolean isValidTaskName(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is a valid description.
+     */
+    public static boolean isValidTaskDescription(String test) {
+        if (test.isBlank()) {
+            return true;
+        } else {
+            return test.matches(DESCRIPTION_VALIDATION_REGEX);
+        }
+    }
+
+    /**
+     * Returns true if a given string is a valid publish date.
+     */
+    public static boolean isValidPublishDate(String test) {
+        return Task.isValidDate(test);
+    }
+
+    /**
+     * Returns true if a given string is a valid progress value.
+     */
+    public static boolean isValidProgress(String test) {
+        if (test == null) {
+            return false;
+        }
+        if (test.isEmpty()) {
+            return false;
+        }
+        try {
+            Double t = Double.valueOf(test);
+            return 0 <= t && t <= 100;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Returns true if a given string is a valid isDone value.
+     */
+    public static boolean isValidIsDone(String test) {
+        if (test.equals("false")) {
+            return true;
+        } else {
+            return Boolean.parseBoolean(test);
+        }
     }
 
     /**
@@ -104,10 +178,10 @@ public class Task {
         }
         Task task = (Task) o;
         return Double.compare(task.getProgress(), getProgress()) == 0
-            && getTaskName().equals(task.getTaskName())
-            && (getDescription() == task.getDescription() || getDescription().equals(task.getDescription()))
-            && getPublishDate().equals(task.getPublishDate())
-            && Objects.equals(getDeadline(), task.getDeadline());
+                && getTaskName().equals(task.getTaskName())
+                && (getDescription() == task.getDescription() || getDescription().equals(task.getDescription()))
+                //            && getPublishDate().equals(task.getPublishDate())
+                && Objects.equals(getDeadline(), task.getDeadline());
     }
 
     @Override
@@ -122,6 +196,35 @@ public class Task {
 
     public void setPublishDate(LocalDate publishDate) {
         this.publishDate = publishDate;
+    }
+
+    /**
+     * Return true if a given string is a valid date.
+     */
+    public static boolean isValidDate(String date) {
+        String[] strings = date.split("-");
+        int year = Integer.parseInt(strings[0]);
+        int month = Integer.parseInt(strings[1]);
+        int day = Integer.parseInt(strings[2]);
+        boolean isValidDay = day <= 31 && day >= 1;
+        boolean isValidMonth = month <= 12 && month >= 1;
+        //year is always valid because it matches the regex as 4 digits of integers (1000 - 9999)
+        if (day == 29 && month == 2) {
+            if (year % 400 == 0) {
+                return true;
+            } else if (year % 100 == 0) {
+                return false;
+            } else {
+                return year % 4 == 0;
+            }
+        } else if ((day == 30 || day == 31) && month == 2) {
+            return false;
+        } else if (day == 31 && (month == 4 || month == 6
+                || month == 9 || month == 11)) {
+            return false;
+        } else {
+            return isValidDay && isValidMonth;
+        }
     }
 
     // TODO: may add isValidTask method.

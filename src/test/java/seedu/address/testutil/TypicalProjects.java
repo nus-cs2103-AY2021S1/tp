@@ -6,12 +6,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIP
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_BOT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_AI;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_BOT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_DG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_FIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_HANG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REPOURL_A;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REPOURL_B;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_MODEL;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,6 +17,7 @@ import java.util.List;
 
 import seedu.address.model.MainCatalogue;
 import seedu.address.model.project.Project;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class containing a list of {@code Project} objects to be used in tests.
@@ -29,18 +28,22 @@ public class TypicalProjects {
             .withProjectDescription("An app for you to speak your mind")
             .withRepoUrl("https://github.com/a/a.git")
             .withDeadline("21-03-2020 00:00:00")
-            .withTags("linguistics").withTasks("Write DG", "Write user stories").build();
+            .withTags("linguistics").withTasks(SampleDataUtil.getTask1(), SampleDataUtil.getTask2()).build();
     public static final Project BRICK = new ProjectBuilder().withProjectName("Brick No Meier")
             .withProjectDescription("To destroy the brick and mortar")
             .withRepoUrl("https://github.com/b/b.git")
             .withDeadline("21-03-2020 00:00:00")
-            .withTags("amazon", "evil").withTasks("Practice presentation").build();
+            .withTags("amazon", "evil")
+            .withTasks(SampleDataUtil.getTask3())
+            //            .withMeetings("2020-10-10T15:30:00")
+            //            .withPeople("Bob", "Niaz")
+            .build();
     public static final Project CARACTIVE = new ProjectBuilder().withProjectName("Caractive")
             .withDeadline("21-03-2020 00:00:00")
             .withRepoUrl("https://github.com/c/c.git")
             .withProjectDescription("best car app for tesla")
             .withTags("electric")
-            .withTasks("Integrate with tesla").build();
+            .withTasks(SampleDataUtil.getTask4()).build();
     public static final Project DAYUM = new ProjectBuilder().withProjectName("Dayum Snap")
             .withDeadline("21-03-2020 00:00:00")
             .withRepoUrl("https://github.com/d/d.git")
@@ -69,13 +72,17 @@ public class TypicalProjects {
 
     // Manually added - Project's details found in {@code CommandTestUtil}
     public static final Project AI = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_AI)
-            .withDeadline(VALID_DEADLINE_AI).withRepoUrl(VALID_REPOURL_A).withProjectDescription(
-            VALID_PROJECT_DESCRIPTION_AI)
-            .withTags(VALID_PROJECT_TAG_FIEND).withTasks(VALID_PROJECT_TAG_DG, VALID_TASK_MODEL).build();
+            .withDeadline(VALID_DEADLINE_AI).withRepoUrl(VALID_REPOURL_A)
+            .withProjectDescription(VALID_PROJECT_DESCRIPTION_AI)
+            .withTags(VALID_PROJECT_TAG_FIEND).withTasks(SampleDataUtil.getTask5(), SampleDataUtil.getTask6())
+            //            .withPeople(VALID_TEAMMATE)
+            .build();
     public static final Project BOT = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_BOT)
             .withDeadline(VALID_DEADLINE_BOT).withRepoUrl(VALID_REPOURL_B).withProjectDescription(
             VALID_PROJECT_DESCRIPTION_BOT)
-            .withTags(VALID_PROJECT_TAG_HANG, VALID_PROJECT_TAG_FIEND).withTasks(VALID_PROJECT_TAG_DG).build();
+            .withTags(VALID_PROJECT_TAG_HANG, VALID_PROJECT_TAG_FIEND).withTasks(SampleDataUtil.getTask5())
+            //            .withPeople(VALID_TEAMMATE)
+            .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

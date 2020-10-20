@@ -6,7 +6,6 @@ import java.util.Set;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.GitUserName;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonName;
 import seedu.address.model.task.Task;
 
 /**
@@ -44,9 +43,11 @@ public class Participation {
         tasks = new HashSet<>();
         meetings = new HashSet<>();
     }
+
     public void changeRole(Role role) {
         this.role = role;
     }
+
     /**
      * Indicates attendance for the meeting.
      *
@@ -59,7 +60,8 @@ public class Participation {
 
     /**
      * Assigns task to the person
-     * @param task  task to be assigned
+     *
+     * @param task task to be assigned
      */
     public void addTask(Task task) {
         tasks.add(task);
@@ -68,15 +70,18 @@ public class Participation {
 
     /**
      * Removes task from the person
-     * @param task  task to be removed
+     *
+     * @param task task to be removed
      */
     public void deleteTask(Task task) {
         tasks.remove(task);
     }
+
     /**
      * Checks whether the person is an attendee of the meeting.
-     * @param meeting   meeting to check
-     * @return  true if the person is an attendee of the meeting, and false otherwise
+     *
+     * @param meeting meeting to check
+     * @return true if the person is an attendee of the meeting, and false otherwise
      */
     public boolean isAttendeeOf(Meeting meeting) {
         return meetings.contains(meeting);
@@ -84,29 +89,33 @@ public class Participation {
 
     /**
      * Checks whether the person has the given task.
-     * @param task  the task to check
-     * @return  true if the person is assigned to do the task, and false otherwise.
+     *
+     * @param task the task to check
+     * @return true if the person is assigned to do the task, and false otherwise.
      */
     public boolean hasTask(Task task) {
         return tasks.contains(task);
     }
+
     public Person getPerson() {
         Person p = null;
-        for(int i = 0 ; i<Person.allPeople.size();i++){
-            if(Person.allPeople.get(i).getGitUserNameString().equals(person)){
-                p = Person.allPeople.get(i);
+        for (int i = 0; i < Person.getAllPeople().size(); i++) {
+            if (Person.getAllPeople().get(i).getGitUserNameString().equals(person)) {
+                p = Person.getAllPeople().get(i);
             }
         }
         return p;
     }
+
     public GitUserName getAssigneeName() {
         return this.getPerson().getGitUserName();
     }
+
     public Project getProject() {
         Project p = null;
-        for(int i = 0 ; i<Project.allProjects.size();i++){
-            if(Project.allProjects.get(i).getProjectName().toString().equals(project)){
-                p = Project.allProjects.get(i);
+        for (int i = 0; i < Project.getAllProjects().size(); i++) {
+            if (Project.getAllProjects().get(i).getProjectName().toString().equals(project)) {
+                p = Project.getAllProjects().get(i);
             }
         }
         return p;
@@ -122,6 +131,25 @@ public class Participation {
 
     public Set<Meeting> getMeetings() {
         return meetings;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Participation)) {
+            return false;
+        }
+
+        Participation otherParticipation = (Participation) other;
+        return otherParticipation.getProject().equals(getProject())
+                && otherParticipation.getPerson().equals(getPerson())
+                && otherParticipation.getMeetings().equals(getMeetings())
+                && otherParticipation.getRole().equals(getRole())
+                && otherParticipation.getTasks().equals(getTasks());
+
     }
 }
 

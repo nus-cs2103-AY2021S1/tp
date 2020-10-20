@@ -17,7 +17,7 @@ import seedu.address.model.project.ProjectName;
 public class Person {
 
     // List of all Persons
-    public static ArrayList<Person> allPeople = new ArrayList<>();
+    private static ArrayList<Person> allPeople = new ArrayList<>();
 
     // Identity fields
     private PersonName personName;
@@ -81,6 +81,10 @@ public class Person {
         return gitUserName.toString();
     }
 
+    public static ArrayList<Person> getAllPeople() {
+        return allPeople;
+    }
+
     public HashMap<ProjectName, Participation> getParticipations() {
         return this.listOfParticipations;
     }
@@ -101,6 +105,9 @@ public class Person {
         email = new Email(newEmailStr);
     }
 
+    /**
+     * Adds a project as a Participation to the Person.
+     */
     public void addProject(Project p) {
         listOfParticipations.put(p.getProjectName(),
                 new Participation(personName.toString(), p.getProjectName().toString()));

@@ -21,9 +21,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.PersonName;
 import seedu.address.model.project.Deadline;
-import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
 
@@ -53,7 +51,7 @@ public class EditTaskCommand extends Command {
     private final EditTaskDescriptor editTaskDescriptor;
 
     /**
-     * @param index of the task in the filtered task list to edit
+     * @param index              of the task in the filtered task list to edit
      * @param editTaskDescriptor details to edit the task with
      */
     public EditTaskCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
@@ -79,12 +77,12 @@ public class EditTaskCommand extends Command {
 
         project.deleteTask(taskToEdit);
         project.addTask(editedTask);
-        if(editedTask.hasAnyAssignee()){
+        if (editedTask.hasAnyAssignee()) {
             editedTask.getAssignees().forEach(
-                    assignee -> project.getParticipation(assignee).deleteTask(taskToEdit)
+                assignee -> project.getParticipation(assignee).deleteTask(taskToEdit)
             );
             editedTask.getAssignees().forEach(
-                    assignee -> project.getParticipation(assignee).addTask(editedTask)
+                assignee -> project.getParticipation(assignee).addTask(editedTask)
             );
         }
 
@@ -107,7 +105,7 @@ public class EditTaskCommand extends Command {
         Set<String> updatedAssignees = editTaskDescriptor.getAssignees().orElse(
                 taskToEdit.getAssignees());
 
-        Task updatedTask = new Task(updatedTaskName, updatedTaskDescription, updatedDeadline,
+        Task updatedTask = new Task(updatedTaskName, updatedTaskDescription, updatedDeadline.toString(),
                 updatedProgress, updatedIsDone);
         updatedTask.getAssignees().addAll(updatedAssignees);
 
@@ -145,7 +143,8 @@ public class EditTaskCommand extends Command {
         private Boolean isDone;
         private Set<String> assignees;
 
-        public EditTaskDescriptor() {}
+        public EditTaskDescriptor() {
+        }
 
         /**
          * Copy constructor.

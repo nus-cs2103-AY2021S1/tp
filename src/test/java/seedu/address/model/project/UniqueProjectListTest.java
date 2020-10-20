@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_BOT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_DG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_HANG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProjects.APEAKAPP;
@@ -18,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
+import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.ProjectBuilder;
 
 public class UniqueProjectListTest {
@@ -46,7 +46,7 @@ public class UniqueProjectListTest {
         Project editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(
             VALID_PROJECT_DESCRIPTION_BOT).withTags(
             VALID_PROJECT_TAG_HANG)
-                .withTasks(VALID_PROJECT_TAG_DG)
+                .withTasks(SampleDataUtil.getTask1())
                 .build();
         assertTrue(uniqueProjectList.contains(editedAlice));
     }
@@ -92,7 +92,7 @@ public class UniqueProjectListTest {
         Project editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(
             VALID_PROJECT_DESCRIPTION_BOT).withTags(
             VALID_PROJECT_TAG_HANG)
-                .withTasks(VALID_PROJECT_TAG_DG)
+                .withTasks(SampleDataUtil.getTask1())
                 .build();
         uniqueProjectList.setProject(APEAKAPP, editedAlice);
         UniqueProjectList expectedUniqueProjectList = new UniqueProjectList();

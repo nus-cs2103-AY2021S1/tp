@@ -2,18 +2,15 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
-import seedu.address.model.project.Deadline;
-import seedu.address.model.project.Participation;
-import seedu.address.model.project.ProjectName;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.GitUserName;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonName;
+import seedu.address.model.person.Phone;
 import seedu.address.model.task.Task;
-
-import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Set;
 
 /**
  * Jackson-friendly version of {@link Task}.
