@@ -50,7 +50,7 @@ LogicManager -> ListRecipeCommand : execute()
 activate ListRecipeCommand
 
 alt Recipe list is empty
-    ListRecipeCommand -[hidden]-> Model :
+    ListRecipeCommand -> Model :
     activate Model
     Model --> ListRecipeCommand : error message
     deactivate Model
@@ -68,23 +68,23 @@ activate CommandResult
 
 CommandResult --> ListRecipeCommand
 deactivate CommandResult
+CommandResult -[hidden]-> ListRecipeCommand
+destroy CommandResult
 
 ListRecipeCommand --> LogicManager : CommandResult
 deactivate ListRecipeCommand
 ListRecipeCommand -[hidden]-> LogicManager
 destroy ListRecipeCommand
 
-
 [<--LogicManager
-
 [-> LogicManager : getInventoryList(RECIPES)
-activate Model
+
 LogicManager --> Model : getFilteredRecipeList()
+activate Model
 Model --> LogicManager :
 deactivate Model
 
 CommandResult -[hidden]-> LogicManager
-destroy CommandResult
 [<--LogicManager : InventoryList
 deactivate LogicManager
 @enduml
