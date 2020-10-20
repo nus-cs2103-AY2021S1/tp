@@ -77,8 +77,8 @@
       "additionalDetails": [ "owesMoney", "friends" ]
     },
     "questions": [
-      "1 | What is Newton's Second Law?",
-      "1 | How do you inverse a matrix?"
+      "1 | What is Newton's Second Law? | Read your textbook",
+      "1 | How do you inverse a matrix? | Read your textbook"
     ]
   }, {
     "name" : "Fiona Kunz",

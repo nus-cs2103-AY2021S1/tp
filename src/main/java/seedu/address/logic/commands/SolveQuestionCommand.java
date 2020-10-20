@@ -13,6 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.question.Question;
+import seedu.address.model.student.question.SolvedQuestion;
 
 /**
  * Resolves a specified question of a student at the displayed index in Reeve.
@@ -25,14 +26,16 @@ public class SolveQuestionCommand extends QuestionCommand {
 
     private final Index studentIndex;
     private final Index questionIndex;
+    private final String solution;
 
     /**
      * Constructs a SolveQuestionCommand to mark a specified {@code Question} as solved.
      */
-    public SolveQuestionCommand(Index studentIndex, Index questionIndex) {
-        requireAllNonNull(studentIndex, questionIndex);
+    public SolveQuestionCommand(Index studentIndex, Index questionIndex, String solution) {
+        requireAllNonNull(studentIndex, questionIndex, solution);
         this.studentIndex = studentIndex;
         this.questionIndex = questionIndex;
+        this.solution = solution;
     }
 
     @Override
@@ -45,12 +48,7 @@ public class SolveQuestionCommand extends QuestionCommand {
         }
 
         Student asker = lastShownList.get(studentIndex.getZeroBased());
-        if (questionIndex.getZeroBased() >= asker.getQuestions().size()) {
-            throw new CommandException(MESSAGE_BAD_QUESTION_INDEX);
-        }
-        if (asker.getQuestions().get(questionIndex.getZeroBased()).isResolved) {
-            throw new CommandException(MESSAGE_SOLVED_QUESTION);
-        }
+        checkQuestionIndex(asker);
 
         List<Question> questionList = solveQuestion(asker);
         Student replacement = new Student(asker.getName(), asker.getPhone(), asker.getSchool(),
@@ -62,15 +60,26 @@ public class SolveQuestionCommand extends QuestionCommand {
         return new CommandResult(String.format(MESSAGE_SUCCESS, replacement.getName(), solvedQuestion));
     }
 
+    /***
+     * Checks if the question at the specified index exists or has already been solved.
+     */
+    private void checkQuestionIndex(Student asker) throws CommandException {
+        if (questionIndex.getZeroBased() >= asker.getQuestions().size()) {
+            throw new CommandException(MESSAGE_BAD_QUESTION_INDEX);
+        }
+        if (asker.getQuestions().get(questionIndex.getZeroBased()).isResolved()) {
+            throw new CommandException(MESSAGE_SOLVED_QUESTION);
+        }
+    }
+
     /**
      * Marks a Student's question as done and returns the solved question.
      */
     private List<Question> solveQuestion(Student asker) {
         int position = questionIndex.getZeroBased();
         List<Question> questions = new ArrayList<>(asker.getQuestions());
-        String problem = questions.get(position).question;
-        Question solvedQuestion = new Question(problem, true);
-        questions.set(position, solvedQuestion);
+        Question toSolve = questions.get(position);
+        questions.set(position, new SolvedQuestion(toSolve.question, solution));
 
         return questions;
     }
@@ -87,6 +96,8 @@ public class SolveQuestionCommand extends QuestionCommand {
 
         SolveQuestionCommand other = (SolveQuestionCommand) obj;
         return studentIndex.equals(other.studentIndex)
-                && questionIndex.equals(other.questionIndex);
+                && questionIndex.equals(other.questionIndex)
+                && solution.equals(other.solution);
     }
+
 }

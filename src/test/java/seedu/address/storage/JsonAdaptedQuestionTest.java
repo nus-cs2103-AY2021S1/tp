@@ -7,16 +7,18 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.student.question.Question;
+import seedu.address.model.student.question.SolvedQuestion;
+import seedu.address.model.student.question.UnsolvedQuestion;
 
 public class JsonAdaptedQuestionTest {
 
     @Test
     public void constructor() {
-        Question question = new Question("test", false);
+        Question question = new UnsolvedQuestion("test");
         String expectedString = "0 | test";
         assertEquals(expectedString, new JsonAdaptedQuestion(question).getQuestion());
 
-        question = new Question("test | string", true);
+        question = new SolvedQuestion("test", "string");
         expectedString = "1 | test | string";
         assertEquals(expectedString, new JsonAdaptedQuestion(question).getQuestion());
     }
@@ -38,7 +40,22 @@ public class JsonAdaptedQuestionTest {
         question = new JsonAdaptedQuestion("1 test");
         assertThrows(IllegalValueException.class, question::toModelType);
 
+        question = new JsonAdaptedQuestion("1 | test");
+        assertThrows(IllegalValueException.class, question::toModelType);
+
+        question = new JsonAdaptedQuestion("1 |  | test");
+        assertThrows(IllegalValueException.class, question::toModelType);
+
+        question = new JsonAdaptedQuestion("1 | test | ");
+        assertThrows(IllegalValueException.class, question::toModelType);
+
+        question = new JsonAdaptedQuestion("1 | test | test | string");
+        assertThrows(IllegalValueException.class, question::toModelType);
+
         question = new JsonAdaptedQuestion("0 ");
+        assertThrows(IllegalValueException.class, question::toModelType);
+
+        question = new JsonAdaptedQuestion("0 | test | something");
         assertThrows(IllegalValueException.class, question::toModelType);
 
         question = new JsonAdaptedQuestion("");
@@ -49,12 +66,14 @@ public class JsonAdaptedQuestionTest {
     public void toModelType_validString_success() throws IllegalValueException {
         String testString = "Hi";
         JsonAdaptedQuestion question = new JsonAdaptedQuestion("0 | " + testString);
-        Question modelQuestion = new Question(testString, false);
+        Question modelQuestion = new UnsolvedQuestion(testString);
         assertEquals(question.toModelType(), modelQuestion);
 
-        testString = "test! | 131?";
+        String testQuestion = "test!";
+        String testSolution = "131?";
+        testString = testQuestion + " | " + testSolution;
         question = new JsonAdaptedQuestion("1 | " + testString);
-        modelQuestion = new Question(testString, true);
+        modelQuestion = new SolvedQuestion(testQuestion, testSolution);
         assertEquals(question.toModelType(), modelQuestion);
 
     }

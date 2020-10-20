@@ -6,12 +6,14 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_YEAR_BOB;
+import static seedu.address.testutil.StudentBuilder.DEFAULT_SOLUTION;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.student.question.Question;
+import seedu.address.model.student.question.SolvedQuestion;
+import seedu.address.model.student.question.UnsolvedQuestion;
 import seedu.address.testutil.StudentBuilder;
 
 public class StudentTest {
@@ -97,11 +99,11 @@ public class StudentTest {
         String[] questions = new String[] {test1, test2};
         Student editedAlice = new StudentBuilder(ALICE).withQuestions(questions).build();
 
-        assertTrue(editedAlice.containsQuestion(new Question(test1)));
-        assertTrue(editedAlice.containsQuestion(new Question(test2)));
-        assertTrue(editedAlice.containsQuestion(new Question(test1, true)));
-        assertTrue(editedAlice.containsQuestion(new Question(test2, true)));
+        assertTrue(editedAlice.containsQuestion(new UnsolvedQuestion(test1)));
+        assertTrue(editedAlice.containsQuestion(new UnsolvedQuestion(test2)));
+        assertTrue(editedAlice.containsQuestion(new SolvedQuestion(test1, DEFAULT_SOLUTION)));
+        assertTrue(editedAlice.containsQuestion(new SolvedQuestion(test2, DEFAULT_SOLUTION)));
 
-        assertFalse(editedAlice.containsQuestion(new Question(test3)));
+        assertFalse(editedAlice.containsQuestion(new UnsolvedQuestion(test3)));
     }
 }

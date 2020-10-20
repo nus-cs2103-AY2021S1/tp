@@ -72,7 +72,6 @@ public class CommandTestUtil {
     public static final String ADDITIONAL_DETAILS_DESC_BOB = " " + PREFIX_DETAILS + VALID_ADDITIONAL_DETAILS_BOB;
 
     public static final String QUESTION_DESC_AMY = " " + PREFIX_DETAILS + VALID_QUESTION_AMY;
-    public static final String QUESTION_DESC_BOB = " " + PREFIX_DETAILS + VALID_QUESTION_BOB;
 
     public static final String QUESTION_MATH = "What is 1 + 1?";
     public static final String QUESTION_PHYSICS = "How does Newton's Second Law work?";

@@ -22,6 +22,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_YEAR_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_YEAR_BOB;
 import static seedu.address.testutil.StudentBuilder.DEFAULT_QUESTION_MATH;
 import static seedu.address.testutil.StudentBuilder.DEFAULT_QUESTION_NEWTON;
+import static seedu.address.testutil.StudentBuilder.DEFAULT_SOLUTION;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,7 +56,7 @@ public class TypicalStudents {
             .build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer")
             .withSchool("River Valley High").withYear("6").withPhone("9482224")
-            .withSolved(DEFAULT_QUESTION_NEWTON, DEFAULT_QUESTION_MATH)
+            .withSolved(DEFAULT_SOLUTION, DEFAULT_QUESTION_NEWTON, DEFAULT_QUESTION_MATH)
             .build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withSchool("Raffles Girls School").withYear("2").build();
@@ -82,7 +83,6 @@ public class TypicalStudents {
             .withDetails(VALID_ADDITIONAL_DETAILS_AMY)
             .withQuestions(VALID_QUESTION_AMY)
             .build();
-    public static final Admin AMY_ADMIN = AMY.getAdmin();
 
     public static final Student BOB = new StudentBuilder().withName(VALID_NAME_BOB)
             .withPhone(VALID_PHONE_BOB)
@@ -93,11 +93,9 @@ public class TypicalStudents {
             .withFee(VALID_FEE_BOB)
             .withPaymentDate(VALID_PAYMENT_DATE_BOB)
             .withDetails(VALID_ADDITIONAL_DETAILS_BOB)
-            .withSolved(VALID_QUESTION_BOB)
+            .withSolved(DEFAULT_SOLUTION, VALID_QUESTION_BOB)
             .build();
     public static final Admin BOB_ADMIN = BOB.getAdmin();
-
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalStudents() {} // prevents instantiation
 

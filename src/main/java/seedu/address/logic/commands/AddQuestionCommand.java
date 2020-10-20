@@ -13,6 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.question.Question;
+import seedu.address.model.student.question.UnsolvedQuestion;
 
 /**
  * Adds an unresolved question to a student at the displayed index in Reeve.
@@ -23,13 +24,13 @@ public class AddQuestionCommand extends QuestionCommand {
     public static final String MESSAGE_DUPLICATE_QUESTION = "This student has already asked this question";
 
     private final Index index;
-    private final Question questionToAdd;
+    private final UnsolvedQuestion questionToAdd;
 
     /**
      * Creates an AddQuestionCommand to add the specified {@code Question} to the student
      * at the specified {@code Index}.
      */
-    public AddQuestionCommand(Index index, Question questionToAdd) {
+    public AddQuestionCommand(Index index, UnsolvedQuestion questionToAdd) {
         requireAllNonNull(index, questionToAdd);
 
         this.index = index;
