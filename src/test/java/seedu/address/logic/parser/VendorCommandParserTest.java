@@ -5,45 +5,36 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INSUFFICENT_ARGUMENTS;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_QUANTITY;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_TOO_MANY_ARGUMENTS;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.VendorCommand;
 
-public class AddCommandParserTest {
+public class VendorCommandParserTest {
 
-    private AddCommandParser parser = new AddCommandParser();
+    private VendorCommandParser parser = new VendorCommandParser();
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        assertParseSuccess(parser, "1 10", new AddCommand(Index.fromOneBased(1), 10));
-        assertParseSuccess(parser, "2 3", new AddCommand(Index.fromOneBased(2), 3));
-        assertParseSuccess(parser, "1 1", new AddCommand(Index.fromOneBased(1), 1));
-    }
-
-    @Test
-    public void parse_optionalFieldMissing_success() {
-        assertParseSuccess(parser, "2", new AddCommand(Index.fromOneBased(2), 1));
+        assertParseSuccess(parser, "1", new VendorCommand(Index.fromOneBased(1)));
+        assertParseSuccess(parser, "2", new VendorCommand(Index.fromOneBased(2)));
     }
 
     @Test
     public void parse_invalidValues_failure() {
         // empty String
         assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                String.format(MESSAGE_INSUFFICENT_ARGUMENTS, AddCommand.COMMAND_WORD, 1, AddCommand.MESSAGE_USAGE)));
+                String.format(MESSAGE_INSUFFICENT_ARGUMENTS, VendorCommand.COMMAND_WORD, 1,
+                        VendorCommand.MESSAGE_USAGE)));
 
         // More than 2 arguments
         assertParseFailure(parser, "1 2 3", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 String.format(MESSAGE_TOO_MANY_ARGUMENTS,
-                AddCommand.COMMAND_WORD, 2, AddCommand.MESSAGE_USAGE)));
+                VendorCommand.COMMAND_WORD, 1, VendorCommand.MESSAGE_USAGE)));
 
         // Index passed is not a non-zero integer
-        assertParseFailure(parser, "1.4", String.format(MESSAGE_INVALID_INDEX, "Menu Index"));
-
-        // Quantity passed is not a non-zero integer
-        assertParseFailure(parser, "1 1.2", MESSAGE_INVALID_QUANTITY);
+        assertParseFailure(parser, "1.4", String.format(MESSAGE_INVALID_INDEX, "Vendor Index"));
     }
 }

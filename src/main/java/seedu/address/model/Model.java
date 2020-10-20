@@ -92,6 +92,13 @@ public interface Model {
     void addVendor(Vendor vendor);
 
     /**
+     * Creates a new AddressBook with the vendor with index {@code vendorIndex} .
+     * {@code vendorIndex} must be a valid index in the model.
+     */
+    AddressBook selectVendor(int vendorIndex);
+
+
+    /**
      * Replaces the given vendor {@code target} with {@code editedVendor}.
      * {@code target} must exist in the address book.
      * The vendor identity of {@code editedVendor} must not be the same as another existing vendor in the address book.
