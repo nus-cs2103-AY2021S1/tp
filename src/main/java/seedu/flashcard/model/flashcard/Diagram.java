@@ -1,13 +1,11 @@
 package seedu.flashcard.model.flashcard;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.flashcard.commons.util.AppUtil.checkArgument;
 
-import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
+import javax.imageio.ImageIO;
 
-import seedu.flashcard.logic.parser.exceptions.ParseException;
 
 /**
  * Represents the Diagram the Flashcard contains.
@@ -27,9 +25,8 @@ public class Diagram {
      *
      * @param diagramFilePath A valid file path.
      */
-    public Diagram(String diagramFilePath) throws ParseException {
+    public Diagram(String diagramFilePath) {
         requireNonNull(diagramFilePath);
-        checkArgument(isValidImageFileType(diagramFilePath), MESSAGE_CONSTRAINTS);
         this.diagramFilePath = diagramFilePath;
     }
 

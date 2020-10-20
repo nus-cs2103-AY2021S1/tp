@@ -13,7 +13,12 @@ import java.util.Set;
 import seedu.flashcard.commons.core.index.Index;
 import seedu.flashcard.commons.util.StringUtil;
 import seedu.flashcard.logic.parser.exceptions.ParseException;
-import seedu.flashcard.model.flashcard.*;
+import seedu.flashcard.model.flashcard.Answer;
+import seedu.flashcard.model.flashcard.Category;
+import seedu.flashcard.model.flashcard.Diagram;
+import seedu.flashcard.model.flashcard.Note;
+import seedu.flashcard.model.flashcard.Question;
+import seedu.flashcard.model.flashcard.Rating;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -126,7 +131,7 @@ public class ParserUtil {
     public static Diagram parseDiagram(String diagramFilePath) throws ParseException {
         requireNonNull(diagramFilePath);
         String trimmedDiagramFilePath = diagramFilePath.trim();
-        if(!Diagram.isValidFile(trimmedDiagramFilePath)){
+        if (!Diagram.isValidFile(trimmedDiagramFilePath)) {
             throw new ParseException(MESSAGE_NON_EXISTENT_DIAGRAM_FILE_TYPE);
         }
         if (!Diagram.isValidImageFileType(trimmedDiagramFilePath)) {

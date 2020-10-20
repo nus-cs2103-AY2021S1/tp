@@ -8,7 +8,7 @@ import seedu.flashcard.model.flashcard.Question;
 import seedu.flashcard.model.flashcard.Rating;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Flashcard objects.
  */
 public class FlashcardBuilder {
 
@@ -35,6 +35,7 @@ public class FlashcardBuilder {
         category = new Category(DEFAULT_CATEGORY);
         note = new Note(DEFAULT_NOTE);
         rating = new Rating(DEFAULT_RATING);
+
         isFavourite = DEFAULT_FAVOURITE_STATUS;
     }
 
