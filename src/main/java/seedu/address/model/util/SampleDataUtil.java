@@ -74,7 +74,7 @@ public class SampleDataUtil {
     }
 
     private static String getRecipeName(String str) {
-        return str.substring(10, str.length() - 3);
+        return str.substring(10, str.length() - 2);
     }
 
     private static String getTag(String str) {
@@ -86,7 +86,7 @@ public class SampleDataUtil {
     }
 
     private static ArrayList<Ingredient> getRecipeIngredients(String str) {
-        String ingts = str.substring(16, str.length() - 3);
+        String ingts = str.substring(16, str.length() - 2);
         String[] ingredients = ingts.split(", ");
         ArrayList<Ingredient> ingredientList = new ArrayList<>();
         for (String ingredient: ingredients) {

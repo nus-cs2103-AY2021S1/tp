@@ -32,6 +32,7 @@ public class SearchIngredientCommandParser implements Parser<SearchIngredientCom
         }
 
         String[] ingredientKeywords = trimmedArgs.split("\\s+");
+        assert ingredientKeywords.length != 0 : "ingredientKeywords should not be empty";
 
         return new SearchIngredientCommand(new IngredientContainsKeywordsPredicate(Arrays.asList(ingredientKeywords)));
     }

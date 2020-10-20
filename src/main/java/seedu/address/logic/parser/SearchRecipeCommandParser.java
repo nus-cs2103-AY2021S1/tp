@@ -76,12 +76,15 @@ public class SearchRecipeCommandParser implements Parser<SearchRecipeCommand> {
 
         if (!trimmedName.isEmpty()) {
             String[] nameKeywords = trimmedName.split("\\s+");
+            assert nameKeywords.length != 0 : "nameKeywords should not be empty";
             return new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
         } else if (!trimmedTag.isEmpty()) {
             String[] tagKeywords = trimmedTag.split("\\s+");
+            assert tagKeywords.length != 0 : "tagKeywords should not be empty";
             return new TagContainsKeywordsPredicate(Arrays.asList(tagKeywords));
         } else if (!trimmedIngredient.isEmpty()) {
             String[] ingredientKeywords = trimmedIngredient.split("\\s+");
+            assert ingredientKeywords.length != 0 : "ingredientKeywords should not be empty";
             return new RecipeContainsIngredientsPredicate(Arrays.asList(ingredientKeywords));
         } else {
             throw new ParseException(
