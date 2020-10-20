@@ -1,8 +1,15 @@
 package seedu.address.model.module;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.model.module.grade.Assignment;
 import seedu.address.model.module.grade.Grade;
 import seedu.address.model.module.grade.GradeTracker;
+import seedu.address.model.tag.Tag;
+
+
 
 /**
  * Represents the Module creation class.
@@ -12,29 +19,34 @@ public class Module {
     private final ZoomLink zoomLink;
     private final GradeTracker gradeTracker;
 
+    // Data fields
+    private final Set<Tag> tags = new HashSet<>();
     /**
      * Represents the module object constructor.
      * @param name name of module
      * @param zoomLink zoom link attached to module
      * @param gradeTracker grade tracker attached to module
+     * @param tags tag attached to module
      */
-    public Module(ModuleName name, ZoomLink zoomLink, GradeTracker gradeTracker) {
+    public Module(ModuleName name, ZoomLink zoomLink, GradeTracker gradeTracker, Set<Tag> tags) {
         this.name = name;
         this.zoomLink = zoomLink;
         this.gradeTracker = gradeTracker;
+        this.tags.addAll(tags);
     }
 
     /**
      * Represents the module object constructor.
      * @param name name of module
      * @param zoomLink zoom link attached to module
+     * @param tags tag attached to module
      */
-    public Module(ModuleName name, ZoomLink zoomLink) {
+    public Module(ModuleName name, ZoomLink zoomLink, Set<Tag> tags) {
         this.name = name;
         this.zoomLink = zoomLink;
         this.gradeTracker = new GradeTracker();
+        this.tags.addAll(tags);
     }
-
     /**
      * Represents the module object constructor.
      */
@@ -52,6 +64,29 @@ public class Module {
         this.name = name;
         this.zoomLink = null;
         this.gradeTracker = new GradeTracker();
+    }
+
+    /**
+     * Represents the module object constructor.
+     * @param name name of module
+     * @param zoomLink zoom link attached to module
+     */
+    public Module(ModuleName name, ZoomLink zoomLink) {
+        this.name = name;
+        this.zoomLink = zoomLink;
+        this.gradeTracker = new GradeTracker();
+    }
+
+    /**
+     * Represents the module object constructor.
+     * @param name name of module
+     * @param tags tag attached to module
+     */
+    public Module(ModuleName name, Set<Tag> tags) {
+        this.name = name;
+        this.zoomLink = null;
+        this.gradeTracker = new GradeTracker();
+        this.tags.addAll(tags);
     }
 
     /**
@@ -88,7 +123,7 @@ public class Module {
      * @return Module a new Module with the input zoom link.
      */
     public Module addZoomLink(ZoomLink zoomLink) {
-        return new Module(this.getName(), zoomLink, this.gradeTracker);
+        return new Module(this.getName(), zoomLink, this.gradeTracker, this.tags);
     }
 
     /**
@@ -109,12 +144,20 @@ public class Module {
     public Module addAssignment(Assignment assignment) {
         if (!gradeTracker.isDuplicateAssignment(assignment)) {
             gradeTracker.addAssignment(assignment);
-            return new Module(name, zoomLink, gradeTracker);
+            return new Module(name, zoomLink, gradeTracker, tags);
         } else {
             return this;
         }
     }
 
+    /**
+
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
+    }
     /**
      * Adds a grade to the GradeTracker of the module.
      *
@@ -124,7 +167,7 @@ public class Module {
     public Module addGrade(Grade grade) {
         if (Grade.isValidGrade(grade.gradeResult)) {
             gradeTracker.setGrade(grade);
-            return new Module(name, zoomLink, gradeTracker);
+            return new Module(name, zoomLink, gradeTracker, tags);
         } else {
             return this;
         }
@@ -138,7 +181,6 @@ public class Module {
         if (otherModule == this) {
             return true;
         }
-
         return otherModule != null
                 && otherModule.getName().equals(getName());
     }

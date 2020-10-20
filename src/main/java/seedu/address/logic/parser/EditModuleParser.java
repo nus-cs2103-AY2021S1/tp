@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 
 import java.util.Collection;
@@ -27,7 +28,8 @@ public class EditModuleParser implements Parser<EditModuleCommand> {
      */
     public EditModuleCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_EDIT_NAME, PREFIX_NAME, PREFIX_ZOOM_LINK);
+        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_EDIT_NAME, PREFIX_NAME, PREFIX_ZOOM_LINK,
+                PREFIX_TAG);
         ArgumentMultimap argMultimap = tokenizer.tokenize();
 
         String moduleName;
@@ -41,10 +43,10 @@ public class EditModuleParser implements Parser<EditModuleCommand> {
 
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editModuleDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
-        }
+        }*/
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editModuleDescriptor::setTags);
 
-        if (!editModuleDescriptor.isAnyFieldEdited()) {
+        /*if (!editModuleDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
         */
