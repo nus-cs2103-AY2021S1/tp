@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 //import java.util.Set;
 import seedu.address.logic.commands.AddIngredientCommand;
-import seedu.address.logic.commands.EditCommand.EditRecipeDescriptor;
+import seedu.address.logic.commands.EditRecipeCommand.EditRecipeDescriptor;
 import seedu.address.model.recipe.Ingredient;
 
 /**

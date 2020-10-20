@@ -1,8 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INSTRUCTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_IMAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RECIPES;
 
@@ -30,9 +33,9 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing recipe in the address book.
  */
-public class EditCommand extends Command {
+public class EditRecipeCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "editR";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the recipe identified "
             + "by the index number used in the displayed recipe list. "
@@ -40,12 +43,21 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_INGREDIENT + "INGREDIENT] "
+            + "[" + PREFIX_CALORIES + "CALORIES] "
+            + "[" + PREFIX_INSTRUCTION + "INSTRUCTIONS]"
+            + "[" + PREFIX_RECIPE_IMAGE + "RECIPE IMAGE]"
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_INGREDIENT + "91234567 ";
+            + "Example: " + COMMAND_WORD + "13 "
+            + PREFIX_NAME + "Chicken salad "
+            + PREFIX_INGREDIENT + "chicken - 100g, lettuce - a bit, tomato "
+            + PREFIX_CALORIES + "100 "
+            + PREFIX_INSTRUCTION + "1. cook 2. eat "
+            + PREFIX_RECIPE_IMAGE + "images/salad.jpg "
+            + PREFIX_TAG + "healthy "
+            + PREFIX_TAG + "delicious";
 
     public static final String MESSAGE_EDIT_RECIPE_SUCCESS = "Edited Recipe: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "No edit made. At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the Recipe collection.";
 
     private final Index index;
@@ -55,7 +67,7 @@ public class EditCommand extends Command {
      * @param index of the recipe in the filtered recipe list to edit
      * @param editRecipeDescriptor details to edit the recipe with
      */
-    public EditCommand(Index index, EditRecipeDescriptor editRecipeDescriptor) {
+    public EditRecipeCommand(Index index, EditRecipeDescriptor editRecipeDescriptor) {
         requireNonNull(index);
         requireNonNull(editRecipeDescriptor);
 
@@ -81,7 +93,12 @@ public class EditCommand extends Command {
 
         model.setRecipe(recipeToEdit, editedRecipe);
         model.updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPES);
+        if (recipeToEdit.isSameRecipe(editedRecipe)) {
+            return new CommandResult(String.format(MESSAGE_NOT_EDITED, editedRecipe));
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe));
+
+
     }
 
     /**
@@ -111,12 +128,12 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditRecipeCommand)) {
             return false;
         }
 
         // state check
-        EditCommand e = (EditCommand) other;
+        EditRecipeCommand e = (EditRecipeCommand) other;
         return index.equals(e.index)
                 && editRecipeDescriptor.equals(e.editRecipeDescriptor);
     }
@@ -152,7 +169,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, ingredients, calories, tags);
+            return CollectionUtil.isAnyNonNull(name, instruction, ingredients, calories, recipeImage, tags);
         }
 
         public void setName(Name name) {
@@ -225,7 +242,6 @@ public class EditCommand extends Command {
 
             // state check
             EditRecipeDescriptor e = (EditRecipeDescriptor) other;
-
             return getName().equals(e.getName())
                     && getInstruction().equals(e.getInstruction())
                     && getRecipeImage().equals(e.getRecipeImage())
