@@ -1,5 +1,11 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
+
+import java.util.stream.Stream;
+
 import seedu.address.commons.core.category.Category;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -7,11 +13,6 @@ import seedu.address.logic.parser.util.ArgumentMultimap;
 import seedu.address.logic.parser.util.ArgumentTokenizer;
 import seedu.address.logic.parser.util.ParserUtil;
 
-import java.util.stream.Stream;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
 
 public class ClearCommandParser {
 
