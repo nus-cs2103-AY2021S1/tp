@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import com.eva.commons.core.GuiSettings;
 import com.eva.commons.core.LogsCenter;
 import com.eva.model.person.Person;
+import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 
@@ -21,38 +22,43 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the eva database data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final EvaDatabase<Person> personDatabase;
     private final EvaDatabase<Staff> staffDatabase;
+    private final EvaDatabase<Applicant> applicantDatabase;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Staff> filteredStaffs;
+    private final FilteredList<Applicant> filteredApplicants;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyEvaDatabase<Person> personDatabase,
-            ReadOnlyEvaDatabase<Staff> staffDatabase, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyEvaDatabase<Person> personDatabase, ReadOnlyEvaDatabase<Staff> staffDatabase,
+                        ReadOnlyEvaDatabase<Applicant> applicantDatabase, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(personDatabase, staffDatabase, userPrefs);
+        requireAllNonNull(personDatabase, staffDatabase, applicantDatabase, userPrefs);
 
         logger.fine("Initializing with person database: " + personDatabase
                 + " and staff database: " + staffDatabase
+                + " and applicant database: " + applicantDatabase
                 + " and user prefs " + userPrefs);
 
         this.personDatabase = new EvaDatabase<>(personDatabase);
         this.staffDatabase = new EvaDatabase<>(staffDatabase);
+        this.applicantDatabase = new EvaDatabase<>(applicantDatabase);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.personDatabase.getPersonList());
         filteredStaffs = new FilteredList<>(this.staffDatabase.getPersonList());
+        filteredApplicants = new FilteredList<>(this.applicantDatabase.getPersonList());
     }
 
     public ModelManager() {
-        this(new EvaDatabase<>(), new EvaDatabase<>(), new UserPrefs());
+        this(new EvaDatabase<>(), new EvaDatabase<>(), new EvaDatabase<>(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -80,7 +86,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getEvaDatabaseFilePath() {
+    public Path getPersonDatabaseFilePath() {
         return userPrefs.getPersonDatabaseFilePath();
     }
 
@@ -90,7 +96,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setEvaDatabaseFilePath(Path evaDatabaseFilePath) {
+    public Path getApplicantDatabaseFilePath() {
+        return userPrefs.getApplicantDatabaseFilePath();
+    }
+
+    @Override
+    public void setPersonDatabaseFilePath(Path evaDatabaseFilePath) {
         requireNonNull(evaDatabaseFilePath);
         userPrefs.setPersonDatabaseFilePath(evaDatabaseFilePath);
     }
@@ -99,6 +110,12 @@ public class ModelManager implements Model {
     public void setStaffDatabaseFilePath(Path staffDatabaseFilePath) {
         requireNonNull(staffDatabaseFilePath);
         userPrefs.setStaffDatabaseFilePath(staffDatabaseFilePath);
+    }
+
+    @Override
+    public void setApplicantDatabaseFilePath(Path applicantDatabaseFilePath) {
+        requireNonNull(applicantDatabaseFilePath);
+        userPrefs.setStaffDatabaseFilePath(applicantDatabaseFilePath);
     }
 
     //=========== person database ================================================================================
@@ -191,15 +208,50 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addStaff(Staff person) {
-        staffDatabase.addPerson(person);
+    public void addStaff(Staff staff) {
+        staffDatabase.addPerson(staff);
         updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
     }
 
     @Override
-    public void setStaff(Staff target, Staff editedPerson) {
+    public void setStaff(Staff target, Staff editedStaff) {
+        requireAllNonNull(target, editedStaff);
+        staffDatabase.setPerson(target, editedStaff);
+    }
+
+    //=========== applicant database ================================================================================
+
+    @Override
+    public void setApplicantDatabase(ReadOnlyEvaDatabase<Applicant> applicantDatabase) {
+        this.applicantDatabase.resetData(applicantDatabase);
+    }
+
+    @Override
+    public ReadOnlyEvaDatabase<Applicant> getApplicantDatabase() {
+        return applicantDatabase;
+    }
+
+    @Override
+    public boolean hasApplicant(Applicant applicant) {
+        requireNonNull(applicant);
+        return applicantDatabase.hasPerson(applicant);
+    }
+
+    @Override
+    public void deleteApplicant(Applicant target) {
+        applicantDatabase.removePerson(target);
+    }
+
+    @Override
+    public void addApplicant(Applicant applicant) {
+        applicantDatabase.addPerson(applicant);
+        updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
+    }
+
+    @Override
+    public void setApplicant(Applicant target, Applicant editedPerson) {
         requireAllNonNull(target, editedPerson);
-        staffDatabase.setPerson(target, editedPerson);
+        applicantDatabase.setPerson(target, editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -236,6 +288,23 @@ public class ModelManager implements Model {
         filteredStaffs.setPredicate(predicate);
     }
 
+    //=========== Filtered Applicant List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Applicant> getFilteredApplicantList() {
+        return filteredApplicants;
+    }
+
+    @Override
+    public void updateFilteredApplicantList(Predicate<Applicant> predicate) {
+        requireNonNull(predicate);
+        filteredApplicants.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -252,6 +321,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return personDatabase.equals(other.personDatabase)
                 && staffDatabase.equals(other.staffDatabase)
+                && applicantDatabase.equals(other.applicantDatabase)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }

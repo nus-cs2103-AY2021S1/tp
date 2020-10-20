@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import com.eva.commons.exceptions.IllegalValueException;
 import com.eva.model.EvaDatabase;
 import com.eva.model.ReadOnlyEvaDatabase;
-import com.eva.model.person.Person;
+import com.eva.model.person.applicant.Applicant;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
@@ -15,28 +15,28 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 /**
  * An Immutable EvaDatabase that is serializable to JSON format.
  */
-@JsonRootName(value = "personDatabase")
-class JsonPersonDatabase {
+@JsonRootName(value = "applicantDatabase")
+class JsonApplicantDatabase {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedApplicant> applicants = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonPersonDatabase} with the given persons.
+     * Constructs a {@code JsonApplicantDatabase} with the given persons.
      */
     @JsonCreator
-    public JsonPersonDatabase(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonApplicantDatabase(@JsonProperty("applicants") List<JsonAdaptedApplicant> applicants) {
+        this.applicants.addAll(applicants);
     }
 
     /**
      * Converts a given {@code ReadOnlyEvaDatabase} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonPersonDatabase}.
+     * @param source future changes to this will not affect the created {@code JsonApplicantDatabase}.
      */
-    public JsonPersonDatabase(ReadOnlyEvaDatabase<Person> source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+    public JsonApplicantDatabase(ReadOnlyEvaDatabase<Applicant> source) {
+        applicants.addAll(source.getPersonList().stream().map(JsonAdaptedApplicant::new).collect(Collectors.toList()));
     }
 
     /**
@@ -44,10 +44,10 @@ class JsonPersonDatabase {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public EvaDatabase<Person> toModelType() throws IllegalValueException {
-        EvaDatabase<Person> addressBook = new EvaDatabase<>();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
+    public EvaDatabase<Applicant> toModelType() throws IllegalValueException {
+        EvaDatabase<Applicant> addressBook = new EvaDatabase<>();
+        for (JsonAdaptedApplicant jsonAdaptedApplicant : applicants) {
+            Applicant person = jsonAdaptedApplicant.toModelType();
             if (addressBook.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }

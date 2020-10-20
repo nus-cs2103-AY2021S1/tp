@@ -10,6 +10,7 @@ import static com.eva.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static com.eva.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static com.eva.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static com.eva.testutil.TypicalPersons.getTypicalApplicantDatabase;
 import static com.eva.testutil.TypicalPersons.getTypicalPersonDatabase;
 import static com.eva.testutil.TypicalPersons.getTypicalStaffDatabase;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -33,7 +34,8 @@ import com.eva.testutil.PersonBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
+            getTypicalApplicantDatabase(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -46,6 +48,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(
                 new EvaDatabase<>(model.getPersonDatabase()),
                 new EvaDatabase<>(model.getStaffDatabase()),
+                new EvaDatabase<>(model.getApplicantDatabase()),
                 new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
@@ -70,6 +73,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(
                 new EvaDatabase<>(model.getPersonDatabase()),
                 new EvaDatabase<>(model.getStaffDatabase()),
+                new EvaDatabase<>(model.getApplicantDatabase()),
                 new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
 
@@ -86,6 +90,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(
                 new EvaDatabase<>(model.getPersonDatabase()),
                 new EvaDatabase<>(model.getStaffDatabase()),
+                new EvaDatabase<>(model.getApplicantDatabase()),
                 new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -105,6 +110,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(
                 new EvaDatabase<>(model.getPersonDatabase()),
                 new EvaDatabase<>(model.getStaffDatabase()),
+                new EvaDatabase<>(model.getApplicantDatabase()),
                 new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
@@ -124,7 +130,7 @@ public class EditCommandTest {
     public void execute_duplicatePersonFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        // edit person in filtered list into a duplicate in address book
+        // edit person in filtered list into a duplicate in eva database
         Person personInList = model.getPersonDatabase().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder(personInList).build());
@@ -143,13 +149,13 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of eva database
      */
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of eva database list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getPersonDatabase().getPersonList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,

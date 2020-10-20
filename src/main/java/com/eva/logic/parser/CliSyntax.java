@@ -14,4 +14,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_COMMENT = new Prefix("c/");
     public static final Prefix PREFIX_LEAVE = new Prefix("l/");
     // public static final Prefix PREFIX_DATE = new Prefix("d/");
+    public static final Prefix PREFIX_INTERVIEW_DATE = new Prefix("id/");
 }
