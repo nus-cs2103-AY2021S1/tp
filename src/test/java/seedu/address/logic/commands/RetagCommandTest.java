@@ -21,7 +21,8 @@ public class RetagCommandTest {
     public void setUp() {
         Tag validTag = new TagBuilder().build();
 
-        modelStub = new ModelStubWithTagAndTaglist(validTag);
+        modelStub = new ModelStubWithTagAndTaglist();
+        modelStub.addTag(validTag);
     }
 
     @Test
@@ -31,12 +32,13 @@ public class RetagCommandTest {
 
         Tag newTag = new TagBuilder().withTagName(newTagName.toString()).build();
 
-        ModelStubWithTagAndTaglist expectedModelStub = new ModelStubWithTagAndTaglist(newTag);
+        ModelStubWithTagAndTaglist expectedModelStub = new ModelStubWithTagAndTaglist();
+        expectedModelStub.addTag(newTag);
 
         RetagCommand retagCommand = new RetagCommand(oldTagName, newTagName);
 
         assertCommandSuccess(retagCommand, modelStub,
-                String.format(retagCommand.MESSAGE_RETAG_TAG_SUCCESS, oldTagName, newTagName), expectedModelStub);
+                String.format(RetagCommand.MESSAGE_RETAG_TAG_SUCCESS, oldTagName, newTagName), expectedModelStub);
     }
 
     @Test
@@ -59,10 +61,11 @@ public class RetagCommandTest {
 
         RetagCommand retagCommand = new RetagCommand(oldTagName, newTagName);
 
-        ModelStubWithTagAndTaglist expectedModelStub = new ModelStubWithTagAndTaglist(newTag);
+        ModelStubWithTagAndTaglist expectedModelStub = new ModelStubWithTagAndTaglist();
+        expectedModelStub.addTag(newTag);
 
         assertCommandSuccess(retagCommand, modelStub,
-                String.format(retagCommand.MESSAGE_RETAG_TAG_SUCCESS, oldTagName, newTagName), expectedModelStub);
+                String.format(RetagCommand.MESSAGE_RETAG_TAG_SUCCESS, oldTagName, newTagName), expectedModelStub);
     }
 
     @Test

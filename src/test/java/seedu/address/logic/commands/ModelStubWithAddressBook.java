@@ -24,6 +24,11 @@ class ModelStubWithAddressBook extends ModelStub {
     public ReadOnlyAddressBook getAddressBook() {
         return ab;
     }
+
+    @Override
+    public boolean hasTag(Tag tag) {
+        return ab.getTagList().contains(tag);
+    }
 }
 
 class AddressBookStubWithTag implements ReadOnlyAddressBook {

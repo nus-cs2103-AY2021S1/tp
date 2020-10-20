@@ -2,6 +2,7 @@ package seedu.address.model.tag;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -22,7 +23,6 @@ public class Tag {
     private final FileAddress fileAddress;
 
     private final Set<Description> descriptions = new HashSet<>();
-
 
     /**
      * Every field must be present and not null.
@@ -47,6 +47,22 @@ public class Tag {
     }
 
     /**
+     * Converts the current tag to one with absolute address.
+     *
+     * @return The same tag but with absolute file address.
+     * @throws IllegalArgumentException If file does not exist.
+     */
+    public Tag toAbsolute() {
+        File file = new File(fileAddress.value);
+        if (!file.exists()) {
+            throw new IllegalArgumentException("Tag address not valid!");
+        }
+        FileAddress absAddress = new FileAddress(file.getAbsolutePath());
+
+        return new Tag(tagName, absAddress, descriptions);
+    }
+
+    /**
      * Returns true if both persons of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
      */
@@ -58,6 +74,7 @@ public class Tag {
         return otherTag != null
                 && otherTag.getTagName().equals(getTagName());
     }
+
     /**
      * Returns true if both tag have the same identity and data fields.
      * This defines a stronger notion of equality between two tags.
