@@ -3,6 +3,7 @@ package seedu.address.model.patient;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -119,6 +120,10 @@ public class UniquePatientList implements Iterable<Patient> {
 
     public int count() {
         return internalList.size();
+    }
+
+    public void sort(Comparator<Patient> comparator) {
+        internalList.sort(comparator);
     }
 
     /**
