@@ -74,6 +74,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         getKeywords(argMultimap, PREFIX_TAG)
             .ifPresent(k -> predicates.add(new TagContainsKeywordsPredicate(Arrays.asList(k))));
 
+        assert(!predicates.isEmpty());
+
         return new FindCommand(predicates);
     }
 
