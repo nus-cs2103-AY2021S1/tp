@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
 import seedu.address.model.person.Person;
@@ -91,6 +92,22 @@ public class UniqueModuleList implements Iterable<Module> {
         Module toSet = internalList.get(indexOfModuleToAssign);
         toSet.assignInstructor(instructor);
         internalList.set((indexOfModuleToAssign), toSet);
+    }
+
+    /**
+     * Unassigns an instructor from the module with the equivalent module code from the list.
+     * The module with the module code must exist in the list.
+     */
+    public void unassignInstructor(Person instructor, ModuleCode moduleToUnassign) throws CommandException {
+        requireAllNonNull(instructor, moduleToUnassign);
+        int indexOfModuleToUnassign = 0;
+        while (!internalList.get(indexOfModuleToUnassign).hasModuleCode(moduleToUnassign)
+                && indexOfModuleToUnassign < internalList.size()) {
+            indexOfModuleToUnassign++;
+        }
+        Module toSet = internalList.get(indexOfModuleToUnassign);
+        toSet.unassignInstructor(instructor);
+        internalList.set((indexOfModuleToUnassign), toSet);
     }
 
     /**

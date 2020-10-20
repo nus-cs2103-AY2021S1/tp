@@ -1,5 +1,6 @@
 package seedu.address.model.module;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INSTRUCTOR_DOES_NOT_EXIST;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
 
 /**
@@ -56,6 +58,19 @@ public class Module {
 
     public void assignInstructor(Person instructor) {
         this.instructors.add(instructor);
+    }
+
+    /**
+     * Unassigns {@code instructor} from this module.
+     * @param instructor person in the filtered person list to be unassigned
+     * @throws CommandException if the instructor does not exist in the instructor list
+     */
+    public void unassignInstructor(Person instructor) throws CommandException {
+        if (!this.instructors.contains(instructor)) {
+            throw new CommandException(MESSAGE_INSTRUCTOR_DOES_NOT_EXIST);
+        }
+
+        this.instructors.remove(instructor);
     }
 
     /**

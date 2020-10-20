@@ -163,6 +163,11 @@ public class AddModCommandTest {
         }
 
         @Override
+        public void unassignInstructor(Person instructor, ModuleCode moduleCode) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public UniqueModuleList getModuleList() {
             throw new AssertionError("This method should not be called.");
         }
