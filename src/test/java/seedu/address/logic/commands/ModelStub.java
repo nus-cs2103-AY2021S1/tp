@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import java.io.File;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Predicate;
@@ -9,6 +10,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.currentpath.CurrentPath;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -77,6 +79,16 @@ class ModelStub implements Model {
 
     @Override
     public ObservableList<Tag> getFilteredTagList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public CurrentPath getCurrentPath() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<File> getFilteredFileList() {
         throw new AssertionError("This method should not be called.");
     }
 

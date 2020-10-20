@@ -9,14 +9,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.currentpath.CurrentPath;
 
 public class JsonUserPrefsStorageTest {
 
@@ -24,11 +22,6 @@ public class JsonUserPrefsStorageTest {
 
     @TempDir
     public Path testFolder;
-
-    @BeforeEach
-    public void init() {
-        CurrentPath.getInstance().resetAddress();
-    }
 
     @Test
     public void readUserPrefs_nullFilePath_throwsNullPointerException() {
@@ -81,7 +74,6 @@ public class JsonUserPrefsStorageTest {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100, "Dark Theme"));
         userPrefs.setAddressBookFilePath(Paths.get("addressbook.json"));
-        userPrefs.setSavedFilePath(Paths.get("./"));
         return userPrefs;
     }
 

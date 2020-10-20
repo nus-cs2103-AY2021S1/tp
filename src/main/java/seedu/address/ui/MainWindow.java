@@ -59,6 +59,9 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane footerbarPlaceHolder;
 
     @FXML
+    private StackPane fileExplorerPlaceHolder;
+
+    @FXML
     private MenuItem helpMenuItem;
 
     /**
@@ -156,6 +159,11 @@ public class MainWindow extends UiPart<Stage> {
         // footer bar
         FooterBar footerBar = new FooterBar(MainApp.VERSION.toString());
         footerbarPlaceHolder.getChildren().add(footerBar.getRoot());
+
+        // file explorer panel
+        FileExplorerPanel fileExplorerPanel = new FileExplorerPanel(
+                logic.getCurrentPath(), logic.getFilteredFileList());
+        fileExplorerPlaceHolder.getChildren().add(fileExplorerPanel.getRoot());
     }
 
     /**
