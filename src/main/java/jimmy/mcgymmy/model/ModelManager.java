@@ -132,6 +132,7 @@ public class ModelManager implements Model {
     @Override
     public void undo() {
         if (canUndo()) {
+            assert mcGymmyStack.size() > 0 : "McGymmyStack is empty";
             mcGymmy.resetData(mcGymmyStack.pop());
             updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
         }
