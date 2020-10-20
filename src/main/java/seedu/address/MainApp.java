@@ -21,7 +21,9 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ModuleList;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TodoList;
 import seedu.address.model.UserPrefs;
 import seedu.address.storage.JsonModuleListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
@@ -77,6 +79,7 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyModuleList> moduleListOptional;
         ReadOnlyModuleList initialData;
+        ReadOnlyTodoList initialTodoList = new TodoList();
         ReadOnlyContactList initalContactList = new ContactList();
         try {
             moduleListOptional = storage.readModuleList();
@@ -95,8 +98,7 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty ModuleList");
             initialData = new ModuleList();
         }
-
-        return new ModelManager(initialData, initalContactList, userPrefs);
+        return new ModelManager(initialData, initalContactList, initialTodoList, userPrefs);
     }
 
     private void initLogging(Config config) {
