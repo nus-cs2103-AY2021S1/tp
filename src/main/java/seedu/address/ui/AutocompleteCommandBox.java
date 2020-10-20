@@ -15,8 +15,10 @@ public class AutocompleteCommandBox extends CommandBox {
     public static final String AC_MODE_STYLE_CLASS = "autocomplete-mode";
 
     private boolean isAutocompleteMode = false;
+    private String modeType = "";
     private boolean hasSetPrefix = false;
     private int autoCompletePos;
+    private int commandPrefixPos;
     private final Logic logic;
 
     /**
@@ -25,28 +27,25 @@ public class AutocompleteCommandBox extends CommandBox {
     public AutocompleteCommandBox(CommandExecutor commandExecutor, Logic l) {
         super(commandExecutor);
         this.logic = l;
-        setupAutocompletionListeners(CliSyntax.PREFIX_NAME.getPrefix(), () -> logic.getFilteredPersonList().stream()
-                .map(p -> p.getName().getFirstName()).collect(Collectors.toList()));
+        disableFocusTraversal();
+
+        setupAutocompletionListeners("cname/", () -> logic.getFilteredPersonList().stream()
+                .map(p -> p.getName().fullName).collect(Collectors.toList()));
+        setupAutocompletionListeners("mdname/", () -> logic.getFilteredModuleList().stream()
+                .map(p -> p.getModuleName().getModuleName()).collect(Collectors.toList()));
+        setupAutocompletionListeners("mtname/", () -> logic.getFilteredModuleList().stream()
+                .map(p -> p.getModuleName().getModuleName()).collect(Collectors.toList()));
+
+        setupBlockOtherKeystrokesInAcMode();
+        setupExitKeys();
     }
 
     /**
      * Setups Autocompletion Generator for stipulated command.
      */
     private void setupAutocompletionListeners(String commandPrefix, Supplier<List<String>> suggestionsDataGenerator) {
-        disableFocusTraversal();
         setupAutocompleteTriggers(commandPrefix);
-        setupAutocompleteActionKeys(suggestionsDataGenerator);
-        setupBlockOtherKeystrokesInAcMode();
-
-        // Exit Autocomplete Mode when backspace / enter is pressed.
-        this.getCommandTextField().addEventFilter(KeyEvent.KEY_PRESSED, (event -> {
-            if (isAutocompleteMode && (
-                    event.getCode() == KeyCode.BACK_SPACE || event.getCode() == KeyCode.ENTER
-            )) {
-                hasSetPrefix = false;
-                toggleAutocompleteModeOff();
-            }
-        }));
+        setupAutocompleteActionKeys(commandPrefix, suggestionsDataGenerator);
     }
     private void setupAutocompleteTriggers(String commandPrefix) {
         this.getCommandTextField().caretPositionProperty().addListener((unused1, unused2, newPosition) -> {
@@ -62,7 +61,8 @@ public class AutocompleteCommandBox extends CommandBox {
             if (userInput.length() > prefixLength - 1 && caretPos > prefixLength) {
                 String substring = userInput.substring(caretPos - prefixLength);
                 if (!isAutocompleteMode && substring.equals(commandPrefix)) {
-                    toggleAutocompleteModeOn();
+                    commandPrefixPos = caretPos;
+                    toggleAutocompleteModeOn(commandPrefix);
                     autoCompletePos = newPosition.intValue();
                 }
                 if (isAutocompleteMode) {
@@ -74,10 +74,12 @@ public class AutocompleteCommandBox extends CommandBox {
             }
         });
     }
-    private void setupAutocompleteActionKeys(Supplier<List<String>> suggestionsDataRetriever) {
+    private void setupAutocompleteActionKeys(String commandPrefix, Supplier<List<String>> suggestionsDataRetriever) {
         Suggestions suggestions = new Suggestions();
         this.getCommandTextField().addEventFilter(KeyEvent.KEY_PRESSED, (event) -> {
-            if (isAutocompleteMode && event.getCode() == KeyCode.TAB) {
+            if (isAutocompleteMode
+                    && modeType.equals(commandPrefix)
+                    && event.getCode() == KeyCode.TAB) {
                 if (!hasSetPrefix) {
                     suggestions.setList(suggestionsDataRetriever.get());
                     String prefix = this.getCommandTextField().getText().substring(autoCompletePos);
@@ -111,11 +113,24 @@ public class AutocompleteCommandBox extends CommandBox {
             ) {
                 event.consume();
             }
-            if (hasSetPrefix && event.getCode() == KeyCode.SPACE) {
-                this.getCommandTextField().appendText(" ");
-            }
-
         });
+    }
+    private void setupExitKeys() {
+        // Exit Autocomplete Mode when backspace / enter is pressed.
+        this.getCommandTextField().addEventFilter(KeyEvent.KEY_PRESSED, (event -> {
+            if (isAutocompleteMode && (
+                    event.getCode() == KeyCode.BACK_SPACE
+                            || event.getCode() == KeyCode.ENTER
+                            || event.getCode() == KeyCode.SPACE
+            )) {
+                hasSetPrefix = false;
+                toggleAutocompleteModeOff();
+                if (event.getCode() != KeyCode.BACK_SPACE) {
+                    removePrefixFromCompletion();
+                }
+                event.consume();
+            }
+        }));
     }
     private void disableFocusTraversal() {
         this.getCommandTextField().addEventFilter(KeyEvent.KEY_PRESSED, (event) -> {
@@ -127,16 +142,28 @@ public class AutocompleteCommandBox extends CommandBox {
             }
         });
     }
-    private void toggleAutocompleteModeOn() {
+    private void toggleAutocompleteModeOn(String commandPrefix) {
         if (isAutocompleteMode) {
             return;
         }
         setStyleToIndicateAutocompleteMode();
         isAutocompleteMode = true;
+        modeType = commandPrefix;
     }
     private void toggleAutocompleteModeOff() {
-        this.getCommandTextField().getStyleClass().remove(AC_MODE_STYLE_CLASS);
+        if (!isAutocompleteMode) {
+            return;
+        }
         isAutocompleteMode = false;
+        this.getCommandTextField().getStyleClass().remove(AC_MODE_STYLE_CLASS);
+    }
+    private void removePrefixFromCompletion() {
+        String currentText = getCommandTextField().getText();
+        String result = currentText.substring(0 , commandPrefixPos - modeType.length())
+                + currentText.substring(commandPrefixPos);
+        int caretPosition = getCommandTextField().getCaretPosition();
+        getCommandTextField().setText(result);
+        getCommandTextField().positionCaret(caretPosition - modeType.length());
     }
 
     /**
