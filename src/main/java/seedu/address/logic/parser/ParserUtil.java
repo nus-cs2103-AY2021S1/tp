@@ -12,9 +12,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Name;
 import seedu.address.model.contact.Telegram;
+import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.module.grade.Assignment;
+import seedu.address.model.module.grade.Grade;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -173,5 +175,30 @@ public class ParserUtil {
             throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_RESULT_CONSTRAINTS);
         }
         return trimmedAssignmentResult;
+    }
+
+    /**
+     * Parses a {@code String modularCredits}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static ModularCredits parseModularCredits(String modularCredits) throws ParseException {
+        double trimmedModularCredits;
+        if (!ModularCredits.isValidModularCredits(modularCredits)) {
+            throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_RESULT_CONSTRAINTS);
+        } else {
+            trimmedModularCredits = Double.parseDouble(modularCredits.trim());
+        }
+        return new ModularCredits(trimmedModularCredits);
+    }
+    /**
+     * Parses a {@code String grade}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static double parseGrade(String grade) throws ParseException {
+        double trimmedGrade = Double.parseDouble(grade.trim());
+        if (!Grade.isValidGrade(trimmedGrade)) {
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedGrade;
     }
 }
