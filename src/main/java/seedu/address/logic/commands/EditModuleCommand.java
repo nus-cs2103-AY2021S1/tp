@@ -5,16 +5,21 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.module.grade.GradeTracker;
+import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing Module in the address book.
@@ -86,14 +91,15 @@ public class EditModuleCommand extends Command {
         // Name updatedName = editModuleDescriptor.getName().orElse(ModuleToEdit.getName());
         // Email updatedEmail = editModuleDescriptor.getEmail().orElse(ModuleToEdit.getEmail());
         // Address updatedAddress = editModuleDescriptor.getAddress().orElse(ModuleToEdit.getAddress());
-        // Set<Tag> updatedTags = editModuleDescriptor.getTags().orElse(ModuleToEdit.getTags());
-
+        Set<Tag> updatedTags = editModuleDescriptor.getTags().orElse(moduleToEdit.getTags());
         // return new Module(updatedName, updatedEmail, updatedAddress, updatedTags);
 
         ModuleName moduleName = editModuleDescriptor.getModuleName().orElse(moduleToEdit.getName());
         ZoomLink zoomLink = editModuleDescriptor.getZoomLink().orElse(moduleToEdit.getLink());
         GradeTracker gradeTracker = editModuleDescriptor.getGradeTracker().orElse((moduleToEdit.getGradeTracker()));
-        return new Module(moduleName, zoomLink, gradeTracker);
+        ModularCredits modularCredits = editModuleDescriptor
+                .getModularCredits().orElse((moduleToEdit.getModularCredits()));
+        return new Module(moduleName, zoomLink, gradeTracker, updatedTags, modularCredits);
 
     }
 
@@ -127,10 +133,11 @@ public class EditModuleCommand extends Command {
     public static class EditModuleDescriptor {
         //private Name name;
         //private Email email;
-        //private Set<Tag> tags;
+        private Set<Tag> tags;
         private ModuleName moduleName;
         private ZoomLink zoomLink;
         private GradeTracker gradeTracker;
+        private ModularCredits modularCredits;
 
         public EditModuleDescriptor() {}
 
@@ -141,10 +148,11 @@ public class EditModuleCommand extends Command {
         public EditModuleDescriptor(EditModuleDescriptor toCopy) {
             //setName(toCopy.name);
             //setEmail(toCopy.email);
-            //setTags(toCopy.tags);
+            setTags(toCopy.tags);
             setModuleName(toCopy.moduleName);
             setZoomLink(toCopy.zoomLink);
             setGradeTracker(toCopy.gradeTracker);
+            setModularCredits(toCopy.modularCredits);
         }
 
         /*
@@ -152,7 +160,7 @@ public class EditModuleCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(moduleName, zoomLink);
+            return CollectionUtil.isAnyNonNull(moduleName, zoomLink, modularCredits);
         }
 
         /*public void setName(Name name) {
@@ -169,13 +177,13 @@ public class EditModuleCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
-        }
+        }*/
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        /*public void setTags(Set<Tag> tags) {
+        public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
@@ -184,9 +192,9 @@ public class EditModuleCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        /*public Optional<Set<Tag>> getTags() {
+        public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }*/
+        }
 
 
         public void setModuleName(ModuleName moduleName) {
@@ -201,6 +209,14 @@ public class EditModuleCommand extends Command {
             this.gradeTracker = gradeTracker;
         }
 
+        /**
+         * Sets {@code modularCredits} to this object's {@code modularCredits}.
+         * A defensive copy of {@code modularCredits} is used internally.
+         */
+        public void setModularCredits(ModularCredits modularCredits) {
+            this.modularCredits = modularCredits;
+        }
+
         public Optional<ModuleName> getModuleName() {
             return Optional.ofNullable(moduleName);
         }
@@ -211,6 +227,15 @@ public class EditModuleCommand extends Command {
 
         public Optional<GradeTracker> getGradeTracker() {
             return Optional.ofNullable(gradeTracker);
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<ModularCredits> getModularCredits() {
+            return Optional.ofNullable(modularCredits);
         }
 
         @Override
@@ -233,7 +258,8 @@ public class EditModuleCommand extends Command {
             //       && getTags().equals(e.getTags());
             return getModuleName().equals(e.getModuleName())
                     && getZoomLink().equals(e.getZoomLink())
-                    && getGradeTracker().equals(e.getGradeTracker());
+                    && getGradeTracker().equals(e.getGradeTracker())
+                    && getModularCredits().equals(e.getModularCredits());
         }
     }
 }
