@@ -28,6 +28,8 @@ public class JsonAdaptedTutorialGroup {
 
     public JsonAdaptedTutorialGroup(TutorialGroup source) {
         id = source.getId();
+        startTime = source.getStartTime();
+        endTime = source.getEndTime();
     }
 
     /**

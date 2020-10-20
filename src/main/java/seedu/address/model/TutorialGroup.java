@@ -17,7 +17,7 @@ public class TutorialGroup {
 
     /**
      * Constructor for Tutorial Group
-     * @param id of Tutorail Group
+     * @param id of Tutorial Group
      * @param module that Tutorial Group belongs to
      */
     public TutorialGroup(String id, Module module) {
@@ -34,7 +34,11 @@ public class TutorialGroup {
     public TutorialGroup(String id) {
         this.id = id;
         this.studentList = new HashMap<>();
+        this.startTime = LocalTime.parse("15:00");
+        this.endTime = LocalTime.parse("17:00");
+        this.durationInHours = 2;
     }
+
 
     //GETTERS
 

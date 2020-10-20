@@ -38,7 +38,7 @@ public class Module {
         checkArgument(isValidModuleId(moduleId), MESSAGE_CONSTRAINTS);
         this.moduleId = moduleId;
         ArrayList<TutorialGroup> sampleList = new ArrayList<>();
-        sampleList.add(new TutorialGroup("Group1", this));
+        sampleList.add(new TutorialGroup("Group1"));
         this.tutorialGroups = sampleList;
         this.taskList = new TaskList();
     }
