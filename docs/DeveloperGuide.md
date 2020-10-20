@@ -846,6 +846,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
       Use case resumes at step 2.
 
+#### Use case: Using the stats command
+
+**MSS**
+
+1.  User requests stats from Warenager.
+2.  Warenager shows the statistics of the desired field as a pop up.
+3.  User views the statistics in the pie chart.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given input has an additional header.
+ 
+    * 1a1. Warenager shows an error message.
+    
+     Use case resumes at step 1.
+
+* 1b. The given input has a wrong header.
+ 
+    * 1b1. Warenager shows an error message.
+    
+     Use case resumes at step 1.
+
+* 1c. The given input has a missing header.
+ 
+    * 1c1. Warenager shows an error message.
+    
+     Use case resumes at step 1.
+     
+* 1d. The given input contains fields that cannot be found.
+ 
+    * 1d1. Warenager shows an error message.
+    
+     Use case resumes at step 1.
+     
 #### Use case: Using the help command
 
 **MSS**
@@ -956,8 +991,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Adding a stock
 
 1. Adding a stock into the inventory.
@@ -978,8 +1011,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `add`, `add sn/absdsa` <br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Deleting stocks
 
@@ -1012,7 +1043,6 @@ testers are expected to do more *exploratory* testing.
       (where serial number is not an integer or is a negative integer)<br>
       Expected: Similar to previous.
 
-
 ### Finding a stock
 
 1. Finding a stock from the inventory.
@@ -1036,15 +1066,13 @@ testers are expected to do more *exploratory* testing.
       Status message shows success of command.  
             
    1. Test case: `find 1111111`<br>
-      Expected: No stock deleted due to invalid format from missing field header
+      Expected: No stock found due to invalid format from missing field header
       either n/, sn/, l/ or s/. 
       Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect find commands to try: `find`, `find sn/absdsa` 
       (where serial number is not an integer or is a negative integer)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Updating a stock
 
@@ -1086,13 +1114,28 @@ testers are expected to do more *exploratory* testing.
        a new location Vase3, a new source Flower Distributor Association.
        Details of the updated stock is shown in the status message.
        
+### Generate statistics
 
-1. _{ more test cases …​ }_
+1. Generating statistics for a target field.
+    
+    1. Test case: `stats st/source`<br>
+       Expected: A pie chart describing the distribution of source companies for the entire inventory is popped up.
+       Details of the successful generation of statistics are shown in the status message.
+       
+    1. Test case: `stats st/source-qt-ntuc` (the source company `ntuc` exists) <br>
+       Expected: A pie chart describing the distribution of stocks in `ntuc` is popped up.
+       Details of the successful generation of statistics are shown in the status message.
 
+    1. Test case: `stats st/source-qt-fair price` (the source company `fair price` does not exist)<br>
+       Expected: No pop ups describing the statistics will be given or shown.
+       Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Other incorrect statistics commands to try: `stats`, `stats st/absdsa`, `stats st/source st/source` 
+      Expected: Similar to previous.
+       
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
