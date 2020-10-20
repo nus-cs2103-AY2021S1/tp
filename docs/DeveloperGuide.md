@@ -7,25 +7,25 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **1. Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
-
-### Architecture
-
-<img src="images/ArchitectureDiagram.png" width="450" />
-
-The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
+## **2. Design**
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
+
+### 2.1 Architecture
+
+<img src="images/ArchitectureDiagram.png" width="450" />
+
+The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/src/main/java/com/eva/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/src/main/java/com/eva/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -57,7 +57,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### UI component
+### 2.1.1 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -73,7 +73,7 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+### 2.1.2 Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -93,7 +93,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+### 2.1.3 Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -113,7 +113,7 @@ The `Model`,
 </div>
 
 
-### Storage component
+### 2.1.4 Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -123,19 +123,19 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the Eva staff and applicant data in json format and read it back.
 
-### Common classes
+### 2.1.5 Common classes
 
 Classes used by multiple components are in the `com.eva.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **3. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### 3.1 \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+#### 3.1.1 Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -198,7 +198,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
-#### Design consideration:
+#### 3.1.2 Design consideration:
 
 ##### Aspect: How undo & redo executes
 
@@ -213,14 +213,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### 3.2 \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **4. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -230,23 +230,22 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **5. Appendix: Requirements**
 
-### Product scope
+### 5.1 Product scope
 
 **Target user profile**:
 
-* work in SME
-* staff size 50 - 100
+* works in small business/startup (5-30 headcount)
 * can type fast
-* prefers desktop apps over other types
-* prefers typing to mouse interactions
+* prefers desktop apps over other types of apps
+* prefers typing inputs compared to mouse interactions
 * is reasonably comfortable using CLI apps
 
 **Value proposition**: Simple and lightweight application that handles HR related administrative tasks, like manage staff performance and recruitment applicants, faster than a typical mouse/GUI driven app.
 
 
-### User stories
+### 5.3 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -261,10 +260,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use cases
+### 5.3 Use cases
 
 (For all use cases below, the **System** is the `Eva` and the **Actor** is the `user`, unless specified otherwise)
-
+(Optional fields are given in square bracket e.g \[t/TAG\])
 ***Use case: UC01 - Adding a Record of staff***
 
 **MSS**
@@ -359,9 +358,83 @@ Use case ends.
     * 1a1. Eva informs the user that no records exist.
     Use case ends
 
+***Use case: UC04 - Adding a leave record to staff***
+
+**MSS**
+
+1.  User types in addleave <index> l/d:DATE \[d:DATE\]
+2.  Eva adds in the leave to staff record based on index
+3.  Eva displays the updated staff to User
+    Use case ends.
+
+**Extensions**
+
+* 1a. Eva detects missing fields or more fields than expected.
+
+    * 1a1. Eva shows the correct format to key in data.
+    * 1a2. Eva requests the user to add in data again.
+    * 1a3  User enters new data.
+
+    Steps 1a1-1a3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+
+* 1b. Eva detects invalid date.
+
+    * 1b1. Eva shows the valid format to key in the relevant field.
+    * 1b2. Eva requests the user to add in data again.
+    * 1b3. User enters new data.
+
+    Steps 1b1-1b3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+    
+* 1c. Eva detects conflict in leave dates within the specified staff record.
+
+    * 1a1. Eva informs the user that there are conflicting records.
+    * 1a2. Eva requests the user to type the command in again. 
+    * 1a3  User types in a new leave date.
+    Steps 1a1-1a3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+
+***Use case: UC05 - Deleting a leave record from staff***
+
+**MSS**
+
+1.  User types in deleteleave <index> d:DATE
+2.  Eva deletes the leave containing specified date from index specified staff record
+3.  Eva displays the updated staff to User
+    Use case ends.
+
+**Extensions**
+
+* 1a. Eva detects missing fields or more fields than expected.
+
+    * 1a1. Eva shows the correct format to key in data.
+    * 1a2. Eva requests the user to add in data again.
+    * 1a3  User enters new data.
+
+    Steps 1a1-1a3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+
+* 1b. Eva detects invalid date.
+
+    * 1b1. Eva shows the valid format to key in the relevant field.
+    * 1b2. Eva requests the user to add in data again.
+    * 1b3. User enters new data.
+
+    Steps 1b1-1b3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+    
+* 1c. Eva detects no leave in index specified staff record containing specified date.
+
+    * 1a1. Eva informs the user that there are no exiting record containing specified date.
+    * 1a2. Eva requests the user to type the command in again. 
+    * 1a3  User types in a new leave date.
+    Steps 1a1-1a3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+    
 *{More to be added}*
 
-### Non-Functional Requirements
+### 5.4 Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 records of staff and applications without a noticeable sluggishness in performance for typical usage.
@@ -369,13 +442,13 @@ Use case ends.
 
 *{More to be added}*
 
-### Glossary
+### 5.5 Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, macOS
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **6. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -384,7 +457,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### 6.1 Launch and shutdown
 
 1. Initial launch
 
@@ -401,7 +474,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### 6.2 Deleting a person
 
 1. Deleting a person while all persons are being shown
 
@@ -418,7 +491,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+### 6.3 Saving data
 
 1. Dealing with missing/corrupted data files
 
