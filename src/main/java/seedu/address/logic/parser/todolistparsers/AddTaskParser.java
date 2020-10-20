@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.todolistcommands.AddTodoCommand;
+import seedu.address.logic.commands.todolistcommands.AddTaskCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -24,21 +24,25 @@ import seedu.address.model.task.TaskName;
 /**
  * Parses input arguments and creates a new AddTaskCommand object
  */
-public class AddTodoParser implements Parser<AddTodoCommand> {
+public class AddTaskParser implements Parser<AddTaskCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddTaskCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddTodoCommand parse(String args) throws ParseException {
+    @Override
+    public AddTaskCommand parse(String userInput) throws ParseException {
         Task task;
-        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME, PREFIX_TAG, PREFIX_PRIORITY,
+        ArgumentTokenizer tokenizer = new ArgumentTokenizer(userInput, PREFIX_NAME, PREFIX_TAG, PREFIX_PRIORITY,
             PREFIX_DATE);
         ArgumentMultimap argMultimap = tokenizer.tokenize();
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
             || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTodoCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
+
+        assert argMultimap.getValue(PREFIX_NAME).isPresent();
+
         TaskName taskName = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_NAME).get());
         task = new Task(taskName);
 
@@ -54,7 +58,7 @@ public class AddTodoParser implements Parser<AddTodoCommand> {
             Date date = ParserUtil.parseTaskDate(argMultimap.getValue(PREFIX_DATE).get());
             task = task.setDate(date);
         }
-        return new AddTodoCommand(task);
+        return new AddTaskCommand(task);
     }
 
     /**

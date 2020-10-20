@@ -15,7 +15,7 @@ import seedu.address.model.task.Task;
 /**
  * Adds a task to the todo list.
  */
-public class AddTodoCommand extends Command {
+public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "addtodo";
 
@@ -39,7 +39,7 @@ public class AddTodoCommand extends Command {
     /**
      * Creates an AddTaskCommand to add the specified {@code Task}
      */
-    public AddTodoCommand(Task task) {
+    public AddTaskCommand(Task task) {
         requireNonNull(task);
         toAdd = task;
     }
@@ -59,8 +59,8 @@ public class AddTodoCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof AddTodoCommand // instanceof handles nulls
-            && toAdd.equals(((AddTodoCommand) other).toAdd));
+            || (other instanceof AddTaskCommand // instanceof handles nulls
+            && toAdd.equals(((AddTaskCommand) other).toAdd));
     }
 
     @Override
