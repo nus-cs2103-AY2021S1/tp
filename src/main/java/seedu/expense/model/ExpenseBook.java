@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.expense.model.budget.Budget;
+import seedu.expense.model.budget.UniqueCategoryBudgetList;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.expense.UniqueExpenseList;
 
@@ -16,7 +16,7 @@ import seedu.expense.model.expense.UniqueExpenseList;
 public class ExpenseBook implements ReadOnlyExpenseBook {
 
 
-    private final Budget budget;
+    private final UniqueCategoryBudgetList budgets;
     private final UniqueExpenseList expenses;
 
     /*
@@ -27,11 +27,11 @@ public class ExpenseBook implements ReadOnlyExpenseBook {
      *   among constructors.
      */
     {
+        budgets = new UniqueCategoryBudgetList();
         expenses = new UniqueExpenseList();
     }
 
     public ExpenseBook() {
-        budget = new Budget();
     }
 
     /**
@@ -52,6 +52,10 @@ public class ExpenseBook implements ReadOnlyExpenseBook {
         this.expenses.setExpenses(expenses);
     }
 
+    public void setBudgets(UniqueCategoryBudgetList budgets) {
+        this.budgets.setBudgets(budgets);
+    }
+
     /**
      * Resets the existing data of this {@code ExpenseBook} with {@code newData}.
      */
@@ -59,20 +63,14 @@ public class ExpenseBook implements ReadOnlyExpenseBook {
         requireNonNull(newData);
 
         setExpenses(newData.getExpenseList());
-        setBudget(newData.getBudget());
+        setBudgets(newData.getBudgets());
     }
 
     //// budget-level operations
 
-    public void setBudget(Budget budget) {
-        requireNonNull(budget);
-
-        this.budget.topupBudget(budget.getAmount());
-    }
-
     @Override
-    public Budget getBudget() {
-        return budget;
+    public UniqueCategoryBudgetList getBudgets() {
+        return budgets;
     }
 
     //// expense-level operations

@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.expense.model.budget.Budget;
+import seedu.expense.model.budget.UniqueCategoryBudgetList;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.expense.exceptions.DuplicateExpenseException;
 import seedu.expense.testutil.ExpenseBuilder;
@@ -89,7 +89,7 @@ public class ExpenseBookTest {
     private static class ExpenseBookStub implements ReadOnlyExpenseBook {
 
         private final ObservableList<Expense> expenses = FXCollections.observableArrayList();
-        private final Budget budget = new Budget();
+        private final UniqueCategoryBudgetList budgets = new UniqueCategoryBudgetList();
 
         ExpenseBookStub(Collection<Expense> expenses) {
             this.expenses.setAll(expenses);
@@ -101,8 +101,8 @@ public class ExpenseBookTest {
         }
 
         @Override
-        public Budget getBudget() {
-            return budget;
+        public UniqueCategoryBudgetList getBudgets() {
+            return budgets;
         }
 
         @Override

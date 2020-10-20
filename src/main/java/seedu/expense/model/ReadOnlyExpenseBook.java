@@ -1,7 +1,7 @@
 package seedu.expense.model;
 
 import javafx.collections.ObservableList;
-import seedu.expense.model.budget.Budget;
+import seedu.expense.model.budget.UniqueCategoryBudgetList;
 import seedu.expense.model.expense.Expense;
 
 /**
@@ -18,7 +18,7 @@ public interface ReadOnlyExpenseBook {
     /**
      * Returns the budget.
      */
-    Budget getBudget();
+    UniqueCategoryBudgetList getBudgets();
 
     /**
      * Returns the total sum of the expenses in the expenses list.

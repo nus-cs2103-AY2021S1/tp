@@ -258,6 +258,49 @@ Step 4. The user then decides to execute the command `list`. Commands that do no
 
 _{more aspects and alternatives to be added}_
 
+### \[Proposed\] Graphical Representation Feature
+
+#### Proposed Implementation
+
+The proposed graphical representation feature will allow the user to view a pie chart of his total spending, with each wedge representing the percentage of spending that corresponds to a specific tag.
+This graphical representation will be displayed on `GraphDisplayWindow` upon the execution of `GraphCommand`. This mechanism will be facilitated by `PieChartData` to retrieve the required data from `ExpenseBook`.
+`PieChartData` extends `ChartData` which allows abstracting out the implementation of different graphical representation formats for future versions.
+
+* `PieChartData#collectData(ObservableList<Expense>)` — Retrieves required data.
+* `PieChartData#getData()` — Returns data of each `Tag` and the corresponding total expenditure.
+
+The interactions between `ExpenseBook` (which contains the in-memory data of expenses) and `GraphicalDisplayWindow` (which specifies the UI displayed) facilitated by `PieChartData` is given below. </br>
+
+![ClassDiagram](images/GraphicalRepresentationClassDiagram.png)
+
+The user initiates this function by executing the graph command. Refer Logic Component architecture diagram for the mechanism by which strings are read and parsed into Command objects.
+
+The sequence diagram below shows the proposed mechanism by which the required data necessary to initialise a pie chart is retrieved. This data is then used to format the UI output.
+
+![SequenceDiagram](images/GraphicalRepresentationSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Expenses that are untagged will be displayed as a single group. Tags should not be case sensitive.
+
+</div>
+
+A possible edge case would be the user having empty expense record prior to executing the graph command. In such a case, the program will display a default message.
+
+The following activity diagram summarizes what happens when a user enters a graph command:
+
+![ActivityDiagram](images/GraphicalRepresentationActivityDiagram.png)
+
+#### Points to Note:
+
+* **UI classes to only act as placeholders**
+  * UI formatting is separated from the backend logic.
+  * Allows for dynamic updating of graphs.
+
+* **Data re-retrieved upon every execution**
+  * Updates graph accordingly.
+  * Will not show outdated graphs.
+
+* **Easily extensible**
+  * Different sub-classes of `ChartData` can be implemented to collect a variety of meaningful data from `ExpenseBook` to be displayed by various UI classes in different formats.
 
 --------------------------------------------------------------------------------------------------------------------
 
