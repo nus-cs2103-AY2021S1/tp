@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AppendCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -50,6 +51,9 @@ public class ZooKeepBookParser {
 
         case ReplaceCommand.COMMAND_WORD:
             return new ReplaceCommandParser().parse(arguments);
+
+        case AppendCommand.COMMAND_WORD:
+            return new AppendCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
