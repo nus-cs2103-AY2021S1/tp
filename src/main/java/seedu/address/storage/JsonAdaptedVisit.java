@@ -1,9 +1,9 @@
 package seedu.address.storage;
 
+import java.time.LocalDate;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.time.LocalDate;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.patient.Name;
@@ -24,12 +24,16 @@ class JsonAdaptedVisit {
      * Constructs a {@code JsonAdaptedVisit} with the given visit details.
      */
     @JsonCreator
-    public JsonAdaptedVisit(@JsonProperty String visitDate) {
+    public JsonAdaptedVisit(@JsonProperty("visitDate") String visitDate,
+                            @JsonProperty("patientName") String patientName,
+                            @JsonProperty("diagnosis") String diagnosis,
+                            @JsonProperty("prescription") String prescription,
+                            @JsonProperty("comment") String comment) {
         this.visitDate = visitDate;
-        this.patientName = "placeholder";
-        this.diagnosis = "placeholder";
-        this.prescription = "placeholder";
-        this.comment = "placeholder";
+        this.patientName = patientName;
+        this.diagnosis = diagnosis;
+        this.prescription = prescription;
+        this.comment = comment;
     }
 
     /**
@@ -52,7 +56,7 @@ class JsonAdaptedVisit {
         if (!Visit.isValidVisitDate(visitDate)) {
             throw new IllegalValueException(Visit.MESSAGE_CONSTRAINTS);
         }
-        return new Visit(LocalDate.parse(visitDate), new Name(patientName.toString()), diagnosis, prescription,
+        return new Visit(LocalDate.parse(visitDate), new Name(patientName), diagnosis, prescription,
             comment);
     }
 
