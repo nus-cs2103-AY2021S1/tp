@@ -62,8 +62,9 @@ like managing staff performance and recruitment of applicants, faster than a typ
 </div>
 
 ## List of commands you can execute <br>
-[Add a staff](#adding-a-staff) <br>
-[Add a applicant](#adding-an-applicant) <br>
+Here are all the commands you can execute with Eva.
+- [Add a staff](#adding-a-staff) <br>
+- [Add a applicant](#adding-an-applicant) <br>
 
 
 ### Viewing help : `help`
