@@ -3,28 +3,28 @@ package seedu.address.model;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import seedu.address.model.person.Student;
 import seedu.address.model.person.StudentId;
 
 public class TutorialGroup {
     private final String id;
-    private Module module;
     private HashMap<StudentId, Student> studentList;
     private LocalTime startTime;
     private LocalTime endTime;
     private int durationInHours;
 
-    /**
-     * Constructor for Tutorial Group
-     * @param id of Tutorial Group
-     * @param module that Tutorial Group belongs to
-     */
-    public TutorialGroup(String id, Module module) {
-        this.id = id;
-        this.module = module;
-        this.studentList = new HashMap<>();
-    }
+//    /**
+//     * Constructor for Tutorial Group
+//     * @param id of Tutorial Group
+//     * @param module that Tutorial Group belongs to
+//     */
+//    public TutorialGroup(String id, Module module) {
+//        this.id = id;
+//        this.module = module;
+//        this.studentList = new HashMap<>();
+//    }
 
 
     /**
@@ -39,15 +39,19 @@ public class TutorialGroup {
         this.durationInHours = 2;
     }
 
+    public TutorialGroup(String id, LocalTime startTime, LocalTime endTime) {
+        this.id = id;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        // TODO fix number of hours, maybe change object type to double?
+        durationInHours = 0;
+    }
+
 
     //GETTERS
 
     public String getId() {
         return this.id;
-    }
-
-    public Module getModule() {
-        return this.module;
     }
 
     public LocalTime getStartTime() {
@@ -63,8 +67,8 @@ public class TutorialGroup {
     }
 
 
-    public ArrayList<Student> getStudentList() {
-        ArrayList<Student> returnList = new ArrayList<Student>();
+    public List<Student> getStudentList() {
+        ArrayList<Student> returnList = new ArrayList<>();
         returnList.addAll(studentList.values());
         return returnList;
     }
