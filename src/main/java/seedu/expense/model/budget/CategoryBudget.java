@@ -31,6 +31,7 @@ public class CategoryBudget implements Budget {
      * Tops up the budget by the specified {@code Amount}.
      */
     public void topupBudget(Amount toAdd) {
+        assert toAdd.value >= 0;
         amount = amount.add(toAdd);
     }
 
