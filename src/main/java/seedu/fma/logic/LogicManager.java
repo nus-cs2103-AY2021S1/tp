@@ -42,7 +42,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = fixMyAbsParser.parseCommand(commandText);
+        Command command = fixMyAbsParser.parseCommand(commandText, model.getLogBook());
         commandResult = command.execute(model);
 
         try {

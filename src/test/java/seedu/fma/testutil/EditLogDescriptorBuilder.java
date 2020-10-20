@@ -49,8 +49,8 @@ public class EditLogDescriptorBuilder {
     /**
      * Sets the {@code Exercise} of the {@code EditLogDescriptor} that we are building.
      */
-    public EditLogDescriptorBuilder withExerciseName(String name) {
-        descriptor.setExercise(LogBook.getExercise(new Name(name)));
+    public EditLogDescriptorBuilder withExerciseName(String name, LogBook logBook) {
+        descriptor.setExercise(logBook.getExercise(new Name(name)));
         return this;
     }
 

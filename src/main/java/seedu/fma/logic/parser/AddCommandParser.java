@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 
 import seedu.fma.logic.commands.AddCommand;
 import seedu.fma.logic.parser.exceptions.ParseException;
+import seedu.fma.model.ReadOnlyLogBook;
 import seedu.fma.model.exercise.Exercise;
 import seedu.fma.model.log.Comment;
 import seedu.fma.model.log.Log;
@@ -24,7 +25,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
+    public AddCommand parse(String args, ReadOnlyLogBook logBook) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_EXERCISE, PREFIX_REPS, PREFIX_COMMENT);
 
@@ -33,7 +34,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Exercise exercise = ParserUtil.parseExercise(argMultimap.getValue(PREFIX_EXERCISE).get());
+        Exercise exercise = ParserUtil.parseExercise(argMultimap.getValue(PREFIX_EXERCISE).get(), logBook);
         Rep rep = ParserUtil.parseRep(argMultimap.getValue(PREFIX_REPS).get());
         Comment comment = ParserUtil.parseComment(argMultimap.getValue(PREFIX_COMMENT).get());
 
