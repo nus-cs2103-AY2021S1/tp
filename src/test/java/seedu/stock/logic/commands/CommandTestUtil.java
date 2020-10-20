@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.stock.logic.commands.exceptions.CommandException;
+import seedu.stock.logic.commands.exceptions.SourceCompanyNotFoundException;
 import seedu.stock.model.Model;
 import seedu.stock.model.StockBook;
 import seedu.stock.model.stock.SerialNumber;
@@ -78,7 +79,7 @@ public class CommandTestUtil {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
-        } catch (CommandException ce) {
+        } catch (CommandException | SourceCompanyNotFoundException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
     }

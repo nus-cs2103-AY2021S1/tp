@@ -2,6 +2,7 @@ package seedu.stock.logic.parser;
 
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import seedu.stock.logic.commands.SourceQuantityDistributionStatisticsCommand;
 import seedu.stock.logic.commands.SourceStatisticsCommand;
 import seedu.stock.logic.commands.StatisticsCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
@@ -17,15 +18,48 @@ public class StatisticsCommandParser implements Parser<StatisticsCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatisticsCommand.MESSAGE_USAGE));
         }
 
-        String type = trimmedStatisticsType[1].toLowerCase();
+        String input = trimmedStatisticsType[1].toLowerCase();
+        String type = getStatisticsType(input);
 
         switch (type) {
 
         case SourceStatisticsCommand.STATISTICS_TYPE:
             return new SourceStatisticsCommand();
 
+        case SourceQuantityDistributionStatisticsCommand.STATISTICS_TYPE:
+            return new SourceQuantityDistributionStatisticsCommand(getSourceCompany(input));
+
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatisticsCommand.MESSAGE_USAGE));
         }
+
+    }
+
+    /**
+     * To obtain the type of statistics command.
+     *
+     * @param input The user input.
+     * @return The statistics type.
+     * @throws ParseException if no such type of statistics command is found.
+     */
+    public String getStatisticsType(String input) throws ParseException {
+        if (input.length() >= 10 && input.startsWith("source-qd-")) {
+            return "source-qd-";
+        } else if (input.equals("source")) {
+            return "source";
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatisticsCommand.MESSAGE_USAGE));
+        }
+    }
+
+    //for extracting target company from source-qd types
+    public String getSourceCompany(String input) throws ParseException {
+        String targetSourceCompany = input.substring(10);
+
+        //exception thrown here if the target source company is missing
+        if (targetSourceCompany.length() == 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatisticsCommand.MESSAGE_USAGE));
+        }
+        return targetSourceCompany;
     }
 }
