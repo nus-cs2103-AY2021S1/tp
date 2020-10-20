@@ -40,7 +40,7 @@ public class Stock {
      * Every field must be present and not null.
      */
     public Stock(Name name, SerialNumber serialNumber, Source source, Quantity quantity,
-                 Location location, List<Note> notes) {
+                 Location location, List<Note> notes, boolean isBookmarked) {
         requireAllNonNull(name, serialNumber, source, quantity, location);
         this.name = name;
         this.serialNumber = serialNumber;
@@ -48,7 +48,7 @@ public class Stock {
         this.quantity = quantity;
         this.location = location;
         this.notes = notes;
-        this.isBookmarked = false;
+        this.isBookmarked = isBookmarked;
     }
 
     public Name getName() {
@@ -135,8 +135,9 @@ public class Stock {
         Location location = this.location;
         List<Note> notesToUpdate = this.notes;
         notesToUpdate.add(noteToAdd);
+        boolean isBookedmarked = this.isBookmarked;
 
-        return new Stock(name, serialNumber, source, quantity, location, notesToUpdate);
+        return new Stock(name, serialNumber, source, quantity, location, notesToUpdate, isBookedmarked);
     }
 
     /**
@@ -151,13 +152,15 @@ public class Stock {
         Quantity quantity = this.quantity;
         Location location = this.location;
         List<Note> notesToUpdate = this.notes;
+        boolean isBookmarked = this.isBookmarked;
+
 
         Stock updatedStock;
         if (indexOfNoteToDelete == 0) {
             updatedStock = new Stock(name, serialNumber, source, quantity, location);
         } else {
             notesToUpdate.remove(indexOfNoteToDelete - 1);
-            updatedStock = new Stock(name, serialNumber, source, quantity, location, notesToUpdate);
+            updatedStock = new Stock(name, serialNumber, source, quantity, location, notesToUpdate, isBookmarked);
         }
 
         return updatedStock;
@@ -180,7 +183,8 @@ public class Stock {
         return otherStock != null
                 && otherStock.getName().equals(getName())
                 && otherStock.getSerialNumber().equals(getSerialNumber())
-                && otherStock.getSource().equals(getSource());
+                && otherStock.getSource().equals(getSource())
+                && (otherStock.getBookmarked() == (getBookmarked()));
     }
 
     /**

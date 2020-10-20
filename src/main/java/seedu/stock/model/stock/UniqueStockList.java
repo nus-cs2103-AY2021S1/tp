@@ -5,7 +5,6 @@ import static seedu.stock.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.stock.model.stock.exceptions.DuplicateStockException;
