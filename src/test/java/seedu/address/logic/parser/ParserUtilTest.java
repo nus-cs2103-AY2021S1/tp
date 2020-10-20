@@ -23,13 +23,13 @@ public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_ID = "+651234";
     private static final String INVALID_SPECIES = " ";
-    private static final String INVALID_MEDICAL_CONDITION = "#friend";
+    private static final String INVALID_MEDICAL_CONDITION = "#dead";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_SPECIES = "Cat";
     private static final String VALID_ID = "123456";
-    private static final String VALID_MEDICAL_CONDITION_1 = "friend";
-    private static final String VALID_MEDICAL_CONDITION_2 = "neighbour";
+    private static final String VALID_MEDICAL_CONDITION_1 = "Healthy";
+    private static final String VALID_MEDICAL_CONDITION_2 = "Drowsy";
 
     private static final String WHITESPACE = " \t\r\n";
 

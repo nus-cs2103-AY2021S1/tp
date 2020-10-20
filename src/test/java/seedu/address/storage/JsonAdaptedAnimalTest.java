@@ -20,7 +20,7 @@ public class JsonAdaptedAnimalTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_ID = "+651234";
     private static final String INVALID_SPECIES = " ";
-    private static final String INVALID_MEDICAL_CONDITION = "#friend";
+    private static final String INVALID_MEDICAL_CONDITION = "#dead";
 
     private static final String VALID_NAME = BUTTERCUP.getName().toString();
     private static final String VALID_ID = BUTTERCUP.getId().toString();

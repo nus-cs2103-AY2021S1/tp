@@ -41,9 +41,9 @@ public class TypicalAnimals {
 
     // Manually added
     public static final Animal JIAJIA = new AnimalBuilder().withName("JiaJia").withId("111")
-            .withSpecies("little india").build();
+            .withSpecies("Giant Panda").build();
     public static final Animal KAIKAI = new AnimalBuilder().withName("KaiKai").withId("233")
-            .withSpecies("chicago ave").build();
+            .withSpecies("Giant Panda").build();
 
     // Manually added - Animal's details found in {@code CommandTestUtil}
     public static final Animal ARCHIE = new AnimalBuilder().withName(VALID_NAME_ARCHIE).withId(VALID_ID_ARCHIE)
