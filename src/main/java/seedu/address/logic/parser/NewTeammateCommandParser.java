@@ -2,19 +2,19 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.ArgumentMultimapUtil.arePrefixesPresent;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_GIT_USERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_PHONE;
 
-import java.util.stream.Stream;
-
 import seedu.address.logic.commands.project.NewTeammateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GitUserName;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonName;
 import seedu.address.model.person.Phone;
 
@@ -57,16 +57,8 @@ public class NewTeammateCommandParser implements Parser<NewTeammateCommand> {
         Address address = ParsePersonUtil.parseAddress(argMultimap
             .getValue(PREFIX_TEAMMATE_ADDRESS).get());
 
-        return new NewTeammateCommand(name, gitUserName, phone, email, address);
-    }
-
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+        Person teammate = new Person(name, gitUserName, phone, email, address);
+        return new NewTeammateCommand(teammate);
     }
 
 }

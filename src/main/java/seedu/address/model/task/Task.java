@@ -16,6 +16,13 @@ import seedu.address.model.project.Participation;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Task {
+    public static final String MESSAGE_CONSTRAINTS =
+        "Attributes should only contain alphanumeric characters and spaces, and it should not be blank";
+    /*
+     * The first character of an attribute must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public final String taskName;
     private final String description;
     private final LocalDate publishDate;
@@ -38,6 +45,12 @@ public class Task {
         this.assignees = new HashSet<>();
     }
 
+    /**
+     * Returns true if a given string is a valid attribute.
+     */
+    public static boolean isValidAttribute(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
     public String getTaskName() {
         return taskName;
     }
@@ -77,11 +90,24 @@ public class Task {
      * @return true if this task has an assignee whose name matches the given name,
      * and false otherwise
      */
-    public boolean hasAssigneeWhoseNameIs(GitUserName assigneeGitUserName) {
+    public boolean hasAssigneeWhoseGitNameIs(GitUserName assigneeGitUserName) {
         return assignees.stream()
-            .anyMatch(assignee -> assignee.getAssigneeName().equals(assigneeGitUserName));
+            .anyMatch(assignee -> assignee.getAssigneeGitName().equals(assigneeGitUserName));
     }
 
+    /**
+     * Checks if the task is due on the given deadline.
+     * @param deadline  the given deadline to check
+     * @return  true if the task is due on the given deadline, and false otherwise
+     */
+    public boolean isDueOn(Deadline deadline) {
+        assert (deadline != null);
+        if (this.deadline == null) {
+            return false;
+        } else {
+            return this.deadline.equals(deadline);
+        }
+    }
     public boolean addAssignee(Participation assignee) {
         return assignees.add(assignee);
     }

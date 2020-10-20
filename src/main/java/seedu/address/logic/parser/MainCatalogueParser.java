@@ -17,12 +17,16 @@ import seedu.address.logic.commands.global.HelpCommand;
 import seedu.address.logic.commands.global.ListCommand;
 import seedu.address.logic.commands.global.StartCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
+import seedu.address.logic.commands.project.AllMeetingsCommand;
+import seedu.address.logic.commands.project.AllTasksCommand;
 import seedu.address.logic.commands.project.AssignCommand;
 import seedu.address.logic.commands.project.EditTaskCommand;
 import seedu.address.logic.commands.project.EditTeammateCommand;
 import seedu.address.logic.commands.project.FilterCommand;
 import seedu.address.logic.commands.project.LeaveProjectViewCommand;
+import seedu.address.logic.commands.project.MeetingFilterCommand;
 import seedu.address.logic.commands.project.NewTeammateCommand;
+import seedu.address.logic.commands.project.TaskFilterCommand;
 import seedu.address.logic.commands.project.ViewTaskCommand;
 import seedu.address.logic.commands.project.ViewTeammateCommand;
 import seedu.address.logic.commands.task.LeaveTaskViewCommand;
@@ -101,14 +105,30 @@ public class MainCatalogueParser {
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
-
-        case FilterCommand.COMMAND_WORD:
+        case AllTasksCommand.COMMAND_WORD:
             if (status != Status.CATALOGUE) {
-                return new FilterCommandParser().parse(arguments);
+                return new AllTasksCommand();
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
-
+        case AllMeetingsCommand.COMMAND_WORD:
+            if (status != Status.CATALOGUE) {
+                return new AllMeetingsCommand();
+            } else {
+                throw new InvalidScopeException(Status.PROJECT, status);
+            }
+        case TaskFilterCommand.COMMAND_WORD:
+            if (status != Status.CATALOGUE) {
+                return new TaskFilterCommandParser().parse(arguments);
+            } else {
+                throw new InvalidScopeException(Status.PROJECT, status);
+            }
+        case MeetingFilterCommand.COMMAND_WORD:
+            if (status != Status.CATALOGUE) {
+                return new MeetingFilterCommandParser().parse(arguments);
+            } else {
+                throw new InvalidScopeException(Status.PROJECT, status);
+            }
         case NewTeammateCommand.COMMAND_WORD:
             if (status != Status.CATALOGUE) {
                 return new NewTeammateCommandParser().parse(arguments);

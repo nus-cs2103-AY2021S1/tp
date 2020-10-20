@@ -1,14 +1,14 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_AI;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_AI;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_BOT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_AI;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_BOT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_A;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_B;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_A;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_B;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_A;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_B;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_A;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_B;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_DG;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_FIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_HANG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REPOURL_A;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REPOURL_B;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_MODEL;
@@ -68,14 +68,14 @@ public class TypicalProjects {
             .withProjectDescription("german quality software").build();
 
     // Manually added - Project's details found in {@code CommandTestUtil}
-    public static final Project AI = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_AI)
-            .withDeadline(VALID_DEADLINE_AI).withRepoUrl(VALID_REPOURL_A).withProjectDescription(
-            VALID_PROJECT_DESCRIPTION_AI)
-            .withTags(VALID_PROJECT_TAG_FIEND).withTasks(VALID_PROJECT_TAG_DG, VALID_TASK_MODEL).build();
-    public static final Project BOT = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_BOT)
-            .withDeadline(VALID_DEADLINE_BOT).withRepoUrl(VALID_REPOURL_B).withProjectDescription(
-            VALID_PROJECT_DESCRIPTION_BOT)
-            .withTags(VALID_PROJECT_TAG_HANG, VALID_PROJECT_TAG_FIEND).withTasks(VALID_PROJECT_TAG_DG).build();
+    public static final Project AI = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_A)
+            .withDeadline(VALID_DEADLINE_A).withRepoUrl(VALID_REPOURL_A).withProjectDescription(
+            VALID_PROJECT_DESCRIPTION_A)
+            .withTags(VALID_PROJECT_TAG_B).withTasks(VALID_PROJECT_TAG_DG, VALID_TASK_MODEL).build();
+    public static final Project BOT = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_B)
+            .withDeadline(VALID_DEADLINE_B).withRepoUrl(VALID_REPOURL_B).withProjectDescription(
+            VALID_PROJECT_DESCRIPTION_B)
+            .withTags(VALID_PROJECT_TAG_A, VALID_PROJECT_TAG_B).withTasks(VALID_PROJECT_TAG_DG).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

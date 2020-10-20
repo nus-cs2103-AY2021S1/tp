@@ -28,32 +28,32 @@ import seedu.address.testutil.EditProjectDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_PROJECT_NAME_AI = "ToastAI";
-    public static final String VALID_PROJECT_NAME_BOT = "Coders without Borders";
-    public static final String VALID_DEADLINE_AI = "21-03-2020 10:00:00";
-    public static final String VALID_DEADLINE_BOT = "31-12-2020 10:00:00";
+    public static final String VALID_PROJECT_NAME_A = "ToastAI";
+    public static final String VALID_PROJECT_NAME_B = "Coders without Borders";
+    public static final String VALID_DEADLINE_A = "21-03-2020 10:00:00";
+    public static final String VALID_DEADLINE_B = "31-12-2020 10:00:00";
     public static final String VALID_REPOURL_A = "https://github.com/valid/a.git";
     public static final String VALID_REPOURL_B = "https://github.com/valid/b.git";
-    public static final String VALID_PROJECT_DESCRIPTION_AI = "Bring AI into every toaster";
-    public static final String VALID_PROJECT_DESCRIPTION_BOT = "Better people through code";
-    public static final String VALID_PROJECT_TAG_HANG = "hang";
-    public static final String VALID_PROJECT_TAG_FIEND = "fiend";
+    public static final String VALID_PROJECT_DESCRIPTION_A = "Bring AI into every toaster";
+    public static final String VALID_PROJECT_DESCRIPTION_B = "Better people through code";
+    public static final String VALID_PROJECT_TAG_A = "hang";
+    public static final String VALID_PROJECT_TAG_B = "fiend";
     public static final String VALID_PROJECT_TAG_DG = "DG";
     public static final String VALID_TASK_MODEL = "model";
     //TODO: after Parsing of tasks is refined, may update these to be more meaningful
 
-    public static final String PROJECT_NAME_DESC_AMY = " " + PREFIX_PROJECT_NAME + VALID_PROJECT_NAME_AI;
-    public static final String PROJECT_NAME_DESC_BOB = " " + PREFIX_PROJECT_NAME + VALID_PROJECT_NAME_BOT;
-    public static final String DEADLINE_DESC_A = " " + PREFIX_DEADLINE + VALID_DEADLINE_AI;
-    public static final String DEADLINE_DESC_B = " " + PREFIX_DEADLINE + VALID_DEADLINE_BOT;
+    public static final String PROJECT_NAME_DESC_AMY = " " + PREFIX_PROJECT_NAME + VALID_PROJECT_NAME_A;
+    public static final String PROJECT_NAME_DESC_BOB = " " + PREFIX_PROJECT_NAME + VALID_PROJECT_NAME_B;
+    public static final String DEADLINE_DESC_A = " " + PREFIX_DEADLINE + VALID_DEADLINE_A;
+    public static final String DEADLINE_DESC_B = " " + PREFIX_DEADLINE + VALID_DEADLINE_B;
     public static final String REPOURL_DESC_A = " " + PREFIX_REPOURL + VALID_REPOURL_A;
     public static final String REPOURL_DESC_B = " " + PREFIX_REPOURL + VALID_REPOURL_B;
     public static final String PROJECT_DESCRIPTION_DESC_AMY = " " + PREFIX_PROJECT_DESCRIPTION
-        + VALID_PROJECT_DESCRIPTION_AI;
+        + VALID_PROJECT_DESCRIPTION_A;
     public static final String PROJECT_DESCRIPTION_DESC_BOB = " " + PREFIX_PROJECT_DESCRIPTION
-        + VALID_PROJECT_DESCRIPTION_BOT;
-    public static final String PROJECT_TAG_DESC_FRIEND = " " + PREFIX_PROJECT_TAG + VALID_PROJECT_TAG_FIEND;
-    public static final String PROJECT_TAG_DESC_HUSBAND = " " + PREFIX_PROJECT_TAG + VALID_PROJECT_TAG_HANG;
+        + VALID_PROJECT_DESCRIPTION_B;
+    public static final String PROJECT_TAG_DESC_FRIEND = " " + PREFIX_PROJECT_TAG + VALID_PROJECT_TAG_B;
+    public static final String PROJECT_TAG_DESC_HUSBAND = " " + PREFIX_PROJECT_TAG + VALID_PROJECT_TAG_A;
     public static final String TASK_DESC_DG = " " + PREFIX_TASK + VALID_PROJECT_TAG_DG;
     public static final String TASK_DESC_MODEL = " " + PREFIX_TASK + VALID_TASK_MODEL;
 
@@ -75,14 +75,14 @@ public class CommandTestUtil {
     public static final EditCommand.EditProjectDescriptor DESC_B;
 
     static {
-        DESC_A = new EditProjectDescriptorBuilder().withProjectName(VALID_PROJECT_NAME_AI)
-                .withDeadline(VALID_DEADLINE_AI).withRepoUrl(VALID_REPOURL_A).withProjectDescription(
-                VALID_PROJECT_DESCRIPTION_AI)
-                .withTags(VALID_PROJECT_TAG_FIEND).withTasks(VALID_PROJECT_TAG_DG, VALID_TASK_MODEL).build();
-        DESC_B = new EditProjectDescriptorBuilder().withProjectName(VALID_PROJECT_NAME_BOT)
-                .withDeadline(VALID_DEADLINE_BOT).withRepoUrl(VALID_REPOURL_B).withProjectDescription(
-                VALID_PROJECT_DESCRIPTION_BOT)
-                .withTags(VALID_PROJECT_TAG_HANG, VALID_PROJECT_TAG_FIEND).withTasks(VALID_PROJECT_TAG_DG).build();
+        DESC_A = new EditProjectDescriptorBuilder().withProjectName(VALID_PROJECT_NAME_A)
+                .withDeadline(VALID_DEADLINE_A).withRepoUrl(VALID_REPOURL_A).withProjectDescription(
+                VALID_PROJECT_DESCRIPTION_A)
+                .withTags(VALID_PROJECT_TAG_B).withTasks(VALID_PROJECT_TAG_DG, VALID_TASK_MODEL).build();
+        DESC_B = new EditProjectDescriptorBuilder().withProjectName(VALID_PROJECT_NAME_B)
+                .withDeadline(VALID_DEADLINE_B).withRepoUrl(VALID_REPOURL_B).withProjectDescription(
+                VALID_PROJECT_DESCRIPTION_B)
+                .withTags(VALID_PROJECT_TAG_A, VALID_PROJECT_TAG_B).withTasks(VALID_PROJECT_TAG_DG).build();
     }
 
     /**

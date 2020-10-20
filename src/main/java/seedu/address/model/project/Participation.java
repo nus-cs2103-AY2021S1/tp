@@ -84,7 +84,7 @@ public class Participation {
     public Person getPerson() {
         return person;
     }
-    public GitUserName getAssigneeName() {
+    public GitUserName getAssigneeGitName() {
         return person.getGitUserName();
     }
     public Project getProject() {

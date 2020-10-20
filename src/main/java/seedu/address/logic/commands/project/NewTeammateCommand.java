@@ -9,14 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_PHONE;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.GitUserName;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonName;
-import seedu.address.model.person.Phone;
 import seedu.address.model.project.Project;
 
 /**
@@ -42,17 +36,17 @@ public class NewTeammateCommand extends Command {
     /**
      * Creates an new teammate that is associated with the project
      */
-    public NewTeammateCommand(PersonName name, GitUserName gitUserName, Phone phone, Email email, Address address) {
-        toAdd = new Person(name, gitUserName, phone, email, address);
+    public NewTeammateCommand(Person person) {
+        requireNonNull(person);
+        toAdd = person;
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
         toAdd.addProject(project);
         project.addParticipation(toAdd);
-
 
         return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS, toAdd.getGitUserNameString()));
     }

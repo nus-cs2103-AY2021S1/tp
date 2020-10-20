@@ -3,9 +3,9 @@ package seedu.address.model.project;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_BOT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_B;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_A;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_DG;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_HANG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProjects.APEAKAPP;
 import static seedu.address.testutil.TypicalProjects.BOT;
@@ -44,8 +44,8 @@ public class UniqueProjectListTest {
     public void contains_projectWithSameIdentityFieldsInList_returnsTrue() {
         uniqueProjectList.add(APEAKAPP);
         Project editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(
-            VALID_PROJECT_DESCRIPTION_BOT).withTags(
-            VALID_PROJECT_TAG_HANG)
+            VALID_PROJECT_DESCRIPTION_B).withTags(
+            VALID_PROJECT_TAG_A)
                 .withTasks(VALID_PROJECT_TAG_DG)
                 .build();
         assertTrue(uniqueProjectList.contains(editedAlice));
@@ -90,8 +90,8 @@ public class UniqueProjectListTest {
     public void setProject_editedProjectHasSameIdentity_success() {
         uniqueProjectList.add(APEAKAPP);
         Project editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(
-            VALID_PROJECT_DESCRIPTION_BOT).withTags(
-            VALID_PROJECT_TAG_HANG)
+            VALID_PROJECT_DESCRIPTION_B).withTags(
+            VALID_PROJECT_TAG_A)
                 .withTasks(VALID_PROJECT_TAG_DG)
                 .build();
         uniqueProjectList.setProject(APEAKAPP, editedAlice);
