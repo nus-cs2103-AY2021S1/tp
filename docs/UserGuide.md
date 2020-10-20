@@ -60,9 +60,9 @@ like managing staff performance and recruitment of applicants, faster than a typ
 </div>
 
 ## List of commands you can execute <br>
-[Add a person] (#Adding a person) <br>
-[Add a staff] (#Adding a staff) <br>
-[Add a applicant] (#Adding an applicant) <br>
+[Add a person] (### Adding a person) <br>
+[Add a staff] (### Adding a staff) <br>
+[Add a applicant] (### Adding an applicant) <br>
 
 
 ### Viewing help : `help`
