@@ -66,17 +66,18 @@ public class UniqueAccountList implements Iterable<Account> {
      */
     public void setAccount(Account target, Account editedAccount) {
         requireAllNonNull(target, editedAccount);
-
+        Account copiedEditedAccount = editedAccount.copyData();
         int index = internalList.indexOf(target);
+
         if (index == ACCOUNT_NOT_FOUND_INDEX) {
             throw new AccountNotFoundException();
         }
 
-        if (!target.isSameAccount(editedAccount) && contains(editedAccount)) {
+        if (!target.isSameAccount(copiedEditedAccount) && contains(copiedEditedAccount)) {
             throw new DuplicateAccountException();
         }
 
-        internalList.set(index, editedAccount);
+        internalList.set(index, copiedEditedAccount);
     }
 
     public void setAccount(Account editedAccount) {

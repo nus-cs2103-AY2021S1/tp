@@ -84,10 +84,10 @@ public class MainApp extends Application {
             initialData = commonCentsOptional.orElseGet(SampleCommonCentsUtilData::getSampleCommonCents);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty CommonCents");
-            initialData = new CommonCents();
+            initialData = SampleCommonCentsUtilData.initEmptyCommonCents();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty CommonCents");
-            initialData = new CommonCents();
+            initialData = SampleCommonCentsUtilData.initEmptyCommonCents();
         }
 
         return new ModelManager(initialData, userPrefs);

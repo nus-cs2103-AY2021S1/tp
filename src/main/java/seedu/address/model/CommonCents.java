@@ -6,7 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.account.Account;
-import seedu.address.model.account.Name;
+//import seedu.address.model.account.Name;
 import seedu.address.model.account.UniqueAccountList;
 
 /**
@@ -14,8 +14,8 @@ import seedu.address.model.account.UniqueAccountList;
  * Duplicate accounts are not allowed (by .isSameAccount comparison)
  */
 public class CommonCents implements ReadOnlyCommonCents {
-    private static final String ACCOUNT_NAME = "General account";
-    private static final Account GENERAL_ACCOUNT = new Account(new Name(ACCOUNT_NAME));
+    //private static final String ACCOUNT_NAME = "General account";
+    //private static final Account GENERAL_ACCOUNT = new Account(new Name(ACCOUNT_NAME));
     private final UniqueAccountList accounts;
 
     /*
@@ -27,7 +27,7 @@ public class CommonCents implements ReadOnlyCommonCents {
      */
     {
         accounts = new UniqueAccountList();
-        accounts.add(GENERAL_ACCOUNT);
+        //accounts.add(GENERAL_ACCOUNT);
     }
 
     public CommonCents() {}
