@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VISIT_DELETE;
+
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -10,8 +12,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.visit.Visit;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VISIT_DELETE;
 
 public class DeleteVisitCommand extends Command {
     public static final String COMMAND_WORD = "deletevisit";

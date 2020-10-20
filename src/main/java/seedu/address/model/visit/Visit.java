@@ -108,6 +108,9 @@ public class Visit implements Comparable<Visit> {
         //             return builder.toString();
     }
 
+    /**
+     * Returns true if visit date is valid.
+     */
     public static boolean isValidVisitDate(String input) {
 
         //make sure month and day are valid and year is 2xxx or 19xx
@@ -128,7 +131,8 @@ public class Visit implements Comparable<Visit> {
         return true;
     }
 
-    public void setFields(LocalDate visitDate, Name patientName, String diagnosis, String prescription, String comment) {
+    public void setFields(LocalDate visitDate, Name patientName, String diagnosis, String prescription,
+                          String comment) {
         this.visitDate = visitDate;
         this.patientName = patientName;
         this.diagnosis = diagnosis;

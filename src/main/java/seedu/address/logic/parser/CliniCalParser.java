@@ -15,6 +15,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteVisitCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditVisitCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -95,6 +96,9 @@ public class CliniCalParser {
 
         case DeleteVisitCommand.COMMAND_WORD:
             return new DeleteVisitCommandParser().parse(arguments);
+
+        case EditVisitCommand.COMMAND_WORD:
+            return new EditVisitCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

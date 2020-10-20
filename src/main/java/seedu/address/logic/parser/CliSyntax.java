@@ -19,6 +19,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_VISIT = new Prefix("v/");
     public static final Prefix PREFIX_VISIT_DELETE = new Prefix("d/");
     public static final Prefix PREFIX_VISIT_DATE = new Prefix("vd/");
+    public static final Prefix PREFIX_EDIT_VISIT = new Prefix("ev/");
     public static final Prefix PREFIX_VISIT_DIAGNOSIS = new Prefix("dg/");
     public static final Prefix PREFIX_VISIT_PRESCRIPTION = new Prefix("ps/");
     public static final Prefix PREFIX_VISIT_COMMENT = new Prefix("cm/");
