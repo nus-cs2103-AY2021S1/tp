@@ -18,7 +18,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the eva database data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -184,15 +184,15 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addStaff(Staff person) {
-        staffDatabase.addPerson(person);
+    public void addStaff(Staff staff) {
+        staffDatabase.addPerson(staff);
         updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
     }
 
     @Override
-    public void setStaff(Staff target, Staff editedPerson) {
-        requireAllNonNull(target, editedPerson);
-        staffDatabase.setPerson(target, editedPerson);
+    public void setStaff(Staff target, Staff editedStaff) {
+        requireAllNonNull(target, editedStaff);
+        staffDatabase.setPerson(target, editedStaff);
     }
 
     //=========== applicant database ================================================================================
@@ -219,8 +219,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addApplicant(Applicant person) {
-        applicantDatabase.addPerson(person);
+    public void addApplicant(Applicant applicant) {
+        applicantDatabase.addPerson(applicant);
         updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
     }
 
