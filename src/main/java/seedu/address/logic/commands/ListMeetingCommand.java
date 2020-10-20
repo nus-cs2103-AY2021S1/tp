@@ -10,7 +10,7 @@ import seedu.address.model.Model;
  */
 public class ListMeetingCommand extends Command {
 
-    public static final String COMMAND_WORD = "list";
+    public static final String COMMAND_WORD = "list-m";
 
     public static final String MESSAGE_SUCCESS = "Listed all meetings";
 

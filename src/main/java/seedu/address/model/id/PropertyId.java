@@ -7,10 +7,11 @@ public class PropertyId extends Id {
 
     public static final String PREFIX_PROPERTY_ID = "P";
     public static final String VALIDATION_REGEX = "[P]\\p{Digit}+";
-    public static final String MESSAGE_CONSTRAINTS = "Ids should start with a \""
+    public static final String MESSAGE_CONSTRAINTS = "Property Id should start with a \""
             + PREFIX_PROPERTY_ID
             + "\", followed by"
             + "some numbers.";
+    public static final PropertyId DEFAULT_PROPERTY_ID = new PropertyId("P0");
 
     public PropertyId(int idNumber) {
         super(PREFIX_PROPERTY_ID, idNumber);

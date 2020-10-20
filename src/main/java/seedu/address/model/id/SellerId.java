@@ -7,10 +7,11 @@ public class SellerId extends Id {
 
     public static final String PREFIX_SELLER_ID = "S";
     public static final String VALIDATION_REGEX = "[S]\\p{Digit}+";
-    public static final String MESSAGE_CONSTRAINTS = "Ids should start with a \""
+    public static final String MESSAGE_CONSTRAINTS = "Seller Id should start with a \""
             + PREFIX_SELLER_ID
             + "\", followed by"
             + "some numbers.";
+    public static final SellerId DEFAULT_SELLER_ID = new SellerId("S0");
 
     public SellerId(int idNumber) {
         super(PREFIX_SELLER_ID, idNumber);

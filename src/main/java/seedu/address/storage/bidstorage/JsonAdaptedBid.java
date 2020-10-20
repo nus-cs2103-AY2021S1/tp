@@ -51,12 +51,19 @@ public class JsonAdaptedBid {
     public Bid toModelType() throws IllegalValueException {
 
         if (propertyId == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "P12"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    "P12"));
+        }
+        if (!PropertyId.isValidId(propertyId)) {
+            throw new IllegalValueException(PropertyId.MESSAGE_CONSTRAINTS);
         }
         PropertyId modelPropertyId = new PropertyId(propertyId);
 
         if (bidderId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "B04"));
+        }
+        if (!BidderId.isValidId(bidderId)) {
+            throw new IllegalValueException(BidderId.MESSAGE_CONSTRAINTS);
         }
         BidderId modelBidderId = new BidderId(bidderId);
 

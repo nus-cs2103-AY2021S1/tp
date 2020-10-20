@@ -86,6 +86,13 @@ public class JsonAdaptedBidder {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
+        if (id == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    BidderId.class.getSimpleName()));
+        }
+        if (!BidderId.isValidId(id)) {
+            throw new IllegalValueException(BidderId.MESSAGE_CONSTRAINTS);
+        }
         final BidderId modelId = new BidderId(id);
 
         return new Bidder(modelName, modelPhone, modelTags, modelId);

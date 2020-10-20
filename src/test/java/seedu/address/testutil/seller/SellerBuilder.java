@@ -19,8 +19,6 @@ public class SellerBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final SellerId DEFAULT_SELLER_ID = new SellerId(0);
 
-
-
     private Name name;
     private Phone phone;
     private Set<Tag> tags;

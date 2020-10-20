@@ -1,6 +1,7 @@
 package seedu.address.model.property;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.id.PropertyId.DEFAULT_PROPERTY_ID;
 
 import java.util.Objects;
 
@@ -14,8 +15,6 @@ import seedu.address.model.price.Price;
  * Uniquely identified by the property id.
  */
 public class Property {
-
-    public static final PropertyId DEFAULT_PROPERTY_ID = new PropertyId(0);
 
     // Identity fields
     private final PropertyId propertyId;
