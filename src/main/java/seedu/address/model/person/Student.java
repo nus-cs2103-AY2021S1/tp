@@ -5,13 +5,14 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.Showable;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Student in the app.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Student extends Person {
+public class Student extends Person implements Showable<Student> {
 
     private final StudentId studentId;
 
@@ -33,7 +34,7 @@ public class Student extends Person {
      * Returns true if both students of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two students.
      */
-    public boolean isSameStudent(Student otherStudent) {
+    public boolean isSame(Student otherStudent) {
         if (otherStudent == this) {
             return true;
         }

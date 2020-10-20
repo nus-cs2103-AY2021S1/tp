@@ -11,7 +11,7 @@ import java.util.List;
  * Represents a Student's Module in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidModuleId(String)}
  */
-public class Module {
+public class Module implements Showable<Module> {
     public static final String MESSAGE_CONSTRAINTS = "Modules can take any values, and it should not be blank";
 
     /*
@@ -93,7 +93,7 @@ public class Module {
      * Returns true if both modules of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two modules.
      */
-    public boolean isSameModule(Module otherModule) {
+    public boolean isSame(Module otherModule) {
         if (otherModule == this) {
             return true;
         }

@@ -13,8 +13,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
 import seedu.address.model.Module;
-import seedu.address.model.ModuleList;
-import seedu.address.model.ReadOnlyModuleList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TutorialGroup;
 
@@ -119,15 +117,19 @@ public class AddCommandTest {
         //            throw new AssertionError("This method should not be called.");
         //        }
 
+        // todo: new test
+        /*
         @Override
         public void setModuleList(ReadOnlyModuleList newData) {
             throw new AssertionError("This method should not be called.");
         }
 
+         todo: new test
         @Override
         public ReadOnlyModuleList getModuleList() {
             throw new AssertionError("This method should not be called.");
         }
+         */
 
         @Override
         public boolean hasModule(Module module) {
@@ -203,10 +205,13 @@ public class AddCommandTest {
             modulesAdded.add(module);
         }
 
+        // todo: new test
+        /*
         @Override
         public ReadOnlyModuleList getModuleList() {
             return new ModuleList();
         }
+         */
     }
 
 }
