@@ -22,7 +22,7 @@ public class AddMultipleChoiceQuestionCommand extends Command {
             + "Parameters: "
             + PREFIX_QUESTION + "Question "
             + PREFIX_ANSWER + "Answer "
-            + "" + PREFIX_CHOICE + "Choices...\n"
+            + "[" + PREFIX_CHOICE + "Choices]...\n"
             + "[" + PREFIX_TAG + "TAG]...\n";
 
     public static final String MESSAGE_SUCCESS = "New flashcard added: %1$s";

@@ -1,5 +1,6 @@
 package quickcache.logic.commands;
 
+import static java.util.Objects.nonNull;
 import static java.util.Objects.requireNonNull;
 import static quickcache.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static quickcache.logic.parser.CliSyntax.PREFIX_OPTION;
@@ -103,7 +104,7 @@ public class TestCommand extends Command {
         boolean isCorrect = flashcardToTest.checkAnswer(answer);
 
         // Initialize an updated flashcard
-        Flashcard updatedFlashcard = flashcardToTest;
+        Flashcard updatedFlashcard;
         if (isCorrect) {
             updatedFlashcard = flashcardToTest.getFlashcardAfterTestSuccess();
         } else {
@@ -111,6 +112,8 @@ public class TestCommand extends Command {
         }
 
         // Updates the flashcardToTest with the new updatedFlashCard (with incremented test count)
+        assert nonNull(updatedFlashcard);
+        assert !flashcardToTest.equals(updatedFlashcard);
         model.setFlashcard(flashcardToTest, updatedFlashcard);
         return new CommandResult(getTestResult(
                 flashcardToTest.getAnswer(), answer), question, isCorrect, true);

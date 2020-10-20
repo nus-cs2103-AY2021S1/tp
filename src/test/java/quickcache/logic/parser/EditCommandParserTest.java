@@ -23,7 +23,7 @@ import org.junit.jupiter.api.Test;
 import quickcache.commons.core.index.Index;
 import quickcache.logic.commands.EditCommand;
 import quickcache.model.flashcard.Answer;
-import quickcache.model.flashcard.OpenEndedQuestion;
+import quickcache.model.flashcard.Question;
 import quickcache.testutil.EditFlashcardDescriptorBuilder;
 
 
@@ -65,13 +65,13 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_QUESTION_DESC, OpenEndedQuestion.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, "1" + INVALID_QUESTION_DESC, Question.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_ANSWER_DESC, Answer.MESSAGE_CONSTRAINTS); // invalid phone
 
 
         // invalid question followed by valid answer
         assertParseFailure(parser, "1" + INVALID_QUESTION_DESC + ANSWER_DESC_TWO,
-            OpenEndedQuestion.MESSAGE_CONSTRAINTS);
+            Question.MESSAGE_CONSTRAINTS);
 
         // valid answer followed by invalid question. The test case for invalid phone followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
@@ -80,7 +80,7 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_QUESTION_DESC + INVALID_ANSWER_DESC,
-            OpenEndedQuestion.MESSAGE_CONSTRAINTS);
+            Question.MESSAGE_CONSTRAINTS);
     }
 
     @Test

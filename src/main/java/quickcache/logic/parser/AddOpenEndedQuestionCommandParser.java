@@ -10,7 +10,6 @@ import java.util.stream.Stream;
 
 import quickcache.logic.commands.AddOpenEndedQuestionCommand;
 import quickcache.logic.parser.exceptions.ParseException;
-import quickcache.model.flashcard.Answer;
 import quickcache.model.flashcard.Flashcard;
 import quickcache.model.flashcard.Question;
 import quickcache.model.flashcard.Tag;
@@ -46,10 +45,13 @@ public class AddOpenEndedQuestionCommandParser implements Parser<AddOpenEndedQue
 
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Question question = ParserUtil.parseQuestion(argMultimap.getValue(PREFIX_QUESTION).get());
-        Answer answer = ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get());
 
-        Flashcard flashcard = new Flashcard(question, answer, tagList);
+        String questionInString = ParserUtil.parseQuestion(argMultimap.getValue(PREFIX_QUESTION).get());
+        Question question = ParserUtil.parseOpenEndedQuestion(questionInString,
+                argMultimap.getValue(PREFIX_ANSWER).get());
+
+
+        Flashcard flashcard = new Flashcard(question, tagList);
 
         return new AddOpenEndedQuestionCommand(flashcard);
     }

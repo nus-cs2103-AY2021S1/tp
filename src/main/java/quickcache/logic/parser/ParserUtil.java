@@ -2,7 +2,10 @@ package quickcache.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.nio.file.InvalidPathException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -28,6 +31,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
+    public static final String MESSAGE_INVALID_FILE_NAME = "Filename is invalid.";
+
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -48,13 +53,33 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code question} is invalid.
      */
-    public static Question parseQuestion(String question) throws ParseException {
+    public static String parseQuestion(String question) throws ParseException {
         requireNonNull(question);
         String trimmedQuestion = question.trim();
-        if (!OpenEndedQuestion.isValidQuestion(trimmedQuestion)) {
-            throw new ParseException(OpenEndedQuestion.MESSAGE_CONSTRAINTS);
+        if (!Question.isValidQuestion(trimmedQuestion)) {
+            throw new ParseException(Question.MESSAGE_CONSTRAINTS);
         }
-        return new OpenEndedQuestion(trimmedQuestion);
+        return trimmedQuestion;
+    }
+
+    /**
+     * Parses a {@code List} of inputs into a a {@code List} of keywords.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if any of the given input in the {@code inputList} is invalid.
+     */
+    public static List<String> parseKeywords(List<String> inputList) throws ParseException {
+        requireNonNull(inputList);
+        List<String> keywords = new ArrayList<>(8);
+        for (String input: inputList) {
+            String trimmedInput = input.trim();
+            if (!trimmedInput.matches("[^\\s].*")) {
+                throw new ParseException("Keyword should not be blank");
+            }
+            keywords.addAll(Arrays.asList(input.split("\\s+")));
+        }
+
+        return keywords;
     }
 
     /**
@@ -63,14 +88,42 @@ public class ParserUtil {
      *
      * @throws ParseException if answer is less than choices and question is invalid.
      */
-    public static Question parseMultipleChoiceQuestion(String question,
+    public static Question parseOpenEndedQuestion(String question, String answer) throws ParseException {
+        requireNonNull(question);
+        String trimmedQuestion = question.trim();
+        if (!MultipleChoiceQuestion.isValidQuestion(trimmedQuestion)) {
+            throw new ParseException(MultipleChoiceQuestion.MESSAGE_CONSTRAINTS);
+        }
+        Answer finalAnswer = ParserUtil.parseAnswer(answer);
+        return new OpenEndedQuestion(question, finalAnswer);
+    }
+
+    /**
+     * Parses a {@code String question} into a {@code Question}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if answer is less than choices and question is invalid.
+     */
+    public static Question parseMultipleChoiceQuestion(String question, String answer,
                                                        Choice[] choices) throws ParseException {
         requireNonNull(question);
         String trimmedQuestion = question.trim();
         if (!MultipleChoiceQuestion.isValidQuestion(trimmedQuestion)) {
             throw new ParseException(MultipleChoiceQuestion.MESSAGE_CONSTRAINTS);
         }
-        return new MultipleChoiceQuestion(trimmedQuestion, choices);
+        Answer tempAnswer = ParserUtil.parseAnswer(answer);
+        int ans;
+        try {
+            ans = Integer.parseInt(tempAnswer.getValue());
+            if (ans > choices.length) {
+                throw new ParseException("Answer must be smaller than number of choices");
+            }
+        } catch (NumberFormatException e) {
+            throw new ParseException("Answer must be integer");
+        }
+
+        Answer finalAnswer = new Answer(choices[ans - 1].getValue());
+        return new MultipleChoiceQuestion(trimmedQuestion, finalAnswer, choices);
     }
 
     /**
@@ -161,5 +214,26 @@ public class ParserUtil {
             throw new ParseException(Option.MESSAGE_CONSTRAINTS);
         }
         return new Option(trimmedOption);
+    }
+
+    /**
+     * Parses {@code String fileName} into a {@code String}.
+     * Leading and trailing white spaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code fileName} is invalid.
+     */
+    public static String parseFileName(String fileName) throws ParseException {
+        requireNonNull(fileName);
+        String trimmedFileName = fileName.trim();
+        if (trimmedFileName.isEmpty()) {
+            throw new ParseException(MESSAGE_INVALID_FILE_NAME);
+        }
+        try {
+            // Tries to determine if the file name is valid
+            Paths.get(trimmedFileName);
+        } catch (InvalidPathException ipe) {
+            throw new ParseException(MESSAGE_INVALID_FILE_NAME);
+        }
+        return trimmedFileName;
     }
 }

@@ -3,9 +3,8 @@ package quickcache.model.flashcard;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,17 +14,17 @@ class FlashcardContainsTagPredicateTest {
 
     @Test
     public void equals() {
-        List<String> firstPredicateKeywordList = Collections.singletonList("first");
-        List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
+        Set<Tag> firstPredicateTagSet = prepareTagSet("first");
+        Set<Tag> secondPredicateTagSet = prepareTagSet("first", "second");
 
-        FlashcardContainsTagPredicate firstPredicate = new FlashcardContainsTagPredicate(firstPredicateKeywordList);
-        FlashcardContainsTagPredicate secondPredicate = new FlashcardContainsTagPredicate(secondPredicateKeywordList);
+        FlashcardContainsTagPredicate firstPredicate = new FlashcardContainsTagPredicate(firstPredicateTagSet);
+        FlashcardContainsTagPredicate secondPredicate = new FlashcardContainsTagPredicate(secondPredicateTagSet);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        FlashcardContainsTagPredicate firstPredicateCopy = new FlashcardContainsTagPredicate(firstPredicateKeywordList);
+        FlashcardContainsTagPredicate firstPredicateCopy = new FlashcardContainsTagPredicate(firstPredicateTagSet);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -34,38 +33,42 @@ class FlashcardContainsTagPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different predicate -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() {
+    public void test_flashcardContainsTags_returnsTrue() {
         // One keyword
         FlashcardContainsTagPredicate predicate =
-            new FlashcardContainsTagPredicate(Collections.singletonList("Programming"));
+            new FlashcardContainsTagPredicate(prepareTagSet("Programming"));
         assertTrue(predicate.test(new FlashcardBuilder().withTags("Programming", "English").build()));
 
         // Multiple keywords
-        predicate = new FlashcardContainsTagPredicate(Arrays.asList("Programming", "English"));
-        assertTrue(predicate.test(new FlashcardBuilder().withTags("Programming", "English").build()));
-
-        // Only one matching keyword
-        predicate = new FlashcardContainsTagPredicate(Arrays.asList("Programming", "Carol"));
+        predicate = new FlashcardContainsTagPredicate(prepareTagSet("Programming", "English"));
         assertTrue(predicate.test(new FlashcardBuilder().withTags("Programming", "English").build()));
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        FlashcardContainsTagPredicate predicate = new FlashcardContainsTagPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new FlashcardBuilder().withTags("Programming").build()));
-
+    public void test_flashcardDoesNotContainTags_returnsFalse() {
         // Non-matching keyword
-        predicate = new FlashcardContainsTagPredicate(Arrays.asList("Carol"));
+        FlashcardContainsTagPredicate predicate = new FlashcardContainsTagPredicate(prepareTagSet("Carol"));
+        assertFalse(predicate.test(new FlashcardBuilder().withTags("Programming", "English").build()));
+
+        // Only one matching keyword
+        predicate = new FlashcardContainsTagPredicate(prepareTagSet("Programming", "Carol"));
         assertFalse(predicate.test(new FlashcardBuilder().withTags("Programming", "English").build()));
 
         // Mixed-case keywords
-        predicate = new FlashcardContainsTagPredicate(Arrays.asList("pRogramming", "EnGlish"));
+        predicate = new FlashcardContainsTagPredicate(prepareTagSet("pRogramming", "EnGlish"));
         assertFalse(predicate.test(new FlashcardBuilder().withTags("Programming", "English").build()));
+    }
+
+    private Set<Tag> prepareTagSet(String... tags) {
+        HashSet<Tag> tagSet = new HashSet<>();
+        for (String tag: tags) {
+            tagSet.add(new Tag(tag));
+        }
+        return tagSet;
     }
 }

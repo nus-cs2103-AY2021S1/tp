@@ -46,7 +46,7 @@ public class MainWindow extends UiPart<Stage> {
     private OptionListPanel optionListPanel;
     private QuestionDisplay questionDisplay;
 
-    private BarChartDisplay barChartDisplay;
+    private PieChartDisplay pieChartDisplay;
 
     private boolean isOnChangedWindow;
 
@@ -189,6 +189,7 @@ public class MainWindow extends UiPart<Stage> {
      * @param feedbackToUser the feedback describing what to display to the user.
      */
     public void handleChangeWindow(Feedback feedbackToUser) {
+        // Statistics is null if there is no statistics to display to the user.
         feedbackToUser.getStatistics().ifPresentOrElse((statistics ->
                 changeInnerPartsToStatisticsWindow(feedbackToUser)), () ->
                 changeInnerPartsToFlashcardWindow(feedbackToUser));
@@ -207,10 +208,10 @@ public class MainWindow extends UiPart<Stage> {
 
         displayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        barChartDisplay = new BarChartDisplay();
-        listPanelPlaceholder.getChildren().add(barChartDisplay.getRoot());
+        pieChartDisplay = new PieChartDisplay();
+        listPanelPlaceholder.getChildren().add(pieChartDisplay.getRoot());
 
-        barChartDisplay.displayStatistics(feedbackToUser);
+        pieChartDisplay.displayStatistics(feedbackToUser);
     }
 
     /**

@@ -72,7 +72,7 @@ public class AddOpenEndedQuestionCommandTest {
         // null -> returns false
         assertFalse(addSampleOneCommand.equals(null));
 
-        // different person -> returns false
+        // different flashcard -> returns false
         assertFalse(addSampleOneCommand.equals(addSampleTwoCommand));
     }
 

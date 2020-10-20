@@ -7,10 +7,12 @@ import quickcache.commons.core.Messages;
 import quickcache.logic.commands.AddMultipleChoiceQuestionCommand;
 import quickcache.logic.commands.AddOpenEndedQuestionCommand;
 import quickcache.logic.commands.ClearCommand;
+import quickcache.logic.commands.ClearStatsCommand;
 import quickcache.logic.commands.Command;
 import quickcache.logic.commands.DeleteCommand;
 import quickcache.logic.commands.EditCommand;
 import quickcache.logic.commands.ExitCommand;
+import quickcache.logic.commands.ExportCommand;
 import quickcache.logic.commands.FindCommand;
 import quickcache.logic.commands.HelpCommand;
 import quickcache.logic.commands.ListCommand;
@@ -81,6 +83,13 @@ public class QuickCacheParser {
 
         case StatsCommand.COMMAND_WORD:
             return new StatsCommandParser().parse(arguments);
+
+
+        case ExportCommand.COMMAND_WORD:
+            return new ExportCommandParser().parse(arguments);
+
+        case ClearStatsCommand.COMMAND_WORD:
+            return new ClearStatsCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);

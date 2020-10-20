@@ -10,7 +10,6 @@ import quickcache.logic.commands.AddOpenEndedQuestionCommand;
 import quickcache.model.flashcard.Flashcard;
 import quickcache.model.flashcard.Tag;
 
-
 /**
  * A utility class for Flashcard.
  */
@@ -42,7 +41,7 @@ public class FlashcardUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getAnswer().ifPresent(answer -> sb.append(PREFIX_ANSWER).append(answer.getValue()).append(" "));
         descriptor.getQuestion().ifPresent(question -> sb.append(PREFIX_QUESTION)
-                .append(question.getValue()).append(" "));
+                .append(question).append(" "));
         descriptor.getChoices().ifPresent(choice -> {
             for (int i = 0; i < choice.length; i++) {
                 sb.append(PREFIX_CHOICE).append(choice[i].getValue());
