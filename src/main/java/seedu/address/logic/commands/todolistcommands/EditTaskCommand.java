@@ -25,6 +25,7 @@ import seedu.address.model.task.TaskName;
  * Edits the details of an existing task in the todo list.
  */
 public class EditTaskCommand extends Command {
+
     public static final String COMMAND_WORD = "edittask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
