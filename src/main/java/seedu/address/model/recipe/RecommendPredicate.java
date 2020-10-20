@@ -25,6 +25,11 @@ public class RecommendPredicate extends RecipeContainsKeywordsPredicate
                         .collect(toList());
         String str = keywords.stream().map(Object::toString).map(x -> x.replaceAll("\\s+", ""))
                 .collect(Collectors.joining(" "));
+
+        if (keywords.isEmpty()) {
+            return false;
+        }
+
         return ingredients.stream()
                 .allMatch(ingredient -> StringUtil.containsWordIgnoreCase(str, ingredient));
     }

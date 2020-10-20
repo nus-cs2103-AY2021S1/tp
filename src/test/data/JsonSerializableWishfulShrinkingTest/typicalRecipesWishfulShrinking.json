@@ -49,7 +49,7 @@
       "quantity" : "15 Ounce "
     }],
     "calories": "40",
-    "tagged": [ "healthy" ]
+    "tagged": [ "healthy", "low calories" ]
   }, {
     "name": "Easter Eggs",
     "instruction": "In a large saucepan, melt butter over low heat. Add marshmallows and stir until melted. Remove from heat, then add rice cereal and stir until well coated. Lightly spray interior of the plastic eggs with non-stick cooking spray. If mixture is too sticky, you can also spray your hands. Fill both sides of the plastic egg with rice cereal mixture, slightly over-filling one side. Press chocolate egg in the center on one side of the egg, then close the plastic egg to shape it. (It should be full enough to meet with a little resistance as you close it.) Gently release the rice cereal egg from the mold, decorate with your choice of sprinkles and set aside in egg crate until set.",
@@ -69,6 +69,6 @@
       "quantity" : "8 slices "
     }],
     "calories": "40",
-    "tagged": [ "healthy" ]
+    "tagged": [ "healthy", "low calories" ]
   } ]
 }

@@ -105,7 +105,7 @@ public class TypicalRecipes {
                     + "In the oven (on a baking sheet) or microwave, melt cheese all over "
                             + "the top of each tortilla so that it covers most of the surface area.")
             .withRecipeImage("images/enchilada1.jpeg")
-            .withTags("healthy")
+            .withTags("healthy", "low calories")
             .build();
 
     public static final Recipe EGGS = new RecipeBuilder().withName("Easter Eggs")
@@ -140,7 +140,7 @@ public class TypicalRecipes {
                     + "Cook the patties on both sides until totally done in the middle. "
                     + "Assemble patty melts.")
             .withRecipeImage("images/party.jpeg")
-            .withTags("healthy")
+            .withTags("healthy", "low calories")
             .build();
 
     // Manually added
