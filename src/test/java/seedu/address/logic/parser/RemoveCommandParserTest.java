@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_TOO_MANY_ARGUMENTS;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.RemoveCommand;
 
 /**
@@ -42,7 +41,8 @@ public class RemoveCommandParserTest {
     public void parse_invalidValues_failure() {
         // empty String
         assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                String.format(MESSAGE_INSUFFICENT_ARGUMENTS, RemoveCommand.COMMAND_WORD, 1, RemoveCommand.MESSAGE_USAGE)));
+                String.format(MESSAGE_INSUFFICENT_ARGUMENTS,
+                        RemoveCommand.COMMAND_WORD, 1, RemoveCommand.MESSAGE_USAGE)));
 
         // More than 2 arguments
         assertParseFailure(parser, "1 2 3", String.format(MESSAGE_INVALID_COMMAND_FORMAT,

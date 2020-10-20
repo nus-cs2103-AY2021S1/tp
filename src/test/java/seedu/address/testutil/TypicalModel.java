@@ -1,13 +1,13 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.model.AddressBook;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.menu.MenuManager;
 import seedu.address.model.order.OrderManager;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class TypicalModel {
 

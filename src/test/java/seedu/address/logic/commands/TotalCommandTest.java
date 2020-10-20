@@ -1,14 +1,15 @@
 package seedu.address.logic.commands;
 
-import javafx.collections.ObservableList;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.TotalCommand.MESSAGE_RESULT;
+
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.address.model.Model;
 import seedu.address.model.food.Food;
 import seedu.address.model.order.OrderItem;
 import seedu.address.testutil.TypicalModel;
-
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.TotalCommand.MESSAGE_RESULT;
 
 public class TotalCommandTest {
 
