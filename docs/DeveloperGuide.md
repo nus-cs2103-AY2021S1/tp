@@ -11,7 +11,7 @@ title: Developer Guide
 
 ### 1.1 Purpose
 
-This document details the architecture and software design of the software application CliniCal, which is implemented as part of our CS2103T project.  This document is updated when the design and implementation of the software is modified after every milestone. Each milestone will include a version of this document, and the current milestone of this project is `v1.3`.
+This document details the architecture and software design of the software application CliniCal, which is implemented as part of our CS2103T project. This document is updated when the design and implementation of the software is modified after every milestone. Each milestone will include a version of this document, and the current milestone of this project is `v1.3`.
 
 ### 1.2 Audience
 
