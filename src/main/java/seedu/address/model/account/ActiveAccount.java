@@ -27,7 +27,7 @@ public interface ActiveAccount {
      */
     public void setName(Name name);
 
-    /** Returns the Active Account */
+    /** Returns a copy of the Active Account */
     Account getAccount();
 
     /**

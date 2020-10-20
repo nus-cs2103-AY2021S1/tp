@@ -1,0 +1,72 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CommonCentsParser" as CommonCentsParser LOGIC_COLOR
+participant ":EditAccountCommandParser" as EditAccountCommandParser LOGIC_COLOR
+participant "u:EditAccountCommand" as EditAccountCommand LOGIC_COLOR
+end box
+
+box ActiveAccount ACTIVEACCOUNT_COLOR_T1
+participant ":ActiveAccountManager" as ActiveAccount LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("editacc 1")
+activate LogicManager
+
+LogicManager -> CommonCentsParser: parseCommand("editacc 1")
+activate CommonCentsParser
+
+CommonCentsParser -> EditAccountCommandParser: parse("editacc 1")
+activate EditAccountCommandParser
+
+create EditAccountCommand
+EditAccountCommandParser -> EditAccountCommand
+activate EditAccountCommand
+
+EditAccountCommand -> EditAccountCommandParser
+deactivate EditAccountCommand
+
+EditAccountCommandParser --> CommonCentsParser
+deactivate EditAccountCommandParser
+
+CommonCentsParser --> LogicManager
+deactivate CommonCentsParser
+
+LogicManager -> EditAccountCommand: execute(model, activeAccount)
+activate EditAccountCommand
+
+EditAccountCommand -> ActiveAccount: getAccount()
+activate ActiveAccount
+
+ActiveAccount --> EditAccountCommand
+deactivate ActiveAccount
+
+EditAccountCommand -> ActiveAccount: setName(name)
+activate ActiveAccount
+
+ActiveAccount --> EditAccountCommand
+deactivate ActiveAccount
+
+EditAccountCommand -> ActiveAccount: getAccount()
+activate ActiveAccount
+
+ActiveAccount --> EditAccountCommand
+deactivate ActiveAccount
+
+EditAccountCommand -> Model: setAccount(target, editedAccount)
+activate Model
+
+Model --> EditAccountCommand
+deactivate Model
+
+EditAccountCommand --> LogicManager
+deactivate EditAccountCommand
+
+deactivate LogicManager
+@enduml

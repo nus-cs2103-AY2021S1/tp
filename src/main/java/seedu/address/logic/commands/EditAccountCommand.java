@@ -35,10 +35,10 @@ public class EditAccountCommand extends Command {
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
         requireAllNonNull(model, activeAccount);
-        Account previousAccount = activeAccount.getAccount().copyData();
+        Account previousAccount = activeAccount.getAccount();
 
         activeAccount.setName(name);
-        Account newAccount = activeAccount.getAccount().copyData();
+        Account newAccount = activeAccount.getAccount();
         model.setAccount(previousAccount, newAccount);
         Name previousName = previousAccount.getName();
         Name newName = newAccount.getName();

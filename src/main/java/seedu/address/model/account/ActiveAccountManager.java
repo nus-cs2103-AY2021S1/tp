@@ -45,7 +45,7 @@ public class ActiveAccountManager implements ActiveAccount {
 
     @Override
     public Account getAccount() {
-        return activeAccount;
+        return activeAccount.copyData();
     }
 
     @Override

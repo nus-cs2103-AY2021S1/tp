@@ -135,20 +135,67 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Edit account feature
 
-The proposed edit account mechanism is facilitated by `EditAccountCommand`. It extends `Command` and interacts with `Account`. These interactions are managed by `ActiveAccount` as well as the `Model`. As such, `EditAccountCommand` makes use of the following operations:
-
-* `Account#setExpense` 
-* `Account#setRevenues` 
-* `Model#setAccount(Account target, Account editedAccount)`
-* `ActiveAccount#setActiveAccount` 
- 
-
-
 #### Implementation
+The proposed edit account mechanism is facilitated by `EditAccountCommand`. It extends `Command` and is identified by 
+'CommonCentsParser' and `EditAccountCommandParser`. The `EditAccountCommand` interacts with `Account` and the interaction 
+is managed by `ActiveAccount` as well as the `Model`. As such, it implements the following operation:
+
+* `Account#setName(Name editedName)` — Sets the name of the account
+
+The operation is exposed in the `ActiveAccount` interface as `ActiveAccount#setName()`.
+
+Given below is an example usage scenario and how the edit account mechanism behaves at each step.
+
+Step 1. The user inputs the edit command to edit the current account in `ActiveAccount`. `CommonCentsParser` identifies 
+the command word and calls `EditCommandParser#parse(String args)` to parse the input into a valid `EditAccountCommand`
+
+Step 2. `EditAccountCommand` starts to be executed. In the execution, the current account, namely `previousAccount` 
+in `ActiveAccount` is retrieved.
+
+Step 3. `ActiveAccount#setName(Name editedName)` is called with the edited name to replace the name of the current 
+account in `ActiveAccount`.
+
+Step 4. The updated account, namely `newAccount`, in `ActiveAccount` is retrieved.
+
+Step 5. `Model#setAccount(Account target, Account editedAccount)` is called with `previousAccount` as `target`, and 
+`newAccount` as `editedAccount`. This is to replace the to-be-edited account in the Model with the edited account.
+
+The following sequence diagram shows how an edit account operation works:
+
+![EditAccountSequenceDiagram](images/EditAccountSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Some of the interactions with the utility classes, 
+such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
+of the edit account command. 
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![EditAccountActivityDiagram](images/EditAccountActivityDiagram.png)
+
 
 #### Design consideration:
 
-##### Aspect: How does Commands at the account level executes
+##### Aspect: How does edit account executes:
+
+* **Alternative 1 (current choice):** Accounts can only be edited if they are active.
+  * Pros: Easy to implement.
+  * Cons: Less flexibility for user.
+
+* **Alternative 2:** Accounts can be edited by retrieving them from the account list with an index input.
+  * Pros: More flexibility for user.
+  * Cons: It is difficult to implement and manage because we need to consider whether the account to be edited
+  is active and add extra measures for that case. As such, we chose alternative one since it is a more elegant
+  solution. 
+  
+##### Aspect: Mutability of account
+* **Choice:** Allowing Name attribute of Account to be mutated by EditCommand.
+  * Rationale: Initially, we implemented the Name attribute of Account to be immutable. However, we realize that it
+  is difficult to replace the name of the account if it is immutable. Hence, to overcome this obstacle, we decided 
+  to make the Name attribute mutable. 
+  * Implications: Extra precaution needs to be implemented, for instance creating new copies of account to prevent unnecessary
+  changes to accounts in account list.
+
 
 
 ### \[Proposed\] Undo/redo feature
