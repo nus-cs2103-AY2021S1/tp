@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
+import java.util.Set;
 
 import quickcache.commons.core.Messages;
 import quickcache.commons.core.index.Index;
@@ -11,6 +12,7 @@ import quickcache.logic.commands.exceptions.CommandException;
 import quickcache.model.Model;
 import quickcache.model.flashcard.Flashcard;
 import quickcache.model.flashcard.FlashcardPredicate;
+import quickcache.model.flashcard.Tag;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -35,17 +37,20 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
     private final FlashcardPredicate predicate;
+    private final Set<Tag> tagsToMatch;
     private final boolean isDeleteByTag;
 
     private DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
         this.predicate = null;
+        this.tagsToMatch = null;
         this.isDeleteByTag = false;
     }
 
-    private DeleteCommand(FlashcardPredicate predicate) {
+    private DeleteCommand(FlashcardPredicate predicate, Set<Tag> tagsToMatch) {
         this.targetIndex = null;
         this.predicate = predicate;
+        this.tagsToMatch = tagsToMatch;
         this.isDeleteByTag = true;
     }
 
@@ -53,15 +58,15 @@ public class DeleteCommand extends Command {
         return new DeleteCommand(targetIndex);
     }
 
-    public static DeleteCommand withPredicate(FlashcardPredicate predicate) {
-        return new DeleteCommand(predicate);
+    public static DeleteCommand withPredicate(FlashcardPredicate predicate, Set<Tag> tagsToMatch) {
+        return new DeleteCommand(predicate, tagsToMatch);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (isDeleteByTag) {
-            assert(predicate != null);
+            assert(predicate != null && tagsToMatch != null && !tagsToMatch.isEmpty());
             model.updateFilteredFlashcardList(predicate);
             List<Flashcard> filteredList = model.getFilteredFlashcardList();
 
@@ -71,8 +76,9 @@ public class DeleteCommand extends Command {
                 Flashcard flashcardToDelete = filteredList.get(0);
                 model.deleteFlashcard(flashcardToDelete);
             }
-            // TODO: change the placeholder text
-            return new CommandResult(String.format(MESSAGE_DELETE_FLASHCARD_SUCCESS, "_placeholder text_"));
+
+            String deleteWithTagsMessage = createDeleteWithTagsMessage();
+            return new CommandResult(String.format(MESSAGE_DELETE_FLASHCARD_SUCCESS, deleteWithTagsMessage));
         } else {
             List<Flashcard> lastShownList = model.getFilteredFlashcardList();
             assert(targetIndex != null);
@@ -85,6 +91,13 @@ public class DeleteCommand extends Command {
             model.deleteFlashcard(flashcardToDelete);
             return new CommandResult(String.format(MESSAGE_DELETE_FLASHCARD_SUCCESS, flashcardToDelete));
         }
+    }
+
+    private String createDeleteWithTagsMessage() {
+        StringBuilder sb = new StringBuilder("with tags ");
+        assert tagsToMatch != null;
+        tagsToMatch.forEach(tag -> sb.append(tag.toString()).append(" "));
+        return sb.toString().trim();
     }
 
     @Override
