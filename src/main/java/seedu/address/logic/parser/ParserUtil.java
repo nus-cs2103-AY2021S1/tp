@@ -169,4 +169,15 @@ public class ParserUtil {
         }
         return new ModuleName(trimmedModuleName);
     }
+    /**
+     *
+     */
+    public static String parseString(String string) throws ParseException {
+        requireNonNull(string);
+        String trimmedString = string.trim();
+        if (trimmedString.isEmpty() || trimmedString.isBlank()) {
+            throw new ParseException("String can't be empty!");
+        }
+        return trimmedString;
+    }
 }

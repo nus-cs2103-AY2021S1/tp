@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -27,8 +27,10 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.MlistCommand;
 import seedu.address.logic.commands.ResetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.CodeOrNameMatchesKeywordPredicate;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
+import seedu.address.model.module.ModuleInstructorsContainsKeywordsPredicate;
+import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -70,9 +72,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_deleteModule() throws Exception {
-        Module module = new ModuleBuilder().build();
-        DelModCommand command = (DelModCommand) parser.parseCommand(
-                DelModCommand.COMMAND_WORD + " " + PREFIX_MODULE_CODE + module.getModuleCode().moduleCode);
+        Module module = new ModuleBuilder().withCode("CS2103").build();
+        DelModCommand command = (DelModCommand) parser.parseCommand(ModuleUtil.getDelModCommand(module));
         assertEquals(new DelModCommand(module.getModuleCode()), command);
     }
 
@@ -101,10 +102,17 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_findModule() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindModCommand command = (FindModCommand) parser.parseCommand(
-                FindModCommand.COMMAND_WORD + " " + String.join(" ", keywords));
-        assertEquals(new FindModCommand(new CodeOrNameMatchesKeywordPredicate(keywords)), command);
+        Person damith = new PersonBuilder().withName("Damith").build();
+        Module module = new ModuleBuilder().withCode("CS2103")
+                .withName("Software Engineering").withInstructors(damith).build();
+        FindModCommand command = (FindModCommand) parser.parseCommand(ModuleUtil.getFindModCommand(module));
+
+        ModuleCodeContainsKeywordsPredicate codePredicate = new ModuleCodeContainsKeywordsPredicate("CS2103");
+        ModuleNameContainsKeywordsPredicate namePredicate =
+                new ModuleNameContainsKeywordsPredicate(Arrays.asList("Software", "Engineering"));
+        ModuleInstructorsContainsKeywordsPredicate instructorPredicate =
+                new ModuleInstructorsContainsKeywordsPredicate(Collections.singletonList("Damith"));
+        assertEquals(new FindModCommand(codePredicate, namePredicate, instructorPredicate), command);
     }
 
     @Test
