@@ -9,28 +9,48 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.RowConstraints?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0" styleClass="card-with-big-round-border">
-      <padding>
-        <Insets top="5" right="5" bottom="5" left="15" />
-      </padding>
-      <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
-      </HBox>
-      <Label fx:id="moduleCode" styleClass="cell_small_label" text="\$moduleCode" />
-      <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
-      <Label fx:id="priority" styleClass="cell_small_label" text="\$priority" />
-      <Label fx:id="dueDate" styleClass="cell_small_label" text="\$dueDate" />
-    </VBox>
+    <GridPane styleClass="card-with-big-round-border" GridPane.columnIndex="0">
+      <columnConstraints>
+        <ColumnConstraints percentWidth="50.0" />
+        <ColumnConstraints percentWidth="50.0" />
+      </columnConstraints>
+      <children>
+        <VBox alignment="CENTER_LEFT" GridPane.columnIndex="1" minHeight="105">
+          <padding>
+            <Insets top="5" right="5" bottom="5" left="15" />
+          </padding>
+          <Label fx:id="displaySchedule" styleClass="cell_small_label_blue_text" text="\$schedule"/>
+          <Label fx:id="suggestedStartTime" styleClass="cell_small_label_blue_text" text="\$suggestedStartTime" />
+          <Label fx:id="suggestedEndTime" styleClass="cell_small_label_blue_text" text="\$suggestedEndTime" />
+        </VBox>
+        <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0" minHeight="105">
+          <padding>
+            <Insets top="5" right="5" bottom="5" left="15" />
+          </padding>
+          <HBox spacing="5" alignment="CENTER_LEFT">
+            <Label fx:id="id" styleClass="cell_big_label">
+              <minWidth>
+                <!-- Ensures that the label text is never truncated -->
+                <Region fx:constant="USE_PREF_SIZE" />
+              </minWidth>
+            </Label>
+            <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+            <Label fx:id="priority" styleClass="cell_small_label_round_border" text="\$priority" />
+          </HBox>
+          <Label fx:id="moduleCode" styleClass="cell_small_label" text="\$moduleCode" />
+          <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
+          <Label fx:id="dueDate" styleClass="cell_small_label" text="\$dueDate" />
+        </VBox>
+      </children>
+      <rowConstraints>
+        <RowConstraints />
+      </rowConstraints>
+    </GridPane>
   </GridPane>
 </HBox>

@@ -227,6 +227,15 @@
     -fx-background-radius: 10 10 10 10;
 }
 
+.cell_small_label_round_border {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 13px;
+    -fx-border-top-width: 1px;
+    -fx-border-radius: 20 20 20 20;
+    -fx-background-radius: 20 20 20 20;
+    -fx-padding: 2 5 2 5;
+}
+
 .status-bar {
     -fx-background-color: derive(#1d1d1d, 30%);
 }

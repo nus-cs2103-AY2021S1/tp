@@ -80,7 +80,8 @@ public class UnscheduleCommand extends NegateCommand {
         Schedule updatedSchedule = new Schedule();
         Priority updatedPriority = assignmentToUnschedule.getPriority();
 
-        return new Assignment(updatedName, updatedDeadline, updatedModuleCode, updatedRemind, updatedSchedule, updatedPriority);
+        return new Assignment(updatedName, updatedDeadline, updatedModuleCode, updatedRemind,
+                updatedSchedule, updatedPriority);
     }
 
     @Override
