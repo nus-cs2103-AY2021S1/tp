@@ -1,5 +1,6 @@
 package quickcache.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -19,6 +20,7 @@ import quickcache.testutil.TypicalIndexes;
 import quickcache.testutil.TypicalTags;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -101,6 +103,16 @@ public class DeleteCommandTest {
         expectedModel.deleteFlashcard(TypicalFlashcards.RANDOM9);
 
         CommandTestUtil.assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        model.updateFilteredFlashcardList(Model.PREDICATE_SHOW_ALL_FLASHCARDS);
+        assertEquals(Arrays.asList(
+                TypicalFlashcards.RANDOM1,
+                TypicalFlashcards.RANDOM2,
+                TypicalFlashcards.RANDOM3,
+                TypicalFlashcards.RANDOM4,
+                TypicalFlashcards.RANDOM5,
+                TypicalFlashcards.RANDOM6,
+                TypicalFlashcards.RANDOM7),
+                model.getFilteredFlashcardList());
     }
 
     private FlashcardPredicate prepareFlashcardPredicate(Set<Tag> tagsToMatch) {
