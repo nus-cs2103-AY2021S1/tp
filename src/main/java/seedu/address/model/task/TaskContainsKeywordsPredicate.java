@@ -26,19 +26,25 @@ public class TaskContainsKeywordsPredicate implements Predicate<Task> {
         }
         extendedKeywords.add(keyword);
         keywords.put(attribute, extendedKeywords);
+
+        // assert if attribute is added to keywords
+        assert keywords.containsKey(attribute) : "attribute not added to keywords";
     }
 
     @Override
     public boolean test(Task task) {
+        boolean matched = false;
         for (Map.Entry<Prefix, List<String>> entry : keywords.entrySet()) {
             Prefix prefix = entry.getKey();
             List<String> words = entry.getValue();
-            if (isMatched(prefix.getPrefix(), words, task)) {
-                return true;
+            if (!isMatched(prefix.getPrefix(), words, task)) {
+                return false;
             }
+            matched = true;
         }
-        return false;
+        return matched;
     }
+
 
     @Override
     public boolean equals(Object other) {
@@ -60,6 +66,8 @@ public class TaskContainsKeywordsPredicate implements Predicate<Task> {
     }
 
     private boolean isMatched(String prefix, List<String> words, Task task) {
+        // assert prefix is of the desired format
+        assert prefix.charAt(prefix.length() - 1) == ':' : "prefix string is in the wrong format";
         if (prefix.equals("title:")) {
             return words.stream()
                     .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getTitle().title, keyword));
@@ -78,6 +86,11 @@ public class TaskContainsKeywordsPredicate implements Predicate<Task> {
         if (prefix.equals("type:")) {
             return words.stream()
                     .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getType().value, keyword));
+        }
+        if (prefix.equals("status:")) {
+            // must be an exact match here
+            return words.stream()
+                    .anyMatch(keyword -> task.getStatus().value.toString().toLowerCase().equals(keyword.toLowerCase()));
         }
 
         return false;

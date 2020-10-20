@@ -1,15 +1,24 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_SEARCH_PHRASE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.model.task.DateTime;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
+import seedu.address.model.task.Title;
+import seedu.address.model.task.Type;
 
 public class FindCommandParserTest {
 
@@ -26,11 +35,48 @@ public class FindCommandParserTest {
         TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_TITLE, "Meet Alice");
         predicate.setKeyword(PREFIX_DESCRIPTION, "play");
+        predicate.setKeyword(PREFIX_TYPE, "todo");
+        predicate.setKeyword(PREFIX_DATE_TIME, "01-01-2020");
+        predicate.setKeyword(PREFIX_STATUS, "incomplete");
         FindCommand expectedFindCommand = new FindCommand(predicate);
-        assertParseSuccess(parser, " title:Meet Alice desc:play", expectedFindCommand);
+        assertParseSuccess(parser,
+                " title:Meet Alice desc:play type:todo date:01-01-2020 status: incomplete",
+                expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n title:Meet Alice  \t desc:play \t \n", expectedFindCommand);
+        assertParseSuccess(parser,
+                " \n title:Meet Alice  \t desc:play \t\t\t type: todo \n date: \t 01-01-2020 "
+                        + "\n status:incomplete",
+                expectedFindCommand);
     }
 
+    @Test
+    public void parse_emptyArgs_returnsFalse() {
+        // throw error if argument is empty
+        assertParseFailure(parser, " title:", MESSAGE_EMPTY_SEARCH_PHRASE);
+        assertParseFailure(parser, " desc:", MESSAGE_EMPTY_SEARCH_PHRASE);
+        assertParseFailure(parser, " type:", MESSAGE_EMPTY_SEARCH_PHRASE);
+        assertParseFailure(parser, " status:", MESSAGE_EMPTY_SEARCH_PHRASE);
+        assertParseFailure(parser, " date:", MESSAGE_EMPTY_SEARCH_PHRASE);
+
+        // one of the attribute is empty
+        assertParseFailure(parser, " title:abc date: desc:edf", MESSAGE_EMPTY_SEARCH_PHRASE);
+
+        // space is trimmed. empty spaces also considered empty
+        assertParseFailure(parser, " desc:abc date:  ", MESSAGE_EMPTY_SEARCH_PHRASE);
+    }
+
+    @Test
+    public void parse_argsWrongFormat_returnsFalse() {
+        // throw error if argument is invalid
+        assertParseFailure(parser, " title:@@", Title.SEARCH_CONSTRAINTS);
+        assertParseFailure(parser, " desc:@@", Description.SEARCH_CONSTRAINTS);
+        assertParseFailure(parser, " type:123", Type.SEARCH_CONSTRAINTS);
+        assertParseFailure(parser, " status:comple", Status.SEARCH_CONSTRAINTS);
+        assertParseFailure(parser, " date:01-01-202", DateTime.SEARCH_CONSTRAINTS);
+        assertParseFailure(parser, " date:13", DateTime.SEARCH_CONSTRAINTS);
+
+        // one of the attribute is invalid
+        assertParseFailure(parser, " title:abc# date: desc:edf", Title.SEARCH_CONSTRAINTS);
+    }
 }

@@ -2,6 +2,8 @@ package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+
 /**
  * Represents a Task's Status in the PlaNus task list.
  * Guarantees: immutable;
@@ -9,8 +11,13 @@ import static java.util.Objects.requireNonNull;
 public class Status {
 
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "The value is from the enum class State";
+    public static final String ACCEPTED_STATUS = listAcceptedStatus();
+    public static final String MESSAGE_CONSTRAINTS = String.format("Value for status can only be one of "
+            + "the following: %s.", ACCEPTED_STATUS);
+    public static final String SEARCH_CONSTRAINTS = String.format("Search phrase for Status can only be one of "
+            + "the following: %s.", ACCEPTED_STATUS);
+
+
     public final State value;
 
     /**
@@ -38,8 +45,20 @@ public class Status {
     }
 
     /**
+     * Returns all possible status of a task.
+     * @return a String containing all possible status of a task.
+     */
+    private static String listAcceptedStatus() {
+        ArrayList<String> listOfAcceptedStatus = new ArrayList<>();
+        for (State state : State.values()) {
+            listOfAcceptedStatus.add(state.toString());
+        }
+        return String.join(", ", listOfAcceptedStatus);
+    }
+
+    /**
      * Return true if the state in param is same as value, else return false.
-     * @param state
+     * @param state a State object.
      */
     public boolean is(State state) {
         return value.equals(state);
