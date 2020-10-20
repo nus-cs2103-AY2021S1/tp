@@ -1,0 +1,17 @@
+@startuml
+scale 0.5
+start
+:User executes command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([sort by leastReviewed])
+    :Updates filteredFlashcardList sorted by least reviewed;
+elseif () then ([sort by mostReviewed])
+       :Updates filteredFlashcardList sorted by most reviewed;
+else ([sort by leastCorrect])
+    :Updates filteredFlashcardList sorted by least correct;
+endif
+stop
+@enduml
