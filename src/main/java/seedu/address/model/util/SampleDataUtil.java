@@ -44,11 +44,11 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyPlanus getSamplePlanus() {
-        Planus sampleAb = new Planus();
+        Planus samplePlanus = new Planus();
         for (Task sampleTask : getSampleTasks()) {
-            sampleAb.addTask(sampleTask);
+            samplePlanus.addTask(sampleTask);
         }
-        return sampleAb;
+        return samplePlanus;
     }
 
     /**

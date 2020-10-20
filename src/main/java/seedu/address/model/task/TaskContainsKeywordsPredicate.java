@@ -80,7 +80,7 @@ public class TaskContainsKeywordsPredicate implements Predicate<Task> {
 
         if (prefix.equals("date:")) {
             return words.stream()
-                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getDateTime().value, keyword));
+                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getDateTime().toString(), keyword));
         }
 
         if (prefix.equals("type:")) {
