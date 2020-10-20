@@ -9,18 +9,40 @@ import java.util.function.Predicate;
  */
 public class FindTaskCriteria {
 
+    /**
+     * List of predicates to be used to test for matching task.
+     */
     private final List<Predicate<Task>> predicateList = new ArrayList<>();
 
+    /**
+     * Adds a predicate into the list of predicates.
+     *
+     * @param predicate Predicate to be added.
+     */
     public void addPredicate(Predicate<Task> predicate) {
         predicateList.add(predicate);
     }
 
+    /**
+     * Composes all the predicates in the predicateList field into one predicate to
+     * be used to test for matching tasks.
+     *
+     * @return Predicate composed of each individual predicate in predicateList.
+     */
     public Predicate<Task> getFindTaskPredicate() {
+        assert !predicateList.isEmpty() : "Predicate List cannot be empty";
         Predicate<Task> findTaskPredicate = predicateList.get(0);
         for (int i = 1; i < predicateList.size(); i++) {
-            findTaskPredicate.and(predicateList.get(i));
+            findTaskPredicate = findTaskPredicate.and(predicateList.get(i));
         }
         return findTaskPredicate;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FindTaskCriteria // instanceof handles nulls
+                && predicateList.equals(((FindTaskCriteria) other).predicateList));
+    }
 }
+

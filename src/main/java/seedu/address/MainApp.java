@@ -80,7 +80,7 @@ public class MainApp extends Application {
         Optional<ReadOnlyModuleList> moduleListOptional;
         ReadOnlyModuleList initialData;
         ReadOnlyTodoList initialTodoList = new TodoList();
-        ReadOnlyContactList initalContactList = new ContactList();
+        ReadOnlyContactList initialContactList = new ContactList();
         try {
             moduleListOptional = storage.readModuleList();
             if (!moduleListOptional.isPresent()) {
@@ -98,7 +98,7 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty ModuleList");
             initialData = new ModuleList();
         }
-        return new ModelManager(initialData, initalContactList, initialTodoList, userPrefs);
+        return new ModelManager(initialData, initialContactList, initialTodoList, userPrefs);
     }
 
     private void initLogging(Config config) {
