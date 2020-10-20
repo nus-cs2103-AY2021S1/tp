@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.deliverycommand.DeliveryClearCommand;
+import seedu.address.logic.commands.deliverycommand.DeliveryDeleteCommand;
 import seedu.address.logic.commands.deliverycommand.DeliveryFindCommand;
 import seedu.address.logic.commands.deliverycommand.DeliveryListCommand;
 import seedu.address.logic.commands.help.HelpCommand;
@@ -55,9 +56,13 @@ public class OneShelfBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        ItemDeleteCommand command = (ItemDeleteCommand) parser.parseCommand(
+        ItemDeleteCommand itemCommand = (ItemDeleteCommand) parser.parseCommand(
                 ItemDeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_ITEM.getOneBased());
-        assertEquals(new ItemDeleteCommand(INDEX_FIRST_ITEM), command);
+        assertEquals(new ItemDeleteCommand(INDEX_FIRST_ITEM), itemCommand);
+
+        DeliveryDeleteCommand deliveryCommand = (DeliveryDeleteCommand) parser.parseCommand(
+                DeliveryDeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_ITEM.getOneBased());
+        assertEquals(new DeliveryDeleteCommand(INDEX_FIRST_ITEM), deliveryCommand);
     }
 
     @Test
