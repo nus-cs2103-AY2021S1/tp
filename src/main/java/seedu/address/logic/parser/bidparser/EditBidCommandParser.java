@@ -48,7 +48,7 @@ public class EditBidCommandParser implements Parser<EditBidCommand> {
             editBidDescriptor.setBidderId(IdParserUtil.parseBidderId(argMultimap.getValue(PREFIX_CLIENT).get()));
         }
         if (argMultimap.getValue(PREFIX_MONEY).isPresent()) {
-            editBidDescriptor.setBidAmount(ParserUtil.parseBidAmount(argMultimap.getValue(PREFIX_MONEY).get()));
+            editBidDescriptor.setBidAmount(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_MONEY).get()));
         }
 
         if (!editBidDescriptor.isAnyFieldEdited()) {

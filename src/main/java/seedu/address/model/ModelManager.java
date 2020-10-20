@@ -350,6 +350,11 @@ public class ModelManager implements Model {
         meetingBook.setMeeting(target, editedMeeting);
     }
 
+    @Override
+    public void sortMeeting() {
+        //filteredMeetings.sortMeeting();
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
