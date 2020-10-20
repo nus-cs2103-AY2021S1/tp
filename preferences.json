@@ -3,10 +3,9 @@
     "windowWidth" : 740.0,
     "windowHeight" : 600.0,
     "windowCoordinates" : {
-      "x" : 1492,
-      "y" : 334
+      "x" : 323,
+      "y" : 68
     }
   },
   "addressBookFilePath" : "data\\hospify.json"
-
 }
