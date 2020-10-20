@@ -125,7 +125,8 @@ public class ModelManager implements Model {
                 lst.add(filteredFood);
             }
         }
-        for (Food filteredFood : lst) {
+        while (!lst.isEmpty()) {
+            Food filteredFood = lst.remove(0);
             mcGymmy.removeFood(filteredFood);
         }
 
