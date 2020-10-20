@@ -53,7 +53,7 @@ public interface Model {
     ReadOnlyZooKeepBook getZooKeepBook();
 
     /**
-     * Returns true if a animal with the same identity as {@code animal} exists in the zookeep book.
+     * Returns true if an animal with the same identity as {@code animal} exists in the zookeep book.
      */
     boolean hasAnimal(Animal animal);
 

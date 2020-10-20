@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.animal.Animal;
 
 /**
- * Adds a animal to the zookeep book.
+ * Adds an animal to the zookeep book.
  */
 public class AddCommand extends Command {
 

@@ -59,7 +59,7 @@ public class ZooKeepBook implements ReadOnlyZooKeepBook {
     //// animal-level operations
 
     /**
-     * Returns true if a animal with the same identity as {@code animal} exists in the zookeep book.
+     * Returns true if an animal with the same identity as {@code animal} exists in the zookeep book.
      */
     public boolean hasAnimal(Animal animal) {
         requireNonNull(animal);
@@ -67,7 +67,7 @@ public class ZooKeepBook implements ReadOnlyZooKeepBook {
     }
 
     /**
-     * Adds a animal to the zookeep book.
+     * Adds an animal to the zookeep book.
      * The animal must not already exist in the zookeep book.
      */
     public void addAnimal(Animal p) {
