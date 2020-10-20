@@ -1,6 +1,8 @@
 package seedu.address.storage;
 
 import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,14 +25,20 @@ class JsonAdaptedTag {
 
     private final String fileAddress;
 
+    private final Set<JsonAdaptedDescription> descriptions = new HashSet<>();
+
     /**
      * Constructs a {@code JsonAdaptedTag} with the given tag details.
      */
     @JsonCreator
     public JsonAdaptedTag(@JsonProperty("tagName") String tagName,
-                          @JsonProperty("fileAddress") String fileAddress) {
+                          @JsonProperty("fileAddress") String fileAddress,
+                          @JsonProperty("descriptions") Set<JsonAdaptedDescription> descriptions) {
         this.tagName = tagName;
         this.fileAddress = fileAddress;
+        if (descriptions != null) {
+            this.descriptions.addAll(descriptions);
+        }
     }
 
     /**
@@ -39,6 +47,9 @@ class JsonAdaptedTag {
     public JsonAdaptedTag(Tag source) {
         tagName = source.getTagName().tagName;
         fileAddress = source.getFileAddress().value;
+        descriptions.addAll(source.getDescriptions().stream()
+                        .map(JsonAdaptedDescription::new)
+                        .collect(Collectors.toList()));
     }
 
     /**
@@ -47,6 +58,10 @@ class JsonAdaptedTag {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Tag toModelType() throws IllegalValueException {
+        final Set<Description> personDescriptions = new HashSet<>();
+        for (JsonAdaptedDescription desc : descriptions) {
+            personDescriptions.add(desc.toModelType());
+        }
 
         if (tagName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TagName.class.getSimpleName()));
@@ -66,8 +81,9 @@ class JsonAdaptedTag {
         }
         final FileAddress modelFileAddress = new FileAddress(fileAddress);
 
-        //TODO: NEED TO MODIFY DESCRIPTION
-        return new Tag(modelName, modelFileAddress, new HashSet<Description>());
+        final Set<Description> modelDescriptions = new HashSet<>(personDescriptions);
+
+        return new Tag(modelName, modelFileAddress, modelDescriptions);
     }
 
 }
