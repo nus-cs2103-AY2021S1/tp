@@ -70,3 +70,4 @@ deactivate EditAccountCommand
 
 deactivate LogicManager
 @enduml
+
