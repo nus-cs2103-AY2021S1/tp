@@ -1,13 +1,8 @@
 package seedu.address.model.util;
 
-import java.util.HashSet;
-
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.label.Label;
-import seedu.address.model.tag.FileAddress;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.TagName;
 
 
 /**
@@ -15,27 +10,7 @@ import seedu.address.model.tag.TagName;
  */
 public class SampleDataUtil {
     public static Tag[] getSampleTags() {
-        //TODO: NEED TO MODIFY DESCRIPTION
-        return new Tag[] {
-            new Tag(new TagName("Alex Yeoh"),
-                new FileAddress("c:\\a\\b\\alex.txt"),
-                    new HashSet<Label>()),
-            new Tag(new TagName("Bernice Yu"),
-                new FileAddress("c:\\a\\b\\bernice.txt"),
-                new HashSet<Label>()),
-            new Tag(new TagName("Charlotte Oliveiro"),
-                new FileAddress("c:\\a\\b\\charlotte.txt"),
-                new HashSet<Label>()),
-            new Tag(new TagName("David Li"),
-                new FileAddress("c:\\a\\b\\david.txt"),
-                new HashSet<Label>()),
-            new Tag(new TagName("Irfan Ibrahim"),
-                new FileAddress("c:\\a\\b\\irfan.txt"),
-                new HashSet<Label>()),
-            new Tag(new TagName("Roy Balakrishnan"),
-                new FileAddress("c:\\a\\b\\roy.txt"),
-                    new HashSet<Label>())
-        };
+        return new Tag[] {};
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
@@ -45,6 +20,4 @@ public class SampleDataUtil {
         }
         return sampleAb;
     }
-
-
 }
