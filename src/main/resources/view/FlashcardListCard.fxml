@@ -28,10 +28,10 @@
           </minWidth>
         </Label>
         <Label fx:id="question" text="\$question" styleClass="cell_big_label" />
+        <Text fx:id="favouriteIcon"  text="\$favouriteIcon"/>
         <padding>
           <Insets  bottom="10"/>
         </padding>
-        <Text fx:id="favouriteIcon"  text="\$favouriteIcon"/>
       </HBox>
       <FlowPane fx:id="tags" />
       <HBox>
