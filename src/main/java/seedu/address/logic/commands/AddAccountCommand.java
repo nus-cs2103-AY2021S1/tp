@@ -18,7 +18,7 @@ public class AddAccountCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an Account to "
             + "Common Cents\n"
             + "Parameters: "
-            + PREFIX_NAME + "ACCOUNT NAME ";
+            + "Example: " + PREFIX_NAME + "ACCOUNT NAME ";
 
     public static final String MESSAGE_SUCCESS = "New account added! %1$s";
     private static final String MESSAGE_DUPLICATE_ACCOUNT = "This account already exists in the app!";

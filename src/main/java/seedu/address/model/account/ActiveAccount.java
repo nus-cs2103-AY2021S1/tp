@@ -22,7 +22,12 @@ public interface ActiveAccount {
      */
     void setActiveAccount(ReadOnlyAccount newActiveAccount);
 
-    /** Returns the Active Account */
+    /**
+     * Replaces the name of the account with {@code name}.
+     */
+    public void setName(Name name);
+
+    /** Returns a copy of the Active Account */
     Account getAccount();
 
     /**
