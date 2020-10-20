@@ -40,7 +40,7 @@ public class DateTime {
     }
 
     /**
-     * Constructs a default {@code DateTime} which is null.
+     * Constructs a default {@code DateTime}.
      *
      * Caveat: Only called by defaultDateTime method.
      */
