@@ -105,33 +105,36 @@ public class Task {
     }
 
     /**
-     * Returns true if both task have the same date.
+     * Returns true if this task has the specified date.
      *
-     * @param otherTask other task to be compared
-     * @return true if both task have the same date.
+     * @param date the specified date
+     * @return true if this task has the specified date.
      */
-    public boolean hasSameDate(Task otherTask) {
-        return getDate().equals(otherTask.getDate());
+    public boolean hasSameDate(Date date) {
+        requireNonNull(this.date);
+        return this.date.equals(date);
     }
 
     /**
-     * Returns true if both task have the same priority.
+     * Returns true if this task has the specified priority.
      *
-     * @param otherTask other task to be compared
-     * @return true if both task have the same priority.
+     * @param priority the specified priority
+     * @return true if this task has the specified priority
      */
-    public boolean hasSamePriority(Task otherTask) {
-        return getPriority().equals(otherTask.getPriority());
+    public boolean hasSamePriority(Priority priority) {
+        requireNonNull(this.priority);
+        return this.priority.equals(priority);
     }
 
     /**
-     * Returns true if both task have the same tag(s).
+     * Returns true if this task has the specified tag(s).
      *
-     * @param otherTask other task to be compared
-     * @return true if both task have the same tag(s).
+     * @param tag the specified tag
+     * @return true if this task has the specified tag(s)
      */
-    public boolean hasSameTag(Task otherTask) {
-        return getTag().equals(otherTask.getTag());
+    public boolean hasSameTag(Tag tag) {
+        requireNonNull(this.tag);
+        return this.tag.equals(tag);
     }
 
     /**
