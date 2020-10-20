@@ -217,6 +217,60 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Sort feature
+
+#### Proposed Implementation
+
+The proposed sort mechanism is facilitated by `ModelManager`. It extends `Flashcard` with a review frequency and correctness percentage, stored internally as `reviewFrequency` and `successRate`, based on the review activity done by the user. When the user enters review mode, the user activity will be tracked and the data will be sent and stored inside the individual `Flashcard`. This activity will then be used to facilitate the sort mechanism. 
+
+It implements the following operations:
+* `ModelManager#updateSortedFlashcardList(Comparator <Flashcard>)` - sorts the flashcard list according to a given condition, and updates the flashcard list shown.
+* `Flashcard#incrementReviewFrequency()` - increases the review frequency of a flashcard.
+* `Flashcard#incrementSuccessRate()` - increases the success rate of a flashcard.
+* `Flashcard#decrementSuccessRate()` - decreases the success rate of a flashcard.
+
+The `ModelManager#updateSortedFlashcardList(Comparator<Flashcard>)` operation is exposed in the `Model` interface as `Model#updateSortedFlashcardList(Comparator <Flashcard>)`.
+
+Given below is an example usage scenario and how the sort mechanism behaves at each step.
+
+Step 1. The user launches the application.
+
+![SortState0](images/SortState0.png)
+
+Step 2. The user executes `review` command to review the flashcard deck. The user reviews 3 out of 5 flashcards and exits review mode. The review command calls `Flashcard#incrementReviewFrequency()` for each flashcard that has been reviewed and `Flashcard#incrementSuccessRate()` or `Flashcard#decrementSuccessRate()` depending on whether the user successfully answers the question.
+
+![SortState1](images/SortState1.png)
+
+Step 3. The user executes `sort leastReviewed`. The `sort` command calls `Model#updateSortedFlashcardList`, causing the flashcards to be sorted by review frequency, in ascending order.
+
+![SortState2](images/SortState2.png)
+
+The following sequence diagram shows how the sort operation works:
+
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![SortActivityDiagram](images/SortActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How sort executes
+
+* **Alternative 1 (current choice):** Stores statistics in Flashcard and compares flashcard directly.
+  * Pros: Easy to implement.
+  * Cons: Flashcard will have to keep track of many data.
+
+* **Alternative 2:** Using a data structure (e.g. HashMap) to store statistics.
+  * Pros: Will use more memory, since the HashMap will have to be committed to local storage too.
+  * Cons: We must ensure that the any changes/updates to a flashcard will be reflected in the HashMap.
+
+_{more aspects and alternatives to be added}_
+
 
 --------------------------------------------------------------------------------------------------------------------
 

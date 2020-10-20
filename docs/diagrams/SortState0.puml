@@ -1,0 +1,32 @@
+@startuml
+!include style.puml
+scale 0.5
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title Initial state
+
+package States {
+    class ListState1 as "__ff1:ObservableList<Flashcard>__"
+    class ListState2 as "__ff2:ObservableList<Flashcard>__"
+
+    class Flashcard1State1 as "__fc1a:Flashcard__"
+    class Flashcard2State1 as "__fc2a:Flashcard__"
+    class Flashcard3State1 as "__fc3a:Flashcard__"
+
+}
+
+
+ListState1 -[hidden]right-> ListState2
+ListState2 -[hidden]right-> ListState3
+hide ListState2
+hide ListState3
+
+
+Flashcard1State1 --o ListState1
+Flashcard2State1 --o ListState1
+Flashcard3State1 --o ListState1
+
+class Pointer as "Current State" #FFFFF
+Pointer -up-> ListState1
+@end
