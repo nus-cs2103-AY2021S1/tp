@@ -38,6 +38,7 @@ public class DeleteQuestionCommand extends QuestionCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        assert (studentIndex != null) && (questionIndex != null);
         requireNonNull(model);
 
         List<Student> lastShownList = model.getFilteredPersonList();

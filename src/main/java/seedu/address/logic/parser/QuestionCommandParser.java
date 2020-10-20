@@ -63,12 +63,16 @@ public class QuestionCommandParser implements Parser<QuestionCommand> {
 
     private AddQuestionCommand getAddQuestionCommand(Index studentIndex, ArgumentMultimap argMultimap)
             throws ParseException {
+        assert argMultimap.getValue(PREFIX_ADD_QUESTION).isPresent();
+
         UnsolvedQuestion question = ParserUtil.parseQuestion(argMultimap.getValue(PREFIX_ADD_QUESTION).get());
         return new AddQuestionCommand(studentIndex, question);
     }
 
     private SolveQuestionCommand getSolveQuestionCommand(Index studentIndex, ArgumentMultimap argMultimap)
             throws ParseException {
+        assert argMultimap.getValue(PREFIX_SOLVE_QUESTION).isPresent();
+
         String userInput = argMultimap.getValue(PREFIX_SOLVE_QUESTION).get();
 
         final Pattern solutionFormat = Pattern.compile("(?<index>[0-9]+)(\\s)(?<solution>.*)");
@@ -86,6 +90,8 @@ public class QuestionCommandParser implements Parser<QuestionCommand> {
 
     private DeleteQuestionCommand getDeleteQuestionCommand(Index studentIndex, ArgumentMultimap argMultimap)
             throws ParseException {
+        assert argMultimap.getValue(PREFIX_DELETE_QUESTION).isPresent();
+
         Index questionIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_DELETE_QUESTION).get());
         return new DeleteQuestionCommand(studentIndex, questionIndex);
     }

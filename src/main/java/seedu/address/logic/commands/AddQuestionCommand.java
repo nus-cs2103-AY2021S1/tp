@@ -39,6 +39,7 @@ public class AddQuestionCommand extends QuestionCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        assert (index != null) && (questionToAdd != null);
         requireNonNull(model);
 
         List<Student> lastShownList = model.getFilteredPersonList();
