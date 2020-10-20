@@ -1,12 +1,12 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
@@ -38,7 +38,7 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + patient.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + patient.getAddress().value + " ");
         patient.getAllergies().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.allergyName + " ")
+            s -> sb.append(PREFIX_ALLERGY + s.allergyName + " ")
         );
         sb.append(PREFIX_MEDICAL_RECORD + patient.getMedicalRecord().value + " ");
         return sb.toString();
@@ -57,9 +57,9 @@ public class PersonUtil {
         if (descriptor.getAllergies().isPresent()) {
             Set<Allergy> allergies = descriptor.getAllergies().get();
             if (allergies.isEmpty()) {
-                sb.append(PREFIX_TAG).append(" ");
+                sb.append(PREFIX_ALLERGY).append(" ");
             } else {
-                allergies.forEach(s -> sb.append(PREFIX_TAG).append(s.allergyName).append(" "));
+                allergies.forEach(s -> sb.append(PREFIX_ALLERGY).append(s.allergyName).append(" "));
             }
         }
         descriptor.getMedicalRecord().ifPresent(url -> sb.append(PREFIX_MEDICAL_RECORD).append(url.value).append(" "));
