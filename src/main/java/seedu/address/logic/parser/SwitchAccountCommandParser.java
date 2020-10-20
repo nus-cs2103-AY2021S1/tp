@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DeleteAccountCommand;
 import seedu.address.logic.commands.SwitchAccountCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.util.ParserUtil;
@@ -23,7 +22,7 @@ public class SwitchAccountCommandParser implements Parser<SwitchAccountCommand> 
             return new SwitchAccountCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteAccountCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SwitchAccountCommand.MESSAGE_USAGE), pe);
         }
     }
 
