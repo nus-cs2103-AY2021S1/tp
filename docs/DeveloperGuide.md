@@ -254,6 +254,44 @@ will be retained.
 
 </div>
 
+### Meeting Feature
+
+#### Find Meeting Feature
+The find meeting feature finds meetings with various different inputs. The user is able to find meetings based on 
+attributes such as venue, time, bidderId or the propertyId. The user simply has to use the relevant prefixes and add
+in a string that is contained in any of the meetings attributes and the fid feature will return you a list of the 
+meetings that contain them.
+
+1. ```LogicManager``` executes the user input. 
+2. It calls ```AddressBookParser``` to parse the user input, which creates an ```FindMeetingCommandParser```, as 
+identified by the command word "find-m".
+3. The ```FindMeetingCommandParser``` creates different predicate objects based on the inputs.
+ if "/v" is used, ```VenueContainsKeywordsPredicate``` object will be created. If "/t" is used, ```TimeContainsKeywordsPredicate``` 
+ object will be created. If "/b" is used, ```BidderIdContainsKeywordsPredicateobject``` will be created. If "/p" is used, 
+ ```PropertyIdContainsKeywordsPredicate``` object will be created.
+4. The ```FindMeetingCommandParser``` creates an ```FindMeetingCommand``` with the above predicate. The command
+is returned to the ```LogicManager```.
+5. The ```LogicManager``` calls ```FindMeetingCommand#execute()```, which adds the list of meetings that satisfy the predicate
+ into ```MeetiongBook``` via the ```Model``` interface.
+6. Finally, a ```CommandResult``` with the relevant feedback is returned to the ```LogicManager```.
+
+The following sequence diagram shows the process of executing an ```FindMeetingCommand```.
+![FineMeetingActivityDiagram](images/meeting/FindMeetingActivityDiagram.png)
+  
+#### Sort Meeting Feature
+The sort meeting feature sorts the meetings based on the different timings of the meetings from the earliest meeting
+to the last meeting in chronological order.
+1. ```LogicManager``` executes the user input. 
+2. It calls ```AddressBookParser``` to parse the user input, which creates an ```SortMeetingCommandParser```, as 
+identified by the command word "sort-m".
+3. The ```SortMeetingCommandParser``` creates a ```SortMeetingComparator``` comparator object.
+4. The ```SortMeetingCommandParser``` creates a ```SortMeetingCommand``` with the above comparator. The command
+is returned to the ```LogicManager```.
+5. The ```LogicManager``` calls ```SortMeetingCommand#execute()```, which adds a new duplicate list of meetings that is
+ sorted in chronological order in ```MeetingBook``` via the ```Model``` interface.
+6. Finally, a ```CommandResult``` with the relevant feedback is returned to the ```LogicManager```.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
