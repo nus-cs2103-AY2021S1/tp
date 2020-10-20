@@ -18,8 +18,12 @@ public class NameContainsKeywordsPredicate implements Predicate<Food> {
 
     @Override
     public boolean test(Food food) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(food.getName().fullName, keyword));
+        try {
+            return keywords.stream()
+                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(food.getName().fullName, keyword));
+        } catch (Exception e) {
+            return true;
+        }
     }
 
     @Override

@@ -91,7 +91,7 @@ public class FindCommand extends Command {
             }
         }
         if (combinedPredicate == null) {
-            combinedPredicate = food -> false;
+            combinedPredicate = food -> true;
         }
         model.updateFilteredFoodList(combinedPredicate);
         return new CommandResult(

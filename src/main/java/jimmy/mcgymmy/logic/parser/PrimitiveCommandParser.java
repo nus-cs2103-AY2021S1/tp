@@ -36,6 +36,7 @@ public class PrimitiveCommandParser {
     private final Map<String, String> commandDescriptionTable;
     private final CommandLineParser parser;
     private final PrimitiveCommandHelpUtil helpUtil;
+
     /**
      * Creates a new McGymmyParser
      */
@@ -80,7 +81,7 @@ public class PrimitiveCommandParser {
      * Parses a raw input string from the user into an executable Command.
      *
      * @param commandName name of the command. Typically the first word in the line.
-     * @param arguments array of String arguments to the command.
+     * @param arguments   array of String arguments to the command.
      * @return Command if parsing is successful
      * @throws ParseException if command is not found
      * @throws ParseException if a required argument to the command is not supplied
@@ -102,7 +103,7 @@ public class PrimitiveCommandParser {
         Options options = parameterSet.asOptions();
         try {
             CommandLine cmd = this.parser.parse(options, arguments);
-            this.provideValuesToParameterSet(cmd, parameterSet);
+            this.provideValuesToParameterSet(commandName, cmd, parameterSet);
             return result;
         } catch (org.apache.commons.cli.ParseException | ParseException e) {
             String message = e.getMessage() + "\n" + helpUtil.getUsage(commandName, parameterSet);
@@ -114,17 +115,19 @@ public class PrimitiveCommandParser {
      * Helper function that takes values in the commons-cli CommandLine object
      * and puts them in the parameterList
      * TODO do we need to refactor this?
+     *
      * @param cmd          CommandLine object to take values from
      * @param parameterSet parameterSet to put values in
      * @throws ParseException if any of the parameter's conversion functions breaks (wrongly formatted argument)
      */
-    private void provideValuesToParameterSet(CommandLine cmd, ParameterSet parameterSet) throws ParseException {
+    private void provideValuesToParameterSet(String commandName,
+                                             CommandLine cmd, ParameterSet parameterSet) throws ParseException {
         List<AbstractParameter> parameterList = parameterSet.getParameterList();
         for (AbstractParameter parameter : parameterList) {
             String flag = parameter.getFlag();
             if (flag.equals("")) {
                 List<String> unconsumedArgs = cmd.getArgList();
-                if (unconsumedArgs.size() == 0) {
+                if (unconsumedArgs.size() == 0 && (!commandName.equals("find"))) {
                     String message = parameterSet.getUnnamedParameter()
                             .map(param -> String.format("Missing required option: %s", param.getName()))
                             .orElseGet(() -> "");
@@ -145,6 +148,7 @@ public class PrimitiveCommandParser {
     /**
      * Adds a new command into the parser.
      * Package private for testing purposes.
+     *
      * @param name            Name of command to be added
      * @param commandSupplier a constructor of the command taking no arguments
      */

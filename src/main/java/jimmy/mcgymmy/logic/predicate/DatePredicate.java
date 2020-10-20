@@ -19,24 +19,26 @@ public class DatePredicate implements Predicate<Food> {
     /**
      * Initialises {@code DatePredicate} object.
      */
-    public DatePredicate(String date) {
+    public DatePredicate(String date) throws ParseException {
         Date date1 = null;
         try {
             Date parsedDate = ParserUtil.parseDate(date);
             date1 = parsedDate;
         } catch (ParseException e) {
             logger.info("Invalid date: " + date);
+            throw new ParseException("Invalid date: " + date);
         }
         this.date = date1;
     }
 
     /**
      * Check if the food contains the same date as the input (format insensitive)
+     *
      * @param food The food to be checked
      * @return True if Food contains the date equal to the input date, false otherwise
      */
     @Override
     public boolean test(Food food) {
-        return this.date == food.getDate();
+        return this.date.equals(food.getDate());
     }
 }
