@@ -78,7 +78,7 @@ public class TaskCard extends UiPart<Region> {
             card.getChildren().remove(dateTimeHolder);
             return false;
         } else {
-            dateTime.setText(task.getDateTime().value.toString());
+            dateTime.setText(task.getDateTime().toString());
             return true;
         }
 

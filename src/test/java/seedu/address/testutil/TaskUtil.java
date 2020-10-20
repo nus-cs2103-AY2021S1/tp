@@ -30,12 +30,12 @@ public class TaskUtil {
      */
     public static String getTaskDetails(Task task) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_TITLE + task.getTitle().title + " ");
-        sb.append(PREFIX_DATE_TIME + task.getDateTime().value.toString() + " ");
-        sb.append(PREFIX_DESCRIPTION + task.getDescription().value + " ");
-        sb.append(PREFIX_TYPE + task.getType().value + " ");
-        task.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        sb.append(PREFIX_TITLE).append(task.getTitle().title).append(" ");
+        sb.append(PREFIX_DATE_TIME).append(task.getDateTime().toString()).append(" ");
+        sb.append(PREFIX_DESCRIPTION).append(task.getDescription().toString()).append(" ");
+        sb.append(PREFIX_TYPE).append(task.getType().value).append(" ");
+        task.getTags().forEach(
+            s -> sb.append(PREFIX_TAG).append(s.tagName).append(" ")
         );
         return sb.toString();
     }
@@ -46,8 +46,10 @@ public class TaskUtil {
     public static String getEditTaskDescriptorDetails(EditTaskDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getTitle().ifPresent(title -> sb.append(PREFIX_TITLE).append(title.title).append(" "));
-        descriptor.getDateTime().ifPresent(dateTime -> sb.append(PREFIX_DATE_TIME).append(dateTime.value).append(" "));
-        descriptor.getDescription().ifPresent(desc -> sb.append(PREFIX_DESCRIPTION).append(desc.value).append(" "));
+        descriptor.getDateTime()
+                .ifPresent(dateTime -> sb.append(PREFIX_DATE_TIME).append(dateTime.toString()).append(" "));
+        descriptor.getDescription()
+                .ifPresent(desc -> sb.append(PREFIX_DESCRIPTION).append(desc.toString()).append(" "));
         descriptor.getType().ifPresent(type -> sb.append(PREFIX_TYPE).append(type.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
