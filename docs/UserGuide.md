@@ -249,6 +249,26 @@ The set of used serial number sources is automatically saved to
 `[root directory]/data/serialnumbers.json` when any of these commands is executed:
 * add
 
+### Command Suggestion
+Sometimes user will type in wrong commands. Warenager will help such user by suggesting the correct format
+of the command if the command word is valid. If the command word is invalid, then Warenager will try to predict
+and suggest the closest command to whatever the user has typed.
+
+⚠ The suggestion will only be made if the command format is invalid or unknown. If the command is valid, but there
+are errors such as serial number not found, then Warenager will not suggest anything to the user and instead displays
+an error message.
+
+Example usages:
+
+* `del` <br>
+  Warenager will suggest: `delete sn/<serial number>` 
+* `delt sn/NUS1` <br>
+  Warenager will suggest: `delete sn/NUS1`
+* `ad n/Thai Tea s/Fairprice q/100` <br>
+  Warenager will suggest: `add n/Thai Tea s/Fairprice q/100 l/<location>`
+* `list n/Duck q/100` <br>
+  Warenager will suggest: `list`
+
 ### Exiting Warenager: `exit`
 Terminates the program.
 
