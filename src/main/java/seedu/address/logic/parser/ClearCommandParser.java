@@ -14,7 +14,7 @@ import seedu.address.logic.parser.util.ArgumentTokenizer;
 import seedu.address.logic.parser.util.ParserUtil;
 
 
-public class ClearCommandParser {
+public class ClearCommandParser implements Parser<ClearCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the ClearCommand
