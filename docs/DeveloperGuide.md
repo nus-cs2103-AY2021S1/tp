@@ -255,7 +255,7 @@ Step 1. The user launches the application. The `Flashcard` to be tested will be 
 
 ![TestState0](images/TestState0.png)
 
-Step 2. The user tests the command.
+Step 2. The user tests the flashcard with a specified `answer` or `option`.
 
 Step 2a. The user executes `test 1 ans/correct answer` command to test the `Flashcard`. The `test` command calls `Flashcard#getFlashcardAfterTestSuccess()`, and replaces the previously tested flashcard with the newly updated flashcard, changing its state.
 
@@ -269,7 +269,7 @@ The following sequence diagram shows how the test operation works:
 
 ![TestSequenceDiagram](images/TestSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following activity diagram summarizes what happens when a user executes a test command on a specified flashcard:
 
 ![TestActivityDiagram](images/TestActivityDiagram.png)
 
