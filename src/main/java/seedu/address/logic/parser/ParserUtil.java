@@ -23,6 +23,7 @@ import seedu.address.model.medicalcondition.MedicalCondition;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    private static final String TRAILING_ZEROES_REGEX = "^0+(?!$)";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -60,7 +61,7 @@ public class ParserUtil {
      */
     public static Id parseId(String id) throws ParseException {
         requireNonNull(id);
-        String trimmedId = id.trim();
+        String trimmedId = id.trim().replaceFirst(TRAILING_ZEROES_REGEX, "");
         if (!Id.isValidId(trimmedId)) {
             throw new ParseException(Id.MESSAGE_CONSTRAINTS);
         }
