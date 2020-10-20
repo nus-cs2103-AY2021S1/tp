@@ -95,6 +95,12 @@ public class CommandResult {
         this.oldReport = report;
     }
 
+    public CommandResult(String feedbackToUser, Patient profilePatient, ObservableList<Visit> profileReportList) {
+        this(feedbackToUser, false, false, false, false, true, false);
+        this.profilePatient = profilePatient;
+        this.reports = profileReportList;
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
@@ -105,6 +111,13 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isShowProfile() {
+        return isProfile;
+    }
+    public Patient getProfilePerson() {
+        return profilePatient;
     }
 
     @Override

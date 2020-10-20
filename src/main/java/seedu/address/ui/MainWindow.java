@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private CalendarDisplay calendarDisplay;
+    private ProfileWindow profilePanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -70,6 +71,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        profilePanel = new ProfileWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -168,6 +170,19 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+        profilePanel.hide();
+    }
+
+    /**
+     * Opens the profile panel or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleProfilePanel() {
+        if (!profilePanel.isShowing()) {
+            profilePanel.show();
+        } else {
+            profilePanel.focus();
+        }
     }
 
     public PatientListPanel getPatientListPanel() {
@@ -191,6 +206,11 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowProfile()) {
+                profilePanel.setup(commandResult.getProfilePerson(), logic);
+                handleProfilePanel();
             }
 
             return commandResult;
