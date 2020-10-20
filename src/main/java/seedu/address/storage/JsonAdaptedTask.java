@@ -5,13 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.Email;
-import seedu.address.model.contact.Name;
-import seedu.address.model.contact.Telegram;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.*;
-
-import java.util.PriorityQueue;
+import seedu.address.model.task.Date;
+import seedu.address.model.task.Priority;
+import seedu.address.model.task.Status;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskName;
 
 /**
  * Jackson-friendly version of {@link Contact}.

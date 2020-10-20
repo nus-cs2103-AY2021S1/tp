@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -15,7 +14,7 @@ import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyTodoList;
 
-public class JsonTodoListStorage implements TodoListStorage{
+public class JsonTodoListStorage implements TodoListStorage {
     private static final Logger logger = LogsCenter.getLogger(JsonTodoListStorage.class);
     private Path filePath;
 
