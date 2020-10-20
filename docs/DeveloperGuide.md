@@ -424,6 +424,35 @@ This process occurs inside the ```UniquePropertyList``` class.
 for testing purposes may have manually-added ```PropertyId```s, in which case, the ```PropertyId``` 
 will be retained. 
 
+
+### Meeting Feature
+
+#### Edit Meeting Feature
+
+The Edit Meeting feature edits an attribute of an exisiting meeting in the meeting book with the user defined attribute, such as the bidder id, property id, venue or time.
+
+1. ```LogicManager``` executes the user input. 
+2. It calls ```AddressBookParser``` to parse the user input, which creates an ```EditMeetingCommandParser```, as 
+identified by the command word "edit-m".
+3. The ```EditMeetingCommandParser``` creates a ```Meeting``` object, with the new attribute specified by the user and the attributes of the existing ```Meeting``` object.
+4. The ```EditMeetingCommandParser``` creates an ```EditMeetingCommand``` with the above meeting. The command
+is returned to the ```LogicManager```.
+5. The ```LogicManager``` calls ```EditMeetingCommand#execute()```, which adds the meeting to ```MeetingBook``` and removes the exisiting meeting from the ```MeetingBook```.
+via the ```Model``` interface.
+6. Finally, a ```CommandResult``` with the relevant feedback is returned to the ```LogicManager```.
+
+The following sequence diagram shows the process of executing an ```EditMeetingCommand```.
+![AddPropertySequenceDiagram](images/property/editMeeting.png)
+
+##### Meeting Type
+
+Each meeting has a specific type ```MeetingType``` of types paperwork, viewing or admin. The following activity diagram shows how the meeting object of the specific type is created:
+
+![AddPropertyIdManagementActivityDiagram](images/property/typeOfMeeting.png)
+
+This process occurs inside the ```AddMeetingCommand``` class where the meeting object is created and added to the MeetingBook.  
+
+
 </div>
 
 ### Meeting Feature
