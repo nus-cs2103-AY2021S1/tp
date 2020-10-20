@@ -26,7 +26,7 @@ public class DeleteRecipeCommand extends Command {
 
     public static final String MESSAGE_DELETE_RECIPE_SUCCESS = "Deleted Recipe: %1$s";
 
-    private static Logger logger = Logger.getLogger("RecommendLogger");
+    private static Logger logger = Logger.getLogger("DeleteLogger");
 
     private final Index toDelete;
 
