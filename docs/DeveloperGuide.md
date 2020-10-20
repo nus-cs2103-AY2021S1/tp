@@ -269,7 +269,7 @@ This graphical representation will be displayed on `GraphDisplayWindow` upon the
 * `PieChartData#collectData(ObservableList<Expense>)` — Retrieves required data.
 * `PieChartData#getData()` — Returns data of each `Tag` and the corresponding total expenditure.
 
-The interactions between `ExpenseBook` (which contains the in-memory data of expenses) and `GraphicalDisplayWindow` (which specifies the UI displayed) facilitated by `PieChartData` is given below. </br> 
+The interactions between `ExpenseBook` (which contains the in-memory data of expenses) and `GraphicalDisplayWindow` (which specifies the UI displayed) facilitated by `PieChartData` is given below. </br>
 
 ![ClassDiagram](images/GraphicalRepresentationClassDiagram.png)
 
@@ -291,17 +291,17 @@ The following activity diagram summarizes what happens when a user enters a grap
 
 #### Points to Note:
 
-* **UI classes to only act as placeholders** 
+* **UI classes to only act as placeholders**
   * UI formatting is separated from the backend logic.
   * Allows for dynamic updating of graphs.
-  
-* **Data re-retrieved upon every execution** 
+
+* **Data re-retrieved upon every execution**
   * Updates graph accordingly.
-  * Will not show outdated graphs. 
-  
-* **Easily extensible** 
+  * Will not show outdated graphs.
+
+* **Easily extensible**
   * Different sub-classes of `ChartData` can be implemented to collect a variety of meaningful data from `ExpenseBook` to be displayed by various UI classes in different formats.
-  
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

@@ -35,7 +35,7 @@ You can reach us through our respective emails.
 
 <img src="images/jaylenlee.png" width="200px">
 
-[[github](http://github.com/Jaylenlee)] 
+[[github](http://github.com/Jaylenlee)]
 [[portfolio](team/jaylenlee.md)]
 [[email](mailto:e0424677@u.nus.edu)]
 
