@@ -65,6 +65,7 @@ like managing staff performance and recruitment of applicants, faster than a typ
 Here are all the commands you can execute with Eva.
 - [Add a staff](#adding-a-staff) <br>
 - [Add a applicant](#adding-an-applicant) <br>
+- [Record a leave for a staff](#record-leave-taken-by-staff)
 
 
 ### Viewing help : `help`
