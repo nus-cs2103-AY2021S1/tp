@@ -43,7 +43,16 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private VBox personListPanelPlaceholder;
+    private VBox moduleListPanelPlaceholder;
+
+    @FXML
+    private VBox contactListPanelPlaceholder;
+
+    @FXML
+    private VBox taskListPanelPlaceholder;
+
+    @FXML
+    private VBox eventListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -113,7 +122,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
-        personListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
