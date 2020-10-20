@@ -37,9 +37,13 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added Target user profile, value proposition and user stories.
     * Added Command History Traversal under implementation
+    * Redesigned LogicClassDiagram.puml
+    * Redesigned LogicSequenceDiagram.puml
+    * Redesigned DeleteSequenceDiagram.puml
+    * Updated Logic API documentation
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=AY2021S1-CS2103T-T12-1&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=zoom&zA=xnoobftw&zR=AY2021S1-CS2103T-T12-1%2Ftp%5Bmaster%5D&zACS=156.8695652173913&zS=2020-08-14&zFS=AY2021S1-CS2103T-T12&zU=2020-09-26&zMG=false&zFTF=commit&zFGS=groupByRepos)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#54](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/54)
+  * PRs reviewed (with non-trivial review comments): [\#54](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/54) [\#87](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/87) [\#141](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/141) [\#147](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/147)
   * Reported bugs (such as: [GUI bug](https://github.com/AY2021S1-CS2103T-T12-1/tp/issues/47))
