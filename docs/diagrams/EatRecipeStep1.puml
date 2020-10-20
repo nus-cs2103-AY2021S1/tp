@@ -1,0 +1,20 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title Step 1
+
+class userInput
+class command
+
+package CollectionList {
+    class recipeList
+    class consumptionList
+}
+
+recipeList -[hidden]right-> consumptionList
+userInput -[hidden]up- recipeList
+userInput -> command
+
+@end
