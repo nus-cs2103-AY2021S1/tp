@@ -158,6 +158,8 @@ public class ModelManager implements Model {
     @Override
     public void unassignAllInstructors() {
         addressBook.unassignAllInstructors();
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
     //=========== Filtered Person List Accessors =============================================================
