@@ -19,7 +19,7 @@ import seedu.stock.model.stock.Source;
 import seedu.stock.model.stock.Stock;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddCommand object.
  */
 public class AddCommandParser implements Parser<AddCommand> {
 

@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path stockBookFilePath = Paths.get("data" , "stockbook.json");
+    private Path csvFilePath = Paths.get("data" , "stocks.csv");
     private Path serialNumberSetsBookFilePath = Paths.get("data", "serialnumbers.json");
 
     /**
@@ -51,6 +52,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     public Path getStockBookFilePath() {
         return stockBookFilePath;
+    }
+
+    public Path getCsvFilePath() {
+        return csvFilePath;
     }
 
     public void setStockBookFilePath(Path stockBookFilePath) {

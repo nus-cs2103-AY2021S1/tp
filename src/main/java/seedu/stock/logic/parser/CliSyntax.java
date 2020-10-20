@@ -25,6 +25,8 @@ public class CliSyntax {
     public static final String PREFIX_QUANTITY_DESCRIPTION = "<quantity>";
     public static final String PREFIX_SERIAL_NUMBER_DESCRIPTION = "<serial number>";
     public static final String PREFIX_STATISTICS_TYPE_DESCRIPTION = "<statistics type>";
+    public static final String PREFIX_NEW_QUANTITY_DESCRIPTION = "<new quantity>";
+    public static final String PREFIX_INCREMENT_QUANTITY_DESCRIPTION = "<increment value>";
 
 
     /**
@@ -64,6 +66,10 @@ public class CliSyntax {
             return PREFIX_SERIAL_NUMBER_DESCRIPTION;
         } else if (prefix.equals(PREFIX_STATISTICS_TYPE)) {
             return PREFIX_STATISTICS_TYPE_DESCRIPTION;
+        } else if (prefix.equals(PREFIX_NEW_QUANTITY)) {
+            return PREFIX_NEW_QUANTITY_DESCRIPTION;
+        } else if (prefix.equals(PREFIX_INCREMENT_QUANTITY)) {
+            return PREFIX_INCREMENT_QUANTITY_DESCRIPTION;
         } else {
             return "";
         }
