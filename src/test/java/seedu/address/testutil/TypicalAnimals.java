@@ -40,9 +40,9 @@ public class TypicalAnimals {
             .withSpecies("White Tiger").build();
 
     // Manually added
-    public static final Animal JIAJIA = new AnimalBuilder().withName("JiaJia").withId("000001")
+    public static final Animal JIAJIA = new AnimalBuilder().withName("JiaJia").withId("000011")
             .withSpecies("little india").build();
-    public static final Animal KAIKAI = new AnimalBuilder().withName("KaiKai").withId("000002")
+    public static final Animal KAIKAI = new AnimalBuilder().withName("KaiKai").withId("000023")
             .withSpecies("chicago ave").build();
 
     // Manually added - Animal's details found in {@code CommandTestUtil}

@@ -4,9 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_ARCHIE;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BAILEY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BAILEY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_PASHA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_ARTHRITIS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BAILEY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_PASHA;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAnimalAtIndex;
@@ -52,13 +53,12 @@ public class EditCommandTest {
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastAnimal = Index.fromOneBased(model.getFilteredAnimalList().size());
         Animal lastAnimal = model.getFilteredAnimalList().get(indexLastAnimal.getZeroBased());
-
         AnimalBuilder animalInList = new AnimalBuilder(lastAnimal);
-        Animal editedAnimal = animalInList.withName(VALID_NAME_BAILEY).withId(VALID_ID_BAILEY)
+        Animal editedAnimal = animalInList.withName(VALID_NAME_PASHA).withId(VALID_ID_PASHA)
                 .withMedicalConditions(VALID_MEDICAL_CONDITION_ARTHRITIS).build();
 
-        EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder().withName(VALID_NAME_BAILEY)
-                .withId(VALID_ID_BAILEY).withMedicalConditions(VALID_MEDICAL_CONDITION_ARTHRITIS).build();
+        EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder().withName(VALID_NAME_PASHA)
+                .withId(VALID_ID_PASHA).withMedicalConditions(VALID_MEDICAL_CONDITION_ARTHRITIS).build();
         EditCommand editCommand = new EditCommand(indexLastAnimal, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ANIMAL_SUCCESS, editedAnimal);

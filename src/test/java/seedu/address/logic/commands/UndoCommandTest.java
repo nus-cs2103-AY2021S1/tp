@@ -32,7 +32,7 @@ public class UndoCommandTest {
 
         ZooKeepBook bookB = new ZooKeepBook();
         bookB.addAnimal(new AnimalBuilder().withName("Bob").build());
-        bookB.addAnimal(new AnimalBuilder().withName("Tom").build());
+        bookB.addAnimal(new AnimalBuilder().withName("Tom").withId("1234").build());
 
         historyStack.addToHistory(bookA);
         historyStack.addToHistory(bookB);
