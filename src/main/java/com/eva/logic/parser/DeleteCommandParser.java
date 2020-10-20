@@ -10,6 +10,7 @@ import com.eva.commons.core.Messages;
 import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.Command;
 import com.eva.logic.commands.DeleteCommand;
+import com.eva.logic.parser.comment.CommentCommandParser;
 import com.eva.logic.parser.exceptions.ParseException;
 
 

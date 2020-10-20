@@ -49,7 +49,7 @@ public class StaffCard extends UiPart<Region> {
     private FlowPane leaves;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code StaffCard} with the given {@code Staff} and index to display.
      */
     public StaffCard(Staff staff, int displayedIndex) {
         super(FXML);
@@ -73,7 +73,7 @@ public class StaffCard extends UiPart<Region> {
 
     private Label leaveToDisplay(Leave leave) {
         return new Label(
-            leave.startDate == leave.endDate
+            leave.startDate.equals(leave.endDate)
                 ? dateToString(leave.startDate)
                 : String.format(
                     "%s to %s", dateToString(leave.startDate), dateToString(leave.endDate)));

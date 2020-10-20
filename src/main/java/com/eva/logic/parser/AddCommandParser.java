@@ -10,15 +10,16 @@ import static com.eva.logic.parser.CliSyntax.PREFIX_NAME;
 import static com.eva.logic.parser.CliSyntax.PREFIX_PHONE;
 import static com.eva.logic.parser.CliSyntax.PREFIX_STAFF;
 import static com.eva.logic.parser.CliSyntax.PREFIX_TAG;
+import static com.eva.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Stream;
 
 import com.eva.commons.core.Messages;
 import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.AddCommand;
 import com.eva.logic.commands.Command;
+import com.eva.logic.parser.comment.CommentCommandParser;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.comment.Comment;
 import com.eva.model.person.Address;
@@ -68,6 +69,7 @@ public class AddCommandParser implements Parser<Command> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand addParse(String args) throws ParseException {
@@ -90,14 +92,6 @@ public class AddCommandParser implements Parser<Command> {
         Person person = new Person(name, phone, email, address, tagList, commentList);
 
         return new AddCommand(person);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }

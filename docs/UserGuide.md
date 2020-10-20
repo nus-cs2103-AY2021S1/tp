@@ -25,13 +25,13 @@ like manage staff performance and recruitment applicants, faster than a typical 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : Lists all staffs and applicants.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the application.
+   * **`addstaff`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a staff named `John Doe` to the application.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete`**`3` : Deletes the 3rd person shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear`** : Clears the database.
 
    * **`exit`** : Exits the app.
 
@@ -68,19 +68,32 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a staff: `addstaff`
 
 Adds a person to the application.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A staff can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `addstaff n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+### Record leave taken by staff: `addleave`
+
+Adds a person to the application.
+Format: `addleave l/d:DATE [d:DATE]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Addition of multiple leaves using the same command is supported. A leave can have either one (single day) or two dates (start and end inclusive).
+</div>
+
+Examples:
+* `addleave l/d:08/10/2020 d:10/10/2020 l/d:20/10/2020`
+* `addleave l/d:10/10/2020 d:08/10/2020 l/d:09/09/2020`
 
 ### Listing all persons : `list`
 
@@ -171,7 +184,8 @@ _{explain the feature here}_
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**AddStaff** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+**AddLeave** | `addleave l/d:DATE [d:DATE]` <br> e.g., `addleave l/d:08/10/2020 d:10/10/2020 l/d:20/10/2020`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`

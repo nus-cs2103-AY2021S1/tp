@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 /**
- * Represents a Leave period in the address book.
+ * Represents a Leave period in the eva database.
  * Guarantees: immutable; date is valid if it is made;
  */
 public class Leave {
@@ -75,6 +75,18 @@ public class Leave {
     /**
      * Format state as text for viewing.
      */
+    public String toErrorMessage() {
+        if (startDate.equals(endDate)) {
+            return "on " + startDate;
+        } else {
+            return "from " + startDate + " to " + endDate;
+        }
+    }
+
+    /**
+     * Format state as text for viewing.
+     */
+    @Override
     public String toString() {
         if (startDate.equals(endDate)) {
             return String.format(SINGLE_DAY_LEAVE, leaveLength, startDate);

@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 class JsonAdaptedStaff {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Staff's %s field is missing!";
 
     private final String name;
     private final String phone;
@@ -82,9 +82,9 @@ class JsonAdaptedStaff {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted person object into the model's {@code Staff} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted staff.
      */
     public Staff toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();

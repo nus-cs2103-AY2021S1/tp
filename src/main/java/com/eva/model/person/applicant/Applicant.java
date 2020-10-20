@@ -28,10 +28,10 @@ public class Applicant extends Person {
                      Address address,
                      Set<Tag> tags,
                      Set<Comment> comments,
-                     InterviewDate interviewDate,
+                     Optional<InterviewDate> interviewDate,
                      ApplicationStatus status) {
         super(name, phone, email, address, tags, comments);
-        this.interviewDate = Optional.ofNullable(interviewDate);
+        this.interviewDate = interviewDate;
         this.applicationStatus = status;
     }
 
@@ -48,6 +48,17 @@ public class Applicant extends Person {
         super(name, phone, email, address, tags, comments);
         this.interviewDate = Optional.empty();
         this.applicationStatus = status;
+    }
+
+    /**
+     * Creates an Applicant object from a Person Object.
+     * @param person
+     * @param interviewDate
+     * @param status
+     */
+    public Applicant(Person person, InterviewDate interviewDate, ApplicationStatus status) {
+        this(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(),
+                person.getTags(), person.getComments(), Optional.ofNullable(interviewDate), status);
     }
 
     /**

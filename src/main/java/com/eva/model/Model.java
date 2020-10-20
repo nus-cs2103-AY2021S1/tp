@@ -1,10 +1,13 @@
 package com.eva.model;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import com.eva.commons.core.GuiSettings;
 import com.eva.model.person.Person;
+import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 
@@ -17,6 +20,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Staff> PREDICATE_SHOW_ALL_STAFFS = unused -> true;
+    Predicate<Applicant> PREDICATE_SHOW_ALL_APPLICANTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -41,7 +45,7 @@ public interface Model {
     /**
      * Returns the user prefs' persons data file path.
      */
-    Path getEvaDatabaseFilePath();
+    Path getPersonDatabaseFilePath();
 
     /**
      * Returns the user prefs' staff data file path.
@@ -49,17 +53,27 @@ public interface Model {
     Path getStaffDatabaseFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Returns the user prefs' applicant data file path.
      */
-    void setEvaDatabaseFilePath(Path evaDatabaseFilePath);
+    Path getApplicantDatabaseFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' person database file path.
+     */
+    void setPersonDatabaseFilePath(Path evaDatabaseFilePath);
+
+    /**
+     * Sets the user prefs' staff database file path.
      */
     void setStaffDatabaseFilePath(Path staffDatabaseFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Sets the user prefs' applicant database file path.
+     */
+    void setApplicantDatabaseFilePath(Path applicantDatabaseFilePath);
+
+    /**
+     * Replaces eva database data with the data in {@code addressBook}.
      */
     void setPersonDatabase(ReadOnlyEvaDatabase<Person> personDatabase);
 
@@ -67,19 +81,19 @@ public interface Model {
     ReadOnlyEvaDatabase<Person> getPersonDatabase();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the eva database.
      */
     boolean hasPerson(Person person);
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in the eva database.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in the eva database.
      */
     void addPerson(Person person);
 
@@ -90,14 +104,26 @@ public interface Model {
     void addStaffLeave(Staff target, Leave leave);
 
     /**
-     * Returns true if a staff with the same identity as {@code staff} exists in the address book.
+     * Deletes the given leave from the given staff.
+     * {@code leave} must already exist in the staff's {@code leaves}.
+     */
+    void deleteStaffLeave(Staff target, Leave leave);
+
+    /**
+     * Returns true if a staff with the same identity as {@code staff} has the same leave as {@code leave}.
      */
     boolean hasStaffLeave(Staff target, Leave leave);
 
     /**
+     * Returns true if a staff with the same identity as {@code staff} has the same leave as {@code leave}.
+     * @return
+     */
+    Optional<Leave> hasLeaveDate(Staff target, LocalDate date);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the eva database.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the eva database.
      */
     void setPerson(Person target, Person editedPerson);
 
@@ -111,7 +137,7 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces eva database data with the data in {@code addressBook}.
      */
     void setStaffDatabase(ReadOnlyEvaDatabase<Staff> personDatabase);
 
@@ -119,26 +145,26 @@ public interface Model {
     ReadOnlyEvaDatabase<Staff> getStaffDatabase();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the eva database.
      */
     boolean hasStaff(Staff person);
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in the eva database.
      */
     void deleteStaff(Staff target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in the eva database.
      */
     void addStaff(Staff person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the eva database.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the eva database.
      */
     void setStaff(Staff target, Staff editedPerson);
 
@@ -150,4 +176,45 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStaffList(Predicate<Staff> predicate);
+
+    /**
+     * Replaces eva database data with the data in {@code addressBook}.
+     */
+    void setApplicantDatabase(ReadOnlyEvaDatabase<Applicant> personDatabase);
+
+    /** Returns the EvaDatabase */
+    ReadOnlyEvaDatabase<Applicant> getApplicantDatabase();
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the eva database.
+     */
+    boolean hasApplicant(Applicant person);
+
+    /**
+     * Deletes the given person.
+     * The person must exist in the eva database.
+     */
+    void deleteApplicant(Applicant target);
+
+    /**
+     * Adds the given person.
+     * {@code person} must not already exist in the eva database.
+     */
+    void addApplicant(Applicant person);
+
+    /**
+     * Replaces the given person {@code target} with {@code editedPerson}.
+     * {@code target} must exist in the eva database.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the eva database.
+     */
+    void setApplicant(Applicant target, Applicant editedPerson);
+
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<Applicant> getFilteredApplicantList();
+
+    /**
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredApplicantList(Predicate<Applicant> predicate);
 }
