@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.CdCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.FileAddress;
 import seedu.address.model.tag.TagName;
@@ -43,8 +44,6 @@ public class ParserUtil {
         return new TagName(trimmedName);
     }
 
-
-
     /**
      * Parses a {@code String address} into an {@code FileAddress}.
      * Leading and trailing whitespaces will be trimmed.
@@ -58,6 +57,33 @@ public class ParserUtil {
             throw new ParseException(FileAddress.MESSAGE_CONSTRAINTS);
         }
         return new FileAddress(trimmedAddress);
+    }
+
+    public static String parseAbsoluteAddress(String address) throws ParseException {
+        requireNonNull(address);
+        String trimmedAddress = address.trim();
+        if (trimmedAddress.isBlank()) {
+            throw new ParseException(CdCommand.MESSAGE_BLANK_PATH);
+        }
+        return trimmedAddress;
+    }
+
+    public static String parseChildAddress(String address) throws ParseException {
+        requireNonNull(address);
+        String trimmedAddress = address.trim();
+        if (trimmedAddress.isBlank()) {
+            throw new ParseException(CdCommand.MESSAGE_BLANK_PATH);
+        }
+        return trimmedAddress;
+    }
+
+    public static String parseParentAddress(String address) throws ParseException {
+        requireNonNull(address);
+        String trimmedAddress = address.trim();
+        if (!trimmedAddress.isBlank()) {
+            throw new ParseException(CdCommand.MESSAGE_PARENT_PATH_NOT_BLANK);
+        }
+        return trimmedAddress;
     }
 
 }

@@ -32,6 +32,11 @@ public class CurrentPath {
         return address;
     }
 
+    public String getParentAddress() {
+        File file = new File(address.value);
+        return file.getParent();
+    }
+
     public void setAddress(FileAddress address) {
         requireNonNull(address);
         this.address = address;
