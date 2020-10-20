@@ -1,5 +1,7 @@
 package seedu.address.model.person.bidder;
 
+import static seedu.address.model.id.BidderId.DEFAULT_BIDDER_ID;
+
 import java.util.Set;
 
 import seedu.address.model.id.BidderId;
@@ -14,7 +16,6 @@ import seedu.address.model.tag.Tag;
  */
 public class Bidder extends ClientPerson {
 
-    public static final BidderId DEFAULT_BIDDER_ID = new BidderId(0);
     private BidderId bidderId;
 
     /**

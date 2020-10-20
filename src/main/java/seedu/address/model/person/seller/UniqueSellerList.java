@@ -2,7 +2,7 @@ package seedu.address.model.person.seller;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.person.seller.Seller.DEFAULT_SELLER_ID;
+import static seedu.address.model.id.SellerId.DEFAULT_SELLER_ID;
 
 import java.util.Iterator;
 import java.util.List;

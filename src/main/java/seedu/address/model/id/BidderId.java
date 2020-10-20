@@ -11,6 +11,7 @@ public class BidderId extends Id {
             + PREFIX_BIDDER_ID
             + "\", followed by"
             + "some numbers.";
+    public static final BidderId DEFAULT_BIDDER_ID = new BidderId("B0");
 
     public BidderId(int idNumber) {
         super(PREFIX_BIDDER_ID, idNumber);

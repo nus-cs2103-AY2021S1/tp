@@ -11,6 +11,7 @@ public class SellerId extends Id {
             + PREFIX_SELLER_ID
             + "\", followed by"
             + "some numbers.";
+    public static final SellerId DEFAULT_SELLER_ID = new SellerId("S0");
 
     public SellerId(int idNumber) {
         super(PREFIX_SELLER_ID, idNumber);

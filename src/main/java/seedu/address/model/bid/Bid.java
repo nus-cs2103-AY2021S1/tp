@@ -18,7 +18,6 @@ public class Bid {
             "Bidder Id should only contain one alphanumeric characters "
                      + "followed by numerical characters, and it should not be blank";
 
-    public static final String DEFAULT_PROPERTY_ID = "P0";
     private PropertyId propertyId;
     private BidderId bidderId;
     private double bidAmount;
