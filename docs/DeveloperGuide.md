@@ -81,10 +81,19 @@ The `UI` component,
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-W17-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `McGymmyParser` class to parse the user command.
-1. This results in a `Command` object which is executed by the `LogicManager`.
+1. This results in a `CommandExecutable` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a food item).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+
+Note that our implementation of this component is different from the one in the parent project, AddressBook3.
+One notable difference is the use of several `Parameter` classes in the various `Commands`.
+We list a few of the benefits of our redesigned solution below.
+
+1. The main motivation for this change was to facilitate the addition of the `macro` feature.
+2. The old design of the parser operated at too high an abstraction level, resulting in the developer having to create hideous objects like the `EditPersonDescriptor` to implement basic functionality.
+3. The new design allows us to code in a more declarative style which is more readable and arguably "self-documenting".
+4. Hiding details of each `Parameter` behind an additional layer of abstraction allows us to automate the creation of other features such as parsers for each individual `Command` and automatially generating `help` strings.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -92,6 +101,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+For more details on the new architecture you can visit this [pull request.](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/39). TODO: should I copy paste the details into to the DG? or leave as link
 
 ### Model component
 
@@ -217,6 +228,9 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Macro Command
+
+TODO short 1 2 paragraphs + seq diagram here
 
 --------------------------------------------------------------------------------------------------------------------
 
