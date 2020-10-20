@@ -12,6 +12,25 @@ This guide is made to help developers understand how McGymmy works.
 One of the major goals is to centralise all the jimmy.mcgymmy documentation within McGymmy itself.
 Another major goal is to better help developers extend McGymmy to improve on its features.
 
+##  Icon Legend
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** This indicates that the following text consists of tips to better utilise MG
+
+</div>
+:information_source: **Note:** This indicates important notes for current feature we are looking at<br>
+
+## A little note from the developers
+
+Thank you for using MG. We sincerely hope that MG plays apart to help you achieve a healthier lifestyle.
+We understand that MG may be a little different from traditional GUI applications and it may be a little difficult to start using it initially.
+Thus, we recommend you to start by first understanding how MG works at a high level at the Quick start section. Then, explore the Features section.
+
+<div markdown="block" class="alert alert-info">
+
+:bulb: **Tip:** Press Ctrl-F to open the find prompt in your browser. You can type in keywords such as `add` or `edit` to quickly navigate to those parts of the document.
+
+</div>
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
