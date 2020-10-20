@@ -156,6 +156,11 @@ public class Order implements Iterable<OrderItem> {
         return internalList.iterator();
     }
 
+    public int getQuantity(int index) {
+        assert(index < internalList.size());
+        return internalList.get(index).getQuantity();
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

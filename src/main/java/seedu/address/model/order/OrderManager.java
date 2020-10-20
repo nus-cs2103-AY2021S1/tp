@@ -131,6 +131,10 @@ public class OrderManager implements ReadOnlyOrderManager {
         return order.asUnmodifiableObservableList();
     }
 
+    public int getQuantity(int index) {
+        return order.getQuantity(index);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

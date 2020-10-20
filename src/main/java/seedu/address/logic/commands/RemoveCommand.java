@@ -58,6 +58,8 @@ public class RemoveCommand extends Command {
 
         if (order.size() <= index) {
             throw new CommandException(ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
+        } else if (model.getOrderItemQuantity(index) < quantity) {
+            throw new CommandException(ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_QUANTITY);
         }
         OrderItem oldItem = order.get(index);
 
