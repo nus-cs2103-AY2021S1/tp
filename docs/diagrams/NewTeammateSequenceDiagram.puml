@@ -1,0 +1,82 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MainCatalogueParser" as MainCatalogueParser LOGIC_COLOR
+participant ":NewTeammateCommandParser" as NewTeammateCommandParser LOGIC_COLOR
+participant ":NewTeammateCommand" as NewTeammateCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "Electrek:Project" as Project MODEL_COLOR
+end box
+
+[-> LogicManager : execute("newteammate...")
+activate LogicManager
+
+LogicManager -> Model: getStatus()
+activate Model
+
+Model --> LogicManager: status
+deactivate Model
+
+LogicManager -> MainCatalogueParser : parseCommand("newteammate...", status)
+activate MainCatalogueParser
+
+create NewTeammateCommandParser
+MainCatalogueParser -> NewTeammateCommandParser
+activate NewTeammateCommandParser
+
+NewTeammateCommandParser --> MainCatalogueParser
+deactivate NewTeammateCommandParser
+
+MainCatalogueParser -> NewTeammateCommandParser : parse("newteammate...")
+activate NewTeammateCommandParser
+
+create NewTeammateCommand
+NewTeammateCommandParser -> NewTeammateCommand
+activate NewTeammateCommand
+
+NewTeammateCommand --> NewTeammateCommandParser : teammate
+deactivate NewTeammateCommand
+
+NewTeammateCommandParser --> MainCatalogueParser : teammate
+deactivate NewTeammateCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+NewTeammateCommandParser -[hidden]-> MainCatalogueParser
+destroy NewTeammateCommandParser
+
+MainCatalogueParser --> LogicManager : teammate
+deactivate MainCatalogueParser
+
+LogicManager -> NewTeammateCommand : execute()
+activate NewTeammateCommand
+
+NewTeammateCommand -> Model : getProjectToBeDisplayedOnDashboard().get()
+activate Model
+
+Model --> NewTeammateCommand : Electrek
+deactivate Model
+
+NewTeammateCommand -> Project : addProject(project)
+activate Project
+
+Project --> NewTeammateCommand :
+deactivate Project
+
+create CommandResult
+NewTeammateCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> NewTeammateCommand
+deactivate CommandResult
+
+NewTeammateCommand --> LogicManager : result
+deactivate NewTeammateCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
