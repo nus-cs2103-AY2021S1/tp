@@ -2,7 +2,6 @@ package jimmy.mcgymmy.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import jimmy.mcgymmy.model.McGymmy;
 import jimmy.mcgymmy.model.Model;
 
 /**
