@@ -147,13 +147,13 @@ Format: `unpaid`
 (written by: Ying Gao)
 Adds, resolves or remove questions from a specified student.
 
-Format: `question INDEX [a/QUESTION_ADD] [s/QUESTION_INDEX] [d/QUESTION_INDEX]`
+Format: `question INDEX [a/QUESTION_ADD] [s/QUESTION_INDEX SOLUTION] [d/QUESTION_INDEX]`
 
 * Exactly one of the optional fields must be present.
 * The index and question index **must be positive integers** 1, 2, 3, …​
 * The `a/` field adds a new unanswered question to the student at the specified `INDEX`.
 * The `s/` field marks an unanswered question, of the student at the specified `INDEX`, at the specified 
-`QUESTION_INDEX` as solved.
+`QUESTION_INDEX` as solved with the given `SOLUTION`.
 * The `d/` field deletes the question at the specified `QUESTION_INDEX` from the student at the specified `INDEX`.
 
 Examples:
