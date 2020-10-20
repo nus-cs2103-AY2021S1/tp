@@ -41,6 +41,9 @@ public class SortCommand extends Command {
         case ID_KEYWORD:
             model.sortAnimals(AnimalComparator.ANIMAL_ID_COMPARATOR);
             break;
+        case FEEDTIME_KEYWORD:
+            model.sortAnimals(AnimalComparator.ANIMAL_FEEDTIME_COMPARATOR);
+            break;
         default:
             throw new CommandException(Messages.MESSAGE_INVALID_SORT_KEYWORD);
         }
