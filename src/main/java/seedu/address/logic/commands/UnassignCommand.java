@@ -26,7 +26,7 @@ public class UnassignCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_MODULE_CODE + "CS2103";
 
-    public static final String MESSAGE_ADD_ASSIGNMENT_SUCCESS = "Unassigned instructor from module(s)";
+    public static final String MESSAGE_UNASSIGNMENT_SUCCESS = "Unassigned instructor from module(s)";
 
     private final Index index;
     private final Set<ModuleCode> moduleCodes;
@@ -65,7 +65,7 @@ public class UnassignCommand extends Command {
             model.unassignInstructor(instructor, moduleCode);
         }
 
-        return new CommandResult(MESSAGE_ADD_ASSIGNMENT_SUCCESS);
+        return new CommandResult(MESSAGE_UNASSIGNMENT_SUCCESS);
     }
 
     @Override
