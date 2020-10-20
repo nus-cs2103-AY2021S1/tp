@@ -5,8 +5,11 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.task.FindTaskCriteria;
+import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskSearchCriteriaPredicate;
 
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 /**
@@ -24,16 +27,16 @@ public class FindTaskCommand extends Command {
 
     private final Logger logger = LogsCenter.getLogger(FindTaskCommand.class);
 
-    private final TaskSearchCriteriaPredicate predicate;
+    private final Predicate<Task> taskMatchesCriteriaPredicate;
 
-    public FindTaskCommand(TaskSearchCriteriaPredicate predicate) {
-        this.predicate = predicate;
+    public FindTaskCommand(FindTaskCriteria findTaskCriteria) {
+        this.taskMatchesCriteriaPredicate = findTaskCriteria.getFindTaskPredicate();
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredTodoList(predicate);
+        model.updateFilteredTodoList(taskMatchesCriteriaPredicate);
         logger.info("The following tasks matching all search criteria by the user have been found");
         return new CommandResult(
                 String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTodoList().size()));
@@ -43,7 +46,8 @@ public class FindTaskCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindTaskCommand // instanceof handles nulls
-                && predicate.equals(((FindTaskCommand) other).predicate)); // state check
+                && taskMatchesCriteriaPredicate.equals(
+                        ((FindTaskCommand) other).taskMatchesCriteriaPredicate)); // state check
     }
 
     @Override

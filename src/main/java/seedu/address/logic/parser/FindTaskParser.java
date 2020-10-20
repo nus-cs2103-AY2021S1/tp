@@ -8,13 +8,18 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Date;
+import seedu.address.model.task.FindTaskCriteria;
+import seedu.address.model.task.NameContainsKeywordsPredicate;
 import seedu.address.model.task.Priority;
-import seedu.address.model.task.TaskSearchCriteriaPredicate;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskMatchesDatePredicate;
+import seedu.address.model.task.TaskMatchesPriorityPredicate;
 
 /**
  * Parses input arguments and creates a new FindTaskCommand object
@@ -28,38 +33,46 @@ public class FindTaskParser implements Parser<FindTaskCommand> {
      * @throws ParseException If the user input does not conform the expected format.
      */
     public FindTaskCommand parse(String args) throws ParseException {
-        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME,
-                PREFIX_DATE, PREFIX_PRIORITY);
+        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME, PREFIX_DATE, PREFIX_PRIORITY);
         ArgumentMultimap argMultiMap = tokenizer.tokenize();
         if (!isAtLeastOnePrefixPresent(argMultiMap, PREFIX_NAME, PREFIX_DATE, PREFIX_PRIORITY)
                 || !argMultiMap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTaskCommand.MESSAGE_USAGE));
         }
-        String searchKeywords = argMultiMap.getValue(PREFIX_NAME).orElse("");
-        List<String> searchKeywordList = convertKeywordsIntoList(searchKeywords);
-
-        String dateAsString = argMultiMap.getValue(PREFIX_DATE).orElse("");
-        Date searchDate = parseSearchDate(dateAsString);
-
-        String priorityAsString = argMultiMap.getValue(PREFIX_PRIORITY).orElse("");
-        Priority searchPriority = parseSearchPriority(priorityAsString);
-
-        TaskSearchCriteriaPredicate predicate = new TaskSearchCriteriaPredicate(searchKeywordList,
-                searchDate, searchPriority);
-
-        return new FindTaskCommand(predicate);
+        FindTaskCriteria findTaskCriteria = new FindTaskCriteria();
+        if (argMultiMap.getValue(PREFIX_NAME).isPresent()) {
+            String keywords = argMultiMap.getValue(PREFIX_NAME).get();
+            List<String> keywordsAsList = parseSearchKeywords(keywords);
+            NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(keywordsAsList);
+            findTaskCriteria.addPredicate(namePredicate);
+        }
+        if (argMultiMap.getValue(PREFIX_DATE).isPresent()) {
+            String dateAsString = argMultiMap.getValue(PREFIX_DATE).get();
+            Date searchDate = parseSearchDate(dateAsString);
+            TaskMatchesDatePredicate datePredicate = new TaskMatchesDatePredicate(searchDate);
+            findTaskCriteria.addPredicate(datePredicate);
+        }
+        if (argMultiMap.getValue(PREFIX_PRIORITY).isPresent()) {
+            String priorityAsString = argMultiMap.getValue(PREFIX_PRIORITY).get();
+            Priority searchPriority = parseSearchPriority(priorityAsString);
+            TaskMatchesPriorityPredicate priorityPredicate = new TaskMatchesPriorityPredicate(searchPriority);
+            findTaskCriteria.addPredicate(priorityPredicate);
+        }
+        return new FindTaskCommand(findTaskCriteria);
     }
 
     /**
-     * Converts the String containing the search keywords provided by the user into a list of keywords.
+     * Parses the String containing the search keywords provided by the user into a list of keywords.
      *
      * @param keywords String containing search keywords provided by the user.
-     * @return Empty list if no search keywords was provided, otherwise a list of search keywords is returned.
+     * @return List of search keywords.
+     * @throws ParseException If no valid keywords were provided by the user.
      */
-    private List<String> convertKeywordsIntoList(String keywords) {
-        if (keywords.isEmpty()) {
-            return new ArrayList<>();
+    private List<String> parseSearchKeywords(String keywords) throws ParseException {
+        if (keywords.isBlank()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTaskCommand.MESSAGE_USAGE));
         } else {
             return Arrays.asList(keywords.split("\\s+"));
         }
@@ -74,7 +87,8 @@ public class FindTaskParser implements Parser<FindTaskCommand> {
      */
     private Date parseSearchDate(String date) throws ParseException {
         if (date.isEmpty()) {
-            return null;
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTaskCommand.MESSAGE_USAGE));
         } else {
             return ParserUtil.parseTaskDate(date);
         }
@@ -89,7 +103,8 @@ public class FindTaskParser implements Parser<FindTaskCommand> {
      */
     private Priority parseSearchPriority(String priority) throws ParseException {
         if (priority.isEmpty()) {
-            return null;
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTaskCommand.MESSAGE_USAGE));
         } else {
             return ParserUtil.parseTaskPriority(priority);
         }
