@@ -8,7 +8,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.patient.NricPredicate;
 
-
+/**
+ * Displays all appointments for a patient in Hospify.
+ */
 public class ShowApptCommand extends Command {
 
     public static final String COMMAND_WORD = "showAppt";
