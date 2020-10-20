@@ -368,25 +368,18 @@ The following activity diagram summarizes what happens when the suggestion featu
 
 ![SuggestionActivityDiagram](images/SuggestionActivityDiagram.png)
 
-#### Design consideration:
+#### Design Consideration
 
-##### Aspect: How undo & redo executes
+##### Aspect: String Comparison Heuristics
 
-* **Alternative 1 (current choice):** Saves the entire stock book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+* **Alternative 1 (current implementation):** minimum edit distance heuristic
+  * Pros: Provides a good estimate how far apart two strings are. A standard dynamic programming algorithm.
+  * Cons: Maybe hard to be understood to people who don't understand dynamic programming.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the stock being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+* **Alternative 2:** substring comparison
+  * Pros: Very simple to implement. A brute force algorithm that checks every substring.
+  * Cons: The distance estimate between two strings is quite bad, especially if no substring overlaps. Slow in speed
+    compared to minimum edit distance. Generates worse suggestion compared to minimum edit distance.
 
 --------------------------------------------------------------------------------------------------------------------
 
