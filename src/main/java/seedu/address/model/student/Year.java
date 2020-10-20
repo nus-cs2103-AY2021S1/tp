@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Year {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Years should only contain numerical characters, and it should not be blank";
+            "Years should only contain alphanumerical characters, and it should not be blank";
 
     /*
      * The first character of the year must not be a whitespace,
