@@ -21,8 +21,8 @@ public class CommandResult {
     /** Statistics data to be shown to the user, if any. */
     private final Map<String, Integer> statisticsData;
 
-    /** Statistics data type to be shown to the user, if any. */
-    private final String statisticsType;
+    /** Other statistics data details to be shown to the user, if any. */
+    private final String[] otherStatisticsDetails;
 
     /** The application should exit. */
     private final boolean exit;
@@ -34,12 +34,12 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, Map<String, Integer> statisticsData,
-                         boolean showHelp, boolean showStatistics, String statisticsType, boolean exit) {
+                         boolean showHelp, boolean showStatistics, String[] otherStatisticsDetails, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showStatistics = showStatistics;
         this.statisticsData = statisticsData;
-        this.statisticsType = statisticsType;
+        this.otherStatisticsDetails = otherStatisticsDetails;
         this.exit = exit;
     }
 
@@ -67,8 +67,8 @@ public class CommandResult {
         return this.statisticsData;
     }
 
-    public String getStatisticsType() {
-        return this.statisticsType;
+    public String[] getOtherStatisticsDetails() {
+        return this.otherStatisticsDetails;
     }
 
     public boolean isExit() {

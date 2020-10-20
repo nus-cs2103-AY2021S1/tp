@@ -14,6 +14,7 @@ public class CommandWords {
     public static final String HELP_COMMAND_WORD = "help";
     public static final String LIST_COMMAND_WORD = "list";
     public static final String UPDATE_COMMAND_WORD = "update";
+    public static final String PRINT_COMMAND_WORD = "print";
 
     /**
      * Returns all command words existing in Warenager.

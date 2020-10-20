@@ -69,6 +69,8 @@ shadowJar {
     archiveName = 'warenager.jar'
 }
 
-run {}
+run {
+    enableAssertions = true
+}
 
 defaultTasks 'clean', 'test'
