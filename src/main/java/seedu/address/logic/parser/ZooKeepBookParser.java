@@ -15,6 +15,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SnapCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -72,7 +73,10 @@ public class ZooKeepBookParser {
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
-
+            
+        case SnapCommand.COMMAND_WORD:
+            return new SnapCommandParser().parse(arguments);
+            
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
 
