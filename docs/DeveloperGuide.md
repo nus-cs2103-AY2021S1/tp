@@ -87,30 +87,45 @@ This section describes some noteworthy details on how certain features are imple
 
 ### \[Proposed\] Data archiving
 
-1.1 **Add contact feature** <br>
-This feature allows a user to add a new module contact to the Cap 5 Buddy module tracker system.
+1.1 **Add contact feature** 
+
+This feature allows a user to add a new module-related contact to the Cap 5 Buddy module tracker system.
+
 1.1.1 Details of implementation
-<br> The add contact function is facilitated by ContactList. ContactList stores a list of contacts belonging to the user 
-that is tracked by the Cap 5 Buddy system. 
+
+The mechanism to add a contact is facilitated by ContactList. ContactList stores a list of unique 
+contacts belonging to the user. 
 Additionally, it implements the following operation:
-* ContactList#addContact(Contact) - Add a new ```Contact``` into the user's contact list.
-<br> This operation is exposed in the ```Model``` interface as Model#addContact(contact).
+* `ContactList#addContact(Contact)` - Adds a new ```Contact``` into ```ContactList```.
+
+This operation is exposed in the ```Model``` interface as Model#addContact(contact).
+
 Given below is the class diagram of the ```Contact``` class:
 ![ContactClassDiagram](images/Contact/ContactClassDiagram.png)
 Figure ?.? Class Diagram for Contact
-The following activity diagram summarizes the sequence of steps that follow after a user executes the ```AddContactCommand```:
+
+Given below is an example usage scenario and how the mechanism for adding contacts behaves at each step:
+
+Step 1: The user launches the application.
+
+Step 2: The user inputs ```addcontact n/John e/john@gmail.com te/@johndoe``` into the command box to create a new 
+```Contact``` with the arguments fields provided. 
+
+Step 3: ```AddContactParser``` will parse the individual fields and determine if the arguments are valid. 
+The new Contact object is created and ```AddContactCommand``` calls 
+```Model#addContact(contact)``` to add the new `Contact` into the user's `ContactList` if the Contact does not already exist
+in the ContactList.
+
+Given below is the sequence diagram of how the operation to add a contact works:
+![AddContactSequenceDiagram](images/Contact/AddContactSequenceDiagram.png)
+Figure ?.? Sequence diagram for the execution of ```AddContactCommand```
+
+The following activity diagram summarizes what happens when a user executes the ```AddContactCommand```:
 ![AddContactCommandActivityDiagram](images/Contact/AddContactCommandActivityDiagram.png)
 Figure ?.? Activity diagram representing the execution of ```AddContactCommand```
-<br> Given below is an example usage scenario and how the mechanism for adding contacts behaves at each step:
-<br>Step 1: The user inputs ```addcontact n/John e/john@gmail.com te/@johndoe``` into the command box to create a new 
-```Contact``` with the arguments fields provided. 
-<br>Step 2: ```AddContactParser``` will parse the individual fields and determine
-if the arguments are valid. The new Contact object is created and ```AddContactCommand``` calls 
-```Model#addContact(contact)``` to add the new Contact into the user's contact list if the Contact does not already exist
-in the ContactList.
-Given below is the sequence diagram of the execution of the command to add contact:
-![AddContactSequenceDiagrm](images/Contact/AddContactSequenceDiagram.png)
-Figure ?.? Sequence diagram for the execution of ```AddContactCommand```
+
+#### <br> 1.1.2 Design Considerations <br>
+##### Aspect: 
 
 --------------------------------------------------------------------------------------------------------------------
 
