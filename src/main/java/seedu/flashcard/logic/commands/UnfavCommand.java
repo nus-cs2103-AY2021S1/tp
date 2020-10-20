@@ -53,13 +53,13 @@ public class UnfavCommand extends Command {
             return new CommandResult(String.format(MESSAGE_UNFAVOURITE_FLASHCARD_SUCCESS, flashcardToUnfavourite));
         }
 
-        Flashcard unfavouredFlashcard = createUnfavouredFlashcard(flashcardToUnfavourite);
+        Flashcard unfavouredFlashcard = createUnfavouriteFlashcard(flashcardToUnfavourite);
         model.setFlashcard(flashcardToUnfavourite, unfavouredFlashcard);
         model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
         return new CommandResult(String.format(MESSAGE_UNFAVOURITE_FLASHCARD_SUCCESS, unfavouredFlashcard));
     }
 
-    private static Flashcard createUnfavouredFlashcard(Flashcard flashcardToUnfavourite) {
+    private static Flashcard createUnfavouriteFlashcard(Flashcard flashcardToUnfavourite) {
 
         Question question = flashcardToUnfavourite.getQuestion();
         Answer answer = flashcardToUnfavourite.getAnswer();
