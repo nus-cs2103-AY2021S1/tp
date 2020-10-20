@@ -105,7 +105,7 @@ class JsonAdaptedStock {
         }
         final Location modelLocation = new Location(location);
 
-        if (notes.size() > 0) {
+        if (notes != null && notes.size() > 0) {
             List<Note> modelNotesList = new ArrayList<>();
             for (String note : notes) {
                 if (note == null) {
