@@ -2,7 +2,9 @@ package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 
@@ -12,7 +14,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Task {
     private final TaskName name;
-    private final Tag tag;
+    private final Set<Tag> tags;
     private final Priority priority;
     private final Date date;
     private final Status status;
@@ -25,7 +27,7 @@ public class Task {
     public Task(TaskName name) {
         requireNonNull(name);
         this.name = name;
-        this.tag = null;
+        this.tags = null;
         this.priority = null;
         this.date = null;
         this.status = null;
@@ -35,15 +37,16 @@ public class Task {
      * Constructor to support immutability.
      *
      * @param name name of the task
-     * @param tag tags related to the task
+     * @param tags tags related to the task
      * @param priority priority of the task
      * @param date date of the task
      * @param status status of the task
      */
-    public Task(TaskName name, Tag tag, Priority priority, Date date, Status status) {
+    public Task(TaskName name, Set<Tag> tags, Priority priority, Date date, Status status) {
         requireNonNull(name);
         this.name = name;
-        this.tag = tag;
+        this.tags = new HashSet<>();
+        this.tags.addAll(tags);
         this.priority = priority;
         this.date = date;
         this.status = status;
@@ -54,15 +57,15 @@ public class Task {
     }
 
     public Task setName(TaskName name) {
-        return new Task(name, this.tag, this.priority, this.date, this.status);
+        return new Task(name, this.tags, this.priority, this.date, this.status);
     }
 
-    public Optional<Tag> getTag() {
-        return Optional.ofNullable(this.tag);
+    public Optional<Set<Tag>> getTag() {
+        return Optional.ofNullable(this.tags);
     }
 
-    public Task setTag(Tag tag) {
-        return new Task(this.name, tag, this.priority, this.date, this.status);
+    public Task setTag(Set<Tag> tags) {
+        return new Task(this.name, tags, this.priority, this.date, this.status);
     }
 
     public Optional<Priority> getPriority() {
@@ -70,7 +73,7 @@ public class Task {
     }
 
     public Task setPriority(Priority priority) {
-        return new Task(this.name, this.tag, priority, this.date, this.status);
+        return new Task(this.name, this.tags, priority, this.date, this.status);
     }
 
     public Optional<Date> getDate() {
@@ -78,7 +81,7 @@ public class Task {
     }
 
     public Task setDate(Date date) {
-        return new Task(this.name, this.tag, this.priority, date, this.status);
+        return new Task(this.name, this.tags, this.priority, date, this.status);
     }
 
     public Optional<Status> getStatus() {
@@ -86,7 +89,7 @@ public class Task {
     }
 
     public Task setStatus(Status status) {
-        return new Task(this.name, this.tag, this.priority, this.date, status);
+        return new Task(this.name, this.tags, this.priority, this.date, status);
     }
 
     /**
@@ -132,9 +135,9 @@ public class Task {
      * @param tag the specified tag
      * @return true if this task has the specified tag(s)
      */
-    public boolean hasSameTag(Tag tag) {
-        requireNonNull(this.tag);
-        return this.tag.equals(tag);
+    public boolean hasSameTag(Set<Tag> tag) {
+        requireNonNull(this.tags);
+        return this.tags.equals(tag);
     }
 
     /**
@@ -169,7 +172,7 @@ public class Task {
                 .append(" *Name: ")
                 .append(getName())
                 .append("\n")
-                .append(" *Tag: ")
+                .append(" *Tags: ")
                 .append(getTag())
                 .append("\n")
                 .append(" *Priority: ")
@@ -178,7 +181,7 @@ public class Task {
                 .append(" *Date: ")
                 .append(getDate())
                 .append("\n")
-                .append("Status: ")
+                .append(" *Status: ")
                 .append(getStatus())
                 .append("\n");
         return builder.toString();
