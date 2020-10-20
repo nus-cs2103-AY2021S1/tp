@@ -1,13 +1,12 @@
 package seedu.address.model;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.module.Module;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class VersionedModuleList extends ModuleList {
-    private List<ObservableList<Module>> moduleListStateList = new ArrayList<>();
+    private List<ReadOnlyModuleList> moduleListStateList = new ArrayList<>();
+    private Optional<ReadOnlyModuleList> redoStatePointer;
     private int currentStatePointer;
 
     /**
@@ -16,21 +15,24 @@ public class VersionedModuleList extends ModuleList {
      */
     public VersionedModuleList(ReadOnlyModuleList toBeCopied) {
         super(toBeCopied);
-        moduleListStateList.add(super.getModuleList());
+        moduleListStateList.add(toBeCopied);
         this.currentStatePointer = 0;
+        this.redoStatePointer = Optional.empty();
     }
     /**
      * Saves the current module list state in history.
      */
     public void commit(ModuleList moduleList) {
-        moduleListStateList.add(moduleList.getModuleList());
+        moduleListStateList.add(moduleList);
         this.currentStatePointer += 1;
+        this.redoStatePointer = Optional.empty();
     }
 
     /**
      * Restores the previous module list state from history.
      */
     public void undo() {
+        redoStatePointer = Optional.of(moduleListStateList.remove(this.currentStatePointer));
         this.currentStatePointer -= 1;
     }
 
@@ -38,6 +40,7 @@ public class VersionedModuleList extends ModuleList {
      * Restores the previously undone module list state from history.
      */
     public void redo() {
+        moduleListStateList.add(redoStatePointer.get());
         this.currentStatePointer += 1;
     }
 
@@ -49,7 +52,7 @@ public class VersionedModuleList extends ModuleList {
      * Returns the module list the current state pointer is pointing to in the form
      * of an observable list
      */
-    public ObservableList<Module> getCurrentModuleList() {
+    public ReadOnlyModuleList getCurrentModuleList() {
         return moduleListStateList.get(currentStatePointer);
     }
 }

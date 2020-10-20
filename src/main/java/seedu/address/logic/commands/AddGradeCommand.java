@@ -53,6 +53,7 @@ public class AddGradeCommand extends Command {
             throw new CommandException(MESSAGE_GRADE_NOT_ADDED);
         }
         module.addGrade(gradeToAdd);
+        model.commitModuleList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, gradeToAdd));
     }
 
