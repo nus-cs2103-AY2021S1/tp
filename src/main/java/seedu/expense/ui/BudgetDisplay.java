@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.expense.model.ReadOnlyExpenseBook;
-import seedu.expense.model.budget.Budget;
+import seedu.expense.model.budget.UniqueCategoryBudgetList;
 
 /**
  * A ui for the budget balance to be displayed to the user.
@@ -66,7 +66,7 @@ public class BudgetDisplay extends UiPart<Region> {
      * @return Progress as double.
      */
     private double getProgress() {
-        Budget budget = expenseBook.getBudget();
+        UniqueCategoryBudgetList budget = expenseBook.getBudgets();
         double budgetAmount = budget.getAmount().asDouble();
         double expensesSum = expenseBook.tallyExpenses();
         return 1 - expensesSum / budgetAmount;
@@ -79,7 +79,7 @@ public class BudgetDisplay extends UiPart<Region> {
      * @return Formatted budget balance as String.
      */
     private String budgetBalance() {
-        Budget budget = expenseBook.getBudget();
+        UniqueCategoryBudgetList budget = expenseBook.getBudgets();
         double budgetAmount = budget.getAmount().asDouble();
         double expensesSum = expenseBook.tallyExpenses();
         double balance = budgetAmount - expensesSum;

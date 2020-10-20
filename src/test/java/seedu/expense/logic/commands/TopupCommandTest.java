@@ -16,6 +16,7 @@ import seedu.expense.model.Model;
 import seedu.expense.model.ReadOnlyExpenseBook;
 import seedu.expense.model.ReadOnlyUserPrefs;
 import seedu.expense.model.budget.Budget;
+import seedu.expense.model.budget.UniqueCategoryBudgetList;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
 
@@ -33,7 +34,7 @@ public class TopupCommandTest {
         CommandResult commandResult = new TopupCommand(validAmount).execute(modelStub);
         assertEquals(String.format(TopupCommand.MESSAGE_SUCCESS, validAmount.asDouble()),
                 commandResult.getFeedbackToUser());
-        assertEquals(validAmount, modelStub.budget.getAmount());
+        assertEquals(validAmount, modelStub.budgets.getAmount());
     }
 
     @Test
@@ -65,10 +66,10 @@ public class TopupCommandTest {
      */
     private class ModelStub implements Model {
 
-        final Budget budget;
+        final UniqueCategoryBudgetList budgets;
 
         ModelStub() {
-            budget = new Budget();
+            budgets = new UniqueCategoryBudgetList();
         }
 
         @Override
@@ -142,13 +143,13 @@ public class TopupCommandTest {
         }
 
         @Override
-        public Budget getBudget() {
-            return budget;
+        public Budget getTotalBudget() {
+            return budgets;
         }
 
         @Override
         public void topupBudget(Amount amount) {
-            budget.topupBudget(amount);
+            budgets.topupBudget(amount);
         }
     }
 }

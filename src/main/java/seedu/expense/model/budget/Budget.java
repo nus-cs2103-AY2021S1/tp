@@ -5,30 +5,17 @@ import seedu.expense.model.expense.Amount;
 /**
  * Represents a Budget in the ledger.
  */
-public class Budget {
-
-    private Amount amount;
-
-    /**
-     * Constructs a {@code Budget} with zero value.
-     */
-    public Budget() {
-        amount = new Amount("0");
-    }
+public interface Budget {
 
     /**
      * Tops up the budget by the specified {@code Amount}.
      */
-    public void topupBudget(Amount toAdd) {
-        amount = amount.add(toAdd);
-    }
+    void topupBudget(Amount toAdd);
 
-    public Amount getAmount() {
-        return amount;
-    }
+    Amount getAmount();
 
-    @Override
-    public String toString() {
-        return String.format("Budget: %s", amount.toString());
-    }
+    /**
+     * Resets the amount in the {@code Budget} to have zero value.
+     */
+    void reset();
 }
