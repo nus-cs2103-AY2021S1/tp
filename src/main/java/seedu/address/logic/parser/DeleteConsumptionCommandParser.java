@@ -19,6 +19,7 @@ public class DeleteConsumptionCommandParser implements Parser<DeleteConsumptionC
     public DeleteConsumptionCommand parse(String args) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);
+            assert index.getOneBased() > 0 : "Index should be bigger than 0";
             return new DeleteConsumptionCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
