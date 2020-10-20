@@ -37,14 +37,14 @@ public class SampleDataUtil {
                 choice2,
                 choice3,
                 choice4
-            ), getTagSet("MCQ", "GoodQuestion"),  new Difficulty("Low")),
+            ), getTagSet("MCQ", "GoodQuestion"), new Difficulty("Low")),
             new Flashcard(new MultipleChoiceQuestion("What is CS2100?",
                     new Answer("Computer Organization module for NUS students"),
                 choice5,
                 choice6,
                 choice7,
                 choice8
-            ), getTagSet("MCQ", "Assembly"),  new Difficulty("Low")),
+            ), getTagSet("MCQ", "Assembly"), new Difficulty("Low")),
             new Flashcard(new MultipleChoiceQuestion("What is CS2105?",
                     new Answer("Introductory module to computer networks for NUS students"),
                 choice9,
