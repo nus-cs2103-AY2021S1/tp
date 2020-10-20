@@ -8,6 +8,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_IMAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -29,7 +35,7 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
      * and returns an AddRecipeCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddRecipeCommand parse(String args) throws ParseException {
+    public AddRecipeCommand parse(String args) throws ParseException, IOException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_INGREDIENT, PREFIX_CALORIES,
                         PREFIX_INSTRUCTION, PREFIX_RECIPE_IMAGE, PREFIX_TAG);
@@ -56,7 +62,32 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
         String instruction = argMultimap.getValue(PREFIX_INSTRUCTION).get();
         String recipeImage = argMultimap.getValue(PREFIX_RECIPE_IMAGE).get();
 
+        String filename = "";
+        for (int i = recipeImage.length() - 1; i >= 0; i--) {
+            if (recipeImage.charAt(i) == '/') {
+                filename = recipeImage.substring(i + 1);
+                break;
+            }
+        }
+        
+        if (recipeImage.substring(0, 5) == "http") {
+            URL url = new URL(recipeImage);
+            InputStream in = new BufferedInputStream(url.openStream());
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            int n = 0;
+            while (-1 != (n = in.read(buf))) {
+                out.write(buf, 0, n);
+            }
+            out.close();
+            in.close();
+            byte[] response = out.toByteArray();
 
+            recipeImage = this.getClass().getResource("/images").getPath() + filename;
+            FileOutputStream fos = new FileOutputStream(recipeImage);
+            fos.write(response);
+            fos.close();
+        }
         Recipe recipe = new Recipe(name, instruction, recipeImage, ingredients, calories, tagList);
 
         return new AddRecipeCommand(recipe);
