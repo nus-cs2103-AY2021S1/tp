@@ -20,16 +20,16 @@ public class JsonAdaptedBudgetList {
             + " category-budget(s).";
 
     private final JsonAdaptedBudget defaultCategory;
-    private final List<JsonAdaptedBudget> budgets = new ArrayList<>();
+    private final List<JsonAdaptedBudget> categoryBudgets = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedBudget} with the given amount.
      */
     @JsonCreator
     public JsonAdaptedBudgetList(@JsonProperty("defaultCategory") JsonAdaptedBudget defaultCategory,
-                                 @JsonProperty("categoryBudgets") List<JsonAdaptedBudget> budgets) {
+                                 @JsonProperty("categoryBudgets") List<JsonAdaptedBudget> categoryBudgets) {
         this.defaultCategory = defaultCategory;
-        this.budgets.addAll(budgets);
+        this.categoryBudgets.addAll(categoryBudgets);
     }
 
     /**
@@ -37,7 +37,7 @@ public class JsonAdaptedBudgetList {
      */
     public JsonAdaptedBudgetList(UniqueCategoryBudgetList budgets) {
         defaultCategory = new JsonAdaptedBudget(budgets.getDefaultCategory());
-        this.budgets.addAll(budgets.getCategoryBudgets().stream()
+        this.categoryBudgets.addAll(budgets.getCategoryBudgets().stream()
                 .map(JsonAdaptedBudget::new)
                 .collect(Collectors.toList()));
     }
@@ -48,7 +48,7 @@ public class JsonAdaptedBudgetList {
     public UniqueCategoryBudgetList toModelType() throws IllegalValueException {
         UniqueCategoryBudgetList budgetList = new UniqueCategoryBudgetList();
         budgetList.topupBudget(defaultCategory.toModelType().getAmount());
-        for (JsonAdaptedBudget jsonAdaptedBudget : budgets) {
+        for (JsonAdaptedBudget jsonAdaptedBudget : categoryBudgets) {
             CategoryBudget categoryBudget = jsonAdaptedBudget.toModelType();
             if (budgetList.contains(categoryBudget)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CATEGORY_BUDGET);
