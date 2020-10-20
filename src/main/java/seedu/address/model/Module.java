@@ -37,7 +37,18 @@ public class Module {
         requireNonNull(moduleId);
         checkArgument(isValidModuleId(moduleId), MESSAGE_CONSTRAINTS);
         this.moduleId = moduleId;
-        this.tutorialGroups = new ArrayList<>();
+        ArrayList<TutorialGroup> sampleList = new ArrayList<>();
+        sampleList.add(new TutorialGroup("Group1", this));
+        this.tutorialGroups = sampleList;
+        this.taskList = new TaskList();
+    }
+
+    public Module(String moduleId, List<TutorialGroup> tutorialGroups) {
+        requireNonNull(moduleId);
+        requireNonNull(isValidModuleId(moduleId), MESSAGE_CONSTRAINTS);
+        requireNonNull(tutorialGroups);
+        this.moduleId = moduleId;
+        this.tutorialGroups = tutorialGroups;
         this.taskList = new TaskList();
     }
 

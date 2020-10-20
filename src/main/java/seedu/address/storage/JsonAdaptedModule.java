@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Module;
+import seedu.address.model.TutorialGroup;
 
 public class JsonAdaptedModule {
 
@@ -45,11 +46,17 @@ public class JsonAdaptedModule {
      */
     public Module toModelType() throws IllegalValueException {
 
+        final List<TutorialGroup> newTutorialGroups = new ArrayList<>();
+        for (JsonAdaptedTutorialGroup tutorialGroup : tutorialGroups) {
+            newTutorialGroups.add(tutorialGroup.toModelType());
+        }
+
         if (moduleId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Module ID"));
         }
 
-        return new Module(moduleId);
+
+        return new Module(moduleId, newTutorialGroups);
     }
 
 }

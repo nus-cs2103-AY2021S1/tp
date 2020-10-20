@@ -20,7 +20,7 @@ public class JsonSerializableModuleList {
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableModuleList} with the given modules.
      */
     @JsonCreator
     public JsonSerializableModuleList(@JsonProperty("modules") List<JsonAdaptedModule> modules) {
