@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public abstract class Question {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Questions should at least contain a non-whitespace character that must not be \"|\"";
+            "Questions should at least contain a non-whitespace character";
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
@@ -29,7 +29,7 @@ public abstract class Question {
      * Returns true if the given String is valid.
      */
     public static boolean isValidQuestion(String test) {
-        return test.matches(VALIDATION_REGEX) && !test.contains("|");
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**

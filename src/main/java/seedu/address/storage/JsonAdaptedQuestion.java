@@ -1,10 +1,7 @@
 package seedu.address.storage;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.student.question.Question;
@@ -16,31 +13,33 @@ import seedu.address.model.student.question.UnsolvedQuestion;
  */
 public class JsonAdaptedQuestion {
 
+    private final boolean status;
     private final String question;
+    private final String solution;
 
     /**
      * Constructs a {@code JsonAdaptedQuestion} with the given {@code question}.
      */
     @JsonCreator
-    public JsonAdaptedQuestion(String question) {
+    public JsonAdaptedQuestion(@JsonProperty("status") boolean status, @JsonProperty("question") String question,
+                               @JsonProperty("solution") String solution) {
+        this.status = status;
         this.question = question;
+        this.solution = solution;
     }
 
     /**
      * Converts a given {@code Question} into this class for Jackson use.
      */
     public JsonAdaptedQuestion(Question source) {
-        if (source.isResolved()) {
+        this.status = source.isResolved();
+        this.question = source.question;
+        if (status) {
             SolvedQuestion solved = (SolvedQuestion) source;
-            this.question = String.format("1 | %1s | %2s", solved.question, solved.solution);
+            this.solution = solved.solution;
         } else {
-            this.question = String.format("0 | %1s", source.question);
+            this.solution = "";
         }
-    }
-
-    @JsonValue
-    public String getQuestion() {
-        return question;
     }
 
     /**
@@ -49,39 +48,17 @@ public class JsonAdaptedQuestion {
      * @throws IllegalValueException if there were any data constraints violated in the adapted detail.
      */
     public Question toModelType() throws IllegalValueException {
-        Pattern pattern = Pattern.compile("(?<isResolved>[01])(\\s\\|\\s)(?<detail>.*)");
-        Matcher matcher = pattern.matcher(question);
-        if (!matcher.matches()) {
-            throw new IllegalValueException(Question.MESSAGE_CONSTRAINTS);
-        }
-
-        boolean status = Integer.parseInt(matcher.group("isResolved")) != 0;
-
-        String questionDetail = matcher.group("detail");
-        if (status) {
-            return createModelSolved(questionDetail);
-        } else {
-            return createModelUnsolved(questionDetail);
-        }
-
+        return status ? createModelSolved() : createModelUnsolved();
     }
 
-    private UnsolvedQuestion createModelUnsolved(String questionDetail) throws IllegalValueException {
-        if (!Question.isValidQuestion(questionDetail)) {
+    private UnsolvedQuestion createModelUnsolved() throws IllegalValueException {
+        if (!Question.isValidQuestion(question)) {
             throw new IllegalValueException(Question.MESSAGE_CONSTRAINTS);
         }
-        return new UnsolvedQuestion(questionDetail);
+        return new UnsolvedQuestion(question);
     }
 
-    private SolvedQuestion createModelSolved(String questionDetail) throws IllegalValueException {
-        Pattern pattern = Pattern.compile("(?<question>.*)(\\s\\|\\s)(?<solution>.*)");
-        Matcher matcher = pattern.matcher(questionDetail);
-        if (!matcher.matches()) {
-            throw new IllegalValueException(Question.MESSAGE_CONSTRAINTS);
-        }
-
-        String question = matcher.group("question");
-        String solution = matcher.group("solution");
+    private SolvedQuestion createModelSolved() throws IllegalValueException {
         if (!Question.isValidQuestion(question)) {
             throw new IllegalValueException(Question.MESSAGE_CONSTRAINTS);
         }

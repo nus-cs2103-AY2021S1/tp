@@ -11,7 +11,7 @@ import java.util.Objects;
 public class SolvedQuestion extends Question {
 
     public static final String MESSAGE_SOLUTION_CONSTRAINTS =
-            "Solutions should at least contain a non-whitespace character that is not \"|\"";
+            "Solutions should at least contain a non-whitespace character";
 
     private static final String STATUS = "(\u2713)";
 
@@ -31,7 +31,7 @@ public class SolvedQuestion extends Question {
      * Returns true if the given String is valid.
      */
     public static boolean isValidSolution(String test) {
-        return test.matches(VALIDATION_REGEX) && !test.contains("|");
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**

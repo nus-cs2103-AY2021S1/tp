@@ -16,7 +16,6 @@ public class QuestionTest {
         // invalid question
         assertFalse(Question.isValidQuestion(" "));
         assertFalse(Question.isValidQuestion(""));
-        assertFalse(Question.isValidQuestion("Something | no"));
 
         // valid questions
         assertTrue(Question.isValidQuestion("what is 1 + 1?"));

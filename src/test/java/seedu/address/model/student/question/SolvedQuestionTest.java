@@ -42,7 +42,6 @@ public class SolvedQuestionTest {
         // invalid solution
         assertFalse(SolvedQuestion.isValidSolution(" "));
         assertFalse(SolvedQuestion.isValidSolution(""));
-        assertFalse(SolvedQuestion.isValidSolution("solution | test"));
 
         // valid questions
         assertTrue(SolvedQuestion.isValidSolution("2"));

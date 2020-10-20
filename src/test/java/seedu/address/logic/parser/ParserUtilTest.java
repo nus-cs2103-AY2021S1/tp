@@ -36,7 +36,7 @@ public class ParserUtilTest {
     private static final String INVALID_FEE = "231.451";
     private static final String INVALID_PAYMENT_DATE = "23-9-2019";
     private static final String INVALID_ADDITIONAL_DETAIL = "sch!zophren#c";
-    private static final String INVALID_QUESTION = "Something | something";
+    private static final String INVALID_QUESTION = "";
     private static final String INVALID_SOLUTION = " ";
 
     private static final String VALID_NAME = "Rachel Walker";

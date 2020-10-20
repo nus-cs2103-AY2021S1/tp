@@ -11,6 +11,10 @@
       "paymentDate": "21/05/2020",
       "additionalDetails": ["Clever"]
     },
-    "questions": [" "]
+    "questions": [ {
+      "status" : false,
+      "question" : " ",
+      "solution" : ""
+    } ]
   } ]
 }
