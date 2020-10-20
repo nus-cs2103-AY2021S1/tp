@@ -100,7 +100,7 @@ class JsonAdaptedTask {
             logger.info("Datetime for task with title: '" + title + "' is empty. Creating a default datetime for it");
             modelDateTime = DateTime.defaultDateTime();
         } else if (!DateTime.isValidDateTime(dateTime)) {
-            throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(DateTime.DATETIME_MESSAGE_CONSTRAINTS);
         } else {
             modelDateTime = new DateTime(dateTime);
         }

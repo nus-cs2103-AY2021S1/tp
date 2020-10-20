@@ -1,33 +1,39 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+
+import java.util.ArrayList;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.task.Task;
 
-import java.util.ArrayList;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
-
 public class LessonCommand extends Command {
     public static final String COMMAND_WORD = "lesson";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a lesson to PlaNus. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a lesson to PlaNus.\n"
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_DURATION + "DAY_TIME "
+            + PREFIX_DAY + "DAY(case-insensitive) "
+            + PREFIX_START_TIME + "TIME "
+            + PREFIX_END_TIME + "TIME "
             + PREFIX_START_DATE + "DATE "
-            + PREFIX_END_DATE + "DATE "
+            + PREFIX_END_DATE + "DATE \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TITLE + "Lesson "
-            + PREFIX_DESCRIPTION + "CS2103T Lecture "
-            + PREFIX_DURATION + "MON 12:00-14:00 "
+            + PREFIX_TITLE + "CS2103T Lecture "
+            + PREFIX_DESCRIPTION + "Most exciting lecture in NUS! "
+            + PREFIX_DAY + "Mon "
+            + PREFIX_START_TIME + "12:00 "
+            + PREFIX_END_TIME + "14:00 "
             + PREFIX_START_DATE + "01-01-2020 "
             + PREFIX_END_DATE + "01-05-2020 ";
 
@@ -60,8 +66,9 @@ public class LessonCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
+        requireNonNull(other);
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
+                || (other instanceof LessonCommand // instanceof handles nulls
                 && lesson.equals(((LessonCommand) other).lesson));
     }
 }

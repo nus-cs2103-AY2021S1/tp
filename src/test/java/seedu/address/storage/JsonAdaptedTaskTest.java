@@ -61,7 +61,7 @@ public class JsonAdaptedTaskTest {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_TITLE, INVALID_DATE_TIME, VALID_DESCRIPTION,
                         VALID_TYPE, VALID_TAGS, VALID_STATUS);
-        String expectedMessage = DateTime.MESSAGE_CONSTRAINTS;
+        String expectedMessage = DateTime.DATETIME_MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 

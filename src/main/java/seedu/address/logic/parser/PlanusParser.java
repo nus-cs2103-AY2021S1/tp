@@ -15,6 +15,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.LessonCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -59,7 +60,8 @@ public class PlanusParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
-
+        case LessonCommand.COMMAND_WORD:
+            return new LessonCommandParser().parse(arguments);
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 

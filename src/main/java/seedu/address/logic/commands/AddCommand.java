@@ -17,7 +17,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to PlaNus. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to PlaNus.\n"
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
             + PREFIX_DATE_TIME + "DATE_TIME "

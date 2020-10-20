@@ -118,7 +118,7 @@ public class AddCommandParserTest {
 
         // invalid dateTime
         assertParseFailure(parser, TITLE_DESC_BOB + INVALID_DATE_TIME_DESC + DESCRIPTION_DESC_BOB + TYPE_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, DateTime.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, DateTime.DATETIME_MESSAGE_CONSTRAINTS);
 
         // invalid description
         assertParseFailure(parser, TITLE_DESC_BOB + DATE_TIME_DESC_BOB + INVALID_DESCRIPTION_DESC + TYPE_DESC_BOB

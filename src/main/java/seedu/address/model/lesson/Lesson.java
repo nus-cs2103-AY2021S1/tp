@@ -1,12 +1,7 @@
 package seedu.address.model.lesson;
 
-import seedu.address.model.task.DateTime;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.Title;
-import seedu.address.model.task.Type;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.lang.reflect.Array;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -16,7 +11,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.task.DateTime;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.Title;
+import seedu.address.model.task.Type;
 
 /**
  * Lesson class to store information about a module's lessons
@@ -29,7 +28,10 @@ public class Lesson {
     private final LocalTime endTime;
     private final LocalDate startDate;
     private final LocalDate endDate;
-    
+
+    /**
+     * Every field must be present and not null.
+     */
     public Lesson(Title title, Description description, DayOfWeek dayOfWeek, LocalTime startTime, LocalTime endTime,
                   LocalDate startDate, LocalDate endDate) {
         requireAllNonNull(title, description, dayOfWeek, startTime, endTime, startDate, endDate);
@@ -45,59 +47,45 @@ public class Lesson {
     public Title getTitle() {
         return title;
     }
-
     public Description getDescription() {
         return description;
     }
-
     public DayOfWeek getDayOfWeek() {
         return dayOfWeek;
     }
-    
     public LocalTime getStartTime() {
         return startTime;
     }
-
     public LocalTime getEndTime() {
         return endTime;
     }
-    
     public LocalDate getStartDate() {
         return startDate;
     }
-    
     public LocalDate getEndDate() {
         return endDate;
     }
-    
     /**
      *  Creates recurring event tasks based on the lesson's details.
      * @return a list of recurring tasks to add.
      */
     public ArrayList<Task> createRecurringTasks() {
         LocalDate currentDate = getStartDate();
-        
-        //get date of first lesson
         while (!(currentDate.getDayOfWeek()).equals(this.dayOfWeek)) {
             currentDate = currentDate.plusDays(1);
         }
-        
         ArrayList<Task> tasksToAdd = new ArrayList<>();
-        
         while (currentDate.isBefore(this.endDate) || currentDate.isEqual(this.endDate)) {
             LocalDateTime localDateTime = LocalDateTime.of(currentDate, getStartTime());
             //todo:this might not be necessary
             DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy  hh:mm");
             String dateTime = localDateTime.format(format);
             DateTime eventDateTime = new DateTime(dateTime);
-            
             Task taskToAdd = new Task(title, eventDateTime, description, new Type("Lesson"), new HashSet<>());
             tasksToAdd.add(taskToAdd);
         }
         return tasksToAdd;
-        
     }
-    
     /**
      * Returns true if both lessons of the same title have the same start and end date, and the same start and end time.
      */
@@ -119,7 +107,6 @@ public class Lesson {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(title, description, dayOfWeek, startTime, endTime, startDate, endDate);
     }
-    
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
@@ -138,5 +125,4 @@ public class Lesson {
                 .append(getEndDate());
         return builder.toString();
     }
-    
 }

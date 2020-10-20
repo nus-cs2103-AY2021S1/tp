@@ -13,20 +13,21 @@ import java.time.format.DateTimeFormatter;
 public class DateTime {
 
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-
-    public static final String MESSAGE_CONSTRAINTS =
+    public static final String DATETIME_MESSAGE_CONSTRAINTS =
             "DateTime should be in the format of dd-MM-yyyy HH:mm.";
+    public static final String DATE_MESSAGE_CONSTRAINTS =
+            "Date should be in the format of dd-MM-yyyy";
+    public static final String TIME_MESSAGE_CONSTRAINTS =
+            "Time should be in the format of HH:mm";
+    public static final String DAY_MESSAGE_CONSTRAINTS =
+            "Day should be in the format of MON, TUE, ..., SUN or MONDAY, TUESDAY, ..., SUNDAY";
     public static final String SEARCH_CONSTRAINTS =
             "Search phrase for date should be in the format of dd-MM-yyyy or HH:mm or dd-MM-yyyy HH:mm.";
     public static final String VALIDATION_REGEX =
             "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4} (2[0-3]|[01][0-9]):([0-5][0-9])$";
-    private static final LocalDateTime DEFAULT_DATETIME = LocalDateTime.parse("01-01-1000 00:00", FORMATTER);
-
+    public static final LocalDateTime DEFAULT_DATETIME = LocalDateTime.parse("01-01-1000 00:00", FORMATTER);
     public final LocalDateTime value;
     public final boolean isDefault;
-
-
-
     /**
      * Constructs a {@code DateTime}.
      *
@@ -34,7 +35,7 @@ public class DateTime {
      */
     public DateTime(String dateTime) {
         requireNonNull(dateTime);
-        checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDateTime(dateTime), DATETIME_MESSAGE_CONSTRAINTS);
         value = LocalDateTime.parse(dateTime, FORMATTER);
         isDefault = false;
     }
