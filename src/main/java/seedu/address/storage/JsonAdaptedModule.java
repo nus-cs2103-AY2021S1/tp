@@ -1,14 +1,22 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 // import seedu.address.model.contact.Contact;
+import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.module.grade.GradeTracker;
+import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Module}.
@@ -19,8 +27,9 @@ class JsonAdaptedModule {
 
     private final String name;
     private final String zoomLink;
+    private final String modularCredits;
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final JsonAdaptedGradeTracker gradeTracker;
-    //private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedModule} with the given module details.
@@ -28,7 +37,8 @@ class JsonAdaptedModule {
     @JsonCreator
     public JsonAdaptedModule(@JsonProperty("name") String name,
                              @JsonProperty("zoomLink") String zoomLink,
-                             @JsonProperty("gradeTracker") JsonAdaptedGradeTracker storedGradeTracker) {
+                             @JsonProperty("gradeTracker") JsonAdaptedGradeTracker storedGradeTracker,
+                             @JsonProperty("modularCredits") String storedModularCredits) {
         this.name = name;
         this.zoomLink = zoomLink;
         if (storedGradeTracker == null) {
@@ -36,10 +46,10 @@ class JsonAdaptedModule {
         } else {
             this.gradeTracker = storedGradeTracker;
         }
-        //tagging temporarily removed
-        /*if (tagged != null) {
+        if (tagged != null) {
             this.tagged.addAll(tagged);
-        }*/
+        }
+        this.modularCredits = storedModularCredits;
     }
 
     /**
@@ -47,12 +57,16 @@ class JsonAdaptedModule {
      */
     public JsonAdaptedModule(Module source) {
         name = source.getName().fullName;
-        zoomLink = source.getLink().value;
+        if (source.getLink() == null) {
+            zoomLink = null;
+        } else {
+            zoomLink = source.getLink().value;
+        }
         gradeTracker = new JsonAdaptedGradeTracker(source.getGradeTracker());
-        //tagging temporarily removed
-        /*tagged.addAll(source.getTags().stream()
+        tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));*/
+                .collect(Collectors.toList()));
+        modularCredits = source.getModularCredits().toString();
     }
 
     /**
@@ -61,10 +75,10 @@ class JsonAdaptedModule {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Module toModelType() throws IllegalValueException {
-        /*final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
-        }*/
+        }
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -89,17 +103,19 @@ class JsonAdaptedModule {
         if (!GradeTracker.isValidGradeTracker(gradeTracker.toModelType())) {
             throw new IllegalValueException(GradeTracker.MESSAGE_INVALID_GRADE);
         }
+        if (!ModularCredits.isValidModularCredits(modularCredits)) {
+            throw new IllegalValueException(ModularCredits.MESSAGE_CONSTRAINTS);
+        }
         //email and tagging removed temporarily
         /*if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
         if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
-
-        final Set<Tag> modelTags = new HashSet<>(personTags);*/
-        return new Module(modelName, modelLink, gradeTracker.toModelType());
+        }*/
+        final ModularCredits modelModularCredits = new ModularCredits(Double.parseDouble(modularCredits));
+        final Set<Tag> modelTags = new HashSet<>(personTags);
+        return new Module(modelName, modelLink, gradeTracker.toModelType(), modelTags, modelModularCredits);
     }
 
 }
