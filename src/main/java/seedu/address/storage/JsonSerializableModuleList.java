@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.Module;
 import seedu.address.model.ModuleList;
 import seedu.address.model.ReadOnlyModuleList;
-import seedu.address.model.Module;
 
 @JsonRootName(value = "modulelist")
 public class JsonSerializableModuleList {

@@ -21,7 +21,8 @@ public class JsonAdaptedModule {
      * Constructs a {@code JsonAdaptedModule} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedModule(@JsonProperty("id") String moduleId, @JsonProperty("classes") List<JsonAdaptedTutorialGroup> tutorialGroups) {
+    public JsonAdaptedModule(@JsonProperty("id") String moduleId,
+                             @JsonProperty("classes") List<JsonAdaptedTutorialGroup> tutorialGroups) {
         this.moduleId = moduleId;
         if (tutorialGroups != null) {
             this.tutorialGroups.addAll(tutorialGroups);
