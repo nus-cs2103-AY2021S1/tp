@@ -79,9 +79,12 @@ public class OneShelfBookParserTest {
         assertEquals(new ItemEditCommand(INDEX_FIRST_ITEM, descriptor), command);
 
         Delivery delivery = new DeliveryBuilder().build();
-        DeliveryEditCommand.EditDeliveryDescriptor descriptorDelivery = new EditDeliveryDescriptorBuilder(delivery).build();
-        DeliveryEditCommand command2 = (DeliveryEditCommand) parser.parseCommand(DeliveryEditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_ITEM.getOneBased() + " " + DeliveryUtil.getEditDeliveryDescriptorDetails(descriptorDelivery));
+        DeliveryEditCommand.EditDeliveryDescriptor descriptorDelivery =
+                new EditDeliveryDescriptorBuilder(delivery).build();
+        DeliveryEditCommand command2 =
+                (DeliveryEditCommand) parser.parseCommand(DeliveryEditCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_ITEM.getOneBased() + " "
+                        + DeliveryUtil.getEditDeliveryDescriptorDetails(descriptorDelivery));
         assertEquals(new DeliveryEditCommand(INDEX_FIRST_ITEM, descriptorDelivery), command2);
     }
 
@@ -117,7 +120,8 @@ public class OneShelfBookParserTest {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " " + HelpCommand.COMMAND_OPTION_START)
                 instanceof HelpCommand);
         assertThrows(ParseException.class,
-                HelpCommand.MESSAGE_INVALID_OPTION, () -> parser.parseCommand(HelpCommand.COMMAND_WORD + " 3"));
+                HelpCommand.MESSAGE_INVALID_OPTION, () -> parser
+                        .parseCommand(HelpCommand.COMMAND_WORD + " 3"));
     }
 
     @Test
@@ -131,12 +135,13 @@ public class OneShelfBookParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                HelpCommand.MESSAGE_USAGE), () -> parser.parseCommand(""));
     }
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser
+                .parseCommand("unknownCommand"));
     }
 }

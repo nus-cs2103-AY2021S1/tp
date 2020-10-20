@@ -77,13 +77,17 @@ public class DeliveryEditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_ITEM;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_AARON + NAME_DESC_AARON + ADDRESS_DESC_AARON + ORDER_DESC_AARON;
-        DeliveryEditCommand.EditDeliveryDescriptor descriptor = new EditDeliveryDescriptorBuilder().withName(VALID_NAME_AARON)
+        String userInput = targetIndex.getOneBased()
+                + PHONE_DESC_AARON
+                + NAME_DESC_AARON
+                + ADDRESS_DESC_AARON
+                + ORDER_DESC_AARON;
+        DeliveryEditCommand.EditDeliveryDescriptor descriptor =
+                new EditDeliveryDescriptorBuilder().withName(VALID_NAME_AARON)
                 .withPhone(VALID_PHONE_AARON)
                 .withAddress(VALID_ADDRESS_AARON)
                 .withOrder(VALID_ORDER_AARON).build();
         DeliveryEditCommand expectedCommand = new DeliveryEditCommand(targetIndex, descriptor);
-
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -92,8 +96,10 @@ public class DeliveryEditCommandParserTest {
         Index targetIndex = INDEX_FIRST_ITEM;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AARON;
 
-        DeliveryEditCommand.EditDeliveryDescriptor descriptor = new EditDeliveryDescriptorBuilder().withPhone(VALID_PHONE_AARON)
-                .build();
+        DeliveryEditCommand.EditDeliveryDescriptor descriptor =
+                new EditDeliveryDescriptorBuilder()
+                        .withPhone(VALID_PHONE_AARON)
+                        .build();
         DeliveryEditCommand expectedCommand = new DeliveryEditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -104,7 +110,10 @@ public class DeliveryEditCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_ITEM;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AARON;
-        DeliveryEditCommand.EditDeliveryDescriptor descriptor = new EditDeliveryDescriptorBuilder().withName(VALID_NAME_AARON).build();
+        DeliveryEditCommand.EditDeliveryDescriptor descriptor =
+                new EditDeliveryDescriptorBuilder()
+                        .withName(VALID_NAME_AARON)
+                        .build();
         DeliveryEditCommand expectedCommand = new DeliveryEditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -133,7 +142,8 @@ public class DeliveryEditCommandParserTest {
         String userInput = targetIndex.getOneBased() + NAME_DESC_AARON + PHONE_DESC_AARON + ADDRESS_DESC_AARON
                     + ORDER_DESC_AARON;
 
-        DeliveryEditCommand.EditDeliveryDescriptor descriptor = new EditDeliveryDescriptorBuilder().withName(VALID_NAME_AARON)
+        DeliveryEditCommand.EditDeliveryDescriptor descriptor =
+                new EditDeliveryDescriptorBuilder().withName(VALID_NAME_AARON)
                 .withPhone(VALID_PHONE_AARON)
                 .withAddress(VALID_ADDRESS_AARON)
                 .withOrder(VALID_ORDER_AARON)

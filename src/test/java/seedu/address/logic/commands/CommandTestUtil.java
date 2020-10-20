@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.deliverycommand.DeliveryEditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.itemcommand.ItemEditCommand;
 import seedu.address.logic.commands.results.CommandResult;
@@ -33,6 +34,7 @@ import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.InventoryModelManager;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.ItemContainsKeywordsPredicate;
+import seedu.address.testutil.EditDeliveryDescriptorBuilder;
 import seedu.address.testutil.EditItemDescriptorBuilder;
 
 /**
@@ -113,6 +115,24 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phone
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for address
     public static final String INVALID_ORDER_DESC = " " + PREFIX_ORDER; // empty string not allowed for orders
+
+    public static final DeliveryEditCommand.EditDeliveryDescriptor DESC_AARON;
+    public static final DeliveryEditCommand.EditDeliveryDescriptor DESC_DAMITH;
+
+    static {
+        DESC_AARON = new EditDeliveryDescriptorBuilder()
+                .withName(VALID_NAME_AARON)
+                .withPhone(VALID_PHONE_AARON)
+                .withAddress(VALID_ADDRESS_AARON)
+                .withOrder(VALID_ORDER_AARON)
+                .build();
+        DESC_DAMITH = new EditDeliveryDescriptorBuilder()
+                .withName(VALID_NAME_DAMITH)
+                .withPhone(VALID_PHONE_DAMITH)
+                .withAddress(VALID_ADDRESS_DAMITH)
+                .withOrder(VALID_ORDER_DAMITH)
+                .build();
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
