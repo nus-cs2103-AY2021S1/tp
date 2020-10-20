@@ -1,0 +1,27 @@
+@startuml
+scale 0.5
+start
+:User enters review mode;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([input is right arrow])
+    if () then ([has next flashcard])
+        :show next flashcard;
+    else ([else])
+        : quit review mode;
+    endif
+elseif () then ([input is top arrow])
+       :hide current flashcard's answer;
+elseif () then ([input is bottom arrow])
+       : show current flashcard's answer;
+else ([input is left arrow])
+    if () then ([has previous flashcard])
+            :show previous flashcard;
+        else ([else])
+            : quit review mode;
+        endif
+endif
+stop
+@enduml
