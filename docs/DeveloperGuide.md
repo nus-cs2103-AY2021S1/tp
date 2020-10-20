@@ -136,6 +136,29 @@ Classes used by multiple components are in the `seedu.mcgymmy.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Find feature
+
+#### Implementation
+
+The find mechanism is facilitated by `ModelManager`. It keeps a filtered list (updated via a specified `Predicate`) of food items,
+stored internally as a `FilteredList<Food>`. Additionally, it implements the following relevant operation:
+
+* `ModelManager#updateFilteredFoodList(Predicate<Food>)` - Filters internal storage via a `Predicate<Food>` specification.
+
+Given below is an example usage scenario and how the find mechanism behaves at each step.
+
+Step 1. The user launches the application after having used it for a while.
+
+Step 2. The user wants to find what he ate for dinner on a certain date (eg. 21-10-2020).
+
+Step 3. The user executes `find -d 21-10-2020 -t lunch`. The `find` command will check if the inputs are valid (eg. invalid date format, empty input etc.),
+before using these inputs to create conditional `Predicate<Food>` instances (eg. `NameContainsKeywordsPredicate`, `DatePredicate`). These `Predicate<Food>`
+objects are combined as a `combinedPredicate` before updating the model's filtered food list with `ModelManager#updateFilteredFoodList(combinedPredicate)`.
+The `Predicate` will be used to `Predicate#test()` food objects stored in `McGymmy` to identify which food items fall under the specification of the `Predicate`.
+The GUI will then display the food items in the filtered list.
+
+The following sequence diagram shows how the find operation works:
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
