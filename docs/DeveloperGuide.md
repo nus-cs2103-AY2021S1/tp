@@ -246,7 +246,7 @@ Step 4. The user then decides to execute the command `list`. Commands that do no
 
 #### Design consideration:
 
-##### Aspect: How undo & redo executes
+##### Aspect: How category switching executes
 
 * **Alternative 1 (current choice):** Filters the entire expense book by tag.
   * Pros: Easy to implement.
