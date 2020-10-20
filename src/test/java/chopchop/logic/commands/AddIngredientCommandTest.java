@@ -34,7 +34,7 @@ public class AddIngredientCommandTest {
 
         var commandResult = new AddIngredientCommand(validIngredient).execute(modelStub);
 
-        assertEquals(String.format(AddIngredientCommand.MESSAGE_SUCCESS, validIngredient),
+        assertEquals(String.format(AddIngredientCommand.MESSAGE_ADD_INGREDIENT_SUCCESS, validIngredient),
             commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validIngredient), modelStub.ingredientsAdded);
     }
@@ -47,13 +47,13 @@ public class AddIngredientCommandTest {
 
         var modelStub = new ModelStubAcceptingIngredientAdded();
 
-        assertEquals(String.format(AddIngredientCommand.MESSAGE_SUCCESS, milk1),
+        assertEquals(String.format(AddIngredientCommand.MESSAGE_ADD_INGREDIENT_SUCCESS, milk1),
             new AddIngredientCommand(milk1).execute(modelStub).getFeedbackToUser());
 
         var out2 = new AddIngredientCommand(milk2).execute(modelStub).getFeedbackToUser();
         System.err.println(out2);
 
-        assertEquals(String.format(AddIngredientCommand.MESSAGE_COMBINED, milk3), out2);
+        assertEquals(String.format(AddIngredientCommand.MESSAGE_COMBINE_INGREDIENT_SUCCESS, milk3), out2);
     }
 
     @Test
