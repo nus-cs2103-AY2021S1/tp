@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddAssignmentCommand;
 import seedu.address.logic.commands.AddGradeCommand;
 import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
-import seedu.address.logic.commands.AddZoomLinkCommand;
+import seedu.address.logic.commands.modulelistcommands.AddZoomLinkCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.modulelistcommands.DeleteModuleCommand;
@@ -27,6 +27,7 @@ import seedu.address.logic.parser.contactlistparsers.AddContactParser;
 import seedu.address.logic.parser.contactlistparsers.DeleteContactParser;
 import seedu.address.logic.parser.contactlistparsers.EditContactParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.modulelistparsers.*;
 
 /**
  * Parses user input.
