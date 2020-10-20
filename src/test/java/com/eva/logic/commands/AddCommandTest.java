@@ -7,8 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -148,7 +150,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteStaffLeave(Staff target, Leave leave) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasStaffLeave(Staff target, Leave leave) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Leave> hasLeaveDate(Staff target, LocalDate date) {
             throw new AssertionError("This method should not be called.");
         }
 

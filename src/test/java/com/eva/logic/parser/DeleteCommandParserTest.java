@@ -8,6 +8,9 @@ import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import com.eva.logic.commands.DeleteCommand;
+import com.eva.logic.parser.comment.DeleteCommandParser;
+
+
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
