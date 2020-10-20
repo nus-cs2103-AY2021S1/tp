@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":InventoryinatorParser" as InventoryinatorParser LOGIC_COLOR
+participant ":InventoryParser" as InventoryParser LOGIC_COLOR
 participant ":AddQuantityToItemCommandParser" as AddQuantityToItemCommandParser LOGIC_COLOR
 participant ":AddQuantityToItemCommand" as AddQuantityToItemCommand LOGIC_COLOR
 participant ":EditItemCommand" as EditItemCommand LOGIC_COLOR
@@ -17,17 +17,17 @@ end box
 [-> LogicManager : execute("addq -n banana -q 50")
 activate LogicManager
 
-LogicManager -> InventoryinatorParser : parseCommand("addq -n banana -q 50")
-activate InventoryinatorParser
+LogicManager -> InventoryParser : parseCommand("addq -n banana -q 50")
+activate InventoryParser
 
 create AddQuantityToItemCommandParser
-InventoryinatorParser -> AddQuantityToItemCommandParser
+InventoryParser -> AddQuantityToItemCommandParser
 activate AddQuantityToItemCommandParser
 
-AddQuantityToItemCommandParser --> InventoryinatorParser
+AddQuantityToItemCommandParser --> InventoryParser
 deactivate AddQuantityToItemCommandParser
 
-InventoryinatorParser -> AddQuantityToItemCommandParser : parse("-n banana -q 50")
+InventoryParser -> AddQuantityToItemCommandParser : parse("-n banana -q 50")
 activate AddQuantityToItemCommandParser
 
 create AddQuantityToItemCommand
@@ -37,14 +37,14 @@ activate AddQuantityToItemCommand
 AddQuantityToItemCommand --> AddQuantityToItemCommandParser : d
 deactivate AddQuantityToItemCommand
 
-AddQuantityToItemCommandParser --> InventoryinatorParser : d
+AddQuantityToItemCommandParser --> InventoryParser : d
 deactivate AddQuantityToItemCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddQuantityToItemCommandParser -[hidden]-> InventoryinatorParser
+AddQuantityToItemCommandParser -[hidden]-> InventoryParser
 destroy AddQuantityToItemCommandParser
 
-InventoryinatorParser --> LogicManager : d
-deactivate InventoryinatorParser
+InventoryParser --> LogicManager : d
+deactivate InventoryParser
 
 LogicManager -> AddQuantityToItemCommand : execute()
 activate AddQuantityToItemCommand
