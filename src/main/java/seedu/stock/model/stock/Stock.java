@@ -20,6 +20,7 @@ public class Stock {
     private final Quantity quantity;
     private final Location location;
     private final List<Note> notes;
+    private boolean isBookmarked;
 
     /**
      * Every field must be present and not null.
@@ -32,6 +33,7 @@ public class Stock {
         this.quantity = quantity;
         this.location = location;
         this.notes = new ArrayList<>();
+        this.isBookmarked = false;
     }
 
     /**
@@ -46,6 +48,7 @@ public class Stock {
         this.quantity = quantity;
         this.location = location;
         this.notes = notes;
+        this.isBookmarked = false;
     }
 
     public Name getName() {
@@ -70,6 +73,24 @@ public class Stock {
 
     public List<Note> getNotes() {
         return notes;
+    }
+
+    public boolean getBookmarked() {return isBookmarked; }
+
+    /**
+     * Sets the boolean of the isBookmarked of this stock to True .
+     *
+     */
+    public void setBookmarked() {
+        this.isBookmarked = true;
+    }
+
+    /**
+     * Sets the boolean of the isBookmarked of this stock to False .
+     *
+     */
+    public void unbookmarked() {
+        this.isBookmarked = false;
     }
 
     /**
