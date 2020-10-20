@@ -180,5 +180,6 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
      */
     void updateFilteredMeetingList(Predicate<CalendarMeeting> predicate);
 
+    void sortMeeting();
 
 }
