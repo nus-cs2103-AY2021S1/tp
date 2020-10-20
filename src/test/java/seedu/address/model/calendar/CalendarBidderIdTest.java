@@ -11,7 +11,9 @@ class CalendarBidderIdTest {
     void testToString() {
         CalendarBidderId bidderId = new CalendarBidderId("b1");
         String bidderIdTest = "b1";
+        assert (bidderId.bidderId.equals("b1"));
         assertTrue(bidderIdTest.equals(bidderId.toString()));
+
 
         CalendarBidderId bidderIdError = new CalendarBidderId("b1");
         String bidderIdDiff = "b2";
