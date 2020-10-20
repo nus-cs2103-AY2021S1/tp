@@ -8,8 +8,5 @@
     },
     "themeName" : "Galaxy Theme"
   },
-  "addressBookFilePath" : "addressbook.json",
-  "savedFilePath" : {
-    "value" : "./"
-  }
+  "addressBookFilePath" : "addressbook.json"
 }

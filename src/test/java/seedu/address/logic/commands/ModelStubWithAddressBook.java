@@ -1,12 +1,12 @@
 package seedu.address.logic.commands;
 
+import java.io.File;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.currentpath.FileList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
-
-import java.io.File;
 
 /**
  * Model stub with AddressBook functionality

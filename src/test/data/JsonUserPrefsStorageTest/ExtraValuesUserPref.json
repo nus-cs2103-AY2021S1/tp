@@ -10,8 +10,5 @@
     },
     "themeName" : "Dark Theme"
   },
-  "addressBookFilePath" : "addressbook.json",
-  "savedFilePath" : {
-    "value" : "./"
-  }
+  "addressBookFilePath" : "addressbook.json"
 }
