@@ -34,18 +34,23 @@ public class DeliveryEditCommandParser implements Parser<DeliveryEditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeliveryEditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeliveryEditCommand.MESSAGE_USAGE), pe);
         }
 
-        DeliveryEditCommand.EditDeliveryDescriptor editDeliveryDescriptor = new DeliveryEditCommand.EditDeliveryDescriptor();
+        DeliveryEditCommand.EditDeliveryDescriptor editDeliveryDescriptor =
+                new DeliveryEditCommand.EditDeliveryDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editDeliveryDescriptor.setDeliveryName(ParserUtil.parseDeliveryName(argMultimap.getValue(PREFIX_NAME).get()));
+            editDeliveryDescriptor.setDeliveryName(
+                    ParserUtil.parseDeliveryName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editDeliveryDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            editDeliveryDescriptor.setPhone(
+                    ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editDeliveryDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            editDeliveryDescriptor.setAddress(
+                    ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_ORDER).isPresent()) {
             editDeliveryDescriptor.setOrder(ParserUtil

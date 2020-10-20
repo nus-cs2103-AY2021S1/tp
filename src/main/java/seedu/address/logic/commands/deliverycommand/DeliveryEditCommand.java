@@ -6,6 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
+import java.util.List;
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -18,11 +21,6 @@ import seedu.address.model.delivery.DeliveryName;
 import seedu.address.model.delivery.Order;
 import seedu.address.model.delivery.Phone;
 import seedu.address.model.deliverymodel.DeliveryModel;
-
-import java.util.List;
-import java.util.Optional;
-
-
 
 /**
  * Edits the details of an existing delivery in the delivery book.
@@ -90,7 +88,8 @@ public class DeliveryEditCommand extends DeliveryCommand {
      * Creates and returns a {@code Delivery} with the details of {@code deliveryToEdit}
      * edited with {@code editDeliveryDescriptor}.
      */
-    private static Delivery createEditedDelivery(Delivery deliveryToEdit, EditDeliveryDescriptor editDeliveryDescriptor) {
+    private static Delivery createEditedDelivery(Delivery deliveryToEdit,
+                                                 EditDeliveryDescriptor editDeliveryDescriptor) {
         assert deliveryToEdit != null;
 
         DeliveryName updatedName = editDeliveryDescriptor.getDeliveryName().orElse(deliveryToEdit.getName());
