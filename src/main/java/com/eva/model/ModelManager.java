@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import com.eva.commons.core.GuiSettings;
 import com.eva.commons.core.LogsCenter;
 import com.eva.model.person.Person;
+import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 
@@ -176,6 +177,13 @@ public class ModelManager implements Model {
     public void setStaff(Staff target, Staff editedPerson) {
         requireAllNonNull(target, editedPerson);
         staffDatabase.setPerson(target, editedPerson);
+    }
+
+
+    @Override
+    public void addApplication(Application toAdd) {
+        requireNonNull(toAdd);
+        return 0;
     }
 
     //=========== Filtered Person List Accessors =============================================================

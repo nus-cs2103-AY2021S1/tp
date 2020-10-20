@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import com.eva.commons.core.GuiSettings;
 import com.eva.model.person.Person;
+import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 
@@ -150,4 +151,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStaffList(Predicate<Staff> predicate);
+
+    void addApplication(Application toAdd);
 }

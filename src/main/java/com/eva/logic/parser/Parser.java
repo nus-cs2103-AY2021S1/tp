@@ -1,5 +1,7 @@
 package com.eva.logic.parser;
 
+import java.io.FileNotFoundException;
+
 import com.eva.logic.commands.Command;
 import com.eva.logic.parser.exceptions.ParseException;
 
@@ -12,5 +14,5 @@ public interface Parser<T extends Command> {
      * Parses {@code userInput} into a command and returns it.
      * @throws ParseException if {@code userInput} does not conform the expected format
      */
-    T parse(String userInput) throws ParseException;
+    T parse(String userInput) throws ParseException, FileNotFoundException;
 }
