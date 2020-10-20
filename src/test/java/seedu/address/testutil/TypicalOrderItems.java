@@ -11,12 +11,16 @@ import seedu.address.model.order.OrderManager;
  * A utility class containing a list of {@code OrderItem} objects to be used in tests.
  */
 public class TypicalOrderItems {
+    public static final double VALID_PRICE_MILO = 1.50;
+    public static final String VALID_NAME_PRATA = "Prata";
+    public static final String VALID_TAG_CLASSIC = "classic";
+
     // These data are the same as those found in `typicalOrderManager.json`
     public static final OrderItem PRATA = new OrderItemBuilder()
                                             .withName("Prata")
                                             .withPrice(1.00)
                                             .withQuantity(3)
-                                            .withTags("classic")
+                                            .withTags(VALID_TAG_CLASSIC)
                                             .build();
     public static final OrderItem MILO = new OrderItemBuilder()
                                             .withName("Milo")

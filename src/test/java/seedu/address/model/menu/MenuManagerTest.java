@@ -9,14 +9,11 @@ import static seedu.address.testutil.TypicalFoods.PRATA;
 import static seedu.address.testutil.TypicalFoods.getTypicalMenuManager;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import seedu.address.model.food.Food;
 import seedu.address.model.food.exceptions.DuplicateFoodException;
 import seedu.address.testutil.FoodBuilder;
@@ -45,12 +42,15 @@ public class MenuManagerTest {
     @Test
     public void resetData_withDuplicateFoods_throwsDuplicateFoodException() {
         // Two foods with the same identity fields
-        Food editedPrata = new FoodBuilder(PRATA).withTags(VALID_TAG_CLASSIC)
+        Food editedPrata = new FoodBuilder(PRATA)
                 .build();
         List<Food> newFoods = Arrays.asList(PRATA, editedPrata);
-        MenuManagerStub newData = new MenuManagerStub(newFoods);
+        MenuManager newData = new MenuManager();
 
-        assertThrows(DuplicateFoodException.class, () -> menuManager.resetData(newData));
+        assertThrows(DuplicateFoodException.class, () -> {
+            newData.setMenu(newFoods);
+            menuManager.resetData(newData);
+        });
     }
 
     @Test
@@ -81,27 +81,4 @@ public class MenuManagerTest {
     public void getFoodList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> menuManager.getFoodList().remove(0));
     }
-
-    /**
-     * A stub ReadOnlyMenuManager whose foods list can violate interface constraints.
-     */
-    private static class MenuManagerStub implements ReadOnlyMenuManager {
-        private final ObservableList<Food> foods = FXCollections.observableArrayList();
-        //        private final ObservableList<Vendor> vendors = FXCollections.observableArrayList();
-
-        MenuManagerStub(Collection<Food> foods) {
-            this.foods.setAll(foods);
-        }
-
-        @Override
-        public ObservableList<Food> getFoodList() {
-            return foods;
-        }
-
-        //        @Override
-        //        public ObservableList<Vendor> getVendorList() {
-        //            return vendors;
-        //        }
-    }
-
 }
