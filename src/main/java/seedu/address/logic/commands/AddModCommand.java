@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_NAME;
 
@@ -18,13 +19,12 @@ public class AddModCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to FaculType. "
             + "Parameters: "
             + PREFIX_MODULE_CODE + "MODULE CODE "
-            + PREFIX_MODULE_NAME + "MODULE NAME "
+            + PREFIX_MODULE_NAME + "MODULE NAME\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE_CODE + "CS2103 "
             + PREFIX_MODULE_NAME + "Software Engineering ";
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
-    public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in FaculType";
 
     private final Module toAdd;
 

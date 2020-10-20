@@ -125,6 +125,16 @@ public class ModelManager implements Model {
         addressBook.removeModule(moduleCode);
     }
 
+    @Override
+    public boolean isEmptyModuleList() {
+        return modules.isEmptyList();
+    }
+
+    @Override
+    public void clearMod() {
+        addressBook.clearMod();
+    }
+
     /**
      * Checks if addressBook has the given (@code Module}
      */
@@ -138,6 +148,11 @@ public class ModelManager implements Model {
     public void addModule(Module module) {
         addressBook.addModule(module);
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+    }
+
+    @Override
+    public void assignInstructor(Person instructor, ModuleCode moduleCode) {
+        addressBook.assignInstructor(instructor, moduleCode);
     }
 
     //=========== Filtered Person List Accessors =============================================================

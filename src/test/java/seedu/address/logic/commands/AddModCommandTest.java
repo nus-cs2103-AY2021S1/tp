@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -50,7 +51,7 @@ public class AddModCommandTest {
         ModelStub modelStub = new ModelStubWithModule(validModule);
 
         assertThrows(CommandException.class,
-                AddModCommand.MESSAGE_DUPLICATE_MODULE, () -> addModCommand.execute(modelStub));
+                Messages.MESSAGE_DUPLICATE_MODULE, () -> addModCommand.execute(modelStub));
     }
 
     @Test
@@ -157,6 +158,11 @@ public class AddModCommandTest {
         }
 
         @Override
+        public void assignInstructor(Person instructor, ModuleCode moduleCode) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public UniqueModuleList getModuleList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -172,6 +178,15 @@ public class AddModCommandTest {
         }
 
         @Override
+        public boolean isEmptyModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearMod() {
+            throw new AssertionError("This method should not be called.");
+        }
+
         public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
