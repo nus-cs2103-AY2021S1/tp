@@ -1,6 +1,7 @@
 package seedu.address.testutil.property;
 
-import seedu.address.model.id.Id;
+import seedu.address.model.id.PropertyId;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.price.Price;
 import seedu.address.model.property.Address;
 import seedu.address.model.property.IsClosedDeal;
@@ -14,8 +15,6 @@ import seedu.address.model.property.PropertyType;
  */
 public class PropertyBuilder {
 
-    public static final String PREFIX = "P";
-    public static final String SELLER_ID_PREFIX = "S";
     public static final int DEFAULT_PROPERTY_ID = 1;
     public static final String DEFAULT_ADDRESS = "123, Ang Mo Kio Drive, #01-23";
     public static final String DEFAULT_PROPERTY_NAME = "Ang Mo Kio Residence";
@@ -25,10 +24,10 @@ public class PropertyBuilder {
     public static final String DEFAULT_IS_RENTAL = "No";
     public static final String DEFAULT_IS_CLOSED_DEAL = "Active";
 
-    private Id propertyId;
+    private PropertyId propertyId;
     private Address address;
     private PropertyName propertyName;
-    private Id sellerId;
+    private SellerId sellerId;
     private Price askingPrice;
     private PropertyType propertyType;
     private IsRental isRental;
@@ -38,10 +37,10 @@ public class PropertyBuilder {
      * Creates a {@code PropertyBuilder} with the default details.
      */
     public PropertyBuilder() {
-        propertyId = new Id(PREFIX, DEFAULT_PROPERTY_ID);
+        propertyId = new PropertyId(DEFAULT_PROPERTY_ID);
         address = new Address(DEFAULT_ADDRESS);
         propertyName = new PropertyName(DEFAULT_PROPERTY_NAME);
-        sellerId = new Id(SELLER_ID_PREFIX, DEFAULT_SELLER_ID);
+        sellerId = new SellerId(DEFAULT_SELLER_ID);
         askingPrice = new Price(DEFAULT_ASKING_PRICE);
         propertyType = new PropertyType(DEFAULT_PROPERTY_TYPE);
         isRental = new IsRental(DEFAULT_IS_RENTAL);
@@ -66,7 +65,7 @@ public class PropertyBuilder {
      * Sets the {@code propertyId} of the {@code Property} that we are building.
      */
     public PropertyBuilder withPropertyId(String propertyId) {
-        this.propertyId = new Id(propertyId);
+        this.propertyId = new PropertyId(propertyId);
         return this;
     }
 
@@ -91,7 +90,7 @@ public class PropertyBuilder {
      * Sets the {@code sellerId} of the {@code Property} that we are building.
      */
     public PropertyBuilder withSellerId(String sellerId) {
-        this.sellerId = new Id(sellerId);
+        this.sellerId = new SellerId(sellerId);
         return this;
     }
 

@@ -11,14 +11,15 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.id.IdParserUtil;
 import seedu.address.model.calendar.CalendarAdmin;
-import seedu.address.model.calendar.CalendarBidderId;
 import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.calendar.CalendarPaperwork;
-import seedu.address.model.calendar.CalendarPropertyId;
 import seedu.address.model.calendar.CalendarTime;
 import seedu.address.model.calendar.CalendarVenue;
 import seedu.address.model.calendar.CalendarViewing;
+import seedu.address.model.id.BidderId;
+import seedu.address.model.id.PropertyId;
 
 
 /**
@@ -43,10 +44,10 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
 
         CalendarVenue venue = ParserUtil.parseCalendarVenue(argMultimap.getValue(PREFIX_CALENDAR_VENUE).get());
         CalendarTime time = ParserUtil.parseCalendarTime(argMultimap.getValue(PREFIX_CALENDAR_TIME).get());
-        CalendarPropertyId propertyId =
-                ParserUtil.parseCalendarPropertyId(argMultimap.getValue(PREFIX_CALENDAR_PROPERTY_ID).get());
-        CalendarBidderId bidderId =
-                ParserUtil.parseCalendarBidderId(argMultimap.getValue(PREFIX_CALENDAR_BIDDER_ID).get());
+        PropertyId propertyId =
+                IdParserUtil.parsePropertyId(argMultimap.getValue(PREFIX_CALENDAR_PROPERTY_ID).get());
+        BidderId bidderId =
+                IdParserUtil.parseBidderId(argMultimap.getValue(PREFIX_CALENDAR_BIDDER_ID).get());
         String type = ParserUtil.parseCalendarType(argMultimap.getValue(PREFIX_CALENDAR_TYPE).get());
 
         if (type.contains("p")) {

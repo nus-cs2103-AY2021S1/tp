@@ -1,8 +1,10 @@
 package seedu.address.model.person.seller;
 
+import static seedu.address.model.id.SellerId.DEFAULT_SELLER_ID;
+
 import java.util.Set;
 
-import seedu.address.model.id.Id;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.person.ClientPerson;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -14,33 +16,51 @@ import seedu.address.model.tag.Tag;
  */
 public class Seller extends ClientPerson {
 
-    public static final Id DEFAULT_SELLER_ID = new Id("S", 0);
+    private SellerId sellerId;
 
+    /**
+     * Constructs a Seller from name, phone and tags.
+     *
+     * @param name The name of the seller.
+     * @param phone The phone number.
+     * @param tags Tags.
+     */
     public Seller(Name name, Phone phone, Set<Tag> tags) {
         super(name, phone, tags, DEFAULT_SELLER_ID);
+        this.sellerId = DEFAULT_SELLER_ID;
     }
 
     /**
      * Constructs the seller with the name, phone, tags, and id.
-     *
-     * @param name name of the seller.
+     *  @param name name of the seller.
      * @param phone phone number.
      * @param tags tags.
-     * @param id identifier.
+     * @param sellerId identifier.
      */
-    public Seller(Name name, Phone phone, Set<Tag> tags, Id id) {
-        super(name, phone, tags, id);
+    public Seller(Name name, Phone phone, Set<Tag> tags, SellerId sellerId) {
+        super(name, phone, tags, sellerId);
+        this.sellerId = sellerId;
     }
 
     public Seller setSellerTag() {
         tags.add(new Tag("seller"));
-        return new Seller(name, phone, tags, clientId);
+        return new Seller(name, phone, tags, sellerId);
     }
-
 
     public Seller setDefaultSellerId() {
         return new Seller(name, phone, tags, DEFAULT_SELLER_ID);
     }
+
+    @Override
+    public SellerId getId() {
+        return sellerId;
+    }
+
+    public void setId(SellerId updatedId) {
+        super.setId(updatedId);
+        this.sellerId = updatedId;
+    }
+
     /**
      * Returns true if both persons of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
