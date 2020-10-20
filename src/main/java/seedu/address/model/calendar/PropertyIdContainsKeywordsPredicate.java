@@ -19,7 +19,7 @@ public class PropertyIdContainsKeywordsPredicate implements Predicate<CalendarMe
     public boolean test(CalendarMeeting calendarMeeting) {
         return keywords.stream()
                 .anyMatch(keyword ->
-                        StringUtil.containsWordIgnoreCase(calendarMeeting.getCalendarPropertyId().propertyId, keyword));
+                        StringUtil.containsWordIgnoreCase(calendarMeeting.getCalendarPropertyId().toString(), keyword));
     }
 
     @Override
