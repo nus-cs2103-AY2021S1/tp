@@ -6,6 +6,7 @@ import static com.eva.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static com.eva.logic.parser.CliSyntax.PREFIX_NAME;
 import static com.eva.logic.parser.CliSyntax.PREFIX_PHONE;
 import static com.eva.logic.parser.CliSyntax.PREFIX_TAG;
+import static com.eva.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.util.Set;
 import java.util.stream.Stream;
