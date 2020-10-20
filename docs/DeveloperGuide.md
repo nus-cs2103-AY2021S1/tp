@@ -112,9 +112,9 @@ Structure of the Model Component
 
 `InventoryModelManager`
 
-* stores a comparator used to sort the filtered list 
+* stores a comparator used to sort the filtered list
 * stores the inventory book data
-* stores a list of InventoryBook 
+* stores a list of InventoryBook
 * exposes an unmodifiable `ObservableList<Item>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
 `DeliveryModelManager`
@@ -308,7 +308,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `InventoryBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `OneShelf` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete an item**
 
@@ -329,7 +329,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. InventoryBook shows an error message.
+    * 3a1. OneShelf shows an error message.
 
       Use case resumes at step 2.
 
@@ -338,21 +338,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User request to update item.
-2. InventoryBook updates the item accordingly.
+2. OneShelf updates the item accordingly.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. InventoryBook detect invalid data input.
+* 1a. OneShelf detect invalid data input.
 
-  * 1a1. InventoryBook shows an error message.
+  * 1a1. OneShelf shows an error message.
 
   Use case ends.
 
-* 1b. InventoryBook unable to detect existing item name and supplier.
+* 1b. OneShelf unable to detect existing item name and supplier.
 
-  * 1b1. InventoryBook adds a new item into the inventory.
+  * 1b1. OneShelf adds a new item into the inventory.
 
   Use case ends.
 
@@ -375,19 +375,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-  * 3a1. InventoryBook shows an error message.
+  * 3a1. OneShelf shows an error message.
 
         Use case resumes at step 2.
 
 * 3b. The given data to edit is invalid.
 
-  * 3b1. InventoryBook shows an error message.
+  * 3b1. OneShelf shows an error message.
 
         Use case resumes at step 2.
 
-* 3c. InventoryBook detects a duplicate after editing.
+* 3c. OneShelf detects a duplicate after editing.
 
-  * 3c1. InventoryBook shows an error message.
+  * 3c1. OneShelf shows an error message.
 
         Use case resumes at step 2.
 
@@ -464,7 +464,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: First time user running OneShelf <br>
    Expected: OneShelf will load a sample data file.
-   
+
 1. Dealing with corrupted data files
 
    1. Prerequisite: There is an existing json file (inventorybook.json or deliverybook.json)
