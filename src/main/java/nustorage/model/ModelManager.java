@@ -138,12 +138,10 @@ public class ModelManager implements Model {
         filteredInventory.setPredicate(predicate);
     }
 
-
     @Override
     public Inventory getInventory() {
         return inventory;
     }
-
 
     @Override
     public boolean hasInventoryRecord(InventoryRecord inventoryRecord) {
