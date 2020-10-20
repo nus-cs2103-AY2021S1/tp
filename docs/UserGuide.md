@@ -4,7 +4,7 @@ title: User Guide
 ---
 
 Eva is a simple and lightweight application that **handles HR related administrative tasks**, 
-like manage staff performance and recruitment applicants, faster than a typical mouse/GUI driven app.
+like managing staff performance and recruitment of applicants, faster than a typical mouse/GUI driven app.
 
 * Table of Contents
 {:toc}
@@ -28,6 +28,8 @@ like manage staff performance and recruitment applicants, faster than a typical 
    * **`list`** : Lists all staffs and applicants.
 
    * **`addstaff`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a staff named `John Doe` to the application.
+
+   * **`addapplicant`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a staff named `John Doe` to the application.
 
    * **`delete`**`3` : Deletes the 3rd person shown in the current list.
 
@@ -59,6 +61,13 @@ like manage staff performance and recruitment applicants, faster than a typical 
 
 </div>
 
+## List of commands you can execute <br>
+Here are all the commands you can execute with Eva.
+- [Add a staff](#adding-a-staff) <br>
+- [Add a applicant](#adding-an-applicant) <br>
+- [Record a leave for a staff](#record-leave-taken-by-staff-addleave)
+
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -67,24 +76,44 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+<a name="adding-a-staff">
+<H3> Adding a staff: <code>addstaff</code></H3> 
+</a> 
 
-### Adding a staff: `addstaff`
+Adds a staff to the application.
 
-Adds a person to the application.
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]…`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A staff can have any number of tags (including 0)
-</div>
+ - A staff can have any number of tags (including 0) <br>
+ - A staff can have any number of comments (including 0) <br><br>
+ 
 
 Examples:
 * `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `addstaff n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addstaff n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/1234567 t/Role: Developer`
+
+<a name="adding-an-applicant">
+<H3> Adding an applicant: <code>addapplicant</code></H3> 
+</a> 
+
+Adds an applicant to the application.
+
+Format: `addapplicant n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG]…​[c/COMMENTS]…`
+
+ - An applicant can have any number of tags (including 0) <br>
+ - An applicant can have any number of comments (including 0) <br>
+ - The interview date has to be in DD/MM/YYYY format <br>
+ - :bulb: **Tip** The interview date is optional. If an interview date is not fixed yet, you can leave it and set it later. <br>
+<br>
+
+
+Examples:
+* `addapplicant n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/22/11/2020`
+* `addapplicant n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/1234567 t/Role: Developer`
 
 ### Record leave taken by staff: `addleave`
 
-Adds a person to the application.
+Adds a leave to the staff that is in eva database.
 Format: `addleave l/d:DATE [d:DATE]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
