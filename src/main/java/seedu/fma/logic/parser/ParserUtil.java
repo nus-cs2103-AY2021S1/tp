@@ -9,7 +9,7 @@ import java.util.Set;
 import seedu.fma.commons.core.index.Index;
 import seedu.fma.commons.util.StringUtil;
 import seedu.fma.logic.parser.exceptions.ParseException;
-import seedu.fma.model.LogBook;
+import seedu.fma.model.ReadOnlyLogBook;
 import seedu.fma.model.exercise.Exercise;
 import seedu.fma.model.exercise.exceptions.ExerciseNotFoundException;
 import seedu.fma.model.log.Comment;
@@ -40,13 +40,13 @@ public class ParserUtil {
     /**
      * Parses an {@code String exerciseName} into an {@code Exercise}.
      *
-     * @throws ParseException if the given {@code exerciseName} is invalid.
+     * @throws ParseException            if the given {@code exerciseName} is invalid.
      * @throws ExerciseNotFoundException if the given {@code exerciseName} does not match any existing Exercise.
      */
-    public static Exercise parseExercise(String exerciseName) throws ParseException {
+    public static Exercise parseExercise(String exerciseName, ReadOnlyLogBook logBook) throws ParseException {
         Name name = parseName(exerciseName);
         try {
-            return LogBook.getExercise(name);
+            return logBook.getExercise(name);
         } catch (ExerciseNotFoundException e) {
             throw new ParseException(Exercise.MESSAGE_CONSTRAINTS);
         }

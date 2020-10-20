@@ -61,7 +61,7 @@ class JsonSerializableLogBook {
             logBook.addExercise(exercise);
         }
         for (JsonAdaptedLog jsonAdaptedLog : logs) {
-            Log log = jsonAdaptedLog.toModelType();
+            Log log = jsonAdaptedLog.toModelType(logBook);
             if (logBook.hasLog(log)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_LOG);
             }

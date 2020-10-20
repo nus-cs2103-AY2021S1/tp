@@ -12,11 +12,11 @@ import seedu.fma.model.log.Rep;
  */
 public class SampleDataUtil {
 
-    public static Log[] getSampleLogs() {
+    public static Log[] getSampleLogs(LogBook logBook) {
         return new Log[] {
-            new Log(LogBook.getExercise(new Name("Sit ups")),
+            new Log(logBook.getExercise(new Name("Sit ups")),
                     new Rep("30"), new Comment("My abs hurt :(")),
-            new Log(LogBook.getExercise(new Name("Pull ups")),
+            new Log(logBook.getExercise(new Name("Pull ups")),
                     new Rep("10"), new Comment("-"))
         };
     }
@@ -34,11 +34,11 @@ public class SampleDataUtil {
 
     public static ReadOnlyLogBook getSampleLogBook() {
         LogBook sampleLogbook = new LogBook();
-        for (Log sampleLog : getSampleLogs()) {
-            sampleLogbook.addLog(sampleLog);
-        }
         for (Exercise sampleExercise : getSampleExercises()) {
             sampleLogbook.addExercise(sampleExercise);
+        }
+        for (Log sampleLog : getSampleLogs(sampleLogbook)) {
+            sampleLogbook.addLog(sampleLog);
         }
         return sampleLogbook;
     }
