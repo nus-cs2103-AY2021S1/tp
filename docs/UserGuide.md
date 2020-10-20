@@ -113,10 +113,14 @@ Format: `exit`
 
 Creates a snapshot of the current zookeep book data, saved as a file with the user specified file name
 
-<div markdown="span" class="alert alert-primary">:information_source: **Constraints:**
+<div markdown="block" class="alert alert-primary">
+
+**:information_source: Constraints:**<br>
 
 * File name can only contain alphanumeric characters, hyphens `-` and underscores `_`
+
 * File name must be at least 1 character long and at most 100 characters long
+
 * File name must not already exist in the data folder
 
 </div>
