@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -26,7 +27,8 @@ import seedu.address.model.visit.Visit;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-
+    public static final String MESSAGE_EMPTY_VISIT_INDEX = "";
+    public static final int MESSAGE_EMPTY_VISIT_INDICATOR = -1;
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -191,6 +193,11 @@ public class ParserUtil {
         return new ColorTag(trimmedColorTag);
     }
 
+    /**
+     * Trims a {@code date} into a {@code trimmedDate}.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
     public static String parseVisitReport(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
@@ -198,5 +205,23 @@ public class ParserUtil {
             throw new ParseException(Visit.MESSAGE_CONSTRAINTS);
         }
         return trimmedDate;
+    }
+
+    /**
+     * Checks if {@code index} is a valid number.
+     *
+     * @throws ParseException if the given {@code index} is invalid.
+     */
+    public static int parseVisitReportIndex(String index) throws ParseException {
+        if (index.equals(MESSAGE_EMPTY_VISIT_INDEX)) {
+            return MESSAGE_EMPTY_VISIT_INDICATOR;
+        } else {
+            int reportIdx = Integer.parseInt(index);
+            if (reportIdx < 1) {
+                throw new ParseException(Messages.MESSAGE_INVALID_VISIT_DISPLAYED_INDEX);
+            } else {
+                return reportIdx;
+            }
+        }
     }
 }

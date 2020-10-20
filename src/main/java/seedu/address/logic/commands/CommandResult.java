@@ -72,6 +72,16 @@ public class CommandResult {
         this.date = date;
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, ObservableList<Visit> lst) {
+        this(feedbackToUser, false, false, true, false,
+            false, false);
+        this.reports = lst;
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser;
     }

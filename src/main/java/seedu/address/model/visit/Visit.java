@@ -127,4 +127,12 @@ public class Visit implements Comparable<Visit> {
         }
         return true;
     }
+
+    public void setFields(LocalDate visitDate, Name patientName, String diagnosis, String prescription, String comment) {
+        this.visitDate = visitDate;
+        this.patientName = patientName;
+        this.diagnosis = diagnosis;
+        this.prescription = prescription;
+        this.comment = comment;
+    }
 }

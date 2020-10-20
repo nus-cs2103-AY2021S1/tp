@@ -38,7 +38,7 @@ public class Patient {
     /**
      * Name, phone, and IC number must be present and not null.
      */
-    public Patient(Name name, Phone phone, IcNumber icNumber, Address address, Email email,
+    public Patient(Name name, Phone phone, IcNumber icNumber, VisitHistory visitHistory, Address address, Email email,
                    ProfilePicture profilePicture, Sex sex, BloodType bloodType,
                    Set<Allergy> allergies, ColorTag colorTag) {
         requireAllNonNull(name, phone, icNumber);
@@ -52,7 +52,7 @@ public class Patient {
         this.bloodType = bloodType;
         this.allergies.addAll(allergies);
         this.colorTag = colorTag;
-        this.visitHistory = new VisitHistory(new ArrayList<>());
+        this.visitHistory = visitHistory;
     }
 
     public Name getName() {

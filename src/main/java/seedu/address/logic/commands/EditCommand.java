@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import javafx.beans.Observable;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -34,6 +35,8 @@ import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.ProfilePicture;
 import seedu.address.model.patient.Sex;
 import seedu.address.model.tag.ColorTag;
+import seedu.address.model.visit.Visit;
+import seedu.address.model.visit.VisitHistory;
 
 /**
  * Edits the details of an existing patient in the CliniCal application.
@@ -110,6 +113,8 @@ public class EditCommand extends Command {
         Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
         Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());
         IcNumber updatedIcNumber = editPatientDescriptor.getIcNumber().orElse(patientToEdit.getIcNumber());
+        VisitHistory updatedVisitHistory =
+            editPatientDescriptor.getVisitHistory().orElse(patientToEdit.getVisitHistory());
         Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
         Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
         ProfilePicture updatedProfilePicture = editPatientDescriptor.getProfilePicture()
@@ -118,7 +123,7 @@ public class EditCommand extends Command {
         BloodType updatedBloodtype = editPatientDescriptor.getBloodType().orElse(patientToEdit.getBloodType());
         Set<Allergy> updatedAllergies = editPatientDescriptor.getAllergies().orElse(patientToEdit.getAllergies());
         ColorTag updatedColorTag = editPatientDescriptor.getColorTag().orElse(patientToEdit.getColorTag());
-        return new Patient(updatedName, updatedPhone, updatedIcNumber,
+        return new Patient(updatedName, updatedPhone, updatedIcNumber, updatedVisitHistory,
                 updatedAddress, updatedEmail, updatedProfilePicture,
                 updatedSex, updatedBloodtype, updatedAllergies, updatedColorTag);
     }
@@ -149,6 +154,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private IcNumber icNumber;
+        private VisitHistory visitHistory;
         private Address address;
         private Email email;
         private ProfilePicture profilePicture;
@@ -167,6 +173,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setIcNumber(toCopy.icNumber);
+            setVisitHistory(toCopy.visitHistory);
             setAddress(toCopy.address);
             setEmail(toCopy.email);
             setProfilePicture(toCopy.profilePicture);
@@ -202,6 +209,14 @@ public class EditCommand extends Command {
 
         public void setIcNumber(IcNumber icNumber) {
             this.icNumber = icNumber;
+        }
+
+        public Optional<VisitHistory> getVisitHistory() {
+            return Optional.ofNullable(visitHistory);
+        }
+
+        public void setVisitHistory(VisitHistory visitHistory) {
+            this.visitHistory = visitHistory;
         }
 
         public Optional<IcNumber> getIcNumber() {

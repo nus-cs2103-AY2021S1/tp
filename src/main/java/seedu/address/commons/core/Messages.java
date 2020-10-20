@@ -12,4 +12,7 @@ public class Messages {
     public static final String MESSAGE_PATIENTS_LISTED_OVERVIEW = "%1$d patients listed!";
     public static final String MESSAGE_UNDONE_REDONE_INPUT = "%1$s %2$s";
 
+    public static final String MESSAGE_INVALID_VISIT_INDEX = "The visit index provided is invalid";
+    public static final String MESSAGE_INVALID_VISIT_DISPLAYED_INDEX = "The visit index provided is invalid";
+
 }

@@ -21,6 +21,8 @@ import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.ProfilePicture;
 import seedu.address.model.patient.Sex;
 import seedu.address.model.tag.ColorTag;
+import seedu.address.model.visit.Visit;
+import seedu.address.model.visit.VisitHistory;
 
 /**
  * Jackson-friendly version of {@link Patient}.
@@ -37,6 +39,7 @@ class JsonAdaptedPatient {
     private final String profilePicture;
     private final String sex;
     private final String bloodType;
+    private final List<JsonAdaptedVisit> visitHistory = new ArrayList<>();
     private final List<JsonAdaptedAllergy> tagged = new ArrayList<>();
     private final String color;
 
@@ -47,6 +50,7 @@ class JsonAdaptedPatient {
     public JsonAdaptedPatient(@JsonProperty("name") String name,
                               @JsonProperty("phone") String phone,
                               @JsonProperty("icNumber") String icNumber,
+                              @JsonProperty("visitHistory") List<JsonAdaptedVisit> visitHistory,
                               @JsonProperty("address") String address,
                               @JsonProperty("email") String email,
                               @JsonProperty("profilePicture") String profilePicture,
@@ -57,6 +61,9 @@ class JsonAdaptedPatient {
         this.name = name;
         this.phone = phone;
         this.icNumber = icNumber;
+        if (visitHistory != null) {
+            this.visitHistory.addAll(visitHistory);
+        }
         this.address = address;
         this.email = email;
         this.profilePicture = profilePicture;
@@ -76,6 +83,9 @@ class JsonAdaptedPatient {
         phone = source.getPhone().value;
         icNumber = source.getIcNumber().value;
         address = source.getAddress().value;
+        visitHistory.addAll(source.getVisitHistory().getVisits().stream()
+            .map(JsonAdaptedVisit::new)
+            .collect(Collectors.toList()));
         email = source.getEmail().value;
         profilePicture = source.getProfilePicture().value;
         sex = source.getSex().value;
@@ -95,6 +105,11 @@ class JsonAdaptedPatient {
         final List<Allergy> patientAllergies = new ArrayList<>();
         for (JsonAdaptedAllergy tag : tagged) {
             patientAllergies.add(tag.toModelType());
+        }
+
+        final ArrayList<Visit> patientVisits = new ArrayList<>();
+        for (JsonAdaptedVisit visit : visitHistory) {
+            patientVisits.add(visit.toModelType());
         }
 
         if (name == null) {
@@ -121,6 +136,8 @@ class JsonAdaptedPatient {
             throw new IllegalValueException(IcNumber.MESSAGE_CONSTRAINTS);
         }
         final IcNumber modelIcNumber = new IcNumber(icNumber);
+
+        final VisitHistory modelVisitHistory = new VisitHistory(patientVisits);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -175,8 +192,8 @@ class JsonAdaptedPatient {
         }
         final ColorTag modelColorTag = new ColorTag(color);
 
-        return new Patient(modelName, modelPhone, modelIcNumber, modelAddress, modelEmail, modelProfilePicture,
-                modelSex, modelBloodType, modelAllergies, modelColorTag);
+        return new Patient(modelName, modelPhone, modelIcNumber, modelVisitHistory, modelAddress, modelEmail,
+            modelProfilePicture, modelSex, modelBloodType, modelAllergies, modelColorTag);
     }
 
 }
