@@ -41,10 +41,10 @@ public class FindCommand extends Command {
             "Lunch", (s) -> new TagContainsKeywordsPredicate(Arrays.asList(s.split("\\s+")))
     );
     private OptionalParameter<DatePredicate> datePredicateParameter = this.addOptionalParameter(
-            "tag",
-            "t",
-            "Tag associated with the Food",
-            "Lunch", (s) -> new DatePredicate(s)
+            "date",
+            "d",
+            "Date associated with the Food",
+            "20-04-2020", (s) -> new DatePredicate(s)
     );
 
     void setParameters(OptionalParameter<FoodContainsKeywordsPredicate> foodPredicateParameter,
