@@ -66,6 +66,18 @@ public class Module {
         this.tags.addAll(tags);
         this.modularCredits = modularCredits;
     }
+
+    /**
+     * Represents the module object constructor.
+     * @param name name of module
+     * @param zoomLink zoom link attached to module
+     */
+    public Module(ModuleName name, ZoomLink zoomLink, ModularCredits modularCredits) {
+        this.name = name;
+        this.zoomLink = zoomLink;
+        this.gradeTracker = new GradeTracker();
+        this.modularCredits = modularCredits;
+    }
     /**
      * Represents the module object constructor.
      */
