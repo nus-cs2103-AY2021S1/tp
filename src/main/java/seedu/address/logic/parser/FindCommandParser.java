@@ -16,6 +16,20 @@ import seedu.address.model.assignment.*;
  */
 public class FindCommandParser implements Parser<FindCommand> {
 
+    private static boolean isDateFormat(String keyword) {
+        return keyword.matches("\\d{2}-\\d{2}-\\d{4}");
+    }
+
+    private static boolean isTimeFormat(String keyword) {
+        return keyword.matches("\\d{4}");
+    }
+
+    private static boolean moreThanOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        long countPrefixesPresent = Stream.of(prefixes)
+                .filter(prefix -> argumentMultimap.getValue(prefix).isPresent()).count();
+        return countPrefixesPresent > 1;
+    }
+
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
@@ -71,19 +85,5 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-    }
-
-    private static boolean isDateFormat(String keyword) {
-        return keyword.matches("\\d{2}-\\d{2}-\\d{4}");
-    }
-
-    private static boolean isTimeFormat(String keyword) {
-        return keyword.matches("\\d{4}");
-    }
-
-    private static boolean moreThanOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        long countPrefixesPresent = Stream.of(prefixes)
-                .filter(prefix -> argumentMultimap.getValue(prefix).isPresent()).count();
-        return countPrefixesPresent > 1;
     }
 }
