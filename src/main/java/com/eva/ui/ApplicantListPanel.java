@@ -17,7 +17,7 @@ import javafx.scene.layout.Region;
  */
 public class ApplicantListPanel extends UiPart<Region> {
     private static final String FXML = "ApplicantListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(ApplicantListPanel.class);
 
     @FXML
     private ListView<Applicant> applicantListView;
