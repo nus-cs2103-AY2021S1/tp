@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import seedu.address.logic.commands.SnapCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -22,6 +25,8 @@ public class SnapCommandParser implements Parser<SnapCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SnapCommand.MESSAGE_USAGE));
         } else if (!trimmedArgs.matches(VALIDATION_REGEX) || trimmedArgs.length() > 100) {
             throw new ParseException(SnapCommand.MESSAGE_CONSTRAINTS);
+        } else if (Files.exists(Path.of("data", trimmedArgs + ".json"))) {
+            throw new ParseException(String.format(SnapCommand.MESSAGE_WARNING, trimmedArgs + ".json"));
         }
 
         return new SnapCommand(trimmedArgs);

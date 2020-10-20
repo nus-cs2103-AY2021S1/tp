@@ -33,6 +33,9 @@ public class SnapCommand extends Command {
 
     public static final String MESSAGE_ERROR = "Could not save data to file: ";
 
+    public static final String MESSAGE_WARNING = "File name %s already exists.";
+
+    private static final String FILE_FORMAT = ".json";
     private final String fileName;
 
     /**
@@ -41,7 +44,7 @@ public class SnapCommand extends Command {
      */
     public SnapCommand(String fileName) {
         requireNonNull(fileName);
-        this.fileName = fileName + ".json";
+        this.fileName = fileName + FILE_FORMAT;
     }
 
     @Override
