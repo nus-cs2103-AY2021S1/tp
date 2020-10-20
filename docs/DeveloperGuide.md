@@ -15,7 +15,7 @@ This document details the architecture and software design of the software appli
 
 ### 1.2 Audience
 
-The Developer Guide is for those who are interested in understanding the architecture and software design of CliniCal. Specifically, this guide has been written with the current and future CliniCal developers in mind, as this document details the knowledge necessary to modify the codebase of this software.
+The Developer Guide is for those who are interested in understanding the architecture and software design of CliniCal. Specifically, this guide has been written with the current and future CliniCal developers in mind, as this document details the knowledge necessary to modify the codebase to customize for specific operating needs or extend existing functionalities.
 
 ### 1.3 Setting up
 
