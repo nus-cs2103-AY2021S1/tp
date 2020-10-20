@@ -24,6 +24,12 @@ create ListRecipeCommandParser
 InventoryParser -> ListRecipeCommandParser
 activate ListRecipeCommandParser
 
+ListRecipeCommandParser --> InventoryParser
+deactivate ListRecipeCommandParser
+
+InventoryParser -> ListRecipeCommandParser : parse("")
+activate ListRecipeCommandParser
+
 create ListRecipeCommand
 ListRecipeCommandParser -> ListRecipeCommand
 activate ListRecipeCommand
