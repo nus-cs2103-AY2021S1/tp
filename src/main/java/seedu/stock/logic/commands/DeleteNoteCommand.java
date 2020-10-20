@@ -15,12 +15,12 @@ import java.util.Optional;
  */
 public class DeleteNoteCommand extends Command {
 
-    public static final String COMMAND_WORD = "deletenote";
+    public static final String COMMAND_WORD = "notedelete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a note,"
             + " specified by index of note shown in stock display, or all notes of the stock identified "
             + "by the serial number of the stock.\n"
-            + "Special note index to delete ALL notes from stocks is 0."
+            + "Special note index to delete ALL notes from stocks is 0.\n"
             + "Parameters:\n"
             + "sn/ [SERIAL NUMBER]\n"
             + "ni/ [NOTE INDEX]\n"
@@ -31,6 +31,7 @@ public class DeleteNoteCommand extends Command {
     private static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND =
             "Stock with given serial number does not exists";
     private static final String MESSAGE_INVALID_NOTE_INDEX = "Note at index specified is not found.";
+    private static final String MESSAGE_STOCK_HAS_NO_NOTE = "Stock specified has no note.";
 
     private final SerialNumber serialNumber;
     private final int index;
@@ -67,6 +68,10 @@ public class DeleteNoteCommand extends Command {
 
         if(stockToDeleteNote.isEmpty()) {
             throw new CommandException(MESSAGE_SERIAL_NUMBER_NOT_FOUND);
+        }
+
+        if(stockToDeleteNote.get().getNotes().size() == 0) {
+            throw new CommandException(MESSAGE_STOCK_HAS_NO_NOTE);
         }
 
         if(index > stockToDeleteNote.get().getNotes().size()) {

@@ -16,6 +16,7 @@ public class CommandWords {
     public static final String LIST_COMMAND_WORD = ListCommand.COMMAND_WORD;
     public static final String UPDATE_COMMAND_WORD = UpdateCommand.COMMAND_WORD;
     public static final String NOTE_COMMAND_WORD = NoteCommand.COMMAND_WORD;
+    public static final String DELETE_NOTE_COMMAND_WORD = DeleteNoteCommand.COMMAND_WORD;
 
     /**
      * Returns all command words existing in Warenager.
@@ -35,6 +36,7 @@ public class CommandWords {
         allCommandWords.add(LIST_COMMAND_WORD);
         allCommandWords.add(UPDATE_COMMAND_WORD);
         allCommandWords.add(NOTE_COMMAND_WORD);
+        allCommandWords.add(DELETE_NOTE_COMMAND_WORD);
         return allCommandWords;
     }
 }

@@ -1,22 +1,8 @@
 package seedu.stock.logic.parser;
 
 import static seedu.stock.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.stock.logic.commands.CommandWords.ADD_COMMAND_WORD;
-import static seedu.stock.logic.commands.CommandWords.DELETE_COMMAND_WORD;
-import static seedu.stock.logic.commands.CommandWords.FIND_COMMAND_WORD;
-import static seedu.stock.logic.commands.CommandWords.FIND_EXACT_COMMAND_WORD;
-import static seedu.stock.logic.commands.CommandWords.NOTE_COMMAND_WORD;
-import static seedu.stock.logic.commands.CommandWords.STATISTICS_COMMAND_WORD;
-import static seedu.stock.logic.commands.CommandWords.UPDATE_COMMAND_WORD;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_STATISTICS_TYPE;
+import static seedu.stock.logic.commands.CommandWords.*;
+import static seedu.stock.logic.parser.CliSyntax.*;
 
 import java.util.List;
 import java.util.Random;
@@ -25,6 +11,7 @@ import seedu.stock.commons.util.SuggestionUtil;
 import seedu.stock.logic.commands.AddCommand;
 import seedu.stock.logic.commands.CommandWords;
 import seedu.stock.logic.commands.DeleteCommand;
+import seedu.stock.logic.commands.DeleteNoteCommand;
 import seedu.stock.logic.commands.ExitCommand;
 import seedu.stock.logic.commands.FindCommand;
 import seedu.stock.logic.commands.FindExactCommand;
@@ -152,6 +139,10 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             generateNoteSuggestion(toBeDisplayed, argMultimap);
             break;
 
+        case DeleteNoteCommand.COMMAND_WORD:
+            generateDeleteNoteSuggestion(toBeDisplayed, argMultimap);
+            break;
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -274,6 +265,30 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             toBeDisplayed.append("\n" + bodyErrorMessage);
         } else {
             toBeDisplayed.append("\n" + NoteCommand.MESSAGE_USAGE);
+        }
+    }
+
+    /**
+     * Generates suggestion for faulty deletenote command.
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param argMultimap The parsed user input fields.
+     */
+    private void generateDeleteNoteSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
+        List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(
+                PREFIX_SERIAL_NUMBER, PREFIX_NOTE_INDEX);
+        toBeDisplayed.append(DELETE_NOTE_COMMAND_WORD);
+
+        for (int i = 0; i < allowedPrefixes.size(); i++) {
+            Prefix currentPrefix = allowedPrefixes.get(i);
+            toBeDisplayed.append(" ").append(currentPrefix)
+                    .append(CliSyntax.getDefaultDescription(currentPrefix));
+        }
+
+        if (!bodyErrorMessage.equals("")) {
+            toBeDisplayed.append("\n" + bodyErrorMessage);
+        } else {
+            toBeDisplayed.append("\n" + DeleteNoteCommand.MESSAGE_USAGE);
         }
     }
 

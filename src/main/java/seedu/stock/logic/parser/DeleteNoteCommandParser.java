@@ -13,7 +13,8 @@ import java.util.stream.Stream;
 
 public class DeleteNoteCommandParser implements Parser<DeleteNoteCommand> {
 
-    private final static String MESSAGE_INVALID_NOTE_INDEX = "Note index must be a valid integer.";
+    private final static String MESSAGE_INVALID_NOTE_INDEX =
+            "Invalid field format!\nNote index must be a valid positive integer.";
 
     private final static Prefix[] validPrefixesForDeleteNote = { PREFIX_SERIAL_NUMBER, PREFIX_NOTE_INDEX };
     private final static Prefix[] invalidPrefixesForDeleteNote =
@@ -35,12 +36,12 @@ public class DeleteNoteCommandParser implements Parser<DeleteNoteCommand> {
 
         String serialNumberInput = argMultimap.getValue(PREFIX_SERIAL_NUMBER).get();
         SerialNumber serialNumber = ParserUtil.parseSerialNumber(serialNumberInput);
-        String noteInput = argMultimap.getValue(PREFIX_NOTE_INDEX).get();
-        if (!noteInput.matches("[0-9]+")) {
+        String noteIndexInput = argMultimap.getValue(PREFIX_NOTE_INDEX).get();
+        if (!noteIndexInput.matches("[0-9]+") || noteIndexInput.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_NOTE_INDEX,
                     DeleteNoteCommand.MESSAGE_USAGE));
         }
-        int noteIndex = Integer.parseInt(noteInput);
+        int noteIndex = Integer.parseInt(noteIndexInput);
 
         return new DeleteNoteCommand(serialNumber, noteIndex);
     }

@@ -72,22 +72,35 @@ public class Stock {
         return notes;
     }
 
+    /**
+     * Returns the values of the notes of this stock in a list.
+     * @return list of string of the values of notes of stock.
+     */
     public List<String> getNotesValues() {
         List<String> notesList = new ArrayList<>();
-        for(Note note : notes) {
+
+        for (Note note : notes) {
             notesList.add(note.value);
         }
+
         return notesList;
     }
 
     public String notesToString(List<Note> notes) {
         StringBuilder builder = new StringBuilder();
-        for(Note note : notes) {
-            builder.append("- ").append(note);
+
+        for (int i = 0; i < notes.size(); i++) {
+            builder.append(i+1).append(". ").append(notes.get(i)).append(" ");
         }
+
         return builder.toString();
     }
 
+    /**
+     * Generates a new same stock with the note added to stock.
+     * @param noteToAdd note to add to stock
+     * @return stock with added note
+     */
     public Stock addNote(Note noteToAdd) {
         Name name = this.name;
         SerialNumber serialNumber = this.serialNumber;
@@ -100,6 +113,11 @@ public class Stock {
         return new Stock(name, serialNumber, source, quantity, location, notesToUpdate);
     }
 
+    /**
+     * Generates a new same stock with the note, specified by the note index, deleted.
+     * @param indexOfNoteToDelete the index of the note to delete
+     * @return stock with deleted note
+     */
     public Stock deleteNote(int indexOfNoteToDelete) {
         Name name = this.name;
         SerialNumber serialNumber = this.serialNumber;
@@ -107,6 +125,7 @@ public class Stock {
         Quantity quantity = this.quantity;
         Location location = this.location;
         List<Note> notesToUpdate = this.notes;
+
         Stock updatedStock;
         if (indexOfNoteToDelete == 0) {
             updatedStock = new Stock(name, serialNumber, source, quantity, location);
