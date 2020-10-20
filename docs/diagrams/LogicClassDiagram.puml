@@ -23,17 +23,23 @@ Class DeliveryXYZCommand
 Class HelpXYZCommand
 Class XYZCommand
 Class CommandResult
+Class HelpCommandResult
 Class "{abstract}\nCommand" as Command
 Class "{abstract}\nItemCommand" as ItemCommand
 Class "{abstract}\nDeliveryCommand" as DeliveryCommand
 Class "{abstract}\nHelpCommand" as HelpCommand
 }
 
+note bottom of XYZCommand: XYZCommand = UndoCommand, \nRedoCommand etc
+note bottom of DeliveryXYZCommand: DeliveryXYZCommand = DeliveryAddCommand, \nDeliveryListCommand etc
+note bottom of ItemXYZCommand:  ItemXYZCommand = ItemAddCommand, \nItemListCommand etc
+note bottom of HelpXYZCommand: HelpXYZCommand = HelpStartCommand, \nHelpSummaryCommand etc
+
 Interface Logic <<Interface>>
 Class LogicManager
 }
 
-package Model{
+package Model {
 Class HiddenModel #FFFFFF
 }
 
@@ -69,13 +75,17 @@ HelpCommand -up-|> Command
 XYZCommandParser ..> XYZCommand : creates >
 XYZCommand -up-|> Command
 
-LogicManager ..> Command : executes >
+HelpCommandResult -up-|> CommandResult
+
+LogicManager .....> Command : executes >
 
 LogicManager --> Model
 Command .right.> Model
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
-Command .up.> CommandResult
+Command .right.> CommandResult
 CommandResult -[hidden]-> Parser
+
+XYZCommand -[hidden]-> ItemXYZCommand
 @enduml
