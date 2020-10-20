@@ -46,7 +46,7 @@
                     <TableView id="helpWindow" fx:id="helpTable" editable="true" minHeight="500.0" stylesheets="@Hospify.css" VBox.vgrow="SOMETIMES">
                         <columns>
                             <TableColumn editable="false" minWidth="150.0" prefWidth="-1.0" styleClass="bold" text="DATE">
-                                <cellValueFactory><PropertyValueFactory property="command" />
+                                <cellValueFactory><PropertyValueFactory property="date" />
                                 </cellValueFactory>
                             </TableColumn>
                             <TableColumn editable="false" minWidth="800.0" prefWidth="-1.0" text="DESCRIPTION">
