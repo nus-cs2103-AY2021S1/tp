@@ -535,7 +535,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The given format is missing field header n/.
 
     * 1a1. Warenager shows an error message.
-    
+
       Use case resumes at step 1.
 
 * 1b. The given command is invalid (wrong find command).
@@ -669,7 +669,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3d1. Warenager shows an error message.
 
       Use case resumes at step 2.
- 
+
 * 3e. The given increment or decrement value exceeds the integer limit.
 
     * 3e1. Warenager shows an error message.
@@ -1064,7 +1064,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `find s/company abc`<br>
       Expected: All stocks with field source containing "company abc" are displayed from the inventory.
       Status message shows success of command.
-            
+  
    1. Test case: `find 1111111`<br>
       Expected: No stock found due to invalid format from missing field header
       either n/, sn/, l/ or s/.
