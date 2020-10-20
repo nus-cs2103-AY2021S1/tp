@@ -6,7 +6,7 @@ import seedu.expense.model.expense.Expense;
 /**
  * A utility class to help with building ExpenseBook objects.
  * Example usage: <br>
- *     {@code ExpenseBook ab = new ExpenseBookBuilder().withExpense("John", "Doe").build();}
+ *     {@code ExpenseBook ab = new ExpenseBookBuilder().withExpense(expense).build();}
  */
 public class ExpenseBookBuilder {
 
