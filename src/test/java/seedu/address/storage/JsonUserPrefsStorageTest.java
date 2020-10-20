@@ -15,10 +15,13 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.currentpath.CurrentPath;
+import seedu.address.model.currentpath.FileList;
 
 public class JsonUserPrefsStorageTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonUserPrefsStorageTest");
+    private static final String USER_DIRECTORY_PATH = System.getProperty("user.dir");
 
     @TempDir
     public Path testFolder;
@@ -93,7 +96,7 @@ public class JsonUserPrefsStorageTest {
     private void saveUserPrefs(UserPrefs userPrefs, String prefsFileInTestDataFolder) {
         try {
             new JsonUserPrefsStorage(addToTestDataPathIfNotNull(prefsFileInTestDataFolder))
-                    .saveUserPrefs(userPrefs);
+                    .saveUserPrefs(userPrefs, USER_DIRECTORY_PATH);
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file", ioe);
         }
@@ -109,13 +112,13 @@ public class JsonUserPrefsStorageTest {
         JsonUserPrefsStorage jsonUserPrefsStorage = new JsonUserPrefsStorage(pefsFilePath);
 
         //Try writing when the file doesn't exist
-        jsonUserPrefsStorage.saveUserPrefs(original);
+        jsonUserPrefsStorage.saveUserPrefs(original, USER_DIRECTORY_PATH);
         UserPrefs readBack = jsonUserPrefsStorage.readUserPrefs().get();
         assertEquals(original, readBack);
 
         //Try saving when the file exists
         original.setGuiSettings(new GuiSettings(5, 5, 5, 5, "Dark Theme"));
-        jsonUserPrefsStorage.saveUserPrefs(original);
+        jsonUserPrefsStorage.saveUserPrefs(original, USER_DIRECTORY_PATH);
         readBack = jsonUserPrefsStorage.readUserPrefs().get();
         assertEquals(original, readBack);
     }

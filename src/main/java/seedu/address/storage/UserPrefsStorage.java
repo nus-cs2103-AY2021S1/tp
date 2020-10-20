@@ -7,6 +7,7 @@ import java.util.Optional;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.currentpath.CurrentPath;
 
 /**
  * Represents a storage for {@link seedu.address.model.UserPrefs}.
@@ -29,8 +30,9 @@ public interface UserPrefsStorage {
     /**
      * Saves the given {@link seedu.address.model.ReadOnlyUserPrefs} to the storage.
      * @param userPrefs cannot be null.
+     * @param savedCurrentPath cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
+    void saveUserPrefs(ReadOnlyUserPrefs userPrefs, String savedCurrentPath) throws IOException;
 
 }

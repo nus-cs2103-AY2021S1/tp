@@ -10,6 +10,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.currentpath.CurrentPath;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -42,8 +43,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
-        userPrefsStorage.saveUserPrefs(userPrefs);
+    public void saveUserPrefs(ReadOnlyUserPrefs userPrefs, String savedCurrentPath) throws IOException {
+        userPrefsStorage.saveUserPrefs(userPrefs, savedCurrentPath);
     }
 
 

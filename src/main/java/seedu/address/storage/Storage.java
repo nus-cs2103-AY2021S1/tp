@@ -8,6 +8,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.currentpath.CurrentPath;
 
 /**
  * API of the Storage component
@@ -18,7 +19,7 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
 
     @Override
-    void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
+    void saveUserPrefs(ReadOnlyUserPrefs userPrefs, String savedCurrentPath) throws IOException;
 
     @Override
     Path getAddressBookFilePath();
