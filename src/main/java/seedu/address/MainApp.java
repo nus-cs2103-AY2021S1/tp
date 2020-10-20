@@ -102,8 +102,7 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty ModuleList");
             initialData = new ModuleList();
         }
-
-        return new ModelManager(initialData, initialContactList, userPrefs);
+        return new ModelManager(initialData, initialContactList, initialTodoList, userPrefs);
     }
 
     /**
