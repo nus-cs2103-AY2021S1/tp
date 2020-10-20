@@ -51,10 +51,13 @@ public class CommandTestUtil {
     public static final String VALID_RATING_1 = "";
     public static final String VALID_RATING_2 = "2";
 
+    public static final String VALID_DIAGRAM_1 = "";
+
     public static final String INVALID_QUESTION_1 = " ";
     public static final String INVALID_ANSWER_1 = " ";
     public static final String INVALID_CATEGORY_1 = "%";
     public static final String INVALID_RATING_1 = "6";
+    public static final String INVALID_DIAGRAM_1 = "]";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

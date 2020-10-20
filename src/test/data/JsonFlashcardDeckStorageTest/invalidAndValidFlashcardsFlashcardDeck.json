@@ -1,15 +1,31 @@
 {
-  "flashcards" : [ {
-    "question" : "What does SDLC stand for?",
-    "answer" : "",
-    "category" : "SDLC"
-  }, {
-    "question" : "What is a revision control software?",
-    "answer" : "It is the software tool that automate the process of Revision Control",
-    "category" : "Revision history"
-  }, {
-    "question" : "What does OOP2 stand for?",
-    "answer" : "Object Oriented Programming",
-    "category" : "General"
-  } ]
+  "flashcards": [
+    {
+      "question": "What does SDLC stand for?",
+      "answer": "Software development life cycle",
+      "category": "SDLC",
+      "note": "",
+      "rating": "2",
+      "diagramFilePath": "",
+      "isFavourite": "false"
+    },
+    {
+      "question": "What is a revision control software?",
+      "answer": "",
+      "category": "Revision History",
+      "note": "",
+      "rating": "",
+      "diagramFilePath": "",
+      "isFavourite": "true"
+    },
+    {
+      "question": "It is recommended that assertions to be used liberally in the code. True or False?",
+      "answer": "True",
+      "category": "General",
+      "note": "",
+      "rating": "",
+      "diagramFilePath": "",
+      "isFavourite": "false"
+    }
+  ]
 }

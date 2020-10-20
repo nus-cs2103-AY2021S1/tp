@@ -12,12 +12,10 @@ import javax.imageio.ImageIO;
  */
 public class Diagram {
 
-    public static final String MESSAGE_CONSTRAINTS = "Image can be defined using relative path or absolute path";
-    /*
-     * The first character of the answer must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String MESSAGE_CONSTRAINTS = "Diagram can be defined by a valid relative or absolute path";
+    public static final String MESSAGE_INVALID_DIAGRAM_FILE_TYPE = "Invalid diagram file type";
+    public static final String MESSAGE_NON_EXISTENT_DIAGRAM_FILE_TYPE = "Please ensure diagram file exists";
+
     private String diagramFilePath;
 
     /**
@@ -65,7 +63,7 @@ public class Diagram {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Answer // instanceof handles nulls
+                || (other instanceof Diagram // instanceof handles nulls
                 && diagramFilePath.equals(((Diagram) other).diagramFilePath)); // state check
     }
 

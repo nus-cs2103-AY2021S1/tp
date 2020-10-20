@@ -1,8 +1,6 @@
 package seedu.flashcard.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.flashcard.commons.core.Messages.MESSAGE_INVALID_DIAGRAM_FILE_TYPE;
-import static seedu.flashcard.commons.core.Messages.MESSAGE_NON_EXISTENT_DIAGRAM_FILE_TYPE;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -131,11 +129,14 @@ public class ParserUtil {
     public static Diagram parseDiagram(String diagramFilePath) throws ParseException {
         requireNonNull(diagramFilePath);
         String trimmedDiagramFilePath = diagramFilePath.trim();
+        if (trimmedDiagramFilePath.isEmpty()) {
+            return new Diagram(trimmedDiagramFilePath);
+        }
         if (!Diagram.isValidFile(trimmedDiagramFilePath)) {
-            throw new ParseException(MESSAGE_NON_EXISTENT_DIAGRAM_FILE_TYPE);
+            throw new ParseException(Diagram.MESSAGE_NON_EXISTENT_DIAGRAM_FILE_TYPE);
         }
         if (!Diagram.isValidImageFileType(trimmedDiagramFilePath)) {
-            throw new ParseException(MESSAGE_INVALID_DIAGRAM_FILE_TYPE);
+            throw new ParseException(Diagram.MESSAGE_INVALID_DIAGRAM_FILE_TYPE);
         }
         return new Diagram(trimmedDiagramFilePath);
     }
