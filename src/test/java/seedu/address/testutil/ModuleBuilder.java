@@ -4,7 +4,6 @@ import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
-import seedu.address.model.module.grade.GradeTracker;
 
 /**
  * A utility class to help with building Person objects.
