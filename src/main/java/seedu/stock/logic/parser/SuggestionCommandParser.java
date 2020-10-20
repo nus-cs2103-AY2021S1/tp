@@ -28,6 +28,7 @@ import seedu.stock.logic.commands.FindCommand;
 import seedu.stock.logic.commands.FindExactCommand;
 import seedu.stock.logic.commands.HelpCommand;
 import seedu.stock.logic.commands.ListCommand;
+import seedu.stock.logic.commands.PrintCommand;
 import seedu.stock.logic.commands.StatisticsCommand;
 import seedu.stock.logic.commands.SuggestionCommand;
 import seedu.stock.logic.commands.UpdateCommand;
@@ -143,6 +144,10 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
 
         case FindExactCommand.COMMAND_WORD:
             generateFindExactSuggestion(toBeDisplayed, argMultimap);
+            break;
+
+        case PrintCommand.COMMAND_WORD:
+            generatePrintSuggestion(toBeDisplayed, argMultimap);
             break;
 
         default:
@@ -369,5 +374,15 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
      */
     private void generateExitSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
         toBeDisplayed.append(CommandWords.EXIT_COMMAND_WORD);
+    }
+
+    /**
+     * Generates suggestion for faulty print command.
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param argMultimap The parsed user input fields.
+     */
+    private void generatePrintSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
+        toBeDisplayed.append(CommandWords.PRINT_COMMAND_WORD);
     }
 }
