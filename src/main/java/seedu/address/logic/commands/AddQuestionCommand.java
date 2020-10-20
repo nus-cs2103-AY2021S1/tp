@@ -6,6 +6,8 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -22,6 +24,8 @@ public class AddQuestionCommand extends QuestionCommand {
 
     public static final String MESSAGE_SUCCESS = "New question added to student %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_QUESTION = "This student has already asked this question";
+
+    private static Logger logger = Logger.getLogger("Add Question Log");
 
     private final Index index;
     private final UnsolvedQuestion questionToAdd;
@@ -41,25 +45,36 @@ public class AddQuestionCommand extends QuestionCommand {
     public CommandResult execute(Model model) throws CommandException {
         assert (index != null) && (questionToAdd != null);
         requireNonNull(model);
+        logger.log(Level.INFO, "Beginning command execution");
 
         List<Student> lastShownList = model.getFilteredPersonList();
         if (index.getZeroBased() >= lastShownList.size()) {
+            logger.log(Level.WARNING, "Handling non-existent student error");
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         Student asker = lastShownList.get(index.getZeroBased());
         if (asker.containsQuestion(questionToAdd)) {
+            logger.log(Level.WARNING, "Handling duplicate question error");
             throw new CommandException(MESSAGE_DUPLICATE_QUESTION);
         }
 
+        Student replacement = addQuestionToStudent(asker, model);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        logger.log(Level.INFO, "Execution complete");
+        return new CommandResult(String.format(MESSAGE_SUCCESS, replacement.getName(), questionToAdd));
+    }
+
+    /**
+     * Returns the student with a newly added question after updating Reeve.
+     */
+    private Student addQuestionToStudent(Student asker, Model model) {
         List<Question> questions = new ArrayList<>(asker.getQuestions());
         questions.add(questionToAdd);
         Student replacement = new Student(asker.getName(), asker.getPhone(),
                 asker.getSchool(), asker.getYear(), asker.getAdmin(), questions);
         model.setPerson(asker, replacement);
-
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, replacement.getName(), questionToAdd));
+        return replacement;
     }
 
     @Override
