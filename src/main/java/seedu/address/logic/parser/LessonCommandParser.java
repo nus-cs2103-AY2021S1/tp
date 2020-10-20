@@ -18,6 +18,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.LessonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Title;
 
@@ -33,7 +34,7 @@ public class LessonCommandParser implements Parser<LessonCommand> {
      */
     public LessonCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESCRIPTION,
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESCRIPTION, PREFIX_DAY,
                         PREFIX_START_DATE, PREFIX_END_DATE, PREFIX_START_TIME, PREFIX_END_TIME);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_DAY, PREFIX_START_DATE, PREFIX_END_DATE,
@@ -48,23 +49,27 @@ public class LessonCommandParser implements Parser<LessonCommand> {
         LocalTime endTime = null;
         DayOfWeek dayOfWeek = null;
 
-        if (argMultimap.getValue(PREFIX_START_DATE).isPresent()) {
+        if (argMultimap.getValue(PREFIX_START_DATE).isPresent()
+                && argMultimap.getValue(PREFIX_END_DATE).isPresent()) {
             startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get());
-        }
-        if (argMultimap.getValue(PREFIX_END_DATE).isPresent()) {
             endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_END_DATE).get());
+        } else {
+            throw new ParseException(DateTime.DATE_MESSAGE_CONSTRAINTS);
         }
-        if (argMultimap.getValue(PREFIX_START_TIME).isPresent()) {
+        if (argMultimap.getValue(PREFIX_START_TIME).isPresent()
+                && argMultimap.getValue(PREFIX_END_TIME).isPresent()) {
             startTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_START_TIME).get());
-        }
-        if (argMultimap.getValue(PREFIX_END_TIME).isPresent()) {
             endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_END_TIME).get());
+        } else {
+            throw new ParseException(DateTime.TIME_MESSAGE_CONSTRAINTS);
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         }
         if (argMultimap.getValue(PREFIX_DAY).isPresent()) {
             dayOfWeek = ParserUtil.parseDay(argMultimap.getValue(PREFIX_DAY).get());
+        } else {
+            throw new ParseException(DateTime.DAY_MESSAGE_CONSTRAINTS);
         }
         requireAllNonNull(startDate, endDate, startTime, endTime, dayOfWeek);
         Lesson lesson = new Lesson(title, description, dayOfWeek, startTime, endTime, startDate, endDate);

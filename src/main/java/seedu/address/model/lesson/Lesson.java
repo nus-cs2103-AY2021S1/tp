@@ -77,15 +77,17 @@ public class Lesson {
         ArrayList<Task> tasksToAdd = new ArrayList<>();
         while (currentDate.isBefore(this.endDate) || currentDate.isEqual(this.endDate)) {
             LocalDateTime localDateTime = LocalDateTime.of(currentDate, getStartTime());
-            //todo:this might not be necessary
-            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy  hh:mm");
+            //todo:there might be a better way to do this
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm");
             String dateTime = localDateTime.format(format);
             DateTime eventDateTime = new DateTime(dateTime);
-            Task taskToAdd = new Task(title, eventDateTime, description, new Type("Lesson"), new HashSet<>());
+            Task taskToAdd = new Task(title, eventDateTime, description, new Type("lesson"), new HashSet<>());
             tasksToAdd.add(taskToAdd);
+            currentDate = currentDate.plusDays(7);
         }
         return tasksToAdd;
     }
+    
     /**
      * Returns true if both lessons of the same title have the same start and end date, and the same start and end time.
      */
@@ -93,7 +95,6 @@ public class Lesson {
         if (otherLesson == this) {
             return true;
         }
-
         return otherLesson != null
                 && otherLesson.getTitle().equals(getTitle())
                 && otherLesson.getStartTime().equals(getStartTime())

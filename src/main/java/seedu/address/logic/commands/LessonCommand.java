@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -38,7 +39,7 @@ public class LessonCommand extends Command {
             + PREFIX_END_DATE + "01-05-2020 ";
 
     public static final String MESSAGE_SUCCESS = "New lesson added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "This lesson already exists in PlaNus.";
+    public static final String MESSAGE_DUPLICATE_LESSON = "This lesson already exists in PlaNus.";
 
     private final Lesson lesson;
 
@@ -54,13 +55,16 @@ public class LessonCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         ArrayList<Task> tasksToAdd = lesson.createRecurringTasks();
-        //some for loop
         for (Task taskToAdd: tasksToAdd) {
+            System.out.println("date: " + taskToAdd.getDateTime());
             if (model.hasTask(taskToAdd)) {
-                throw new CommandException(MESSAGE_DUPLICATE_TASK);
+                System.out.println("B");
+                throw new CommandException(MESSAGE_DUPLICATE_LESSON);
             }
+            System.out.println("C");
             model.addTask(taskToAdd);
         }
+        System.out.println("D");
         return new CommandResult(String.format(MESSAGE_SUCCESS, lesson));
     }
 
