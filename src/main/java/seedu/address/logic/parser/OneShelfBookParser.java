@@ -13,6 +13,7 @@ import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.deliverycommand.DeliveryAddCommand;
 import seedu.address.logic.commands.deliverycommand.DeliveryClearCommand;
 import seedu.address.logic.commands.deliverycommand.DeliveryDeleteCommand;
+import seedu.address.logic.commands.deliverycommand.DeliveryEditCommand;
 import seedu.address.logic.commands.deliverycommand.DeliveryFindCommand;
 import seedu.address.logic.commands.deliverycommand.DeliveryListCommand;
 import seedu.address.logic.commands.help.HelpCommand;
@@ -25,6 +26,7 @@ import seedu.address.logic.commands.itemcommand.ItemListCommand;
 import seedu.address.logic.commands.itemcommand.ItemRemoveCommand;
 import seedu.address.logic.parser.deliveryparser.DeliveryAddCommandParser;
 import seedu.address.logic.parser.deliveryparser.DeliveryDeleteCommandParser;
+import seedu.address.logic.parser.deliveryparser.DeliveryEditCommandParser;
 import seedu.address.logic.parser.deliveryparser.DeliveryFindCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.itemparser.ItemAddCommandParser;
@@ -84,6 +86,9 @@ public class OneShelfBookParser {
             // Delivery command words
         case DeliveryAddCommand.COMMAND_WORD:
             return new DeliveryAddCommandParser().parse(arguments);
+
+        case DeliveryEditCommand.COMMAND_WORD:
+            return new DeliveryEditCommandParser().parse(arguments);
 
         case DeliveryDeleteCommand.COMMAND_WORD:
             return new DeliveryDeleteCommandParser().parse(arguments);
