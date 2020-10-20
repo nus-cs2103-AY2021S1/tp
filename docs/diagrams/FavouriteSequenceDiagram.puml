@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":FlashcardDeckParser" as FlashcardDeckParser LOGIC_COLOR
 participant ":FavCommandParser" as FavCommandParser LOGIC_COLOR
-participant "f:favCommand" as FavCommand LOGIC_COLOR
+participant "f:FavCommand" as FavCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
