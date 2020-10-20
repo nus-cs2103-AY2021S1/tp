@@ -5,6 +5,9 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
+Refer to the guide <<SettingUp#, here>>.
+
+== Design
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -108,7 +111,12 @@ The `Model`,
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info"> 
+
+:information_source: 
+
+**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -132,7 +140,95 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how certain features are implemented. The details of the features are
+categorized accordingly to the entities. Specifically: Bidder, Seller, Bid, Property and Meeting.
+
+### 1. Bidder / Seller
+ 
+ Despite being two separate entities, bidder and seller entities will be presented together in the implementation as
+ both entities are very similar in terms of implementation.
+ 
+ ### **Implementation**
+ 
+ #### 1.1 **Delete**: delete a bidder / seller - `delete-b` or `delete-s`
+ 
+ `delete` is supported by the `DeleteBidderCommand` and `DeleteSellerCommand`.
+ 
+ Given below is the example usage scenario:
+ 
+ **Step 1**. The user launches the PropertyFree application. 
+ 
+ **Step 2**. After loading data from the storage to the application memory,
+ the list of `bidders` or `sellers` in the `BidderAddressBook` and `SellerAddressBook` can either contain existing bidders
+ or sellers, or is empty. However, as we are deleting existing bidders or sellers, we will assumed that there are
+ bidders or sellers in the book.
+ 
+ **Step 3**. The user then executes `delete-b <INDEX>`. If the `<INDEX>` is out of bound. PropertyFree will give a 
+ display error message indicating that the index is wrong.
+ 
+ **Step 4**. The application will then retrieve the corresponding bidder or seller, delete it, and return a new list without the
+ corresponding bidder or seller.
+ 
+ The following activity diagram summarises what happens when a user executes `delete-b` or `delete-s` command:
+ 
+ ![DeleteBidderActivityDiagram](images/BidderDeleteActivityDiagram.png)
+ 
+ The following sequence diagram summarises as well how the components of Model and Logic interact during the execution
+ of the command:
+ 
+ ![DeleteBidderSequenceDiagram](images/DeleteBidderSequenceDiagram.png)
+
+ #### Design Considerations
+ 
+ 1. Alternative 1 (current choice): Displays the list in the appropriate tab accordingly, depending on the relevant
+ entity of the command. (i.e `delete-b` will bring the application to the bidder tab automatically.)
+    
+    - Pros: Automatic switching of tabs allows user to switch between tabs without having to 
+    interact with the GUI. 
+    - Cons: User may not desire to switch tabs automatically even if a command is given for the relevant entity.
+ 
+ 2. Alternative 2: Have a separate window for bidder and sellers.
+
+    - Pros: Neater UI and improves usability for the agent.
+    - Cons: More command lines will be required if user wants to close the separate window.
+ 
+ #### 1.2 **Find**: find bidder(s) and seller(s) based on their names - `find-b` or `find-s`
+ 
+  `find` is supported by the `FindBidderCommand` and `FindSellerCommand`.
+  
+  Given below is the example usage scenario:
+  
+  **Step 1**. The user launches the PropertyFree application. 
+  
+  **Step 2**. After loading data from the storage to the application memory,
+  the list of `bidders` or `sellers` in the `BidderAddressBook` and `SellerAddressBook` can either contain existing bidders
+  or sellers, or is empty. However, as we are finding existing bidders or sellers, we will assumed that there are
+  bidders or sellers in the book.
+  
+  **Step 3**. The user then executes `find-b <KEYWORD>`. If the `<KEYWORD>` does not corresponding to any names
+   in the list of bidders and seller. PropertyFree will display an error message indicating that the search result is
+   empty.
+   
+  **Step 4**. If the `<KEYWORD>` matches any names (in part or whole), the list will then filter the bidders or sellers
+  whose name do not match the `<KEYWORD>`, and return a list of bidders or sellers whose name contains the `<KEYWORD>`.
+  
+   The following sequence diagram summarises as well how the components of Model and Logic interact during the execution
+   of the command:
+   
+   ![FindBidderSequenceDiagram](images/FindBidderSequenceDiagram.png)
+ 
+   #### Design Consideration
+   
+   1. Alternative Implementation 1 (current choice): The bidder and sellers are stored in an 
+   `ObservableList<Bidder/Seller>`.
+        - Pros: Easier to implement and do not require refactoring for the existing code base
+        - Cons: The class (`Observable`) is deprecated since Java 9 due lack of functionality.
+        
+   2. Alternative Implementation 2: using of java.beans package instead of Observable
+        - Pros: to replace the deprecated `Observable` class since Java 9. Greater number of functions, such
+        as being able to keep track of what has changed.
+        - Cons: Will require heavy edits to the existing code base.
+ 
 
 ### \[Proposed\] Undo/redo feature
 
