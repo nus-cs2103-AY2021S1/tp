@@ -60,7 +60,6 @@ like managing staff performance and recruitment of applicants, faster than a typ
 </div>
 
 ## List of commands you can execute <br>
-[Add a person] (#adding-a-person) <br>
 [Add a staff] (#adding-a-staff) <br>
 [Add a applicant] (#adding-an-applicant) <br>
 
@@ -73,21 +72,6 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-
-### Adding a person: `add`
-
-Adds a person to the application.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 ### Adding a staff: `add`
 
@@ -110,10 +94,10 @@ Adds an applicant to the application.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG]…​[c/COMMENTS]…`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An applicant can have any number of tags (including 0)
-An applicant can have any number of comments (including 0)
-The interview date is optional. If an interview date is not fixed yet, you can leave it and set it later.
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** An applicant can have any number of tags (including 0) <br>
+:bulb: **Tip:** An applicant can have any number of comments (including 0) <br>
+:bulb: **Tip:** The interview date is optional. If an interview date is not fixed yet, you can leave it and set it later. <br>
 </div>
 
 Examples:
