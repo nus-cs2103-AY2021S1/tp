@@ -284,6 +284,11 @@ public class AddCommandTest {
         public void undoOrder() {
 
         }
+
+        @Override
+        public int getOrderItemQuantity(int index) {
+            return 0;
+        }
     }
 
     /**

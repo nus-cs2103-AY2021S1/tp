@@ -29,6 +29,7 @@ public class RemoveCommand extends Command {
 
     private final Index targetIndex;
     private final int quantity;
+    private final boolean specified;
 
     /**
      * Creates a RemoveCommand to remove the OrderItem at the specified {@code targetIndex} and remove all its quantity
@@ -37,6 +38,7 @@ public class RemoveCommand extends Command {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
         this.quantity = Integer.MAX_VALUE;
+        specified = false;
     }
 
     /**
@@ -48,6 +50,7 @@ public class RemoveCommand extends Command {
         assert quantity > 0;
         this.targetIndex = targetIndex;
         this.quantity = quantity;
+        specified = true;
     }
 
     @Override
@@ -58,7 +61,7 @@ public class RemoveCommand extends Command {
 
         if (order.size() <= index) {
             throw new CommandException(ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
-        } else if (model.getOrderItemQuantity(index) < quantity) {
+        } else if (model.getOrderItemQuantity(index) < quantity && specified) {
             throw new CommandException(ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_QUANTITY);
         }
         OrderItem oldItem = order.get(index);
