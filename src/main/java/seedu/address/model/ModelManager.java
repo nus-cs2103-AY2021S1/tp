@@ -113,6 +113,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean isEmptyPersonList() {
+        return addressBook.getPersonList().isEmpty();
+    }
+
+    @Override
+    public void clearContacts() {
+        addressBook.clearContacts();
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
