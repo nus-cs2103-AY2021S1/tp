@@ -82,6 +82,19 @@ public class CommandResult {
         this.reports = lst;
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, ObservableList<Visit> lst,
+                         int idx, int reportIdx, Visit report) {
+        this(feedbackToUser, false, false, false, true, false, false);
+        this.reports = lst;
+        this.index = idx;
+        this.reportIdx = reportIdx;
+        this.oldReport = report;
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
