@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.food.Food;
 import seedu.address.model.menu.MenuManager;
 import seedu.address.model.menu.ReadOnlyMenuManager;
@@ -20,6 +21,7 @@ import seedu.address.model.order.OrderItem;
 import seedu.address.model.order.OrderManager;
 import seedu.address.model.order.ReadOnlyOrderManager;
 import seedu.address.model.vendor.Vendor;
+import seedu.address.model.vendor.VendorManager;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -49,8 +51,7 @@ public class ModelManager implements Model {
         this.orderManager = new OrderManager();
 
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredVendors = new FilteredList<>(this.addressBook.getVendorList());
-
+        this.filteredVendors = new FilteredList<>(this.addressBook.getVendorList());
     }
 
     /**
@@ -72,6 +73,27 @@ public class ModelManager implements Model {
         this.menuManagers = menuManagers;
         this.orderManager = orderManager;
         filteredVendors = new FilteredList<>(this.addressBook.getVendorList());
+    }
+
+    /**
+     * Initializes a ModelManager with the given addressBook, userPrefs, menuManager and orderManager.
+     */
+    public ModelManager(
+            ReadOnlyAddressBook addressBook,
+            ReadOnlyUserPrefs userPrefs,
+            List<MenuManager> menuManagers,
+            OrderManager orderManager, Vendor vendor
+    ) {
+        super();
+        requireAllNonNull(addressBook, userPrefs, menuManagers, orderManager);
+
+        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+
+        this.addressBook = new AddressBook(addressBook);
+        this.userPrefs = new UserPrefs(userPrefs);
+        this.menuManagers = menuManagers;
+        this.orderManager = orderManager;
+        this.filteredVendors = new FilteredList<>(this.addressBook.getVendorList());
     }
 
     public ModelManager() {
@@ -158,6 +180,11 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedVendor);
 
         addressBook.setVendor(target, editedVendor);
+    }
+
+    @Override
+    public AddressBook selectVendor(int vendorIndex) {
+        return this.addressBook.selectVendor(vendorIndex);
     }
 
     //=========== MenuManager ================================================================================

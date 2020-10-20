@@ -15,6 +15,7 @@ import seedu.address.model.vendor.Vendor;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueVendorList vendors;
+    private final int vendorIndex;
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -24,9 +25,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         vendors = new UniqueVendorList();
+
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+        //TODO: Default vendor index is 0. Assumes that there is at least 1 vendor in the AddressBook.
+        this.vendorIndex = 0;
+    }
 
     /**
      * Creates an AddressBook using the Vendors in the {@code toBeCopied}
@@ -53,6 +58,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
         setVendors(newData.getVendorList());
+    }
+
+    /**
+     * Sets the vendorIndex of the AddressBook to {@code vendorIndex}. This method is only called when
+     * the selectVendor method is called.
+     */
+    private AddressBook(int vendorIndex) {
+        this.vendorIndex = vendorIndex;
     }
 
     //// vendor-level operations
@@ -82,6 +95,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedVendor);
 
         vendors.setVendor(target, editedVendor);
+    }
+
+    public AddressBook selectVendor(int vendorIndex) {
+        return new AddressBook(vendorIndex);
     }
 
     /**
@@ -116,4 +133,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return vendors.hashCode();
     }
+
+
 }

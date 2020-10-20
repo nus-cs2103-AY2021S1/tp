@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.food.Food;
 import seedu.address.model.menu.ReadOnlyMenuManager;
 import seedu.address.model.order.OrderItem;
@@ -90,6 +91,13 @@ public interface Model {
      * {@code vendor} must not already exist in the address book.
      */
     void addVendor(Vendor vendor);
+
+    /**
+     * Creates a new AddressBook with the vendor with index {@code vendorIndex} .
+     * {@code vendorIndex} must be a valid index in the model.
+     */
+    AddressBook selectVendor(int vendorIndex);
+
 
     /**
      * Replaces the given vendor {@code target} with {@code editedVendor}.
