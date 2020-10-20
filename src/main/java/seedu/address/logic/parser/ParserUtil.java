@@ -176,9 +176,6 @@ public class ParserUtil {
         } catch (java.text.ParseException e) {
             throw new ParseException(MESSAGE_INVALID_TIME);
         }
-//        if (!StringUtil.isNonZeroUnsignedInteger(trimmedTime)) {
-//            throw new ParseException(MESSAGE_INVALID_INDEX);
-//        }
     }
 
     //=========== Bids ================================================================================

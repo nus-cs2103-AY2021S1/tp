@@ -12,6 +12,7 @@ class CalendarPropertyIdTest {
     void testToString() {
         CalendarPropertyId propertyId = new CalendarPropertyId("p1");
         String propertyIdTest = "p1";
+        assert (propertyId.propertyId.equals("p1"));
         assertTrue(propertyIdTest.equals(propertyId.toString()));
 
         CalendarPropertyId propertyIdError = new CalendarPropertyId("p1");
