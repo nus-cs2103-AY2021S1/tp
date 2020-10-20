@@ -1,6 +1,7 @@
 package jimmy.mcgymmy.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +12,7 @@ import jimmy.mcgymmy.model.ModelManager;
  */
 public class UndoCommandTest {
     private class CanUndoModelStub extends ModelManager {
+        private boolean hasBeenUndoed = false;
         @Override
         public boolean canUndo() {
             return true;
@@ -18,7 +20,11 @@ public class UndoCommandTest {
 
         @Override
         public void undo() {
-            // do nothing (to prevent EmptyStackException)
+            hasBeenUndoed = true;
+        }
+
+        public boolean isUndoed() {
+            return hasBeenUndoed;
         }
     }
 
@@ -32,8 +38,10 @@ public class UndoCommandTest {
     @Test
     public void execute_canUndo_returnsUndoSuccessfulMessage() {
         UndoCommand command = new UndoCommand();
-        CommandResult commandResult = command.execute(new CanUndoModelStub());
+        CanUndoModelStub model = new CanUndoModelStub();
+        CommandResult commandResult = command.execute(model);
         assertEquals(new CommandResult(UndoCommand.MESSAGE_UNDO_SUCCESS), commandResult);
+        assertTrue(model.isUndoed());
     }
 
     @Test
