@@ -171,10 +171,10 @@ The sequence diagram for the execution of an `AddQuantityToItemCommand` is as fo
 The `Item` with name banana is denoted as `itemBanana`, and the original quantity assumed to be `20`.
 ![AddQuantityToItemCommandSequenceDiagram](images/AddQuantityToItemCommandSequenceDiagram.png)
 
-### View item feature
+### View detailed item feature
 
-The view item feature allows users to view the detailed information of a recorded item, as compared to the default list
-display of all items which may truncate some information.
+The view detailed item feature allows users to view the detailed information of a recorded item, as compared to the 
+default list display of all items which may truncate some information.
 
 #### Implementation
 
@@ -186,9 +186,9 @@ After executing the view command, `LogicManager` sends feedback to `InventoryMai
 `DisplayedInventoryType` of `DETAILED_ITEM`, which prompts `InventoryListPanel` to change the display card of items
 into a more detailed display card on the GUI.
 
-This is the sequence diagram of view item command:
+This is the sequence diagram of view detailed item command:
 
-![ViewItemSequenceDiagram](images/commandseqdiagrams/ViewItemSequenceDiagram.png )
+![ViewDetailedItemSequenceDiagram](images/commandseqdiagrams/ViewDetailedItemSequenceDiagram.png )
 
 ### \[Proposed\] Undo/redo feature
 
