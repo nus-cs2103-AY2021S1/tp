@@ -4,12 +4,11 @@ Common Cents is your convenient at-hand expense-tracking tool, meant for anyone 
 
 * Quick Start
 * Features
-  * Viewing help: `help`
+  <!--* Viewing help: `help`-->
   * Adding an expense: `add`
-  * Removing an expense: `remove`
+  * Deleting an expense: `delete`
   * Editing an expense: `edit`
-  * Finding expenses by keyword: `find`
-  * Listing out expenses: `list`
+  * Finding expenses by a keyword: `find`
   * Exiting the program: `exit`
 * Command Summary
 
@@ -29,9 +28,8 @@ Common Cents is your convenient at-hand expense-tracking tool, meant for anyone 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`add`**`n/Food costs a/6.90` : Adds an expense named "Food costs" to the expense list.
-   * **`delete`**`3` : Deletes the 3rd expense entry shown in the current list.
-   * **`clear`** : Deletes all expenses.
+   * **`add c/expense d/buy lunch a/5.20 t/food`** : Adds an expense named "buy lunch" to the expense list.
+   * **`delete 1 c/expense`** : Deletes the 1st entry in the expense list.
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -42,76 +40,80 @@ Common Cents is your convenient at-hand expense-tracking tool, meant for anyone 
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**Notes about the command format:**<br>
 
 * Words in UPPERCASE are the parameters to be supplied by the user.<br>
-  e.g. in `add n/EXPENSE_NAME`, `EXPENSE_NAME` is a parameter which can be used as `add n/Buying cups`
+  e.g. in `add c/CATEGORY...`, `CATEGORY` is a parameter which can be used as `add c/REVENUE...`
 
 * Items in square brackets are optional.<br>
-  e.g `n/EXPENSE_NAME [t/TAG]` can be used as `n/Buying cups t/Supplies` or as `n/Buying cups`.
+  e.g `...a/AMOUNT [t/TAG]` can be used as `...a/50.10 t/Supplies` or as `...a/50.10`.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/EXPENSE_NAME a/EXPENSE_AMOUNT`, `a/EXPENSE_AMOUNT n/EXPENSE_NAME` is also acceptable.
+  e.g. if the command specifies `c/CATEGORY d/DESCRIPTION...`, `d/DESCRIPTION c/CATEGORY...` is also acceptable.
 
 
 </div>
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
+### Adding an entry: `add`
 
-### Adding an expense: `add`
+Adds an entry (expense/revenue) to the tracker.
 
-Adds an expense to the tracker.
+Format: `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
 
-Format: `add c/CATEGORY n/EXPENSE_NAME a/EXPENSE_AMT`
+* Adds an entry to either category.
+* The category refers to the classification of the entry in the entry lists.
+* The category must be either 'expense' or 'revenue'.
 
 Examples:
-* `add c/expenses n/buying cups a/5.50`
-* `add c/earnings n/selling cookies a/10.10`
+* `add c/expense d/buying supplies a/10.10 t/blogshop t/eCommerce`
+* `add c/revenue d/sale of clothes a/200 t/blogshop t/eCommerce`
 
 
-### Removing expenses : `remove`
+### Deleting entries : `delete`
 
-Removes an expense from the tracker.
+Removes an entry (expense/revenue) from the tracker.
 
-Format: `remove ENTRY_INDEX`
+Format: `delete ENTRY_INDEX c/CATEGORY`
 
-* Deletes the expense at the specified INDEX.
-* The index refers to the index number shown in the displayed expense list.
+* Deletes the entry at the specified INDEX.
+* The index refers to the index number shown in the displayed entry lists.
 * The index must be a positive integer 1, 2, 3, and must be within the range of the number of entries (e.g. if there are 10 entries, the INDEX given cannot be > 10)
 
 Example:
-* `remove 1`: Removes the first expense in the tracker
+* `delete 1 c/expense`
+* `delete 2 c/revenue`
 
 
-### Editing an expense : `edit`
+<!-- ### Editing an entry (expense/revenue) : `edit`
 
 Edits an entry in the tracker.
 
-* Edits an entry that matches the expense name and changes the initial amount with the either entry in a/MONEY_AMT (if any), the initial name to the entry in n/EXPENSE_NAME (if any) or both if both entries are keyed in
-* The tags n/ and a/ have to be used to indicate which field specifies EXPENSE_NAME and which field specifies MONEY_AMT
-* Order of whether `[n/EXPENSE_NAME]` or `[a/MONEY_AMT]` would not affect the edit command so long as the `n/` and `a/` tags are used, e.g. `edit 2 n/Cash paid at Zouk a/200` would have the same effect as `edit 2 a/200 and n/Cash paid at Zouk`.
+* Edits an entry that matches the entry name and changes the parameters of an entry depending on which are specified
+* The tags d/ and a/ have to be used to indicate which field specifies DESCRIPTION and which field specifies AMOUNT
 * The index must be a positive integer 1, 2, 3, and must be within the range of the number of entries (e.g. if there are 10 entries, the `INDEX` given cannot be > 10)
 
-Format:
-* `edit ENTRY_NUM [n/EXPENSE_NAME] [a/MONEY_AMT]`
-
+Formats:
+* `edit 1 c/CATEGORY d/DESCRIPTION a/AMOUNT t/TAG
+   edit 2 c/CATEGORY d/DESCRIPTION
+   edit 3 c/CATEGORY a/AMOUNT`
 
 Example:
-* `edit 2 n/eating McSpicy a/8.60` changes the name and the amount of entry 2 to `eating McSpicy` and `$8.60` respectively
-* `edit 2 n/eating McNuggets` changes the name of entry 2 to `eating McNuggets`
-* `edit 2 a/5.50` changes the amount of entry 2 to `$5.50`
+* `edit 2 c/expense n/buy McSpicy a/8.60` changes the name and the amount of entry 2 to `eating McSpicy` and `$8.60` respectively
+* `edit 2 c/revenue n/sell McNuggets` changes the name of entry 2 to `sell McNuggets`
+* `edit 2 c/expense a/5.50` changes the amount of entry 2 to `$5.50`
 
 
 ### Locating expenses by name: `find`
 
-Finds expenses that have the given keyword in their names.
+Find expenses that have the given keyword in their names.
 
 * The search is case-sensitive. e.g `grocery` will match `grocery` but not `Grocery`.
 * Only the expense name is searched.
@@ -122,20 +124,7 @@ Format:
 
 Example:
 * `find food`: Finds expenses with the keyword `food`.
-
-
-### Listing out expenses : `list`
-
-Lists out all expenses in a category.
-
-* The search is case-sensitive. e.g `food` will match `food` but not `Food`.
-* All expenses belonging to that category will be shown.
-
-Format:
-* `list CATEGORY`
-
-Example:
-* `list earning`: Lists expenses that belong to the `earnings` category.
+-->
 
 ### Exiting the program : `exit`
 
@@ -150,9 +139,9 @@ Format: `exit`
 Action | Format, Examples
 --------|------------------
 **Help** | `help`
-**Add** | `add c/CATEGORY  n/EXPENSE_NAME a/EXPENSE_AMT`
-**Remove** | `remove ENTRY_NUM`<br>`remove n/EXPENSE_NAME`
-**Edit** | `edit ENTRY_NUM n/EXPENSE_NAME a/MONEY_AMT`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`
-**List** | `list CATEGORY`
+**Add** | `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
+**Delete** | `delete ENTRY_INDEX c/CATEGORY`
 **Exit** | `exit`
+
+<!-- **Edit** | `edit ENTRY_NUM n/EXPENSE_NAME a/MONEY_AMT` -->
+<!-- **Find** | `find KEYWORD [MORE_KEYWORDS]` -->

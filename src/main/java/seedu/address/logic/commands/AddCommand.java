@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_DESCRIPTION;
@@ -13,7 +14,7 @@ import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
 
 /**
- * Adds a entry to the Common Cents.
+ * Adds a entry to Common Cents.
  */
 public class AddCommand extends Command {
 
@@ -35,7 +36,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New entry added! %1$s";
 
-    public final Entry entry;
+    private final Entry entry;
 
     /**
      * Creates an AddCommand to add the specified {@code Entry}
@@ -47,7 +48,7 @@ public class AddCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) {
-        requireNonNull(model);
+        requireAllNonNull(model, activeAccount);
 
         if (this.entry instanceof Expense) {
             activeAccount.addExpense((Expense) entry);

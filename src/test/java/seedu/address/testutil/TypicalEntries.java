@@ -94,7 +94,7 @@ public class TypicalEntries {
     public static CommonCents getTypicalCommonCents() {
         CommonCents cc = new CommonCents();
         Account acc = getTypicalAccount();
-        cc.setAccount(acc);
+        cc.addAccount(acc);
         return cc;
     }
 

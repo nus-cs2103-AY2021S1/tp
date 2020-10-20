@@ -74,6 +74,16 @@ public interface ActiveAccount {
      */
     void setRevenue(Revenue target, Revenue editedRevenue);
 
+    /**
+     * Clears all entries in the expense list.
+     */
+    void clearExpenses();
+
+    /**
+     * Clears all entries in the revenues list.
+     */
+    void clearRevenues();
+
     /** Returns an unmodifiable view of the filtered expense list */
     public ObservableList<Expense> getFilteredExpenseList();
 

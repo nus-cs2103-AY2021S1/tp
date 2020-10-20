@@ -1,12 +1,13 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.AMOUNT_DESC_EXPENSE;
 import static seedu.address.logic.commands.CommandTestUtil.CATEGORY_DESC_EXPENSE;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_EXPENSE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_ROSES;
+import static seedu.address.model.util.SampleCommonCentsUtilData.initEmptyCommonCents;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEntries.BUY_ROSE_SEEDS;
 
@@ -41,7 +42,7 @@ public class LogicManagerTest {
     @TempDir
     public Path temporaryFolder;
 
-    private Model model = new ModelManager();
+    private Model model = new ModelManager(initEmptyCommonCents(), new UserPrefs());
     private ActiveAccount activeAccount =
             new ActiveAccountManager(model.getFilteredAccountList().get(FIRST_ACCOUNT_INDEX));
 
@@ -65,7 +66,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9 c/revenue";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_DISPLAYED_INDEX);
     }
 
     @Test
@@ -88,7 +89,7 @@ public class LogicManagerTest {
         String addCommand = AddCommand.COMMAND_WORD + CATEGORY_DESC_EXPENSE + DESCRIPTION_DESC_EXPENSE
                 + AMOUNT_DESC_EXPENSE + TAG_DESC_ROSES;
         Expense expectedExpense = new ExpenseBuilder(BUY_ROSE_SEEDS).build();
-        ModelManager expectedModel = new ModelManager();
+        ModelManager expectedModel = new ModelManager(initEmptyCommonCents(), new UserPrefs());
         activeAccount.addExpense(expectedExpense);
         expectedModel.setAccount(activeAccount.getAccount());
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
