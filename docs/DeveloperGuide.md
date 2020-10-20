@@ -165,12 +165,12 @@ Classes used by multiple components are in the `jimmy.mcgymmy.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Current\] Import feature
+### Import feature
 
 The current Import feature is facilitated by `JsonMcGymmyStorage`. 
 It extends model with the ability to override the current data with an imported one. 
 
-#### Current Implementation
+#### Implementation
 
 Given below is an example usage scenario and how the import mechanism behaves at each step
 
