@@ -48,7 +48,7 @@ public class DeleteRecipeCommand extends Command {
         List<Recipe> recipelist = new ArrayList<>(model.getFilteredRecipeList());
 
         // filter to only get matching and not deleted recipes
-        recipelist.removeIf(x -> !x.getProductName().equals(productName) || x.isDeleted());
+        recipelist.removeIf(x -> !x.getProductName().equals(productName));
         if (recipelist.isEmpty()) {
             throw new CommandException(MESSAGE_RECIPE_NOT_FOUND);
         }

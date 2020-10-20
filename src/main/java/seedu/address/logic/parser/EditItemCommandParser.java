@@ -1,12 +1,12 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.EditItemCommand.MESSAGE_NO_ORIGINAL_ITEM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORIGINAL_ITEM_NAME;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditItemCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -23,18 +23,17 @@ public class EditItemCommandParser implements Parser<EditItemCommand> {
     public EditItemCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ITEM_NAME, PREFIX_ITEM_QUANTITY,
-                        PREFIX_ITEM_DESCRIPTION);
+                ArgumentTokenizer.tokenize(args, PREFIX_ORIGINAL_ITEM_NAME, PREFIX_ITEM_NAME,
+                        PREFIX_ITEM_QUANTITY, PREFIX_ITEM_DESCRIPTION);
 
-        Index index;
-
-        try {
-            index = ItemParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditItemCommand.MESSAGE_USAGE), pe);
-        }
+        String itemName;
 
         EditItemCommand.EditItemDescriptor editItemDescriptor = new EditItemCommand.EditItemDescriptor();
+        if (argMultimap.getValue(PREFIX_ORIGINAL_ITEM_NAME).isPresent()) {
+            itemName = ItemParserUtil.parseName(argMultimap.getValue(PREFIX_ORIGINAL_ITEM_NAME).get());
+        } else {
+            throw new ParseException(MESSAGE_NO_ORIGINAL_ITEM);
+        }
         if (argMultimap.getValue(PREFIX_ITEM_NAME).isPresent()) {
             editItemDescriptor.setName(ItemParserUtil.parseName(argMultimap.getValue(PREFIX_ITEM_NAME).get()));
         }
@@ -47,6 +46,6 @@ public class EditItemCommandParser implements Parser<EditItemCommand> {
                     argMultimap.getValue(PREFIX_ITEM_DESCRIPTION).get()));
         }
 
-        return new EditItemCommand(index, editItemDescriptor);
+        return new EditItemCommand(itemName, editItemDescriptor);
     }
 }

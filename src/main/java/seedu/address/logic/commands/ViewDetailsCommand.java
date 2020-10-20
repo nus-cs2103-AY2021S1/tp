@@ -30,7 +30,7 @@ public class ViewDetailsCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         // show only items which are not deleted and match the predicate
-        model.updateFilteredItemList(item -> !item.isDeleted() && predicate.test(item));
+        model.updateFilteredItemList(item -> predicate.test(item));
         if (!model.getFilteredItemList().isEmpty()) {
             return new CommandResult("Displaying searched item", false, false,
                     DisplayedInventoryType.DETAILED_ITEM);

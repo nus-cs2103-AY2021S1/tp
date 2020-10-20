@@ -8,6 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddItemCommand;
+import seedu.address.logic.commands.AddQuantityToItemCommand;
 import seedu.address.logic.commands.AddRecipeCommand;
 import seedu.address.logic.commands.ClearItemCommand;
 import seedu.address.logic.commands.Command;
@@ -58,6 +59,8 @@ public class InventoryParser {
             return new AddItemCommandParser().parse(arguments);
         case EditItemCommand.COMMAND_WORD:
             return new EditItemCommandParser().parse(arguments);
+        case AddQuantityToItemCommand.COMMAND_WORD:
+            return new AddQuantityToItemCommandParser().parse(arguments);
         case FindItemCommand.COMMAND_WORD:
             return new FindItemCommandParser().parse(arguments);
         case ClearItemCommand.COMMAND_WORD:

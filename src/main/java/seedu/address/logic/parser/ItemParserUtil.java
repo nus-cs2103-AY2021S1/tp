@@ -46,6 +46,15 @@ public class ItemParserUtil {
     }
 
     /**
+     * Parses a {@code String number} into a {@code int}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static int parseInt(String number) {
+        requireNonNull(number);
+        return Integer.parseInt(number.trim());
+    }
+
+    /**
      * Parses a {@code String quantity} into a {@code Quantity}.
      * Leading and trailing whitespaces will be trimmed.
      *
