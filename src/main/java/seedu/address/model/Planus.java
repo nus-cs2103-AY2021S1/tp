@@ -9,7 +9,7 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the PlaNus level
  * Duplicates are not allowed (by .isSameTask comparison)
  */
 public class Planus implements ReadOnlyPlanus {
@@ -87,7 +87,7 @@ public class Planus implements ReadOnlyPlanus {
 
     /**
      * Mark the given tasks {@code targets} in the list as done.
-     * task in targets must exist in the address book.
+     * task in targets must exist in PlaNus.
      */
     public void markAsDone(Task[] targets) {
         requireNonNull(targets);

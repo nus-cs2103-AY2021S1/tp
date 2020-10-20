@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.DateTime;
@@ -26,6 +28,7 @@ import seedu.address.model.task.Type;
 class JsonAdaptedTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
+    private static final Logger logger = LogsCenter.getLogger(JsonAdaptedTask.class);
 
     private final String title;
     private final String dateTime;
@@ -56,13 +59,15 @@ class JsonAdaptedTask {
      */
     public JsonAdaptedTask(Task source) {
         title = source.getTitle().title;
-        dateTime = source.getDateTime().value;
+        dateTime = source.getDateTime().toString();
         description = source.getDescription().value;
         type = source.getType().value;
         status = source.getStatus().value.toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+
+        logger.info("Planus task with title: '" + title + "' successfully converted to adapted task object");
     }
 
     /**
@@ -91,7 +96,8 @@ class JsonAdaptedTask {
 
         final DateTime modelDateTime;
 
-        if (dateTime == "") {
+        if (dateTime.equals("")) {
+            logger.info("Datetime for task with title: '" + title + "' is empty. Creating a default datetime for it");
             modelDateTime = DateTime.defaultDateTime();
         } else if (!DateTime.isValidDateTime(dateTime)) {
             throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
@@ -106,7 +112,8 @@ class JsonAdaptedTask {
         }
 
         final Description modelDescription;
-        if (description == "") {
+        if (description.equals("")) {
+            logger.info("Description for task title: '" + title + "' is empty. Creating a default description for it");
             modelDescription = Description.defaultDescription();
         } else if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
