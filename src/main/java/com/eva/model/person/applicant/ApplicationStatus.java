@@ -12,8 +12,7 @@ import java.util.Arrays;
 public class ApplicationStatus {
     public static final String MESSAGE_CONSTRAINTS =
             "Application Status should only contain the words: processing, accepted, rejected. It should not be blank";
-    public static final String[] POSSIBLE_STATUSES = {"received", "processing", "accepted", "rejected"};
-    private String value;
+    private PossibleApplicationStatus value;
 
     /**
      * Creates an object representing the application status of the applicant.
@@ -24,7 +23,7 @@ public class ApplicationStatus {
         requireNonNull(status);
         status = status.strip().toLowerCase();
         checkArgument(isValidApplicationStatus(status), MESSAGE_CONSTRAINTS);
-        this.value = status;
+        this.value = PossibleApplicationStatus.getStatus(status);
     }
 
     /**
@@ -33,33 +32,39 @@ public class ApplicationStatus {
      * @param status
      * @return
      */
-    public static Boolean isValidApplicationStatus(String status) {
-        return Arrays.asList(POSSIBLE_STATUSES).contains(status);
+    public static boolean isValidApplicationStatus(String status) {
+        try {
+            PossibleApplicationStatus.getStatus(status);
+            return true;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+
     }
 
     /**
      * Sets the application status to processing.
      */
     public void setProcessing() {
-        this.value = POSSIBLE_STATUSES[1];
+        this.value = PossibleApplicationStatus.PROCESSING;
     }
 
     /**
      * Sets the application status to accepted.
      */
     public void setAccepted() {
-        this.value = POSSIBLE_STATUSES[2];
+        this.value = PossibleApplicationStatus.ACCEPTED;
     }
 
     /**
      * Sets the application status to rejected.
      */
     public void setRejected() {
-        this.value = POSSIBLE_STATUSES[3];
+        this.value = PossibleApplicationStatus.REJECTED;
     }
 
     @Override
     public String toString() {
-        return value;
+        return value.toString();
     }
 }
