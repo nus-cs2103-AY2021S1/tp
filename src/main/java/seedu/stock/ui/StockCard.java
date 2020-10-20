@@ -57,7 +57,12 @@ public class StockCard extends UiPart<Region> {
         locationStored.setText(stock.getLocation().value);
 
         if (stock.getNotes().size() != 0) {
-            notes.setText(stock.notesToString(stock.getNotes()));
+            StringBuilder notesAppended = new StringBuilder();
+            for(int i = 0; i < stock.getNotes().size(); i++) {
+                notesAppended.append(i + 1).append(". ")
+                        .append(stock.getNotes().get(i)).append("\n");
+            }
+            notes.setText(notesAppended.toString());
         }
 
     }
