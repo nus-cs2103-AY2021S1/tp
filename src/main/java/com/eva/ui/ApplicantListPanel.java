@@ -13,7 +13,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 
 /**
- * Panel containing the list of staffs.
+ * Panel containing the list of applicant.
  */
 public class ApplicantListPanel extends UiPart<Region> {
     private static final String FXML = "ApplicantListPanel.fxml";
@@ -23,7 +23,7 @@ public class ApplicantListPanel extends UiPart<Region> {
     private ListView<Applicant> applicantListView;
 
     /**
-     * Creates a {@code StaffListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ApplicantListPanel} with the given {@code ObservableList}.
      */
     public ApplicantListPanel(ObservableList<Applicant> applicantList) {
         super(FXML);
@@ -32,7 +32,7 @@ public class ApplicantListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Staff} using a {@code StaffCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Applicant} using a {@code ApplicantCard}.
      */
     class ApplicantListViewCell extends ListCell<Applicant> {
         @Override

@@ -14,7 +14,7 @@ import javafx.scene.layout.Region;
 
 
 /**
- * An UI component that displays information of a {@code Staff}.
+ * An UI component that displays information of a {@code Applicant}.
  */
 public class ApplicantListCard extends UiPart<Region> {
     private static final String FXML = "ApplicantListCard.fxml";
@@ -65,7 +65,7 @@ public class ApplicantListCard extends UiPart<Region> {
         email.setText(applicant.getEmail().value);
         applicationStatus.setText(applicant.getApplicationStatus().toString());
         interviewDate.setText(interviewDateToDisplay(applicant.getInterviewDate()));
-        tags.getChildren().add(new Label("staff"));
+        tags.getChildren().add(new Label("applicant"));
         applicant.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
