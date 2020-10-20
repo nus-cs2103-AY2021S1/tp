@@ -218,6 +218,41 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Property Feature
+
+#### Add Property Feature 
+
+The Add Property feature adds a property with the user defined attributes, such as property name, address,
+seller id, property type, asking price and is-rental, into the property book.
+
+1. ```LogicManager``` executes the user input. 
+2. It calls ```AddressBookParser``` to parse the user input, which creates an ```AddPropertyCommandParser```, as 
+identified by the command word "add-p".
+3. The ```AddPropertyCommandParser``` creates a ```Property``` object, with attributes specified by the user.
+4. The ```AddPropertyCommandParser``` creates an ```AddPropertyCommand``` with the above property. The command
+is returned to the ```LogicManager```.
+5. The ```LogicManager``` calls ```AddPropertyCommand#execute()```, which adds the property to ```PropertyBook```
+via the ```Model``` interface.
+6. Finally, a ```CommandResult``` with the relevant feedback is returned to the ```LogicManager```.
+
+The following sequence diagram shows the process of executing an ```AddPropertyCommand```.
+![AddPropertySequenceDiagram](images/property/AddPropertySequenceDiagram.png)
+
+##### Property Id Management
+
+Each property is identified by a unique ```PropertyId``` in the form of a number prefixed by "P". As each property is
+added, the property id is auto-incremented. The following activity diagram shows how the property id is managed:
+
+![AddPropertyIdManagementActivityDiagram](images/property/AddPropertyIdManagementActivityDiagram.png)
+
+This process occurs inside the ```UniquePropertyList``` class.  
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Note 2: User-created properties always have the DEFAULT_ID. Users are not allowed to set or edit 
+```PropertyId```s to ensure the uniqueness of the property id. Only ```Property``` objects created 
+for testing purposes may have manually-added ```PropertyId```s, in which case, the ```PropertyId``` 
+will be retained. 
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
