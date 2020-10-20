@@ -30,7 +30,8 @@ public class AddAdditionalDetailCommandParserTest {
 
     @Test
     public void parse_missingParts_throwsParseException() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAdditionalDetailCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddAdditionalDetailCommand.MESSAGE_USAGE);
         Index targetStudentIndex = INDEX_SECOND_PERSON;
 
         // missing index and prefix

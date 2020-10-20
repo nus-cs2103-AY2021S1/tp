@@ -25,8 +25,6 @@ public class EditAdditionalDetailCommandParserTest {
         String targetDetailIndexDesc = String.format(" %s%s", PREFIX_DETAIL_INDEX, targetDetailIndex.getOneBased());
         String userInput = targetStudentIndex.getOneBased() + targetDetailIndexDesc + ADDITIONAL_DETAIL_DESC_AMY;
 
-        System.out.println(userInput);
-
         EditAdditionalDetailCommand expectedCommand = new EditAdditionalDetailCommand(targetStudentIndex,
                 targetDetailIndex, new AdditionalDetail(VALID_ADDITIONAL_DETAILS_AMY));
         assertParseSuccess(parser, userInput, expectedCommand);

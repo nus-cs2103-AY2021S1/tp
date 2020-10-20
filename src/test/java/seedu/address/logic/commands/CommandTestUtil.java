@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAILS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_TEXT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;

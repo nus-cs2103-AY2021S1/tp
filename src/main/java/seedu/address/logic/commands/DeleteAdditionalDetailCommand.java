@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_TEXT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
@@ -19,8 +18,8 @@ import seedu.address.model.student.admin.AdditionalDetail;
 public class DeleteAdditionalDetailCommand extends AdditionalDetailCommand {
 
     public static final String COMMAND_WORD = AdditionalDetailCommand.COMMAND_WORD + " delete";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": deletes an Additional Detail in the student identified "
-            + "by the index number used in the displayed student list. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": deletes an Additional Detail in the student identified"
+            + " by the index number used in the displayed student list. \n"
             + "Parameters: STUDENT_INDEX (must be a positive integer) "
             + PREFIX_DETAIL_INDEX + "DETAIL_INDEX (must be a positive integer)"
             + "Example: " + COMMAND_WORD + " 2 "
