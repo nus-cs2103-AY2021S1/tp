@@ -14,6 +14,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.allergy.Allergy;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Appointment;
 import seedu.address.model.patient.Email;
@@ -22,7 +23,6 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
-import seedu.address.model.tag.Tag;
 
 public class AddApptCommand extends Command {
 
@@ -68,8 +68,7 @@ public class AddApptCommand extends Command {
 
         Patient changedPatient = createChangedPerson(patientToAddAppt, appointment);
 
-        assert !patientToAddAppt.isSamePatient(changedPatient);
-        assert !model.hasPatient(changedPatient);
+        assert !patientToAddAppt.equals(changedPatient) : "changedPatient should be different from original";
 
         model.setPatient(patientToAddAppt, changedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
@@ -81,14 +80,14 @@ public class AddApptCommand extends Command {
      * edited with {@code editPersonDescriptor}.
      */
     private static Patient createChangedPerson(Patient patientToAddAppt, Appointment appointment) {
-        assert patientToAddAppt != null;
+        assert patientToAddAppt != null : "Patient to add Appointment should not be null!";
 
         Name updatedName = patientToAddAppt.getName();
         Phone updatedPhone = patientToAddAppt.getPhone();
         Email updatedEmail = patientToAddAppt.getEmail();
         Nric updatedNric = patientToAddAppt.getNric();
         Address updatedAddress = patientToAddAppt.getAddress();
-        Set<Tag> updatedTags = patientToAddAppt.getTags();
+        Set<Allergy> updatedAllergies = patientToAddAppt.getAllergies();
         Set<Appointment> appointments = patientToAddAppt.getAppointments();
         Set<Appointment> updatedAppointments = new HashSet<>();
         MedicalRecord updatedMedicalRecord = patientToAddAppt.getMedicalRecord();
@@ -96,7 +95,7 @@ public class AddApptCommand extends Command {
         updatedAppointments.add(appointment);
 
         return new Patient(updatedName, updatedNric, updatedPhone, updatedEmail, updatedAddress,
-                updatedTags, updatedAppointments, updatedMedicalRecord);
+                updatedAllergies, updatedAppointments, updatedMedicalRecord);
     }
 
     @Override

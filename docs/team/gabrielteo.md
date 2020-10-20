@@ -9,7 +9,7 @@ Hospify is an application to help maintain medical records.
 
 Given below are my contributions to the project.
 
-* **New Features**: 
+* **New Features**:
   * Added the ability to `find` a patient.
     * What it does: Allows the user to find a patient's medical records.
     * Justification: This feature provides a convenient way to access patients' medical records.

@@ -7,7 +7,7 @@ It is a brown-field project adapted from [`AddressBook 3`](https://se-education.
 * **Problem Statement**\
 Many small clinics still use hard copies to store patients' medical records. The database can get really large after many years.\
 It is very expensive and time constraining to archive medical records and find medical records of patients when they revisit. There are also a lot of documents and folders which requires a lot of physical space to store.
-* **Solution**  
+* **Solution**
 We will build an easily accessible and secure system that helps clinics to store the patients’ information and medical records.\
 It will enable the admin staff to easily reach out to the patients and doctors and help them to contact each other.
 

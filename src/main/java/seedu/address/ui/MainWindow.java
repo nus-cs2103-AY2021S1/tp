@@ -147,6 +147,13 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens Appointment Window.
+     */
+    public void handleShowAppt() {
+        helpWindow.show();
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -180,6 +187,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowAppointment()) {
+                handleShowAppt();
             }
 
             if (commandResult.isExit()) {

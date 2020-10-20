@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing Hospify ]===========================");
+        logger.info("=============================[ Initializing Hospify ]============================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -74,6 +74,7 @@ public class MainApp extends Application {
      * or an empty Hospify will be used instead if errors occur when reading {@code storage}'s Hospify.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        logger.info("Initializing ModelManager...   ");
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
         try {
@@ -82,6 +83,7 @@ public class MainApp extends Application {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            assert initialData != null : "Failed Data Loading!";
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
@@ -174,6 +176,7 @@ public class MainApp extends Application {
     @Override
     public void stop() {
         logger.info("============================ [ Stopping Hospify ] =============================");
+        logger.info("END OF APPLICATION");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
