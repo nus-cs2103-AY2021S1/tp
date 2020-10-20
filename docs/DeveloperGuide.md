@@ -277,7 +277,6 @@ The favourite/unfavourite mechanism is faciliated by `LogicManager` and `ModelMa
 A `isFavourite` attribute is stored internally in `Flashcard`, to keep track of whether the flashcard is favourited. When the user favourites a flashcard, `isFavourite` is set to true, and set to false otherwise. 
  
 It implements the following operations:
-* `ModelManager#setFlashcard(Flashcard target, Flashcard editedFlashcard)` - Replaces the current flashcard with the favourited/unfavourited flashcard
 * `Flashcard#isFavourite()` - Checks whether the current flashcard is favourited
 * `FavCommand#createFavouriteFlashcard(Flashcard flashcardToFavourite)` - Duplicates the flashcard and set `isFavourite` attribute to `true`
 * `UnfavCommand#createUnfavouriteFlashcard(Flashcard flashcardToUnfavourite)` - Duplicates the flashcard and set `isFavourite` attribute to `false`.
