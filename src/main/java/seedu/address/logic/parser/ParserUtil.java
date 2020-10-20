@@ -2,7 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -25,6 +27,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_TIME = "Time is not in valid format.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -156,6 +159,26 @@ public class ParserUtil {
         requireNonNull(type);
         String trimmedType = type.trim();
         return trimmedType;
+    }
+
+    /**
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static CalendarTime parseTime(String time) throws ParseException {
+        String trimmedTime = time.trim();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            Date date = formatter.parse(trimmedTime);
+            String dateString = formatter.format(date);
+            return new CalendarTime(dateString);
+        } catch (java.text.ParseException e) {
+            throw new ParseException(MESSAGE_INVALID_TIME);
+        }
+//        if (!StringUtil.isNonZeroUnsignedInteger(trimmedTime)) {
+//            throw new ParseException(MESSAGE_INVALID_INDEX);
+//        }
     }
 
     //=========== Bids ================================================================================

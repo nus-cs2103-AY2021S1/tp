@@ -42,7 +42,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
         }
 
         CalendarVenue venue = ParserUtil.parseCalendarVenue(argMultimap.getValue(PREFIX_CALENDAR_VENUE).get());
-        CalendarTime time = ParserUtil.parseCalendarTime(argMultimap.getValue(PREFIX_CALENDAR_TIME).get());
+        CalendarTime time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_CALENDAR_TIME).get());
         CalendarPropertyId propertyId =
                 ParserUtil.parseCalendarPropertyId(argMultimap.getValue(PREFIX_CALENDAR_PROPERTY_ID).get());
         CalendarBidderId bidderId =

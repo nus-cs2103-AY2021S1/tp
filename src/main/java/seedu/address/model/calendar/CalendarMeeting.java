@@ -2,6 +2,8 @@ package seedu.address.model.calendar;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.format.DateTimeFormatter;
+
 
 /**
  * Represents a meeting in the calendar book.
@@ -118,6 +120,10 @@ public class CalendarMeeting {
                 && ((otherMeeting.getCalendarTime() == getCalendarTime()))
                 && ((otherMeeting.getCalendarBidderId() == getCalendarBidderId()));
     }
+
+//    public String dateFormatted() {
+//        return this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+//    }
 
     @Override
     public String toString() {
