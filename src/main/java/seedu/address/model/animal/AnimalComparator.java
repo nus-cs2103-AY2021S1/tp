@@ -1,9 +1,10 @@
 package seedu.address.model.animal;
 
-import seedu.address.model.feedtime.FeedTime;
-
 import java.util.Comparator;
 import java.util.Optional;
+
+import seedu.address.model.feedtime.FeedTime;
+
 
 /**
  * Container for all animal comparators used for sorting.
