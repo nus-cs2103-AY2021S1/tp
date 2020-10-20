@@ -143,6 +143,11 @@ The mechanism for suggestion feature is facilitated by `SuggestionCommandParser,
 with the suggestion message to be displayed to the user as its argument. The suggestion message to be displayed
 is gathered from the result of the parsing stage for suggestion.
 
+Some of the important operations implemented here are:
+
+* `SuggestionCommand#execute()`
+  Generates a new `CommandResult` with the suggestion message as its argument.
+
 #### SuggestionCommandParser
 `SugestionCommandParser` class extends `Parser` interface. `SuggestionCommandParser` class is tasked with parsing the 
 user inputs and generate a new `SuggestionCommand`. The main logic of the suggestion feature is encapsulated here.
@@ -153,12 +158,39 @@ possible correct command format using the minimum edit distance heuristic provid
 
 Some of the important operations implemented here are:
 
-* `SuggestionCommandParser#parse()`
+* `SuggestionCommandParser#parse()` <br>
   Parses the user input and parsing error messages thrown from another `Parser` and returns a new `SuggestionCommand`
   with the suggestion to be shown as its argument. The inference for the command word to be suggested is made in here.
   After the correct command word is inferred, then it will call helper functions to generate the suggestion messages.
-* `SuggestionCommandParser#generateAddSuggestion()`
+* `SuggestionCommandParser#generateAddSuggestion()` <br>
   Generates the suggestion message for an add command.
+* `SuggestionCommandParser#generateListSuggestion()` <br>
+  Generates the suggestion message for a list command.
+* `SuggestionCommandParser#generateHelpSuggestion()` <br>
+  Generates the suggestion message for a help command.
+* `SuggestionCommandParser#generateExitSuggestion()` <br>
+  Generates the suggestion message for a ecit command.
+* `SuggestionCommandParser#generateUpdateSuggestion()` <br>
+  Generates the suggestion message for an update command.
+* `SuggestionCommandParser#generateDeleteSuggestion()` <br>
+  Generates the suggestion message for a delete command.
+* `SuggestionCommandParser#generateFindSuggestion()` <br>
+  Generates the suggestion message for a find command.
+* `SuggestionCommandParser#generateFindExactSuggestion()` <br>
+  Generates the suggestion message for a find exact command.
+* `SuggestionCommandParser#generateStatisticsSuggestion()` <br>
+  Generates the suggestion message for a stats command.
+
+#### SuggestionUtil
+
+`SuggestionUtil` class contains the utilities needed to infer the suggestion to be displayed to the user.
+
+The utilities provided inside are:
+
+* `SuggestionUtil#min()` <br>
+  Computes the minimum of three integers.
+* `SuggestionUtil#minimumEditDistance()` <br>
+  Computes the minimum edit distance between 2 strings.
   
 
 ### \[Proposed\] Undo/redo feature
