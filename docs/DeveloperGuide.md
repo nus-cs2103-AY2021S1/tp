@@ -205,7 +205,7 @@ After successfully generating a list of recipes, a `CommandResult` object is ins
 
 The following sequence diagram shows how eat recipe operation works when `execute(eatR 1)` API call:
 
-![ListRecipeSequence](images/ListRecipeSequence.png)
+![ListRecipeSequence](images/ListRecipesSequence.png)
 
 #### Design consideration:
 ##### Aspect 1: Concern while adding a new feature
