@@ -28,8 +28,6 @@ class JsonAdaptedModule {
 
     private final String name;
     private final String zoomLink;
-  
-    private final GradeTracker gradeTracker;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final JsonAdaptedGradeTracker gradeTracker;
 
@@ -62,8 +60,6 @@ class JsonAdaptedModule {
         } else {
             zoomLink = source.getLink().value;
         }
-        gradeTracker = source.getGradeTracker();
-        zoomLink = source.getLink().value;
         gradeTracker = new JsonAdaptedGradeTracker(source.getGradeTracker());
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -114,7 +110,7 @@ class JsonAdaptedModule {
         final Email modelEmail = new Email(email);*/
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Module(modelName, modelLink, gradeTracker, modelTags);
+        return new Module(modelName, modelLink, gradeTracker.toModelType(), modelTags);
     }
 
 }

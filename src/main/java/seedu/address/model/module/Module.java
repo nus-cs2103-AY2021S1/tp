@@ -158,7 +158,6 @@ public class Module {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
-  
     /**
      * Adds a grade to the GradeTracker of the module.
      *
@@ -168,7 +167,7 @@ public class Module {
     public Module addGrade(Grade grade) {
         if (Grade.isValidGrade(grade.gradeResult)) {
             gradeTracker.setGrade(grade);
-            return new Module(name, zoomLink, gradeTracker);
+            return new Module(name, zoomLink, gradeTracker, tags);
         } else {
             return this;
         }
