@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -24,6 +26,8 @@ public class DeleteRecipeCommand extends Command {
 
     public static final String MESSAGE_DELETE_RECIPE_SUCCESS = "Deleted Recipe: %1$s";
 
+    private static Logger logger = Logger.getLogger("RecommendLogger");
+
     private final Index toDelete;
 
     public DeleteRecipeCommand(Index toDelete) {
@@ -32,6 +36,7 @@ public class DeleteRecipeCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.log(Level.INFO, "going to start deleting");
         requireNonNull(model);
         List<Recipe> lastShownList = model.getFilteredRecipeList();
 
@@ -41,6 +46,7 @@ public class DeleteRecipeCommand extends Command {
 
         Recipe recipeToDelete = lastShownList.get(toDelete.getZeroBased());
         model.deleteRecipe(recipeToDelete);
+        logger.log(Level.INFO, "end of deleting");
         return new CommandResult(String.format(MESSAGE_DELETE_RECIPE_SUCCESS, recipeToDelete));
     }
 
