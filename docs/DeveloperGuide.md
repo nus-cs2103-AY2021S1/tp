@@ -102,7 +102,8 @@ Structure of the Model Component
 
 `Models`,
 
-* stores a `InventoryModel` and a `DeliveryModel` that represents the model for Inventory and Delivery respectively.
+* stores a map of Models(eg. InventoryModel and DeliveryModel)
+* Each model stores the current state of the Book(eg. InventoryModel stores the current state of the InventoryBook)
 * used for undo/redo feature
 
 `Model`
@@ -113,11 +114,13 @@ Structure of the Model Component
 
 * stores a comparator used to sort the filtered list 
 * stores the inventory book data
+* stores a list of InventoryBook 
 * exposes an unmodifiable `ObservableList<Item>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
 `DeliveryModelManager`
 
 * stores the delivery book data
+* stores a list of DeliveryBook
 * exposes an unmodifiable `ObservableList<Delivery>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
 We organised the different data classes into packages (eg.Items) which we will list out the collection of class of that data object
@@ -130,13 +133,13 @@ Structure of Delivery Object
 
 ### Storage component
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+![Structure of the Storage Component](images/newStorageClassDiagram.png)
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the inventory book data and delivery book in json format and read it back.
 
 ### Common classes
 
