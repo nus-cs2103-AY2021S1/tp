@@ -8,12 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_IMAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -61,12 +56,12 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
 
         String instruction = argMultimap.getValue(PREFIX_INSTRUCTION).get();
         String recipeImage = argMultimap.getValue(PREFIX_RECIPE_IMAGE).get();
-        
+
         if (recipeImage.length() < 13) {
             recipeImage = "images/defaultrecipe.jpg";
         } else if (!recipeImage.substring(0, 6).equals("images") && !recipeImage.substring(0, 4).equals("http")) {
             recipeImage = "images/defaultrecipe.jpg";
-        } 
+        }
         /*
             String filename = "";
             for (int i = recipeImage.length() - 1; i >= 0; i--) {
@@ -91,7 +86,7 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
             FileOutputStream fos = new FileOutputStream(recipeImage);
             fos.write(response);
             fos.close();
-        } 
+        }
          */
         Recipe recipe = new Recipe(name, instruction, recipeImage, ingredients, calories, tagList);
         return new AddRecipeCommand(recipe);
