@@ -7,6 +7,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -133,6 +134,11 @@ public class SnapCommandTest {
 
         @Override
         public void setAnimal(Animal target, Animal editedAnimal) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortAnimals(Comparator<Animal> animalComparator) {
             throw new AssertionError("This method should not be called.");
         }
 
