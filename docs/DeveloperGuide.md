@@ -273,7 +273,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Implementation
 
-The proposed favourite/unfavourite mechanism is faciliated by `LogicManager` and `ModelManager`.
+The favourite/unfavourite mechanism is faciliated by `LogicManager` and `ModelManager`.
 A `isFavourite` attribute is stored internally in `Flashcard`, to keep track of whether the flashcard is favourited. When the user favourites a flashcard, `isFavourite` is set to true, and set to false otherwise. 
  
 It implements the following operations:
