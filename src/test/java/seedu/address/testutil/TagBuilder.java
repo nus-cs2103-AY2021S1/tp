@@ -7,6 +7,7 @@ import seedu.address.model.label.Label;
 import seedu.address.model.tag.FileAddress;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagName;
+import seedu.address.model.util.SampleDataUtil;
 
 
 /**
@@ -19,8 +20,7 @@ public class TagBuilder {
 
     private TagName tagName;
     private FileAddress fileAddress;
-    //TODO:NEED TO MODIFY DESCRIPTIONS
-    private Set<Label> labels = new HashSet<Label>();
+    private Set<Label> labels;
 
 
     /**
@@ -29,6 +29,7 @@ public class TagBuilder {
     public TagBuilder() {
         tagName = new TagName(DEFAULT_TAG_NAME);
         fileAddress = new FileAddress(DEFAULT_FILE_ADDRESS);
+        labels = new HashSet<>();
     }
 
     /**
@@ -37,6 +38,7 @@ public class TagBuilder {
     public TagBuilder(Tag tagToCopy) {
         tagName = tagToCopy.getTagName();
         fileAddress = tagToCopy.getFileAddress();
+        labels = tagToCopy.getLabels();
 
     }
 
@@ -54,6 +56,14 @@ public class TagBuilder {
      */
     public TagBuilder withFileAddress(String fileAddress) {
         this.fileAddress = new FileAddress(fileAddress);
+        return this;
+    }
+
+    /**
+     * Parses the {@code labels} into a {@code Set<Label>} and set it to the {@code Tag} that we are building.
+     */
+    public TagBuilder withLabels(String ... labels) {
+        this.labels = SampleDataUtil.getLabelSet(labels);
         return this;
     }
 
