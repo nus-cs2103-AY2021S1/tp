@@ -20,16 +20,19 @@ public class SnapCommandParser implements Parser<SnapCommand> {
      * @throws ParseException if the user input does not conform the expected format.
      */
     public SnapCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        String fileName = args.trim();
+        Path savePath = Path.of("data", fileName + SnapCommand.FILE_FORMAT);
+        int maxFileNameLength = 100;
+
+        if (fileName.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SnapCommand.MESSAGE_USAGE));
-        } else if (!trimmedArgs.matches(VALIDATION_REGEX) || trimmedArgs.length() > 100) {
+        } else if (!fileName.matches(VALIDATION_REGEX) || fileName.length() > maxFileNameLength) {
             throw new ParseException(SnapCommand.MESSAGE_CONSTRAINTS);
-        } else if (Files.exists(Path.of("data", trimmedArgs + ".json"))) {
-            throw new ParseException(String.format(SnapCommand.MESSAGE_WARNING, trimmedArgs + ".json"));
+        } else if (Files.exists(savePath)) {
+            throw new ParseException(String.format(SnapCommand.MESSAGE_WARNING, fileName + SnapCommand.FILE_FORMAT));
         }
 
-        return new SnapCommand(trimmedArgs);
+        return new SnapCommand(savePath, fileName);
     }
 
 }

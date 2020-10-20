@@ -215,6 +215,7 @@ New command | Undo command
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
+
 ### Redo feature (by Jun Cheng)
 
 #### Implementation
@@ -292,10 +293,20 @@ The following activity diagram summarises what happens when a user executes the 
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 
+### Snapshot feature (by Aizat)
 
-### \[Proposed\] Data archiving
+#### Implementation
 
-_{Explain here how the data archiving feature will be implemented}_
+The snapshot feature is implemented by the `SnapCommand` and `SnapCommandParser` classes. `SnapCommandParser`
+parses the user's input as a file name and then creates a `SnapCommand` object with the file name as a parameter.
+
+`SnapCommand` executes by copying the current state of the zookeep book and then utilising
+`StorageManager`'s save method to save the zookeep book with the specified file name.
+
+#### Design considerations:
+
+* We chose to prevent users from creating a snapshot if the specified file name already exists
+as overwriting a file is irreversible and would be disastrous for zookeepers if done unintentionally
 
 
 --------------------------------------------------------------------------------------------------------------------
