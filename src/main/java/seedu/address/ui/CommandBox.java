@@ -21,18 +21,10 @@ import java.util.stream.Collectors;
  */
 public class CommandBox extends UiPart<Region> {
 
-    private static final Logger logger = LogsCenter.getLogger(CommandBox.class);
-
     public static final String ERROR_STYLE_CLASS = "error";
-    public static final String AC_MODE_STYLE_CLASS = "autocomplete-mode";
     private static final String FXML = "CommandBox.fxml";
 
-
     private final CommandExecutor commandExecutor;
-    private boolean isAutocompleteMode = false;
-    private boolean hasSetPrefix = false;
-    private int autoCompletePos;
-    private final Logic logic;
 
     @FXML
     private TextField commandTextField;
@@ -40,13 +32,11 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
-    public CommandBox(CommandExecutor commandExecutor, Logic l) {
+    public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
-        this.logic = l;
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
-        setAutoCompletionOn();
         setKeyboardShortcut("CTRL", KeyCode.U, () -> commandTextField.clear());
     }
 
@@ -63,98 +53,9 @@ public class CommandBox extends UiPart<Region> {
         }
     }
 
-
     /**
-     * Enables Autocompletion for Names.
+     * Adds keyboard shortcut to execute functions
      */
-    private void setAutoCompletionOn() {
-        Autocomplete ac = new Autocomplete();
-
-        // Add Text Listener
-        commandTextField.caretPositionProperty().addListener((obs, oldPosition, newPosition) -> {
-            String txt = commandTextField.getText();
-            if (txt.length() > 1 && newPosition.intValue() > 2) {
-                int currPos = newPosition.intValue();
-                String lastTwo = txt.substring(currPos - 2);
-
-                if (!isAutocompleteMode && lastTwo.equals("n/")) {
-                    System.out.println("Autocomplete Triggered");
-                    toggleAutocompleteMode();
-                    autoCompletePos = newPosition.intValue();
-                }
-                if (isAutocompleteMode) {
-                    if (txt.substring(currPos - 1).isBlank() || currPos < autoCompletePos) {
-                        toggleAutocompleteMode();
-                        hasSetPrefix = false;
-                        System.out.println("Autocomplete Disabled; Prefix unset");
-                    }
-                }
-            }
-
-        });
-        // Add Tab and Shift-Tab Listener
-        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, (event) -> {
-            if (!isAutocompleteMode) {
-                // Hacky Way to disable focus traversal
-                if (event.getCode() == KeyCode.TAB) {
-                    event.consume();
-                }
-                return;
-            }
-            if (event.getCode() == KeyCode.TAB) {
-                if (!hasSetPrefix) {
-                    List<String> personList = logic.getFilteredPersonList().stream()
-                            .map(p -> p.getName().fullName).collect(Collectors.toList());
-                    ac.setList(personList);
-                    String prefix = commandTextField.getText().substring(autoCompletePos);
-                    ac.setPrefix(prefix);
-                    hasSetPrefix = true;
-                    System.out.println("Prefix set as : " + prefix);
-                }
-
-                if (event.isShiftDown()) {
-                    // Previous Suggestion
-                    String prev = ac.prevSuggestion();
-                    int i = commandTextField.caretPositionProperty().getValue();
-                    commandTextField.replaceText(autoCompletePos, i, prev);
-                } else {
-                    // Next Suggestion
-                    String next = ac.nextSuggestion();
-                    int i = commandTextField.caretPositionProperty().getValue();
-                    commandTextField.replaceText(autoCompletePos, i, next);
-                }
-
-                if (ac.isBackToPrefix()) {
-                    hasSetPrefix = false;
-                    System.out.println("Iterated back to Prefix; resetting prefix");
-                }
-                event.consume();
-            }
-        });
-        // Prevent other keystrokes in autocomplete mode
-        commandTextField.addEventFilter(KeyEvent.ANY, (event) -> {
-            if (hasSetPrefix
-                    && event.getCode() != KeyCode.TAB
-                    && event.getCode() != KeyCode.SPACE
-            ) {
-                event.consume();
-            }
-            if (hasSetPrefix && event.getCode() == KeyCode.SPACE) {
-                System.out.println("Space consumed, Autocomplete Result Selected");
-                commandTextField.appendText(" ");
-            }
-
-        });
-        // Resetting prefix when backspace is pressed.
-        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, (event -> {
-            if (isAutocompleteMode && event.getCode() == KeyCode.BACK_SPACE) {
-                hasSetPrefix = false;
-                toggleAutocompleteMode();
-                System.out.println("Disabled Autocomplete mode : Backspace Trigger");
-            }
-        }));
-    }
-
     private void setKeyboardShortcut(String modifier, KeyCode keyCode, Runnable runnable) {
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, (event -> {
             boolean isModifierDown;
@@ -172,20 +73,6 @@ public class CommandBox extends UiPart<Region> {
                 runnable.run();
             }
         }));
-    }
-
-    /**
-     * To toggle autocompletion mode.
-     */
-    private void toggleAutocompleteMode() {
-        // Add Visuals for Autocomplete mode
-        if(!isAutocompleteMode) {
-            setStyleToIndicateAutocompleteMode();
-            isAutocompleteMode = true;
-        } else {
-            commandTextField.getStyleClass().remove(AC_MODE_STYLE_CLASS);
-            isAutocompleteMode = false;
-        }
     }
 
     /**
@@ -208,17 +95,8 @@ public class CommandBox extends UiPart<Region> {
         styleClass.add(ERROR_STYLE_CLASS);
     }
 
-    /**
-     * Sets the command box style to indicate a Autocomplete Mode.
-     */
-    private void setStyleToIndicateAutocompleteMode() {
-        ObservableList<String> styleClass = commandTextField.getStyleClass();
-
-        if (styleClass.contains(AC_MODE_STYLE_CLASS)) {
-            return;
-        }
-
-        styleClass.add(AC_MODE_STYLE_CLASS);
+    public TextField getCommandTextField() {
+        return commandTextField;
     }
 
     /**
@@ -234,62 +112,5 @@ public class CommandBox extends UiPart<Region> {
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }
 
-    /**
-     * Class that encapsulates Autocomplete Logic
-     */
-    private class Autocomplete {
-        List<String> fullList;
-        List<String> suggestions;
-        String prefix = "";
-        int index = 0;
 
-        private void nextIndex() {
-            index = index + 1 < suggestions.size() ? index + 1 : 0;
-        }
-
-        private void prevIndex() {
-            index = index - 1 < 0 ? suggestions.size() - 1 : index - 1;
-        }
-
-        public String nextSuggestion() {
-            if (!hasSuggestion()) {
-                return prefix;
-            }
-            nextIndex();
-            return suggestions.get(index);
-        }
-
-        public String prevSuggestion() {
-            if (!hasSuggestion()) {
-                return prefix;
-            }
-            prevIndex();
-            return suggestions.get(index);
-        }
-
-        public boolean hasSuggestion() {
-            return suggestions.size() != 0;
-        }
-
-        public void setList(List<String> fullList) {
-            System.out.println("set list called");
-            this.fullList = fullList;
-            this.suggestions = fullList.stream().collect(Collectors.toList());
-            this.suggestions.add(0, prefix);
-        }
-
-        public void setPrefix(String prefix) {
-            this.index = 0;
-            this.prefix = prefix;
-            suggestions = fullList.stream().filter(x -> x.toLowerCase().startsWith(prefix.toLowerCase()))
-                    .collect(Collectors.toList());
-            suggestions.sort((o1, o2) -> o1.compareTo(o2));
-            suggestions.add(0, prefix);
-            System.out.println("set prefix called");
-        }
-
-        public boolean isBackToPrefix() {
-            return index == 0;
-        }
-    }
 }
