@@ -323,11 +323,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 * 1b. User provides input without a search parameter.
-    * 1a1. Reeve displays a message indicating a search parameter was not provided.       
+    * 1a1. Reeve displays a message indicating a search parameter was not provided.
 
       Use case resumes at step 1.
 * 1c. No students match the given criteria.
-    * 1c1. Reeve displays a message indicating no match found.    
+    * 1c1. Reeve displays a message indicating no match found.
 
       Use case ends.
 
