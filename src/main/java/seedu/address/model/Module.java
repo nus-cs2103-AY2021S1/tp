@@ -1,13 +1,11 @@
-package seedu.address.model.person;
+package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-
-import seedu.address.model.TaskList;
-import seedu.address.model.TutorialGroup;
 
 /**
  * Represents a Student's Module in the address book.
@@ -62,6 +60,10 @@ public class Module {
 
     public int getTotalGroups() {
         return this.totalGroups;
+    }
+
+    public List<TutorialGroup> getTutorialGroups() {
+        return Collections.unmodifiableList(tutorialGroups);
     }
 
     public void addTutorialGroup(TutorialGroup tutorialGroup) {

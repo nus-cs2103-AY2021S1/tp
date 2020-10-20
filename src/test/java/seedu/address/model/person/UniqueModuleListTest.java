@@ -13,6 +13,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.Module;
 import seedu.address.model.person.exceptions.DuplicateModuleException;
 import seedu.address.model.person.exceptions.ModuleNotFoundException;
 

@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Module;
+import seedu.address.model.Module;
 
 public class AddModuleCommandParser implements Parser<AddModuleCommand> {
 

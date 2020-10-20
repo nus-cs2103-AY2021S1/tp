@@ -36,7 +36,9 @@ public class JsonModuleStorage implements ModuleStorage {
     }
 
     /**
-     * Reads the module list
+     * Reads the module list in the specified filePath.
+     * @param filePath The filePath containing the moduleList to be read.
+     * @throws DataConversionException if the file is not in the correct format.
      */
     public Optional<ReadOnlyModuleList> readModuleList(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
@@ -62,9 +64,8 @@ public class JsonModuleStorage implements ModuleStorage {
 
     /**
      * Saves the module list in the specified file path.
-     * @param moduleList
-     * @param filePath
-     * @throws IOException
+     * @param moduleList The moduleList to be saved.
+     * @param filePath The filePath at which the moduleList will be saved.
      */
     public void saveModuleList(ReadOnlyModuleList moduleList, Path filePath) throws IOException {
         requireNonNull(moduleList);

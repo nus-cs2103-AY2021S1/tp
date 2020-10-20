@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.model.Module;
 import seedu.address.model.ModuleList;
 import seedu.address.model.ReadOnlyModuleList;
-import seedu.address.model.person.Module;
 import seedu.address.model.tag.Tag;
 
 /**
