@@ -220,6 +220,7 @@ Step 2. The user executes `add q/ question... t/tag` command to add a flashcard 
 Step 3. The user executes `edit 1 t/tag` to edit the tag in the first flashcard of the list. The edit command will change the internal structure of flashcard such that the `Set<Tag>` is updated.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
+</div>
 
 #### Design consideration:
 

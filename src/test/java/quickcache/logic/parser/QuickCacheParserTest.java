@@ -3,8 +3,17 @@ package quickcache.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static quickcache.logic.commands.EditCommand.EditFlashcardDescriptor;
+import static quickcache.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static quickcache.testutil.Assert.assertThrows;
+import static quickcache.testutil.TypicalFlashcards.RANDOM1;
 import static quickcache.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,12 +23,18 @@ import quickcache.logic.commands.ClearCommand;
 import quickcache.logic.commands.DeleteCommand;
 import quickcache.logic.commands.EditCommand;
 import quickcache.logic.commands.ExitCommand;
+import quickcache.logic.commands.ExportCommand;
+import quickcache.logic.commands.FindCommand;
 import quickcache.logic.commands.HelpCommand;
 import quickcache.logic.commands.ListCommand;
 import quickcache.logic.commands.OpenCommand;
 import quickcache.logic.commands.StatsCommand;
+import quickcache.logic.commands.TestCommand;
 import quickcache.logic.parser.exceptions.ParseException;
 import quickcache.model.flashcard.Flashcard;
+import quickcache.model.flashcard.FlashcardContainsTagPredicate;
+import quickcache.model.flashcard.FlashcardPredicate;
+import quickcache.model.flashcard.Tag;
 import quickcache.testutil.EditFlashcardDescriptorBuilder;
 import quickcache.testutil.FlashcardBuilder;
 import quickcache.testutil.FlashcardUtil;
@@ -79,13 +94,17 @@ public class QuickCacheParserTest {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
-    //    @Test
-    //    public void parseCommand_find() throws Exception {
-    //        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-    //        FindCommand command = (FindCommand) parser.parseCommand(
-    //                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-    //        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
-    //    }
+    @Test
+    public void parseCommand_find() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindCommand command = (FindCommand) parser.parseCommand(FindCommand.COMMAND_WORD
+                + " t/" + keywords.stream().collect(Collectors.joining(" t/")));
+        Set<Tag> tagsToMatch =
+                new HashSet<>(keywords.stream().map(Tag::new).collect(Collectors.toCollection(ArrayList::new)));
+        FlashcardPredicate predicate =
+                new FlashcardPredicate(List.of(new FlashcardContainsTagPredicate(tagsToMatch)));
+        assertEquals(new FindCommand(predicate), command);
+    }
 
     @Test
     public void parseCommand_help() throws Exception {
@@ -97,6 +116,22 @@ public class QuickCacheParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_test() throws Exception {
+        assertTrue(parser.parseCommand(TestCommand.COMMAND_WORD
+            + " "
+            + INDEX_FIRST_FLASHCARD.getOneBased()
+            + " "
+            + PREFIX_ANSWER
+            + RANDOM1.getAnswer()
+        ) instanceof TestCommand);
+    }
+
+    @Test
+    public void parseCommand_export() throws Exception {
+        assertTrue(parser.parseCommand(ExportCommand.COMMAND_WORD + " test.json") instanceof ExportCommand);
     }
 
     @Test

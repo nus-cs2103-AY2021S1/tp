@@ -26,7 +26,7 @@ class OptionTest {
         // different type -> returns false
         assertFalse(option.equals(5));
 
-        // different person -> returns false
+        // different option -> returns false
         assertFalse(option.equals(optionDifferent));
     }
 

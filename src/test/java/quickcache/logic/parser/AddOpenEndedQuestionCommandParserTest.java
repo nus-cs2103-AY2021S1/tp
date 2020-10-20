@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import quickcache.logic.commands.AddOpenEndedQuestionCommand;
 import quickcache.model.flashcard.Answer;
-import quickcache.model.flashcard.OpenEndedQuestion;
+import quickcache.model.flashcard.Question;
 
 public class AddOpenEndedQuestionCommandParserTest {
     private final AddOpenEndedQuestionCommandParser parser = new AddOpenEndedQuestionCommandParser();
@@ -41,7 +41,7 @@ public class AddOpenEndedQuestionCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid Question
         CommandParserTestUtil.assertParseFailure(parser, ANSWER_DESC_THREE + INVALID_QUESTION_DESC,
-            OpenEndedQuestion.MESSAGE_CONSTRAINTS);
+            Question.MESSAGE_CONSTRAINTS);
         // invalid Answer
         CommandParserTestUtil.assertParseFailure(parser, QUESTION_DESC_THREE + INVALID_ANSWER_DESC,
             Answer.MESSAGE_CONSTRAINTS);
@@ -49,7 +49,7 @@ public class AddOpenEndedQuestionCommandParserTest {
 
         // two invalid values, only first invalid value reported
         CommandParserTestUtil.assertParseFailure(parser, INVALID_QUESTION_DESC + INVALID_ANSWER_DESC,
-            OpenEndedQuestion.MESSAGE_CONSTRAINTS);
+            Question.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         CommandParserTestUtil.assertParseFailure(parser, PREAMBLE_NON_EMPTY + QUESTION_DESC_THREE + ANSWER_DESC_THREE,

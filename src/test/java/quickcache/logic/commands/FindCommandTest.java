@@ -4,8 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +17,11 @@ import quickcache.commons.core.Messages;
 import quickcache.model.Model;
 import quickcache.model.ModelManager;
 import quickcache.model.UserPrefs;
+import quickcache.model.flashcard.Flashcard;
 import quickcache.model.flashcard.FlashcardContainsTagPredicate;
+import quickcache.model.flashcard.FlashcardPredicate;
+import quickcache.model.flashcard.QuestionContainsKeywordsPredicate;
+import quickcache.model.flashcard.Tag;
 import quickcache.testutil.TypicalFlashcards;
 
 /**
@@ -25,10 +33,8 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        FlashcardContainsTagPredicate firstPredicate =
-            new FlashcardContainsTagPredicate(Collections.singletonList("LSM1301"));
-        FlashcardContainsTagPredicate secondPredicate =
-            new FlashcardContainsTagPredicate(Collections.singletonList("CS2101"));
+        FlashcardPredicate firstPredicate = preparePredicate(prepareTagSet("LSM1301"), prepareKeywordList());
+        FlashcardPredicate secondPredicate = preparePredicate(prepareTagSet("CS2101"), prepareKeywordList());
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -51,19 +57,10 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 0);
-        FlashcardContainsTagPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredFlashcardList(predicate);
-        CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredFlashcardList());
-    }
-
-    @Test
-    public void execute_oneKeyword_multiplePersonsFound() {
+    public void execute_oneTag_multipleFlashcardsFound() {
         String expectedMessage = String.format(Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 2);
-        FlashcardContainsTagPredicate predicate = preparePredicate("LSM1301");
+        FlashcardPredicate predicate =
+                preparePredicate(prepareTagSet("LSM1301"), prepareKeywordList());
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredFlashcardList(predicate);
         CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -72,9 +69,22 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_oneQuestionKeyword_multipleFlashcardsFound() {
         String expectedMessage = String.format(Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 2);
-        FlashcardContainsTagPredicate predicate = preparePredicate("CS2100 CS");
+        FlashcardPredicate predicate =
+                preparePredicate(prepareTagSet(), prepareKeywordList("information"));
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredFlashcardList(predicate);
+        CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(TypicalFlashcards.RANDOM6, TypicalFlashcards.RANDOM7),
+                model.getFilteredFlashcardList());
+    }
+
+    @Test
+    public void execute_oneQuestionKeywordAndOneTag_multipleFlashcardsFound() {
+        String expectedMessage = String.format(Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 2);
+        FlashcardPredicate predicate =
+                preparePredicate(prepareTagSet("CS2100"), prepareKeywordList("What"));
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredFlashcardList(predicate);
         CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -82,10 +92,31 @@ public class FindCommandTest {
             model.getFilteredFlashcardList());
     }
 
+    private Set<Tag> prepareTagSet(String... tags) {
+        HashSet<Tag> tagSet = new HashSet<>();
+        for (String tag: tags) {
+            tagSet.add(new Tag(tag));
+        }
+        return tagSet;
+    }
+
+    private List<String> prepareKeywordList(String... keywords) {
+        return Arrays.asList(keywords);
+    }
+
     /**
-     * Parses {@code userInput} into a {@code FlashcardContainsTagPredicate}.
+     * Parses {@code Set} of {@code Tag} and {@code List} of keywords into a {@code FlashcardPredicate}.
      */
-    private FlashcardContainsTagPredicate preparePredicate(String userInput) {
-        return new FlashcardContainsTagPredicate(Arrays.asList(userInput.split("\\s+")));
+    private FlashcardPredicate preparePredicate(Set<Tag> tagsToMatch, List<String> questionKeywords) {
+        ArrayList<Predicate<Flashcard>> predicates = new ArrayList<>();
+
+        if (!tagsToMatch.isEmpty()) {
+            predicates.add(new FlashcardContainsTagPredicate(tagsToMatch));
+        }
+
+        if (!questionKeywords.isEmpty()) {
+            predicates.add(new QuestionContainsKeywordsPredicate(questionKeywords));
+        }
+        return new FlashcardPredicate(predicates);
     }
 }

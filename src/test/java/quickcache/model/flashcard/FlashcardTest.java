@@ -46,7 +46,7 @@ class FlashcardTest {
         // different type -> returns false
         assertFalse(RANDOM1.equals(5));
 
-        // different person -> returns false
+        // different flashcard -> returns false
         assertFalse(RANDOM1.equals(RANDOM2));
 
         // different answer -> returns false

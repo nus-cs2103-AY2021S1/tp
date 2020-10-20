@@ -6,10 +6,11 @@ import java.util.List;
 
 import quickcache.model.QuickCache;
 import quickcache.model.flashcard.Flashcard;
+import quickcache.model.flashcard.Tag;
 
 public class TypicalFlashcards {
 
-    public static final String[] RANDOM_1_TAG = {"LSM1301"};
+    public static final Tag[] RANDOM_1_TAG = {new Tag("LSM1301")};
     public static final Flashcard RANDOM1 = new FlashcardBuilder().withQuestion("Are heparins safe in pregnancy?")
         .withAnswer("Yes, They dont cross the placenta").withTag("LSM1301").build();
     public static final Flashcard RANDOM2 = new FlashcardBuilder()
