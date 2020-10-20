@@ -135,39 +135,6 @@ public class ParserUtil {
     //=========== Bids ================================================================================
 
     /**
-     * trims off any excess white spaces for a given string
-     * @param propertyId string to trim
-     * @return a string that has no white spaces on the sides
-     * @throws ParseException If the property id is in the wrong format.
-     */
-    public static String parsePropertyId(String propertyId) throws ParseException {
-        requireNonNull(propertyId);
-        if (Pattern.matches("[a-zA-Z][0-9]+", propertyId)) {
-            String trimmedPropertyId = propertyId.trim();
-            return trimmedPropertyId;
-        } else {
-            throw new ParseException(Bid.MESSAGE_CONSTRAINTS_PROPERTY_ID);
-        }
-
-    }
-
-    /**
-     * trims off any excess white spaces for a given string
-     * @param bidderId string to trim
-     * @return a string that has no white spaces on the sides
-     * @throws ParseException If the bidder id is in the wrong format.
-     */
-    public static String parseBidderId(String bidderId) throws ParseException {
-        requireNonNull(bidderId);
-        if (Pattern.matches("[a-zA-Z][0-9]+", bidderId)) {
-            String trimmedBidderId = bidderId.trim();
-            return trimmedBidderId;
-        } else {
-            throw new ParseException(Bid.MESSAGE_CONSTRAINTS_BIDDER_ID);
-        }
-    }
-
-    /**
      *  trims off any excess white spaces for a given string
      * @param bidAmount string to trim
      * @return a string that has no white spaces on the sides
