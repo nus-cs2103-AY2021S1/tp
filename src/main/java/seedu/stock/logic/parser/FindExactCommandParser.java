@@ -1,5 +1,6 @@
 package seedu.stock.logic.parser;
 
+import static seedu.stock.commons.core.Messages.MESSAGE_DUPLICATE_HEADER_FIELD;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
@@ -49,7 +50,7 @@ public class FindExactCommandParser implements Parser<FindExactCommand> {
         // Check for duplicate prefixes
         for (Prefix prefix: prefixes) {
             if (argMultimap.getAllValues(prefix).size() >= 2) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindExactCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_DUPLICATE_HEADER_FIELD, FindExactCommand.MESSAGE_USAGE));
             }
         }
 
