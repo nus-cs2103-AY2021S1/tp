@@ -196,6 +196,8 @@ The utilities provided inside are:
 
 Given below are some example usage scenarios and how the suggestion mechanism behaves at each step.
 
+**Example 1: Unknown command word**
+
 Step 1. The user enters `updt n/Milk s/Fairprice` which contains an unknown command word `updt`.
 
 Step 2. The command word `updt` is extracted out in `StockBookParser` and checked if it matches any valid command word.
@@ -203,32 +205,81 @@ Step 2. The command word `updt` is extracted out in `StockBookParser` and checke
 Step 3. The command word `updt` does not match any valid command word. It is then passed down to `SuggestionCommandParser`
 along with `n/Milk s/Fairprice` and `SuggestionCommandParser#parse()` is invoked.
 
-Step 4. Inside `parse` method, the closest command word to `updt` will be inferred. The inference uses the minimum edit
-distance heuristic. `parse` will count the minimum edit distance from `updt` to every other valid command word.
+Step 4. Inside `SuggestionCommandParser#parse()` method, the closest command word to `updt` will be inferred. 
+The inference uses the minimum edit distance heuristic. `SuggestionCommandParser#parse()` will 
+count the minimum edit distance from `updt` to every other valid command word.
 
 Step 5. The new valid command word generated is the one with the smallest edit distance to `updt`. The command word
 to be suggested in this case is `update`.
 
-Step 6. `parse` method will call `SuggestionCommandParser#generateUpdateSuggestion()` to generate the suggestion message
-to be displayed to the user.
+Step 6. `SuggestionCommandParser#parse()` method will call `SuggestionCommandParser#generateUpdateSuggestion()` 
+to generate the suggestion message to be displayed to the user.
 
-Step 7. During the generation of suggestion message, `generateUpdateSuggestion` will check first if the compulsory
-prefix exist. In this case the compulsory prefix which is `sn/` does not exist. `sn/<serial number>` is then added to
-the suggestion message.
+Step 7. During the generation of suggestion message, `SuggestionCommandParser#generateUpdateSuggestion()` will check
+first if the compulsory prefix exist. In this case the compulsory prefix which is `sn/` does not exist.
+`sn/<serial number>` is then added to the suggestion message.
 
 Step 8. All prefixes the user entered that is valid for `update` command and its arguments are nonempty will then 
-be appended to the suggestion message. If there exist prefix whose argument is empty, then `generateUpdateSuggestion`
+be appended to the suggestion message. If there exist prefix whose argument is empty, then `SuggestionCommandParser#generateUpdateSuggestion()`
 will fill the argument with a default value. In this case, prefixes `n/ s/` are present and their arguments are nonempty.
 `n/Milk s/Fairprice` is then added to the suggestion message.
 
-Step 9. Lastly `generateUpdateSuggestion` will append the usage message for `update` command.
+Step 9. Lastly `SuggestionCommandParser#generateUpdateSuggestion()` will append the usage message for `update` command.
 
-Step 10. `parse` method returns a new `SuggestionCommand` with the suggestion message to be displayed as its argument.
+Step 10. `SuggestionCommandParser#parse()` method returns a new `SuggestionCommand` with the suggestion message
+to be displayed as its argument.
 
 Step 11. `SuggestionCommand` is executed and produces a new `CommandResult` to display the message to the user.
 
 Step 12. The suggestion `update sn/<serial number> n/Milk s/Fairprice` is displayed to the user along with what kind of
 error and the message usage information. In this case the error is `unknown command` and the message usage is from
+`UpdateCommand`.
+
+**Example 2: Invalid command format**
+
+Step 1. The user enters `update n/Milk s/` which contains a valid command word `update`.
+
+Step 2. The command word `update` is extracted out in `StockBookParser` and checked if it matches any valid command word.
+
+Step 3. The command word `update` is a valid command word. Input is then passed to `UpdateCommandParser#parse()`. 
+
+Step 4. Inside `UpdateCommandParser#parse()`, the user input is then parsed to create a new `UpdateCommand`. However,
+since the compulsory prefix `sn/` is not provided, a `ParseException` will be thrown. 
+
+Step 5. `ParseException` thrown will be caught in `StockBookParser`. The user input along with parsing error messages
+will then be passed into `SuggestionCommandParser#parse()`.
+
+Step 6. Constructor of `SuggestionCommandParser` will separate the parsing error messages header and body and then
+`SuggestionCommandParser#parse()` is invoked.
+
+Step 7. Inside `SuggestionCommandParser#parse()` method, the closest command word to `update` will be inferred. 
+The inference uses the minimum edit distance heuristic. `SuggestionCommandParser#parse()` will 
+count the minimum edit distance from `update` to every other valid command word.
+
+Step 8. Since `update` is already a valid command, the inference will generate `update` again.
+
+Step 9. `SuggestionCommandParser#parse()` method will call `SuggestionCommandParser#generateUpdateSuggestion()` 
+to generate the suggestion message to be displayed to the user.
+
+Step 10. During the generation of suggestion message, `SuggestionCommandParser#generateUpdateSuggestion()` will check
+first if the compulsory prefix exist. In this case the compulsory prefix which is `sn/` does not exist.
+`sn/<serial number>` is then added to the suggestion message.
+
+Step 11. All prefixes the user entered that is valid for `update` command and its arguments are nonempty will then 
+be appended to the suggestion message. If there exist prefix whose argument is empty, then `SuggestionCommandParser#generateUpdateSuggestion()`
+will fill the argument with a default value. In this case, the prefix `n/` is present and its argument is nonempty.
+`n/Milk` is then added to the suggestion message. The prefix `s/` is present, but its argument is empty.
+`s/<source>` is then added to the suggestion message.
+
+Step 9. Lastly `SuggestionCommandParser#generateUpdateSuggestion()` will append the usage message for `update` command.
+
+Step 10. `SuggestionCommandParser#parse()` method returns a new `SuggestionCommand` with the suggestion message
+to be displayed as its argument.
+
+Step 11. `SuggestionCommand` is executed and produces a new `CommandResult` to display the message to the user.
+
+Step 12. The suggestion `update sn/<serial number> n/Milk s/<source>` is displayed to the user along with what kind of
+error and the message usage information. In this case the error is `Invalid command format` and the message usage is from
 `UpdateCommand`.
 
 ### \[Proposed\] Undo/redo feature
