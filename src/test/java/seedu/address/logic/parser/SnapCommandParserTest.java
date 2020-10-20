@@ -4,6 +4,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.nio.file.Path;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.SnapCommand;
@@ -11,19 +13,27 @@ import seedu.address.logic.commands.SnapCommand;
 public class SnapCommandParserTest {
     private SnapCommandParser parser = new SnapCommandParser();
 
+    private Path makePath(String fileName) {
+        return Path.of("data", fileName + SnapCommand.FILE_FORMAT);
+    }
+
     @Test
     public void parse_validFileName_success() {
         String validFileName1 = "zookeep_19-10-2020";
-        assertParseSuccess(parser, validFileName1, new SnapCommand(validFileName1));
+        assertParseSuccess(parser, validFileName1, new SnapCommand(makePath(validFileName1), validFileName1));
 
         String validFileName2 = "_";
-        assertParseSuccess(parser, validFileName2, new SnapCommand(validFileName2));
+        Path savePath2 = Path.of("src", "test", "data", "SnapCommandTest", validFileName2);
+        assertParseSuccess(parser, validFileName2, new SnapCommand(makePath(validFileName2), validFileName2));
 
         String validFileName3 = "-";
-        assertParseSuccess(parser, validFileName3, new SnapCommand(validFileName3));
+        Path savePath3 = Path.of("src", "test", "data", "SnapCommandTest", validFileName3);
+        assertParseSuccess(parser, validFileName3, new SnapCommand(makePath(validFileName3), validFileName3));
 
         String validFileNameLength = "x".repeat(100);
-        assertParseSuccess(parser, validFileNameLength, new SnapCommand(validFileNameLength));
+        Path savePath4 = Path.of("src", "test", "data", "SnapCommandTest", validFileNameLength);
+        assertParseSuccess(parser, validFileNameLength,
+                new SnapCommand(makePath(validFileNameLength), validFileNameLength));
     }
 
     @Test

@@ -35,16 +35,20 @@ public class SnapCommand extends Command {
 
     public static final String MESSAGE_WARNING = "File name %s already exists.";
 
-    private static final String FILE_FORMAT = ".json";
-    private final String fileName;
+    public static final String FILE_FORMAT = ".json";
+
+    private String fileName;
+    private Path savePath;
 
     /**
-     * Creates a SnapCommand to save the current state of the ZooKeep Book in a file
-     * with a specified file name.
+     * Creates a SnapCommand to save the current state of the ZooKeep Book to the specified path
      */
-    public SnapCommand(String fileName) {
+    public SnapCommand(Path savePath, String fileName) {
+        requireNonNull(savePath);
         requireNonNull(fileName);
-        this.fileName = fileName + FILE_FORMAT;
+
+        this.savePath = savePath;
+        this.fileName = fileName;
     }
 
     @Override
@@ -58,34 +62,12 @@ public class SnapCommand extends Command {
         try {
             Storage storage = new StorageManager(zooKeepBookStorage, userPrefsStorage);
             ReadOnlyZooKeepBook zooKeepBook = model.getZooKeepBook();
-            Path savePath = Path.of("data", fileName);
-
             storage.saveZooKeepBook(zooKeepBook, savePath);
         } catch (IOException ioe) {
             throw new CommandException(String.format(MESSAGE_ERROR + ioe, ioe));
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, fileName));
-    }
-
-    // Overloaded method that accepts a save Path destination for easier testing purposes
-    protected CommandResult execute(Model model, Path path) throws CommandException {
-        requireNonNull(model);
-
-        Path zooKeepBookFilePath = model.getUserPrefs().getZooKeepBookFilePath();
-        ZooKeepBookStorage zooKeepBookStorage = new JsonZooKeepBookStorage(zooKeepBookFilePath);
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(zooKeepBookFilePath);
-
-        try {
-            Storage storage = new StorageManager(zooKeepBookStorage, userPrefsStorage);
-            ReadOnlyZooKeepBook zooKeepBook = model.getZooKeepBook();
-
-            storage.saveZooKeepBook(zooKeepBook, path);
-        } catch (IOException ioe) {
-            throw new CommandException(String.format(MESSAGE_ERROR + ioe, ioe));
-        }
-
-        return new CommandResult(String.format(MESSAGE_SUCCESS, fileName));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, fileName + FILE_FORMAT));
     }
 
     @Override
