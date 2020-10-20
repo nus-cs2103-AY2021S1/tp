@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
 
@@ -34,4 +35,9 @@ public interface ReadOnlyMainCatalogue {
      * Enters a designated task of a project.
      */
     void enterTask(Task task);
+
+    /**
+     * Enters a designated teammate of a project.
+     */
+    void enterTeammate(Person teammate);
 }

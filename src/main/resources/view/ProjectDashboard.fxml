@@ -15,7 +15,7 @@
             <Insets bottom="5" left="15" right="5" top="5" />
          </padding>
          <children>
-            <HBox fx:id="projectDashboardPane" alignment="CENTER_LEFT" prefHeight="91.0" prefWidth="700.0" spacing="5">
+            <HBox alignment="CENTER_LEFT" prefHeight="91.0" prefWidth="700.0" spacing="5">
                <children>
                   <Label id="dashboardLabel" fx:id="projectName" prefHeight="84.0" prefWidth="693.0" styleClass="cell_big_label" stylesheets="@Extensions.css" text="\$first" HBox.hgrow="ALWAYS">
                      <font>
@@ -24,12 +24,6 @@
                   </Label>
                </children>
             </HBox>
-            <Label id="dashboardH1" fx:id="header1" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$header1">
-               <font>
-                  <Font size="50.0" />
-               </font>
-            </Label>
-            <FlowPane id="dashboardPT" fx:id="tags" orientation="VERTICAL" prefHeight="67.0" prefWidth="700.0" stylesheets="@Extensions.css" />
             <Label id="dashboardDeadline" fx:id="deadline" prefHeight="82.0" prefWidth="694.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$deadline">
                <font>
                   <Font size="50.0" />
@@ -45,13 +39,13 @@
                   <Font size="50.0" />
                </font>
             </Label>
-            <Label id="dashboardH2" fx:id="header2" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$header1">
+            <Label id="dashboardH1" fx:id="header1" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$header1">
                <font>
                   <Font size="50.0" />
                </font>
             </Label>
             <FlowPane id="dashboardTask" fx:id="tasks" layoutX="25.0" layoutY="412.0" orientation="VERTICAL" prefHeight="75.0" prefWidth="700.0" stylesheets="@Extensions.css" />
-            <Label id="dashboardH3" fx:id="header3" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$header2">
+            <Label id="dashboardH2" fx:id="header2" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$header2">
                <font>
                   <Font size="50.0" />
                </font>

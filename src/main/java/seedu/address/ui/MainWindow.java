@@ -37,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private ProjectDashboard projectDashboard;
     private EmptyDashboard emptyProjectDashboard;
     private TaskDashboard taskDashboard;
+    private TeammateDashboard teammateDashboard;
     private EmptyDashboard emptyAttributesDashboard;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -52,7 +53,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane projectDashboardPlaceHolder;
-    
+
     @FXML
     private StackPane projectAttributesDashboardPlaceHolder;
 
@@ -122,19 +123,32 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        projectListPanel = new ProjectListPanel(logic.getFilteredProjectList(), logic.getStatus());
+        projectListPanel = new ProjectListPanel(logic.getFilteredProjectList());
         projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
 
         if (logic.getProjectToBeDisplayedOnDashBoard().isEmpty()) {
             emptyProjectDashboard = new EmptyDashboard(EMPTY_PROJECT_DASHBOARD_MSG);
             projectDashboardPlaceHolder.getChildren().add(emptyProjectDashboard.getRoot());
-            emptyAttributesDashboard = new EmptyDashboard(EMPTY_ATTRIBUTES_DASHBOARD_MSG);
-            projectAttributesDashboardPlaceHolder.getChildren().add(emptyAttributesDashboard.getRoot());
         } else {
             projectDashboard = new ProjectDashboard(logic.getProjectToBeDisplayedOnDashBoard());
             projectDashboardPlaceHolder.getChildren().add(projectDashboard.getRoot());
-            taskDashboard = new TaskDashboard(logic.getProjectToBeDisplayedOnDashBoard());
+            //taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+            //projectListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+            //teammateListPanel = new TeammatesListPanel(logic.getFilteredTaskList());
+            //teammatesListPanelPlaceholder.getChildren().add(teammatesListPanel.getRoot());
+        }
+
+        if (logic.getTaskToBeDisplayedOnDashboard().isEmpty()
+                && logic.getTeammateToBeDisplayedOnDashboard().isPresent()) {
+            teammateDashboard = new TeammateDashboard(logic.getTeammateToBeDisplayedOnDashboard());
+            projectAttributesDashboardPlaceHolder.getChildren().add(teammateDashboard.getRoot());
+        } else if (logic.getTaskToBeDisplayedOnDashboard().isPresent()
+                && logic.getTeammateToBeDisplayedOnDashboard().isEmpty()) {
+            taskDashboard = new TaskDashboard(logic.getTaskToBeDisplayedOnDashboard());
             projectAttributesDashboardPlaceHolder.getChildren().add(taskDashboard.getRoot());
+        } else {
+            emptyAttributesDashboard = new EmptyDashboard(EMPTY_ATTRIBUTES_DASHBOARD_MSG);
+            projectAttributesDashboardPlaceHolder.getChildren().add(emptyAttributesDashboard.getRoot());
         }
 
         resultDisplay = new ResultDisplay();
@@ -219,3 +233,10 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 }
+
+//
+//    @FXML
+//    private StackPane taskListPlaceholder;
+//
+//    @FXML
+//    private StackPane teammatesListPlaceholder;

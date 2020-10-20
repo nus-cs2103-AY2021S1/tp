@@ -7,14 +7,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.task.Task;
+import seedu.address.model.person.Person;
 
 /**
  * An UI component that displays information of a {@code Project}.
  */
-public class TaskDashboard extends UiPart<Region> {
+public class TeammateDashboard extends UiPart<Region> {
 
-    private static final String FXML = "TaskDashboard.fxml";
+    private static final String FXML = "TeammateDashboard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,40 +24,40 @@ public class TaskDashboard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on MainCatalogue level 4</a>
      */
 
-    public final Task task;
+    public final Person teammate;
 
     @FXML
-    private HBox taskDashboardPane;
+    private HBox teammateDashboardPane;
     @FXML
-    private Label taskName;
+    private Label teammateName;
     @FXML
-    private Label taskDescription;
+    private Label gitUserName;
     @FXML
-    private Label publishDate;
+    private Label phone;
     @FXML
-    private Label deadline;
+    private Label email;
     @FXML
-    private Label progress;
+    private Label address;
     @FXML
     private Label header1;
     @FXML
-    private FlowPane assignees;
+    private FlowPane projects;
 
     /**
      * Creates a {@code TaskDashboardCode} with the given {@code Task} to display.
      */
-    public TaskDashboard(Optional<Task> task) {
+    public TeammateDashboard(Optional<Person> teammate) {
         super(FXML);
-        this.task = task.get();
-        taskName.setText(this.task.getTaskName());
-        taskDescription.setText("Task description: " + this.task.getDescription());
-        publishDate.setText("Task published date: " + this.task.getPublishDate());
-        deadline.setText("Task deadline: " + this.task.getDeadline());
-        progress.setText("Task progress: " + this.task.getProgress());
-        header1.setText("Task assignees: ");
-        this.task.getAssignees()
-                .forEach(participation -> assignees.getChildren()
-                        .add(new Label(participation.getPerson().getPersonName().toString())));
+        this.teammate = teammate.get();
+        teammateName.setText(this.teammate.getPersonName().toString());
+        gitUserName.setText("Teammate gitUserName: " + this.teammate.getGitUserNameString());
+        phone.setText("Teammate phone number: " + this.teammate.getPhone());
+        email.setText("Teammate email: " + this.teammate.getEmail());
+        address.setText("Teammate address: " + this.teammate.getAddress());
+        header1.setText("Projects participated: ");
+        this.teammate.getParticipations().keySet()
+                .forEach(participation -> projects.getChildren()
+                        .add(new Label(participation.toString())));
     }
 
     @Override
@@ -73,7 +73,7 @@ public class TaskDashboard extends UiPart<Region> {
         }
 
         // state check
-        TaskDashboard card = (TaskDashboard) other;
-        return task.equals(card.task);
+        TeammateDashboard card = (TeammateDashboard) other;
+        return teammate.equals(card.teammate);
     }
 }

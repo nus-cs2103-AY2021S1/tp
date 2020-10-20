@@ -43,6 +43,7 @@ public class Project {
 
     // Display helper
     private Optional<Task> taskOnView;
+    private Optional<Person> teammateOnView;
 
     /**
      * Every field must be present and not null.
@@ -61,6 +62,7 @@ public class Project {
         this.tasks.addAll(tasks);
         this.meetings.addAll(meetings);
         this.taskOnView = Optional.empty();
+        this.teammateOnView = Optional.empty();
     }
 
     public ProjectName getProjectName() {
@@ -97,10 +99,16 @@ public class Project {
     public void updateTaskOnView(Task t) {
         taskOnView = Optional.of(t);
     }
+    public void updateTeammateOnView(Person p) {
+        teammateOnView = Optional.of(p);
+    }
     public Optional<Task> getTaskOnView() {
         return this.taskOnView;
     }
-    
+    public Optional<Person> getTeammateOnView() {
+        return this.teammateOnView;
+    }
+
     /**
      * Gets all attendees of a specific meeting
      */

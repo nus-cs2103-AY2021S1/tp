@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
 
@@ -24,8 +25,11 @@ public class ModelManager implements Model {
     private final MainCatalogue mainCatalogue;
     private final UserPrefs userPrefs;
     private final FilteredList<Project> filteredProjects;
+    //private final List<Task> filteredTasks;
+    //private final List<Person> filteredTeammates;
     private Optional<Project> projectToBeDisplayedOnDashboard;
     private Optional<Task> taskToBeDisplayedOnDashboard;
+    private Optional<Person> teammateToBeDisplayedOnDashboard;
 
     /**
      * Initializes a ModelManager with the given mainCatalogue and userPrefs.
@@ -39,7 +43,11 @@ public class ModelManager implements Model {
         this.mainCatalogue = new MainCatalogue(mainCatalogue);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredProjects = new FilteredList<>(this.mainCatalogue.getProjectList());
+        //filteredTasks = new ArrayList<>();
+        //filteredTeammates = new ArrayList<>();;
         this.projectToBeDisplayedOnDashboard = Optional.empty();
+        this.taskToBeDisplayedOnDashboard = Optional.empty();
+        this.teammateToBeDisplayedOnDashboard = Optional.empty();
     }
 
     public ModelManager() {
@@ -132,13 +140,30 @@ public class ModelManager implements Model {
 
     @Override
     public void quit() {
+        if (mainCatalogue.getStatus() == Status.PROJECT) {
+            projectToBeDisplayedOnDashboard = Optional.empty();
+            teammateToBeDisplayedOnDashboard = Optional.empty();
+            taskToBeDisplayedOnDashboard = Optional.empty();
+        } else if (mainCatalogue.getStatus() == Status.PERSON) {
+            teammateToBeDisplayedOnDashboard = Optional.empty();
+        } else {
+            taskToBeDisplayedOnDashboard = Optional.empty();
+        }
         mainCatalogue.quit();
     }
 
     @Override
     public void enterTask(Task task) {
         mainCatalogue.enterTask(task);
-        updateTaskToBeDisplayedOnDashboard(task);
+        this.projectToBeDisplayedOnDashboard.get().updateTaskOnView(task);
+        updateTaskToBeDisplayedOnDashboard(this.projectToBeDisplayedOnDashboard.get().getTaskOnView().get());
+    }
+
+    @Override
+    public void enterTeammate(Person teammate) {
+        mainCatalogue.enterTeammate(teammate);
+        this.projectToBeDisplayedOnDashboard.get().updateTeammateOnView(teammate);
+        updateTeammateToBeDisplayedOnDashboard(this.projectToBeDisplayedOnDashboard.get().getTeammateOnView().get());
     }
 
     //=========== Filtered Project List Accessors =============================================================
@@ -175,6 +200,8 @@ public class ModelManager implements Model {
         return mainCatalogue.equals(other.mainCatalogue)
                 && userPrefs.equals(other.userPrefs)
                 && filteredProjects.equals(other.filteredProjects);
+                //&& filteredTasks.equals(other.filteredTasks)
+                //&& filteredTeammates.equals(other.filteredTeammates);
     }
 
     //=========== Project To Be Displayed On DashBoard Accessors ======================================================
@@ -187,6 +214,8 @@ public class ModelManager implements Model {
     public void updateProjectToBeDisplayedOnDashboard(Project project) {
         requireNonNull(project);
         this.projectToBeDisplayedOnDashboard = Optional.of(project);
+        //updateFilteredTaskList(project.getFilteredTaskList());
+        //updateFilteredTeammateList(project.getTeammates());
     }
 
     @Override
@@ -194,6 +223,7 @@ public class ModelManager implements Model {
         return projectToBeDisplayedOnDashboard;
     }
 
+    //=========== Task To Be Displayed On DashBoard Accessors ======================================================
     @Override
     public void updateTaskToBeDisplayedOnDashboard(Task task) {
         requireNonNull(task);
@@ -204,4 +234,48 @@ public class ModelManager implements Model {
     public Optional<Task> getTaskToBeDisplayedOnDashboard() {
         return taskToBeDisplayedOnDashboard;
     }
+
+    //=========== Teammate To Be Displayed On DashBoard Accessors ======================================================
+    @Override
+    public void updateTeammateToBeDisplayedOnDashboard(Person teammate) {
+        requireNonNull(teammate);
+        this.teammateToBeDisplayedOnDashboard = Optional.of(teammate);
+    }
+
+    @Override
+    public Optional<Person> getTeammateToBeDisplayedOnDashboard() {
+        return teammateToBeDisplayedOnDashboard;
+    }
 }
+
+//    //=========== Filtered Task List Accessors =============================================================
+//
+//    /**
+//     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+//     * {@code versionedMainCatalogue}
+//     */
+//    @Override
+//    public List<Task> getFilteredTaskList() {
+//        return filteredTasks;
+//    }
+//
+//    @Override
+//    public void updateFilteredTaskList(List<Task> taskList) {
+//        this.filteredTasks.addAll(taskList);
+//    }
+//
+//    //=========== Filtered Teammates List Accessors =============================================================
+//
+//    /**
+//     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+//     * {@code versionedMainCatalogue}
+//     */
+//    @Override
+//    public List<Person> getFilteredTeammateList() {
+//        return filteredTeammates;
+//    }
+//
+//    @Override
+//    public void updateFilteredTeammateList(List<Person> teammatesList) {
+//        filteredTeammates.addAll(teammatesList);
+//    }

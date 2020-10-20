@@ -11,6 +11,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_TEAMMATE_DISPLAYED_NAME = "The name provided for the teammate is not "
         + "found in the project";
     public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "The task index provided is invalid";
+    public static final String MESSAGE_INVALID_TEAMMATE_DISPLAYED_INDEX = "The teammate index provided is invalid";
     public static final String MESSAGE_PROJECTS_LISTED_OVERVIEW = "%1$d projects listed!";
     public static final String MESSAGE_INVALID_SCOPE_COMMAND = "The scope status is expected to be %s but you are"
         + " now in %s";

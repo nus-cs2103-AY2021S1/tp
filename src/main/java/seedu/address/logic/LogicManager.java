@@ -16,6 +16,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyMainCatalogue;
 import seedu.address.model.Status;
+import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
 import seedu.address.storage.Storage;
@@ -78,6 +79,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public Optional<Person> getTeammateToBeDisplayedOnDashboard() {
+        return model.getTeammateToBeDisplayedOnDashboard();
+    }
+
+    @Override
     public Path getMainCatalogueFilePath() {
         return model.getProjectCatalogueFilePath();
     }
@@ -107,3 +113,14 @@ public class LogicManager implements Logic {
         model.quit();
     }
 }
+
+
+// @Override
+// public List<Task> getFilteredTaskList() {
+// return model.getFilteredTaskList();
+// }
+//
+//@Override
+// public List<Person> getFilteredTeammateList() {
+// return model.getFilteredTeammateList();
+// }

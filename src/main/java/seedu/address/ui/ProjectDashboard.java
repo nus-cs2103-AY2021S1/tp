@@ -28,7 +28,7 @@ public class ProjectDashboard extends UiPart<Region> {
     public final Project project;
 
     @FXML
-    private HBox projectDashboardPane;
+    private HBox dashboardPane;
     @FXML
     private Label projectName;
     @FXML
@@ -42,8 +42,6 @@ public class ProjectDashboard extends UiPart<Region> {
     @FXML
     private Label header2;
     @FXML
-    private Label header3;
-    @FXML
     private FlowPane tags;
     @FXML
     private FlowPane teammates;
@@ -51,27 +49,22 @@ public class ProjectDashboard extends UiPart<Region> {
     private FlowPane tasks;
 
     /**
-     * Creates a {@code ProjectDashboardCode} with the given {@code Project} to display.
+     * Creates a {@code ProjectDashboardCode} with the given {@code Project} and index to display.
      */
     public ProjectDashboard(Optional<Project> project) {
         super(FXML);
         this.project = project.get();
         projectName.setText(this.project.getProjectName().fullProjectName);
         deadline.setText("Project deadline: " + this.project.getDeadline().toString());
-        header1.setText("Project tags: ");
-        this.project.getProjectTags().stream()
-                .sorted(Comparator.comparing(projectTag -> projectTag.projectTagName))
-                .forEach(projectTag -> this.tags.getChildren()
-                        .add(new Label(projectTag.projectTagName)));
-
         projectDescription.setText("Project description: " + this.project.getProjectDescription().value);
         repoUrl.setText("Project repourl: " + this.project.getRepoUrl().value);
-        header2.setText("Tasks: ");
-        this.project.getFilteredTaskList()
+        header1.setText("Tasks: ");
+        this.project.getFilteredTaskList().stream()
+                .sorted(Comparator.comparing(task -> task.taskName))
                 .forEach(task -> tasks.getChildren().add(new Label(task.taskName)));
-        header3.setText("Teammates: ");
+        header2.setText("Teammates: ");
         this.project.getTeammates().stream()
-                .forEach(person -> teammates.getChildren().add(new Label((person.getGitUserNameString()))));
+                .forEach(person -> teammates.getChildren().add(new Label((person.getPersonName().toString()))));
     }
 
     @Override

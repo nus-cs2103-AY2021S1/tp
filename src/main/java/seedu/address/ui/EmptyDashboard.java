@@ -37,5 +37,5 @@ public class EmptyDashboard extends UiPart<Region> {
         EmptyDashboard card = (EmptyDashboard) other;
         return message.getText().equals(card.message.getText());
     }
-    
+
 }

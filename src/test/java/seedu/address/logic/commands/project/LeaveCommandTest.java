@@ -24,17 +24,17 @@ public class LeaveCommandTest {
     public void execute_success() {
         Project projectToStart = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(projectToStart);
-        LeaveCommand leaveCommand = new LeaveCommand();
+        LeaveProjectViewCommand leaveProjectViewCommand = new LeaveProjectViewCommand();
 
-        String expectedMessage = LeaveCommand.MESSAGE_LEAVE_SUCCESS;
+        String expectedMessage = LeaveProjectViewCommand.MESSAGE_LEAVE_SUCCESS;
 
         ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
 
-        assertCommandSuccess(leaveCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(leaveProjectViewCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void equals() {
-        assertEquals(new LeaveCommand(), new LeaveCommand());
+        assertEquals(new LeaveProjectViewCommand(), new LeaveProjectViewCommand());
     }
 }

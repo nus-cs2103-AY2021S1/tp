@@ -3,7 +3,6 @@ package seedu.address.model.task;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -49,10 +48,6 @@ public class Task {
 
     public LocalDate getPublishDate() {
         return publishDate;
-    }
-
-    public String getPublishDateInString() {
-        return publishDate.format(DateTimeFormatter.ofPattern("dd-MM-yy"));
     }
 
     public Deadline getDeadline() {
