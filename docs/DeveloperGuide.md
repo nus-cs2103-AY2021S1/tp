@@ -134,6 +134,86 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+This section describes some noteworthy details on how certain features are implemented. The details of the features are
+categorized accordingly to the entities. Specifically: Bidder, Seller, Bid, Property and Meeting.
+
+### 2. Bid
+
+ ### **Implementation**
+
+ #### 2.1 **Delete**: delete a bid - `delete-bid`
+
+ `delete` is supported by the `DeleteBidCommand`.
+
+ Given below is the example usage scenario:
+
+ **Step 1**. The user launches the PropertyFree application. 
+
+ **Step 2**. After loading data from the storage to the application memory,
+ the list of `bids` `BidBook` can either contain existing bids or is empty. However, as we are deleting existing bids, we will assume that there are
+ bids in the book.
+
+ **Step 3**. The user then executes `delete-bid <INDEX>`. If the `<INDEX>` is out of bound. PropertyFree will give a 
+ display error message indicating that the index is wrong.
+
+ **Step 4**. The application will then retrieve the corresponding bid, delete it, and return a new list without the
+ corresponding bid.
+
+ The following activity diagram summarises what happens when a user executes `delete-bid` command:
+
+ ![DeleteBidActivityDiagram](images/BidDeleteActivityDiagram.png)
+
+ The following sequence diagram summarises as well how the components of Model and Logic interact during the execution
+ of the command:
+
+ ![DeleteBidSequenceDiagram](images/DeleteBidSequenceDiagram.png)
+
+ #### Design Considerations
+
+ 1. Alternative 1 (current choice): Delete-bid command will delete a bid based on the index in the list.
+
+    - Pros: Users can easily distinguish which bid they wish to delete. 
+    - Cons: User will not be able to delete a large number at one go.
+
+ 2. Alternative 2: Delete not based on index but by property.
+
+    - Pros: user can delete all the bids for a property once it is sold.
+    - Cons: It may delete the winning bid from the list which may be undesirable.
+    
+
+ #### 2.2 **LIST**: display the list of bids - `list-bid`
+
+ `list` is supported by the `ListBidCommand`.
+
+ Given below is the example usage scenario:
+
+ **Step 1**. The user launches the PropertyFree application. 
+
+ **Step 2**. After loading data from the storage to the application memory,
+ the list of `bids` `BidBook` can either contain existing bids, is empty, or not showing the entire list.
+
+ **Step 3**. The user then executes `list-bid`.
+
+ **Step 4**. The application will then return a full list of bids.
+
+ The following sequence diagram summarises how the components of Model and Logic interact during the execution
+ of the command:
+
+ ![ListBidSequenceDiagram](images/ListBidSequenceDiagram.png)
+
+ #### Design Considerations
+
+ 1. Alternative 1 (current choice): List-bid command will display all bids in the list based on when it was added.
+
+    - Pros: Users can easily see the entire list and know which bids were added first. 
+    - Cons: User will not be able easily see bids related to a certain property or bidder.
+
+ 2. Alternative 2: List will also sort the list of bids based on property.
+
+    - Pros: user can see all the bids easily for a certain property.
+    - Cons: Chronological order of being added will not be seen.
+    
+    
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
