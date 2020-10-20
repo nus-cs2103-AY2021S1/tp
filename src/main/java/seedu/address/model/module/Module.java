@@ -102,6 +102,18 @@ public class Module {
     /**
      * Represents the module object constructor.
      * @param name name of module
+     * @param zoomLink zoom link attached to module
+     */
+    public Module(ModuleName name, ZoomLink zoomLink) {
+        this.name = name;
+        this.zoomLink = zoomLink;
+        this.gradeTracker = new GradeTracker();
+        this.modularCredits = new ModularCredits();
+    }
+
+    /**
+     * Represents the module object constructor.
+     * @param name name of module
      * @param tags tag attached to module
      * @param modularCredits modular credits for module
      */
@@ -183,6 +195,10 @@ public class Module {
     }
 
     /**
+<<<<<<< HEAD
+=======
+
+>>>>>>> bdf206181bef4a2bb9f0c4672fc8eef26adb4a1b
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */

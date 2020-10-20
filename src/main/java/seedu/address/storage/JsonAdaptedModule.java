@@ -18,7 +18,6 @@ import seedu.address.model.module.ZoomLink;
 import seedu.address.model.module.grade.GradeTracker;
 import seedu.address.model.tag.Tag;
 
-
 /**
  * Jackson-friendly version of {@link Module}.
  */
@@ -114,7 +113,6 @@ class JsonAdaptedModule {
         if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }*/
-
         final ModularCredits modelModularCredits = new ModularCredits(Double.parseDouble(modularCredits));
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Module(modelName, modelLink, gradeTracker.toModelType(), modelTags, modelModularCredits);
