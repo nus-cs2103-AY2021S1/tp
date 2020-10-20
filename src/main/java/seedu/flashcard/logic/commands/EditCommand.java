@@ -42,7 +42,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_CATEGORY + "CATEGORY]"
             + "[" + PREFIX_NOTE + "NOTE]"
             + "[" + PREFIX_RATING + "RATING]"
-            + "[" + PREFIX_DIAGRAM + "DIAGRAM\n"
+            + "[" + PREFIX_DIAGRAM + "DIAGRAM]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_QUESTION + "What does the S in SOLID stand for? "
             + PREFIX_ANSWER + "Single responsibility principle";
@@ -99,8 +99,8 @@ public class EditCommand extends Command {
         Answer updatedAnswer = editFlashcardDescriptor.getAnswer().orElse(flashcardToEdit.getAnswer());
         Category updatedCategory = editFlashcardDescriptor.getCategory().orElse(flashcardToEdit.getCategory());
         Note updatedNote = editFlashcardDescriptor.getNote().orElse(flashcardToEdit.getNote());
-        Diagram updatedDiagram = editFlashcardDescriptor.getDiagram().orElse(flashcardToEdit.getDiagram());
         Rating updatedRating = editFlashcardDescriptor.getRating().orElse(flashcardToEdit.getRating());
+        Diagram updatedDiagram = editFlashcardDescriptor.getDiagram().orElse(flashcardToEdit.getDiagram());
 
         boolean isFavourite = flashcardToEdit.isFavourite();
         return new Flashcard(updatedQuestion, updatedAnswer, updatedCategory, updatedNote, updatedRating,
@@ -149,8 +149,8 @@ public class EditCommand extends Command {
             setAnswer(toCopy.answer);
             setCategory(toCopy.category);
             setNote(toCopy.note);
-            setDiagram(toCopy.diagram);
             setRating(toCopy.rating);
+            setDiagram(toCopy.diagram);
         }
 
         /**

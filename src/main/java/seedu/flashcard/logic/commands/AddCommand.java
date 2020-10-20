@@ -25,13 +25,15 @@ public class AddCommand extends Command {
             + PREFIX_ANSWER + "ANSWER "
             + "[" + PREFIX_CATEGORY + "CATEGORY] "
             + "[" + PREFIX_NOTE + "NOTE] "
+            + "[" + PREFIX_RATING + "RATING] "
+            + "[" + PREFIX_DIAGRAM + "DIAGRAM]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_QUESTION + "What does OOP stand for? "
             + PREFIX_ANSWER + "Object-Oriented Programming "
             + PREFIX_CATEGORY + "Acronyms "
             + PREFIX_NOTE + "Important question to take note of! "
             + PREFIX_RATING + "2 "
-            + PREFIX_DIAGRAM + "./images/diagram_1";
+            + PREFIX_DIAGRAM + "images/diagram_1";
 
     public static final String MESSAGE_SUCCESS = "New flashcard added: %1$s";
     public static final String MESSAGE_DUPLICATE_FLASHCARD = "This flashcard already exists";
