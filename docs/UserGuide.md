@@ -4,7 +4,7 @@ title: User Guide
 ---
 
 Eva is a simple and lightweight application that **handles HR related administrative tasks**, 
-like manage staff performance and recruitment applicants, faster than a typical mouse/GUI driven app.
+like managing staff performance and recruitment of applicants, faster than a typical mouse/GUI driven app.
 
 * Table of Contents
 {:toc}
@@ -59,6 +59,12 @@ like manage staff performance and recruitment applicants, faster than a typical 
 
 </div>
 
+##List of commands you can execute
+[Add a person] (#Adding a person) <br>
+[Add a staff] (#Adding a staff) <br>
+[Add a applicant] (#Adding an applicant) <br>
+
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -72,10 +78,42 @@ Format: `help`
 
 Adds a person to the application.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
+A person can have any number of tags (including 0)
+</div>
+
+Examples:
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+### Adding a staff: `add`
+
+Adds a staff to the application.
+
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]…`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A staff can have any number of tags (including 0)
+A staff can have any number of comments (including 0)
+</div>
+
+Examples:
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+### Adding an applicant: `add`
+
+Adds an applicant to the application.
+
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG]…​[c/COMMENTS]…`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+An applicant can have any number of tags (including 0)
+An applicant can have any number of comments (including 0)
+The interview date is optional. If an interview date is not fixed yet, you can leave it and set it later.
 </div>
 
 Examples:
