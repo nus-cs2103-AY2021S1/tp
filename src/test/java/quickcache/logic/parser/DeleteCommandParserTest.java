@@ -22,7 +22,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_FLASHCARD));
+        assertParseSuccess(parser, "1", DeleteCommand.withIndex(INDEX_FIRST_FLASHCARD));
     }
 
     @Test

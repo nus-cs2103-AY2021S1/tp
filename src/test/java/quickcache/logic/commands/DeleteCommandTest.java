@@ -27,7 +27,7 @@ public class DeleteCommandTest {
     public void execute_validIndexUnfilteredList_success() {
         Flashcard flashcardToDelete =
             model.getFilteredFlashcardList().get(TypicalIndexes.INDEX_FIRST_FLASHCARD.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_FLASHCARD);
+        DeleteCommand deleteCommand = DeleteCommand.withIndex(TypicalIndexes.INDEX_FIRST_FLASHCARD);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FLASHCARD_SUCCESS, flashcardToDelete);
 
@@ -40,7 +40,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredFlashcardList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteCommand deleteCommand = DeleteCommand.withIndex(outOfBoundIndex);
 
         CommandTestUtil.assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
     }
@@ -51,7 +51,7 @@ public class DeleteCommandTest {
 
         Flashcard flashcardToDelete =
             model.getFilteredFlashcardList().get(TypicalIndexes.INDEX_FIRST_FLASHCARD.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_FLASHCARD);
+        DeleteCommand deleteCommand = DeleteCommand.withIndex(TypicalIndexes.INDEX_FIRST_FLASHCARD);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FLASHCARD_SUCCESS, flashcardToDelete);
 
@@ -70,21 +70,21 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of quick cache list
         assertFalse(outOfBoundIndex.getZeroBased() < model.getQuickCache().getFlashcardList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteCommand deleteCommand = DeleteCommand.withIndex(outOfBoundIndex);
 
         CommandTestUtil.assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_FLASHCARD);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(TypicalIndexes.INDEX_SECOND_FLASHCARD);
+        DeleteCommand deleteFirstCommand = DeleteCommand.withIndex(TypicalIndexes.INDEX_FIRST_FLASHCARD);
+        DeleteCommand deleteSecondCommand = DeleteCommand.withIndex(TypicalIndexes.INDEX_SECOND_FLASHCARD);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(TypicalIndexes.INDEX_FIRST_FLASHCARD);
+        DeleteCommand deleteFirstCommandCopy = DeleteCommand.withIndex(TypicalIndexes.INDEX_FIRST_FLASHCARD);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
