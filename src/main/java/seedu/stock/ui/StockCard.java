@@ -58,7 +58,7 @@ public class StockCard extends UiPart<Region> {
 
         if (stock.getNotes().size() != 0) {
             StringBuilder notesAppended = new StringBuilder();
-            for(int i = 0; i < stock.getNotes().size(); i++) {
+            for (int i = 0; i < stock.getNotes().size(); i++) {
                 notesAppended.append(i + 1).append(". ")
                         .append(stock.getNotes().get(i)).append("\n");
             }
