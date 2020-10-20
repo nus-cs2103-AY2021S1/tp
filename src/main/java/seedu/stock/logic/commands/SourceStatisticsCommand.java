@@ -26,6 +26,10 @@ public class SourceStatisticsCommand extends StatisticsCommand {
                 sourceData.put(sourceString, sourceCount + 1);
             }
         });
-        return new CommandResult(MESSAGE_SUCCESS, sourceData, false, true, "source", false);
+
+        //array of size 1, index 0 is statistics type
+        String[] otherStatisticsDetails = {"source"};
+
+        return new CommandResult(MESSAGE_SUCCESS, sourceData, false, true, otherStatisticsDetails, false);
     }
 }
