@@ -24,6 +24,7 @@ import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Models;
 import seedu.address.model.ModelsManager;
 import seedu.address.model.delivery.Delivery;
+import seedu.address.model.delivery.DeliveryContainsKeywordsPredicate;
 import seedu.address.model.deliverymodel.DeliveryBook;
 import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.deliverymodel.DeliveryModelManager;
@@ -249,6 +250,21 @@ public class CommandTestUtil {
                 new ItemContainsKeywordsPredicate(Arrays.asList(splitName[0]), PREFIX_NAME));
 
         assertEquals(1, inventoryModel.getFilteredAndSortedItemList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered and sorted list to show only
+     * the delivery at the given {@code targetIndex} in the {@code model}'s delivery book.
+     */
+    public static void showDeliveryAtIndex(DeliveryModel deliveryModel, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < deliveryModel.getFilteredDeliveryList().size());
+
+        Delivery delivery = deliveryModel.getFilteredDeliveryList().get(targetIndex.getZeroBased());
+        final String[] splitName = delivery.getName().fullName.split("\\s+");
+        deliveryModel.updateFilteredDeliveryList(
+                new DeliveryContainsKeywordsPredicate(Arrays.asList(splitName[0]), PREFIX_NAME));
+
+        assertEquals(1, deliveryModel.getFilteredDeliveryList().size());
     }
 
 }
