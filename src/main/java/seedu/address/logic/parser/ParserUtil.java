@@ -18,6 +18,7 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.Sex;
 import seedu.address.model.tag.ColorTag;
+import seedu.address.model.visit.Visit;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -188,5 +189,14 @@ public class ParserUtil {
             throw new ParseException(ColorTag.MESSAGE_CONSTRAINTS);
         }
         return new ColorTag(trimmedColorTag);
+    }
+
+    public static String parseVisitReport(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!Visit.isValidVisitDate(trimmedDate)) {
+            throw new ParseException(Visit.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedDate;
     }
 }

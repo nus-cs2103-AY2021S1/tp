@@ -3,6 +3,9 @@ package seedu.address.model.visit;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Objects;
 
 import seedu.address.model.patient.Name;
@@ -103,5 +106,25 @@ public class Visit implements Comparable<Visit> {
         //                    .append(" Comment: ")
         //                    .append(getComment()).append("\n");
         //             return builder.toString();
+    }
+
+    public static boolean isValidVisitDate(String input) {
+
+        //make sure month and day are valid and year is 2xxx or 19xx
+        DateTimeFormatter dateFormatter1 =
+            DateTimeFormatter.ofPattern("dd/MM/2uuu").withResolverStyle(ResolverStyle.STRICT);
+
+        DateTimeFormatter dateFormatter2 =
+            DateTimeFormatter.ofPattern("dd/MM/19uu").withResolverStyle(ResolverStyle.STRICT);
+        try {
+            LocalDate.parse(input, dateFormatter1);
+        } catch (DateTimeParseException e) {
+            try {
+                LocalDate.parse(input, dateFormatter2);
+            } catch (DateTimeParseException e2) {
+                return false;
+            }
+        }
+        return true;
     }
 }
