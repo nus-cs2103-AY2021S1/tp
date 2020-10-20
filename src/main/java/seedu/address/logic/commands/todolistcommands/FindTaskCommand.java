@@ -5,8 +5,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
-public class ViewTodoCommand extends Command {
-    public static final String COMMAND_WORD = "viewtodo";
+public class FindTaskCommand extends Command {
+    public static final String COMMAND_WORD = "findtodo";
     @Override
     public CommandResult execute(Model model) throws CommandException {
         return null;
