@@ -35,12 +35,12 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added implementation details of the `add` feature.
     * Added documentation for `product scope` section.
-    
+
 * **Testing**:
   * User Guide:
     * Added test classes for `add` command.
     * Added testing for bases classes in model package.
-    
+
 * **Tracking of task**
   * Ensures that all assigned tasks completed before deadline and TP task tracker badges updated correctly.
     
