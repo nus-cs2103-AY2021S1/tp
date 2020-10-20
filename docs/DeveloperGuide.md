@@ -41,6 +41,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+
 ## **Design**
 
 ### Architecture
@@ -156,7 +157,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.mcgymmy.commons` package.
+Classes used by multiple components are in the `jimmy.mcgymmy.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
