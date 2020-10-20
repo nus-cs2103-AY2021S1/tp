@@ -6,6 +6,7 @@ import seedu.flashcard.model.flashcard.Flashcard;
 import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
 import seedu.flashcard.model.flashcard.Rating;
+import seedu.flashcard.model.tag.Tag;
 
 /**
  * A utility class to help with building Person objects.
@@ -17,6 +18,7 @@ public class FlashcardBuilder {
     public static final String DEFAULT_CATEGORY = "General";
     public static final String DEFAULT_NOTE = "";
     public static final String DEFAULT_RATING = "";
+    public static final String DEFAULT_TAG = "";
     public static final boolean DEFAULT_FAVOURITE_STATUS = false;
 
     private Question question;
@@ -24,6 +26,7 @@ public class FlashcardBuilder {
     private Category category;
     private Note note;
     private Rating rating;
+    private Tag tag;
     private boolean isFavourite;
 
     /**
@@ -35,6 +38,7 @@ public class FlashcardBuilder {
         category = new Category(DEFAULT_CATEGORY);
         note = new Note(DEFAULT_NOTE);
         rating = new Rating(DEFAULT_RATING);
+        tag = new Tag(DEFAULT_TAG);
         isFavourite = DEFAULT_FAVOURITE_STATUS;
     }
 
@@ -47,6 +51,7 @@ public class FlashcardBuilder {
         category = flashcardToCopy.getCategory();
         note = flashcardToCopy.getNote();
         rating = flashcardToCopy.getRating();
+        tag = flashcardToCopy.getTag();
         isFavourite = flashcardToCopy.isFavourite();
     }
 
@@ -91,6 +96,14 @@ public class FlashcardBuilder {
     }
 
     /**
+     * Sets the {@code Tag} of the {@code Flashcard} that we are building.
+     */
+    public FlashcardBuilder withTag(String tag) {
+        this.tag = new Tag(tag);
+        return this;
+    }
+
+    /**
      * Sets the {@code isFavourite} status of the {@code Flashcard} that we are building.
      */
     public FlashcardBuilder withFavouriteStatus(boolean isFavourite) {
@@ -99,7 +112,7 @@ public class FlashcardBuilder {
     }
 
     public Flashcard build() {
-        return new Flashcard(question, answer, category, note, rating, isFavourite);
+        return new Flashcard(question, answer, category, note, rating, tag, isFavourite);
     }
 
 }

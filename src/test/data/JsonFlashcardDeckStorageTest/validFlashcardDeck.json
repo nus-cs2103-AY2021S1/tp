@@ -3,16 +3,19 @@
     "question" : "What does SDLC stand for?",
     "answer" : "Software development life cycle",
     "category" : "SDLC",
-    "note": ""
+    "note" : "",
+    "tag" : ""
   }, {
     "question" : "What is a revision control software?",
     "answer" : "It is the software tool that automate the process of Revision Control",
     "category" : "Revision history",
-    "note": ""
+    "note" : "",
+    "tag" : ""
   }, {
     "question" : "What does OOP2 stand for?",
     "answer" : "Object Oriented Programming",
     "category" : "General",
-    "note": ""
+    "note" : "",
+    "tag" : ""
   } ]
 }

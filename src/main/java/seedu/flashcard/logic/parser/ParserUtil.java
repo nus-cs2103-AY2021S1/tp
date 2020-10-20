@@ -16,6 +16,7 @@ import seedu.flashcard.model.flashcard.Category;
 import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
 import seedu.flashcard.model.flashcard.Rating;
+import seedu.flashcard.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -121,21 +122,18 @@ public class ParserUtil {
         return new Rating(trimmedRating);
     }
 
-    //    /**
-    //     * Parses a {@code String tag} into a {@code Tag}.
-    //     * Leading and trailing whitespaces will be trimmed.
-    //     *
-    //     * @throws ParseException if the given {@code tag} is invalid.
-    //     */
-    //    public static Tag parseTag(String tag) throws ParseException {
-    //        requireNonNull(tag);
-    //        String trimmedTag = tag.trim();
-    //        if (!Tag.isValidTagName(trimmedTag)) {
-    //            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-    //        }
-    //        return new Tag(trimmedTag);
-    //    }
-    //
+    /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static Tag parseTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        return new Tag(trimmedTag);
+    }
+
     //    /**
     //     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
     //     */

@@ -4,6 +4,8 @@ import static seedu.flashcard.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.flashcard.model.tag.Tag;
+
 /**
  * Represents a Flashcard in the flashcard list.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -18,6 +20,7 @@ public class Flashcard {
     private final Category category;
     private final Note note;
     private final Rating rating;
+    private final Tag tag;
 
     // State fields
     private final boolean isFavourite;
@@ -25,13 +28,14 @@ public class Flashcard {
     /**
      * Identity and Data fields must be present and not null.
      */
-    public Flashcard(Question question, Answer answer, Category category, Note note, Rating rating) {
-        requireAllNonNull(question, answer, category, note, rating);
+    public Flashcard(Question question, Answer answer, Category category, Note note, Rating rating, Tag tag) {
+        requireAllNonNull(question, answer, category, note, rating, tag);
         this.question = question;
         this.answer = answer;
         this.category = category;
         this.note = note;
         this.rating = rating;
+        this.tag = tag;
         this.isFavourite = false;
     }
 
@@ -39,7 +43,7 @@ public class Flashcard {
      * Overloaded constructor for creating a flashcard when flashcard is favourited/unfavourited.
      * All fields must be present and not null.
      */
-    public Flashcard(Question question, Answer answer, Category category, Note note, Rating rating,
+    public Flashcard(Question question, Answer answer, Category category, Note note, Rating rating, Tag tag,
                      boolean isFavourite) {
         requireAllNonNull(question, answer, category, note, rating, isFavourite);
         this.question = question;
@@ -47,6 +51,7 @@ public class Flashcard {
         this.category = category;
         this.note = note;
         this.rating = rating;
+        this.tag = tag;
         this.isFavourite = isFavourite;
     }
 
@@ -68,6 +73,10 @@ public class Flashcard {
 
     public Rating getRating() {
         return rating;
+    }
+
+    public Tag getTag() {
+        return tag;
     }
 
     public boolean isFavourite() {
@@ -115,6 +124,7 @@ public class Flashcard {
                 && otherFlashcard.getCategory().equals(getCategory())
                 && otherFlashcard.getNote().equals(getNote())
                 && otherFlashcard.getRating().equals(getRating())
+                && otherFlashcard.getTag().equals(getTag())
                 && otherFlashcard.isFavourite() == isFavourite();
     }
 
@@ -140,6 +150,10 @@ public class Flashcard {
         if (getRating().toString().length() > 0) {
             builder.append(" Rating: ")
                     .append(getRating());
+        }
+        if (getTag().getTagName().length() > 0) {
+            builder.append(" Tag: ")
+                    .append(getTag());
         }
         builder.append(" Favourite: ")
                 .append(isFavourite());

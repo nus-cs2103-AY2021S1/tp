@@ -7,6 +7,7 @@ import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.flashcard.commons.core.index.Index;
 import seedu.flashcard.logic.commands.EditCommand;
@@ -29,7 +30,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_QUESTION, PREFIX_ANSWER, PREFIX_CATEGORY, PREFIX_NOTE,
-                        PREFIX_RATING);
+                        PREFIX_RATING, PREFIX_TAG);
 
         Index index;
 
@@ -55,6 +56,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_RATING).isPresent()) {
             editFlashcardDescriptor.setRating(ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get()));
+        }
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            editFlashcardDescriptor.setTag((ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get())));
         }
 
         if (!editFlashcardDescriptor.isAnyFieldEdited()) {

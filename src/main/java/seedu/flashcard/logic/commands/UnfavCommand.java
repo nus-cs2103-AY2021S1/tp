@@ -15,6 +15,7 @@ import seedu.flashcard.model.flashcard.Flashcard;
 import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
 import seedu.flashcard.model.flashcard.Rating;
+import seedu.flashcard.model.tag.Tag;
 
 /**
  * Unfavourite a flashcard identified using it's displayed index from the list of flashcards.
@@ -66,7 +67,8 @@ public class UnfavCommand extends Command {
         Category category = flashcardToUnfavourite.getCategory();
         Note note = flashcardToUnfavourite.getNote();
         Rating rating = flashcardToUnfavourite.getRating();
-        return new Flashcard(question, answer, category, note, rating, false);
+        Tag tag = flashcardToUnfavourite.getTag();
+        return new Flashcard(question, answer, category, note, rating, tag, false);
     }
 
     @Override

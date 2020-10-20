@@ -42,6 +42,7 @@
       </HBox>
       <Label fx:id="answer" styleClass="cell_small_label" text="\$answer" />
       <Label fx:id="note" styleClass="cell_small_label" text="\$note"/>
+      <Label fx:id="tag" styleClass="cell_small_label" text="\$tag"/>
       <TextFlow fx:id="ratingPane">
         <Text fx:id="rating" text="\$rating"></Text>
         <Text fx:id="ratingIcon"></Text>

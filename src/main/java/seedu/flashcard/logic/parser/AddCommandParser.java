@@ -6,6 +6,7 @@ import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.stream.Stream;
 
@@ -17,6 +18,7 @@ import seedu.flashcard.model.flashcard.Flashcard;
 import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
 import seedu.flashcard.model.flashcard.Rating;
+import seedu.flashcard.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -31,7 +33,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_QUESTION, PREFIX_ANSWER, PREFIX_CATEGORY, PREFIX_NOTE,
-                        PREFIX_RATING);
+                        PREFIX_RATING, PREFIX_TAG);
         if (!arePrefixesPresent(argMultimap, PREFIX_QUESTION, PREFIX_ANSWER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
@@ -42,7 +44,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).orElse("General"));
         Note note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).orElse(""));
         Rating rating = ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).orElse(""));
-        Flashcard flashcard = new Flashcard(question, answer, category, note, rating);
+        Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).orElse(""));
+        Flashcard flashcard = new Flashcard(question, answer, category, note, rating, tag);
         return new AddCommand(flashcard);
     }
 

@@ -15,6 +15,7 @@ import seedu.flashcard.model.flashcard.Flashcard;
 import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
 import seedu.flashcard.model.flashcard.Rating;
+import seedu.flashcard.model.tag.Tag;
 
 
 /**
@@ -66,7 +67,8 @@ public class FavCommand extends Command {
         Category category = flashcardToFavourite.getCategory();
         Note note = flashcardToFavourite.getNote();
         Rating rating = flashcardToFavourite.getRating();
-        return new Flashcard(question, answer, category, note, rating, true);
+        Tag tag = flashcardToFavourite.getTag();
+        return new Flashcard(question, answer, category, note, rating, tag, true);
     }
 
     @Override

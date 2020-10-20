@@ -10,6 +10,7 @@ import seedu.flashcard.model.flashcard.Flashcard;
 import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
 import seedu.flashcard.model.flashcard.Rating;
+import seedu.flashcard.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Flashcard}.
@@ -23,6 +24,7 @@ class JsonAdaptedFlashcard {
     private String category;
     private String note;
     private String rating;
+    private String tag;
     private String isFavourite;
 
     /**
@@ -31,17 +33,20 @@ class JsonAdaptedFlashcard {
     @JsonCreator
     public JsonAdaptedFlashcard(@JsonProperty("question") String question, @JsonProperty("answer") String answer,
                                 @JsonProperty("category") String category, @JsonProperty("note") String note,
-                                @JsonProperty("rating") String rating, @JsonProperty("favourite") String isFavourite) {
+                                @JsonProperty("rating") String rating, @JsonProperty("favourite") String isFavourite,
+                                @JsonProperty("tag") String tag) {
         this.question = question;
         this.answer = answer;
         this.category = category;
         this.note = note;
         this.rating = rating;
+        this.tag = tag;
         this.isFavourite = isFavourite;
     }
 
     /**
      * Converts a given {@code Flashcard} into this class for Jackson use.
+     * getTagName() method is used as toString()'s method format is [tag]
      */
     public JsonAdaptedFlashcard(Flashcard source) {
         question = source.getQuestion().toString();
@@ -49,6 +54,7 @@ class JsonAdaptedFlashcard {
         category = source.getCategory().toString();
         note = source.getNote().toString();
         rating = source.getRating().toString();
+        tag = source.getTag().getTagName();
         isFavourite = Boolean.toString(source.isFavourite());
     }
 
@@ -100,8 +106,15 @@ class JsonAdaptedFlashcard {
         }
         final Rating modelRating = new Rating(rating);
 
+        if (tag == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Tag.class.getSimpleName()));
+        }
+        final Tag modelTag = new Tag(tag);
+
         final Boolean modelIsFavourite = Boolean.parseBoolean(isFavourite);
-        return new Flashcard(modelQuestion, modelAnswer, modelCategory, modelNote, modelRating, modelIsFavourite);
+        return new Flashcard(modelQuestion, modelAnswer, modelCategory, modelNote, modelRating,
+                modelTag, modelIsFavourite);
     }
 
 }

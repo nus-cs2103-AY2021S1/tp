@@ -38,6 +38,8 @@ public class FlashcardCard extends UiPart<Region> {
     @FXML
     private Label note;
     @FXML
+    private Label tag;
+    @FXML
     private TextFlow ratingPane;
     @FXML
     private Text rating;
@@ -69,6 +71,11 @@ public class FlashcardCard extends UiPart<Region> {
         } else {
             ratingPane.setVisible(false);
             ratingPane.managedProperty().bind(ratingPane.visibleProperty());
+        }
+        if (flashcard.getTag().getTagName().length() > 0) {
+            tag.setText("Tag: " + flashcard.getTag().toString());
+        } else {
+            tag.setVisible(false);
         }
         if (flashcard.isFavourite()) {
             favouriteIcon.setText("\u2661");

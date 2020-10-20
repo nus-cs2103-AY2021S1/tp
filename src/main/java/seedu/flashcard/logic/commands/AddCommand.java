@@ -6,6 +6,7 @@ import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.flashcard.logic.commands.exceptions.CommandException;
 import seedu.flashcard.model.Model;
@@ -29,7 +30,8 @@ public class AddCommand extends Command {
             + PREFIX_ANSWER + "Object-Oriented Programming "
             + PREFIX_CATEGORY + "Acronyms "
             + PREFIX_NOTE + "Important question to take note of! "
-            + PREFIX_RATING + "2";
+            + PREFIX_RATING + "2"
+            + "[" + PREFIX_TAG + "TAG]";
 
     public static final String MESSAGE_SUCCESS = "New flashcard added: %1$s";
     public static final String MESSAGE_DUPLICATE_FLASHCARD = "This flashcard already exists";
