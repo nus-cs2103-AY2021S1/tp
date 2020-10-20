@@ -94,7 +94,6 @@ public class ZooKeepBook implements ReadOnlyZooKeepBook {
     }
 
     //// util methods
-
     @Override
     public String toString() {
         return animals.asUnmodifiableObservableList().size() + " animals";

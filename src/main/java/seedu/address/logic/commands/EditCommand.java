@@ -30,7 +30,7 @@ import seedu.address.model.medicalcondition.MedicalCondition;
 
 
 /**
- * Edits the details of an existing animal in the address book.
+ * Edits the details of an existing animal in the zookeep book.
  */
 public class EditCommand extends Command {
 
@@ -49,7 +49,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_ANIMAL_SUCCESS = "Edited Animal: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_ANIMAL = "This animal already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_ANIMAL = "This animal already exists in the zookeep book.";
 
     private final Index index;
     private final EditAnimalDescriptor editAnimalDescriptor;
