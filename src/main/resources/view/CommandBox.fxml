@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-      prefHeight="40" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" >
-  <GridPane HBox.hgrow="ALWAYS">
-      <TextField fx:id="commandTextField" HBox.hgrow="ALWAYS" prefWidth="496" onAction="#handleCommandEntered"
-                 promptText="How can I assist you?" GridPane.columnIndex="0"/>
-      <Button fx:id="enterButton" HBox.hgrow="NEVER" prefHeight="35" onAction="#handleCommandEntered"
-              text="ENTER" styleClass="button" GridPane.columnIndex="1"/>
-  </GridPane>
-
-
-</HBox>
+<StackPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox spacing="8">
+        <TextField fx:id="commandTextField" minWidth="480" onAction="#handleCommandEntered"
+                   promptText="How can I assist you?" styleClass="command-text-field" HBox.hgrow="ALWAYS">
+        </TextField>
+        <Button fx:id="enterButton" minWidth="80" onAction="#handleCommandEntered" prefHeight="40"
+                styleClass="button" text="ENTER" HBox.hgrow="NEVER" />
+    </HBox>
+</StackPane>

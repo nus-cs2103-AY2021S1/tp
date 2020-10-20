@@ -264,7 +264,7 @@ _{explain the feature here}_
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>`<br> e.g. `eg. add n/Banana s/NUS q/9999 l/Fruit Section`
-**Clear** | `clear`
+**List** | `list`
 **Delete** | `delete sn/<serial number>`<br> e.g. `delete sn/100`
 **Find** | Any combination of 1, 2, 3 or 4 different fields: <br> `find n/<name>`<br>`find sn/<serial number>`<br>`find l/<location>`<br>`find s/<source of stock>`<br> `find n/<name> l/<location> s/<source of stock>` <br> e.g. `find n/umbrella s/ntuc`
 **FindExact** | Any combination of 1, 2, 3 or 4 different fields: <br> `findexact n/<name> l/<location>` <br> `findexact n/<name> l/<location> s/<source of stock> sn/<serial number>` <br> e.g. `findexact n/umbrella s/ntuc`

@@ -1,15 +1,16 @@
 package seedu.stock.ui;
 
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.stock.commons.core.GuiSettings;
 import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.logic.Logic;
 import seedu.stock.logic.commands.CommandResult;
+import seedu.stock.logic.commands.SourceStatisticsCommand;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.logic.parser.exceptions.ParseException;
 
@@ -30,9 +31,10 @@ public class MainWindow extends UiPart<Stage> {
     private StockListPanel stockListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private SourceStatisticsWindow sourceStatisticsWindow;
 
     @FXML
-    private HBox commandBoxPlaceholder;
+    private StackPane commandBoxPlaceholder;
 
     @FXML
     private StackPane stockListPanelPlaceholder;
@@ -57,6 +59,8 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         helpWindow = new HelpWindow();
+        //TODO add all the stats window here
+        sourceStatisticsWindow = new SourceStatisticsWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -108,6 +112,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the SourceStatisticsWindow or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleSourceStatistics(Map<String, Integer> statisticsData) {
+        if (!sourceStatisticsWindow.isShowing()) {
+            sourceStatisticsWindow.show(statisticsData);
+        } else {
+            sourceStatisticsWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -121,6 +137,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        sourceStatisticsWindow.hide();
         primaryStage.hide();
     }
 
@@ -144,6 +161,21 @@ public class MainWindow extends UiPart<Stage> {
                 handleHelp();
             }
 
+            if (commandResult.isShowStatistics()) {
+                String type = commandResult.getStatisticsType();
+                Map<String, Integer> statisticsData = commandResult.getStatisticsData();
+
+                switch (type) {
+
+                case SourceStatisticsCommand.STATISTICS_TYPE:
+                    handleSourceStatistics(statisticsData);
+                    break;
+
+                default:
+                    throw new CommandException("Unsupported statistics type!");
+                }
+            }
+
             if (commandResult.isExit()) {
                 handleExit();
             }
@@ -157,3 +189,4 @@ public class MainWindow extends UiPart<Stage> {
     }
 
 }
+
