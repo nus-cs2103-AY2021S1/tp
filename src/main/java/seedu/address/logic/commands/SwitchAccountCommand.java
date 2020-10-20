@@ -43,7 +43,7 @@ public class SwitchAccountCommand extends Command {
         int index = targetIndex.getZeroBased();
         boolean isInvalidIndex = index >= accounts.size();
         if (isInvalidIndex) {
-            throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
         }
 
         Account currentActiveAccount = activeAccount.getAccount();
