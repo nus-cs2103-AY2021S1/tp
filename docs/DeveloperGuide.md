@@ -133,6 +133,24 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Edit account feature
+
+The proposed edit account mechanism is facilitated by `EditAccountCommand`. It extends `Command` and interacts with `Account`. These interactions are managed by `ActiveAccount` as well as the `Model`. As such, `EditAccountCommand` makes use of the following operations:
+
+* `Account#setExpense` 
+* `Account#setRevenues` 
+* `Model#setAccount(Account target, Account editedAccount)`
+* `ActiveAccount#setActiveAccount` 
+ 
+
+
+#### Implementation
+
+#### Design consideration:
+
+##### Aspect: How does Commands at the account level executes
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
