@@ -215,21 +215,41 @@ Format: `assign INDEX NAME`
 
 Example: `assign 1 Niaaz` Assigns the task currently with index 1 to Niaaz.
 
-#### Filter tasks by assignee/deadline/task name `filter `
+#### Filter tasks by assignee/deadline/task name `filtert `
 
-Filter tasks by assignee, deadline or task name. 
+Filters tasks by assignee, deadline, task name, progress, or whether they are completed. 
 
-Format: ``filter (ta/ASSIGNEE NAME)||(td/DEADLINE)||(tn/TASK NAME)``
+Format: ``filtert (ta/ASSIGNEE NAME)||(td/DEADLINE)||(tn/TASK NAME)||(tp/PROGRESS)||(done/ISDONE)`
 
-- `filter (ta/ASSIGNEE NAME)` retrieves all tasks that have assignee named `ASSIGNEE NAME`
-- `filter (td/DEADLINE)` retrieves all tasks whose deadlines are`DEADLINE`
-- `filter (tn/TASK NAME)` retrieves all tasks whose task names contain `TASK NAME`
+- `filtert (ta/ASSIGNEE NAME)` retrieves all tasks that have assignee named `ASSIGNEE NAME`
+- `filtert (td/DEADLINE)` retrieves all the tasks whose deadlines are`DEADLINE`
+- `filtert (tn/TASK NAME)` retrieves all the tasks whose task names contain `TASK NAME`
+- `filtert (tn/PROGRESS)` retrieves all the tasks whose progress match the `PROGESS`
+- `filtert (done/ISDONE)` retrieves all the completed tasks when `ISDONE` is true, or all the unfinished tasks when `ISDONE` is false.
 
 Example: 
 
-1. `filter ta/Alice` Displays filtered list of tasks that have assignee named Alice.
-2. `filter td/31-12-2020 10:00:00` Displays filtered list of tasks whose deadlines are at 10am on 31/12/2020.
-3. `filter tn/group meeting` Displays filtered list of tasks whose task names contain "group meeting".
+1. `filtert ta/Alice` displays the filtered list of tasks that have assignee named Alice.
+2. `filtert td/31-12-2020 10:00:00` displays the filtered list of tasks whose deadlines are at 10am on 31/12/2020.
+3. `filtert tn/group meeting` displays the filtered list of tasks whose task names contain "group meeting".
+4. `filtert tn/50` displays the filtered list of tasks that are 50% complete.
+5. `filtert done/false` displays the filtered list of all the unfinished tasks.
+
+#### Show all the tasks `allt `
+
+Displays all the tasks in the current project.
+
+Format: `allt`
+
+Outcome: All the tasks in the current project will be shown in the task list
+
+#### Show all the meetings `allm `
+
+Displays all the meetings in the current project.
+
+Format: `allm`
+
+Outcome: All the meetings in the current project will be shown in the meeting list
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -308,7 +328,9 @@ Action | Format, Examples | Scope
 **Find KEYWORD** | `find KEYWORD` <br> eg. `find read` | project scope
 **Give A Task A Priority Level** | `prioritise INDEX1, INDEX2` <br> eg. `prioritise 2,3` | project scope 
 **Assign A Task To A Teammate** | `assign INDEX NAME` <br> e.g. `assign 1 Niaaz` | project scope
-**Filter Tasks by Assignee/Deadline/Task Name** | ``filter (ta/ASSIGNEE NAME)||(td/DEADLINE)||(tn/TASK NAME)``<br>e.g. `filter ta/Alice` | project scope
+**Filter Tasks by Assignee/Deadline/Task Name** | ``filtert (ta/ASSIGNEE NAME)||(td/DEADLINE)||(tn/TASK NAME)||(tp/PROGRESS)||(done/ISDONE)``<br>e.g. `filtert ta/Alice` | project scope
+**Show all the tasks** | `allt` | project scope 
+**Show all the meetings** | `allm` | project scope 
 **View Details of A Task** | `viewtask INDEX` <br> eg. `viewtask 1` | project scope
 **New Teammate** | `new NAME p/PHONE_NUMBER e/EMAIL` <br> e.g., `new Lucas p/94311421 e/lucastai98@gmail.com` | project scope
 **Involve Teammate** | `involves NAME` <br> e.g., `involves Lucase` | project scope
