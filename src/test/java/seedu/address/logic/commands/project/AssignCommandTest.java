@@ -65,7 +65,7 @@ public class AssignCommandTest {
         AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_TASK, ALICE.getGitUserNameString());
 
         assertCommandFailure(assignCommand, model, String.format(
-                Messages.MESSAGE_REASSIGNMENT_OF_SAME_TASK_TO_SAME_PERSON, assignee.getAssigneeName()));
+                Messages.MESSAGE_REASSIGNMENT_OF_SAME_TASK_TO_SAME_PERSON, assignee.getAssigneeGitName()));
     }
 
     @Test

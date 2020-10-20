@@ -59,6 +59,12 @@ public class Task {
         this.assignees = new HashSet<>();
     }
 
+    /**
+     * Returns true if a given string is a valid attribute.
+     */
+    public static boolean isValidAttribute(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
     public String getTaskName() {
         return taskName;
     }
@@ -102,11 +108,24 @@ public class Task {
      * @return true if this task has an assignee whose name matches the given name,
      * and false otherwise
      */
-    public boolean hasAssigneeWhoseNameIs(GitUserName assigneeGitUserName) {
+    public boolean hasAssigneeWhoseGitNameIs(GitUserName assigneeGitUserName) {
         return assignees.stream()
                 .anyMatch(assignee -> assignee.equals(assigneeGitUserName.toString()));
     }
 
+    /**
+     * Checks if the task is due on the given deadline.
+     * @param deadline  the given deadline to check
+     * @return  true if the task is due on the given deadline, and false otherwise
+     */
+    public boolean isDueOn(Deadline deadline) {
+        assert (deadline != null);
+        if (this.deadline == null) {
+            return false;
+        } else {
+            return this.deadline.equals(deadline);
+        }
+    }
     public boolean addAssignee(String assignee) {
         return assignees.add(assignee);
     }

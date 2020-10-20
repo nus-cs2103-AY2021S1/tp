@@ -5,11 +5,11 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 
-class FilterCommandTest {
+class TaskFilterCommandTest {
 
     @Test
     void execute_nullPredicate_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new FilterCommand(null));
+        assertThrows(NullPointerException.class, () -> new TaskFilterCommand(null));
     }
 
     //TODO: will add more when meeting filter is implemented

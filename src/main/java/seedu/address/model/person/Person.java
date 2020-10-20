@@ -123,10 +123,10 @@ public class Person {
         }
 
         return otherTeammate != null
-            && otherTeammate.getPersonName().equals(getPersonName())
             && otherTeammate.getGitUserName().equals(getGitUserName())
-            && (otherTeammate.getPhone().equals(getPhone())
-            || otherTeammate.getEmail().equals(getEmail())
+            && otherTeammate.getPhone().equals(getPhone())
+            && otherTeammate.getEmail().equals(getEmail())
+            && (otherTeammate.getPersonName().equals(getPersonName())
             || otherTeammate.getAddress().equals(getAddress()));
     }
 

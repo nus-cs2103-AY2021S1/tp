@@ -52,7 +52,7 @@ public class Meeting {
         isDone = true;
     }
 
-    public String getName() {
+    public String getMeetingName() {
         return name;
     }
 

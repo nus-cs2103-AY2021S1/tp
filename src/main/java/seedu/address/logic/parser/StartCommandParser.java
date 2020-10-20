@@ -25,5 +25,4 @@ public class StartCommandParser implements Parser<StartCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, StartCommand.MESSAGE_USAGE), pe);
         }
     }
-
 }

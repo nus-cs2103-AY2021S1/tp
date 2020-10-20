@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_A;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_B;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_BOT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_BOT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_B;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_B;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_B;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_A;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_DG;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_HANG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REPOURL_B;
 
 import org.junit.jupiter.api.Test;
@@ -38,11 +38,11 @@ public class EditProjectDescriptorTest {
 
         // different name -> returns false
         EditProjectDescriptor editedAmy = new EditProjectDescriptorBuilder(DESC_A)
-            .withProjectName(VALID_PROJECT_NAME_BOT).build();
+            .withProjectName(VALID_PROJECT_NAME_B).build();
         assertFalse(DESC_A.equals(editedAmy));
 
         // different phone -> returns false
-        editedAmy = new EditProjectDescriptorBuilder(DESC_A).withDeadline(VALID_DEADLINE_BOT).build();
+        editedAmy = new EditProjectDescriptorBuilder(DESC_A).withDeadline(VALID_DEADLINE_B).build();
         assertFalse(DESC_A.equals(editedAmy));
 
         // different email -> returns false
@@ -51,11 +51,11 @@ public class EditProjectDescriptorTest {
 
         // different address -> returns false
         editedAmy = new EditProjectDescriptorBuilder(DESC_A).withProjectDescription(
-            VALID_PROJECT_DESCRIPTION_BOT).build();
+            VALID_PROJECT_DESCRIPTION_B).build();
         assertFalse(DESC_A.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditProjectDescriptorBuilder(DESC_A).withTags(VALID_PROJECT_TAG_HANG).build();
+        editedAmy = new EditProjectDescriptorBuilder(DESC_A).withTags(VALID_PROJECT_TAG_A).build();
         assertFalse(DESC_A.equals(editedAmy));
 
         // different tasks -> return false

@@ -13,11 +13,15 @@ public class CliSyntax {
     public static final Prefix PREFIX_PROJECT_TAG = new Prefix("tg/");
     public static final Prefix PREFIX_TASK = new Prefix("tk/");
     public static final Prefix PREFIX_MEETING = new Prefix("mt/");
-    public static final Prefix PREFIX_TASK_FILTER_BY_ASSIGNEE = new Prefix("ta/");
-    public static final Prefix PREFIX_TASK_FILTER_BY_NAME = new Prefix("tn/");
-    public static final Prefix PREFIX_TASK_FILTER_BY_DEADLINE = new Prefix("td/");
+    // Prefixes related to Task
+    public static final Prefix PREFIX_TASK_ASSIGNEE = new Prefix("ta/");
+    public static final Prefix PREFIX_TASK_NAME = new Prefix("tn/");
+    public static final Prefix PREFIX_TASK_DEADLINE = new Prefix("td/");
+    public static final Prefix PREFIX_TASK_PROGRESS = new Prefix("tp/");
     public static final Prefix PREFIX_TASK_IS_DONE = new Prefix("done/");
-    public static final Prefix PREFIX_TASK_PROGRESS = new Prefix("p/");
+    // Prefixes related to meeting filters
+    public static final Prefix PREFIX_MEETING_FILTER_BY_NAME = new Prefix("mtn");
+    // Prefixes related to Teammate
     public static final Prefix PREFIX_TEAMMATE_ADDRESS = new Prefix("ma/");
     public static final Prefix PREFIX_TEAMMATE_EMAIL = new Prefix("me/");
     public static final Prefix PREFIX_TEAMMATE_GIT_USERNAME = new Prefix("mg/");
