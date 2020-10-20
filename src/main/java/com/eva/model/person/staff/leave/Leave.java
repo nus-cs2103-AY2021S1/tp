@@ -75,6 +75,18 @@ public class Leave {
     /**
      * Format state as text for viewing.
      */
+    public String toErrorMessage() {
+        if (startDate.equals(endDate)) {
+            return "on " + startDate;
+        } else {
+            return "from " + startDate + " to " + endDate;
+        }
+    }
+
+    /**
+     * Format state as text for viewing.
+     */
+    @Override
     public String toString() {
         if (startDate.equals(endDate)) {
             return String.format(SINGLE_DAY_LEAVE, leaveLength, startDate);

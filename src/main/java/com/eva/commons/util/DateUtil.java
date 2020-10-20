@@ -6,6 +6,10 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import com.eva.logic.parser.exceptions.ParseException;
 
 public class DateUtil {
     public static final String MESSAGE_CONSTRAINTS = "Given date could not be parsed.\n"
@@ -28,6 +32,32 @@ public class DateUtil {
     public static LocalDate dateParsed(String dateStr) {
         checkArgument(isValidDate(dateStr), MESSAGE_CONSTRAINTS);
         return LocalDate.parse(dateStr, DATE_TIME_FORMATTER);
+    }
+
+    /**
+     * Returns a parsed LocalDate.
+     * @param dateStr The str to be parsed.
+     * @throws ParseException if {@code dateStr} is invalid.
+     */
+    public static LocalDate dateParsed(String dateStr, String errorMessage) throws ParseException {
+        try {
+            checkArgument(isValidDate(dateStr), MESSAGE_CONSTRAINTS);
+            return LocalDate.parse(dateStr, DATE_TIME_FORMATTER);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(errorMessage);
+        }
+    }
+
+    /**
+     * Returns a list of parsed LocalDates.
+     * @param dateStrings The list of strings to be parsed.
+     */
+    public static List<LocalDate> datesParsed(List<String> dateStrings) {
+        dateStrings.forEach(str -> checkArgument(isValidDate(str), MESSAGE_CONSTRAINTS));
+        return dateStrings.stream()
+                .map(str -> LocalDate.parse(str, DATE_TIME_FORMATTER))
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     /**

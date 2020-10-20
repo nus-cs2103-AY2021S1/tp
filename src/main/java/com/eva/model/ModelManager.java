@@ -4,6 +4,10 @@ import static com.eva.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -150,8 +154,28 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteStaffLeave(Staff target, Leave leave) {
+        target.getLeaves().remove(leave);
+        target.getLeaveBalance().addLeaveBalance(leave.getLeaveLength());
+    }
+
+    @Override
     public boolean hasStaffLeave(Staff target, Leave leave) {
         return target.getLeaves().contains(leave);
+    }
+
+    @Override
+    public Optional<Leave> hasLeaveDate(Staff target, LocalDate date) {
+        List<Leave> staffLeaves = new ArrayList<>(target.getLeaves());
+        for (Leave leave : staffLeaves) {
+            boolean dateOnStart = leave.getStartDate().isEqual(date);
+            boolean dateOnEnd = leave.getEndDate().isEqual(date);
+            boolean dateBetween = leave.getStartDate().isBefore(date) && leave.getEndDate().isAfter(date);
+            if (dateOnStart || dateOnEnd || dateBetween) {
+                return Optional.of(leave);
+            }
+        }
+        return Optional.empty();
     }
 
     @Override

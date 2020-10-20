@@ -1,12 +1,14 @@
 package com.eva.logic.parser;
 
-import static com.eva.model.comment.CommentCliSyntax.PREFIX_ADD;
-import static com.eva.model.comment.CommentCliSyntax.PREFIX_DATE;
-import static com.eva.model.comment.CommentCliSyntax.PREFIX_DELETE;
-import static com.eva.model.comment.CommentCliSyntax.PREFIX_DESC;
-import static com.eva.model.comment.CommentCliSyntax.PREFIX_TITLE;
+import static com.eva.commons.util.StringUtil.formatForParse;
+import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_ADD;
+import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_DATE;
+import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_DELETE;
+import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_DESC;
+import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_TITLE;
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -16,6 +18,7 @@ import java.util.stream.Stream;
 import com.eva.commons.core.index.Index;
 import com.eva.commons.util.DateUtil;
 import com.eva.commons.util.StringUtil;
+import com.eva.logic.commands.AddLeaveCommand;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.comment.Comment;
 import com.eva.model.person.Address;
@@ -170,6 +173,9 @@ public class ParserUtil {
      */
     public static Leave parseLeave(List<String> leaveDates) throws ParseException {
         requireNonNull(leaveDates);
+        if (leaveDates.size() > 2 || leaveDates.size() < 1) {
+            throw new ParseException(AddLeaveCommand.MESSAGE_USAGE);
+        }
         String trimmedDate = leaveDates.get(0).trim();
         if (!DateUtil.isValidDate(trimmedDate)) {
             throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
@@ -180,6 +186,24 @@ public class ParserUtil {
         } else {
             return new Leave(trimmedDate);
         }
+    }
+
+    /**
+     * Parses the date arguments inside individual leave input
+     * @param leaveArgsList add leave input
+     * @return list of leaves created.
+     * @throws ParseException if the any leaveArgs in {@code leaveArgsList} is invalid.
+     */
+    public static List<Leave> parseLeaveArgs(List<String> leaveArgsList) throws ParseException {
+        requireNonNull(leaveArgsList);
+        ArrayList<Leave> leaves = new ArrayList<>();
+        for (String leaveArgs : leaveArgsList) {
+            ArgumentMultimap dateArgMultimap = ArgumentTokenizer.tokenize(formatForParse(leaveArgs), PREFIX_DATE);
+            List<String> leaveDates = dateArgMultimap.getAllValues(PREFIX_DATE);
+            Leave leave = parseLeave(leaveDates);
+            leaves.add(leave);
+        }
+        return leaves;
     }
 
     /**

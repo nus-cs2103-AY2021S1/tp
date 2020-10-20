@@ -12,13 +12,18 @@ import com.eva.logic.commands.ClearCommand;
 import com.eva.logic.commands.Command;
 import com.eva.logic.commands.CommentCommand;
 import com.eva.logic.commands.DeleteCommand;
+import com.eva.logic.commands.DeleteLeaveCommand;
 import com.eva.logic.commands.DeleteStaffCommand;
 import com.eva.logic.commands.EditCommand;
 import com.eva.logic.commands.ExitCommand;
 import com.eva.logic.commands.FindCommand;
 import com.eva.logic.commands.HelpCommand;
 import com.eva.logic.commands.ListCommand;
+import com.eva.logic.parser.comment.CommentCommandParser;
+import com.eva.logic.parser.comment.DeleteCommandParser;
 import com.eva.logic.parser.exceptions.ParseException;
+import com.eva.logic.parser.leave.AddLeaveCommandParser;
+import com.eva.logic.parser.leave.DeleteLeaveCommandParser;
 
 /**
  * Parses user input.
@@ -53,14 +58,23 @@ public class AddressBookParser {
         case AddStaffCommand.COMMAND_WORD:
             return new AddStaffCommandParser().parse(arguments);
 
+        case DeleteStaffCommand.COMMAND_WORD:
+            return new DeleteStaffCommandParser().parse(arguments);
+
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case CommentCommand.COMMAND_WORD:
+            return new CommentCommandParser().parse(arguments);
+
+        case AddLeaveCommand.COMMAND_WORD:
+            return new AddLeaveCommandParser().parse(arguments);
+
+        case DeleteLeaveCommand.COMMAND_WORD:
+            return new DeleteLeaveCommandParser().parse(arguments);
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
@@ -74,14 +88,8 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case CommentCommand.COMMAND_WORD:
-            return new CommentCommandParser().parse(arguments);
-
-        case AddLeaveCommand.COMMAND_WORD:
-            return new AddLeaveCommandParser().parse(arguments);
-
-        case DeleteStaffCommand.COMMAND_WORD:
-            return new DeleteStaffCommandParser().parse(arguments);
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
 
         case AddApplicantCommand.COMMAND_WORD:
             return new AddApplicantCommandParser().parse(arguments);
