@@ -9,7 +9,6 @@ import static com.eva.logic.parser.CliSyntax.PREFIX_TAG;
 import static com.eva.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.util.Set;
-import java.util.stream.Stream;
 
 import com.eva.commons.core.Messages;
 import com.eva.logic.commands.AddCommand;
