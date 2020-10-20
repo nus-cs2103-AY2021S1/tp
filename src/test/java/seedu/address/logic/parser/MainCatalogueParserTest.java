@@ -35,10 +35,10 @@ import seedu.address.logic.commands.global.FindCommand;
 import seedu.address.logic.commands.global.HelpCommand;
 import seedu.address.logic.commands.global.ListCommand;
 import seedu.address.logic.commands.global.StartCommand;
+import seedu.address.logic.commands.meeting.LeaveMeetingViewCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
 import seedu.address.logic.commands.project.AssignCommand;
 import seedu.address.logic.commands.project.EditTaskCommand;
-import seedu.address.logic.commands.project.FilterCommand;
 import seedu.address.logic.commands.project.LeaveProjectViewCommand;
 import seedu.address.logic.commands.project.NewTeammateCommand;
 import seedu.address.logic.commands.project.TaskFilterCommand;
@@ -157,6 +157,14 @@ public class MainCatalogueParserTest {
                 Status.PERSON) instanceof LeaveTeammateViewCommand);
         assertTrue(parser.parseCommand(LeaveTeammateViewCommand.COMMAND_WORD + " 3",
                 Status.PERSON) instanceof LeaveTeammateViewCommand);
+    }
+
+    @Test
+    public void parseCommand_leaveMeetingView() throws Exception {
+        assertTrue(parser.parseCommand(LeaveMeetingViewCommand.COMMAND_WORD,
+                Status.MEETING) instanceof LeaveMeetingViewCommand);
+        assertTrue(parser.parseCommand(LeaveMeetingViewCommand.COMMAND_WORD + " 3",
+                Status.MEETING) instanceof LeaveMeetingViewCommand);
     }
 
     @Test

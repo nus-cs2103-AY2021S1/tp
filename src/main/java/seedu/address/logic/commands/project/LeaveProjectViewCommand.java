@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.Status;
 
 /**
  * Leaves the project view and go back to the main catalogue view.
@@ -29,12 +28,8 @@ public class LeaveProjectViewCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        if (model.getStatus() == Status.PROJECT) {
-            model.quit();
-            return new CommandResult(MESSAGE_LEAVE_SUCCESS);
-        } else {
-            return new CommandResult(MESSAGE_LEAVE_FAIL);
-        }
+        model.quit();
+        return new CommandResult(MESSAGE_LEAVE_SUCCESS);
     }
 
     @Override

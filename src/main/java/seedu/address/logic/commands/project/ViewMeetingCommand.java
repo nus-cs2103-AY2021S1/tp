@@ -10,28 +10,28 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.project.Project;
 
 /**
- * Requests to view the details of an existing teammate in the project.
+ * Requests to view the details of an existing meeting in the project.
  */
-public class ViewTeammateCommand extends Command {
+public class ViewMeetingCommand extends Command {
 
-    public static final String COMMAND_WORD = "viewteammate";
+    public static final String COMMAND_WORD = "viewmeeting";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views the details of the teammate identified "
-            + "by the index number used in the displayed teammate list. ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views the details of the meeting identified "
+            + "by the index number used in the displayed meeting list. ";
 
-    public static final String MESSAGE_VIEW_TEAMMATE_SUCCESS = "Started TEAMMATE: %1$s";
+    public static final String MESSAGE_VIEW_MEETING_SUCCESS = "Started MEETING: %1$s";
 
     private final Index index;
 
     /**
-     * @param index of the task in the filtered teammate list to edit
+     * @param index of the task in the filtered meeting list to edit
      *
      */
-    public ViewTeammateCommand(Index index) {
+    public ViewMeetingCommand(Index index) {
         requireNonNull(index);
         this.index = index;
     }
@@ -40,16 +40,16 @@ public class ViewTeammateCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
-        List<Person> lastShownList = project.getTeammates();
+        List<Meeting> lastShownList = (List<Meeting>) project.getMeetings();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TEAMMATE_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
 
-        Person teammate = lastShownList.get(index.getZeroBased());
-        model.enterTeammate(teammate);
+        Meeting meeting = lastShownList.get(index.getZeroBased());
+        model.enterMeeting(meeting);
 
-        return new CommandResult(String.format(MESSAGE_VIEW_TEAMMATE_SUCCESS, teammate));
+        return new CommandResult(String.format(MESSAGE_VIEW_MEETING_SUCCESS, meeting));
     }
 
     @Override
@@ -60,12 +60,12 @@ public class ViewTeammateCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ViewTeammateCommand)) {
+        if (!(other instanceof ViewMeetingCommand)) {
             return false;
         }
 
         // state check
-        ViewTeammateCommand e = (ViewTeammateCommand) other;
+        ViewMeetingCommand e = (ViewMeetingCommand) other;
         return index.equals(e.index);
     }
 }

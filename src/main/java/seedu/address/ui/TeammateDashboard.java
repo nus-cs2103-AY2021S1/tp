@@ -68,7 +68,7 @@ public class TeammateDashboard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ProjectDashboard)) {
+        if (!(other instanceof TeammateDashboard)) {
             return false;
         }
 

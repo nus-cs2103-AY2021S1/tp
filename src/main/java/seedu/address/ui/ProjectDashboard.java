@@ -42,11 +42,15 @@ public class ProjectDashboard extends UiPart<Region> {
     @FXML
     private Label header2;
     @FXML
+    private Label header3;
+    @FXML
     private FlowPane tags;
     @FXML
     private FlowPane teammates;
     @FXML
     private FlowPane tasks;
+    @FXML
+    private FlowPane meetings;
 
     /**
      * Creates a {@code ProjectDashboardCode} with the given {@code Project} and index to display.
@@ -64,7 +68,10 @@ public class ProjectDashboard extends UiPart<Region> {
                 .forEach(task -> tasks.getChildren().add(new Label(task.taskName)));
         header2.setText("Teammates: ");
         this.project.getTeammates().stream()
-                .forEach(person -> teammates.getChildren().add(new Label((person.getPersonName().toString()))));
+                .forEach(person -> teammates.getChildren().add(new Label(person.getPersonName().toString())));
+        header3.setText("Meetings: ");
+        this.project.getMeetings()
+                .forEach(meeting -> meetings.getChildren().add(new Label(meeting.getMeetingName())));
     }
 
     @Override

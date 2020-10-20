@@ -23,6 +23,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyMainCatalogue;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Status;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
@@ -179,6 +180,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void enterMeeting(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateProjectToBeDisplayedOnDashboard(Project project) {
             throw new AssertionError("This method should not be called.");
         }
@@ -205,6 +211,16 @@ public class AddCommandTest {
 
         @Override
         public Optional<Person> getTeammateToBeDisplayedOnDashboard() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateMeetingToBeDisplayedOnDashboard(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Meeting> getMeetingToBeDisplayedOnDashboard() {
             throw new AssertionError("This method should not be called.");
         }
     }

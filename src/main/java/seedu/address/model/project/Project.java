@@ -45,6 +45,7 @@ public class Project {
     // Display helper
     private Optional<Task> taskOnView;
     private Optional<Person> teammateOnView;
+    private Optional<Meeting> meetingOnView;
 
     /**
      * Every field must be present and not null.
@@ -115,11 +116,14 @@ public class Project {
     public void updateTeammateOnView(Person p) {
         teammateOnView = Optional.of(p);
     }
-    public Optional<Task> getTaskOnView() {
-        return this.taskOnView;
-    }
     public Optional<Person> getTeammateOnView() {
         return this.teammateOnView;
+    }
+    public void updateMeetingOnView(Meeting m) {
+        this.meetingOnView = Optional.of(m);
+    }
+    public Optional<Meeting> getMeetingOnView() {
+        return this.meetingOnView;
     }
 
     /**
@@ -302,5 +306,4 @@ public class Project {
         getTasks().forEach(builder::append);
         return builder.toString();
     }
-
 }

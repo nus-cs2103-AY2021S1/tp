@@ -68,7 +68,7 @@ public class TaskDashboard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ProjectDashboard)) {
+        if (!(other instanceof TaskDashboard)) {
             return false;
         }
 
