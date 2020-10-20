@@ -176,6 +176,7 @@ Step 3. The user executes `help` to view the help screen. `LogicManager` behaves
 
 </div>
 
+
 Step 4. The user now decides that deleting the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `HistoryStack#removeRecentHistory()` which deletes the current state, and exposes the previous state. `HistoryStack#viewRecentHistory()` is then called to retrieve the previous state, then loaded into the model using `Model#setZooKeepBook(ReadOnlyZooKeepBook)`.
 
 ![UndoState3](images/UndoState3.png)
@@ -185,6 +186,7 @@ than attempting to perform the undo.
 
 </div>
 
+
 The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
@@ -192,6 +194,7 @@ The following sequence diagram shows how the undo operation works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
+
 
 The following 2 activity diagrams summarize what happens when a user executes a new command and when a user executes the undo command:
 
