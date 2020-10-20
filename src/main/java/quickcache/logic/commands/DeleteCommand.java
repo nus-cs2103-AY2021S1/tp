@@ -3,12 +3,15 @@ package quickcache.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import quickcache.commons.core.Messages;
 import quickcache.commons.core.index.Index;
 import quickcache.logic.commands.exceptions.CommandException;
 import quickcache.model.Model;
 import quickcache.model.flashcard.Flashcard;
+import quickcache.model.flashcard.FlashcardPredicate;
+import quickcache.model.flashcard.Tag;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -25,9 +28,27 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_FLASHCARD_SUCCESS = "Deleted Flashcard: %1$s";
 
     private final Index targetIndex;
+    private final FlashcardPredicate predicate;
+    private final boolean isDeleteByTag;
 
-    public DeleteCommand(Index targetIndex) {
+    private DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+        this.predicate = null;
+        this.isDeleteByTag = false;
+    }
+
+    private DeleteCommand(FlashcardPredicate predicate) {
+        this.targetIndex = null;
+        this.predicate = predicate;
+        this.isDeleteByTag = true;
+    }
+
+    public static DeleteCommand withIndex(Index targetIndex) {
+        return new DeleteCommand(targetIndex);
+    }
+
+    public static DeleteCommand withPredicate(FlashcardPredicate predicate) {
+        return new DeleteCommand(predicate);
     }
 
     @Override

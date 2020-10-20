@@ -4,8 +4,16 @@ import quickcache.commons.core.Messages;
 import quickcache.commons.core.index.Index;
 import quickcache.logic.commands.DeleteCommand;
 import quickcache.logic.parser.exceptions.ParseException;
+import quickcache.model.flashcard.Flashcard;
+import quickcache.model.flashcard.FlashcardContainsTagPredicate;
+import quickcache.model.flashcard.FlashcardPredicate;
+import quickcache.model.flashcard.QuestionContainsKeywordsPredicate;
+import quickcache.model.flashcard.Tag;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.function.Predicate;
 
 import static quickcache.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
@@ -31,16 +39,27 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 // TODO: make sure the exception message is correct
                 throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
             }
-            return new DeleteCommand(argMultimap.getAllValues(PREFIX_TAG));
+            Set<Tag> tagsToMatch = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+            FlashcardPredicate predicate = getFlashcardPredicate(tagsToMatch);
+            return DeleteCommand.withPredicate(predicate);
         } else {
             try {
                 Index index = ParserUtil.parseIndex(args);
-                return new DeleteCommand(index);
+                return DeleteCommand.withIndex(index);
             } catch (ParseException pe) {
                 throw new ParseException(
                         String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
             }
         }
+    }
+
+    private FlashcardPredicate getFlashcardPredicate(Set<Tag> tagsToMatch) {
+        ArrayList<Predicate<Flashcard>> predicates = new ArrayList<>();
+
+        if (!tagsToMatch.isEmpty()) {
+            predicates.add(new FlashcardContainsTagPredicate(tagsToMatch));
+        }
+        return new FlashcardPredicate(predicates);
     }
 
     /**
