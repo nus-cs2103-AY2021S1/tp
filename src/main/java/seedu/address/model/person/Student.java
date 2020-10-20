@@ -23,6 +23,7 @@ public class Student extends Person implements Showable<Student> {
     public Student(Name name, Phone phone, Email email, Set<Tag> tags, StudentId studentId) {
         super(name, phone, email, tags);
         requireAllNonNull(studentId);
+        assert studentId != null;
         this.studentId = studentId;
     }
 
