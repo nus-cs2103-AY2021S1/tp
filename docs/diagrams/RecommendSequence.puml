@@ -1,0 +1,58 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WishfulShrinkingParser" as WishfulShrinkingParser LOGIC_COLOR
+participant "command :RecommendCommand" as RecommendCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(recommend)
+activate LogicManager
+
+LogicManager -> WishfulShrinkingParser : parseCommand(recommend)
+activate WishfulShrinkingParser
+
+create RecommendCommand
+WishfulShrinkingParser -> RecommendCommand
+activate RecommendCommand
+
+RecommendCommand --> WishfulShrinkingParser : command
+deactivate RecommendCommand
+
+WishfulShrinkingParser --> LogicManager : command
+deactivate WishfulShrinkingParser
+
+LogicManager -> RecommendCommand : execute()
+activate RecommendCommand
+
+RecommendCommand -> Model : updateFilteredRecipeList(predicate)
+activate Model
+
+Model --> RecommendCommand
+deactivate Model
+
+RecommendCommand -> Model : getFilteredRecipeList()
+activate Model
+
+Model --> RecommendCommand
+deactivate Model
+
+create CommandResult
+RecommendCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> RecommendCommand
+deactivate CommandResult
+
+RecommendCommand --> LogicManager : result
+deactivate RecommendCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

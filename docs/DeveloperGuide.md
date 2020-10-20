@@ -153,6 +153,137 @@ The following sequence diagram shows how the undo operation works:
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Add Ingredient feature
+
+#### Implementation
+This feature allows users to add ingredients into the fridge.
+
+Substitutability is used in Command and Parser:
+* `AddIngredientCommand` extends `Command`
+* `AddIngredientCommandParser` implements `Parser<AddIngredientCommand>`
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+![AddIngredientSequence](images/AddIngredientSequence.png)
+
+Step 1:
+User inputs the add ingredient command to add ingredients into the fridge.
+
+Step 2:
+After successful parsing of user input, the `AddIngredientCommand#execute(Model model)` method is called.
+
+Step 3:
+The ingredients that the user has input will be saved into Wishful Shrinking's fridge of ingredients.
+
+Step 4:
+After the successful adding of the ingredient, a `CommandResult` object is instantiated and returned to `LogicManager`.
+
+#### Design Considerations
+##### Aspect 1: Concern while adding a new feature
+* Workflow must be consistent with other adding commands e.g. add recipe and eat recipe for consumption.
+
+##### Aspect 2: How do we successfully parse the ingredients the user has added with the optional ingredient quantity 
+* **Alternative 1 (current choice):** Add a quantity field in the Ingredient class as well as a IngredientParser class to parse each ingredient added
+  * Pros: Easy to implement.
+  * Cons: The parser may confuse ingredients that have prefixes that Wishful Shrinking uses to identify fields in the names, eg "-" or ","
+
+### Search Recipe feature
+
+#### Implementation
+This feature allows users search for recipes in the recipe list based on the name, tags or ingredients.
+
+Substitutability is used in Command and Parser:
+* `SearchRecipeCommand` extends `Command`
+* `SearchRecipeCommandParser` implements `Parser<SearchRecipeCommand>`
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+![SearchRecipeSequence](images/SearchRecipeSequence.png)
+
+Step 1:
+User inputs the search recipe command to search for the recipes they want.
+
+Step 2:
+After successful parsing of user input, the `SearchRecipeCommand#execute(Model model)` method is called.
+
+Step 3:
+The list of recipes that fit the user's search will be returned to the user.
+
+Step 4:
+After the successful searching of the recipes, a `CommandResult` object is instantiated and returned to `LogicManager`.
+
+#### Design Considerations
+##### Aspect 1: Concern while adding a new feature
+* Workflow must be consistent with other searching commands e.g. search recipe.
+
+##### Aspect 2: How do we successfully search and filter the recipes based on the user' search 
+* **Alternative 1 (current choice):** User can only search for recipes based on one fields at a time
+  * Pros: Easy to implement.
+  * Cons: User's cannot filter the recipes by two or three fields at once
+
+* **Alternative 2:** User can only search for recipes by all fields at once
+  * Pros: Harder to implement.
+  * Cons: User's can filter the recipes by two or three fields at once
+
+### Delete Consumption feature
+
+#### Implementation
+This feature allows users to delete the recipes they have eaten in the calorie tracker.
+
+Substitutability is used in Command and Parser:
+* `DeleteConsumptionCommand` extends `Command`
+* `DeleteConsumptionCommandParser` implements `Parser<DeleteConsumptionCommand>`
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+![DeleteConsumptionSequence](images/DeleteConsumptionSequence.png)
+
+Step 1:
+User inputs the delete consumption command to delete the recipes eaten in the calorie tracker.
+
+Step 2:
+After successful parsing of user input, the `DeleteConsumptionCommand#execute(Model model)` method is called.
+
+Step 3:
+The recipe that the user has specified will be deleted from the consumption list.
+
+Step 4:
+After the successful deleting of recipes, a `CommandResult` object is instantiated and returned to `LogicManager`.
+
+#### Design Considerations
+##### Aspect 1: Concern while adding a new feature
+* Workflow must be consistent with other deleting commands e.g. delete recipe and delete ingredient.
+
+### Recommend feature
+
+#### Implementation
+This feature allows users to get recommended recipes that they are able to make with the ingredients in their fridge.
+
+Substitutability is used in Command:
+* `RecommendCommand` extends `Command`
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+![RecommendSequence](images/RecommendSequence.png)
+
+Step 1:
+User inputs the recommend command to get the recommended recipes.
+
+Step 2:
+After successful parsing of user input, the `RecommendCommand#execute(Model model)` method is called.
+
+Step 3:
+The list of recommended recipes will be returned to the user.
+
+Step 4:
+After the successful recommending of recipes, a `CommandResult` object is instantiated and returned to `LogicManager`.
+
+#### Design Considerations
+##### Aspect : How do we quickly and accurately compare ingredients in each recipe and the user's fridge
+* **Alternative 1 (current choice):** Compare the exact ingredients in each recipe to the users ingredients in the fridge
+  * Pros: Easy to implement
+  * Cons: Slow to compare, the ingredients might not match if the spellings are different
+
 
 --------------------------------------------------------------------------------------------------------------------
 
