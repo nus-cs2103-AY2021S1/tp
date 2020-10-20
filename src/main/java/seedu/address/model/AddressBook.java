@@ -15,6 +15,8 @@ import seedu.address.model.vendor.Vendor;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueVendorList vendors;
+    private final int vendorIndex;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -24,9 +26,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         vendors = new UniqueVendorList();
+
     }
 
-    public AddressBook() {}
+    /**
+     * Default vendor index is 0. Assumes that there is at least 1 vendor in the AddressBook.
+     */
+    public AddressBook() {
+        this.vendorIndex = 0;
+    }
 
     /**
      * Creates an AddressBook using the Vendors in the {@code toBeCopied}
@@ -34,6 +42,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
+    }
+
+    /**
+     * Sets the vendorIndex of the AddressBook to {@code vendorIndex}. This method is only called when
+     * the selectVendor method is called.
+     */
+    private AddressBook(List<Vendor> vendors, int vendorIndex) {
+        setVendors(vendors);
+        this.vendorIndex = vendorIndex;
     }
 
     //// list overwrite operations
@@ -85,6 +102,22 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns a new AddressBook which has the selected vendor from {@code vendorIndex}
+     */
+    public AddressBook selectVendor(int vendorIndex) {
+        return new AddressBook(this.getVendorList(), vendorIndex);
+    }
+
+    @Override
+    public int getVendorIndex() {
+        return this.vendorIndex;
+    }
+
+    public Vendor getSelectedVendor() {
+        return this.vendors.asUnmodifiableObservableList().get(vendorIndex);
+    }
+
+    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
@@ -109,11 +142,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && vendors.equals(((AddressBook) other).vendors));
+                && vendors.equals(((AddressBook) other).vendors))
+                && this.getVendorIndex() == ((AddressBook) other).getVendorIndex();
     }
 
     @Override
     public int hashCode() {
         return vendors.hashCode();
     }
+
+
 }
