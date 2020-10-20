@@ -3,12 +3,12 @@
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 
-title After command "delete 5"
+title After command "deli Bob’s 28th finger"
 
 package States <<rectangle>> {
-    class State1 as "__inv0:Inventoryinator__"
-    class State2 as "__inv1:Inventoryinator__"
-    class State3 as "__inv2:Inventoryinator__"
+    class State1 as "__inv0:Inventory__"
+    class State2 as "__inv1:Inventory__"
+    class State3 as "__inv2:Inventory__"
 }
 
 State1 -[hidden]right-> State2
