@@ -279,41 +279,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Reeve requests for appropriate input.
 
       Use case resumes from step 1.
-        	
+
 * 1b. User provides input with invalid format.
     * 1b1. Reeve requests for appropriate input with valid format.
-      
+
       Use case resumes from step 1.
-        	
+
 **UC02: Searching for a student**
 
 **MSS**
 
 1.  User enters a command to find all students that match the given search parameter (name, school, year or subject).
-2.  Reeve displays all students matching the criteria. 
-    
+2.  Reeve displays all students matching the criteria.
+
     Use case ends.
 
 **Extensions**
 
 * 1a. User provides input with invalid data into the search parameter.
-    * 1a1. Reeve displays erroneous field and expected format.       
-      
-      Use case resumes at step 1.      
+    * 1a1. Reeve displays erroneous field and expected format.
+
+      Use case resumes at step 1.
 * 1b. User provides input without a search parameter.
-    * 1a1. Reeve displays a message indicating a search parameter was not provided.       
-      
+    * 1a1. Reeve displays a message indicating a search parameter was not provided.
+
       Use case resumes at step 1.
 * 1c. No students match the given criteria.
-    * 1c1. Reeve displays a message indicating no match found.    
-      
+    * 1c1. Reeve displays a message indicating no match found.
+
       Use case ends.
 
 **UC03: Editing a student's details**
 
 **MSS**
 
-1.  User enters a command to list all students.
+1.  User enters a command to list students.
 2.  Reeve shows the list of students.
 3.  User enters command to edit a specific student in the list and provides needed parameters.
 4.  Reeve updates the specified student with the input parameters and displays a success message.
@@ -322,7 +322,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
   Use case ends.
 
 * 3a. User provides input with invalid index.
@@ -331,11 +331,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 * 3b. User provides input without any parameters.
     * 3b1. Reeve requests for input with parameters.
-      
+
       Use case resumes at step 2.
 * 3c. User provides input with invalid format.
 	* 3c1. Reeve requests for input with valid format.
-	
+
 	  Use case resumes at step 2.
 
 **UC04: Deleting a student**
@@ -351,7 +351,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
@@ -359,16 +359,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Reeve displays an error message.
 
       Use case resumes at step 2.
-    
-**UC05: Listing all students** 
+
+**UC05: Listing all students**
 
 **MSS**
 
-1. User enters command to display students list.
+1. User enters a command to list students.
 2. Reeve displays the students list with student details.
 
    Use case ends.
- 
+
 
 **UC06: Clearing all student records**
 
@@ -376,10 +376,103 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User enters a command to clear the students list.
 2. Reeve displays a success message.
-   
+
    Use case ends.
-   
-*{More to be added}*
+
+**UC07: Adding a question to a student**
+
+**MSS**
+
+1. User enters a command to list students.
+2. Reeve displays a list of students.
+3. User enters a command to add an unresolved question to a specific student in the list.
+4. Reeve updates the specified student in the list with the newly added question.
+5. Reeve displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. User provides input with an invalid student index.
+    * 3a1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User inputs a question in an invalid format.
+    * 3b1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+**UC07: Resolving a question from a student**
+
+**MSS**
+
+1. User enters a command to list students.
+2. Reeve displays a list of students.
+3. User enters a command to resolve a question from a specific student in the list with a solution.
+4. Reeve updates the specified student in the list with the updated question.
+5. Reeve displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. User provides input with an invalid student.
+    * 3a1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User provides input with an invalid question.
+    * 3b1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+* 3c. User inputs the solution in an invalid format.
+    * 3c1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+* 3d. User specifies a question that has already been solved.
+    * 3d1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+
+**UC07: Deleting a question from a student**
+
+**MSS**
+
+1. User enters a command to list students.
+2. Reeve displays a list of students.
+3. User enters a command to delete a question from a specific student in the list.
+4. Reeve updates the specified student in the list with the removed question.
+5. Reeve displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. User provides input with an invalid student.
+    * 3a1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User provides input with an invalid question.
+    * 3b1. Reeve displays an error message.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 

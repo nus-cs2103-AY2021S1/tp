@@ -3,7 +3,7 @@
 ## Reeve
 ![Ui](docs/images/Ui.png)
 
-**Reeve** is a desktop app for **private tutors to manage the details of their students**, optimised for use via a **Command Line Interface (CLI)** for receiving inputs while still having the benefits of a **Graphical User Interface (GUI)** for displaying information.  
+**Reeve** is a desktop app for **private tutors to manage the details of their students**, optimised for use via a **Command Line Interface (CLI)** for receiving inputs while still having the benefits of a **Graphical User Interface (GUI)** for displaying information.
 
 * This project is a fork of an ongoing software project for a desktop application (called AddressBook)
     * It is written in **OOP fashion**.
