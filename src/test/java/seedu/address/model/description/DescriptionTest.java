@@ -15,26 +15,27 @@ class DescriptionTest {
 
     @Test
     public void constructor_invalidDescription_throwsIllegalArgumentException() {
-        String invalidDescription = " ";
+        String invalidDescription = "";
         assertThrows(IllegalArgumentException.class, () -> new Description(invalidDescription));
     }
 
     @Test
     public void isValidDescription() {
-        // null name
+        // null description
         assertThrows(NullPointerException.class, () -> Description.isValidDescription(null));
 
-        // invalid name
-        assertTrue(Description.isValidDescription("")); // empty string
+        // invalid description
+        assertFalse(Description.isValidDescription("")); // empty string
         assertFalse(Description.isValidDescription(" ")); // spaces only
         assertFalse(Description.isValidDescription("^")); // only non-alphanumeric characters
         assertFalse(Description.isValidDescription("CS2103T*")); // contains non-alphanumeric characters
+        assertFalse(Description.isValidDescription("CS2103T Software Engineering")); // long descriptions
 
-        // valid name
+        // valid description
         assertTrue(Description.isValidDescription("cs")); // alphabets only
         assertTrue(Description.isValidDescription("12345")); // numbers only
-        assertTrue(Description.isValidDescription("cs2103T 2nd")); // alphanumeric characters
-        assertTrue(Description.isValidDescription("Cs 2103T")); // with capital letters
-        assertTrue(Description.isValidDescription("CS2103T Software Engineering")); // long names
+        assertTrue(Description.isValidDescription("cs2103T")); // alphanumeric characters
+        assertTrue(Description.isValidDescription("CS")); // with capital letters
+
     }
 }
