@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -39,11 +38,9 @@ public class PersonListPanel extends UiPart<Region> {
             super.updateItem(person, empty);
 
             if (empty || person == null) {
-                logger.log(Level.INFO, "Person is empty.");
                 setGraphic(null);
                 setText(null);
             } else {
-                logger.log(Level.INFO, "Updated person view.");
                 setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
             }
         }
