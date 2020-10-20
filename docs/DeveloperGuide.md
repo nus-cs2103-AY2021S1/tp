@@ -227,7 +227,7 @@ Given below is an example usage scenario and how the switching mechanism behaves
 Step 1. The user launches the application for the first time. The `CategoryExpenseBook` will be initialized with the initial expense book state.
 
 
-Step 2. The user executes `switch t/Food` command to switch to CategoryExpenseBook with "Food" tag in category budget in the expense book. The `switch` command calls `Model#switchExpenseBook()`, causing the filteredExpenses to be modified. 
+Step 2. The user executes `switch t/Food` command to switch to CategoryExpenseBook with "Food" tag in category budget in the expense book. The `switch` command calls `Model#switchExpenseBook()`, causing the filteredExpenses to be modified.
 
 
 The following sequence diagram shows how the switch operation works:
@@ -252,7 +252,7 @@ Step 4. The user then decides to execute the command `list`. Commands that do no
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of execution speed.
 
-* **Alternative 2:** Create multiple expense books for each category 
+* **Alternative 2:** Create multiple expense books for each category.
   * Pros: Will be faster during execution.
   * Cons: Slower initialisation and more memory used.
 
@@ -320,7 +320,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | cautious user                              | view my ledger data in a human-readable format and only edit the file when commands are executed     | be assured that the accounts are updated and accurate                  |
 | `*`      | long-time user                             | archive older data from my view                                                                      | manage my expenses easier                                              |
 | `stretch`| user who likes to plan in advance          | simulate future spending                                                                             | visualize my journey towards my financial goals                        |
-| `stretch`| forgetful user                             | receive notifications of budget limits and bill payments                                             | better plan for daily expenditure and make payments on time            | 
+| `stretch`| forgetful user                             | receive notifications of budget limits and bill payments                                             | better plan for daily expenditure and make payments on time            |
 
 *{More to be added}*
 
@@ -365,7 +365,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The given top-up value is invalid.
-    * 1a1. Bamboo shows an error message. 
+    * 1a1. Bamboo shows an error message.
       Use case ends.
 
 ####Use case U3: Delete an expense
@@ -417,7 +417,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. Bamboo shows an error message
       Use case ends
 * 3a. The given field value is invalid.
-    * 3a1. Bamboo shows an error message. 
+    * 3a1. Bamboo shows an error message.
       Use case ends.
 
 ####Use case U5: List all expenses
@@ -444,13 +444,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Bamboo adds remark to specified expense item.
 3. Bamboo lists all expenses and shows the budget balance.
    Use case ends.
-   
+
 **Extensions**
 
 * 1a. The given expense does not exist.
     * 1a1. Bamboo shows an error message.
     Use case ends.
-    
+
 ####Use case U7: Find an expense
 
 **Preconditions:** (Needed for v1.2.1)
@@ -467,7 +467,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The given field values are invalid.
-    * 1a1. Bamboo shows an error message. 
+    * 1a1. Bamboo shows an error message.
       Use case ends.
 
 ### Non-Functional Requirement
