@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TASK;
 import static seedu.address.testutil.TypicalTasks.getTypicalPlanus;
 
 import org.junit.jupiter.api.Test;
@@ -67,7 +68,25 @@ public class DoneCommandTest {
 
         DoneCommand doneCommand = new DoneCommand(indexes);
 
-        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASKS_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_duplicatedIndex_throwsCommandException() {
+        Index[] indexes = {INDEX_FIRST_TASK, INDEX_FIRST_TASK};
+
+        DoneCommand doneCommand = new DoneCommand(indexes);
+
+        assertCommandFailure(doneCommand, model, Messages.MESSAGE_DUPLICATE_TASK_INDEX);
+    }
+
+    @Test
+    public void execute_incorrectStatusTask_throwsCommandException() {
+        Index[] indexes = {INDEX_THIRD_TASK};
+
+        DoneCommand doneCommand = new DoneCommand(indexes);
+
+        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INCORRECT_TASK_STATUS);
     }
 
     @Test
@@ -78,7 +97,7 @@ public class DoneCommandTest {
 
         DoneCommand doneCommand = new DoneCommand(indexes);
 
-        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASKS_DISPLAYED_INDEX);
     }
 
     @Test
@@ -111,7 +130,7 @@ public class DoneCommandTest {
 
         DoneCommand doneCommand = new DoneCommand(indexes);
 
-        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASKS_DISPLAYED_INDEX);
     }
 
     @Test
@@ -121,7 +140,7 @@ public class DoneCommandTest {
 
         DoneCommand doneCommand = new DoneCommand(indexes);
 
-        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASKS_DISPLAYED_INDEX);
     }
 
     @Test
@@ -132,7 +151,7 @@ public class DoneCommandTest {
 
         DoneCommand doneCommand = new DoneCommand(indexes);
 
-        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASKS_DISPLAYED_INDEX);
     }
 
     @Test

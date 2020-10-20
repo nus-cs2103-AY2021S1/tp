@@ -56,6 +56,14 @@ public class Status {
         return String.join(", ", listOfAcceptedStatus);
     }
 
+    /**
+     * Return true if the state in param is same as value, else return false.
+     * @param state a State object.
+     */
+    public boolean is(State state) {
+        return value.equals(state);
+    }
+
     @Override
     public String toString() {
         return value.toString();

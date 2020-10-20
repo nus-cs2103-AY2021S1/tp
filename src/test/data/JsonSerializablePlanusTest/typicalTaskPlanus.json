@@ -20,7 +20,7 @@
     "description" : "heinz,example.com",
     "type" : "event",
     "tagged" : [ ],
-    "status" : "Incomplete"
+    "status" : "Complete"
   }, {
     "title" : "Daniel Meier",
     "dateTime" : "04-04-2020 12:00",

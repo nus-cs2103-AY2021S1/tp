@@ -81,6 +81,14 @@ public class Task {
     }
 
     /**
+     * Returns true if the task's status is in the given State.
+     * @param state
+     */
+    public boolean statusIs(State state) {
+        return status.is(state);
+    }
+
+    /**
      * Returns true if both tasks of the same title have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two tasks.
      */

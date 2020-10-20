@@ -9,6 +9,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.task.State;
 import seedu.address.model.task.Task;
 
 /**
@@ -40,11 +41,15 @@ public class DoneCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
         Task[] tasksToMarkAsDone = new Task[targetIndexes.length];
+        checkDuplicateIndex();
         for (int i = 0; i < targetIndexes.length; i++) {
             if (targetIndexes[i].getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+                throw new CommandException(Messages.MESSAGE_INVALID_TASKS_DISPLAYED_INDEX);
             }
             tasksToMarkAsDone[i] = lastShownList.get(targetIndexes[i].getZeroBased());
+        }
+        if (!allHaveIncompleteStatus(tasksToMarkAsDone)) {
+            throw new CommandException(Messages.MESSAGE_INCORRECT_TASK_STATUS);
         }
         model.markAsDone(tasksToMarkAsDone);
         return new CommandResult(buildMessage(tasksToMarkAsDone));
@@ -67,5 +72,24 @@ public class DoneCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof DoneCommand // instanceof handles nulls
                 && Arrays.equals(targetIndexes, ((DoneCommand) other).targetIndexes)); // state check
+    }
+
+    private void checkDuplicateIndex() throws CommandException {
+        for (int i = 0; i < targetIndexes.length; i++) {
+            for (int j = i + 1; j < targetIndexes.length; j++) {
+                if (targetIndexes[i].equals(targetIndexes[j])) {
+                    throw new CommandException(Messages.MESSAGE_DUPLICATE_TASK_INDEX);
+                }
+            }
+        }
+    }
+
+    private boolean allHaveIncompleteStatus(Task[] tasksToMarkAsDone) {
+        for (int i = 0; i < tasksToMarkAsDone.length; i++) {
+            if (tasksToMarkAsDone[i].statusIs(State.COMPLETE)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
