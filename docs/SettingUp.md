@@ -17,6 +17,7 @@ Follow the steps in the following guide precisely. Things will not work out if y
 </div>
 
 You will need to fork the repo if you wish to contribute code to the CliniCal project. If you wish to only download the code without writing code, you can skip to the section for cloning the project.
+
 If you wish to fork the repo:
 1. Navigate to the [CliniCal repository on Github](https://github.com/AY2021S1-CS2103T-W11-4/tp).
 1. Click on the <img src="images/forkButton.png" height="40px"> button on the top-right hand corner of the page to fork the repository to your account.
