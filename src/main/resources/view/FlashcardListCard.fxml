@@ -31,6 +31,7 @@
         <padding>
           <Insets  bottom="10"/>
         </padding>
+        <Text fx:id="favouriteIcon"  text="\$favouriteIcon"/>
       </HBox>
       <FlowPane fx:id="tags" />
       <HBox>
@@ -45,7 +46,6 @@
         <Text fx:id="rating" text="\$rating"></Text>
         <Text fx:id="ratingIcon"></Text>
       </TextFlow>
-
 
     </VBox>
   </GridPane>
