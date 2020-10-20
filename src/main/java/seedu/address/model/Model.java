@@ -1,11 +1,13 @@
 package seedu.address.model;
 
+import java.io.File;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.currentpath.CurrentPath;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -79,6 +81,12 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered tag list */
     ObservableList<Tag> getFilteredTagList();
+
+    /** Returns the current path of HelloFile */
+    CurrentPath getCurrentPath();
+
+    /** Returns an unmodifiable view of the filtered file list */
+    ObservableList<File> getFilteredFileList();
 
     /**
      * Updates the filter of the filtered tag list to filter by the given {@code predicate}.

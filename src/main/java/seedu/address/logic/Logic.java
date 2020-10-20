@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import java.io.File;
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
@@ -8,6 +9,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.currentpath.CurrentPath;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,8 +32,14 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the filtered list of tags */
     ObservableList<Tag> getFilteredTagList();
+
+    /** Returns the current path of HelloFile */
+    CurrentPath getCurrentPath();
+
+    /** Returns an unmodifiable view of the filtered list of files */
+    ObservableList<File> getFilteredFileList();
 
     /**
      * Returns the user prefs' address book file path.

@@ -1,28 +1,28 @@
 package seedu.address.model.currentpath;
 
-import seedu.address.model.tag.FileAddress;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.model.tag.FileAddress;
+
+/**
+ * CurrentPath contains the current path (a FileAddress) of the HelloFile
+ * file explorer. It also contains the list of children files under the path.
+ */
 public class CurrentPath {
 
-    private static CurrentPath currentPath;
     private FileAddress address;
     private FileList childrenFiles;
 
-    private CurrentPath() {
+    /**
+     * Constructs a CurrentPath.
+     * @param fileList the list to be the children file list
+     */
+    public CurrentPath(FileList fileList) {
         address = new FileAddress(System.getProperty("user.dir"));
+        childrenFiles = fileList;
         updateChildrenFileList();
-    }
-
-    public static CurrentPath getInstance() {
-        if (currentPath == null) {
-            currentPath = new CurrentPath();
-        }
-
-        return currentPath;
     }
 
     public FileAddress getAddress() {

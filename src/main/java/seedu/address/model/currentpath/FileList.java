@@ -1,22 +1,21 @@
 package seedu.address.model.currentpath;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.File;
 import java.util.List;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
+/**
+ * The list of children files under the current path.
+ */
 public class FileList {
 
     private final ObservableList<File> internalList = FXCollections.observableArrayList();
     private final ObservableList<File> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-
-    public FileList(List<File> files) {
-        setFiles(files);
-    }
 
     public void setFiles(List<File> files) {
         requireAllNonNull(files);

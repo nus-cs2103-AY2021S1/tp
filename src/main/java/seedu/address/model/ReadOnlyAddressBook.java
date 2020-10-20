@@ -1,6 +1,9 @@
 package seedu.address.model;
 
+import java.io.File;
+
 import javafx.collections.ObservableList;
+import seedu.address.model.currentpath.FileList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -13,5 +16,13 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate tags.
      */
     ObservableList<Tag> getTagList();
+
+    FileList getFileList();
+
+    /**
+     * Returns an unmodifiable view of the file list.
+     * This list will not contain any duplicate files.
+     */
+    ObservableList<File> getObservableFileList();
 
 }
