@@ -11,10 +11,12 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Name;
+import seedu.address.model.contact.Telegram;
 import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.module.grade.Assignment;
+import seedu.address.model.module.grade.Grade;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -65,6 +67,21 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String telegramUsername} into an {@code Telegram}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code telegramUsername} is invalid.
+     */
+    public static Telegram parseTelegram(String telegramUsername) throws ParseException {
+        requireNonNull(telegramUsername);
+        String trimmedTelegram = telegramUsername.trim();
+        if (!Telegram.isValidTelegram(trimmedTelegram)) {
+            throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
+        }
+        return new Telegram(trimmedTelegram);
     }
 
     /**
@@ -172,5 +189,16 @@ public class ParserUtil {
             trimmedModularCredits = Double.parseDouble(modularCredits.trim());
         }
         return new ModularCredits(trimmedModularCredits);
+    }
+    /**
+     * Parses a {@code String grade}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static double parseGrade(String grade) throws ParseException {
+        double trimmedGrade = Double.parseDouble(grade.trim());
+        if (!Grade.isValidGrade(trimmedGrade)) {
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedGrade;
     }
 }
