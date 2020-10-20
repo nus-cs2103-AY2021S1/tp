@@ -256,6 +256,46 @@ Step 4. The user then decides to execute the command `list`. Commands that do no
   * Pros: Will be faster during execution.
   * Cons: Slower initialisation and more memory used.
 
+### \[Proposed\] Customisation of Command Keywords
+
+#### Proposed Implementation
+
+The proposed implementation for the customisation of `COMMAND_WORD` field for various `Command` subclasses is by introducing another `Command` subclass, called the `AliasCommand`. This command takes in a command keyword that the user wishes to alter, and takes a second keyword which determines what the new COMMAND_WORD for the stated `Command` subclass would be. To allow for customisation to remain even after the app is closed, a customised keyword-to-command mapping will be stored in JSON format. Upon starting the app, the static field `COMMAND_WORD` will be initialized for each command.
+
+Sample usage:
+By default, `FindCommand.COMMAND_WORD` is `“find”`
+
+* `alias find get` -> `FindCommand.COMMAND_WORD` will be updated to `“get”`
+
+This mapping will also be stored in an external JSON so that the customisation remains even after the app is closed. 
+
+To maintain some degree of simplicity and neatness, we require that the `AliasCommand.COMMAND_WORD` itself to not be customisable. Furthermore, the user also has the ability to revert the command keywords back to their default using the `DefaultAliasCommand` with the default `COMMAND_WORD` as `defaultalias`. This is made a little longer and slightly more complicated to input because this will override the entire customisation to default and user will not be able to retrieve his previous customisations. Like the AliasCommand, `DefaultAliasCommand.COMMAND_WORD` itself is not customisable.
+
+Another change required here is for the COMMAND_WORD fields to not be final, except for AliasCommand and DefaultAliasCommand. This will allow changes to a COMMAND_WORD field to be reflected directly in the current running instance of the application.
+
+Step 1. The user launches the application for the first time. The `COMMAND_WORD` static fields for all the subclasses will be initialized to the current mapping retrieved from JSON.
+
+Step 2. The user executes the `alias find get` command to update the current `FindCommand.COMMAND_WORD` from `”find”’ to `”get”`.  This will not only update the current state, but will also update the JSON mapping.
+
+The following is a sequence diagram showing how it works:
+![AliasSequenceDiagram](images/AliasSequenceDiagram.png)
+
+Similarly, the following sequence diagram shows how the DefaultAliasCommand works:
+![DefaultAliasSequenceDiagram](images/DefaultAliasSequenceDiagram.png)
+
+Step 3. The user can now use the following command to trigget a FindCommand.
+
+* `get -d lunch at macs`
+#### Design consideration:
+
+##### Aspect: How alias executes
+* **Alternative 1 (current choice):** Allows customisation of all command words except for `AliasCommand` and `DefaultAliasCommand`.
+  * Pros: Neater implementation especially if the user might frequently change his alias, and DefaultAliasCommand has a long default and uncustomisable command word in order to prevent accidental reset of previous customisations.
+  * Cons: Restricts degree of customisation.
+
+* **Alternative 2:** Allows customisation of ALL command words.
+  * Pros: Higher degree of flexibility in customisation.
+  * Cons: May be messy and slower learning users may get confused.
 _{more aspects and alternatives to be added}_
 
 
