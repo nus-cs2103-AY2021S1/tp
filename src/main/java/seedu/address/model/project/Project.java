@@ -65,6 +65,7 @@ public class Project {
         this.meetings.addAll(meetings);
         this.taskOnView = Optional.empty();
         this.teammateOnView = Optional.empty();
+        this.meetingOnView = Optional.empty();
     }
 
     public ProjectName getProjectName() {
@@ -110,20 +111,47 @@ public class Project {
     public Optional<Task> getTaskOnView() {
         return taskOnView;
     }
-    public void updateTaskOnView(Task t) {
-        taskOnView = Optional.of(t);
-    }
-    public void updateTeammateOnView(Person p) {
-        teammateOnView = Optional.of(p);
-    }
     public Optional<Person> getTeammateOnView() {
         return this.teammateOnView;
     }
-    public void updateMeetingOnView(Meeting m) {
-        this.meetingOnView = Optional.of(m);
-    }
     public Optional<Meeting> getMeetingOnView() {
         return this.meetingOnView;
+    }
+
+    /**
+     * Updates taskOnView with t.
+     * @param t taskOnView.
+     */
+    public void updateTaskOnView(Task t) {
+        if (t == null) {
+            taskOnView = Optional.empty();
+        } else {
+            taskOnView = Optional.of(t);
+        }
+    }
+
+    /**
+     * Updates teammateOnView with t.
+     * @param p teammateOnView.
+     */
+    public void updateTeammateOnView(Person p) {
+        if (p == null) {
+            teammateOnView = Optional.empty();
+        } else {
+            teammateOnView = Optional.of(p);
+        }
+    }
+
+    /**
+     * Updates meetingOnView with m.
+     * @param m meetingOnView.
+     */
+    public void updateMeetingOnView(Meeting m) {
+        if (m == null) {
+            meetingOnView = Optional.empty();
+        } else {
+            meetingOnView = Optional.of(m);
+        }
     }
 
     /**

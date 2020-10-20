@@ -160,6 +160,8 @@ public class ModelManager implements Model {
     @Override
     public void enterTask(Task task) {
         mainCatalogue.enterTask(task);
+        this.teammateToBeDisplayedOnDashboard = Optional.empty();
+        this.meetingToBeDisplayedOnDashboard = Optional.empty();
         this.projectToBeDisplayedOnDashboard.get().updateTaskOnView(task);
         updateTaskToBeDisplayedOnDashboard(this.projectToBeDisplayedOnDashboard.get().getTaskOnView().get());
     }
@@ -167,6 +169,8 @@ public class ModelManager implements Model {
     @Override
     public void enterTeammate(Person teammate) {
         mainCatalogue.enterTeammate(teammate);
+        this.meetingToBeDisplayedOnDashboard = Optional.empty();
+        this.taskToBeDisplayedOnDashboard = Optional.empty();
         this.projectToBeDisplayedOnDashboard.get().updateTeammateOnView(teammate);
         updateTeammateToBeDisplayedOnDashboard(this.projectToBeDisplayedOnDashboard.get().getTeammateOnView().get());
     }
@@ -174,6 +178,8 @@ public class ModelManager implements Model {
     @Override
     public void enterMeeting(Meeting meeting) {
         mainCatalogue.enterMeeting(meeting);
+        this.taskToBeDisplayedOnDashboard = Optional.empty();
+        this.teammateToBeDisplayedOnDashboard = Optional.empty();
         this.projectToBeDisplayedOnDashboard.get().updateMeetingOnView(meeting);
         updateMeetingToBeDisplayedOnDashboard(this.projectToBeDisplayedOnDashboard.get().getMeetingOnView().get());
     }

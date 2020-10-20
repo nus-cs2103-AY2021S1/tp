@@ -183,21 +183,21 @@ public class MainCatalogueParser {
             }
 
         case ViewTaskCommand.COMMAND_WORD:
-            if (status == Status.PROJECT) {
+            if (status != Status.CATALOGUE) {
                 return new ViewTaskCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case ViewTeammateCommand.COMMAND_WORD:
-            if (status == Status.PROJECT) {
+            if (status != Status.CATALOGUE) {
                 return new ViewTeammateCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case ViewMeetingCommand.COMMAND_WORD:
-            if (status == Status.PROJECT) {
+            if (status != Status.CATALOGUE) {
                 return new ViewMeetingCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);

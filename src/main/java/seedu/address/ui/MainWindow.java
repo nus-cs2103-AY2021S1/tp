@@ -154,7 +154,9 @@ public class MainWindow extends UiPart<Stage> {
                 && logic.getMeetingToBeDisplayedOnDashboard().isPresent()) {
             meetingDashboard = new MeetingDashboard(logic.getMeetingToBeDisplayedOnDashboard());
             projectAttributesDashboardPlaceHolder.getChildren().add(meetingDashboard.getRoot());
-        } else {
+        } else if (logic.getTaskToBeDisplayedOnDashboard().isEmpty()
+                && logic.getTeammateToBeDisplayedOnDashboard().isEmpty()
+                && logic.getMeetingToBeDisplayedOnDashboard().isEmpty()) {
             emptyAttributesDashboard = new EmptyDashboard(EMPTY_ATTRIBUTES_DASHBOARD_MSG);
             projectAttributesDashboardPlaceHolder.getChildren().add(emptyAttributesDashboard.getRoot());
         }

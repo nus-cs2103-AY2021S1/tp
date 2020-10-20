@@ -137,17 +137,23 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     public void enterTask(Task task) {
         status = Status.TASK;
         project.get().updateTaskOnView(task);
+        project.get().updateMeetingFilter(null);
+        project.get().updateTeammateOnView(null);
     }
 
     @Override
     public void enterTeammate(Person teammate) {
         status = Status.PERSON;
+        project.get().updateTaskOnView(null);
+        project.get().updateMeetingFilter(null);
         project.get().updateTeammateOnView(teammate);
     }
 
     @Override
     public void enterMeeting(Meeting meeting) {
         status = Status.MEETING;
+        project.get().updateTaskOnView(null);
+        project.get().updateTeammateOnView(null);
         project.get().updateMeetingOnView(meeting);
     }
 
