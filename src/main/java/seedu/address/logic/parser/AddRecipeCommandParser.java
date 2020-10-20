@@ -61,16 +61,20 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
 
         String instruction = argMultimap.getValue(PREFIX_INSTRUCTION).get();
         String recipeImage = argMultimap.getValue(PREFIX_RECIPE_IMAGE).get();
-
-        String filename = "";
-        for (int i = recipeImage.length() - 1; i >= 0; i--) {
-            if (recipeImage.charAt(i) == '/') {
-                filename = recipeImage.substring(i + 1);
-                break;
-            }
-        }
         
-        if (recipeImage.substring(0, 5) == "http") {
+        if (recipeImage.length() < 13) {
+            recipeImage = "images/defaultrecipe.jpg";
+        } else if (!recipeImage.substring(0, 6).equals("images") && !recipeImage.substring(0, 4).equals("http")) {
+            recipeImage = "images/defaultrecipe.jpg";
+        } 
+        /*
+            String filename = "";
+            for (int i = recipeImage.length() - 1; i >= 0; i--) {
+                if (recipeImage.charAt(i) == '/') {
+                    filename = recipeImage.substring(i + 1);
+                    break;
+                }
+            }
             URL url = new URL(recipeImage);
             InputStream in = new BufferedInputStream(url.openStream());
             ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -87,9 +91,9 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
             FileOutputStream fos = new FileOutputStream(recipeImage);
             fos.write(response);
             fos.close();
-        }
+        } 
+         */
         Recipe recipe = new Recipe(name, instruction, recipeImage, ingredients, calories, tagList);
-
         return new AddRecipeCommand(recipe);
     }
 
