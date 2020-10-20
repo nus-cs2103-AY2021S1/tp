@@ -145,13 +145,16 @@ public class ModelManager implements Model {
         addressBook.clearMod();
     }
 
-    /**
-     * Checks if addressBook has the given (@code Module}
-     */
     @Override
     public boolean hasModule(Module module) {
         requireNonNull(module);
         return addressBook.hasModule(module);
+    }
+
+    @Override
+    public boolean hasModuleCode(ModuleCode moduleCode) {
+        requireNonNull(moduleCode);
+        return addressBook.hasModuleCode(moduleCode);
     }
 
     @Override
@@ -185,13 +188,9 @@ public class ModelManager implements Model {
     //=========== Filtered Module List Accessors =============================================================
 
     /**
-     * Returns a modifiable view of the list of {@code Module}
+     * Returns an unmodifiable view of the list of {@code Module} backed by the internal list of
+     * {@code versionedAddressBook}
      */
-    @Override
-    public UniqueModuleList getModuleList() {
-        return modules;
-    }
-
     @Override
     public ObservableList<Module> getFilteredModuleList() {
         return filteredModules;

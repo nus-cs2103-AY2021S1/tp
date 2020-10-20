@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Person;
 
 /**
@@ -65,7 +64,6 @@ public interface Model {
 
     /**
      * Returns true if contact list is empty.
-     * @return
      */
     boolean isEmptyPersonList();
 
@@ -115,6 +113,12 @@ public interface Model {
     boolean hasModule(Module module);
 
     /**
+     * Returns true if a module has a module code of {@code moduleCode} exists in the address book.
+     */
+    boolean hasModuleCode(ModuleCode moduleCode);
+
+
+    /**
      * Returns true if module list is empty.
      */
     boolean isEmptyModuleList();
@@ -146,6 +150,4 @@ public interface Model {
      */
     void updateFilteredModuleList(Predicate<Module> predicate);
 
-    /** Returns an unmodifiable view of the filtered module list */
-    UniqueModuleList getModuleList();
 }
