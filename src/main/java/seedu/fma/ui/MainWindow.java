@@ -4,11 +4,14 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import seedu.fma.commons.core.GuiSettings;
 import seedu.fma.commons.core.LogsCenter;
@@ -32,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private LogListPanel logListPanel;
+    private ExerciseListPanel exerciseListPanel;
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
 
@@ -39,10 +43,16 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane commandBoxPlaceholder;
 
     @FXML
+    private HBox gridBoxPlaceholder;
+
+    @FXML
     private MenuItem helpMenuItem;
 
     @FXML
     private StackPane logListPanelPlaceholder;
+
+    @FXML
+    private StackPane exerciseListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -113,6 +123,15 @@ public class MainWindow extends UiPart<Stage> {
         logListPanel = new LogListPanel(logic.getFilteredLogList());
         logListPanelPlaceholder.getChildren().add(logListPanel.getRoot());
 
+        try {
+            exerciseListPanel = new ExerciseListPanel(logic.getExerciseList());
+            exerciseListPanelPlaceholder.getChildren().add(exerciseListPanel.getRoot());
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+
+        gridBoxPlaceholder = new HBox();
+//        gridBoxPlaceholder.setBackground(new Background(new BackgroundFill(new Color())));
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -165,6 +184,10 @@ public class MainWindow extends UiPart<Stage> {
 
     public LogListPanel getLogListPanel() {
         return logListPanel;
+    }
+
+    public ExerciseListPanel getExerciseListPanel() {
+        return exerciseListPanel;
     }
 
     /**

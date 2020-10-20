@@ -15,6 +15,7 @@ import seedu.fma.logic.parser.exceptions.ParseException;
 import seedu.fma.model.Model;
 import seedu.fma.model.ReadOnlyLogBook;
 import seedu.fma.model.log.Log;
+import seedu.fma.model.exercise.Exercise;
 import seedu.fma.storage.Storage;
 
 /**
@@ -62,6 +63,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Log> getFilteredLogList() {
         return model.getFilteredLogList();
+    }
+
+    @Override
+    public ObservableList<Exercise> getExerciseList() {
+        return model.getExerciseList();
     }
 
     @Override

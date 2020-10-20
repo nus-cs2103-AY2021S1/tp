@@ -8,6 +8,7 @@ import seedu.fma.logic.commands.CommandResult;
 import seedu.fma.logic.commands.exceptions.CommandException;
 import seedu.fma.logic.parser.exceptions.ParseException;
 import seedu.fma.model.ReadOnlyLogBook;
+import seedu.fma.model.exercise.Exercise;
 import seedu.fma.model.log.Log;
 
 /**
@@ -29,6 +30,13 @@ public interface Logic {
      * @see seedu.fma.model.Model#getLogBook()
      */
     ReadOnlyLogBook getLogBook();
+
+    /**
+     * Returns the LogBook.
+     *
+     * @see seedu.fma.model.Model#getLogBook()
+     */
+    ObservableList<Exercise> getExerciseList();
 
     /** Returns an unmodifiable view of the filtered list of logs */
     ObservableList<Log> getFilteredLogList();
