@@ -2,14 +2,14 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.item.Quantity;
+import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -79,12 +79,30 @@ public class ItemParserUtil {
     }
 
     /**
-     * Could be extended to parse multiple locations here.
-     * Parses {@code Collection<String> locations} into a {@code Set<String>}.
+     * Parses {@code Collection<String> locations} into a {@code Set<String>}
+     * Defensively flatmap parses Strings in location field in case
+     * -l is used multiple times
+     * @param locations String location(s)
+     * @return Set of tags used
      */
     public static Set<String> parseLocations(Collection<String> locations) {
         requireNonNull(locations);
-        return new HashSet<>(locations);
+        return locations.stream()
+                .flatMap(x -> Arrays.stream(x.split(", "))).collect(Collectors.toSet());
+    }
+
+    /**
+     * Parses {@code Collection<String> tag} into a {@code Set<Tag>}
+     * Defensively flatmap parses Strings in location field in case
+     * -t is used multiple times
+     * @param tags String tags
+     * @return Set of tags used
+     */
+    public static Set<Tag> parseTags(Collection<String> tags) {
+        return tags.stream()
+                .flatMap(x -> Arrays.stream(x.split(", ")))
+                .map(Tag::new)
+                .collect(Collectors.toSet());
     }
 }
 
