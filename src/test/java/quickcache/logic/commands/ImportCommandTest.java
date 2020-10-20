@@ -109,7 +109,8 @@ class ImportCommandTest {
         // Execute import command
         Model expectedModel = new ModelManager(getTypicalQuickCache(), new UserPrefs());
         ImportCommand importCommand = new ImportCommand(invalidTestFilePath, quickCacheStorage);
-        String expectedMessage = String.format(ImportCommand.MESSAGE_IMPORT_FLASHCARD_EMPTY_FILE_FAILURE, invalidTestFilePath);
+        String expectedMessage = String.format(
+            ImportCommand.MESSAGE_IMPORT_FLASHCARD_EMPTY_FILE_FAILURE, invalidTestFilePath);
         assertCommandFailure(importCommand, expectedModel, expectedMessage);
 
     }
@@ -123,7 +124,8 @@ class ImportCommandTest {
         // Execute import command
         Model expectedModel = new ModelManager(getTypicalQuickCache(), new UserPrefs());
         ImportCommand importCommand = new ImportCommand(invalidTestFilePath, quickCacheStorage);
-        String expectedMessage = String.format(ImportCommand.MESSAGE_IMPORT_FLASHCARD_ERROR_READING_FAILURE, invalidTestFilePath);
+        String expectedMessage = String.format(
+            ImportCommand.MESSAGE_IMPORT_FLASHCARD_ERROR_READING_FAILURE, invalidTestFilePath);
         assertCommandFailure(importCommand, expectedModel, expectedMessage);
     }
 
@@ -190,7 +192,7 @@ class ImportCommandTest {
      */
     private static class QuickCacheIoExceptionThrowingStub implements QuickCacheStorage {
 
-        Path filePath;
+        private Path filePath;
 
         private QuickCacheIoExceptionThrowingStub(Path filePath) {
             this.filePath = filePath;
@@ -198,6 +200,11 @@ class ImportCommandTest {
 
         @Override
         public Optional<ReadOnlyQuickCache> readQuickCache(Path filePath) throws IOException {
+            throw DUMMY_IO_EXCEPTION;
+        }
+
+        @Override
+        public Optional<ReadOnlyQuickCache> readQuickCache() throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
 
@@ -214,11 +221,6 @@ class ImportCommandTest {
         @Override
         public Path getQuickCacheFilePath() {
             return null;
-        }
-
-        @Override
-        public Optional<ReadOnlyQuickCache> readQuickCache() throws IOException {
-            throw DUMMY_IO_EXCEPTION;
         }
 
     }
