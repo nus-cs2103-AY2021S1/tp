@@ -18,12 +18,9 @@ import java.util.Set;
 
 import com.eva.commons.core.Messages;
 import com.eva.commons.core.index.Index;
-import com.eva.logic.commands.AddApplicantCommand;
 import com.eva.logic.commands.AddCommand;
-import com.eva.logic.commands.AddLeaveCommand;
 import com.eva.logic.commands.Command;
 import com.eva.logic.parser.comment.AddCommentCommandParser;
-import com.eva.logic.parser.comment.CommentCommandParser;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.logic.parser.leave.AddLeaveCommandParser;
 import com.eva.model.comment.Comment;

@@ -27,6 +27,13 @@ import com.eva.model.tag.Tag;
 
 public class AddCommentCommand extends CommentCommand {
     private String personType;
+
+    /**
+     * Creates an addcommentcommand object
+     * @param index
+     * @param commentPersonDescriptor
+     * @param personType
+     */
     public AddCommentCommand(Index index, CommentCommand.CommentPersonDescriptor commentPersonDescriptor,
                              String personType) {
         super(index, commentPersonDescriptor);
@@ -89,7 +96,7 @@ public class AddCommentCommand extends CommentCommand {
             Set<Leave> updatedLeaves = ((Staff) personToEdit).getLeaves();
             return new Staff(updatedName, updatedPhone, updatedEmail,
                     updatedAddress, updatedTags, updatedLeaves, updatedComments);
-        } else if (personToEdit instanceof Applicant){
+        } else if (personToEdit instanceof Applicant) {
             ApplicationStatus applicationStatus = ((Applicant) personToEdit).getApplicationStatus();
             Optional<InterviewDate> interviewDate = ((Applicant) personToEdit).getInterviewDate();
             return new Applicant(updatedName, updatedPhone, updatedEmail, updatedAddress,

@@ -9,12 +9,8 @@ import java.util.Optional;
 
 import com.eva.commons.core.Messages;
 import com.eva.commons.core.index.Index;
-import com.eva.logic.commands.AddCommand;
 import com.eva.logic.commands.Command;
 import com.eva.logic.commands.DeleteCommand;
-import com.eva.logic.commands.DeleteLeaveCommand;
-import com.eva.logic.parser.comment.AddCommentCommandParser;
-import com.eva.logic.parser.comment.CommentCommandParser;
 import com.eva.logic.parser.comment.DeleteCommentCommandParser;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.logic.parser.leave.DeleteLeaveCommandParser;
@@ -46,11 +42,14 @@ public class DeleteCommandParser implements Parser<Command> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
         }
         if (!deleteApplicantCommand.isEmpty() && !deleteCommentCommand.isEmpty()) {
-            return new DeleteCommentCommandParser().parse(" " + index.getOneBased() + " a- c- " + deleteCommentCommand.get());
+            return new DeleteCommentCommandParser()
+                    .parse(" " + index.getOneBased() + " a- c- " + deleteCommentCommand.get());
         } else if (!deleteStaffCommand.isEmpty() && !deleteCommentCommand.isEmpty()) {
-            return new DeleteCommentCommandParser().parse(" " + index.getOneBased() + " s- c- " + deleteCommentCommand.get());
+            return new DeleteCommentCommandParser()
+                    .parse(" " + index.getOneBased() + " s- c- " + deleteCommentCommand.get());
         } else if (!deleteStaffCommand.isEmpty()) {
-            return new DeleteStaffCommandParser().parse(" " + index.getOneBased());
+            return new DeleteStaffCommandParser()
+                    .parse(" " + index.getOneBased());
         } else if (!deleteLeaveCommand.isEmpty()) {
             return new DeleteLeaveCommandParser()
                     .parse(" " + index.getOneBased()
