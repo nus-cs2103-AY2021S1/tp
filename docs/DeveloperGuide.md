@@ -449,7 +449,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Warenager` and the **Actor** is the `user`, unless specified otherwise)
 
-#### Use case: Adding a stock
+#### Use case 1: Adding a stock
 
 **MSS**
 
@@ -485,7 +485,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 1.
 
 
-#### Use case: Deleting stocks
+#### Use case 2: Deleting stocks
 
 **MSS**
 
@@ -520,7 +520,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
        Use case resumes at step 2.
 
-#### Use case: Find a stock by name
+#### Use case 3: Find a stock by name
 
 **MSS**
 
@@ -548,7 +548,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-#### Use case: Find a stock by serial number
+#### Use case 4: Find a stock by serial number
 
 **MSS**
 
@@ -575,7 +575,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-#### Use case: Find a stock by location stored
+#### Use case 5: Find a stock by location stored
 
 **MSS**
 
@@ -602,7 +602,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-#### Use case: Find a stock by source of stock
+#### Use case 6: Find a stock by source of stock
 
 **MSS**
 
@@ -629,7 +629,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-#### Use case: Increment or decrement a stock's quantity
+#### Use case 7: Increment or decrement a stock's quantity
 
 **MSS**
 
@@ -688,7 +688,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### Use case: Rewrite a stock's quantity
+#### Use case 8: Rewrite a stock's quantity
 
 **MSS**
 
@@ -741,7 +741,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### Use case: Update the name of a stock.
+#### Use case 9: Update the name of a stock.
 
 **MSS**
 
@@ -776,7 +776,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### Use case: Update the location of a stock
+#### Use case 10: Update the location of a stock
 
 **MSS**
 
@@ -811,7 +811,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### Use case: Update the source of a stock
+#### Use case 11: Update the source of a stock
 
 **MSS**
 
@@ -846,7 +846,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### Use case: Using the stats command
+#### Use case 12: Using the stats command
 
 **MSS**
 
@@ -880,8 +880,42 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1d1. Warenager shows an error message.
 
      Use case resumes at step 1.
+     
+#### Use case 13: Generating a csv file that contains all stocks
 
-#### Use case: Using the help command
+**MSS**
+
+1.  User requests to print stocks in stock book.
+2.  Warenager generates a csv file containing all stocks.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given input contains has the wrong format.
+
+    * 1a1. Warenager shows an error message and suggested command.
+
+      Use case resumes at step 1.
+
+* 1b. There is an error when creating the csv file.
+
+    * 1b1. Warenager shows an error message.
+
+      Use case resumes at step 1.
+      
+#### Use case 14: Generating a csv file that contains all stocks sorted in desired order
+
+**MSS**
+
+1.  User sort stocks in stock book (Use case..) in their desired order.
+2.  User request to generate csv file based on the existing stock book (Use case 13).
+3.  Warenager generates a csv file containing all stocks.
+
+    Use case ends.
+
+
+#### Use case 15: Using the help command
 
 **MSS**
 
@@ -898,7 +932,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case resumes at step 1.
 
-#### Use case: Suggestion feature
+#### Use case 16: Suggestion feature
 
 **MSS**
 
@@ -927,7 +961,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 3.
 
-#### Use case: Exit Warenager
+#### Use case 17: Exit Warenager
 
 **MSS**
 

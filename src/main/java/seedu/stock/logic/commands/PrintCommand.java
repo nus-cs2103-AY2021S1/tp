@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javafx.collections.ObservableList;
+import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
 import seedu.stock.model.stock.Stock;
 
@@ -21,6 +22,8 @@ public class PrintCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "CSV file successfully made.";
 
+    public static final String MESSAGE_FAILURE = "Error occurred when generating the csv file. ";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Copies all stocks in the inventory into a csv file.\n"
             + "Parameters: No parameters\n"
             + "Example: " + COMMAND_WORD;
@@ -29,7 +32,7 @@ public class PrintCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         ObservableList<Stock> stockBookList = model.getStockBook().getStockList();
         Path csvFilePath = model.getUserPrefs().getCsvFilePath();
@@ -38,16 +41,12 @@ public class PrintCommand extends Command {
             BufferedWriter writer = new BufferedWriter(new FileWriter(csvFilePath.toString()));
             writer.append(makeFileCreationTime());
             writer.append(makeTitleHeader());
-            stockBookList.forEach(stock -> {
-                try {
-                    writer.append(printStock(stock));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
+            for (Stock stock: stockBookList) {
+                writer.append(printStock(stock));
+            }
             writer.close();
         } catch (IOException ex) {
-            ex.printStackTrace();
+            throw new CommandException(MESSAGE_FAILURE + ex.getMessage());
         }
 
         return new CommandResult(MESSAGE_SUCCESS);
