@@ -2,13 +2,10 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
 public class CdCommandTest {
-
-    private ModelStub modelStub = new ModelStubWithCurrentPath();
 
     @Test
     public void equals() {
@@ -34,15 +31,5 @@ public class CdCommandTest {
 
         // different address string -> returns false;
         assertFalse(cdCommand1.equals(cdCommand3));
-    }
-
-    @Test
-    public void execute_validAddress_success() {
-        CdCommand correctCdCommand = new CdCommand(AddressType.PARENT, "");
-        try {
-            correctCdCommand.execute(modelStub);
-        } catch (Exception exception) {
-            fail(exception.getMessage());
-        }
     }
 }
