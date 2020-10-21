@@ -38,6 +38,7 @@ public class SwitchAccountCommand extends Command {
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
         requireAllNonNull(model, activeAccount);
+        assert true;
         List<Account> accounts = model.getFilteredAccountList();
 
         int index = targetIndex.getZeroBased();

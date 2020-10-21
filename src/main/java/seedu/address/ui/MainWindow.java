@@ -2,8 +2,10 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -13,6 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -38,6 +41,9 @@ public class MainWindow extends UiPart<Stage> {
     private RevenueListPanel revenueListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    @FXML
+    private Label activeAccountName;
 
     @FXML
     private HBox commandBoxPlaceholder;
@@ -127,6 +133,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        // activeAccountName.textProperty().bind(logic.getActiveAccountName().getName());
+
         fillEntryDisplay();
 
         resultDisplay = new ResultDisplay();
@@ -180,11 +188,16 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
-        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
-        logic.setGuiSettings(guiSettings);
-        helpWindow.hide();
-        primaryStage.hide();
+        PauseTransition pause = new PauseTransition(Duration.seconds(1.5f));
+        pause.setOnFinished(event -> {
+            GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
+                    (int) primaryStage.getX(), (int) primaryStage.getY());
+            logic.setGuiSettings(guiSettings);
+            helpWindow.hide();
+            primaryStage.hide();
+        });
+        commandBoxPlaceholder.setDisable(true);
+        pause.play();
     }
 
     public ExpenseListPanel getEntryListPanel() {

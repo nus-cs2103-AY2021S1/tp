@@ -17,6 +17,7 @@ import seedu.address.model.ReadOnlyCommonCents;
 import seedu.address.model.account.Account;
 import seedu.address.model.account.ActiveAccount;
 import seedu.address.model.account.ActiveAccountManager;
+import seedu.address.model.account.Name;
 import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
 import seedu.address.storage.Storage;
@@ -73,6 +74,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Account> getFilteredAccountList() {
         return model.getFilteredAccountList();
+    }
+
+    @Override
+    public Name getActiveAccountName() {
+        return activeAccount.getAccount().getName();
     }
 
     @Override
