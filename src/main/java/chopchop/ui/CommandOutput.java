@@ -35,4 +35,5 @@ public class CommandOutput extends UiPart<Region> {
         displayBox.setText(feedbackToUser);
     }
 
+
 }
