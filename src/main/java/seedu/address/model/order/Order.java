@@ -28,7 +28,7 @@ public class Order implements Iterable<OrderItem> {
      */
     public boolean contains(OrderItem toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameOrderItem);
+        return internalList.stream().anyMatch(toCheck::isSameOrderItemDescription);
     }
 
     /**
@@ -80,7 +80,7 @@ public class Order implements Iterable<OrderItem> {
             throw new OrderItemNotFoundException();
         }
 
-        if (!target.isSameOrderItem(editedOrderItem) && contains(editedOrderItem)) {
+        if (!target.isSameOrderItemDescription(editedOrderItem) && contains(editedOrderItem)) {
             throw new DuplicateOrderItemException();
         }
 
@@ -97,9 +97,7 @@ public class Order implements Iterable<OrderItem> {
             throw new OrderItemNotFoundException();
         }
         int index = internalList.indexOf(toRemove);
-        if (index == -1) {
-            throw new OrderItemNotFoundException();
-        }
+
         OrderItem existingItem = internalList.get(index);
         int currQty = existingItem.getQuantity();
         int newQty = currQty - toRemove.getQuantity();
