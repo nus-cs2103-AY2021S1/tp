@@ -46,6 +46,11 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
+        ReadOnlyZooKeepBook currentRedo = new ZooKeepBook();
+        if (historyStack.getRedoSize() > 0) {
+            currentRedo = historyStack.viewRecentRedo();
+        }
+
         CommandResult commandResult;
         Command command = zooKeepBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
@@ -55,6 +60,10 @@ public class LogicManager implements Logic {
 
         logger.info("--------------- ADDED CHANGE TO HISTORY STACK");
         logger.info(historyStack.toString());
+
+        if (!commandText.equals("undo") && (historyStack.getRedoSize() > 0)) {
+            historyStack.checkEdit(currentRedo, book); // clear redo stack if a new edit has been made
+        }
 
         try {
             storage.saveZooKeepBook(book);
