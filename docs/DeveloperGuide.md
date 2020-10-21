@@ -135,9 +135,9 @@ The open flashcard feature will allow the user to open a `Flashcard` specified b
 
 The open flashcard implementation requires the creation of an `OpenCommandParser` and an `OpenCommand`. The `OpenCommandParser` will take in a single argument for `Index`. After parsing the argument, it will then proceed to create an `OpenCommand` class instance. If no `Index` is given then a `CommandException` will be thrown.
 
-The `OpenCommand` class will have to pass the`Question` to the GUI for it to display the`Question` of the `Flashcard` to the user. This will be done by passing the question into a `Feedback` object which is an attribute of the `CommandResult` given to the GUI.
+The `OpenCommand` class will have to pass the `Question` to the GUI for it to display the`Question` of the `Flashcard` to the user. This will be done by passing the `Question` into a `Feedback` object which is an attribute of the `CommandResult` given to the GUI.
 
-The GUI will change the content of some of its placeholders to display the question and if available, its choices to the user. The GUI will revert back to its default placeholders if other commands aside from another `OpenCommand` or a `TestCommand` are called.
+The GUI will change the content of some of its placeholders to display the question and if available, its choices to the user. The GUI will change the contents of its placeholders accordingly if other commands aside from another `OpenCommand` is called afterwards.
 
 Given below is an example usage scenario and how the `OpenCommand` mechanism behaves at each step.
 
@@ -156,6 +156,36 @@ Step 6. The GUI will then proceed to get the `Question` from `Feedback` and disp
 The following sequence diagram shows how the open operation works:
 
 ![OpenSequenceDiagram](images/OpenSequenceDiagram.png)
+
+### Display Statistics of Flashcard
+
+The display statistics of flashcard feature will allow the user to view a Pie Chart of the `Statistics` of the`Flashcard` specified by the given index and display it in the GUI.
+
+#### Implementation
+
+The display statistics of flashcard implementation requires the creation of a `StatsCommandParser` and a `StatsCommand`. The `StatsCommandParser` will take in a single argument for `Index`. After parsing the argument, it will then proceed to create a `StatsCommand` class instance. If no `Index` is given then a `CommandException` will be thrown.
+
+The `StatsCommand` class will have to pass the `Statistics` to the GUI for it to display the `Statistics` of the `Flashcard` to the user. This will be done by passing the `Statistics` into a `Feedback` object which is an attribute of the `CommandResult` given to the GUI.
+
+The GUI will change the content of some of its placeholders to display the `Statistics` as a Pie Chart. The GUI will change the contents of its placeholders accordingly if other commands aside from another `StatsCommand` is called afterwards.
+
+Given below is an example usage scenario and how the `StatsCommand` mechanism behaves at each step.
+
+Step 1. The user launches the application after a few times of playing around with the `TestCommand` feature. The `QuickCache` will be initialized with the existing QuickCache state.
+
+Step 2. The user executes `stats 1` command to display the `Statistics` of the first flashcard in the list on the GUI.
+ 
+Step 3. This will call `StatsCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseIndex` will be called to convert the user input into the `Index` of the desired `Flashcard` to display the `Statistics` of.
+
+Step 4. The `index` is then passed to the `StatsCommand`
+
+Step 5. `StatsCommand#execute` will get the `Flashcard` at the specified `Index` and get its `Statistics` to be passed to the GUI as part of the `Feedback` attribute within the `CommandResult`.
+
+Step 6. The GUI will then proceed to get the `Statistics` from `Feedback` and display its data in the form of a Pie Chart to the user.
+
+The following sequence diagram shows how the stats operation works:
+
+![StatsSequenceDiagram](images/StatsSequenceDiagram.png)
 
 ### Delete by tag feature
 
