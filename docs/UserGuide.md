@@ -24,9 +24,11 @@ get your inventory management tasks done faster than traditional GUI apps.
 1. Copy the file to the folder you want to use as the _home folder_ for your Inventoryinator.
 
 1. Double-click the file to start the app. The GUI like below should appear in a few seconds. Note how the app contains some sample data.<br>
+   
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   
    Some example commands you can try:
 
    * **`list`** : Lists all items stored in Inventoryinator.
@@ -45,6 +47,8 @@ get your inventory management tasks done faster than traditional GUI apps.
 ___________________________________________________________________
 ## Legend:
 
+A legend for the styling used in this guide to describe the commands' format.
+
 Key | Meaning
 -----|---------
 term | Command/variable term<br>
@@ -57,6 +61,8 @@ default | If no parameter is given as input, this will be the input parameter.
 ___________________________________________________________________
 
 ## Command summary
+
+A summary of the commands for the features currently implemented.
 
 Action | Format
 --------|------------------
@@ -75,7 +81,9 @@ Action | Format
 
 ## Features
 
-### Adding a item: `addi`
+Inventoryinator's features and their descriptions, as of v1.2.
+
+### Adding an item: `addi`
 
 **NAME:**
 
