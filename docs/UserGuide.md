@@ -35,7 +35,7 @@ It is a convenient platform for you to keep track of your lessons and assignment
 
    * **`import YOUR_NUSMODS_URL`** : Imports your timetable.
 
-   * **`list`**`2` : Lists all assignments 2 days from current date (48 hours from current date and time).
+   * **`list`**`2` : Lists assignments with deadline 2 days from current date (48 hours from current date and time).
    
    * **`find`**`n/Lab` : Finds assignments with names that contain the word 'Lab'.
 
@@ -115,9 +115,9 @@ stored in ProductiveNUS.
 
 
 Examples: 
-- `list 2` list all your assignments 2 days (48 hours) from the current date (and current time). 
-- `list 3` list all your assignments 3 days (72 hours) from the current date (and current time). 
-- `list ` list all your assignments.
+- `list 2` lists all your assignments with deadline 2 days (48 hours) from the current date (and current time). 
+- `list 3` lists all your assignments with deadline 3 days (72 hours) from the current date (and current time). 
+- `list ` lists all your assignments.
 
 ### Finding assignments : `find`
 
