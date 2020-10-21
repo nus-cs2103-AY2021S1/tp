@@ -16,7 +16,7 @@ public class Name {
     public Name(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        accountName = name;
+        this.accountName = name;
     }
 
     /**
@@ -26,9 +26,13 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public String getName() {
+        return accountName;
+    }
+
     @Override
     public String toString() {
-        return this.accountName;
+        return this.accountName.toString();
     }
 
     @Override

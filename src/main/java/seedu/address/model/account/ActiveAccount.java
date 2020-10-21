@@ -25,7 +25,7 @@ public interface ActiveAccount {
     /**
      * Replaces the name of the account with {@code name}.
      */
-    public void setName(Name name);
+    void setName(Name name);
 
     /** Returns a copy of the Active Account */
     Account getAccount();

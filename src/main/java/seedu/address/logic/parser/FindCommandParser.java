@@ -28,10 +28,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_KEYWORDS);
         boolean isCategoryPrefixPresent = (argMultimap.getAllValues(PREFIX_CATEGORY).size() > 0);
 
-        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_KEYWORDS)
-            || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_KEYWORDS) || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         List<String> keywords = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_KEYWORDS).get());
