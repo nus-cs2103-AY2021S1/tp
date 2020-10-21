@@ -43,9 +43,9 @@ public class TypicalFlashcards {
                 "Management information system",
                 "Transaction processing system"})
         .build();
-    public static final Flashcard RANDOM8 = new FlashcardBuilder().withQuestion("Question Eight")
+    public static final Flashcard RANDOM8 = new FlashcardBuilder().withQuestion("Question One")
             .withAnswer("1").withTags("test").build();
-    public static final Flashcard RANDOM9 = new FlashcardBuilder().withQuestion("Question Nine")
+    public static final Flashcard RANDOM9 = new FlashcardBuilder().withQuestion("Question Two")
             .withAnswer("1").withTags("test").build();
 
     /**
