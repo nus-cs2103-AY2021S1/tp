@@ -1,10 +1,5 @@
 package seedu.expense;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Optional;
-import java.util.logging.Logger;
-
 import javafx.application.Application;
 import javafx.stage.Stage;
 import seedu.expense.commons.core.Config;
@@ -15,21 +10,16 @@ import seedu.expense.commons.util.ConfigUtil;
 import seedu.expense.commons.util.StringUtil;
 import seedu.expense.logic.Logic;
 import seedu.expense.logic.LogicManager;
-import seedu.expense.model.ExpenseBook;
-import seedu.expense.model.Model;
-import seedu.expense.model.ModelManager;
-import seedu.expense.model.ReadOnlyExpenseBook;
-import seedu.expense.model.ReadOnlyUserPrefs;
-import seedu.expense.model.UserPrefs;
+import seedu.expense.model.*;
 import seedu.expense.model.util.SampleDataUtil;
-import seedu.expense.storage.ExpenseBookStorage;
-import seedu.expense.storage.JsonExpenseBookStorage;
-import seedu.expense.storage.JsonUserPrefsStorage;
-import seedu.expense.storage.Storage;
-import seedu.expense.storage.StorageManager;
-import seedu.expense.storage.UserPrefsStorage;
+import seedu.expense.storage.*;
 import seedu.expense.ui.Ui;
 import seedu.expense.ui.UiManager;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Optional;
+import java.util.logging.Logger;
 
 /**
  * Runs the application.
@@ -57,7 +47,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         ExpenseBookStorage expenseBookStorage = new JsonExpenseBookStorage(userPrefs.getExpenseBookFilePath());
-        storage = new StorageManager(expenseBookStorage, userPrefsStorage);
+        JsonAliasMapStorage aliasMapStorage = new JsonAliasMapStorage(userPrefs.getAliasMapFilePath());
+        storage = new StorageManager(expenseBookStorage, userPrefsStorage, aliasMapStorage);
 
         initLogging(config);
 
