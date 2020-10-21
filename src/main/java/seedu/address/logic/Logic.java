@@ -9,7 +9,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyCommonCents;
 import seedu.address.model.account.Account;
-import seedu.address.model.account.ActiveAccount;
 import seedu.address.model.account.Name;
 import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
