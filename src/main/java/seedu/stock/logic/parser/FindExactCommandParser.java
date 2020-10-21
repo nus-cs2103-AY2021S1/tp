@@ -10,13 +10,12 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.stock.logic.commands.FindExactCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
-import seedu.stock.model.stock.Stock;
+import seedu.stock.model.stock.predicates.FieldContainsKeywordsPredicate;
 import seedu.stock.model.stock.predicates.LocationContainsKeywordsPredicate;
 import seedu.stock.model.stock.predicates.NameContainsKeywordsPredicate;
 import seedu.stock.model.stock.predicates.SerialNumberContainsKeywordsPredicate;
@@ -55,7 +54,7 @@ public class FindExactCommandParser implements Parser<FindExactCommand> {
         }
 
         // Get the predicates to test to find the stocks that match
-        List<Predicate<Stock>> predicatesToTest =
+        List<FieldContainsKeywordsPredicate> predicatesToTest =
                 parsePrefixAndKeywords(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER);
 
         return new FindExactCommand(predicatesToTest);
@@ -93,7 +92,7 @@ public class FindExactCommandParser implements Parser<FindExactCommand> {
      * @param prefixes prefixes to parse
      * @return list of predicates to filter stocks
      */
-    private static List<Predicate<Stock>> parsePrefixAndKeywords(ArgumentMultimap argumentMultimap,
+    private static List<FieldContainsKeywordsPredicate> parsePrefixAndKeywords(ArgumentMultimap argumentMultimap,
                                                                  Prefix... prefixes) {
         return Stream.of(prefixes)
                 .filter(prefix -> argumentMultimap.getValue(prefix).isPresent())
@@ -108,8 +107,8 @@ public class FindExactCommandParser implements Parser<FindExactCommand> {
      * @param keywordsToFind keywords to match with the stock's field
      * @return predicate filter stocks based on field
      */
-    private static Predicate<Stock> getPredicate(Prefix prefix, String keywordsToFind) {
-        final Predicate<Stock> fieldContainsKeywordsPredicate;
+    private static FieldContainsKeywordsPredicate getPredicate(Prefix prefix, String keywordsToFind) {
+        final FieldContainsKeywordsPredicate fieldContainsKeywordsPredicate;
         String trimmedKeywordsToFind = keywordsToFind.trim();
         String[] keywords = trimmedKeywordsToFind.split("\\s+");
 
