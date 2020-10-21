@@ -35,7 +35,7 @@ It is a convenient platform for you to keep track of your lessons and assignment
 
    * **`import YOUR_NUSMODS_URL`** : Imports your timetable.
 
-   * **`list`**`2` : Lists all lessons and assignments within 2 weeks (including this week).
+   * **`list`**`2` : Lists all assignments 2 days from current date (48 hours from current date and time).
 
    * **`remind`**`3` : Tags your assignment to receive reminders which will be displayed in `Your Reminders` section.
 
@@ -101,22 +101,43 @@ Format: `import url/YOUR_NUSMODS_URL`
 Examples:
 * `import url/https://nusmods.com/timetable/sem-1/share?CS2100=TUT:01,LAB:11,LEC:1&CS2101=&CS2103T=LEC:G16&CS2105=TUT:14,LEC:1&EC1301=TUT:S28,LEC:1&IS1103=` will 
 
-### Listing lessons and assignments : `list`
+### Listing assignments : `list`
 
 Format: `list [NUMBER]`
 
-- Shows a list of lessons and assignments in your schedule within next `NUMBER` 
-weeks, starting from the current date.
-- `list` command without `NUMBER` displays your entire list of lessons and assignments 
+- Shows a list of assignments in your schedule within next `NUMBER` 
+days, starting from the current date (and current time).
+- A day represents 24 hours. 
+- `list` without `NUMBER` displays your entire list of assignments 
 stored in ProductiveNUS.
 
 
 Examples: 
-- `list 2` displays your lessons and assignments within the next
-2 weeks (starting from the current date).
-- `list 3` displays all your lessons and assignments within the next
-3 weeks (starting from the current date).
-- `list ` displays all your lessons and assignments.
+- `list 2` list all your assignments 48 hours (2 days) from the current date (and current time). 
+- `list 3` list all your assignments 72 hours (3 days) from the current date (and current time). 
+- `list ` displays all your assignments.
+
+### Finding assignments : `find`
+
+Format: `find PREFIX/ KEYWORD [MORE KEYWORDS]`
+
+Parameters are:
+n/ NAME_OF_ASSIGNMENT [MORE NAME_OF_ASSIGNMENTS] to find by name of assignment.
+d/ DATE_OR_TIME_OF_ASSIGNMENT [MORE DATE_OR_TIME_OF_ASSIGNMENT] to find by the deadline (date or time) of assignment.
+mod/ MODULE_CODE [MORE MODULE_CODE] to find by module code.
+priority/ PRIORITY_OF_ASSIGNMENT [MORE PRIORITY_OF_ASSIGNMENT] to find by priority of assignment.
+
+- Finds assignments in your schedule by name, module code, deadline (date or time) or priority.
+- DATE_OR_TIME_OF_ASSIGNMENT is in the format dd-MM-yyyy or HHmm to enable searching by time and date of assignment separately.
+- Only one field can be searched at a time.
+- You can find assignments with multiple keywords of the same field.
+
+
+Examples: 
+- `find n/Assignment Homework Lab` Finds all your assignments with names that has Assignment, Homework or Lab.
+- `find mod/CS2100` Finds all your assignments from the module CS2100. 
+- `find d/1200 24-10-2020` Finds all your assignments with due date of 24-10-2020 or with due time 1200.
+- `find priority/HIGH` Finds all assignments with high priority.
 
 ### Setting reminders for assignments : `remind`
 Tags the specified assignment to receive reminders which will be displayed in `Your Reminders` section.
@@ -157,4 +178,5 @@ Action | Format, Examples
 **delete** | `delete INDEX`<br> e.g., `delete 3`
 **import** | `import NUSMODS_URL`
 **list** | `list [NUMBER]` e.g., `list 2`, `list`
+**find** | `list [NUMBER]` e.g., `list 2`, `list`
 **remind** | `remind INDEX`
