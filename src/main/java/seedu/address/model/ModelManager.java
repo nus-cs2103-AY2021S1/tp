@@ -14,7 +14,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Person;
 
 /**
@@ -27,7 +26,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Module> filteredModules;
-    private final UniqueModuleList modules;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -41,8 +39,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        modules = this.addressBook.getModuleList();
-        filteredModules = new FilteredList<>(this.modules.asUnmodifiableObservableList());
+        filteredModules = new FilteredList<>(this.addressBook.getModuleList().asUnmodifiableObservableList());
     }
 
     public ModelManager() {
@@ -138,7 +135,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean isEmptyModuleList() {
-        return modules.isEmptyList();
+        return addressBook.getModuleList().isEmptyList();
     }
 
     @Override
@@ -226,7 +223,7 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
-                && modules.equals(other.modules);
+                && filteredModules.equals(other.filteredModules);
     }
 
 }
