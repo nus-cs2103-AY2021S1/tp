@@ -11,7 +11,6 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.flashcard.commons.core.GuiSettings;
 import seedu.flashcard.commons.core.LogsCenter;

@@ -2,14 +2,8 @@ package seedu.flashcard.logic.parser;
 
 import static seedu.flashcard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_ANSWER;
-import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_DIAGRAM;
-import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_NOTE;
-import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_QUESTION;
-import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_RATING;
 
 import seedu.flashcard.commons.core.index.Index;
-import seedu.flashcard.logic.commands.DeleteCommand;
 import seedu.flashcard.logic.commands.ViewCommand;
 import seedu.flashcard.logic.parser.exceptions.ParseException;
 

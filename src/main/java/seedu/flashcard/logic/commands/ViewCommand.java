@@ -2,7 +2,6 @@ package seedu.flashcard.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_ANSWER;
-import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_QUESTION;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ import seedu.flashcard.model.Model;
 import seedu.flashcard.model.flashcard.Flashcard;
 
 /**
- * Views  2 aa flashcard identified using it's displayed index from the list of flashcards.
+ * Views a flashcard identified using it's displayed index from the list of flashcards.
  */
 public class ViewCommand extends Command {
 
@@ -30,6 +29,11 @@ public class ViewCommand extends Command {
     private final Index targetIndex;
     private final boolean showAnswer;
 
+    /**
+     * Creates a view command to show the targeted flashcard.
+     * @param targetIndex
+     * @param showAnswer
+     */
     public ViewCommand(Index targetIndex, boolean showAnswer) {
         this.targetIndex = targetIndex;
         this.showAnswer = showAnswer;

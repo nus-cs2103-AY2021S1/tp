@@ -1,7 +1,5 @@
 package seedu.flashcard.ui;
 
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
