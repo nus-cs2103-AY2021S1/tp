@@ -5,20 +5,29 @@ import static seedu.stock.logic.commands.CommandWords.ADD_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.DELETE_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.FIND_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.FIND_EXACT_COMMAND_WORD;
+import static seedu.stock.logic.commands.CommandWords.NOTE_COMMAND_WORD;
+import static seedu.stock.logic.commands.CommandWords.NOTE_DELETE_COMMAND_WORD;
+import static seedu.stock.logic.commands.CommandWords.SORT_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.STATISTICS_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.UPDATE_COMMAND_WORD;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE_INDEX;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SORT_FIELD;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SORT_ORDER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_STATISTICS_TYPE;
 
 import java.util.List;
 import java.util.Random;
 
+import seedu.stock.commons.util.SortUtil.Field;
+import seedu.stock.commons.util.SortUtil.Order;
 import seedu.stock.commons.util.SuggestionUtil;
 import seedu.stock.logic.commands.AddCommand;
 import seedu.stock.logic.commands.CommandWords;
@@ -28,7 +37,10 @@ import seedu.stock.logic.commands.FindCommand;
 import seedu.stock.logic.commands.FindExactCommand;
 import seedu.stock.logic.commands.HelpCommand;
 import seedu.stock.logic.commands.ListCommand;
+import seedu.stock.logic.commands.NoteCommand;
+import seedu.stock.logic.commands.NoteDeleteCommand;
 import seedu.stock.logic.commands.PrintCommand;
+import seedu.stock.logic.commands.SortCommand;
 import seedu.stock.logic.commands.StatisticsCommand;
 import seedu.stock.logic.commands.SuggestionCommand;
 import seedu.stock.logic.commands.UpdateCommand;
@@ -36,7 +48,7 @@ import seedu.stock.logic.parser.exceptions.ParseException;
 
 public class SuggestionCommandParser implements Parser<SuggestionCommand> {
 
-    private static final String MESSAGE_SUGGESTION = "Do you mean \n";
+    private static final String MESSAGE_SUGGESTION = "Do you mean: \n";
     private String faultyCommandWord;
     private String commandWord;
     private String headerErrorMessage;
@@ -80,7 +92,8 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
                         args, PREFIX_SERIAL_NUMBER, PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY,
-                        PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION, PREFIX_QUANTITY
+                        PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION, PREFIX_QUANTITY, PREFIX_SORT_FIELD,
+                        PREFIX_SORT_ORDER
                 );
         List<String> allCommandWords = CommandWords.getAllCommandWords();
         StringBuilder toBeDisplayed = new StringBuilder();
@@ -146,8 +159,20 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             generateFindExactSuggestion(toBeDisplayed, argMultimap);
             break;
 
+        case NoteCommand.COMMAND_WORD:
+            generateNoteSuggestion(toBeDisplayed, argMultimap);
+            break;
+
+        case NoteDeleteCommand.COMMAND_WORD:
+            generateDeleteNoteSuggestion(toBeDisplayed, argMultimap);
+            break;
+
         case PrintCommand.COMMAND_WORD:
             generatePrintSuggestion(toBeDisplayed, argMultimap);
+            break;
+
+        case SortCommand.COMMAND_WORD:
+            generateSortSuggestion(toBeDisplayed, argMultimap);
             break;
 
         default:
@@ -155,6 +180,58 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         }
 
         return new SuggestionCommand(toBeDisplayed.toString());
+    }
+
+    /**
+     * Generates suggestion for faulty sort command.
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param argMultimap The parsed user input fields.
+     */
+    private void generateSortSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
+        toBeDisplayed.append(SORT_COMMAND_WORD);
+        Prefix fieldPrefix = PREFIX_SORT_FIELD;
+        Prefix orderPrefix = PREFIX_SORT_ORDER;
+
+        if (!argMultimap.getValue(orderPrefix).isPresent()) {
+            toBeDisplayed.append(" " + orderPrefix + CliSyntax.getDefaultDescription(orderPrefix));
+        } else {
+            String description = argMultimap.getValue(orderPrefix).get();
+            String suggestedDescription = description;
+            int bestEditDistanceSoFar = Integer.MAX_VALUE;
+            for (Order order : Order.values()) {
+                String orderDescription = order.toString().toLowerCase();
+                int currentEditDistance = SuggestionUtil.minimumEditDistance(description, orderDescription);
+                if (currentEditDistance < bestEditDistanceSoFar) {
+                    bestEditDistanceSoFar = currentEditDistance;
+                    suggestedDescription = orderDescription;
+                }
+            }
+            toBeDisplayed.append(" " + orderPrefix + suggestedDescription);
+        }
+
+        if (!argMultimap.getValue(fieldPrefix).isPresent()) {
+            toBeDisplayed.append(" " + fieldPrefix + CliSyntax.getDefaultDescription(fieldPrefix));
+        } else {
+            String description = argMultimap.getValue(fieldPrefix).get();
+            String suggestedDescription = description;
+            int bestEditDistanceSoFar = Integer.MAX_VALUE;
+            for (Field field : Field.values()) {
+                String fieldDescription = field.toString().toLowerCase();
+                int currentEditDistance = SuggestionUtil.minimumEditDistance(description, fieldDescription);
+                if (currentEditDistance < bestEditDistanceSoFar) {
+                    bestEditDistanceSoFar = currentEditDistance;
+                    suggestedDescription = fieldDescription;
+                }
+            }
+            toBeDisplayed.append(" " + fieldPrefix + suggestedDescription);
+        }
+
+        if (!bodyErrorMessage.equals("")) {
+            toBeDisplayed.append("\n" + bodyErrorMessage);
+        } else {
+            toBeDisplayed.append("\n" + SortCommand.MESSAGE_USAGE);
+        }
     }
 
     /**
@@ -258,6 +335,53 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             toBeDisplayed.append("\n" + bodyErrorMessage);
         } else {
             toBeDisplayed.append("\n" + FindCommand.MESSAGE_USAGE);
+        }
+    }
+
+    /**
+     * Generates suggestion for faulty note command.
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param argMultimap The parsed user input fields.
+     */
+    private void generateNoteSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
+        List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(
+                PREFIX_SERIAL_NUMBER, PREFIX_NOTE);
+        toBeDisplayed.append(NOTE_COMMAND_WORD);
+
+        for (int i = 0; i < allowedPrefixes.size(); i++) {
+            Prefix currentPrefix = allowedPrefixes.get(i);
+            toBeDisplayed.append(" ").append(currentPrefix).append(CliSyntax.getDefaultDescription(currentPrefix));
+        }
+
+        if (!bodyErrorMessage.equals("")) {
+            toBeDisplayed.append("\n" + bodyErrorMessage);
+        } else {
+            toBeDisplayed.append("\n" + NoteCommand.MESSAGE_USAGE);
+        }
+    }
+
+    /**
+     * Generates suggestion for faulty deletenote command.
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param argMultimap The parsed user input fields.
+     */
+    private void generateDeleteNoteSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
+        List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(
+                PREFIX_SERIAL_NUMBER, PREFIX_NOTE_INDEX);
+        toBeDisplayed.append(NOTE_DELETE_COMMAND_WORD);
+
+        for (int i = 0; i < allowedPrefixes.size(); i++) {
+            Prefix currentPrefix = allowedPrefixes.get(i);
+            toBeDisplayed.append(" ").append(currentPrefix)
+                    .append(CliSyntax.getDefaultDescription(currentPrefix));
+        }
+
+        if (!bodyErrorMessage.equals("")) {
+            toBeDisplayed.append("\n" + bodyErrorMessage);
+        } else {
+            toBeDisplayed.append("\n" + NoteDeleteCommand.MESSAGE_USAGE);
         }
     }
 
