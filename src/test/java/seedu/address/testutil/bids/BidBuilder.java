@@ -3,6 +3,7 @@ package seedu.address.testutil.bids;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.id.BidderId;
 import seedu.address.model.id.PropertyId;
+import seedu.address.model.price.Price;
 
 public class BidBuilder {
 
@@ -12,7 +13,7 @@ public class BidBuilder {
 
     private PropertyId propertyId;
     private BidderId bidderId;
-    private double bidAmount;
+    private Price bidAmount;
 
     /**
      * constructor for a default BidBuilder object
@@ -20,7 +21,7 @@ public class BidBuilder {
     public BidBuilder() {
         propertyId = new PropertyId(DEFAULT_PROPERTY_ID);
         bidderId = new BidderId(DEFAULT_BIDDER_ID);
-        bidAmount = DEFAULT_BID_AMOUNT;
+        bidAmount = new Price(DEFAULT_BID_AMOUNT);
     }
 
     /**
@@ -58,7 +59,7 @@ public class BidBuilder {
      * @return
      */
     public BidBuilder withBidAmount(double amt) {
-        this.bidAmount = amt;
+        this.bidAmount = new Price(amt);
         return this;
     }
 

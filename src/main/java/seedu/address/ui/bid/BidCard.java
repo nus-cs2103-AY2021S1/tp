@@ -46,7 +46,7 @@ public class BidCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         propertyId.setText("Property Id: " + bid.getPropertyId());
         bidderId.setText("Bidder Id: " + bid.getBidderId());
-        bidAmount.setText("Bid Amount: $" + bid.getBidAmount());
+        bidAmount.setText("Bid Amount: " + bid.getBidAmount());
     }
 
     @Override

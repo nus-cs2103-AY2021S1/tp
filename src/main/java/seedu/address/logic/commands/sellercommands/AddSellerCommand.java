@@ -50,6 +50,7 @@ public class AddSellerCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, seller)).setEntity(EntityType.SELLER);
     }
 
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
