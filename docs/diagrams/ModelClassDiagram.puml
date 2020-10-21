@@ -5,10 +5,10 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyProductivenus <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
+Class Productivenus
 Class ReadOnlyAddressBook
 Class Model
 Class ModelManager
@@ -18,9 +18,10 @@ Class ReadOnlyUserPrefs
 Package Assignment {
 Class Assignment
 Class Deadline
-Class Email
+Class Remind
 Class Name
 Class ModuleCode
+class Priority
 Class UniqueAssignmentList
 }
 
@@ -31,15 +32,10 @@ Package Task {
 
 }
 
-Package Tag {
-Class Tag
-}
-}
-
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+Productivenus .up.|> ReadOnlyAddressBook
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
@@ -49,15 +45,15 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniqueAssignmentList
 UniqueAssignmentList o--> "*" Assignment
-Assignment *--> Name
-Assignment *--> ModuleCode
-Assignment *--> Email
-Assignment *--> Deadline
-Assignment *--> "*" Tag
+Assignment *--> "1"Name
+Assignment *--> "1"ModuleCode
+Assignment *--> "1"Remind
+Assignment *--> "1"Deadline
+Assignment *--> "1"Priority
 
 Name -[hidden]right-> ModuleCode
 ModuleCode -[hidden]right-> Deadline
-Deadline -[hidden]right-> Email
-
+Deadline -[hidden]right-> Remind
+Remind -[hidden]right-> Priority
 ModelManager -->"1" Assignment : filtered list
 @enduml
