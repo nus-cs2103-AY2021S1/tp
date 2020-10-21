@@ -9,6 +9,7 @@ import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.flashcard.logic.commands.AddCommand;
@@ -47,9 +48,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).orElse("General"));
         Note note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).orElse(""));
         Rating rating = ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).orElse(""));
-        Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).orElse(""));
+        Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Diagram diagram = ParserUtil.parseDiagram(argMultimap.getValue(PREFIX_DIAGRAM).orElse(""));
-        Flashcard flashcard = new Flashcard(question, answer, category, note, rating, tag, diagram);
+        Flashcard flashcard = new Flashcard(question, answer, category, note, rating, tags, diagram);
         return new AddCommand(flashcard);
     }
 

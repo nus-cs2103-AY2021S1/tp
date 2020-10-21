@@ -9,6 +9,8 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import seedu.flashcard.model.flashcard.Flashcard;
 
+import java.util.Comparator;
+
 /**
  * An UI component that displays information of a {@code Flashcard}.
  */
@@ -72,8 +74,10 @@ public class FlashcardCard extends UiPart<Region> {
             ratingPane.setVisible(false);
             ratingPane.managedProperty().bind(ratingPane.visibleProperty());
         }
-        if (flashcard.getTag().getTagName().length() > 0) {
-            tag.setText("Tag: " + flashcard.getTag().toString());
+        if (flashcard.getTags().size() > 0) {
+            flashcard.getTags().stream()
+                    .sorted(Comparator.comparing(tag -> tag.tagName))
+                    .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         } else {
             tag.setVisible(false);
         }

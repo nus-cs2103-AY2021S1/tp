@@ -10,8 +10,7 @@ import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.flashcard.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import seedu.flashcard.commons.core.Messages;
 import seedu.flashcard.commons.core.index.Index;
@@ -103,11 +102,11 @@ public class EditCommand extends Command {
         Category updatedCategory = editFlashcardDescriptor.getCategory().orElse(flashcardToEdit.getCategory());
         Note updatedNote = editFlashcardDescriptor.getNote().orElse(flashcardToEdit.getNote());
         Rating updatedRating = editFlashcardDescriptor.getRating().orElse(flashcardToEdit.getRating());
-        Tag updatedTag = editFlashcardDescriptor.getTag().orElse(flashcardToEdit.getTag());
+        Set<Tag> updatedTags = editFlashcardDescriptor.getTags().orElse(flashcardToEdit.getTags());
         Diagram updatedDiagram = editFlashcardDescriptor.getDiagram().orElse(flashcardToEdit.getDiagram());
         boolean isFavourite = flashcardToEdit.isFavourite();
         return new Flashcard(updatedQuestion, updatedAnswer, updatedCategory, updatedNote, updatedRating,
-                updatedTag, updatedDiagram, isFavourite);
+                updatedTags, updatedDiagram, isFavourite);
     }
 
     @Override
@@ -138,7 +137,7 @@ public class EditCommand extends Command {
         private Category category;
         private Note note;
         private Rating rating;
-        private Tag tag;
+        private Set<Tag> tags;
         private Diagram diagram;
 
         public EditFlashcardDescriptor() {
@@ -154,7 +153,7 @@ public class EditCommand extends Command {
             setCategory(toCopy.category);
             setNote(toCopy.note);
             setRating(toCopy.rating);
-            setTag(toCopy.tag);
+            setTags(toCopy.tags);
             setDiagram(toCopy.diagram);
         }
 
@@ -162,7 +161,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(question, answer, category, note, rating, tag, diagram);
+            return CollectionUtil.isAnyNonNull(question, answer, category, note, rating, tags, diagram);
         }
 
         public void setQuestion(Question question) {
@@ -205,12 +204,21 @@ public class EditCommand extends Command {
             return Optional.ofNullable(rating);
         }
 
-        public void setTag(Tag tag) {
-            this.tag = tag;
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
-        public Optional<Tag> getTag() {
-            return Optional.ofNullable(tag);
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
         public void setDiagram(Diagram diagram) {
@@ -241,7 +249,7 @@ public class EditCommand extends Command {
                     && getCategory().equals(e.getCategory())
                     && getNote().equals(e.getNote())
                     && getRating().equals(e.getRating())
-                    && getTag().equals(e.getTag())
+                    && getTags().equals(e.getTags())
                     && getDiagram().equals(e.getDiagram());
         }
     }

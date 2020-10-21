@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.flashcard.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.flashcard.commons.core.Messages;
 import seedu.flashcard.commons.core.index.Index;
@@ -68,9 +69,9 @@ public class UnfavCommand extends Command {
         Category category = flashcardToUnfavourite.getCategory();
         Note note = flashcardToUnfavourite.getNote();
         Rating rating = flashcardToUnfavourite.getRating();
-        Tag tag = flashcardToUnfavourite.getTag();
+        Set<Tag> tags = flashcardToUnfavourite.getTags();
         Diagram diagram = flashcardToUnfavourite.getDiagram();
-        return new Flashcard(question, answer, category, note, rating,tag, diagram, false);
+        return new Flashcard(question, answer, category, note, rating,tags, diagram, false);
     }
 
     @Override

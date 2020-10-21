@@ -13,6 +13,12 @@ import seedu.flashcard.model.flashcard.Question;
 import seedu.flashcard.model.flashcard.Rating;
 import seedu.flashcard.model.tag.Tag;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 /**
  * Jackson-friendly version of {@link Flashcard}.
  */
@@ -25,7 +31,7 @@ class JsonAdaptedFlashcard {
     private String category;
     private String note;
     private String rating;
-    private String tag;
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private String diagramFilePath;
     private String isFavourite;
 
@@ -43,7 +49,9 @@ class JsonAdaptedFlashcard {
         this.category = category;
         this.note = note;
         this.rating = rating;
-        this.tag = tag;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
         this.diagramFilePath = diagramFilePath;
         this.isFavourite = isFavourite;
     }
@@ -58,7 +66,9 @@ class JsonAdaptedFlashcard {
         category = source.getCategory().toString();
         note = source.getNote().toString();
         rating = source.getRating().toString();
-        tag = source.getTag().getTagName();
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
         diagramFilePath = source.getDiagram().toString();
         isFavourite = Boolean.toString(source.isFavourite());
     }
@@ -69,6 +79,11 @@ class JsonAdaptedFlashcard {
      * @throws IllegalValueException if there were any data constraints violated in the adapted flashcard.
      */
     public Flashcard toModelType() throws IllegalValueException {
+        final List<Tag> personTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            personTags.add(tag.toModelType());
+        }
+
         if (question == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Question.class.getSimpleName()));
@@ -111,12 +126,6 @@ class JsonAdaptedFlashcard {
         }
         final Rating modelRating = new Rating(rating);
 
-        if (tag == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Tag.class.getSimpleName()));
-        }
-        final Tag modelTag = new Tag(tag);
-
         if (diagramFilePath == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Diagram.class.getSimpleName()));
@@ -124,7 +133,10 @@ class JsonAdaptedFlashcard {
         final Diagram modelDiagram = new Diagram(diagramFilePath);
 
         final Boolean modelIsFavourite = Boolean.parseBoolean(isFavourite);
-        return new Flashcard(modelQuestion, modelAnswer, modelCategory, modelNote, modelRating, modelTag, modelDiagram,
+
+        final Set<Tag> modelTags = new HashSet<>(personTags);
+
+        return new Flashcard(modelQuestion, modelAnswer, modelCategory, modelNote, modelRating, modelTags, modelDiagram,
                 modelIsFavourite);
     }
 

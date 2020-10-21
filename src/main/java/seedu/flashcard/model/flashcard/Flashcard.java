@@ -2,7 +2,10 @@ package seedu.flashcard.model.flashcard;
 
 import static seedu.flashcard.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import seedu.flashcard.model.tag.Tag;
 
@@ -20,7 +23,7 @@ public class Flashcard {
     private final Category category;
     private final Note note;
     private final Rating rating;
-    private final Tag tag;
+    private final Set<Tag> tags = new HashSet<>();
     private final Diagram diagram;
 
     // State fields
@@ -30,14 +33,14 @@ public class Flashcard {
      * Identity and Data fields must be present and not null.
      */
     public Flashcard(Question question, Answer answer, Category category,
-                Note note, Rating rating, Tag tag, Diagram diagram) {
-        requireAllNonNull(question, answer, category, note, rating, tag, diagram);
+                     Note note, Rating rating, Set<Tag> tags, Diagram diagram) {
+        requireAllNonNull(question, answer, category, note, rating, tags, diagram);
         this.question = question;
         this.answer = answer;
         this.category = category;
         this.note = note;
         this.rating = rating;
-        this.tag = tag;
+        this.tags.addAll(tags);
         this.diagram = diagram;
         this.isFavourite = false;
     }
@@ -47,7 +50,7 @@ public class Flashcard {
      * All fields must be present and not null.
      */
 
-    public Flashcard(Question question, Answer answer, Category category, Note note, Rating rating, Tag tag,
+    public Flashcard(Question question, Answer answer, Category category, Note note, Rating rating, Set<Tag> tags,
                      Diagram diagram, boolean isFavourite) {
         requireAllNonNull(question, answer, category, note, rating, diagram, isFavourite);
         this.question = question;
@@ -55,7 +58,7 @@ public class Flashcard {
         this.category = category;
         this.note = note;
         this.rating = rating;
-        this.tag = tag;
+        this.tags.addAll(tags);
         this.diagram = diagram;
         this.isFavourite = isFavourite;
     }
@@ -80,8 +83,12 @@ public class Flashcard {
         return rating;
     }
 
-    public Tag getTag() {
-        return tag;
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     public Diagram getDiagram() {
@@ -133,7 +140,7 @@ public class Flashcard {
                 && otherFlashcard.getCategory().equals(getCategory())
                 && otherFlashcard.getNote().equals(getNote())
                 && otherFlashcard.getRating().equals(getRating())
-                && otherFlashcard.getTag().equals(getTag())
+                && otherFlashcard.getTags().equals(getTags())
                 && otherFlashcard.getDiagram().equals(getDiagram())
                 && otherFlashcard.isFavourite() == isFavourite();
     }
@@ -161,10 +168,11 @@ public class Flashcard {
             builder.append(" Rating: ")
                     .append(getRating());
         }
-        if (getTag().getTagName().length() > 0) {
-            builder.append(" Tag: ")
-                    .append(getTag());
+        if (getTags().size() > 0) {
+            builder.append(" Tags: ");
+            getTags().forEach(builder::append);
         }
+
         builder.append(" Diagram: ").append(getDiagram());
         builder.append(" Favourite: ")
                 .append(isFavourite());
