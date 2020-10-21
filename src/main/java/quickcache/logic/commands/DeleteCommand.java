@@ -64,10 +64,12 @@ public class DeleteCommand extends Command {
     }
 
     private String createDeleteWithTagsMessage() {
-        StringBuilder sb = new StringBuilder("with tags ");
         assert isDeleteByTag && tagsToMatch != null;
-        tagsToMatch.forEach(tag -> sb.append(tag.toString()).append(" "));
-        return sb.toString().trim();
+        return tagsToMatch.stream()
+                .reduce("with tags ",
+                        (curr, next) -> curr + next.toString() + " ",
+                        String::concat)
+                .trim();
     }
 
     @Override
