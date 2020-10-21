@@ -305,8 +305,8 @@ Data (all stocks in inventory in json) is automatically saved to
 * add
 * delete
 * note
+* notedelete
 * update
-* note
 
 The set of used serial number sources is automatically saved to
 `[root directory]/data/serialnumbers.json` when any of these commands is executed:
