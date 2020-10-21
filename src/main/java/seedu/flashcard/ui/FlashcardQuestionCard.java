@@ -1,6 +1,7 @@
 package seedu.flashcard.ui;
 
 import java.io.File;
+import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -57,6 +58,14 @@ public class FlashcardQuestionCard extends UiPart<Region> {
                 diagram.setVisible(false);
             }
             diagram.setImage(image);
+        }
+
+        if (flashcard.getTags().size() > 0) {
+            flashcard.getTags().stream()
+                    .sorted(Comparator.comparing(tag -> tag.tagName))
+                    .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        } else {
+            tags.setVisible(false);
         }
 
         if (flashcard.getRating().toString().length() > 0) {
