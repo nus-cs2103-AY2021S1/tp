@@ -243,9 +243,6 @@ The following sequence diagram shows how eat recipe operation works when `execut
   * Pros: All the data saved are being used. 
   * Cons: Showing too much unimportant information.
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 ### Delete recipe feature
 

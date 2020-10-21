@@ -82,8 +82,8 @@ Format: `addR n/TITLE i/INGREDIENT[, MORE INGREDIENT] c/CALORIES img/IMAGE inst/
     * there is  a compulsory space before `-` 
 
 Examples:
-* `addR n/salad i/lettuce, tomato, olive oil c/40`
-* `addR n/sandwiches i/breads, cheese -2 sclices c/80`
+* `addR n/salad i/lettuce, tomato, olive oil c/40 inst/mix everything img/image/Salad.png`
+* `addR n/sandwiches i/breads, cheese -2 sclices c/80 inst/Put cheese between two slices of breads. img/image/Sandwiche.png`
 
 
 ### Listing all recipes : `recipes`
@@ -247,7 +247,7 @@ _{give a remark to the recipe}_
 
 Features | Format, Examples
 --------|------------------
-**Add recipe** | `addR n/TITLE i/INGREDIENT[, MORE INGREDIENT] c/CALORIES img/IMAGE inst/INSTRUCTION... [t/TAG]...` <br> e.g., `addR n/salad i/lettuce, carrots, olive oil c/80`
+**Add recipe** | `addR n/TITLE i/INGREDIENT[, MORE INGREDIENT] c/CALORIES img/IMAGE inst/INSTRUCTION... [t/TAG]...` <br> e.g., `addR n/salad i/lettuce, tomato, olive oil c/40 inst/mix everything img/image/Salad.png`
 **Add Ingredient to the fridge** | `addF i/INGREDIENTS` <br> e.g., `addF i/banana, green peas, salmon fish`
 **Delete recipe** | `deleteR INDEX`<br> e.g., `deleteR 3`
 **Delete Ingredient from the fridge** | `deleteF INDEX`<br> e.g., `deleteF 3`
