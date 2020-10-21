@@ -2,62 +2,76 @@
 !include ../style.puml
 
 box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":ContactListParser" as ContactListParser LOGIC_COLOR
-participant ":AddContactParser" as AddContactParser LOGIC_COLOR
-participant ":AddContactCommand" as AddContactCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":TodoListParser" as TodoListParser LOGIC_COLOR
+participant ":FindTaskParser" as FindTaskParser LOGIC_COLOR
+participant ":FindTaskCriteria" as FindTaskCriteria LOGIC_COLOR
+participant ":FindTaskCommand" as FindTaskCommand LOGIC_COLOR
+participant ":NameContainsKeywordsPredicate" as NameContainsKeywordsPredicate LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":ContactList" as ContactList MODEL_COLOR
 end box
 
-[-> LogicManager : execute(addcontact)
-activate LogicManager
+[-> TodoListParser: parseCommand(arguments)
+activate TodoListParser
 
-LogicManager -> ContactListParser : parseCommand(addcontact)
-activate ContactListParser
+create FindTaskParser
+TodoListParser -> FindTaskParser
+activate FindTaskParser
 
-create AddContactParser
-ContactListParser -> AddContactParser
-activate AddContactParser
+FindTaskParser --> TodoListParser
+deactivate FindTaskParser
 
-AddContactParser --> ContactListParser
-deactivate AddContactParser
+TodoListParser -> FindTaskParser : parse(arguments)
+activate FindTaskParser
+    ref over FindTaskParser: Tokenize command argument using ArgumentTokenizer
 
-ContactListParser -> AddContactParser :parse(commandArgument)
-activate AddContactParser
+create FindTaskCriteria
+FindTaskParser -> FindTaskCriteria
+activate FindTaskCriteria
 
-create AddContactCommand
-AddContactParser -> AddContactCommand
-activate AddContactCommand
+FindTaskCriteria --> FindTaskParser
+deactivate FindTaskCriteria
 
-AddContactCommand --> AddContactParser
-deactivate AddContactCommand
+opt user provides keywords to search for tasks by name
+    ref over FindTaskParser: Parse search keywords
+    create NameContainsKeywordsPredicate
+    FindTaskParser -> NameContainsKeywordsPredicate
+    activate NameContainsKeywordsPredicate
 
-LogicManager -> AddContactCommand : execute(model)
-activate AddContactCommand
+    NameContainsKeywordsPredicate --> FindTaskParser
+    deactivate NameContainsKeywordsPredicate
 
-AddContactCommand -> Model : addContact(contact)
+    FindTaskParser -> FindTaskCriteria: addPredicate(namePredicate)
+    activate FindTaskCriteria
+
+    FindTaskCriteria --> FindTaskParser
+    deactivate FindTaskCriteria
+
+end
+    ref over FindTaskParser: Create and add other predicates
+
+create FindTaskCommand
+FindTaskParser -> FindTaskCommand
+activate FindTaskCommand
+
+FindTaskCommand --> FindTaskParser
+deactivate FindTaskCommand
+
+[<-- FindTaskParser: FindTaskCommand
+deactivate FindTaskParser
+
+[-> FindTaskCommand: execute(model)
+activate FindTaskCommand
+
+FindTaskCommand -> Model: updateFilteredTodoList(predicate)
 activate Model
 
-Model -> ContactList : addContact(contact)
-activate ContactList
-
-ContactList --> Model
-deactivate ContactList
-
-Model --> AddContactCommand
+Model --> FindTaskCommand
 deactivate Model
 
-AddContactCommand --> LogicManager
-deactivate AddContactCommand
+[<--FindTaskCommand: CommandResult
+deactivate FindTaskCommand
 
-AddContactCommand -[hidden]-> LogicManager
-destroy AddContactCommand
-
-[<--LogicManager
-deactivate LogicManager
 @enduml
