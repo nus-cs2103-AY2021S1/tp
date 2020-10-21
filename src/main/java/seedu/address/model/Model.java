@@ -197,6 +197,7 @@ public interface Model {
      */
     void clearOrder();
 
+    void setVendorIndex(int vendorIndex);
 
     /**
      * Updates the filter of the filtered food list at the corresponding index to filter by the given {@code predicate}.
@@ -211,6 +212,8 @@ public interface Model {
     ObservableList<OrderItem> getFilteredOrderItemList();
 
     public int getOrderSize();
+
+    int getVendorIndex();
 
     public int getOrderHistorySize();
 
