@@ -18,15 +18,9 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
-
-    public static final String MESSAGE_USAGE_2 = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer) and Prefix 'c-' if deleting comment "
-            + "along with t: title to delete\n"
-            + "Example: " + COMMAND_WORD + " 1 c- t:title 1";
+            + ": \nto delete comment, type 'delete <index> <'a-' or 's-'> c- t:<title_to_delete>'\n"
+            + "to delete leave, type 'delete <index_of_staff> l/ d:<date_in_dd/mm/yyyy>'\n"
+            + "to delete staff/applicant, type 'delete <index_of_staff/applicant> <'s-' or 'a-'>'";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
