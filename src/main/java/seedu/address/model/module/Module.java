@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.module.grade.Assignment;
+import seedu.address.model.module.grade.Grade;
 import seedu.address.model.module.grade.GradeTracker;
 import seedu.address.model.tag.Tag;
 
@@ -65,6 +66,18 @@ public class Module {
         this.tags.addAll(tags);
         this.modularCredits = modularCredits;
     }
+
+    /**
+     * Represents the module object constructor.
+     * @param name name of module
+     * @param zoomLink zoom link attached to module
+     */
+    public Module(ModuleName name, ZoomLink zoomLink, ModularCredits modularCredits) {
+        this.name = name;
+        this.zoomLink = zoomLink;
+        this.gradeTracker = new GradeTracker();
+        this.modularCredits = modularCredits;
+    }
     /**
      * Represents the module object constructor.
      */
@@ -82,6 +95,18 @@ public class Module {
     public Module(ModuleName name) {
         this.name = name;
         this.zoomLink = null;
+        this.gradeTracker = new GradeTracker();
+        this.modularCredits = new ModularCredits();
+    }
+
+    /**
+     * Represents the module object constructor.
+     * @param name name of module
+     * @param zoomLink zoom link attached to module
+     */
+    public Module(ModuleName name, ZoomLink zoomLink) {
+        this.name = name;
+        this.zoomLink = zoomLink;
         this.gradeTracker = new GradeTracker();
         this.modularCredits = new ModularCredits();
     }
@@ -171,6 +196,12 @@ public class Module {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+
+>>>>>>> bdf206181bef4a2bb9f0c4672fc8eef26adb4a1b
+>>>>>>> de528d3b017ec53b005699d0a99b6975ca2fcf8b
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
@@ -178,10 +209,29 @@ public class Module {
         return Collections.unmodifiableSet(tags);
     }
     /**
+<<<<<<< HEAD
      * Returns true if both persons of the same name have at least one other identity field that is the same.
 =======
      * Returns true if both modules have the same name.
 >>>>>>> c9a1e5c416a3d9bbe3b30949159ec3f43e463528
+=======
+     * Adds a grade to the GradeTracker of the module.
+     *
+     * @param grade grade to add to grade tracker.
+     * @return Module a new module with the grade added.
+     */
+    public Module addGrade(Grade grade) {
+        if (Grade.isValidGrade(grade.gradeResult)) {
+            gradeTracker.setGrade(grade);
+            return new Module(name, zoomLink, gradeTracker, tags);
+        } else {
+            return this;
+        }
+    }
+
+    /**
+     * Returns true if both modules have the same name.
+>>>>>>> de528d3b017ec53b005699d0a99b6975ca2fcf8b
      * This defines a weaker notion of equality between two modules.
      */
     public boolean isSameModule(Module otherModule) {

@@ -1,4 +1,4 @@
----
+~~~~---
 layout: page
 title: Developer Guide
 ---
@@ -39,6 +39,8 @@ The role of the **Model** component is to represent all the items and their beha
 The role of the **Ui** component is to handle all the User interface related instructions, which includes the loading of GUI components, the updating
 of these components and displaying the changes.
 
+## Module Tracker
+
 ### UI component
 
 **API** :
@@ -53,12 +55,32 @@ of these components and displaying the changes.
 
 ### Storage component
 
-**API** :
+![Structure of the Storage Component](images/StorageClassDiagram.png)
 
+**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+
+The `Storage` component,
+* can save `UserPref` objects in json format and read it back.
+* can save the module list data in json format and read it back.
+* can save the contact list data in json format and read it back.
+* can save the todo list data in json format and read it back.
+
+### Common classes
+
+Classes used by multiple components are in the `seedu.addressbook.commons` package.
 ### Common classes
 
 **API** :
 
+## Grades Tracker
+
+## CAP Calculator
+
+## Scheduler
+
+## Contact List
+
+## Todo List
 
 --------------------------------------------------------------------------------------------------------------------
 
