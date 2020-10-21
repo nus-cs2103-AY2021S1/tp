@@ -11,8 +11,10 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
+Class StaffListPanel
+Class StaffCard
+Class ApplicantListPanel
+Class ApplicantCard
 Class StatusBarFooter
 Class CommandBox
 }
@@ -33,25 +35,32 @@ UiManager -down-> MainWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> PersonListPanel
+MainWindow *-down-> StaffListPanel
+MainWindow *-down-> ApplicantListPanel
 MainWindow *-down-> StatusBarFooter
 
-PersonListPanel -down-> PersonCard
+StaffListPanel -down-> StaffCard
+ApplicantListPanel -down-> ApplicantCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+StaffListPanel --|> UiPart
+StaffCard --|> UiPart
+ApplicantListPanel --|> UiPart
+ApplicantCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
-PersonCard ..> Model
+StaffCard ..> Model
+ApplicantCard ..> Model
+
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+StaffListPanel -[hidden]left- HelpWindow
+ApplicantListPanel -[hidden]left- StaffListPanel
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter

@@ -8,7 +8,7 @@ Package Model <<Rectangle>>{
 Interface ReadOnlyEvaDatabase <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
+Class EvaDatabase
 Class ReadOnlyEvaDatabase
 Class Model
 Class ModelManager
@@ -16,41 +16,70 @@ Class UserPrefs
 Class ReadOnlyUserPrefs
 
 Package Person {
+Class UniquePersonList
+
 Class Person
 Class Address
 Class Email
 Class Name
 Class Phone
-Class UniquePersonList
+
+Package Comment {
+Class Comment
+}
+
+Package Applicant {
+Class Applicant
+Class InterviewDate
+Class ApplicationStatus
+}
+
+Package Staff {
+Class Staff
+Package Leave {
+Class Leave
+}
 }
 
 Package Tag {
 Class Tag
 }
 }
+}
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyEvaDatabase
+EvaDatabase .up.|> ReadOnlyEvaDatabase
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" EvaDatabase
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> "*" Tag
+Person *--> Comment
+Person *--> Tag
+
+EvaDatabase *--> "2" UniquePersonList
+
+UniquePersonList o--> "*" Staff
+Staff .up.|> Person
+Staff *--> "*" Leave
+
+UniquePersonList o--> "*" Applicant
+Applicant .up.|> Person
+Applicant *--> "0..1" InterviewDate
+Applicant *--> ApplicationStatus
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager -->"1" Person : filtered list
+ModelManager -->"1" Staff : filtered list
+ModelManager -->"1" Applicant : filtered list
 @enduml
