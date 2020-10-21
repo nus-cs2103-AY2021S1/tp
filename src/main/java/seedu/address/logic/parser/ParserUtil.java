@@ -11,6 +11,8 @@ import seedu.address.model.assignment.ModuleCode;
 import seedu.address.model.assignment.Name;
 import seedu.address.model.assignment.Priority;
 
+import java.time.LocalTime;
+
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */

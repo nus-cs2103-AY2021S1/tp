@@ -7,6 +7,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
@@ -21,14 +26,6 @@ import seedu.address.model.assignment.PriorityContainsKeywordsPredicate;
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindCommandParser implements Parser<FindCommand> {
-
-    private static boolean isDateFormat(String keyword) {
-        return keyword.matches("\\d{2}-\\d{2}-\\d{4}");
-    }
-
-    private static boolean isTimeFormat(String keyword) {
-        return keyword.matches("\\d{4}");
-    }
 
     private static boolean moreThanOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         long countPrefixesPresent = Stream.of(prefixes)
@@ -50,10 +47,42 @@ public class FindCommandParser implements Parser<FindCommand> {
         return new FindCommand(new ModuleCodeContainsKeywordsPredicate(Arrays.asList(keywords)));
     }
 
+    private static void tryParseDateFormat(String keyword) throws ParseException {
+        try {
+            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("dd-MM-uuuu")
+                    .withResolverStyle(ResolverStyle.STRICT);
+            LocalDate date = LocalDate.parse(keyword, inputFormat);
+            date.format(inputFormat);
+        } catch (DateTimeException e) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.INVALID_DATE_OR_TIME_MESSAGE));
+        }
+    }
+
+    private static void tryParseTimeFormat(String keyword) throws ParseException {
+        try {
+            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("HHmm")
+                    .withResolverStyle(ResolverStyle.STRICT);
+            LocalTime time = LocalTime.parse(keyword, inputFormat);
+            time.format(inputFormat);
+        } catch (DateTimeException e) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.INVALID_DATE_OR_TIME_MESSAGE));
+        }
+    }
+
     private static FindCommand findByDeadline(String[] keywords) throws ParseException {
+        requireNonNull(keywords);
         for (String keyword : keywords) {
-            boolean isNotTimeOrDateFormat = !(isTimeFormat(keyword) || isDateFormat(keyword));
-            if (isNotTimeOrDateFormat) {
+            boolean isDateFormat = keyword.matches("\\d{2}-\\d{2}-\\d{4}");
+            boolean isTimeFormat = keyword.matches("\\d{4}");
+            if (isDateFormat) {
+                FindCommandParser.tryParseDateFormat(keyword);
+            }
+            if (isTimeFormat) {
+                FindCommandParser.tryParseTimeFormat(keyword);
+            }
+            else {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.INVALID_DATE_OR_TIME_MESSAGE));
             }
