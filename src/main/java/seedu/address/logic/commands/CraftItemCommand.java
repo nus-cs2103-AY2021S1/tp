@@ -1,5 +1,14 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_ID;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -9,13 +18,6 @@ import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.IngredientList;
 import seedu.address.model.recipe.Recipe;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-
 /**
  * CraftItemCommand represents a craft item command with hidden
  * internal logic and the ability to be executed.
@@ -23,7 +25,8 @@ import static seedu.address.logic.parser.CliSyntax.*;
 public class CraftItemCommand extends Command {
     public static final String COMMAND_WORD = "craft";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Crafts the item using the materials in the inventory. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Crafts the item "
+            + "using the materials in the inventory.\n"
             + "Parameters: "
             + PREFIX_ITEM_NAME + "ITEM NAME "
             + PREFIX_ITEM_QUANTITY + "ITEM QUANTITY "
@@ -35,10 +38,10 @@ public class CraftItemCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "%2$s %1$s crafted";
     public static final String MESSAGE_ITEM_NOT_FOUND = "Item to craft is not found in the item list.";
-    public static final String MESSAGE_INVALID_PRODUCT_QUANTITY = "Crafting failed, please enter a valid " +
-            "product quantity";
-    public static final String MESSAGE_INSUFFICIENT_INGREDIENTS = "Crafting failed, insufficient " +
-            "ingredients in inventory.";
+    public static final String MESSAGE_INVALID_PRODUCT_QUANTITY = "Crafting failed, please enter a valid "
+            + "product quantity";
+    public static final String MESSAGE_INSUFFICIENT_INGREDIENTS = "Crafting failed, insufficient "
+            + "ingredients in inventory.";
     public static final String MESSAGE_RECIPE_NOT_FOUND = "Recipe cannot be not found in the recipe list";
     public static final String MESSAGE_INDEX_OUT_OF_RANGE = "Recipe ID is out of range";
 
@@ -46,6 +49,12 @@ public class CraftItemCommand extends Command {
     private final int productQuantity;
     private final Index index;
 
+    /**
+     * Creates a command to craft the item
+     * @param itemName Name of item to be crafted
+     * @param productQuantity Quantity of item to be crafted
+     * @param index Index of recipe to use for crafting
+     */
     public CraftItemCommand(String itemName, Quantity productQuantity, Index index) {
         requireNonNull(itemName);
         requireNonNull(productQuantity);
@@ -105,8 +114,7 @@ public class CraftItemCommand extends Command {
             throw new CommandException(MESSAGE_INSUFFICIENT_INGREDIENTS);
         }
         // update ingredients, decrease by quantity required since ingredients are consumed
-        requiredIngredients.forEach((itemId, quantityRequired) ->
-        {
+        requiredIngredients.forEach((itemId, quantityRequired) -> {
             try {
                 new AddQuantityToItemCommand(itemList.get(itemId).getName(), -quantityRequired).execute(model);
             } catch (CommandException e) {

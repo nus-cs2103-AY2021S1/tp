@@ -1,40 +1,40 @@
 package seedu.address.logic.commands;
 
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalItems.APPLE;
+import static seedu.address.testutil.TypicalItems.BANANA;
+
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.*;
+import seedu.address.model.ItemList;
+import seedu.address.model.ReadOnlyItemList;
+import seedu.address.model.ReadOnlyRecipeList;
+import seedu.address.model.RecipeList;
 import seedu.address.model.item.Item;
-import seedu.address.model.item.NameMatchesKeywordsPredicate;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.IngredientList;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.testutil.ItemBuilder;
 import seedu.address.testutil.RecipeBuilder;
-import seedu.address.testutil.TypicalIndexes;
-import seedu.address.testutil.TypicalItems;
-
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.assertInventoryCommandFailure;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalItems.*;
 
 public class CraftItemCommandTest {
 
     private ModelStubWithItemAndRecipeList model;
     private ModelStubWithItemAndRecipeList sameModel; // used to test failures
-    private ModelStubWithItemAndRecipeList expectedModel;
 
     private RecipeList recipeList = new RecipeList();
     private ItemList itemList = new ItemList();
@@ -49,7 +49,7 @@ public class CraftItemCommandTest {
         itemList.addItem(APPLE);
         itemList.addItem(BANANA);
         IngredientList ingredients = new IngredientList();
-        ingredients.add(new Ingredient(1,3));
+        ingredients.add(new Ingredient(1, 3));
         // recipe to create 2 apples from 3 bananas
         Recipe recipe = new RecipeBuilder().withId(1).withIngredients(ingredients).withQuantity("2").build();
         recipeList.addRecipe(recipe);
@@ -72,7 +72,7 @@ public class CraftItemCommandTest {
         ItemList expectedItemList = new ItemList();
         expectedItemList.addItem(editedApple);
         expectedItemList.addItem(editedBanana);
-        expectedModel = new ModelStubWithItemAndRecipeList(expectedItemList, recipeList);
+        ModelStubWithItemAndRecipeList expectedModel = new ModelStubWithItemAndRecipeList(expectedItemList, recipeList);
 
         assertCommandSuccess(cic, model, expectedMessage, expectedModel);
     }
