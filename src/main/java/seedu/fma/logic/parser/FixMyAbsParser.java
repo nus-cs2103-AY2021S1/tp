@@ -16,6 +16,7 @@ import seedu.fma.logic.commands.FindCommand;
 import seedu.fma.logic.commands.HelpCommand;
 import seedu.fma.logic.commands.ListCommand;
 import seedu.fma.logic.parser.exceptions.ParseException;
+import seedu.fma.model.ReadOnlyLogBook;
 
 /**
  * Parses user input.
@@ -34,7 +35,7 @@ public class FixMyAbsParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommand(String userInput) throws ParseException {
+    public Command parseCommand(String userInput, ReadOnlyLogBook logBook) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -45,19 +46,19 @@ public class FixMyAbsParser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            return new AddCommandParser().parse(arguments, logBook);
 
         case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+            return new EditCommandParser().parse(arguments, logBook);
 
         case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            return new DeleteCommandParser().parse(arguments, logBook);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+            return new FindCommandParser().parse(arguments, logBook);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

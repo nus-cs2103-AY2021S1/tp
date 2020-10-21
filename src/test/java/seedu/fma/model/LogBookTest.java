@@ -19,9 +19,12 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.fma.model.exercise.Exercise;
+import seedu.fma.model.exercise.exceptions.ExerciseNotFoundException;
 import seedu.fma.model.log.Log;
 import seedu.fma.model.log.exceptions.DuplicateLogException;
+import seedu.fma.model.util.Name;
 import seedu.fma.testutil.LogBuilder;
+
 
 
 public class LogBookTest {
@@ -88,7 +91,7 @@ public class LogBookTest {
     void testHashCode() {
         fmaBook.addLog(LOG_A);
         fmaBook.addLog(LOG_B);
-        assertTrue(fmaBook.hashCode() == fmaBook.hashCode());
+        assertEquals(fmaBook.hashCode(), fmaBook.hashCode());
     }
 
     /**
@@ -110,6 +113,11 @@ public class LogBookTest {
         @Override
         public ObservableList<Exercise> getExerciseList() {
             return exercises;
+        }
+
+        @Override
+        public Exercise getExercise(Name name) throws ExerciseNotFoundException {
+            return null;
         }
     }
 }
