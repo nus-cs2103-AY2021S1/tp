@@ -5,7 +5,7 @@ title: User Guide
 * Table of Contents
 {:toc}
 
--------------------------------------------------------------------
+---
 
 ## 1. Introduction
 
@@ -17,7 +17,7 @@ With some experience in typing, NUStorage can manage your inventory and finance 
 
 Interested? Read on to get started!
 
--------------------------------------------------------------------
+---
 
 ## 2. Quick start
 
@@ -37,7 +37,7 @@ Interested? Read on to get started!
         * `bye` to exit programme
     * Refer to the commands list below for details of each command.
 
--------------------------------------------------------------------
+---
 
 ## 3. Features
 
@@ -57,7 +57,7 @@ Interested? Read on to get started!
 
 </div>
 
--------------------------------------------------------------------
+---
 
 ## 4. Commands
 
@@ -69,11 +69,11 @@ This section shows the commands that can be used with NUStorage. It is divided i
 
 Accompanying the details of each command are figures that show an example of the command and the result of executing the command.
 
--------------------------------------------------------------------
+---
 
 ### 4.1. Inventory commands
 
--------------------------------------------------------------------
+---
 
 #### 4.1.1. Add items to inventory: `add_inventory`
 
@@ -89,7 +89,7 @@ Result: item `iphone` of quantity `10` is added to the inventory.
 
 ![Add inventory result example](images/commands/add_inventory_result.jpg)
 
--------------------------------------------------------------------
+---
 
 #### 4.1.2. Remove items from inventory: `delete_inventory`
 
@@ -105,7 +105,7 @@ Result: record at index `1` is removed from the inventory list of records.
 
 ![Delete inventory result example](images/commands/delete_inventory_result.jpg)
 
--------------------------------------------------------------------
+---
 
 #### 4.1.3. Edit record in inventory: `edit_inventory`
 
@@ -121,7 +121,7 @@ Result: item name changed from `iphone` to `iPad` and its quantity changed from 
 
 ![Edit inventory result example](images/commands/edit_inventory_result.jpg)
 
--------------------------------------------------------------------
+---
 
 #### 4.1.4. List inventory records: `list_inventory`
 
@@ -137,11 +137,11 @@ Result: inventory is listed.
 
 ![List inventory result example](images/commands/list_inventory_result.jpg)
 
--------------------------------------------------------------------
+---
 
 ### 4.2. Finance commands
 
--------------------------------------------------------------------
+---
 
 #### 4.2.1. Add finance records: `add_finance`
 
@@ -159,7 +159,7 @@ Result: finance record of amount `$30000` on `3rd March 2020` is added to the th
 
 ![Add finance result example](images/commands/add_finance_result.jpg)
 
--------------------------------------------------------------------
+---
 
 #### 4.2.2. Delete finance records: `delete_finance`
 
@@ -175,7 +175,7 @@ Result: record at index `1` is removed from the finance account records.
 
 ![Delete finance result example](images/commands/delete_finance_result.jpg)
 
--------------------------------------------------------------------
+---
 
 #### 4.2.3. Edit record in finance: `edit_finance`
 
@@ -191,7 +191,7 @@ Result: record changed to amount `$120` on `1st Oct 2020`.
 
 ![Edit finance result example](images/commands/edit_finance_result.jpg)
 
--------------------------------------------------------------------
+---
 
 #### 4.2.4. List finance records: `list_finance`
 
@@ -207,11 +207,11 @@ Result: finance account is listed.
 
 ![List finance result example](images/commands/list_finance_result.jpg)
 
--------------------------------------------------------------------
+---
 
 ### 4.3. Universal commands
 
--------------------------------------------------------------------
+---
 
 #### 4.3.1. Quit the programme: `exit`
 
@@ -225,7 +225,7 @@ Example: `exit`
 
 Result: Programme terminates.
 
--------------------------------------------------------------------
+---
 
 #### 4.3.2. Undo/Redo the previous command: `undo`/`redo`[coming in v2.0]`
 
@@ -237,7 +237,7 @@ Example: `undo` or `redo`
 
 Result: Undo or redo the previous command.
 
--------------------------------------------------------------------
+---
 
 ## 5. Command summary
 
@@ -253,7 +253,7 @@ __Edit finance__ | `edit_finance [INDEX] amt/[AMOUNT] at/[DATE] [TIME]` <br> e.g
 __List finance__ | `list_finance`
 __Exit programme__ | `exit`
 
--------------------------------------------------------------------
+---
 
 ## 6. FAQs
 
@@ -275,4 +275,6 @@ Currently, NUStorage does not support the merging of data between different devi
 ### 6.3. Can I directly modify the storage file?
 
 Modifying the storage file is possible but NOT RECOMMENDED! Doing so may result in a complete data loss.
-  
+
+---
+
