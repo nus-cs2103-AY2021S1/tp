@@ -1,12 +1,10 @@
 package seedu.flashcard.ui;
 
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
+import javafx.scene.layout.StackPane;
 import seedu.flashcard.model.flashcard.Flashcard;
 
 /**
@@ -26,73 +24,45 @@ public class FlashcardViewCard extends UiPart<Region> {
     public final Flashcard flashcard;
 
     @FXML
-    private HBox cardPane;
+    private StackPane questionViewPlaceholder;
+
     @FXML
-    private Label id;
-    @FXML
-    private Label question;
-    @FXML
-    private Label answer;
-    @FXML
-    private Label category;
-    @FXML
-    private Label note;
-    @FXML
-    private TextFlow ratingPane;
-    @FXML
-    private Text rating;
-    @FXML
-    private Text ratingIcon;
-    @FXML
-    private Text favouriteIcon;
-    @FXML
-    private FlowPane tags;
+    private StackPane answerViewPlaceholder;
 
     /**
-     * Creates a {@code FlashcardCard} with the given {@code Flashcard} and index to display.
+     * Creates a {@code FlashcardListCard} with the given {@code Flashcard} and index to display.
      */
-    public FlashcardViewCard(Flashcard flashcard, int displayedIndex) {
+    public FlashcardViewCard(ObservableList<Flashcard> flashcardList, Flashcard flashcard, int displayedIndex) {
         super(FXML);
         this.flashcard = flashcard;
-        id.setText(displayedIndex + ". ");
-        question.setText(flashcard.getQuestion().toString());
-        answer.setText(flashcard.getAnswer().toString());
-        category.setText(flashcard.getCategory().toString());
-        if (flashcard.getNote().toString().length() > 0) {
-            note.setText(flashcard.getNote().toString());
-        } else {
-            note.setVisible(false);
-        }
-        if (flashcard.getRating().toString().length() > 0) {
-            rating.setText(flashcard.getRating().toString());
-            ratingIcon.setText(" \uD83D\uDFCA");
-        } else {
-            ratingPane.setVisible(false);
-            ratingPane.managedProperty().bind(ratingPane.visibleProperty());
-        }
-        if (flashcard.isFavourite()) {
-            favouriteIcon.setText("\u2661");
-        } else {
-            favouriteIcon.setVisible(false);
-        }
-
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof FlashcardViewCard)) {
-            return false;
-        }
-
-        // state check
-        FlashcardViewCard card = (FlashcardViewCard) other;
-        return id.getText().equals(card.id.getText())
-                && flashcard.equals(card.flashcard);
+        FlashcardQuestionCard questionCard = new FlashcardQuestionCard(flashcard, displayedIndex);
+        questionViewPlaceholder.getChildren().add(questionCard.getRoot());
+        FlashcardAnswerCard answerCard = new FlashcardAnswerCard(flashcard);
+        answerViewPlaceholder.getChildren().add(answerCard.getRoot());
+        flashcardList.addListener(new ListChangeListener<Flashcard>() {
+            @Override
+            public void onChanged(Change<? extends Flashcard> c) {
+                c.next();
+                if (c.wasReplaced()) {
+                    if (flashcard.equals((Flashcard) c.getRemoved().get(0))) {
+                        FlashcardQuestionCard questionCard = new FlashcardQuestionCard((Flashcard) c.getAddedSubList().get(0), displayedIndex);
+                        questionViewPlaceholder.getChildren().clear();
+                        answerViewPlaceholder.getChildren().clear();
+                        questionViewPlaceholder.getChildren().add(questionCard.getRoot());
+                        FlashcardAnswerCard answerCard = new FlashcardAnswerCard(c.getAddedSubList().get(0));
+                        answerViewPlaceholder.getChildren().add(answerCard.getRoot());
+                    }
+                } else if (c.wasRemoved()) {
+                    for (Flashcard card : c.getRemoved()) {
+                        if (flashcard.equals((Flashcard) card)) {
+                            questionViewPlaceholder.getChildren().clear();
+                            answerViewPlaceholder.getChildren().clear();
+                        }
+                    }
+                } else {
+                    return;
+                }
+            }
+        });
     }
 }

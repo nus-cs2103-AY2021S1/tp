@@ -181,6 +181,9 @@
     -fx-font-size: 13pt;
     -fx-text-fill: white;
 }
+.answer-display .text {
+    -fx-text-alignment: center;
+}
 
 .status-bar .label {
     -fx-font-family: "Segoe UI Light";

@@ -9,6 +9,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import seedu.flashcard.model.flashcard.Diagram;
 import seedu.flashcard.model.flashcard.Flashcard;
 
@@ -27,6 +29,14 @@ public class FlashcardQuestionCard extends UiPart<Region> {
     @FXML
     private Label category;
     @FXML
+    private TextFlow ratingPane;
+    @FXML
+    private Text rating;
+    @FXML
+    private Text ratingIcon;
+    @FXML
+    private Text favouriteIcon;
+    @FXML
     private FlowPane tags;
     @FXML
     private ImageView diagram;
@@ -41,6 +51,7 @@ public class FlashcardQuestionCard extends UiPart<Region> {
         question.setText(flashcard.getQuestion().toString());
         category.setText(flashcard.getCategory().toString());
         String diagramFilePath = flashcard.getDiagram().toString();
+        diagram.managedProperty().bind(diagram.visibleProperty());
         if (diagramFilePath.isEmpty()) {
             diagram.setVisible(false);
         } else {
@@ -49,6 +60,19 @@ public class FlashcardQuestionCard extends UiPart<Region> {
                 diagram.setVisible(false);
             }
             diagram.setImage(image);
+        }
+
+        if (flashcard.getRating().toString().length() > 0) {
+            rating.setText(flashcard.getRating().toString());
+            ratingIcon.setText(" \uD83D\uDFCA");
+        } else {
+            ratingPane.setVisible(false);
+            ratingPane.managedProperty().bind(ratingPane.visibleProperty());
+        }
+        if (flashcard.isFavourite()) {
+            favouriteIcon.setText("\u2764");
+        } else {
+            favouriteIcon.setVisible(false);
         }
     }
 

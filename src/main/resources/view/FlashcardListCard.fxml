@@ -28,24 +28,22 @@
           </minWidth>
         </Label>
         <Label fx:id="question" text="\$question" styleClass="cell_big_label" />
-        <Text fx:id="favouriteIcon"  text="\$favouriteIcon"/>
         <padding>
           <Insets  bottom="10"/>
         </padding>
       </HBox>
       <FlowPane fx:id="tags" />
-      <HBox>
-        <Label fx:id="category" styleClass="cell_small_label" text="\$category" />
+      <HBox spacing="15">
         <padding>
-          <Insets  bottom="10"/>
+          <Insets bottom="10" top="10" />
         </padding>
+        <Label fx:id="category" styleClass="cell_small_label" text="\$category" />
+        <TextFlow fx:id="ratingPane">
+          <Text fx:id="rating" text="\$rating"></Text>
+          <Text fx:id="ratingIcon"></Text>
+        </TextFlow>
+        <Text fx:id="favouriteIcon" text="\$favouriteIcon"/>
       </HBox>
-      <Label fx:id="answer" styleClass="cell_small_label" text="\$answer" />
-      <Label fx:id="note" styleClass="cell_small_label" text="\$note"/>
-      <TextFlow fx:id="ratingPane">
-        <Text fx:id="rating" text="\$rating"></Text>
-        <Text fx:id="ratingIcon"></Text>
-      </TextFlow>
 
     </VBox>
   </GridPane>

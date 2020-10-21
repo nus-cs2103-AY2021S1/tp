@@ -138,8 +138,8 @@ public class MainWindow extends UiPart<Stage> {
         flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
 
-        flashcardViewCard = new FlashcardViewCard(logic.getFilteredFlashcardList().get(0), 1);
-        flashcardViewCardPlaceholder.getChildren().add(flashcardViewCard.getRoot());
+//        flashcardViewCard = new FlashcardViewCard(logic.getFilteredFlashcardList(), logic.getFilteredFlashcardList().get(2), 3);
+//        flashcardViewCardPlaceholder.getChildren().add(flashcardViewCard.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -150,10 +150,6 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-//        questionPlaceholder.setVisible(false);
-//        answerPlaceholder.setVisible(false);
-//        questionPlaceholder.managedProperty().bind(questionPlaceholder.visibleProperty());
-//        answerPlaceholder.managedProperty().bind(answerPlaceholder.visibleProperty());
         reviewModePane.setVisible(false);
         reviewModePane.managedProperty().bind(reviewModePane.visibleProperty());
     }
@@ -222,8 +218,6 @@ public class MainWindow extends UiPart<Stage> {
         commandModePane.managedProperty().bind(commandModePane.visibleProperty());
         commandBoxPlaceholder.setVisible(false);
         commandBoxPlaceholder.managedProperty().bind(commandBoxPlaceholder.visibleProperty());
-//        questionPlaceholder.setVisible(true);
-////        answerPlaceholder.setVisible(true);
         reviewModePane.setVisible(true);
         showReviewFlashcard(reviewManager.getCurrentFlashcard(), 1);
     }
