@@ -157,13 +157,13 @@ The following sequence diagram shows how the question adding operation works.
 
 ![AddQuestionSequence](images/AddQuestionSequenceDiagram.png)
 
-Figure \___. Sequence diagram for AddQuestionCommand execution
+Figure \___. Sequence diagram for `AddQuestionCommand` execution
 
 The following activity diagram summarises the flow of events when `AddQuestionCommand` is executed.
 
 ![AddQuestionActivity](images/AddQuestionActivityDiagram.png)
 
-Figure \___. Activity diagram for AddQuestionCommand execution
+Figure \___. Activity diagram for `AddQuestionCommand` execution
 
 #### 5.2.2 Solve question command
 
