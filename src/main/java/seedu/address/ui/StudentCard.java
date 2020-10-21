@@ -71,6 +71,7 @@ public class StudentCard extends UiPart<Region> {
                 .stream()
                 .map(Question::toString)
                 .collect(Collectors.joining("\n")));
+        questions.setVisible(!student.getQuestions().isEmpty());
     }
 
     @Override
