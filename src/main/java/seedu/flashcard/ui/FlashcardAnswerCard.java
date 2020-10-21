@@ -1,6 +1,7 @@
 package seedu.flashcard.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 import seedu.flashcard.model.flashcard.Flashcard;
@@ -14,6 +15,8 @@ public class FlashcardAnswerCard extends UiPart<Region> {
 
     @FXML
     private TextArea answer;
+    @FXML
+    private Label note;
 
     /**
      * Creates a {@code FlashcardAnswerCard} with the given {@code Flashcard} and index to display.
@@ -22,6 +25,11 @@ public class FlashcardAnswerCard extends UiPart<Region> {
         super(FXML);
         this.flashcard = flashcard;
         answer.setText(PREFIX_ANSWER + flashcard.getAnswer().toString());
+        if (flashcard.getNote().toString().length() > 0) {
+            note.setText(flashcard.getNote().toString());
+        } else {
+            note.setVisible(false);
+        }
     }
 
 }

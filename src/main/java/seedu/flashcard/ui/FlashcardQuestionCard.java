@@ -1,6 +1,7 @@
 package seedu.flashcard.ui;
 
 import java.io.File;
+import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,6 +10,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import seedu.flashcard.model.flashcard.Diagram;
 import seedu.flashcard.model.flashcard.Flashcard;
 
@@ -21,11 +24,17 @@ public class FlashcardQuestionCard extends UiPart<Region> {
     @javafx.fxml.FXML
     private HBox cardPane;
     @FXML
-    private Label id;
-    @FXML
     private Label question;
     @FXML
     private Label category;
+    @FXML
+    private TextFlow ratingPane;
+    @FXML
+    private Text rating;
+    @FXML
+    private Text ratingIcon;
+    @FXML
+    private Text favouriteIcon;
     @FXML
     private FlowPane tags;
     @FXML
@@ -34,13 +43,13 @@ public class FlashcardQuestionCard extends UiPart<Region> {
     /**
      * Creates a {@code FlashcardQuestionCard} with the given {@code Flashcard} and index to display.
      */
-    public FlashcardQuestionCard(Flashcard flashcard, int displayedIndex) {
+    public FlashcardQuestionCard(Flashcard flashcard) {
         super(FXML);
         this.flashcard = flashcard;
-        id.setText(displayedIndex + ". ");
         question.setText(flashcard.getQuestion().toString());
         category.setText(flashcard.getCategory().toString());
         String diagramFilePath = flashcard.getDiagram().toString();
+        diagram.managedProperty().bind(diagram.visibleProperty());
         if (diagramFilePath.isEmpty()) {
             diagram.setVisible(false);
         } else {
@@ -49,6 +58,27 @@ public class FlashcardQuestionCard extends UiPart<Region> {
                 diagram.setVisible(false);
             }
             diagram.setImage(image);
+        }
+
+        if (flashcard.getTags().size() > 0) {
+            flashcard.getTags().stream()
+                    .sorted(Comparator.comparing(tag -> tag.tagName))
+                    .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        } else {
+            tags.setVisible(false);
+        }
+
+        if (flashcard.getRating().toString().length() > 0) {
+            rating.setText(flashcard.getRating().toString());
+            ratingIcon.setText(" \uD83D\uDFCA");
+        } else {
+            ratingPane.setVisible(false);
+            ratingPane.managedProperty().bind(ratingPane.visibleProperty());
+        }
+        if (flashcard.isFavourite()) {
+            favouriteIcon.setText("\u2764");
+        } else {
+            favouriteIcon.setVisible(false);
         }
     }
 
@@ -66,8 +96,7 @@ public class FlashcardQuestionCard extends UiPart<Region> {
 
         // state check
         FlashcardQuestionCard card = (FlashcardQuestionCard) other;
-        return id.getText().equals(card.id.getText())
-                && flashcard.equals(card.flashcard);
+        return flashcard.equals(card.flashcard);
     }
 
     private Image loadImage(String diagramFilePath) {
