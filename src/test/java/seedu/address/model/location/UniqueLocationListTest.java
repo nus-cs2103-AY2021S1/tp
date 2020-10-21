@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalLocations.DENVER;
 import static seedu.address.testutil.TypicalLocations.NEW_YORK;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.Test;
 
@@ -118,16 +119,17 @@ public class UniqueLocationListTest {
         UniqueLocationList uList = new UniqueLocationList();
         uList.add(DENVER);
         uList.add(NEW_YORK);
-        assertEquals(NEW_YORK, uList.findLocationFromId(1).get());
+        int id = NEW_YORK.getId();
+        assertEquals(NEW_YORK, uList.findLocationFromId(id).get());
     }
 
-    /*@Test
+    @Test
     public void findLocationFromId_invalidInput_throwsNoSuchElementException() {
         UniqueLocationList uList = new UniqueLocationList();
         uList.add(DENVER);
         uList.add(NEW_YORK);
         assertThrows(NoSuchElementException.class, () -> uList.findLocationFromId(-1).get());
-    }*/
+    }
 
     @Test
     public void equals() {
