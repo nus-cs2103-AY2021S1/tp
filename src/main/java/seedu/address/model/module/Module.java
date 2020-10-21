@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 import seedu.address.model.Showable;
+import seedu.address.model.Task;
 import seedu.address.model.TaskList;
 import seedu.address.model.tutorial_group.TutorialGroup;
 
@@ -17,8 +18,6 @@ public class Module implements Showable<Module> {
     private final ModuleId moduleId;
     private List<TutorialGroup> tutorialGroups;
     private TaskList taskList;
-    private int totalStudents = 0;
-    private int totalGroups = 0;
 
     /**
      * Constructs an {@code Module}.
@@ -32,12 +31,12 @@ public class Module implements Showable<Module> {
         this.taskList = new TaskList();
     }
 
-    public Module(ModuleId moduleId, List<TutorialGroup> tutorialGroups) {
+    public Module(ModuleId moduleId, List<TutorialGroup> tutorialGroups, List<Task> taskList) {
         requireNonNull(moduleId);
         requireNonNull(tutorialGroups);
         this.moduleId = moduleId;
         this.tutorialGroups = tutorialGroups;
-        this.taskList = new TaskList();
+        this.taskList = new TaskList(taskList);
     }
 
 
@@ -46,7 +45,8 @@ public class Module implements Showable<Module> {
     }
 
     public int getTotalStudents() {
-        return this.totalStudents;
+        return this.tutorialGroups.stream().map(TutorialGroup::getStudentList)
+                .map(List::size).reduce(Integer::sum).orElse(0);
     }
 
     public int getTotalGroups() {
@@ -55,6 +55,10 @@ public class Module implements Showable<Module> {
 
     public List<TutorialGroup> getTutorialGroups() {
         return Collections.unmodifiableList(tutorialGroups);
+    }
+
+    public List<Task> getTaskList() {
+        return Collections.unmodifiableList(taskList.getTaskList());
     }
 
     public void addTutorialGroup(TutorialGroup tutorialGroup) {
