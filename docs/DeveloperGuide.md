@@ -109,18 +109,30 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-W17-3/tp/tree/master/src/main/java/jimmy/mcgymmy/logic/Logic.java)
 
+We omit details of the `Macro` component in this section and will only focus on the parsing and execution of non-macro `Command`s.
+For more information on macros and the full parsing process please read the section below.
+
 1. `Logic` uses the `McGymmyParser` class to parse the user command.
-1. This results in a `Command` object which is executed by the `LogicManager`.
+1. This results in a `CommandExecutable` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a food item).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+
+Note that our implementation of this component is different from the one in the parent project, AddressBook3.
+One notable difference is the use of several `Parameter` classes in the various `Commands`.
+We list a few of the benefits of our redesigned solution below.
+
+1. The main motivation for this change was to facilitate the addition of the `macro` feature.
+2. The old design of the parser operated at too high an abstraction level, resulting in the developer having to create hideous objects like the `EditPersonDescriptor` to implement basic functionality.
+3. The new design allows us to code in a more declarative style which is more readable and arguably "self-documenting".
+4. Hiding details of each `Parameter` behind an additional layer of abstraction allows us to automate the creation of other features such as parsers for each individual `Command` and automatially generating `help` strings.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+For more details on the new architecture you can refer to this [pull request](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/39).
+In particular, details on how to create new `Command`s are included in the pull request above.
 
 ### Model component
 
@@ -342,6 +354,43 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Macro Command
+
+![Structure of the Macro Component](images/MacroClassDiagram.png)
+
+As with the other class diagram for the *Logic* component above, we omit some details in the above diagram for clarity.
+
+There are two 'parts' to the macro component:
+
+1. The creation of the macro object itself (e.g. running `macro test a; add -n \a breakfast -c 100`).
+2. The execution of the macro object (e.g. running `test -a tau sar pau`).
+
+The creation of the macro object is straightforward as we defer most of the heavy lifting to during the execution of the macro.
+
+#### A more complete picture of the parsing process
+
+We only described parsing and execution of primitive commands in the section above.
+A short description of the process including the parsing of macros is as follows:
+
+1. If command word is `macro`, return a `NewMacroCommand` (which will create a new `macro` when executed).
+2. Else if command word is an existing macro, call that macro object's `toCommandExecutable` method and return that.
+3. Else hand over to primitive command parser.
+
+#### Execution of macros
+
+Here we detail what exactly happens in each macro's `toCommandExecutable` object.
+Throughout this section, we will use the following macro as an example: `macro test a;add -n \a breakfast 200`.
+
+1. Parameters supplied by the user are substituted into the macro's lines. For the example if the user enters `test -a rice`, `rice` will be substituted into the `\a` part of `add -n \a breakfast 200` to obtain `add -n rice breakfast 200`;
+2. Pass the list of strings to a new instance of `PrimitiveCommandParser` to get a list of `Command`s. If a `ParseException` occurs, we recast it as a `CommandException` and re-throw it.
+3. Execute all these `Command`s in sequence, and return a new `CommandResult` created from concatenating the respective `CommandResults` returned by the `Command`s. If a `CommandException` occurs in this sequence, that exception is thrown with the added message listing the commands that have executed successfully, and commands that have yet to be executed.
+
+![Sequence diagram for macro](images/MacroSequenceDiagram.png)
+
+#### Additional considerations for this implementation
+Alternatively could have done the parsing/compiling on creation of the macro so we don't need to use another parser during execution.
+That is, each macro instance could contain its own `ParameterSet` which could then be used by its callee functions.
+This implementation is considerably more involved hence we proceeded with the current implementation.
 
 --------------------------------------------------------------------------------------------------------------------
 
