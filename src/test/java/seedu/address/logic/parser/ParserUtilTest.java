@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -14,6 +16,8 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.lesson.Date;
+import seedu.address.model.lesson.Time;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
@@ -104,6 +108,50 @@ public class ParserUtilTest {
         String dateWithWhitespace = WHITESPACE + VALID_DATE_TIME + WHITESPACE;
         DateTime expectedDateTime = new DateTime(VALID_DATE_TIME);
         assertEquals(expectedDateTime, ParserUtil.parseDateTime(dateWithWhitespace));
+    }
+    @Test
+    public void parseDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDate((String) null));
+    }
+
+    @Test
+    public void parseDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE));
+    }
+
+    @Test
+    public void parseDate_validValueWithoutWhitespace_returnsDate() throws Exception {
+        LocalDate expectedDate = new Date(VALID_DATE).value;
+        assertEquals(expectedDate, ParserUtil.parseDate(VALID_DATE));
+    }
+
+    @Test
+    public void parseDate_validValueWithWhitespace_returnsTrimmedDate() throws Exception {
+        String dateWithWhitespace = WHITESPACE + VALID_DATE + WHITESPACE;
+        LocalDate expectedDate = new Date(VALID_DATE).value;
+        assertEquals(expectedDate, ParserUtil.parseDate(dateWithWhitespace));
+    }
+    @Test
+    public void parseTime_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTime((String) null));
+    }
+
+    @Test
+    public void parseTime_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTime(INVALID_TIME));
+    }
+
+    @Test
+    public void parseTime_validValueWithoutWhitespace_returnsTime() throws Exception {
+        LocalTime expectedTime = new Time(VALID_TIME).value;
+        assertEquals(expectedTime, ParserUtil.parseTime(VALID_TIME));
+    }
+
+    @Test
+    public void parseTime_validValueWithWhitespace_returnsTrimmedTime() throws Exception {
+        String timeWithWhitespace = WHITESPACE + VALID_TIME + WHITESPACE;
+        LocalTime expectedTime = new Time(VALID_TIME).value;
+        assertEquals(expectedTime, ParserUtil.parseTime(timeWithWhitespace));
     }
     @Test
     public void parseType_null_throwsNullPointerException() {

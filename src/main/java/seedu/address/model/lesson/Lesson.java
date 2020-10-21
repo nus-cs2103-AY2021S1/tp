@@ -18,7 +18,7 @@ import seedu.address.model.task.Title;
 import seedu.address.model.task.Type;
 
 /**
- * Lesson class to store information about a module's lessons
+ * Lesson class to store information about a module's lessons.
  */
 public class Lesson {
     private final Title title;
@@ -77,9 +77,7 @@ public class Lesson {
         ArrayList<Task> tasksToAdd = new ArrayList<>();
         while (currentDate.isBefore(this.endDate) || currentDate.isEqual(this.endDate)) {
             LocalDateTime localDateTime = LocalDateTime.of(currentDate, getStartTime());
-            //todo:there might be a better way to do this
-            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm");
-            String dateTime = localDateTime.format(format);
+            String dateTime = localDateTime.format(DateTime.FORMATTER);
             DateTime eventDateTime = new DateTime(dateTime);
             Task taskToAdd = new Task(title, eventDateTime, description, new Type("lesson"), new HashSet<>());
             tasksToAdd.add(taskToAdd);
@@ -96,6 +94,7 @@ public class Lesson {
         }
         return otherLesson != null
                 && otherLesson.getTitle().equals(getTitle())
+                && otherLesson.getDayOfWeek().equals(getDayOfWeek())
                 && otherLesson.getStartTime().equals(getStartTime())
                 && otherLesson.getEndTime().equals(getEndTime())
                 && otherLesson.getStartDate().equals(getStartDate())
