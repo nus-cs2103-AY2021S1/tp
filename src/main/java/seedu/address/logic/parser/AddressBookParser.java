@@ -20,6 +20,7 @@ import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.commands.SubmitCommand;
 import seedu.address.logic.commands.TotalCommand;
 import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.VendorCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -59,7 +60,8 @@ public class AddressBookParser {
             SubmitCommand.COMMAND_WORD,
             UndoCommand.COMMAND_WORD,
             ExitCommand.COMMAND_WORD,
-            HelpCommand.COMMAND_WORD
+            HelpCommand.COMMAND_WORD,
+            VendorCommand.COMMAND_WORD
         };
 
         ArrayList<String> matchingCommands = new ArrayList<>(Arrays.asList(commands));
@@ -105,6 +107,9 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case VendorCommand.COMMAND_WORD:
+            return new VendorCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

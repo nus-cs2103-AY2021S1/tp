@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.TotalCommand.MESSAGE_RESULT;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,23 +10,24 @@ import seedu.address.model.food.Food;
 import seedu.address.model.order.OrderItem;
 import seedu.address.testutil.TypicalModel;
 
-public class TotalCommandTest {
+public class SubmitCommandTest {
 
     @Test
-    public void execute_orderTotal_success() {
+    public void execute_submit_success() {
         Model model = TypicalModel.getModelManagerWithMenu();
         Model expectedModel = TypicalModel.getModelManagerWithMenu();
         ObservableList<Food> menu = model.getFilteredFoodList(0);
 
+        StringBuilder expectedMessage = new StringBuilder();
         double calculatedTotal = 0;
         for (int i = 0; i < 5; i++) {
             OrderItem orderItem = new OrderItem(menu.get(i), i + 6);
+            expectedMessage.append(String.format("%s x %d\n", orderItem.getName(), i + 6));
             calculatedTotal += orderItem.getPrice() * (i + 6);
             model.addOrderItem(orderItem);
             expectedModel.addOrderItem(orderItem);
         }
-        String expectedMessage = String.format(MESSAGE_RESULT, calculatedTotal);
-
-        assertCommandSuccess(new TotalCommand(), model, expectedMessage, expectedModel);
+        expectedMessage.append(String.format("Estimated total: $%.2f", calculatedTotal));
+        assertCommandSuccess(new SubmitCommand(), model, expectedMessage.toString(), expectedModel);
     }
 }

@@ -29,7 +29,6 @@ public class LogicManager implements Logic {
     private final Storage storage;
     private final AddressBookParser addressBookParser;
     private boolean isMenu;
-    private int vendorIndex = 0;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -40,6 +39,7 @@ public class LogicManager implements Logic {
         addressBookParser = new AddressBookParser();
     }
 
+
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
@@ -47,12 +47,6 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
-
-        //        try {
-        //            storage.saveAddressBook(model.getAddressBook());
-        //        } catch (IOException ioe) {
-        //            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
-        //        }
 
         return commandResult;
     }
@@ -69,7 +63,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Food> getFilteredFoodList() {
-        return model.getFilteredFoodList(vendorIndex);
+        return model.getFilteredFoodList(model.getVendorIndex());
     }
 
     @Override
