@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.stock.logic.commands.AddCommand;
+import seedu.stock.logic.commands.BookmarkCommand;
 import seedu.stock.logic.commands.Command;
 import seedu.stock.logic.commands.DeleteCommand;
 import seedu.stock.logic.commands.ExitCommand;
@@ -137,6 +138,12 @@ public class StockBookParser {
                 return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
             }
 
+        case BookmarkCommand.COMMAND_WORD:
+            try {
+                return new BookmarkCommandParser().parse(arguments);
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
         default:
             return new SuggestionCommandParser(commandWord).parse(arguments);
         }
