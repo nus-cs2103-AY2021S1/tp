@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":InventoryinatorParser" as InventoryinatorParser LOGIC_COLOR
+participant ":InventoryParser" as InventoryParser LOGIC_COLOR
 participant ":AddRecipeCommandParser" as AddRecipeCommandParser LOGIC_COLOR
 participant "d:AddRecipeCommand" as AddRecipeCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,17 +16,17 @@ end box
 [-> LogicManager : execute("addr Bob’s anvil \n-items block of iron[3], iron ingot[4]")
 activate LogicManager
 
-LogicManager -> InventoryinatorParser : parseCommand("Bob’s anvil \n-items block of iron[3], iron ingot[4]")
-activate InventoryinatorParser
+LogicManager -> InventoryParser : parseCommand("Bob’s anvil \n-items block of iron[3], iron ingot[4]")
+activate InventoryParser
 
 create AddRecipeCommandParser
-InventoryinatorParser -> AddRecipeCommandParser
+InventoryParser -> AddRecipeCommandParser
 activate AddRecipeCommandParser
 
-AddRecipeCommandParser --> InventoryinatorParser
+AddRecipeCommandParser --> InventoryParser
 deactivate AddRecipeCommandParser
 
-InventoryinatorParser -> AddRecipeCommandParser : parse("addr Bob’s anvil \n-items block of iron[3], iron ingot[4]")
+InventoryParser -> AddRecipeCommandParser : parse("addr Bob’s anvil \n-items block of iron[3], iron ingot[4]")
 activate AddRecipeCommandParser
 
 create AddRecipeCommand
@@ -36,14 +36,14 @@ activate AddRecipeCommand
 AddRecipeCommand --> AddRecipeCommandParser : d
 deactivate AddRecipeCommand
 
-AddRecipeCommandParser --> InventoryinatorParser : d
+AddRecipeCommandParser --> InventoryParser : d
 deactivate AddRecipeCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddRecipeCommandParser -[hidden]-> InventoryinatorParser
+AddRecipeCommandParser -[hidden]-> InventoryParser
 destroy AddRecipeCommandParser
 
-InventoryinatorParser --> LogicManager : d
-deactivate InventoryinatorParser
+InventoryParser --> LogicManager : d
+deactivate InventoryParser
 
 LogicManager -> AddRecipeCommand : execute()
 activate AddRecipeCommand

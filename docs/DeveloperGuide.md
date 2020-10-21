@@ -123,7 +123,7 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the Inventoryinator data
-* exposes an unmodifiable `ObservableList<Item>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Item>` and `ObservableList<Recipe>` which can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
@@ -170,6 +170,78 @@ The sequence diagram for the execution of an `AddQuantityToItemCommand` is as fo
 
 The `Item` with name banana is denoted as `itemBanana`, and the original quantity assumed to be `20`.
 ![AddQuantityToItemCommandSequenceDiagram](images/AddQuantityToItemCommandSequenceDiagram.png)
+
+### View detailed item feature
+
+The view detailed item feature allows users to view the detailed information of a recorded item, as compared to the 
+default list display of all items which may truncate some information.
+
+#### Implementation
+
+During execution of view command, `LogicManager` detects that it is a view command, then has `InventoryParser` parse
+the item name that the user has input using `ViewDetailsCommandParser`. After parsing, `LogicManager` then has 
+`ViewDetailsCommand` filter the list of items such that only the exact item the user has requested remains.
+
+After executing the view command, `LogicManager` sends feedback to `InventoryMainWindow` that the command has a 
+`DisplayedInventoryType` of `DETAILED_ITEM`, which prompts `InventoryListPanel` to change the display card of items
+into a more detailed display card on the GUI.
+
+This is the sequence diagram of view detailed item command:
+
+![ViewDetailedItemSequenceDiagram](images/commandseqdiagrams/ViewDetailedItemSequenceDiagram.png )
+
+#### Reasoning behind current implementation
+
+View detailed item was first implemented with the idea of changing GUI on demand, but we eventually realised due to
+AB3's abstraction, `Model` and `Logic` can't communicate directly, which means we could not change the GUI during
+execution of the command. It was only after looking at the `help` command that we discovered how AB3 used `LogicManager`
+to communicate with `MainWindow` to make changes to the GUI. This led to us changing the implementation of 
+`CommandResult`, augmenting it to send feedback of `DisplayedInventoryType`.
+
+#### Alternative implementation
+
+One problem with the current implementation is that it is rather slow due to AB3's amount of abstraction. An alternative
+implementation is to create an association class between `Logic` and `Model`, and allow for `Logic` to access `Model`'s 
+`FilteredItemList` directly, which would greatly simplify the command execution process. However, this might not be
+possible without breaking abstraction or heavy modifications to `Model` or `ModelManager`.
+
+### List item/recipe feature
+
+The list item/recipe feature allows the user to toggle between viewing the list of all items or recipes in the 
+current inventory. 
+
+#### Implementation
+
+There are three main view modes available: the existing item list, existing recipe list, and detailed item view.
+
+In `InventoryMainWindow`, whenever a command is executed, the `InventoryListPanel` is refreshed, to be filled with the relevant inventory list.
+This list is retrieved by `getInventoryList` in `LogicManager`, based on the current view mode.
+
+For list item, list recipe and view details commands, the relevant display mode is stored in the `CommandResult`. 
+Upon execution, `InventoryMainWindow` will store the display mode, and pass on to the `InventoryListPanel` and `LogicManager`.
+
+For all other commands, they return a `CommandResult` with `UNCHANGED` as the inventory type. 
+This indicates that the view mode should not be changed. The same type of inventory list (updated accordingly)
+will be retrieved and displayed.
+
+Given below is an example usage of list item and list recipes and what is displayed at each step.
+
+Step 1: The user launches the application. By default, the item list is displayed.
+
+Step 2: The user executes `listr` to view the recipe list. The current recipe list is now displayed.
+
+Step 3: The user executes `addi -n Bob’s 6th regret -q 8` to add a new item. The recipe list is still displayed.
+
+Step 4: The user executes `view Bob's 6th regret` to view the details of the item. 
+The detailed item is now displayed, and all other items are removed from view.
+
+Step 5: The user executes `listi` to view the item list. The current item list is now displayed.
+
+The following sequence diagram shows how the list items operation works:
+![ListItemSequenceDiagram](images/commandseqdiagrams/ListItemSequenceDiagram.png)
+
+The following sequence diagram shows how the list recipes operation works:
+![ListRecipeSequenceDiagram](images/commandseqdiagrams/ListRecipeSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -235,8 +307,8 @@ latest inventory state, then there are no undone `Inventory` states to restore. 
 `Model#canRedoInventory()` to check if this is the case. If so, it will return an error to the user
 rather than attempting to perform the redo.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the inventory, such as `list`,
-will usually not call `Model#commitInventory()`, `Model#undoInventory()` or `Model#redoInventory()`.
+Step 5. The user then decides to execute the command `listi`. Commands that do not modify the inventory, such as 
+`listi`, will usually not call `Model#commitInventory()`, `Model#undoInventory()` or `Model#redoInventory()`.
 Thus, the `inventoryinatorStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
