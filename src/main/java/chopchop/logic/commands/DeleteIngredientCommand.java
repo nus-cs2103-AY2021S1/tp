@@ -1,5 +1,7 @@
 package chopchop.logic.commands;
 
+import static chopchop.model.Model.PREDICATE_SHOW_ALL_ENTRIES;
+import static chopchop.util.Strings.ARG_QUANTITY;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -8,31 +10,49 @@ import chopchop.commons.core.Messages;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.parser.ItemReference;
 import chopchop.model.Model;
+import chopchop.model.attributes.Quantity;
+import chopchop.model.exceptions.IncompatibleIngredientsException;
 import chopchop.model.ingredient.Ingredient;
+import chopchop.util.Pair;
 
 /**
- * Deletes an ingredient identified using it's displayed index or name from the ingredient book.
+ * Removes a given quantity of an ingredient identified using it's displayed index or name from the ingredient book.
+ * If no quantity is specified, the ingredient will be deleted.
  */
 public class DeleteIngredientCommand extends Command {
     public static final String COMMAND_WORD = "delete ingredient";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the ingredient identified by the index number or name used in the displayed ingredient list.\n"
-            + "Parameters: INDEX (must be a positive integer) / NAME\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Removes the given quantity of an ingredient identified by the index number or name used in the "
+            + "displayed ingredient list. "
+            + "If no quantity is specified, the ingredient will be deleted. "
+            + "Parameters: "
+            + "INDEX (must be a positive integer) / NAME "
+            + "[" + ARG_QUANTITY + " QUANTITY]\n"
+            + "Example: " + COMMAND_WORD
+            + " Chili "
+            + ARG_QUANTITY + " 3";
 
     public static final String MESSAGE_DELETE_INGREDIENT_SUCCESS = "Ingredient deleted: %s";
+    public static final String MESSAGE_REMOVE_INGREDIENT_SUCCESS = "Removed %s of '%s'";
     public static final String MESSAGE_INGREDIENT_NOT_FOUND = "No ingredient named '%s'";
 
     private final ItemReference item;
+    private final Quantity quantity;
     private Ingredient ingredient;
+    private Ingredient updatedIngredient;
+
+    public DeleteIngredientCommand(ItemReference item) {
+        this(item, null);
+    }
 
     /**
      * Constructs a command that deletes the given ingredient item.
      */
-    public DeleteIngredientCommand(ItemReference item) {
+    public DeleteIngredientCommand(ItemReference item, Quantity quantity) {
         requireNonNull(item);
         this.item = item;
+        this.quantity = quantity;
     }
 
     @Override
@@ -54,8 +74,26 @@ public class DeleteIngredientCommand extends Command {
                             this.item.getName())));
         }
 
-        model.deleteIngredient(this.ingredient);
-        return new CommandResult(String.format(MESSAGE_DELETE_INGREDIENT_SUCCESS, this.ingredient));
+        if (this.quantity != null) {
+            try {
+                Pair<Ingredient, Ingredient> splitIngredient = this.ingredient.split(this.quantity);
+                this.updatedIngredient = splitIngredient.snd();
+
+                if (this.updatedIngredient.getIngredientSets().isEmpty()) {
+                    model.deleteIngredient(this.ingredient);
+                } else {
+                    model.setIngredient(this.ingredient, this.updatedIngredient);
+                }
+
+                return new CommandResult(String.format(MESSAGE_REMOVE_INGREDIENT_SUCCESS,
+                        this.quantity.toString(), this.updatedIngredient.getName()));
+            } catch (IncompatibleIngredientsException | IllegalArgumentException e) {
+                throw new CommandException(e.getMessage());
+            }
+        } else {
+            model.deleteIngredient(this.ingredient);
+            return new CommandResult(String.format(MESSAGE_DELETE_INGREDIENT_SUCCESS, this.ingredient));
+        }
     }
 
     @Override
