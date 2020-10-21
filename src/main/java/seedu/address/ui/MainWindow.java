@@ -126,8 +126,8 @@ public class MainWindow extends UiPart<Stage> {
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
         // Waiting for contact list storage to be implemented.
-        // contactListPanel = new ContactListPanel(logic.getFilteredContactList());
-        // contactListPanelPlaceholder.getChildren().add(contactListPanel.getRoot());
+        contactListPanel = new ContactListPanel(logic.getFilteredContactList());
+        contactListPanelPlaceholder.getChildren().add(contactListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
