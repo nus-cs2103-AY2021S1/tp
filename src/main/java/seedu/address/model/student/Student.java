@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import seedu.address.model.student.academic.Academic;
 import seedu.address.model.student.admin.Admin;
 
 /**
@@ -20,12 +21,13 @@ public class Student {
     private final Year year;
     private final Admin admin;
     private final List<Question> questions = new ArrayList<>();
+    private final Academic academic;
 
     /**
      *  name, phone, school, year, must be present and not null.
      */
     public Student(Name name, Phone phone, School school, Year year,
-                   Admin admin, List<Question> questions) {
+                   Admin admin, List<Question> questions, Academic academic) {
         requireAllNonNull(name, phone, school, year, admin);
         this.name = name;
         this.phone = phone;
@@ -33,6 +35,7 @@ public class Student {
         this.year = year;
         this.admin = admin;
         this.questions.addAll(questions);
+        this.academic = academic;
     }
 
     public Name getName() {
@@ -57,6 +60,10 @@ public class Student {
 
     public List<Question> getQuestions() {
         return questions;
+    }
+
+    public Academic getAcademic() {
+        return academic;
     }
 
     /**
