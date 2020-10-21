@@ -11,6 +11,7 @@ to use the Command Line Interface (fast-typist) and needs to keep track of inven
  ![Ui](docs/images/Ui.png)
 
 # Site Map
+* For detailed documentation of this project, please refer to [OneShelf Product Website](https://ay2021s1-cs2103t-t12-1.github.io/tp/)
 * [User Guide](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/docs/UserGuide.md)
 * [Developer Guide](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/docs/DeveloperGuide.md)
 * [About Us](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/docs/AboutUs.md)
