@@ -23,8 +23,8 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all assignments"
             + " by its NAME, MODULE CODE, DEADLINE or PRIORITY. "
             + "Finding is done one field at a time.\n"
-            + "DEADLINE keywords are in the format dd-MM-yyyy or HHmm, which allows finding of assignments by time "
-            + "and date separately.\n"
+            + "DEADLINE keywords are in the format dd-MM-yyyy or HHmm, which allows finding of assignments by date "
+            + "and time separately.\n"
             + "Parameters:" + PREFIX_NAME + "NAME [MORE NAMES] or\n"
             + PREFIX_MODULE_CODE + "MODULE_CODE [MORE MODULE_CODES] or\n"
             + PREFIX_DEADLINE + " DATE_OR_TIME_OF_DEADLINE [MORE DATE_OR_TIME_OF_DEADLINE] or\n"
@@ -38,8 +38,8 @@ public class FindCommand extends Command {
              + "It should not be left empty.";
 
     public static final String MORE_THAN_ONE_PREFIX_MESSAGE =
-            "There are more than one prefixes found. Finding is done one field at a time.\n"
-             + " Prefixes: n/ to find by name, d/ to find by date or time, priority/ to find by priorities and\n"
+            "Multiple assignment fields detected. Finding is done one field at a time.\n"
+             + "Fields and its prefix: n/ to find by name, d/ to find by date or time, priority/ to find by priorities and\n"
              + " mod/ to find by module code.";
 
     private final Predicate<Assignment> predicate;

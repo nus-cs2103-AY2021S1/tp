@@ -98,6 +98,11 @@ public class FindCommandParser implements Parser<FindCommand> {
         return new FindCommand(new PriorityContainsKeywordsPredicate(Arrays.asList(keywords)));
     }
 
+    private static String[] getKeywords(Prefix prefix, ArgumentMultimap argMultimap) {
+        assert argMultimap.getValue(prefix).isPresent();
+        return argMultimap.getValue(prefix).get().split("\\s+");
+    }
+
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
@@ -124,14 +129,13 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MORE_THAN_ONE_PREFIX_MESSAGE));
         } else if (isPrefixNamePresent && isPreambleMissing) {
-            keywords = argMultimap.getValue(PREFIX_NAME).get().split("\\s+");
+            keywords = getKeywords(PREFIX_NAME, argMultimap);
             return findByName(keywords);
         } else if (isPrefixModuleCodePresent && isPreambleMissing) {
-            keywords = argMultimap.getValue(PREFIX_MODULE_CODE).get().split("\\s+");
+            keywords = getKeywords(PREFIX_MODULE_CODE, argMultimap);
             return findByModuleCode(keywords);
         } else if (isPrefixDeadlinePresent && isPreambleMissing) {
-            keywords = argMultimap.getValue(PREFIX_DEADLINE).get()
-                    .split("\\s+");
+            keywords = getKeywords(PREFIX_DEADLINE, argMultimap);
             return findByDeadline(keywords);
         } else if (isPrefixPriorityPresent && isPreambleMissing) {
             keywords = argMultimap.getValue(PREFIX_PRIORITY).get().split("\\s+");
