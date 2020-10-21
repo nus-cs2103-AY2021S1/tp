@@ -1,10 +1,10 @@
 package seedu.expense.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.expense.logic.commands.exceptions.CommandException;
 import seedu.expense.model.Model;
 import seedu.expense.model.alias.AliasEntry;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Edits the alias of an existing commands in the alias map.

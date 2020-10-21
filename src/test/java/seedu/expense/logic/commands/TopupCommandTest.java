@@ -1,7 +1,16 @@
 package seedu.expense.logic.commands;
 
-import javafx.collections.ObservableList;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.expense.testutil.Assert.assertThrows;
+
+import java.nio.file.Path;
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.expense.commons.core.GuiSettings;
 import seedu.expense.model.Model;
 import seedu.expense.model.ReadOnlyExpenseBook;
@@ -11,12 +20,6 @@ import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.budget.Budget;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
-
-import java.nio.file.Path;
-import java.util.function.Predicate;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.expense.testutil.Assert.assertThrows;
 
 public class TopupCommandTest {
 

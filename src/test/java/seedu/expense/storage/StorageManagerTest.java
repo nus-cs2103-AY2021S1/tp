@@ -1,18 +1,19 @@
 package seedu.expense.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.expense.testutil.TypicalExpenses.getTypicalExpenseBook;
+
+import java.nio.file.Path;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
 import seedu.expense.commons.core.GuiSettings;
 import seedu.expense.model.ExpenseBook;
 import seedu.expense.model.ReadOnlyExpenseBook;
 import seedu.expense.model.UserPrefs;
-
-import java.nio.file.Path;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.expense.testutil.TypicalExpenses.getTypicalExpenseBook;
 
 public class StorageManagerTest {
 

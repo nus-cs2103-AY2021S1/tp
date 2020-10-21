@@ -1,8 +1,21 @@
 package seedu.expense.logic;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.expense.commons.core.Messages.MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX;
+import static seedu.expense.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.expense.logic.commands.CommandTestUtil.AMOUNT_DESC_FOOD;
+import static seedu.expense.logic.commands.CommandTestUtil.DATE_DESC_FOOD;
+import static seedu.expense.logic.commands.CommandTestUtil.DESCRIPTION_DESC_FOOD;
+import static seedu.expense.testutil.Assert.assertThrows;
+import static seedu.expense.testutil.TypicalExpenses.FOOD;
+
+import java.io.IOException;
+import java.nio.file.Path;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
 import seedu.expense.logic.commands.AddCommand;
 import seedu.expense.logic.commands.CommandResult;
 import seedu.expense.logic.commands.ListCommand;
@@ -19,16 +32,6 @@ import seedu.expense.storage.JsonExpenseBookStorage;
 import seedu.expense.storage.JsonUserPrefsStorage;
 import seedu.expense.storage.StorageManager;
 import seedu.expense.testutil.ExpenseBuilder;
-
-import java.io.IOException;
-import java.nio.file.Path;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.expense.commons.core.Messages.MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX;
-import static seedu.expense.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.expense.logic.commands.CommandTestUtil.*;
-import static seedu.expense.testutil.Assert.assertThrows;
-import static seedu.expense.testutil.TypicalExpenses.FOOD;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");

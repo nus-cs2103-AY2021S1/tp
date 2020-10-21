@@ -1,9 +1,9 @@
 package seedu.expense.logic.parser;
 
+import static seedu.expense.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.expense.logic.commands.AliasCommand;
 import seedu.expense.logic.parser.exceptions.ParseException;
-
-import static seedu.expense.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new AliasCommand object

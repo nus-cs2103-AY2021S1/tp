@@ -1,14 +1,15 @@
 package seedu.expense.logic.commands;
 
+import static seedu.expense.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.expense.testutil.TypicalExpenses.getTypicalExpenseBook;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.expense.model.ExpenseBook;
 import seedu.expense.model.Model;
 import seedu.expense.model.ModelManager;
 import seedu.expense.model.UserPrefs;
 import seedu.expense.model.alias.AliasMap;
-
-import static seedu.expense.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.expense.testutil.TypicalExpenses.getTypicalExpenseBook;
 
 public class ClearCommandTest {
 

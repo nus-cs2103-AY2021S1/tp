@@ -1,10 +1,23 @@
 package seedu.expense.model.alias;
 
-import seedu.expense.logic.commands.*;
-
-import java.util.*;
-
 import static java.util.Objects.requireNonNull;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import seedu.expense.logic.commands.AddCommand;
+import seedu.expense.logic.commands.ClearCommand;
+import seedu.expense.logic.commands.DeleteCommand;
+import seedu.expense.logic.commands.EditCommand;
+import seedu.expense.logic.commands.ExitCommand;
+import seedu.expense.logic.commands.FindCommand;
+import seedu.expense.logic.commands.HelpCommand;
+import seedu.expense.logic.commands.ListCommand;
+import seedu.expense.logic.commands.RemarkCommand;
+import seedu.expense.logic.commands.TopupCommand;
 
 /**
  * Wraps all data at the expense-book level
@@ -16,9 +29,10 @@ public class AliasMap {
     public static final String DUPLICATE_KEYWORD_FOUND = "The [%s] keyword already exists.";
     public static final String UNCHANGED_ALIAS = "Previous and updated alias must not be the same.";
     public static final String ALIAS_NOT_FOUND = "The [%s] alias cannot be found.";
+    private static final Set<String> RESERVED_KEYWORDS;
 
     private final HashMap<String, String> aliasMap;
-    private static final Set<String> RESERVED_KEYWORDS;
+
     static {
         RESERVED_KEYWORDS =
                 Set.of(
@@ -29,6 +43,9 @@ public class AliasMap {
                 );
     }
 
+    /**
+     * Constructs a new {@code AliasMap}.
+     */
     public AliasMap() {
         aliasMap = new HashMap<>();
     }
@@ -44,8 +61,8 @@ public class AliasMap {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the expense list with {@code expenses}.
-     * {@code expenses} must not contain duplicate expenses.
+     * Replaces the contents of the alias list with {@code aliases}.
+     * {@code aliases} must not contain duplicate expenses.
      */
     public void setAliases(List<AliasEntry> aliases) {
         for (AliasEntry e: aliases) {
@@ -54,7 +71,7 @@ public class AliasMap {
     }
 
     /**
-     * Resets the existing data of this {@code ExpenseBook} with {@code newData}.
+     * Resets the existing data of this {@code AliasMap} with {@code newData}.
      */
     public void resetData(AliasMap newData) {
         requireNonNull(newData);
@@ -65,13 +82,16 @@ public class AliasMap {
     //// alias-level operations
 
     /**
-     * Returns true if a expense with the same identity as {@code expense} exists in the expense book.
+     * Returns true if an AliasEntry with the same identity as {@code aliasEntry} exists in the alias map.
      */
     public boolean hasAlias(AliasEntry aliasEntry) {
         requireNonNull(aliasEntry);
         return this.aliasMap.containsKey(aliasEntry.getKey());
     }
 
+    /**
+     * Returns true if a String with the same identity as {@code aliasString} exists in the alias map.
+     */
     public boolean hasAlias(String aliasString) {
         requireNonNull(aliasString);
         return this.aliasMap.containsKey(aliasString);
@@ -86,18 +106,18 @@ public class AliasMap {
     }
 
     /**
-     * Adds a expense to the expense book.
-     * The expense must not already exist in the expense book.
+     * Adds an AliasEntry to the alias map.
+     * The entry must not already exist in the alias map.
      */
     public void addAlias(AliasEntry aliasEntry) {
         aliasMap.put(aliasEntry.getKey(), aliasEntry.getValue());
     }
 
     /**
-     * Replaces the given expense {@code target} in the list with {@code editedExpense}.
-     * {@code target} must exist in the expense book.
-     * The expense identity of {@code editedExpense} must not be the same as another existing
-     * expense in the expense book.
+     * Replaces the given etnry {@code prev} in the list with {@code update}.
+     * {@code prev} must exist in the expense book.
+     * The alias of {@code update} must not be the same as another existing
+     * alias in the alias map.
      */
     public void setAlias(AliasEntry prev, AliasEntry update) throws IllegalArgumentException {
         requireNonNull(prev);
@@ -128,8 +148,8 @@ public class AliasMap {
     }
 
     /**
-     * Removes {@code key} from this {@code ExpenseBook}.
-     * {@code key} must exist in the expense book.
+     * Removes {@code alias} from this {@code AliasMap}.
+     * {@code alias} must exist in the expense book.
      */
     public void removeAlias(AliasEntry alias) {
         aliasMap.remove(alias.getKey());

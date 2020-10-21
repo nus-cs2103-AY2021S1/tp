@@ -1,6 +1,16 @@
 package seedu.expense.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.expense.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.expense.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.expense.logic.commands.CommandTestUtil.showExpenseAtIndex;
+import static seedu.expense.testutil.TypicalExpenses.getTypicalExpenseBook;
+import static seedu.expense.testutil.TypicalIndexes.INDEX_FIRST_EXPENSE;
+import static seedu.expense.testutil.TypicalIndexes.INDEX_SECOND_EXPENSE;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.expense.commons.core.Messages;
 import seedu.expense.commons.core.index.Index;
 import seedu.expense.model.Model;
@@ -8,13 +18,6 @@ import seedu.expense.model.ModelManager;
 import seedu.expense.model.UserPrefs;
 import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.expense.Expense;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.expense.logic.commands.CommandTestUtil.*;
-import static seedu.expense.testutil.TypicalExpenses.getTypicalExpenseBook;
-import static seedu.expense.testutil.TypicalIndexes.INDEX_FIRST_EXPENSE;
-import static seedu.expense.testutil.TypicalIndexes.INDEX_SECOND_EXPENSE;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for

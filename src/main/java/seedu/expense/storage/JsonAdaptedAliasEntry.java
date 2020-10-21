@@ -1,11 +1,12 @@
 package seedu.expense.storage;
 
+import static java.util.Objects.requireNonNull;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.expense.commons.exceptions.IllegalValueException;
 import seedu.expense.model.alias.AliasEntry;
-
-import static java.util.Objects.requireNonNull;
 
 
 /**

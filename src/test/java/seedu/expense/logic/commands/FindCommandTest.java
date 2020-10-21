@@ -1,6 +1,20 @@
 package seedu.expense.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.expense.commons.core.Messages.MESSAGE_EXPENSES_LISTED_OVERVIEW;
+import static seedu.expense.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.expense.testutil.TypicalExpenses.PHONE_BILL;
+import static seedu.expense.testutil.TypicalExpenses.SWEE_CHOON;
+import static seedu.expense.testutil.TypicalExpenses.ZARA;
+import static seedu.expense.testutil.TypicalExpenses.getTypicalExpenseBook;
+
+import java.util.Arrays;
+import java.util.Collections;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.expense.model.Model;
 import seedu.expense.model.ModelManager;
 import seedu.expense.model.UserPrefs;
@@ -8,14 +22,6 @@ import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.expense.DateMatchesPredicate;
 import seedu.expense.model.expense.NameContainsKeywordsPredicate;
 import seedu.expense.model.expense.TagsMatchesPredicate;
-
-import java.util.Arrays;
-import java.util.Collections;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.expense.commons.core.Messages.MESSAGE_EXPENSES_LISTED_OVERVIEW;
-import static seedu.expense.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.expense.testutil.TypicalExpenses.*;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

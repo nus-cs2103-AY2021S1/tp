@@ -1,13 +1,14 @@
 package seedu.expense.storage;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.expense.commons.exceptions.IllegalValueException;
-import seedu.expense.model.alias.AliasMap;
-import seedu.expense.model.alias.AliasEntry;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.expense.commons.exceptions.IllegalValueException;
+import seedu.expense.model.alias.AliasEntry;
+import seedu.expense.model.alias.AliasMap;
 
 public class JsonSerializableAliasMap {
     public static final String MESSAGE_DUPLICATE_ALIAS = "Alias list contains duplicate alias(es).";

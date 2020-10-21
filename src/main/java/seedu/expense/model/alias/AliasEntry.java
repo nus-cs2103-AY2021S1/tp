@@ -4,6 +4,12 @@ public class AliasEntry {
     private final String key;
     private final String value;
 
+    /**
+     * Constructs an {@code AliasEntry} with specific Key and Value string.
+     *
+     * @param key alias string
+     * @param value default command word
+     */
     public AliasEntry(String key, String value) {
         this.key = key;
         this.value = value;

@@ -1,5 +1,12 @@
 package seedu.expense.model;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.expense.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.nio.file.Path;
+import java.util.function.Predicate;
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.expense.commons.core.GuiSettings;
@@ -9,13 +16,6 @@ import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.budget.Budget;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
-
-import java.nio.file.Path;
-import java.util.function.Predicate;
-import java.util.logging.Logger;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.expense.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents the in-memory model of the expense book data.

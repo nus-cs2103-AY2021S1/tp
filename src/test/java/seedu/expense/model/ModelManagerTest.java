@@ -1,20 +1,23 @@
 package seedu.expense.model;
 
-import org.junit.jupiter.api.Test;
-import seedu.expense.commons.core.GuiSettings;
-import seedu.expense.model.alias.AliasMap;
-import seedu.expense.model.expense.NameContainsKeywordsPredicate;
-import seedu.expense.testutil.ExpenseBookBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.expense.model.Model.PREDICATE_SHOW_ALL_EXPENSES;
+import static seedu.expense.testutil.Assert.assertThrows;
+import static seedu.expense.testutil.TypicalExpenses.FEL_BDAY;
+import static seedu.expense.testutil.TypicalExpenses.GRAB_HOME;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.expense.model.Model.PREDICATE_SHOW_ALL_EXPENSES;
-import static seedu.expense.testutil.Assert.assertThrows;
-import static seedu.expense.testutil.TypicalExpenses.FEL_BDAY;
-import static seedu.expense.testutil.TypicalExpenses.GRAB_HOME;
+import org.junit.jupiter.api.Test;
+
+import seedu.expense.commons.core.GuiSettings;
+import seedu.expense.model.alias.AliasMap;
+import seedu.expense.model.expense.NameContainsKeywordsPredicate;
+import seedu.expense.testutil.ExpenseBookBuilder;
 
 public class ModelManagerTest {
 
