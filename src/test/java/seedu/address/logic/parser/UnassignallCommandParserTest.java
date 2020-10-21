@@ -1,12 +1,11 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_DESC;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.UnassignCommand;
+
 import seedu.address.logic.commands.UnassignallCommand;
 
 public class UnassignallCommandParserTest {
