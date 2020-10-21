@@ -388,8 +388,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 12. The system should not provide functionality that breaks and local laws within a country it is distributed to.
 13. The system should still be able to function without connection to a network.
 14. The system should only be used by one user.
-15. There should be enough RAM to store 100 states of the models for the Undo and Redo Commands.
-16. There should be enough RAM to store 100 states of history of commands the user has entered.
+15. Storing 100 states of the models for the Undo and Redo Commands should not take more than 100 KB.
+16. Storing 100 states of history of commands the user has entered should not take more than 10 KB.
 
 ### Glossary
 
