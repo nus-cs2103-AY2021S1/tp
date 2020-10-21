@@ -74,12 +74,13 @@ public class FindCommandParser implements Parser<FindCommand> {
     private static FindCommand findByDeadline(String[] keywords) throws ParseException {
         requireNonNull(keywords);
         for (String keyword : keywords) {
-            boolean isDateFormat = keyword.matches("\\d{2}-\\d{2}-\\d{4}");
-            boolean isTimeFormat = keyword.matches("\\d{4}");
+            boolean isDateFormat = keyword.matches("^\\d{2}-\\d{2}-\\d{4}$");
+            boolean isTimeFormat = keyword.matches("^\\d{4}$");
+
             if (isDateFormat) {
                 FindCommandParser.tryParseDateFormat(keyword);
             }
-            if (isTimeFormat) {
+            else if (isTimeFormat) {
                 FindCommandParser.tryParseTimeFormat(keyword);
             }
             else {
