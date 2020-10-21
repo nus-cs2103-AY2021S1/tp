@@ -62,8 +62,7 @@ Action | Format
 --------|------------------
 **Add Item** | `addi` **-n \<item name\>** \[-q \<qty\>\] \[-d \<desc\>\] \[-l \<location1, location2, …\>\] 
 **Add Recipe** | `addr` **-n \<product name\>** **-items \<item name\[quantity\], … >** \[-pc \<num>\] \[-d \<desc\>\]
-**Add quantity to item** | `add` **-n \<item name\>** **-q \<qty\>**
-**List** | `list` \[-i (default) / -r\]
+**Add quantity to item** | `addq` **-n \<item name\>** **-q \<qty\>**
 **List Items** | `listi`
 **List Recipes** | `listr`
 **Delete item** | `deli` **-n \<item name\>**
@@ -94,7 +93,7 @@ Action | Format
 - Adds an item to the inventory, with the given fields
 
 **EXAMPLE:**
-- `addi` <u>banana</u> -q 44 -d edible banana -l Bob’s banana farm
+- `addi` -n <u>banana</u> -q 44 -d edible banana -l Bob’s banana farm
 - Adds new entry of 44 <u>banana</u>, with description edible <u>banana</u>, found at **location** <u>Bob’s banana farm</u>
 
 ### Adding a new Recipe: `addr`
@@ -112,20 +111,17 @@ Action | Format
 - Adds a recipe to the inventory, with the given fields
 
 **EXAMPLE:**
-- `addr` <u>Bob’s anvil</u> **-items** <u>block of iron</u> \[3\], <u>iron ingot</u>\[4\]
+- `addr` -n <u>Bob’s anvil</u> **-items** <u>block of iron</u> \[3\], <u>iron ingot</u>\[4\]
 - Adds a **recipe** to craft <u>Bob’s anvil</u>, which takes 3 <u>blocks of iron</u> and 4 <u>iron ingots</u>
 
 
-### Adding a item: `add`
-NOT Supported as of v1.2
+### Adding quantity to an item: `addq`
 
 **NAME:**
-
-- `add` - adds quantity to a single specified item
+- `addq` - adds quantity to a single specified item
 
 **SYNOPSIS:**
-
-- `add` <**item name**> -q <**qty**>
+- `addq` **\<item name\>** **-q \<qty\>**
 
 **DESCRIPTION:**
 - **item name:** given name of the item in the system
@@ -133,39 +129,15 @@ NOT Supported as of v1.2
 - Adds the quantity to the item in the inventory
 
 **EXAMPLE:**
-- `add` <u>Bob’s 6th regret</u> -q <u>8</u>
+- `addq` -n <u>Bob’s 6th regret</u> -q <u>8</u>
 - Adds <u>8</u> more <u>Bob’s 6th regrets</u> to the inventory
-
-### Listing all items or recipes : `list`
-NOT Supported as of v1.2
-
-**NAME:**
-	
-- `list` - lists all items or recipes in the inventory
-
-**SYNOPSIS:**
-
-- `list` \[-i (default) / -r\]
-
-**DESCRIPTION:**
-
-- **i:** Displays list of items
-(showing item name and quantity)
-- **r:** Displays list of recipes
-(showing item, required items and their quantities, and the product items and their quantities)
-
-**EXAMPLE:**
-- `list` -i
-- Lists all items and their quantities
 
 ### Listing all items : `listi`
 
 **NAME:**
-	
 - `listi` - lists all items
 
 **SYNOPSIS:**
-
 - `listi`
 
 **EXAMPLE:**
@@ -175,11 +147,9 @@ NOT Supported as of v1.2
 ### Listing all items : `listr`
 
 **NAME:**
-	
 - `listr` - lists all recipes
 
 **SYNOPSIS:**
-
 - `listr`
 
 **EXAMPLE:**
@@ -187,6 +157,7 @@ NOT Supported as of v1.2
 - Lists all recipes, outputs, descriptions and their ingredients
 
 ### Deleting an item : `deli`
+
 **NAME:**
 - `deli` - deletes an item
 
@@ -199,7 +170,7 @@ NOT Supported as of v1.2
  and all recipes associated with the item
 
 **EXAMPLE:**
-- `deli` <u>Bob’s 28th finger</u>
+- `deli` -n <u>Bob’s 28th finger</u>
 - Deletes the **item** with the name of <u>Bob’s 28th finger</u>
 
 ### Deleting a Recipe : `delr`
@@ -216,28 +187,11 @@ NOT Supported as of v1.2
 - Deletes the recipe in the inventory with the corresponding recipe index in the given item
 
 **EXAMPLE:**
-- `delr` <u>Bob’s 28th finger -r 1</u>
-- Deletes the **first recipe** of the item <u>Bob’s 28th finger</u>
-
-### Delete item/recipe : `del`
-NOT Supported as of v1.2 yet
-
-**NAME:**
-- `del` - deletes an item or recipe
-
-**SYNOPSIS:**
-- `del` **-n \<item name\>** \[-r index\]
-
-**DESCRIPTION:**
-- **item name:** name of the item to be deleted, or associated with the recipe to be deleted
-- **index:** if provided, deletes the <u>recipe</u> numbered <u>index</u>,
-- Deletes the item in the inventory with the corresponding item name, or the recipe if specified 
-
-**EXAMPLE:**
-- `del` <u>Bob’s 28th finger</u>
-- Deletes the **item** with the name of <u>Bob’s 28th finger</u>
+- `delr` -n <u>Bob’s 28th finger</u> -r <u>1</u>
+- Deletes the <u>first recipe</u> of the item <u>Bob’s 28th finger</u>
 
 ### Finding an Entry: `find`
+
 **NAME:**
 - `find` - finds items
 
@@ -280,11 +234,9 @@ WIP as of v1.2
 WIP as of v1.2
 
 **NAME:** 
-
 - `help` - lists all commands and how to use them (Current implementation)
 
 **SYNOPSIS:**
-
 - `help` \[command\]
 
 **DESCRIPTION:**
