@@ -32,7 +32,7 @@ public class ModelManager implements Model {
     private final FilteredList<Food> filteredFoodItems;
 
     /**
-     * Initializes a ModelManager with the given mcGymmy and userPrefs.
+     * Initializes a ModelManager with the given mcGymmy and userPrefs and macroList.
      */
     public ModelManager(ReadOnlyMcGymmy mcGymmy, ReadOnlyUserPrefs userPrefs, MacroList macroList) {
         super();
@@ -44,6 +44,13 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.macroList = macroList;
         filteredFoodItems = new FilteredList<>(this.mcGymmy.getFoodList());
+    }
+
+    /**
+     * Initializes a ModelManager with the given mcGymmy and userPrefs. Creates a new macroList.
+     */
+    public ModelManager(ReadOnlyMcGymmy mcGymmy, ReadOnlyUserPrefs userPrefs) {
+        this(mcGymmy, userPrefs, new MacroList());
     }
 
     public ModelManager() {

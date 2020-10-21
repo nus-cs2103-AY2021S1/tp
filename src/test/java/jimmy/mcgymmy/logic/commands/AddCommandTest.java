@@ -23,6 +23,7 @@ import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
 import jimmy.mcgymmy.model.ReadOnlyUserPrefs;
 import jimmy.mcgymmy.model.UserPrefs;
 import jimmy.mcgymmy.model.food.Food;
+import jimmy.mcgymmy.model.macro.MacroList;
 import jimmy.mcgymmy.model.tag.Tag;
 import jimmy.mcgymmy.testutil.FoodBuilder;
 
@@ -123,6 +124,16 @@ public class AddCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
+        @Override
+        public MacroList getMacroList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMacroList(MacroList replacement) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");

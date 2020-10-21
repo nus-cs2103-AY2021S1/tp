@@ -55,7 +55,7 @@ public class MacroTest {
         CommandLineParser commandLineParser = new DefaultParser();
         Options options = toTest.getOptions();
         CommandLine args = commandLineParser.parse(options, arguments.split(" "));
-        toTest.executeWith(model, args);
+        MacroRunner.asCommandInstance(toTest, args).execute(model);
         boolean[] foundList = new boolean[itemsToCheckInModel.length];
         boolean[] allTrueList = new boolean[itemsToCheckInModel.length];
         for (int i = 0; i < itemsToCheckInModel.length; i++) {
