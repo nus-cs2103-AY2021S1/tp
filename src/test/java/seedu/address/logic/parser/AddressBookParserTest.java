@@ -79,11 +79,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> nameKeywords = Arrays.asList("Assignment", "homework", "lab");
-
         List<String> moduleCodeKeywords = Arrays.asList("CS2100", "CS2103T", "MA1101R");
-
         List<String> deadlineKeywords = Arrays.asList("23-10-2020", "1200", "10-11-2021");
-
         List<String> priorityKeywords = Arrays.asList("HIGH", "LOW");
 
         FindCommand findByNames = (FindCommand) parser.parseCommand(
@@ -101,6 +98,7 @@ public class AddressBookParserTest {
         FindCommand findByPriorities = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + PREFIX_PRIORITY + priorityKeywords.stream()
                         .collect(Collectors.joining(" ")));
+
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(nameKeywords)), findByNames);
         assertEquals(new FindCommand(new ModuleCodeContainsKeywordsPredicate(moduleCodeKeywords)), findByModuleCodes);
         assertEquals(new FindCommand(new DeadlineContainsKeywordsPredicate(deadlineKeywords)), findByDeadlines);
