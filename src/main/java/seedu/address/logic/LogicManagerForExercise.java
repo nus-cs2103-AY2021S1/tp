@@ -62,14 +62,6 @@ public class LogicManagerForExercise implements LogicForExercise {
         return commandResult;
     }
 
-    private void archiveMethod(Path path) throws CommandException {
-        try {
-            storage.saveExerciseBook(model.getExerciseBook(), path);
-        } catch (IOException ioe) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
-        }
-    }
-
     @Override
     public ReadOnlyExerciseBook getExerciseBook() {
         return model.getExerciseBook();

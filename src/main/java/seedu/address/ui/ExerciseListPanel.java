@@ -23,9 +23,9 @@ public class ExerciseListPanel extends UiPart<Region> {
     /**
      * Creates a {@code ExerciseListPanel} with the given {@code ObservableList}.
      */
-    public ExerciseListPanel(ObservableList<Exercise> personList) {
+    public ExerciseListPanel(ObservableList<Exercise> exerciseList) {
         super(FXML);
-        exerciseListView.setItems(personList);
+        exerciseListView.setItems(exerciseList);
         exerciseListView.setCellFactory(listView -> new ExerciseListViewCell());
     }
 
