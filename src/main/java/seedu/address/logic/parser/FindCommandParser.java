@@ -89,7 +89,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     private void checkKeywords(String[] keywords, Prefix prefix) throws ParseException {
         if (prefix.equals(PREFIX_PHONE)
-            && Stream.of(keywords).anyMatch(k -> !k.matches("\\d"))) {
+            && Stream.of(keywords).anyMatch(k -> !k.matches("\\d+"))) {
             throw new ParseException(MESSAGE_INVALID_PHONE_KEYWORD);
         }
     }
