@@ -18,6 +18,7 @@ import static chopchop.logic.parser.commands.HelpCommandParser.parseHelpCommand;
 import static chopchop.logic.parser.commands.ListCommandParser.parseListCommand;
 import static chopchop.logic.parser.commands.FindCommandParser.parseFindCommand;
 import static chopchop.logic.parser.commands.DeleteCommandParser.parseDeleteCommand;
+import static chopchop.logic.parser.commands.MakeCommandParser.parseMakeCommand;
 
 public class CommandParser {
 
@@ -106,6 +107,7 @@ public class CommandParser {
                 case Strings.COMMAND_FIND:      return parseFindCommand(args);
                 case Strings.COMMAND_LIST:      return parseListCommand(args);
                 case Strings.COMMAND_DELETE:    return parseDeleteCommand(args);
+                case Strings.COMMAND_MAKE:      return parseMakeCommand(args);
 
                 case Strings.COMMAND_QUIT:      return Result.of(new QuitCommand());
 

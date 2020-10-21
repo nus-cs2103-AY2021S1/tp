@@ -23,6 +23,7 @@ public class Strings {
     public static final String COMMAND_FIND         = "find";
     public static final String COMMAND_QUIT         = "quit";
     public static final String COMMAND_DELETE       = "delete";
+    public static final String COMMAND_MAKE         = "make";
 
     // command targets
     // public static final String TARGET_RECIPE        = "recipe";
