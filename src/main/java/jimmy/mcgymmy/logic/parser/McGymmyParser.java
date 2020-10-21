@@ -9,8 +9,8 @@ import org.apache.commons.cli.Options;
 
 import jimmy.mcgymmy.commons.core.Messages;
 import jimmy.mcgymmy.logic.commands.CommandExecutable;
-import jimmy.mcgymmy.logic.macro.Macro;
-import jimmy.mcgymmy.model.MacroList;
+import jimmy.mcgymmy.model.macro.Macro;
+import jimmy.mcgymmy.model.macro.MacroList;
 import jimmy.mcgymmy.logic.macro.NewMacroCommand;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
 

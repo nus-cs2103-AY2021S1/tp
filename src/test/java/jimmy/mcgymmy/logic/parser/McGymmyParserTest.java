@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import jimmy.mcgymmy.logic.commands.AddCommand;
 import jimmy.mcgymmy.logic.commands.CommandExecutable;
 import jimmy.mcgymmy.logic.commands.ListCommand;
-import jimmy.mcgymmy.logic.macro.Macro;
-import jimmy.mcgymmy.model.MacroList;
+import jimmy.mcgymmy.model.macro.Macro;
+import jimmy.mcgymmy.model.macro.MacroList;
 import jimmy.mcgymmy.logic.macro.NewMacroCommand;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
 
@@ -41,8 +41,8 @@ public class McGymmyParserTest {
     @Test
     public void registeredMacroCommand_getsParsed() throws Exception {
         McGymmyParser mcGymmyParser = new McGymmyParser();
-        MacroList macroList = mcGymmyParser.getMacroList();
         Macro dummyMacro = new Macro("test", new String[]{}, new String[]{});
+        MacroList macroList = mcGymmyParser.getMacroList();
         macroList.addMacro(dummyMacro);
         // this should not throw any errors
         mcGymmyParser.parse("test");

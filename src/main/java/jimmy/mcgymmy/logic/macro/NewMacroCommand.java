@@ -5,9 +5,10 @@ import java.util.Arrays;
 import jimmy.mcgymmy.logic.commands.CommandExecutable;
 import jimmy.mcgymmy.logic.commands.CommandResult;
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
-import jimmy.mcgymmy.logic.macro.exceptions.DuplicateMacroException;
+import jimmy.mcgymmy.model.macro.Macro;
+import jimmy.mcgymmy.model.macro.exceptions.DuplicateMacroException;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
-import jimmy.mcgymmy.model.MacroList;
+import jimmy.mcgymmy.model.macro.MacroList;
 import jimmy.mcgymmy.model.Model;
 
 public class NewMacroCommand implements CommandExecutable {

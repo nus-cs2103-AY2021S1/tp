@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
-import jimmy.mcgymmy.logic.macro.Macro;
+import jimmy.mcgymmy.model.macro.Macro;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
 
 /**

@@ -12,7 +12,7 @@ import jimmy.mcgymmy.commons.exceptions.DataConversionException;
 import jimmy.mcgymmy.logic.commands.CommandExecutable;
 import jimmy.mcgymmy.logic.commands.CommandResult;
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
-import jimmy.mcgymmy.model.MacroList;
+import jimmy.mcgymmy.model.macro.MacroList;
 import jimmy.mcgymmy.logic.parser.McGymmyParser;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
 import jimmy.mcgymmy.model.Model;
