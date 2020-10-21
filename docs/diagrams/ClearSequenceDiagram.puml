@@ -3,7 +3,6 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":McGymmyParser" as McGymmyParser LOGIC_COLOR
 participant "executable:ClearCommand" as ClearCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -15,20 +14,31 @@ end box
 [-> LogicManager : execute("clear")
 activate LogicManager
 
-LogicManager -> McGymmyParser : parseCommand("clear")
-activate McGymmyParser
 
-McGymmyParser --> LogicManager : executable
-deactivate McGymmyParser
+create ClearCommand
+LogicManager -> ClearCommand : Parser::parse**
+activate ClearCommand
+
+ClearCommand --> LogicManager : executable
+deactivate ClearCommand
+
+|||
 
 LogicManager -> ClearCommand : execute()
 activate ClearCommand
 
+|||
+
+
 ClearCommand -> Model : clearFilteredFood()
 activate Model
 
+|||
+
 Model --> ClearCommand
 deactivate Model
+
+|||
 
 create CommandResult
 ClearCommand -> CommandResult
