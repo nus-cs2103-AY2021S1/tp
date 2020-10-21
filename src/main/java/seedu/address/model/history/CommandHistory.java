@@ -41,7 +41,6 @@ public class CommandHistory {
      */
     public static String getCommandHistory() {
         String history = "";
-        assert commandHistory.size() != 1 : "commandHistory cannot be empty";
         for (int i = commandHistory.size() - 1; i > 0; i--) {
             history += ("\n -\t");
             history += (commandHistory.get(i - 1));
