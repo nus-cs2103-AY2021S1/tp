@@ -28,10 +28,14 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
+        //invalid prefix
+        assertParseFailure(parser, " boo/CS2100", Priority.MESSAGE_CONSTRAINTS);
+        //invalid keywords depending on prefix
         assertParseFailure(parser, " d/2345 hello", String.format(
                 MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.INVALID_DATE_OR_TIME_MESSAGE));
         assertParseFailure(parser, " mod/CS386", ModuleCode.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, " priority/NO", Priority.MESSAGE_CONSTRAINTS);
+        //preamble present
         assertParseFailure(parser, " preamble mod/CS2100", String.format(
                 MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         assertParseFailure(parser, " preamble n/assignment 2", String.format(

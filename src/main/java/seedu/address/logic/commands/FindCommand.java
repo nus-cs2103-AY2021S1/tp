@@ -17,6 +17,7 @@ import java.util.function.Predicate;
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all assignments"
             + " by its NAME, MODULE CODE, DEADLINE or PRIORITY."
             + "Finding is done one field at a time.\n"
@@ -32,6 +33,7 @@ public class FindCommand extends Command {
     public static final String INVALID_DATE_OR_TIME_MESSAGE =
             "Deadline field should have date or time keywords in the format dd-MM-yyyy or HHmm.\n"
              + "It should not be left empty.";
+
     public static final String MORE_THAN_ONE_PREFIX_MESSAGE =
             "There are more than one prefixes found. Finding is done one field at a time.\n"
              + " Prefixes: n/ to find by name, d/ to find by date or time, priority/ to find by priorities and\n"
