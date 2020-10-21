@@ -3,12 +3,16 @@ layout: page
 title: User Guide
 ---
 
-# User Guide
+## Introduction
 ![inventoryinator](images/inventoryinator.jpg)
 
 Inventoryinator is a **desktop app for game inventories, optimized for use via a Command Line Interface** (CLI) 
 while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Inventoryinator can
 get your inventory management tasks done faster than traditional GUI apps.
+
+This User Guide will help you get started with the setup of Inventoryinator and provide a quick reference of
+the features available and how to use them. You can use the table of contents below for easy access to sections
+in this document. 
 
 * Table of Contents
 {:toc}
@@ -45,6 +49,7 @@ get your inventory management tasks done faster than traditional GUI apps.
 
 1. Refer to the [Features](#features) below for details of each command.
 ___________________________________________________________________
+
 ## Legend:
 
 A legend for the styling used in this guide to describe the commands' format.
