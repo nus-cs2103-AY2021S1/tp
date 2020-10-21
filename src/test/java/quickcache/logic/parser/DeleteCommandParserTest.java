@@ -8,6 +8,16 @@ import static quickcache.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 import org.junit.jupiter.api.Test;
 
 import quickcache.logic.commands.DeleteCommand;
+import quickcache.model.flashcard.Flashcard;
+import quickcache.model.flashcard.FlashcardContainsTagPredicate;
+import quickcache.model.flashcard.FlashcardPredicate;
+import quickcache.model.flashcard.Tag;
+import quickcache.testutil.TypicalTags;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.function.Predicate;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -28,5 +38,20 @@ public class DeleteCommandParserTest {
     @Test
     public void parse_invalidIndex_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_validTag_returnsDeleteCommand() {
+        Set<Tag> tagsToMatch = new HashSet<>();
+        tagsToMatch.add(TypicalTags.testTag);
+        FlashcardPredicate flashcardPredicate = prepareFlashcardPredicate(tagsToMatch);
+        assertParseSuccess(parser, " t/test", DeleteCommand.withPredicate(flashcardPredicate, tagsToMatch));
+    }
+
+    private FlashcardPredicate prepareFlashcardPredicate(Set<Tag> tagsToMatch) {
+        ArrayList<Predicate<Flashcard>> predicates = new ArrayList<>();
+        predicates.add(new FlashcardContainsTagPredicate(tagsToMatch));
+        FlashcardPredicate flashcardPredicate = new FlashcardPredicate(predicates);
+        return flashcardPredicate;
     }
 }
