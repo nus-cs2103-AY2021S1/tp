@@ -12,6 +12,7 @@ PlaNus is a desktop app for **managing tasks, optimized for use via a Command Li
   * [Show all commands : `help`](#show-all-commands--help)
   * [List all tasks : `list`](#list-all-tasks--list)
   * [Add a task: `add`](#add-a-task-add)
+  * [Add a lesson: `lesson`](#add-a-lesson-lesson)
   * [Delete a task : `delete`](#delete-a-task--delete)
   * [Mark a task as done: `done`](#mark-a-task-as-done-done)
   * [Find a task : `find`](#find-a-task-by-attribute-find)
@@ -79,6 +80,23 @@ Examples:
 * `add title:Birthday party type:event desc:Frank’s birthday party date:01-01-2020 18:00`
   Adds a task with title “Birthday party” , type event,
   description “Frank’s birthday party” , and date and time “01-01-2020 18:00” to PlaNus.
+  
+### Add a lesson: `lesson`
+
+Adds a lesson to PlaNus.
+
+Format: `lesson title:TITLE [desc:DESCRIPTION] day:DAY from:TIME to:TIME start:DATE end:DATE`
+
+* Adds multiple recurring tasks of  `type:lesson` to PlaNus, starting from the date specified in `start:DATE` to the
+ date specified in `end:DATE`, on the day specified in `day:DAY` from the time specified in `from:TIME` to the time
+ specified in `to:TIME`.
+* The format of day must be as follows (case-insensitive):
+  * Mon - Sun
+  * Monday - Sunday
+
+Examples:
+
+* `lesson title:CS2103T Lecture desc:Most exciting lecture in NUS! day:Mon from:12:00 to:14:00 start:01-01-2020 end:01-05-2020 ` Adds a recurring lesson to PlaNus with a title "CS2103 Lecture", description "Most exciting lecture in NUS!", on all Mondays 12:00-14:00 in the date range 01-01-2020 to 01-05-2020.
 
 ### Delete a task : `delete`
 

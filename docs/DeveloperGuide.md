@@ -287,34 +287,67 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-    1. User requests to add a specific task to the list.
+1. User requests to add a specific task to the list.
 
-    2. PlaNus adds the task.
+2. PlaNus adds the task.
 
   Use case ends.
 
 
 **Extensions**
 
-- 1a. The given index is invalid.
+- 1a. The given input is invalid.
 
-  - 1a1. AddressBook shows an error message.
+  - 1a1. PlaNus shows an error message.
+
+    Use case resumes at step 1.
+    
+- 1b. The task already exists.
+
+  - 1b1. PlaNus shows an error message.
 
     Use case resumes at step 1.
 
 <br>
 
-**Use case 02: Delete a task**
+**Use case 02: Add a lesson**
 
 **MSS**
 
-    1. User requests to list tasks.
+1. User requests to add a lesson to the list.
 
-    2. PlaNus shows a list of tasks.
+2. PlaNus adds the lessons as recurring tasks.
 
-    3. User requests to delete a specific task in the list.
+  Use case ends.
 
-    4. PlaNus deletes the task.
+
+**Extensions**
+
+- 1a. The given input is invalid.
+
+  - 1a1. PlaNus shows an error message.
+
+    Use case resumes at step 1.
+
+- 1b. The lesson already exists.
+
+  - 1b1. PlaNus shows an error message.
+
+    Use case resumes at step 1.
+
+<br>
+
+**Use case 03: Delete a task**
+
+**MSS**
+
+1. User requests to list tasks.
+
+2. PlaNus shows a list of tasks.
+
+3. User requests to delete a specific task in the list.
+
+4. PlaNus deletes the task.
 
   Use case ends.
 
@@ -332,13 +365,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case 03: List all tasks**
+**Use case 04: List all tasks**
 
 **MSS**
 
-    1. User requests to list tasks.
+1. User requests to list tasks.
 
-    2. PlaNus shows a list of tasks.
+2. PlaNus shows a list of tasks.
 
   Use case ends.
 
@@ -350,29 +383,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case 04: Request help**
+**Use case 05: Request help**
 
 **MSS**
 
-    1. User requests help.
+1. User requests help.
 
-    2. PlaNus shows available commands.
+2. PlaNus shows available commands.
 
   Use case ends.
 
 <br>
 
-**Use case 05: Mark a task as done**
+**Use case 06: Mark a task as done**
 
 **MSS**
 
-    1. User requests to list tasks.
+1. User requests to list tasks.
 
-    2. PlaNus shows a list of tasks.
+2. PlaNus shows a list of tasks.
 
-    3. User requests to mark a specific tasks in the list as done.
+3. User requests to mark a specific tasks in the list as done.
 
-    4. PlaNus marks the task as done.
+4. PlaNus marks the task as done.
 
   Use case ends.
 
@@ -386,13 +419,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case 06: Find a task**
+**Use case 07: Find a task**
 
 **MSS**
 
-    1. User requests to find task with specified search phrase(s) in specified attribute(s).
+1. User requests to find task with specified search phrase(s) in specified attribute(s).
 
-    2. PlaNus shows a list of tasks that match the specified search phrase(s) in the specified attribute(s).
+2. PlaNus shows a list of tasks that match the specified search phrase(s) in the specified attribute(s).
 
   Use case ends.
 
@@ -412,17 +445,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. The list is empty.
 
-  ​Use case ends.
+  Use case ends.
 
 <br>
 
-**Use case 07: Edit a task**
+**Use case 08: Edit a task**
 
 **MSS**
 
-    1. User requests to edit values of specified attribute(s) of a task.
+1. User requests to edit values of specified attribute(s) of a task.
 
-    2. PlaNus shows task with updated attribute(s).
+2. PlaNus shows task with updated attribute(s).
 
   Use case ends.
 
@@ -441,13 +474,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case 08: Exit application**
+**Use case 09: Exit application**
 
 **MSS**
 
-    1. User requests to exit application.
+1. User requests to exit application.
 
-    2. PlaNus exits application.
+2. PlaNus exits application.
 
   Use case ends.
 

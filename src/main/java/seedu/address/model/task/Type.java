@@ -17,7 +17,8 @@ public class Type {
     public enum TypeOfTask {
         TODO("todo"),
         EVENT("event"),
-        DEADLINE("deadline");
+        DEADLINE("deadline"),
+        LESSON("lesson");
         private final String type;
         TypeOfTask(String type) {
             this.type = type;

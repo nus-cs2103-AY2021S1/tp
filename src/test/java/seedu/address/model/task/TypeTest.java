@@ -33,5 +33,6 @@ public class TypeTest {
         assertTrue(Type.isValidType("todo"));
         assertTrue(Type.isValidType("event"));
         assertTrue(Type.isValidType("deadline"));
+        assertTrue(Type.isValidType("lesson"));
     }
 }

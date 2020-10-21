@@ -89,8 +89,8 @@ public class Task {
     }
 
     /**
-     * Returns true if both tasks of the same title have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two tasks.
+     * Returns true if both tasks of the same title, date and time.
+     * This defines a strong notion of equality between two tasks to allow recurring tasks yet preventing duplicates.
      */
     public boolean isSameTask(Task otherTask) {
         if (otherTask == this) {
@@ -99,8 +99,7 @@ public class Task {
 
         return otherTask != null
                 && otherTask.getTitle().equals(getTitle())
-                && (otherTask.getDateTime().equals(getDateTime())
-                || otherTask.getDescription().equals(getDescription()));
+                && otherTask.getDateTime().equals(getDateTime());
     }
 
     public Task markAsDone() {

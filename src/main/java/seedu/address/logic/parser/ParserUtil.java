@@ -2,6 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +13,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.lesson.Date;
+import seedu.address.model.lesson.Time;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
@@ -82,6 +88,74 @@ public class ParserUtil {
         return new DateTime(trimmedDateTime);
     }
 
+    /**
+     * Parses a {@code String time} into a {@code LocalTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code time} is invalid.
+     */
+    public static LocalTime parseTime(String time) throws ParseException {
+        requireNonNull(time);
+        String trimmedTime = time.trim();
+        DateTimeFormatter parser = DateTimeFormatter.ofPattern("HH:mm");
+        if (!Time.isValidTime(trimmedTime)) {
+            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
+        }
+        return LocalTime.parse(trimmedTime, parser);
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code LocalDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static LocalDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        DateTimeFormatter parser = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        if (!Date.isValidDate(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return LocalDate.parse(trimmedDate, parser);
+    }
+
+    /**
+     * Parses a {@code String day} into a {@code DayOfTheWeek}.
+     * Leading and trailing whitespaces will be trimmed, input is case-insensitive.
+     *
+     * @throws ParseException if the given {@code day} is invalid.
+     */
+    public static DayOfWeek parseDay(String day) throws ParseException {
+        requireNonNull(day);
+        String trimmedDay = day.trim();
+        String dayOfWeek = trimmedDay.toUpperCase();
+        switch (dayOfWeek) {
+        case "MON":
+        case "MONDAY":
+            return DayOfWeek.MONDAY;
+        case "TUE":
+        case "TUESDAY":
+            return DayOfWeek.TUESDAY;
+        case "WED":
+        case "WEDNESDAY":
+            return DayOfWeek.WEDNESDAY;
+        case "THU":
+        case "THURSDAY":
+            return DayOfWeek.THURSDAY;
+        case "FRI":
+        case "FRIDAY":
+            return DayOfWeek.FRIDAY;
+        case "SAT":
+        case "SATURDAY":
+            return DayOfWeek.SATURDAY;
+        case "SUN":
+        case "SUNDAY":
+            return DayOfWeek.SUNDAY;
+        default:
+            throw new ParseException(DateTime.DAY_MESSAGE_CONSTRAINTS);
+        }
+    }
     /**
      * Parses a {@code String type} into an {@code Type}.
      * Leading and trailing whitespaces will be trimmed.
