@@ -23,12 +23,12 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 <img src="images/overallUML.png" width="500px">
 
 This is the overall design of our product. As we are using **GUI to help to display the information** and mainly focuses on
-using **CLI to take in the required commands**, thus the product consists of **6 main major components**. The product starts 
+using **CLI to take in the required commands**, thus the product consists of **6 main major components**. The product starts
 from the Launcher classes, that initiates based on our pre-set settings and then activates the MainApp class
 the will run the GUI with these settings. MainApp will also start the _brain_ and -muscles_ of the program, which are the Logic, Storage,
-Model and Ui components. 
+Model and Ui components.
 
-The role of the **Logic** component is to act as the _brain_ of the program, where all the parsing of information will be done, and the 
+The role of the **Logic** component is to act as the _brain_ of the program, where all the parsing of information will be done, and the
 execution of the commands will be carried out.
 
 The role of the **Storage** component is to represent the _memory_ of the program, where the storing and tracking of the different items happens.
