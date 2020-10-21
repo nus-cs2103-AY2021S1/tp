@@ -734,20 +734,25 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases … }_
 
-### Deleting a person
+### Deleting a flashcard
 
-1. Deleting a flashcard while all flashcards are being shown
+There are 2 ways to delete flashcards – by index or by tags.
+
+1. Deleting a flashcard by index
 
    1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First flashcard is deleted from the list. Details of the deleted flashcard shown in the status message. Timestamp in the status bar is updated.
+      Expected: First flashcard is deleted from the list. Details of the deleted flashcard shown in the status message. 
 
    1. Test case: `delete 0`<br>
       Expected: No flashcard is deleted. Error details shown in the status message. Status bar remains the same.
+      
+   1. Test case: `delete t/MCQ`<br>
+      Expected: All flashcards with the tag `MCQ` is deleted
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+   1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size), `delete 1 t/MCQ` <br>
+      Expected: Error message will appear with instructions on how to use the delete command.
 
 ### Saving data
 
