@@ -249,16 +249,22 @@ To view full notes for the stock, use the `noteview` command.
 Format: `note sn/<serial number> nt/<note>`
 
 Example Usages:
+
 Stock | Details
 ------| --------
 **Stock 1** | Name: banana<br> Serial Number: ntuc1<br> Source: ntuc<br> Quantity: 5<br> Location in warehouse: Fruits Section
 **Stock 2** | Name: chicken<br> Serial Number: sheng siong1<br> Source: sheng siong<br> Quantity: 100<br> Location in warehouse: Poultry Section
 
-`note sn/sheng siong1 nt/chicken will expire soon` will add note with index 1 in note column for Stock 2. <br>
+Command: `note sn/sheng siong1 nt/chicken will expire soon` will add note with index 1 in note column for Stock 2. <br>
+
 ![chicken note 1](images/add_note1_to_stock.png)
-`note sn/sheng siong1 nt/chicken order will arrive wednesday` will add note with index 2 for Stock 2. <br>
+
+Command: `note sn/sheng siong1 nt/chicken order will arrive wednesday` will add note with index 2 for Stock 2. <br>
+
 ![chicken note 2](images/add_note2_to_stock.png)
-`note sn/ntuc1 nt/banana just arrived` will add note with index 1 in note column for Stock 1. <br>
+
+Command: `note sn/ntuc1 nt/banana just arrived` will add note with index 1 in note column for Stock 1. <br>
+
 ![banana note 1](images/add_note1_to_banana.png)
 
 ### Deleting note(s) from stock: `notedelete`
@@ -273,10 +279,15 @@ Format: `notedelete sn/<serial number> ni/<note index>`
 
 Example Usages:
 * Before: <br>
+
 ![before notes](images/add_note1_to_banana.png)
-* After `notedelete sn/ntuc1 ni/1`: <br>
+
+* After command: `notedelete sn/ntuc1 ni/1`: <br>
+
 ![after note delete1](images/after_note_delete_1.png)
-* After `notedelete sn/ntuc1 ni/0`: <br>
+
+* After command: `notedelete sn/ntuc1 ni/0`: <br>
+
 ![after note delete0](images/after_note_delete_0.png)
 
 ### Generating statistics: `stats`
