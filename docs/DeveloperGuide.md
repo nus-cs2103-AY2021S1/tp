@@ -145,7 +145,7 @@ Classes used by multiple components are stored in the `seedu.addressbook.commons
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **Feature Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -169,7 +169,7 @@ updated value.
 The sequence diagram for the execution of an `AddQuantityToItemCommand` is as follows:
 
 The `Item` with name banana is denoted as `itemBanana`, and the original quantity assumed to be `20`.
-![AddQuantityToItemCommandSequenceDiagram](images/AddQuantityToItemCommandSequenceDiagram.png)
+![AddQuantityToItemCommandSequenceDiagram](images/commandseqdiagrams/AddQuantityToItemCommandSequenceDiagram.png)
 
 ### View detailed item feature
 
@@ -242,6 +242,23 @@ The following sequence diagram shows how the list items operation works:
 
 The following sequence diagram shows how the list recipes operation works:
 ![ListRecipeSequenceDiagram](images/commandseqdiagrams/ListRecipeSequenceDiagram.png)
+
+### Find items feature
+
+The find items feature allows users to search, case-insensitively, for items using search keys. Item names that match or contain any of the
+ keys will be displayed.
+
+#### Implementation
+
+The `FindItemCommand` object facilitates this feature. The search keys are parsed by the `FindItemCommandParser` which
+ creates a `NameMatchesKeywordsPredicate` object and passes it to `FindItemCommand`. Upon execution, the predicate object
+ is passed on to `Model` which updates the `filteredItemsList` using the predicate. The predicate checks whether an item's
+ name matches or contains any of the search keys. case-insensitively. Finally, the `FindItemCommand` returns a `CommandResult`,
+ set to display the `filteredItemsList`. If there are any items that are found, the number of items found is displayed.
+ If none are found, a message is shown to the user.
+
+The following sequence diagram illustrates how the find items command works.
+![FindItemSequenceDiagram](images/commandseqdiagrams/FindItemSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -386,7 +403,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Item**: An item represents an object you obtain in a game. Eg a <u>Rock</u>
-* **Recipe**: An recipe is associated with multiple items, and represents the consumption of items in the input,
- to produce an item of the output. Eg: a 3 <u>Sticks</u> -> <u>Staff</u>
-* **Location**: The place where a Item can be found in game. Eg: <u>Sleepywood</u>
-* **Inventory**: The entire state of the inventoryinator, including recipes, items and item quantities.
+* **Recipe**: A recipe is associated with multiple items, and represents the consumption of items in the input,
+ to produce an item of the output. Eg: 3 <u>Sticks</u> -> <u>Staff</u>
+* **Location**: The place where an item can be found in game. Eg: <u>Sleepywood</u>
+* **Inventory**: The entire state of the Inventoryinator, including recipes, items, locations etc.

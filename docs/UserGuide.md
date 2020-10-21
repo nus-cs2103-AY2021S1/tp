@@ -3,12 +3,16 @@ layout: page
 title: User Guide
 ---
 
-# User Guide
+## Introduction
 ![inventoryinator](images/inventoryinator.jpg)
 
 Inventoryinator is a **desktop app for game inventories, optimized for use via a Command Line Interface** (CLI) 
 while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Inventoryinator can
 get your inventory management tasks done faster than traditional GUI apps.
+
+This User Guide will help you get started with the setup of Inventoryinator and provide a quick reference of
+the features available and how to use them. You can use the table of contents below for easy access to sections
+in this document. 
 
 * Table of Contents
 {:toc}
@@ -24,70 +28,67 @@ get your inventory management tasks done faster than traditional GUI apps.
 1. Copy the file to the folder you want to use as the _home folder_ for your Inventoryinator.
 
 1. Double-click the file to start the app. The GUI like below should appear in a few seconds. Note how the app contains some sample data.<br>
+   
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   
    Some example commands you can try:
 
    * **`list`** : Lists all items stored in Inventoryinator.
 
    * **`addi`**`banana -q 44 -d edible banana -l Bob's Banana Farm` : Adds a item named `banana` to the Inventoryinator
 
-   * **`add`** `banana -q 10` Add a quantity of 10 to the Bananas
+   * **`add`**`banana -q 10` Add a quantity of 10 to the Bananas
 
    * **`deli`**`-n banana` : Deletes the banana item from the Inventoryinator
 
-   * **`delr`**`-n banana` **`-r`** `1` : Deletes the first recipe from the item `bananas` 
+   * **`delr`**`-n banana`**`-r`**`1` : Deletes the first recipe from the item `bananas` 
 
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 ___________________________________________________________________
-## Convention:
-- term:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Command/variable term<br>
-- **term**:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Compulsory to be included in the command<br>
-- \<term\>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User Input Variable like recipe name or item name<br>
-- \[term1/ term2\]:&nbsp;&nbsp;&nbsp;&nbsp;Optional terms to specify parameters, only 1 of term1 or term2 _ should be input
-- -term: Option field to add to or a argument parameter
-- default:&nbsp;&nbsp;&nbsp;&nbsp;If no parameter is given as input, this will be the input parameter.
+
+## Legend:
+
+A legend for the styling used in this guide to describe the commands' format.
+
+Key | Meaning
+-----|---------
+term | Command/variable term<br>
+**term** | Compulsory to be included in the command<br>
+\<term\> | User Input Variable like recipe name or item name<br>
+\[term, ...\] | Optional terms, "..." indicates multiple terms are accpeted
+\[term1/ term2\] | Optional terms to specify parameters, only 1 of term1 or term2 _ should be input
+-term | Option field to add to or an argument parameter
+default | If no parameter is given as input, this will be the input parameter.
 ___________________________________________________________________
 
 ## Command summary
 
+A summary of the commands for the features currently implemented.
+
 Action | Format
 --------|------------------
-**Add Item** | `addi` <**item name**> \[-q \<qty\>\] \[-d \<desc\>\] \[-l \<location1, location2…\>\] 
-**Add Recipe** | `addr` \<**product name**\> **-items** **\<item name\[quantity\]**, … > \[-pc \<num>\] \[-d \<desc\>\]
-**Add quantity to item** | `add` <**item name**> -q <**qty**>
-**List** | `list` \[-i (default) / -r\]
-**Delete item** | `deli` \<item name\>
-**Delete Recipe** | `delr` \<item name\> \[-r index\]
-**Find** | `find` \<search string\>
-**View** | `view` <item name> \[-r / -c / -d (default)/ -all\]
+**Add Item** | `addi` **-n \<item name\>** \[-q \<qty\>\] \[-d \<desc\>\] \[-l \<location1, location2, …\>\] 
+**Add Recipe** | `addr` **-n \<product name\>** **-items \<item name\[quantity\], … >** \[-pc \<num>\] \[-d \<desc\>\]
+**Add quantity to item** | `addq` **-n \<item name\>** **-q \<qty\>**
+**List Items** | `listi`
+**List Recipes** | `listr`
+**Delete item** | `deli` **-n \<item name\>**
+**Delete Recipe** | `delr` **-n \<item name\> -r index**
+**Find** | `find` **\<search strings\>**
+**View** | `view` **\<item name\>** \[-r / -c / -d (default)/ -all\]
 **Help** | `help` \[command\]
-**Bye** | `bye`
+**Exit** | `exit`
 
 
 ## Features
 
-### Viewing help : `help`
-**NAME:** 
+Inventoryinator's features and their descriptions, as of v1.2.
 
-- `help` - lists all commands and how to use them (Current implementation)
-
-**SYNOPSIS:**
-
-- `help` \[command\]
-
-**DESCRIPTION:**
-
-- Displays a help sheet with brief descriptions of each command.
-
-- Shows a message explaning how to access the help page.
-Will eventually be extended to get help about specific commands.
-![help message](images/helpMessage.png)
-
-### Adding a item: `addi`
+### Adding an item: `addi`
 
 **NAME:**
 
@@ -95,16 +96,17 @@ Will eventually be extended to get help about specific commands.
 
 **SYNOPSIS:**
 	 
-- `addi` **-n** \<**item name**\> \[-q \<qty\>\] \[-d \<desc\>\] \[-l \<location1, location2…\>\] 
+- `addi` **-n \<item name\>** \[-q \<qty\>\] \[-d \<desc\>\] \[-l \<location1, location2, …\>\] 
 
 **DESCRIPTION:**
-
-- **q:**	qty indicates quantity to add (default: 1)
-- **d:**	desc indicates description of item (default: “No description given.”)
-- **l:**	locations indicate where item is found 
+- **item name:** name of the item to be added
+- **q:** quantity to add (default: 1)
+- **d:** description of item (default: “No description given.”)
+- **l:** locations where item can be found in game 
+- Adds an item to the inventory, with the given fields
 
 **EXAMPLE:**
-- `addi` <u>banana</u> -q 44 -d edible banana -l Bob’s banana farm
+- `addi` -n <u>banana</u> -q 44 -d edible banana -l Bob’s banana farm
 - Adds new entry of 44 <u>banana</u>, with description edible <u>banana</u>, found at **location** <u>Bob’s banana farm</u>
 
 ### Adding a new Recipe: `addr`
@@ -112,165 +114,126 @@ Will eventually be extended to get help about specific commands.
 - `addr` - adds a new recipe
 
 **SYNOPSIS:**
-- `addr` **-n**  \<**product name**\> **-items** **\<item name\[quantity\]**, … > \[-pc \<num>\]
-\[-d \<desc\>\]
+- `addr` **-n \<product name\>** **-items \<item name\[quantity\], … >** \[-pc \<num>\] \[-d \<desc\>\]
 
 **DESCRIPTION:**
 - **product name:**	name of the item created by the recipe
 - **-items:** specify the list of material items used
 - **-pc:** quantity of product produced in a craft (default: 1)
 - **-d:** description of recipe (default: “No description given”)
+- Adds a recipe to the inventory, with the given fields
 
 **EXAMPLE:**
-- `addr` <u>Bob’s anvil</u> **-items** <u>block of iron</u> \[3\], <u>iron ingot</u>\[4\]
+- `addr` -n <u>Bob’s anvil</u> **-items** <u>block of iron</u> \[3\], <u>iron ingot</u>\[4\]
 - Adds a **recipe** to craft <u>Bob’s anvil</u>, which takes 3 <u>blocks of iron</u> and 4 <u>iron ingots</u>
 
 
-### Adding a item: `add`
-NOT Supported as of v1.2 yet
+### Adding quantity to an item: `addq`
 
 **NAME:**
-
-- `add` - add a quantity to a single specified item
+- `addq` - adds quantity to a single specified item
 
 **SYNOPSIS:**
-
-- `add` <**item name**> -q <**qty**>
+- `addq` **\<item name\>** **-q \<qty\>**
 
 **DESCRIPTION:**
 - **item name:** given name of the item in the system
-- **-q:** amount of that item to add to the accumulated value
+- **-q:** amount of that item to add
+- Adds the quantity to the item in the inventory
 
 **EXAMPLE:**
-- `add` <u>Bob’s 6th regret</u> -q <u>8</u>
-- Adds <u>8</u> more <u>Bob’s 6th regrets</u> to the `Inventoryinator`
-
-### Listing all items or recipes : `list`
-NOT Supported as of v1.2 yet
-
-**NAME:**
-	
-- `list` - lists all items or recipes the user has entered
-
-**SYNOPSIS:**
-
-- `list` \[-i (default) / -r\]
-
-**DESCRIPTION:**
-
-- **i:** Displays list of items
-(showing item name and quantity)
-- **r:** Displays list of recipes
-(showing item, required items and their quantities, and the product items and their quantities)
-
-**EXAMPLE:**
-- `list` -i
-- Lists all items and their quantities
+- `addq` -n <u>Bob’s 6th regret</u> -q <u>8</u>
+- Adds <u>8</u> more <u>Bob’s 6th regrets</u> to the inventory
 
 ### Listing all items : `listi`
 
 **NAME:**
-	
 - `listi` - lists all items
 
 **SYNOPSIS:**
-
 - `listi`
 
 **EXAMPLE:**
-- `list` -i
+- `listi`
 - Lists all items and their quantities
 
 ### Listing all items : `listr`
 
 **NAME:**
-	
-- `listi` - lists all recipes
+- `listr` - lists all recipes
 
 **SYNOPSIS:**
-
 - `listr`
 
 **EXAMPLE:**
 - `listr` 
 - Lists all recipes, outputs, descriptions and their ingredients
 
-### Deleting a item : `deli`
+### Deleting an item : `deli`
+
 **NAME:**
-- `deli` - delete an item
+- `deli` - deletes an item
 
 **SYNOPSIS:**
-- `deli` \<item name\>
+- `deli` **-n \<item name\>**
 
 **DESCRIPTION:**
-- **deletes** the item in the inventory with the corresponding item name,
+- **item name:** name of the item to be deleted
+- Deletes the item in the inventory with the corresponding item name,
  and all recipes associated with the item
 
 **EXAMPLE:**
-- `deli` <u>Bob’s 28th finger</u>
+- `deli` -n <u>Bob’s 28th finger</u>
 - Deletes the **item** with the name of <u>Bob’s 28th finger</u>
 
 ### Deleting a Recipe : `delr`
 
 **NAME:**
-- `delr` - delete an recipe
+- `delr` - deletes a recipe
 
 **SYNOPSIS:**
-- `delr` \<item name\> \[-r index\]
+- `delr` **-n \<item name\>** **-r index**
 
 **DESCRIPTION:**
-- **deletes** the recipe in the inventory with the corresponding recipe index
-- **index:** deletes the <u>recipe</u> numbered <u>index</u>, 
+- **item name:** name of the item associated with the recipe to be deleted
+- **index:** deletes the <u>recipe</u> numbered <u>index</u>
+- Deletes the recipe in the inventory with the corresponding recipe index in the given item
 
 **EXAMPLE:**
-- `delr` <u>Bob’s 28th finger -r 1</u>
-- Deletes the **first recipe** of the item <u>Bob’s 28th finger</u>
+- `delr` -n <u>Bob’s 28th finger</u> -r <u>1</u>
+- Deletes the <u>first recipe</u> of the item <u>Bob’s 28th finger</u>
 
-### Delete item : `del`
-NOT Supported as of v1.2 yet
+### Finding an item: `find`
 
 **NAME:**
-- `del` - delete an item
+- `find` - finds items
 
 **SYNOPSIS:**
-- `del` \<item name\> \[-r index\]
+- `find` **\<search strings\>**
 
 **DESCRIPTION:**
-- **deletes** the item in the inventory with the corresponding item name
-- **index:** 	if provided, deletes the <u>recipe</u> numbered <u>index</u>, 
+- **search strings:** keywords to search by, space separated
+- Displays items that match or contain, case-insensitive, any of the search keywords
 
 **EXAMPLE:**
-- `del` <u>Bob’s 28th finger</u>
-- Deletes the **item** with the name of <u>Bob’s 28th finger</u>
+- `find` <u>bob alice</u>
 
-### Finding an Entry: `find`
-**NAME:**
-- `find` - find an item
-
-**SYNOPSIS:**
-- `find` \<search string\>
-
-**DESCRIPTION:**
-- Displays items that match the search string, via the **description**.
-
-**EXAMPLE:**
-- `find` -i <u>Bob’s 9000th crush</u>
-
-**NOT Supported as of v1.2**
-- Returns the item that match the item description: 
-<u>Bob’s 9000th crush</u>
-	(supports regex, eg. find -i <u>Bob’s ([1-9][0-9])(st\*nd\*rd\*th) crush</u>)
+- Returns the items whose names match/ contain bob or alice, like: 
+  - Bob’s 9000th crush
+  - Alice's sword
+  - Little bob
 
 ### View item `view`
-**WIP as of v1.2**
+WIP as of v1.2
 
 **NAME:**
 - `view` - view more details on an item
 
 **SYNOPSIS:**
-- `view` <item name> \[-r / -c / -d (default)/ -all\]
+- `view` **\<item name\>** \[-r / -c / -d (default)/ -all\]
 
 **DESCRIPTION:**
+- **item name:** item to view
 - **-d:** 	returns item details
 - **-c:** 	returns all recipes that create the item
 - **-r:** 	returns all recipes that use the item
@@ -280,6 +243,21 @@ NOT Supported as of v1.2 yet
 - `view` <u>Bob’s bitten fingernail clipping</u> -r 
 - Returns all recipes that use <u>Bob’s bitten fingernail clipping</u>
 
+### Viewing help : `help`
+WIP as of v1.2
+
+**NAME:** 
+- `help` - lists all commands and how to use them (Current implementation)
+
+**SYNOPSIS:**
+- `help` \[command\]
+
+**DESCRIPTION:**
+- Displays a help sheet with brief descriptions of each command.
+- Shows a message explaning how to access the help page.
+- Will eventually be extended to get help about specific commands.
+
+![help message](images/helpMessage.png)
 
 ### Exiting the program : `exit`
 
@@ -300,7 +278,7 @@ Inventoryinator data is saved in the hard disk automatically after any command t
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data files
+**A**: Install the app in the other computer and run it. Then, overwrite the data files
  it creates with the files that contain the data of your previous Inventoryinator home folder.
 
 --------------------------------------------------------------------------------------------------------------------
