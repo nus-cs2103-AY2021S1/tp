@@ -44,8 +44,8 @@ public class AddInventoryRecordCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.addInventoryRecord(newInventoryRecord);
-
         if (newFinanceRecord.isPresent()) {
+            newInventoryRecord.setFinanceRecord(newFinanceRecord.get());
             model.addFinanceRecord(newFinanceRecord.get());
         }
 

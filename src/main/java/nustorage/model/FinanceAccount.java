@@ -1,8 +1,8 @@
 package nustorage.model;
 
-
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,28 +11,20 @@ import nustorage.commons.core.index.Index;
 import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.FinanceRecordList;
 
-
 public class FinanceAccount implements ReadOnlyFinanceAccount {
 
     private final FinanceRecordList financeRecords;
-
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
-     */
-
-
     {
         financeRecords = new FinanceRecordList();
     }
 
+    private HashMap<Integer, FinanceRecord> financeRecordHashMap;
+    {
+        financeRecordHashMap = new HashMap<>();
+    }
 
     public FinanceAccount() {
     }
-
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -44,13 +36,16 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
 
     //// list overwrite operations
 
-
     /**
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
     public void setFinanceRecords(List<FinanceRecord> financeRecords) {
         this.financeRecords.setFinanceRecords(financeRecords);
+
+        for (FinanceRecord record : financeRecords) {
+            financeRecordHashMap.put(record.getID(), record);
+        }
     }
 
 
@@ -59,19 +54,17 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
      */
     public void resetData(ReadOnlyFinanceAccount newData) {
         requireNonNull(newData);
-
+        financeRecordHashMap = new HashMap<>();
         setFinanceRecords(newData.getFinanceList());
     }
-
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     public boolean hasFinanceRecord(FinanceRecord financeRecord) {
         requireNonNull(financeRecord);
-        return financeRecords.contains(financeRecord);
+        return financeRecordHashMap.containsKey(financeRecord.getID());
     }
-
 
     /**
      * Adds a person to the address book.
@@ -79,8 +72,8 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
      */
     public void addFinanceRecord(FinanceRecord financeRecord) {
         financeRecords.add(financeRecord);
+        financeRecordHashMap.put(financeRecord.getID(), financeRecord);
     }
-
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
@@ -91,8 +84,8 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
         requireNonNull(editedRecord);
 
         financeRecords.setFinanceRecord(target, editedRecord);
+        financeRecordHashMap.replace(target.getID(), editedRecord);
     }
-
 
     /**
      * Removes the finance record with the corresponding index
@@ -101,24 +94,22 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
      * @return Optional containing removed finance record if index is valid, else an empty optional
      */
     public Optional<FinanceRecord> removeFinanceRecord(Index targetIndex) {
-        return financeRecords.remove(targetIndex);
+        Optional<FinanceRecord> removedRecord = financeRecords.remove(targetIndex);
+        removedRecord.ifPresent(record -> financeRecordHashMap.remove(record.getID()));
+        return removedRecord;
     }
 
     //// util methods
 
-
     @Override
     public String toString() {
-        return financeRecords.asUnmodifiableObservableList().size() + " persons";
-        // TODO: refine later
+        return financeRecords.asUnmodifiableObservableList().size() + " finance records";
     }
-
 
     @Override
     public ObservableList<FinanceRecord> getFinanceList() {
         return financeRecords.asUnmodifiableObservableList();
     }
-
 
     @Override
     public boolean equals(Object other) {
@@ -127,10 +118,8 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
                 && financeRecords.equals(((FinanceAccount) other).financeRecords));
     }
 
-
     @Override
     public int hashCode() {
         return financeRecords.hashCode();
     }
-
 }
