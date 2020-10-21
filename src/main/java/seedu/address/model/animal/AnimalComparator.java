@@ -3,31 +3,16 @@ package seedu.address.model.animal;
 import java.util.Comparator;
 import java.util.Optional;
 
+import seedu.address.logic.parser.SortCommandParser;
 import seedu.address.model.feedtime.FeedTime;
 
 
 /**
- * Container for all animal comparators used for sorting.
+ * Stores a comparator used for sorting animals according to the category provided.
  */
 public class AnimalComparator {
 
-    public static final Comparator<Animal> ANIMAL_NAME_COMPARATOR = new Comparator<Animal>() {
-        @Override
-        public int compare(Animal o1, Animal o2) {
-            return o1.getName().fullName.compareTo(o2.getName().fullName);
-        }
-    };
-
-    public static final Comparator<Animal> ANIMAL_ID_COMPARATOR = new Comparator<Animal>() {
-        @Override
-        public int compare(Animal o1, Animal o2) {
-            return Integer.compare(
-                    Integer.parseInt(o1.getId().value),
-                    Integer.parseInt(o2.getId().value));
-        }
-    };
-
-    public static final Comparator<Animal> ANIMAL_FEEDTIME_COMPARATOR = new Comparator<Animal>() {
+    private static final Comparator<Animal> ANIMAL_FEEDTIME_COMPARATOR = new Comparator<Animal>() {
         @Override
         public int compare(Animal o1, Animal o2) {
             Optional<FeedTime> feedTime1 = o1.getEarliestFeedTime();
@@ -45,4 +30,75 @@ public class AnimalComparator {
             }
         }
     };
+
+    private static final Comparator<Animal> ANIMAL_ID_COMPARATOR = new Comparator<Animal>() {
+        @Override
+        public int compare(Animal o1, Animal o2) {
+            return Integer.compare(
+                    Integer.parseInt(o1.getId().value),
+                    Integer.parseInt(o2.getId().value));
+        }
+    };
+
+    private static final Comparator<Animal> ANIMAL_NAME_COMPARATOR = new Comparator<Animal>() {
+        @Override
+        public int compare(Animal o1, Animal o2) {
+            return o1.getName().fullName.compareTo(o2.getName().fullName);
+        }
+    };
+
+    private String category;
+    private Comparator<Animal> animalComparator;
+
+    private AnimalComparator(Comparator<Animal> animalComparator, String category) {
+        this.animalComparator = animalComparator;
+        this.category = category;
+    }
+
+    /**
+     * Creates an animal feed time comparator.
+     * @return An animal feed time comparator.
+     */
+    public static AnimalComparator createAnimalFeedTimeComparator() {
+        return new AnimalComparator(ANIMAL_FEEDTIME_COMPARATOR, SortCommandParser.FEEDTIME_CATEGORY);
+    }
+
+    /**
+     * Creates an animal id comparator.
+     * @return An animal id comparator.
+     */
+    public static AnimalComparator createAnimalIdComparator() {
+        return new AnimalComparator(ANIMAL_ID_COMPARATOR, SortCommandParser.ID_CATEGORY);
+    }
+
+    /**
+     * Creates an animal name comparator.
+     * @return An animal name comparator.
+     */
+    public static AnimalComparator createAnimalNameComparator() {
+        return new AnimalComparator(ANIMAL_NAME_COMPARATOR, SortCommandParser.NAME_CATEGORY);
+    }
+
+    /**
+     * Creates an invalid animal comparator when an invalid sort category is given.
+     * @return An invalid animal comparator.
+     */
+    public static AnimalComparator createInvalidComparator() {
+        return new AnimalComparator(null, "");
+    }
+
+    public String getCategory() {
+        return this.category;
+    }
+
+    public Comparator<Animal> getAnimalComparator() {
+        return this.animalComparator;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AnimalComparator // instanceof handles nulls
+                && category.equals(((AnimalComparator) other).category)); // state check
+    }
 }

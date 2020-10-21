@@ -1,12 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.animal.Animal;
+import seedu.address.model.animal.AnimalComparator;
 
 /**
  * The API of the Model component.
@@ -77,7 +77,11 @@ public interface Model {
      */
     void setAnimal(Animal target, Animal editedAnimal);
 
-    void sortAnimals(Comparator<Animal> animalComparator);
+    /**
+     * Sorts the animals using the given animal comparator.
+     * @param animalComparator Contains the specific comparator required for sorting.
+     */
+    void sortAnimals(AnimalComparator animalComparator);
 
     /** Returns an unmodifiable view of the filtered animal list */
     ObservableList<Animal> getFilteredAnimalList();

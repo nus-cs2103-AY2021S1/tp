@@ -123,7 +123,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(zooKeepBook, userPrefs)));
 
         // different after sorting by feedtimes -> return false
-        modelManager.sortAnimals(AnimalComparator.ANIMAL_FEEDTIME_COMPARATOR);
+        modelManager.sortAnimals(AnimalComparator.createAnimalFeedTimeComparator());
         assertFalse(modelManager.equals(new ModelManager(zooKeepBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

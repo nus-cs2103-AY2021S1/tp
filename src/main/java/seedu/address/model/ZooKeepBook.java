@@ -2,11 +2,11 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.animal.Animal;
+import seedu.address.model.animal.AnimalComparator;
 import seedu.address.model.animal.UniqueAnimalList;
 
 /**
@@ -94,7 +94,11 @@ public class ZooKeepBook implements ReadOnlyZooKeepBook {
         animals.remove(key);
     }
 
-    public void sortAnimals(Comparator<Animal> animalComparator) {
+    /**
+     * Sorts the animals using the given animal comparator.
+     * @param animalComparator Contains the specific comparator required for sorting.
+     */
+    public void sortAnimals(AnimalComparator animalComparator) {
         animals.sortAnimals(animalComparator);
     }
 

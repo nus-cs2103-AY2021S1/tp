@@ -9,7 +9,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -17,74 +16,77 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.SortCommandParser;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.ReadOnlyZooKeepBook;
 import seedu.address.model.animal.Animal;
+import seedu.address.model.animal.AnimalComparator;
 import seedu.address.testutil.AnimalBuilder;
 
 class SortCommandTest {
 
     @Test
     public void execute_wrongSortKeyword_throwsCommandException() {
-        String sortKeyword = "invalid";
         ModelStub modelStub = new ModelStub();
-        SortCommand sortCommand = new SortCommand(sortKeyword);
+        AnimalComparator invalidAnimalComparator = AnimalComparator.createInvalidComparator();
+        SortCommand sortCommand = new SortCommand(invalidAnimalComparator);
 
         assertThrows(CommandException.class,
-                Messages.MESSAGE_INVALID_SORT_KEYWORD, () -> sortCommand.execute(modelStub));
+                SortCommand.MESSAGE_INVALID_SORT_CATEGORY, () -> sortCommand.execute(modelStub));
     }
 
     @Test
     public void execute_sortAnimalNameSuccessful() throws Exception {
-        String sortKeyword = "name";
         Animal ahmeng = new AnimalBuilder().withName("Ahmeng").build();
         Animal buttercup = new AnimalBuilder().withName("Buttercup").build();
         Animal coco = new AnimalBuilder().withName("Coco").build();
         ModelStubSortingAnimals modelStub = new ModelStubSortingAnimals(
                 new ArrayList<>(Arrays.asList(buttercup, ahmeng, coco)));
 
-        CommandResult commandResult = new SortCommand(sortKeyword).execute(modelStub);
+        AnimalComparator animalNameComparator = AnimalComparator.createAnimalNameComparator();
+        CommandResult commandResult = new SortCommand(animalNameComparator).execute(modelStub);
 
-        assertEquals(String.format(SortCommand.MESSAGE_SUCCESS + sortKeyword), commandResult.getFeedbackToUser());
+        assertEquals(String.format(SortCommand.MESSAGE_SUCCESS + SortCommandParser.NAME_CATEGORY),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(ahmeng, buttercup, coco), modelStub.animals);
     }
 
     @Test
     public void execute_sortAnimalIdSuccessful() throws Exception {
-        String sortKeyword = "id";
         Animal ahmeng = new AnimalBuilder().withId("121").build();
         Animal buttercup = new AnimalBuilder().withId("122").build();
         Animal coco = new AnimalBuilder().withId("123").build();
         ModelStubSortingAnimals modelStub = new ModelStubSortingAnimals(
                 new ArrayList<>(Arrays.asList(buttercup, ahmeng, coco)));
 
-        CommandResult commandResult = new SortCommand(sortKeyword).execute(modelStub);
+        AnimalComparator animalIdComparator = AnimalComparator.createAnimalIdComparator();
+        CommandResult commandResult = new SortCommand(animalIdComparator).execute(modelStub);
 
-        assertEquals(String.format(SortCommand.MESSAGE_SUCCESS + sortKeyword), commandResult.getFeedbackToUser());
+        assertEquals(String.format(SortCommand.MESSAGE_SUCCESS + SortCommandParser.ID_CATEGORY),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(ahmeng, buttercup, coco), modelStub.animals);
     }
 
     @Test
     public void execute_sortAnimalFeedTimeSuccessful() throws Exception {
-        String sortKeyword = "feedtime";
         Animal ahmeng = new AnimalBuilder().withFeedTimes("1200").build();
         Animal buttercup = new AnimalBuilder().withFeedTimes("1230").build();
         Animal coco = new AnimalBuilder().withFeedTimes("1300").build();
         ModelStubSortingAnimals modelStub = new ModelStubSortingAnimals(
                 new ArrayList<>(Arrays.asList(buttercup, ahmeng, coco)));
 
-        CommandResult commandResult = new SortCommand(sortKeyword).execute(modelStub);
+        AnimalComparator animalFeedTimeComparator = AnimalComparator.createAnimalFeedTimeComparator();
+        CommandResult commandResult = new SortCommand(animalFeedTimeComparator).execute(modelStub);
 
-        assertEquals(String.format(SortCommand.MESSAGE_SUCCESS + sortKeyword), commandResult.getFeedbackToUser());
+        assertEquals(String.format(SortCommand.MESSAGE_SUCCESS + SortCommandParser.FEEDTIME_CATEGORY),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(ahmeng, buttercup, coco), modelStub.animals);
     }
 
     @Test
     public void execute_sortAnimalNoFeedTimeSuccessful() throws Exception {
-        String sortKeyword = "feedtime";
         Animal ahmeng = new AnimalBuilder().withFeedTimes().build();
         Animal buttercup = new AnimalBuilder().withFeedTimes().build();
         Animal coco = new AnimalBuilder().withFeedTimes("1300").build();
@@ -92,22 +94,24 @@ class SortCommandTest {
         ModelStubSortingAnimals modelStub = new ModelStubSortingAnimals(
                 new ArrayList<>(Arrays.asList(buttercup, coco, ahmeng, nemo)));
 
-        CommandResult commandResult = new SortCommand(sortKeyword).execute(modelStub);
+        AnimalComparator animalFeedTimeComparator = AnimalComparator.createAnimalFeedTimeComparator();
+        CommandResult commandResult = new SortCommand(animalFeedTimeComparator).execute(modelStub);
 
-        assertEquals(String.format(SortCommand.MESSAGE_SUCCESS + sortKeyword), commandResult.getFeedbackToUser());
+        assertEquals(String.format(SortCommand.MESSAGE_SUCCESS + SortCommandParser.FEEDTIME_CATEGORY),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(coco, buttercup, ahmeng, nemo), modelStub.animals);
     }
 
     @Test
     public void equals() {
-        SortCommand sortByNameCommand = new SortCommand("name");
-        SortCommand sortByIdCommand = new SortCommand("id");
+        SortCommand sortByNameCommand = new SortCommand(AnimalComparator.createAnimalNameComparator());
+        SortCommand sortByIdCommand = new SortCommand(AnimalComparator.createAnimalIdComparator());
 
         // same object -> returns true
         assertTrue(sortByNameCommand.equals(sortByNameCommand));
 
         // same command keyword -> returns true
-        SortCommand sortByNameCommandCopy = new SortCommand("name");
+        SortCommand sortByNameCommandCopy = new SortCommand(AnimalComparator.createAnimalNameComparator());
         assertTrue(sortByNameCommand.equals(sortByNameCommandCopy));
 
         // different types -> return false
@@ -185,7 +189,7 @@ class SortCommandTest {
         }
 
         @Override
-        public void sortAnimals(Comparator<Animal> animalComparator) {
+        public void sortAnimals(AnimalComparator animalComparator) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -212,8 +216,8 @@ class SortCommandTest {
         }
 
         @Override
-        public void sortAnimals(Comparator<Animal> animalComparator) {
-            animals.sort(animalComparator);
+        public void sortAnimals(AnimalComparator animalComparator) {
+            animals.sort(animalComparator.getAnimalComparator());
         }
     }
 }

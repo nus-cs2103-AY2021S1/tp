@@ -2,59 +2,47 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.animal.AnimalComparator;
 
 
 /**
- * Sorts all animals in the zookeep book to the user.
+ * Sorts all animals in the zookeep book based on the user specified parameter.
  */
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sorts the animals according to their name, ID or earliest feedtime. \n"
-            + "Parameters: keyword for sorting category (name, id, feedtime) \n"
+            + ": Sorts the animals according to their name, ID or earliest feed time. \n"
+            + "Parameters: case-insensitive CATEGORY (name, id, feedtime) \n"
             + "Example: " + COMMAND_WORD + " name";
     public static final String MESSAGE_SUCCESS = "Sorted all animals by ";
+    public static final String MESSAGE_INVALID_SORT_CATEGORY = "Please key in a proper sort category: "
+            + "name, id or feedtime";
 
-    public static final String NAME_KEYWORD = "name";
-    public static final String ID_KEYWORD = "id";
-    public static final String FEEDTIME_KEYWORD = "feedtime";
+    private final AnimalComparator animalComparator;
 
-    private final String keyword;
-
-    public SortCommand(String keyword) {
-        this.keyword = keyword;
+    public SortCommand(AnimalComparator animalComparator) {
+        this.animalComparator = animalComparator;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        assert !keyword.equals("") : "Keyword input cannot be empty!";;
-        switch (keyword) {
-        case NAME_KEYWORD:
-            model.sortAnimals(AnimalComparator.ANIMAL_NAME_COMPARATOR);
-            break;
-        case ID_KEYWORD:
-            model.sortAnimals(AnimalComparator.ANIMAL_ID_COMPARATOR);
-            break;
-        case FEEDTIME_KEYWORD:
-            model.sortAnimals(AnimalComparator.ANIMAL_FEEDTIME_COMPARATOR);
-            break;
-        default:
-            throw new CommandException(Messages.MESSAGE_INVALID_SORT_KEYWORD);
+        String category = animalComparator.getCategory();
+        if (category.equals("")) {
+            throw new CommandException(MESSAGE_INVALID_SORT_CATEGORY);
         }
-        return new CommandResult(MESSAGE_SUCCESS + keyword);
+        model.sortAnimals(animalComparator);
+        return new CommandResult(MESSAGE_SUCCESS + category);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SortCommand // instanceof handles nulls
-                && keyword.equals(((SortCommand) other).keyword)); // state check
+                && animalComparator.equals(((SortCommand) other).animalComparator)); // state check
     }
 }

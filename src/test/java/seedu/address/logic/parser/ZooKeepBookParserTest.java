@@ -26,6 +26,7 @@ import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.animal.Animal;
+import seedu.address.model.animal.AnimalComparator;
 import seedu.address.model.animal.AnimalContainsKeywordsPredicate;
 import seedu.address.model.animal.Id;
 import seedu.address.testutil.AnimalBuilder;
@@ -101,7 +102,7 @@ public class ZooKeepBookParserTest {
     public void parseCommand_sort() throws Exception {
         SortCommand command = (SortCommand) parser.parseCommand(
                 SortCommand.COMMAND_WORD + " " + "name");
-        assertEquals(new SortCommand("name"), command);
+        assertEquals(new SortCommand(AnimalComparator.createAnimalNameComparator()), command);
     }
 
     @Test

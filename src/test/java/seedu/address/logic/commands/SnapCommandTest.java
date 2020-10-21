@@ -7,7 +7,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -19,6 +18,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.ReadOnlyZooKeepBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.animal.Animal;
+import seedu.address.model.animal.AnimalComparator;
 import seedu.address.storage.JsonZooKeepBookStorage;
 import seedu.address.testutil.TypicalAnimals;
 
@@ -138,7 +138,7 @@ public class SnapCommandTest {
         }
 
         @Override
-        public void sortAnimals(Comparator<Animal> animalComparator) {
+        public void sortAnimals(AnimalComparator animalComparator) {
             throw new AssertionError("This method should not be called.");
         }
 

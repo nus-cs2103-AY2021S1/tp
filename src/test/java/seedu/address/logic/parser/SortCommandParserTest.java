@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.SortCommand;
+import seedu.address.model.animal.AnimalComparator;
 
 class SortCommandParserTest {
 
@@ -21,7 +22,7 @@ class SortCommandParserTest {
     public void parse_validArg_throwsParseException() {
         // no leading and trailing whitespaces
         SortCommand expectedSortCommand =
-                new SortCommand("name");
+                new SortCommand(AnimalComparator.createAnimalNameComparator());
         assertParseSuccess(parser, "name", expectedSortCommand);
 
         // multiple whitespaces before and after keyword
