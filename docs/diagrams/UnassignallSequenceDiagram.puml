@@ -1,0 +1,55 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "u:UnassignallCommand" as UnassignallCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("unassignall")
+activate LogicManager
+
+activate AddressBookParser
+
+create UnassignallCommand
+
+AddressBookParser -> UnassignallCommand
+activate UnassignallCommand
+
+UnassignallCommand --> AddressBookParser
+deactivate UnassignallCommand
+
+
+AddressBookParser --> LogicManager : u
+deactivate AddressBookParser
+
+LogicManager -> UnassignallCommand  : execute()
+activate UnassignallCommand
+
+UnassignallCommand  -> Model : unassignAllInstructors()
+
+activate Model
+
+Model --> UnassignallCommand
+
+deactivate Model
+
+create CommandResult
+UnassignallCommand  -> CommandResult
+activate CommandResult
+
+CommandResult --> UnassignallCommand
+deactivate CommandResult
+
+UnassignallCommand  --> LogicManager : result
+deactivate UnassignallCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
