@@ -39,8 +39,13 @@ public class ActiveAccountManager implements ActiveAccount {
     }
 
     @Override
+    public void setName(Name name) {
+        activeAccount.setName(name);
+    }
+
+    @Override
     public Account getAccount() {
-        return activeAccount;
+        return activeAccount.copyData();
     }
 
     @Override
@@ -98,6 +103,16 @@ public class ActiveAccountManager implements ActiveAccount {
         activeAccount.setRevenue(target, editedRevenue);
     }
 
+    @Override
+    public void clearExpenses() {
+        activeAccount.clearExpenses();
+    }
+
+    @Override
+    public void clearRevenues() {
+        activeAccount.clearRevenues();
+    }
+
     //=========== Filtered Account List Accessors =============================================================
 
     @Override
@@ -113,11 +128,13 @@ public class ActiveAccountManager implements ActiveAccount {
 
     @Override
     public void updateFilteredExpenseList(Predicate<Expense> predicate) {
+        requireNonNull(predicate);
         this.filteredExpenses.setPredicate(predicate);
     }
 
     @Override
     public void updateFilteredRevenueList(Predicate<Revenue> predicate) {
+        requireNonNull(predicate);
         this.filteredRevenues.setPredicate(predicate);
     }
 

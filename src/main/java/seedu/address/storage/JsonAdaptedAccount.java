@@ -37,7 +37,7 @@ public class JsonAdaptedAccount {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Account} into this class for Jackson use.
      */
     public JsonAdaptedAccount(Account source) {
         name = source.getName().toString();

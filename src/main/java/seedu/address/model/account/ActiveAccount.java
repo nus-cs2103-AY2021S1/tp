@@ -22,7 +22,12 @@ public interface ActiveAccount {
      */
     void setActiveAccount(ReadOnlyAccount newActiveAccount);
 
-    /** Returns the Active Account */
+    /**
+     * Replaces the name of the account with {@code name}.
+     */
+    public void setName(Name name);
+
+    /** Returns a copy of the Active Account */
     Account getAccount();
 
     /**
@@ -73,6 +78,16 @@ public interface ActiveAccount {
      * {@code target} must exist in the account.
      */
     void setRevenue(Revenue target, Revenue editedRevenue);
+
+    /**
+     * Clears all entries in the expense list.
+     */
+    void clearExpenses();
+
+    /**
+     * Clears all entries in the revenues list.
+     */
+    void clearRevenues();
 
     /** Returns an unmodifiable view of the filtered expense list */
     public ObservableList<Expense> getFilteredExpenseList();

@@ -75,6 +75,13 @@ public class RevenueList implements Iterable<Revenue> {
     }
 
     /**
+     * Clears all contents of this list.
+     */
+    public void clearRevenues() {
+        internalList.clear();
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Revenue> asUnmodifiableObservableList() {

@@ -17,7 +17,7 @@ import seedu.address.model.account.entry.RevenueList;
  */
 public class Account implements ReadOnlyAccount {
     // identity field
-    private final Name name;
+    private Name name;
 
     // data field
     private final ExpenseList expenses;
@@ -38,7 +38,14 @@ public class Account implements ReadOnlyAccount {
         resetData(toBeCopied);
     }
 
-    //// list overwrite operations
+    //// overwrite operations
+
+    /**
+     * Replaces the name of the account with {@code name}.
+     */
+    public void setName(Name name) {
+        this.name = name;
+    }
 
     /**
      * Replaces the contents of the expense list with {@code expenses}.
@@ -63,13 +70,37 @@ public class Account implements ReadOnlyAccount {
     }
 
     /**
+     * Clears contents of the revenue list.
+     */
+    public void clearRevenues() {
+        this.revenues.clearRevenues();
+    }
+
+    /**
+     * Clears contents of the expense list.
+     */
+    public void clearExpenses() {
+        this.expenses.clearExpenses();
+    }
+
+    /**
      * Resets the existing data of this {@code Account} with {@code newData}.
      */
     public void resetData(ReadOnlyAccount newData) {
         requireNonNull(newData);
-
+        setName(newData.getName());
         setExpenses(newData.getExpenseList());
         setRevenues(newData.getRevenueList());
+    }
+
+    /**
+     * Returns a new {@code Account} with the same data as {@code newData}.
+     */
+    public Account copyData() {
+        Account newAccount = new Account(getName());
+        newAccount.setExpenses(getExpenseList());
+        newAccount.setRevenues(getRevenueList());
+        return newAccount;
     }
 
     //// entry-level operations
@@ -153,9 +184,7 @@ public class Account implements ReadOnlyAccount {
 
     @Override
     public String toString() {
-        return expenses.asUnmodifiableObservableList().size() + " expenses\n"
-                + revenues.asUnmodifiableObservableList().size() + " revenues";
-        // TODO: refine later
+        return "Name: " + name.toString();
     }
 
     @Override

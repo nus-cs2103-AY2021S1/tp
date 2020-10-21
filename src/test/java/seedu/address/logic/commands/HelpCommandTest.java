@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
+import static seedu.address.testutil.TypicalEntries.getTypicalAccount;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +16,8 @@ public class HelpCommandTest {
 
     @Test
     public void execute_help_success() {
+        model.addAccount(getTypicalAccount());
+        expectedModel.addAccount(getTypicalAccount());
         CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false);
         assertCommandSuccess(new HelpCommand(), model, expectedCommandResult, expectedModel);
     }

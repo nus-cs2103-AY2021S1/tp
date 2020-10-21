@@ -51,9 +51,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return commonCentsFilePath;
     }
 
-    public void setCommonCentsFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.commonCentsFilePath = addressBookFilePath;
+    public void setCommonCentsFilePath(Path commonCentsFilePath) {
+        requireNonNull(commonCentsFilePath);
+        this.commonCentsFilePath = commonCentsFilePath;
     }
 
     @Override
