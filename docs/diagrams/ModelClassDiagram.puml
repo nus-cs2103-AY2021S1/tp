@@ -17,11 +17,18 @@ Class ReadOnlyUserPrefs
 
 Package Assignment {
 Class Assignment
-Class Address
+Class Deadline
 Class Email
 Class Name
-Class Phone
+Class ModuleCode
 Class UniqueAssignmentList
+}
+
+Package Lesson {
+}
+
+Package Task {
+
 }
 
 Package Tag {
@@ -43,14 +50,14 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 AddressBook *--> "1" UniqueAssignmentList
 UniqueAssignmentList o--> "*" Assignment
 Assignment *--> Name
-Assignment *--> Phone
+Assignment *--> ModuleCode
 Assignment *--> Email
-Assignment *--> Address
+Assignment *--> Deadline
 Assignment *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Name -[hidden]right-> ModuleCode
+ModuleCode -[hidden]right-> Deadline
+Deadline -[hidden]right-> Email
 
 ModelManager -->"1" Assignment : filtered list
 @enduml
