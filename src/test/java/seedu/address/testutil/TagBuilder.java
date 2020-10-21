@@ -40,7 +40,6 @@ public class TagBuilder {
         tagName = tagToCopy.getTagName();
         fileAddress = tagToCopy.getFileAddress();
         labels = new HashSet<>(tagToCopy.getLabels());
-
     }
 
     /**

@@ -19,27 +19,7 @@ import seedu.address.model.tag.TagName;
  */
 public class SampleDataUtil {
     public static Tag[] getSampleTags() {
-        //TODO: NEED TO MODIFY DESCRIPTION
-        return new Tag[] {
-            new Tag(new TagName("Alex Yeoh"),
-                new FileAddress("c:\\a\\b\\alex.txt"),
-                   getLabelSet("AlexLabel")),
-            new Tag(new TagName("Bernice Yu"),
-                new FileAddress("c:\\a\\b\\bernice.txt"),
-                getLabelSet("BerniceLabel")),
-            new Tag(new TagName("Charlotte Oliveiro"),
-                new FileAddress("c:\\a\\b\\charlotte.txt"),
-                    getLabelSet("CharlotteLabel")),
-            new Tag(new TagName("David Li"),
-                new FileAddress("c:\\a\\b\\david.txt"),
-                    getLabelSet("DavidLabel")),
-            new Tag(new TagName("Irfan Ibrahim"),
-                new FileAddress("c:\\a\\b\\irfan.txt"),
-                    getLabelSet("IrfanLabel")),
-            new Tag(new TagName("Roy Balakrishnan"),
-                new FileAddress("c:\\a\\b\\roy.txt"),
-                    getLabelSet("RoyLabel"))
-        };
+        return new Tag[]{};
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
