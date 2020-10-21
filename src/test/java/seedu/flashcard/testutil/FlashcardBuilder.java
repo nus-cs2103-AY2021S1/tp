@@ -2,6 +2,7 @@ package seedu.flashcard.testutil;
 
 import seedu.flashcard.model.flashcard.Answer;
 import seedu.flashcard.model.flashcard.Category;
+import seedu.flashcard.model.flashcard.Diagram;
 import seedu.flashcard.model.flashcard.Flashcard;
 import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
@@ -9,7 +10,7 @@ import seedu.flashcard.model.flashcard.Rating;
 import seedu.flashcard.model.tag.Tag;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Flashcard objects.
  */
 public class FlashcardBuilder {
 
@@ -19,6 +20,7 @@ public class FlashcardBuilder {
     public static final String DEFAULT_NOTE = "";
     public static final String DEFAULT_RATING = "";
     public static final String DEFAULT_TAG = "";
+    public static final String DEFAULT_DIAGRAM = "";
     public static final boolean DEFAULT_FAVOURITE_STATUS = false;
 
     private Question question;
@@ -27,6 +29,7 @@ public class FlashcardBuilder {
     private Note note;
     private Rating rating;
     private Tag tag;
+    private Diagram diagram;
     private boolean isFavourite;
 
     /**
@@ -39,6 +42,7 @@ public class FlashcardBuilder {
         note = new Note(DEFAULT_NOTE);
         rating = new Rating(DEFAULT_RATING);
         tag = new Tag(DEFAULT_TAG);
+        diagram = new Diagram(DEFAULT_DIAGRAM);
         isFavourite = DEFAULT_FAVOURITE_STATUS;
     }
 
@@ -52,6 +56,7 @@ public class FlashcardBuilder {
         note = flashcardToCopy.getNote();
         rating = flashcardToCopy.getRating();
         tag = flashcardToCopy.getTag();
+        diagram = flashcardToCopy.getDiagram();
         isFavourite = flashcardToCopy.isFavourite();
     }
 
@@ -104,6 +109,14 @@ public class FlashcardBuilder {
     }
 
     /**
+     * Sets the {@code Diagram} of the {@code Flashcard} that we are building.
+     */
+    public FlashcardBuilder withDiagram(String diagramFilePath) {
+        this.diagram = new Diagram(diagramFilePath);
+        return this;
+    }
+
+    /**
      * Sets the {@code isFavourite} status of the {@code Flashcard} that we are building.
      */
     public FlashcardBuilder withFavouriteStatus(boolean isFavourite) {
@@ -112,7 +125,7 @@ public class FlashcardBuilder {
     }
 
     public Flashcard build() {
-        return new Flashcard(question, answer, category, note, rating, tag, isFavourite);
+        return new Flashcard(question, answer, category, note, rating, tag, diagram, isFavourite);
     }
 
 }

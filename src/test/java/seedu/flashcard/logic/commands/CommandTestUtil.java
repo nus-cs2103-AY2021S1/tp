@@ -4,12 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_DIAGRAM;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.flashcard.testutil.Assert.assertThrows;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,30 +42,30 @@ public class CommandTestUtil {
     public static final String VALID_ANSWER_3 = "True";
     public static final String VALID_ANSWER_4 = "True";
     public static final String VALID_ANSWER_5 = "False";
-
-
     public static final String VALID_CATEGORY_1 = "SDLC";
     public static final String VALID_CATEGORY_2 = "Revision history";
     public static final String VALID_CATEGORY_4 = "Models";
     public static final String VALID_CATEGORY_5 = "User Stories";
-
     public static final String VALID_NOTE_1 = "";
     public static final String VALID_NOTE_2 = "Note";
-
     public static final String VALID_RATING_1 = "";
     public static final String VALID_RATING_2 = "2";
-
     public static final String VALID_TAG_1 = "";
     public static final String VALID_TAG_2 = "revise";
     public static final String VALID_TAG_3 = "important";
+    public static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
+            "ImageTest");
+
+    public static final Path VALID_FILE_TYPE = TEST_DATA_FOLDER.resolve("valid_image.jpg");
+    public static final String VALID_DIAGRAM_1 = "";
+    public static final String VALID_DIAGRAM_2 = VALID_FILE_TYPE.toString();
     public static final String INVALID_QUESTION_1 = " ";
     public static final String INVALID_ANSWER_1 = " ";
     public static final String INVALID_CATEGORY_1 = "%";
     public static final String INVALID_RATING_1 = "6";
-
+    public static final String INVALID_DIAGRAM_1 = "]";
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
-
     public static final String VALID_RATING_2_DESC = " " + PREFIX_RATING + VALID_RATING_2;
     public static final String VALID_NOTE_2_DESC = " " + PREFIX_NOTE + VALID_NOTE_2;
     public static final String VALID_TAG_2_DESC = " " + PREFIX_TAG + VALID_TAG_2;
@@ -73,6 +76,7 @@ public class CommandTestUtil {
     public static final String VALID_QUESTION_5_DESC = " " + PREFIX_QUESTION + VALID_QUESTION_5;
     public static final String VALID_ANSWER_5_DESC = " " + PREFIX_ANSWER + VALID_ANSWER_5;
     public static final String VALID_CATEGORY_5_DESC = " " + PREFIX_CATEGORY + VALID_CATEGORY_5;
+    public static final String VALID_DIAGRAM_2_DESC = " " + PREFIX_DIAGRAM + VALID_DIAGRAM_2;
 
     public static final String INVALID_QUESTION_DESC = " " + PREFIX_QUESTION + INVALID_QUESTION_1;
     public static final String INVALID_ANSWER_DESC = " " + PREFIX_ANSWER + INVALID_ANSWER_1;
@@ -95,7 +99,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -110,7 +114,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -131,6 +135,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getFlashcardDeck());
         assertEquals(expectedFilteredList, actualModel.getFilteredFlashcardList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the flashcard at the given {@code targetIndex} in the
      * {@code model}'s flashcard deck.

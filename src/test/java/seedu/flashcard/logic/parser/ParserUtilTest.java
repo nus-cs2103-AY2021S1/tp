@@ -5,11 +5,15 @@ import static seedu.flashcard.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.flashcard.testutil.Assert.assertThrows;
 import static seedu.flashcard.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.flashcard.logic.parser.exceptions.ParseException;
 import seedu.flashcard.model.flashcard.Answer;
 import seedu.flashcard.model.flashcard.Category;
+import seedu.flashcard.model.flashcard.Diagram;
 import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
 import seedu.flashcard.model.flashcard.Rating;
@@ -26,6 +30,12 @@ public class ParserUtilTest {
     private static final String VALID_NOTE = "Note";
     private static final String VALID_RATING = "2";
     private static final String VALID_TAG = "revise";
+
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
+            "ImageTest");
+    private static final Path INVALID_FILE_TYPE = TEST_DATA_FOLDER.resolve("invalidFileType.txt");
+    private static final Path NON_EXISTENT_FILE = TEST_DATA_FOLDER.resolve("nonExistentFile.jpg");
+    private static final Path VALID_FILE_TYPE = TEST_DATA_FOLDER.resolve("valid_image.jpg");
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -172,5 +182,33 @@ public class ParserUtilTest {
         String tagWithWhitespace = WHITESPACE + VALID_TAG + WHITESPACE;
         Tag expectedTag = new Tag(VALID_TAG);
         assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
+    }
+
+    @Test
+    public void parseDiagram_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDiagram((String) null));
+    }
+
+    @Test
+    public void parseDiagram_validValue_returnsDiagram() throws Exception {
+        Diagram expectedDiagram = new Diagram(VALID_FILE_TYPE.toString());
+        assertEquals(expectedDiagram, ParserUtil.parseDiagram(VALID_FILE_TYPE.toString()));
+    }
+
+    @Test
+    public void parseDiagram_nonExistentFile_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDiagram(NON_EXISTENT_FILE.toString()));
+    }
+
+    @Test
+    public void parseDiagram_invalidFileType_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDiagram(INVALID_FILE_TYPE.toString()));
+    }
+
+    @Test
+    public void parseDiagram_validValueWithWhitespace_returnsTrimmedDiagram() throws Exception {
+        String diagramWithWhitespace = WHITESPACE + VALID_FILE_TYPE.toString() + WHITESPACE;
+        Diagram expectedDiagram = new Diagram(VALID_FILE_TYPE.toString());
+        assertEquals(expectedDiagram, ParserUtil.parseDiagram(diagramWithWhitespace));
     }
 }

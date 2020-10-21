@@ -3,6 +3,7 @@ package seedu.flashcard.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_DIAGRAM;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_RATING;
@@ -19,6 +20,7 @@ import seedu.flashcard.logic.commands.exceptions.CommandException;
 import seedu.flashcard.model.Model;
 import seedu.flashcard.model.flashcard.Answer;
 import seedu.flashcard.model.flashcard.Category;
+import seedu.flashcard.model.flashcard.Diagram;
 import seedu.flashcard.model.flashcard.Flashcard;
 import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
@@ -43,6 +45,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NOTE + "NOTE]"
             + "[" + PREFIX_RATING + "RATING]"
             + "[" + PREFIX_TAG + "TAG\n]"
+            + "[" + PREFIX_DIAGRAM + "DIAGRAM]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_QUESTION + "What does the S in SOLID stand for? "
             + PREFIX_ANSWER + "Single responsibility principle";
@@ -101,9 +104,10 @@ public class EditCommand extends Command {
         Note updatedNote = editFlashcardDescriptor.getNote().orElse(flashcardToEdit.getNote());
         Rating updatedRating = editFlashcardDescriptor.getRating().orElse(flashcardToEdit.getRating());
         Tag updatedTag = editFlashcardDescriptor.getTag().orElse(flashcardToEdit.getTag());
+        Diagram updatedDiagram = editFlashcardDescriptor.getDiagram().orElse(flashcardToEdit.getDiagram());
         boolean isFavourite = flashcardToEdit.isFavourite();
-        return new Flashcard(updatedQuestion, updatedAnswer, updatedCategory,
-                updatedNote, updatedRating, updatedTag, isFavourite);
+        return new Flashcard(updatedQuestion, updatedAnswer, updatedCategory, updatedNote, updatedRating,
+                updatedTag, updatedDiagram, isFavourite);
     }
 
     @Override
@@ -135,8 +139,10 @@ public class EditCommand extends Command {
         private Note note;
         private Rating rating;
         private Tag tag;
+        private Diagram diagram;
 
-        public EditFlashcardDescriptor() {}
+        public EditFlashcardDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -149,13 +155,14 @@ public class EditCommand extends Command {
             setNote(toCopy.note);
             setRating(toCopy.rating);
             setTag(toCopy.tag);
+            setDiagram(toCopy.diagram);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(question, answer, category, note, rating, tag);
+            return CollectionUtil.isAnyNonNull(question, answer, category, note, rating, tag, diagram);
         }
 
         public void setQuestion(Question question) {
@@ -206,6 +213,13 @@ public class EditCommand extends Command {
             return Optional.ofNullable(tag);
         }
 
+        public void setDiagram(Diagram diagram) {
+            this.diagram = diagram;
+        }
+
+        public Optional<Diagram> getDiagram() {
+            return Optional.ofNullable(diagram);
+        }
 
         @Override
         public boolean equals(Object other) {
@@ -227,7 +241,8 @@ public class EditCommand extends Command {
                     && getCategory().equals(e.getCategory())
                     && getNote().equals(e.getNote())
                     && getRating().equals(e.getRating())
-                    && getTag().equals(e.getTag());
+                    && getTag().equals(e.getTag())
+                    && getDiagram().equals(e.getDiagram());
         }
     }
 }

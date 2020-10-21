@@ -3,6 +3,7 @@ package seedu.flashcard.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_DIAGRAM;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_RATING;
@@ -25,13 +26,16 @@ public class AddCommand extends Command {
             + PREFIX_ANSWER + "ANSWER "
             + "[" + PREFIX_CATEGORY + "CATEGORY] "
             + "[" + PREFIX_NOTE + "NOTE] "
+            + "[" + PREFIX_RATING + "RATING] "
+            + "[" + PREFIX_DIAGRAM + "DIAGRAM]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_QUESTION + "What does OOP stand for? "
             + PREFIX_ANSWER + "Object-Oriented Programming "
             + PREFIX_CATEGORY + "Acronyms "
             + PREFIX_NOTE + "Important question to take note of! "
             + PREFIX_RATING + "2"
-            + "[" + PREFIX_TAG + "TAG]";
+            + "[" + PREFIX_TAG + "TAG]"
+            + PREFIX_DIAGRAM + "images/diagram_1";
 
     public static final String MESSAGE_SUCCESS = "New flashcard added: %1$s";
     public static final String MESSAGE_DUPLICATE_FLASHCARD = "This flashcard already exists";

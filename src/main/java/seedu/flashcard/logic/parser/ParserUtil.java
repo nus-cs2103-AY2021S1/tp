@@ -13,6 +13,7 @@ import seedu.flashcard.commons.util.StringUtil;
 import seedu.flashcard.logic.parser.exceptions.ParseException;
 import seedu.flashcard.model.flashcard.Answer;
 import seedu.flashcard.model.flashcard.Category;
+import seedu.flashcard.model.flashcard.Diagram;
 import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
 import seedu.flashcard.model.flashcard.Rating;
@@ -86,7 +87,6 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> categories} into a {@code List<Category>}.
-     *
      */
     public static List<Category> parseCategories(Collection<String> categories) throws ParseException {
         requireNonNull(categories);
@@ -133,6 +133,43 @@ public class ParserUtil {
         String trimmedTag = tag.trim();
         return new Tag(trimmedTag);
     }
+
+    /**
+     * Parses a {@code String diagramFilePath } into a {@code Diagram}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+
+    public static Diagram parseDiagram(String diagramFilePath) throws ParseException {
+        requireNonNull(diagramFilePath);
+        String trimmedDiagramFilePath = diagramFilePath.trim();
+        if (trimmedDiagramFilePath.isEmpty()) {
+            return new Diagram(trimmedDiagramFilePath);
+        }
+        if (!Diagram.isValidFile(trimmedDiagramFilePath)) {
+            throw new ParseException(Diagram.MESSAGE_NON_EXISTENT_DIAGRAM_FILE_TYPE);
+        }
+        if (!Diagram.isValidImageFileType(trimmedDiagramFilePath)) {
+            throw new ParseException(Diagram.MESSAGE_INVALID_DIAGRAM_FILE_TYPE);
+        }
+        return new Diagram(trimmedDiagramFilePath);
+    }
+
+
+    //    /**
+    //     * Parses a {@code String tag} into a {@code Tag}.
+    //     * Leading and trailing whitespaces will be trimmed.
+    //     *
+    //     * @throws ParseException if the given {@code tag} is invalid.
+    //     */
+    //    public static Tag parseTag(String tag) throws ParseException {
+    //        requireNonNull(tag);
+    //        String trimmedTag = tag.trim();
+    //        if (!Tag.isValidTagName(trimmedTag)) {
+    //            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    //        }
+    //        return new Tag(trimmedTag);
+    //    }
+    //
 
     //    /**
     //     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.

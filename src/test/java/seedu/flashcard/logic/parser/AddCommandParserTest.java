@@ -3,11 +3,13 @@ package seedu.flashcard.logic.parser;
 import static seedu.flashcard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.flashcard.logic.commands.CommandTestUtil.INVALID_ANSWER_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.INVALID_CATEGORY_1;
+import static seedu.flashcard.logic.commands.CommandTestUtil.INVALID_DIAGRAM_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.INVALID_QUESTION_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.INVALID_RATING_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_ANSWER_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_ANSWER_3;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_CATEGORY_1;
+import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_DIAGRAM_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_NOTE_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_QUESTION_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_QUESTION_3;
@@ -23,6 +25,7 @@ import org.junit.jupiter.api.Test;
 import seedu.flashcard.logic.commands.AddCommand;
 import seedu.flashcard.model.flashcard.Answer;
 import seedu.flashcard.model.flashcard.Category;
+import seedu.flashcard.model.flashcard.Diagram;
 import seedu.flashcard.model.flashcard.Question;
 import seedu.flashcard.model.flashcard.Rating;
 
@@ -33,22 +36,23 @@ public class AddCommandParserTest {
     public static final String PREFIX_NOTE = " n/";
     public static final String PREFIX_RATING = " r/";
     public static final String PREFIX_TAG = " t/";
+    public static final String PREFIX_DIAGRAM = " d/";
     public static final String SPACE = " ";
 
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        // standard flashcard with category, note, rating and tag
+        // standard flashcard with category, note, rating, tag and diagram
         assertParseSuccess(parser, SPACE + PREFIX_QUESTION + VALID_QUESTION_1 + PREFIX_ANSWER
-                 + VALID_ANSWER_1 + PREFIX_CATEGORY + VALID_CATEGORY_1 + PREFIX_NOTE + VALID_NOTE_1 + PREFIX_RATING
-                        + VALID_RATING_2 + PREFIX_TAG + VALID_TAG_2,
+                        + VALID_ANSWER_1 + PREFIX_CATEGORY + VALID_CATEGORY_1 + PREFIX_NOTE + VALID_NOTE_1
+                        + PREFIX_RATING + VALID_RATING_2 + PREFIX_TAG + VALID_TAG_2 + PREFIX_DIAGRAM + VALID_DIAGRAM_1,
                 new AddCommand(FLASHCARD_1));
 
-        // flashcard with input arguments in reversed order, with tag, category and note
-        assertParseSuccess(parser, SPACE + PREFIX_ANSWER + VALID_ANSWER_1 + PREFIX_QUESTION + VALID_QUESTION_1
-                 + PREFIX_CATEGORY + VALID_CATEGORY_1 + PREFIX_TAG + VALID_TAG_2 + PREFIX_RATING + VALID_RATING_2
-                        + PREFIX_NOTE + VALID_NOTE_1,
+        // flashcard with input arguments in reversed order, with category, note, rating, tag and diagram
+        assertParseSuccess(parser, SPACE + PREFIX_DIAGRAM + VALID_DIAGRAM_1 + PREFIX_TAG + VALID_TAG_2
+                        + PREFIX_ANSWER + VALID_ANSWER_1 + PREFIX_QUESTION + VALID_QUESTION_1 + PREFIX_CATEGORY
+                        + VALID_CATEGORY_1 + PREFIX_RATING + VALID_RATING_2 + PREFIX_NOTE + VALID_NOTE_1,
                 new AddCommand(FLASHCARD_1));
     }
 
@@ -60,7 +64,7 @@ public class AddCommandParserTest {
 
         // flashcard with input arguments in reversed order, without category, tag and note
         assertParseSuccess(parser, SPACE + PREFIX_ANSWER + VALID_ANSWER_3
-                + PREFIX_QUESTION + VALID_QUESTION_3 , new AddCommand(FLASHCARD_3));
+                + PREFIX_QUESTION + VALID_QUESTION_3, new AddCommand(FLASHCARD_3));
     }
 
     @Test
@@ -92,7 +96,13 @@ public class AddCommandParserTest {
 
         // invalid rating
         assertParseFailure(parser, SPACE + PREFIX_QUESTION + VALID_QUESTION_1 + PREFIX_ANSWER
-                + VALID_ANSWER_1 + PREFIX_CATEGORY + VALID_CATEGORY_1 + PREFIX_RATING + INVALID_RATING_1,
+                        + VALID_ANSWER_1 + PREFIX_CATEGORY + VALID_CATEGORY_1 + PREFIX_RATING + INVALID_RATING_1,
                 Rating.MESSAGE_CONSTRAINTS);
+
+        // invalid diagram
+        assertParseFailure(parser, SPACE + PREFIX_QUESTION + VALID_QUESTION_1 + PREFIX_ANSWER
+                        + VALID_ANSWER_1 + PREFIX_CATEGORY + VALID_CATEGORY_1 + PREFIX_RATING + VALID_RATING_2
+                        + PREFIX_DIAGRAM + INVALID_DIAGRAM_1,
+                Diagram.MESSAGE_NON_EXISTENT_DIAGRAM_FILE_TYPE);
     }
 }

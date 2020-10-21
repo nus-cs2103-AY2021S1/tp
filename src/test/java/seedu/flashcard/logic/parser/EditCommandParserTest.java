@@ -13,6 +13,8 @@ import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_CATEGORY_4;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_CATEGORY_4_DESC;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_CATEGORY_5;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_CATEGORY_5_DESC;
+import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_DIAGRAM_2;
+import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_DIAGRAM_2_DESC;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_NOTE_2;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_NOTE_2_DESC;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_QUESTION_1;
@@ -159,6 +161,11 @@ public class EditCommandParserTest {
         // tag
         userInput = targetIndex.getOneBased() + VALID_TAG_2_DESC;
         descriptor = new EditFlashcardDescriptorBuilder().withTag(VALID_TAG_2).build();
+
+        //diagram
+        userInput = targetIndex.getOneBased() + VALID_DIAGRAM_2_DESC;
+        descriptor = new EditFlashcardDescriptorBuilder().withDiagram(VALID_DIAGRAM_2).build();
+
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

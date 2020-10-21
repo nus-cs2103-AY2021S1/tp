@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.flashcard.commons.exceptions.IllegalValueException;
 import seedu.flashcard.model.flashcard.Answer;
 import seedu.flashcard.model.flashcard.Category;
+import seedu.flashcard.model.flashcard.Diagram;
 import seedu.flashcard.model.flashcard.Flashcard;
 import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
@@ -25,6 +26,7 @@ class JsonAdaptedFlashcard {
     private String note;
     private String rating;
     private String tag;
+    private String diagramFilePath;
     private String isFavourite;
 
     /**
@@ -33,14 +35,16 @@ class JsonAdaptedFlashcard {
     @JsonCreator
     public JsonAdaptedFlashcard(@JsonProperty("question") String question, @JsonProperty("answer") String answer,
                                 @JsonProperty("category") String category, @JsonProperty("note") String note,
-                                @JsonProperty("rating") String rating, @JsonProperty("favourite") String isFavourite,
-                                @JsonProperty("tag") String tag) {
+                                @JsonProperty("rating") String rating,@JsonProperty("tag") String tag,
+                                @JsonProperty("diagramFilePath") String diagramFilePath,
+                                @JsonProperty("favourite") String isFavourite) {
         this.question = question;
         this.answer = answer;
         this.category = category;
         this.note = note;
         this.rating = rating;
         this.tag = tag;
+        this.diagramFilePath = diagramFilePath;
         this.isFavourite = isFavourite;
     }
 
@@ -55,6 +59,7 @@ class JsonAdaptedFlashcard {
         note = source.getNote().toString();
         rating = source.getRating().toString();
         tag = source.getTag().getTagName();
+        diagramFilePath = source.getDiagram().toString();
         isFavourite = Boolean.toString(source.isFavourite());
     }
 
@@ -112,9 +117,15 @@ class JsonAdaptedFlashcard {
         }
         final Tag modelTag = new Tag(tag);
 
+        if (diagramFilePath == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Diagram.class.getSimpleName()));
+        }
+        final Diagram modelDiagram = new Diagram(diagramFilePath);
+
         final Boolean modelIsFavourite = Boolean.parseBoolean(isFavourite);
-        return new Flashcard(modelQuestion, modelAnswer, modelCategory, modelNote, modelRating,
-                modelTag, modelIsFavourite);
+        return new Flashcard(modelQuestion, modelAnswer, modelCategory, modelNote, modelRating, modelTag, modelDiagram,
+                modelIsFavourite);
     }
 
 }
