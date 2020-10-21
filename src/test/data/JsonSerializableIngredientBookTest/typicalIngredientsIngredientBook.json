@@ -1,0 +1,18 @@
+{
+  "ingredients" : [ {
+    "ingredientName" : "Milk",
+    "amount" : "0"
+  }, {
+    "ingredientName" : "Pearl",
+    "amount" : "0"
+  }, {
+    "ingredientName" : "Boba",
+    "amount" : "0"
+  }, {
+    "ingredientName" : "Oolong Tea",
+    "amount" : "0"
+  }, {
+    "ingredientName" : "Brown Sugar",
+    "amount" : "0"
+  } ]
+}

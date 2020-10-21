@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="10" />
@@ -31,7 +31,7 @@
       <FlowPane fx:id="tags" />
          <HBox alignment="CENTER_LEFT" spacing="5">
             <children>
-               <Label fx:id="id1" styleClass="cell_small_label_italic" text="Contact Number: " >
+               <Label fx:id="contactNumber" styleClass="cell_small_label_italic" text="Contact Number: " >
                   <minWidth>
                      <Region fx:constant="USE_PREF_SIZE" />
                   </minWidth>
@@ -41,7 +41,7 @@
          </HBox>
          <HBox alignment="CENTER_LEFT" spacing="5">
             <children>
-               <Label fx:id="id11" styleClass="cell_small_label_italic" text="Emergency Contact: ">
+               <Label fx:id="emergencyContactHeader" styleClass="cell_small_label_italic" text="Emergency Contact: ">
                   <minWidth>
                      <Region fx:constant="USE_PREF_SIZE" />
                   </minWidth>
@@ -51,7 +51,7 @@
          </HBox>
          <HBox alignment="CENTER_LEFT" spacing="5">
             <children>
-               <Label fx:id="id111" styleClass="cell_small_label_italic" text="Address: ">
+               <Label fx:id="addressHeader" styleClass="cell_small_label_italic" text="Address: ">
                   <minWidth>
                      <Region fx:constant="USE_PREF_SIZE" />
                   </minWidth>
