@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.model.Model;
 import seedu.address.model.history.CommandHistory;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Lists all past used commands in the address book to the user.
