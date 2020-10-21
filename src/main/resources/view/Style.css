@@ -74,6 +74,9 @@
     -fx-background-radius: 10 10 0 0;
     -fx-border-color: black;
     -fx-border-radius: 10 10 0 0;
+    -fx-padding: 5 5 0 5;
+    -fx-border-insets: 5 5 0 5;
+    -fx-background-insets: 5 5 0 5;
 }
 #ingredientDisplay {
     -fx-background-color: rgba(0.96,0.96,0.96,0.7);
