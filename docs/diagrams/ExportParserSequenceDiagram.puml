@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+
+group Parse Export Command
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":QuickCacheParser" as QuickCacheParser LOGIC_COLOR
+participant ":ExportCommandParser" as ExportCommandParser LOGIC_COLOR
+participant "t:ExportCommand" as ExportCommand LOGIC_COLOR
+end box
+
+activate LogicManager
+
+LogicManager -> QuickCacheParser : parseCommand("export out.json")
+activate QuickCacheParser
+
+create ExportCommandParser
+QuickCacheParser -> ExportCommandParser
+activate ExportCommandParser
+
+ExportCommandParser -> QuickCacheParser
+deactivate ExportCommandParser
+
+QuickCacheParser -> ExportCommandParser : parse("out.json")
+activate ExportCommandParser
+
+create ExportCommand
+ExportCommandParser -> ExportCommand
+activate ExportCommand
+
+ExportCommand --> ExportCommandParser : t
+deactivate ExportCommand
+
+ExportCommandParser -> QuickCacheParser : t
+deactivate ExportCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ExportCommandParser -[hidden]-> QuickCacheParser
+destroy ExportCommandParser
+
+QuickCacheParser --> LogicManager : t
+deactivate QuickCacheParser
+end
+@enduml
