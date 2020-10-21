@@ -190,7 +190,7 @@ Edits the details of a food item at the specified index.
 
 Format: `edit INDEX [-n NAME] [-p PROTEIN] [-c CARBS] [-f FATS] [-d DATE]`
 
-Examples: 
+Examples:
 
 * Edits the food item at the specified `INDEX`. The index refers to the index number shown in the displayed food list.
 * The index **must be a positive integer** 1, 2, 3, …​
@@ -293,7 +293,7 @@ Examples:
     * Example usage of this macro: `addWith100cal Banana -p 2000`
     * The following command will be executed by the macro: `add -n Banana -c 100 -p 2000`
     * i.e. in `add -n \$ -c 100 -p \p`, `\$` and `\p` will be substituted with Banana and 2000 respectively.
-    
+
 * `macro addFoodWithFries; add -n \$ ; add -n \$ With Fries`
     * Example usage of this macro: `addFoodWithFries Ice Cream`
     * The following commands will be executed by the macro: `add -n Ice Cream` and `add -n Ice Cream With Fries`.

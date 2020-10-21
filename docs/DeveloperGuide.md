@@ -8,7 +8,7 @@ title: Developer Guide
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Purpose of this guide**
-This guide is made to help developers understand how McGymmy works. 
+This guide is made to help developers understand how McGymmy works.
 One of the major goals is to centralise all the jimmy.mcgymmy documentation within McGymmy itself.
 Another major goal is to better help developers extend McGymmy to improve on its features.
 
@@ -190,8 +190,8 @@ Step 1. The user has decided that he wants to delete all filtered items based on
 
 Step 2. The user uses the find command to search for the items to delete.
 
-Step 3. The User executes `clear`. 
-The clear command will update the model to delete every occurences of food shown on the UI. 
+Step 3. The User executes `clear`.
+The clear command will update the model to delete every occurences of food shown on the UI.
 Otherwise, a CommandException will be thrown.
 
 Step 4. Storage is then updated to be the same as model.
@@ -208,7 +208,7 @@ The following sequence diagram shows how the clear operation works:
 
     * Pros: Easy to implement
     * Cons: Requires the user to key in path to file
-    
+
 * **Alternative 2:** An enhanced for loop can be used to remove all occurences straight from the list.
 
     * Pros: Cleaner code and smaller and time space complexity
@@ -269,8 +269,8 @@ The following sequence diagram shows how the find operation works:
 
 ### Import feature
 
-The current Import feature is facilitated by `JsonMcGymmyStorage`. 
-It extends model with the ability to override the current data with an imported one. 
+The current Import feature is facilitated by `JsonMcGymmyStorage`.
+It extends model with the ability to override the current data with an imported one.
 
 #### Implementation
 
@@ -280,8 +280,8 @@ Step 1. The User just installed his application on his new computer and wants to
 
 Step 2. The user transfers his previous save file to `C:/McGymmy/saveFile.json`
 
-Step 3. The User executes `import c:/McGymmy/saveFile.json`. 
-The import command will check if the file is valid and exists before calling `JsonMcGymmyStorage`. 
+Step 3. The User executes `import c:/McGymmy/saveFile.json`.
+The import command will check if the file is valid and exists before calling `JsonMcGymmyStorage`.
 `JsonMcGymmyStorage` will call `#readMcGymmy` if the read is successful, the old data will be overwritten.
 Otherwise, a CommandException will be thrown.
 
@@ -302,7 +302,7 @@ The following sequence diagram shows how the import operation works:
 
     * Pros: Easy to implement
     * Cons: Requires the user to key in path to file
-    
+
 * **Alternative 2:** User keys in path and McGymmy checks subdirectories for valid files
 
     * Pros: More convenient for the users
@@ -314,9 +314,9 @@ The following sequence diagram shows how the import operation works:
 
 #### Implementation
 
-The proposed undo/redo mechanism is facilitated by `ModelManager`. 
+The proposed undo/redo mechanism is facilitated by `ModelManager`.
 It stores multiple versions of `ReadOnlyMcGymmy` in a stack, with the most recent version on top.
-Whenever there is a change to the data, `ModelManager` will store a copy of its `McGymmy` in the stack. 
+Whenever there is a change to the data, `ModelManager` will store a copy of its `McGymmy` in the stack.
 Additionally, it implements the following operations:
 
 * `ModelManager#canUndo()` - Checks if there are any older McGymmy states.
@@ -331,9 +331,9 @@ Step 1. The user launches the application for the first time. The `ModelManager`
 
 ![UndoState0](images/UndoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th food item in the McGymmy. 
+Step 2. The user executes `delete 5` command to delete the 5th food item in the McGymmy.
 The `delete` command calls `ModelManager#deleteFood(Index)`, which calls `ModelManager#addCurrentStateToHistory()`,
-causing the stack to store a copied version of the McGymmy before any data changes happen. 
+causing the stack to store a copied version of the McGymmy before any data changes happen.
 Then McGymmy changes accordingly to delete the food at index 5.
 
 ![UndoState1a](images/UndoState1a.png)
@@ -351,7 +351,7 @@ storing a copied version of the McGymmy into the stack before changing the McGym
 
 </div>
 
-Step 4. The user now decides that adding the food item was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `ModelManager#undo()`, 
+Step 4. The user now decides that adding the food item was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `ModelManager#undo()`,
 which will pop the top most state from `mcGymmyStack`, and restores the McGymmy to that state.
 
 ![UndoState3](images/UndoState3.png)
