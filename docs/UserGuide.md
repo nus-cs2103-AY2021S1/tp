@@ -25,10 +25,10 @@ Interested? Read on to get started!
 2. Download the latest release of `NUStorage.jar` [here](https://github.com/AY2021S1-CS2103T-T11-3/tp/releases).
 3. Copy the `.jar` file to the folder you want to use as the home folder for your application.
 4. Double-click on the `.jar` file to start the app. The GUI should look something like this:
-5. 
+
     ![Start of NUStorage](images/NUStorage.png)
 
-6. Type a command in the command box and press enter to execute.
+5. Type a command in the command box and press enter to execute.
     * Here are some sample commands you can try to get started with:
         * `list_inventory` to list inventory records
         * `list_finance` to list finance records
