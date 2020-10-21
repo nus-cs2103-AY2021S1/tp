@@ -1,12 +1,16 @@
 package seedu.address.model.location;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalLocations.DENVER;
 import static seedu.address.testutil.TypicalLocations.NEW_YORK;
 
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.location.exceptions.DuplicateLocationException;
 import seedu.address.model.location.exceptions.LocationNotFoundException;
 
