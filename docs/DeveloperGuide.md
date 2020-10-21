@@ -159,87 +159,31 @@ The following sequence diagram shows how the open operation works:
 
 ### Delete by tag feature
 
-This delete by tag feature will allow the user to delete flashcards specified by a given set of tags.
+This delete by tag feautre will allow the user to delete flashcards specified by a given set of tags.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+#### Implementation
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+The delete by tag implementation requires changes to be made to the `DeleteCommandParser`. Currently, `DeleteCommandParser` takes in a single argument for `index`. The proposed implementation will require the `ArgumentTokenizer` and `ParseUtil` to parse for any `PREFIX_TAG`. If both `index` and `tag` are given, then a `CommandException` will be returned.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Changes to the `DeleteCommand` class will also have to be made as it must be able to perform a different execution step depending whether or not it is deleting by tag or index. This will be done by implementing a boolean value `isDeleteByTag`. If the value is false, then the original execution for deleting by `index` will be executed. Else it, will follow the description below on how the proposed delete by tag mechanism behaves at each step.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+ Step 2. The user executes `delete t/MCQ` command to delete all flashcards with the tag `MCQ`. 
+ 
+ Step 3. This will call `DeleteCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseTags` will be called to create tags for the arguments. 
+ 
+ Step 4. A new `FlashcardPredicate` will then be created from the given tags. It will be used to filter for all the flashcards that have the specified tags. This `FlashcardPredicate` is then passed to the `DeleteCommand`
+ 
+ Step 5. `DeleteCommand#execute` will filter the `QuickCache` model with the provided predicate and get back the filtered list
+ 
+ Step 6. It will then iterate through the list and call `QuickCache#deleteFlashcard` on each `Flashcard` in the list.
+ 
+ Step 7. After execution, `CommandResult` will contain a message indicating that all flashcards with the specified tags have been deleted.
+ 
+### Tags
 
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Tags
-
-The proposed tags mechanism is facilitated by `Flashcard` upon creation. It is stored internally as an `Set<Tag>` inside the `flashcard` object.
+The tags mechanism is facilitated by `Flashcard` upon creation. It is stored internally as an `Set<Tag>` inside the `flashcard` object.
 
 Given below is an example usage scenario and how the tag mechanism behaves at each step.
 
@@ -265,17 +209,144 @@ Step 3. The user executes `edit 1 t/tag` to edit the tag in the first flashcard 
   * Pros: Will be less complicated.
   * Cons: There may be too many commands which can be combined to one.
 
-#### Proposed Implementation
+### Difficulty
+
+The difficulty mechanism is facilitated by `Flashcard` upon creation. It is stored internally as a `Difficulty` inside the `flashcard` object.
+
+The `Difficulty` class takes difficulty levels from `Difficulties` enums which contains four difficulty levels `LOW`, `MEDIUM`, `HIGH` and `UNSPECIFIED`. 
+
+Given below is an example usage scenario and how the difficulty mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+
+Step 2. The user executes `add q/question... d/difficultyLevel` command to add a flashcard with difficulty. The `add` command will cause the addition of a flashcard with a difficulty inside the QuickCache.
+ * If the user executes `add q/question...` command without `d/` prefix. The `add` command will cause the addition of a flashcard with a difficulty set to `UNSPECIFIED` inside the QuickCache.
+
+Step 3. The user executes `edit 1 d/difficultyLevel` to edit the difficulty in the first flashcard of the list. The edit command will change the internal structure of flashcard such that the `Difficulty` is updated.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
+</div>
+
+#### Design consideration:
+
+##### Aspect: How Difficulty executes
+
+* **Alternative 1 (current choice):** Difficulty is saved upon creation.
+  * Pros: Easy to implement.
+  * Cons: May be complicated as there will be too many fields in the `add` command.
+
+* **Alternative 2:** Individual command knows how to add difficulty by
+  itself.
+  * Pros: Will be less complicated.
+  * Cons: There may be too many commands which can be combined to one.
 
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Add Flashcard with open-ended question feature
+
+The proposed Add mechanism is facilitated by `QuickCache` . It is stored internally as a `UniqueFlashcardList` inside the `QuickCache` object.
+
+Given below is an example usage scenario and how the add mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+
+Step 2. The user executes `add q/ question... t/tag` command to add a flashcard with tag. The `add` command will cause the addition of a flashcard with open-ended question inside the QuickCache. 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
+</div>
+
+
+The following sequence diagram shows how the Add operation works:
+
+![AddOpenEndedSequenceDiagram](images/AddOpenEndedSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How Add executes
+
+* **Alternative 1 (current choice):** Flashcard is saved upon creation inside the QuickCache.
+  * Pros: Easy to implement and CLI-optimized.
+  * Cons: May be complicated as there will be too many fields in the `add` command.
+
+### \[Proposed\] Add Flashcard with Multiple Choice question feature
+
+The proposed Add Multiple Choice Question mechanism is facilitated by `QuickCache` . It is stored internally as a `UniqueFlashcardList` inside the `QuickCache` object.
+
+Given below is an example usage scenario and how the addmcq mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+
+Step 2. The user executes `addmcd q/ question ans/1 c/first choice c/second choice c/third choice... t/tag` command to add a flashcard with tag. The `addmcq` command will cause the addition of a flashcard with multiple choice question inside the QuickCache. 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
+</div>
+
+The following sequence diagram shows how the Addmcq operation works:
+
+![AddMcqSequenceDiagram](images/AddMcqSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How addmcq executes
+
+* **Alternative 1 (current choice):** Flashcard is saved upon creation inside the QuickCache.
+  * Pros: Easy to implement and CLI-optimized.
+  * Cons: May be complicated as there will be too many fields in the `add` command.
+
+### \[Proposed\] Delete Flashcard feature
+
+The proposed Delete mechanism is facilitated by `QuickCache` . It will delete the flashcard at the provided index stored in the `UniqueFlashcardList` inside the `QuickCache` object.
+
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+
+Step 2. The user executes `delete 1` command to delete the first flashcard. The `delete` command will cause the deletion of a flashcard inside the QuickCache. 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
+</div>
+
+The following sequence diagram shows how the delete operation works:
+
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How delete executes
+
+* **Alternative 1 (current choice):** Provide the index of the flashcard to be deleted.
+  * Pros: Easy to implement and CLI-optimized.
+  * Cons: User have to know the index of the specified flashcard.
+  
+### \[Proposed\] Edit Flashcard feature
+
+The proposed Delete mechanism is facilitated by `QuickCache` . It will edit the flashcard at the provided index stored in the `UniqueFlashcardList` inside the `QuickCache` object.
+
+Given below is an example usage scenario and how the edit mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+
+Step 2. The user executes `edit 1 ...` command to edit some of the fields given in the command on the first flashcard. The `edit` command will cause the creation of a flashcard with updated field and set it to be the flashcard on the index in `UniqueFlashcardList`. 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
+</div>
+
+#### Design consideration:
+
+##### Aspect: How delete executes
+
+* **Alternative 1 (current choice):** Provide the index of the flashcard to be edited.
+  * Pros: Easy to implement and CLI-optimized.
+  * Cons: User have to know the index of the specified flashcard.
+
+
 ### Test feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed test mechanism is facilitated by `Flashcard`. Specifically, `Statistics` stored within the flashcard. `Flashcard` implements the following methods.
+The test mechanism is facilitated by `Flashcard`. Specifically, `Statistics` stored within the flashcard. `Flashcard` implements the following methods.
 * `Flashcard#getFlashcardAfterTestSuccess()` — Returns a new `Flashcard` object with `Statistics:timesTested` and `Statistics:timesTestedCorrect` incremented by one. 
 * `Flashcard#getFlashcardAfterTestFailure()` — Returns a new `Flashcard` object with `Statistics:timesTested` incremented by one.
 
@@ -299,6 +370,10 @@ The following sequence diagram shows how the test operation works:
 
 ![TestSequenceDiagram](images/TestSequenceDiagram.png)
 
+The following sequence diagram shows how the input get parsed:
+
+![TestParserSequenceDiagram](images/TestParserSequenceDiagram.png)
+
 The following activity diagram summarizes what happens when a user executes a test command on a specified flashcard:
 
 ![TestActivityDiagram](images/TestActivityDiagram.png)
@@ -314,6 +389,45 @@ The following activity diagram summarizes what happens when a user executes a te
 * **Alternative 2:** `Statistics` is made up of an `Array` of `test`, including information such as `timestamp`
   * Pros: Retrieval of useful statistics will be possible.
   * Cons: Save file will expand very quickly because each `test` record needs to be logged.
+
+_{more aspects and alternatives to be added}_
+
+### Export Feature
+
+#### Implementation
+
+The export mechanism is facilitated by `Storage` and `QuickCache`. `Storage` is used to interact with the users local data, and a new `QuickCache` containing the data to be exported is passed to `Storage` to save to local data. 
+
+Given below is an example usage scenario and how the export mechanism behaves at each step.
+
+Step 1. The user inputs the `find t/cs2100` command to find all `Flashcard` containing the tag `cs2100`. The `Model` updates its current filtered flashcard list.
+
+Step 2. The user inputs the `export out.json` command. The following sequence diagram shows how the input command gets parsed:
+
+![ExportParserSequenceDiagram](images/ExportParserSequenceDiagram.png)
+
+Step 3. The parsed `Export` command is executed. The current filtered flashcard list is exported to `out.json`, located in the `/export/` directory.
+
+The following sequence diagram shows how the export operation works as a whole:
+
+![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes an `Export` command:
+
+![ExportActivityDiagram](images/ExportActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How to output the export file
+
+* **Alternative 1 (current choice):** Predefined directory of `/export/` 
+  * Pros: Easy to implement.
+  * Cons: The user will have to navigate to his `/export/` folder to retrieve output file.
+
+* **Alternative 2:** User specifies which directory to save the export file to.
+  * Pros: More control over where the export file will end up at.
+  * Cons: Difficult to implement.
+  * Cons: Command becomes more complicated as the entire path needs to be typed out.
 
 _{more aspects and alternatives to be added}_
 
@@ -810,20 +924,25 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases … }_
 
-### Deleting a person
+### Deleting a flashcard
 
-1. Deleting a flashcard while all flashcards are being shown
+There are 2 ways to delete flashcards – by index or by tags.
+
+1. Deleting a flashcard by index
 
    1. Prerequisites: List all flashcards using the `list` command. Multiple flashcards in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First flashcard is deleted from the list. Details of the deleted flashcard shown in the status message. Timestamp in the status bar is updated.
+      Expected: First flashcard is deleted from the list. Details of the deleted flashcard shown in the status message. 
 
    1. Test case: `delete 0`<br>
       Expected: No flashcard is deleted. Error details shown in the status message. Status bar remains the same.
+      
+   1. Test case: `delete t/MCQ`<br>
+      Expected: All flashcards with the tag `MCQ` is deleted
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+   1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size), `delete 1 t/MCQ` <br>
+      Expected: Error message will appear with instructions on how to use the delete command.
 
 ### Saving data
 

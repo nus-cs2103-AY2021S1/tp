@@ -44,7 +44,9 @@ public class TypicalFlashcards {
                 "Transaction processing system"})
         .build();
     public static final Flashcard RANDOM8 = new FlashcardBuilder().withQuestion("Question One")
-            .withAnswer("1").withTags().build();
+            .withAnswer("1").withTags("test").build();
+    public static final Flashcard RANDOM9 = new FlashcardBuilder().withQuestion("Question Two")
+            .withAnswer("1").withTags("test").build();
 
     /**
      * Returns a {@code Quickcache} with all the typical flashcards.
@@ -58,6 +60,16 @@ public class TypicalFlashcards {
     }
 
     public static List<Flashcard> getTypicalFlashcards() {
-        return new ArrayList<>(Arrays.asList(RANDOM1, RANDOM2, RANDOM3, RANDOM4, RANDOM5, RANDOM6, RANDOM7));
+        return new ArrayList<>(
+            Arrays.asList(
+                    RANDOM1,
+                    RANDOM2,
+                    RANDOM3,
+                    RANDOM4,
+                    RANDOM5,
+                    RANDOM6,
+                    RANDOM7,
+                    RANDOM8,
+                    RANDOM9));
     }
 }
