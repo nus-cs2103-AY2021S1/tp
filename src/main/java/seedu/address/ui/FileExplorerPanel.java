@@ -10,7 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.currentpath.CurrentPath;
+import seedu.address.model.explorer.CurrentPath;
 
 /**
  * Panel of the file explorer.

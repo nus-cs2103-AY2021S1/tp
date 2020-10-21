@@ -9,7 +9,7 @@ import java.io.File;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.currentpath.CurrentPath;
+import seedu.address.model.explorer.CurrentPath;
 import seedu.address.model.tag.FileAddress;
 
 /**

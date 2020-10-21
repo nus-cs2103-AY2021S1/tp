@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.currentpath.CurrentPath;
-import seedu.address.model.currentpath.FileList;
+import seedu.address.model.explorer.CurrentPath;
+import seedu.address.model.explorer.FileList;
 
 public class ModelStubWithCurrentPath extends ModelStub {
 

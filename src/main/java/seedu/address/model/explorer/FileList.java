@@ -1,4 +1,4 @@
-package seedu.address.model.currentpath;
+package seedu.address.model.explorer;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 

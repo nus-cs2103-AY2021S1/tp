@@ -14,7 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.currentpath.CurrentPath;
+import seedu.address.model.explorer.CurrentPath;
 import seedu.address.model.tag.Tag;
 
 /**

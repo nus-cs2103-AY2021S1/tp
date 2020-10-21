@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.currentpath.CurrentPath;
+import seedu.address.model.explorer.CurrentPath;
 import seedu.address.model.tag.Tag;
 
 /**
