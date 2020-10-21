@@ -50,7 +50,7 @@ public class Index {
     /**
      * Return true if the targetIndexes contains duplicate Index, else return false.
      */
-    public static boolean hasDuplicateIndex(Index[] targetIndexes) throws CommandException {
+    public static boolean hasDuplicateIndex(Index[] targetIndexes) {
         for (int i = 0; i < targetIndexes.length; i++) {
             for (int j = i + 1; j < targetIndexes.length; j++) {
                 if (targetIndexes[i].equals(targetIndexes[j])) {
