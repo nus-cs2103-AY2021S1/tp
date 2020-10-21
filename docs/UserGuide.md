@@ -7,11 +7,25 @@ Cap 5.0 Buddy helps NUS SoC students to keep track of their module details effic
 
 1. [Quick Start](#quick-start)
 2. [Features](#features)
-   1. [Adding a module](#adding-a-new-module-add-module)
-   2. [Viewing a module](#viewing-a-module-view)
-   3. [Adding a zoom link to a module](#adding-a-zoom-link-to-a-module-add-zoom)
-   4. [Deleting a module](#deleting-a-module-delete)
-   5. [Editing a module](#editing-a-module--edit-zoom)
+    1. Module Tracker
+        1. [Adding a module](#adding-a-new-module-add-module) : `addmodule`
+        2. [Viewing a module](#viewing-a-module-view) : `viewmodule`
+        3. [Adding a zoom link to a module](#adding-a-zoom-link-to-a-module-add-zoom) : `addzoomlink`
+        4. [Deleting a module](#deleting-a-module-delete) : `deletemodule`
+        5. [Editing a module](#editing-a-module--edit-zoom) : `editmodule`
+    2. Contact List
+    3. Todo List
+        1. [Adding a task](#adding-a-task) : `addtask`
+        2. [Deleting a task](#deleting-a-task) : `deletetask`
+        3. [Editing a task](#editing-a-task) : `edittask`
+        4. [Finding a task](#finding-a-task) : `findtask`
+        5. [Marking a task as completed](#marking-a-task-as-completed) : `complete`
+        6. [Resetting a task](#resetting-a-task) : `resettask`
+        6. [Sorting tasks](#sorting-tasks) : `sorttask`
+        7. [Filtering tasks](#filtering-tasks) : `filtertask`
+        8. [Archiving a task](#archiving-a-task) : `archivetask`
+        9. [Clearing the list](#clearing-the-list) : `clear`
+    4. Scheduler
 3. [FAQ](#faq)
 4. [Command Summary](#command-summary)
 
@@ -32,6 +46,8 @@ Cap 5.0 Buddy helps NUS SoC students to keep track of their module details effic
 
 ## Features
 
+### Module Tracker
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -42,7 +58,7 @@ Cap 5.0 Buddy helps NUS SoC students to keep track of their module details effic
 
 </div>
 
-### Adding a new module: `add module`
+#### Adding a new module: `add module`
 
 Creates and add a new module to be stored in the system.
 
@@ -55,7 +71,7 @@ Creates and add a new module to be stored in the system.
    with the specified link into the system.
    * `add module CS2103T` creates and add the module CS2103T with no zoom link.
 
-### Viewing a module: `view`
+#### Viewing a module: `view`
 
 Views a module stored in the system
 
@@ -68,7 +84,7 @@ Views a module stored in the system
   * `view cs2103t` views the specified module
   * `view all` views all the modules stored
 
-### Adding a zoom link to a module: `add zoom`
+#### Adding a zoom link to a module: `add zoom`
 
   Adds a zoom link to an existing module.
 
@@ -80,7 +96,7 @@ Views a module stored in the system
   `add zoom cs2103T https://sample.zoom.us` adds a zoom link `https://sample.zoom.us` to the module named `cs2103T`
 
 
-### Deleting a module: `delete`
+#### Deleting a module: `delete`
 
 Deletes the module at the specified position from the system
 
@@ -90,7 +106,7 @@ Deletes the module at the specified position from the system
   * `delete 1` deletes the module at position `1`
 
 
-### Editing a module : `edit zoom`
+#### Editing a module: `edit zoom`
 
 * Edits an existing module in the module list.
 
@@ -101,6 +117,32 @@ Format: `edit zoom` **_`[MODULE_NAME]`_** **_`[ZOOM_LINK]`_**
 Examples:
 * `edit zoom CS2030 https://sample.zoom.us` edits the zoom link for a module named `CS2030`
   to `https://sample.zoom.us`
+
+### Contact List
+
+### Todo List
+
+#### Adding a task: `addtask`
+
+#### Deleting a task: `deletetask`
+
+#### Editing a task: `edittask`
+
+#### Finding a task: `findtask`
+
+#### Marking a task as completed: `completetask`
+
+#### Resetting a task: `resettask`
+
+#### Sorting tasks: `sorttask`
+
+#### Filtering tasks: `filtertask`
+
+#### Archiving a task: `archivetask`
+
+#### Clearing the list: `clear`
+
+### Scheduler
 
 --------------------------------------------------------------------------------------------------------------------
 
