@@ -172,9 +172,9 @@ public class Stock {
         }
 
         return otherStock != null
-                && otherStock.getName().equals(getName())
-                && otherStock.getSerialNumber().equals(getSerialNumber())
-                && otherStock.getSource().equals(getSource());
+                && ((otherStock.getName().equals(getName())
+                && otherStock.getSource().equals(getSource()))
+                || otherStock.getSerialNumber().equals(getSerialNumber()));
     }
 
     /**
@@ -192,9 +192,10 @@ public class Stock {
         }
 
         Stock otherStock = (Stock) other;
-        return otherStock.getName().equals(getName())
-                && otherStock.getSerialNumber().equals(getSerialNumber())
-                || otherStock.getSource().equals(getSource());
+        return (otherStock.getName().equals(getName())
+                && otherStock.getSource().equals(getSource()))
+                || otherStock.getSerialNumber().equals(getSerialNumber());
+
     }
 
     @Override
