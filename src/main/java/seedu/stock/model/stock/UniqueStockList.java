@@ -3,6 +3,7 @@ package seedu.stock.model.stock;
 import static java.util.Objects.requireNonNull;
 import static seedu.stock.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -52,8 +53,7 @@ public class UniqueStockList implements Iterable<Stock> {
      * Replaces the stock {@code target} in the list with {@code updatedStock}.
      * {@code target} must exist in the list.
      * The person identity of {@code updatedStock} must not be the same as another existing stock in the list.
-     */
-    public void setStock(Stock target, Stock updatedStock) {
+     */    public void setStock(Stock target, Stock updatedStock) {
         requireAllNonNull(target, updatedStock);
 
         int index = internalList.indexOf(target);
@@ -133,5 +133,14 @@ public class UniqueStockList implements Iterable<Stock> {
             }
         }
         return true;
+    }
+
+    /**
+     * Sorts the internal list according to the comparator.
+     *
+     * @param comparator The comparator used for sorting.
+     */
+    public void sortList(Comparator<Stock> comparator) {
+        FXCollections.sort(internalList, comparator);
     }
 }
