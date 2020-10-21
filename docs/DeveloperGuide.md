@@ -133,6 +133,21 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Implemented\] Find by specific fields feature
+The find command is a typical command used in ProductiveNUS. It extends `Command` and overrides the method `execute` in `CommandResult`.
+ The constructor of `FindCommand` takes in a Predicate (`NameContainsKeywordsPredicate`, `DeadlineContainsKeywordsPredicate`, `ModuleCodeContainsKeywordsPredicate` or `PriorityContainsKeywordsPredicate`)
+It implements the following operations:
+* `find n/Assignment Lab` — Finds assignments with names that contain "Assignment" or "Lab". (Case-insensitive)
+* `find mod/CS2100 CS2103T` — Finds assignments with module codes "CS2100" or "CS2103T".
+* `find d/24-10-2020 1200` — Finds assignments with due date on 24-10-2020 (regardless of time) 
+or due time of 1200 (regardless of date).
+* `find priority/HIGH` — Finds assignments with high priority.
+### \[Implemented\] List by days feature
+
+### \[Coming up\] Delete multiple assignments feature
+
+### \[Coming up\] Help feature
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
