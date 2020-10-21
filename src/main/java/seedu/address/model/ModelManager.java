@@ -215,6 +215,10 @@ public class ModelManager implements Model {
         return filteredItems;
     }
 
+    public void resetItemFilters() {
+        filteredItems.setPredicate(x -> true);
+    }
+
     @Override
     public ObservableList<Location> getFilteredLocationList() {
         return filteredLocations;

@@ -171,6 +171,40 @@ The sequence diagram for the execution of an `AddQuantityToItemCommand` is as fo
 The `Item` with name banana is denoted as `itemBanana`, and the original quantity assumed to be `20`.
 ![AddQuantityToItemCommandSequenceDiagram](images/AddQuantityToItemCommandSequenceDiagram.png)
 
+### View detailed item feature
+
+The view detailed item feature allows users to view the detailed information of a recorded item, as compared to the 
+default list display of all items which may truncate some information.
+
+#### Implementation
+
+During execution of view command, `LogicManager` detects that it is a view command, then has `InventoryParser` parse
+the item name that the user has input using `ViewDetailsCommandParser`. After parsing, `LogicManager` then has 
+`ViewDetailsCommand` filter the list of items such that only the exact item the user has requested remains.
+
+After executing the view command, `LogicManager` sends feedback to `InventoryMainWindow` that the command has a 
+`DisplayedInventoryType` of `DETAILED_ITEM`, which prompts `InventoryListPanel` to change the display card of items
+into a more detailed display card on the GUI.
+
+This is the sequence diagram of view detailed item command:
+
+![ViewDetailedItemSequenceDiagram](images/commandseqdiagrams/ViewDetailedItemSequenceDiagram.png )
+
+#### Reasoning behind current implementation
+
+View detailed item was first implemented with the idea of changing GUI on demand, but we eventually realised due to
+AB3's abstraction, `Model` and `Logic` can't communicate directly, which means we could not change the GUI during
+execution of the command. It was only after looking at the `help` command that we discovered how AB3 used `LogicManager`
+to communicate with `MainWindow` to make changes to the GUI. This led to us changing the implementation of 
+`CommandResult`, augmenting it to send feedback of `DisplayedInventoryType`.
+
+#### Alternative implementation
+
+One problem with the current implementation is that it is rather slow due to AB3's amount of abstraction. An alternative
+implementation is to create an association class between `Logic` and `Model`, and allow for `Logic` to access `Model`'s 
+`FilteredItemList` directly, which would greatly simplify the command execution process. However, this might not be
+possible without breaking abstraction or heavy modifications to `Model` or `ModelManager`.
+
 ### List item/recipe feature
 
 The list item/recipe feature allows the user to toggle between viewing the list of all items or recipes in the 
