@@ -342,7 +342,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use more memory, since the HashMap will have to be committed to local storage too.
   * Cons: We must ensure that the any changes/updates to a flashcard will be reflected in the HashMap.
 
-### Favourite/Unfavourite Feature 
+### Favourite/Unfavourite feature 
 
 #### Implementation
 
@@ -403,7 +403,47 @@ The following activity diagram summarizes what happens when a user executes a fa
 
 _{more aspects and alternatives to be added}_
 
+### Filter feature
 
+#### Implementation
+The filtering mechanism is facilitated by `LogicManager` and `ModelManager`.
+It works when the `LogicManager` listens for a filter command input from the user and
+parses the command to filter out relevant flashcards based on the category or categories 
+chosen. The filter feature supports filtering of multiple categories by parsing the command
+using `ParserUtil.parseCategories(Collection<String> categories)`.
+
+It implements the following operations:
+* `FilterCommand#execute(Model model)` to update `Model` to show only the filtered flashcards
+* `CategoryEqualsKeywordsPredicate#test(Flashcard flashcard)` to check every flashcard in `Model` against the list of 
+categories parsed from `FilterCommandParser#parse(String args)`
+* `ModelManager#updateFilteredFlashcardList(Predicate<Flashcard> predicate)` takes in a predicate to update 
+`filteredFlashcards` attribute within  `ModelManager`.
+
+Given below is an example usage scenario and how the filter mechanism behaves at each step.
+
+Step 1. The user launches the application.
+
+Step 2: The user executes `filter c/SDLC` command to filter and display all the flashcards in the flashcard deck
+belonging to SDLC category. `LogicManager` calls   `FlashcardDeckParser#parseCommand(String args))` and   
+`FilterCommandParser#parse(String args)` to ultimately return a `FilterCommand` object.
+
+Step 3: After parsing, `LogicManager` then calls `FilterCommand#execute(Model model)`.
+
+Step 4: `FilterCommand` then updates the list of filtered flashcards by calling 
+`Model#updateFilteredFlashcardList(predicate)`.
+
+Step 5: A `CommandResult` is generated and Model updates the `filteredFlashcardList` which is then updated
+in the UI.
+
+The following sequence diagram shows how the filter operation works:
+
+ ![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
+ 
+ The following activity diagram shows how the `filter` command works when a user executes it:
+ 
+ ![FilterActivityDiagram](images/FilterActivityDiagram.png)
+ 
+ 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

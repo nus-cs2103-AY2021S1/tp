@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([filter command executed])
+    :Parse command to obtain list of categories to filter by;
+    :Filter by list of categories;
+    :Update the UI with new list of filtered flashcards;
+else ([else])
+endif
+stop
+@enduml
