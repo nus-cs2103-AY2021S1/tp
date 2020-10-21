@@ -59,6 +59,7 @@ public class TypicalStudents {
             .build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer")
             .withSchool("River Valley High").withYear(SchoolType.JC, 2).withPhone("9482224")
+            .withSolved(DEFAULT_SOLUTION, DEFAULT_QUESTION_NEWTON, DEFAULT_QUESTION_MATH)
             .build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withSchool("Raffles Girls School").withYear(SchoolType.SECONDARY, 2).build();
