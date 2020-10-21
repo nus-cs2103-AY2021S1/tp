@@ -104,7 +104,7 @@ public class Mass implements Quantity {
      * @return      the mass quantity, if the unit was valid.
      */
     public static Result<Quantity> of(double value, String unit) {
-        switch (unit) {
+        switch (unit.toLowerCase()) {
         case "mg":  return Result.of(milligrams(value));
         case "g":   return Result.of(grams(value));
         case "kg":  return Result.of(kilograms(value));

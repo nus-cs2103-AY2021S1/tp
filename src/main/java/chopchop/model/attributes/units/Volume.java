@@ -111,15 +111,15 @@ public class Volume implements Quantity {
 
         double ratio = 1;
 
-        if (unit.equals(UNIT_MILLILITRE)) {
+        if (unit.equalsIgnoreCase(UNIT_MILLILITRE)) {
             ratio = RATIO_MILLILITRE;
-        } else if (unit.equals(UNIT_LITRE)) {
+        } else if (unit.equalsIgnoreCase(UNIT_LITRE)) {
             ratio = RATIO_LITRE;
-        } else if (unit.equals(UNIT_CUP) || unit.equals(UNIT_CUPS)) {
+        } else if (unit.equalsIgnoreCase(UNIT_CUP) || unit.equalsIgnoreCase(UNIT_CUPS)) {
             ratio = RATIO_CUP;
-        } else if (unit.equals(UNIT_TABLESPOON)) {
+        } else if (unit.equalsIgnoreCase(UNIT_TABLESPOON)) {
             ratio = RATIO_TABLESPOON;
-        } else if (unit.equals(UNIT_TEASPOON)) {
+        } else if (unit.equalsIgnoreCase(UNIT_TEASPOON)) {
             ratio = RATIO_TEASPOON;
         } else {
             return Result.error("unknown unit '%s'", unit);
