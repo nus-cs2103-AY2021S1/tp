@@ -1,11 +1,11 @@
 package seedu.address.logic.commands;
 
+import java.util.Arrays;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.NameComparator;
-
-import java.util.Arrays;
 
 public class SortCommand extends Command {
 
@@ -26,8 +26,14 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         switch (comparisonMeans) {
+
         case "name":
-                model.updateSortedStudentList(new NameComparator());
+            model.updateSortedStudentList(new NameComparator());
+            break;
+
+        default:
+            assert false; //shouldn't reach default branch
+            throw new CommandException("Shouldn't be called"); //todo change later
         }
 
         return new CommandResult(
