@@ -127,6 +127,30 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Delete by tag feature
+
+This delete by tag feautre will allow the user to delete flashcards specified by a given set of tags.
+
+#### Implementation
+
+The delete by tag implementation requires changes to be made to the `DeleteCommandParser`. Currently, `DeleteCommandParser` takes in a single argument for `index`. The proposed implementation will require the `ArgumentTokenizer` and `ParseUtil` to parse for any `PREFIX_TAG`. If both `index` and `tag` are given, then a `CommandException` will be returned.
+
+Changes to the `DeleteCommand` class will also have to be made as it must be able to perform a different execution step depending whether or not it is deleting by tag or index. This will be done by implementing a boolean value `isDeleteByTag`. If the value is false, then the original execution for deleting by `index` will be executed. Else it, will follow the description below on how the proposed delete by tag mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+
+ Step 2. The user executes `delete t/MCQ` command to delete all flashcards with the tag `MCQ`. 
+ 
+ Step 3. This will call `DeleteCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseTags` will be called to create tags for the arguments. 
+ 
+ Step 4. A new `FlashcardPredicate` will then be created from the given tags. It will be used to filter for all the flashcards that have the specified tags. This `FlashcardPredicate` is then passed to the `DeleteCommand`
+ 
+ Step 5. `DeleteCommand#execute` will filter the `QuickCache` model with the provided predicate and get back the filtered list
+ 
+ Step 6. It will then iterate through the list and call `QuickCache#deleteFlashcard` on each `Flashcard` in the list.
+ 
+ Step 7. After execution, `CommandResult` will contain a message indicating that all flashcards with the specified tags have been deleted.
+ 
 ### Tags
 
 The tags mechanism is facilitated by `Flashcard` upon creation. It is stored internally as an `Set<Tag>` inside the `flashcard` object.
@@ -155,13 +179,11 @@ Step 3. The user executes `edit 1 t/tag` to edit the tag in the first flashcard 
   * Pros: Will be less complicated.
   * Cons: There may be too many commands which can be combined to one.
 
-#### Proposed Implementation
-
 ### Difficulty
 
 The difficulty mechanism is facilitated by `Flashcard` upon creation. It is stored internally as a `Difficulty` inside the `flashcard` object.
 
-The `Difficulty` class takes difficulty levels from `Difficulties` enums which contains for difficulty levels `LOW`, `MEDIUM`, `HIGH` and `UNSPECIFIED`. 
+The `Difficulty` class takes difficulty levels from `Difficulties` enums which contains four difficulty levels `LOW`, `MEDIUM`, `HIGH` and `UNSPECIFIED`. 
 
 Given below is an example usage scenario and how the difficulty mechanism behaves at each step.
 
