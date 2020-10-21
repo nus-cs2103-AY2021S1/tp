@@ -5,7 +5,7 @@
 
 /*----------pane----------*/
 .stack-pane {
-     -fx-background-color: transparent;
+    -fx-background-color: transparent;
 }
 
 .split-pane:horizontal .split-pane-divider {
@@ -18,16 +18,31 @@
 }
 
 .split-pane .pane-with-border {
-     -fx-border-color: derive(#1d1d1d, 10%);
-     -fx-border-top-width: 1px;
+    -fx-border-color: derive(#1d1d1d, 10%);
+    -fx-border-top-width: 1px;
 }
 
 .scroll-pane {
-       -fx-background-color: transparent;
+    -fx-background-color: transparent;
 }
 
 .scroll-pane .viewport {
-       -fx-background-color: transparent;
+    -fx-background-color: transparent;
+}
+
+.titled-pane {
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+}
+
+.titled-pane > .title {
+    -fx-background-color: rgba(0, 0, 0, 0.6);
+}
+
+.titled-pane > *.content{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
 }
 
 /*----------scroll bar----------*/
@@ -152,4 +167,13 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 16px;
     -fx-text-fill: grey;
+}
+
+/*----------file explorer----------*/
+.file-card {
+    -fx-background-color: transparent;
+}
+
+.file-card .grid-pane {
+    -fx-background-color: transparent;
 }

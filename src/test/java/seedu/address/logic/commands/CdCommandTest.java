@@ -1,12 +1,14 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 public class CdCommandTest {
 
-    ModelStub modelStub = new ModelStubWithCurrentPath();
+    private ModelStub modelStub = new ModelStubWithCurrentPath();
 
     @Test
     public void equals() {

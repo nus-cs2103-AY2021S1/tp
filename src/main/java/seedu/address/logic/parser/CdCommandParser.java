@@ -5,8 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CHILD_PATH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_PATH;
 
-import java.util.stream.Stream;
-
 import seedu.address.logic.commands.AddressType;
 import seedu.address.logic.commands.CdCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -44,8 +42,7 @@ public class CdCommandParser implements Parser<CdCommand> {
             addressType = AddressType.PARENT;
             addressString = ParserUtil.parseParentAddress(prefixValue);
         } else {
-            // TODO: 2020/10/21 should never reach here, not sure what message to throw.
-            throw new ParseException("");
+            throw new ParseException(CdCommand.MESSAGE_UNKNOWN_ADDRESS_TYPE);
         }
 
         return new CdCommand(addressType, addressString);
@@ -64,13 +61,5 @@ public class CdCommandParser implements Parser<CdCommand> {
             }
         }
         return numberOfPresents == 1;
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
