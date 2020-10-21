@@ -2,6 +2,7 @@ package jimmy.mcgymmy.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -69,34 +70,16 @@ public class FindCommand extends Command {
         TagContainsKeywordsPredicate tagPredicate = tagPredicateParameter.getValue().orElse(null);
         DatePredicate datePredicate = datePredicateParameter.getValue().orElse(null);
 
-        Predicate<Food> combinedPredicate = null;
-        if (foodPredicate != null) {
-            combinedPredicate = foodPredicate;
-        }
-        if (namePredicate != null) {
-            if (combinedPredicate != null) {
-                combinedPredicate = combinedPredicate.and(namePredicate);
-            } else {
-                combinedPredicate = namePredicate;
+        Predicate<Food> combinedPredicate = food -> true;
+        ArrayList<Predicate<Food>> predicateList = new ArrayList<>(Arrays.asList(
+                foodPredicate, namePredicate, tagPredicate, datePredicate));
+
+        for (Predicate<Food> currentPredicate : predicateList) {
+            if (currentPredicate != null) {
+                combinedPredicate = combinedPredicate.and(currentPredicate);
             }
         }
-        if (tagPredicate != null) {
-            if (combinedPredicate != null) {
-                combinedPredicate = combinedPredicate.and(tagPredicate);
-            } else {
-                combinedPredicate = tagPredicate;
-            }
-        }
-        if (datePredicate != null) {
-            if (combinedPredicate != null) {
-                combinedPredicate = combinedPredicate.and(datePredicate);
-            } else {
-                combinedPredicate = datePredicate;
-            }
-        }
-        if (combinedPredicate == null) {
-            combinedPredicate = food -> true;
-        }
+
         model.updateFilteredFoodList(combinedPredicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_FOOD_LISTED_OVERVIEW, model.getFilteredFoodList().size()));
