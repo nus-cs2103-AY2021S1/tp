@@ -13,10 +13,12 @@ import static seedu.address.testutil.TypicalMeetings.getTypicalMeetingBook;
 import static seedu.address.testutil.TypicalModules.getTypicalModuleBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddLabelCommand.LabelPersonDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.MeetingBook;
@@ -29,9 +31,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.LabelPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for

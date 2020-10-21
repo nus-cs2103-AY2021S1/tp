@@ -1,6 +1,18 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalMeetings.getTypicalMeetingBook;
+import static seedu.address.testutil.TypicalMeetings.getTypicalMeetingBookWithMember;
+import static seedu.address.testutil.TypicalModules.getTypicalModuleBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.AddressBook;
 import seedu.address.model.MeetingBook;
@@ -11,17 +23,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
-
-import java.util.HashSet;
-import java.util.Set;
-
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalMeetings.getTypicalMeetingBook;
-import static seedu.address.testutil.TypicalMeetings.getTypicalMeetingBookWithMember;
-import static seedu.address.testutil.TypicalModules.getTypicalModuleBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 public class DeleteLabelCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalMeetingBook(), getTypicalModuleBook(),

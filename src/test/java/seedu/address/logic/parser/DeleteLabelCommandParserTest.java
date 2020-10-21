@@ -1,13 +1,5 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.DeleteLabelCommand;
-import seedu.address.model.person.Name;
-import seedu.address.model.tag.Tag;
-
-import java.util.HashSet;
-import java.util.Set;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -19,6 +11,15 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.DeleteLabelCommand;
+import seedu.address.model.person.Name;
+import seedu.address.model.tag.Tag;
 
 public class DeleteLabelCommandParserTest {
     private static final String TAG_EMPTY = " " + PREFIX_TAG;

@@ -7,6 +7,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.util.HashSet;
+import java.util.Set;
+//import java.util.Arrays;
+//import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
@@ -22,20 +27,12 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
-//import seedu.address.model.person.PersonHasTagsAndNamePredicate;
-//import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.LabelPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.TypicalPersons;
-
-import java.util.HashSet;
-import java.util.Set;
-
-//import java.util.Arrays;
-//import java.util.List;
 
 public class AddressBookParserTest {
 

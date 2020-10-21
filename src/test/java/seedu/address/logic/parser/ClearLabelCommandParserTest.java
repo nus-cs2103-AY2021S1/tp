@@ -1,12 +1,12 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.ClearLabelCommand;
 import seedu.address.model.person.Name;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 public class ClearLabelCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
