@@ -256,7 +256,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Director of Human Resources                | I want to have quick and easy access to all HR information|                                               |
 | `* * *`  | organised HR manager                       | add data of applicants           | have these data at one place in a neat manner                          |
 | `* *`    | organised HR manager                       | delete data of applicants        | have these data at one place in a neat manner                          |
-| `*`      |  |              |                                                  |
+| `*`      |                                            |                                  |                                                  |
 
 *{More to be added}*
 
@@ -264,11 +264,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Eva` and the **Actor** is the `user`, unless specified otherwise)
 (Optional fields are given in square bracket e.g \[t/TAG\])
+
 ***Use case: UC01 - Adding a Record of staff***
 
 **MSS**
 
-1.  User types in add <staffname> / <email> / <phoneno>
+1.  User types in addstaff <staffname> / <email> / <phoneno>
 2.  Eva adds in the staff record
 3.  Eva displays the staff record added to User
     Use case ends.
@@ -292,7 +293,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Steps 1b1-1b3 are repeated until the data entered are correct.
     Use case resumes from step 2.
-
 
 
 ***Use case: UC02 - Deleting a Record of staff***
@@ -323,8 +323,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Steps 1b1-1b3 are repeated until the data entered are correct.
     Use case resumes from step 2.
 
-
-
 ***Use case: UC03 - list all staff records***
 
 **MSS**
@@ -332,24 +330,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User types in list
 2. Eva shows all staff records with indexes beside.
     Use case ends.
-
-**Extensions**
-
-* 1a. Eva does not find any staff records.
-
-    * 1a1. Eva informs the user that no records exist.
-    Use case ends
-
-
-
-***Use case: UC04 - Exiting the program***
-
-**MSS**
-
-1. User types in exit
-2. Eva exits
-
-Use case ends.
 
 **Extensions**
 
@@ -431,7 +411,75 @@ Use case ends.
     * 1a3  User types in a new leave date.
     Steps 1a1-1a3 are repeated until the data entered are correct.
     Use case resumes from step 2.
+
+
+***Use case: UC06 - Adding a record of applicant***
+
+**MSS**
+
+1.  User types in addapplicant n/<applicant_name> e/<email> p/<phoneno> a/<address> id/22/11/2020 
+2.  Eva adds in the applicant record
+3.  Eva displays the applicant record added to User
+    Use case ends.
+
+**Extensions**
+
+* 1a. Eva detects missing compulsory fields (name, email, address, phone)
+
+    * 1a1. Eva shows the correct format to key in data.
+    * 1a2. Eva requests the user to add in data again.
+    * 1a3  User enters new data.
+
+    Steps 1a1-1a3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+
+* 1b. Eva detects invalid email, phone number or interview date.
+
+    * 1b1. Eva shows the valid format to key in the relevant field.
+    * 1b2. Eva requests the user to add in data again.
+    * 1b3. User enters new data.
+
+    Steps 1b1-1b3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+
+***Use case: UC07 - Deleting a Record of Applicant***
+
+**MSS**
+
+1. User types in delete <applicant_name>
+2. Eva shows all matched staff records to the <applicant_name> with indexes beside.
+3. User types in the index to delete
+4. Eva deletes the applicant record and all related information permanently.
+5. Eva displays the confirmed message of deletion of that applicant record.  
+    Use case ends.
+
+**Extensions**
+
+* 1a. Eva does not find any staff record with the keyed in staff_name .
+
+    * 1a1. Eva informs the user that there are no such records.
+    * 1a2. Eva requests the user to type the command in again. 
+    * 1a3  User types in the new applicant_name of delete <applicant_name>.
+    Steps 1a1-1a3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+
+* 1b. Eva does not detect any input for <applicant_name>.
+
+    * 1b1. Eva requests the user to type the command in again. 
+    * 1b2. User types in the new applicant_name of delete <applicant_name>.    
+    Steps 1b1-1b3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
     
+    
+***Use case: UC08 - Exiting the program***
+
+**MSS**
+
+1. User types in exit
+2. Eva exits
+
+Use case ends.
+
 *{More to be added}*
 
 ### 5.4 Non-Functional Requirements
