@@ -720,10 +720,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ (tested on Windows, Mac, Linux) as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 30 projects and 150 members without a noticeable drop in performance.
-3.  Can function without an internet connection.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
+1.  The application should work on any _mainstream OS_ (tested on Windows, Mac, Linux) as long as it has Java `11` or above installed.
+2.  The application should be able to hold up to 30 projects and 150 members without a noticeable drop in performance.
+3.  The application can function without an internet connection.
+4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
 should be able to accomplish most of the tasks faster using commands than using the mouse.
 5.  There are checks for the inputs the user gives, and corresponding tips are presented if the input format is incorrect.
 6.  There are `help` commands to tell the user what command does what.
@@ -731,8 +731,6 @@ should be able to accomplish most of the tasks faster using commands than using 
 8.  New user can learn the software easily and quickly (so that other team members can help organize or add tasks if they want to)
 9.  Tests are written for important components, and every working prototype must pass all the test first.
 10.  Code is written in an easy-to-maintain manner (e.g. no extremely long function).
-
-*{More to be added}*
 
 ### Glossary
 
