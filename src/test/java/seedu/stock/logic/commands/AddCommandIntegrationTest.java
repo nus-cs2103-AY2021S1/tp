@@ -36,11 +36,4 @@ public class AddCommandIntegrationTest {
         assertCommandSuccess(new AddCommand(validStock), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validStock), expectedModel);
     }
-
-    //    @Test
-    //    public void execute_duplicateStock_throwsCommandException() {
-    //        dog test case that causes some test to fail 1/2 the times??? what kind of sorcery is this?
-    //        Stock stockInList = model.getStockBook().getStockList().get(0);
-    //        assertCommandFailure(new AddCommand(stockInList), model, AddCommand.MESSAGE_DUPLICATE_STOCK);
-    //    }
 }
