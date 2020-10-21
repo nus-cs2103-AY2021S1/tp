@@ -32,6 +32,7 @@ public class UnassignCommandParser implements Parser<UnassignCommand> {
         }
 
         Set<ModuleCode> moduleCodes = ParserUtil.parseModuleCodes(argMultimap.getAllValues(PREFIX_MODULE_CODE));
+        assert (!moduleCodes.isEmpty());
 
         return new UnassignCommand(index, moduleCodes);
     }
