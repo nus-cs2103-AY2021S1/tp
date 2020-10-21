@@ -144,13 +144,6 @@ public class DeleteCommandTest {
                 model.getFilteredFlashcardList());
     }
 
-    private FlashcardPredicate prepareFlashcardPredicate(Set<Tag> tagsToMatch) {
-        ArrayList<Predicate<Flashcard>> predicates = new ArrayList<>();
-        predicates.add(new FlashcardContainsTagPredicate(tagsToMatch));
-        FlashcardPredicate flashcardPredicate = new FlashcardPredicate(predicates);
-        return flashcardPredicate;
-    }
-
     @Test
     public void equals() {
         DeleteCommand deleteFirstCommand = DeleteCommand.withIndex(TypicalIndexes.INDEX_FIRST_FLASHCARD);
@@ -180,5 +173,12 @@ public class DeleteCommandTest {
         model.updateFilteredFlashcardList(p -> false);
 
         assertTrue(model.getFilteredFlashcardList().isEmpty());
+    }
+
+    private FlashcardPredicate prepareFlashcardPredicate(Set<Tag> tagsToMatch) {
+        ArrayList<Predicate<Flashcard>> predicates = new ArrayList<>();
+        predicates.add(new FlashcardContainsTagPredicate(tagsToMatch));
+        FlashcardPredicate flashcardPredicate = new FlashcardPredicate(predicates);
+        return flashcardPredicate;
     }
 }
