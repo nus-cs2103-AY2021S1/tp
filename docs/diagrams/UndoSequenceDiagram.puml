@@ -3,42 +3,61 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":McGymmyParser" as McGymmyParser LOGIC_COLOR
+participant ":PrimitiveCommandParser" as PrimitiveCommandParser LOGIC_COLOR
 participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
-participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+participant ":ModelManager" as Model MODEL_COLOR
+participant ":Stack<ReadOnlyMcGymmy>" as McGymmyStack MODEL_COLOR
 end box
+
 [-> LogicManager : execute(undo)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(undo)
-activate AddressBookParser
+LogicManager -> McGymmyParser : parse(undo)
+activate McGymmyParser
+
+McGymmyParser -> PrimitiveCommandParser : parse(undo)
+activate PrimitiveCommandParser
 
 create UndoCommand
-AddressBookParser -> UndoCommand
+PrimitiveCommandParser -> UndoCommand
 activate UndoCommand
 
-UndoCommand --> AddressBookParser
+UndoCommand --> PrimitiveCommandParser: u
 deactivate UndoCommand
 
-AddressBookParser --> LogicManager : u
-deactivate AddressBookParser
+PrimitiveCommandParser --> McGymmyParser: u
+deactivate PrimitiveCommandParser
 
-LogicManager -> UndoCommand : execute()
+McGymmyParser --> LogicManager : u
+deactivate McGymmyParser
+
+LogicManager -> UndoCommand : execute(model)
 activate UndoCommand
 
-UndoCommand -> Model : undoAddressBook()
+UndoCommand -> Model : undo()
 activate Model
 
-Model -> VersionedAddressBook : undo()
-activate VersionedAddressBook
+Model -> Model : canUndo()
+activate Model
 
-VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
-VersionedAddressBook --> Model :
-deactivate VersionedAddressBook
+Model -> Model : true
+deactivate Model
+
+Model -> McGymmyStack :pop()
+activate McGymmyStack
+
+McGymmyStack -> Model : m:ReadOnlyMcGymmy
+deactivate McGymmyStack
+
+Model -> Model: resetData(m)
+activate Model
+
+Model -> Model
+deactivate Model
 
 Model --> UndoCommand
 deactivate Model

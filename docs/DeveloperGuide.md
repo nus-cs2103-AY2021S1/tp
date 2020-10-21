@@ -205,39 +205,51 @@ The following sequence diagram shows how the import operation works:
 
 
 
-### \[Proposed\] Undo/redo feature
+### Undo/redo feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedMcGymmy`. It extends `McGymmy` with an undo/redo history, stored internally as a `McGymmy` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `ModelManager`. 
+It stores multiple versions of `ReadOnlyMcGymmy` in a stack, with the most recent version on top.
+Whenever there is a change to the data, `ModelManager` will store a copy of its `McGymmy` in the stack. 
+Additionally, it implements the following operations:
 
-* `VersionedMcGymmy#commit()` — Saves the current McGymmy state in its history.
-* `VersionedMcGymmy#undo()` — Restores the previous McGymmy state from its history.
-* `VersionedMcGymmy#redo()` — Restores a previously undone McGymmy state from its history.
+* `ModelManager#canUndo()` - Checks if there are any older McGymmy states.
+* `ModelManager#undo()` - Restores the previous McGymmy state from its history.
+* `ModelManager#addCurrentStateToHistory` - Saves the current McGymmy state in its history.
 
-These operations are exposed in the `Model` interface as `Model#commitMcGymmy()`, `Model#undoMcGymmy()` and `Model#redoMcGymmy()` respectively.
+The first 2 operations are exposed in the `Model` interface as `Model#canUndo()` and `Model#undo()` respectively.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Given below is an example usage scenario and how the undo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedMcGymmy` will be initialized with the initial McGymmy state, and the `currentStatePointer` pointing to that single McGymmy state.
+Step 1. The user launches the application for the first time. The `ModelManager` will be initialized with the empty `mcGymmyStack`.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+![UndoState0](images/UndoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th food item in the McGymmy. The `delete` command calls `Model#commitMcGymmy()`, causing the modified state of the McGymmy after the `delete 5` command executes to be saved in the `mcGymmyStateList`, and the `currentStatePointer` is shifted to the newly inserted McGymmy state.
+Step 2. The user executes `delete 5` command to delete the 5th food item in the McGymmy. 
+The `delete` command calls `ModelManager#deleteFood(Index)`, which calls `ModelManager#addCurrentStateToHistory()`,
+causing the stack to store a copied version of the McGymmy before any data changes happen. 
+Then McGymmy changes accordingly to delete the food at index 5.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+![UndoState1a](images/UndoState1a.png)
 
-Step 3. The user executes `add n/Rice …​` to add a new food item. The `add` command also calls `Model#commitMcGymmy()`, causing another modified McGymmy state to be saved into the `mcGymmyStateList`.
+![UndoState1b](images/UndoState1b.png)
 
-![UndoRedoState2](images/UndoRedoState2.png)
+Step 3. The user executes `add -n Rice …​` to add a new food item. The `add` command calls `ModelManager#addFood(Food)`, which also calls `ModelManager#addCurrentStateToHistory()`,
+storing a copied version of the McGymmy into the stack before changing the McGymmy.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitMcGymmy()`, so the McGymmy state will not be saved into the `mcGymmyStateList`.
+![UndoState2a](images/UndoState2a.png)
+
+![UndoState2a](images/UndoState2a.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `ModelManager#addCurrentStateToHistory()`, so the McGymmy state will not be saved into the `mcGymmyStack`.
 
 </div>
 
-Step 4. The user now decides that adding the food item was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoMcGymmy()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous McGymmy state, and restores the McGymmy to that state.
+Step 4. The user now decides that adding the food item was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `ModelManager#undo()`, 
+which will pop the top most state from `mcGymmyStack`, and restores the McGymmy to that state.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+![UndoState3](images/UndoState3.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial McGymmy state, then there are no previous McGymmy states to restore. The `undo` command uses `Model#canUndoMcGymmy()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
@@ -252,23 +264,9 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoMcGymmy()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the McGymmy to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `mcGymmyStateList.size() - 1`, pointing to the latest McGymmy state, then there are no undone McGymmy states to restore. The `redo` command uses `Model#canRedoMcGymmy()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the McGymmy, such as `list`, will usually not call `Model#commitMcGymmy()`, `Model#undoMcGymmy()` or `Model#redoMcGymmy()`. Thus, the `mcGymmyStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitMcGymmy()`. Since the `currentStatePointer` is not pointing at the end of the `mcGymmyStateList`, all McGymmy states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/Rice …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+![AddToHistoryActivityDiagram](images/AddToHistoryActivityDiagram.png)
 
 #### Design consideration:
 
