@@ -39,7 +39,9 @@ It is a convenient platform for you to keep track of your lessons and assignment
    
    * **`find`**`n/Lab` : Finds assignments with names that contain the word 'Lab'.
 
-   * **`remind`**`3` : Tags your assignment to receive reminders which will be displayed in `Your Reminders` section.
+   * **`remind`**`3` : Sets reminders for the 3rd assignment which will be displayed in `Your Reminders` section.
+   
+   * **`unremind`**`3` : Removes reminders set for the 3rd assignment (assignment will be removed from `Your Reminders` section)
 
    * **`exit`** : Exits the application.
 
@@ -142,16 +144,25 @@ Examples:
 - `find priority/HIGH` Finds all assignments with high priority.
 
 ### Setting reminders for assignments : `remind`
-Tags the specified assignment to receive reminders which will be displayed in `Your Reminders` section.
+Sets reminders for the specified assignment which will be displayed in `Your Reminders` section.
 
 Format: `remind INDEX`
 
-* Tags the assignment at the specified `INDEX` to receive reminders.
+* Sets reminders for the assignment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed assignment list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `remind 2` sets reminders for the 2nd assignment in the assignment list.
+
+### Removing reminders for assignments : `unremind`
+Removes reminders set for the specified assignment (assignment will be removed from `Your Reminders` section)
+
+Format: `unremind INDEX`
+
+* Removes reminders set for the assignment at the specified `INDEX`.
+* The index refers to the index number shown in the displayed assignment list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 ### Exiting the program : `exit`
 
@@ -182,3 +193,4 @@ Action | Format, Examples
 **list** | `list [NUMBER]` e.g., `list 2`, `list`
 **find** | `find PREFIX/ KEYWORD [MORE KEYWORD]` e.g., `find mod/CS2103T CS2100`, `find priority/HIGH`
 **remind** | `remind INDEX`
+**unremind** | `unremind INDEX`
