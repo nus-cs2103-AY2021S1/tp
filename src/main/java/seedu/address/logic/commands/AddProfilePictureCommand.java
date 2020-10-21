@@ -18,7 +18,7 @@ import seedu.address.storage.StorageManager;
 
 public class AddProfilePictureCommand extends Command {
 
-    public static final String COMMAND_WORD = "addPicture";
+    public static final String COMMAND_WORD = "addpicture";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a profile picture to the patient specified by "
             + "the index. "
