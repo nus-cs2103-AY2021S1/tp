@@ -34,8 +34,7 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        assert keyword != "" : "Keyword input cannot be empty!";
-
+        assert !keyword.equals("") : "Keyword input cannot be empty!";;
         switch (keyword) {
         case NAME_KEYWORD:
             model.sortAnimals(AnimalComparator.ANIMAL_NAME_COMPARATOR);
