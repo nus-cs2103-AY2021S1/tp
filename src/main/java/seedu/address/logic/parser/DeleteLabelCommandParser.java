@@ -1,20 +1,19 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.DeleteLabelCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Name;
-import seedu.address.model.tag.Tag;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import seedu.address.logic.commands.DeleteLabelCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Name;
+import seedu.address.model.tag.Tag;
 
 public class DeleteLabelCommandParser implements Parser<DeleteLabelCommand> {
 
@@ -23,6 +22,7 @@ public class DeleteLabelCommandParser implements Parser<DeleteLabelCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TAG);
+        // check if required prefixes are present
         if (!arePrefixesPresent(argMultimap, PREFIX_TAG)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteLabelCommand.MESSAGE_USAGE));
         }
@@ -32,7 +32,7 @@ public class DeleteLabelCommandParser implements Parser<DeleteLabelCommand> {
         name = ParserUtil.parseName(argMultimap.getPreamble());
 
         Set<Tag> tagsToDelete = new HashSet<>();
-
+        // retrieve tags to delete
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(tags -> tagsToDelete.addAll(tags));
 
         if (tagsToDelete.isEmpty()) {
@@ -51,9 +51,10 @@ public class DeleteLabelCommandParser implements Parser<DeleteLabelCommand> {
         assert tags != null;
 
         if (tags.size() == 1 && tags.contains("")) {
+            // no tags were given in user input
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        Collection<String> tagSet = tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 

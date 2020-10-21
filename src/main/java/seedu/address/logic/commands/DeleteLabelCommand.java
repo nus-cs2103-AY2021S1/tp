@@ -45,7 +45,7 @@ public class DeleteLabelCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         boolean isValidContact = model.hasPersonName(targetName);
-
+        // check if Person exists in address book
         if (!isValidContact) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED);
         }
@@ -54,7 +54,7 @@ public class DeleteLabelCommand extends Command {
         List<Person> filteredList = model.getFilteredPersonList().stream()
                 .filter(person -> person.isSameName(targetName)).collect(Collectors.toList());
         Person personToEdit = filteredList.get(0);
-        Person editedPerson = createEditedPerson(personToEdit, tags);
+        Person editedPerson = createEditedPerson(personToEdit, tags); // deletes the given labels from Person
 
         model.setPerson(personToEdit, editedPerson);
 
@@ -77,16 +77,18 @@ public class DeleteLabelCommand extends Command {
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code tags}.
+     * with labels in {@code tags} removed.
      */
     private static Person createEditedPerson(Person personToEdit, Set<Tag> tags) throws CommandException {
         assert personToEdit != null;
 
         if (tags.stream().allMatch(tag -> personToEdit.getTags().contains(tag))) {
+            // Person has all tags to be deleted
             Set<Tag> updatedTags = new HashSet<>(personToEdit.getTags());
             updatedTags.removeAll(tags);
             return new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(), updatedTags);
         } else {
+            // Person does not have all tags to be deleted
             throw new CommandException(
                     String.format("The person '%s' does not have all the tags provided.",
                             personToEdit.getName().toString()));

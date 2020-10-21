@@ -35,6 +35,7 @@ public class ClearLabelCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        // check if Person exists in address book
         boolean isValidContact = model.hasPersonName(targetName);
         if (!isValidContact) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED);
@@ -43,7 +44,7 @@ public class ClearLabelCommand extends Command {
         List<Person> filteredList = model.getFilteredPersonList().stream()
                 .filter(person -> person.isSameName(targetName)).collect(Collectors.toList());
         Person personToClear = filteredList.get(0);
-        Person clearedPerson = createClearedPerson(personToClear);
+        Person clearedPerson = createClearedPerson(personToClear); // clears all labels from Person
         model.setPerson(personToClear, clearedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
@@ -65,8 +66,8 @@ public class ClearLabelCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToLabel}
-     * edited with {@code labelPersonDescriptor}.
+     * Creates and returns a {@code Person} with the details of {@code personToClear}
+     * but with cleared Labels.
      */
     private static Person createClearedPerson(Person personToClear) {
         assert personToClear != null;
