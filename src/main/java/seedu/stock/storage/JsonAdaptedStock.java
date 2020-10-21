@@ -127,7 +127,13 @@ class JsonAdaptedStock {
                     modelNotesList, isBookmarked);
         }
 
-        return new Stock(modelName, modelSerialNumber, modelSource, modelQuantity, modelLocation);
+        Stock stockToAdd = new Stock(modelName, modelSerialNumber, modelSource, modelQuantity, modelLocation);
+
+        if (isBookmarked) {
+            stockToAdd.setBookmarked();
+        }
+
+        return stockToAdd;
 
     }
 
