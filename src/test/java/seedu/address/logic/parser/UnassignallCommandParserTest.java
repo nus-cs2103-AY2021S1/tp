@@ -1,6 +1,6 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_NON_EMPTY_ARGUMENT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -23,16 +23,16 @@ public class UnassignallCommandParserTest {
     public void parse_invalidArgs_returnsUnassignallCommand() {
 
         assertParseFailure(parser, "adjsaja",
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignallCommand.MESSAGE_USAGE));
+            String.format(MESSAGE_NON_EMPTY_ARGUMENT, UnassignallCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, "1",
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignallCommand.MESSAGE_USAGE));
+            String.format(MESSAGE_NON_EMPTY_ARGUMENT, UnassignallCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, "*",
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignallCommand.MESSAGE_USAGE));
+            String.format(MESSAGE_NON_EMPTY_ARGUMENT, UnassignallCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, " ",
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignallCommand.MESSAGE_USAGE));
+            String.format(MESSAGE_NON_EMPTY_ARGUMENT, UnassignallCommand.MESSAGE_USAGE));
     }
 
 }

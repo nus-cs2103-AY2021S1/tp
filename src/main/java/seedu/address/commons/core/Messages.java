@@ -16,5 +16,5 @@ public class Messages {
     public static final String MESSAGE_EMPTY_KEYWORD = "Keyword cannot be empty";
     public static final String MESSAGE_DUPLICATE_PREFIX = "Prefix %s has a duplicate";
     public static final String MESSAGE_INVALID_PHONE_KEYWORD = "Keyword should be numeric!";
-
+    public static final String MESSAGE_NON_EMPTY_ARGUMENT = "%s should not be followed by any characters!";
 }
