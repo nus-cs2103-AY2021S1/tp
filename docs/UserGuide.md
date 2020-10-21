@@ -187,6 +187,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add q/QUESTION a/ANSWER [c/CATEGORY]` <br> e.g., `add q/What does OOP stand for? a/Object Oriented Programming c/General`
 **Delete** | `delete INDEX` <br> e.g., `delete 3`
+**Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE]` <br> e.g., `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
 **List** | `list`
 **Review** | `review`
 **Fav** | `fav INDEX` <br> e.g., `fav 1`
