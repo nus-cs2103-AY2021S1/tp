@@ -59,6 +59,7 @@ public class Fridge implements Iterable<Food> {
      */
     public void remove(Food toRemove) {
         requireNonNull(toRemove);
+        assert internalList.contains(toRemove) : "Fridge does not contain food item";
         if (internalList.contains(toRemove)) {
             internalList.remove(toRemove);
         }

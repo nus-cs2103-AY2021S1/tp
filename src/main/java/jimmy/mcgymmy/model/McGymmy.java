@@ -88,6 +88,7 @@ public class McGymmy implements ReadOnlyMcGymmy {
      * {@code toRemove} must be valid.
      */
     public void removeFood(Food toRemove) {
+        assert foodItems.contains(toRemove) : "Fridge does not contain food item";
         foodItems.remove(toRemove);
     }
 
