@@ -83,7 +83,7 @@ Alternatives:
 * Press `F2` at any point in the usage of the app
 * GUI navigation menu at the top left
 
-<img src="images/HelpSummaryWindow.png" alt="Help Summary Screenshot" style="width:200px;" >
+![Help Summary Screenshot](images/HelpSummaryWindow.png)
 
 
 ### Adding an item: `add-i`
