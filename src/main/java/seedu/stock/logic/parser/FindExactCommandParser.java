@@ -1,11 +1,9 @@
 package seedu.stock.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
@@ -28,29 +26,28 @@ import seedu.stock.model.stock.predicates.SourceContainsKeywordsPredicate;
  */
 public class FindExactCommandParser implements Parser<FindExactCommand> {
 
+    private static final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
+    private static final Prefix[]
+            validPrefixesForFindExact = { PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER };
+    private static final Prefix[] invalidPrefixesForFindExact =
+            ParserUtil.getInvalidPrefixesForCommand(validPrefixesForFindExact);
+
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindExactCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER, PREFIX_LOCATION,
-                        PREFIX_QUANTITY, PREFIX_NEW_QUANTITY, PREFIX_INCREMENT_QUANTITY);
+                ArgumentTokenizer.tokenize(args, allPossiblePrefixes);
 
         // Check if command format is correct
-        if (!isAnyPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER)
-                || isAnyPrefixPresent(argMultimap, PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY, PREFIX_QUANTITY)
+        if (!isAnyPrefixPresent(argMultimap, validPrefixesForFindExact)
+                || isAnyPrefixPresent(argMultimap, invalidPrefixesForFindExact)
+                || isDuplicatePrefixPresent(argMultimap, validPrefixesForFindExact)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindExactCommand.MESSAGE_USAGE));
-        }
-
-        List<Prefix> prefixes = CliSyntax.getAllPossiblePrefixes();
-        // Check for duplicate prefixes
-        for (Prefix prefix: prefixes) {
-            if (argMultimap.getAllValues(prefix).size() >= 2) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindExactCommand.MESSAGE_USAGE));
-            }
         }
 
         // Get the predicates to test to find the stocks that match
@@ -66,6 +63,24 @@ public class FindExactCommandParser implements Parser<FindExactCommand> {
      */
     private static boolean isAnyPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if duplicate prefixes are present when parsing command.
+     * @param argumentMultimap map of prefix to keywords entered by user
+     * @param prefixes prefixes to parse
+     * @return boolean true if duplicate prefix is present
+     */
+    private static boolean isDuplicatePrefixPresent(
+            ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+
+        // Check for duplicate prefixes
+        for (Prefix prefix: prefixes) {
+            if (argumentMultimap.getAllValues(prefix).size() >= 2) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
