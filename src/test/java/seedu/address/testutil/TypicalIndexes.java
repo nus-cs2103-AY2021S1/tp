@@ -11,4 +11,6 @@ public class TypicalIndexes {
     public static final Index INDEX_THIRD_PROJECT = Index.fromOneBased(3);
     public static final Index INDEX_FIRST_TASK = Index.fromOneBased(1);
     public static final Index INDEX_SECOND_TASK = Index.fromOneBased(2);
+    public static final Index INDEX_FIRST_TEAMMATE = Index.fromOneBased(1);
+    public static final Index INDEX_SECOND_TEAMMATE = Index.fromOneBased(2);
 }

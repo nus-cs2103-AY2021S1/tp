@@ -6,6 +6,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
 
@@ -15,6 +17,8 @@ import seedu.address.model.task.Task;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
+    //Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+    //Predicate<Person> PREDICATE_SHOW_ALL_TEAMMATES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -112,6 +116,16 @@ public interface Model {
     void enterTask(Task task);
 
     /**
+     * Enters the designated teammate of the current project.
+     */
+    void enterTeammate(Person teammate);
+
+    /**
+     * Enters the designated meeting of the current project.
+     */
+    void enterMeeting(Meeting meeting);
+
+    /**
      * Updates the project to be displayed on dashboard.
      * @param project project to be displayed on dashboard
      */
@@ -132,4 +146,43 @@ public interface Model {
      * Gets the task to be displayed on dashboard.
      */
     Optional<Task> getTaskToBeDisplayedOnDashboard();
+
+    /**
+     * Updates the teammate to be displayed on dashboard.
+     */
+    void updateTeammateToBeDisplayedOnDashboard(Person teammate);
+
+    /**
+     * Gets the teammate to be displayed on dashboard.
+     */
+    Optional<Person> getTeammateToBeDisplayedOnDashboard();
+
+    /**
+     * Updates the meeting to be displayed on dashboard.
+     */
+    void updateMeetingToBeDisplayedOnDashboard(Meeting meeting);
+
+    /**
+     * Gets the meeting to be displayed on dashboard.
+     */
+    Optional<Meeting> getMeetingToBeDisplayedOnDashboard();
+
 }
+
+///** Returns an unmodifiable view of the filtered task list */
+//List<Task> getFilteredTaskList();
+
+///**
+// * Updates the filter of the filtered task list to filter by the given {@code predicate}.
+// * @throws NullPointerException if {@code predicate} is null.
+// */
+//void updateFilteredTaskList(List<Task> taskList);
+
+///** Returns an unmodifiable view of the filtered teammate list */
+//List<Person> getFilteredTeammateList() ;
+
+///**
+// * Updates the filter of the filtered teammate list to filter by the given {@code predicate}.
+// * @throws NullPointerException if {@code predicate} is null.
+// */
+//void updateFilteredTeammateList(List<Person> teammatesList);

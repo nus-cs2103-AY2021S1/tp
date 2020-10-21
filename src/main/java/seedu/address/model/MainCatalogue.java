@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.task.Task;
@@ -122,8 +124,12 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
         } else if (status == Status.TASK) {
             status = Status.PROJECT;
             project.get().updateTaskOnView(null);
-        } else if (status == Status.CATALOGUE) {
-            this.project = Optional.empty();
+        } else if (status == Status.PERSON) {
+            status = Status.PROJECT;
+            project.get().updateTeammateOnView(null);
+        } else if (status == Status.MEETING) {
+            status = Status.PROJECT;
+            project.get().updateMeetingOnView(null);
         }
     }
 
@@ -131,6 +137,24 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     public void enterTask(Task task) {
         status = Status.TASK;
         project.get().updateTaskOnView(task);
+        project.get().updateMeetingFilter(null);
+        project.get().updateTeammateOnView(null);
+    }
+
+    @Override
+    public void enterTeammate(Person teammate) {
+        status = Status.PERSON;
+        project.get().updateTaskOnView(null);
+        project.get().updateMeetingFilter(null);
+        project.get().updateTeammateOnView(teammate);
+    }
+
+    @Override
+    public void enterMeeting(Meeting meeting) {
+        status = Status.MEETING;
+        project.get().updateTaskOnView(null);
+        project.get().updateTeammateOnView(null);
+        project.get().updateMeetingOnView(meeting);
     }
 
     //// util methods

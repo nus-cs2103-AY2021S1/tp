@@ -44,6 +44,8 @@ public class Project {
 
     // Display helper
     private Optional<Task> taskOnView;
+    private Optional<Person> teammateOnView;
+    private Optional<Meeting> meetingOnView;
 
     /**
      * Every field must be present and not null.
@@ -62,6 +64,8 @@ public class Project {
         this.tasks.addAll(tasks);
         this.meetings.addAll(meetings);
         this.taskOnView = Optional.empty();
+        this.teammateOnView = Optional.empty();
+        this.meetingOnView = Optional.empty();
     }
 
     public ProjectName getProjectName() {
@@ -107,8 +111,47 @@ public class Project {
     public Optional<Task> getTaskOnView() {
         return taskOnView;
     }
+    public Optional<Person> getTeammateOnView() {
+        return this.teammateOnView;
+    }
+    public Optional<Meeting> getMeetingOnView() {
+        return this.meetingOnView;
+    }
+
+    /**
+     * Updates taskOnView with t.
+     * @param t taskOnView.
+     */
     public void updateTaskOnView(Task t) {
-        taskOnView = Optional.of(t);
+        if (t == null) {
+            taskOnView = Optional.empty();
+        } else {
+            taskOnView = Optional.of(t);
+        }
+    }
+
+    /**
+     * Updates teammateOnView with t.
+     * @param p teammateOnView.
+     */
+    public void updateTeammateOnView(Person p) {
+        if (p == null) {
+            teammateOnView = Optional.empty();
+        } else {
+            teammateOnView = Optional.of(p);
+        }
+    }
+
+    /**
+     * Updates meetingOnView with m.
+     * @param m meetingOnView.
+     */
+    public void updateMeetingOnView(Meeting m) {
+        if (m == null) {
+            meetingOnView = Optional.empty();
+        } else {
+            meetingOnView = Optional.of(m);
+        }
     }
 
     /**
@@ -291,5 +334,4 @@ public class Project {
         getTasks().forEach(builder::append);
         return builder.toString();
     }
-
 }
