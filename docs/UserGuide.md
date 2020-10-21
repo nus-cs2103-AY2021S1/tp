@@ -94,6 +94,13 @@ You can clear the command history.
 
 Format: `clearhistory`
 
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:**<br>
+
+ * Use with caution, `clearhistory` cannot be undone!
+
+</div>
+
 #### 3.1.4 Exiting the program: `exit`
 
 Exits the program.
@@ -110,20 +117,29 @@ You can add your patient to the patient database.
 
 Format: `add n/NAME p/PHONE_NUMBER i/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
 
-<div class="alert alert-primary">
-:bulb: <span style="font-weight:bold">Tips:</span>
-
- <ul>
-    <li> A patient can have any number of allergies (including 0). </li>
-    <li> The color tag can be any standard HTML color name, such as red, green or orange. </li>
-    <li> Check out <a href="https://www.w3schools.com/colors/colors_names.asp">this link</a> for an extensive list. </li>
- </ul>
-
-</div>
-
 Examples:
 * `add n/John Doe p/98765432 i/S3857462J e/johnd@example.com a/Pickle street, block 123, #01-01`
 * `add n/Betsy Crowe i/G7667353B e/betsycrowe@example.com a/Newgate Prison p/1234567 g/penicillin`
+
+<div markdown="block" class="alert alert-primary">
+:bulb: <span style="font-weight:bold">Tips:</span>
+
+* A patient can have any number of allergies (including 0).
+* The color tag can be any standard HTML color name, such as red, green or orange.
+* Check out <a href="https://www.w3schools.com/colors/colors_names.asp">this link</a> for an extensive list.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note about color coding patients:**<br>
+
+
+ * When your patient is tagged with a color tag, the background of the patient will be styled to show that color. The color tags can be used for a variety of purposes.
+ * For example, you may color code patients at risk of terminal diseases as <span style="color:red;font-weight:bold">red</span>, for easier reference.
+
+
+![example of color coded patient](images/Ui.png)
+</div>
 
 #### 3.2.2 Adding profile picture: `addpicture`
 
@@ -138,14 +154,13 @@ Examples:
 *  `addpicture 2 f/downloads/profile_picture.png` Replaces existing profile picture with 'profile_picture.png' found in
                                                   'downloads' folder for the 2nd patient
 
-<div class="alert alert-primary">
-:bulb: <span style="font-weight:bold">Tip: You can also add a profile picture using drag and drop with your mouse!</span>
+<div markdown="block" class="alert alert-primary">
+:bulb: <span style="font-weight:bold">Tip: </span>
 <br>
-<br>
-<ol>
-    <li> Select your desired profile picture and drag it onto the space reserved for patient profile picture in ClinCal. </li>
-    <li> Release the mouse button and your patient's profile picture would be updated with the desired picture. </li>
-</ol>
+* You can also add a profile picture using drag and drop with your mouse!
+1. Select your desired profile picture and drag it onto the space reserved for patient profile picture in CliniCal.
+1. Release the mouse button and your patient's profile picture would be updated with the desired picture.
+
 </div>
 
 #### 3.2.3 Editing a patient: `edit`
@@ -167,18 +182,6 @@ Examples:
 * When editing allergies (or color tag), the existing allergies (or color tag) of the patient will be removed i.e adding of allergies (or color tag) is not cumulative.
 * You can remove all the patient’s allergies by typing `g/` without specifying any allergies after it.
 
-<div markdown="block" class="alert alert-info">
-**:information_source: Notes about color coding patients:**<br>
-
-
- * When your patient is tagged with a color tag, the background of the patient will be styled to show that color. The color tags can be used for a variety of purposes.
- * For example, you may color code patients at risk of terminal diseases as <span style="color:red;font-weight:bold">red</span>, for easier reference.
-
-
-![example of color coded patient](images/Ui.png)
-</div>
-
-
 #### 3.2.4 Deleting a patient: `delete`
 
 You can delete a specified patient from the patient database.
@@ -199,11 +202,33 @@ You can clear all patient entries from the patient database.
 
 Format: `clear`
 
+<div markdown="block" class="alert alert-primary">
+:bulb: <span style="font-weight:bold">Tip: </span>
+
+* Reverse the `clear` command using the `undo` command!
+
+</div>
+
 #### 3.2.6 Finding patients: `find`
 
-Finds all patients containing any of the specified keywords.
+You can find patients whose names or IC number contain any of the given keywords.
 
-Format: `list KEYWORD`
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* You can search for the patient's name or IC number. 
+* Patient will be matched even if the keyword matches the search parameters only partially e.g. `Han` will match `Hans`, `9123456` will match `s9123456z`.
+* Patients matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+* `find John` returns `john` and `John Doe`
+* `find ben` returns `benjamin`
+* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find 9123456` returns the patient with IC number `s9123456z`
+
+  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 #### 3.2.7 Listing all patients: `list`
 
@@ -211,30 +236,34 @@ You can see a list of all your patients in the patient database.
 
 Format: `list`
 
+<div markdown="block" class="alert alert-primary">
+:bulb: <span style="font-weight:bold">Tip: </span>
+
+* Useful to view all patients after a `find` command!
+
+</div>
+
 #### 3.2.8 Undoing the previous command: `undo`
 
 You can revert your previous command which modified the patient database.
 
-For example,
-
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note about the undo command:**<br>
-
-* The undo command only applies to commands that modify the list of patients, such as 
-  
-* 
-  
-</div>
-
 Format: `undo`
+
+* Only applies for commands that modify the patient database such as `add`, `addpicture`, `edit`, `delete` and `clear`.
+* Does not apply for undoable commands such as `find` and `list`.
+
+Example: 
+* While trying to `addpicture` , you deleted Alex Yeoh's patient details by accident.
+* Instead of re-entering Alex Yeoh's information all over again, you can easily restore Alex Yeoh's details by using `undo` on your previous `delete` command.
+
 
 #### 3.2.9 Redoing a command: `redo`
 
 You can redo the most recent command that you have undone.
 
 Format: `redo`
+
+* Only able to `redo` commands that have been previously undone such as `add`, `addpicture`, `edit`, `delete` and `clear`.
 
 ### 3.3 Retrieving past commands using arrow keys
 
@@ -243,6 +272,14 @@ Retrieve and reuse past commands using the <kbd>↑</kbd> arrow and <kbd>↓</kb
 2. Press the <kbd>↑</kbd> arrow key to display the next recent past command.
 3. Press the <kbd>↓</kbd> arrow key to display the previously shown past command.
 4. Press <kbd>Enter</kbd>/<kbd>Return</kbd> key to reuse the command.
+
+<div markdown="block" class="alert alert-primary">
+:bulb: <span style="font-weight:bold">Tip: </span>
+
+* Useful when inputting repeated commands.
+* No need to retype them all over again!
+
+</div>
 
 ### 3.4 Saving the data
 
@@ -274,3 +311,4 @@ Action | Format, Examples
 **Undo** | `undo`
 **Redo** | `redo`
 **Retrieve past commands** | `history`
+**Exit** | `exit`
