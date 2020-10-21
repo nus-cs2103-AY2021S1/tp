@@ -13,8 +13,8 @@ import jimmy.mcgymmy.model.food.Food;
  * Tests that a {@code Food}'s {@code Date} matches the {@code String} date given.
  */
 public class DatePredicate implements Predicate<Food> {
+    private static final Logger logger = LogsCenter.getLogger(DatePredicate.class);
     private final Date date;
-    private final Logger logger = LogsCenter.getLogger(getClass());
 
     /**
      * Initialises {@code DatePredicate} object.
