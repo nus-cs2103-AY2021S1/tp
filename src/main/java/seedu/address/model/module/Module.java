@@ -1,4 +1,4 @@
-package seedu.address.model;
+package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -7,22 +7,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Represents a Student's Module in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidModuleId(String)}
- */
+import seedu.address.model.Showable;
+import seedu.address.model.TaskList;
+import seedu.address.model.tutorial_group.TutorialGroup;
+
+
 public class Module implements Showable<Module> {
-    public static final String MESSAGE_CONSTRAINTS = "Modules can take any values, and it should not be blank";
 
-    /*
-     * The first character of the module must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-
-    // TODO make a module ID class?
-    public static final String VALIDATION_REGEX = "[^\\s].*";
-
-    private final String moduleId;
+    private final ModuleId moduleId;
     private List<TutorialGroup> tutorialGroups;
     private TaskList taskList;
     private int totalStudents = 0;
@@ -33,35 +25,23 @@ public class Module implements Showable<Module> {
      *
      * @param moduleId
      */
-    public Module(String moduleId) {
+    public Module(ModuleId moduleId) {
         requireNonNull(moduleId);
-        checkArgument(isValidModuleId(moduleId), MESSAGE_CONSTRAINTS);
         this.moduleId = moduleId;
-        ArrayList<TutorialGroup> sampleList = new ArrayList<>();
-        sampleList.add(new TutorialGroup("Group1"));
-        this.tutorialGroups = sampleList;
+        this.tutorialGroups = new ArrayList<>();
         this.taskList = new TaskList();
     }
 
-    public Module(String moduleId, List<TutorialGroup> tutorialGroups) {
+    public Module(ModuleId moduleId, List<TutorialGroup> tutorialGroups) {
         requireNonNull(moduleId);
-        requireNonNull(isValidModuleId(moduleId), MESSAGE_CONSTRAINTS);
         requireNonNull(tutorialGroups);
         this.moduleId = moduleId;
         this.tutorialGroups = tutorialGroups;
         this.taskList = new TaskList();
     }
 
-    /**
-     * Returns true if a given string is a valid module.
-     * @param test input moduleId to test
-     * @return boolean that indicates if string is valid
-     */
-    public static boolean isValidModuleId(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
 
-    public String getModuleId() {
+    public ModuleId getModuleId() {
         return this.moduleId;
     }
 
@@ -115,6 +95,6 @@ public class Module implements Showable<Module> {
 
     @Override
     public String toString() {
-        return getModuleId();
+        return getModuleId().toString();
     }
 }

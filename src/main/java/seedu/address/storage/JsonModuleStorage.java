@@ -12,7 +12,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.Module;
+import seedu.address.model.module.Module;
 import seedu.address.model.ReadOnlyTrackr;
 
 // TODO better JavaDocs

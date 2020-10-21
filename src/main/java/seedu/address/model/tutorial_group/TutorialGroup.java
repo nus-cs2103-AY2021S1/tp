@@ -1,4 +1,4 @@
-package seedu.address.model;
+package seedu.address.model.tutorial_group;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -9,11 +9,17 @@ import seedu.address.model.person.Student;
 import seedu.address.model.person.StudentId;
 
 public class TutorialGroup {
-    private final String id;
-    private HashMap<StudentId, Student> studentList;
+
+    // Identity fields
+    private final TutorialGroupId tutorialGroupId;
     private LocalTime startTime;
     private LocalTime endTime;
+
+    // Data fields
+    private HashMap<StudentId, Student> studentList;
     private int durationInHours;
+
+    //
 
 //    /**
 //     * Constructor for Tutorial Group
@@ -29,18 +35,15 @@ public class TutorialGroup {
 
     /**
      * Constructor for Tutorial Group
-     * @param id
+     * @param tutorialGroupId
      */
-    public TutorialGroup(String id) {
-        this.id = id;
+    public TutorialGroup(TutorialGroupId tutorialGroupId) {
+        this.tutorialGroupId = tutorialGroupId;
         this.studentList = new HashMap<>();
-        this.startTime = LocalTime.parse("15:00");
-        this.endTime = LocalTime.parse("17:00");
-        this.durationInHours = 2;
     }
 
-    public TutorialGroup(String id, LocalTime startTime, LocalTime endTime) {
-        this.id = id;
+    public TutorialGroup(TutorialGroupId tutorialGroupId, LocalTime startTime, LocalTime endTime) {
+        this.tutorialGroupId = tutorialGroupId;
         this.startTime = startTime;
         this.endTime = endTime;
         // TODO fix number of hours, maybe change object type to double?
@@ -50,8 +53,8 @@ public class TutorialGroup {
 
     //GETTERS
 
-    public String getId() {
-        return this.id;
+    public TutorialGroupId getId() {
+        return this.tutorialGroupId;
     }
 
     public LocalTime getStartTime() {

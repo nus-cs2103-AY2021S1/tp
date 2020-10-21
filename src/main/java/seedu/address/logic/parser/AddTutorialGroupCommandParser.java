@@ -5,7 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP;
 
 import seedu.address.logic.commands.AddTutorialGroupCommand;
 //import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.TutorialGroup;
+import seedu.address.model.tutorial_group.TutorialGroup;
+import seedu.address.model.tutorial_group.TutorialGroupId;
 
 public class AddTutorialGroupCommandParser implements Parser<AddTutorialGroupCommand> {
 
@@ -29,7 +30,7 @@ public class AddTutorialGroupCommandParser implements Parser<AddTutorialGroupCom
 
         String id = argMultimap.getValue(PREFIX_TUTORIAL_GRP).orElse("");
 
-        return new AddTutorialGroupCommand(new TutorialGroup(id));
+        return new AddTutorialGroupCommand(new TutorialGroup(new TutorialGroupId(id)));
     }
 
 }

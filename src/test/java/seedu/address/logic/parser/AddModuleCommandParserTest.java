@@ -7,7 +7,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddModuleCommand;
-import seedu.address.model.Module;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleId;
 
 public class AddModuleCommandParserTest {
 
@@ -16,7 +17,7 @@ public class AddModuleCommandParserTest {
     @Test
     public void parse_validArgs_returnsAddModuleCommand() {
         //TODO change this to use TypicalModule.CS2100
-        assertParseSuccess(parser, "CS2100", new AddModuleCommand(new Module("CS2100")));
+        assertParseSuccess(parser, "CS2100", new AddModuleCommand(new Module(new ModuleId("CS2100"))));
     }
 
     @Test
