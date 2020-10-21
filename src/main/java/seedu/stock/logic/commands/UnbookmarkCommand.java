@@ -31,8 +31,8 @@ public class UnbookmarkCommand extends Command {
 
     public static final String MESSAGE_UNBOOKMARK_STOCK_SUCCESS = "Unbookmarked Stock: %1$s";
     public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND = "Stock with given serial number does not exists: %1$s";
-    public static final String MESSAGE_NOT_BOOKMARKED = "Stock with given serial number" +
-            " is not bookmarked before:%1$s";
+    public static final String MESSAGE_NOT_BOOKMARKED = "Stock with given serial number"
+            + " is not bookmarked before:%1$s";
 
     private final Set<SerialNumber> targetSerialNumbers;
 
@@ -110,24 +110,24 @@ public class UnbookmarkCommand extends Command {
         model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
         if (stocksNotFound.size() == serialNumbers.size()) {
-            return new CommandResult(String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND,arrayAsString(stocksNotFound)));
+            return new CommandResult(String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND , arrayAsString(stocksNotFound)));
         } else if (notUpdatedStocks.size() == serialNumbers.size()) {
-            return new CommandResult(String.format(MESSAGE_NOT_BOOKMARKED, stocksAsString(notUpdatedStocks)));
+            return new CommandResult(String.format(MESSAGE_NOT_BOOKMARKED , stocksAsString(notUpdatedStocks)));
         } else if (updatedStocks.size() == serialNumbers.size()) {
-            return new CommandResult(String.format(MESSAGE_UNBOOKMARK_STOCK_SUCCESS, stocksAsString(updatedStocks)));
+            return new CommandResult(String.format(MESSAGE_UNBOOKMARK_STOCK_SUCCESS , stocksAsString(updatedStocks)));
         } else if (notUpdatedStocks.size() == 0 && stocksNotFound.size() > 0) {
-            String result = String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND,arrayAsString(stocksNotFound))
-                    + "\n" + String.format(MESSAGE_UNBOOKMARK_STOCK_SUCCESS, stocksAsString(updatedStocks));
+            String result = String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND , arrayAsString(stocksNotFound))
+                    + "\n" + String.format(MESSAGE_UNBOOKMARK_STOCK_SUCCESS , stocksAsString(updatedStocks));
             return new CommandResult(result);
         } else if (stocksNotFound.size() == 0 && notUpdatedStocks.size() > 0) {
-            String result = String.format(MESSAGE_NOT_BOOKMARKED,stocksAsString(notUpdatedStocks))
-                    + "\n" + String.format(MESSAGE_UNBOOKMARK_STOCK_SUCCESS, stocksAsString(updatedStocks));
+            String result = String.format(MESSAGE_NOT_BOOKMARKED , stocksAsString(notUpdatedStocks))
+                    + "\n" + String.format(MESSAGE_UNBOOKMARK_STOCK_SUCCESS , stocksAsString(updatedStocks));
             return new CommandResult(result);
         }
         else {
-            String result = String.format(MESSAGE_NOT_BOOKMARKED, stocksAsString(notUpdatedStocks))
-                    + "\n" + String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND,arrayAsString(stocksNotFound))
-                    + "\n" + String.format(MESSAGE_UNBOOKMARK_STOCK_SUCCESS, stocksAsString(updatedStocks));
+            String result = String.format(MESSAGE_NOT_BOOKMARKED , stocksAsString(notUpdatedStocks))
+                    + "\n" + String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND , arrayAsString(stocksNotFound))
+                    + "\n" + String.format(MESSAGE_UNBOOKMARK_STOCK_SUCCESS , stocksAsString(updatedStocks));
             return new CommandResult(result);
         }
 

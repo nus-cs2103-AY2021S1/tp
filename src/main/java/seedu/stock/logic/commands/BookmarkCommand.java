@@ -48,7 +48,7 @@ public class BookmarkCommand extends Command {
      * @return The result of successful execution.
      * @throws CommandException If there are any errors.
      */
-  public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Stock> lastShownStocks = model.getFilteredStockList();
 
@@ -104,24 +104,24 @@ public class BookmarkCommand extends Command {
         model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
         if (stocksNotFound.size() == serialNumbers.size()) {
-            return new CommandResult(String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND,arrayAsString(stocksNotFound)));
+            return new CommandResult(String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND , arrayAsString(stocksNotFound)));
         } else if (notUpdatedStocks.size() == serialNumbers.size()) {
             return new CommandResult(String.format(MESSAGE_ALREADY_BOOKMARKED, stocksAsString(notUpdatedStocks)));
         } else if (updatedStocks.size() == serialNumbers.size()) {
-            return new CommandResult(String.format(MESSAGE_BOOKMARK_STOCK_SUCCESS, stocksAsString(updatedStocks)));
+            return new CommandResult(String.format(MESSAGE_BOOKMARK_STOCK_SUCCESS , stocksAsString(updatedStocks)));
         } else if (notUpdatedStocks.size() == 0 && stocksNotFound.size() > 0) {
-            String result = String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND,arrayAsString(stocksNotFound))
-                    + "\n" + String.format(MESSAGE_BOOKMARK_STOCK_SUCCESS, stocksAsString(updatedStocks));
+            String result = String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND , arrayAsString(stocksNotFound))
+                    + "\n" + String.format(MESSAGE_BOOKMARK_STOCK_SUCCESS , stocksAsString(updatedStocks));
             return new CommandResult(result);
         } else if (stocksNotFound.size() == 0 && notUpdatedStocks.size() > 0) {
-            String result = String.format(MESSAGE_ALREADY_BOOKMARKED,stocksAsString(notUpdatedStocks))
-                    + "\n" + String.format(MESSAGE_BOOKMARK_STOCK_SUCCESS, stocksAsString(updatedStocks));
+            String result = String.format(MESSAGE_ALREADY_BOOKMARKED , stocksAsString(notUpdatedStocks))
+                    + "\n" + String.format(MESSAGE_BOOKMARK_STOCK_SUCCESS , stocksAsString(updatedStocks));
             return new CommandResult(result);
         }
         else {
-            String result = String.format(MESSAGE_ALREADY_BOOKMARKED, stocksAsString(notUpdatedStocks))
-                    + "\n" + String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND,arrayAsString(stocksNotFound))
-                    + "\n" + String.format(MESSAGE_BOOKMARK_STOCK_SUCCESS, stocksAsString(updatedStocks));
+            String result = String.format(MESSAGE_ALREADY_BOOKMARKED , stocksAsString(notUpdatedStocks))
+                    + "\n" + String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND , arrayAsString(stocksNotFound))
+                    + "\n" + String.format(MESSAGE_BOOKMARK_STOCK_SUCCESS , stocksAsString(updatedStocks));
             return new CommandResult(result);
         }
 
