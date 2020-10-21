@@ -5,12 +5,11 @@ import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.commands.SortCommand.MESSAGE_INVALID_FIELD;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SORT_TYPE;
 
+import seedu.stock.commons.util.SortUtil;
 import seedu.stock.logic.commands.SortCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 
-public class SortCommandParser implements Parser {
-
-    public static final String[] FIELDS = new String[]{"name", "quantity", "source", "location", "serialnumber"};
+public class SortCommandParser implements Parser<SortCommand> {
 
     /**
      * Parses {@code args} into a sort command.
@@ -29,7 +28,7 @@ public class SortCommandParser implements Parser {
         }
 
         String field = argMultimap.getValue(PREFIX_SORT_TYPE).get().toLowerCase();
-        for (String validField : FIELDS) {
+        for (String validField : SortUtil.FIELDS) {
             if (field.equals(validField)) {
                 return new SortCommand(field);
             }

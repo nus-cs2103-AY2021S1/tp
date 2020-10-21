@@ -34,6 +34,6 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) throws CommandException, SourceCompanyNotFoundException {
         Comparator<Stock> comparator = SortUtil.generateComparator(fieldToSort);
         model.sortFilteredStockList(comparator);
-        return new CommandResult(String.format(MESSAGE_SORT_STOCK_SUCCESS, fieldToSort));
+        return new CommandResult(String.format(MESSAGE_SORT_STOCK_SUCCESS, SortUtil.getFieldDescription(fieldToSort)));
     }
 }

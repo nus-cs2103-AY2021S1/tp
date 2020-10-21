@@ -6,6 +6,28 @@ import seedu.stock.model.stock.Stock;
 
 public class SortUtil {
 
+    public static final String[] FIELDS = new String[]{"name", "quantity", "source", "location", "serialnumber"};
+
+    /**
+     * Returns a description of the sorted field.
+     *
+     * @param field The sorted field.
+     * @return The description of the sorted field.
+     */
+    public static String getFieldDescription(String field) {
+        switch (field) {
+        case "name":
+        case "quantity":
+        case "source":
+        case "location":
+            return field;
+        case "serialnumber":
+            return "serial number";
+        default:
+            return "";
+        }
+    }
+
     /**
      * Returns a comparator to sort the inventory.
      *

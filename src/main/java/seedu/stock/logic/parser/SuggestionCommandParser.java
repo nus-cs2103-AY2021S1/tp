@@ -25,6 +25,7 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_STATISTICS_TYPE;
 import java.util.List;
 import java.util.Random;
 
+import seedu.stock.commons.util.SortUtil;
 import seedu.stock.commons.util.SuggestionUtil;
 import seedu.stock.logic.commands.AddCommand;
 import seedu.stock.logic.commands.CommandWords;
@@ -194,7 +195,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             String description = argMultimap.getValue(validPrefix).get();
             String suggestedDescription = description;
             int bestEditDistanceSoFar = Integer.MAX_VALUE;
-            for (String field : SortCommandParser.FIELDS) {
+            for (String field : SortUtil.FIELDS) {
                 int currentEditDistance = SuggestionUtil.minimumEditDistance(description, field);
                 if (currentEditDistance < bestEditDistanceSoFar) {
                     bestEditDistanceSoFar = currentEditDistance;
