@@ -189,6 +189,9 @@ The following sequence diagram shows how the import operation works:
 
 ![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The method Parser::parse is a simplification of the overall parsing sequence which was already covered in showcasing the execution of the delete method. As such, redundant parsing details are not covered here.
+</div>
+
 #### Design Considerations
 
 ##### Aspect: How import executes
