@@ -1,0 +1,8 @@
+@startuml
+start
+:User executes overdue command;
+:Parse the command;
+:Filter list of students by those who have not paid their fees in the past month;
+:Display filtered list;
+stop
+@enduml
