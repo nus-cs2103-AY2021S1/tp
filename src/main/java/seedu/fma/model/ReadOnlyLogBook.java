@@ -2,7 +2,9 @@ package seedu.fma.model;
 
 import javafx.collections.ObservableList;
 import seedu.fma.model.exercise.Exercise;
+import seedu.fma.model.exercise.exceptions.ExerciseNotFoundException;
 import seedu.fma.model.log.Log;
+import seedu.fma.model.util.Name;
 
 /**
  * Unmodifiable view of an log book
@@ -20,4 +22,6 @@ public interface ReadOnlyLogBook {
      * This list will not contain any duplicate Exercises.
      */
     ObservableList<Exercise> getExerciseList();
+
+    Exercise getExercise(Name name) throws ExerciseNotFoundException;
 }

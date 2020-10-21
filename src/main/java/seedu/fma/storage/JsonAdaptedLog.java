@@ -54,14 +54,14 @@ class JsonAdaptedLog {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted log.
      */
-    public Log toModelType() throws IllegalValueException {
+    public Log toModelType(LogBook logBook) throws IllegalValueException {
         if (exercise == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Exercise.class.getSimpleName()));
         }
         Exercise modelExercise;
         try {
-            modelExercise = LogBook.getExercise(new Name(exercise));
+            modelExercise = logBook.getExercise(new Name(exercise));
         } catch (ExerciseNotFoundException e) {
             throw new IllegalValueException(Exercise.MESSAGE_CONSTRAINTS);
         }

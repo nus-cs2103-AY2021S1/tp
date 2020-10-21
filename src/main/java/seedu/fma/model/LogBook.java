@@ -17,15 +17,6 @@ import seedu.fma.model.util.Name;
  * Duplicates are not allowed (by .isSameLog comparison)
  */
 public class LogBook implements ReadOnlyLogBook {
-
-    /* TODO: This is a terrible practice
-     * It effectively makes exercises a global variable, with 3 caveats:
-     * 1. Only 1 instance of LogBook can exist at a time
-     * 2. We have to update globalExercises every time exercise changes (use LogBook's setters)
-     * 3. Always instantiate exercises before logs
-     */
-    private static UniqueExerciseList globalExercises = new UniqueExerciseList();
-
     private final UniqueLogList logs;
     private final UniqueExerciseList exercises;
 
@@ -65,7 +56,6 @@ public class LogBook implements ReadOnlyLogBook {
      */
     public void setExercises(List<Exercise> exercises) {
         this.exercises.setExercises(exercises);
-        globalExercises = this.exercises;
     }
 
     /**
@@ -130,8 +120,8 @@ public class LogBook implements ReadOnlyLogBook {
      *
      * @throws ExerciseNotFoundException if no such Exercise is found.
      */
-    public static Exercise getExercise(Name name) throws ExerciseNotFoundException {
-        for (Exercise e : globalExercises) {
+    public Exercise getExercise(Name name) throws ExerciseNotFoundException {
+        for (Exercise e : this.exercises) {
             if (e.getName().equals(name)) {
                 return e;
             }
@@ -145,7 +135,6 @@ public class LogBook implements ReadOnlyLogBook {
      */
     public void addExercise(Exercise p) {
         exercises.add(p);
-        globalExercises = exercises;
     }
 
     /**
@@ -157,7 +146,6 @@ public class LogBook implements ReadOnlyLogBook {
         requireNonNull(editedExercise);
 
         exercises.setExercise(target, editedExercise);
-        globalExercises = exercises;
     }
 
     /**
@@ -166,7 +154,6 @@ public class LogBook implements ReadOnlyLogBook {
      */
     public void removeExercise(Exercise key) {
         exercises.remove(key);
-        globalExercises = exercises;
     }
 
     //// util methods
