@@ -93,28 +93,31 @@ This feature allows a user to add a new module-related contact to the Cap 5 Budd
 
 1.1.1 Details of implementation
 
-The mechanism to add a contact is facilitated by ContactList. ContactList stores a list of unique 
-contacts belonging to the user. 
-Additionally, it implements the following operation:
-* `ContactList#addContact(Contact)` - Adds a new ```Contact``` into ```ContactList```.
+The mechanism to add a contact is facilitated by the following classes:
 
-This operation is exposed in the ```Model``` interface as Model#addContact(contact).
+* `ContactList`: Stores a list of unique contacts belonging to the user. 
 
+    Additionally, it implements the following operation(s):
+    * `ContactList#addContact(Contact)` - Adds a new ```Contact``` into ```ContactList```.
+
+    This operation is exposed in the ```Model``` interface as Model#addContact(contact).
+
+* `AddContactParser`: Parsers the user input with the aid of `ArgumentTokenizer` to create a `AddContactCommand`
+ 
 Given below is the class diagram of the ```Contact``` class:
 ![ContactClassDiagram](images/Contact/ContactClassDiagram.png)
 Figure ?.? Class Diagram for Contact
 
 Given below is an example usage scenario and how the mechanism for adding contacts behaves at each step:
 
-Step 1: The user launches the application.
-
-Step 2: The user inputs ```addcontact n/John e/john@gmail.com te/@johndoe``` into the command box to create a new 
+Step 1: The user inputs `addcontact n/John e/john@gmail.com te/@johndoe` into the command box to create a new 
 ```Contact``` with the arguments fields provided. 
 
-Step 3: ```AddContactParser``` will parse the individual fields and determine if the arguments are valid. 
-The new Contact object is created and ```AddContactCommand``` calls 
-```Model#addContact(contact)``` to add the new `Contact` into the user's `ContactList` if the Contact does not already exist
-in the ContactList.
+Step 2: `AddContactParser` parses the individual arguments and determines if the arguments are valid. 
+The new Contact object with the specified fields is created to instantiate an ```AddContactCommand``` 
+
+Step 3: `AddContactCommand` calls `Model#addContact(...)` to add the new `Contact` into the user's `ContactList` 
+if the Contact does not already exist.
 
 Given below is the sequence diagram of how the operation to add a contact works:
 ![AddContactSequenceDiagram](images/Contact/AddContactSequenceDiagram.png)
@@ -125,8 +128,68 @@ The following activity diagram summarizes what happens when a user executes the 
 Figure ?.? Activity diagram representing the execution of ```AddContactCommand```
 
 #### <br> 1.1.2 Design Considerations <br>
-##### Aspect: 
+##### Aspect: Data structure to support Contact related functions
+* Alternative 1: Use a `HashMap` to store contacts
+  * Pros: Will be more efficient to retrieve contacts from a HashMap.
+  * Cons: Requires additional memory to support the HashMap. This would worsen as the number of contacts stored increases.
+* Alternative 2: Use an `ArrayList` to store contacts 
 
+1.2 Finding Task feature
+The find task function of Cap 5 Buddy enables users to make refined and accurate searches for tasks. 
+This is achieved by allowing users to conduct searches using a set of search parameters specific to tasks.
+
+1.2.1 Details of implementation
+The mechanism to find a task is facilitated by the following classes:
+
+* `FindTaskParser`: Parsers the user input with the aid of `ArgumentTokenizer` to create a 
+`FindTaskCommand` with the required Predicates to find matching tasks as specified by the user.
+    
+    Additionally, it implements the following operation(s):
+    * `FindTaskParser#isAtLeastOnePrefixPresent(...)` - Validates that the user has provided at least one search parameter
+
+* `FindTaskCriteria`: Encapsulates a list of predicates which will be used to find tasks matching the user's search criteria
+    
+    Additionally, it implements the following operation(s):
+    * `FindTaskCriteria#getFindTaskPredicate()` - Composes all the predicates to be used by `FindTaskCommand`
+
+* `FindTaskCommand`: Initialises `predicate` from the instance of `FindTaskCriteria`. `predicate` is used to test if a 
+particular task matches all the search criteria specified by the user.
+
+    Additionally, it implements the following operation(s):
+    * `FindTaskCommand#execute(...)` - This method uses `Model#updateFilteredTodoList` to update the `filteredTodoList`
+    with Tasks that match the `predicate`.
+    
+* Predicate classes that implement `Predicate<Task>` interface
+
+    These `Predicate` classes will test if a particular `Task` matches the corresponding search criteria:
+        
+    * `NameContainsKeywordsPredicate` 
+      * Tests if a given `Task` Name contains any of the specified keywords.
+        
+    * `TaskMatchesDatePredicate` 
+      * Tests if a given `Task` Date matches the search date  
+      * It uses `Task#hasSameDate(...)` to perform the comparison
+                                             
+    * `TaskMatchesPriorityPredicate` 
+      * Tests if a given `Task` Priority matches the search priority
+      * It uses `Task#hasSamePriority(...)` to perform the comparison         
+        
+Given below is an example usage scenario and how the mechanism for adding contacts behaves at each step:
+        
+Step 1: The user inputs `findtask n/lab p/Highest` into the command box to find tasks 
+whose `TaskName` contains "lab" and has a `Priority` "Highest".
+
+Step 2: `FindTaskParser` parsers and validates the command arguments.
+
+Step 3: `NameContainsKeywordsPredicate` and `TaskMatchesPriorityPredicate` objects encapsulating the 
+search criteria are created and composed by `FindTaskCriteria#getFindTaskPredicate()` to instantiate a `FindTaskCommand`.
+
+Step 4: `FindTaskCommand` calls `Model#updateFilteredTodoList(...)` to update the filteredTodoList with the composed predicate.
+
+
+The following activity diagram summarizes what happens when a user executes the ```FindTaskCommand```:
+![FindTaskCommandActivityDiagram](images/task/FindTaskCommandActivityDiagram.png)
+Figure ?.? Activity diagram representing the execution of ```FindTaskCommand```
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
