@@ -67,14 +67,22 @@ track of multiple items, OneShelf is for you!
 
 
 ### Viewing help : `help`
-Format: `help summary`
-Shows a summary of all the possible commands in OneShelf.
 
 Format: `help start`
 Shows a guide for user to kick-start their journey in OneShelf.
 
-<<Insert Screenshot in the future to show user what is expected, once GUI of help finalized>>
+Alternatives:
+* Press `F1` at any point in the usage of the app
+* GUI navigation menu at the top left
 
+Format: `help summary`
+Shows a summary of all the possible commands in OneShelf.
+
+Alternatives:
+* Press `F2` at any point in the usage of the app
+* GUI navigation menu at the top left
+
+![Help Summary Screenshot](images/HelpSummaryWindow.png)
 
 
 ### Adding an item: `add-i`
@@ -196,6 +204,27 @@ Exits the program.
 Format: `exit`
 
 
+### Undo last command : `undo`
+
+Undoes the previous command by reverting the current data displayed to the state it was in before the last command was executed.
+
+Format: `undo`
+
+* If there is a previous state available, the current state is reverted to that state
+* If the current state is the earliest possible one, it shows a message informing the user that there is nothing more to undo
+
+
+### Redo last command : `redo`
+
+Redoes the last undone command by reverting the current data displayed to the state it was in before the last undo command was executed.
+
+Format: `redo`
+
+* If there is an undone state available, the current state is reverted to that state
+* If the current state is the latest possible one, it shows a message informing the user that there is nothing more to redo
+* After any command that changes the state of data (such as add, clear, delete, edit), the new state becomes the latest state
+(i.e. the previous undo commands are "forgotten" and `redo` will have no effect)
+
 
 ### Saving the data
 
@@ -204,11 +233,6 @@ OneShelf data are saved in the hard disk automatically after any command that ch
 ### Scroll through command history
 
 OneShelf commands are traversable much like Window's command prompt with the arrow up key traversing into previous commands and arrow down key traversing into next commands.  
-
-### Undo `[Coming Soon]`
-
-Undo previous command
-
 
 
 ### Sorting items`[Coming Soon]`
@@ -254,7 +278,14 @@ Notify the user if a certain stock is below threshold
 
 ## Command summary
 
+#### General commands summary
 
+| Action    | Format, Examples                                                                                    |
+|-----------|-----------------------------------------------------------------------------------------------------|
+|**Get help to start off**    | `help start` or press `F1` or use GUI help menu at the top left |
+|**Get help summary**    | `help summary` or press `F2` or use GUI help menu at the top left |                                                                                       |                                                                                             |
+|**Undo last command**   | `undo`  |
+|**Redo last undone command**   | `redo`  |
 
 #### Inventory summary
 
@@ -266,8 +297,7 @@ Notify the user if a certain stock is below threshold
 |**Edit Inventory**   | `edit-i INDEX [n/NAME] [q/QUANTITY] [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]…​`<br> e.g.,`edit 1 n/Chicken q/50`                |
 |**Find in Inventory**   | `find-i PREFIX KEYWORD [MORE_KEYWORDS]`<br> e.g., `find-i n/Chicken Steak`                                       |
 |**List Inventory**   | `list-i
-|**Remove from Inventory** | `remove-i INDEX q/QUANTITY`                                                                                              |
-|**Help**   | `help`                                                                                              |
+|**Remove from Inventory** | `remove-i INDEX q/QUANTITY`                                                                                              |                                                                                          |
 
 
 
