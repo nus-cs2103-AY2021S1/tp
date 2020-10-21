@@ -3,7 +3,6 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":McGymmyParser" as McGymmyParser LOGIC_COLOR
 participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
 end box
 
@@ -15,16 +14,12 @@ end box
 [-> LogicManager : execute(undo)
 activate LogicManager
 
-LogicManager -> McGymmyParser : parse(undo)
-activate McGymmyParser
-
 create UndoCommand
-McGymmyParser -> UndoCommand
+LogicManager -> UndoCommand : Parser::parse(undo)**
+activate UndoCommand
 
-UndoCommand -> McGymmyParser : u
-
-McGymmyParser --> LogicManager : u:
-deactivate McGymmyParser
+UndoCommand -> LogicManager : u
+deactivate UndoCommand
 
 LogicManager -> UndoCommand : execute(model)
 activate UndoCommand
