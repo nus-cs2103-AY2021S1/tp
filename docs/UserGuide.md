@@ -86,15 +86,20 @@ Format: `help`
 
 You can refer to a list of past commands that you had used during the session.
 
+![example of command history](images/historyExample.png)
+
 Format: `history`
 
 #### 3.1.3 Clearing command history: `clearhistory`
 
 You can clear the command history.
 
+![example of cleared history](images/clearHistoryExample.png)
+
 Format: `clearhistory`
 
 <div markdown="block" class="alert alert-info">
+
 **:information_source: Note:**<br>
 
  * Use with caution, `clearhistory` cannot be undone!
@@ -115,6 +120,8 @@ Patient commands are commands that you can utilise to make changes to your list 
 
 You can add your patient to the patient database.
 
+![example of newly added patient](images/addExample.png)
+
 Format: `add n/NAME p/PHONE_NUMBER i/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
 
 Examples:
@@ -131,14 +138,12 @@ Examples:
 </div>
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note about color coding patients:**<br>
 
+**:information_source: Note about color coding patients:**<br>
 
  * When your patient is tagged with a color tag, the background of the patient will be styled to show that color. The color tags can be used for a variety of purposes.
  * For example, you may color code patients at risk of terminal diseases as <span style="color:red;font-weight:bold">red</span>, for easier reference.
 
-
-![example of color coded patient](images/Ui.png)
 </div>
 
 #### 3.2.2 Adding profile picture: `addpicture`
@@ -146,6 +151,8 @@ Examples:
 You can add a profile picture to your patient’s profile by specifying the filepath to desired profile picture.
 
 All patient profiles are preloaded with a stock profile picture.
+
+![example of patient with new profile](images/addProfileExample.png)
 
 Format: `addpicture INDEX f/FILE_PATH`
 
@@ -167,22 +174,26 @@ Examples:
 
 You can edit an existing patient in the patient database.
 
+![example of edited patient](images/editExample.png)
+
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [i/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-
+* When editing allergies (or color tag), the existing allergies (or color tag) of the patient will be removed i.e adding of allergies (or color tag) is not cumulative.
 * You can remove all the patient’s allergies by typing `g/` without specifying any allergies after it. The same applies for color tags of a patient.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower g/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing allergies.
 *  `edit 3 ct/red` Clears the existing color tag and edits the color tag of the 3rd patient to be `red`.
-* When editing allergies (or color tag), the existing allergies (or color tag) of the patient will be removed i.e adding of allergies (or color tag) is not cumulative.
-* You can remove all the patient’s allergies by typing `g/` without specifying any allergies after it.
+
+![example of color coded patient](images/colorTagExample.png)
 
 #### 3.2.4 Deleting a patient: `delete`
+
+![example of deleted patient](images/deleteExample.png)
 
 You can delete a specified patient from the patient database.
 
@@ -197,6 +208,8 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
 #### 3.2.5 Deleting all patients: `clear`
+
+![example of cleared list](images/clearExample.png)
 
 You can clear all patient entries from the patient database.
 
@@ -213,6 +226,8 @@ Format: `clear`
 
 You can find patients whose names or IC number contain any of the given keywords.
 
+![example of finding meier](images/findExample.png)
+
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
@@ -228,9 +243,9 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 * `find 9123456` returns the patient with IC number `s9123456z`
 
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
 #### 3.2.7 Listing all patients: `list`
+
+![example of listing patients](images/listExample.png)
 
 You can see a list of all your patients in the patient database.
 
@@ -239,6 +254,8 @@ Format: `list`
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tip: </span>
 
+You can revert your previous command which modified the patient database.
+
 * Useful to view all patients after a `find` command!
 
 </div>
@@ -246,6 +263,8 @@ Format: `list`
 #### 3.2.8 Undoing the previous command: `undo`
 
 You can revert your previous command which modified the patient database.
+
+![example of undoing command](images/undoExample.png)
 
 Format: `undo`
 
@@ -256,8 +275,9 @@ Example:
 * While trying to `addpicture` , you deleted Alex Yeoh's patient details by accident.
 * Instead of re-entering Alex Yeoh's information all over again, you can easily restore Alex Yeoh's details by using `undo` on your previous `delete` command.
 
-
 #### 3.2.9 Redoing a command: `redo`
+
+![example redoing command](images/redoExample.png)
 
 You can redo the most recent command that you have undone.
 
@@ -269,8 +289,8 @@ Format: `redo`
 
 Retrieve and reuse past commands using the <kbd>↑</kbd> arrow and <kbd>↓</kbd> arrow keys on the keyboard.
 1. Click on the text field of the command box.
-2. Press the <kbd>↑</kbd> arrow key to display the next recent past command.
-3. Press the <kbd>↓</kbd> arrow key to display the previously shown past command.
+2. Press the <kbd>↑</kbd> arrow key to display the most recent past command.
+3. Press the <kbd>↓</kbd> and <kbd>↑</kbd> arrow keys to navigate through the list of past commands.
 4. Press <kbd>Enter</kbd>/<kbd>Return</kbd> key to reuse the command.
 
 <div markdown="block" class="alert alert-primary">
