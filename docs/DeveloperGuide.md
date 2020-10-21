@@ -131,6 +131,28 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
+### Clear all modules feature
+It implements the following operations:
+* `AddressBook#clearMod()` — Clear all modules from the list.  
+
+These operations are exposed in the `Model` interface as `Model#clearMod()` and `UniqueModuleList` class as `UniqueModuleList#clearAll()`
+
+The following sequence diagram shows how the mclear operation works:
+
+![UndoRedoState0](images/MclearCommandSequenceDiagram.png)
+
+Clearing all modules from the module list
+
+a. Prerequisites : Clear all modules from module list using `cclear` There are 3 modules with module codes `CS2100`, `CS2101`, `CS2102` in FaculType.
+
+b. Test case : `mclear` <br>
+Expected : Success message saying "All modules deleted"
+
+c. Test case : `mclear` on an empty module list <br>
+Expected : Error message saying "Module list is already empty".
+
+{ more test cases ... }
+
 This section describes some noteworthy details on how certain features are implemented.
 
 ### \[Proposed\] Undo/redo feature
