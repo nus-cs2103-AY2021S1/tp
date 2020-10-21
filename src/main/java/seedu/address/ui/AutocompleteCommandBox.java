@@ -14,8 +14,8 @@ public class AutocompleteCommandBox extends CommandBox {
     public static final String AC_MODE_STYLE_CLASS = "autocomplete-mode";
 
     private boolean isAutocompleteMode = false;
-    private String modeType = "";
     private boolean hasSetPrefix = false;
+    private String modeType = "";
     private int autoCompletePos;
     private int commandPrefixPos;
 

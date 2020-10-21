@@ -139,9 +139,9 @@ public class MainWindow extends UiPart<Stage> {
         commandBox.setupAutocompletionListeners("cname/", () -> logic.getFilteredPersonList().stream()
                 .map(p -> p.getName().fullName).collect(Collectors.toList()));
         commandBox.setupAutocompletionListeners("mdname/", () -> logic.getFilteredModuleList().stream()
-                .map(p -> p.getModuleName().getModuleName()).collect(Collectors.toList()));
-        commandBox.setupAutocompletionListeners("mtname/", () -> logic.getFilteredModuleList().stream()
-                .map(p -> p.getModuleName().getModuleName()).collect(Collectors.toList()));
+                .map(m -> m.getModuleName().getModuleName()).collect(Collectors.toList()));
+        commandBox.setupAutocompletionListeners("mtname/", () -> logic.getFilteredMeetingList().stream()
+                .map(m -> m.getMeetingName().meetingName).collect(Collectors.toList()));
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
