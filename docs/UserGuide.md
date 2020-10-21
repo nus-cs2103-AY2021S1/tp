@@ -5,8 +5,15 @@ title: User Guide
 
 Cap 5.0 Buddy helps NUS SoC students to keep track of their module details efficiently. It helps them centralize key module details and follows their study progress through a Command Line Interface (CLI) that allows efficient management of module details.
 
-* Table of Contents
-{:toc}
+1. [Quick Start](#quick-start)
+2. [Features](#features)
+   1. [Adding a module](#adding-a-new-module-add-module)
+   2. [Viewing a module](#viewing-a-module-view)
+   3. [Adding a zoom link to a module](#adding-a-zoom-link-to-a-module-add-zoom)
+   4. [Deleting a module](#deleting-a-module-delete)
+   5. [Editing a module](#editing-a-module--edit-zoom)
+3. [FAQ](#faq)
+4. [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -35,21 +42,54 @@ Cap 5.0 Buddy helps NUS SoC students to keep track of their module details effic
 
 </div>
 
+### Adding a new module: `add module`
 
-  
-### Locating persons by name: `view`
-  
+Creates and add a new module to be stored in the system.
+
+  Format: `add module` **_`[MODULE_NAME]`_** **_`[ZOOM_LINK]`_**
+
+   * Leaving the **_ZOOM_LINK_** part empty will create a empty module.
+
+   Examples:
+   * `add module CS2103T https:\\link` creates and add the module called CS2103T
+   with the specified link into the system.
+   * `add module CS2103T` creates and add the module CS2103T with no zoom link.
+
+### Viewing a module: `view`
+
 Views a module stored in the system
-  
+
  Format: `view` **_`[MODULE_NAME]`_**
-  
+
   * Using the keyword all in place of specified module name will display all module details
 
-  
+
   Examples:
   * `view cs2103t` views the specified module
   * `view all` views all the modules stored
-    
+
+### Adding a zoom link to a module: `add zoom`
+
+  Adds a zoom link to an existing module.
+
+  Format: `add zoom` **_`[MODULE_NAME]`_** **_`[ZOOM_LINK]`_**
+
+  * Adds a zoom link [ZOOM_LINK] to a module named **_`[MODULE_NAME]`_**
+
+  Example of usage:
+  `add zoom cs2103T https://sample.zoom.us` adds a zoom link `https://sample.zoom.us` to the module named `cs2103T`
+
+
+### Deleting a module: `delete`
+
+Deletes the module at the specified position from the system
+
+ Format: `delete` **_`[MODULE_POSITION]`_**
+
+  Examples:
+  * `delete 1` deletes the module at position `1`
+
+
 ### Editing a module : `edit zoom`
 
 * Edits an existing module in the module list.
@@ -77,6 +117,9 @@ Examples:
 ## Command summary
 
 Action | Format, Examples
---------|------------------
+--------|------------------ 
+**Add** | `add module KEYWORD`<br> e.g., `add module CS2103T [link]`, `add module CS2103T`
 **View** | `view KEYWORD `<br> e.g., `view cs2101` , `view all`
+**Delete** | `delete KEYWORD `<br> e.g., `delete 3`
 **Edit** | `edit zoom MODULE_NAME ZOOM_LINK`<br> e.g., `edit zoom CS2103T https://sample.zoom.us`
+**Add Zoom** | `add zoom MODULE_NAME ZOOM_LINK` <br> e.g., `add zoom cs2103T https://sample.zoom.us`

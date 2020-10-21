@@ -7,54 +7,67 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
-  <icons>
-    <Image url="@/images/address_book_32.png" />
-  </icons>
-  <scene>
-    <Scene>
-      <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
-      </stylesheets>
-
-      <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-          </Menu>
-        </MenuBar>
-
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
-
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
-
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-      </VBox>
-    </Scene>
-  </scene>
+<fx:root onCloseRequest="#handleExit" title="Cap 5.0 Buddy" type="Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <scene>
+      <Scene>
+          <AnchorPane prefHeight="191.0" prefWidth="522.0">
+            <children>
+               <VBox prefHeight="200.0" prefWidth="394.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
+                  <children>
+                     <MenuBar style="-fx-border-color: #030303;">
+                       <menus>
+                         <Menu mnemonicParsing="false" text="File">
+                           <items>
+                             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Close" />
+                           </items>
+                         </Menu>
+                         <Menu mnemonicParsing="false" text="Help">
+                           <items>
+                             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+                           </items>
+                         </Menu>
+                       </menus>
+                     </MenuBar>
+                     <SplitPane dividerPositions="0.29797979797979796" prefHeight="165.0" prefWidth="475.0" VBox.vgrow="ALWAYS">
+                       <items>
+                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="141.0" prefWidth="151.0" />
+                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                              <children>
+                                 <VBox fx:id="personListPanelPlaceholder" layoutY="134.0" prefHeight="152.0" prefWidth="361.3333333333333" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
+                                    <children>
+                                       <StackPane fx:id="commandBoxPlaceholder" prefHeight="25.0" prefWidth="355.0" VBox.vgrow="NEVER">
+                                          <padding>
+                                             <Insets bottom="2.0" left="2.0" right="9.0" top="2.0" />
+                                          </padding>
+                                       </StackPane>
+                                       <StackPane fx:id="resultDisplayPlaceholder" prefHeight="86.0" prefWidth="355.0" VBox.vgrow="NEVER">
+                                          <padding>
+                                             <Insets bottom="2.0" left="2.0" right="10.0" top="5.0" />
+                                          </padding>
+                                       </StackPane>
+                                       <VBox prefHeight="28.0" prefWidth="361.0">
+                                          <padding>
+                                             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                          </padding>
+                                       </VBox>
+                                    </children></VBox>
+                              </children>
+                           </AnchorPane>
+                       </items>
+                     </SplitPane>
+                  </children>
+               </VBox>
+            </children>
+         </AnchorPane>
+         <stylesheets>
+            <URL value="@DarkTheme.css" />
+            <URL value="@Extensions.css" />
+         </stylesheets>
+      </Scene>
+   </scene>
 </fx:root>
