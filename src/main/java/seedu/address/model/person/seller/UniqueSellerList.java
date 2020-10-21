@@ -56,7 +56,7 @@ public class UniqueSellerList implements Iterable<Seller> {
 
     public SellerId getLatestId() {
         if (internalList.size() == 0) {
-            return new SellerId(1);
+            return new SellerId(0);
         }
         return this.internalList.get(internalList.size() - 1).getId();
     }
