@@ -5,7 +5,7 @@ import static seedu.flashcard.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Tag in the flashcard deck.
- * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
+ * Guarantees: immutable.
  */
 public class Tag {
 

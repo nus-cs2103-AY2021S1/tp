@@ -7,10 +7,14 @@ import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_DIAGRAM;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.flashcard.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.flashcard.commons.core.Messages;
 import seedu.flashcard.commons.core.index.Index;
@@ -24,6 +28,7 @@ import seedu.flashcard.model.flashcard.Flashcard;
 import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
 import seedu.flashcard.model.flashcard.Rating;
+import seedu.flashcard.model.tag.Tag;
 
 
 /**
@@ -42,6 +47,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_CATEGORY + "CATEGORY]"
             + "[" + PREFIX_NOTE + "NOTE]"
             + "[" + PREFIX_RATING + "RATING]"
+            + "[" + PREFIX_TAG + "TAG\n]"
             + "[" + PREFIX_DIAGRAM + "DIAGRAM]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_QUESTION + "What does the S in SOLID stand for? "
@@ -100,11 +106,11 @@ public class EditCommand extends Command {
         Category updatedCategory = editFlashcardDescriptor.getCategory().orElse(flashcardToEdit.getCategory());
         Note updatedNote = editFlashcardDescriptor.getNote().orElse(flashcardToEdit.getNote());
         Rating updatedRating = editFlashcardDescriptor.getRating().orElse(flashcardToEdit.getRating());
+        Set<Tag> updatedTags = editFlashcardDescriptor.getTags().orElse(flashcardToEdit.getTags());
         Diagram updatedDiagram = editFlashcardDescriptor.getDiagram().orElse(flashcardToEdit.getDiagram());
-
         boolean isFavourite = flashcardToEdit.isFavourite();
         return new Flashcard(updatedQuestion, updatedAnswer, updatedCategory, updatedNote, updatedRating,
-                updatedDiagram, isFavourite);
+                updatedTags, updatedDiagram, isFavourite);
     }
 
     @Override
@@ -135,6 +141,7 @@ public class EditCommand extends Command {
         private Category category;
         private Note note;
         private Rating rating;
+        private Set<Tag> tags;
         private Diagram diagram;
 
         public EditFlashcardDescriptor() {
@@ -150,6 +157,7 @@ public class EditCommand extends Command {
             setCategory(toCopy.category);
             setNote(toCopy.note);
             setRating(toCopy.rating);
+            setTags(toCopy.tags);
             setDiagram(toCopy.diagram);
         }
 
@@ -157,7 +165,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(question, answer, category, note, rating, diagram);
+            return CollectionUtil.isAnyNonNull(question, answer, category, note, rating, tags, diagram);
         }
 
         public void setQuestion(Question question) {
@@ -200,6 +208,23 @@ public class EditCommand extends Command {
             return Optional.ofNullable(rating);
         }
 
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
         public void setDiagram(Diagram diagram) {
             this.diagram = diagram;
         }
@@ -228,6 +253,7 @@ public class EditCommand extends Command {
                     && getCategory().equals(e.getCategory())
                     && getNote().equals(e.getNote())
                     && getRating().equals(e.getRating())
+                    && getTags().equals(e.getTags())
                     && getDiagram().equals(e.getDiagram());
         }
     }

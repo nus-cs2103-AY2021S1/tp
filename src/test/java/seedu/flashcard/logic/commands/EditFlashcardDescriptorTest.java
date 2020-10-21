@@ -9,6 +9,7 @@ import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_CATEGORY_2;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_NOTE_2;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_QUESTION_2;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_RATING_2;
+import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_TAG_2;
 
 import org.junit.jupiter.api.Test;
 
@@ -54,6 +55,10 @@ public class EditFlashcardDescriptorTest {
 
         // different rating -> returns false
         editedFlashcard = new EditFlashcardDescriptorBuilder(DESC_FLASHCARD_1).withRating(VALID_RATING_2).build();
+        assertFalse(DESC_FLASHCARD_1.equals(editedFlashcard));
+
+        // different tag -> returns false
+        editedFlashcard = new EditFlashcardDescriptorBuilder(DESC_FLASHCARD_1).withTags(VALID_TAG_2).build();
         assertFalse(DESC_FLASHCARD_1.equals(editedFlashcard));
     }
 }

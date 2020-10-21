@@ -14,6 +14,7 @@ import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_NOTE_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_QUESTION_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_QUESTION_3;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_RATING_2;
+import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_TAG_2;
 import static seedu.flashcard.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.flashcard.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_1;
@@ -34,6 +35,7 @@ public class AddCommandParserTest {
     public static final String PREFIX_QUESTION = " q/";
     public static final String PREFIX_NOTE = " n/";
     public static final String PREFIX_RATING = " r/";
+    public static final String PREFIX_TAG = " t/";
     public static final String PREFIX_DIAGRAM = " d/";
     public static final String SPACE = " ";
 
@@ -41,26 +43,26 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        // standard flashcard with category, note, rating and diagram
+        // standard flashcard with category, note, rating, tag and diagram
         assertParseSuccess(parser, SPACE + PREFIX_QUESTION + VALID_QUESTION_1 + PREFIX_ANSWER
                         + VALID_ANSWER_1 + PREFIX_CATEGORY + VALID_CATEGORY_1 + PREFIX_NOTE + VALID_NOTE_1
-                        + PREFIX_RATING + VALID_RATING_2 + PREFIX_DIAGRAM + VALID_DIAGRAM_1,
+                        + PREFIX_RATING + VALID_RATING_2 + PREFIX_TAG + VALID_TAG_2 + PREFIX_DIAGRAM + VALID_DIAGRAM_1,
                 new AddCommand(FLASHCARD_1));
 
-        // flashcard with input arguments in reversed order, with category, note, rating and diagram
-        assertParseSuccess(parser, SPACE + PREFIX_DIAGRAM + VALID_DIAGRAM_1 + PREFIX_ANSWER + VALID_ANSWER_1
-                        + PREFIX_QUESTION + VALID_QUESTION_1 + PREFIX_CATEGORY + VALID_CATEGORY_1
-                        + PREFIX_RATING + VALID_RATING_2 + PREFIX_NOTE + VALID_NOTE_1,
+        // flashcard with input arguments in reversed order, with category, note, rating, tag and diagram
+        assertParseSuccess(parser, SPACE + PREFIX_DIAGRAM + VALID_DIAGRAM_1 + PREFIX_TAG + VALID_TAG_2
+                        + PREFIX_ANSWER + VALID_ANSWER_1 + PREFIX_QUESTION + VALID_QUESTION_1 + PREFIX_CATEGORY
+                        + VALID_CATEGORY_1 + PREFIX_RATING + VALID_RATING_2 + PREFIX_NOTE + VALID_NOTE_1,
                 new AddCommand(FLASHCARD_1));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // standard flashcard without category, note and isFavourite
+        // standard flashcard without category, note, tag and isFavourite
         assertParseSuccess(parser, SPACE + PREFIX_QUESTION + VALID_QUESTION_3 + PREFIX_ANSWER
                 + VALID_ANSWER_3, new AddCommand(FLASHCARD_3));
 
-        // flashcard with input arguments in reversed order, without category and note
+        // flashcard with input arguments in reversed order, without category, tag and note
         assertParseSuccess(parser, SPACE + PREFIX_ANSWER + VALID_ANSWER_3
                 + PREFIX_QUESTION + VALID_QUESTION_3, new AddCommand(FLASHCARD_3));
     }
