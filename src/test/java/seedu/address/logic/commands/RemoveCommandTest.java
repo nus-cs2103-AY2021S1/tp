@@ -4,12 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalOrderItems.MILO;
 import static seedu.address.testutil.TypicalOrderItems.NUGGETS;
-import static seedu.address.testutil.TypicalOrderItems.PRATA;
 import static seedu.address.testutil.TypicalVendors.getTypicalAddressBook;
 
-import java.util.HashSet;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;

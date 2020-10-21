@@ -177,7 +177,7 @@ public class Order implements Iterable<OrderItem> {
     private boolean orderItemsAreUnique(List<OrderItem> orderItems) {
         for (int i = 0; i < orderItems.size() - 1; i++) {
             for (int j = i + 1; j < orderItems.size(); j++) {
-                if (orderItems.get(i).isSameOrderItem(orderItems.get(j))) {
+                if (orderItems.get(i).isSameOrderItemDescription(orderItems.get(j))) {
                     return false;
                 }
             }

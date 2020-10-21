@@ -80,12 +80,12 @@ public class OrderItem extends Food {
                 && (orderItem.getTags().equals(getTags()));
     }
 
-//    @Override
-//    public boolean equals(Object other) {
-//        return other == this // short circuit if same object
-//                || (other instanceof OrderItem // instanceof handles nulls
-//                && isSameOrderItem((OrderItem) other));
-//    }
+    //    @Override
+    //    public boolean equals(Object other) {
+    //        return other == this // short circuit if same object
+    //                || (other instanceof OrderItem // instanceof handles nulls
+    //                && isSameOrderItem((OrderItem) other));
+    //    }
 
     @Override
     public int hashCode() {
