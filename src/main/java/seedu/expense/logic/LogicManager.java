@@ -27,7 +27,6 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final ExpenseBookParser expenseBookParser;
-
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */

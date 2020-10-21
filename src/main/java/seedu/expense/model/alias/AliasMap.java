@@ -1,9 +1,8 @@
 package seedu.expense.model.alias;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import seedu.expense.logic.commands.*;
+
+import java.util.*;
 
 import static java.util.Objects.requireNonNull;
 
@@ -13,23 +12,22 @@ import static java.util.Objects.requireNonNull;
  */
 public class AliasMap {
 
+    public static final String MESSAGE_RESERVED = "The %s keyword is reserved.";
+    public static final String DUPLICATE_KEYWORD_FOUND = "The %s keyword already exists.";
+    public static final String UNCHANGED_ALIAS = "Previous and updated alias must not be the same.";
+
     private final HashMap<String, String> aliasMap;
-    /*
-    private static final HashMap<String, String> classMap = new HashMap<>();
-    private static final String dir = "seedu.expense.logic.commands.";
+    private static final Set<String> RESERVED_KEYWORDS;
     static {
-        classMap.put(AddCommand.COMMAND_WORD, "AddCommand");
-        classMap.put(ClearCommand.COMMAND_WORD, "ClearCommand");
-        classMap.put(DeleteCommand.COMMAND_WORD, "DeleteCommand");
-        classMap.put(EditCommand.COMMAND_WORD, "EditCommand");
-        classMap.put(ExitCommand.COMMAND_WORD, "ExitCommand");
-        classMap.put(FindCommand.COMMAND_WORD, "FindCommand");
-        classMap.put(HelpCommand.COMMAND_WORD, "AddCommand");
-        classMap.put(ListCommand.COMMAND_WORD, "AddCommand");
-        classMap.put(RemarkCommand.COMMAND_WORD, "AddCommand");
-        classMap.put(TopupCommand.COMMAND_WORD, "AddCommand");
+        Set<String> reserved = new HashSet<>();
+        RESERVED_KEYWORDS =
+                Set.of(
+                        AddCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD,
+                        EditCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD, FindCommand.COMMAND_WORD,
+                        HelpCommand.COMMAND_WORD, ListCommand.COMMAND_WORD, RemarkCommand.COMMAND_WORD,
+                        TopupCommand.COMMAND_WORD
+                );
     }
-     */
 
     public AliasMap() {
         aliasMap = new HashMap<>();
@@ -43,16 +41,6 @@ public class AliasMap {
         resetData(toBeCopied);
     }
 
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
-    {
-        expenses = new UniqueExpenseList();
-    }
-    */
     //// list overwrite operations
 
     /**
@@ -108,11 +96,17 @@ public class AliasMap {
      * The expense identity of {@code editedExpense} must not be the same as another existing
      * expense in the expense book.
      */
-    public void setAlias(AliasEntry prev, AliasEntry update) {
+    public void setAlias(AliasEntry prev, AliasEntry update) throws IllegalArgumentException {
         requireNonNull(prev);
         requireNonNull(update);
-        assert prev.getValue().equals(update.getValue()) : "The two keywords do not update same command";
-
+        assert (!prev.getValue().equals(update.getValue())) :
+                "Must replace the same value (command) alias";
+        if (prev.getKey().equals(update.getKey())) {
+            throw new IllegalArgumentException(UNCHANGED_ALIAS);
+        }
+        if (RESERVED_KEYWORDS.contains(update.getKey()) && !prev.getValue().equals(update.getKey())) {
+            throw new IllegalArgumentException(String.format(MESSAGE_RESERVED, update.getKey()));
+        }
         this.aliasMap.remove(prev.getKey());
         addAlias(update);
     }
@@ -133,30 +127,4 @@ public class AliasMap {
         aliasMap.remove(alias.getKey());
     }
 
-    /*
-    //// util methods
-
-    @Override
-    public String toString() {
-        return expenses.asUnmodifiableObservableList().size() + " expenses";
-        // TODO: refine later
-    }
-
-    @Override
-    public ObservableList<Expense> getExpenseList() {
-        return expenses.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ExpenseBook // instanceof handles nulls
-                && expenses.equals(((ExpenseBook) other).expenses));
-    }
-
-    @Override
-    public int hashCode() {
-        return expenses.hashCode();
-    }
-     */
 }

@@ -22,8 +22,8 @@ class JsonAdaptedAliasEntry {
      * Constructs a {@code JsonAdaptedAliasEntry} with the given expense details.
      */
     @JsonCreator
-    public JsonAdaptedAliasEntry(@JsonProperty("key") String customisedCommandWord,
-                              @JsonProperty("value") String defaultCommandWord) {
+    public JsonAdaptedAliasEntry(@JsonProperty("customisedCommandWord") String customisedCommandWord,
+                              @JsonProperty("defaultCommandWord") String defaultCommandWord) {
         this.customisedCommandWord = customisedCommandWord;
         this.defaultCommandWord = defaultCommandWord;
     }
