@@ -100,4 +100,13 @@ public class ActiveAccountStub implements ActiveAccount {
 
     }
 
+    @Override
+    public Double getTotalExpenses() {
+        return 0.00;
+    }
+
+    @Override
+    public Double getTotalRevenue() {
+        return 0.00;
+    }
 }

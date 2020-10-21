@@ -19,13 +19,31 @@ Class UserPrefs
 Class ReadOnlyUserPrefs
 
 Package Account {
-Class Account
-Class Revenue
-Class Email
-Class Name
-Class Expense
 Class UniqueAccountList
+Class Account
+Class Name
+Interface ActiveAccount
+Class ActiveAccountManager
+
+
+
+Package Entry {
+Class ExpenseList
+Class RevenueList
+Abstract Class Entry
+Class Expense
+Class Revenue
+Class Description
+Class Amount
 }
+}
+
+Package Tag {
+Class Tag
+}
+}
+
+
 
 hidden .down.|> Model
 
@@ -36,16 +54,24 @@ Model ..> ObservableList
 ModelManager o--> "1" CommonCents
 ModelManager o--> "1" UserPrefs
 UserPrefs .down..|> ReadOnlyUserPrefs
+ModelManager --> Account: filtered list
+
+ActiveAccountManager ..|> ActiveAccount
+ActiveAccountManager o-right-> "1" Account
 
 CommonCents *--> "1" UniqueAccountList
-UniqueAccountList o--> "*" Account
+UniqueAccountList o--> "1..*" Account
 Account *--> Name
-Account *--> Expense
-Account *--> Revenue
+Account *--> "1" ExpenseList
+Account *--> "1" RevenueList
+
+ExpenseList o--> "*" Expense
+RevenueList o--> "*" Revenue
+Expense .down.|> Entry
+Revenue .down.|> Entry
+Entry *--> Description
+Entry *--> Amount
+Entry *--> "*" Tag
 
 
-Name -[hidden]right-> Expense
-Expense -[hidden]right-> Revenue
-
-ModelManager -->"1" Account : filtered list
 @enduml
