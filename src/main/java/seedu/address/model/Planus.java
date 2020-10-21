@@ -102,6 +102,15 @@ public class Planus implements ReadOnlyPlanus {
         tasks.remove(key);
     }
 
+    /**
+     * Removes the given tasks {@code targets} from this {@code Planus}.
+     * task in targets must exist in the address book.
+     */
+    public void removeTask(Task[] targets) {
+        requireNonNull(targets);
+        tasks.remove(targets);
+    }
+
     //// util methods
 
     @Override

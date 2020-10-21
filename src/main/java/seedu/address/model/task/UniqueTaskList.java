@@ -79,6 +79,22 @@ public class UniqueTaskList implements Iterable<Task> {
         }
     }
 
+    /**
+     * Removes the equivalent tasks from the list.
+     * The tasks must exist in the list.
+     */
+    public void remove(Task[] tasks) {
+        requireNonNull(tasks);
+        for (int i = 0; i < tasks.length; i++) {
+            int index = internalList.indexOf(tasks[i]);
+            if (index == -1) {
+                throw new TaskNotFoundException();
+            }
+            internalList.remove(tasks[i]);
+        }
+    }
+
+
     public void setTasks(UniqueTaskList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

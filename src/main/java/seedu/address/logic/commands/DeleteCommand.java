@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -24,30 +25,51 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
 
-    private final Index targetIndex;
+    private final Index[] targetIndexes;
 
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    /**
+     * Creates an DeleteCommand to to delete the tasks with {@code targetIndexes} from system.
+     */
+    public DeleteCommand(Index[] targetIndexes) {
+        requireNonNull(targetIndexes);
+        this.targetIndexes = targetIndexes;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
-
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        Task[] tasksToDelete = new Task[targetIndexes.length];
+        if (Index.hasDuplicateIndex(targetIndexes)) {
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_TASK_INDEX);
+        }
+        for (int i = 0; i < targetIndexes.length; i++) {
+            if (targetIndexes[i].getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_TASKS_DISPLAYED_INDEX);
+            }
+            tasksToDelete[i] = lastShownList.get(targetIndexes[i].getZeroBased());
         }
 
-        Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteTask(taskToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
+        model.deleteTask(tasksToDelete);
+        return new CommandResult(buildMessage(tasksToDelete));
+    }
+
+    /**
+     * @param tasks that is been deleted.
+     * returns message built by the list of tasks deleted.
+     */
+    public static String buildMessage(Task[] tasks) {
+        String message = "";
+        for (int i = 0; i < tasks.length; i++) {
+            message += String.format(MESSAGE_DELETE_TASK_SUCCESS, tasks[i].getTitle()) + "\n";
+        }
+        return message;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                && Arrays.equals(targetIndexes, ((DeleteCommand) other).targetIndexes)); // state check
     }
 }

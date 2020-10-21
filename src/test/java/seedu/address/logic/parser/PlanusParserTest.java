@@ -56,7 +56,8 @@ public class PlanusParserTest {
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_TASK), command);
+        Index[] indexes = {INDEX_FIRST_TASK};
+        assertEquals(new DeleteCommand(indexes), command);
     }
 
     @Test

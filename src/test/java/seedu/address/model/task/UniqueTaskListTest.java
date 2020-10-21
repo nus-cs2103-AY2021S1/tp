@@ -111,7 +111,12 @@ public class UniqueTaskListTest {
 
     @Test
     public void remove_nullTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueTaskList.remove(null));
+        assertThrows(NullPointerException.class, () -> uniqueTaskList.remove((Task) null));
+    }
+
+    @Test
+    public void remove_nullTasks_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTaskList.remove((Task[]) null));
     }
 
     @Test

@@ -41,7 +41,9 @@ public class DoneCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
         Task[] tasksToMarkAsDone = new Task[targetIndexes.length];
-        checkDuplicateIndex();
+        if (Index.hasDuplicateIndex(targetIndexes)) {
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_TASK_INDEX);
+        }
         for (int i = 0; i < targetIndexes.length; i++) {
             if (targetIndexes[i].getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_TASKS_DISPLAYED_INDEX);
@@ -72,16 +74,6 @@ public class DoneCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof DoneCommand // instanceof handles nulls
                 && Arrays.equals(targetIndexes, ((DoneCommand) other).targetIndexes)); // state check
-    }
-
-    private void checkDuplicateIndex() throws CommandException {
-        for (int i = 0; i < targetIndexes.length; i++) {
-            for (int j = i + 1; j < targetIndexes.length; j++) {
-                if (targetIndexes[i].equals(targetIndexes[j])) {
-                    throw new CommandException(Messages.MESSAGE_DUPLICATE_TASK_INDEX);
-                }
-            }
-        }
     }
 
     private boolean allHaveIncompleteStatus(Task[] tasksToMarkAsDone) {

@@ -61,7 +61,7 @@ public interface Model {
      * Deletes the given task.
      * The task must exist in PlaNus.
      */
-    void deleteTask(Task target);
+    void deleteTask(Task[] targets);
 
     /**
      * Mark the given array of tasks to be done.
