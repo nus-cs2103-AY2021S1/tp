@@ -5,40 +5,29 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_CS2103;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalModules.CS1010S;
 import static seedu.address.testutil.TypicalModules.CS1101S;
 import static seedu.address.testutil.TypicalModules.CS2103;
-import static seedu.address.testutil.TypicalModules.getTypicalModules;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.DANIEL;
-import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -48,7 +37,6 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.PersonBuilder;
 
@@ -57,55 +45,42 @@ public class UnassignCommandTest {
     private Model model;
     private Model expectedModel;
 
+
     @Test
     public void execute_validIndexUnfilteredList_success() throws CommandException {
-
         Person validPerson = new PersonBuilder().build();
-        ModelStubAssigning modelStub = new ModelStubAssigning(CS2103, validPerson);
+        ModelStubAssigning modelStub = new ModelStubAssigning(validPerson, CS2103);
 
         Set<ModuleCode> moduleCodes = new HashSet<>();
         moduleCodes.add(CS2103.getModuleCode());
 
         CommandResult commandResult = new UnassignCommand(INDEX_FIRST_PERSON, moduleCodes).execute(modelStub);
-        assertEquals(String.format(UnassignCommand.MESSAGE_UNASSIGNMENT_SUCCESS, INDEX_FIRST_PERSON, moduleCodes), commandResult.getFeedbackToUser());
 
+        assertEquals(String.format(UnassignCommand.MESSAGE_UNASSIGNMENT_SUCCESS, INDEX_FIRST_PERSON, moduleCodes),
+            commandResult.getFeedbackToUser());
     }
 
     @Test
     public void execute_validIndexFilteredList_success() throws CommandException {
 
         Person validPerson = new PersonBuilder().withName("Benson").build();
-        ModelStubWithModuleAndPerson modelStub = new ModelStubWithModuleAndPerson(CS2103, validPerson);
-
+        ModelStubAssigning modelStub = new ModelStubAssigning(validPerson, CS2103);
         modelStub.updateFilteredPersonList(x -> x.getName().equals(BENSON.getName()));
+
         Set<ModuleCode> moduleCodes = new HashSet<>();
         moduleCodes.add(CS2103.getModuleCode());
 
         CommandResult commandResult = new UnassignCommand(INDEX_FIRST_PERSON, moduleCodes).execute(modelStub);
-        assertEquals(String.format(UnassignCommand.MESSAGE_UNASSIGNMENT_SUCCESS, INDEX_FIRST_PERSON, moduleCodes), commandResult.getFeedbackToUser());
-    }
 
-    //    @Test
-//    public void execute_validIndexUnfilteredList_multipleModules_success() throws CommandException {
-//        Person validPerson = new PersonBuilder().build();
-//        ModelStubWithModuleAndPerson modelStub = new ModelStubWithModuleAndPerson(CS2103, validPerson);
-//
-//        Set<ModuleCode> moduleCodes = new HashSet<>();
-//        moduleCodes.add(CS2103.getModuleCode());
-//        moduleCodes.add(CS1101S.getModuleCode());
-//        moduleCodes.add(CS1010S.getModuleCode());
-//
-//        CommandResult commandResult = new UnassignCommand(INDEX_SECOND_PERSON, moduleCodes).execute(modelStub);
-//        assertEquals(String.format(UnassignCommand.MESSAGE_UNASSIGNMENT_SUCCESS, INDEX_SECOND_PERSON, moduleCodes), commandResult.getFeedbackToUser());
-//    }
+        assertEquals(String.format(UnassignCommand.MESSAGE_UNASSIGNMENT_SUCCESS, INDEX_FIRST_PERSON, moduleCodes),
+            commandResult.getFeedbackToUser());
+    }
 
     @BeforeEach
     public void setUp() {
-        ReadOnlyAddressBook addressBook = new ModelStub().getAddressBook();
-        model = new ModelManager(addressBook, new UserPrefs());
-        expectedModel = new ModelManager(addressBook, new UserPrefs());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     }
-
 
     @Test
     public void execute_validIndexFilteredListInstructorDoesNotExist_failure() {
@@ -218,7 +193,7 @@ public class UnassignCommandTest {
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -251,12 +226,12 @@ public class UnassignCommandTest {
         }
 
         @Override
-        public void assignInstructor(Person instructor, ModuleCode moduleCode)  {
+        public void assignInstructor(Person instructor, ModuleCode moduleCode) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void unassignInstructor(Person instructor, ModuleCode moduleCode) {
+        public void unassignInstructor(Person instructor, ModuleCode moduleCode) throws CommandException {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -307,64 +282,20 @@ public class UnassignCommandTest {
 
     }
 
-    /**
-     * A Model stub that contains a single person and a single module.
-     */
-    private class ModelStubWithModuleAndPerson extends UnassignCommandTest.ModelStub {
-        private final Module module;
-        private final Person person;
-        PersonListStub personListStub = new PersonListStub();
-
-        ModelStubWithModuleAndPerson(Module module, Person person) {
-            requireAllNonNull(module, person);
-            this.module = module;
-            this.person = person;
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
-        }
-
-        @Override
-        public boolean hasModule(Module module) {
-            requireNonNull(module);
-            return this.module.isSameModule(module);
-        }
-
-        @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            return new FilteredList<Person>(personListStub);
-
-        }
-
-        @Override
-        public void unassignInstructor(Person person, ModuleCode moduleCode) {
-            Set<Person> instructors = this.module.getInstructors();
-            instructors.add(this.person);
-            this.module.getInstructors().remove(person);
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
-        }
-    }
 
     /**
      * A Model stub that contains a single person and a single module.
+     * The person is assigned as an instructor of the module.
      */
     private class ModelStubAssigning extends UnassignCommandTest.ModelStub {
-        private final Module module;
         private final Person person;
-        PersonListStub personListStub = new PersonListStub();
+        private final Module module;
 
-
-        ModelStubAssigning(Module module, Person person) {
-            requireAllNonNull(module, person);
-            this.module = module;
+        ModelStubAssigning(Person person, Module module) {
+            requireAllNonNull(person, module);
             this.person = person;
+            this.module = module;
+            this.module.assignInstructor(this.person);
         }
 
         @Override
@@ -381,37 +312,35 @@ public class UnassignCommandTest {
 
         @Override
         public void assignInstructor(Person person, ModuleCode moduleCode) {
-            this.module.assignInstructor(person);
+            this.module.assignInstructor(this.person);
+        }
+
+        @Override
+        public void unassignInstructor(Person person, ModuleCode moduleCode) throws CommandException {
+            this.module.unassignInstructor(this.person);
         }
 
         @Override
         public ObservableList<Person> getFilteredPersonList() {
-            return (ObservableList<Person>) personListStub;
+            ObservableList<Person> filteredPersonList = FXCollections.observableArrayList();
+            filteredPersonList.addAll(this.person);
+            return filteredPersonList;
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
-        }
-    }
-
-    private class PersonListStub extends UniquePersonList {
-
-        private ArrayList<Person> personList = new ArrayList<>();
-        public void add(Person ... persons) {
-            Collections.addAll(personList, persons);
+        public void updateFilteredPersonList(Predicate<Person> predicate) {
+            ObservableList<Person> filteredPersonList = FXCollections.observableArrayList();
+            filteredPersonList.addAll(this.person);
         }
 
         @Override
-        public void remove(Person toRemove) {
-            requireNonNull(toRemove);
-            personList.remove(toRemove);
+        public UniqueModuleList getModuleList() {
+            UniqueModuleList modules = new UniqueModuleList();
+            modules.add(this.module);
+            return modules;
         }
 
-        public boolean contains(Person toCheck) {
-            requireNonNull(toCheck);
-            return personList.stream().anyMatch(toCheck::isSamePerson);
-        }
     }
+
 
 }
