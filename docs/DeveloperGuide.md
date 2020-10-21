@@ -129,7 +129,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Open Flashcard
 
-The open flashcard feature will allow the user to open a `Flashcard` specified by the given index and display it in the GUI.
+The open flashcard feature will allow the user to open a flashcard specified by the given index and display it in the GUI.
 
 #### Implementation
 
@@ -145,7 +145,7 @@ Step 1. The user launches the application for the first time. The `QuickCache` w
 
 Step 2. The user executes `open 1` command to display the first flashcard in the list on the GUI.
  
-Step 3. This will call `OpenCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseIndex` will be called to convert the user input into the `Index` of the desired `Flashcard` to be opened.
+Step 3. This will call `OpenCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseIndex` will be called to convert the user input into the `Index` of the first `Flashcard`.
 
 Step 4. The `index` is then passed to the `OpenCommand`
 
@@ -159,7 +159,7 @@ The following sequence diagram shows how the open operation works:
 
 ### Display Statistics of Flashcard
 
-The display statistics of flashcard feature will allow the user to view a Pie Chart of the `Statistics` of the`Flashcard` specified by the given index and display it in the GUI.
+The display statistics of flashcard feature will allow the user to view a Pie Chart of the statistics of the Flashcard specified by the given index and display it in the GUI.
 
 #### Implementation
 
@@ -175,7 +175,7 @@ Step 1. The user launches the application after a few times of playing around wi
 
 Step 2. The user executes `stats 1` command to display the `Statistics` of the first flashcard in the list on the GUI.
  
-Step 3. This will call `StatsCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseIndex` will be called to convert the user input into the `Index` of the desired `Flashcard` to display the `Statistics` of.
+Step 3. This will call `StatsCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseIndex` will be called to convert the user input into the `Index` of the first `Flashcard`.
 
 Step 4. The `index` is then passed to the `StatsCommand`
 
@@ -189,7 +189,7 @@ The following sequence diagram shows how the stats operation works:
 
 ### Clear Statistics of Flashcard
 
-The clear statistics of flashcard feature will allow the user to reset the `Statistics` of the`Flashcard` specified by the given index.
+The clear statistics of flashcard feature will allow the user to reset the statistics of the flashcard specified by the given index.
 
 #### Implementation
 
@@ -205,11 +205,13 @@ Step 2. The user executes `stats 1` command to display the `Statistics` of the f
 
 Step 3. The user executes `clearstats 1` command to clear the `Statistics` of the first flashcard in the list on the GUI.
  
-Step 4. This will call `ClearStatsCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseIndex` will be called to convert the user input into the `Index` of the desired `Flashcard` to display the `Statistics` of.
+Step 4. This will call `ClearStatsCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseIndex` will be called to convert the user input into the `Index` of the first `Flashcard`.
 
 Step 5. The `index` is then passed to the `ClearStatsCommand`
 
 Step 6. `ClearStatsCommand#execute` will get the `Flashcard` at the specified `Index` and call `ClearStatsCommand#getFlashcardAfterClearStatistics` which will give a copy of the `Flashcard` with the `Statistics` reset. The original `Flashcard` will then be replaced by the new `Flashcard` copy.
+
+Step 7. After execution, `CommandResult` will contain a message indicating that it has cleared the `Statistics` of the `Flashcard` on the specified index.
 
 Step 7. The user executes `stats 1` command to display the `Statistics` of the first flashcard in the list on the GUI. The user sees that the `Statistics` is reset.
 
@@ -217,9 +219,43 @@ The following sequence diagram shows how the stats operation works:
 
 ![ClearStatsSequenceDiagram](images/ClearStatsSequenceDiagram.png)
 
+### Find by tag and question keywords feature
+
+This find by tag and question keywords feature will allow the user to find flashcards specified by specifying tags and/or keywords that they possess.
+
+#### Implementation
+
+The find by tag and question keywords implementation requires changes to be made to the `FindCommandParser`. Currently, `FindCommandParser` takes in the keyword arguments as a single `String` which is then split into individual keywords. The proposed implementation will require the `ArgumentTokenizer` and `ParseUtil` to parse for any `PREFIX_TAG` and/or `PREFIX_QUESTION`. `ParserUtil` will parse them accordingly and insert them into the necessary `Predicate<Flashcard>` which will be used for filtering the `Flashcard` list. If neither of them are provided or the `Tag` provided is non-aplhanumeric, then a `CommandException` will be thrown.
+
+Since more than one `Predicate<Flashcard>` will be used, a class called `FlashcardPredicate` will be introduced that collects all `Predicate<Flashcard>` into one class.
+
+`NameContainsKeywordsPredicate` will have to be refactored into `QuestionContainsKeywordsPredicate`. A new `Predicate<Flashcard>` for filtering the `Flashcard` based on `Tags` called `FlashcardContainsTagPredicate` also has to be made.
+
+Changes to the `FindCommand` class will also have to be made as it currently works for `NameContainsKeywordsPredicate`. The new implementation will involve the `FindCommand` storing one `FlashcardPredicate`.
+
+Given below is an example usage scenario and how the `FindCommand` mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+
+ Step 2. The user executes `find t/Assembly q/What` command to find a `Flashcard` with the tag `Assembly` and the keyword `What` in its `Question`.
+ 
+ Step 3. This will call `FindCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseTags`and `Parserutil#parseKeywords` will be called to create tags and keywords for the arguments.
+ 
+ Step 4. A new `FlashcardPredicate` will then be created from the `QuestionContainsKeywordsPredicate` and `FlashcardContainsTagPredicate` generated from the given tags and keywords. It will be used to filter for all the flashcards that have the specified tags. This `FlashcardPredicate` is then passed to the `FindCommand`
+ 
+ Step 5. `FindCommand#execute` will set the `QuickCache` model's filter with the provided predicate.
+ 
+ Step 6. The GUI will then proceed to get the filtered list based on the newly set predicate to display to the user.
+ 
+ Step 7. After execution, `CommandResult` will contain a message indicating that it has listed all `Flashcards` based on the specified restrictions.
+ 
+ The following sequence diagram shows how the find operation works:
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
 ### Delete by tag feature
 
-This delete by tag feautre will allow the user to delete flashcards specified by a given set of tags.
+This delete by tag feature will allow the user to delete flashcards specified by a given set of tags.
 
 #### Implementation
 
