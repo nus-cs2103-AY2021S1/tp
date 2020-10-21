@@ -59,7 +59,7 @@ public class PrintCommand extends Command {
      * @param stock Stock to be converted into csv format.
      * @return String of the given stock in the csv format.
      */
-    public String printStock(Stock stock) {
+    private String printStock(Stock stock) {
         return new StringBuilder()
                 .append(stock.getSerialNumber()).append(CSV_SEPARATOR)
                 .append(stock.getName()).append(CSV_SEPARATOR)
@@ -75,7 +75,7 @@ public class PrintCommand extends Command {
      *
      * @return String header in the csv format.
      */
-    public String makeTitleHeader() {
+    private String makeTitleHeader() {
         return new StringBuilder()
                 .append("Serial Number").append(CSV_SEPARATOR)
                 .append("Name").append(CSV_SEPARATOR)
@@ -91,7 +91,7 @@ public class PrintCommand extends Command {
      *
      * @return String of the given stock in the csv format.
      */
-    public String makeFileCreationTime() {
+    private String makeFileCreationTime() {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy 'at' HH:mm.");
         Date date = new Date(System.currentTimeMillis());
 
@@ -100,5 +100,12 @@ public class PrintCommand extends Command {
                 .append(System.lineSeparator())
                 .append(System.lineSeparator())
                 .toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        return (other instanceof PrintCommand // instanceof handles nulls
+            );
     }
 }
