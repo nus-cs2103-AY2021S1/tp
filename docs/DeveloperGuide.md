@@ -96,26 +96,52 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ### Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+![Structure of the Model Component](images/ModelClassDiagram.png) <br>
+Structure of the Model Component
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/inventoryModel/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-The `Model`,
+`Models`,
 
-* stores a `UserPref` object that represents the user’s preferences.
-* stores OneShelf's data.
-* exposes an unmodifiable `ObservableList` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
+
+* stores a map of Models(eg. InventoryModel and DeliveryModel)
+* Each model stores the current state of the Book(eg. InventoryModel stores the current state of the InventoryBook)
+* used for undo/redo feature
+
+`Model`
+
+* stores a `UserPref` object that represents the users preference
+
+`InventoryModelManager`
+
+* stores a comparator used to sort the filtered list
+* stores the inventory book data
+* stores a list of InventoryBook for redo/undo command
+* exposes an unmodifiable `ObservableList<Item>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+
+`DeliveryModelManager`
+
+* stores the delivery book data
+* stores a list of DeliveryBook for redo/undo command
+* exposes an unmodifiable `ObservableList<Delivery>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+
+We organised the different data classes into packages (eg.Items) which we will list out the collection of class of that data object
+
+![Structure of the Item Component](images/ItemClassDiagram.png) <br>
+Structure of Items Object
+
+![Structure of the Delivery Component](images/DeliveryClassDiagram.png) <br>
+Structure of Delivery Object
 
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the inventory book data and delivery book in json format and read it back.
 
 ### Common classes
 
@@ -137,6 +163,25 @@ method call to return `commandHistory`'s 2nd last command instead of the last co
 
 With `addToHistory(String command)`, `previousCommand()`, `nextCommand()` and `currentCommand()` implemented, a simple `setOnKeyPressed` under `CommandBox` class which checks
 for user's input of arrow up (which calls previousCommand()) and arrow down (which calls nextCommand()) would suffice for GUI implementation.
+
+### Finding Items and Delivery
+OneShelf is capable of storing many items and deliveries. Therefore, there is an utmost importance to have the ability to be able to find item and delivery based on different fields. There could also be many similar item and this will definitely benefit the user to find it quickly. <br>
+
+We have modified the `find` command to be able to search for `NAME`, `SUPPLIER` and `TAGS` for items using `find-i` Similarly, for deliveries, it is also possible to search using the `DELIVERYNAME`, `PHONE`, `ADDRESS` or `ORDER` using `find-d`
+
+By using `ArgumentMultimap`, we are able to record the searching criteria together with the prefixes. We will then pass this criteria along with the prefix to create an `ItemContainsKeywordsPredicate` object which implements `Predicate<Item>`.
+The predicate is then passed to the `InventoryModel#UpdateItemListFilter` which will then be used to set the predicate on the existing filteredlist.
+
+Below is a usage example
+
+Step 1: User execute `find s/NTUC` command to search the list of items by Supplier <br>
+Step 2: `ArguementMultiMap` maps each prefix to their values and `ItemFindCommandParser` checks which prefix has a value <br>
+Step 3: The value and prefix is then used to create the predicate and passed to `ItemFindCommand` <br>
+Step 4: `ItemFindCommand` executes the command and update the filteredList <br>
+
+Below is a sequence diagram of the above
+
+![ItemFindCommandSequenceDiagram](images/ItemFindCommandSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -284,7 +329,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `InventoryBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `OneShelf` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete an item**
 
@@ -305,7 +350,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. InventoryBook shows an error message.
+    * 3a1. OneShelf shows an error message.
 
       Use case resumes at step 2.
 
@@ -314,21 +359,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User request to update item.
-2. InventoryBook updates the item accordingly.
+2. OneShelf updates the item accordingly.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. InventoryBook detect invalid data input.
+* 1a. OneShelf detect invalid data input.
 
-  * 1a1. InventoryBook shows an error message.
+  * 1a1. OneShelf shows an error message.
 
   Use case ends.
 
-* 1b. InventoryBook unable to detect existing item name and supplier.
+* 1b. OneShelf unable to detect existing item name and supplier.
 
-  * 1b1. InventoryBook adds a new item into the inventory.
+  * 1b1. OneShelf adds a new item into the inventory.
 
   Use case ends.
   
@@ -354,19 +399,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-  * 3a1. InventoryBook shows an error message.
+  * 3a1. OneShelf shows an error message.
 
         Use case resumes at step 2.
 
 * 3b. The given data to edit is invalid.
 
-  * 3b1. InventoryBook shows an error message.
+  * 3b1. OneShelf shows an error message.
 
         Use case resumes at step 2.
 
-* 3c. InventoryBook detects a duplicate after editing.
+* 3c. OneShelf detects a duplicate after editing.
 
-  * 3c1. InventoryBook shows an error message.
+  * 3c1. OneShelf shows an error message.
 
         Use case resumes at step 2.
 
@@ -443,7 +488,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: First time user running OneShelf <br>
    Expected: OneShelf will load a sample data file.
-   
+
 1. Dealing with corrupted data files
 
    1. Prerequisite: There is an existing json file (inventorybook.json or deliverybook.json)
