@@ -1,6 +1,11 @@
 package com.eva.model.person.applicant.application;
 
+import static com.eva.commons.util.AppUtil.checkArgument;
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
+
+import com.eva.model.person.Name;
 
 /**
  * Represents an Applicant's application, similar to a resume.
@@ -17,9 +22,25 @@ public class Application {
      * @param educationSection A list of educational history.
      */
     public Application(String applicantName, List<Experience> experienceSection, List<Education> educationSection) {
+        requireNonNull(applicantName);
+        requireNonNull(experienceSection);
+        requireNonNull(educationSection);
+        checkArgument(Name.isValidName(applicantName), Name.MESSAGE_CONSTRAINTS);
         this.applicantName = applicantName;
         this.experienceSection = experienceSection;
         this.educationSection = educationSection;
+    }
+
+    public List<Experience> getExperienceSection() {
+        return experienceSection;
+    }
+
+    public List<Education> getEducationSection() {
+        return educationSection;
+    }
+
+    public String getApplicantName() {
+        return applicantName;
     }
 
     @Override

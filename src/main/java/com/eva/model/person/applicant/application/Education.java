@@ -1,14 +1,20 @@
 package com.eva.model.person.applicant.application;
 
+import static com.eva.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
 
+import com.eva.commons.util.DateUtil;
+
 /**
  * Represents an applicant's education at a particular institution, similar to what is seen in a resume.
  */
 public class Education {
+    public static final String MESSAGE_CONSTRAINTS = "Dates should have the format dd/MM/yyyy. "
+            + "\n For example: 02112020 for 2nd November 2020";
+
     private LocalDate startDate;
     private LocalDate endDate;
     private String schoolName;
@@ -20,17 +26,32 @@ public class Education {
      * @param schoolName The name of the institution.
      */
     public Education(String startDate, String endDate, String schoolName) {
+        requireNonNull(startDate);
+        requireNonNull(endDate);
+        requireNonNull(schoolName);
+        checkArgument(isValidDate(startDate), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDate(endDate), MESSAGE_CONSTRAINTS);
         this.startDate = parseDate(startDate);
         this.endDate = parseDate(endDate);
         this.schoolName = schoolName;
     }
 
     private static LocalDate parseDate(String date) throws DateTimeException {
-        requireNonNull(date);
-        int day = Integer.parseInt(date.substring(0, 2));
-        int month = Integer.parseInt(date.substring(2, 4));
-        int year = Integer.parseInt(date.substring(4, 8));
-        return LocalDate.of(year, month, day);
+        return DateUtil.dateParsed(date);
+    }
+
+    /**
+     * Checks the validity of the date.
+     * @param date String representation of date.
+     * @return True if the date is given in dd/MM/yyyy format.
+     */
+    private static boolean isValidDate(String date) {
+        try {
+            parseDate(date);
+            return true;
+        } catch (DateTimeException e) {
+            return false;
+        }
     }
 
     public LocalDate getStartDate() {
@@ -51,10 +72,6 @@ public class Education {
 
     public String getSchoolName() {
         return schoolName;
-    }
-
-    public void setSchoolName(String schoolName) {
-        this.schoolName = schoolName;
     }
 
     @Override

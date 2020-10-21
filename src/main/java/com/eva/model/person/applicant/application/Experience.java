@@ -1,12 +1,19 @@
 package com.eva.model.person.applicant.application;
 
+import static com.eva.commons.util.AppUtil.checkArgument;
+import static java.util.Objects.requireNonNull;
+
 import java.time.DateTimeException;
 import java.time.LocalDate;
+
+import com.eva.commons.util.DateUtil;
 
 /**
  * Represents an applicant's experience at a particular company, similar to what is seen in a resume.
  */
 public class Experience {
+    public static final String MESSAGE_CONSTRAINTS = "Dates should have the format dd/MM/yyyy. "
+            + "\n For example: 02112020 for 2nd November 2020";
     private LocalDate startDate;
     private LocalDate endDate;
     private String companyName;
@@ -22,6 +29,11 @@ public class Experience {
      * @param description The description of the job.
      */
     public Experience(String startDate, String endDate, String companyName, String position, String description) {
+        requireNonNull(startDate);
+        requireNonNull(endDate);
+        requireNonNull(companyName);
+        checkArgument(isValidDate(startDate), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDate(endDate), MESSAGE_CONSTRAINTS);
         this.startDate = parseDate(startDate);
         this.endDate = parseDate(endDate);
         this.companyName = companyName;
@@ -30,10 +42,16 @@ public class Experience {
     }
 
     private static LocalDate parseDate(String date) throws DateTimeException {
-        int day = Integer.parseInt(date.substring(0, 2));
-        int month = Integer.parseInt(date.substring(2, 4));
-        int year = Integer.parseInt(date.substring(4, 8));
-        return LocalDate.of(year, month, day);
+        return DateUtil.dateParsed(date);
+    }
+
+    private static boolean isValidDate(String date) {
+        try {
+            parseDate(date);
+            return true;
+        } catch (DateTimeException e) {
+            return false;
+        }
     }
 
     public LocalDate getStartDate() {
@@ -56,24 +74,12 @@ public class Experience {
         return companyName;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
     public String getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     @Override

@@ -19,7 +19,7 @@ import com.eva.model.tag.Tag;
 public class Applicant extends Person {
     private Optional<InterviewDate> interviewDate;
     private ApplicationStatus applicationStatus;
-    private Application application;
+    private Optional<Application> application;
 
     /**
      * Creates of an applicant object with a fixed interview date.
@@ -35,7 +35,7 @@ public class Applicant extends Person {
         super(name, phone, email, address, tags, comments);
         this.interviewDate = interviewDate;
         this.applicationStatus = status;
-        this.application = null;
+        this.application = Optional.empty(); // default null
     }
 
     /**
@@ -51,7 +51,7 @@ public class Applicant extends Person {
         super(name, phone, email, address, tags, comments);
         this.interviewDate = Optional.empty();
         this.applicationStatus = status;
-        this.application = null;
+        this.application = Optional.empty();
     }
 
     /**
@@ -90,6 +90,10 @@ public class Applicant extends Person {
         return interviewDate;
     }
 
+    public Application getApplication() {
+        return application.get();
+    }
+
     /**
      * Sets the interview date of the specific applicant.
      */
@@ -102,7 +106,11 @@ public class Applicant extends Person {
     }
 
     public void setApplication(Application application) {
-        this.application = application;
+        if (application == null) {
+            this.application = Optional.empty();
+        }
+        assert application != null;
+        this.application = Optional.of(application);
     }
 
     @Override
