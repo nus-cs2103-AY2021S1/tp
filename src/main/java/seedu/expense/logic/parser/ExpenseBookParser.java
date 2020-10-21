@@ -1,5 +1,7 @@
 package seedu.expense.logic.parser;
 
+import seedu.expense.commons.core.LogsCenter;
+import seedu.expense.logic.LogicManager;
 import seedu.expense.logic.commands.*;
 import seedu.expense.logic.parser.exceptions.ParseException;
 import seedu.expense.model.alias.AliasMap;
@@ -68,6 +70,9 @@ public class ExpenseBookParser {
         case TopupCommand.COMMAND_WORD:
             return new TopupCommandParser().parse(arguments);
 
+        case AliasCommand.COMMAND_WORD:
+            return new AliasCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -80,12 +85,13 @@ public class ExpenseBookParser {
         }
 
         String commandWord = matcher.group("commandWord");
-
         requireNonNull(aliasMap);
         if (aliasMap.hasAlias(commandWord)) {
             commandWord = aliasMap.getValue(commandWord);
         }
         final String arguments = matcher.group("arguments");
+        LogsCenter.getLogger(LogicManager.class).info(
+                "----------------[USER COMMAND][" + commandWord + " " + arguments + "]");
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
@@ -117,6 +123,9 @@ public class ExpenseBookParser {
 
         case TopupCommand.COMMAND_WORD:
             return new TopupCommandParser().parse(arguments);
+
+        case AliasCommand.COMMAND_WORD:
+            return new AliasCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

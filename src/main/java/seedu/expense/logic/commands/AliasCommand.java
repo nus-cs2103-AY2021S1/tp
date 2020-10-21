@@ -20,7 +20,7 @@ public class AliasCommand extends Command {
             + "[Command's current custom alias or if command has none, default command word]\n"
             + "Example: " + COMMAND_WORD + " find " + "get ";
 
-    public static final String MESSAGE_EDIT_ALIAS_SUCCESS = "Edited alias: %s becomes %s";
+    public static final String MESSAGE_EDIT_ALIAS_SUCCESS = "Edited alias: [%s] becomes [%s]";
 
     private final String previousAlias;
     private final String newAlias;
@@ -40,8 +40,8 @@ public class AliasCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        String actualCommand = model.getAliasMap().getValue(previousAlias);
         try {
+            String actualCommand = model.getAliasMap().getValue(previousAlias);
             model.setAlias(new AliasEntry(previousAlias, actualCommand),
                     new AliasEntry(newAlias, actualCommand));
         } catch (IllegalArgumentException e) {

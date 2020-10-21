@@ -12,14 +12,14 @@ import static java.util.Objects.requireNonNull;
  */
 public class AliasMap {
 
-    public static final String MESSAGE_RESERVED = "The %s keyword is reserved.";
-    public static final String DUPLICATE_KEYWORD_FOUND = "The %s keyword already exists.";
+    public static final String MESSAGE_RESERVED = "The [%s] keyword is reserved.";
+    public static final String DUPLICATE_KEYWORD_FOUND = "The [%s] keyword already exists.";
     public static final String UNCHANGED_ALIAS = "Previous and updated alias must not be the same.";
+    public static final String ALIAS_NOT_FOUND = "The [%s] alias cannot be found.";
 
     private final HashMap<String, String> aliasMap;
     private static final Set<String> RESERVED_KEYWORDS;
     static {
-        Set<String> reserved = new HashSet<>();
         RESERVED_KEYWORDS =
                 Set.of(
                         AddCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD,
@@ -77,8 +77,11 @@ public class AliasMap {
         return this.aliasMap.containsKey(aliasString);
     }
 
-    public String getValue(String aliasString) {
+    public String getValue(String aliasString) throws IllegalArgumentException {
         requireNonNull(aliasString);
+        if (!this.aliasMap.containsKey(aliasString)) {
+            throw new IllegalArgumentException(String.format(ALIAS_NOT_FOUND, aliasString));
+        }
         return this.aliasMap.get(aliasString);
     }
 
@@ -99,13 +102,18 @@ public class AliasMap {
     public void setAlias(AliasEntry prev, AliasEntry update) throws IllegalArgumentException {
         requireNonNull(prev);
         requireNonNull(update);
-        assert (!prev.getValue().equals(update.getValue())) :
-                "Must replace the same value (command) alias";
+        assert (prev.getValue().equals(update.getValue())) : "Must replace the same value (command) alias";
+        if (!this.aliasMap.containsKey(prev.getKey())) {
+            throw new IllegalArgumentException(String.format(ALIAS_NOT_FOUND, prev.getKey()));
+        }
         if (prev.getKey().equals(update.getKey())) {
             throw new IllegalArgumentException(UNCHANGED_ALIAS);
         }
         if (RESERVED_KEYWORDS.contains(update.getKey()) && !prev.getValue().equals(update.getKey())) {
             throw new IllegalArgumentException(String.format(MESSAGE_RESERVED, update.getKey()));
+        }
+        if (this.aliasMap.containsKey(update.getKey())) {
+            throw new IllegalArgumentException(String.format(DUPLICATE_KEYWORD_FOUND, update.getKey()));
         }
         this.aliasMap.remove(prev.getKey());
         addAlias(update);
