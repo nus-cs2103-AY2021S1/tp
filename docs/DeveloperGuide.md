@@ -257,13 +257,13 @@ Step 3. The user executes `edit 1 d/difficultyLevel` to edit the difficulty in t
 
 #### Design consideration:
 
-##### Aspect: How tag executes
+##### Aspect: How Difficulty executes
 
-* **Alternative 1 (current choice):** Tag is saved upon creation.
+* **Alternative 1 (current choice):** Difficulty is saved upon creation.
   * Pros: Easy to implement.
   * Cons: May be complicated as there will be too many fields in the `add` command.
 
-* **Alternative 2:** Individual command knows how to tag by
+* **Alternative 2:** Individual command knows how to add difficulty by
   itself.
   * Pros: Will be less complicated.
   * Cons: There may be too many commands which can be combined to one.
