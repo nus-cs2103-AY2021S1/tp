@@ -241,6 +241,104 @@ Step 3. The user executes `edit 1 t/tag` to edit the tag in the first flashcard 
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Add Flashcard with open-ended question feature
+
+The proposed Add mechanism is facilitated by `QuickCache` . It is stored internally as a `UniqueFlashcardList` inside the `QuickCache` object.
+
+Given below is an example usage scenario and how the add mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+
+Step 2. The user executes `add q/ question... t/tag` command to add a flashcard with tag. The `add` command will cause the addition of a flashcard with open-ended question inside the QuickCache. 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
+</div>
+
+
+The following sequence diagram shows how the Add operation works:
+
+![AddOpenEndedSequenceDiagram](images/AddOpenEndedSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How Add executes
+
+* **Alternative 1 (current choice):** Flashcard is saved upon creation inside the QuickCache.
+  * Pros: Easy to implement and CLI-optimized.
+  * Cons: May be complicated as there will be too many fields in the `add` command.
+
+### \[Proposed\] Add Flashcard with Multiple Choice question feature
+
+The proposed Add Multiple Choice Question mechanism is facilitated by `QuickCache` . It is stored internally as a `UniqueFlashcardList` inside the `QuickCache` object.
+
+Given below is an example usage scenario and how the addmcq mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+
+Step 2. The user executes `addmcd q/ question ans/1 c/first choice c/second choice c/third choice... t/tag` command to add a flashcard with tag. The `addmcq` command will cause the addition of a flashcard with multiple choice question inside the QuickCache. 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
+</div>
+
+The following sequence diagram shows how the Addmcq operation works:
+
+![AddMcqSequenceDiagram](images/AddMcqSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How addmcq executes
+
+* **Alternative 1 (current choice):** Flashcard is saved upon creation inside the QuickCache.
+  * Pros: Easy to implement and CLI-optimized.
+  * Cons: May be complicated as there will be too many fields in the `add` command.
+
+### \[Proposed\] Delete Flashcard feature
+
+The proposed Delete mechanism is facilitated by `QuickCache` . It will delete the flashcard at the provided index stored in the `UniqueFlashcardList` inside the `QuickCache` object.
+
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+
+Step 2. The user executes `delete 1` command to delete the first flashcard. The `delete` command will cause the deletion of a flashcard inside the QuickCache. 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
+</div>
+
+The following sequence diagram shows how the delete operation works:
+
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How delete executes
+
+* **Alternative 1 (current choice):** Provide the index of the flashcard to be deleted.
+  * Pros: Easy to implement and CLI-optimized.
+  * Cons: User have to know the index of the specified flashcard.
+  
+### \[Proposed\] Edit Flashcard feature
+
+The proposed Delete mechanism is facilitated by `QuickCache` . It will edit the flashcard at the provided index stored in the `UniqueFlashcardList` inside the `QuickCache` object.
+
+Given below is an example usage scenario and how the edit mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+
+Step 2. The user executes `edit 1 ...` command to edit some of the fields given in the command on the first flashcard. The `edit` command will cause the creation of a flashcard with updated field and set it to be the flashcard on the index in `UniqueFlashcardList`. 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
+</div>
+
+#### Design consideration:
+
+##### Aspect: How delete executes
+
+* **Alternative 1 (current choice):** Provide the index of the flashcard to be edited.
+  * Pros: Easy to implement and CLI-optimized.
+  * Cons: User have to know the index of the specified flashcard.
+
+
 ### Test feature
 
 #### Proposed Implementation

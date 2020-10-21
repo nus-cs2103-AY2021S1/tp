@@ -1,0 +1,79 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":QuickCacheParser" as QuickCacheParser LOGIC_COLOR
+participant ":AddOpenEndedQuestionCommandParser" as AddOpenEndedQuestionCommandParser LOGIC_COLOR
+participant "t:AddOpenEndedQuestionCommand" as AddOpenEndedQuestionCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "QuickCache" as QuickCache MODEL_COLOR
+participant "flashcards:UniqueFlashcardList" as Flashcards MODEL_COLOR
+participant "internalList:ObservableList<Flashcard>" as ObservableList MODEL_COLOR
+end box
+[-> LogicManager : execute(test 1 ans/Example answer)
+activate LogicManager
+
+LogicManager -> QuickCacheParser : parseCommand(add q/question ans/ Answer)
+activate QuickCacheParser
+
+create AddOpenEndedQuestionCommandParser
+QuickCacheParser -> AddOpenEndedQuestionCommandParser
+activate AddOpenEndedQuestionCommandParser
+
+AddOpenEndedQuestionCommandParser -> QuickCacheParser
+deactivate AddOpenEndedQuestionCommandParser
+
+QuickCacheParser -> AddOpenEndedQuestionCommandParser : parse(q/question ans/Example Answer)
+activate AddOpenEndedQuestionCommandParser
+
+create AddOpenEndedQuestionCommand
+AddOpenEndedQuestionCommandParser -> AddOpenEndedQuestionCommand
+activate AddOpenEndedQuestionCommand
+
+AddOpenEndedQuestionCommand --> AddOpenEndedQuestionCommandParser : t
+deactivate AddOpenEndedQuestionCommand
+
+AddOpenEndedQuestionCommandParser -> QuickCacheParser : t
+deactivate AddOpenEndedQuestionCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddOpenEndedQuestionCommandParser -[hidden]-> QuickCacheParser
+destroy AddOpenEndedQuestionCommandParser
+
+QuickCacheParser --> LogicManager : t
+deactivate QuickCacheParser
+
+LogicManager -> AddOpenEndedQuestionCommand : execute()
+activate AddOpenEndedQuestionCommand
+
+AddOpenEndedQuestionCommand -> Model : addFlashcard()
+activate Model
+
+Model -> QuickCache :addFlashcard()
+activate QuickCache
+
+QuickCache -> Flashcards :addFlashcard()
+activate Flashcards
+
+Flashcards -> ObservableList : add()
+activate ObservableList
+return
+
+return
+
+return
+
+return
+
+return result
+
+AddOpenEndedQuestionCommand -[hidden]-> LogicManager
+destroy AddOpenEndedQuestionCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
