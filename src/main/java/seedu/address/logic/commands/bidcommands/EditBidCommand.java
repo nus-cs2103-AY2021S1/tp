@@ -18,6 +18,9 @@ import seedu.address.logic.commands.EntityType;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.bid.Bid;
+import seedu.address.model.id.BidderId;
+import seedu.address.model.id.PropertyId;
+import seedu.address.model.price.Price;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -84,10 +87,10 @@ public class EditBidCommand extends Command {
     private static Bid createEditedBid(Bid bidToEdit, EditBidDescriptor editBidDescriptor) {
         assert bidToEdit != null;
 
-        String updatedPropertyId = editBidDescriptor.getPropertyId().orElse(bidToEdit.getPropertyId());
-        String updatedBidderId = editBidDescriptor.getBidderId().orElse(bidToEdit.getBidderId());
+        PropertyId updatedPropertyId = editBidDescriptor.getPropertyId().orElse(bidToEdit.getPropertyId());
+        BidderId updatedBidderId = editBidDescriptor.getBidderId().orElse(bidToEdit.getBidderId());
         double test = 345.55;
-        double updatedBidAmount = editBidDescriptor.getBidAmount().orElse(bidToEdit.getBidAmount());
+        Price updatedBidAmount = editBidDescriptor.getBidAmount().orElse(bidToEdit.getBidAmount());
 
         return new Bid(updatedPropertyId, updatedBidderId, updatedBidAmount);
     }
@@ -116,9 +119,9 @@ public class EditBidCommand extends Command {
      */
     public static class EditBidDescriptor {
 
-        private String propertyId;
-        private String bidderId;
-        private Double bidAmount;
+        private PropertyId propertyId;
+        private BidderId bidderId;
+        private Price bidAmount;
 
 
         public EditBidDescriptor() {}
@@ -140,27 +143,27 @@ public class EditBidCommand extends Command {
             return CollectionUtil.isAnyNonNull(propertyId, bidderId, bidAmount);
         }
 
-        public void setPropertyId(String id) {
+        public void setPropertyId(PropertyId id) {
             this.propertyId = id;
         }
 
-        public Optional<String> getPropertyId() {
+        public Optional<PropertyId> getPropertyId() {
             return Optional.ofNullable(propertyId);
         }
 
-        public void setBidderId(String id) {
+        public void setBidderId(BidderId id) {
             this.bidderId = id;
         }
 
-        public Optional<String> getBidderId() {
+        public Optional<BidderId> getBidderId() {
             return Optional.ofNullable(bidderId);
         }
 
-        public void setBidAmount(Double bidAmount) {
+        public void setBidAmount(Price bidAmount) {
             this.bidAmount = bidAmount;
         }
 
-        public Optional<Double> getBidAmount() {
+        public Optional<Price> getBidAmount() {
             return Optional.ofNullable(bidAmount);
         }
 

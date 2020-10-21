@@ -3,7 +3,7 @@ package seedu.address.model.propertybook;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.id.Id;
+import seedu.address.model.id.PropertyId;
 import seedu.address.model.property.Property;
 
 public interface PropertyModel {
@@ -33,9 +33,9 @@ public interface PropertyModel {
     /**
      * Deletes the property with the given id.
      * A property with the id must exist in the property book.
-     * @param id The given id.
+     * @param propertyId The given id.
      */
-    void deletePropertyByPropertyId(Id id);
+    void deletePropertyByPropertyId(PropertyId propertyId);
 
     /**
      * Adds the given property.
@@ -47,17 +47,17 @@ public interface PropertyModel {
      * Gets the property with the given id.
      * {@code id} must exist in the property book.
      *
-     * @param id The specified id.
+     * @param propertyId The specified id.
      */
-    Property getPropertyById(Id id);
+    Property getPropertyById(PropertyId propertyId);
 
     /**
      * Checks if the property book contains a property with the given id.
      *
-     * @param id The given id.
+     * @param propertyId The given id.
      * @return True if a property exists.
      */
-    boolean containsPropertyId(Id id);
+    boolean containsPropertyId(PropertyId propertyId);
 
     /**
      * Replaces the given property {@code target} with {@code editedProperty}.

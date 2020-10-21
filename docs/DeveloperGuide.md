@@ -5,6 +5,9 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
+Refer to the guide <<SettingUp#, here>>.
+
+== Design
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -108,7 +111,12 @@ The `Model`,
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info"> 
+
+:information_source: 
+
+**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -132,8 +140,172 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how certain features are implemented. The details of the features are
+categorized accordingly to the entities. Specifically: Bidder, Seller, Bid, Property and Meeting.
 
+### 1. Bidder / Seller
+ 
+ Despite being two separate entities, bidder and seller entities will be presented together in the implementation as
+ both entities are very similar in terms of implementation.
+ 
+ ### **Implementation**
+ 
+ #### 1.1 **Delete**: delete a bidder / seller - `delete-b` or `delete-s`
+ 
+ `delete` is supported by the `DeleteBidderCommand` and `DeleteSellerCommand`.
+ 
+ Given below is the example usage scenario:
+ 
+ **Step 1**. The user launches the PropertyFree application. 
+ 
+ **Step 2**. After loading data from the storage to the application memory,
+ the list of `bidders` or `sellers` in the `BidderAddressBook` and `SellerAddressBook` can either contain existing bidders
+ or sellers, or is empty. However, as we are deleting existing bidders or sellers, we will assumed that there are
+ bidders or sellers in the book.
+ 
+ **Step 3**. The user then executes `delete-b <INDEX>`. If the `<INDEX>` is out of bound. PropertyFree will give a 
+ display error message indicating that the index is wrong.
+ 
+ **Step 4**. The application will then retrieve the corresponding bidder or seller, delete it, and return a new list without the
+ corresponding bidder or seller.
+ 
+ The following activity diagram summarises what happens when a user executes `delete-b` or `delete-s` command:
+ 
+ ![DeleteBidderActivityDiagram](images/BidderDeleteActivityDiagram.png)
+ 
+ The following sequence diagram summarises as well how the components of Model and Logic interact during the execution
+ of the command:
+ 
+ ![DeleteBidderSequenceDiagram](images/DeleteBidderSequenceDiagram.png)
+
+ #### Design Considerations
+ 
+ 1. Alternative 1 (current choice): Displays the list in the appropriate tab accordingly, depending on the relevant
+ entity of the command. (i.e `delete-b` will bring the application to the bidder tab automatically.)
+    
+    - Pros: Automatic switching of tabs allows user to switch between tabs without having to 
+    interact with the GUI. 
+    - Cons: User may not desire to switch tabs automatically even if a command is given for the relevant entity.
+ 
+ 2. Alternative 2: Have a separate window for bidder and sellers.
+
+    - Pros: Neater UI and improves usability for the agent.
+    - Cons: More command lines will be required if user wants to close the separate window.
+ 
+ #### 1.2 **Find**: find bidder(s) and seller(s) based on their names - `find-b` or `find-s`
+ 
+  `find` is supported by the `FindBidderCommand` and `FindSellerCommand`.
+  
+  Given below is the example usage scenario:
+  
+  **Step 1**. The user launches the PropertyFree application. 
+  
+  **Step 2**. After loading data from the storage to the application memory,
+  the list of `bidders` or `sellers` in the `BidderAddressBook` and `SellerAddressBook` can either contain existing bidders
+  or sellers, or is empty. However, as we are finding existing bidders or sellers, we will assumed that there are
+  bidders or sellers in the book.
+  
+  **Step 3**. The user then executes `find-b <KEYWORD>`. If the `<KEYWORD>` does not corresponding to any names
+   in the list of bidders and seller. PropertyFree will display an error message indicating that the search result is
+   empty.
+   
+  **Step 4**. If the `<KEYWORD>` matches any names (in part or whole), the list will then filter the bidders or sellers
+  whose name do not match the `<KEYWORD>`, and return a list of bidders or sellers whose name contains the `<KEYWORD>`.
+  
+   The following sequence diagram summarises as well how the components of Model and Logic interact during the execution
+   of the command:
+   
+   ![FindBidderSequenceDiagram](images/FindBidderSequenceDiagram.png)
+ 
+   #### Design Consideration
+   
+   1. Alternative Implementation 1 (current choice): The bidder and sellers are stored in an 
+   `ObservableList<Bidder/Seller>`.
+        - Pros: Easier to implement and do not require refactoring for the existing code base
+        - Cons: The class (`Observable`) is deprecated since Java 9 due lack of functionality.
+        
+   2. Alternative Implementation 2: using of java.beans package instead of Observable
+        - Pros: to replace the deprecated `Observable` class since Java 9. Greater number of functions, such
+        as being able to keep track of what has changed.
+        - Cons: Will require heavy edits to the existing code base.
+
+### 2. Bid
+
+ ### **Implementation**
+
+ #### 2.1 **Delete**: delete a bid - `delete-bid`
+
+ `delete` is supported by the `DeleteBidCommand`.
+
+ Given below is the example usage scenario:
+
+ **Step 1**. The user launches the PropertyFree application. 
+
+ **Step 2**. After loading data from the storage to the application memory,
+ the list of `bids` `BidBook` can either contain existing bids or is empty. However, as we are deleting existing bids, we will assume that there are
+ bids in the book.
+
+ **Step 3**. The user then executes `delete-bid <INDEX>`. If the `<INDEX>` is out of bound. PropertyFree will give a 
+ display error message indicating that the index is wrong.
+
+ **Step 4**. The application will then retrieve the corresponding bid, delete it, and return a new list without the
+ corresponding bid.
+
+ The following activity diagram summarises what happens when a user executes `delete-bid` command:
+
+ ![DeleteBidActivityDiagram](images/BidDeleteActivityDiagram.png)
+
+ The following sequence diagram summarises as well how the components of Model and Logic interact during the execution
+ of the command:
+
+ ![DeleteBidSequenceDiagram](images/DeleteBidSequenceDiagram.png)
+
+ #### Design Considerations
+
+ 1. Alternative 1 (current choice): Delete-bid command will delete a bid based on the index in the list.
+
+    - Pros: Users can easily distinguish which bid they wish to delete. 
+    - Cons: User will not be able to delete a large number at one go.
+
+ 2. Alternative 2: Delete not based on index but by property.
+
+    - Pros: user can delete all the bids for a property once it is sold.
+    - Cons: It may delete the winning bid from the list which may be undesirable.
+    
+
+ #### 2.2 **LIST**: display the list of bids - `list-bid`
+
+ `list` is supported by the `ListBidCommand`.
+
+ Given below is the example usage scenario:
+
+ **Step 1**. The user launches the PropertyFree application. 
+
+ **Step 2**. After loading data from the storage to the application memory,
+ the list of `bids` `BidBook` can either contain existing bids, is empty, or not showing the entire list.
+
+ **Step 3**. The user then executes `list-bid`.
+
+ **Step 4**. The application will then return a full list of bids.
+
+ The following sequence diagram summarises how the components of Model and Logic interact during the execution
+ of the command:
+
+ ![ListBidSequenceDiagram](images/ListBidSequenceDiagram.png)
+
+ #### Design Considerations
+
+ 1. Alternative 1 (current choice): List-bid command will display all bids in the list based on when it was added.
+
+    - Pros: Users can easily see the entire list and know which bids were added first. 
+    - Cons: User will not be able easily see bids related to a certain property or bidder.
+
+ 2. Alternative 2: List will also sort the list of bids based on property.
+
+    - Pros: user can see all the bids easily for a certain property.
+    - Cons: Chronological order of being added will not be seen.
+    
+    
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -252,7 +424,74 @@ This process occurs inside the ```UniquePropertyList``` class.
 for testing purposes may have manually-added ```PropertyId```s, in which case, the ```PropertyId``` 
 will be retained. 
 
+
+### Meeting Feature
+
+#### Edit Meeting Feature
+
+The Edit Meeting feature edits an attribute of an exisiting meeting in the meeting book with the user defined attribute, such as the bidder id, property id, venue or time.
+
+1. ```LogicManager``` executes the user input. 
+2. It calls ```AddressBookParser``` to parse the user input, which creates an ```EditMeetingCommandParser```, as 
+identified by the command word "edit-m".
+3. The ```EditMeetingCommandParser``` creates a ```Meeting``` object, with the new attribute specified by the user and the attributes of the existing ```Meeting``` object.
+4. The ```EditMeetingCommandParser``` creates an ```EditMeetingCommand``` with the above meeting. The command
+is returned to the ```LogicManager```.
+5. The ```LogicManager``` calls ```EditMeetingCommand#execute()```, which adds the meeting to ```MeetingBook``` and removes the exisiting meeting from the ```MeetingBook```.
+via the ```Model``` interface.
+6. Finally, a ```CommandResult``` with the relevant feedback is returned to the ```LogicManager```.
+
+The following sequence diagram shows the process of executing an ```EditMeetingCommand```.
+![AddPropertySequenceDiagram](images/property/editMeeting.png)
+
+##### Meeting Type
+
+Each meeting has a specific type ```MeetingType``` of types paperwork, viewing or admin. The following activity diagram shows how the meeting object of the specific type is created:
+
+![AddPropertyIdManagementActivityDiagram](images/property/typeOfMeeting.png)
+
+This process occurs inside the ```AddMeetingCommand``` class where the meeting object is created and added to the MeetingBook.  
+
+
 </div>
+
+### Meeting Feature
+
+#### Find Meeting Feature
+The find meeting feature finds meetings with various different inputs. The user is able to find meetings based on 
+attributes such as venue, time, bidderId or the propertyId. The user simply has to use the relevant prefixes and add
+in a string that is contained in any of the meetings attributes and the fid feature will return you a list of the 
+meetings that contain them.
+
+1. ```LogicManager``` executes the user input. 
+2. It calls ```AddressBookParser``` to parse the user input, which creates an ```FindMeetingCommandParser```, as 
+identified by the command word "find-m".
+3. The ```FindMeetingCommandParser``` creates different predicate objects based on the inputs.
+ if "/v" is used, ```VenueContainsKeywordsPredicate``` object will be created. If "/t" is used, ```TimeContainsKeywordsPredicate``` 
+ object will be created. If "/b" is used, ```BidderIdContainsKeywordsPredicateobject``` will be created. If "/p" is used, 
+ ```PropertyIdContainsKeywordsPredicate``` object will be created.
+4. The ```FindMeetingCommandParser``` creates an ```FindMeetingCommand``` with the above predicate. The command
+is returned to the ```LogicManager```.
+5. The ```LogicManager``` calls ```FindMeetingCommand#execute()```, which adds the list of meetings that satisfy the predicate
+ into ```MeetiongBook``` via the ```Model``` interface.
+6. Finally, a ```CommandResult``` with the relevant feedback is returned to the ```LogicManager```.
+
+The following sequence diagram shows the process of executing an ```FindMeetingCommand```.
+![FineMeetingActivityDiagram](images/meeting/FindMeetingActivityDiagram.png)
+  
+#### Sort Meeting Feature
+The sort meeting feature sorts the meetings based on the different timings of the meetings from the earliest meeting
+to the last meeting in chronological order.
+1. ```LogicManager``` executes the user input. 
+2. It calls ```AddressBookParser``` to parse the user input, which creates an ```SortMeetingCommandParser```, as 
+identified by the command word "sort-m".
+3. The ```SortMeetingCommandParser``` creates a ```SortMeetingComparator``` comparator object.
+4. The ```SortMeetingCommandParser``` creates a ```SortMeetingCommand``` with the above comparator. The command
+is returned to the ```LogicManager```.
+5. The ```LogicManager``` calls ```SortMeetingCommand#execute()```, which adds a new duplicate list of meetings that is
+ sorted in chronological order in ```MeetingBook``` via the ```Model``` interface.
+6. Finally, a ```CommandResult``` with the relevant feedback is returned to the ```LogicManager```.
+
 
 --------------------------------------------------------------------------------------------------------------------
 

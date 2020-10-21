@@ -14,7 +14,11 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.id.IdParserUtil;
 import seedu.address.model.bid.Bid;
+import seedu.address.model.id.BidderId;
+import seedu.address.model.id.PropertyId;
+import seedu.address.model.price.Price;
 
 public class AddBidCommandParser implements Parser<AddBidCommand> {
 
@@ -33,9 +37,9 @@ public class AddBidCommandParser implements Parser<AddBidCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddBidCommand.MESSAGE_USAGE));
         }
 
-        String propertyId = ParserUtil.parsePropertyId(argMultimap.getValue(PREFIX_PROPERTY_ID).get());
-        String bidderId = ParserUtil.parseBidderId(argMultimap.getValue(PREFIX_CLIENT).get());
-        double bidAmount = ParserUtil.parseBidAmount(argMultimap.getValue(PREFIX_MONEY).get());
+        PropertyId propertyId = IdParserUtil.parsePropertyId(argMultimap.getValue(PREFIX_PROPERTY_ID).get());
+        BidderId bidderId = IdParserUtil.parseBidderId(argMultimap.getValue(PREFIX_CLIENT).get());
+        Price bidAmount = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_MONEY).get());
 
         Bid bid = new Bid(propertyId, bidderId, bidAmount);
 

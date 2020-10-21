@@ -17,7 +17,7 @@ import seedu.address.model.bidbook.ReadOnlyBidBook;
 import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
 import seedu.address.model.calendar.CalendarMeeting;
-import seedu.address.model.id.Id;
+import seedu.address.model.id.PropertyId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.bidder.Bidder;
 import seedu.address.model.person.seller.Seller;
@@ -271,8 +271,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePropertyByPropertyId(Id id) {
-        propertyBook.removePropertyByPropertyId(id);
+    public void deletePropertyByPropertyId(PropertyId propertyId) {
+        propertyBook.removePropertyByPropertyId(propertyId);
     }
 
     @Override
@@ -282,13 +282,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Property getPropertyById(Id id) {
-        return propertyBook.getPropertyById(id);
+    public Property getPropertyById(PropertyId propertyId) {
+        return propertyBook.getPropertyById(propertyId);
     }
 
     @Override
-    public boolean containsPropertyId(Id id) {
-        return propertyBook.containsPropertyId(id);
+    public boolean containsPropertyId(PropertyId propertyId) {
+        return propertyBook.containsPropertyId(propertyId);
     }
 
     @Override
@@ -348,6 +348,11 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedMeeting);
 
         meetingBook.setMeeting(target, editedMeeting);
+    }
+
+    @Override
+    public void sortMeeting() {
+        //filteredMeetings.sortMeeting();
     }
 
     //=========== Filtered Person List Accessors =============================================================

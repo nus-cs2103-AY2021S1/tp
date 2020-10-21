@@ -2,14 +2,14 @@ package seedu.address.model.person.bidder;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.person.bidder.Bidder.DEFAULT_BIDDER_ID;
+import static seedu.address.model.id.BidderId.DEFAULT_BIDDER_ID;
 
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.id.Id;
+import seedu.address.model.id.BidderId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -54,9 +54,9 @@ public class UniqueBidderList implements Iterable<Bidder> {
         internalList.add(toAdd);
     }
 
-    public Id getLatestId() {
+    public BidderId getLatestId() {
         if (internalList.size() == 0) {
-            return new Id("B", 1);
+            return new BidderId(0);
         }
         return this.internalList.get(internalList.size() - 1).getId();
     }
