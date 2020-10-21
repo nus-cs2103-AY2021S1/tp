@@ -11,6 +11,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.flashcard.commons.core.GuiSettings;
 import seedu.flashcard.commons.core.LogsCenter;
@@ -73,6 +74,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private GridPane reviewModePane;
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -137,9 +139,6 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
-
-//        flashcardViewCard = new FlashcardViewCard(logic.getFilteredFlashcardList(), logic.getFilteredFlashcardList().get(2), 3);
-//        flashcardViewCardPlaceholder.getChildren().add(flashcardViewCard.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -224,15 +223,24 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Makes window show the current flashcard being reviewed.
-     * @param flashcard the FlashCard being reviewed.
+     *
+     * @param flashcard      the FlashCard being reviewed.
      * @param displayedIndex the displayed index of the Flashcard being reviewed.
      */
     @FXML
     private void showReviewFlashcard(Flashcard flashcard, int displayedIndex) {
         questionPlaceholder.getChildren().clear();
-        flashcardQuestionCard = new FlashcardQuestionCard(flashcard, displayedIndex);
+        flashcardQuestionCard = new FlashcardQuestionCard(flashcard);
         questionPlaceholder.getChildren().add(flashcardQuestionCard.getRoot());
         answerPlaceholder.getChildren().clear();
+    }
+
+    /**
+     * Executes view function.
+     */
+    private void handleView(int viewIndex) {
+        flashcardViewCard = new FlashcardViewCard(logic.getFilteredFlashcardList().get(viewIndex));
+        flashcardViewCardPlaceholder.getChildren().add(flashcardViewCard.getRoot());
     }
 
     /**
@@ -308,6 +316,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isReviewMode()) {
                 handleReview();
+            }
+
+            if (commandResult.getViewIndex() != null) {
+                handleView(commandResult.getViewIndex());
             }
 
             return commandResult;

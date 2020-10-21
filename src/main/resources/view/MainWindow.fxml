@@ -15,6 +15,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Text?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="SWEe!" minWidth="1250" minHeight="900" onCloseRequest="#handleExit">
   <icons>
@@ -50,7 +52,7 @@
           </padding>
         </StackPane>
 
-        <GridPane fx:id ="reviewModePane" styleClass="grid-wtih-border"  VBox.vgrow="ALWAYS">
+        <GridPane fx:id ="reviewModePane" styleClass="grid-with-border"  VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
@@ -63,7 +65,6 @@
             <ColumnConstraints percentWidth="70.0"/>
             <ColumnConstraints percentWidth="15.0"/>
           </columnConstraints>
-
           <VBox VBox.vgrow="ALWAYS" HBox.hgrow = "ALWAYS" GridPane.rowIndex="0" GridPane.columnIndex="1">
             <StackPane  fx:id="questionPlaceholder"  VBox.vgrow="ALWAYS" styleClass="pane-with-border"/>
           </VBox>

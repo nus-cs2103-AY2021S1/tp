@@ -23,8 +23,6 @@ public class FlashcardQuestionCard extends UiPart<Region> {
     @javafx.fxml.FXML
     private HBox cardPane;
     @FXML
-    private Label id;
-    @FXML
     private Label question;
     @FXML
     private Label category;
@@ -44,10 +42,9 @@ public class FlashcardQuestionCard extends UiPart<Region> {
     /**
      * Creates a {@code FlashcardQuestionCard} with the given {@code Flashcard} and index to display.
      */
-    public FlashcardQuestionCard(Flashcard flashcard, int displayedIndex) {
+    public FlashcardQuestionCard(Flashcard flashcard) {
         super(FXML);
         this.flashcard = flashcard;
-        id.setText(displayedIndex + ". ");
         question.setText(flashcard.getQuestion().toString());
         category.setText(flashcard.getCategory().toString());
         String diagramFilePath = flashcard.getDiagram().toString();
@@ -90,8 +87,7 @@ public class FlashcardQuestionCard extends UiPart<Region> {
 
         // state check
         FlashcardQuestionCard card = (FlashcardQuestionCard) other;
-        return id.getText().equals(card.id.getText())
-                && flashcard.equals(card.flashcard);
+        return flashcard.equals(card.flashcard);
     }
 
     private Image loadImage(String diagramFilePath) {
