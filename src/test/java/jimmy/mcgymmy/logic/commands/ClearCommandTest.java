@@ -18,13 +18,6 @@ public class ClearCommandTest {
         CommandTestUtil.assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
-    @Test
-    public void execute_nonEmptyMcGymmy_success() {
-        Model model = new ModelManager(TypicalFoods.getTypicalMcGymmy(), new UserPrefs());
-        Model expectedModel = new ModelManager(TypicalFoods.getTypicalMcGymmy(), new UserPrefs());
-        expectedModel.setMcGymmy(new McGymmy());
-
-        CommandTestUtil.assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
-    }
+   //ToDo: Add relevent non empty success that uses predicates
 
 }
