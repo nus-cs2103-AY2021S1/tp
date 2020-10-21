@@ -47,10 +47,8 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         ReadOnlyZooKeepBook currentRedo = new ZooKeepBook();
-        boolean isEmpty = true;
         if (historyStack.getRedoSize() > 0) {
             currentRedo = historyStack.viewRecentRedo();
-            isEmpty = false;
         }
 
         CommandResult commandResult;
@@ -63,7 +61,7 @@ public class LogicManager implements Logic {
         logger.info("--------------- ADDED CHANGE TO HISTORY STACK");
         logger.info(historyStack.toString());
 
-        if (!commandText.equals("undo") && !isEmpty) {
+        if (!commandText.equals("undo") && (historyStack.getRedoSize() > 0)) {
             historyStack.checkEdit(currentRedo, book); // clear redo stack if a new edit has been made
         }
 
