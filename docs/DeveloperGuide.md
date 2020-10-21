@@ -131,6 +131,28 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
+### Clear all contacts feature
+It implements the following operations:
+* `AddressBook#clearContacts()` — Clear all contacts from the list.  
+
+These operations are exposed in the `Model` interface as `Model#clearContacts()` and `UniquePersonList` class as `UniquePersonList#clearAll()`
+
+The following sequence diagram shows how the cclear operation works:
+
+![UndoRedoState0](images/ClearContactsSequenceDiagram.png)
+
+Clearing all contacts from the contact list
+
+a. Prerequisites : Clear all contacts from contact list using `cclear` There are 3 contacts with names `Andre Taulani`, `Bayu Skak`, `Cak Lontong` in FaculType.
+
+b. Test case : `cclear` <br>
+Expected : Success message saying "All contacts deleted"
+
+c. Test case : `cclear` on an empty contact list <br>
+Expected : Error message saying "Contact list is already empty".
+
+{ more test cases ... }
+
 This section describes some noteworthy details on how certain features are implemented.
 
 ### \[Proposed\] Undo/redo feature
