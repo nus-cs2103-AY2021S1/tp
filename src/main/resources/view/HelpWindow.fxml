@@ -19,7 +19,7 @@
             <URL value="@Extensions.css"/>
         </stylesheets>
 
-        <ScrollPane styleClass="help-box">
+        <ScrollPane styleClass="help-box" prefWidth="550" prefHeight="400">
             <VBox alignment="CENTER_LEFT" styleClass="help-box">
                 <children>
                     <Label fx:id="helpMethod" styleClass="help-title" >
