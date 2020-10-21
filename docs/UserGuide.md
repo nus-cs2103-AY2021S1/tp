@@ -37,7 +37,9 @@ It is a convenient platform for you to keep track of your lessons and assignment
 
    * **`list`**`2` : Lists all lessons and assignments within 2 weeks (including this week).
 
-   * **`remind`**`3` : Tags your assignment to receive reminders which will be displayed in `Your Reminders` section.
+   * **`remind`**`3` : Sets reminders for the 3rd assignment which will be displayed in `Your Reminders` section.
+   
+   * **`unremind`**`3` : Removes reminders set for the 3rd assignment (assignment will be removed from `Your Reminders` section)
 
    * **`exit`** : Exits the application.
 
@@ -119,16 +121,25 @@ Examples:
 - `list ` displays all your lessons and assignments.
 
 ### Setting reminders for assignments : `remind`
-Tags the specified assignment to receive reminders which will be displayed in `Your Reminders` section.
+Sets reminders for the specified assignment which will be displayed in `Your Reminders` section.
 
 Format: `remind INDEX`
 
-* Tags the assignment at the specified `INDEX` to receive reminders.
+* Sets reminders for the assignment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed assignment list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `remind 2` sets reminders for the 2nd assignment in the assignment list.
+
+### Removing reminders for assignments : `unremind`
+Removes reminders set for the specified assignment (assignment will be removed from `Your Reminders` section)
+
+Format: `unremind INDEX`
+
+* Removes reminders set for the assignment at the specified `INDEX`.
+* The index refers to the index number shown in the displayed assignment list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 ### Exiting the program : `exit`
 
@@ -158,3 +169,4 @@ Action | Format, Examples
 **import** | `import NUSMODS_URL`
 **list** | `list [NUMBER]` e.g., `list 2`, `list`
 **remind** | `remind INDEX`
+**unremind** | `unremind INDEX`
