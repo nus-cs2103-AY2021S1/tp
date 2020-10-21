@@ -144,10 +144,10 @@ Each `Model` internally stores its undo and redo history as a (for `DeliveryMode
 Additionally, the following commands are implemented by `ModelsManager`.
 
 * `ModelsManager#commit()` — Saves the current book states of all the `Model`s it contains in their history.
-* `VersionedAddressBook#undo()` — Restores the previous book states from each `Model` from their history.
-* `VersionedAddressBook#redo()` — Restores a all previously undone book states from every `Model`'s history.
+* `ModelsManager#undo()` — Restores the previous book states from each `Model` from their history.
+* `ModelsManager#redo()` — Restores all previously undone book states from every `Model`'s history.
 
-These operations are exposed in the `Models` interface as `Models#commit()`, `Models#commit()` and `Models#redo()` respectively.
+These operations are exposed in the `Models` interface as `Models#commit()`, `Models#undo()` and `Models#redo()` respectively.
 
 The `ModelsManager` class calls `Model#commit()`, `Model#undo()`, and `Model#redo` on each of the models it contains, which then handle the respective tasks.
 
@@ -189,7 +189,7 @@ The following sequence diagram shows how the undo operation works:
 
 The `redo` command does the opposite — it calls `Models#redo()`, which shifts the `inventoryBookStatePointer` and `deliveryBookStatePointer` once to the right, pointing to the previously undone state, and restores the inventoryBook and deliveryBook to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the current pointers are pointing to the latest state, then there are no undone AddressBook states to restore. The `redo` command uses `InventoryModel#canRedo()` and `DeliveryModel#canRedo()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the current pointers are pointing to the latest state, then there are no undone InventoryBook/DeliveryBook states to restore. The `redo` command uses `InventoryModel#canRedo()` and `DeliveryModel#canRedo()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
@@ -383,14 +383,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7.  Should not take up more than 250 MB of RAM.
 8.  Commands should receive a response within 1 second.
 9.  The system is not required to change the physical inventory.
-10. The system should operate within a local network.
-11. The data should be secured using a password.
-12. Users should be able to get fluent with the syntax by their 10th usage.
-13. The system should not provide functionality that breaks and local laws within a country it is distributed to.
-14. The system should still be able to function without connection to a network.
-15. The system should only be used by one user.
-16. There should be enough RAM to store 100 states of the models for the Undo and Redo Commands.
-17. There should be enough RAM to store 100 states of history of commands the user has entered.
+10. The data should be secured using a password.
+11. Users should be able to get fluent with the syntax by their 10th usage.
+12. The system should not provide functionality that breaks and local laws within a country it is distributed to.
+13. The system should still be able to function without connection to a network.
+14. The system should only be used by one user.
+15. There should be enough RAM to store 100 states of the models for the Undo and Redo Commands.
+16. There should be enough RAM to store 100 states of history of commands the user has entered.
 
 ### Glossary
 
