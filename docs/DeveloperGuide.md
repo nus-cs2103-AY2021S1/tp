@@ -17,7 +17,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ### Architecture
 
 **How the architecture components interact with each other**
-<img src="images/ArchitectureDiagram.png" width="500px">
+![Structure of the Overall Product](images/ArchitectureDiagram.png)
 
 ### OverAll components
 
@@ -41,6 +41,30 @@ of these components and displaying the changes.
 ## Module Tracker
 
 ### UI component
+![Structure of the UserInterface Component](images/UiClassDiagram.png)
+
+The job of the UI component is to be the _face_ of the product, which the user directly interacts with.
+It is in charge of containing the logic that **breaks down and executes the user input**, and displaying the **GUI** of the
+product.
+
+It composes of a few main classes, that serves as the focal point of this component. Such classes are **UiPart**,
+**MainWindow**, **UiManager** and the respective panel displays, **(XYZListPanel)**. The rest of the classes are supporting
+classes to help make the GUI.
+
+The MainWindow is what the user actually sees, which has a **CommandBox**, **XYZListPanel**, **ResultDisplay** and **StatusBar**. These
+components are stacking on top of one another using **stackPane** to ensure a smooth looking GUI. The order of the components
+are as follows, **CommandBox**, **ResultDisplay**, **XYZListPanel** and **StatusBar**.
+
+The **CommandBox** is just a textField component where the user can enter the commands. Upon pressing *Enter*, extracting of the
+text occurs and is sent to the logic to be parsed and executed.
+
+Next, after the executing is completed, a **CommandResult** object returns and is then passed to the **ResultDisplay** for the
+relevant information to be shown in this component. This is being displayed in a TextArea component.
+
+Lastly, the **XYZListPanel** is in charge of displaying all the modules, contacts, etc that is the product is tracking.
+Each of these items are being displayed in a *cell* under their respective **XYZCard**, which will be displayed in the *ListCell*
+of the **XYZListPanel**.
+
 
 **API** :
 
