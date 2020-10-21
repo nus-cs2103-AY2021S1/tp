@@ -20,7 +20,6 @@ public class Stock {
     private final Quantity quantity;
     private final Location location;
     private final List<Note> notes;
-    private boolean isBookmarked;
 
     /**
      * Every field must be present and not null.
@@ -33,14 +32,13 @@ public class Stock {
         this.quantity = quantity;
         this.location = location;
         this.notes = new ArrayList<>();
-        this.isBookmarked = false;
     }
 
     /**
      * Every field must be present and not null.
      */
     public Stock(Name name, SerialNumber serialNumber, Source source, Quantity quantity,
-                 Location location, List<Note> notes, boolean isBookmarked) {
+                 Location location, List<Note> notes) {
         requireAllNonNull(name, serialNumber, source, quantity, location);
         this.name = name;
         this.serialNumber = serialNumber;
@@ -48,7 +46,6 @@ public class Stock {
         this.quantity = quantity;
         this.location = location;
         this.notes = notes;
-        this.isBookmarked = isBookmarked;
     }
 
     public Name getName() {
@@ -73,24 +70,6 @@ public class Stock {
 
     public List<Note> getNotes() {
         return notes;
-    }
-
-    public boolean getBookmarked() { return isBookmarked; }
-
-    /**
-     * Sets the boolean of the isBookmarked of this stock to True .
-     *
-     */
-    public void setBookmarked() {
-        this.isBookmarked = true;
-    }
-
-    /**
-     * Sets the boolean of the isBookmarked of this stock to False .
-     *
-     */
-    public void unbookmarked() {
-        this.isBookmarked = false;
     }
 
     /**
@@ -135,9 +114,8 @@ public class Stock {
         Location location = this.location;
         List<Note> notesToUpdate = this.notes;
         notesToUpdate.add(noteToAdd);
-        boolean isBookedmarked = this.isBookmarked;
 
-        return new Stock(name, serialNumber, source, quantity, location, notesToUpdate, isBookedmarked);
+        return new Stock(name, serialNumber, source, quantity, location, notesToUpdate);
     }
 
     /**
@@ -152,15 +130,13 @@ public class Stock {
         Quantity quantity = this.quantity;
         Location location = this.location;
         List<Note> notesToUpdate = this.notes;
-        boolean isBookmarked = this.isBookmarked;
-
 
         Stock updatedStock;
         if (indexOfNoteToDelete == 0) {
             updatedStock = new Stock(name, serialNumber, source, quantity, location);
         } else {
             notesToUpdate.remove(indexOfNoteToDelete - 1);
-            updatedStock = new Stock(name, serialNumber, source, quantity, location, notesToUpdate, isBookmarked);
+            updatedStock = new Stock(name, serialNumber, source, quantity, location, notesToUpdate);
         }
 
         return updatedStock;
@@ -183,8 +159,7 @@ public class Stock {
         return otherStock != null
                 && otherStock.getName().equals(getName())
                 && otherStock.getSerialNumber().equals(getSerialNumber())
-                && otherStock.getSource().equals(getSource())
-                && (otherStock.getBookmarked() == (getBookmarked()));
+                && otherStock.getSource().equals(getSource());
     }
 
     /**
