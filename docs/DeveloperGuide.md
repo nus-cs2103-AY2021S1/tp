@@ -398,9 +398,26 @@ Given below is an example usage scenario and how the filter mechanism behaves at
 Step 1. The user launches the application.
 
 Step 2: The user executes `filter c/SDLC` command to filter and display all the flashcards in the flashcard deck
-belonging to SDLC category. After parsing, `filter` Command then runs `FilterCommand#execute(Model model)`.
+belonging to SDLC category. `LogicManager` calls   `FlashcardDeckParser#parseCommand(String args))` and   
+`FilterCommandParser#parse(String args)` to ultimately return a `FilterCommand` object.
 
+Step 3: After parsing, `LogicManager` then calls `FilterCommand#execute(Model model)`.
 
+Step 4: `FilterCommand` then updates the list of filtered flashcards by calling 
+`Model#updateFilteredFlashcardList(predicate)`.
+
+Step 5: A `CommandResult` is generated and Model updates the `filteredFlashcardList` which is then updated
+in the UI.
+
+The following sequence diagram shows how the filter operation works:
+
+ ![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
+ 
+ The following activity diagram shows how the `filter` command works when a user executes it:
+ 
+ ![FilterActivityDiagram](images/FilterActivityDiagram.png)
+ 
+ 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
