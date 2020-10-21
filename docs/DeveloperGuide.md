@@ -246,8 +246,8 @@ The feeding times feature allows for the following functionallity:
 * Ensure feeding times are always displayed in chronological order.
 
 The following notable methods are used for the feeding times feature:
-* `parseFeedTimes` (in `ParserUtil` class) - returns a Set of `FeedTime` objects from user input
-* `isValidFeedTime` (in `FeedTime` class) - validates the feeding time to ensure it is in the HHmm format
+* `ParserUtil#parseFeedTimes(feedTimes)` - returns a Set of `FeedTime` objects from user input
+* `FeedTime#isValidFeedTime(feedTimeText)` - validates the feeding time to ensure it is in the HHmm format
 
 The parsing and displaying of feeding times were adapted from the Medical Condition field.
 
@@ -271,10 +271,10 @@ Step 4. The `ArgumentTokenizer` class returns the feeding times found in the use
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** A ParseException is thrown by parseFeedTimes if the feeding time input does not match the defined format.
 </div>
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The TreeSet created by parseFeedTimes utilizes the FeedTimeComparator, ensuring that the set is returned in chronoligcal order.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The TreeSet created by parseFeedTimes utilizes the FeedTimeComparator, ensuring that the set is returned in chronological order.
 </div>
 
-Step 5. An `Animal` object is created with the Set of `FeedTime` objects
+Step 5. An `Animal` object is created with the Set of `FeedTime` objects.
 
 
 The following sequence diagram shows how the operation of adding feeding times works:
