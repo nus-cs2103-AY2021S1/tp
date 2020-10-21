@@ -164,6 +164,11 @@ class DelModCommandTest {
         }
 
         @Override
+        public void unassignAllInstructors() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void unassignInstructor(Person instructor, ModuleCode moduleCode) {
             throw new AssertionError("This method should not be called.");
         }

@@ -138,6 +138,8 @@ public interface Model {
      */
     void assignInstructor(Person instructor, ModuleCode moduleCode);
 
+    void unassignAllInstructors();
+
     /**
      * Unassigns an {@code instructor} from the module with the given {@code moduleCode}.
      * The module with the {@code moduleCode} must exist in the address book.
@@ -155,4 +157,5 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered module list */
     UniqueModuleList getModuleList();
+
 }

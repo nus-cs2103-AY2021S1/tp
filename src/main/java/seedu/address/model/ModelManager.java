@@ -167,6 +167,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void unassignAllInstructors() {
+        addressBook.unassignAllInstructors();
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
     public void unassignInstructor(Person instructor, ModuleCode moduleCode) throws CommandException {
         addressBook.unassignInstructor(instructor, moduleCode);
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
