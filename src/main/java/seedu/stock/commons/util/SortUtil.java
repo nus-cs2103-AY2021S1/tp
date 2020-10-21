@@ -9,6 +9,10 @@ public class SortUtil {
 
     public static final String[] FIELDS = new String[]{"name", "quantity", "source", "location", "serialnumber"};
 
+    public enum Order {
+        ASCENDING, DESCENDING
+    }
+
     /**
      * Returns a description of the sorted field.
      *
@@ -48,6 +52,21 @@ public class SortUtil {
         case "quantity":
             return generateQuantityComparator();
         default:
+            return null;
+        }
+    }
+
+    /**
+     * Returns a reversed comparator to sort the inventory.
+     *
+     * @param field The field to be sorted by.
+     * @return The reversed comparator to sort the inventory.
+     */
+    public static Comparator<Stock> generateReverseComparator(String field) {
+        Comparator<Stock> notReversed = generateComparator(field);
+        if (notReversed != null) {
+            return notReversed.reversed();
+        } else {
             return null;
         }
     }
