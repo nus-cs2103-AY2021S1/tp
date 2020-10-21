@@ -57,13 +57,10 @@ public class LessonCommand extends Command {
         for (Task taskToAdd: tasksToAdd) {
             System.out.println("date: " + taskToAdd.getDateTime());
             if (model.hasTask(taskToAdd)) {
-                System.out.println("B");
                 throw new CommandException(MESSAGE_DUPLICATE_LESSON);
             }
-            System.out.println("C");
             model.addTask(taskToAdd);
         }
-        System.out.println("D");
         return new CommandResult(String.format(MESSAGE_SUCCESS, lesson));
     }
 

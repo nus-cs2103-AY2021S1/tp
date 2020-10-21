@@ -14,7 +14,7 @@ public class Date {
     public static final String MESSAGE_CONSTRAINTS =
             "Date should be in the format of dd-MM-yyyy";
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    public static final LocalDate DEFAULT_DATE = LocalDate.parse("01-01-1000 00:00", FORMATTER);
+    public static final LocalDate DEFAULT_DATE = LocalDate.parse("01-01-1000", FORMATTER);
     public static final String VALIDATION_REGEX = "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4}$";
     public final LocalDate value;
     public final boolean isDefault;
