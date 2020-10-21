@@ -28,11 +28,12 @@ public class CdCommand extends Command {
             + "\n\t(1)" + COMMAND_WORD + " " + PREFIX_FILE_ADDRESS + "F:\\OneDrive\\CS2013T "
             + "\n\t(2)" + COMMAND_WORD + " " + PREFIX_CHILD_PATH + "OneDrive"
             + "\n\t(3)" + COMMAND_WORD + " " + PREFIX_PARENT_PATH;
-    public static final String MESSAGE_SUCCESS = "Current path set to '$s'";
-    public static final String MESSAGE_PATH_NOT_FOUND = "Cannot find '$s'";
-    public static final String MESSAGE_PATH_INVALID = "Cannot set the path to '$s'";
+    public static final String MESSAGE_SUCCESS = "Current path set to '%s'";
+    public static final String MESSAGE_PATH_NOT_FOUND = "Cannot find '%s'";
+    public static final String MESSAGE_PATH_INVALID = "Cannot set the path to '%s'";
     public static final String MESSAGE_BLANK_PATH = "The path given cannot be blank!";
     public static final String MESSAGE_PARENT_PATH_NOT_BLANK = "../ does not accept any arguments";
+    public static final String MESSAGE_NO_PARENT_PATH = "Current path does not have a parent path.";
     public static final String MESSAGE_UNKNOWN_ADDRESS_TYPE = "The address type being proceed is unknown";
 
     private AddressType addressType;
@@ -69,6 +70,10 @@ public class CdCommand extends Command {
             break;
         default:
             throw new CommandException(MESSAGE_UNKNOWN_ADDRESS_TYPE);
+        }
+
+        if (absolutePathString == null && addressType.equals(AddressType.PARENT)) {
+            throw new CommandException(MESSAGE_NO_PARENT_PATH);
         }
 
         File pathToSet = new File(absolutePathString);
