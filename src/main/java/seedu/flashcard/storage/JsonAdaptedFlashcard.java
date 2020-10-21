@@ -1,5 +1,11 @@
 package seedu.flashcard.storage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -11,6 +17,7 @@ import seedu.flashcard.model.flashcard.Flashcard;
 import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
 import seedu.flashcard.model.flashcard.Rating;
+import seedu.flashcard.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Flashcard}.
@@ -24,6 +31,7 @@ class JsonAdaptedFlashcard {
     private String category;
     private String note;
     private String rating;
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private String diagramFilePath;
     private String isFavourite;
 
@@ -34,6 +42,7 @@ class JsonAdaptedFlashcard {
     public JsonAdaptedFlashcard(@JsonProperty("question") String question, @JsonProperty("answer") String answer,
                                 @JsonProperty("category") String category, @JsonProperty("note") String note,
                                 @JsonProperty("rating") String rating,
+                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                                 @JsonProperty("diagramFilePath") String diagramFilePath,
                                 @JsonProperty("favourite") String isFavourite) {
         this.question = question;
@@ -41,12 +50,16 @@ class JsonAdaptedFlashcard {
         this.category = category;
         this.note = note;
         this.rating = rating;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
         this.diagramFilePath = diagramFilePath;
         this.isFavourite = isFavourite;
     }
 
     /**
      * Converts a given {@code Flashcard} into this class for Jackson use.
+     * getTagName() method is used as toString()'s method format is [tag]
      */
     public JsonAdaptedFlashcard(Flashcard source) {
         question = source.getQuestion().toString();
@@ -54,6 +67,9 @@ class JsonAdaptedFlashcard {
         category = source.getCategory().toString();
         note = source.getNote().toString();
         rating = source.getRating().toString();
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
         diagramFilePath = source.getDiagram().toString();
         isFavourite = Boolean.toString(source.isFavourite());
     }
@@ -64,6 +80,11 @@ class JsonAdaptedFlashcard {
      * @throws IllegalValueException if there were any data constraints violated in the adapted flashcard.
      */
     public Flashcard toModelType() throws IllegalValueException {
+        final List<Tag> flashcardTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            flashcardTags.add(tag.toModelType());
+        }
+
         if (question == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Question.class.getSimpleName()));
@@ -104,18 +125,19 @@ class JsonAdaptedFlashcard {
         if (!Rating.isValidRating(rating)) {
             throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
         }
-
         final Rating modelRating = new Rating(rating);
 
         if (diagramFilePath == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Diagram.class.getSimpleName()));
         }
-
         final Diagram modelDiagram = new Diagram(diagramFilePath);
 
         final Boolean modelIsFavourite = Boolean.parseBoolean(isFavourite);
-        return new Flashcard(modelQuestion, modelAnswer, modelCategory, modelNote, modelRating, modelDiagram,
+
+        final Set<Tag> modelTags = new HashSet<>(flashcardTags);
+
+        return new Flashcard(modelQuestion, modelAnswer, modelCategory, modelNote, modelRating, modelTags, modelDiagram,
                 modelIsFavourite);
     }
 
