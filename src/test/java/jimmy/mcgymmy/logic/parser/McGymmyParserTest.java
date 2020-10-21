@@ -10,10 +10,9 @@ import org.junit.jupiter.api.Test;
 import jimmy.mcgymmy.logic.commands.AddCommand;
 import jimmy.mcgymmy.logic.commands.CommandExecutable;
 import jimmy.mcgymmy.logic.commands.ListCommand;
-import jimmy.mcgymmy.model.macro.Macro;
-import jimmy.mcgymmy.model.macro.MacroList;
 import jimmy.mcgymmy.logic.macro.NewMacroCommand;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
+import jimmy.mcgymmy.model.macro.Macro;
 
 // Integration tests for the parser
 public class McGymmyParserTest {
@@ -35,13 +34,13 @@ public class McGymmyParserTest {
         assertTrue(output instanceof NewMacroCommand);
         NewMacroCommand newMacroCommand = (NewMacroCommand) output;
         assertEquals("macro test", newMacroCommand.getArgumentDeclaration());
-        assertArrayEquals(new String[]{"list", "exit"}, newMacroCommand.getStatements());
+        assertArrayEquals(new String[] {"list", "exit"}, newMacroCommand.getStatements());
     }
 
     @Test
     public void registeredMacroCommand_getsParsed() throws Exception {
         McGymmyParser mcGymmyParser = new McGymmyParser();
-        Macro dummyMacro = new Macro("test", new String[]{}, new String[]{});
+        Macro dummyMacro = new Macro("test", new String[] {}, new String[] {});
         mcGymmyParser.setMacroList(mcGymmyParser.getMacroList().withNewMacro(dummyMacro));
         // this should not throw any errors
         mcGymmyParser.parse("test");

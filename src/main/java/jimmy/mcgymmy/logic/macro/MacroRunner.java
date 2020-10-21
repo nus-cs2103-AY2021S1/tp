@@ -19,7 +19,7 @@ import jimmy.mcgymmy.model.macro.Macro;
 public class MacroRunner {
 
     public static CommandExecutable asCommandInstance(Macro macro, CommandLine args) {
-        return model -> executeWith(model, args, substituteAll(args, macro.getRawCommands()));
+        return model -> executeWith(model, substituteAll(args, macro.getRawCommands()));
     }
 
     /**
@@ -29,11 +29,10 @@ public class MacroRunner {
      * after encountering help or exit)
      *
      * @param model Model to run the macro's commands on.
-     * @param args  arguments to the macro.
      * @return CommandResult produced by concatenating the messages from all the executed commands.
      * @throws CommandException if any command encounters an error.
      */
-    public static CommandResult executeWith(Model model, CommandLine args, String[] substitutedCommands)
+    public static CommandResult executeWith(Model model, String[] substitutedCommands)
             throws CommandException {
         List<String> messagesToUser = new ArrayList<>();
         List<CommandExecutable> commandExecutables = parseCommands(substitutedCommands);

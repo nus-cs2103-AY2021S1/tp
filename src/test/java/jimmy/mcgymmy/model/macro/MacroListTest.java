@@ -1,12 +1,10 @@
-package jimmy.mcgymmy.logic.macro;
+package jimmy.mcgymmy.model.macro;
 
 import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import jimmy.mcgymmy.model.macro.Macro;
 import jimmy.mcgymmy.model.macro.exceptions.DuplicateMacroException;
-import jimmy.mcgymmy.model.macro.MacroList;
 
 public class MacroListTest {
     @Test
