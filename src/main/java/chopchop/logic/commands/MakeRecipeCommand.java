@@ -20,7 +20,7 @@ import chopchop.util.Pair;
  * Makes a dish according to the recipe identified by the index number or name used in the displayed recipe list,
  * removing the ingredients used.
  */
-public class MakeRecipeCommand extends Command {
+public class MakeRecipeCommand extends Command implements Undoable {
     public static final String COMMAND_WORD = "make recipe";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -33,8 +33,10 @@ public class MakeRecipeCommand extends Command {
     public static final String MESSAGE_MAKE_RECIPE_ERROR = "Cannot make recipe due to ingredient '%s'";
     public static final String MESSAGE_RECIPE_NOT_FOUND = "No recipe named '%s'";
     public static final String MESSAGE_INGREDIENT_NOT_FOUND = "No ingredient named '%s'";
+    public static final String MESSAGE_UNDO_SUCCESS = "Recipe unmade: %s";
 
     private final ItemReference item;
+    private Recipe recipe;
     private List<Pair<Ingredient, Ingredient>> ingredients;
 
     /**
@@ -49,7 +51,6 @@ public class MakeRecipeCommand extends Command {
     @Override
     public CommandResult execute(Model model, History history) throws CommandException {
         requireNonNull(model);
-        Recipe recipe;
 
         if (this.item.isIndexed()) {
             List<Recipe> lastShownList = model.getFilteredRecipeList();
@@ -58,15 +59,15 @@ public class MakeRecipeCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
             }
 
-            recipe = lastShownList.get(this.item.getZeroIndex());
+            this.recipe = lastShownList.get(this.item.getZeroIndex());
         } else {
-            recipe = model
+            this.recipe = model
                     .findRecipeWithName(this.item.getName())
                     .orElseThrow(() -> new CommandException(String.format(MESSAGE_RECIPE_NOT_FOUND,
                             this.item.getName())));
         }
 
-        for (IngredientReference ingredientRef : recipe.getIngredients()) {
+        for (IngredientReference ingredientRef : this.recipe.getIngredients()) {
             Ingredient ingredient = model
                     .findIngredientWithName(ingredientRef.getName())
                     .orElseThrow(() -> new CommandException(String.format(MESSAGE_INGREDIENT_NOT_FOUND,
@@ -87,7 +88,23 @@ public class MakeRecipeCommand extends Command {
             }
         }
 
-        return new CommandResult(String.format(MESSAGE_MAKE_RECIPE_SUCCESS, recipe));
+        return new CommandResult(String.format(MESSAGE_MAKE_RECIPE_SUCCESS, this.recipe));
+    }
+
+    @Override
+    public CommandResult undo(Model model) {
+        requireNonNull(model);
+
+        for (Pair<Ingredient, Ingredient> ingredient : this.ingredients) {
+            if (ingredient.snd().getIngredientSets().isEmpty()) {
+                model.addIngredient(ingredient.fst());
+            } else {
+                model.setIngredient(ingredient.snd(), ingredient.fst());
+            }
+        }
+
+        this.ingredients.clear();
+        return new CommandResult(String.format(MESSAGE_UNDO_SUCCESS, this.recipe));
     }
 
     @Override
