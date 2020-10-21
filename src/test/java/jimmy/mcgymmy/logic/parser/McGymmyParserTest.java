@@ -42,8 +42,7 @@ public class McGymmyParserTest {
     public void registeredMacroCommand_getsParsed() throws Exception {
         McGymmyParser mcGymmyParser = new McGymmyParser();
         Macro dummyMacro = new Macro("test", new String[]{}, new String[]{});
-        MacroList macroList = mcGymmyParser.getMacroList();
-        macroList.addMacro(dummyMacro);
+        mcGymmyParser.setMacroList(mcGymmyParser.getMacroList().withNewMacro(dummyMacro));
         // this should not throw any errors
         mcGymmyParser.parse("test");
     }

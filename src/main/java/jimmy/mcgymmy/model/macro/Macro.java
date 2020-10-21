@@ -4,7 +4,6 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 
 import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
-import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
 
 /**
  * Macro class that deals with user-created macros.
@@ -21,7 +20,7 @@ public class Macro {
      * @param name name of the macro.
      * @param macroArguments List of arguments to the macro.
      * @param commands The commands to be run.
-     * @throws ParseException if the format of the arguments are wrong.
+     * @throws IllegalValueException if the format of the arguments are wrong.
      */
     public Macro(String name, String[] macroArguments, String[] commands) throws IllegalValueException {
         this(name, Macro.parseOptions(macroArguments), macroArguments, commands);
@@ -50,7 +49,7 @@ public class Macro {
         return macroArguments;
     }
 
-    private static Options parseOptions(String[] macroArgs) throws ParseException {
+    private static Options parseOptions(String[] macroArgs) throws IllegalValueException {
         Options options = new Options();
         try {
             for (String name : macroArgs) {
@@ -61,7 +60,7 @@ public class Macro {
             }
         } catch (IllegalArgumentException e) {
             // TODO better error message
-            throw new ParseException("Wrong format for macros.");
+            throw new IllegalValueException("Wrong format for macros.");
         }
         return options;
     }

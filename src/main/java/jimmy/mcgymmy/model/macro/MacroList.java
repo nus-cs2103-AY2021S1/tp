@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import jimmy.mcgymmy.model.macro.exceptions.DuplicateMacroException;
 import jimmy.mcgymmy.logic.parser.PrimitiveCommandParser;
+import jimmy.mcgymmy.model.macro.exceptions.DuplicateMacroException;
 
 /**
  * Immutable container for macros. Ensures a macro's name is not taken before
