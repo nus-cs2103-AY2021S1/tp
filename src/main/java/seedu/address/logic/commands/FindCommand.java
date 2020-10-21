@@ -18,7 +18,7 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all assignments"
-            + " by its NAME, MODULE CODE, DEADLINE or PRIORITY. (case-insensitive)"
+            + " by its NAME, MODULE CODE, DEADLINE or PRIORITY."
             + "Finding is done one field at a time.\n"
             + "DEADLINE keywords are in the format dd-MM-yyyy or HHmm, which allows finding of assignments by time " +
             "and date separately.\n"
@@ -28,14 +28,14 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD+ " d/1200 24-10-2020 25-10-2020"
             + "The example above finds all assignments due on 24 October 2020 and 25 October 2020 and finds all "
             + "assignments due at 1200";
-    public static final String INVALID_MODULE_CODE_MESSAGE =
-            "Module codes should begin with 2 or 3 alphabets, have 4 numbers and may end with an alphabet.\n"
-            + "It should not be left empty.";
+
     public static final String INVALID_DATE_OR_TIME_MESSAGE =
             "Deadline field should have date or time keywords in the format dd-MM-yyyy or HHmm.\n"
-                    + "It should not be left empty.";
-
-
+             + "It should not be left empty.";
+    public static final String MORE_THAN_ONE_PREFIX_MESSAGE =
+            "There are more than one prefixes found. Finding is done one field at a time.\n"
+             + " Prefixes: n/ to find by name, d/ to find by date or time, priority/ to find by priorities and\n"
+             + " mod/ to find by module code.";
 
     private final Predicate<Assignment> predicate;
 
