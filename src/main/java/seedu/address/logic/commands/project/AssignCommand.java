@@ -64,7 +64,7 @@ public class AssignCommand extends Command {
         }
 
         assignee.addTask(taskToAssociate);
-        taskToAssociate.addAssignee(assignee);
+        taskToAssociate.addAssignee(assignee.getAssigneeName().toString());
 
         return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS, taskToAssociate, assignee));
     }

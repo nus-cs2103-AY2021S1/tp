@@ -1,9 +1,13 @@
 package seedu.address.storage;
 
+import java.time.LocalDate;
+import java.util.Set;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.project.Deadline;
 import seedu.address.model.task.Task;
 
 /**
@@ -11,29 +15,34 @@ import seedu.address.model.task.Task;
  */
 class JsonAdaptedTask {
 
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
+
     public final String taskName;
-    //    private final String description;
-    //    private final LocalDate publishDate;
-    //    private final Deadline deadline;
-    //    private final double progress;
-    //    private final boolean isDone;
-    //    private final Set<Participation> assignees;
+    private final String description;
+    private final String publishDate;
+    private final String deadline;
+    private final String progress;
+    private final String isDone;
+    private final Set<String> assignees;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given {@code taskName}.
      */
     @JsonCreator
-    public JsonAdaptedTask(String taskName) {
-        //            , String description, LocalDate publishDate,
-        //                           Deadline deadline, double progress, boolean isDone,
-        //                           Set<Participation> assignees) {
+    public JsonAdaptedTask(@JsonProperty("taskName") String taskName,
+                           @JsonProperty("description") String description,
+                           @JsonProperty("publishDate") String publishDate,
+                           @JsonProperty("deadline") String deadline,
+                           @JsonProperty("progress") String progress,
+                           @JsonProperty("isDone") String isDone,
+                           @JsonProperty("assignees") Set<String> assignees) {
         this.taskName = taskName;
-        //        this.description = description;
-        //        this.publishDate = publishDate;
-        //        this.deadline = deadline;
-        //        this.progress = progress;
-        //        this.isDone = isDone;
-        //        this.assignees = assignees;
+        this.description = description;
+        this.publishDate = publishDate;
+        this.deadline = deadline;
+        this.progress = progress;
+        this.isDone = isDone;
+        this.assignees = assignees;
     }
 
     /**
@@ -41,48 +50,17 @@ class JsonAdaptedTask {
      */
     public JsonAdaptedTask(Task source) {
         taskName = source.taskName;
-        //        description = source.getDescription();
-        //        publishDate = source.getPublishDate();
-        //        deadline = source.getDeadline();
-        //        progress = source.getProgress();
-        //        isDone = source.isDone();
-        //        assignees = source.getAssignees();
+        description = source.getDescription();
+        publishDate = source.getPublishDate().toString();
+        if (source.getDeadline() != null) {
+            deadline = source.getDeadline().toString();
+        } else {
+            deadline = null;
+        }
+        progress = source.getProgress().toString();
+        isDone = source.isDone().toString();
+        assignees = source.getAssignees();
     }
-
-    @JsonValue
-    public String getTaskName() {
-        return taskName;
-    }
-
-    //    @JsonValue
-    //    public String getDescription() {
-    //        return description;
-    //    }
-    //
-    //    @JsonValue
-    //    public LocalDate getPublishDate() {
-    //        return publishDate;
-    //    }
-    //
-    //    @JsonValue
-    //    public Deadline getDeadline() {
-    //        return deadline;
-    //    }
-    //
-    //    @JsonValue
-    //    public double getProgress() {
-    //        return progress;
-    //    }
-    //
-    //    @JsonValue
-    //    public boolean isDone() {
-    //        return isDone;
-    //    }
-    //
-    //    @JsonValue
-    //    public Set<Participation> getAssignees() {
-    //        return assignees;
-    //    }
 
     /**
      * Converts this Jackson-friendly adapted task object into the model's {@code Task} object.
@@ -90,7 +68,56 @@ class JsonAdaptedTask {
      * @throws IllegalValueException if there were any data constraints violated in the adapted task.
      */
     public Task toModelType() throws IllegalValueException {
-        return new Task(taskName, null, null, 0, false);
+
+        if (taskName == null) {
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, "Task name"));
+        }
+        if (!Task.isValidTaskName(taskName)) {
+            throw new IllegalValueException(Task.NAME_MESSAGE_CONSTRAINTS);
+        }
+        if (description != null) {
+            if (!Task.isValidTaskDescription(description)) {
+                throw new IllegalValueException(Task.DESCRIPTION_MESSAGE_CONSTRAINTS);
+            }
+        }
+        if (publishDate == null) {
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, "Publish date"));
+        }
+        if (!Task.isValidPublishDate(publishDate)) {
+            throw new IllegalValueException(Task.PUBLISH_DATE_MESSAGE_CONSTRAINTS);
+        }
+        if (deadline != null) {
+            if (!Deadline.isValidDeadline(deadline)) {
+                throw new IllegalValueException(Task.DEADLINE_MESSAGE_CONSTRAINTS);
+            }
+        }
+        if (progress == null) {
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, "Progress"));
+        }
+        if (!Task.isValidProgress(progress)) {
+            throw new IllegalValueException(Task.PROGRESS_MESSAGE_CONSTRAINTS);
+        }
+        if (isDone == null) {
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, "Is done"));
+        }
+        if (!Task.isValidIsDone(isDone)) {
+            throw new IllegalValueException(Task.IS_DONE_MESSAGE_CONSTRAINTS);
+        }
+        Task task = null;
+        task = new Task(taskName,
+                description,
+                deadline,
+                Double.parseDouble(progress),
+                Boolean.parseBoolean(isDone));
+
+
+        task.setPublishDate(LocalDate.parse(publishDate));
+        assignees.forEach(task::addAssignee);
+        return task;
     }
 
 }

@@ -42,7 +42,7 @@ public class Deadline {
     /**
      * Return true if a given string is a valid date.
      */
-    private static boolean isValidDate(String date) {
+    public static boolean isValidDate(String date) {
         String[] strings = date.split("-");
         int day = Integer.parseInt(strings[0]);
         int month = Integer.parseInt(strings[1]);

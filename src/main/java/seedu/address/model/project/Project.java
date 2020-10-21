@@ -3,6 +3,7 @@ package seedu.address.model.project;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -28,6 +29,9 @@ import seedu.address.model.task.Task;
 public class Project {
     private static final Predicate<Task> SHOW_ALL_TASKS_PREDICATE = task -> true;
     private static final Predicate<Meeting> SHOW_ALL_MEETINGS_PREDICATE = meeting -> true;
+    // List of all Projects
+    private static ArrayList<Project> allProjects = new ArrayList<>();
+
     // Identity fields
     private final ProjectName projectName;
     private final Deadline deadline;
@@ -41,7 +45,6 @@ public class Project {
     private Predicate<Meeting> meetingFilter = SHOW_ALL_MEETINGS_PREDICATE;
     private final Set<Task> tasks = new HashSet<>();
     private final Set<Meeting> meetings = new HashSet<>();
-
     // Display helper
     private Optional<Task> taskOnView;
     private Optional<Person> teammateOnView;
@@ -54,18 +57,23 @@ public class Project {
                    Set<ProjectTag> projectTags,
                    HashMap<GitUserName, Participation> listOfParticipations, Set<Task> tasks, Set<Meeting> meetings) {
         requireAllNonNull(projectName, deadline, repoUrl, projectDescription, projectTags,
-            listOfParticipations, tasks, meetings);
+                tasks);
         this.projectName = projectName;
         this.deadline = deadline;
         this.repoUrl = repoUrl;
         this.projectDescription = projectDescription;
         this.projectTags.addAll(projectTags);
-        this.listOfParticipations.putAll(listOfParticipations);
+        if (listOfParticipations != null) {
+            this.listOfParticipations.putAll(listOfParticipations);
+        }
         this.tasks.addAll(tasks);
-        this.meetings.addAll(meetings);
+        if (meetings != null) {
+            this.meetings.addAll(meetings);
+        }
         this.taskOnView = Optional.empty();
         this.teammateOnView = Optional.empty();
         this.meetingOnView = Optional.empty();
+        allProjects.add(this);
     }
 
     public ProjectName getProjectName() {
@@ -87,30 +95,43 @@ public class Project {
     public Set<Meeting> getMeetings() {
         return meetings;
     }
+
+    public static ArrayList<Project> getAllProjects() {
+        return allProjects;
+    }
+
     public boolean addMeeting(Meeting meeting) {
         return meetings.add(meeting);
     }
+
     public boolean addTask(Task task) {
         return tasks.add(task);
     }
+
     public boolean deleteTask(Task task) {
         return tasks.remove(task);
     }
+
     public void updateTaskFilter(Predicate<Task> predicate) {
         this.taskFilter = predicate;
     }
+
     public void showAllTasks() {
         this.taskFilter = SHOW_ALL_TASKS_PREDICATE;
     }
+
     public void updateMeetingFilter(Predicate<Meeting> predicate) {
         this.meetingFilter = predicate;
     }
+
     public void showAllMeetings() {
         this.meetingFilter = SHOW_ALL_MEETINGS_PREDICATE;
     }
+
     public Optional<Task> getTaskOnView() {
         return taskOnView;
     }
+
     public Optional<Person> getTeammateOnView() {
         return this.teammateOnView;
     }
@@ -159,11 +180,12 @@ public class Project {
      */
     public Set<Person> getAttendeesOfMeeting(Meeting meeting) {
         HashSet<Person> attendees = new HashSet<>();
-        for (Map.Entry<GitUserName, Participation> entry: listOfParticipations.entrySet()) {
+        for (Map.Entry<GitUserName, Participation> entry : listOfParticipations.entrySet()) {
             attendees.add(entry.getValue().getPerson());
         }
         return attendees;
     }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -185,8 +207,17 @@ public class Project {
      */
     public void addParticipation(Person p) {
         listOfParticipations.put(
-            p.getGitUserName(), new Participation(p, this));
+                p.getGitUserName(), new Participation(p.getGitUserNameString(), projectName.toString()));
     }
+
+    /**
+     * Adds an existing participation instance to a project
+     */
+    public void addExistingParticipation(Participation p) {
+        listOfParticipations.put(
+                p.getPerson().getGitUserName(), p);
+    }
+
 
     /**
      * Checks whether the project contains a member of the given name.
@@ -203,6 +234,24 @@ public class Project {
     }
 
     /**
+     * Gets the list of Participations.
+     *
+     * @return
+     */
+    public Collection<Participation> getParticipationList() {
+        return listOfParticipations.values();
+    }
+
+    /**
+     * Gets the HashMap of Participations.
+     *
+     * @return
+     */
+    public HashMap<GitUserName, Participation> getParticipationHashMap() {
+        return listOfParticipations;
+    }
+
+    /**
      * Deletes the Participation with the member Git UserName.
      */
     public void deleteParticipation(String gitUserName) {
@@ -216,7 +265,7 @@ public class Project {
      */
     public List<Person> getTeammates() {
         List<Person> listOfPersons = new ArrayList<>();
-        for (Map.Entry<GitUserName, Participation> entry: listOfParticipations.entrySet()) {
+        for (Map.Entry<GitUserName, Participation> entry : listOfParticipations.entrySet()) {
             Person p = entry.getValue().getPerson();
             listOfPersons.add(p);
         }
@@ -284,8 +333,8 @@ public class Project {
         }
 
         return otherProject != null
-            && otherProject.getProjectName().equals(getProjectName())
-            && (otherProject.getDeadline().equals(getDeadline()) || otherProject.getRepoUrl().equals(getRepoUrl()));
+                && otherProject.getProjectName().equals(getProjectName())
+                && (otherProject.getDeadline().equals(getDeadline()) || otherProject.getRepoUrl().equals(getRepoUrl()));
     }
 
     /**
@@ -304,11 +353,11 @@ public class Project {
 
         Project otherProject = (Project) other;
         return otherProject.getProjectName().equals(getProjectName())
-            && otherProject.getDeadline().equals(getDeadline())
-            && otherProject.getRepoUrl().equals(getRepoUrl())
-            && otherProject.getProjectDescription().equals(getProjectDescription())
-            && otherProject.getProjectTags().equals(getProjectTags())
-            && otherProject.getTasks().equals(getTasks());
+                && otherProject.getDeadline().equals(getDeadline())
+                && otherProject.getRepoUrl().equals(getRepoUrl())
+                && otherProject.getProjectDescription().equals(getProjectDescription())
+                && otherProject.getProjectTags().equals(getProjectTags())
+                && otherProject.getTasks().equals(getTasks());
     }
 
     @Override
@@ -321,14 +370,14 @@ public class Project {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(" Project Name: ")
-            .append(getProjectName())
-            .append(" Deadline: ")
-            .append(getDeadline())
-            .append(" Email: ")
-            .append(getRepoUrl())
-            .append(" ProjectDescription: ")
-            .append(getProjectDescription())
-            .append(" Project Tags: ");
+                .append(getProjectName())
+                .append(" Deadline: ")
+                .append(getDeadline())
+                .append(" Email: ")
+                .append(getRepoUrl())
+                .append(" ProjectDescription: ")
+                .append(getProjectDescription())
+                .append(" Project Tags: ");
         getProjectTags().forEach(builder::append);
         builder.append(" Tasks: ");
         getTasks().forEach(builder::append);

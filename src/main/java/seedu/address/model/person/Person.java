@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -14,6 +15,9 @@ import seedu.address.model.project.ProjectName;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
+
+    // List of all Persons
+    private static ArrayList<Person> allPeople = new ArrayList<>();
 
     // Identity fields
     private PersonName personName;
@@ -35,6 +39,7 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        allPeople.add(this);
     }
 
     /**
@@ -76,6 +81,10 @@ public class Person {
         return gitUserName.toString();
     }
 
+    public static ArrayList<Person> getAllPeople() {
+        return allPeople;
+    }
+
     public HashMap<ProjectName, Participation> getParticipations() {
         return this.listOfParticipations;
     }
@@ -96,8 +105,12 @@ public class Person {
         email = new Email(newEmailStr);
     }
 
+    /**
+     * Adds a project as a Participation to the Person.
+     */
     public void addProject(Project p) {
-        listOfParticipations.put(p.getProjectName(), new Participation(this, p));
+        listOfParticipations.put(p.getProjectName(),
+                new Participation(personName.toString(), p.getProjectName().toString()));
     }
 
     /**

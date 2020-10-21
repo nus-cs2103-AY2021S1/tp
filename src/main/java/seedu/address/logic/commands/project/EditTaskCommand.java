@@ -22,7 +22,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Deadline;
-import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
 
@@ -52,7 +51,7 @@ public class EditTaskCommand extends Command {
     private final EditTaskDescriptor editTaskDescriptor;
 
     /**
-     * @param index of the task in the filtered task list to edit
+     * @param index              of the task in the filtered task list to edit
      * @param editTaskDescriptor details to edit the task with
      */
     public EditTaskCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
@@ -78,6 +77,14 @@ public class EditTaskCommand extends Command {
 
         project.deleteTask(taskToEdit);
         project.addTask(editedTask);
+        if (editedTask.hasAnyAssignee()) {
+            editedTask.getAssignees().forEach(
+                assignee -> project.getParticipation(assignee).deleteTask(taskToEdit)
+            );
+            editedTask.getAssignees().forEach(
+                assignee -> project.getParticipation(assignee).addTask(editedTask)
+            );
+        }
 
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
@@ -95,10 +102,10 @@ public class EditTaskCommand extends Command {
         Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.isDone());
         String updatedTaskDescription = editTaskDescriptor.getTaskDescription()
                 .orElse(taskToEdit.getDescription());
-        Set<Participation> updatedAssignees = editTaskDescriptor.getAssignees().orElse(
+        Set<String> updatedAssignees = editTaskDescriptor.getAssignees().orElse(
                 taskToEdit.getAssignees());
 
-        Task updatedTask = new Task(updatedTaskName, updatedTaskDescription, updatedDeadline,
+        Task updatedTask = new Task(updatedTaskName, updatedTaskDescription, updatedDeadline.toString(),
                 updatedProgress, updatedIsDone);
         updatedTask.getAssignees().addAll(updatedAssignees);
 
@@ -134,9 +141,10 @@ public class EditTaskCommand extends Command {
         private Deadline deadline;
         private Double progress;
         private Boolean isDone;
-        private Set<Participation> assignees;
+        private Set<String> assignees;
 
-        public EditTaskDescriptor() {}
+        public EditTaskDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -211,7 +219,7 @@ public class EditTaskCommand extends Command {
          * Sets {@code assignees} to this object's {@code assignees}.
          * A defensive copy of {@code assignees} is used internally.
          */
-        public void setAssignees(Set<Participation> assignees) {
+        public void setAssignees(Set<String> assignees) {
             this.assignees = (assignees != null) ? new HashSet<>(assignees) : null;
         }
 
@@ -220,7 +228,7 @@ public class EditTaskCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code assignees} is null.
          */
-        public Optional<Set<Participation>> getAssignees() {
+        public Optional<Set<String>> getAssignees() {
             return (assignees != null) ? Optional.of(Collections.unmodifiableSet(assignees)) : Optional.empty();
         }
 

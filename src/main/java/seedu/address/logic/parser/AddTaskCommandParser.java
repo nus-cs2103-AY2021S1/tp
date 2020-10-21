@@ -7,6 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_IS_DONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PROGRESS;
 
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.project.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.Deadline;
@@ -35,7 +37,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         }
 
         String taskName = ParserUtil.parseTaskBasicInformation(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
-        double taskProgress = Double.parseDouble(
+        Double taskProgress = Double.parseDouble(
                 ParserUtil.parseTaskBasicInformation(argMultimap.getValue(PREFIX_TASK_PROGRESS).get()));
         boolean taskStatus = Boolean.parseBoolean(
                 ParserUtil.parseTaskBasicInformation(argMultimap.getValue(PREFIX_TASK_IS_DONE).get()));
@@ -43,10 +45,17 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         if (argMultimap.getValue(PREFIX_TASK_DEADLINE).isPresent()) {
             taskDeadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_TASK_DEADLINE).orElse(null));
         }
-        Task task = new Task(taskName, null, taskDeadline, taskProgress, taskStatus);
+        Task task = new Task(taskName, null, taskDeadline.toString(), taskProgress, taskStatus);
 
         return new AddTaskCommand(task);
     }
 
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
 
 }

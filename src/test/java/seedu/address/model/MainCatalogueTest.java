@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_B;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_A;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_DG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProjects.APEAKAPP;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
@@ -26,6 +25,7 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
 import seedu.address.model.task.Task;
+import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.ProjectBuilder;
 
 public class MainCatalogueTest {
@@ -55,7 +55,7 @@ public class MainCatalogueTest {
         Project editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(
             VALID_PROJECT_DESCRIPTION_B).withTags(
             VALID_PROJECT_TAG_A)
-                .withTasks(VALID_PROJECT_TAG_DG)
+                .withTasks(SampleDataUtil.getTask4())
                 .build();
         List<Project> newProjects = Arrays.asList(APEAKAPP, editedAlice);
         MainCatalogueStub newData = new MainCatalogueStub(newProjects);
@@ -86,7 +86,7 @@ public class MainCatalogueTest {
         Project editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(
             VALID_PROJECT_DESCRIPTION_B).withTags(
             VALID_PROJECT_TAG_A)
-                .withTasks(VALID_PROJECT_TAG_DG)
+                .withTasks(SampleDataUtil.getTask1())
                 .build();
         assertTrue(mainCatalogue.hasProject(editedAlice));
     }

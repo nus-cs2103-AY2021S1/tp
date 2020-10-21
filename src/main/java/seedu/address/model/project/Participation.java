@@ -16,8 +16,8 @@ public class Participation {
     /**
      * List of thing(s) Person can participate in.
      */
-    private Person person;
-    private Project project;
+    private String person;
+    private String project;
     private Role role;
     private Set<Task> tasks;
     private Set<Meeting> meetings;
@@ -25,7 +25,7 @@ public class Participation {
     /**
      * Constructor for Participation
      */
-    public Participation(Person person, Project project) {
+    public Participation(String person, String project) {
         this.person = person;
         this.project = project;
         role = Role.MEMBER;
@@ -36,16 +36,18 @@ public class Participation {
     /**
      * Alternative constructor that allows specifying the role of the person
      */
-    public Participation(Person person, Project project, Role role) {
+    public Participation(String person, String project, Role role) {
         this.person = person;
         this.project = project;
         this.role = role;
         tasks = new HashSet<>();
         meetings = new HashSet<>();
     }
+
     public void changeRole(Role role) {
         this.role = role;
     }
+
     /**
      * Indicates attendance for the meeting.
      *
@@ -53,21 +55,33 @@ public class Participation {
      */
     public void attends(Meeting meeting) {
         meetings.add(meeting);
-        project.addMeeting(meeting);
+        this.getProject().addMeeting(meeting);
     }
 
     /**
      * Assigns task to the person
-     * @param task  task to be assigned
+     *
+     * @param task task to be assigned
      */
     public void addTask(Task task) {
         tasks.add(task);
-        project.addTask(task);
+        this.getProject().addTask(task);
     }
+
+    /**
+     * Removes task from the person
+     *
+     * @param task task to be removed
+     */
+    public void deleteTask(Task task) {
+        tasks.remove(task);
+    }
+
     /**
      * Checks whether the person is an attendee of the meeting.
-     * @param meeting   meeting to check
-     * @return  true if the person is an attendee of the meeting, and false otherwise
+     *
+     * @param meeting meeting to check
+     * @return true if the person is an attendee of the meeting, and false otherwise
      */
     public boolean isAttendeeOf(Meeting meeting) {
         return meetings.contains(meeting);
@@ -75,27 +89,67 @@ public class Participation {
 
     /**
      * Checks whether the person has the given task.
-     * @param task  the task to check
-     * @return  true if the person is assigned to do the task, and false otherwise.
+     *
+     * @param task the task to check
+     * @return true if the person is assigned to do the task, and false otherwise.
      */
     public boolean hasTask(Task task) {
         return tasks.contains(task);
     }
+
     public Person getPerson() {
-        return person;
+        Person p = null;
+        for (int i = 0; i < Person.getAllPeople().size(); i++) {
+            if (Person.getAllPeople().get(i).getGitUserNameString().equals(person)) {
+                p = Person.getAllPeople().get(i);
+            }
+        }
+        return p;
     }
-    public GitUserName getAssigneeGitName() {
-        return person.getGitUserName();
+
+    public GitUserName getAssigneeName() {
+        return this.getPerson().getGitUserName();
     }
+
     public Project getProject() {
-        return project;
+        Project p = null;
+        for (int i = 0; i < Project.getAllProjects().size(); i++) {
+            if (Project.getAllProjects().get(i).getProjectName().toString().equals(project)) {
+                p = Project.getAllProjects().get(i);
+            }
+        }
+        return p;
     }
+
     public Role getRole() {
         return role;
     }
-}
 
-enum Role {
-    LEADER, MEMBER;
+    public Set<Task> getTasks() {
+        return tasks;
+    }
+
+    public Set<Meeting> getMeetings() {
+        return meetings;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Participation)) {
+            return false;
+        }
+
+        Participation otherParticipation = (Participation) other;
+        return otherParticipation.getProject().equals(getProject())
+                && otherParticipation.getPerson().equals(getPerson())
+                && otherParticipation.getMeetings().equals(getMeetings())
+                && otherParticipation.getRole().equals(getRole())
+                && otherParticipation.getTasks().equals(getTasks());
+
+    }
 }
 

@@ -132,7 +132,7 @@ public class ParserUtil {
     public static Task parseTask(String task) {
         requireNonNull(task);
         String trimmedTask = task.trim();
-        return new Task(trimmedTask, null, null, 0, false);
+        return new Task(trimmedTask, null, (String) null, 0, false);
     }
 
 
@@ -181,7 +181,7 @@ public class ParserUtil {
         requireNonNull(info);
         String trimmedInfo = info.trim();
         if (!Task.isValidAttribute(trimmedInfo)) {
-            throw new ParseException(Task.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Task.NAME_MESSAGE_CONSTRAINTS);
         }
         return trimmedInfo;
     }

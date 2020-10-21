@@ -121,9 +121,15 @@ public class UniqueProjectList implements Iterable<Project> {
 
     @Override
     public boolean equals(Object other) {
+        //        boolean test = true;
+        //        for (int i = 0; i < internalList.size() - 1; i++) {
+        //            test = test && internalList.get(i).equals(((UniqueProjectList)other).internalList.get(i));
+        //        }
+
         return other == this // short circuit if same object
-                || (other instanceof UniqueProjectList // instanceof handles nulls
-                        && internalList.equals(((UniqueProjectList) other).internalList));
+            || (other instanceof UniqueProjectList // instanceof handles nulls
+                //                        && test);
+                && internalList.equals(((UniqueProjectList) other).internalList));
     }
 
     @Override
