@@ -50,11 +50,15 @@ public class AssignCommand extends Command {
 
         List<Person> lastShownList = model.getFilteredPersonList();
 
+        assert lastShownList != null;
+
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person instructor = lastShownList.get(index.getZeroBased());
+
+        assert instructor != null;
 
         for (ModuleCode moduleCode: moduleCodes) {
             if (!model.hasModuleCode(moduleCode)) {
