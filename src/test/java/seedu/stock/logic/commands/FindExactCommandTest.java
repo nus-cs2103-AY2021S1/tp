@@ -7,7 +7,6 @@ import static seedu.stock.commons.core.Messages.MESSAGE_STOCKS_LISTED_OVERVIEW;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.stock.testutil.Assert.assertThrows;
 import static seedu.stock.testutil.TypicalStocks.APPLE;
-import static seedu.stock.testutil.TypicalStocks.BANANA;
 import static seedu.stock.testutil.TypicalStocks.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
 
@@ -26,42 +25,42 @@ import seedu.stock.model.stock.predicates.NameContainsKeywordsPredicate;
 import seedu.stock.model.stock.predicates.SourceContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindExactCommand}.
  */
-public class FindCommandTest {
+public class FindExactCommandTest {
     private Model model = new ModelManager(getTypicalStockBook(), new UserPrefs(), getTypicalSerialNumberSetsBook());
     private Model expectedModel = new ModelManager(getTypicalStockBook(),
             new UserPrefs(), getTypicalSerialNumberSetsBook());
 
     @Test
     public void constructor_nullPredicateList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new FindCommand(null));
+        assertThrows(NullPointerException.class, () -> new FindExactCommand(null));
     }
 
     @Test
-    public void execute_multiplePredicateList_multipleStocksFound() {
-        String expectedMessage = String.format(MESSAGE_STOCKS_LISTED_OVERVIEW, 2);
-        NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Ap");
-        SourceContainsKeywordsPredicate sourcePredicate = prepareSourcePredicate("price");
+    public void execute_multiplePredicates_oneStockFound() {
+        String expectedMessage = String.format(MESSAGE_STOCKS_LISTED_OVERVIEW, 1);
+        NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("app");
+        SourceContainsKeywordsPredicate sourcePredicate = prepareSourcePredicate("ntuc");
 
-        FindCommand command = new FindCommand(Arrays.asList(namePredicate, sourcePredicate));
+        FindExactCommand command = new FindExactCommand(Arrays.asList(namePredicate, sourcePredicate));
 
         // expected status message to show what user has searched for
         expectedMessage = "Searching for:\n" + namePredicate.toString() + ", "
                 + sourcePredicate.toString() + "\n" + expectedMessage;
         List<Predicate<Stock>> predicateList = Arrays.asList(namePredicate, sourcePredicate);
         expectedModel.updateFilteredStockList(
-                predicateList.stream().reduce(x -> true, Predicate::or));
+                predicateList.stream().reduce(x -> true, Predicate::and));
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(APPLE, BANANA), model.getFilteredStockList());
+        assertEquals(Collections.singletonList(APPLE), model.getFilteredStockList());
     }
 
     @Test
     public void execute_zeroKeywords_noStockFound() {
         String expectedMessage = String.format(MESSAGE_STOCKS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = prepareNamePredicate("");
-        FindCommand command = new FindCommand(Collections.singletonList(predicate));
+        FindExactCommand command = new FindExactCommand(Collections.singletonList(predicate));
         // status message to show what user has searched for
         String statusMessage = "Searching for:\n" + predicate.toString();
         expectedModel.updateFilteredStockList(predicate);
@@ -73,7 +72,7 @@ public class FindCommandTest {
     public void execute_multipleKeywords_oneStockFound() {
         String expectedMessage = String.format(MESSAGE_STOCKS_LISTED_OVERVIEW, 1);
         NameContainsKeywordsPredicate predicate = prepareNamePredicate("A ple");
-        FindCommand command = new FindCommand(Collections.singletonList(predicate));
+        FindExactCommand command = new FindExactCommand(Collections.singletonList(predicate));
         // status message to show what user has searched for
         String statusMessage = "Searching for:\n" + predicate.toString();
         expectedModel.updateFilteredStockList(predicate);
@@ -90,32 +89,32 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate thirdPredicate =
                 new NameContainsKeywordsPredicate(Arrays.asList("second", "second"));
 
-        FindCommand firstFindCommand = new FindCommand(Collections.singletonList(firstPredicate));
-        FindCommand secondFindCommand = new FindCommand(Collections.singletonList(secondPredicate));
-        FindCommand thirdFindCommand = new FindCommand(Collections.singletonList(thirdPredicate));
+        FindExactCommand firstFindExactCommand = new FindExactCommand(Collections.singletonList(firstPredicate));
+        FindExactCommand secondFindExactCommand = new FindExactCommand(Collections.singletonList(secondPredicate));
+        FindExactCommand thirdFindExactCommand = new FindExactCommand(Collections.singletonList(thirdPredicate));
 
         // same object -> returns true
-        assertTrue(firstFindCommand.equals(firstFindCommand));
+        assertTrue(firstFindExactCommand.equals(firstFindExactCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(Collections.singletonList(firstPredicate));
-        assertTrue(firstFindCommand.equals(findFirstCommandCopy));
+        FindExactCommand findFirstCommandCopy = new FindExactCommand(Collections.singletonList(firstPredicate));
+        assertTrue(firstFindExactCommand.equals(findFirstCommandCopy));
 
-        FindCommand secondFindCommandCopy = new FindCommand(Collections
+        FindExactCommand secondFindExactCommandCopy = new FindExactCommand(Collections
                 .singletonList(new NameContainsKeywordsPredicate(Collections.singletonList("second"))));
-        assertTrue(secondFindCommand.equals(secondFindCommandCopy));
+        assertTrue(secondFindExactCommand.equals(secondFindExactCommandCopy));
 
         // different types -> returns false
-        assertFalse(firstFindCommand.equals(1));
+        assertFalse(firstFindExactCommand.equals(1));
 
         // null -> returns false
-        assertFalse(firstFindCommand.equals(null));
+        assertFalse(firstFindExactCommand.equals(null));
 
         // different stock -> returns false
-        assertFalse(firstFindCommand.equals(secondFindCommand));
+        assertFalse(firstFindExactCommand.equals(secondFindExactCommand));
 
         // one same value, other copy of value -> returns false
-        assertFalse(secondFindCommand.equals(thirdFindCommand));
+        assertFalse(secondFindExactCommand.equals(thirdFindExactCommand));
     }
 
     /**
