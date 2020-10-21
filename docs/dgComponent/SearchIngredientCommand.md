@@ -10,6 +10,10 @@ Substitutability is used in Command and Parser:
 The following sequence diagram shows how eat recipe operation works when `execute(searchF avocado)` API call:
 
 ![SearchIngredientSequence](images/SearchIngredientSequence.png)
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** The lifeline for `EatRecipeCommandParser` should end at the destroy marker (X) but due to a limitation of 
+PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 1. User inputs the search ingredient command to search for the ingredient from the ingredient list.
 1. After successful parsing of user input, the `SearchIngredientCommand#execute(Model model)` method is called.
