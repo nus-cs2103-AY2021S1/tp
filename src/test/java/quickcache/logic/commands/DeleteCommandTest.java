@@ -115,6 +115,35 @@ public class DeleteCommandTest {
                 model.getFilteredFlashcardList());
     }
 
+    @Test
+    public void execute_InvalidTag_success() {
+        Set<Tag> tagsToMatch = new HashSet<>();
+        tagsToMatch.add(TypicalTags.invalidTag);
+        FlashcardPredicate flashcardPredicate = prepareFlashcardPredicate(tagsToMatch);
+
+        DeleteCommand deleteCommand = DeleteCommand.withPredicate(flashcardPredicate, tagsToMatch);
+        String deleteWithTagsMessage = DeleteCommand.createDeleteWithTagsMessage(tagsToMatch);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FLASHCARD_SUCCESS, deleteWithTagsMessage);
+
+        ModelManager expectedModel = new ModelManager(model.getQuickCache(), new UserPrefs());
+        expectedModel.updateFilteredFlashcardList(flashcardPredicate);
+
+        CommandTestUtil.assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        model.updateFilteredFlashcardList(Model.PREDICATE_SHOW_ALL_FLASHCARDS);
+        assertEquals(Arrays.asList(
+                TypicalFlashcards.RANDOM1,
+                TypicalFlashcards.RANDOM2,
+                TypicalFlashcards.RANDOM3,
+                TypicalFlashcards.RANDOM4,
+                TypicalFlashcards.RANDOM5,
+                TypicalFlashcards.RANDOM6,
+                TypicalFlashcards.RANDOM7,
+                TypicalFlashcards.RANDOM8,
+                TypicalFlashcards.RANDOM9),
+                model.getFilteredFlashcardList());
+    }
+
     private FlashcardPredicate prepareFlashcardPredicate(Set<Tag> tagsToMatch) {
         ArrayList<Predicate<Flashcard>> predicates = new ArrayList<>();
         predicates.add(new FlashcardContainsTagPredicate(tagsToMatch));
