@@ -5,12 +5,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox id="cardPane" fx:id="cardPane" prefWidth="199.0" stylesheets="@Hospify.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane prefWidth="177.0" HBox.hgrow="ALWAYS">
+<HBox id="cardPane" fx:id="cardPane" prefWidth="600.0" stylesheets="@Hospify.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" prefWidth="146.0" styleClass="list-pill-cell" GridPane.columnIndex="0">
+    <VBox alignment="CENTER_LEFT" styleClass="list-pill-cell" GridPane.columnIndex="0">
       <padding>
         <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
       </padding>
@@ -26,24 +26,50 @@
       <FlowPane fx:id="allergies" hgap="5.0">
             <VBox.margin>
                <Insets />
-            </VBox.margin></FlowPane>
+            </VBox.margin>
+      </FlowPane>
       <Label fx:id="nric" styleClass="cell_small_label" text="\$nric" />
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-         <HBox alignment="BASELINE_RIGHT">
-            <children>
-               <Label fx:id="copyButtonNotification" stylesheets="@Hospify.css">
-                  <font>
-                     <Font name="Consolas Bold" size="12.0" />
-                  </font>
-               </Label>
-             <Button id="pill-button" fx:id="copyButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#copyUrl" prefHeight="33.0" prefWidth="118.0" stylesheets="@Hospify.css" text="MR URL">
-                  <HBox.margin>
-                     <Insets right="15.0" />
-                  </HBox.margin></Button>
-            </children>
-         </HBox>
+         <SplitPane dividerPositions="0.29797979797979796">
+           <items>
+             <AnchorPane minHeight="0.0">
+                  <children>
+                     <HBox alignment="CENTER_LEFT" layoutY="6.800000190734863" AnchorPane.leftAnchor="0.0">
+                        <children>
+                            <Label text="NUMBER OF APPOINTMENT(s): ">
+                                <font>
+                                    <Font name="Consolas Bold" size="11.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="numberOfAppointments" alignment="CENTER" contentDisplay="CENTER">
+                                <font>
+                                    <Font name="Consolas Bold" size="12.0" />
+                                </font>
+                            </Label>
+                        </children>
+                     </HBox>
+                  </children></AnchorPane>
+             <AnchorPane minHeight="0.0" minWidth="0.0">
+                  <children>
+                     <HBox prefHeight="34.0" spacing="5.0" AnchorPane.rightAnchor="20.0">
+                        <children>
+                            <Label fx:id="copyButtonNotification" contentDisplay="CENTER">
+                                <font>
+                                    <Font name="Consolas Bold" size="12.0" />
+                                </font>
+                              <HBox.margin>
+                                 <Insets top="6.8" />
+                              </HBox.margin>
+                            </Label>
+                           <Button id="pill-button" fx:id="copyButton" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#copyUrl" prefHeight="33.0" prefWidth="126.0" text="MR URL" />
+                        </children>
+                     </HBox>
+                  </children>
+               </AnchorPane>
+           </items>
+         </SplitPane>
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
