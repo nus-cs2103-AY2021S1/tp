@@ -31,7 +31,7 @@ public class ItemFindCommandParser implements Parser<ItemFindCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SUPPLIER, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_SUPPLIER, PREFIX_TAG)
+        if (!onlyOnePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_SUPPLIER, PREFIX_TAG)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ItemFindCommand.MESSAGE_USAGE));
         }
@@ -59,7 +59,14 @@ public class ItemFindCommandParser implements Parser<ItemFindCommand> {
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    private static boolean onlyOnePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        int i = 0;
+        for (Prefix p: prefixes) {
+            if (argumentMultimap.getValue(p).isPresent()) {
+                i++;
+            }
+        }
+        return i == 1 && Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+
 }
