@@ -45,7 +45,7 @@ Wishful Shrinking is a **desktop app for managing your diet, keeping track of yo
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `addR n/salad`.
-  
+
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/Salad t/healthy` or as `n/Salad`.
 
@@ -248,7 +248,7 @@ _{give a remark to the recipe}_
 
 Features | Format, Examples
 --------|------------------
-**Add recipe** | `addR n/TITLE i/INGREDIENT[, MORE INGREDIENT] c/CALORIES img/IMAGE inst/INSTRUCTION... [t/TAG]...` <br> e.g., `addR n/salad i/lettuce, carrots, olive oil c/80`
+**Add recipe** | `addR n/TITLE i/INGREDIENT[, MORE INGREDIENT] c/CALORIES img/IMAGE inst/INSTRUCTION... [t/TAG]...` <br> e.g., `addR n/salad i/lettuce, tomato, olive oil c/40 inst/mix everything img/image/Salad.png`
 **Add Ingredient to the fridge** | `addF i/INGREDIENTS` <br> e.g., `addF i/banana, green peas, salmon fish`
 **Delete recipe** | `deleteR INDEX`<br> e.g., `deleteR 3`
 **Delete Ingredient from the fridge** | `deleteF INDEX`<br> e.g., `deleteF 3`
