@@ -45,6 +45,12 @@ public class UniqueModuleListTest {
     }
 
     @Test
+    public void clearAll_returnsTrue() {
+        uniqueModuleList.clearAll();
+        assertEquals(uniqueModuleList, new UniqueModuleList());
+    }
+
+    @Test
     public void add_nullModule_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueModuleList.add(null));
     }

@@ -15,17 +15,16 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.module.CodeOrNameMatchesKeywordPredicate;
 import seedu.address.model.module.Module;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -77,6 +76,8 @@ public class CommandTestUtil {
 
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+
+    public static final String VALID_MODULE_CODE_DESC = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_CS2103;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -173,7 +174,7 @@ public class CommandTestUtil {
 
         Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
         final String moduleCode = module.getModuleCode().moduleCode;
-        model.updateFilteredModuleList(new CodeOrNameMatchesKeywordPredicate(Collections.singletonList(moduleCode)));
+        model.updateFilteredModuleList(new ModuleCodeContainsKeywordsPredicate(moduleCode));
 
         assertEquals(1, model.getFilteredModuleList().size());
     }

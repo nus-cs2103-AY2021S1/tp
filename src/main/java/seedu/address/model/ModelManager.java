@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.UniqueModuleList;
@@ -113,6 +114,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean isEmptyPersonList() {
+        return addressBook.getPersonList().isEmpty();
+    }
+
+    @Override
+    public void clearContacts() {
+        addressBook.clearContacts();
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
@@ -159,6 +170,11 @@ public class ModelManager implements Model {
     public void unassignAllInstructors() {
         addressBook.unassignAllInstructors();
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void unassignInstructor(Person instructor, ModuleCode moduleCode) throws CommandException {
+        addressBook.unassignInstructor(instructor, moduleCode);
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 

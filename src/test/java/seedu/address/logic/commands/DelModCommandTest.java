@@ -6,6 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -168,6 +169,11 @@ class DelModCommandTest {
         }
 
         @Override
+        public void unassignInstructor(Person instructor, ModuleCode moduleCode) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public UniqueModuleList getModuleList() {
             return null;
         }
@@ -193,7 +199,17 @@ class DelModCommandTest {
         }
 
         @Override
+        public boolean isEmptyPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean isEmptyModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearContacts() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -235,9 +251,7 @@ class DelModCommandTest {
     private class ModuleListStub extends UniqueModuleList {
         private ArrayList<Module> moduleList = new ArrayList<>();
         public void add(Module ... modules) {
-            for (Module module : modules) {
-                moduleList.add(module);
-            }
+            Collections.addAll(moduleList, modules);
         }
         @Override
         public void removeModuleWithCode(ModuleCode toRemove) {
