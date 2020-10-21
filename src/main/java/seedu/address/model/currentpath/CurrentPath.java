@@ -1,12 +1,12 @@
 package seedu.address.model.currentpath;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.model.tag.FileAddress;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * CurrentPath contains the current path (a FileAddress) of the HelloFile

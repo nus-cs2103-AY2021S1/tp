@@ -59,6 +59,12 @@ public class ParserUtil {
         return new FileAddress(trimmedAddress);
     }
 
+    /**
+     * Parses an address string as an absolute address.
+     * @param address the address string
+     * @return the absolute address string
+     * @throws ParseException if the given address string is blank.
+     */
     public static String parseAbsoluteAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
@@ -68,6 +74,12 @@ public class ParserUtil {
         return trimmedAddress;
     }
 
+    /**
+     * Parses an address string as a child address.
+     * @param address the address string
+     * @return the child address string
+     * @throws ParseException if the address string given is blank.
+     */
     public static String parseChildAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
@@ -77,6 +89,12 @@ public class ParserUtil {
         return trimmedAddress;
     }
 
+    /**
+     * Parses an address string as a parent address.
+     * @param address the address string
+     * @return the parent address string
+     * @throws ParseException if the given address string is not blank.
+     */
     public static String parseParentAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();

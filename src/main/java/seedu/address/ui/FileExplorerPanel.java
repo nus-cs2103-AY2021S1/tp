@@ -11,7 +11,6 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.currentpath.CurrentPath;
-import seedu.address.model.currentpath.FileList;
 
 /**
  * Panel of the file explorer.
@@ -40,17 +39,17 @@ public class FileExplorerPanel extends UiPart<Region> {
      * @param currentPath the current path
      * @param fileList the list of children files
      */
-    public void SetData(CurrentPath currentPath, ObservableList<File> fileList) {
+    public void setData(CurrentPath currentPath, ObservableList<File> fileList) {
         this.currentPath = currentPath;
         fileListView.setItems(fileList);
         fileListView.setCellFactory(listView -> new FileListViewCell());
-        UpdateCurrentPath();
+        updateCurrentPath();
     }
 
     /**
      * Updates the current path displayed on UI.
      */
-    public void UpdateCurrentPath() {
+    public void updateCurrentPath() {
         currentPathDisplay.setText(currentPath.getAddress().value);
     }
 

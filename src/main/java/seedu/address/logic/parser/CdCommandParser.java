@@ -1,16 +1,15 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CHILD_PATH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_PATH;
 
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddressType;
 import seedu.address.logic.commands.CdCommand;
-import seedu.address.logic.commands.OpenCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.FileAddress;
-import seedu.address.model.tag.TagName;
 
 public class CdCommandParser implements Parser<CdCommand> {
 

@@ -165,7 +165,7 @@ public class MainWindow extends UiPart<Stage> {
         footerbarPlaceHolder.getChildren().add(footerBar.getRoot());
 
         // file explorer panel
-        fileExplorerPanel.SetData(logic.getCurrentPath(), logic.getFilteredFileList());
+        fileExplorerPanel.setData(logic.getCurrentPath(), logic.getFilteredFileList());
         fileExplorerPlaceHolder.getChildren().add(fileExplorerPanel.getRoot());
     }
 
@@ -242,7 +242,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            fileExplorerPanel.UpdateCurrentPath();
+            fileExplorerPanel.updateCurrentPath();
 
             return commandResult;
         } catch (CommandException | ParseException e) {

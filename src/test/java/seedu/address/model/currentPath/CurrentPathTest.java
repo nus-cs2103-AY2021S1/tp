@@ -1,9 +1,11 @@
 package seedu.address.model.currentPath;
 
+import static seedu.address.testutil.Assert.assertThrows;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.currentpath.CurrentPath;
 
-import static seedu.address.testutil.Assert.assertThrows;
 
 public class CurrentPathTest {
 

@@ -1,16 +1,16 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHILD_PATH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_PATH;
+
+import java.io.File;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.currentpath.CurrentPath;
 import seedu.address.model.tag.FileAddress;
-
-import java.io.File;
 
 /**
  * Sets the current path of the file explorer.
