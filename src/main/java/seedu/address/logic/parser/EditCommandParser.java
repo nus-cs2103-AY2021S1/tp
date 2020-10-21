@@ -13,8 +13,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditEntryCommand;
-import seedu.address.logic.commands.EditEntryCommand.EditEntryDescriptor;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditCommand.EditEntryDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.util.ArgumentMultimap;
 import seedu.address.logic.parser.util.ArgumentTokenizer;
@@ -23,14 +23,14 @@ import seedu.address.model.tag.Tag;
 
 
 
-public class EditEntryCommandParser implements Parser<EditEntryCommand> {
+public class EditCommandParser implements Parser<EditCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditEntryCommand parse(String args) throws ParseException {
+    public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_DESCRIPTION, PREFIX_AMOUNT, PREFIX_TAG);
@@ -41,7 +41,7 @@ public class EditEntryCommandParser implements Parser<EditEntryCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditEntryCommand.MESSAGE_USAGE), pe);
+                    EditCommand.MESSAGE_USAGE), pe);
         }
 
         EditEntryDescriptor editEntryDescriptor = new EditEntryDescriptor();
@@ -59,10 +59,10 @@ public class EditEntryCommandParser implements Parser<EditEntryCommand> {
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editEntryDescriptor::setTags);
 
         if (!editEntryDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditEntryCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditEntryCommand(index, editEntryDescriptor);
+        return new EditCommand(index, editEntryDescriptor);
     }
 
     /**

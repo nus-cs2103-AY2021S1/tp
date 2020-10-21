@@ -26,7 +26,7 @@ import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
 import seedu.address.model.tag.Tag;
 
-public class EditEntryCommand extends Command {
+public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the entry identified "
@@ -50,7 +50,7 @@ public class EditEntryCommand extends Command {
     /**
      * Creates an EditAccountCommand to edit the current {@code ActiveAccount}
      */
-    public EditEntryCommand(Index index, EditEntryDescriptor editEntryDescriptor) {
+    public EditCommand(Index index, EditEntryDescriptor editEntryDescriptor) {
         requireNonNull(index);
         this.index = index;
         this.editEntryDescriptor = editEntryDescriptor;
@@ -60,7 +60,7 @@ public class EditEntryCommand extends Command {
     public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
         requireNonNull(model);
         List<? extends Entry> lastShownList;
-        if (editEntryDescriptor.getCategory().isExpense()) {
+        if (editEntryDescriptor.isEntryExpense()) {
             lastShownList = activeAccount.getFilteredExpenseList();
         } else {
             lastShownList = activeAccount.getFilteredRevenueList();
@@ -109,12 +109,12 @@ public class EditEntryCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditEntryCommand)) {
+        if (!(other instanceof EditCommand)) {
             return false;
         }
 
         // state check
-        EditEntryCommand e = (EditEntryCommand) other;
+        EditCommand e = (EditCommand) other;
         return index.equals(e.index)
                 && editEntryDescriptor.equals(e.editEntryDescriptor);
     }
@@ -140,6 +140,14 @@ public class EditEntryCommand extends Command {
             setDescription(toCopy.description);
             setAmount(toCopy.amount);
             setTags(toCopy.tags);
+        }
+
+        public boolean isEntryExpense() {
+            return getCategory().isExpense();
+        }
+
+        public boolean isEntryRevenue() {
+            return getCategory().isRevenue();
         }
 
         /**
