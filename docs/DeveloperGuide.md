@@ -204,10 +204,10 @@ The following sequence diagram shows how the clear operation works:
 
 ##### Aspect: How clear executes
 
-* **Alternative 1 (Current Choice):** A temporary list is used to hold the filtered food items.
+* **Alternative 1 (Current Choice):** A refilter using predicate into a list and reupdate food items.
 
-    * Pros: Easy to implement
-    * Cons: Requires the user to key in path to file
+    * Pros: No traversal issue and no issue when food definition changes
+    * Cons: Hard to implement
 
 * **Alternative 2:** An enhanced for loop can be used to remove all occurences straight from the list.
 

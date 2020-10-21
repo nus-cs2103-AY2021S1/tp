@@ -2,6 +2,7 @@ package jimmy.mcgymmy.logic.commands;
 
 import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.ModelManager;
+
 import org.junit.jupiter.api.Test;
 
 public class ClearCommandTest {
