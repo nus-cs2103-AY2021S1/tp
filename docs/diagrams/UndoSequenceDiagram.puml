@@ -3,8 +3,6 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":McGymmyParser" as McGymmyParser LOGIC_COLOR
-participant ":PrimitiveCommandParser" as PrimitiveCommandParser LOGIC_COLOR
 participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
 end box
 
@@ -16,36 +14,18 @@ end box
 [-> LogicManager : execute(undo)
 activate LogicManager
 
-LogicManager -> McGymmyParser : parse(undo)
-activate McGymmyParser
-
-McGymmyParser -> PrimitiveCommandParser : parse(undo)
-activate PrimitiveCommandParser
-
 create UndoCommand
-PrimitiveCommandParser -> UndoCommand
+LogicManager -> UndoCommand : Parser::parse(undo)**
 activate UndoCommand
 
-UndoCommand --> PrimitiveCommandParser: u
+UndoCommand -> LogicManager : u
 deactivate UndoCommand
-
-PrimitiveCommandParser --> McGymmyParser: u
-deactivate PrimitiveCommandParser
-
-McGymmyParser --> LogicManager : u
-deactivate McGymmyParser
 
 LogicManager -> UndoCommand : execute(model)
 activate UndoCommand
 
 UndoCommand -> Model : undo()
 activate Model
-
-Model -> Model : canUndo()
-activate Model
-
-Model -> Model : true
-deactivate Model
 
 Model -> McGymmyStack :pop()
 activate McGymmyStack
@@ -62,7 +42,7 @@ deactivate Model
 Model --> UndoCommand
 deactivate Model
 
-UndoCommand --> LogicManager : result
+UndoCommand --> LogicManager : :CommandResult
 deactivate UndoCommand
 UndoCommand -[hidden]-> LogicManager : result
 destroy UndoCommand

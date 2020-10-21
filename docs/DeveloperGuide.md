@@ -328,7 +328,9 @@ The following sequence diagram shows how the undo operation works:
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The method Parser::parse is a simplification of the overall parsing sequence which was already covered in showcasing the execution of the delete method. As such, redundant parsing details are not covered here.
 </div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
