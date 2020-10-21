@@ -197,6 +197,11 @@ public class AddModuleCommandTest {
         }
 
         @Override
+        public Path getContactListFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }
