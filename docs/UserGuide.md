@@ -305,7 +305,6 @@ Data (all stocks in inventory in json) is automatically saved to
 * add
 * delete
 * note
-* notedelete
 * update
 * note
 

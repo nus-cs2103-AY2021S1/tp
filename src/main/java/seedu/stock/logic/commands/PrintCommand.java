@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javafx.collections.ObservableList;
+import seedu.stock.commons.util.FileUtil;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
 import seedu.stock.model.stock.Stock;
@@ -37,6 +38,8 @@ public class PrintCommand extends Command {
         Path csvFilePath = model.getUserPrefs().getCsvFilePath();
 
         try {
+            System.out.println(model.getUserPrefs().getClass());
+            FileUtil.createIfMissing(csvFilePath);
             BufferedWriter writer = new BufferedWriter(new FileWriter(csvFilePath.toString()));
             writer.append(makeFileCreationTime());
             writer.append(makeTitleHeader());
@@ -45,8 +48,7 @@ public class PrintCommand extends Command {
             }
             writer.close();
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-            //  throw new CommandException(MESSAGE_FAILURE + ex.getMessage());
+            throw new CommandException(MESSAGE_FAILURE + ex.getMessage());
         }
 
         return new CommandResult(MESSAGE_SUCCESS);
