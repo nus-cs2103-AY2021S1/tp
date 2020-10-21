@@ -735,10 +735,10 @@ should be able to accomplish most of the tasks faster using commands than using 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
-* **Member**: A person belonging to a member of a team leader's team.
-* **Task**: Something that has to be done with relation to a project to complete it.
+* **Member**: A person belonging to a member of a team leader's team. <!-- need to be re-written -->
+* **Task**: Something that has to be done with relation to a project to complete it. <!-- this is not a glossary but a note. Need a glossary -->
 * **Project**: A project with a deadline, tasks, and members allocated to those tasks.
-<!-- may add: start, user, index -->
+<!-- may add more: e.g. person, participation, start, user, index -->
 
 --------------------------------------------------------------------------------------------------------------------
 
