@@ -16,4 +16,16 @@ public class AliasEntry {
     public String getValue() {
         return this.value;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof AliasEntry)) {
+            return false;
+        }
+        return this.key.equals(((AliasEntry) o).key)
+                && this.value.equals(((AliasEntry) o).value);
+    }
 }

@@ -1,16 +1,16 @@
 package seedu.expense.logic.commands;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import seedu.expense.model.Model;
+import seedu.expense.model.ModelManager;
+import seedu.expense.model.UserPrefs;
+import seedu.expense.model.alias.AliasMap;
+
 import static seedu.expense.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.expense.logic.commands.CommandTestUtil.showExpenseAtIndex;
 import static seedu.expense.testutil.TypicalExpenses.getTypicalExpenseBook;
 import static seedu.expense.testutil.TypicalIndexes.INDEX_FIRST_EXPENSE;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import seedu.expense.model.Model;
-import seedu.expense.model.ModelManager;
-import seedu.expense.model.UserPrefs;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -22,8 +22,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalExpenseBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getExpenseBook(), new UserPrefs());
+        model = new ModelManager(getTypicalExpenseBook(), new UserPrefs(), new AliasMap());
+        expectedModel = new ModelManager(model.getExpenseBook(), new UserPrefs(), new AliasMap());
     }
 
     @Test

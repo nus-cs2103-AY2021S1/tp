@@ -1,27 +1,23 @@
 package seedu.expense.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.expense.logic.commands.CommandTestUtil.VALID_REMARK_BUS;
-import static seedu.expense.logic.commands.CommandTestUtil.VALID_REMARK_FOOD;
-import static seedu.expense.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.expense.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.expense.logic.commands.CommandTestUtil.showExpenseAtIndex;
-import static seedu.expense.testutil.TypicalExpenses.getTypicalExpenseBook;
-import static seedu.expense.testutil.TypicalIndexes.INDEX_FIRST_EXPENSE;
-import static seedu.expense.testutil.TypicalIndexes.INDEX_SECOND_EXPENSE;
-
 import org.junit.jupiter.api.Test;
-
 import seedu.expense.commons.core.Messages;
 import seedu.expense.commons.core.index.Index;
 import seedu.expense.model.ExpenseBook;
 import seedu.expense.model.Model;
 import seedu.expense.model.ModelManager;
 import seedu.expense.model.UserPrefs;
+import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.expense.Remark;
 import seedu.expense.testutil.ExpenseBuilder;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.expense.logic.commands.CommandTestUtil.*;
+import static seedu.expense.testutil.TypicalExpenses.getTypicalExpenseBook;
+import static seedu.expense.testutil.TypicalIndexes.INDEX_FIRST_EXPENSE;
+import static seedu.expense.testutil.TypicalIndexes.INDEX_SECOND_EXPENSE;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.
@@ -30,7 +26,7 @@ public class RemarkCommandTest {
 
     private static final String REMARK_STUB = "Some remark";
 
-    private Model model = new ModelManager(getTypicalExpenseBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalExpenseBook(), new UserPrefs(), new AliasMap());
 
     @Test
     public void execute_addRemarkUnfilteredList_success() {
@@ -42,7 +38,7 @@ public class RemarkCommandTest {
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedExpense);
 
-        Model expectedModel = new ModelManager(new ExpenseBook(model.getExpenseBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ExpenseBook(model.getExpenseBook()), new UserPrefs(), new AliasMap());
         expectedModel.setExpense(firstExpense, editedExpense);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
@@ -58,7 +54,7 @@ public class RemarkCommandTest {
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS, editedExpense);
 
-        Model expectedModel = new ModelManager(new ExpenseBook(model.getExpenseBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ExpenseBook(model.getExpenseBook()), new UserPrefs(), new AliasMap());
         expectedModel.setExpense(firstExpense, editedExpense);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
@@ -78,7 +74,7 @@ public class RemarkCommandTest {
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedExpense);
 
-        Model expectedModel = new ModelManager(new ExpenseBook(model.getExpenseBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ExpenseBook(model.getExpenseBook()), new UserPrefs(), new AliasMap());
         expectedModel.setExpense(firstExpense, editedExpense);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);

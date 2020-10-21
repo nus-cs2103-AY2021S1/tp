@@ -1,17 +1,17 @@
 package seedu.expense.logic.commands;
 
-import static seedu.expense.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.expense.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.expense.testutil.TypicalExpenses.getTypicalExpenseBook;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import seedu.expense.model.Model;
 import seedu.expense.model.ModelManager;
 import seedu.expense.model.UserPrefs;
+import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.testutil.ExpenseBuilder;
+
+import static seedu.expense.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.expense.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.expense.testutil.TypicalExpenses.getTypicalExpenseBook;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -22,14 +22,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalExpenseBook(), new UserPrefs());
+        model = new ModelManager(getTypicalExpenseBook(), new UserPrefs(), new AliasMap());
     }
 
     @Test
     public void execute_newExpense_success() {
         Expense validExpense = new ExpenseBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getExpenseBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getExpenseBook(), new UserPrefs(), new AliasMap());
         expectedModel.addExpense(validExpense);
 
         assertCommandSuccess(new AddCommand(validExpense), model,

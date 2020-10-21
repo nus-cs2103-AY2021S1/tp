@@ -135,4 +135,14 @@ public class AliasMap {
         aliasMap.remove(alias.getKey());
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof AliasMap)) {
+            return false;
+        }
+        return this.aliasMap.equals(((AliasMap) o).aliasMap);
+    }
 }

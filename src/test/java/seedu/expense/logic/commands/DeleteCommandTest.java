@@ -1,22 +1,20 @@
 package seedu.expense.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.expense.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.expense.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.expense.logic.commands.CommandTestUtil.showExpenseAtIndex;
-import static seedu.expense.testutil.TypicalExpenses.getTypicalExpenseBook;
-import static seedu.expense.testutil.TypicalIndexes.INDEX_FIRST_EXPENSE;
-import static seedu.expense.testutil.TypicalIndexes.INDEX_SECOND_EXPENSE;
-
 import org.junit.jupiter.api.Test;
-
 import seedu.expense.commons.core.Messages;
 import seedu.expense.commons.core.index.Index;
 import seedu.expense.model.Model;
 import seedu.expense.model.ModelManager;
 import seedu.expense.model.UserPrefs;
+import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.expense.Expense;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.expense.logic.commands.CommandTestUtil.*;
+import static seedu.expense.testutil.TypicalExpenses.getTypicalExpenseBook;
+import static seedu.expense.testutil.TypicalIndexes.INDEX_FIRST_EXPENSE;
+import static seedu.expense.testutil.TypicalIndexes.INDEX_SECOND_EXPENSE;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
@@ -24,7 +22,7 @@ import seedu.expense.model.expense.Expense;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalExpenseBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalExpenseBook(), new UserPrefs(), new AliasMap());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -33,7 +31,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EXPENSE_SUCCESS, expenseToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getExpenseBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getExpenseBook(), new UserPrefs(), new AliasMap());
         expectedModel.deleteExpense(expenseToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -56,7 +54,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EXPENSE_SUCCESS, expenseToDelete);
 
-        Model expectedModel = new ModelManager(model.getExpenseBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getExpenseBook(), new UserPrefs(), new AliasMap());
         expectedModel.deleteExpense(expenseToDelete);
         showNoExpense(expectedModel);
 

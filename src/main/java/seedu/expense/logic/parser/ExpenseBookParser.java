@@ -9,7 +9,6 @@ import seedu.expense.model.alias.AliasMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.expense.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.expense.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
@@ -31,51 +30,7 @@ public class ExpenseBookParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
-        if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-        }
-
-        final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
-        switch (commandWord) {
-
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
-
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
-
-        case RemarkCommand.COMMAND_WORD:
-            return new RemarkCommandParser().parse(arguments);
-
-        case TopupCommand.COMMAND_WORD:
-            return new TopupCommandParser().parse(arguments);
-
-        case AliasCommand.COMMAND_WORD:
-            return new AliasCommandParser().parse(arguments);
-
-        default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
-        }
+        return parseCommand(userInput, null);
     }
 
     public Command parseCommand(String userInput, AliasMap aliasMap) throws ParseException {
@@ -85,8 +40,7 @@ public class ExpenseBookParser {
         }
 
         String commandWord = matcher.group("commandWord");
-        requireNonNull(aliasMap);
-        if (aliasMap.hasAlias(commandWord)) {
+        if (aliasMap != null && aliasMap.hasAlias(commandWord)) {
             commandWord = aliasMap.getValue(commandWord);
         }
         final String arguments = matcher.group("arguments");
