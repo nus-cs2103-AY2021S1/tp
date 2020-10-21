@@ -143,7 +143,7 @@ The following sequence diagram shows how the mclear operation works:
 
 Clearing all modules from the module list
 
-a. Prerequisites : Clear all modules from module list using `cclear` There are 3 modules with module codes `CS2100`, `CS2101`, `CS2102` in FaculType.
+a. Prerequisites : Clear all modules from module list using `mclear` There are 3 modules with module codes `CS2100`, `CS2101`, `CS2102` in FaculType.
 
 b. Test case : `mclear` <br>
 Expected : Success message saying "All modules deleted"
