@@ -8,6 +8,11 @@ public class Task {
         this.name = name;
     }
 
+    /**
+     * Constructs a {@Code Task}.
+     * @param name
+     * @param isDone
+     */
     public Task(String name, boolean isDone) {
         this.name = name;
         this.isDone = isDone;

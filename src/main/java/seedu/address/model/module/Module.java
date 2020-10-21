@@ -1,7 +1,6 @@
 package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,7 +9,7 @@ import java.util.List;
 import seedu.address.model.Showable;
 import seedu.address.model.Task;
 import seedu.address.model.TaskList;
-import seedu.address.model.tutorial_group.TutorialGroup;
+import seedu.address.model.tutorialgroup.TutorialGroup;
 
 
 public class Module implements Showable<Module> {
@@ -31,6 +30,12 @@ public class Module implements Showable<Module> {
         this.taskList = new TaskList();
     }
 
+    /**
+     * Constructs an {@code Module}.
+     * @param moduleId
+     * @param taskList
+     * @param tutorialGroups
+     */
     public Module(ModuleId moduleId, List<TutorialGroup> tutorialGroups, List<Task> taskList) {
         requireNonNull(moduleId);
         requireNonNull(tutorialGroups);

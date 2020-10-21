@@ -1,4 +1,4 @@
-package seedu.address.model.tutorial_group;
+package seedu.address.model.tutorialgroup;
 
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
@@ -21,16 +21,16 @@ public class TutorialGroup {
 
     //
 
-//    /**
-//     * Constructor for Tutorial Group
-//     * @param id of Tutorial Group
-//     * @param module that Tutorial Group belongs to
-//     */
-//    public TutorialGroup(String id, Module module) {
-//        this.id = id;
-//        this.module = module;
-//        this.studentList = new HashMap<>();
-//    }
+    //    /**
+    //     * Constructor for Tutorial Group
+    //     * @param id of Tutorial Group
+    //     * @param module that Tutorial Group belongs to
+    //     */
+    //    public TutorialGroup(String id, Module module) {
+    //        this.id = id;
+    //        this.module = module;
+    //        this.studentList = new HashMap<>();
+    //    }
 
 
     /**
@@ -42,6 +42,12 @@ public class TutorialGroup {
         this.studentList = new HashMap<>();
     }
 
+    /**
+     * Constructor for Tutorial Group
+     * @param tutorialGroupId
+     * @param startTime
+     * @param endTime
+     */
     public TutorialGroup(TutorialGroupId tutorialGroupId, LocalTime startTime, LocalTime endTime) {
         this.tutorialGroupId = tutorialGroupId;
         this.startTime = startTime;

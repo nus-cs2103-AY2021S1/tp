@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.ModuleId;
-import seedu.address.model.tutorial_group.TutorialGroup;
-import seedu.address.model.tutorial_group.TutorialGroupId;
+import seedu.address.model.tutorialgroup.TutorialGroup;
+import seedu.address.model.tutorialgroup.TutorialGroupId;
 
 public class JsonAdaptedTutorialGroup {
 
@@ -22,6 +22,9 @@ public class JsonAdaptedTutorialGroup {
     private String endTime;
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
+    /**
+     * Constructs a {@code JsonAdaptedTutorialGroup} with the given tutorial group details.
+     */
     @JsonCreator
     public JsonAdaptedTutorialGroup(@JsonProperty("tutorialGroupId") String tutorialGroupId,
                                     @JsonProperty("startTime") String startTime,
@@ -33,6 +36,9 @@ public class JsonAdaptedTutorialGroup {
         this.students.addAll(students);
     }
 
+    /**
+     * Converts a given {@code TutorialGroup} into this class for Jackson use.
+     */
     public JsonAdaptedTutorialGroup(TutorialGroup source) {
         tutorialGroupId = source.getId().toString();
         startTime = source.getStartTime().toString();
@@ -49,7 +55,8 @@ public class JsonAdaptedTutorialGroup {
     public TutorialGroup toModelType() throws IllegalValueException {
 
         if (tutorialGroupId == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ModuleId.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ModuleId.class.getSimpleName()));
         }
         if (!TutorialGroupId.isValidTutorialGroupId(tutorialGroupId)) {
             throw new IllegalValueException(ModuleId.MESSAGE_CONSTRAINTS);

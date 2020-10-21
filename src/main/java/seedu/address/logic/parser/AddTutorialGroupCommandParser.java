@@ -5,8 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP;
 
 import seedu.address.logic.commands.AddTutorialGroupCommand;
 //import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tutorial_group.TutorialGroup;
-import seedu.address.model.tutorial_group.TutorialGroupId;
+import seedu.address.model.tutorialgroup.TutorialGroup;
+import seedu.address.model.tutorialgroup.TutorialGroupId;
 
 public class AddTutorialGroupCommandParser implements Parser<AddTutorialGroupCommand> {
 

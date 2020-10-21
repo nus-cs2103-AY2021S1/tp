@@ -11,7 +11,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Task;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleId;
-import seedu.address.model.tutorial_group.TutorialGroup;
+import seedu.address.model.tutorialgroup.TutorialGroup;
 
 public class JsonAdaptedModule {
 
@@ -65,7 +65,8 @@ public class JsonAdaptedModule {
         }
 
         if (moduleId == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ModuleId.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ModuleId.class.getSimpleName()));
         }
         if (!ModuleId.isValidModuleId(moduleId)) {
             throw new IllegalValueException(ModuleId.MESSAGE_CONSTRAINTS);

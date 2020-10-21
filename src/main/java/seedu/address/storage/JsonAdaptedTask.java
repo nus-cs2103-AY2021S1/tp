@@ -21,7 +21,7 @@ class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("taskName") String taskName, @JsonProperty("isDone") String isDone) {
         this.taskName = taskName;
-        this.isDone= isDone;
+        this.isDone = isDone;
     }
 
     /**
