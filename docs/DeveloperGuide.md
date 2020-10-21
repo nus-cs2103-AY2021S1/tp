@@ -891,7 +891,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case resumes at step 1.
 
-#### Use case: Adding a note to a stock
+#### Use case 13: Adding a note to a stock
 
 **MSS**
 
@@ -931,7 +931,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case resumes at step 1.
 
-#### Use case: Deleting a note from a stock
+#### Use case 14: Deleting a note from a stock
 
 **MSS**
 
@@ -977,7 +977,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case resumes at step 1.
 
-#### Use case: Deleting all notes from a stock
+#### Use case 15: Deleting all notes from a stock
 
 **MSS**
 
@@ -1023,40 +1023,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case resumes at step 1.
      
- #### Use case 13: Generating a csv file that contains all stocks
+#### Use case 16: Generating a csv file that contains all stocks
+
+**MSS**
+
+1.  User requests to print stocks in stock book.
+2.  Warenager generates a csv file containing all stocks.
  
- **MSS**
+    Use case ends.
  
- 1.  User requests to print stocks in stock book.
- 2.  Warenager generates a csv file containing all stocks.
+**Extensions**
  
-     Use case ends.
+* 1a. The given input contains has the wrong format.
+
+    * 1a1. Warenager shows an error message and suggested command.
  
- **Extensions**
+      Use case resumes at step 1.
  
- * 1a. The given input contains has the wrong format.
+* 1b. There is an error when creating the csv file.
  
-     * 1a1. Warenager shows an error message and suggested command.
+    * 1b1. Warenager shows an error message.
  
-       Use case resumes at step 1.
- 
- * 1b. There is an error when creating the csv file.
- 
-     * 1b1. Warenager shows an error message.
- 
-       Use case resumes at step 1.
- 
- #### Use case 14: Generating a csv file that contains all stocks sorted in desired order
+      Use case resumes at step 1.
+
+#### Use case 17: Generating a csv file that contains all stocks sorted in desired order
 
  **MSS**
  
  1.  User sort stocks in stock book (Use case..) in their desired order.
- 2.  User request to generate csv file based on the existing stock book (Use case 13).
+ 2.  User request to generate csv file based on the existing stock book (Use case 16).
  3.  Warenager generates a csv file containing all stocks.
  
      Use case ends.
 
-#### Use case 15: Using the help command
+#### Use case 18: Using the help command
 
 **MSS**
 
@@ -1073,7 +1073,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case resumes at step 1.
 
-#### Use case 16: Suggestion feature
+#### Use case 19: Suggestion feature
 
 **MSS**
 
@@ -1102,7 +1102,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 3.
 
-#### Use case 17: Exit Warenager
+#### Use case 20: Exit Warenager
 
 **MSS**
 
