@@ -232,7 +232,9 @@ public class ProfileWindow extends UiPart<Stage> {
 
     @FXML
     void mouseClickExit(MouseEvent e) {
+        logger.info("User pressed 'close'. Closing Profile Panel..");
         getRoot().hide();
+        logger.info("Profile Panel Closed.");
     }
 }
 
