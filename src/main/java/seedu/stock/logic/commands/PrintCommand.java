@@ -1,7 +1,5 @@
 package seedu.stock.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
