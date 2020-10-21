@@ -58,6 +58,7 @@ Given below are my contributions to the project.
     * [#106](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/106)
     * [#115](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/115)
     * [#159](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/159)
+    * [#166](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/166)
   * Contributed to forum discussions (examples: 
     * [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/193),
     * [2](https://github.com/nus-cs2103-AY2021S1/forum/issues/150),
@@ -67,7 +68,7 @@ Given below are my contributions to the project.
     * [6](https://github.com/nus-cs2103-AY2021S1/forum/issues/116#issuecomment-683417502),
     * [7](https://github.com/nus-cs2103-AY2021S1/forum/issues/278),
     * [8](https://github.com/nus-cs2103-AY2021S1/forum/issues/328))
-  * Reported bugs and suggestions for other teams in the class (examples: [#164](https://github.com/AY2021S1-CS2103T-T12-1/tp/issues/164))
+  * Reported bugs and suggestions for other teams in the class (examples: )
   * Some parts of the history feature I added was adopted by several other class mates ()
 
 
