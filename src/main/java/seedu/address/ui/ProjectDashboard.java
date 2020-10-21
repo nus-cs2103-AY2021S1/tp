@@ -49,6 +49,8 @@ public class ProjectDashboard extends UiPart<Region> {
     private FlowPane teammates;
     @FXML
     private FlowPane tasks;
+    @FXML
+    private FlowPane meetings;
 
     /**
      * Creates a {@code ProjectDashboardCode} with the given {@code Project} and index to display.
@@ -58,20 +60,18 @@ public class ProjectDashboard extends UiPart<Region> {
         this.project = project.get();
         projectName.setText(this.project.getProjectName().fullProjectName);
         deadline.setText("Project deadline: " + this.project.getDeadline().toString());
-        header1.setText("Project tags: ");
-        this.project.getProjectTags().stream()
-                .sorted(Comparator.comparing(projectTag -> projectTag.projectTagName))
-                .forEach(projectTag -> this.tags.getChildren()
-                        .add(new Label(projectTag.projectTagName)));
-
         projectDescription.setText("Project description: " + this.project.getProjectDescription().value);
         repoUrl.setText("Project repourl: " + this.project.getRepoUrl().value);
-        header2.setText("Tasks: ");
-        this.project.getFilteredTaskList()
+        header1.setText("Tasks: ");
+        this.project.getFilteredTaskList().stream()
+                .sorted(Comparator.comparing(task -> task.taskName))
                 .forEach(task -> tasks.getChildren().add(new Label(task.taskName)));
-        header3.setText("Teammates: ");
+        header2.setText("Teammates: ");
         this.project.getTeammates().stream()
-                .forEach(person -> teammates.getChildren().add(new Label((person.getGitUserNameString()))));
+                .forEach(person -> teammates.getChildren().add(new Label(person.getPersonName().toString())));
+        header3.setText("Meetings: ");
+        this.project.getMeetings()
+                .forEach(meeting -> meetings.getChildren().add(new Label(meeting.getMeetingName())));
     }
 
     @Override

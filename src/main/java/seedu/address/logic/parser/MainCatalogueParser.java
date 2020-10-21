@@ -16,17 +16,22 @@ import seedu.address.logic.commands.global.FindCommand;
 import seedu.address.logic.commands.global.HelpCommand;
 import seedu.address.logic.commands.global.ListCommand;
 import seedu.address.logic.commands.global.StartCommand;
+import seedu.address.logic.commands.meeting.LeaveMeetingViewCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
 import seedu.address.logic.commands.project.AllMeetingsCommand;
 import seedu.address.logic.commands.project.AllTasksCommand;
 import seedu.address.logic.commands.project.AssignCommand;
 import seedu.address.logic.commands.project.EditTaskCommand;
 import seedu.address.logic.commands.project.EditTeammateCommand;
-import seedu.address.logic.commands.project.LeaveCommand;
+import seedu.address.logic.commands.project.LeaveProjectViewCommand;
 import seedu.address.logic.commands.project.MeetingFilterCommand;
 import seedu.address.logic.commands.project.NewTeammateCommand;
 import seedu.address.logic.commands.project.TaskFilterCommand;
+import seedu.address.logic.commands.project.ViewMeetingCommand;
 import seedu.address.logic.commands.project.ViewTaskCommand;
+import seedu.address.logic.commands.project.ViewTeammateCommand;
+import seedu.address.logic.commands.task.LeaveTaskViewCommand;
+import seedu.address.logic.commands.teammate.LeaveTeammateViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Status;
 import seedu.address.model.exceptions.InvalidScopeException;
@@ -84,10 +89,36 @@ public class MainCatalogueParser {
             return new HelpCommand();
 
         case StartCommand.COMMAND_WORD:
+            assert true;
             return new StartCommandParser().parse(arguments);
 
-        case LeaveCommand.COMMAND_WORD:
-            return new LeaveCommand();
+        case LeaveProjectViewCommand.COMMAND_WORD:
+            if (status == Status.PROJECT) {
+                return new LeaveProjectViewCommand();
+            } else {
+                throw new InvalidScopeException(Status.PROJECT, status);
+            }
+
+        case LeaveTaskViewCommand.COMMAND_WORD:
+            if (status == Status.TASK) {
+                return new LeaveTaskViewCommand();
+            } else {
+                throw new InvalidScopeException(Status.TASK, status);
+            }
+
+        case LeaveTeammateViewCommand.COMMAND_WORD:
+            if (status == Status.PERSON) {
+                return new LeaveTeammateViewCommand();
+            } else {
+                throw new InvalidScopeException(Status.PERSON, status);
+            }
+
+        case LeaveMeetingViewCommand.COMMAND_WORD:
+            if (status == Status.MEETING) {
+                return new LeaveMeetingViewCommand();
+            } else {
+                throw new InvalidScopeException(Status.MEETING, status);
+            }
 
         case AssignCommand.COMMAND_WORD:
             if (status != Status.CATALOGUE) {
@@ -95,30 +126,35 @@ public class MainCatalogueParser {
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
+
         case AllTasksCommand.COMMAND_WORD:
             if (status != Status.CATALOGUE) {
                 return new AllTasksCommand();
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
+
         case AllMeetingsCommand.COMMAND_WORD:
             if (status != Status.CATALOGUE) {
                 return new AllMeetingsCommand();
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
+
         case TaskFilterCommand.COMMAND_WORD:
             if (status != Status.CATALOGUE) {
                 return new TaskFilterCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
+
         case MeetingFilterCommand.COMMAND_WORD:
             if (status != Status.CATALOGUE) {
                 return new MeetingFilterCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
+
         case NewTeammateCommand.COMMAND_WORD:
             if (status != Status.CATALOGUE) {
                 return new NewTeammateCommandParser().parse(arguments);
@@ -146,9 +182,24 @@ public class MainCatalogueParser {
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
+
         case ViewTaskCommand.COMMAND_WORD:
             if (status != Status.CATALOGUE) {
                 return new ViewTaskCommandParser().parse(arguments);
+            } else {
+                throw new InvalidScopeException(Status.PROJECT, status);
+            }
+
+        case ViewTeammateCommand.COMMAND_WORD:
+            if (status != Status.CATALOGUE) {
+                return new ViewTeammateCommandParser().parse(arguments);
+            } else {
+                throw new InvalidScopeException(Status.PROJECT, status);
+            }
+
+        case ViewMeetingCommand.COMMAND_WORD:
+            if (status != Status.CATALOGUE) {
+                return new ViewMeetingCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }

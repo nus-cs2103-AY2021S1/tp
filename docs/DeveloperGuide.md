@@ -267,7 +267,6 @@ Step 1. The user uses `start` to open a project called "Taskmania". Suppose ther
 
 ![FilterStep1](images/FilterStep1.png)
 
-</div>
 
 Step 2. The user executes `filtert ta/T-Fang` command to find all tasks that have assignee whose Github username is "T-Fang". the command is eventually passed to `TaskFilterCommandParser` and the parser will identify the type of the filtering condition using the prefix entered and create the corresponding task predicate. In this case, `ta/` indicates that a predicate that filter tasks by their assignees' Github usernames should be created. Then when the `TaskFilterCommand` return by the parser is executed by the `LogicManager`, the `TaskFilterCommand` will get the current project ("Taskmania") from the `Model` and update the `taskFilter` predicate inside the "Taskmania" project. Therefore, the filtered task list of "Taskmania" will only contain `task1` and `task2`.
 
@@ -276,13 +275,10 @@ Step 2. The user executes `filtert ta/T-Fang` command to find all tasks that hav
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `TaskFilterCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-</div>
-
 Step 3. After seeing tasks that has been assign to "Tian Fang", the user wants to take a look at other tasks in "Taskmania". The user executes `allt` to see all the tasks in the "Taskmania". the `MainCataloguePaser` parses the command and creates a `AllTasksCommand`. When the `AllTasksCommand` is executed, it will get the current project ("Taskmania") from the `Model` and call the `showAllTasks()` method inside the "Taskmania" project. Then the `taskFilter` inside "Taskmania" will be replaced by a predicate that always returns true and all the tasks will be shown.
 
 ![AllTasksSequenceDiagram](images/AllTasksSequenceDiagram.png)
 
-</div>
 
 In the example above, the users can also filter the task list in different ways and the `taskFilter` predicate in "Taskmania" will be updated correspondingly:
 
@@ -325,6 +321,48 @@ The following activity diagram summarizes what happens when a user executes a ta
 * **Alternative 2:** Use `List<Task>`to
   * Pros: Has built-in method to filter the task list.
   * Cons: The same task might be duplicated in the `List`.
+  
+### New Teammate feature
+
+#### Implementation
+
+The implementation of New Teammate involves both the storing of the New Teammate in memory through the use of `Participation` as well as storing the Teammate in the JSON file on the hard disk using the `Storage` class. 
+
+The New Teammate created is added in the following places:
+ - global static variable `allPeople` in the Person class 
+ - within the project it was created for, in the associated Participation class
+ 
+The New Teammate command has to be prefixed with `newteammate` and include **all** of the following fields:
+ - `mn/` prefix followed by the name of the new teammate
+ - `mg/` prefix followed by the teammate's Github User Name
+ - `mp/` prefix followed by the phone number of the teammate
+ - `me/` prefix followed by the email of teammate
+ - `ma/` prefix followed by the address of the teammate
+ - *Each of the fields above is validated upon entry by the user, and failing the validation, will display to the user that the command failed, and requesting the user to try again.*
+ 
+The teammate is created in the project scope and assigned to that project. Further assignment of that user to other projects can be done in the scope of other projects.
+
+Given below is an example usage scenario and how the `NewTeammate` mechanism behaves at each step.
+
+Step 1: The user enters `start 1` for example to start project 1 from the mainscreen.The user is greeted with the projects list on the left, and the description of the project in the centre.
+
+![MainscreenUi](images/MainscreenUi.png)
+
+Step 2: The user enters a New Teammate command such as `newteammate mn/John Ivy mg/Ivydesign98 mp/82938281 me/imjon@gmail.com ma/13 Cupertino Loop`. The command text is passed into `LogicManager` (an implementation of Logic) which passes the raw text into the `MainCatalogueParser` to validate the first command word, which in this case is `newteammate`. A new instance of `TeammateCommandParser` class is then created which proceeds to parse the various fields of the command. Any invalid fields such as invalid field prefixes or invalid format of data would throw an exception at this stage. 
+
+If the fields are all valid, a new `Person` object would be created in the same class and passed into the `NewTeammateCommand` class. 
+
+Within the `NewTeammateCommand` class, an instance of `NewTeammateCommand` is created, along with an instance of the teammate created in the same class and this instance of `Command` is passed back to `LogicManager`.
+
+LogicManager then calls the method `execute` of the NewTeammateCommand which stores the teammate into the respective project's participation list, and for the project to be stored in the teammate's participation list. While seeming to increase coupling, it however keeps both classes separate and would not break each other when something is changed.
+
+The diagram below summarises what is happening above with the help of a sequence diagram:
+![NewTeammateSequenceDiagramImagae](images/NewTeammateSequenceDiagram.png)
+
+
+The diagram below gives a short overview on what happens when a user's input is received:
+![NewTeammateActivityDiagramImagae](images/NewTeammateActivityDiagram.png)
+
 
 ### \[Proposed\] Undo/redo feature
 

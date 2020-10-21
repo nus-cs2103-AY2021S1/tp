@@ -51,7 +51,8 @@ Given below are my contributions to the project.
   * User Guide:
     * Added documentation for basic task-related features.
     * Came up with the first draft of feature list.
-    * Added `filter` feature guide
+    * Added `filtert` feature guide
+    * Added `allt` and `allm` feature guides (Pull Request [\#149](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/149))
   * Developer Guide:
     * Wrote first draft of non-functional requirements. (Pull Request [\#54](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/54))
     * Added and updated Use Cases related to `filter`

@@ -19,6 +19,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
@@ -154,6 +156,16 @@ public class MainCatalogueTest {
 
         @Override
         public void enterTask(Task task) {
+            // TODO: Add content if test case need this.
+        }
+
+        @Override
+        public void enterTeammate(Person teammate) {
+            // TODO: Add content if test case need this.
+        }
+
+        @Override
+        public void enterMeeting(Meeting meeting) {
             // TODO: Add content if test case need this.
         }
     }
