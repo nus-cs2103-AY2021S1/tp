@@ -1,0 +1,65 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ZooKeepBookParser" as ZooKeepBookParser LOGIC_COLOR
+participant "u:RedoCommand" as RedoCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":HistoryStack" as HistoryStack MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+participant ":ZooKeepBook" as ZooKeepBook MODEL_COLOR
+end box
+[-> LogicManager : execute("redo")
+activate LogicManager
+
+LogicManager -> ZooKeepBookParser : parseCommand("redo")
+activate ZooKeepBookParser
+
+create RedoCommand
+ZooKeepBookParser -> RedoCommand
+activate RedoCommand
+
+RedoCommand --> ZooKeepBookParser
+deactivate RedoCommand
+
+ZooKeepBookParser --> LogicManager : redoCommand
+deactivate ZooKeepBookParser
+
+LogicManager -> RedoCommand : execute(model)
+activate RedoCommand
+
+RedoCommand -> HistoryStack : viewRecentRedo()
+activate HistoryStack
+
+HistoryStack -> RedoCommand : lastState
+deactivate HistoryStack
+
+RedoCommand -> Model : setZooKeepBook(lastState)
+activate Model
+
+Model -> ZooKeepBook : resetData(lastState)
+activate ZooKeepBook
+
+ZooKeepBook -> Model
+deactivate ZooKeepBook
+
+Model -> RedoCommand
+deactivate Model
+
+RedoCommand -> HistoryStack : removeRecentRedo()
+activate HistoryStack
+
+HistoryStack -> RedoCommand
+deactivate HistoryStack
+
+RedoCommand -> LogicManager : commandResult
+deactivate RedoCommand
+
+destroy RedoCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
