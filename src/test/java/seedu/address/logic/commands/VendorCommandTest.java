@@ -33,7 +33,9 @@ public class VendorCommandTest {
         Model expectedModel = new ModelManager(getTypicalAddressBook().selectVendor(first.getZeroBased()),
                 new UserPrefs());
         String expectedMessage = String.format(VendorCommand.MESSAGE_SELECT_VENDOR_SUCCESS, 1);
-        assertCommandSuccess(vendorCommand, model, expectedMessage, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false,
+                false, true);
+        assertCommandSuccess(vendorCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -45,7 +47,9 @@ public class VendorCommandTest {
         Model expectedModel = new ModelManager(getTypicalAddressBook().selectVendor(third.getZeroBased()),
                 new UserPrefs());
         String expectedMessage = String.format(VendorCommand.MESSAGE_SELECT_VENDOR_SUCCESS, 3);
-        assertCommandSuccess(vendorCommand, model, expectedMessage, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false,
+                false, true);
+        assertCommandSuccess(vendorCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test

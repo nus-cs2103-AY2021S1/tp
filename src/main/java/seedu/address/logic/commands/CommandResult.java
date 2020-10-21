@@ -11,13 +11,19 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
+    /**
+     * Help information should be shown to the user.
+     */
     private final boolean showHelp;
 
-    /** The application should exit. */
+    /**
+     * The application should exit.
+     */
     private final boolean exit;
 
-    /** Vendor is being changed in this command **/
+    /**
+     * Vendor is being changed in this command
+     **/
     private final boolean isVendor;
 
     /**
@@ -50,7 +56,9 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isVendor() { return isVendor;}
+    public boolean isVendor() {
+        return isVendor;
+    }
 
     @Override
     public boolean equals(Object other) {
@@ -66,12 +74,13 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && isVendor == otherCommandResult.isVendor;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, isVendor);
     }
 
 }
