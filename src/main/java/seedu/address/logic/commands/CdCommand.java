@@ -43,8 +43,7 @@ public class CdCommand extends Command {
      * Creates a CdCommand to change the current path of the file explorer to the given {@code FileAddress}.
      */
     public CdCommand(AddressType addressType, String addressString) {
-        requireNonNull(addressType);
-        requireNonNull(addressString);
+        requireNonNull(addressType, addressString);
         this.addressType = addressType;
         this.addressString = addressString;
     }
