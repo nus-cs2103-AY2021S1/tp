@@ -3,7 +3,6 @@ package chopchop.logic.commands;
 import static chopchop.util.Strings.ARG_QUANTITY;
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
 import java.util.Optional;
 
 import chopchop.commons.core.Messages;
@@ -14,7 +13,6 @@ import chopchop.model.Model;
 import chopchop.model.attributes.Quantity;
 import chopchop.model.exceptions.IncompatibleIngredientsException;
 import chopchop.model.ingredient.Ingredient;
-import chopchop.util.Pair;
 
 /**
  * Removes a given quantity of an ingredient identified using it's displayed index or name from the ingredient book.
@@ -62,7 +60,7 @@ public class DeleteIngredientCommand extends Command implements Undoable {
         requireNonNull(model);
 
         if (this.item.isIndexed()) {
-            List<Ingredient> lastShownList = model.getFilteredIngredientList();
+            var lastShownList = model.getFilteredIngredientList();
 
             if (this.item.getZeroIndex() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_INGREDIENT_DISPLAYED_INDEX);
@@ -78,7 +76,7 @@ public class DeleteIngredientCommand extends Command implements Undoable {
 
         if (this.quantity.isPresent()) {
             try {
-                Pair<Ingredient, Ingredient> splitIngredient = this.ingredient.split(this.quantity.get());
+                var splitIngredient = this.ingredient.split(this.quantity.get());
                 this.updatedIngredient = splitIngredient.snd();
 
                 if (this.updatedIngredient.getIngredientSets().isEmpty()) {

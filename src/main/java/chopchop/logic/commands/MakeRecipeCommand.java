@@ -12,7 +12,6 @@ import chopchop.logic.parser.ItemReference;
 import chopchop.model.Model;
 import chopchop.model.exceptions.IncompatibleIngredientsException;
 import chopchop.model.ingredient.Ingredient;
-import chopchop.model.ingredient.IngredientReference;
 import chopchop.model.recipe.Recipe;
 import chopchop.util.Pair;
 
@@ -53,7 +52,7 @@ public class MakeRecipeCommand extends Command implements Undoable {
         requireNonNull(model);
 
         if (this.item.isIndexed()) {
-            List<Recipe> lastShownList = model.getFilteredRecipeList();
+            var lastShownList = model.getFilteredRecipeList();
 
             if (this.item.getZeroIndex() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
@@ -67,8 +66,8 @@ public class MakeRecipeCommand extends Command implements Undoable {
                             this.item.getName())));
         }
 
-        for (IngredientReference ingredientRef : this.recipe.getIngredients()) {
-            Ingredient ingredient = model
+        for (var ingredientRef : this.recipe.getIngredients()) {
+            var ingredient = model
                     .findIngredientWithName(ingredientRef.getName())
                     .orElseThrow(() -> new CommandException(String.format(MESSAGE_INGREDIENT_NOT_FOUND,
                             ingredientRef.getName())));
@@ -80,7 +79,7 @@ public class MakeRecipeCommand extends Command implements Undoable {
             }
         }
 
-        for (Pair<Ingredient, Ingredient> ingredient : this.ingredients) {
+        for (var ingredient : this.ingredients) {
             if (ingredient.snd().getIngredientSets().isEmpty()) {
                 model.deleteIngredient(ingredient.fst());
             } else {
@@ -95,7 +94,7 @@ public class MakeRecipeCommand extends Command implements Undoable {
     public CommandResult undo(Model model) {
         requireNonNull(model);
 
-        for (Pair<Ingredient, Ingredient> ingredient : this.ingredients) {
+        for (var ingredient : this.ingredients) {
             if (ingredient.snd().getIngredientSets().isEmpty()) {
                 model.addIngredient(ingredient.fst());
             } else {

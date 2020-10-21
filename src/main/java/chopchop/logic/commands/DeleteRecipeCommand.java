@@ -2,8 +2,6 @@ package chopchop.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import chopchop.commons.core.Messages;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.History;
@@ -42,7 +40,7 @@ public class DeleteRecipeCommand extends Command implements Undoable {
         requireNonNull(model);
 
         if (this.item.isIndexed()) {
-            List<Recipe> lastShownList = model.getFilteredRecipeList();
+            var lastShownList = model.getFilteredRecipeList();
 
             if (this.item.getZeroIndex() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);

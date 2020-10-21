@@ -34,7 +34,7 @@ public class CommandHistory {
      * Gets the command text.
      */
     public String getCommandText() {
-        return commandText;
+        return this.commandText;
     }
 
     /**
@@ -42,6 +42,6 @@ public class CommandHistory {
      * @return An Optional of the undoable command.
      */
     public Optional<Undoable> getCommand() {
-        return Optional.ofNullable(command);
+        return Optional.ofNullable(this.command);
     }
 }

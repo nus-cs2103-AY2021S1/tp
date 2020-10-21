@@ -2,12 +2,9 @@ package chopchop.logic.history;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
-import java.util.Optional;
 import java.util.StringJoiner;
 
 import chopchop.logic.commands.CommandResult;
-import chopchop.logic.commands.Undoable;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.model.Model;
 
@@ -25,24 +22,24 @@ public class HistoryManager implements History {
      * Constructs a {@code HistoryManager}.
      */
     public HistoryManager() {
-        commandHistory = new ArrayList<>();
-        currentIndex = 0;
+        this.commandHistory = new ArrayList<>();
+        this.currentIndex = 0;
     }
 
     @Override
     public void add(CommandHistory command) {
-        commandHistory.subList(currentIndex, commandHistory.size()).clear();
-        commandHistory.add(command);
-        currentIndex = commandHistory.size();
+        this.commandHistory.subList(this.currentIndex, this.commandHistory.size()).clear();
+        this.commandHistory.add(command);
+        this.currentIndex = this.commandHistory.size();
     }
 
     @Override
     public CommandResult undo(Model model) throws CommandException {
-        for (int i = currentIndex - 1; i >= 0; i--) {
-            Optional<Undoable> command = commandHistory.get(i).getCommand();
+        for (var i = this.currentIndex - 1; i >= 0; i--) {
+            var command = this.commandHistory.get(i).getCommand();
 
             if (command.isPresent()) {
-                currentIndex = i;
+                this.currentIndex = i;
                 return command.get().undo(model);
             }
         }
@@ -52,9 +49,9 @@ public class HistoryManager implements History {
 
     @Override
     public CommandResult redo(Model model) throws CommandException {
-        while (currentIndex < commandHistory.size()) {
-            Optional<Undoable> command = commandHistory.get(currentIndex).getCommand();
-            currentIndex++;
+        while (this.currentIndex < this.commandHistory.size()) {
+            var command = this.commandHistory.get(this.currentIndex).getCommand();
+            this.currentIndex++;
 
             if (command.isPresent()) {
                 return command.get().redo(model, this);
@@ -66,11 +63,11 @@ public class HistoryManager implements History {
 
     @Override
     public String getHistory() {
-        StringJoiner sj = new StringJoiner("\n");
-        ListIterator<CommandHistory> reversedHistory = commandHistory.listIterator(currentIndex);
+        var sj = new StringJoiner("\n");
+        var reversedHistory = this.commandHistory.listIterator(this.currentIndex);
 
         while (reversedHistory.hasPrevious()) {
-            CommandHistory command = reversedHistory.previous();
+            var command = reversedHistory.previous();
             sj.add(command.getCommandText());
         }
 

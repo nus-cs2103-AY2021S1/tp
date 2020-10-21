@@ -4,8 +4,6 @@ import static chopchop.util.Strings.ARG_EXPIRY;
 import static chopchop.util.Strings.ARG_QUANTITY;
 import static java.util.Objects.requireNonNull;
 
-import java.util.Optional;
-
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.History;
 import chopchop.model.Model;
@@ -47,7 +45,7 @@ public class AddIngredientCommand extends Command implements Undoable {
     @Override
     public CommandResult execute(Model model, History history) throws CommandException {
         requireNonNull(model);
-        Optional<Ingredient> existingIngredientOptional = model.findIngredientWithName(this.ingredient.getName());
+        var existingIngredientOptional = model.findIngredientWithName(this.ingredient.getName());
 
         if (existingIngredientOptional.isPresent()) {
             this.existingIngredient = existingIngredientOptional.get();

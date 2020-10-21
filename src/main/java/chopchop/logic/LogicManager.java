@@ -67,8 +67,8 @@ public class LogicManager implements Logic {
         }
 
         try {
-            storage.saveIngredientBook(model.getIngredientBook());
-            storage.saveRecipeBook(model.getRecipeBook());
+            this.storage.saveIngredientBook(this.model.getIngredientBook());
+            this.storage.saveRecipeBook(this.model.getRecipeBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -78,41 +78,41 @@ public class LogicManager implements Logic {
 
     @Override
     public ReadOnlyEntryBook<Recipe> getRecipeBook() {
-        return model.getRecipeBook();
+        return this.model.getRecipeBook();
     }
 
     @Override
     public ObservableList<Recipe> getFilteredRecipeList() {
-        return model.getFilteredRecipeList();
+        return this.model.getFilteredRecipeList();
     }
 
     @Override
     public Path getRecipeBookFilePath() {
-        return model.getRecipeBookFilePath();
+        return this.model.getRecipeBookFilePath();
     }
 
     @Override
     public ReadOnlyEntryBook<Ingredient> getIngredientBook() {
-        return model.getIngredientBook();
+        return this.model.getIngredientBook();
     }
 
     @Override
     public ObservableList<Ingredient> getFilteredIngredientList() {
-        return model.getFilteredIngredientList();
+        return this.model.getFilteredIngredientList();
     }
 
     @Override
     public Path getIngredientBookFilePath() {
-        return model.getIngredientBookFilePath();
+        return this.model.getIngredientBookFilePath();
     }
 
     @Override
     public GuiSettings getGuiSettings() {
-        return model.getGuiSettings();
+        return this.model.getGuiSettings();
     }
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
-        model.setGuiSettings(guiSettings);
+        this.model.setGuiSettings(guiSettings);
     }
 }

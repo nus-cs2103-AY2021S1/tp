@@ -180,10 +180,10 @@ public class Ingredient extends Entry {
                     this.name.toString()));
         }
 
-        TreeMap<Optional<ExpiryDate>, Quantity> firstSets = new TreeMap<>(SET_COMPARATOR);
-        TreeMap<Optional<ExpiryDate>, Quantity> secondSets = new TreeMap<>(SET_COMPARATOR);
-        Quantity currQuantity = quantity;
-        Optional<ExpiryDate> splitKey = this.sets.firstKey();
+        var firstSets = new TreeMap<Optional<ExpiryDate>, Quantity>(SET_COMPARATOR);
+        var secondSets = new TreeMap<Optional<ExpiryDate>, Quantity>(SET_COMPARATOR);
+        var currQuantity = quantity;
+        var splitKey = this.sets.firstKey();
 
         for (var entry : this.sets.entrySet()) {
             if (entry.getValue().compareTo(currQuantity) < 0) {
@@ -199,7 +199,7 @@ public class Ingredient extends Entry {
         firstSets.put(splitKey, currQuantity);
         secondSets.putAll(this.sets.subMap(splitKey, false, this.sets.lastKey(), true));
 
-        Quantity remainingQuantity = this.sets.get(splitKey).subtract(currQuantity)
+        var remainingQuantity = this.sets.get(splitKey).subtract(currQuantity)
                 .orElseThrow(IncompatibleIngredientsException::new);
 
         if (remainingQuantity.getValue() != 0) {
@@ -232,7 +232,6 @@ public class Ingredient extends Entry {
 
     @Override
     public String toString() {
-
         return String.format("%s (%s)%s \nTags: \n%s",
             this.getName(),
             this.getQuantity(),
