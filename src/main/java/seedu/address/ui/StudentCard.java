@@ -61,7 +61,7 @@ public class StudentCard extends UiPart<Region> {
         name.setText(student.getName().fullName);
         phone.setText("Phone: " + student.getPhone().value);
         school.setText("School: " + student.getSchool().school);
-        year.setText("Year: " + student.getYear().year);
+        year.setText("Year: " + student.getYear());
         venue.setText("Class Venue: " + student.getAdmin().getClassVenue().venue);
         time.setText("Class Time: " + student.getAdmin().getClassTime().toString());
         fee.setText("Fee: " + student.getAdmin().getFee().toString());
