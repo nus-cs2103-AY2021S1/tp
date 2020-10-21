@@ -721,16 +721,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  The application should work on any _mainstream OS_ (tested on Windows, Mac, Linux) as long as it has Java `11` or above installed.
-2.  The application should be able to hold up to 30 projects and 150 members without a noticeable drop in performance.
-3.  The application can function without an internet connection.
-4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
+1.  The application should be able to hold up to 30 projects and 150 members without a noticeable drop in performance.
+1.  The application can function without an internet connection.
+1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
 should be able to accomplish most of the tasks faster using commands than using the mouse.
-5.  There are checks for the inputs the user gives, and corresponding tips are presented if the input format is incorrect.
-6.  There are `help` commands to tell the user what command does what.
-7.  Information is presented in a pleasing way.
-8.  New user can learn the software easily and quickly (so that other team members can help organize or add tasks if they want to)
-9.  Tests are written for important components, and every working prototype must pass all the test first.
-10.  Code is written in an easy-to-maintain manner (e.g. no extremely long function).
+1.  There are checks for the inputs the user gives, and corresponding tips are presented if the input format is incorrect.
+1.  There are `help` commands to tell the user what command does what.
+1.  Information is presented in a pleasing way.
+1.  New user can learn the software easily and quickly (so that other team members can help organize or add tasks if they want to)
+1.  Tests are written for important components, and every working prototype must pass all the test first.
+1.  Code is written in an easy-to-maintain manner (e.g. no extremely long function).
 
 ### Glossary
 
@@ -752,7 +752,7 @@ testers are expected to do more *exploratory* testing.
 </div>
 
 ### Launch and shutdown
-
+<!-- this part has not been written -->
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder
@@ -765,8 +765,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 ### Deleting a project
 
