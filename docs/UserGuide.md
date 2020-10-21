@@ -37,6 +37,8 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
    * **`add q/What does OOP stand for? a/Object Oriented Programming c/General`** : Adds a flashcard with a question and answer into the General category.
 
    * **`delete 3`**: Deletes the 3rd flashcard in the current list.
+   
+   * **`edit 2 q/What is a revision control software? a/It is the software tool that automate the process of Revision Control`**: Edits the 2nd flashcard in the current list with the specified attributes.
 
    * **`list`** : Lists all flashcards.
 
@@ -74,7 +76,7 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 
 Adds a flashcard.
 
-Format: `add q/QUESTION a/ANSWER [c/CATEGORY]`
+Format: `add q/QUESTION a/ANSWER [c/CATEGORY] [n/NOTE]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If the category does not exist, it will be created.
@@ -83,6 +85,7 @@ If the category does not exist, it will be created.
 Examples:
 * `add q/What does OOP stand for? a/Object Oriented Programming c/General`
 * `add q/What does OOP stand for? a/Object Oriented Programming`
+* `add q/What does OOP stand for? a/Object Oriented Programming c/General n/Important question!`
 
 ### Deleting a flashcard  : `delete`
 
@@ -96,6 +99,22 @@ Format: `delete INDEX`
 
 Examples:
 *  `list` followed by `delete 2` deletes the 2nd flashcard in the flashcard list.
+
+### Editing a flashcard  : `edit`
+
+Edits a flashcard.
+
+Format: `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE]`
+
+* Edits the flashcard at the specified INDEX.
+* The index refers to the index number shown in the displayed flashcard list.
+* The index **must be a positive integer** 1, 2, 3, …
+* At least one attribute must be given
+
+Examples:
+* `edit 3 q/What does OOP stand for? a/Object Oriented Programming c/General`
+* `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
+* `edit 3 n/Important question!`
 
 ### Filtering out flashcards  : `filter`
 
@@ -168,6 +187,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add q/QUESTION a/ANSWER [c/CATEGORY]` <br> e.g., `add q/What does OOP stand for? a/Object Oriented Programming c/General`
 **Delete** | `delete INDEX` <br> e.g., `delete 3`
+**Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE]` <br> e.g., `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
 **List** | `list`
 **Review** | `review`
 **Fav** | `fav INDEX` <br> e.g., `fav 1`
