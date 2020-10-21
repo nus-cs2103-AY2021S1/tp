@@ -74,7 +74,4 @@
             </children>
         </HBox>
    </bottom>
-   <top>
-       <TextField fx:id="commandTextField" maxHeight="48.0" maxWidth="600.0" promptText="Enter command here..." BorderPane.alignment="BOTTOM_CENTER"/>
-   </top>
 </BorderPane>

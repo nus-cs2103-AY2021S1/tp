@@ -67,14 +67,14 @@
 }
 #commandTextField {
     -fx-background-color: #d6d4d4;
-    -fx-font-size: 12pt;
+    -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI";
     -fx-font-color: #575555;
     -fx-prompt-text-fill: #575555;
-    -fx-background-radius: 10 10 0 0;
+    -fx-background-radius: 10 10 10 10;
     -fx-border-color: black;
-    -fx-border-radius: 10 10 0 0;
-    -fx-padding: 5 5 0 5;
+    -fx-border-radius: 10 10 10 10;
+    -fx-padding: 5 5  5;
     -fx-border-insets: 5 5 0 5;
     -fx-background-insets: 5 5 0 5;
 }
@@ -224,4 +224,8 @@
 #textDisplay .content {
     -fx-padding: 2px;
     -fx-highlight-fill: #7ecfff;
+}
+#anchor {
+    -fx-background-insets: 0;
+    -fx-background-color: transparent, white, transparent, white;
 }
