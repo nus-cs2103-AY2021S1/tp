@@ -45,7 +45,8 @@ public class VendorCommand extends Command {
 
         model.setVendorIndex(index);
 
-        return new CommandResult(String.format(MESSAGE_SELECT_VENDOR_SUCCESS, vendorIndex.getOneBased()));
+        return new CommandResult(String.format(MESSAGE_SELECT_VENDOR_SUCCESS, vendorIndex.getOneBased()),
+                false, false, true);
     }
 
     @Override
