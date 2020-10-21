@@ -164,7 +164,7 @@ public class Food {
     // name + PCF details + total calories
     @Override
     public String toString() {
-        return "Food:" + this.getName() + "\n"
+        return "Food: " + this.getName() + "\n"
                 + "protein: " + protein.getAmount() + "\n"
                 + "carbs: " + carbs.getAmount() + "\n"
                 + "fat: " + fat.getAmount() + "\n";

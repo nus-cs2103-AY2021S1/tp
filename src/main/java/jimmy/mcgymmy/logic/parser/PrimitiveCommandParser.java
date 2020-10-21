@@ -26,6 +26,7 @@ import jimmy.mcgymmy.logic.commands.ImportCommand;
 import jimmy.mcgymmy.logic.commands.ListCommand;
 import jimmy.mcgymmy.logic.commands.TagCommand;
 import jimmy.mcgymmy.logic.commands.UnTagCommand;
+import jimmy.mcgymmy.logic.commands.UndoCommand;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
 import jimmy.mcgymmy.logic.parser.parameter.AbstractParameter;
 import jimmy.mcgymmy.logic.parser.parameter.ParameterSet;
@@ -59,6 +60,7 @@ public class PrimitiveCommandParser {
         this.addCommand(ListCommand.COMMAND_WORD, ListCommand.SHORT_DESCRIPTION, ListCommand::new);
         this.addCommand(TagCommand.COMMAND_WORD, TagCommand.SHORT_DESCRIPTION, TagCommand::new);
         this.addCommand(UnTagCommand.COMMAND_WORD, UnTagCommand.SHORT_DESCRIPTION, UnTagCommand::new);
+        this.addCommand(UndoCommand.COMMAND_WORD, UndoCommand.SHORT_DESCRIPTION, UndoCommand::new);
         this.addCommand(ImportCommand.COMMAND_WORD, ImportCommand.SHORT_DESCRIPTION, ImportCommand::new);
         this.addCommand(ExportCommand.COMMAND_WORD, ExportCommand.SHORT_DESCRIPTION, ExportCommand::new);
     }

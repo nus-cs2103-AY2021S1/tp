@@ -82,6 +82,16 @@ public interface Model {
     void setFood(Index index, Food editedFood);
 
     /**
+     * Check if mcGymmy can undo
+     */
+    boolean canUndo();
+
+    /**
+     * Undo the previous change to mcGymmy
+     */
+    void undo();
+
+    /**
      * Returns an unmodifiable view of the filtered food list
      */
     ObservableList<Food> getFilteredFoodList();
