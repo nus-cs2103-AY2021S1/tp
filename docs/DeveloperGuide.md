@@ -246,7 +246,7 @@ Step 4. The user then decides to execute the command `list`. Commands that do no
 
 #### Design consideration:
 
-##### Aspect: How undo & redo executes
+##### Aspect: How category switching executes
 
 * **Alternative 1 (current choice):** Filters the entire expense book by tag.
   * Pros: Easy to implement.
@@ -256,7 +256,130 @@ Step 4. The user then decides to execute the command `list`. Commands that do no
   * Pros: Will be faster during execution.
   * Cons: Slower initialisation and more memory used.
 
+### \[Proposed\] Expense Sorting Feature
+
+#### Proposed Implementation
+
+The proposed expense sorting command is facilitated by `UniqueExpenseList` and `ExpenseBook`. In addition
+, a new `Command` subclass, `SortCommand`, is required.   Specifically, the following operations are relevant to this
+ command:
+
+* `ExpenseBook#sort(Comparator<Expense> comparator)` — Sorts its `UniqueExpenseList` according to the comparator
+ provided.
+* `UniqueExpenseList#sort(Comparator<Expense> comparator)` — Sorts its `ObservableList<Expense>` according to the
+ comparator provided.  
+
+These operations are exposed in the `Model` interface as `Model#sortExpenses(Comparator<Expense> comparator)`
+
+##### `SortCommand` and `SortCommandParser`
+
+`SortCommand` will take in at least one, and up to three keywords which specify the order and the parameters to sort
+ by (date, description, amount). The conversion of the `String` input to a `Comparator<Expense>` is facilitated by
+  `SortCommandParser#parse()`, and the **order** of the sorting parameters is implemented via the 
+  `Comparator#thenComparing()` method.
+ 
+Example Usage: 
+* `sort by/date` — Sorted by chronological order.
+* `sort by/date by/descriptionR` — Sorted in chronological order, then based on reverse alphabetical
+ order of descriptions.
+* `sort by/date by/amount by/description` — Sorted in following order of priority: Chronological order, then by
+ increasing order of amounts, then by alphabetical order of descriptions. 
+
+##### Example Usage
+Given below is an example usage scenario and how the sorting command behaves at each step.
+
+Step 1. The user launches the application. The `ExpenseBook` shows the list of expenses in the expense book.
+
+Step 2. The user executes `sort by/date by/descriptionR` command to sort the `Expenses` in `ExpenseBook` first by
+ date, then in reverse alphabetical order of the descriptions. 
+ A comparator is created reflecting the above sorting.
+ The `sort` command calls `Model#sort(Comparator<Expense> c)`, causing the `ExpenseBook` expenses to be
+  sorted according to the comparator, and the `filteredExpenses` in `Model` to be modified since it is a listener.
+
+The following sequence diagrams shows how the sort command works:
+![SortSequenceDiagram Pt1](images/SortSequenceDiagram1.png)
+
+![SortSequenceDiagram Pt2](images/SortSequenceDiagram2.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` and
+ `Comparator<Expense>` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches 
+ the end of diagram.
+
+</div>
+
+Step 3. The user then decides to execute the command `delete`. Commands that modify the expense book, such as `delete`, 
+`edit`, will usually call their respectively method in Model, but using the new index ordering of the sorted list. 
+
+Step 4. The user then decides to execute the command `list`. This will revert the display view to initial
+ `ExpenseBook`. 
+
+
+#### Design consideration:
+
+##### Aspect: How Sorting Command executes
+
+* **Alternative 1 (current choice):** Add an additional sort on top of current list implementation.
+  * Pros: Easy to implement.
+  * Cons: Lack customizability in list views.
+
+* **Alternative 2:** Create multiple list views each representing a particular sort.
+  * Pros: Greater degree of customisation with regards to GUI.
+  * Cons: Difficult to implement as it requires the creation of multiple subclasses of `ListCommand`.
+
+### \[Proposed\] Customisation of Command Keywords
+
+#### Proposed Implementation
+
+The proposed implementation for the customisation of `COMMAND_WORD` field for various `Command` subclasses is by introducing another `Command` subclass, called the `AliasCommand`. This command takes in a command keyword that the user wishes to alter, and takes a second keyword which determines what the new COMMAND_WORD for the stated `Command` subclass would be. To allow for customisation to remain even after the app is closed, a customised keyword-to-command mapping will be stored in JSON format. Upon starting the app, the static field `COMMAND_WORD` will be initialized for each command.
+
+Sample usage:
+By default, `FindCommand.COMMAND_WORD` is `“find”`
+
+* `alias find get` -> `FindCommand.COMMAND_WORD` will be updated to `“get”`
+
+This mapping will also be stored in an external JSON so that the customisation remains even after the app is closed. 
+
+To maintain some degree of simplicity and neatness, we require that the `AliasCommand.COMMAND_WORD` itself to not be customisable. Furthermore, the user also has the ability to revert the command keywords back to their default using the `DefaultAliasCommand` with the default `COMMAND_WORD` as `defaultalias`. This is made a little longer and slightly more complicated to input because this will override the entire customisation to default and user will not be able to retrieve his previous customisations. Like the AliasCommand, `DefaultAliasCommand.COMMAND_WORD` itself is not customisable.
+
+Another change required here is for the COMMAND_WORD fields to not be final, except for AliasCommand and DefaultAliasCommand. This will allow changes to a COMMAND_WORD field to be reflected directly in the current running instance of the application.
+
+Step 1. The user launches the application for the first time. The `COMMAND_WORD` static fields for all the subclasses will be initialized to the current mapping retrieved from JSON.
+
+Step 2. The user executes the `alias find get` command to update the current `FindCommand.COMMAND_WORD` from `”find”’ to `”get”`.  This will not only update the current state, but will also update the JSON mapping.
+
+The following is a sequence diagram showing how it works:
+![AliasSequenceDiagram](images/AliasSequenceDiagram.png)
+
+Similarly, the following sequence diagram shows how the DefaultAliasCommand works:
+![DefaultAliasSequenceDiagram](images/DefaultAliasSequenceDiagram.png)
+
+Step 3. The user can now use the following command to trigget a FindCommand.
+
+* `get -d lunch at macs`
+#### Design consideration:
+
+##### Aspect: How alias executes
+* **Alternative 1 (current choice):** Allows customisation of all command words except for `AliasCommand` and `DefaultAliasCommand`.
+  * Pros: Neater implementation especially if the user might frequently change his alias, and DefaultAliasCommand has a long default and uncustomisable command word in order to prevent accidental reset of previous customisations.
+  * Cons: Restricts degree of customisation.
+
+* **Alternative 2:** Allows customisation of ALL command words.
+  * Pros: Higher degree of flexibility in customisation.
+  * Cons: May be messy and slower learning users may get confused.
 _{more aspects and alternatives to be added}_
+
+### \[Proposed\] Default Category
+
+The function of the default category is to subsume all "untagged" `expenses` under some category.
+This is especially important for possible occasions such as when the User uses the application without any categories,
+or when the User deletes a category that existing `expenses` are linked to.
+
+#### Proposed Implementation
+
+The default category generally functions the same way as any user-created category, except that it cannot be deleted or
+renamed. It is contained separately from the user-created categories (if any) for this reason. If a new ExpenseBook is
+started, the default category is automatically initialized so that the User can use the full range of the basic
+features even without creating customized categories.
 
 ### \[Proposed\] Graphical Representation Feature
 
@@ -371,7 +494,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the System is the Bamboo and the Actor is the user, unless specified otherwise)
 
-####Use case U1: Add an expense
+#### Use case U1: Add an expense
 
 **Preconditions:** (Needed for v1.2.1)
 
@@ -391,7 +514,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Bamboo shows an error message.
       Use case ends.
 
-####Use case U2: Top-up budget
+#### Use case U2: Top-up budget
 
 **Preconditions:** (Needed for v1.2.1)
 
@@ -411,7 +534,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Bamboo shows an error message.
       Use case ends.
 
-####Use case U3: Delete an expense
+#### Use case U3: Delete an expense
 
 **Preconditions:** (Needed for v1.2.1)
 
@@ -438,7 +561,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-####Use case U4: Edit an expense
+#### Use case U4: Edit an expense
 
 **Preconditions:** (Needed for v1.2.1)
 
@@ -463,7 +586,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Bamboo shows an error message.
       Use case ends.
 
-####Use case U5: List all expenses
+#### Use case U5: List all expenses
 
 **Preconditions:** (Needed for v1.2.1)
 
@@ -476,7 +599,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-####Use case U6: Add a remark to an expense
+#### Use case U6: Add a remark to an expense
 
 **Preconditions:** (Needed for v1.2.1)
 * User is logged in.
