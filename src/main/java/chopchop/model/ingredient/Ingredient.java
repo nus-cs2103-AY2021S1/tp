@@ -175,7 +175,7 @@ public class Ingredient extends Entry {
      */
     public Pair<Ingredient, Ingredient> split(Quantity quantity)
             throws IllegalArgumentException, IncompatibleIngredientsException {
-        if (this.getQuantity().compareTo(quantity) < 0) {
+        if (this.getQuantity().compareTo(quantity) < 0 || quantity.getValue() < 0) {
             throw new IllegalArgumentException(String.format("Insufficient '%s' to remove given quantity",
                     this.name.toString()));
         }
