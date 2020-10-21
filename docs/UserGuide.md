@@ -79,11 +79,12 @@ Adds a recipe to Recipes Collection.
 Format: `addR n/TITLE i/INGREDIENT[, MORE INGREDIENT] c/CALORIES img/IMAGE inst/INSTRUCTION... [t/TAG]...`
 
 * `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole
-    * there is  a compulsory space before `-`
+    * there is a compulsory space before `-` 
+* `IMAGE` can be local path e.g. images/healthy1.jpg or url e.g. https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg
 
 Examples:
-* `addR n/salad i/lettuce, tomato, olive oil c/40 inst/mix everything img/image/Salad.png`
-* `addR n/sandwiches i/breads, cheese -2 sclices c/80 inst/Put cheese between two slices of breads. img/image/Sandwiche.png`
+* `addR n/salad i/lettuce, tomato, olive oil c/40 img/images/healthy1.jpg instr/1. Cook 2. Eat`
+* `addR n/sandwiches i/breads, cheese -2 sclices c/80 img/https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg instr/1. Cook 2. Eat`
 
 
 ### Listing all recipes : `recipes`
