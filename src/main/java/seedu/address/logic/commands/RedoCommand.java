@@ -7,27 +7,27 @@ import seedu.address.model.Model;
 
 
 
-public class UndoCommand extends Command {
-    public static final String COMMAND_WORD = "undo";
+public class RedoCommand extends Command {
+    public static final String COMMAND_WORD = "redo";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Undoes the last user command.\n"
+            + ": Redoes the last undone user command.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_UNDO_COMMAND_SUCCESS = "Previous command has been undone";
-    public UndoCommand() {
+    public static final String MESSAGE_REDO_COMMAND_SUCCESS = "Undone command has been redone";
+    public RedoCommand() {
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.undoModuleList();
-        return new CommandResult(MESSAGE_UNDO_COMMAND_SUCCESS);
+        model.redoModuleList();
+        return new CommandResult(MESSAGE_REDO_COMMAND_SUCCESS);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UndoCommand); // instanceof handles nulls
+                || (other instanceof RedoCommand); // instanceof handles nulls
     }
 
     @Override
