@@ -4,6 +4,7 @@ import static chopchop.util.Strings.ARG_QUANTITY;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import chopchop.commons.core.Messages;
 import chopchop.logic.commands.exceptions.CommandException;
@@ -37,18 +38,18 @@ public class DeleteIngredientCommand extends Command {
     public static final String MESSAGE_INGREDIENT_NOT_FOUND = "No ingredient named '%s'";
 
     private final ItemReference item;
-    private final Quantity quantity;
+    private final Optional<Quantity> quantity;
     private Ingredient ingredient;
     private Ingredient updatedIngredient;
 
     public DeleteIngredientCommand(ItemReference item) {
-        this(item, null);
+        this(item, Optional.empty());
     }
 
     /**
      * Constructs a command that deletes the given ingredient item.
      */
-    public DeleteIngredientCommand(ItemReference item, Quantity quantity) {
+    public DeleteIngredientCommand(ItemReference item, Optional<Quantity> quantity) {
         requireNonNull(item);
         this.item = item;
         this.quantity = quantity;
@@ -73,9 +74,9 @@ public class DeleteIngredientCommand extends Command {
                             this.item.getName())));
         }
 
-        if (this.quantity != null) {
+        if (this.quantity.isPresent()) {
             try {
-                Pair<Ingredient, Ingredient> splitIngredient = this.ingredient.split(this.quantity);
+                Pair<Ingredient, Ingredient> splitIngredient = this.ingredient.split(this.quantity.get());
                 this.updatedIngredient = splitIngredient.snd();
 
                 if (this.updatedIngredient.getIngredientSets().isEmpty()) {
@@ -85,7 +86,7 @@ public class DeleteIngredientCommand extends Command {
                 }
 
                 return new CommandResult(String.format(MESSAGE_REMOVE_INGREDIENT_SUCCESS,
-                        this.quantity.toString(), this.updatedIngredient.getName()));
+                        this.quantity.get().toString(), this.updatedIngredient.getName()));
             } catch (IncompatibleIngredientsException | IllegalArgumentException e) {
                 throw new CommandException(e.getMessage());
             }
@@ -99,6 +100,7 @@ public class DeleteIngredientCommand extends Command {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof DeleteIngredientCommand
-                && this.item.equals(((DeleteIngredientCommand) other).item));
+                && this.item.equals(((DeleteIngredientCommand) other).item)
+                && this.quantity.equals(((DeleteIngredientCommand) other).quantity));
     }
 }

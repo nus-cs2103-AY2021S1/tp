@@ -79,7 +79,7 @@ public class DeleteCommandParser {
                     .stream()
                     .findFirst()
                     .map(Quantity::parse))
-                    .map(qty -> new DeleteIngredientCommand(ref, qty.orElse(null))));
+                    .map(qty -> new DeleteIngredientCommand(ref, qty)));
     }
 
     /**
