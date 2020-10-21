@@ -38,7 +38,7 @@ class DelModCommandTest {
     private static final ModuleCode MODULE_CODE_CS2101 = new ModuleCodeBuilder().withCode("CS2101").build();
 
     private ModelStubAcceptingModuleAdded modelStubWithNoModules = new ModelStubAcceptingModuleAdded();
-    private ModelStubAcceptingModuleAdded modelStubWithModules = new ModelStubAcceptingModuleAdded()
+    private ModelStubAcceptingModuleAdded modelStubWithModules = modelStubWithNoModules
             .withModules(CS2101, CS2102, CS2103);
 
     @Test
@@ -165,6 +165,11 @@ class DelModCommandTest {
 
         @Override
         public void assignInstructor(Person instructor, ModuleCode moduleCode) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void unassignInstructor(Person instructor, ModuleCode moduleCode) {
             throw new AssertionError("This method should not be called.");
         }
 

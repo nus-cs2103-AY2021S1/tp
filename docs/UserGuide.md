@@ -107,10 +107,9 @@ Format: `find PREFIX KEYWORD... [PREFIX KEYWORD...]`
 * Sub-words will be matched e.g. `Chri Evan` will match `Chris Evans`
 * Contacts matching at least one keyword will not be returned (i.e. `AND` search).
   e.g. `Chris Evans` will return only `Chris Evans` and not `Chris Pratt`
-* Name-only search is prefix optional. e.g. `find chris evans` works the same as `find n/chris evans`
 
 Examples:
-* `find John` returns `John` and `John Doe`
+* `find n/John` returns `John` and `John Doe`
 * `find n/alex yeoh` returns `Alex Yeoh`
 * `find n/victor tan d/computing` returns `Victor Tan` from the department of `Computing` but not `Victor Tan` from
  `Math`<br>
@@ -231,7 +230,7 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g. `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [o/OFFICE] [t/TAG]…​`<br> e.g. `edit 1 d/Computing b/COM2`
 **Remark** | `remark INDEX [r/REMARK]`<br> e.g. `remark 1 r/Wears red glasses`
-**Find** | `find PREFIX KEYWORD... [PREFIX KEYWORD...]`<br> e.g. `find James Jake`, `find n/Victor Tan d/Math`
+**Find** | `find PREFIX KEYWORD... [PREFIX KEYWORD...]`<br> e.g. `find n/Victor Tan d/Math`
 **Add modules** | `addmod m/MODULE_CODE n/MODULE_NAME`<br> e.g. `addmod m/CS2103 n/Software Engineering`
 **Delete modules** | `delmod m/MODULE_CODE`<br> e.g. `delmod m/CS2103`
 **Find modules** | `findmod KEYWORD [MORE_KEYWORDS]` <br> e.g. `findmod CS2103`

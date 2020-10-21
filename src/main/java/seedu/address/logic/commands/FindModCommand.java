@@ -27,10 +27,10 @@ public class FindModCommand extends Command {
             + PREFIX_MODULE_NAME + "MODULE NAME ... "
             + PREFIX_MODULE_INSTRUCTOR + "INSTRUCTOR's NAME ... \n"
             + "Examples: "
-            + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "CS2103 CS2100, "
+            + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "CS2103 "
             + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "CS2 " + PREFIX_MODULE_INSTRUCTOR + "John, "
             + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "CS1 "
-            + PREFIX_MODULE_NAME + "programming " + PREFIX_MODULE_INSTRUCTOR + "Martin";
+            + PREFIX_MODULE_NAME + "programming methodology" + PREFIX_MODULE_INSTRUCTOR + "Martin";
     private final ModuleCodeContainsKeywordsPredicate codePredicate;
     private final ModuleNameContainsKeywordsPredicate namePredicate;
     private final ModuleInstructorsContainsKeywordsPredicate instructorPredicate;
