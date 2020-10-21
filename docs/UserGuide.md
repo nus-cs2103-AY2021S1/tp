@@ -68,9 +68,17 @@ This section highlights the commands that CliniCal supports. These include detai
 
 </div>
 
-### 4. Commands
+### 3.1. General Commands
 
-#### 4.1. Viewing help : `help`
+General commands are commands that enhances general user experience when you are using the app.
+
+#### 3.1.1. Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+#### 3.1.2. Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -78,8 +86,23 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+#### 3.1.3. Retrieve past commands using command line interface: `history`
 
-#### 4.2. Adding a patient: `add`
+Retrieves a list of past commands that the user had used during the session.
+
+Format: `history`
+
+#### 3.1.4. Clearing command history : `clearhistory`
+
+Clears command history from the patient database.
+
+Format: `clearhistory`
+
+### 3.2. Patient Commands
+
+Patient commands are commands that you can utilise to make changes to your list of patients.
+
+#### 3.2.1. Adding a patient: `add`
 
 Adds a patient to the patient database.
 
@@ -100,7 +123,7 @@ Examples:
 * `add n/John Doe p/98765432 i/S3857462J e/johnd@example.com a/Pickle street, block 123, #01-01`
 * `add n/Betsy Crowe i/G7667353B e/betsycrowe@example.com a/Newgate Prison p/1234567 g/penicillin`
 
-#### 4.3. Adding profile picture using command line interface: `addpicture`
+#### 3.2.2 Adding profile picture using command line interface: `addpicture`
 
 Adds a profile picture to the patient’s profile by specifying filepath to desired profile picture.
 
@@ -113,20 +136,40 @@ Examples:
 *  `addpicture 2 f/downloads/profile_picture.png` Replaces existing profile picture with 'profile_picture.png' found in
                                                   'downloads' folder for the 2nd patient
 
-#### 4.3.1 Adding profile picture using drag and drop:
+#### 3.2.3 Adding profile picture using drag and drop
 
 Adds a profile picture to the patient’s profile by using drag and drop with your mouse.
 
 1. Select the desired profile picture and drag it onto the space reserved for patient profile picture in ClinCal.
 2. Release mouse button and patient's profile picture would be updated with your desired picture.
 
-#### 4.4. Listing all patients: `list`
+#### 3.2.4. Clearing all entries : `clear`
 
-Shows a list of all patients in the patient database.
+Clears all patient entries from the patient database.
 
-Format: `list`
+Format: `clear`
 
-#### 4.5. Editing a patient: `edit`
+### 3.2.5. Color coding patients
+
+When a patient is tagged with a color tag, the background of the patient will be styled to show that color. The color tags can be used for a variety of purposes; for example, a doctor may color code patients at risk of terminal diseases as red, for easier reference.
+
+![example of color coded patient](images/Ui.png)
+
+#### 3.2.6. Deleting a patient: `delete`
+
+Deletes the specified patient from the patient database.
+
+Format: `delete INDEX`
+
+* Deletes the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd patient in the patient database.
+* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+
+#### 3.2.7. Editing a patient: `edit`
 
 Edits an existing patient in the patient database.
 
@@ -149,77 +192,19 @@ Examples:
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing allergies.
 *  `edit 3 ct/red` Clears the existing color tag and edits the color tag of the 3rd patient to be `red`.
 
-#### 4.6. Locating patients by name: `find`
+#### 3.2.8 Listing all patients: `list`
 
-Finds patients whose names or IC number contain any of the given keywords.
+Shows a list of all patients in the patient database.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `list`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* You can search for the patient's name or IC number. 
-* Patient will be matched even if the keyword matches the search parameters only partially e.g. `Han` will match `Hans`, `9123456` will match `s9123456z`.
-* Patients matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find ben` returns `benjamin`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-* `find 9123456` returns the patient with IC number `s9123456z`
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-#### 4.7. Deleting a patient: `delete`
-
-Deletes the specified patient from the patient database.
-
-Format: `delete INDEX`
-
-* Deletes the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd patient in the patient database.
-* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
-
-#### 4.8. Clearing all entries : `clear`
-
-Clears all entries from the patient database.
-
-Format: `clear`
-
-#### 4.9. Clearing command history : `clearhistory`
-
-Clears command history from the patient database.
-
-Format: `clearhistory`
-
-#### 4.10. Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-#### 4.11. Undoing the previous command: `undo`
-
-Reverts the previous command given by the user.
-
-Format: `undo`
-
-#### 4.12. Redoing a command : `redo`
+#### 3.2.9. Redoing a command : `redo`
 
 Redoes the most recent command that the user has undone.
 
 Format: `redo`
 
-#### 4.13. Retrieve past commands using command line interface: `history`
-
-Retrieves a list of past commands that the user had used during the session.
-
-Format: `history`
-
-#### 4.14. Retrieve and reuse past commands using arrow keys
+#### 3.2.10. Retrieve and reuse past commands using arrow keys
 
 Reuse past commands using the <kbd>↑</kbd> arrow and <kbd>↓</kbd> arrow keys on the keyboard.
 1. Click on the text field of the command box.
@@ -227,26 +212,26 @@ Reuse past commands using the <kbd>↑</kbd> arrow and <kbd>↓</kbd> arrow keys
 3. Press the <kbd>↓</kbd> arrow key to display the previously shown past command.
 4. Press <kbd>Enter</kbd>/<kbd>Return</kbd> key to reuse the command.
 
-### 4.15. Saving the data
+### 3.2.11. Saving the data
 
 CliniCal data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### 4.16. Color coding patients
+#### 3.2.12. Undoing the previous command: `undo`
 
-When a patient is tagged with a color tag, the background of the patient will be styled to show that color. The color tags can be used for a variety of purposes; for example, a doctor may color code patients at risk of terminal diseases as red, for easier reference.
+Reverts the previous command given by the user.
 
-![example of color coded patient](images/Ui.png)
+Format: `undo`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. FAQ
+## 4. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CliniCal home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Command summary
+## 5. Command summary
 
 Action | Format, Examples
 --------|------------------
