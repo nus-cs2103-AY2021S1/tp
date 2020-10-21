@@ -10,6 +10,8 @@ import seedu.address.logic.commands.documentcommands.AddDocumentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.state.StateManager;
 import seedu.address.model.investigationcase.Document;
+import seedu.address.model.investigationcase.Name;
+import seedu.address.model.investigationcase.Reference;
 
 public class AddDocumentCommandParser implements Parser<AddDocumentCommand> {
 
@@ -32,8 +34,13 @@ public class AddDocumentCommandParser implements Parser<AddDocumentCommand> {
         Index index = StateManager.getState();
 
 
-        Document doc = new Document(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()),
-                    ParserUtil.parseReference(argMultimap.getValue(PREFIX_REFERENCE).get()));
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Reference reference = ParserUtil.parseReference(argMultimap.getValue(PREFIX_REFERENCE).get());
+
+        if (!reference.isExists()) {
+            throw new ParseException(Reference.MESSAGE_CONSTRAINTS);
+        }
+        Document doc = new Document(name, reference);
 
         return new AddDocumentCommand(index, doc);
     }
