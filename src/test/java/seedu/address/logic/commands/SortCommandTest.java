@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -16,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.SortCommandParser;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -28,17 +26,7 @@ import seedu.address.testutil.AnimalBuilder;
 class SortCommandTest {
 
     @Test
-    public void execute_wrongSortKeyword_throwsCommandException() {
-        ModelStub modelStub = new ModelStub();
-        AnimalComparator invalidAnimalComparator = AnimalComparator.createInvalidComparator();
-        SortCommand sortCommand = new SortCommand(invalidAnimalComparator);
-
-        assertThrows(CommandException.class,
-                SortCommand.MESSAGE_INVALID_SORT_CATEGORY, () -> sortCommand.execute(modelStub));
-    }
-
-    @Test
-    public void execute_sortAnimalNameSuccessful() throws Exception {
+    public void execute_sortAnimalNameSuccessful() {
         Animal ahmeng = new AnimalBuilder().withName("Ahmeng").build();
         Animal buttercup = new AnimalBuilder().withName("Buttercup").build();
         Animal coco = new AnimalBuilder().withName("Coco").build();
@@ -54,7 +42,7 @@ class SortCommandTest {
     }
 
     @Test
-    public void execute_sortAnimalIdSuccessful() throws Exception {
+    public void execute_sortAnimalIdSuccessful() {
         Animal ahmeng = new AnimalBuilder().withId("121").build();
         Animal buttercup = new AnimalBuilder().withId("122").build();
         Animal coco = new AnimalBuilder().withId("123").build();
@@ -70,7 +58,7 @@ class SortCommandTest {
     }
 
     @Test
-    public void execute_sortAnimalFeedTimeSuccessful() throws Exception {
+    public void execute_sortAnimalFeedTimeSuccessful() {
         Animal ahmeng = new AnimalBuilder().withFeedTimes("1200").build();
         Animal buttercup = new AnimalBuilder().withFeedTimes("1230").build();
         Animal coco = new AnimalBuilder().withFeedTimes("1300").build();
@@ -86,7 +74,7 @@ class SortCommandTest {
     }
 
     @Test
-    public void execute_sortAnimalNoFeedTimeSuccessful() throws Exception {
+    public void execute_sortAnimalNoFeedTimeSuccessful() {
         Animal ahmeng = new AnimalBuilder().withFeedTimes().build();
         Animal buttercup = new AnimalBuilder().withFeedTimes().build();
         Animal coco = new AnimalBuilder().withFeedTimes("1300").build();

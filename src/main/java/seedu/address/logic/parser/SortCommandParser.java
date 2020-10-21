@@ -15,6 +15,9 @@ public class SortCommandParser implements Parser<SortCommand> {
     public static final String ID_CATEGORY = "id";
     public static final String FEEDTIME_CATEGORY = "feedtime";
 
+    public static final String MESSAGE_INVALID_SORT_CATEGORY = "Please key in a proper sort category: "
+            + "name, id or feedtime";
+
     /**
      * Parses the given {@code String} of arguments in the context of the SortCommand
      * and returns a SortCommand object for execution.
@@ -40,7 +43,8 @@ public class SortCommandParser implements Parser<SortCommand> {
             animalComparator = AnimalComparator.createAnimalFeedTimeComparator();
             break;
         default:
-            animalComparator = AnimalComparator.createInvalidComparator();
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_SORT_CATEGORY, SortCommand.MESSAGE_USAGE));
         }
         return new SortCommand(animalComparator);
     }

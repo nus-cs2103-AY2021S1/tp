@@ -3,7 +3,6 @@ package seedu.address.model.animal;
 import java.util.Comparator;
 import java.util.Optional;
 
-import seedu.address.logic.parser.SortCommandParser;
 import seedu.address.model.feedtime.FeedTime;
 
 
@@ -47,6 +46,10 @@ public class AnimalComparator {
         }
     };
 
+    private static final String FEEDTIME_CATEGORY = "feedtime";
+    private static final String ID_CATEGORY = "id";
+    private static final String NAME_CATEGORY = "name";
+
     private String category;
     private Comparator<Animal> animalComparator;
 
@@ -60,7 +63,7 @@ public class AnimalComparator {
      * @return An animal feed time comparator.
      */
     public static AnimalComparator createAnimalFeedTimeComparator() {
-        return new AnimalComparator(ANIMAL_FEEDTIME_COMPARATOR, SortCommandParser.FEEDTIME_CATEGORY);
+        return new AnimalComparator(ANIMAL_FEEDTIME_COMPARATOR, FEEDTIME_CATEGORY);
     }
 
     /**
@@ -68,7 +71,7 @@ public class AnimalComparator {
      * @return An animal id comparator.
      */
     public static AnimalComparator createAnimalIdComparator() {
-        return new AnimalComparator(ANIMAL_ID_COMPARATOR, SortCommandParser.ID_CATEGORY);
+        return new AnimalComparator(ANIMAL_ID_COMPARATOR, ID_CATEGORY);
     }
 
     /**
@@ -76,15 +79,7 @@ public class AnimalComparator {
      * @return An animal name comparator.
      */
     public static AnimalComparator createAnimalNameComparator() {
-        return new AnimalComparator(ANIMAL_NAME_COMPARATOR, SortCommandParser.NAME_CATEGORY);
-    }
-
-    /**
-     * Creates an invalid animal comparator when an invalid sort category is given.
-     * @return An invalid animal comparator.
-     */
-    public static AnimalComparator createInvalidComparator() {
-        return new AnimalComparator(null, "");
+        return new AnimalComparator(ANIMAL_NAME_COMPARATOR, NAME_CATEGORY);
     }
 
     public String getCategory() {

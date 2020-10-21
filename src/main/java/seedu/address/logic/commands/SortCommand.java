@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.animal.AnimalComparator;
 
@@ -19,8 +18,6 @@ public class SortCommand extends Command {
             + "Parameters: case-insensitive CATEGORY (name, id, feedtime) \n"
             + "Example: " + COMMAND_WORD + " name";
     public static final String MESSAGE_SUCCESS = "Sorted all animals by ";
-    public static final String MESSAGE_INVALID_SORT_CATEGORY = "Please key in a proper sort category: "
-            + "name, id or feedtime";
 
     private final AnimalComparator animalComparator;
 
@@ -29,12 +26,9 @@ public class SortCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         String category = animalComparator.getCategory();
-        if (category.equals("")) {
-            throw new CommandException(MESSAGE_INVALID_SORT_CATEGORY);
-        }
         model.sortAnimals(animalComparator);
         return new CommandResult(MESSAGE_SUCCESS + category);
     }
