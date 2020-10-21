@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -40,7 +41,9 @@ class JsonAdaptedVisit {
      * Converts a given {@code Visit} into this class for Jackson use.
      */
     public JsonAdaptedVisit(Visit source) {
-        visitDate = source.getVisitDate().toString();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedString = source.getVisitDate().format(formatter);
+        visitDate = formattedString;
         patientName = source.getPatientName().toString();
         diagnosis = source.getDiagnosis();
         prescription = source.getPrescription();
@@ -56,7 +59,8 @@ class JsonAdaptedVisit {
         if (!Visit.isValidVisitDate(visitDate)) {
             throw new IllegalValueException(Visit.MESSAGE_CONSTRAINTS);
         }
-        return new Visit(LocalDate.parse(visitDate), new Name(patientName), diagnosis, prescription,
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return new Visit(LocalDate.parse(visitDate, formatter), new Name(patientName), diagnosis, prescription,
             comment);
     }
 

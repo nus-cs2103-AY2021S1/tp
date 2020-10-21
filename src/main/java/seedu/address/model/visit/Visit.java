@@ -1,5 +1,6 @@
 package seedu.address.model.visit;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
@@ -34,6 +35,13 @@ public class Visit implements Comparable<Visit> {
         this.diagnosis = diagnosis;
         this.prescription = prescription;
         this.comment = comment;
+    }
+
+    public Visit(String value) {
+        requireNonNull(value);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        visitDate = LocalDate.parse(value, formatter);
+        patientName = new Name("null");
     }
 
     public LocalDate getVisitDate() {
@@ -131,12 +139,13 @@ public class Visit implements Comparable<Visit> {
         return true;
     }
 
-    public void setFields(LocalDate visitDate, Name patientName, String diagnosis, String prescription,
-                          String comment) {
-        this.visitDate = visitDate;
-        this.patientName = patientName;
+    public void setFields(String diagnosis, String prescription, String comment) {
         this.diagnosis = diagnosis;
         this.prescription = prescription;
         this.comment = comment;
+    }
+
+    public void setPatientName(Name patientName) {
+        this.patientName = patientName;
     }
 }

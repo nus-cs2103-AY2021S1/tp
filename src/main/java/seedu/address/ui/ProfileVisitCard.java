@@ -6,6 +6,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.visit.Visit;
 
+import java.time.format.DateTimeFormatter;
+
 /**
  * An UI component that displays information of a {@code VisitReport} on the {@code ProfileWindow}.
  */
@@ -33,7 +35,9 @@ public class ProfileVisitCard extends UiPart<Region> {
     public ProfileVisitCard(Visit report) {
         super(FXML);
         this.report = report;
-        this.date = report.getVisitDate().toString();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedString = report.getVisitDate().format(formatter);
+        this.date = formattedString;
         this.diagnosis = report.getDiagnosis();
         this.medication = report.getPrescription();
         this.remarks = report.getComment();

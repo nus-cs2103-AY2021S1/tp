@@ -116,9 +116,43 @@ public class CommandResult {
     public boolean isShowProfile() {
         return isProfile;
     }
+
     public Patient getProfilePerson() {
         return profilePatient;
     }
+
+    public boolean isAddVisit() {
+        return isAddVisit;
+    }
+
+    public boolean isShowVisitList() {
+        return isShowVisitList;
+    }
+
+    public boolean isEditVisit() {
+        return isEditVisit;
+    }
+
+    public int getIdx() {
+        return index;
+    }
+
+    public int getReportIdx() {
+        return reportIdx;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public Visit getOldReport() {
+        return this.oldReport;
+    }
+
+    public ObservableList<Visit> getObservableVisitHistory() {
+        return this.reports;
+    }
+
 
     @Override
     public boolean equals(Object other) {
@@ -133,13 +167,16 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
+                && isAddVisit == otherCommandResult.isAddVisit
+                && isEditVisit == otherCommandResult.isEditVisit
+                && isShowVisitList == otherCommandResult.isShowVisitList
+                && isProfile == otherCommandResult.isProfile
                 && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, isAddVisit, isProfile, exit);
     }
 
 }
