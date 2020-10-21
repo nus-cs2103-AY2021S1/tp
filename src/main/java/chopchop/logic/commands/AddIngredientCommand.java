@@ -20,12 +20,12 @@ public class AddIngredientCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an ingredient to the ingredient book. "
             + "Parameters: "
             + "NAME "
-            + ARG_QUANTITY + "QUANTITY "
-            + ARG_EXPIRY + "EXPIRY\n"
-            + "Example: " + COMMAND_WORD + " "
-            + "Chili "
-            + ARG_QUANTITY + "3 "
-            + ARG_EXPIRY + "2020-10-05";
+            + ARG_QUANTITY + " QUANTITY "
+            + ARG_EXPIRY + " EXPIRY\n"
+            + "Example: " + COMMAND_WORD
+            + " Chili "
+            + ARG_QUANTITY + " 3 "
+            + ARG_EXPIRY + " 2020-10-05";
 
     public static final String MESSAGE_ADD_INGREDIENT_SUCCESS = "Ingredient added: %s";
     public static final String MESSAGE_COMBINE_INGREDIENT_SUCCESS = "Ingredient updated: %s";

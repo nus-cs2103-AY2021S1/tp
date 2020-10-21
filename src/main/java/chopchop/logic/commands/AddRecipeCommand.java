@@ -18,14 +18,14 @@ public class AddRecipeCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a recipe to the recipe book. "
             + "Parameters: "
             + "NAME "
-            + "[" + ARG_INGREDIENT + "INGREDIENT [" + ARG_QUANTITY + " QUANTITY]]... "
-            + "[" + ARG_STEP + "STEP]...\n"
-            + "Example: " + COMMAND_WORD + " "
-            + "Sugar Tomato "
-            + ARG_INGREDIENT + "Sugar "
-            + ARG_INGREDIENT + "Tomato " + ARG_QUANTITY + " 5 "
-            + ARG_STEP + "Chop tomatoes. "
-            + ARG_STEP + "Add sugar to it and mix well.";
+            + "[" + ARG_INGREDIENT + " INGREDIENT [" + ARG_QUANTITY + " QUANTITY]]... "
+            + "[" + ARG_STEP + " STEP]...\n"
+            + "Example: " + COMMAND_WORD
+            + " Sugar Tomato "
+            + ARG_INGREDIENT + " Sugar "
+            + ARG_INGREDIENT + " Tomato " + ARG_QUANTITY + " 5 "
+            + ARG_STEP + " Chop tomatoes. "
+            + ARG_STEP + " Add sugar to it and mix well.";
 
     public static final String MESSAGE_ADD_RECIPE_SUCCESS = "Recipe added: %s";
     public static final String MESSAGE_DUPLICATE_RECIPE = "Recipe '%s' already exists in the recipe book";
