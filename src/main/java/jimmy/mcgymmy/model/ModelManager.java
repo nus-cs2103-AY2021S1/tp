@@ -3,6 +3,8 @@ package jimmy.mcgymmy.model;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -140,6 +142,22 @@ public class ModelManager implements Model {
 
     private void addCurrentStateToHistory() {
         mcGymmyStack.push(new McGymmy(mcGymmy));
+    }
+
+    @Override
+    public void clearFilteredFood() {
+        addCurrentStateToHistory();
+        Predicate<? super Food> filterPredicate = filteredFoodItems.getPredicate();
+        List<Food> lst = new ArrayList<>();
+        // prevent traversal error
+        for (Food filteredFood : mcGymmy.getFoodList()) {
+            if (!filterPredicate.test(filteredFood)) {
+                lst.add(filteredFood);
+            }
+        }
+        mcGymmy.setFoodItems(lst);
+
+        filteredFoodItems.clear();
     }
 
     //=========== Filtered Food List Accessors =============================================================
