@@ -60,6 +60,8 @@ public class FindCommandParser implements Parser<FindCommand> {
     private FlashcardPredicate getFlashcardPredicate(Set<Tag> tagsToMatch, List<String> questionKeywords) {
         ArrayList<Predicate<Flashcard>> predicates = new ArrayList<>();
 
+        assert !(tagsToMatch.isEmpty() && questionKeywords.isEmpty());
+
         if (!tagsToMatch.isEmpty()) {
             predicates.add(new FlashcardContainsTagPredicate(tagsToMatch));
         }
