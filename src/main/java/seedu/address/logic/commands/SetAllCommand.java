@@ -68,32 +68,45 @@ public class SetAllCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        boolean isNoChange = model.hasIngredient(new Ingredient(new IngredientName("Milk"), milkAmount))
-                && model.hasIngredient(new Ingredient(new IngredientName("Pearl"), pearlAmount))
-                && model.hasIngredient(new Ingredient(new IngredientName("Boba"), bobaAmount))
-                && model.hasIngredient(new Ingredient(new IngredientName("Oolong Tea"), oolongTeaAmount))
-                && model.hasIngredient(new Ingredient(new IngredientName("Brown Sugar"), brownSugarAmount));
+        IngredientBook toSet = new IngredientBook();
+        IngredientBook filledBook = executeHelper(toSet);
+
+        boolean isNoChange = milkAmount.equals(model.findIngredientByName(new IngredientName("Milk")).getAmount())
+                && pearlAmount.equals(model.findIngredientByName(new IngredientName("Pearl")).getAmount())
+                && bobaAmount.equals(model.findIngredientByName(new IngredientName("Boba")).getAmount())
+                && oolongTeaAmount.equals(model.findIngredientByName(new IngredientName("Oolong Tea")).getAmount())
+                && brownSugarAmount.equals(model.findIngredientByName(new IngredientName("Brown Sugar")).getAmount());
 
         if (isNoChange) {
             throw new CommandException(MESSAGE_NO_CHANGE);
         }
 
-        IngredientBook toSet = new IngredientBook();
-        toSet.setIngredient(new Ingredient(new IngredientName("Milk")),
+        filledBook.setIngredient(new Ingredient(new IngredientName("Milk")),
                 new Ingredient(new IngredientName("Milk"), milkAmount));
-        toSet.setIngredient(new Ingredient(new IngredientName("Pearl")),
+        filledBook.setIngredient(new Ingredient(new IngredientName("Pearl")),
                 new Ingredient(new IngredientName("Pearl"), pearlAmount));
-        toSet.setIngredient(new Ingredient(new IngredientName("Boba")),
+        filledBook.setIngredient(new Ingredient(new IngredientName("Boba")),
                 new Ingredient(new IngredientName("Boba"), bobaAmount));
-        toSet.setIngredient(new Ingredient(new IngredientName("Oolong Tea")),
+        filledBook.setIngredient(new Ingredient(new IngredientName("Oolong Tea")),
                 new Ingredient(new IngredientName("Oolong Tea"), oolongTeaAmount));
-        toSet.setIngredient(new Ingredient(new IngredientName("Brown Sugar")),
+        filledBook.setIngredient(new Ingredient(new IngredientName("Brown Sugar")),
                 new Ingredient(new IngredientName("Brown Sugar"), milkAmount));
 
-        ReadOnlyIngredientBook readOnlyToSet = toSet;
-        model.setIngredientBook(readOnlyToSet);
+        ReadOnlyIngredientBook readOnlyFilledBook = filledBook;
+        model.setIngredientBook(readOnlyFilledBook);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toSet));
+    }
+
+    private static IngredientBook executeHelper(IngredientBook tempBook) {
+
+        tempBook.addIngredient(new Ingredient(new IngredientName("Milk")));
+        tempBook.addIngredient(new Ingredient(new IngredientName("Pearl")));
+        tempBook.addIngredient(new Ingredient(new IngredientName("Boba")));
+        tempBook.addIngredient(new Ingredient(new IngredientName("Oolong Tea")));
+        tempBook.addIngredient(new Ingredient(new IngredientName("Brown Sugar")));
+        return tempBook;
+
     }
 
     @Override
