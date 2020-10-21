@@ -83,11 +83,11 @@ The `UI` component,
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a staff).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delstaff 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -391,65 +391,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Steps 1c1-1c3 are repeated until the data entered are correct.
     Use case resumes from step 2.
-    
-    
-***Use case: UC05 - Adding an applicant to record***
 
-Similar to Use Case 01, except that instead of s-, key in a-.
-
-Example: `add a- n/<applicantname> a/address e/<email> p/<phoneno> c/<comments>`
-
-***Use case: UC06 - Deleting an applicant from record***
-
-Similar to Use Case 02, except that instead of s-, key in a-.
-
-Example: `delete <index_of_applicant> a-`
-    
-***Use case: UC07 - Adding a Comment on applicant***
-
-Similar to Use Case 03, just that instead of s-, key in a-.
-
-Example: `add <index_of_staff> s- c- t:<title> d:<date> desc:<description_of_comment>`    
-
-***Use case: UC08 - Deleting a Comment on applicant***
-
-Similar to Use Case 04 except that instead of s-, key in a-.
-
-Example: `delete <index_of_applicant> a- c- t:<title>`
-
-
-***Use case: UC09 - list all staff records***
-
-**MSS**
-
-1. User types in list
-2. Eva shows all staff records with indexes beside.
-    Use case ends.
-
-**Extensions**
-
-* 1a. Eva does not find any staff records.
-
-    * 1a1. Eva informs the user that no records exist.
-    Use case ends
-
-***Use case: UC10 - Exiting the program***
-
-**MSS**
-
-1. User types in exit
-2. Eva exits
-
-Use case ends.
-
-**Extensions**
-
-* 1a. Eva does not find any staff records.
-
-    * 1a1. Eva informs the user that no records exist.
-    Use case ends
-
-***Use case: UC04 - Adding a leave record to staff***
+***Use case: UC05 - Adding a leave record to staff***
 
 **MSS**
 
@@ -486,7 +429,7 @@ Use case ends.
     Steps 1a1-1a3 are repeated until the data entered are correct.
     Use case resumes from step 2.
 
-***Use case: UC05 - Deleting a leave record from staff***
+***Use case: UC06 - Deleting a leave record from staff***
 
 **MSS**
 
@@ -523,8 +466,7 @@ Use case ends.
     Steps 1a1-1a3 are repeated until the data entered are correct.
     Use case resumes from step 2.
 
-
-***Use case: UC06 - Adding a record of applicant***
+***Use case: UC07 - Adding a record of applicant***
 
 **MSS**
 
@@ -552,8 +494,8 @@ Use case ends.
 
     Steps 1b1-1b3 are repeated until the data entered are correct.
     Use case resumes from step 2.
-
-***Use case: UC07 - Deleting a Record of Applicant***
+    
+***Use case: UC08 - Deleting a Record of Applicant***
 
 **MSS**
 
@@ -581,8 +523,61 @@ Use case ends.
     Steps 1b1-1b3 are repeated until the data entered are correct.
     Use case resumes from step 2.
     
+***Use case: UC09 - Adding an applicant to record***
+
+Similar to Use Case 01, except that instead of s-, key in a-.
+
+Example: `add a- n/<applicantname> a/address e/<email> p/<phoneno> c/<comments>`
+
+***Use case: UC10 - Deleting an applicant from record***
+
+Similar to Use Case 02, except that instead of s-, key in a-.
+
+Example: `delete <index_of_applicant> a-`
     
-***Use case: UC08 - Exiting the program***
+***Use case: UC11 - Adding a Comment on applicant***
+
+Similar to Use Case 03, just that instead of s-, key in a-.
+
+Example: `add <index_of_staff> s- c- t:<title> d:<date> desc:<description_of_comment>`    
+
+***Use case: UC12 - Deleting a Comment on applicant***
+
+Similar to Use Case 04 except that instead of s-, key in a-.
+
+Example: `delete <index_of_applicant> a- c- t:<title>`
+
+***Use case: UC13 - Adding an application to a staff***
+
+**MSS**
+
+1. User types in `addapplication <index_of_applicant> <filepath_of_resume>`
+2. Eva inserts the resume data into storage, under the applicant indicated.
+    Use case ends.
+
+**Extensions**
+
+* 1a. Eva does not find any file (resume) specified.
+
+    * 1a1. Eva informs the user that the file cannot be found.
+    Use case ends
+    
+***Use case: UC14 - list all staff records***
+
+**MSS**
+
+1. User types in list
+2. Eva shows all staff records with indexes beside.
+    Use case ends.
+
+**Extensions**
+
+* 1a. Eva does not find any staff records.
+
+    * 1a1. Eva informs the user that no records exist.
+    Use case ends
+
+***Use case: UC15 - Exiting the program***
 
 **MSS**
 
