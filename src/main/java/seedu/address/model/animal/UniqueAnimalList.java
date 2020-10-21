@@ -3,11 +3,13 @@ package seedu.address.model.animal;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.model.animal.exceptions.AnimalNotFoundException;
 import seedu.address.model.animal.exceptions.DuplicateAnimalException;
 
@@ -96,6 +98,15 @@ public class UniqueAnimalList implements Iterable<Animal> {
         }
 
         internalList.setAll(animals);
+    }
+
+    /**
+     * Replaces the contents of this list with a sorted list instead.
+     */
+    public void sortAnimals(AnimalComparator animalComparator) {
+        Comparator<Animal> comparator = animalComparator.getAnimalComparator();
+        SortedList<Animal> sortedList = internalList.sorted(comparator);
+        internalList.setAll(sortedList);
     }
 
     /**

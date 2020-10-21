@@ -62,6 +62,7 @@ public class SnapCommand extends Command {
         try {
             Storage storage = new StorageManager(zooKeepBookStorage, userPrefsStorage);
             ReadOnlyZooKeepBook zooKeepBook = model.getZooKeepBook();
+            assert(zooKeepBook != null);
             storage.saveZooKeepBook(zooKeepBook, savePath);
         } catch (IOException ioe) {
             throw new CommandException(String.format(MESSAGE_ERROR + ioe, ioe));

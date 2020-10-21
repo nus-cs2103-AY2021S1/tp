@@ -15,6 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.animal.AnimalComparator;
 import seedu.address.model.animal.AnimalContainsKeywordsPredicate;
 import seedu.address.testutil.ZooKeepBookBuilder;
 
@@ -119,6 +120,10 @@ public class ModelManagerTest {
         // different filteredList -> returns false
         String[] keywords = AHMENG.getName().fullName.split("\\s+");
         modelManager.updateFilteredAnimalList(new AnimalContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertFalse(modelManager.equals(new ModelManager(zooKeepBook, userPrefs)));
+
+        // different after sorting by feedtimes -> return false
+        modelManager.sortAnimals(AnimalComparator.createAnimalFeedTimeComparator());
         assertFalse(modelManager.equals(new ModelManager(zooKeepBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
