@@ -14,31 +14,31 @@ participant "q:UnsolvedQuestion" as Question MODEL_COLOR
 participant "student:Student" as Student MODEL_COLOR
 end box
 
-[--> LogicManager : execute("question 1 a/How do birds fly?")
+[-> LogicManager : execute("question 1 a/How do birds fly?")
 activate LogicManager
 
-LogicManager --> ReeveParser : parseCommand("question 1 a/How do birds fly?")
+LogicManager -> ReeveParser : parseCommand("question 1 a/How do birds fly?")
 activate ReeveParser
 
 create QuestionCommandParser
-ReeveParser --> QuestionCommandParser
+ReeveParser -> QuestionCommandParser
 activate QuestionCommandParser
 
 QuestionCommandParser --> ReeveParser
 deactivate QuestionCommandParser
 
-ReeveParser --> QuestionCommandParser : parse("1 a/How do birds fly?")
+ReeveParser -> QuestionCommandParser : parse("1 a/How do birds fly?")
 activate QuestionCommandParser
 
 create Question
-QuestionCommandParser --> Question : UnsolvedQuestion("How do birds fly")
+QuestionCommandParser -> Question : UnsolvedQuestion("How do birds fly")
 activate Question
 
 Question --> QuestionCommandParser : q
 deactivate Question
 
 create AddQuestionCommand
-QuestionCommandParser --> AddQuestionCommand
+QuestionCommandParser -> AddQuestionCommand
 activate AddQuestionCommand
 
 AddQuestionCommand --> QuestionCommandParser : a
@@ -53,22 +53,22 @@ destroy QuestionCommandParser
 ReeveParser --> LogicManager : a
 deactivate ReeveParser
 
-LogicManager --> AddQuestionCommand : execute()
+LogicManager -> AddQuestionCommand : execute()
 activate AddQuestionCommand
 
-AddQuestionCommand --> Model : getPerson(1)
+AddQuestionCommand -> Model : getPerson(1)
 activate Model
 
 Model --> AddQuestionCommand : student
 deactivate Model
 
-AddQuestionCommand --> Student : addQuestion(q)
+AddQuestionCommand -> Student : addQuestion(q)
 activate Student
 
 Student --> AddQuestionCommand : copy
 deactivate Student
 
-AddQuestionCommand --> Model : setPerson(student, copy)
+AddQuestionCommand -> Model : setPerson(student, copy)
 activate Model
 
 Student -[hidden]-> Model

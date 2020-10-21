@@ -14,24 +14,24 @@ participant "q:SolvedQuestion" as Question MODEL_COLOR
 participant "student:Student" as Student MODEL_COLOR
 end box
 
-[--> LogicManager : execute("question 1 s/1 Check textbook")
+[-> LogicManager : execute("question 1 s/1 Check textbook")
 activate LogicManager
 
-LogicManager --> ReeveParser : parseCommand("question 1 s/1 Check textbook")
+LogicManager -> ReeveParser : parseCommand("question 1 s/1 Check textbook")
 activate ReeveParser
 
 create QuestionCommandParser
-ReeveParser --> QuestionCommandParser
+ReeveParser -> QuestionCommandParser
 activate QuestionCommandParser
 
 QuestionCommandParser --> ReeveParser
 deactivate QuestionCommandParser
 
-ReeveParser --> QuestionCommandParser : parse("1 s/1 Check textbook")
+ReeveParser -> QuestionCommandParser : parse("1 s/1 Check textbook")
 activate QuestionCommandParser
 
 create SolveQuestionCommand
-QuestionCommandParser --> SolveQuestionCommand
+QuestionCommandParser -> SolveQuestionCommand
 activate SolveQuestionCommand
 
 SolveQuestionCommand --> QuestionCommandParser : s
@@ -46,29 +46,29 @@ destroy QuestionCommandParser
 ReeveParser --> LogicManager : s
 deactivate ReeveParser
 
-LogicManager --> SolveQuestionCommand : execute()
+LogicManager -> SolveQuestionCommand : execute()
 activate SolveQuestionCommand
 
-SolveQuestionCommand --> Model : getPerson(1)
+SolveQuestionCommand -> Model : getPerson(1)
 activate Model
 
 Model --> SolveQuestionCommand : student
 deactivate Model
 
 create Question
-SolveQuestionCommand --> Question
+SolveQuestionCommand -> Question
 activate Question
 
 Question --> SolveQuestionCommand : q
 deactivate Question
 
-SolveQuestionCommand --> Student : setQuestion(q)
+SolveQuestionCommand -> Student : setQuestion(q)
 activate Student
 
 Student --> SolveQuestionCommand : copy
 deactivate Student
 
-SolveQuestionCommand --> Model : setPerson(student, copy)
+SolveQuestionCommand -> Model : setPerson(student, copy)
 activate Model
 
 Model --> SolveQuestionCommand
