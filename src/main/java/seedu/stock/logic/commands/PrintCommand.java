@@ -32,6 +32,7 @@ public class PrintCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         assert model != null : "Model cannot be null!";
+
         ObservableList<Stock> stockBookList = model.getStockBook().getStockList();
         Path csvFilePath = model.getUserPrefs().getCsvFilePath();
 
@@ -44,7 +45,8 @@ public class PrintCommand extends Command {
             }
             writer.close();
         } catch (IOException ex) {
-            throw new CommandException(MESSAGE_FAILURE + ex.getMessage());
+            System.out.println(ex.getMessage());
+            //  throw new CommandException(MESSAGE_FAILURE + ex.getMessage());
         }
 
         return new CommandResult(MESSAGE_SUCCESS);
