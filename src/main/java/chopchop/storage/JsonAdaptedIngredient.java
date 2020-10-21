@@ -12,15 +12,18 @@ public class JsonAdaptedIngredient {
 
     private final String name;
     private final JsonAdaptedIngredientSet sets;
+    private final JsonAdaptedTagSet tags;
 
     /**
      * Constructs a {@code JsonAdaptedIngredient} with the given ingredient details.
      */
     @JsonCreator
     public JsonAdaptedIngredient(@JsonProperty("name") String name,
-                                 @JsonProperty("sets") JsonAdaptedIngredientSet sets) {
+                                 @JsonProperty("sets") JsonAdaptedIngredientSet sets,
+                                 @JsonProperty("tags") JsonAdaptedTagSet tags) {
         this.name = name;
         this.sets = sets;
+        this.tags = tags;
     }
 
     /**
@@ -29,6 +32,7 @@ public class JsonAdaptedIngredient {
     public JsonAdaptedIngredient(Ingredient source) {
         this.name = source.getName();
         this.sets = new JsonAdaptedIngredientSet(source.getIngredientSets());
+        this.tags = new JsonAdaptedTagSet(source.getTags());
     }
 
     /**
@@ -49,6 +53,6 @@ public class JsonAdaptedIngredient {
             throw new IllegalValueException(String.format(INGREDIENT_MISSING_FIELD_MESSAGE_FORMAT, "sets"));
         }
 
-        return new Ingredient(this.name, this.sets.toModelType());
+        return new Ingredient(this.name, this.sets.toModelType(), this.tags.toModelType());
     }
 }
