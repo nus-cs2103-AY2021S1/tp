@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_PHONE;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.GitUserIndex;
@@ -56,6 +57,7 @@ public class EditTeammateCommand extends Command {
     public static final String MESSAGE_EDIT_TEAMMATE_SUCCESS = "Teammate has been edited: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
+    private static final Logger logger = Logger.getLogger("NewTeammateCommandLogger");
     private final GitUserIndex gitUserIndex;
     private final EditTeammateDescriptor editTeammateDescriptor;
 
