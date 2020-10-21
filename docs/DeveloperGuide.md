@@ -137,7 +137,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 The proposed edit account mechanism is facilitated by `EditAccountCommand`. It extends `Command` and is identified by
-'CommonCentsParser' and `EditAccountCommandParser`. The `EditAccountCommand` interacts with `Account` and the interaction
+`CommonCentsParser` and `EditAccountCommandParser`. The `EditAccountCommand` interacts with `Account` and the interaction
 is managed by `ActiveAccount` as well as the `Model`. As such, it implements the following operation:
 
 * `Account#setName(Name editedName)` — Sets the name of the account
@@ -197,6 +197,57 @@ The following activity diagram summarizes what happens when a user executes a ne
   changes to accounts in account list.
 
 
+### Find entries feature 
+
+#### Implementation
+
+The proposed Find entries feature is facilitated by `FindCommand`. It extends `Command` and 
+is identified by `CommonCentsParser` and `FindCommandParser`. The FindCommand interacts 
+with `Account` and the interaction is managed by `ActiveAccount`. As such, it implements the following
+operations: 
+* `Account#updateFilteredExpenseList(Predicate<Expense> predicate)` — Updates the expense 
+list that has the given keywords as predicate.
+* `Account#updateFilteredRevenueList(Predicate<Revenue> predicate)` — Updates the revenue 
+list that has the given keywords as predicate. 
+
+The operations are exposed in the `ActiveAccount` interface as `ActiveAccount` interface as 
+`ActiveAccount#setName()`.
+
+Given below is an example usage scenario and how the find entries mechanism behaves 
+at each step.
+
+* Step 1. The user inputs the find command to find the entries that have the occurrences of 
+a list of specified keywords in the entries of `ActiveAccount`. `CommandParser` identifies the command word `find`
+and calls `FindCommandParser#parse(String args)` to parse the input into a valid `FindCommand`.
+
+* Step 2. `FindCommand` starts to be executed. In the execution, 
+    * If there is a predicate for keywords in the expense list of `ActiveAccount`, the expense list is updated. 
+    `ActiveAccount#updateFilteredExpenseList()` is called to update the current expense list with expenses 
+    with descriptions matching the keywords. 
+    * If there is a predicate for keywords in the revenue list of `ActiveAccount`, the revenue list is updated. 
+    `ActiveAccount#updateFilteredExpenseList()` is called to update the current revenue list with revenues
+    with descriptions matching the keywords.
+
+The following sequence diagram shows how an find entries operation works:
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Some of the interactions with the utility classes,
+such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
+of the find entries command.
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+#### Design consideration:
+
+##### Aspect: How find entries command is parsed
+* **Choice:** User needs to use prefix "k/" to before the keywords.
+    * Pros: 
+        * Easy to implement as the arguments can be tokenized in the event of inputs with multiple arguments.
+        * Able to handle multiple arguments as input for Category (with prefix "c/") is optional.
+    * Cons: Less convenience for the user. 
+     
+
+ 
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
