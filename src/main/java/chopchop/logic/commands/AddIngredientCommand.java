@@ -15,7 +15,7 @@ import chopchop.model.ingredient.Ingredient;
 /**
  * Adds an ingredient to the ingredient book.
  */
-public class AddIngredientCommand extends Command {
+public class AddIngredientCommand extends Command implements Undoable {
     public static final String COMMAND_WORD = "add ingredient";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an ingredient to the ingredient book. "
@@ -30,8 +30,11 @@ public class AddIngredientCommand extends Command {
 
     public static final String MESSAGE_ADD_INGREDIENT_SUCCESS = "Ingredient added: %s";
     public static final String MESSAGE_COMBINE_INGREDIENT_SUCCESS = "Ingredient updated: %s";
+    public static final String MESSAGE_UNDO_SUCCESS = "Ingredient updated: %s";
 
     private final Ingredient ingredient;
+    private Ingredient existingIngredient;
+    private Ingredient combinedIngredient;
 
     /**
      * Creates an AddIngredientCommand to add the specified {@code Ingredient}
@@ -47,19 +50,32 @@ public class AddIngredientCommand extends Command {
         Optional<Ingredient> existingIngredientOptional = model.findIngredientWithName(this.ingredient.getName());
 
         if (existingIngredientOptional.isPresent()) {
-            Ingredient existingIngredient = existingIngredientOptional.get();
+            this.existingIngredient = existingIngredientOptional.get();
 
             try {
-                Ingredient combinedIngredient = existingIngredient.combine(this.ingredient);
-                model.setIngredient(existingIngredient, combinedIngredient);
+                this.combinedIngredient = this.existingIngredient.combine(this.ingredient);
+                model.setIngredient(this.existingIngredient, this.combinedIngredient);
 
-                return new CommandResult(String.format(MESSAGE_COMBINE_INGREDIENT_SUCCESS, combinedIngredient));
+                return new CommandResult(String.format(MESSAGE_COMBINE_INGREDIENT_SUCCESS, this.combinedIngredient));
             } catch (IncompatibleIngredientsException e) {
                 throw new CommandException(e.toString());
             }
         } else {
             model.addIngredient(this.ingredient);
             return new CommandResult(String.format(MESSAGE_ADD_INGREDIENT_SUCCESS, this.ingredient));
+        }
+    }
+
+    @Override
+    public CommandResult undo(Model model) {
+        requireNonNull(model);
+
+        if (this.existingIngredient == null && this.combinedIngredient == null) {
+            model.deleteIngredient(this.ingredient);
+            return new CommandResult(String.format(MESSAGE_UNDO_SUCCESS, this.ingredient));
+        } else {
+            model.setIngredient(this.combinedIngredient, this.existingIngredient);
+            return new CommandResult(String.format(MESSAGE_UNDO_SUCCESS, this.existingIngredient));
         }
     }
 

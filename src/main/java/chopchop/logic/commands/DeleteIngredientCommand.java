@@ -20,7 +20,7 @@ import chopchop.util.Pair;
  * Removes a given quantity of an ingredient identified using it's displayed index or name from the ingredient book.
  * If no quantity is specified, the ingredient will be deleted.
  */
-public class DeleteIngredientCommand extends Command {
+public class DeleteIngredientCommand extends Command implements Undoable {
     public static final String COMMAND_WORD = "delete ingredient";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -37,6 +37,7 @@ public class DeleteIngredientCommand extends Command {
     public static final String MESSAGE_DELETE_INGREDIENT_SUCCESS = "Ingredient deleted: %s";
     public static final String MESSAGE_REMOVE_INGREDIENT_SUCCESS = "Removed %s of '%s'";
     public static final String MESSAGE_INGREDIENT_NOT_FOUND = "No ingredient named '%s'";
+    public static final String MESSAGE_UNDO_SUCCESS = "Ingredient updated: %s";
 
     private final ItemReference item;
     private final Optional<Quantity> quantity;
@@ -95,6 +96,19 @@ public class DeleteIngredientCommand extends Command {
             model.deleteIngredient(this.ingredient);
             return new CommandResult(String.format(MESSAGE_DELETE_INGREDIENT_SUCCESS, this.ingredient));
         }
+    }
+
+    @Override
+    public CommandResult undo(Model model) {
+        requireNonNull(model);
+
+        if (this.quantity.isEmpty() || this.updatedIngredient.getIngredientSets().isEmpty()) {
+            model.addIngredient(this.ingredient);
+        } else {
+            model.setIngredient(this.updatedIngredient, this.ingredient);
+        }
+
+        return new CommandResult(String.format(MESSAGE_UNDO_SUCCESS, this.ingredient));
     }
 
     @Override
