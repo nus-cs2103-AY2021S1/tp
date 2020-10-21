@@ -62,6 +62,11 @@ public class DeleteCommandParserTest {
     }
 
     @Test
+    public void parse_invalidPrefix_throwsParseException() {
+        assertParseFailure(parser, "1 q/test", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_validIndexAndTag_throwsParseException() {
         assertParseFailure(parser, "1 t/test", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
