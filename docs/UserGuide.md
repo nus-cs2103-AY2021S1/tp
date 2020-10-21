@@ -32,13 +32,13 @@ Welcome to CliniCal! If you are new to our software, this quick start guide will
 1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all patients.
+   * **`list`** : Lists all your patients.
 
-   * **`add`**`n/John Doe p/98765432 i/S2561932A a/Pickle street, Block 123, #01-01 e/johnd@example.com` : Adds a patient named `John Doe` to patient database.
+   * **`add`**`n/John Doe p/98765432 i/S2561932A a/Pickle street, Block 123, #01-01 e/johnd@example.com` : Adds a patient named `John Doe` to your patient database.
 
    * **`delete`**`3` : Deletes the 3rd patient shown in the patient list.
 
-   * **`clear`** : Deletes all patients.
+   * **`clear`** : Deletes all your patients.
 
    * **`exit`** : Exits the app.
 
@@ -80,7 +80,7 @@ Format: `exit`
 
 #### 3.1.2. Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+You can access the help page by referring to the link provided in the message pop-up.
 
 ![help message](images/helpMessage.png)
 
@@ -88,13 +88,13 @@ Format: `help`
 
 #### 3.1.3. Retrieve past commands using command line interface: `history`
 
-Retrieves a list of past commands that the user had used during the session.
+You can refer to a list of past commands that you had used during the session.
 
 Format: `history`
 
 #### 3.1.4. Clearing command history : `clearhistory`
 
-Clears command history from the patient database.
+You can clear command history.
 
 Format: `clearhistory`
 
@@ -104,7 +104,7 @@ Patient commands are commands that you can utilise to make changes to your list 
 
 #### 3.2.1. Adding a patient: `add`
 
-Adds a patient to the patient database.
+You can add your patient to the patient database.
 
 Format: `add n/NAME p/PHONE_NUMBER i/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
 
@@ -125,7 +125,7 @@ Examples:
 
 #### 3.2.2 Adding profile picture using command line interface: `addpicture`
 
-Adds a profile picture to the patient’s profile by specifying filepath to desired profile picture.
+You can add a profile picture to your patient’s profile by specifying filepath to desired profile picture.
 
 All patient profiles are preloaded with a stock profile picture.
 
@@ -138,26 +138,26 @@ Examples:
 
 #### 3.2.3 Adding profile picture using drag and drop
 
-Adds a profile picture to the patient’s profile by using drag and drop with your mouse.
+You can add a profile picture to your patient’s profile by dragging and dropping the picture with your mouse.
 
-1. Select the desired profile picture and drag it onto the space reserved for patient profile picture in ClinCal.
-2. Release mouse button and patient's profile picture would be updated with your desired picture.
+1. Select your desired profile picture and drag it onto the space reserved for patient profile picture in ClinCal.
+2. Release the mouse button and your patient's profile picture would be updated with the desired picture.
 
 #### 3.2.4. Clearing all entries : `clear`
 
-Clears all patient entries from the patient database.
+You can clear all patient entries from your patient database.
 
 Format: `clear`
 
 ### 3.2.5. Color coding patients
 
-When a patient is tagged with a color tag, the background of the patient will be styled to show that color. The color tags can be used for a variety of purposes; for example, a doctor may color code patients at risk of terminal diseases as red, for easier reference.
+When your patient is tagged with a color tag, the background of the patient will be styled to show that color. The color tags can be used for a variety of purposes; for example, you may color code patients at risk of terminal diseases as red, for easier reference.
 
 ![example of color coded patient](images/Ui.png)
 
 #### 3.2.6. Deleting a patient: `delete`
 
-Deletes the specified patient from the patient database.
+You can delete your specified patient from the patient database.
 
 Format: `delete INDEX`
 
@@ -171,7 +171,7 @@ Examples:
 
 #### 3.2.7. Editing a patient: `edit`
 
-Edits an existing patient in the patient database.
+You can edit an existing patient in your patient database.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [i/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
 
@@ -194,13 +194,13 @@ Examples:
 
 #### 3.2.8 Listing all patients: `list`
 
-Shows a list of all patients in the patient database.
+You can see a list of all your patients in the patient database.
 
 Format: `list`
 
 #### 3.2.9. Redoing a command : `redo`
 
-Redoes the most recent command that the user has undone.
+You can redo the most recent command that you have undone.
 
 Format: `redo`
 
@@ -214,11 +214,11 @@ Reuse past commands using the <kbd>↑</kbd> arrow and <kbd>↓</kbd> arrow keys
 
 ### 3.2.11. Saving the data
 
-CliniCal data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+CliniCal data is saved in your hard disk automatically after any command that changes the data. There is no need for you to save manually.
 
 #### 3.2.12. Undoing the previous command: `undo`
 
-Reverts the previous command given by the user.
+You can revert your previous command.
 
 Format: `undo`
 
