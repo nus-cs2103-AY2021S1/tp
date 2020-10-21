@@ -23,7 +23,8 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes flashcards from flashcard list.\n"
-            + "If an INDEX is given, then the flashcard identified by the index number is deleted from the displayed flashcard list.\n"
+            + "If an INDEX is given, then the flashcard identified"
+            + " by the index number is deleted from the displayed flashcard list.\n"
             + "If tag prefixes is given, the all flashcards with those tags will be deleted as well.\n"
             + "An error will be thrown if both index and tag prefixes are given together.\n"
             + "Parameters (either but not both): \n"

@@ -1,5 +1,11 @@
 package quickcache.logic.parser;
 
+import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.function.Predicate;
+
 import quickcache.commons.core.Messages;
 import quickcache.commons.core.index.Index;
 import quickcache.logic.commands.DeleteCommand;
@@ -9,11 +15,6 @@ import quickcache.model.flashcard.FlashcardContainsTagPredicate;
 import quickcache.model.flashcard.FlashcardPredicate;
 import quickcache.model.flashcard.Tag;
 
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.function.Predicate;
-
-import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
@@ -33,7 +34,9 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         if (isTagPrefixPresent(argMultimap)) {
             if (!argMultimap.getPreamble().isEmpty()) {
                 // there shouldn't be a preamble together with the tag prefix
-                throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+                throw new ParseException(
+                        String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                        DeleteCommand.MESSAGE_USAGE));
             }
             Set<Tag> tagsToMatch = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
             FlashcardPredicate predicate = getFlashcardPredicate(tagsToMatch);
