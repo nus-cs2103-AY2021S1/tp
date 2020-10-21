@@ -29,6 +29,7 @@ public class MakeRecipeCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_MAKE_RECIPE_SUCCESS = "Recipe made: %s";
+    public static final String MESSAGE_MAKE_RECIPE_ERROR = "Cannot make recipe due to ingredient '%s'";
     public static final String MESSAGE_RECIPE_NOT_FOUND = "No recipe named '%s'";
     public static final String MESSAGE_INGREDIENT_NOT_FOUND = "No ingredient named '%s'";
 
@@ -74,7 +75,7 @@ public class MakeRecipeCommand extends Command {
             try {
                 this.ingredients.add(new Pair<>(ingredient, ingredient.split(ingredientRef.getQuantity())));
             } catch (IncompatibleIngredientsException | IllegalArgumentException e) {
-                throw new CommandException(e.getMessage());
+                throw new CommandException(String.format(MESSAGE_MAKE_RECIPE_ERROR, ingredient.getName()));
             }
         }
 
