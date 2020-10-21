@@ -89,6 +89,7 @@ public class MainCatalogueParser {
             return new HelpCommand();
 
         case StartCommand.COMMAND_WORD:
+            assert true;
             return new StartCommandParser().parse(arguments);
 
         case LeaveProjectViewCommand.COMMAND_WORD:
