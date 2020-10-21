@@ -1,6 +1,5 @@
 package chopchop.logic.commands;
 
-import static chopchop.model.Model.PREDICATE_SHOW_ALL_ENTRIES;
 import static chopchop.util.Strings.ARG_QUANTITY;
 import static java.util.Objects.requireNonNull;
 
