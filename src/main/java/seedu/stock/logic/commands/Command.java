@@ -1,6 +1,7 @@
 package seedu.stock.logic.commands;
 
 import seedu.stock.logic.commands.exceptions.CommandException;
+import seedu.stock.logic.commands.exceptions.SourceCompanyNotFoundException;
 import seedu.stock.model.Model;
 
 /**
@@ -15,6 +16,6 @@ public abstract class Command {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    public abstract CommandResult execute(Model model) throws CommandException;
+    public abstract CommandResult execute(Model model) throws CommandException, SourceCompanyNotFoundException;
 
 }

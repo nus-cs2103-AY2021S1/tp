@@ -10,6 +10,7 @@ import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.logic.commands.Command;
 import seedu.stock.logic.commands.CommandResult;
 import seedu.stock.logic.commands.exceptions.CommandException;
+import seedu.stock.logic.commands.exceptions.SourceCompanyNotFoundException;
 import seedu.stock.logic.parser.StockBookParser;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.Model;
@@ -38,7 +39,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException,
+            SourceCompanyNotFoundException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
