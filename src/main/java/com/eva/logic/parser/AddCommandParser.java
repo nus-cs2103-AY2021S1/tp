@@ -52,9 +52,6 @@ public class AddCommandParser implements Parser<Command> {
         Optional<String> addCommentCommand = argMultimap.getValue(PREFIX_ADDORDELETE_COMMENT);
         Optional<String> addLeaveCommand = argMultimap.getValue(PREFIX_LEAVE);
 
-        System.out.println(addCommentCommand.get());
-
-
         if (!addApplicantCommand.isEmpty() && !addCommentCommand.isEmpty()) {
             try {
                 index = ParserUtil.parseIndex(argMultimap.getPreamble());
