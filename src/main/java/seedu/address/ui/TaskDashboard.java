@@ -57,7 +57,7 @@ public class TaskDashboard extends UiPart<Region> {
         header1.setText("Task assignees: ");
         this.task.getAssignees()
                 .forEach(participation -> assignees.getChildren()
-                        .add(new Label(participation.getPerson().getPersonName().toString())));
+                        .add(new Label(participation)));
     }
 
     @Override
