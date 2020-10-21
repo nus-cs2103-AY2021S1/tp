@@ -1,7 +1,10 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.item.Item;
@@ -32,6 +35,8 @@ public class InventoryCard extends UiPart<Region> {
     private Label quantity;
     @FXML
     private Label description;
+    @FXML
+    private FlowPane tags;
 
     /**
      * Creates a {@code ItemCode} with the given {@code Item} and index to display.
@@ -42,6 +47,9 @@ public class InventoryCard extends UiPart<Region> {
         name.setText(item.getName());
         quantity.setText("Quantity: " + item.getQuantity());
         description.setText("Description: " + item.getDescription());
+        item.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

@@ -22,7 +22,7 @@ public class ItemParserUtil {
     public static final String DEFAULT_QUANTITY = "0";
     public static final String DEFAULT_DESCRIPTION = "None";
     public static final Quantity DEFAULT_QUANTITY_TYPED = new Quantity(DEFAULT_QUANTITY);
-    public static final String REGEX_ENTRIES = ", |,";
+    public static final String REGEX_ENTRIES = " , |, |,";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be

@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -47,6 +48,19 @@ public class UniqueLocationList implements Iterable<Location> {
         requireNonNull(toFind);
         return internalList.stream().filter(toFind::isSameLocation).findFirst().get().getId();
     }
+
+    /**
+     * For use by DetailedItemDisplayCard
+     * @param id id of Location
+     * @return an optional<Location> that maybe exists.
+     */
+    public Optional<Location> findLocationFromId(int id) {
+        requireNonNull(id);
+        return internalList.stream()
+                .filter(x -> x.getId() == id)
+                .findFirst();
+    }
+
 
     /**
      * Adds a location to the list.

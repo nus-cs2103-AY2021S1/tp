@@ -9,9 +9,9 @@ import java.util.Collection;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
-
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.item.Quantity;
+import seedu.address.model.tag.Tag;
 
 public class ItemParserUtilTest {
 
@@ -25,22 +25,22 @@ public class ItemParserUtilTest {
     private static final Collection<String> VALID_MULTI_LOCATION_PARSED = Set.of("City", "Town",
             "Singapore", "Kerning City");
     // Valid tag strings
-    private static final String VALID_BERT = "bert model";
+    private static final String VALID_BERT = "bertmodel";
     private static final String VALID_TUTURU = "tuturu";
     private static final String VALID_ASD = "asd";
     private static final String VALID_ABC = "abc";
     //Valid tags
-    /* These declarations causes Initialisation Errors for some reason
+
     private static final Tag TAG_BERT = new Tag(VALID_BERT);
     private static final Tag TAG_TUTURU = new Tag(VALID_TUTURU);
     private static final Tag TAG_ASD = new Tag(VALID_ASD);
     private static final Tag TAG_ABC = new Tag(VALID_ABC);
     private static final Collection<String> VALID_TAG_STRING = Set.of(VALID_ABC);
     private static final Collection<String> VALID_TAG_MULTI_STRING = Set.of("abc",
-            "asd,tuturu , bert model");
+            "asd,tuturu , bertmodel");
     private static final Collection<Tag> VALID_TAG_SINGLE_PARSED = Set.of(TAG_ABC);
     private static final Collection<Tag> VALID_TAG_MULTI_PARSED = Set.of(TAG_ABC,
-            TAG_ASD, TAG_BERT, TAG_TUTURU);*/
+            TAG_ASD, TAG_BERT, TAG_TUTURU);
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -134,13 +134,19 @@ public class ItemParserUtilTest {
         assertEquals(VALID_MULTI_LOCATION_PARSED, ItemParserUtil.parseLocations(VALID_MULTI_LOCATIONS));
     }
 
-    /*@Test
+    @Test
+    public void parseTag_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ItemParserUtil.parseTags(null));
+    }
+
+    @Test
     public void parseTag_validValue_returnsTag() {
         assertEquals(VALID_TAG_SINGLE_PARSED, ItemParserUtil.parseTags(VALID_TAG_STRING));
     }
 
     @Test
     public void parseMultiTag_validValue_returnsTags() {
+        System.out.println(ItemParserUtil.parseTags(VALID_TAG_MULTI_STRING));
         assertEquals(VALID_TAG_MULTI_PARSED, ItemParserUtil.parseTags(VALID_TAG_MULTI_STRING));
-    }*/
+    }
 }
