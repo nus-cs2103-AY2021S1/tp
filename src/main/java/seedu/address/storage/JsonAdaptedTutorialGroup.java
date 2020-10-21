@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,25 +20,25 @@ public class JsonAdaptedTutorialGroup {
     private final String tutorialGroupId;
     private String startTime;
     private String endTime;
-    private int durationInHours;
-    private final List<JsonAdaptedPerson> students = new ArrayList<>();
+    private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
     @JsonCreator
     public JsonAdaptedTutorialGroup(@JsonProperty("tutorialGroupId") String tutorialGroupId,
                                     @JsonProperty("startTime") String startTime,
                                     @JsonProperty("endTime") String endTime,
-                                    @JsonProperty("students") List<JsonAdaptedPerson> students) {
+                                    @JsonProperty("students") List<JsonAdaptedStudent> students) {
         this.tutorialGroupId = tutorialGroupId;
         this.startTime = startTime;
         this.endTime = endTime;
         this.students.addAll(students);
-        durationInHours = 0; // Todo fix
     }
 
     public JsonAdaptedTutorialGroup(TutorialGroup source) {
         tutorialGroupId = source.getId().toString();
         startTime = source.getStartTime().toString();
         endTime = source.getEndTime().toString();
+        this.students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new)
+                .collect(Collectors.toList()));
     }
 
     /**

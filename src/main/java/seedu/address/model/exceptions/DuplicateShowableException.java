@@ -1,4 +1,4 @@
-package seedu.address.model;
+package seedu.address.model.exceptions;
 
 /**
  * Signals that the operation will result in duplicate {@code Showable} objects.

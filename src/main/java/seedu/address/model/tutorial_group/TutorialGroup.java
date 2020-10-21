@@ -1,6 +1,7 @@
 package seedu.address.model.tutorial_group;
 
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,7 +18,6 @@ public class TutorialGroup {
 
     // Data fields
     private HashMap<StudentId, Student> studentList;
-    private int durationInHours;
 
     //
 
@@ -46,8 +46,6 @@ public class TutorialGroup {
         this.tutorialGroupId = tutorialGroupId;
         this.startTime = startTime;
         this.endTime = endTime;
-        // TODO fix number of hours, maybe change object type to double?
-        durationInHours = 0;
     }
 
 
@@ -65,8 +63,8 @@ public class TutorialGroup {
         return endTime;
     }
 
-    public int getDurationInHours() {
-        return this.durationInHours;
+    public double getDurationInHours() {
+        return (this.startTime.until(endTime, ChronoUnit.MINUTES)) / 60.0;
     }
 
 
@@ -78,10 +76,9 @@ public class TutorialGroup {
 
 
     //SETTERS
-    public void setLessonTime(LocalTime startTime, LocalTime endTime, int durationInHours) {
+    public void setLessonTime(LocalTime startTime, LocalTime endTime) {
         this.startTime = startTime;
         this.endTime = endTime;
-        this.durationInHours = durationInHours;
     }
 
     public void setStudentList(ArrayList<Student> studentList) {
@@ -89,6 +86,10 @@ public class TutorialGroup {
         for (Student student : studentList) {
             this.studentList.put(student.getStudentId(), student);
         }
+    }
+
+    public int getTotalStudents() {
+        return this.studentList.size();
     }
 
     //ADD

@@ -50,7 +50,7 @@ public class Module implements Showable<Module> {
     }
 
     public int getTotalGroups() {
-        return this.totalGroups;
+        return this.tutorialGroups.size();
     }
 
     public List<TutorialGroup> getTutorialGroups() {
