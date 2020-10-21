@@ -45,7 +45,7 @@ Wishful Shrinking is a **desktop app for managing your diet, keeping track of yo
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `addR n/salad`.
-  
+
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/Salad t/healthy` or as `n/Salad`.
 
@@ -79,7 +79,7 @@ Adds a recipe to Recipes Collection.
 Format: `addR n/TITLE i/INGREDIENT[, MORE INGREDIENT] c/CALORIES img/IMAGE inst/INSTRUCTION... [t/TAG]...`
 
 * `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole
-    * there is  a compulsory space before `-` 
+    * there is  a compulsory space before `-`
 
 Examples:
 * `addR n/salad i/lettuce, tomato, olive oil c/40 inst/mix everything img/image/Salad.png`
