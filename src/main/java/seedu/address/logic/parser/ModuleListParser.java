@@ -110,6 +110,12 @@ public class ModuleListParser {
         case AddGradeCommand.COMMAND_WORD:
             return new AddGradeParser().parse(arguments);
 
+        //case EditGradeCommand.COMMAND_WORD:
+        //            return new EditGradeParser().parse(arguments);
+
+        //case DeleteGradeCommand.COMMAND_WORD:
+        //            return new DeleteGradeParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

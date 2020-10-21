@@ -1,7 +1,6 @@
 package seedu.address.logic.parser.gradetrackerparsers;
 
 import seedu.address.logic.commands.gradetrackercommands.EditAssignmentCommand;
-import seedu.address.logic.commands.gradetrackercommands.ViewAssignmentCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
