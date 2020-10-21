@@ -18,7 +18,7 @@ import seedu.address.storage.StorageManager;
 
 public class AddProfilePictureCommand extends Command {
 
-    public static final String COMMAND_WORD = "addPicture";
+    public static final String COMMAND_WORD = "addpicture";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a profile picture to the patient specified by "
             + "the index. "
@@ -45,13 +45,15 @@ public class AddProfilePictureCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        assert model != null : "Model cannot be null";
         List<Patient> lastShownList = model.getFilteredPatientList();
 
+        int index = patientIndex.getZeroBased();
+        assert index > -1 : "Index cannot be negative";
         if (patientIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
 
-        int index = patientIndex.getZeroBased();
         Patient patientToEdit = lastShownList.get(index);
 
         Name patientNameObject = patientToEdit.getName();

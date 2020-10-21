@@ -5,7 +5,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Arrays;
 
 /**
  * Helper functions for handling strings.
@@ -13,16 +12,18 @@ import java.util.Arrays;
 public class StringUtil {
 
     /**
-     * Returns true if the {@code sentence} contains the {@code word}.
-     *   Ignores case, but a full word match is required.
+     * Returns true if the {@code sentence} is a subsequence of the {@code word}.
+     *   Ignores case, and a full match is not necessary. Partial matching will be done.
      *   <br>examples:<pre>
      *       containsWordIgnoreCase("ABc def", "abc") == true
      *       containsWordIgnoreCase("ABc def", "DEF") == true
-     *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
+     *       containsWordIgnoreCase("ABc def", "gh") == false
+     *       containsWordIgnoreCase("ABc def", "AB") == true //partial matching
      *       </pre>
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty, must be a single word
      */
+
     public static boolean containsWordIgnoreCase(String sentence, String word) {
         requireNonNull(sentence);
         requireNonNull(word);
@@ -34,8 +35,39 @@ public class StringUtil {
         String preppedSentence = sentence;
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
 
-        return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(preppedWord::equalsIgnoreCase);
+        boolean subSeqFlagLower;
+        boolean subSeqFlagUpper;
+        boolean checkFlag = false;
+
+        for (String testString: wordsInPreppedSentence) {
+            String preppedWordLower = preppedWord.toLowerCase();
+            String preppedWordUpper = preppedWord.toUpperCase();
+            String checkingStringLower = testString.toLowerCase();
+            String checkingStringUpper = testString.toUpperCase();
+
+            subSeqFlagLower = isSubSequencePresent(preppedWordLower, checkingStringLower);
+            subSeqFlagUpper = isSubSequencePresent(preppedWordUpper, checkingStringUpper);
+            if (subSeqFlagLower || subSeqFlagUpper) {
+                checkFlag = true;
+            }
+        }
+        return checkFlag;
+    }
+
+    private static boolean isSubSequencePresent(String firstString, String secondString) {
+        int j = 0;
+        int firstStringLength = firstString.length();
+        int secondStringLength = secondString.length();
+        for (int i = 0; i < secondStringLength; i++) {
+            if (firstString.charAt(j) == secondString.charAt(i)) {
+                ++j;
+            }
+
+            if (j == firstStringLength) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

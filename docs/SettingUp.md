@@ -16,7 +16,18 @@ title: Setting up and getting started
 Follow the steps in the following guide precisely. Things will not work out if you deviate in some steps.
 </div>
 
-First, **fork** this repo, and **clone** the fork into your computer.
+You will need to fork the repo if you wish to contribute code to the CliniCal project. If you wish to only download the code without writing code, you can skip to the section for cloning the project.
+
+If you wish to fork the repo:
+1. Navigate to the [CliniCal repository on Github](https://github.com/AY2021S1-CS2103T-W11-4/tp).
+1. Click on the <img src="images/forkButton.png" height="40px"> button on the top-right hand corner of the page to fork the repository to your account.
+1. You should be automatically redirected to the fork on your personal account.
+
+If you with to clone the repo: 
+1. Install Git.
+1. On your page of your fork (or the [CliniCal repository](https://github.com/AY2021S1-CS2103T-W11-4/tp) if you did not fork the repo), click on the <img src="images/codeButton.png" height="40px"> and copy the link to the git repo by clicking on <img src="images/copyButton.png" height="70px">.
+1. Navigate to the folder on your computer that you wish to clone the repo to and run the command `git clone (the link you copied earlier)`
+
 
 If you plan to use Intellij IDEA (highly recommended):
 1. **Configure the JDK**: Follow the guide [_[se-edu/guides] IDEA: Configuring the JDK_](https://se-education.org/guides/tutorials/intellijJdk.html) to to ensure Intellij is configured to use **JDK 11**.
@@ -45,11 +56,4 @@ If you plan to use Intellij IDEA (highly recommended):
 
 1. **Learn the design**
 
-   When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [AddressBook’s architecture](DeveloperGuide.md#architecture).
-
-1. **Do the tutorials**
-   These tutorials will help you get acquainted with the codebase.
-
-   * [Tracing code](tutorials/TracingCode.md)
-   * [Removing fields](tutorials/RemovingFields.md)
-   * [Adding a new command](tutorials/AddRemark.md)
+   When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [AddressBook’s architecture](DeveloperGuide.md#21-architecture).

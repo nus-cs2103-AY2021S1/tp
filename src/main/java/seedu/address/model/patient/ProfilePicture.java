@@ -23,6 +23,7 @@ public class ProfilePicture {
      * @param filePath A valid file path that leads to the profile picture.
      */
     public ProfilePicture(String filePath) {
+        assert filePath != "" : "File Path cannot be blank";
         requireNonNull(filePath);
         this.value = filePath;
     }
@@ -31,6 +32,7 @@ public class ProfilePicture {
      * Returns true if a given file path is valid.
      */
     public static boolean isValidFilePath(String test) {
+        assert test != "" : "File Path cannot be blank";
         requireNonNull(test);
         return test.matches(VALIDATION_REGEX);
     }
