@@ -7,10 +7,12 @@ import seedu.stock.model.stock.Stock;
 
 public class SortUtil {
 
-    public static final String[] FIELDS = new String[]{"name", "quantity", "source", "location", "serialnumber"};
-
     public enum Order {
         ASCENDING, DESCENDING
+    }
+
+    public enum Field {
+        NAME, SOURCE, LOCATION, QUANTITY, SERIALNUMBER
     }
 
     /**
@@ -19,14 +21,14 @@ public class SortUtil {
      * @param field The sorted field.
      * @return The description of the sorted field.
      */
-    public static String getFieldDescription(String field) {
+    public static String getFieldDescription(Field field) {
         switch (field) {
-        case "name":
-        case "quantity":
-        case "source":
-        case "location":
-            return field;
-        case "serialnumber":
+        case NAME:
+        case QUANTITY:
+        case SOURCE:
+        case LOCATION:
+            return field.toString().toLowerCase();
+        case SERIALNUMBER:
             return "serial number";
         default:
             return "";
@@ -39,17 +41,17 @@ public class SortUtil {
      * @param field The field to be sorted by.
      * @return The comparator to sort the inventory.
      */
-    public static Comparator<Stock> generateComparator(String field) {
+    public static Comparator<Stock> generateComparator(Field field) {
         switch (field) {
-        case "name":
+        case NAME:
             return generateNameComparator();
-        case "source":
+        case SOURCE:
             return generateSourceComparator();
-        case "location":
+        case LOCATION:
             return generateLocationComparator();
-        case "serialnumber":
+        case SERIALNUMBER:
             return generateSerialNumberComparator();
-        case "quantity":
+        case QUANTITY:
             return generateQuantityComparator();
         default:
             return null;
@@ -62,7 +64,7 @@ public class SortUtil {
      * @param field The field to be sorted by.
      * @return The reversed comparator to sort the inventory.
      */
-    public static Comparator<Stock> generateReverseComparator(String field) {
+    public static Comparator<Stock> generateReverseComparator(Field field) {
         Comparator<Stock> notReversed = generateComparator(field);
         if (notReversed != null) {
             return notReversed.reversed();

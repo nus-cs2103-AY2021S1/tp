@@ -19,7 +19,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_NOTE = new Prefix("nt/");
     public static final Prefix PREFIX_NOTE_INDEX = new Prefix("ni/");
     public static final Prefix PREFIX_STATISTICS_TYPE = new Prefix("st/");
-    public static final Prefix PREFIX_SORT_TYPE = new Prefix("by/");
+    public static final Prefix PREFIX_SORT_FIELD = new Prefix("by/");
     public static final Prefix PREFIX_SORT_ORDER = new Prefix("o/");
 
 
@@ -34,7 +34,7 @@ public class CliSyntax {
     public static final String PREFIX_STATISTICS_TYPE_DESCRIPTION = "<statistics type>";
     public static final String PREFIX_NEW_QUANTITY_DESCRIPTION = "<new quantity>";
     public static final String PREFIX_INCREMENT_QUANTITY_DESCRIPTION = "<increment value>";
-    public static final String PREFIX_SORT_TYPE_DESCRIPTION = "<field>";
+    public static final String PREFIX_SORT_FIELD_DESCRIPTION = "<field>";
     public static final String PREFIX_SORT_ORDER_DESCRIPTION = "<order>";
 
     /**
@@ -54,7 +54,7 @@ public class CliSyntax {
         allPrefixes.add(PREFIX_NOTE);
         allPrefixes.add(PREFIX_NOTE_INDEX);
         allPrefixes.add(PREFIX_STATISTICS_TYPE);
-        allPrefixes.add(PREFIX_SORT_TYPE);
+        allPrefixes.add(PREFIX_SORT_FIELD);
         allPrefixes.add(PREFIX_SORT_ORDER);
         return allPrefixes;
     }
@@ -97,8 +97,8 @@ public class CliSyntax {
             return PREFIX_NEW_QUANTITY_DESCRIPTION;
         } else if (prefix.equals(PREFIX_INCREMENT_QUANTITY)) {
             return PREFIX_INCREMENT_QUANTITY_DESCRIPTION;
-        } else if (prefix.equals(PREFIX_SORT_TYPE)) {
-            return PREFIX_SORT_TYPE_DESCRIPTION;
+        } else if (prefix.equals(PREFIX_SORT_FIELD)) {
+            return PREFIX_SORT_FIELD_DESCRIPTION;
         } else if (prefix.equals(PREFIX_SORT_ORDER)) {
             return PREFIX_SORT_ORDER_DESCRIPTION;
         } else {
