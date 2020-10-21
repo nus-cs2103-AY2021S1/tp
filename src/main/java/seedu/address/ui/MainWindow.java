@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -16,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.visit.Visit;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -36,6 +38,9 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private CalendarDisplay calendarDisplay;
     private ProfileWindow profilePanel;
+    private VisitRecordWindow visitWindow;
+    private VisitListPanel visitListPanel;
+    private EmptyVisitList emptyVisitList;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -71,6 +76,12 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        visitWindow = new VisitRecordWindow(windowEvent -> {
+            resultDisplay.setFeedbackToUser(visitWindow.getMessage());
+            visitWindow.clearFields();
+        });
+        visitListPanel = new VisitListPanel();
+        emptyVisitList = new EmptyVisitList();
         profilePanel = new ProfileWindow();
     }
 
@@ -171,6 +182,35 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow.hide();
         primaryStage.hide();
         profilePanel.hide();
+        visitWindow.hide();
+        visitListPanel.hide();
+    }
+
+    /**
+     * Opens the visit form or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleShowVisitForm() {
+        if (visitListPanel.isShowing()) {
+            visitListPanel.hide();
+        }
+        if (!visitWindow.isShowing()) {
+            visitWindow.show();
+        } else {
+            visitWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the empty visit list prompt window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleEmptyVisitList() {
+        if (!emptyVisitList.isShowing()) {
+            emptyVisitList.show();
+        } else {
+            emptyVisitList.focus();
+        }
     }
 
     /**
@@ -182,6 +222,19 @@ public class MainWindow extends UiPart<Stage> {
             profilePanel.show();
         } else {
             profilePanel.focus();
+        }
+    }
+
+    /**
+     * Opens the visit form or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleShowVisitList() {
+        if (!visitListPanel.isShowing()) {
+            visitListPanel.show();
+            primaryStage.requestFocus();
+        } else {
+            visitListPanel.focus();
         }
     }
 
@@ -206,6 +259,33 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isAddVisit()) {
+                visitWindow.setReportInfo(commandResult.getIdx(), commandResult.getDate(), logic);
+                handleShowVisitForm();
+            }
+
+            if (commandResult.isEditVisit()) {
+                visitWindow.setOldReportInfo(commandResult.getIdx(), commandResult.getReportIdx(),
+                        commandResult.getOldReport(), logic);
+                if (visitListPanel.isShowing()) {
+                    visitListPanel.hide();
+                }
+                handleShowVisitForm();
+            }
+
+            if (commandResult.isShowVisitList()) {
+                ObservableList<Visit> visits = commandResult.getObservableVisitHistory();
+                if (visits.isEmpty()) {
+                    if (visitListPanel.isShowing()) {
+                        visitListPanel.hide();
+                    }
+                    handleEmptyVisitList();
+                } else {
+                    visitListPanel.setup(visits);
+                    handleShowVisitList();
+                }
             }
 
             if (commandResult.isShowProfile()) {

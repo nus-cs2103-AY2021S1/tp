@@ -45,7 +45,6 @@ public class VisitHistory {
         return this;
     }
 
-
     /**
      * Deletes a visit(specified by index) from the visit history.
      */
