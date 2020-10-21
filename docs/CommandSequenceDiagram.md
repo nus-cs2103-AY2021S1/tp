@@ -28,3 +28,6 @@ understand what is going on under the hood.
 
 ### List Recipe Command
 ![ListRecipeSequenceDiagram](images/commandseqdiagrams/ListRecipeSequenceDiagram.png)
+
+### Find Item Command
+![FindItemSequenceDiagram](images/commandseqdiagrams/FindItemSequenceDiagram.png)
