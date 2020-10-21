@@ -16,11 +16,11 @@ import seedu.stock.model.stock.Stock;
 /**
  * Updates an existing stock in the stock book.
  */
-public class BookmarkCommand extends Command {
+public class UnbookmarkCommand extends Command {
 
-    public static final String COMMAND_WORD = "bookmark";
+    public static final String COMMAND_WORD = "unbookmark";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Bookmarks important stocks with "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes bookmarks from bookmarked stocks "
             + "the given serial number. \n"
             + "Parameters: "
             + PREFIX_SERIAL_NUMBER + "SERIAL NUMBER \n"
@@ -29,12 +29,13 @@ public class BookmarkCommand extends Command {
             + PREFIX_SERIAL_NUMBER + "CS2103 ";
 
 
-    public static final String MESSAGE_BOOKMARK_STOCK_SUCCESS = "Bookmarked Stock: %1$s";
+    public static final String MESSAGE_UNBOOKMARK_STOCK_SUCCESS = "Unbookmarked Stock: %1$s";
     public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND = "Stock with given serial number does not exists";
+    public static final String MESSAGE_NOT_BOOKMARKED = "Stock with given serial number is not bookmarked before!";
 
     private final Set<SerialNumber> targetSerialNumbers;
 
-    public BookmarkCommand (Set<SerialNumber> targetSerialNumbers) {
+    public UnbookmarkCommand (Set<SerialNumber> targetSerialNumbers) {
         this.targetSerialNumbers = targetSerialNumbers;
     }
 
@@ -53,7 +54,7 @@ public class BookmarkCommand extends Command {
         List<SerialNumber> serialNumbers = targetSerialNumbers.stream().collect(Collectors.toList());
         List<String> serials = serialNumbers.stream().map((serial) -> serial.toString().trim())
                 .collect(Collectors.toCollection(ArrayList::new));
-        List<Stock> stocksToBookmark = new ArrayList<>();
+        List<Stock> stocksToUnbookmark = new ArrayList<>();
         List<Stock> updatedStocks = new ArrayList<>();
 
         // Find stocks to be bookmarked
@@ -68,26 +69,29 @@ public class BookmarkCommand extends Command {
             }
 
             if (anyMatches) {
-                stocksToBookmark.add(currentStock);
+                stocksToUnbookmark.add(currentStock);
             }
         }
 
         // Some serial numbers do not exist
-        if (serials.size() != stocksToBookmark.size()) {
+        if (serials.size() != stocksToUnbookmark.size()) {
             throw new CommandException(MESSAGE_SERIAL_NUMBER_NOT_FOUND);
         }
 
         // Bookmark stocks
-        for (Stock stockToBookmark: stocksToBookmark) {
-            stockToBookmark.setBookmarked();
+        for (Stock stockToUnbookmark: stocksToUnbookmark) {
+            if (!stockToUnbookmark.getBookmarked()){
+                throw new CommandException(MESSAGE_NOT_BOOKMARKED);
+            }
+            stockToUnbookmark.setUnbookmarked();
 
-            model.setStock(stockToBookmark, stockToBookmark);
-            updatedStocks.add(stockToBookmark);
+            model.setStock(stockToUnbookmark, stockToUnbookmark);
+            updatedStocks.add(stockToUnbookmark);
         }
 
         model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_BOOKMARK_STOCK_SUCCESS, stocksAsString(updatedStocks)));
+        return new CommandResult(String.format(MESSAGE_UNBOOKMARK_STOCK_SUCCESS, stocksAsString(updatedStocks)));
     }
 
     /**

@@ -88,6 +88,14 @@ public class Stock {
     }
 
     /**
+     * Unbookmarks the stock
+     *
+     */
+    public void setUnbookmarked() {
+        this.isBookmarked = false;
+    }
+
+    /**
      * Returns the values of the notes of this stock in a list.
      * @return list of string of the values of notes of stock.
      */
