@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.model.account.Account;
 import seedu.address.model.account.ActiveAccount;
+import seedu.address.model.account.Name;
 import seedu.address.model.account.ReadOnlyAccount;
 import seedu.address.model.account.entry.Entry;
 import seedu.address.model.account.entry.Expense;
@@ -16,7 +17,8 @@ public class ActiveAccountStub implements ActiveAccount {
     public void setActiveAccount(ReadOnlyAccount newActiveAccount) {
 
     }
-
+    @Override
+    public void setName(Name name){}
     @Override
     public Account getAccount() {
         return null;
@@ -98,4 +100,13 @@ public class ActiveAccountStub implements ActiveAccount {
 
     }
 
+    @Override
+    public Double getTotalExpenses() {
+        return 0.00;
+    }
+
+    @Override
+    public Double getTotalRevenue() {
+        return 0.00;
+    }
 }

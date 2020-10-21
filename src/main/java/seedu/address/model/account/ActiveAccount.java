@@ -22,7 +22,12 @@ public interface ActiveAccount {
      */
     void setActiveAccount(ReadOnlyAccount newActiveAccount);
 
-    /** Returns the Active Account */
+    /**
+     * Replaces the name of the account with {@code name}.
+     */
+    void setName(Name name);
+
+    /** Returns a copy of the Active Account */
     Account getAccount();
 
     /**
@@ -101,5 +106,15 @@ public interface ActiveAccount {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredRevenueList(Predicate<Revenue> predicate);
+
+    /**
+     * Returns the total sum of the expenses.
+     */
+    public Double getTotalExpenses();
+
+    /**
+     * Returns the total sum of the revenues.
+     */
+    public Double getTotalRevenue();
 
 }

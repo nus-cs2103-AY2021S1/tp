@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.address.model.account.entry.Amount;
 import seedu.address.model.account.entry.Entry;
 import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
@@ -39,8 +40,13 @@ public class ActiveAccountManager implements ActiveAccount {
     }
 
     @Override
+    public void setName(Name name) {
+        activeAccount.setName(name);
+    }
+
+    @Override
     public Account getAccount() {
-        return activeAccount;
+        return activeAccount.copyData();
     }
 
     @Override
@@ -131,6 +137,28 @@ public class ActiveAccountManager implements ActiveAccount {
     public void updateFilteredRevenueList(Predicate<Revenue> predicate) {
         requireNonNull(predicate);
         this.filteredRevenues.setPredicate(predicate);
+    }
+
+    @Override
+    public Double getTotalExpenses() {
+        Double sum = 0.00;
+        ObservableList<Expense> expenses = activeAccount.getExpenseList();
+        for (Expense expense : expenses) {
+            Amount amount = expense.getAmount();
+            sum = sum + amount.getValue();
+        }
+        return sum;
+    }
+
+    @Override
+    public Double getTotalRevenue() {
+        Double sum = 0.00;
+        ObservableList<Revenue> revenues = activeAccount.getRevenueList();
+        for (Revenue revenue : revenues) {
+            Amount amount = revenue.getAmount();
+            sum = sum + amount.getValue();
+        }
+        return sum;
     }
 
     @Override
