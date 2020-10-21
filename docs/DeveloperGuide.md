@@ -237,6 +237,37 @@ Step 3. The user executes `edit 1 t/tag` to edit the tag in the first flashcard 
 
 #### Proposed Implementation
 
+### Difficulty
+
+The difficulty mechanism is facilitated by `Flashcard` upon creation. It is stored internally as a `Difficulty` inside the `flashcard` object.
+
+The `Difficulty` class takes difficulty levels from `Difficulties` enums which contains for difficulty levels `LOW`, `MEDIUM`, `HIGH` and `UNSPECIFIED`. 
+
+Given below is an example usage scenario and how the difficulty mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+
+Step 2. The user executes `add q/question... d/difficultyLevel` command to add a flashcard with difficulty. The `add` command will cause the addition of a flashcard with a difficulty inside the QuickCache.
+ * If the user executes `add q/question...` command without `d/` prefix. The `add` command will cause the addition of a flashcard with a difficulty set to `UNSPECIFIED` inside the QuickCache.
+
+Step 3. The user executes `edit 1 d/difficultyLevel` to edit the difficulty in the first flashcard of the list. The edit command will change the internal structure of flashcard such that the `Difficulty` is updated.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
+</div>
+
+#### Design consideration:
+
+##### Aspect: How tag executes
+
+* **Alternative 1 (current choice):** Tag is saved upon creation.
+  * Pros: Easy to implement.
+  * Cons: May be complicated as there will be too many fields in the `add` command.
+
+* **Alternative 2:** Individual command knows how to tag by
+  itself.
+  * Pros: Will be less complicated.
+  * Cons: There may be too many commands which can be combined to one.
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
