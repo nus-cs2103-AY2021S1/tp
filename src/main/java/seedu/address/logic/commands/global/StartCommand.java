@@ -18,16 +18,17 @@ import seedu.address.model.project.Project;
  * Starts a project identified using it's displayed index from the main catalogue.
  */
 public class StartCommand extends Command {
-    private static final Logger logger = Logger.getLogger("StartCommandLogger");
 
     public static final String COMMAND_WORD = "start";
+
+    public static final String MESSAGE_START_PROJECT_SUCCESS = "Started Project: %1$s";
+
+    private static final Logger logger = Logger.getLogger("StartCommandLogger");
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Starts the project identified by the index number used in the displayed project list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
-
-    public static final String MESSAGE_START_PROJECT_SUCCESS = "Started Project: %1$s";
 
     private final Index targetIndex;
 
