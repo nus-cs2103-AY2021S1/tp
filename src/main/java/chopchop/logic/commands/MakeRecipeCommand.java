@@ -35,8 +35,7 @@ public class MakeRecipeCommand extends Command {
     public static final String MESSAGE_INGREDIENT_NOT_FOUND = "No ingredient named '%s'";
 
     private final ItemReference item;
-    // (Original ingredient, (Consumed ingredient, Remaining ingredient))
-    private List<Pair<Ingredient, Pair<Ingredient, Ingredient>>> ingredients;
+    private List<Pair<Ingredient, Ingredient>> ingredients;
 
     /**
      * Constructs a command that makes the given recipe item.
@@ -74,17 +73,17 @@ public class MakeRecipeCommand extends Command {
                             ingredientRef.getName())));
 
             try {
-                this.ingredients.add(new Pair<>(ingredient, ingredient.split(ingredientRef.getQuantity())));
+                this.ingredients.add(new Pair<>(ingredient, ingredient.split(ingredientRef.getQuantity()).snd()));
             } catch (IncompatibleIngredientsException | IllegalArgumentException e) {
                 throw new CommandException(String.format(MESSAGE_MAKE_RECIPE_ERROR, ingredient.getName()));
             }
         }
 
-        for (Pair<Ingredient, Pair<Ingredient, Ingredient>> ingredient : this.ingredients) {
-            if (ingredient.snd().snd().getIngredientSets().isEmpty()) {
+        for (Pair<Ingredient, Ingredient> ingredient : this.ingredients) {
+            if (ingredient.snd().getIngredientSets().isEmpty()) {
                 model.deleteIngredient(ingredient.fst());
             } else {
-                model.setIngredient(ingredient.fst(), ingredient.snd().snd());
+                model.setIngredient(ingredient.fst(), ingredient.snd());
             }
         }
 
