@@ -5,21 +5,19 @@ import static quickcache.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static quickcache.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static quickcache.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
 
-import quickcache.commons.core.Messages;
 import quickcache.logic.commands.DeleteCommand;
-import quickcache.logic.commands.FindCommand;
 import quickcache.model.flashcard.Flashcard;
 import quickcache.model.flashcard.FlashcardContainsTagPredicate;
 import quickcache.model.flashcard.FlashcardPredicate;
 import quickcache.model.flashcard.Tag;
 import quickcache.testutil.TypicalTags;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.function.Predicate;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -51,7 +49,7 @@ public class DeleteCommandParserTest {
     @Test
     public void parse_validTag_returnsDeleteCommand() {
         Set<Tag> tagsToMatch = new HashSet<>();
-        tagsToMatch.add(TypicalTags.testTag);
+        tagsToMatch.add(TypicalTags.TEST_TAG);
         FlashcardPredicate flashcardPredicate = prepareFlashcardPredicate(tagsToMatch);
         assertParseSuccess(parser, " t/test", DeleteCommand.withPredicate(flashcardPredicate, tagsToMatch));
     }
@@ -63,12 +61,16 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_invalidPrefix_throwsParseException() {
-        assertParseFailure(parser, "1 q/test", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser,
+            "1 q/test",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validIndexAndTag_throwsParseException() {
-        assertParseFailure(parser, "1 t/test", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser,
+            "1 t/test",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
     private FlashcardPredicate prepareFlashcardPredicate(Set<Tag> tagsToMatch) {

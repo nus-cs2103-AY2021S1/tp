@@ -66,9 +66,9 @@ public class DeleteCommand extends Command {
     private String createDeleteWithTagsMessage() {
         assert isDeleteByTag && tagsToMatch != null;
         return tagsToMatch.stream()
-                .reduce("with tags ",
-                        (curr, next) -> curr + next.toString() + " ",
-                        String::concat)
+                .reduce("with tags ", (
+                    curr, next) -> curr + next.toString() + " ",
+                    String::concat)
                 .trim();
     }
 

@@ -4,6 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
 
 import quickcache.commons.core.Messages;
@@ -18,13 +24,6 @@ import quickcache.model.flashcard.Tag;
 import quickcache.testutil.TypicalFlashcards;
 import quickcache.testutil.TypicalIndexes;
 import quickcache.testutil.TypicalTags;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.function.Predicate;
-
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
@@ -89,7 +88,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_validTag_success() {
         Set<Tag> tagsToMatch = new HashSet<>();
-        tagsToMatch.add(TypicalTags.testTag);
+        tagsToMatch.add(TypicalTags.TEST_TAG);
         FlashcardPredicate flashcardPredicate = prepareFlashcardPredicate(tagsToMatch);
 
         DeleteCommand deleteCommand = DeleteCommand.withPredicate(flashcardPredicate, tagsToMatch);
@@ -115,9 +114,9 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_InvalidTag_success() {
+    public void execute_invalidTag_success() {
         Set<Tag> tagsToMatch = new HashSet<>();
-        tagsToMatch.add(TypicalTags.invalidTag);
+        tagsToMatch.add(TypicalTags.INVALID_TAG);
         FlashcardPredicate flashcardPredicate = prepareFlashcardPredicate(tagsToMatch);
 
         DeleteCommand deleteCommand = DeleteCommand.withPredicate(flashcardPredicate, tagsToMatch);

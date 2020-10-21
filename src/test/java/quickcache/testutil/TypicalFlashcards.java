@@ -60,6 +60,16 @@ public class TypicalFlashcards {
     }
 
     public static List<Flashcard> getTypicalFlashcards() {
-        return new ArrayList<>(Arrays.asList(RANDOM1, RANDOM2, RANDOM3, RANDOM4, RANDOM5, RANDOM6, RANDOM7, RANDOM8, RANDOM9));
+        return new ArrayList<>(
+            Arrays.asList(
+                    RANDOM1,
+                    RANDOM2,
+                    RANDOM3,
+                    RANDOM4,
+                    RANDOM5,
+                    RANDOM6,
+                    RANDOM7,
+                    RANDOM8,
+                    RANDOM9));
     }
 }
