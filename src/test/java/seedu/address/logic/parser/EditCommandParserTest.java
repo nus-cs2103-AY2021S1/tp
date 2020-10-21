@@ -84,7 +84,7 @@ public class EditCommandParserTest {
         // invalid title
         assertParseFailure(parser, "1" + INVALID_TITLE_DESC, Title.MESSAGE_CONSTRAINTS);
         // invalid dateTime
-        assertParseFailure(parser, "1" + INVALID_DATE_TIME_DESC, DateTime.DATETIME_MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_DATE_TIME_DESC, DateTime.MESSAGE_CONSTRAINTS);
         // invalid desc
         assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS);
         // invalid type
@@ -93,12 +93,12 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
         // invalid dateTime followed by valid description
         assertParseFailure(parser, "1" + INVALID_DATE_TIME_DESC + DESCRIPTION_DESC_AMY,
-                DateTime.DATETIME_MESSAGE_CONSTRAINTS);
+                DateTime.MESSAGE_CONSTRAINTS);
 
         // valid dateTime followed by invalid dateTime. The test case for invalid dateTime followed by valid dateTime
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + DATE_TIME_DESC_BOB + INVALID_DATE_TIME_DESC,
-                DateTime.DATETIME_MESSAGE_CONSTRAINTS);
+                DateTime.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Task} being edited,
         // parsing it together with a valid tag results in error

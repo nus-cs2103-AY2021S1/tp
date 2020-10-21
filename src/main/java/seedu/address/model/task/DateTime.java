@@ -6,6 +6,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import seedu.address.model.lesson.Date;
+import seedu.address.model.lesson.Time;
 /**
  * Represents a Task's date and time in PlaNus task list.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
@@ -13,12 +15,8 @@ import java.time.format.DateTimeFormatter;
 public class DateTime {
 
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-    public static final String DATETIME_MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS =
             "DateTime should be in the format of dd-MM-yyyy HH:mm.";
-    public static final String DATE_MESSAGE_CONSTRAINTS =
-            "Date should be in the format of dd-MM-yyyy";
-    public static final String TIME_MESSAGE_CONSTRAINTS =
-            "Time should be in the format of HH:mm";
     public static final String DAY_MESSAGE_CONSTRAINTS =
             "Day should be in the format of MON, TUE, ..., SUN or MONDAY, TUESDAY, ..., SUNDAY";
     public static final String SEARCH_CONSTRAINTS =
@@ -35,7 +33,7 @@ public class DateTime {
      */
     public DateTime(String dateTime) {
         requireNonNull(dateTime);
-        checkArgument(isValidDateTime(dateTime), DATETIME_MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
         value = LocalDateTime.parse(dateTime, FORMATTER);
         isDefault = false;
     }
@@ -66,30 +64,8 @@ public class DateTime {
      * @param test the string value to be put to test.
      * @return true if the test string is valid and false otherwise
      */
-    public static boolean isValidSearchPhrase(String test) {
-        return isValidDateTime(test) || isValidDate(test) || isValidTime(test);
-    }
-
-    /**
-     * Returns true if a given string is a valid date number.
-     *
-     * @param test the string value to be put to test.
-     * @return true if the test string is valid and false otherwise
-     */
-    public static boolean isValidDate(String test) {
-        String validationRegex = "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4}$";
-        return test.matches(validationRegex);
-    }
-
-    /**
-     * Returns true if a given string is a valid time number.
-     *
-     * @param test the string value to be put to test.
-     * @return true if the test string is valid and false otherwise
-     */
-    public static boolean isValidTime(String test) {
-        String validationRegex = "^(2[0-3]|[01][0-9]):([0-5][0-9])$";
-        return test.matches(validationRegex);
+    public static boolean isValidSearchPhrase(String test) { 
+        return isValidDateTime(test) || Date.isValidDate(test) || Time.isValidTime(test);
     }
 
     /**

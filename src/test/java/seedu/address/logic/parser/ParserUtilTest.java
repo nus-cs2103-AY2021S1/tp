@@ -23,12 +23,16 @@ import seedu.address.model.task.Type;
 public class ParserUtilTest {
     private static final String INVALID_TITLE = "R@te movie";
     private static final String INVALID_DATE_TIME = "1-1-2020 12:00";
+    private static final String INVALID_DATE = "1-1-2020";
+    private static final String INVALID_TIME = "12:0";
     private static final String INVALID_TYPE = " ";
     private static final String INVALID_DESCRIPTION = "@example";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_TITLE = "Rate movie";
     private static final String VALID_DATE_TIME = "01-01-2020 12:00";
+    private static final String VALID_DATE = "01-01-2020";
+    private static final String VALID_TIME = "12:00";
     private static final String VALID_TYPE = "todo";
     private static final String VALID_DESCRIPTION = "rachel,example.com";
     private static final String VALID_TAG_1 = "friend";
@@ -101,12 +105,10 @@ public class ParserUtilTest {
         DateTime expectedDateTime = new DateTime(VALID_DATE_TIME);
         assertEquals(expectedDateTime, ParserUtil.parseDateTime(dateWithWhitespace));
     }
-
     @Test
     public void parseType_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseType((String) null));
     }
-
     @Test
     public void parseType_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseType(INVALID_TYPE));
