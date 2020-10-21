@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.contact.Contact;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.Priority;
@@ -13,7 +12,7 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskName;
 
 /**
- * Jackson-friendly version of {@link Contact}.
+ * Jackson-friendly version of {@link Task}.
  */
 public class JsonAdaptedTask {
 
@@ -26,7 +25,7 @@ public class JsonAdaptedTask {
     private final String status;
 
     /**
-     * Constructs a {@code JsonAdaptedContact} with the given contact details.
+     * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("tag") JsonAdaptedTag tag,
@@ -51,7 +50,7 @@ public class JsonAdaptedTask {
     }
 
     /**
-     * Converts this Jackson-friendly adapted contact object into the model's {@code Contact} object.
+     * Converts this Jackson-friendly adapted task object into the model's {@code Task} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted contact.
      */

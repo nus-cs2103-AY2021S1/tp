@@ -125,7 +125,7 @@ public class StorageManager implements Storage {
 
     @Override
     public Optional<ReadOnlyTodoList> readTodoList(Path filePath) throws DataConversionException, IOException {
-        logger.fine("Attempting to read data from file: " + filePath);
+        logger.fine("Attempting to read Todo list data from file: " + filePath);
         return todoListStorage.readTodoList(filePath);
     }
 
@@ -136,7 +136,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveTodoList(ReadOnlyTodoList todoList, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
+        logger.fine("Attempting to write Todo list to data file: " + filePath);
         todoListStorage.saveTodoList(todoList, filePath);
     }
 }

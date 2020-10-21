@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -64,9 +65,7 @@ public class JsonTodoListStorage implements TodoListStorage {
      * @param filePath location of the data. Cannot be null.
      */
     public void saveTodoList(ReadOnlyTodoList todoList, Path filePath) throws IOException {
-        requireNonNull(todoList);
-        requireNonNull(filePath);
-
+        requireAllNonNull(todoList, filePath);
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableTodoList(todoList), filePath);
     }
