@@ -1,0 +1,15 @@
+@startuml
+
+-> PieChartData : getChartData()
+activate PieChartData
+loop size of list
+    PieChartData -> ObservableList : collectData()
+    activate ObservableList
+    ObservableList -> Expense
+    activate Expense
+    Expense -> ObservableList
+    ObservableList -> PieChartData
+end
+<- PieChartData
+deactivate PieChartData
+@enduml

@@ -246,7 +246,7 @@ Step 4. The user then decides to execute the command `list`. Commands that do no
 
 #### Design consideration:
 
-##### Aspect: How undo & redo executes
+##### Aspect: How category switching executes
 
 * **Alternative 1 (current choice):** Filters the entire expense book by tag.
   * Pros: Easy to implement.
@@ -256,8 +256,104 @@ Step 4. The user then decides to execute the command `list`. Commands that do no
   * Pros: Will be faster during execution.
   * Cons: Slower initialisation and more memory used.
 
+### \[Proposed\] Customisation of Command Keywords
+
+#### Proposed Implementation
+
+The proposed implementation for the customisation of `COMMAND_WORD` field for various `Command` subclasses is by introducing another `Command` subclass, called the `AliasCommand`. This command takes in a command keyword that the user wishes to alter, and takes a second keyword which determines what the new COMMAND_WORD for the stated `Command` subclass would be. To allow for customisation to remain even after the app is closed, a customised keyword-to-command mapping will be stored in JSON format. Upon starting the app, the static field `COMMAND_WORD` will be initialized for each command.
+
+Sample usage:
+By default, `FindCommand.COMMAND_WORD` is `“find”`
+
+* `alias find get` -> `FindCommand.COMMAND_WORD` will be updated to `“get”`
+
+This mapping will also be stored in an external JSON so that the customisation remains even after the app is closed. 
+
+To maintain some degree of simplicity and neatness, we require that the `AliasCommand.COMMAND_WORD` itself to not be customisable. Furthermore, the user also has the ability to revert the command keywords back to their default using the `DefaultAliasCommand` with the default `COMMAND_WORD` as `defaultalias`. This is made a little longer and slightly more complicated to input because this will override the entire customisation to default and user will not be able to retrieve his previous customisations. Like the AliasCommand, `DefaultAliasCommand.COMMAND_WORD` itself is not customisable.
+
+Another change required here is for the COMMAND_WORD fields to not be final, except for AliasCommand and DefaultAliasCommand. This will allow changes to a COMMAND_WORD field to be reflected directly in the current running instance of the application.
+
+Step 1. The user launches the application for the first time. The `COMMAND_WORD` static fields for all the subclasses will be initialized to the current mapping retrieved from JSON.
+
+Step 2. The user executes the `alias find get` command to update the current `FindCommand.COMMAND_WORD` from `”find”’ to `”get”`.  This will not only update the current state, but will also update the JSON mapping.
+
+The following is a sequence diagram showing how it works:
+![AliasSequenceDiagram](images/AliasSequenceDiagram.png)
+
+Similarly, the following sequence diagram shows how the DefaultAliasCommand works:
+![DefaultAliasSequenceDiagram](images/DefaultAliasSequenceDiagram.png)
+
+Step 3. The user can now use the following command to trigget a FindCommand.
+
+* `get -d lunch at macs`
+#### Design consideration:
+
+##### Aspect: How alias executes
+* **Alternative 1 (current choice):** Allows customisation of all command words except for `AliasCommand` and `DefaultAliasCommand`.
+  * Pros: Neater implementation especially if the user might frequently change his alias, and DefaultAliasCommand has a long default and uncustomisable command word in order to prevent accidental reset of previous customisations.
+  * Cons: Restricts degree of customisation.
+
+* **Alternative 2:** Allows customisation of ALL command words.
+  * Pros: Higher degree of flexibility in customisation.
+  * Cons: May be messy and slower learning users may get confused.
 _{more aspects and alternatives to be added}_
 
+### \[Proposed\] Default Category
+
+The function of the default category is to subsume all "untagged" `expenses` under some category.
+This is especially important for possible occasions such as when the User uses the application without any categories,
+or when the User deletes a category that existing `expenses` are linked to.
+
+#### Proposed Implementation
+
+The default category generally functions the same way as any user-created category, except that it cannot be deleted or
+renamed. It is contained separately from the user-created categories (if any) for this reason. If a new ExpenseBook is
+started, the default category is automatically initialized so that the User can use the full range of the basic
+features even without creating customized categories.
+
+### \[Proposed\] Graphical Representation Feature
+
+#### Proposed Implementation
+
+The proposed graphical representation feature will allow the user to view a pie chart of his total spending, with each wedge representing the percentage of spending that corresponds to a specific tag.
+This graphical representation will be displayed on `GraphDisplayWindow` upon the execution of `GraphCommand`. This mechanism will be facilitated by `PieChartData` to retrieve the required data from `ExpenseBook`.
+`PieChartData` extends `ChartData` which allows abstracting out the implementation of different graphical representation formats for future versions.
+
+* `PieChartData#collectData(ObservableList<Expense>)` — Retrieves required data.
+* `PieChartData#getData()` — Returns data of each `Tag` and the corresponding total expenditure.
+
+The interactions between `ExpenseBook` (which contains the in-memory data of expenses) and `GraphicalDisplayWindow` (which specifies the UI displayed) facilitated by `PieChartData` is given below. </br>
+
+![ClassDiagram](images/GraphicalRepresentationClassDiagram.png)
+
+The user initiates this function by executing the graph command. Refer Logic Component architecture diagram for the mechanism by which strings are read and parsed into Command objects.
+
+The sequence diagram below shows the proposed mechanism by which the required data necessary to initialise a pie chart is retrieved. This data is then used to format the UI output.
+
+![SequenceDiagram](images/GraphicalRepresentationSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Expenses that are untagged will be displayed as a single group. Tags should not be case sensitive.
+
+</div>
+
+A possible edge case would be the user having empty expense record prior to executing the graph command. In such a case, the program will display a default message.
+
+The following activity diagram summarizes what happens when a user enters a graph command:
+
+![ActivityDiagram](images/GraphicalRepresentationActivityDiagram.png)
+
+#### Points to Note:
+
+* **UI classes to only act as placeholders**
+  * UI formatting is separated from the backend logic.
+  * Allows for dynamic updating of graphs.
+
+* **Data re-retrieved upon every execution**
+  * Updates graph accordingly.
+  * Will not show outdated graphs.
+
+* **Easily extensible**
+  * Different sub-classes of `ChartData` can be implemented to collect a variety of meaningful data from `ExpenseBook` to be displayed by various UI classes in different formats.
 
 --------------------------------------------------------------------------------------------------------------------
 

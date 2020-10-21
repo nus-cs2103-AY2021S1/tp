@@ -98,7 +98,7 @@ public interface Model {
     /**
      * Returns the budget.
      */
-    Budget getBudget();
+    Budget getTotalBudget();
 
     /**
      * Adds the given amount to the budget.
