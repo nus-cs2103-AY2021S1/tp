@@ -2,6 +2,7 @@ package seedu.stock.logic.parser;
 
 import static seedu.stock.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.stock.logic.commands.CommandWords.ADD_COMMAND_WORD;
+import static seedu.stock.logic.commands.CommandWords.BOOKMARK_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.DELETE_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.FIND_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.FIND_EXACT_COMMAND_WORD;
@@ -25,6 +26,7 @@ import java.util.Random;
 
 import seedu.stock.commons.util.SuggestionUtil;
 import seedu.stock.logic.commands.AddCommand;
+import seedu.stock.logic.commands.BookmarkCommand;
 import seedu.stock.logic.commands.CommandWords;
 import seedu.stock.logic.commands.DeleteCommand;
 import seedu.stock.logic.commands.ExitCommand;
@@ -132,6 +134,10 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             generateAddSuggestion(toBeDisplayed, argMultimap);
             break;
 
+        case BookmarkCommand.COMMAND_WORD:
+            generateBookmarkSuggestion(toBeDisplayed, argMultimap);
+            break;
+
         case DeleteCommand.COMMAND_WORD:
             generateDeleteSuggestion(toBeDisplayed, argMultimap);
             break;
@@ -169,6 +175,36 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         }
 
         return new SuggestionCommand(toBeDisplayed.toString());
+    }
+
+    /**
+     * Generates suggestion for faulty delete command.
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param argMultimap The parsed user input fields.
+     */
+    private void generateBookmarkSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
+        List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_SERIAL_NUMBER);
+        toBeDisplayed.append(BOOKMARK_COMMAND_WORD);
+
+        for (int i = 0; i < allowedPrefixes.size(); i++) {
+            Prefix currentPrefix = allowedPrefixes.get(i);
+            if (!argMultimap.getValue(currentPrefix).isPresent()) {
+                toBeDisplayed.append(" " + currentPrefix + CliSyntax.getDefaultDescription(currentPrefix));
+            }
+            List<String> keywords = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
+            for (String serialNumber : keywords) {
+                boolean isEmpty = serialNumber.equals("");
+                String description = isEmpty ? CliSyntax.getDefaultDescription(currentPrefix) : serialNumber;
+                toBeDisplayed.append(" " + currentPrefix + description);
+            }
+        }
+
+        if (!bodyErrorMessage.equals("")) {
+            toBeDisplayed.append("\n" + bodyErrorMessage);
+        } else {
+            toBeDisplayed.append("\n" + BookmarkCommand.MESSAGE_USAGE);
+        }
     }
 
     /**
