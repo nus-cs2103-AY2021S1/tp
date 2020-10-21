@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
 
 public class ModuleCodeContainsKeywordsPredicate implements Predicate<Module> {
+
     private final String keyword;
 
     public ModuleCodeContainsKeywordsPredicate(String keyword) {

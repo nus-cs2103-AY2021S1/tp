@@ -13,7 +13,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Person;
 
 /**
@@ -50,7 +49,8 @@ public class AssignCommand extends Command {
         requireNonNull(model);
 
         List<Person> lastShownList = model.getFilteredPersonList();
-        UniqueModuleList moduleList = model.getModuleList();
+
+        assert lastShownList != null;
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -58,8 +58,10 @@ public class AssignCommand extends Command {
 
         Person instructor = lastShownList.get(index.getZeroBased());
 
+        assert instructor != null;
+
         for (ModuleCode moduleCode: moduleCodes) {
-            if (!moduleList.containsModuleCode(moduleCode)) {
+            if (!model.hasModuleCode(moduleCode)) {
                 throw new CommandException(MESSAGE_MODULE_DOES_NOT_EXIST);
             }
         }

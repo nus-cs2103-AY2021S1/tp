@@ -149,6 +149,11 @@ class DelModCommandTest {
         }
 
         @Override
+        public boolean hasModuleCode(ModuleCode moduleCode) {
+            return false;
+        }
+
+        @Override
         public void addModule(Module module) {
             throw new AssertionError("This method should not be called.");
         }
@@ -164,18 +169,18 @@ class DelModCommandTest {
         }
 
         @Override
+        public void unassignAllInstructors() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void unassignInstructor(Person instructor, ModuleCode moduleCode) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public UniqueModuleList getModuleList() {
-            return null;
-        }
-
-        @Override
         public ObservableList<Module> getFilteredModuleList() {
-            throw new AssertionError("This method should not be called.");
+            return null;
         }
 
         @Override
@@ -214,11 +219,14 @@ class DelModCommandTest {
         }
 
     }
+
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that has all modules
      */
     private class ModelStubAcceptingModuleAdded extends ModelStub {
+
         final ModuleListStub moduleList = new ModuleListStub();
+
         private void addModules(Module ...module) {
             requireNonNull(module);
             moduleList.add(module);
@@ -235,19 +243,29 @@ class DelModCommandTest {
         }
 
         @Override
-        public UniqueModuleList getModuleList() {
-            return moduleList;
+        public ObservableList<Module> getFilteredModuleList() {
+            return moduleList.asUnmodifiableObservableList();
         }
+
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
+
+        @Override
+        public boolean hasModuleCode(ModuleCode moduleCode) {
+            return moduleList.containsModuleCode(moduleCode);
+        }
     }
+
     private class ModuleListStub extends UniqueModuleList {
+
         private ArrayList<Module> moduleList = new ArrayList<>();
+
         public void add(Module ... modules) {
             Collections.addAll(moduleList, modules);
         }
+
         @Override
         public void removeModuleWithCode(ModuleCode toRemove) {
             requireNonNull(toRemove);
