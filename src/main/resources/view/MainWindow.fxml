@@ -6,14 +6,15 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.stage.Stage?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="PropertyFree" minWidth="1200" minHeight="800" onCloseRequest="#handleExit">
+<fx:root minHeight="800" minWidth="1200" onCloseRequest="#handleExit" title="PropertyFree" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -36,41 +37,63 @@
 
         <HBox VBox.vgrow="ALWAYS">
 
-          <StackPane VBox.vgrow="NEVER"
-                     fx:id="resultDisplayPlaceholder"
-                     styleClass="pane-with-border" maxWidth="300">
+               <VBox maxWidth="200" prefHeight="200.0" prefWidth="100.0">
+                  <children>
+                     <StackPane maxHeight="150.0" style="-fx-border-radius: 0; -fx-border-width: 4; -fx-background-color: #12232E; -fx-border-color: grey;" styleClass="pane-with-border">
+                        <padding>
+                           <Insets bottom="5" left="10" right="10" top="5" />
+                        </padding>
+                        <children>
+                           <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="PropertyFree Prompter" StackPane.alignment="CENTER">
+                              <font>
+                                 <Font name="DengXian Regular" size="25.0" />
+                              </font>
+                           </Text>
+                        </children>
+                     </StackPane>
+      
+                      <StackPane fx:id="resultDisplayPlaceholder" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                  <padding>
+                    <Insets bottom="5" left="10" right="10" top="5" />
+                  </padding>
+                </StackPane>
+                  </children>
+                  <stylesheets>
+                     <URL value="@Extensions.css" />
+                     <URL value="@DarkTheme.css" />
+                  </stylesheets>
+               </VBox>
+
+          <StackPane fx:id="personAndBidTabPanePlaceholder" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
             <padding>
-              <Insets top="5" right="10" bottom="5" left="10" />
+              <Insets bottom="5" left="10" right="10" top="5" />
             </padding>
           </StackPane>
 
-          <StackPane VBox.vgrow="NEVER"
-                     fx:id="personAndBidTabPanePlaceholder"
-                     styleClass="pane-with-border"
-                     HBox.hgrow="ALWAYS">
-            <padding>
-              <Insets top="5" right="10" bottom="5" left="10" />
-            </padding>
-          </StackPane>
-
-          <VBox fx:id="calendarList" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
-
-            <StackPane VBox.vgrow="NEVER"
-                       fx:id="calendarListPanePlaceholder"
-                       styleClass="pane-with-border"
-                       HBox.hgrow="ALWAYS">
+          <VBox fx:id="calendarList" maxWidth="250" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                  <StackPane maxHeight="150.0" style="-fx-border-radius: 0; -fx-border-width: 4; -fx-background-color: #12232E; -fx-background-radius: 20; -fx-border-color: grey;" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="5" left="10" right="10" top="5" />
+                     </padding>
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Meeting Schedule" StackPane.alignment="CENTER">
+                           <font>
+                              <Font name="DengXian Regular" size="42.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </StackPane>
+                  <StackPane fx:id="calendarListPanePlaceholder" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
               <padding>
-                <Insets top="5" right="10" bottom="5" left="10" />
+                <Insets bottom="5" left="10" right="10" top="5" />
               </padding>
             </StackPane>
           </VBox>
         </HBox>
 
-        <StackPane VBox.vgrow="NEVER"
-                   fx:id="commandBoxPlaceholder"
-                   styleClass="pane-with-border">
+        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
