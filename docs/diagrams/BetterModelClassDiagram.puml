@@ -4,19 +4,19 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-McGymmy *-right-> "1" Fridge
-McGymmy *-right-> "1" TagSet
+McGymmy *-down-> "1" Fridge
 TagSet -[hidden]down- Fridge
 TagSet -[hidden]down- Fridge
 
+
+Fridge o-down-> Food
+
+
+Food *--> "1" Name
+Food *--> "1" Protein
+Food *--> "1" Carbohydrate
+Food *--> "1" Fat
+Food *--> "1" Date
+Food *--> "1" TagSet
 TagSet *-right-> "*" Tag
-Fridge o-right-> Food
-
-Person -up-> "*" Tag
-
-Person *--> "1" Name
-Person *--> "1" Protein
-Person *--> "1" Carbohydrate
-Person *--> "1" Fat
-Person *--> "1" Date
 @enduml
