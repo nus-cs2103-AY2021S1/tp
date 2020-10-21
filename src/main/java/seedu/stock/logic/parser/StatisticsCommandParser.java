@@ -2,12 +2,18 @@ package seedu.stock.logic.parser;
 
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.logic.commands.SourceQuantityDistributionStatisticsCommand;
 import seedu.stock.logic.commands.SourceStatisticsCommand;
 import seedu.stock.logic.commands.StatisticsCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class StatisticsCommandParser implements Parser<StatisticsCommand> {
+
+    private static final Logger logger = LogsCenter.getLogger(StatisticsCommandParser.class);
 
     @Override
     public StatisticsCommand parse(String userInput) throws ParseException {
@@ -15,6 +21,7 @@ public class StatisticsCommandParser implements Parser<StatisticsCommand> {
 
         //a valid input will lead to an array of index 0 as "", index 1 as the statistics type
         if (trimmedStatisticsType.length != 2) {
+            logger.log(Level.WARNING, "Multiple headers not allowed");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatisticsCommand.MESSAGE_USAGE));
         }
 
@@ -30,6 +37,7 @@ public class StatisticsCommandParser implements Parser<StatisticsCommand> {
             return new SourceQuantityDistributionStatisticsCommand(getSourceCompany(input));
 
         default:
+            logger.log(Level.WARNING, "Statistics type not found!");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatisticsCommand.MESSAGE_USAGE));
         }
 
@@ -48,6 +56,7 @@ public class StatisticsCommandParser implements Parser<StatisticsCommand> {
         } else if (input.equals("source")) {
             return "source";
         } else {
+            logger.log(Level.WARNING, "Statistics type not found!");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatisticsCommand.MESSAGE_USAGE));
         }
     }
@@ -58,6 +67,7 @@ public class StatisticsCommandParser implements Parser<StatisticsCommand> {
 
         //exception thrown here if the target source company is missing
         if (targetSourceCompany.length() == 0) {
+            logger.log(Level.WARNING, "Source company not found!");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatisticsCommand.MESSAGE_USAGE));
         }
         return targetSourceCompany;
