@@ -19,15 +19,10 @@ box ModelManager MODEL_COLOR_T1
 participant ":ModelManager" as ModelManager MODEL_COLOR
 end box
 
-box FlashcardDeck MODEL_COLOR_T1
-participant ":FlashcardDeck" as FlashcardDeck MODEL_COLOR
-end box
-
-
-[-> LogicManager : execute("add q/What does OOP stand for? \n a/Object-Oriented Programming ")
+[-> LogicManager : execute("add q/OOP is good. T/F ? a/T ")
 activate LogicManager
 
-LogicManager -> FlashcardDeckParser : parseCommand(""add q/What does OOP stand for? \n a/Object-Oriented Programming "")
+LogicManager -> FlashcardDeckParser : parseCommand("add q/OOP is good. T/F ? a/T ")
 activate FlashcardDeckParser
 
 create AddCommandParser
@@ -37,16 +32,16 @@ activate AddCommandParser
 AddCommandParser --> FlashcardDeckParser
 deactivate AddCommandParser
 
-FlashcardDeckParser --> AddCommandParser : parse("q/What does OOP stand for? \n a/Object-Oriented Programming")
+FlashcardDeckParser --> AddCommandParser : parse("q/OOP is good. T/F ? a/T ")
 activate AddCommandParser
 
-AddCommandParser --> ParserUtil :parseQuestion("What does OOP stand for? ")
+AddCommandParser --> ParserUtil :parseQuestion("OOP is good. T/F ? ")
 activate ParserUtil
 
 ParserUtil --> AddCommandParser
 deactivate ParserUtil
 
-AddCommandParser --> ParserUtil :parseAnswer("Object-Oriented Programming")
+AddCommandParser --> ParserUtil :parseAnswer("T ")
 activate ParserUtil
 
 ParserUtil --> AddCommandParser
@@ -78,8 +73,8 @@ deactivate FlashcardDeckParser
 LogicManager --> AddCommand : execute()
 activate AddCommand
 
-activate ModelManager
 AddCommand --> ModelManager: addFlashCard()
+activate ModelManager
 
 create CommandResult
 AddCommand -> CommandResult
@@ -87,9 +82,6 @@ activate CommandResult
 
 CommandResult --> AddCommand
 deactivate CommandResult
-
-activate FlashcardDeck
-ModelManager --> FlashcardDeck : addFlashCard()
 
 AddCommand -->LogicManager
 
