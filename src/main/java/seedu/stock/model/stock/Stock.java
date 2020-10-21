@@ -174,7 +174,7 @@ public class Stock {
         return otherStock != null
                 && otherStock.getName().equals(getName())
                 && otherStock.getSerialNumber().equals(getSerialNumber())
-                || otherStock.getSource().equals(getSource());
+                && otherStock.getSource().equals(getSource());
     }
 
     /**
@@ -194,9 +194,7 @@ public class Stock {
         Stock otherStock = (Stock) other;
         return otherStock.getName().equals(getName())
                 && otherStock.getSerialNumber().equals(getSerialNumber())
-                && otherStock.getSource().equals(getSource())
-                && otherStock.getQuantity().equals(getQuantity())
-                && otherStock.getLocation().equals(getLocation());
+                || otherStock.getSource().equals(getSource());
     }
 
     @Override
