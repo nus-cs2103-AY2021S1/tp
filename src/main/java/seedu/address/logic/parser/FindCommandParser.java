@@ -15,7 +15,7 @@ import seedu.address.model.tag.TagNameContainsCharPredicate;
  */
 public class FindCommandParser implements Parser<FindCommand> {
 
-    private static final Logger LOGGER =  LogsCenter.getLogger(FindCommandParser.class);
+    private static final Logger LOGGER = LogsCenter.getLogger(FindCommandParser.class);
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
