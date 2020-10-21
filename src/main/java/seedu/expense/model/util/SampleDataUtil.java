@@ -1,17 +1,15 @@
 package seedu.expense.model.util;
 
+import seedu.expense.model.ExpenseBook;
+import seedu.expense.model.ReadOnlyExpenseBook;
+import seedu.expense.model.alias.AliasEntry;
+import seedu.expense.model.alias.AliasMap;
+import seedu.expense.model.expense.*;
+import seedu.expense.model.tag.Tag;
+
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import seedu.expense.model.ExpenseBook;
-import seedu.expense.model.ReadOnlyExpenseBook;
-import seedu.expense.model.expense.Amount;
-import seedu.expense.model.expense.Date;
-import seedu.expense.model.expense.Description;
-import seedu.expense.model.expense.Expense;
-import seedu.expense.model.expense.Remark;
-import seedu.expense.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code ExpenseBook} with sample data.
@@ -62,6 +60,13 @@ public class SampleDataUtil {
             sampleAb.addExpense(sampleExpense);
         }
         return sampleAb;
+    }
+
+    public static AliasMap getSampleAliasMap() {
+        AliasMap sampleMap = new AliasMap();
+
+        sampleMap.addAlias(new AliasEntry("get", "find"));
+        return sampleMap;
     }
 
     /**

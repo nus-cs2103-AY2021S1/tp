@@ -1,7 +1,7 @@
 package seedu.expense.storage;
 
 import seedu.expense.commons.exceptions.DataConversionException;
-import seedu.expense.model.AliasMap;
+import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.ReadOnlyExpenseBook;
 import seedu.expense.model.ReadOnlyUserPrefs;
 import seedu.expense.model.UserPrefs;

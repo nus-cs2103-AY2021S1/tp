@@ -1,23 +1,15 @@
 package seedu.expense.logic.parser;
 
-import static seedu.expense.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.expense.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import seedu.expense.logic.commands.*;
+import seedu.expense.logic.parser.exceptions.ParseException;
+import seedu.expense.model.alias.AliasMap;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.expense.logic.commands.AddCommand;
-import seedu.expense.logic.commands.ClearCommand;
-import seedu.expense.logic.commands.Command;
-import seedu.expense.logic.commands.DeleteCommand;
-import seedu.expense.logic.commands.EditCommand;
-import seedu.expense.logic.commands.ExitCommand;
-import seedu.expense.logic.commands.FindCommand;
-import seedu.expense.logic.commands.HelpCommand;
-import seedu.expense.logic.commands.ListCommand;
-import seedu.expense.logic.commands.RemarkCommand;
-import seedu.expense.logic.commands.TopupCommand;
-import seedu.expense.logic.parser.exceptions.ParseException;
+import static java.util.Objects.requireNonNull;
+import static seedu.expense.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.expense.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 /**
  * Parses user input.
@@ -81,4 +73,53 @@ public class ExpenseBookParser {
         }
     }
 
+    public Command parseCommand(String userInput, AliasMap aliasMap) throws ParseException {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        if (!matcher.matches()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        }
+
+        String commandWord = matcher.group("commandWord");
+
+        requireNonNull(aliasMap);
+        if (aliasMap.hasAlias(commandWord)) {
+            commandWord = aliasMap.getValue(commandWord);
+        }
+        final String arguments = matcher.group("arguments");
+        switch (commandWord) {
+
+        case AddCommand.COMMAND_WORD:
+            return new AddCommandParser().parse(arguments);
+
+        case EditCommand.COMMAND_WORD:
+            return new EditCommandParser().parse(arguments);
+
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommandParser().parse(arguments);
+
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
+
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
+
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
+
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+
+        case RemarkCommand.COMMAND_WORD:
+            return new RemarkCommandParser().parse(arguments);
+
+        case TopupCommand.COMMAND_WORD:
+            return new TopupCommandParser().parse(arguments);
+
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
 }

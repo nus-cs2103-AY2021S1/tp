@@ -5,7 +5,7 @@ import seedu.expense.commons.exceptions.DataConversionException;
 import seedu.expense.commons.exceptions.IllegalValueException;
 import seedu.expense.commons.util.FileUtil;
 import seedu.expense.commons.util.JsonUtil;
-import seedu.expense.model.AliasMap;
+import seedu.expense.model.alias.AliasMap;
 
 import java.io.IOException;
 import java.nio.file.Path;

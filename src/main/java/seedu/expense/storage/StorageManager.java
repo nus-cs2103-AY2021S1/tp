@@ -2,10 +2,10 @@ package seedu.expense.storage;
 
 import seedu.expense.commons.core.LogsCenter;
 import seedu.expense.commons.exceptions.DataConversionException;
-import seedu.expense.model.AliasMap;
 import seedu.expense.model.ReadOnlyExpenseBook;
 import seedu.expense.model.ReadOnlyUserPrefs;
 import seedu.expense.model.UserPrefs;
+import seedu.expense.model.alias.AliasMap;
 
 import java.io.IOException;
 import java.nio.file.Path;

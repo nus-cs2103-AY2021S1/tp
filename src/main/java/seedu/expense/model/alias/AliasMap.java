@@ -1,6 +1,4 @@
-package seedu.expense.model;
-
-import seedu.expense.model.alias.AliasEntry;
+package seedu.expense.model.alias;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +12,6 @@ import static java.util.Objects.requireNonNull;
  * Duplicates are not allowed (by .isSameExpense comparison)
  */
 public class AliasMap {
-
 
     private final HashMap<String, String> aliasMap;
     /*
@@ -85,6 +82,16 @@ public class AliasMap {
     public boolean hasAlias(AliasEntry aliasEntry) {
         requireNonNull(aliasEntry);
         return this.aliasMap.containsKey(aliasEntry.getKey());
+    }
+
+    public boolean hasAlias(String aliasString) {
+        requireNonNull(aliasString);
+        return this.aliasMap.containsKey(aliasString);
+    }
+
+    public String getValue(String aliasString) {
+        requireNonNull(aliasString);
+        return this.aliasMap.get(aliasString);
     }
 
     /**

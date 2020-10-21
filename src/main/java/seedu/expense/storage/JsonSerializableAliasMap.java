@@ -2,7 +2,7 @@ package seedu.expense.storage;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.expense.commons.exceptions.IllegalValueException;
-import seedu.expense.model.AliasMap;
+import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.alias.AliasEntry;
 
 import java.util.ArrayList;

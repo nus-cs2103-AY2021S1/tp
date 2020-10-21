@@ -1,9 +1,5 @@
 package seedu.expense.logic;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import seedu.expense.commons.core.GuiSettings;
 import seedu.expense.commons.core.LogsCenter;
@@ -16,6 +12,10 @@ import seedu.expense.model.Model;
 import seedu.expense.model.ReadOnlyExpenseBook;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.storage.Storage;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.logging.Logger;
 
 /**
  * The main LogicManager of the app.
@@ -42,11 +42,12 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = expenseBookParser.parseCommand(commandText);
+        Command command = expenseBookParser.parseCommand(commandText, model.getAliasMap());
         commandResult = command.execute(model);
 
         try {
             storage.saveExpenseBook(model.getExpenseBook());
+            storage.saveAliasMap(model.getAliasMap());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
