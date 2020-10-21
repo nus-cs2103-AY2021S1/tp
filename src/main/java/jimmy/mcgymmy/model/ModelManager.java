@@ -118,7 +118,7 @@ public class ModelManager implements Model {
     @Override
     public void setFood(Index index, Food editedFood) {
         CollectionUtil.requireAllNonNull(index, editedFood);
-        logger.fine("Change food at index " + index.getOneBased() + "to food:\n" + editedFood.toString())
+        logger.fine("Change food at index " + index.getOneBased() + "to food:\n" + editedFood.toString());
         addCurrentStateToHistory();
         mcGymmy.setFood(index, editedFood);
         updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
