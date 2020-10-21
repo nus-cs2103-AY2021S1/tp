@@ -33,10 +33,4 @@ public class SampleDataUtil {
         }
         return sampleAb;
     }
-
-    public static Set<Label> getLabelSet(String... labels) {
-        return Arrays.stream(labels)
-                .map(Label::new)
-                .collect(Collectors.toSet());
-    }
 }
