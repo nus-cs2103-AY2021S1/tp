@@ -69,6 +69,6 @@ public class DeliveryFindCommandParser implements Parser<DeliveryFindCommand> {
                 i++;
             }
         }
-        return i == 0 && Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+        return i == 1 && Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
