@@ -45,5 +45,4 @@ deactivate MainWindow
 
 [<--UiManager
 deactivate UiManager
-
 @enduml
