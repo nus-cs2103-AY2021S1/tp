@@ -217,9 +217,9 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-## Add Feature 
+### \[Implemented\] Add Feature 
 
-#### Implementation
+#### Current Implementation
 
 The Add feature 
 The add feature is facilitated by `LogicManager` and `ModelManager`. The add command supports the following inputs from the user
@@ -342,9 +342,9 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use more memory, since the HashMap will have to be committed to local storage too.
   * Cons: We must ensure that the any changes/updates to a flashcard will be reflected in the HashMap.
 
-### Favourite/Unfavourite feature 
+### \[Implemented\] Favourite/Unfavourite feature 
 
-#### Implementation
+#### Current Implementation
 
 The favourite/unfavourite mechanism is faciliated by `LogicManager` and `ModelManager`.
 A `isFavourite` attribute is stored internally in `Flashcard`, to keep track of whether the flashcard is favourited. When the user favourites a flashcard, `isFavourite` is set to true, and set to false otherwise. 
@@ -403,9 +403,9 @@ The following activity diagram summarizes what happens when a user executes a fa
 
 _{more aspects and alternatives to be added}_
 
-### Filter feature
+### \[Implemented\] Filter feature
 
-#### Implementation
+#### Current Implementation
 The filtering mechanism is facilitated by `LogicManager` and `ModelManager`.
 It works when the `LogicManager` listens for a filter command input from the user and
 parses the command to filter out relevant flashcards based on the category or categories 
