@@ -115,9 +115,9 @@ stored in ProductiveNUS.
 
 
 Examples: 
-- `list 2` list all your assignments 48 hours (2 days) from the current date (and current time). 
-- `list 3` list all your assignments 72 hours (3 days) from the current date (and current time). 
-- `list ` displays all your assignments.
+- `list 2` list all your assignments 2 days (48 hours) from the current date (and current time). 
+- `list 3` list all your assignments 3 days (72 hours) from the current date (and current time). 
+- `list ` list all your assignments.
 
 ### Finding assignments : `find`
 
