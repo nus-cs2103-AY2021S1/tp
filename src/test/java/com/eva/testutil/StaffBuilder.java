@@ -9,7 +9,7 @@ import com.eva.model.util.SampleDataUtil;
 
 public class StaffBuilder extends PersonBuilder {
 
-    public static final String DEFAULT_LEAVE_ONLY_STARTDATE = "12122020";
+    public static final String DEFAULT_LEAVE_ONLY_STARTDATE = "12/12/2020";
 
     private Set<Leave> leaves;
 
@@ -38,6 +38,10 @@ public class StaffBuilder extends PersonBuilder {
     public PersonBuilder withSingleDateLeaves(String... leaves) {
         this.leaves = SampleDataUtil.getLeaveSet(leaves);
         return this;
+    }
+
+    public Staff build() {
+        return new Staff(name, phone, email, address, tags, leaves, comments);
     }
 
 }

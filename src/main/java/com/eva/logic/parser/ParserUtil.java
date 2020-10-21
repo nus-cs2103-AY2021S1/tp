@@ -1,9 +1,7 @@
 package com.eva.logic.parser;
 
 import static com.eva.commons.util.StringUtil.formatForParse;
-import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_ADD;
 import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_DATE;
-import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_DELETE;
 import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_DESC;
 import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_TITLE;
 import static java.util.Objects.requireNonNull;
@@ -149,9 +147,11 @@ public class ParserUtil {
         if (!Comment.isValidComment(trimmedComment)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(" " + comment, PREFIX_ADD,
-                PREFIX_DELETE, PREFIX_DATE, PREFIX_TITLE, PREFIX_DESC);
-        if (argMultiMap.getAllValues(PREFIX_DELETE).size() == 0) {
+        ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(" " + comment,
+                PREFIX_DATE, PREFIX_TITLE, PREFIX_DESC);
+        if (argMultiMap.getAllValues(PREFIX_DATE).size() != 0
+                && argMultiMap.getAllValues(PREFIX_TITLE).size() != 0
+                && argMultiMap.getAllValues(PREFIX_DESC).size() != 0) {
             String date = argMultiMap.getValue(PREFIX_DATE).get();
             if (!DateUtil.isValidDate(date)) {
                 throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
@@ -160,8 +160,9 @@ public class ParserUtil {
             String desc = argMultiMap.getValue(PREFIX_DESC).get();
             return new Comment(DateUtil.dateParsed(date), desc, title);
         } else {
-            String desc = argMultiMap.getValue(PREFIX_DESC).get();
-            return new Comment(desc);
+            String title = argMultiMap.getValue(PREFIX_TITLE).get();
+            System.out.println(title);
+            return new Comment(title);
         }
     }
     /**

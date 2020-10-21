@@ -54,4 +54,11 @@ public class AddStaffCommand extends Command {
         model.addStaff(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddStaffCommand // instanceof handles nulls
+                && toAdd.equals(((AddStaffCommand) other).toAdd));
+    }
 }

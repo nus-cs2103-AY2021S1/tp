@@ -268,7 +268,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User types in add <staffname> / <email> / <phoneno>
+1.  User types in `add s- n/<staffname> a/address e/<email> p/<phoneno> c/<comments>`
 2.  Eva adds in the staff record
 3.  Eva displays the staff record added to User
     Use case ends.
@@ -284,7 +284,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Steps 1a1-1a3 are repeated until the data entered are correct.
     Use case resumes from step 2.
 
-* 1b. Eva detects invalid email or phone number.
+* 1b. Eva detects invalid email, phone number or comment.
 
     * 1b1. Eva shows the valid format to key in the relevant field.
     * 1b2. Eva requests the user to add in data again.
@@ -293,39 +293,130 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Steps 1b1-1b3 are repeated until the data entered are correct.
     Use case resumes from step 2.
 
-
-
 ***Use case: UC02 - Deleting a Record of staff***
 
 **MSS**
 
-1. User types in delete <staff_name>
-2. Eva shows all matched staff records to the <staff_name> with indexes beside.
-3. User types in the index to delete
-4. Eva deletes the staff record permanently.
-5. Eva displays the confirmed message of deletion of that staff record.  
+1. User types in `delete <index_of_staff> s-`. 
+2. Eva deletes the staff record permanently.
+3. Eva displays the confirmed message of deletion of that staff record.  
     Use case ends.
 
 **Extensions**
 
-* 1a. Eva does not find any staff record with the keyed in staff_name .
+* 1a. Eva does not find staff record with the keyed in index.
 
     * 1a1. Eva informs the user that there are no such records.
     * 1a2. Eva requests the user to type the command in again. 
-    * 1a3  User types in the new staff_name of delete <staff_name>.
+    * 1a3  User types in `delete <index_of_staff> s-` with correct index of staff
     Steps 1a1-1a3 are repeated until the data entered are correct.
     Use case resumes from step 2.
 
-* 1b. Eva does not detect any input for <staff_name>.
+* 1b. Eva does not detect any input for <index>.
 
     * 1b1. Eva requests the user to type the command in again. 
-    * 1b2. User types in the new staff_name of delete <staff_name>.    
+    * 1b2. User types in the new command `delete <index_of_staff> s-`.    
     Steps 1b1-1b3 are repeated until the data entered are correct.
     Use case resumes from step 2.
 
+***Use case: UC03 - Adding a Comment on staff***
+
+**MSS**
+
+1. User types in `add <index_of_staff> s- c- t:<title> d:<date> desc:<description_of_comment>`. 
+2. Eva adds the comment to staff record permanently.
+3. Eva displays the confirmed message of addition of comment to that staff record.  
+    Use case ends.
+
+**Extensions**
+
+* 1a. Eva does not find staff record with the keyed in index.
+
+    * 1a1. Eva informs the user that there are no such records.
+    * 1a2. Eva requests the user to type the command in again. 
+    * 1a3  User types in `add <index_of_staff> s- c- t:<title> d:<date> desc:<description_of_comment>` with correct index of staff
+    Steps 1a1-1a3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+
+* 1b. Eva does not detect any input for <index>.
+
+    * 1b1. Eva requests the user to type the command in again. 
+    * 1b2. User types in the new command `add <index_of_staff> s- c- t:<title> d:<date> desc:<description_of_comment>`.    
+    Steps 1b1-1b3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+    
+* 1c. Eva detects missing fields
+
+    * 1c1. Eva shows the correct format to key in data.
+    * 1c2. Eva requests the user to add in data again.
+    * 1c3  User enters new data.
+
+    Steps 1c1-1c3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+    
+
+***Use case: UC04 - Deleting a Comment on staff***
+
+**MSS**
+
+1. User types in `delete <index_of_staff> s- c- t:<title>`. 
+2. Eva deletes the comment with entered `<title>` from staff record permanently.
+3. Eva displays the confirmed message of deletion of comment from staff record.  
+    Use case ends.
+
+**Extensions**
+
+* 1a. Eva does not find staff record with the keyed in index.
+
+    * 1a1. Eva informs the user that there are no such records.
+    * 1a2. Eva requests the user to type the command in again. 
+    * 1a3  User types in `delete <index_of_staff>  s- c- t:<title>` with correct index of staff
+    Steps 1a1-1a3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+
+* 1b. Eva does not detect any input for <index>.
+
+    * 1b1. Eva requests the user to type the command in again. 
+    * 1b2. User types in the new command `delete <index_of_staff> s- c- t:<title>`.    
+    Steps 1b1-1b3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+    
+* 1c. Eva detects missing fields
+
+    * 1c1. Eva shows the correct format to key in data.
+    * 1c2. Eva requests the user to add in data again.
+    * 1c3  User enters new data.
+
+    Steps 1c1-1c3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+    
+    
+***Use case: UC05 - Adding an applicant to record***
+
+Similar to Use Case 01, except that instead of s-, key in a-.
+
+Example: `add a- n/<applicantname> a/address e/<email> p/<phoneno> c/<comments>`
+
+***Use case: UC06 - Deleting an applicant from record***
+
+Similar to Use Case 02, except that instead of s-, key in a-.
+
+Example: `delete <index_of_applicant> a-`
+    
+***Use case: UC07 - Adding a Comment on applicant***
+
+Similar to Use Case 03, just that instead of s-, key in a-.
+
+Example: `add <index_of_staff> s- c- t:<title> d:<date> desc:<description_of_comment>`    
+
+***Use case: UC08 - Deleting a Comment on applicant***
+
+Similar to Use Case 04 except that instead of s-, key in a-.
+
+Example: `delete <index_of_applicant> a- c- t:<title>`
 
 
-***Use case: UC03 - list all staff records***
+***Use case: UC09 - list all staff records***
 
 **MSS**
 
@@ -342,7 +433,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-***Use case: UC04 - Exiting the program***
+***Use case: UC10 - Exiting the program***
 
 **MSS**
 
