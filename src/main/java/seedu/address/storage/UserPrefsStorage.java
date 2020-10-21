@@ -29,8 +29,9 @@ public interface UserPrefsStorage {
     /**
      * Saves the given {@link seedu.address.model.ReadOnlyUserPrefs} to the storage.
      * @param userPrefs cannot be null.
+     * @param savedCurrentPath cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
+    void saveUserPrefs(ReadOnlyUserPrefs userPrefs, String savedCurrentPath) throws IOException;
 
 }

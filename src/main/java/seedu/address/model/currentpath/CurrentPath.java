@@ -19,8 +19,8 @@ public class CurrentPath {
      * Constructs a CurrentPath.
      * @param fileList the list to be the children file list
      */
-    public CurrentPath(FileList fileList) {
-        address = new FileAddress(System.getProperty("user.dir"));
+    public CurrentPath(String filePath, FileList fileList) {
+        address = new FileAddress(filePath);
         childrenFiles = fileList;
         updateChildrenFileList();
     }

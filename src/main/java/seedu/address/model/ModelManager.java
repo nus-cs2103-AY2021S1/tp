@@ -42,7 +42,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTags = new FilteredList<>(this.addressBook.getTagList());
         filteredFiles = new FilteredList<>(this.addressBook.getObservableFileList());
-        currentPath = new CurrentPath(this.addressBook.getFileList());
+        currentPath = new CurrentPath(this.userPrefs.getSavedFilePathValue(), this.addressBook.getFileList());
     }
 
     public ModelManager() {
@@ -84,12 +84,6 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    /*
-    public void setCurrentPath(String currentPath) {
-        assert currentPath != null;
-        this.currentPath.setAddress(currentPath);
-    }
-    */
     //=========== AddressBook ================================================================================
 
     @Override
