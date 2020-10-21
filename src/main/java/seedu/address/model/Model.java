@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.animal.Animal;
+import seedu.address.model.animal.AnimalComparator;
 
 /**
  * The API of the Model component.
@@ -75,6 +76,12 @@ public interface Model {
      * The animal identity of {@code editedAnimal} must not be the same as another existing animal in the zookeep book.
      */
     void setAnimal(Animal target, Animal editedAnimal);
+
+    /**
+     * Sorts the animals using the given animal comparator.
+     * @param animalComparator Contains the specific comparator required for sorting.
+     */
+    void sortAnimals(AnimalComparator animalComparator);
 
     /** Returns an unmodifiable view of the filtered animal list */
     ObservableList<Animal> getFilteredAnimalList();

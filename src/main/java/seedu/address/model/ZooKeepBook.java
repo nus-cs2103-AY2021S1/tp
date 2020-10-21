@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.animal.Animal;
+import seedu.address.model.animal.AnimalComparator;
 import seedu.address.model.animal.UniqueAnimalList;
 
 /**
@@ -91,6 +92,14 @@ public class ZooKeepBook implements ReadOnlyZooKeepBook {
      */
     public void removeAnimal(Animal key) {
         animals.remove(key);
+    }
+
+    /**
+     * Sorts the animals using the given animal comparator.
+     * @param animalComparator Contains the specific comparator required for sorting.
+     */
+    public void sortAnimals(AnimalComparator animalComparator) {
+        animals.sortAnimals(animalComparator);
     }
 
     //// util methods
