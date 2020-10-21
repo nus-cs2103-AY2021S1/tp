@@ -1,6 +1,8 @@
 package seedu.flashcard.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_ANSWER;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_QUESTION;
 
 import java.util.List;
 
@@ -11,7 +13,7 @@ import seedu.flashcard.model.Model;
 import seedu.flashcard.model.flashcard.Flashcard;
 
 /**
- * Views a flashcard identified using it's displayed index from the list of flashcards.
+ * Views  2 aa flashcard identified using it's displayed index from the list of flashcards.
  */
 public class ViewCommand extends Command {
 
@@ -19,15 +21,18 @@ public class ViewCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": View the flashcard identified by the index number used in the displayed flashcard list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must be a positive integer)"
+            + " [" + PREFIX_ANSWER + "]\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_VIEW_FLASHCARD_SUCCESS = "Viewed Flashcard: %1$s";
 
     private final Index targetIndex;
+    private final boolean showAnswer;
 
-    public ViewCommand(Index targetIndex) {
+    public ViewCommand(Index targetIndex, boolean showAnswer) {
         this.targetIndex = targetIndex;
+        this.showAnswer = showAnswer;
     }
 
     @Override
@@ -39,7 +44,7 @@ public class ViewCommand extends Command {
         }
         Flashcard flashcardToView = lastShownList.get(targetIndex.getZeroBased());
         return new CommandResult(String.format(MESSAGE_VIEW_FLASHCARD_SUCCESS,
-                flashcardToView), targetIndex.getZeroBased());
+                flashcardToView), targetIndex.getZeroBased(), showAnswer);
     }
 
     @Override

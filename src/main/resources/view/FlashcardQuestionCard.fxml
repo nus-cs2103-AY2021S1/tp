@@ -14,7 +14,7 @@
 
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
-<StackPane styleClass="pane-with-border" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane styleClass="pane-with-round-border" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <padding>
         <Insets bottom="5" left="15" right="15" top="5" />
     </padding>
@@ -27,12 +27,7 @@
                 <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
             <HBox alignment="CENTER_LEFT" spacing="5">
-                <Label fx:id="question" styleClass="cell_question_label" text="\$question" >
-<!--                    <minWidth>-->
-<!--                        &lt;!&ndash; Ensures that the label text is never truncated &ndash;&gt;-->
-<!--                        <Region fx:constant="USE_PREF_SIZE" />-->
-<!--                    </minWidth>-->
-                </Label>
+                <Label fx:id="question" styleClass="cell_question_label" text="\$question" wrapText="true"/>
             </HBox>
 
             <HBox spacing="15">
@@ -46,7 +41,7 @@
                 </TextFlow>
                 <Text fx:id="favouriteIcon" text="\$favouriteIcon"/>
             </HBox>
-            <ImageView fx:id="diagram" fitHeight="500.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="diagram" fitHeight="400.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" />
             <FlowPane fx:id="tags" />
         </VBox>
 

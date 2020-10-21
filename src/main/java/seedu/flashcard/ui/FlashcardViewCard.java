@@ -32,12 +32,16 @@ public class FlashcardViewCard extends UiPart<Region> {
     /**
      * Creates a {@code FlashcardListCard} with the given {@code Flashcard} and index to display.
      */
-    public FlashcardViewCard(Flashcard flashcard) {
+    public FlashcardViewCard(Flashcard flashcard, boolean showAnswer) {
         super(FXML);
         this.flashcard = flashcard;
         FlashcardQuestionCard questionCard = new FlashcardQuestionCard(flashcard);
         questionViewPlaceholder.getChildren().add(questionCard.getRoot());
+        if (!showAnswer) {
+            answerViewPlaceholder.setVisible(false);
+        }
         FlashcardAnswerCard answerCard = new FlashcardAnswerCard(flashcard);
         answerViewPlaceholder.getChildren().add(answerCard.getRoot());
+
     }
 }

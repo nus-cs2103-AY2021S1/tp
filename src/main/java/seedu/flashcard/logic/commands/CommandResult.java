@@ -23,6 +23,9 @@ public class CommandResult {
     /** The flashcard index to view */
     private final Integer viewIndex;
 
+    /** The application should show answer for view command. */
+    private final boolean showAnswer;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -32,19 +35,19 @@ public class CommandResult {
         this.exit = exit;
         this.reviewMode = reviewMode;
         this.viewIndex = null;
+        this.showAnswer = false;
     }
 
     /**
-     * Overloaded constructor for view command.
-     * @param feedbackToUser
-     * @param viewIndex
+     * Constructs a {@code CommandResult} specifically for view commands.
      */
-    public CommandResult(String feedbackToUser, Integer viewIndex) {
+    public CommandResult(String feedbackToUser, Integer viewIndex, boolean showAnswer) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = false;
         this.exit = false;
         this.reviewMode = false;
         this.viewIndex = viewIndex;
+        this.showAnswer = showAnswer;
     }
 
     /**
@@ -70,6 +73,10 @@ public class CommandResult {
 
     public boolean isReviewMode() {
         return reviewMode;
+    }
+
+    public boolean isShowAnswer() {
+        return showAnswer;
     }
 
     public boolean isExit() {

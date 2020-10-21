@@ -238,8 +238,9 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Executes view function.
      */
-    private void handleView(int viewIndex) {
-        flashcardViewCard = new FlashcardViewCard(logic.getFilteredFlashcardList().get(viewIndex));
+    private void handleView(int viewIndex, boolean showAnswer) {
+        flashcardViewCardPlaceholder.getChildren().clear();
+        flashcardViewCard = new FlashcardViewCard(logic.getFilteredFlashcardList().get(viewIndex), showAnswer);
         flashcardViewCardPlaceholder.getChildren().add(flashcardViewCard.getRoot());
     }
 
@@ -319,7 +320,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.getViewIndex() != null) {
-                handleView(commandResult.getViewIndex());
+                handleView(commandResult.getViewIndex(), commandResult.isShowAnswer());
             }
 
             return commandResult;

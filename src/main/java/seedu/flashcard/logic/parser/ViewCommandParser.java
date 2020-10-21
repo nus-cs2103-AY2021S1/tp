@@ -1,6 +1,12 @@
 package seedu.flashcard.logic.parser;
 
 import static seedu.flashcard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_ANSWER;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_DIAGRAM;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_NOTE;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_QUESTION;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_RATING;
 
 import seedu.flashcard.commons.core.index.Index;
 import seedu.flashcard.logic.commands.DeleteCommand;
@@ -18,12 +24,22 @@ public class ViewCommandParser implements Parser<ViewCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewCommand parse(String args) throws ParseException {
+        Index index;
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_ANSWER);
+
         try {
-            Index index = ParserUtil.parseIndex(args);
-            return new ViewCommand(index);
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
+        }
+
+        if (argMultimap.getValue(PREFIX_ANSWER).isPresent()) {
+            return new ViewCommand(index, true);
+        } else {
+            return new ViewCommand(index, false);
         }
     }
 

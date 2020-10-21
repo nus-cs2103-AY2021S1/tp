@@ -3,6 +3,11 @@
     background-color: #383838; /* Used in the default.html file */
 }
 
+.main-window {
+    -fx-background-color: #d3d3d3;
+    -fx-background-size: 100% 100%;
+}
+
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
@@ -88,29 +93,25 @@
 }
 
 .list-view {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent;
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
+    -fx-padding: 5 10 5 0;
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
-    -fx-border-color:black;
-    -fx-border-width: 1 2 1 2
+    -fx-background-color: transparent;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
-    -fx-border-color:black;
-    -fx-border-width: 1 2 1 2
+    -fx-background-color: transparent;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-background-color: transparent;
 }
 
 .list-cell:filled:selected #cardPane {
@@ -150,10 +151,23 @@
      -fx-border-top-width: 1px;
 }
 
-.pane-with-dark-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: black;
-     -fx-border-top-width: 1px;
+.scroll-pane > .viewport {
+    -fx-background-color: transparent
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+.pane-with-no-border {
+    -fx-background-color: transparent;
+}
+
+.pane-with-round-border {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-border-color: derive(#1d1d1d, 10%);
+    -fx-border-top-width: 1px;
+    -fx-border-radius: 20 20 20 20;
+    -fx-background-radius: 20 20 20 20;
 }
 
 .status-bar {
