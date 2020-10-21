@@ -187,6 +187,36 @@ The following sequence diagram shows how the stats operation works:
 
 ![StatsSequenceDiagram](images/StatsSequenceDiagram.png)
 
+### Clear Statistics of Flashcard
+
+The clear statistics of flashcard feature will allow the user to reset the `Statistics` of the`Flashcard` specified by the given index.
+
+#### Implementation
+
+The clear statistics of flashcard implementation requires the creation of a `ClearStatsCommandParser` and a `ClearStatsCommand`. The `ClearStatsCommandParser` will take in a single argument for `Index`. After parsing the argument, it will then proceed to create a `ClearStatsCommand` class instance. If no `Index` is given then a `CommandException` will be thrown.
+
+The `ClearStatsCommand` class will replace the `Flashcard` at the specified `Index` with a new `Flashcard` that has its `Statistics` reset to default numbers.
+
+Given below is an example usage scenario and how the `ClearStatsCommand` mechanism behaves at each step.
+
+Step 1. The user launches the application after a few times of playing around with the `TestCommand` feature. The `QuickCache` will be initialized with the existing QuickCache state.
+
+Step 2. The user executes `stats 1` command to display the `Statistics` of the first flashcard in the list on the GUI. The user sees that the `Statistics` is not the default value.
+
+Step 3. The user executes `clearstats 1` command to clear the `Statistics` of the first flashcard in the list on the GUI.
+ 
+Step 4. This will call `ClearStatsCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseIndex` will be called to convert the user input into the `Index` of the desired `Flashcard` to display the `Statistics` of.
+
+Step 5. The `index` is then passed to the `ClearStatsCommand`
+
+Step 6. `ClearStatsCommand#execute` will get the `Flashcard` at the specified `Index` and call `ClearStatsCommand#getFlashcardAfterClearStatistics` which will give a copy of the `Flashcard` with the `Statistics` reset. The original `Flashcard` will then be replaced by the new `Flashcard` copy.
+
+Step 7. The user executes `stats 1` command to display the `Statistics` of the first flashcard in the list on the GUI. The user sees that the `Statistics` is reset.
+
+The following sequence diagram shows how the stats operation works:
+
+![ClearStatsSequenceDiagram](images/ClearStatsSequenceDiagram.png)
+
 ### Delete by tag feature
 
 This delete by tag feautre will allow the user to delete flashcards specified by a given set of tags.
