@@ -64,7 +64,7 @@ public class DateTime {
      * @param test the string value to be put to test.
      * @return true if the test string is valid and false otherwise
      */
-    public static boolean isValidSearchPhrase(String test) { 
+    public static boolean isValidSearchPhrase(String test) {
         return isValidDateTime(test) || Date.isValidDate(test) || Time.isValidTime(test);
     }
 

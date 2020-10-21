@@ -1,10 +1,10 @@
 package seedu.address.model.lesson;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 public class DateTest {
     @Test
@@ -31,7 +31,6 @@ public class DateTest {
         assertFalse(Date.isValidDate("12-13-2020")); //wrong month
         assertFalse(Date.isValidDate("12-13-20201")); //wrong year
         assertFalse(Date.isValidDate("12-12-20")); //incomplete year
-        
         // valid date
         assertTrue(Date.isValidDate("12-12-2020"));
         assertTrue(Date.isValidDate("01-01-1000"));
