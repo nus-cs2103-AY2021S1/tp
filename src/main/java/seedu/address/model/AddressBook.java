@@ -7,7 +7,6 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.UniqueTutorialGroupList;
 
 /**
  * Wraps all data at the address-book level
@@ -16,7 +15,7 @@ import seedu.address.model.person.UniqueTutorialGroupList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final UniqueTutorialGroupList tutorialgroups;
+    // private final UniqueTutorialGroupList tutorialgroups;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -27,7 +26,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        tutorialgroups = new UniqueTutorialGroupList();
+        // tutorialgroups = new UniqueTutorialGroupList();
     }
 
     public AddressBook() {}
@@ -119,20 +118,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public int hashCode() {
         return persons.hashCode();
-    }
-
-    public void addTutorialGroup(TutorialGroup tutorialGroup) {
-        tutorialgroups.add(tutorialGroup);
-    }
-
-    /**
-     * Checks if the AddressBook already contains the specific tutorial group is in tutorialgroups list
-     *
-     * @param tutorialGroup
-     * @return
-     */
-    public boolean hasTutorialGroup(TutorialGroup tutorialGroup) {
-        requireNonNull(tutorialGroup);
-        return tutorialgroups.contains(tutorialGroup);
     }
 }

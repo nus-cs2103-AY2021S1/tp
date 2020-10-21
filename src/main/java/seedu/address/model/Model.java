@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Module;
+import seedu.address.model.person.Student;
 
 /**
  * The API of the Model component.
@@ -13,6 +13,9 @@ import seedu.address.model.person.Module;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,64 +38,98 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' Trackr file path.
      */
-    Path getModuleListFilePath();
+    Path getTrackrFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' Trackr file path.
      */
-    void setModuleListFilePath(Path moduleListFilePath);
+    void setTrackrFilePath(Path trackrFilePath);
+
+    // student operations
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces Trackr data with the data in {@code studentList}.
      */
-    void setModuleList(ReadOnlyModuleList moduleList);
+    void setStudentList(ReadOnlyTrackr<Student> studentList);
 
-    /** Returns the AddressBook */
-    ReadOnlyModuleList getModuleList();
+    /** Returns the student Trackr */
+    ReadOnlyTrackr<Student> getStudentList();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a student with the same identity as {@code student} exists in trackr.
+     */
+    boolean hasStudent(Student student);
+
+    /**
+     * Deletes the given student.
+     * The student must exist in trackr.
+     */
+    void deleteStudent(Student target);
+
+    /**
+     * Adds the given student.
+     * {@code student} must not already exist in trackr.
+     */
+    void addStudent(Student student);
+
+    /**
+     * Replaces the given student {@code target} with {@code editedStudent}.
+     * {@code target} must exist in trackr.
+     * The student identity of {@code editedStudent} must not be the same as another existing student in trackr.
+     */
+    void setStudent(Student target, Student editedStudent);
+
+    /** Returns an unmodifiable view of the filtered student list */
+    ObservableList<Student> getFilteredStudentList();
+
+    /**
+     * Updates the filter of the filtered student list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredStudentList(Predicate<Student> predicate);
+
+    // module operations
+
+    /**
+     * Replaces Trackr data with the data in {@code moduleList}.
+     */
+    void setModuleList(ReadOnlyTrackr<Module> moduleList);
+
+    /** Returns the module Trackr */
+    ReadOnlyTrackr<Module> getModuleList();
+
+    /**
+     * Returns true if a module with the same identity as {@code module} exists in trackr.
      */
     boolean hasModule(Module module);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given module.
+     * The module must exist in trackr.
      */
     void deleteModule(Module target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given module.
+     * {@code module} must not already exist in trackr.
      */
     void addModule(Module module);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given module {@code target} with {@code editedModule}.
+     * {@code target} must exist in trackr.
+     * The module identity of {@code editedModule} must not be the same as another existing module in trackr.
      */
     void setModule(Module target, Module editedModule);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered module list */
     ObservableList<Module> getFilteredModuleList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered module list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredModuleList(Predicate<Module> predicate);
-
-    //    /**
-    //     * Adds the given tutorial group.
-    //     * {@code tutorial group} must not already exist in the address book.
-    //     */
-    //    void addTutorialGroup(TutorialGroup tutorialGroup);
-    //
-    //    /**
-    //     * Returns true if a Tutorial Group with the same id as {@code person} exists in the address book.
-    //     */
-    //    boolean hasTutorialGroup(TutorialGroup tutorialGroup);
 }
