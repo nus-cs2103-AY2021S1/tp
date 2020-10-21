@@ -30,8 +30,9 @@ public class FindCommand extends Command {
             + PREFIX_DEADLINE + " DATE_OR_TIME_OF_DEADLINE [MORE DATE_OR_TIME_OF_DEADLINE] or\n"
             + PREFIX_PRIORITY + " PRIORITY [MORE PRIORITIES]\n"
             + "Example: " + COMMAND_WORD + " d/1200 24-10-2020 25-10-2020\n"
-            + "The example above finds all assignments due on 24 October 2020 and 25 October 2020 and finds all "
-            + "assignments due at 1200";
+            + "The example above finds all assignments due on 24 October 2020 (regardless of time),"
+            + " due on 25 October 2020 (regardless of time) and finds all "
+            + "assignments due at 1200 (regardless of date)";
 
     public static final String INVALID_DATE_OR_TIME_MESSAGE =
             "Deadline field should have date or time keywords in the format dd-MM-yyyy or HHmm.\n"
@@ -39,8 +40,8 @@ public class FindCommand extends Command {
 
     public static final String MORE_THAN_ONE_PREFIX_MESSAGE =
             "Multiple assignment fields detected. Finding is done one field at a time.\n"
-             + "Fields and its prefix: n/ to find by name, d/ to find by date or time, priority/ to find by priorities and\n"
-             + " mod/ to find by module code.";
+             + "Fields and its prefix: n/ to find by name, d/ to find by date or time, \n"
+             + "priority/ to find by priorities and mod/ to find by module code.";
 
     private final Predicate<Assignment> predicate;
 

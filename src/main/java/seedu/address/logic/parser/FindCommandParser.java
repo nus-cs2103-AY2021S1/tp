@@ -79,11 +79,9 @@ public class FindCommandParser implements Parser<FindCommand> {
 
             if (isDateFormat) {
                 FindCommandParser.tryParseDateFormat(keyword);
-            }
-            else if (isTimeFormat) {
+            } else if (isTimeFormat) {
                 FindCommandParser.tryParseTimeFormat(keyword);
-            }
-            else {
+            } else {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.INVALID_DATE_OR_TIME_MESSAGE));
             }
