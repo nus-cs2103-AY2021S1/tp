@@ -22,7 +22,7 @@ class JsonSerializableMacroList {
     private final List<JsonAdaptedMacro> macros = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableMcGymmy} with the given food.
+     * Constructs a {@code JsonSerializableMacroList} with the given food.
      */
     @JsonCreator
     public JsonSerializableMacroList(@JsonProperty("macros") List<JsonAdaptedMacro> macros) {
@@ -30,7 +30,7 @@ class JsonSerializableMacroList {
     }
 
     /**
-     * Converts a given {@code ReadOnlyMcGymmy} into this class for Jackson use.
+     * Converts a given {@code MacroList} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableMcGymmy}.
      */
@@ -39,7 +39,7 @@ class JsonSerializableMacroList {
     }
 
     /**
-     * Converts this McGymmy into the model's {@code McGymmy} object.
+     * Converts this MacroList into the model's {@code MacroList} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
