@@ -20,15 +20,14 @@ public class DatePredicate implements Predicate<Food> {
      * Initialises {@code DatePredicate} object.
      */
     public DatePredicate(String date) throws ParseException {
-        Date date1 = null;
+        Date tempDate = null;
         try {
-            Date parsedDate = ParserUtil.parseDate(date);
-            date1 = parsedDate;
+            tempDate = ParserUtil.parseDate(date);
         } catch (ParseException e) {
             logger.info("Invalid date: " + date);
             throw new ParseException("Invalid date: " + date);
         }
-        this.date = date1;
+        this.date = tempDate;
     }
 
     /**

@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Arrays;
 import java.util.function.Predicate;
+import java.util.logging.Logger;
 
+import jimmy.mcgymmy.commons.core.LogsCenter;
 import jimmy.mcgymmy.commons.core.Messages;
 import jimmy.mcgymmy.logic.parser.parameter.OptionalParameter;
 import jimmy.mcgymmy.logic.predicate.DatePredicate;
@@ -21,6 +23,7 @@ import jimmy.mcgymmy.model.food.Food;
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
     public static final String SHORT_DESCRIPTION = "Filter the displayed list by a given keyword.";
+    private static final Logger logger = LogsCenter.getLogger(FindCommand.class);
 
     private OptionalParameter<FoodContainsKeywordsPredicate> foodPredicateParameter = this.addOptionalParameter(
             "keyword",
@@ -59,6 +62,7 @@ public class FindCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        logger.fine("Executing find command");
         requireNonNull(model);
         FoodContainsKeywordsPredicate foodPredicate = foodPredicateParameter.getValue().orElse(null);
         NameContainsKeywordsPredicate namePredicate = namePredicateParameter.getValue().orElse(null);
