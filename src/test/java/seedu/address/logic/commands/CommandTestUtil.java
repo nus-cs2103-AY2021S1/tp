@@ -1,7 +1,15 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_INGREDIENTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_PRODUCT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_PRODUCT_QUANTITY;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;

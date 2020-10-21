@@ -83,6 +83,14 @@ public class ItemPrecursorBuilder {
     }
 
     /**
+     * Sets the {@code tags} of the {@code Item} that we are building.
+     */
+    public ItemPrecursorBuilder withTags(Set<Tag> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
      * Builds an item precursor.
      *
      * @return a sample ItemPrecursor.

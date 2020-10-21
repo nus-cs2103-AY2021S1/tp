@@ -4,7 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalLocations.*;
+import static seedu.address.testutil.TypicalLocations.DENVER;
+import static seedu.address.testutil.TypicalLocations.NEW_YORK;
 
 import java.util.ArrayList;
 import java.util.NoSuchElementException;

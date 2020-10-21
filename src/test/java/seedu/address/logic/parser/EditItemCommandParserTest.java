@@ -1,7 +1,11 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.ITEM_QUANTITY_DESC_APPLE;
+import static seedu.address.logic.commands.CommandTestUtil.ITEM_TAG_BERT;
+import static seedu.address.logic.commands.CommandTestUtil.ITEM_TAG_MULTIPARSE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_APPLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_APPLE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalTags.TAG_BERT;
@@ -10,6 +14,7 @@ import static seedu.address.testutil.TypicalTags.getTypicalTagSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.EditItemCommand;
 import seedu.address.logic.commands.EditItemCommand.EditItemDescriptor;
 import seedu.address.model.item.Quantity;
