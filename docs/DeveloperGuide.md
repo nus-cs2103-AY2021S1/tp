@@ -23,11 +23,11 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -62,11 +62,11 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `AccountListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -78,7 +78,7 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `CommonCentsParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -97,17 +97,17 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores the CommonCents data.
 * exposes an unmodifiable `ObservableList<Account>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `CommonCents`, which `Account` references. This allows `CommonCents` to only require one `Tag` object per unique `Tag`, instead of each `Account` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `CommonCents`, which `Entry` references. This allows `CommonCents` to only require one `Tag` object per unique `Tag`, instead of each `Entry` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -117,15 +117,15 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T13-4/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the CommonCents data in json format and read it back.
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -137,7 +137,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 The proposed edit account mechanism is facilitated by `EditAccountCommand`. It extends `Command` and is identified by
-'CommonCentsParser' and `EditAccountCommandParser`. The `EditAccountCommand` interacts with `Account` and the interaction
+`CommonCentsParser` and `EditAccountCommandParser`. The `EditAccountCommand` interacts with `Account` and the interaction
 is managed by `ActiveAccount` as well as the `Model`. As such, it implements the following operation:
 
 * `Account#setName(Name editedName)` — Sets the name of the account
@@ -146,18 +146,18 @@ The operation is exposed in the `ActiveAccount` interface as `ActiveAccount#setN
 
 Given below is an example usage scenario and how the edit account mechanism behaves at each step.
 
-Step 1. The user inputs the edit command to edit the current account in `ActiveAccount`. `CommonCentsParser` identifies
+* Step 1: The user inputs the edit command to edit the current account in `ActiveAccount`. `CommonCentsParser` identifies
 the command word and calls `EditCommandParser#parse(String args)` to parse the input into a valid `EditAccountCommand`
 
-Step 2. `EditAccountCommand` starts to be executed. In the execution, the current account, namely `previousAccount`
+* Step 2: `EditAccountCommand` starts to be executed. In the execution, the current account, namely `previousAccount`
 in `ActiveAccount` is retrieved.
 
-Step 3. `ActiveAccount#setName(Name editedName)` is called with the edited name to replace the name of the current
+* Step 3: `ActiveAccount#setName(Name editedName)` is called with the edited name to replace the name of the current
 account in `ActiveAccount`.
 
-Step 4. The updated account, namely `newAccount`, in `ActiveAccount` is retrieved.
+* Step 4: The updated account, namely `newAccount`, in `ActiveAccount` is retrieved.
 
-Step 5. `Model#setAccount(Account target, Account editedAccount)` is called with `previousAccount` as `target`, and
+* Step 5: `Model#setAccount(Account target, Account editedAccount)` is called with `previousAccount` as `target`, and
 `newAccount` as `editedAccount`. This is to replace the to-be-edited account in the Model with the edited account.
 
 The following sequence diagram shows how an edit account operation works:
@@ -175,7 +175,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Design consideration:
 
-##### Aspect: How does edit account executes:
+##### Aspect: How edit account executes:
 
 * **Alternative 1 (current choice):** Accounts can only be edited if they are active.
   * Pros: Easy to implement.
@@ -196,37 +196,88 @@ The following activity diagram summarizes what happens when a user executes a ne
   changes to accounts in account list.
 
 
+### Find entries feature 
+
+#### Implementation
+
+The proposed Find entries feature is facilitated by `FindCommand`. It extends `Command` and 
+is identified by `CommonCentsParser` and `FindCommandParser`. The FindCommand interacts 
+with `Account` and the interaction is managed by `ActiveAccount`. As such, it implements the following
+operations: 
+* `Account#updateFilteredExpenseList(Predicate<Expense> predicate)` — Updates the expense 
+list that has the given keywords as predicate.
+* `Account#updateFilteredRevenueList(Predicate<Revenue> predicate)` — Updates the revenue 
+list that has the given keywords as predicate. 
+
+The operations are exposed in the `ActiveAccount` interface as `ActiveAccount` interface as 
+`ActiveAccount#setName()`.
+
+Given below is an example usage scenario and how the find entries mechanism behaves 
+at each step.
+
+* Step 1. The user inputs the find command to find the entries that have the occurrences of 
+a list of specified keywords in the entries of `ActiveAccount`. `CommandParser` identifies the command word `find`
+and calls `FindCommandParser#parse(String args)` to parse the input into a valid `FindCommand`.
+
+* Step 2. `FindCommand` starts to be executed. In the execution, 
+    * If there is a predicate for keywords in the expense list of `ActiveAccount`, the expense list is updated. 
+    `ActiveAccount#updateFilteredExpenseList()` is called to update the current expense list with expenses 
+    with descriptions matching the keywords. 
+    * If there is a predicate for keywords in the revenue list of `ActiveAccount`, the revenue list is updated. 
+    `ActiveAccount#updateFilteredExpenseList()` is called to update the current revenue list with revenues
+    with descriptions matching the keywords.
+
+The following sequence diagram shows how an find entries operation works:
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Some of the interactions with the utility classes,
+such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
+of the find entries command.
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+#### Design consideration:
+
+##### Aspect: How find entries command is parsed
+* **Choice:** User needs to use prefix "k/" to before the keywords.
+    * Pros: 
+        * Easy to implement as the arguments can be tokenized in the event of inputs with multiple arguments.
+        * Able to handle multiple arguments as input for Category (with prefix "c/") is optional.
+    * Cons: Less convenience for the user. 
+     
+
+ 
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedCommonCents`. It extends `CommonCents` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedCommonCents`. It extends `CommonCents` with an undo/redo history, stored internally as an `commonCentsStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedCommonCents#commit()` — Saves the current address book state in its history.
-* `VersionedCommonCents#undo()` — Restores the previous address book state from its history.
-* `VersionedCommonCents#redo()` — Restores a previously undone address book state from its history.
+* `VersionedCommonCents#commit()` — Saves the current CommonCents state in its history.
+* `VersionedCommonCents#undo()` — Restores the previous CommonCents state from its history.
+* `VersionedCommonCents#redo()` — Restores a previously undone CommonCents state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitCommonCents()`, `Model#undoCommonCents()` and `Model#redoCommonCents()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedCommonCents` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedCommonCents` will be initialized with the initial Common Cents state, and the `currentStatePointer` pointing to that single Common Cents state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitCommonCents()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the Common Cents. The `delete` command calls `Model#commitCommonCents()`, causing the modified state of the Common Cents after the `delete 5` command executes to be saved in the `commonCentsStateList`, and the `currentStatePointer` is shifted to the newly inserted Common Cents state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitCommonCents()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitCommonCents()`, causing another modified Common Cents state to be saved into the `commonCentsStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitCommonCents()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitCommonCents()`, so the Common Cents state will not be saved into the `commonCentsStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoCommonCents()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoCommonCents()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous Common Cents state, and restores the Common Cents to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -243,17 +294,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoCommonCents()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoCommonCents()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the Common Cents to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone CommonCents states to restore. The `redo` command uses `Model#canRedoCommonCents()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `commonCentsStateList.size() - 1`, pointing to the latest Common Cents state, then there are no undone CommonCents states to restore. The `redo` command uses `Model#canRedoCommonCents()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitCommonCents()`, `Model#undoCommonCents()` or `Model#redoCommonCents()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the Common Cents, such as `list`, will usually not call `Model#commitCommonCents()`, `Model#undoCommonCents()` or `Model#redoCommonCents()`. Thus, the `commonCentsStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitCommonCents()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitCommonCents()`. Since the `currentStatePointer` is not pointing at the end of the `commonCentsStateList`, all Common Cents states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -265,7 +316,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire Common Cents.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
