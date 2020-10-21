@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddAccountCommand;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.CalculateCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteAccountCommand;
@@ -89,6 +90,9 @@ public class CommonCentsParser {
 
         case GetTotalCommand.COMMAND_WORD:
             return new GetTotalCommandParser().parse(arguments);
+
+        case CalculateCommand.COMMAND_WORD:
+            return new CalculateCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
