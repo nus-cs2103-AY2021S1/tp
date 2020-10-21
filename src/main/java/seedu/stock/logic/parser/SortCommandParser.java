@@ -5,11 +5,16 @@ import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.commands.SortCommand.MESSAGE_INVALID_FIELD;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SORT_TYPE;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.commons.util.SortUtil;
 import seedu.stock.logic.commands.SortCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 
 public class SortCommandParser implements Parser<SortCommand> {
+    private static final Logger logger = LogsCenter.getLogger(SortCommandParser.class);
 
     /**
      * Parses {@code args} into a sort command.
@@ -34,6 +39,7 @@ public class SortCommandParser implements Parser<SortCommand> {
             }
         }
 
+        logger.log(Level.WARNING, "Field not valid");
         throw new ParseException(MESSAGE_INVALID_FIELD);
     }
 }
