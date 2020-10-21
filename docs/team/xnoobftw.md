@@ -24,7 +24,7 @@ Given below are my contributions to the project.
   * What it does: Allows user to traverse their command history with arrow up and down button from GUI.
   * Justification: Synergies our fast typist use case.
 
-* **Added CommandHistory Tests**: Added tests for CommandHistory (Pull request [\#125](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/125))
+* **Added HistoryManager Tests**: Added tests for HistoryManager (Pull request [\#125](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/125))
 
 * **Enhancements to existing features**:
   * Changed AddCommand to add on to existing items instead of throwing an error. An item is considered the same if they have the same name and supplier. (Pull request [\#44](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/44))
@@ -32,7 +32,7 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `add` and `find`
-    * Added documentation for `CommandHistory`
+    * Added documentation for `HistoryManager`
 
   * Developer Guide:
     * Added Target user profile, value proposition and user stories.

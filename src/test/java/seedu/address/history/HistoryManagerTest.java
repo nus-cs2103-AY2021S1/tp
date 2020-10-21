@@ -11,15 +11,15 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.history.exception.HistoryException;
 
-public class CommandHistoryTest {
+public class HistoryManagerTest {
 
     @Test
     public void constructorInvalidLengthLimit_throwsHistoryException() {
         // instantiating with a negative limit -> throws HistoryException
-        assertThrows(HistoryException.class, () -> new CommandHistory(-1));
+        assertThrows(HistoryException.class, () -> new HistoryManager(-1));
 
         // instantiating with a limit of 0 -> throws HistoryException
-        assertThrows(HistoryException.class, () -> new CommandHistory(0));
+        assertThrows(HistoryException.class, () -> new HistoryManager(0));
     }
 
     @Test
@@ -30,9 +30,9 @@ public class CommandHistoryTest {
         Optional<String> optionalFirstCommand = Optional.of(firstCommand);
         Optional<String> optionalSecondCommand = Optional.of(secondCommand);
 
-        CommandHistory cOne = new CommandHistory(1);
-        CommandHistory cTwo = new CommandHistory(2);
-        CommandHistory cThree = new CommandHistory(3);
+        HistoryManager cOne = new HistoryManager(1);
+        HistoryManager cTwo = new HistoryManager(2);
+        HistoryManager cThree = new HistoryManager(3);
 
         //========================= PRIOR TO ADDING =========================
         // cOne = {};
@@ -137,9 +137,9 @@ public class CommandHistoryTest {
         Optional<String> optionalFirstCommand = Optional.of(firstCommand);
         Optional<String> optionalSecondCommand = Optional.of(secondCommand);
 
-        CommandHistory cOne = new CommandHistory(1);
-        CommandHistory cTwo = new CommandHistory(2);
-        CommandHistory cThree = new CommandHistory(3);
+        HistoryManager cOne = new HistoryManager(1);
+        HistoryManager cTwo = new HistoryManager(2);
+        HistoryManager cThree = new HistoryManager(3);
 
         //========================= PRIOR TO ADDING =========================
         // cOne = {};
@@ -252,9 +252,9 @@ public class CommandHistoryTest {
 
         Optional<String> optionalSecondCommand = Optional.of(secondCommand);
 
-        CommandHistory cOne = new CommandHistory(1);
-        CommandHistory cTwo = new CommandHistory(2);
-        CommandHistory cThree = new CommandHistory(3);
+        HistoryManager cOne = new HistoryManager(1);
+        HistoryManager cTwo = new HistoryManager(2);
+        HistoryManager cThree = new HistoryManager(3);
 
         //========================= PRIOR TO ADDING =========================
         // cOne = {};
@@ -361,9 +361,9 @@ public class CommandHistoryTest {
         Optional<String> optionalFirstCommand = Optional.of(firstCommand);
         Optional<String> optionalSecondCommand = Optional.of(secondCommand);
 
-        CommandHistory cOne = new CommandHistory(1);
-        CommandHistory cTwo = new CommandHistory(2);
-        CommandHistory cThree = new CommandHistory(3);
+        HistoryManager cOne = new HistoryManager(1);
+        HistoryManager cTwo = new HistoryManager(2);
+        HistoryManager cThree = new HistoryManager(3);
 
         //========================= PRIOR TO ADDING =========================
         // cOne = {};
@@ -479,9 +479,9 @@ public class CommandHistoryTest {
         String firstCommand = "FirstCommand";
         String secondCommand = "SecondCommand";
 
-        CommandHistory cOne = new CommandHistory(1);
-        CommandHistory cTwo = new CommandHistory(2);
-        CommandHistory cThree = new CommandHistory(3);
+        HistoryManager cOne = new HistoryManager(1);
+        HistoryManager cTwo = new HistoryManager(2);
+        HistoryManager cThree = new HistoryManager(3);
 
         //========================= PRIOR TO ADDING =========================
         // cOne = {};
@@ -559,9 +559,9 @@ public class CommandHistoryTest {
         Optional<String> optionalFirstCommand = Optional.of(firstCommand);
         Optional<String> optionalSecondCommand = Optional.of(secondCommand);
 
-        CommandHistory cOne = new CommandHistory(1);
-        CommandHistory cTwo = new CommandHistory(2);
-        CommandHistory cThree = new CommandHistory(3);
+        HistoryManager cOne = new HistoryManager(1);
+        HistoryManager cTwo = new HistoryManager(2);
+        HistoryManager cThree = new HistoryManager(3);
 
         //========================= PRIOR TO ADDING =========================
         // cOne = {};
@@ -626,7 +626,7 @@ public class CommandHistoryTest {
         String secondCommand = "SecondCommand";
         String thirdCommand = "ThirdCommand";
 
-        CommandHistory cIsLimitReached = new CommandHistory(1);
+        HistoryManager cIsLimitReached = new HistoryManager(1);
 
         cIsLimitReached.addToHistory(firstCommand);
         cIsLimitReached.addToHistory(secondCommand);
@@ -657,7 +657,7 @@ public class CommandHistoryTest {
         String secondCommand = "SecondCommand";
         String thirdCommand = "ThirdCommand";
         String fourthCommand = "FourthCommand";
-        CommandHistory cThree = new CommandHistory(3);
+        HistoryManager cThree = new HistoryManager(3);
 
         Optional<String> optionalFourthCommand = Optional.of(fourthCommand);
 
@@ -689,43 +689,43 @@ public class CommandHistoryTest {
 
     @Test
     public void equals() throws HistoryException {
-        CommandHistory emptyCommandHistory = new CommandHistory(10);
-        CommandHistory emptyCommandHistoryCopy = emptyCommandHistory;
-        CommandHistory otherEmptyCommandHistoryButSame = new CommandHistory(10);
-        CommandHistory differentEmptyCommandHistory = new CommandHistory(20);
+        HistoryManager emptyHistoryManager = new HistoryManager(10);
+        HistoryManager emptyHistoryManagerCopy = emptyHistoryManager;
+        HistoryManager otherEmptyHistoryManagerButSame = new HistoryManager(10);
+        HistoryManager differentEmptyHistoryManager = new HistoryManager(20);
 
-        CommandHistory filledCommandHistory = new CommandHistory(10);
-        filledCommandHistory.addToHistory("PLACEHOLDER");
+        HistoryManager filledHistoryManager = new HistoryManager(10);
+        filledHistoryManager.addToHistory("PLACEHOLDER");
 
-        CommandHistory filledCommandHistoryCopy = filledCommandHistory;
+        HistoryManager filledHistoryManagerCopy = filledHistoryManager;
 
-        CommandHistory sameFilledCommandHistory = new CommandHistory(10);
-        sameFilledCommandHistory.addToHistory("PLACEHOLDER");
+        HistoryManager sameFilledHistoryManager = new HistoryManager(10);
+        sameFilledHistoryManager.addToHistory("PLACEHOLDER");
 
-        CommandHistory differentFilledCommandHistory = new CommandHistory(10);
-        differentFilledCommandHistory.addToHistory("DIFFERENT");
+        HistoryManager differentFilledHistoryManager = new HistoryManager(10);
+        differentFilledHistoryManager.addToHistory("DIFFERENT");
 
         // same object -> returns true
-        assertTrue(emptyCommandHistory.equals(emptyCommandHistoryCopy));
-        assertTrue(filledCommandHistory.equals(filledCommandHistoryCopy));
+        assertTrue(emptyHistoryManager.equals(emptyHistoryManagerCopy));
+        assertTrue(filledHistoryManager.equals(filledHistoryManagerCopy));
 
         // same variable fields -> returns true
-        assertTrue(emptyCommandHistory.equals(otherEmptyCommandHistoryButSame));
+        assertTrue(emptyHistoryManager.equals(otherEmptyHistoryManagerButSame));
 
         // null -> returns false
-        assertFalse(emptyCommandHistory.equals(null));
+        assertFalse(emptyHistoryManager.equals(null));
 
         // different command history -> returns false
-        assertFalse(emptyCommandHistory.equals(differentEmptyCommandHistory));
+        assertFalse(emptyHistoryManager.equals(differentEmptyHistoryManager));
 
         // empty != filled command history -> returns false
-        assertFalse(emptyCommandHistory.equals(filledCommandHistory));
+        assertFalse(emptyHistoryManager.equals(filledHistoryManager));
 
         // differently filled -> returns false
-        assertFalse(filledCommandHistory.equals(differentFilledCommandHistory));
+        assertFalse(filledHistoryManager.equals(differentFilledHistoryManager));
 
         // same fields -> returns true
-        assertTrue(filledCommandHistory.equals(sameFilledCommandHistory));
+        assertTrue(filledHistoryManager.equals(sameFilledHistoryManager));
     }
 
 }
