@@ -34,7 +34,10 @@ public class ListCommandParserTest {
         assertParseFailure(parser, "*!@# ",
             String.format(MESSAGE_NON_EMPTY_ARGUMENT, ListCommand.MESSAGE_USAGE));
 
-        assertParseFailure(parser, "n/hello ",
+        assertParseFailure(parser, "\n ",
+            String.format(MESSAGE_NON_EMPTY_ARGUMENT, ListCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, "\t ",
             String.format(MESSAGE_NON_EMPTY_ARGUMENT, ListCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, "m/cs2103 n/budi",
