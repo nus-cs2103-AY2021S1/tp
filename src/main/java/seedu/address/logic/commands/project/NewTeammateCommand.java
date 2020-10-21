@@ -7,6 +7,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_GIT_USERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMMATE_PHONE;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
@@ -19,6 +22,8 @@ import seedu.address.model.project.Project;
 public class NewTeammateCommand extends Command {
 
     public static final String COMMAND_WORD = "newteammate";
+    public static final String MESSAGE_START_PROJECT_SUCCESS = "Started Project: %1$s";
+
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a new teammate as a part of this project"
         + "\nParameters: "
@@ -29,8 +34,9 @@ public class NewTeammateCommand extends Command {
         + PREFIX_TEAMMATE_ADDRESS + "ADDRESS\n"
         + "Example: " + COMMAND_WORD + " mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road";
 
-    public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "New Teammate added: %1$s";
+    public static final String MESSAGE_ASSIGN_TEAMMATE_SUCCESS = "New Teammate added: %1$s";
 
+    private static final Logger logger = Logger.getLogger("NewTeammateCommandLogger");
     private final Person toAdd;
 
     /**
@@ -45,10 +51,11 @@ public class NewTeammateCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
+        logger.log(Level.INFO, "New Teammate added");
         toAdd.addProject(project);
         project.addParticipation(toAdd);
 
-        return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS, toAdd.getGitUserNameString()));
+        return new CommandResult(String.format(MESSAGE_ASSIGN_TEAMMATE_SUCCESS, toAdd.getGitUserNameString()));
     }
 
     @Override
