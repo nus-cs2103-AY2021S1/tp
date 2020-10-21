@@ -34,7 +34,7 @@ public class SortCommandParser implements Parser {
                 return new SortCommand(field);
             }
         }
-        
+
         throw new ParseException(MESSAGE_INVALID_FIELD);
     }
 }

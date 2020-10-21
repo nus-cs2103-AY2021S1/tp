@@ -22,6 +22,6 @@ public class SortCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException, SourceCompanyNotFoundException {
-        return null;
+        return new CommandResult("This is sort" + fieldToSort);
     }
 }
