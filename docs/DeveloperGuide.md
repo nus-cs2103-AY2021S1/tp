@@ -306,9 +306,6 @@ The following sequence diagram shows how eat recipe operation works when `execut
   * Pros: All the data saved are being used. 
   * Cons: Showing too much unimportant information.
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 ### Delete recipe feature
 
@@ -319,27 +316,35 @@ Substitutability is used in Command and Parser:
 * `DeleteRecipeCommand` extends `Command`
 * `DeleteRecipeCommandParser` implements `Parser<DeleteRecipeCommand>`
 
-Given below is an example usage scenario and how the mechanism behaves at each step.
-
-Step 1:
-User inputs the delete recipe command to delete recipe from the recipe list.
-
-Step 2:
-After successful parsing of user input, the `DeleteRecipeCommand#execute(Model model)` method is called.
-
-Step 3:
-The recipe that the user has specified by using index will be deleted from the recipe list.
-
-Step 4:
-After the successful deleting of recipes, a `CommandResult` object is instantiated and returned to `LogicManager`.
-
 The following sequence diagram shows how eat recipe operation works when `execute(deleteR 1)` API call:
 
 ![DeleteRecipeSequence](images/DeleteRecipeSequence.png)
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** The lifeline for `DeleteRecipeCommandParser` should end at the destroy marker (X) but due to a limitation of 
+PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+1. `LogicManager` receive user input and undergoes logic operation for output.
+1. `LogicManager` will pass the input to `WishfulShrinkingParser`.
+1. `WishfulShrinkingParser` create `DeleteRecipeCommandParser` to parse and validate the user input.
+1. `DeleteRecipeCommandParser` create `DeleteRecipeCommand` with successfully parsed input.
+1. `LogicManager` execute `DeleteRecipeCommand`.
+1. `DeleteRecipeCommand` get the list of recipe.
+1. Pass the recipe to `Model` which responsible in deleting it from recipes list.
+1. `DeleteRecipeCommand` return a `CommandResult` back to `LogicManager`.
 
 #### Design consideration:
 ##### Aspect 1: Concern while adding a new feature
 * Workflow must be consistent with other deleting commands e.g. delete ingredient and delete consumption.
+##### Aspect 2: What are the information to list a recipe from a list of recipes
+* **Alternative 1 (current choice):** Listing recipe with name.
+  * Pros: Cleaner UI.
+  * Cons: Other details that is not used become an extra data in memory.
+
+* **Alternative 2:** Listing the whole recipe's information.
+  * Pros: All the data saved are being used.
+  * Cons: Showing too much unimportant information.
+
 
 ### List Recipe Feature
 
@@ -351,22 +356,21 @@ Substitutability is used in Command:
 
 Given below is an example usage scenario and how the mechanism behaves at each step.
 
-Step 1:
-User inputs the list recipe command to show all recipes from the recipe list.
-
-Step 2:
-After successful parsing of user input, the `ListRecipeCommand#execute(Model model)` method is called.
-
-Step 3:
-After successfully generating a list of recipes, a `CommandResult` object is instantiated and returned to `LogicManager`.
-
-The following sequence diagram shows how eat recipe operation works when `execute(eatR 1)` API call:
+The following sequence diagram shows how list recipes operation works when `execute(recipes)` API call:
 
 ![ListRecipeSequence](images/ListRecipesSequence.png)
+
+1. `LogicManager` receive user input and undergoes logic operation for output.
+1. `LogicManager` will pass the input to `WishfulShrinkingParser`.
+1. `WishfulShrinkingParser` create `ListRecipesCommand` to validate the user input.
+1. `LogicManager` execute `ListRecipesCommand`.
+1. `ListRecipesCommand` get the list of recipes.
+1. `ListRecipesCommand` return a `CommandResult` back to `LogicManager`.
 
 #### Design consideration:
 ##### Aspect 1: Concern while adding a new feature
 * Workflow must be consistent with other listing commands e.g. fridge and calories.
+
 
 ### Add Ingredient feature
 
@@ -379,19 +383,17 @@ Substitutability is used in Command and Parser:
 
 Given below is an example usage scenario and how the mechanism behaves at each step.
 
+The following sequence diagram shows how add ingredients operation works when `execute("addF i/tomato")` API call:
+
 ![AddIngredientSequence](images/AddIngredientSequence.png)
 
-Step 1:
-User inputs the add ingredient command to add ingredients into the fridge.
+1. User inputs the add ingredient command to add ingredients into the fridge.
 
-Step 2:
-After successful parsing of user input, the `AddIngredientCommand#execute(Model model)` method is called.
+2. After successful parsing of user input, the `AddIngredientCommand#execute(Model model)` method is called.
 
-Step 3:
-The ingredients that the user has input will be saved into Wishful Shrinking's fridge of ingredients.
+3. The ingredients that the user has input will be saved into Wishful Shrinking's fridge of ingredients.
 
-Step 4:
-After the successful adding of the ingredient, a `CommandResult` object is instantiated and returned to `LogicManager`.
+4. After the successful adding of the ingredient, a `CommandResult` object is instantiated and returned to `LogicManager`.
 
 #### Design Considerations
 ##### Aspect 1: Concern while adding a new feature
@@ -503,19 +505,17 @@ Substitutability is used in Command and Parser:
 
 Given below is an example usage scenario and how the mechanism behaves at each step.
 
+The following sequence diagram shows how search recipe operation works when `execute("searchR n/burger")` API call:
+
 ![SearchRecipeSequence](images/SearchRecipeSequence.png)
 
-Step 1:
-User inputs the search recipe command to search for the recipes they want.
+1. User inputs the search recipe command to search for the recipes they want.
 
-Step 2:
-After successful parsing of user input, the `SearchRecipeCommand#execute(Model model)` method is called.
+2. After successful parsing of user input, the `SearchRecipeCommand#execute(Model model)` method is called.
 
-Step 3:
-The list of recipes that fit the user's search will be returned to the user.
+3. The list of recipes that fit the user's search will be returned to the user.
 
-Step 4:
-After the successful searching of the recipes, a `CommandResult` object is instantiated and returned to `LogicManager`.
+4. After the successful searching of the recipes, a `CommandResult` object is instantiated and returned to `LogicManager`.
 
 #### Design Considerations
 ##### Aspect 1: Concern while adding a new feature
@@ -526,7 +526,7 @@ After the successful searching of the recipes, a `CommandResult` object is insta
   * Pros: Easy to implement.
   * Cons: User's cannot filter the recipes by two or three fields at once
 
-* **Alternative 2:** User can only search for recipes by all fields at once
+* **Alternative 2:** User can search for recipes by all fields at once
   * Pros: Harder to implement.
   * Cons: User's can filter the recipes by two or three fields at once
 
@@ -569,19 +569,17 @@ Substitutability is used in Command:
 
 Given below is an example usage scenario and how the mechanism behaves at each step.
 
+The following sequence diagram shows how recommend operation works when `execute("recommend")` API call:
+
 ![RecommendSequence](images/RecommendSequence.png)
 
-Step 1:
-User inputs the recommend command to get the recommended recipes.
+1. User inputs the recommend command to get the recommended recipes.
 
-Step 2:
-After successful parsing of user input, the `RecommendCommand#execute(Model model)` method is called.
+2. After successful parsing of user input, the `RecommendCommand#execute(Model model)` method is called.
 
-Step 3:
-The list of recommended recipes will be returned to the user.
+3. The list of recommended recipes will be returned to the user.
 
-Step 4:
-After the successful recommending of recipes, a `CommandResult` object is instantiated and returned to `LogicManager`.
+4. After the successful recommending of recipes, a `CommandResult` object is instantiated and returned to `LogicManager`.
 
 #### Design Considerations
 ##### Aspect : How do we quickly and accurately compare ingredients in each recipe and the user's fridge
