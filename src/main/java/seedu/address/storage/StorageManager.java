@@ -42,8 +42,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
-        userPrefsStorage.saveUserPrefs(userPrefs);
+    public void saveUserPrefs(ReadOnlyUserPrefs userPrefs, String savedCurrentPath) throws IOException {
+        userPrefsStorage.saveUserPrefs(userPrefs, savedCurrentPath);
     }
 
 

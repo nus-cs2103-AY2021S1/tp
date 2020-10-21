@@ -11,12 +11,13 @@ public class CurrentPathTest {
 
     @Test
     public void constructor_null_throwNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new CurrentPath(null));
+        assertThrows(NullPointerException.class, () -> new CurrentPath(null, null));
     }
 
     @Test
     public void setAddress_null_throwNullPointerException() {
-        CurrentPath currentPath = new CurrentPath(new FileListStub());
+        String testPath = "C:\\Users";
+        CurrentPath currentPath = new CurrentPath(testPath, new FileListStub());
         assertThrows(NullPointerException.class, () -> currentPath.setAddress(null));
     }
 }

@@ -5,7 +5,9 @@ import seedu.address.model.currentpath.FileList;
 
 public class ModelStubWithCurrentPath extends ModelStub {
 
-    private CurrentPath currentPath = new CurrentPath(new FileList());
+    public static final String CURRENT_PATH = "C:\\Users";
+
+    private CurrentPath currentPath = new CurrentPath(CURRENT_PATH, new FileList());
 
     @Override
     public CurrentPath getCurrentPath() {
