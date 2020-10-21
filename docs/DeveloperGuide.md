@@ -182,11 +182,11 @@ You can check whether the environment supports `Desktop` using the provided meth
 **Target user profile**:
 
 * Tech savvy NUS Computer Science Student
-* has a need to manage a significant number of files
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Has a need to manage a significant number of files
+* Prefer desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Reasonably comfortable using CLI apps
 
 **Value proposition**: CS students can manage/access their files by typing
                        and using a simple GUI. Help CS students to see file relations easily.
