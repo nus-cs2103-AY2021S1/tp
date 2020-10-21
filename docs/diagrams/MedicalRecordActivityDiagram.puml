@@ -1,0 +1,18 @@
+@startuml
+start
+:User adds a new patient;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([user wants to access
+      Medical Record])
+    :Find the patient;
+    :Copy medical record url using
+           the 'Copy MR url' button;
+    :Paste and access the link on
+    a web browser to view record;
+else ([else])
+endif
+stop
+@enduml

@@ -80,7 +80,7 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `HospifyParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a patient).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -102,12 +102,12 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores the Hospify data.
 * exposes an unmodifiable `ObservableList<Patient>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Patient` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Patient` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Hospify`, which `Patient` references. This allows `Hospify` to only require one `Tag` object per unique `Tag`, instead of each `Patient` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/UML_Diagrams/BetterModelClassDiagram.png)
 
 </div>
@@ -121,11 +121,11 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the Hospify data in json format and read it back.
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -137,37 +137,37 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedHospify`. It extends `Hospify` with an undo/redo history, stored internally as a `hospifyStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedHospify#commit()` — Saves the current Hospify state in its history.
+* `VersionedHospify#undo()` — Restores the previous Hospify state from its history.
+* `VersionedHospify#redo()` — Restores a previously undone Hospify state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitHospify()`, `Model#undoHospify()` and `Model#redoHospify()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedHospify` will be initialized with the initial Hospify state, and the `currentStatePointer` pointing to that single hospify state.
 
 ![UndoRedoState0](images/UML_Diagrams/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th patient in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th patient in hospify. The `delete` command calls `Model#commitHospify()`, causing the modified state of hospify after the `delete 5` command executes to be saved in the `hospifyStateList`, and the `currentStatePointer` is shifted to the newly inserted hospify state.
 
 ![UndoRedoState1](images/UML_Diagrams/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new patient. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new patient. The `add` command also calls `Model#commitHospify()`, causing another modified hospify state to be saved into the `hospifyStateList`.
 
 ![UndoRedoState2](images/UML_Diagrams/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitHospify()`, so the hospify state will not be saved into the `hospifyStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the patient was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the patient was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoHospify()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous hospify state, and restores the hospify to that state.
 
 ![UndoRedoState3](images/UML_Diagrams/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Hospify state, then there are no previous Hospify states to restore. The `undo` command uses `Model#canUndoHospify()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -180,17 +180,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoHospify()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the hospify to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `hospifyStateList.size() - 1`, pointing to the latest hospify state, then there are no undone Hospify states to restore. The `redo` command uses `Model#canRedoHospify()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the hospify, such as `list`, will usually not call `Model#commitHospify()`, `Model#undoHospify()` or `Model#redoHospify()`. Thus, the `hospifyStateList` remains unchanged.
 
 ![UndoRedoState4](images/UML_Diagrams/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitHospify()`. Since the `currentStatePointer` is not pointing at the end of the `hospifyStateList`, all hospify states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UML_Diagrams/UndoRedoState5.png)
 
@@ -202,7 +202,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire hospify.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
@@ -217,6 +217,81 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Medical Record feature
+
+#### Proposed Implementation
+
+The proposed feature will enable users to add medical records of patients by specifying a url containing his/her online medical record document. The following are the additions required for this feature:
+
+* A `MedicalRecord` class will be added under `patient` package.
+* A new prefix `mr/` to be used with the `add` command to allow users to specify the url.
+* A new `Copy MR url` button which allows users to copy the medical record url onto the clipboard.
+
+Given below is an example usage scenario.
+
+Step 1. The user executes `add n/John Doe …​ mr/www.medicalrecorddoc.com/patients1234567` command to add patient John Doe in Hospify.
+
+Step 2. The user now decides to access the medical record of patient John Doe and can then do so by clicking on the `Copy MR url` button located at the bottom right corner of the patient's tab.
+
+Step 3. The user opens his/her preferred web browser and paste the url that was copied in step 2.
+
+The following activity diagram summarizes what happens when a user adds a new patient:
+
+![MedicalRecordActivityDiagram](images/UML_Diagrams/MedicalRecordActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How medical records are added and accessed
+
+* **Alternative 1 (current choice):** Requires users to enter a unique url that links to the patient's online medical record each time a new patient is first added
+  * Pros: Easy to implement and to edit medical records.
+  * Cons: May be cumbersome for users to keep generating a new url for new patients.
+
+* **Alternative 2:** Automatically generates an empty medical record when a new patient is added (which can be accessed/edited within Hospify).
+  * Pros: Independent from external and online platforms (fully integrated within the application).
+  * Cons: Harder to implement and less freedom to edit medical records.
+
+_{more aspects and alternatives to be added}_
+
+### \[Proposed\] Appointment feature
+
+#### Proposed Implementation
+
+The proposed feature will enable users to add appointments for patients, as well as edit and delete them. The following are the additions required for this feature:
+
+* An `Appointment` class will be added under `patient` package.
+* A new prefix `appt/` to be used with the new `Appointment` field.
+* Three new commands specifically for managing patients' appointments, `addAppt`, `editAppt` and `deleteAppt`.
+
+Given below is an example usage scenario.
+
+Step 1. The user executes `addAppt 1 /appt 28/09/2020 20:00` command to add an appointment with the specified time to patient with `index` number `1` shown in the displayed person list.
+
+Step 2. The user now decides to edit the appointment of patient of `index 1` and executes `editAppt 1 /appt 05/10/2020 20:00` to change the appointment timing accordingly.
+
+Step 3. The user then decides to delete the appointment of patient of `index 1` and executes `deleteAppt 1 /appt 05/10/2020 20:00` to delete the specified appointment.
+
+The following activity diagram summarizes what happens when a user adds a new appointment:
+
+![AddAppointmentActivityDiagram]()
+
+#### Design consideration:
+
+##### Aspect: How appointments are added and managed
+
+* **Alternative 1 (current choice):** Appointments are stored as a `HashSet` attribute within each patient.
+  * Pros: Easy to implement and each patient can have multiple appointments.
+  * Cons: May be messy as the number of appointments can get very large depending on the patient, making it difficult to keep track.
+
+* **Alternative 2:** An Appointment also keeps track of additional details. (appointment history, time started, time ended)
+  * Pros: Able to store more detailed information about a patient's appointments.
+  * Cons: Harder to implement and more details for the user to manage and keep track of.
+
+* **Alternative 3:** Each patient only stores one Appointment.
+  * Pros: Easy to implement and manage.
+  * Cons: Very limited functionality as each patient can only have one appointment booked at a time.
+
+_{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -282,7 +357,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Admin types “add” followed by patient details.
+1.  Admin types `add` followed by patient details.
 2.  Hospify notifies that patient information is added.
 
     Use case ends.
@@ -293,7 +368,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. Hospify requests for the correct data.
     * 1a2. Admin enters new data.
-    
+
       Steps 1a1-1a2 are repeated until the data entered are correct.
 
       Use case resumes at step 2.
@@ -302,7 +377,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Admin types “delete” followed by patient NRIC.
+1.  Admin types `delete` followed by patient NRIC.
 2.  Hospify requests for confirmation.
 3.  Admin confirms.
 4.  Hospify notifies that patient information is deleted.
@@ -315,7 +390,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. Hospify requests for the correct data.
     * 1a2. Admin enters new data.
-    
+
       Steps 1a1-1a2 are repeated until the data entered are correct.
 
       Use case resumes at step 2.
@@ -325,7 +400,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  Admin wants to find a patient using their name.
-2.  Admin types “find” followed by keyword (name).
+2.  Admin types `find` followed by keyword (name).
 3.  Hospify returns all matches (if any) to the staff.
 4.  Admin selects the patient of interest.
 
@@ -337,7 +412,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2a1. Hospify requests for the correct data.
     * 2a2. Admin enters new data.
-    
+
       Steps 2a1-2a2 are repeated until the data entered are correct.
 
       Use case resumes at step 3.
@@ -346,7 +421,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Admin types “count”.
+1.  Admin types `count`.
 2.  Hospify displays the number of patients that are currently not archived.
 
     Use case ends.
@@ -355,10 +430,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Admin types “help” followed by patient NRIC.
+1.  Admin types `help` followed by patient NRIC.
 2.  Hospify displays help interface.
 
     Use case ends.
+    
+**Use case: UC6 - Display Patient's Appointment**
+
+**MSS**
+
+1.  Admin types `ShowAppt` followed by patient NRIC.
+2.  Hospify shows a window which shows all of the patient's appointments.
+3. Admin sorts the appointments by earliest to latest or latest to earliest.
+
+    Use case ends.
+    
+**Extensions**
+* 1a. User with NRIC not found.
+    * 1a1. Hospify notifies the User that the User is not found.
+    * 1a2. User enters another NRIC.
+
+* 1b. User enters an invalid NRIC.
+    * 1b1. Hospify prompts User to enter in the stipulated format.
+    
+    Steps 1b1 repeats until user enters a valid NRIC.
+
+    
 
 *{More to be added}*
 

@@ -16,6 +16,9 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.appointmentcommand.AddApptCommand;
+import seedu.address.logic.commands.appointmentcommand.ShowApptCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -51,6 +54,9 @@ public class HospifyParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
+        case AddApptCommand.COMMAND_WORD:
+            return new AddApptCommandParser().parse(arguments);
+
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
@@ -71,6 +77,12 @@ public class HospifyParser {
 
         case CountCommand.COMMAND_WORD:
             return new CountCommand();
+
+        case ShowApptCommand.COMMAND_WORD:
+            return new ShowApptCommandParser().parse(arguments);
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

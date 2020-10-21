@@ -34,7 +34,7 @@ public interface Logic {
     ObservableList<Patient> getFilteredPersonList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' Hospify file path.
      */
     Path getAddressBookFilePath();
 

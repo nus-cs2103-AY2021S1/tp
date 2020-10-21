@@ -14,7 +14,7 @@ import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 
 /**
- * Deletes a person identified using it's displayed index from Hospify.
+ * Deletes a patient identified using it's displayed index or Nric from Hospify.
  */
 public class DeleteCommand extends Command {
 
@@ -71,6 +71,7 @@ public class DeleteCommand extends Command {
         }
 
         model.deletePatient(patientToDelete);
+        assert !model.hasPatient(patientToDelete) : "Patient not deleted!";
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, patientToDelete));
     }
 

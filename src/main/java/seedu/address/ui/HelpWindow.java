@@ -62,6 +62,9 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private Label moreInfo;
 
+    @FXML
+    private Label copyButtonNotification;
+
     /**
      * Creates a new HelpWindow.
      *
@@ -133,6 +136,7 @@ public class HelpWindow extends UiPart<Stage> {
     private void copyUrl() {
         final Clipboard clipboard = Clipboard.getSystemClipboard();
         final ClipboardContent url = new ClipboardContent();
+        copyButtonNotification.setText("Link Copied!");
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
     }
