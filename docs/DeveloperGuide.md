@@ -349,14 +349,12 @@ Substitutability is used in Command:
 
 Given below is an example usage scenario and how the mechanism behaves at each step.
 
-Step 1:
-User inputs the list ingredient command to show all ingredients from the ingredient list.
+1. User inputs the list ingredient command to show all ingredients from the ingredient list.
 
-Step 2:
-After successful parsing of user input, the `ListIngredientCommand#execute(Model model)` method is called.
+2. After successful parsing of user input, the `ListIngredientCommand#execute(Model model)` method is called.
 
-Step 3:
-After successfully generating a list of recipes, a `CommandResult` object is instantiated and returned to `LogicManager`.
+3. After successfully generating a list of recipes, a `CommandResult` object is instantiated and returned to
+ `LogicManager`.
 
 The following sequence diagram shows how list ingredients operation works when `execute(fridge)` API call:
 
