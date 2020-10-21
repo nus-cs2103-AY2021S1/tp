@@ -1,10 +1,16 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+
+import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.assignment.NameContainsKeywordsPredicate;
+import seedu.address.model.assignment.Assignment;
 
 /**
  * Finds and lists all assignments in address book whose name contains any of the argument keywords.
@@ -14,14 +20,37 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all assignments whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all assignments"
+            + " by its NAME, MODULE CODE, DEADLINE or PRIORITY. "
+            + "Finding is done one field at a time.\n"
+            + "DEADLINE keywords are in the format dd-MM-yyyy or HHmm, which allows finding of assignments by date "
+            + "and time separately.\n"
+            + "Parameters:" + PREFIX_NAME + "NAME [MORE NAMES] or\n"
+            + PREFIX_MODULE_CODE + "MODULE_CODE [MORE MODULE_CODES] or\n"
+            + PREFIX_DEADLINE + " DATE_OR_TIME_OF_DEADLINE [MORE DATE_OR_TIME_OF_DEADLINE] or\n"
+            + PREFIX_PRIORITY + " PRIORITY [MORE PRIORITIES]\n"
+            + "Example: " + COMMAND_WORD + " d/1200 24-10-2020 25-10-2020\n"
+            + "The example above finds all assignments due on 24 October 2020 (regardless of time),"
+            + " due on 25 October 2020 (regardless of time) and finds all "
+            + "assignments due at 1200 (regardless of date)";
 
-    private final NameContainsKeywordsPredicate predicate;
+    public static final String INVALID_DATE_OR_TIME_MESSAGE =
+            "Deadline field should have date or time keywords in the format dd-MM-yyyy or HHmm.\n"
+             + "It should not be left empty.";
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public static final String MORE_THAN_ONE_PREFIX_MESSAGE =
+            "Multiple assignment fields detected. Finding is done one field at a time.\n"
+             + "Fields and its prefix: n/ to find by name, d/ to find by date or time, \n"
+             + "priority/ to find by priorities and mod/ to find by module code.";
+
+    private final Predicate<Assignment> predicate;
+
+    /**
+     * Constructor for find command, which takes in a predicate.
+     * @param predicate Predicate to filter assignments.
+     */
+    public FindCommand(Predicate<Assignment> predicate) {
+        assert predicate != null;
         this.predicate = predicate;
     }
 
