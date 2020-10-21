@@ -1,9 +1,9 @@
 package seedu.address.model.assignment;
 
-import seedu.address.commons.util.StringUtil;
-
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.address.commons.util.StringUtil;
 
 /**
  * Tests that a {@code Assignment}'s {@code ModuleCode} matches any of the keywords given.
@@ -28,5 +28,4 @@ public class ModuleCodeContainsKeywordsPredicate implements Predicate<Assignment
                 || (other instanceof ModuleCodeContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((ModuleCodeContainsKeywordsPredicate) other).keywords)); // state check
     }
-
 }

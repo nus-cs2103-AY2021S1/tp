@@ -9,7 +9,13 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.model.assignment.*;
+import seedu.address.model.assignment.DeadlineContainsKeywordsPredicate;
+import seedu.address.model.assignment.ModuleCode;
+import seedu.address.model.assignment.ModuleCodeContainsKeywordsPredicate;
+import seedu.address.model.assignment.NameContainsKeywordsPredicate;
+import seedu.address.model.assignment.Priority;
+import seedu.address.model.assignment.PriorityContainsKeywordsPredicate;
+
 
 public class FindCommandParserTest {
 
@@ -29,7 +35,8 @@ public class FindCommandParserTest {
     @Test
     public void parse_invalidArgs_throwsParseException() {
         //invalid prefix
-        assertParseFailure(parser, " boo/CS2100", Priority.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " boo/CS2100", String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         //invalid keywords depending on prefix
         assertParseFailure(parser, " d/2345 hello", String.format(
                 MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.INVALID_DATE_OR_TIME_MESSAGE));

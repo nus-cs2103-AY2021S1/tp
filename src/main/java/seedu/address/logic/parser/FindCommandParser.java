@@ -2,14 +2,20 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.assignment.*;
+import seedu.address.model.assignment.DeadlineContainsKeywordsPredicate;
+import seedu.address.model.assignment.ModuleCodeContainsKeywordsPredicate;
+import seedu.address.model.assignment.NameContainsKeywordsPredicate;
+import seedu.address.model.assignment.PriorityContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -83,7 +89,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        } else if (moreThanOnePrefixPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_DEADLINE, PREFIX_PRIORITY)) {
+        } else if (moreThanOnePrefixPresent(
+                argMultimap, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_DEADLINE, PREFIX_PRIORITY)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MORE_THAN_ONE_PREFIX_MESSAGE));
         } else if (isPrefixNamePresent && isPreambleMissing) {

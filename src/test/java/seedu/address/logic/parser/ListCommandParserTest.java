@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
 
 public class ListCommandParserTest {
     private ListCommandParser parser = new ListCommandParser();
