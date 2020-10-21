@@ -61,4 +61,11 @@ public class ListCommand extends Command {
         }
         return new CommandResult(ListCommand.MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ListCommand // instanceof handles nulls
+                && numberOfDays.equals(((ListCommand) other).numberOfDays)); // state check
+    }
 }
