@@ -7,17 +7,17 @@ import seedu.expense.model.alias.AliasEntry;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Edits the details of an existing expense in the expense book.
+ * Edits the alias of an existing commands in the alias map.
  */
 public class AliasCommand extends Command {
 
     public static final String COMMAND_WORD = "alias";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Gives a command a customised alias. "
-            + "Alias must not be the same as the default command words and the 'alias' command cannot have an alias. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Gives a command a customised alias.\n"
+            + "Alias must not be the same as the default command words and the 'alias' command cannot have an alias.\n"
             + "Parameters: "
             + "[Alias you want to set for a specific command] "
-            + "[Command's current alias or if none, default command word]"
+            + "[Command's current custom alias or if command has none, default command word]\n"
             + "Example: " + COMMAND_WORD + " find " + "get ";
 
     public static final String MESSAGE_EDIT_ALIAS_SUCCESS = "Edited alias: %s becomes %s";

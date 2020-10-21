@@ -160,7 +160,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setAlias(AliasEntry target, AliasEntry editedExpense) {
+    public void setAlias(AliasEntry target, AliasEntry editedExpense) throws IllegalArgumentException {
         requireAllNonNull(target, editedExpense);
         aliasMap.setAlias(target, editedExpense);
     }
