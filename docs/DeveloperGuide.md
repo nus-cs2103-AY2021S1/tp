@@ -164,11 +164,24 @@ method call to return `commandHistory`'s 2nd last command instead of the last co
 With `addToHistory(String command)`, `previousCommand()`, `nextCommand()` and `currentCommand()` implemented, a simple `setOnKeyPressed` under `CommandBox` class which checks
 for user's input of arrow up (which calls previousCommand()) and arrow down (which calls nextCommand()) would suffice for GUI implementation.
 
-### Find Command
-We have modified the `find` command to be able to search for `NAME`, `SUPPLIER` and `TAGS` for items. Similarly, for deliveries, it is also possible to search using the `DELIVERYNAME`, `PHONE`, `ADDRESS` or `ORDER`.
+### Finding Items and Delivery
+OneShelf is capable of storing many items and deliveries. Therefore, there is an utmost importance to have the ability to be able to find item and delivery based on different fields. There could also be many similar item and this will definitely benefit the user to find it quickly. <br>
+
+We have modified the `find` command to be able to search for `NAME`, `SUPPLIER` and `TAGS` for items using `find-i` Similarly, for deliveries, it is also possible to search using the `DELIVERYNAME`, `PHONE`, `ADDRESS` or `ORDER` using `find-d`
 
 By using `ArgumentMultimap`, we are able to record the searching criteria together with the prefixes. We will then pass this criteria along with the prefix to create an `ItemContainsKeywordsPredicate` object which implements `Predicate<Item>`.
-The predicate is then passed to the `InventoryModel#UpdateItemListFilter` which will then be used to set the predicate on the existing filteredlist. 
+The predicate is then passed to the `InventoryModel#UpdateItemListFilter` which will then be used to set the predicate on the existing filteredlist.
+
+Below is a usage example
+
+Step 1: User execute `find s/NTUC` command to search the list of items by Supplier <br>
+Step 2: `ArguementMultiMap` maps each prefix to their values and `ItemFindCommandParser` checks which prefix has a value <br>
+Step 3: The value and prefix is then used to create the predicate and passed to `ItemFindCommand` <br>
+Step 4: `ItemFindCommand` executes the command and update the filteredList <br>
+
+Below is a sequence diagram of the above
+
+![ItemFindCommandSequenceDiagram](images/ItemFindCommandSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
