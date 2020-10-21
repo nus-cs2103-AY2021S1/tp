@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import seedu.address.model.Model;
 import seedu.address.model.history.CommandHistory;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Lists all past used commands in the address book to the user.
  */
@@ -14,6 +16,8 @@ public class HistoryCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        requireNonNull(model);
+        assert model != null : "Model cannot be null";
         if (!CommandHistory.hasCommand()) {
             return new CommandResult(MESSAGE_EMPTY_HISTORY);
         } else {

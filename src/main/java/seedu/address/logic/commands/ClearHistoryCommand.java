@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import seedu.address.model.Model;
 import seedu.address.model.history.CommandHistory;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Clears command history in the address book.
  */
@@ -14,6 +16,8 @@ public class ClearHistoryCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        requireNonNull(model);
+        assert model != null : "Model cannot be null";
         CommandHistory.clearHistory();
         return new CommandResult(MESSAGE_SUCCESS);
     }
