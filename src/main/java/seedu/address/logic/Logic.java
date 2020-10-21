@@ -33,6 +33,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Student> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the sorted list of students */
+    ObservableList<Student> getSortedStudentList();
+
     /**
      * Returns the user prefs' address book file path.
      */
