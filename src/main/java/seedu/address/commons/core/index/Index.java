@@ -1,7 +1,5 @@
 package seedu.address.commons.core.index;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-
 /**
  * Represents a zero-based or one-based index.
  *
