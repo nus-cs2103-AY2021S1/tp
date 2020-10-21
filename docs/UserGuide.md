@@ -13,6 +13,8 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
         - Deleting a flashcard: `delete`
         - Listing all flashcards: `list`
         - Review all flashcards : `review`
+        - Favourite a flashcard : `fav`
+        - Unfavourite a flashcard: `unfav`
         - Exiting the program: `exit`
         - Saving the data
     - FAQ
@@ -32,15 +34,20 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 1. Type the command in the command box and press Enter to execute it.<br>
    Some example commands you can try:
 
-   * **`add`**`add q/What does OOP stand for? a/Object Oriented Programming c/General` : Adds a flashcard with a question and answer into the General category.
+   * **`add q/What does OOP stand for? a/Object Oriented Programming c/General`** : Adds a flashcard with a question and answer into the General category.
 
-   * **`delete`**: Deletes the 3rd flashcard in the current list.
+   * **`delete 3`**: Deletes the 3rd flashcard in the current list.
 
    * **`list`** : Lists all flashcards.
 
    * **`review`** : Reviews a list of all flashcards.
+   
+   * **`fav 1`** : Favourite the 1st flashcard in the current list.
+      
+   * **`unfav 1`** : Unfavourite the 1st flashcard in the current list.
 
    * **`exit`** : Exits the app.
+  
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -122,6 +129,26 @@ Examples:
     - `[right key]` skips the current flashcard and moves on to the next flashcard
     - `[left key]` returns the previous flashcard
     - `q` quits review function
+    
+### Favourite a flashcard  : `fav`
+
+Favourites the specified flashcard.
+
+Format: `fav INDEX`
+
+* Favourite the flashcard at the specified INDEX.
+* The index refers to the index number shown in the displayed flashcard list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+### Unfavourite a flashcard  : `unfav`
+
+Unfavourite the specified flashcard.
+
+Format: `unfav INDEX`
+
+* Unfavourite the flashcard at the specified INDEX.
+* The index refers to the index number shown in the displayed flashcard list.
+* The index **must be a positive integer** 1, 2, 3, …
 
 ### Exiting the program : `exit`
 
@@ -143,4 +170,6 @@ Action | Format, Examples
 **Delete** | `delete INDEX` <br> e.g., `delete 3`
 **List** | `list`
 **Review** | `review`
+**Fav** | `fav INDEX` <br> e.g., `fav 1`
+**Unfav** | `unfav INDEX` <br> e.g., `unfav 1`
 **Exit** | `exit`
