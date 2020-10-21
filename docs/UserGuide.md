@@ -36,6 +36,8 @@ It is a convenient platform for you to keep track of your lessons and assignment
    * **`import YOUR_NUSMODS_URL`** : Imports your timetable.
 
    * **`list`**`2` : Lists all assignments 2 days from current date (48 hours from current date and time).
+   
+   * **`find`**`n/Lab` : Finds assignments with names that contain the word 'Lab'.
 
    * **`remind`**`3` : Tags your assignment to receive reminders which will be displayed in `Your Reminders` section.
 
@@ -122,10 +124,10 @@ Examples:
 Format: `find PREFIX/ KEYWORD [MORE KEYWORDS]`
 
 Parameters are:
-n/ NAME_OF_ASSIGNMENT [MORE NAME_OF_ASSIGNMENTS] to find by name of assignment.
-d/ DATE_OR_TIME_OF_ASSIGNMENT [MORE DATE_OR_TIME_OF_ASSIGNMENT] to find by the deadline (date or time) of assignment.
-mod/ MODULE_CODE [MORE MODULE_CODE] to find by module code.
-priority/ PRIORITY_OF_ASSIGNMENT [MORE PRIORITY_OF_ASSIGNMENT] to find by priority of assignment.
+- n/ NAME_OF_ASSIGNMENT [MORE NAME_OF_ASSIGNMENTS] to find by name of assignment.
+- d/ DATE_OR_TIME_OF_ASSIGNMENT [MORE DATE_OR_TIME_OF_ASSIGNMENT] to find by the deadline (date or time) of assignment.
+- mod/ MODULE_CODE [MORE MODULE_CODE] to find by module code of assignment.
+- priority/ PRIORITY_OF_ASSIGNMENT [MORE PRIORITY_OF_ASSIGNMENT] to find by priority of assignment.
 
 - Finds assignments in your schedule by name, module code, deadline (date or time) or priority.
 - DATE_OR_TIME_OF_ASSIGNMENT is in the format dd-MM-yyyy or HHmm to enable searching by time and date of assignment separately.
@@ -178,5 +180,5 @@ Action | Format, Examples
 **delete** | `delete INDEX`<br> e.g., `delete 3`
 **import** | `import NUSMODS_URL`
 **list** | `list [NUMBER]` e.g., `list 2`, `list`
-**find** | `list [NUMBER]` e.g., `list 2`, `list`
+**find** | `find PREFIX/ KEYWORD [MORE KEYWORD]` e.g., `find mod/CS2103T CS2100`, `find priority/HIGH`
 **remind** | `remind INDEX`
