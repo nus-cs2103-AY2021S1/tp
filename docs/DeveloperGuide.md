@@ -1,4 +1,4 @@
-~~~~---
+~~~---
 layout: page
 title: Developer Guide
 ---
@@ -80,6 +80,25 @@ The `Model`,
 ## Contact List
 
 ## Todo List
+
+#### Task class
+
+**Task package** : [`seedu.address.model.task`](https://github.com/AY2021S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/model/task)
+
+* Task is a container class that stores :
+  * Name of a task
+  * Tags of a task
+  * Priority of a task
+  * Date or deadline of a task
+  * Status of a task<br/>
+  Only name is compulsory when creating a new Task.
+
+#### TodoList class
+
+**TodoList class** : [`TodoList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/TodoList.java)
+
+* TodoList stores all the Tasks in the memory.
+* All tasks are unique
 
 --------------------------------------------------------------------------------------------------------------------
 
