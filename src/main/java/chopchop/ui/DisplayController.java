@@ -42,7 +42,13 @@ public class DisplayController extends UiPart<Region> {
                 }
             }
         });
-        displayWelcomeMessage();
+        if (!logic.getFilteredRecipeList().isEmpty()) {
+            displayRecipeList();
+        } else if (!logic.getFilteredIngredientList().isEmpty()) {
+            displayIngredientList();
+        } else {
+            displayWelcomeMessage();
+        }
     }
 
     /**
