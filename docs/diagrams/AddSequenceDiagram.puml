@@ -19,7 +19,7 @@ box ModelManager MODEL_COLOR_T1
 participant ":ModelManager" as ModelManager MODEL_COLOR
 end box
 
-[-> LogicManager :  execute("add q/OOP is good. T/F ?  a/T ")
+[-> LogicManager :  execute("add q/OOP \l is good. T/F ? \l a/T ")
 activate LogicManager
 
 LogicManager -> FlashcardDeckParser : parseCommand("add q/OOP is good. T/F ? a/T ")
