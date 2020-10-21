@@ -144,8 +144,6 @@ Examples:
  * When your patient is tagged with a color tag, the background of the patient will be styled to show that color. The color tags can be used for a variety of purposes.
  * For example, you may color code patients at risk of terminal diseases as <span style="color:red;font-weight:bold">red</span>, for easier reference.
 
-
-![example of color coded patient](images/colorTagExample.png)
 </div>
 
 #### 3.2.2 Adding profile picture: `addpicture`
@@ -190,6 +188,8 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower g/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing allergies.
 *  `edit 3 ct/red` Clears the existing color tag and edits the color tag of the 3rd patient to be `red`.
+
+![example of color coded patient](images/colorTagExample.png)
 
 #### 3.2.4 Deleting a patient: `delete`
 
