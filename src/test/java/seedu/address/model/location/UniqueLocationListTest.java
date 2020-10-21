@@ -127,7 +127,7 @@ public class UniqueLocationListTest {
         UniqueLocationList uList = new UniqueLocationList();
         uList.add(DENVER);
         uList.add(NEW_YORK);
-        assertThrows(NoSuchElementException.class, () -> uList.findLocationFromId(3).get());
+        assertThrows(NoSuchElementException.class, () -> uList.findLocationFromId(3000).get());
     }
 
     @Test
