@@ -102,4 +102,14 @@ public interface ActiveAccount {
      */
     void updateFilteredRevenueList(Predicate<Revenue> predicate);
 
+    /**
+     * Returns the total sum of the expenses.
+     */
+    public Double getTotalExpenses();
+
+    /**
+     * Returns the total sum of the revenues.
+     */
+    public Double getTotalRevenue();
+
 }
