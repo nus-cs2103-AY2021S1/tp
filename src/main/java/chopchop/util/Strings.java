@@ -24,6 +24,8 @@ public class Strings {
     public static final String COMMAND_QUIT         = "quit";
     public static final String COMMAND_DELETE       = "delete";
     public static final String COMMAND_MAKE         = "make";
+    public static final String COMMAND_UNDO         = "undo";
+    public static final String COMMAND_REDO         = "redo";
 
     // command targets
     // public static final String TARGET_RECIPE        = "recipe";

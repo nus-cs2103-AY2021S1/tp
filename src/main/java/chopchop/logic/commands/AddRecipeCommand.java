@@ -6,6 +6,7 @@ import static chopchop.util.Strings.ARG_STEP;
 import static java.util.Objects.requireNonNull;
 
 import chopchop.logic.commands.exceptions.CommandException;
+import chopchop.logic.history.History;
 import chopchop.model.Model;
 import chopchop.model.recipe.Recipe;
 
@@ -41,7 +42,7 @@ public class AddRecipeCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, History history) throws CommandException {
         requireNonNull(model);
 
         if (model.hasRecipe(this.recipe)) {

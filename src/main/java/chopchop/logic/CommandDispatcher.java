@@ -7,7 +7,12 @@ import java.util.logging.Logger;
 import chopchop.commons.core.GuiSettings;
 import chopchop.commons.core.LogsCenter;
 import chopchop.logic.commands.CommandResult;
+import chopchop.logic.commands.RedoCommand;
+import chopchop.logic.commands.UndoCommand;
 import chopchop.logic.commands.exceptions.CommandException;
+import chopchop.logic.history.CommandHistory;
+import chopchop.logic.history.History;
+import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.CommandParser;
 import chopchop.logic.parser.exceptions.ParseException;
 import chopchop.model.Model;
@@ -26,6 +31,7 @@ public class CommandDispatcher implements Logic {
 
     private final Model model;
     private final Storage storage;
+    private final History history;
     private final CommandParser parser;
 
     /**
@@ -34,6 +40,7 @@ public class CommandDispatcher implements Logic {
     public CommandDispatcher(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
+        this.history = new HistoryManager();
         this.parser = new CommandParser();
     }
 
@@ -48,11 +55,16 @@ public class CommandDispatcher implements Logic {
 
         var res = this.parser.parse(commandText);
         if (res.isError()) {
+            this.history.add(new CommandHistory(commandText));
             throw new ParseException(res.getError());
         }
 
         var cmd = res.getValue();
-        var result = cmd.execute(this.model);
+        var result = cmd.execute(this.model, this.history);
+
+        if (!(cmd instanceof UndoCommand || cmd instanceof RedoCommand)) {
+            this.history.add(new CommandHistory(commandText, cmd));
+        }
 
         try {
             storage.saveIngredientBook(model.getIngredientBook());

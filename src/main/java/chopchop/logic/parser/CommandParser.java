@@ -5,6 +5,8 @@ package chopchop.logic.parser;
 import java.util.List;
 import java.util.ArrayList;
 
+import chopchop.logic.commands.RedoCommand;
+import chopchop.logic.commands.UndoCommand;
 import chopchop.util.Pair;
 import chopchop.util.Result;
 import chopchop.util.Strings;
@@ -108,6 +110,8 @@ public class CommandParser {
                 case Strings.COMMAND_LIST:      return parseListCommand(args);
                 case Strings.COMMAND_DELETE:    return parseDeleteCommand(args);
                 case Strings.COMMAND_MAKE:      return parseMakeCommand(args);
+                case Strings.COMMAND_UNDO:      return Result.of(new UndoCommand());
+                case Strings.COMMAND_REDO:      return Result.of(new RedoCommand());
 
                 case Strings.COMMAND_QUIT:      return Result.of(new QuitCommand());
 

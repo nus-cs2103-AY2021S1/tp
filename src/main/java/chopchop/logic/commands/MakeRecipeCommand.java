@@ -7,6 +7,7 @@ import java.util.List;
 
 import chopchop.commons.core.Messages;
 import chopchop.logic.commands.exceptions.CommandException;
+import chopchop.logic.history.History;
 import chopchop.logic.parser.ItemReference;
 import chopchop.model.Model;
 import chopchop.model.exceptions.IncompatibleIngredientsException;
@@ -47,7 +48,7 @@ public class MakeRecipeCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, History history) throws CommandException {
         requireNonNull(model);
         Recipe recipe;
 
