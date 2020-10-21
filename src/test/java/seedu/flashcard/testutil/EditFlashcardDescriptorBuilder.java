@@ -1,5 +1,9 @@
 package seedu.flashcard.testutil;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import seedu.flashcard.logic.commands.EditCommand.EditFlashcardDescriptor;
 import seedu.flashcard.model.flashcard.Answer;
 import seedu.flashcard.model.flashcard.Category;
@@ -35,7 +39,7 @@ public class EditFlashcardDescriptorBuilder {
         descriptor.setCategory(flashcard.getCategory());
         descriptor.setNote(flashcard.getNote());
         descriptor.setRating(flashcard.getRating());
-        descriptor.setTag(flashcard.getTag());
+        descriptor.setTags(flashcard.getTags());
         descriptor.setDiagram(flashcard.getDiagram());
     }
 
@@ -80,10 +84,11 @@ public class EditFlashcardDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Tag} of the {@code EditFlashcardDescriptor} that we are building.
+     * Sets the {@code Tags} of the {@code EditFlashcardDescriptor} that we are building.
      */
-    public EditFlashcardDescriptorBuilder withTag(String tag) {
-        descriptor.setTag(new Tag(tag));
+    public EditFlashcardDescriptorBuilder withTags(String... tags) {
+        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
+        descriptor.setTags(tagSet);
         return this;
     }
 

@@ -1,21 +1,4 @@
 {
-<<<<<<< HEAD
-  "flashcards" : [ {
-    "question" : "What does SDLC stand for?",
-    "answer" : "Software development life cycle",
-    "category" : "SDLC",
-    "note" : "aaaa",
-    "tag" : "",
-    "rating": "2"
-  }, {
-    "question" : "What does SDLC stand for?",
-    "answer" : "Software development life cycle",
-    "category" : "SDLC",
-    "note": "aaaa",
-    "tag" : "",
-    "rating": "2"
-  } ]
-=======
   "flashcards": [
     {
       "question": "What does SDLC stand for?",
@@ -23,6 +6,7 @@
       "category": "SDLC",
       "note": "",
       "rating": "2",
+      "tagged" : [ ],
       "diagramFilePath": "",
       "isFavourite": "false"
     },
@@ -32,6 +16,7 @@
       "category": "SDLC",
       "note": "",
       "rating": "2",
+      "tagged" : [ ],
       "diagramFilePath": "",
       "isFavourite": "false"
     },
@@ -41,9 +26,9 @@
       "category": "General",
       "note": "",
       "rating": "",
+      "tagged" : [ ],
       "diagramFilePath": "",
       "isFavourite": "false"
     }
   ]
->>>>>>> e70acc204c7cc8473844fc706d94b6d68a7c41b5
 }

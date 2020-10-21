@@ -14,7 +14,7 @@ public class TypicalFlashcards {
 
     public static final Flashcard FLASHCARD_1 = new FlashcardBuilder().withQuestion("What does SDLC stand for?")
             .withAnswer("Software development life cycle").withCategory("SDLC")
-            .withRating("2").withTag("revise").withDiagram("").withFavouriteStatus(false)
+            .withRating("2").withTags("revise").withDiagram("").withFavouriteStatus(false)
             .build();
 
     public static final Flashcard FLASHCARD_2 = new FlashcardBuilder()

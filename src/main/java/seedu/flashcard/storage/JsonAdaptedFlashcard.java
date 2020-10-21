@@ -1,5 +1,11 @@
 package seedu.flashcard.storage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -12,12 +18,6 @@ import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
 import seedu.flashcard.model.flashcard.Rating;
 import seedu.flashcard.model.tag.Tag;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Jackson-friendly version of {@link Flashcard}.
@@ -41,7 +41,8 @@ class JsonAdaptedFlashcard {
     @JsonCreator
     public JsonAdaptedFlashcard(@JsonProperty("question") String question, @JsonProperty("answer") String answer,
                                 @JsonProperty("category") String category, @JsonProperty("note") String note,
-                                @JsonProperty("rating") String rating,@JsonProperty("tag") String tag,
+                                @JsonProperty("rating") String rating,
+                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                                 @JsonProperty("diagramFilePath") String diagramFilePath,
                                 @JsonProperty("favourite") String isFavourite) {
         this.question = question;

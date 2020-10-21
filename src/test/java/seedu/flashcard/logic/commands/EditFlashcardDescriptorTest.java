@@ -58,7 +58,7 @@ public class EditFlashcardDescriptorTest {
         assertFalse(DESC_FLASHCARD_1.equals(editedFlashcard));
 
         // different tag -> returns false
-        editedFlashcard = new EditFlashcardDescriptorBuilder(DESC_FLASHCARD_1).withTag(VALID_TAG_2).build();
+        editedFlashcard = new EditFlashcardDescriptorBuilder(DESC_FLASHCARD_1).withTags(VALID_TAG_2).build();
         assertFalse(DESC_FLASHCARD_1.equals(editedFlashcard));
     }
 }

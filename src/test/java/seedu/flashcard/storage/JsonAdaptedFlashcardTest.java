@@ -5,6 +5,9 @@ import static seedu.flashcard.storage.JsonAdaptedFlashcard.MISSING_FIELD_MESSAGE
 import static seedu.flashcard.testutil.Assert.assertThrows;
 import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_1;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.flashcard.commons.exceptions.IllegalValueException;
@@ -23,7 +26,9 @@ public class JsonAdaptedFlashcardTest {
     private static final String VALID_CATEGORY = FLASHCARD_1.getCategory().toString();
     private static final String VALID_NOTE = FLASHCARD_1.getNote().toString();
     private static final String VALID_RATING = FLASHCARD_1.getRating().toString();
-    private static final String VALID_TAG = FLASHCARD_1.getTag().getTagName();
+    private static final List<JsonAdaptedTag> VALID_TAG = FLASHCARD_1.getTags().stream()
+            .map(JsonAdaptedTag::new)
+            .collect(Collectors.toList());
     private static final String VALID_DIAGRAM = FLASHCARD_1.getDiagram().toString();
     private static final String VALID_FAVOURITE_STATUS = Boolean.toString(FLASHCARD_1.isFavourite());
 

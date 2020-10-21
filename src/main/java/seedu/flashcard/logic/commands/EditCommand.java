@@ -10,7 +10,11 @@ import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.flashcard.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import seedu.flashcard.commons.core.Messages;
 import seedu.flashcard.commons.core.index.Index;

@@ -1,5 +1,7 @@
 package seedu.flashcard.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -8,8 +10,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import seedu.flashcard.model.flashcard.Flashcard;
-
-import java.util.Comparator;
 
 /**
  * An UI component that displays information of a {@code Flashcard}.
@@ -39,8 +39,6 @@ public class FlashcardCard extends UiPart<Region> {
     private Label category;
     @FXML
     private Label note;
-    @FXML
-    private Label tag;
     @FXML
     private TextFlow ratingPane;
     @FXML
@@ -79,7 +77,7 @@ public class FlashcardCard extends UiPart<Region> {
                     .sorted(Comparator.comparing(tag -> tag.tagName))
                     .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         } else {
-            tag.setVisible(false);
+            tags.setVisible(false);
         }
         if (flashcard.isFavourite()) {
             favouriteIcon.setText("\u2661");

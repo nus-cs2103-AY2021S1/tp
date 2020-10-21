@@ -1,32 +1,4 @@
 {
-<<<<<<< HEAD
-  "_comment": "FlashcardDeck save file which contains the same Flashcard values as in TypicalFlashcard#getTypicalFlashcardDeck()",
-  "flashcards" : [ {
-    "question" : "What does SDLC stand for?",
-    "answer" : "Software development life cycle",
-    "category" : "SDLC",
-    "note" : "",
-    "rating" : "",
-    "tag" : "",
-    "isFavourite" : "false"
-  }, {
-    "question" : "What is a revision control software?",
-    "answer" : "It is the software tool that automate the process of Revision Control",
-    "category" : "Revision history",
-    "note" : "",
-    "rating" : "",
-    "tag" : "",
-    "isFavourite": "true"
-  }, {
-    "question" :"It is recommended that assertions to be used liberally in the code. True or False?",
-    "answer" : "True",
-    "category" : "General",
-    "note" : "",
-    "rating" : "",
-    "tag" : "",
-    "isFavourite": "false"
-  } ]
-=======
   "flashcards": [
     {
       "question": "What does SDLC stand for?",
@@ -34,6 +6,7 @@
       "category": "SDLC",
       "note": "",
       "rating": "2",
+      "tagged" : [ "revise" ],
       "diagramFilePath": "",
       "isFavourite": "false"
     },
@@ -43,6 +16,7 @@
       "category": "Revision History",
       "note": "",
       "rating": "",
+      "tagged" : [ ],
       "diagramFilePath": "",
       "isFavourite": "true"
     },
@@ -52,9 +26,9 @@
       "category": "General",
       "note": "",
       "rating": "",
+      "tagged" : [ ],
       "diagramFilePath": "",
       "isFavourite": "false"
     }
   ]
->>>>>>> e70acc204c7cc8473844fc706d94b6d68a7c41b5
 }

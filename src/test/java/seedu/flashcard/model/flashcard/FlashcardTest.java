@@ -42,7 +42,7 @@ public class FlashcardTest {
         assertTrue(FLASHCARD_1.isSameQuestion(editedFlashcardOne));
 
         // different tag -> returns true
-        editedFlashcardOne = new FlashcardBuilder(FLASHCARD_1).withTag(VALID_TAG_1).build();
+        editedFlashcardOne = new FlashcardBuilder(FLASHCARD_1).withTags(VALID_TAG_1).build();
         assertTrue(FLASHCARD_1.isSameQuestion(editedFlashcardOne));
     }
 
@@ -85,7 +85,7 @@ public class FlashcardTest {
         assertFalse(FLASHCARD_1.equals(editedFlashcardOne));
 
         // different tag -> returns false
-        editedFlashcardOne = new FlashcardBuilder(FLASHCARD_1).withTag(VALID_TAG_1).build();
+        editedFlashcardOne = new FlashcardBuilder(FLASHCARD_1).withTags(VALID_TAG_1).build();
         assertFalse(FLASHCARD_1.equals(editedFlashcardOne));
     }
 }

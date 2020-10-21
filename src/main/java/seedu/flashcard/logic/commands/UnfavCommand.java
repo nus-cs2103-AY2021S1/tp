@@ -71,7 +71,7 @@ public class UnfavCommand extends Command {
         Rating rating = flashcardToUnfavourite.getRating();
         Set<Tag> tags = flashcardToUnfavourite.getTags();
         Diagram diagram = flashcardToUnfavourite.getDiagram();
-        return new Flashcard(question, answer, category, note, rating,tags, diagram, false);
+        return new Flashcard(question, answer, category, note, rating, tags, diagram, false);
     }
 
     @Override

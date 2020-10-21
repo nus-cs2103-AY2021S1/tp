@@ -1,5 +1,8 @@
 package seedu.flashcard.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.flashcard.model.flashcard.Answer;
 import seedu.flashcard.model.flashcard.Category;
 import seedu.flashcard.model.flashcard.Diagram;
@@ -8,6 +11,7 @@ import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
 import seedu.flashcard.model.flashcard.Rating;
 import seedu.flashcard.model.tag.Tag;
+import seedu.flashcard.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Flashcard objects.
@@ -28,7 +32,7 @@ public class FlashcardBuilder {
     private Category category;
     private Note note;
     private Rating rating;
-    private Tag tag;
+    private Set<Tag> tags;
     private Diagram diagram;
     private boolean isFavourite;
 
@@ -41,7 +45,7 @@ public class FlashcardBuilder {
         category = new Category(DEFAULT_CATEGORY);
         note = new Note(DEFAULT_NOTE);
         rating = new Rating(DEFAULT_RATING);
-        tag = new Tag(DEFAULT_TAG);
+        tags = new HashSet<>();
         diagram = new Diagram(DEFAULT_DIAGRAM);
         isFavourite = DEFAULT_FAVOURITE_STATUS;
     }
@@ -55,7 +59,7 @@ public class FlashcardBuilder {
         category = flashcardToCopy.getCategory();
         note = flashcardToCopy.getNote();
         rating = flashcardToCopy.getRating();
-        tag = flashcardToCopy.getTag();
+        tags = new HashSet<>(flashcardToCopy.getTags());
         diagram = flashcardToCopy.getDiagram();
         isFavourite = flashcardToCopy.isFavourite();
     }
@@ -101,10 +105,10 @@ public class FlashcardBuilder {
     }
 
     /**
-     * Sets the {@code Tag} of the {@code Flashcard} that we are building.
+     * Sets the {@code Tags} of the {@code Flashcard} that we are building.
      */
-    public FlashcardBuilder withTag(String tag) {
-        this.tag = new Tag(tag);
+    public FlashcardBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -125,7 +129,7 @@ public class FlashcardBuilder {
     }
 
     public Flashcard build() {
-        return new Flashcard(question, answer, category, note, rating, tag, diagram, isFavourite);
+        return new Flashcard(question, answer, category, note, rating, tags, diagram, isFavourite);
     }
 
 }
