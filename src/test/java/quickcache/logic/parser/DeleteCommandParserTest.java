@@ -48,6 +48,11 @@ public class DeleteCommandParserTest {
         assertParseSuccess(parser, " t/test", DeleteCommand.withPredicate(flashcardPredicate, tagsToMatch));
     }
 
+    @Test
+    public void parse_emptyTag_throwsParseException() {
+        assertParseFailure(parser, " t/ t/test", Tag.MESSAGE_CONSTRAINTS);
+    }
+
     private FlashcardPredicate prepareFlashcardPredicate(Set<Tag> tagsToMatch) {
         ArrayList<Predicate<Flashcard>> predicates = new ArrayList<>();
         predicates.add(new FlashcardContainsTagPredicate(tagsToMatch));
