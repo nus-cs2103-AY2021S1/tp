@@ -14,3 +14,4 @@
       <TextArea fx:id="displayBox" prefHeight="208.0" prefWidth="285.0" text="" wrapText="true" editable="false"/>
    </children>
 </StackPane>
+
