@@ -14,7 +14,7 @@ Given below are my contributions to the project.
     * What it does: Allows the user to find a patient's medical records.
     * Justification: This feature provides a convenient way to access patients' medical records.
     * Highlights: The implementation does not require changes to existing commands.
-  * Added Appointment Class. (Pull requests [\#80](), [\#87]())
+  * Added Appointment Class. (Pull requests [\#80](), [\#87](), [\#115](), [\#116]())
     * What it does: The user is now able to schedule and store new appointments for patients.
     * Justification: This feature provides added functionality to keep track of appointment for patients.
     * Highlights: The implementation requires changes to the UI and some classes.
