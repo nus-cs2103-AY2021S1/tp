@@ -35,7 +35,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -211,7 +210,13 @@ public class UnassignCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
         public boolean hasModule(Module module) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasModuleCode(ModuleCode moduleCode) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -236,17 +241,17 @@ public class UnassignCommandTest {
         }
 
         @Override
+        public void unassignAllInstructors() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Module> getFilteredModuleList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableList<Person> getFilteredPersonList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public UniqueModuleList getModuleList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -311,6 +316,12 @@ public class UnassignCommandTest {
         }
 
         @Override
+        public boolean hasModuleCode(ModuleCode moduleCode) {
+            requireNonNull(moduleCode);
+            return this.module.getModuleCode().equals(moduleCode);
+        }
+
+        @Override
         public void assignInstructor(Person person, ModuleCode moduleCode) {
             this.module.assignInstructor(this.person);
         }
@@ -331,13 +342,6 @@ public class UnassignCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             ObservableList<Person> filteredPersonList = FXCollections.observableArrayList();
             filteredPersonList.addAll(this.person);
-        }
-
-        @Override
-        public UniqueModuleList getModuleList() {
-            UniqueModuleList modules = new UniqueModuleList();
-            modules.add(this.module);
-            return modules;
         }
 
     }
