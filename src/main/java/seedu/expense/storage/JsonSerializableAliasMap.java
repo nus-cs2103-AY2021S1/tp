@@ -16,7 +16,7 @@ public class JsonSerializableAliasMap {
     /**
      * Constructs a {@code JsonSerializableAliasMap} with the given alias entries.
      */
-    public JsonSerializableAliasMap(@JsonProperty("aliasMap") List<JsonAdaptedAliasEntry> entries) {
+    public JsonSerializableAliasMap(@JsonProperty("aliases") List<JsonAdaptedAliasEntry> entries) {
         this.aliases.addAll(entries);
     }
 
