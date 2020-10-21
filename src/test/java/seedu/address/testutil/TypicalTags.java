@@ -28,6 +28,7 @@ public class TypicalTags {
 
     public static final Tag MYFILE = new TagBuilder().withTagName("myfile")
             .withFileAddress("c:\\a\\b\\myfile.txt")
+            .withLabels("project", "myfile")
             .build();
     public static final Tag MYFILE2 = new TagBuilder().withTagName("myfile 2")
             .withFileAddress("c:\\a\\b\\myfile2.txt").build();

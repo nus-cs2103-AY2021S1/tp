@@ -1,6 +1,8 @@
 package seedu.address.storage;
 
 import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,14 +25,20 @@ class JsonAdaptedTag {
 
     private final String fileAddress;
 
+    private final Set<JsonAdaptedLabel> labels = new HashSet<>();
+
     /**
      * Constructs a {@code JsonAdaptedTag} with the given tag details.
      */
     @JsonCreator
     public JsonAdaptedTag(@JsonProperty("tagName") String tagName,
-                          @JsonProperty("fileAddress") String fileAddress) {
+                          @JsonProperty("fileAddress") String fileAddress,
+                          @JsonProperty("labels") Set<JsonAdaptedLabel> labels) {
         this.tagName = tagName;
         this.fileAddress = fileAddress;
+        if (labels != null) {
+            this.labels.addAll(labels);
+        }
     }
 
     /**
@@ -39,6 +47,9 @@ class JsonAdaptedTag {
     public JsonAdaptedTag(Tag source) {
         tagName = source.getTagName().tagName;
         fileAddress = source.getFileAddress().value;
+        labels.addAll(source.getLabels().stream()
+                .map(JsonAdaptedLabel::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -47,6 +58,10 @@ class JsonAdaptedTag {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Tag toModelType() throws IllegalValueException {
+        final Set<Label> tagLabels = new HashSet<>();
+        for (JsonAdaptedLabel label : labels) {
+            tagLabels.add(label.toModelType());
+        }
 
         if (tagName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TagName.class.getSimpleName()));
@@ -66,8 +81,9 @@ class JsonAdaptedTag {
         }
         final FileAddress modelFileAddress = new FileAddress(fileAddress);
 
-        //TODO: NEED TO MODIFY DESCRIPTION
-        return new Tag(modelName, modelFileAddress, new HashSet<Label>());
+        final Set<Label> modelLabels = new HashSet<>(tagLabels);
+
+        return new Tag(modelName, modelFileAddress, modelLabels);
     }
 
 }
