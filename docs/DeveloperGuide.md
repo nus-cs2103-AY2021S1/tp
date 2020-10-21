@@ -135,11 +135,9 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Unassign feature
 
-It implements the following operations :
-
-* `AddressBook#unassignInstructor()` — Unassigns instructor on the list with index `INDEX` from all modules containing `MODULE_CODES`. 
-
-These operations are exposed in the `Model` interface as `Model#unassignInstructor()`, `UniqueModuleList` class as `UniqueModuleList#unassignInstructor`, and `Module` class as `Module#unassignInstructor`.
+The assign feature is facilitated by `UnassignCommand` and `UnassignCommandParser`.
+It uses an operation `AddressBook#unassignInstructor()` which is exposed in the `Model` interface as `Model#unassignInstructor()`.
+Then, the `unassignInstructor()` operation is called in both `UniqueModuleList` and `Module`. `Module#unassignInstructor()` will remove the instructor from the module's set of instructors.
 
 The following sequence diagram shows how the unassign operation works:
 
@@ -168,13 +166,11 @@ Expected : Similar to previous.
 
 ### Unassignall feature
 
-It implements the following operations :
+The assign feature is facilitated by `UnassignallCommand` and `UnassignallCommandParser`.
+It uses an operation `AddressBook#unassignAllInstructors()` which is exposed in the `Model` interface as `Model#unassignAllInstructors()`.
+Then, the `unassignAllInstructors()` operation is called in both `UniqueModuleList` and `Module`. `Module#unassignAllInstructors()` will remove all instructors from all modules' set of instructors.
 
-* `AddressBook#unassignAllInstructors()` — Unassigns instructor with the same index from all modules containing module codes specified by user. 
-
-These operations are exposed in the `Model` interface as `Model#unassignAllInstructors()`, `UniqueModuleList` class as `UniqueModuleList#unassignAllInstructors`, and `Module` class as `Module#unassignAllInstructors`.
-
-The following sequence diagram shows how the unassign operation works:
+The following sequence diagram shows how the unassignall operation works:
 
 ![UnassignallSequenceDiagram](images/UnassignallSequenceDiagram.png)
 
@@ -183,11 +179,12 @@ The following sequence diagram shows how the unassign operation works:
 ##### Aspect: How unassignall executes
 
 * **Alternative 1 (current choice):** Unassigns all instructors from all modules.
+ * Pros : More efficient to unassign all instructors from all modules.
+ * Cons : Less efficient to unassign a certain instructor from all modules he/she teaches.
  
 * **Alternative 2:** Unassign a certain instructor from all modules he/she teaches.
-
-_{more aspects and alternatives to be added}_
-
+ * Pros : More efficient to unassign a certain instructor from all modules he/she teaches.
+ * Cons : Less efficient to unassign all instructors from all modules.
 
 
 ### \[Proposed\] Undo/redo feature
