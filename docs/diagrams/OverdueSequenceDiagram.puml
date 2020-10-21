@@ -11,14 +11,14 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[--> LogicManager : execute("overdue")
+[-> LogicManager : execute("overdue")
 activate LogicManager
 
-LogicManager --> ReeveParser : parseCommand("overdue")
+LogicManager -> ReeveParser : parseCommand("overdue")
 activate ReeveParser
 
 create Command
-ReeveParser --> Command
+ReeveParser -> Command
 activate Command
 
 Command --> ReeveParser : o
@@ -27,16 +27,16 @@ deactivate Command
 ReeveParser --> LogicManager : o
 deactivate ReeveParser
 
-LogicManager --> Command : execute()
+LogicManager -> Command : execute()
 activate Command
 
-Command --> Model : updateFilteredStudentList()
+Command -> Model : updateFilteredStudentList()
 activate Model
 
 Model --> Command
 deactivate Model
 
-Command  --> LogicManager : result
+Command --> LogicManager : result
 deactivate Command
 
 Command -[hidden]-> LogicManager
