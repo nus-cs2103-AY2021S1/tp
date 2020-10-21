@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 import static java.util.Objects.requireNonNull;
 
 /**
- * A class to access ExpenseBook data stored as a json file on the hard disk.
+ * A class to access AliasMap data stored as a json file on the hard disk.
  */
 public class JsonAliasMapStorage {
 
