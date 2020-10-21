@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import quickcache.commons.core.Messages;
 import quickcache.logic.commands.DeleteCommand;
+import quickcache.logic.commands.FindCommand;
 import quickcache.model.flashcard.Flashcard;
 import quickcache.model.flashcard.FlashcardContainsTagPredicate;
 import quickcache.model.flashcard.FlashcardPredicate;
@@ -30,6 +31,12 @@ import java.util.function.Predicate;
 public class DeleteCommandParserTest {
 
     private final DeleteCommandParser parser = new DeleteCommandParser();
+
+    @Test
+    public void parse_emptyArgs_throwsParseException() {
+        assertParseFailure(parser, "     ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
 
     @Test
     public void parse_validIndex_returnsDeleteCommand() {
