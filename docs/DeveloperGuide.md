@@ -7,11 +7,40 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Purpose of this guide**
+This guide is made to help developers understand how McGymmy works. 
+One of the major goals is to centralise all the jimmy.mcgymmy documentation within McGymmy itself.
+Another major goal is to better help developers extend McGymmy to improve on its features.
+
+##  Icon Legend
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** This indicates that the following text consists of tips to better utilise MG
+
+</div>
+:information_source: **Note:** This indicates important notes for current feature we are looking at<br>
+
+## A little note from the developers
+
+Thank you for using MG. We sincerely hope that MG plays apart to help you achieve a healthier lifestyle.
+We understand that MG may be a little different from traditional GUI applications and it may be a little difficult to start using it initially.
+Thus, we recommend you to start by first understanding how MG works at a high level at the Quick start section. Then, explore the Features section.
+
+<div markdown="block" class="alert alert-info">
+
+:bulb: **Tip:** Press Ctrl-F to open the find prompt in your browser. You can type in keywords such as `add` or `edit` to quickly navigate to those parts of the document.
+
+</div>
+
+## **General Information**
+McGymmy (MG) is a **desktop app for managing diet and exercise, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, McGymmy can log your diet and exercise tasks, goals and progress done faster than traditional GUI apps.
+
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+
 
 ## **Design**
 
@@ -128,7 +157,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.mcgymmy.commons` package.
+Classes used by multiple components are in the `jimmy.mcgymmy.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -136,7 +165,50 @@ Classes used by multiple components are in the `seedu.mcgymmy.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Undo feature
+### Import feature
+
+The current Import feature is facilitated by `JsonMcGymmyStorage`. 
+It extends model with the ability to override the current data with an imported one. 
+
+#### Implementation
+
+Given below is an example usage scenario and how the import mechanism behaves at each step
+
+Step 1. The User just installed his application on his new computer and wants to transfer his old data over
+
+Step 2. The user transfers his previous save file to `C:/McGymmy/saveFile.json`
+
+Step 3. The User executes `import c:/McGymmy/saveFile.json`. 
+The import command will check if the file is valid and exists before calling `JsonMcGymmyStorage`. 
+`JsonMcGymmyStorage` will call `#readMcGymmy` if the read is successful, the old data will be overwritten.
+Otherwise, a CommandException will be thrown.
+
+Step 4. His old data files from his old computer will be overridden by his old data
+
+The following sequence diagram shows how the import operation works:
+
+![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The method Parser::parse is a simplification of the overall parsing sequence which was already covered in showcasing the execution of the delete method. As such, redundant parsing details are not covered here.
+</div>
+
+#### Design Considerations
+
+##### Aspect: How import executes
+
+* **Alternative 1 (Current Choice):** User keys in the filepath of the save file
+
+    * Pros: Easy to implement
+    * Cons: Requires the user to key in path to file
+    
+* **Alternative 2:** User keys in path and McGymmy checks subdirectories for valid files
+
+    * Pros: More convenient for the users
+    * Cons: Increased implementation complexity (Prone to bugs), May have performance issues in terms of runtime.
+
+
+
+### Undo/redo feature
 
 #### Implementation
 
