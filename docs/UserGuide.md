@@ -79,13 +79,13 @@ Accompanying the details of each command are figures that show an example of the
 
 Adds and stores a new inventory record into the inventory list.
 
-Format: `add_inventory i/[ITEM_NAME] q/[QUANTITY] c/[ITEM_COST]`
+__Format:__ `add_inventory i/[ITEM_NAME] q/[QUANTITY] c/[ITEM_COST]`
 
-Example: `add_inventory i/iphone q/10`
+__Example:__ `add_inventory i/iphone q/10`
 
 ![Add inventory command example](images/commands/add_inventory_command.jpg)
 
-Result: item `iphone` of quantity `10` is added to the inventory.
+__Result:__ item `iphone` of quantity `10` is added to the inventory.
 
 ![Add inventory result example](images/commands/add_inventory_result.jpg)
 
@@ -95,13 +95,13 @@ Result: item `iphone` of quantity `10` is added to the inventory.
 
 Removes the specified record from the inventory list.
 
-Format: `delete_inventory [INDEX]`
+__Format:__ `delete_inventory [INDEX]`
 
-Example: `delete_inventory 1`
+__Example:__ `delete_inventory 1`
 
 ![Delete inventory command example](images/commands/delete_inventory_command.jpg)
 
-Result: record at index `1` is removed from the inventory list of records.
+__Result:__ record at index `1` is removed from the inventory list of records.
 
 ![Delete inventory result example](images/commands/delete_inventory_result.jpg)
 
@@ -111,13 +111,13 @@ Result: record at index `1` is removed from the inventory list of records.
 
 Edits the specified record in the inventory list.
 
-Format: `edit_inventory [INDEX] i/[ITEM_NAME] q/[QUANTITY]`
+__Format:__ `edit_inventory [INDEX] i/[ITEM_NAME] q/[QUANTITY]`
 
-Example: `edit_inventory 1 i/iPad q/100`
+__Example:__ `edit_inventory 1 i/iPad q/100`
 
 ![Edit inventory command example](images/commands/edit_inventory_command.jpg)
 
-Result: item name changed from `iphone` to `iPad` and its quantity changed from `10` to `100`.
+__Result:__ item name changed from `iphone` to `iPad` and its quantity changed from `10` to `100`.
 
 ![Edit inventory result example](images/commands/edit_inventory_result.jpg)
 
@@ -127,13 +127,13 @@ Result: item name changed from `iphone` to `iPad` and its quantity changed from 
 
 Displays all records in the inventory list.
 
-Format: `list_inventory`
+__Format:__ `list_inventory`
 
-Example: `list_inventory`
+__Example:__ `list_inventory`
 
 ![List inventory command example](images/commands/list_inventory_command.jpg)
 
-Result: inventory is listed.
+__Result:__ inventory is listed.
 
 ![List inventory result example](images/commands/list_inventory_result.jpg)
 
@@ -149,13 +149,13 @@ Adds and stores a new finance record into the account.
 
 Note: Date and time are default to current location's datetime unless specified
 
-Format: `add_finance amt/[AMOUNT] at/[DATE] [TIME]`
+__Format:__ `add_finance amt/[AMOUNT] at/[DATE] [TIME]`
 
-Example: `add_finance amt/30000 at/2020-03-03`
+__Example:__ `add_finance amt/30000 at/2020-03-03`
 
 ![Add finance command example](images/commands/add_finance_command.jpg)
 
-Result: finance record of amount `$30000` on `3rd March 2020` is added to the the finance account.
+__Result:__ finance record of amount `$30000` on `3rd March 2020` is added to the the finance account.
 
 ![Add finance result example](images/commands/add_finance_result.jpg)
 
@@ -165,13 +165,13 @@ Result: finance record of amount `$30000` on `3rd March 2020` is added to the th
 
 Deletes the specified finance record from the account.
 
-Format: `delete_finance [INDEX]`
+__Format:__ `delete_finance [INDEX]`
 
-Example: `delete_finance 1`
+__Example:__ `delete_finance 1`
 
 ![Delete finance command example](images/commands/delete_finance_command.jpg)
 
-Result: record at index `1` is removed from the finance account records.
+__Result:__ record at index `1` is removed from the finance account records.
 
 ![Delete finance result example](images/commands/delete_finance_result.jpg)
 
@@ -181,13 +181,13 @@ Result: record at index `1` is removed from the finance account records.
 
 Edits the specified record in the finance account.
 
-Format: `edit_finance [INDEX] amt/[AMOUNT] at/[DATE]`
+__Format:__ `edit_finance [INDEX] amt/[AMOUNT] at/[DATE]`
 
-Example: `edit_finance 1 amt/120 at/2020-10-01`
+__Example:__ `edit_finance 1 amt/120 at/2020-10-01`
 
 ![Edit finance command example](images/commands/edit_finance_command.jpg)
 
-Result: record changed to amount `$120` on `1st Oct 2020`.
+__Result:__ record changed to amount `$120` on `1st Oct 2020`.
 
 ![Edit finance result example](images/commands/edit_finance_result.jpg)
 
@@ -197,13 +197,13 @@ Result: record changed to amount `$120` on `1st Oct 2020`.
 
 Displays all the finance records in the account.
 
-Format: `list_finance`
+__Format:__ `list_finance`
 
-Example: `list_finance`
+__Example:__ `list_finance`
 
 ![List finance command example](images/commands/list_finance_command.jpg)
 
-Result: finance account is listed.
+__Result:__ finance account is listed.
 
 ![List finance result example](images/commands/list_finance_result.jpg)
 
@@ -217,13 +217,13 @@ Result: finance account is listed.
 
 Saves data locally in a data file and exits the programme.
 
-Format: `exit`
+__Format:__ `exit`
 
-Example: `exit`
+__Example:__ `exit`
 
 ![Exit command example](images/commands/exit_command.jpg)
 
-Result: Programme terminates.
+__Result:__ Programme terminates.
 
 ---
 
@@ -231,11 +231,11 @@ Result: Programme terminates.
 
 Undo or redo the previous command
 
-Format: `undo` or `redo`
+__Format:__ `undo` or `redo`
 
-Example: `undo` or `redo`
+__Example:__ `undo` or `redo`
 
-Result: Undo or redo the previous command.
+__Result:__ Undo or redo the previous command.
 
 ---
 
