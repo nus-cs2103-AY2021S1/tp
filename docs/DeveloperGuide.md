@@ -146,18 +146,18 @@ The operation is exposed in the `ActiveAccount` interface as `ActiveAccount#setN
 
 Given below is an example usage scenario and how the edit account mechanism behaves at each step.
 
-Step 1. The user inputs the edit command to edit the current account in `ActiveAccount`. `CommonCentsParser` identifies
+* Step 1: The user inputs the edit command to edit the current account in `ActiveAccount`. `CommonCentsParser` identifies
 the command word and calls `EditCommandParser#parse(String args)` to parse the input into a valid `EditAccountCommand`
 
-Step 2. `EditAccountCommand` starts to be executed. In the execution, the current account, namely `previousAccount`
+* Step 2: `EditAccountCommand` starts to be executed. In the execution, the current account, namely `previousAccount`
 in `ActiveAccount` is retrieved.
 
-Step 3. `ActiveAccount#setName(Name editedName)` is called with the edited name to replace the name of the current
+* Step 3: `ActiveAccount#setName(Name editedName)` is called with the edited name to replace the name of the current
 account in `ActiveAccount`.
 
-Step 4. The updated account, namely `newAccount`, in `ActiveAccount` is retrieved.
+* Step 4: The updated account, namely `newAccount`, in `ActiveAccount` is retrieved.
 
-Step 5. `Model#setAccount(Account target, Account editedAccount)` is called with `previousAccount` as `target`, and
+* Step 5: `Model#setAccount(Account target, Account editedAccount)` is called with `previousAccount` as `target`, and
 `newAccount` as `editedAccount`. This is to replace the to-be-edited account in the Model with the edited account.
 
 The following sequence diagram shows how an edit account operation works:
