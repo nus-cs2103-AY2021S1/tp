@@ -59,8 +59,6 @@ public class ProfileWindow extends UiPart<Stage> {
     @FXML
     private ListView<Visit> profileVisitList;
 
-    @FXML
-    private Label message;
 
     @FXML
     private TextArea icNumberField;
@@ -197,7 +195,6 @@ public class ProfileWindow extends UiPart<Stage> {
         logger.info("Showing Profile Panel");
         getRoot().show();
         getRoot().centerOnScreen();
-        message.setText("");
     }
 
     /**
