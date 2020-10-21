@@ -44,6 +44,19 @@
     "tagged" : [ ]
   } ],
   "budget": {
-    "amount": "10.00"
-  }
+    "defaultCategory": {
+      "tag": "Default",
+      "amount": "10.00"
+    },
+    "categoryBudgets": [
+      {
+        "tag": "Food",
+        "amount": "100.00"
+      },
+      {
+        "tag": "Transport",
+        "amount": "50.00"
+      }
+    ]
+  },
 }

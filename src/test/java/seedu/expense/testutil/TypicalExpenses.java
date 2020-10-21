@@ -14,7 +14,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.expense.model.ExpenseBook;
-import seedu.expense.model.budget.Budget;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
 
@@ -77,9 +76,7 @@ public class TypicalExpenses {
         for (Expense expense : getTypicalExpenses()) {
             ab.addExpense(expense);
         }
-        Budget budget = new Budget();
-        budget.topupBudget(new Amount("10"));
-        ab.setBudget(budget);
+        ab.getBudgets().topupBudget(new Amount("10"));
         return ab;
     }
 

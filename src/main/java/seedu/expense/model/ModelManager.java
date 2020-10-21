@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.expense.commons.core.GuiSettings;
 import seedu.expense.commons.core.LogsCenter;
 import seedu.expense.model.budget.Budget;
+import seedu.expense.model.budget.UniqueCategoryBudgetList;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
 
@@ -24,7 +25,7 @@ public class ModelManager implements Model {
     private final ExpenseBook expenseBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Expense> filteredExpenses;
-    private final Budget budget;
+    private final UniqueCategoryBudgetList budgets;
 
     /**
      * Initializes a ModelManager with the given expenseBook and userPrefs.
@@ -38,7 +39,7 @@ public class ModelManager implements Model {
         this.expenseBook = new ExpenseBook(expenseBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredExpenses = new FilteredList<>(this.expenseBook.getExpenseList());
-        budget = this.expenseBook.getBudget();
+        budgets = this.expenseBook.getBudgets();
     }
 
     public ModelManager() {
@@ -117,13 +118,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Budget getBudget() {
-        return budget;
+    public Budget getTotalBudget() {
+        return budgets;
     }
 
     @Override
     public void topupBudget(Amount amount) {
-        budget.topupBudget(amount);
+        budgets.topupBudget(amount);
     }
 
     //=========== Filtered Expense List Accessors =============================================================
