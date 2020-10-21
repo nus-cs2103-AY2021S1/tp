@@ -118,7 +118,7 @@ public class Ingredient extends Entry {
         for (var tag : this.tags) {
             sb.append(index)
                 .append(" : ")
-                .append(tag.toString().substring(1, tag.toString().length() - 1))
+                .append(tag.getTagName())
                 .append("\n");
             index++;
         }

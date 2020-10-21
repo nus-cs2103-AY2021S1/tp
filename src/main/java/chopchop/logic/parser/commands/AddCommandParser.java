@@ -208,7 +208,7 @@ public class AddCommandParser {
 
 
     private static AddIngredientCommand createAddIngredientCommand(String name, Optional<Quantity> qty,
-                                   Optional<String> expiry, Optional<Set<String>> tags) {
+        Optional<String> expiry, Optional<Set<String>> tags) {
 
         return new AddIngredientCommand(new Ingredient(name,
             qty.orElse(Count.of(1)),

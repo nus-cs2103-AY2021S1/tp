@@ -11,7 +11,7 @@ import static chopchop.commons.util.AppUtil.checkArgument;
 public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tag name should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String VALIDATION_REGEX = ".+";
 
     public final String tagName;
 
@@ -39,9 +39,9 @@ public class Tag {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-            || (other instanceof Tag // instanceof handles nulls
-            && tagName.equals(((Tag) other).tagName)); // state check
+        return other == this
+            || (other instanceof Tag
+            && tagName.equals(((Tag) other).tagName));
     }
 
     @Override
