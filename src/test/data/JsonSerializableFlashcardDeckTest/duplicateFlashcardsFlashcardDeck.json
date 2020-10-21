@@ -6,6 +6,7 @@
       "category": "SDLC",
       "note": "",
       "rating": "2",
+      "tagged" : [ ],
       "diagramFilePath": "",
       "isFavourite": "false"
     },
@@ -15,6 +16,7 @@
       "category": "SDLC",
       "note": "",
       "rating": "2",
+      "tagged" : [ ],
       "diagramFilePath": "",
       "isFavourite": "false"
     },
@@ -24,6 +26,7 @@
       "category": "General",
       "note": "",
       "rating": "",
+      "tagged" : [ ],
       "diagramFilePath": "",
       "isFavourite": "false"
     }

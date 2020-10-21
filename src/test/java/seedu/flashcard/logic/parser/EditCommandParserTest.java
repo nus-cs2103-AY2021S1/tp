@@ -16,7 +16,7 @@ import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_CATEGORY_5_DE
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_DIAGRAM_2;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_DIAGRAM_2_DESC;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_NOTE_2;
-import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_NOTE_4_DESC;
+import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_NOTE_2_DESC;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_QUESTION_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_QUESTION_4;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_QUESTION_4_DESC;
@@ -24,6 +24,8 @@ import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_QUESTION_5;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_QUESTION_5_DESC;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_RATING_2;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_RATING_2_DESC;
+import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_TAG_2;
+import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_TAG_2_DESC;
 import static seedu.flashcard.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.flashcard.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.flashcard.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
@@ -99,11 +101,11 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_FLASHCARD;
         String userInput = targetIndex.getOneBased() + VALID_QUESTION_4_DESC + VALID_ANSWER_4_DESC
-                + VALID_CATEGORY_4_DESC + VALID_NOTE_4_DESC + VALID_RATING_2_DESC;
+                + VALID_CATEGORY_4_DESC + VALID_NOTE_2_DESC + VALID_RATING_2_DESC + VALID_TAG_2_DESC;
 
         EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_4)
                 .withAnswer(VALID_ANSWER_4).withCategory(VALID_CATEGORY_4).withNote(VALID_NOTE_2)
-                .withRating(VALID_RATING_2).build();
+                .withRating(VALID_RATING_2).withTags(VALID_TAG_2).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -143,21 +145,26 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        //note
-        userInput = targetIndex.getOneBased() + VALID_NOTE_4_DESC;
+        // note
+        userInput = targetIndex.getOneBased() + VALID_NOTE_2_DESC;
         descriptor = new EditFlashcardDescriptorBuilder().withNote(VALID_NOTE_2).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        //rating
+        // rating
         userInput = targetIndex.getOneBased() + VALID_RATING_2_DESC;
         descriptor = new EditFlashcardDescriptorBuilder().withRating(VALID_RATING_2).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
+        // tag
+        userInput = targetIndex.getOneBased() + VALID_TAG_2_DESC;
+        descriptor = new EditFlashcardDescriptorBuilder().withTags(VALID_TAG_2).build();
+
         //diagram
         userInput = targetIndex.getOneBased() + VALID_DIAGRAM_2_DESC;
         descriptor = new EditFlashcardDescriptorBuilder().withDiagram(VALID_DIAGRAM_2).build();
+
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -167,10 +174,10 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_FLASHCARD;
         String userInput = targetIndex.getOneBased() + VALID_QUESTION_4_DESC + VALID_ANSWER_4_DESC
                 + VALID_CATEGORY_4_DESC + VALID_QUESTION_4_DESC + VALID_ANSWER_4_DESC + VALID_CATEGORY_4_DESC
-                + VALID_QUESTION_5_DESC + VALID_ANSWER_5_DESC + VALID_CATEGORY_5_DESC;
+                + VALID_QUESTION_5_DESC + VALID_ANSWER_5_DESC + VALID_CATEGORY_5_DESC + VALID_TAG_2_DESC;
 
         EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_5)
-                .withAnswer(VALID_ANSWER_5).withCategory(VALID_CATEGORY_5)
+                .withAnswer(VALID_ANSWER_5).withCategory(VALID_CATEGORY_5).withTags(VALID_TAG_2)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 

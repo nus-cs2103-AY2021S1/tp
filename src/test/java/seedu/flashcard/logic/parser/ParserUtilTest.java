@@ -17,6 +17,7 @@ import seedu.flashcard.model.flashcard.Diagram;
 import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
 import seedu.flashcard.model.flashcard.Rating;
+import seedu.flashcard.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_QUESTION = " ";
@@ -28,6 +29,7 @@ public class ParserUtilTest {
     private static final String VALID_CATEGORY = "SDLC";
     private static final String VALID_NOTE = "Note";
     private static final String VALID_RATING = "2";
+    private static final String VALID_TAG = "revise";
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
             "ImageTest");
@@ -162,6 +164,24 @@ public class ParserUtilTest {
         String ratingWithWhitespace = WHITESPACE + VALID_RATING + WHITESPACE;
         Rating expectedRating = new Rating(VALID_RATING);
         assertEquals(expectedRating, ParserUtil.parseRating(ratingWithWhitespace));
+    }
+
+    @Test
+    public void parseTag_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag((String) null));
+    }
+
+    @Test
+    public void parseTag_validValueWithoutWhitespace_returnsRating() throws Exception {
+        Tag expectedTag = new Tag(VALID_TAG);
+        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG));
+    }
+
+    @Test
+    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
+        String tagWithWhitespace = WHITESPACE + VALID_TAG + WHITESPACE;
+        Tag expectedTag = new Tag(VALID_TAG);
+        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
     }
 
     @Test

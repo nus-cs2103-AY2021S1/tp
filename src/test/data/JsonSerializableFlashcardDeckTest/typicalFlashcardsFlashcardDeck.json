@@ -6,6 +6,7 @@
       "category": "SDLC",
       "note": "",
       "rating": "2",
+      "tagged" : [ "revise" ],
       "diagramFilePath": "",
       "isFavourite": "false"
     },
@@ -15,6 +16,7 @@
       "category": "Revision History",
       "note": "",
       "rating": "",
+      "tagged" : [ ],
       "diagramFilePath": "",
       "isFavourite": "true"
     },
@@ -24,6 +26,7 @@
       "category": "General",
       "note": "",
       "rating": "",
+      "tagged" : [ ],
       "diagramFilePath": "",
       "isFavourite": "false"
     }

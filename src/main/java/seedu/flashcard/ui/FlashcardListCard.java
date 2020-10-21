@@ -1,5 +1,7 @@
 package seedu.flashcard.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -59,6 +61,13 @@ public class FlashcardListCard extends UiPart<Region> {
         } else {
             ratingPane.setVisible(false);
             ratingPane.managedProperty().bind(ratingPane.visibleProperty());
+        }
+        if (flashcard.getTags().size() > 0) {
+            flashcard.getTags().stream()
+                    .sorted(Comparator.comparing(tag -> tag.tagName))
+                    .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        } else {
+            tags.setVisible(false);
         }
         if (flashcard.isFavourite()) {
             favouriteIcon.setText("\u2764");
