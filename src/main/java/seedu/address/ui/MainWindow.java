@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -38,6 +39,9 @@ public class MainWindow extends UiPart<Stage> {
     private RevenueListPanel revenueListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    @FXML
+    private Label activeAccountName;
 
     @FXML
     private HBox commandBoxPlaceholder;
@@ -127,6 +131,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        //activeAccountName.textProperty().bind(logic.getActiveAccountName().getName());
+
         fillEntryDisplay();
 
         resultDisplay = new ResultDisplay();

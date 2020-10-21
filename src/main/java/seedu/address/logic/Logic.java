@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyCommonCents;
 import seedu.address.model.account.Account;
+import seedu.address.model.account.Name;
 import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
 
@@ -32,13 +33,18 @@ public interface Logic {
      */
     ReadOnlyCommonCents getCommonCents();
 
-    /** Returns an unmodifiable view of the filtered list of accounts */
+    /**
+     * Returns the names of the active account
+     */
+    Name getActiveAccountName();
+
+    /** Returns an unmodifiable view of the filtered list of accounts. */
     ObservableList<Account> getFilteredAccountList();
 
-    /** Returns an unmodifiable view of the filtered list of expenses */
+    /** Returns an unmodifiable view of the filtered list of expenses. */
     ObservableList<Expense> getFilteredExpenseList();
 
-    /** Returns an unmodifiable view of the filtered list of revenues */
+    /** Returns an unmodifiable view of the filtered list of revenues. */
     ObservableList<Revenue> getFilteredRevenueList();
 
     /**

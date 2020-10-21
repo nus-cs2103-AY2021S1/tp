@@ -40,8 +40,13 @@ public class ActiveAccountManager implements ActiveAccount {
     }
 
     @Override
+    public void setName(Name name) {
+        activeAccount.setName(name);
+    }
+
+    @Override
     public Account getAccount() {
-        return activeAccount;
+        return activeAccount.copyData();
     }
 
     @Override

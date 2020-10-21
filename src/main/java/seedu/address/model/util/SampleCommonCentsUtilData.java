@@ -34,8 +34,7 @@ public class SampleCommonCentsUtilData {
         accExpenses
                 .add(new Expense(new Description("canvas"),
                 new Amount("20.15"), getTagSet("art")));
-        acc.setExpenses(accExpenses
-        );
+        acc.setExpenses(accExpenses);
         acc.setRevenues(accRevenues);
 
         Account acc2 = new Account(new Name("Lulu - nonbiz acc"));
@@ -43,8 +42,8 @@ public class SampleCommonCentsUtilData {
         RevenueList acc2Revenues = new RevenueList();
         acc2Expenses.add(new Expense(new Description("lunch"),
                 new Amount("5.45"), getTagSet("food", "hawker")));
-        acc2Expenses.add(new Expense(new Description("dinner at Morganfield's"),
-                new Amount("24.45"), getTagSet("food", "restaurant", "Morganfields")));
+        acc2Expenses.add(new Expense(new Description("dinner at Morganafield's"),
+                new Amount("24.45"), getTagSet("food", "restaurant", "Morganafields")));
         acc2.setExpenses(acc2Expenses);
         acc2.setRevenues(acc2Revenues);
         return new Account[]{acc, acc2};
