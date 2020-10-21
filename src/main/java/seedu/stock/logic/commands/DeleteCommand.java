@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.commons.core.Messages;
 import seedu.stock.logic.commands.exceptions.CommandException;
-import seedu.stock.logic.parser.DeleteCommandParser;
 import seedu.stock.model.Model;
 import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Stock;
@@ -21,8 +20,6 @@ import seedu.stock.model.stock.Stock;
  * Deletes a stock identified using it's displayed serial number from the stock book.
  */
 public class DeleteCommand extends Command {
-
-    private static final Logger logger = LogsCenter.getLogger(DeleteCommand.class);
 
     public static final String COMMAND_WORD = "delete";
 
@@ -36,6 +33,8 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_STOCK_SOME_SUCCESS = "Some serial number(s) are not found.\n"
                                                                     + "Deleted Stock(s): %1$s";
 
+    private static final Logger logger = LogsCenter.getLogger(DeleteCommand.class);
+
     private final Set<SerialNumber> targetSerialNumbers;
 
     /**
@@ -44,7 +43,7 @@ public class DeleteCommand extends Command {
      * @param targetSerialNumbers The list of target serial numbers to delete.
      */
     public DeleteCommand(Set<SerialNumber> targetSerialNumbers) {
-        assert(targetSerialNumbers.size() > 0);
+        assert(targetSerialNumbers != null);
         this.targetSerialNumbers = targetSerialNumbers;
     }
 

@@ -12,11 +12,11 @@ import seedu.stock.model.stock.Stock;
 
 public class SourceStatisticsCommand extends StatisticsCommand {
 
-    private static final Logger logger = LogsCenter.getLogger(SourceStatisticsCommand.class);
-
     public static final String STATISTICS_TYPE = "source";
     private static final String MESSAGE_SUCCESS = "Opened statistics for source window\n"
                     + "WARNING: Diagram shown may not be optimal for certain quantities";
+
+    private static final Logger logger = LogsCenter.getLogger(SourceStatisticsCommand.class);
 
     @Override
     public CommandResult execute(Model model) {

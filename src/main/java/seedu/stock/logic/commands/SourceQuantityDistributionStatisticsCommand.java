@@ -15,14 +15,19 @@ import seedu.stock.model.stock.Stock;
 
 public class SourceQuantityDistributionStatisticsCommand extends StatisticsCommand {
 
-    private static final Logger logger = LogsCenter.getLogger(SourceQuantityDistributionStatisticsCommand.class);
-
     public static final String STATISTICS_TYPE = "source-qd-";
     public static final String MESSAGE_SUCCESS = "Opened statistics for source-qd window\n"
             + "WARNING: Diagram shown may not be optimal for certain quantities";
 
+    private static final Logger logger = LogsCenter.getLogger(SourceQuantityDistributionStatisticsCommand.class);
+
     private final String targetSource;
 
+    /**
+     * Constructor for new SourceQuantityDistributionStatisticsCommand object.
+     *
+     * @param targetSource The target source company to show statistics for.
+     */
     public SourceQuantityDistributionStatisticsCommand(String targetSource) {
         assert(targetSource.length() > 0);
         this.targetSource = targetSource;

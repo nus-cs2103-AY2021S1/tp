@@ -2,14 +2,14 @@ package seedu.stock.logic.parser;
 
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.logic.commands.SourceQuantityDistributionStatisticsCommand;
 import seedu.stock.logic.commands.SourceStatisticsCommand;
 import seedu.stock.logic.commands.StatisticsCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class StatisticsCommandParser implements Parser<StatisticsCommand> {
 
