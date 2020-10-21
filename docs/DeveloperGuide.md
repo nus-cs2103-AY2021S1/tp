@@ -135,16 +135,45 @@ This section describes some noteworthy details on how certain features are imple
 
 ### \[Implemented\] Find by specific fields feature
 The find command is a typical command used in ProductiveNUS. It extends `Command` and overrides the method `execute` in `CommandResult`.
+`FindCommandParser` implements `Parser<FindCommand>` and it parses the user's input to return a `FindCommand` object.
  The constructor of `FindCommand` takes in a Predicate (`NameContainsKeywordsPredicate`, `DeadlineContainsKeywordsPredicate`, `ModuleCodeContainsKeywordsPredicate` or `PriorityContainsKeywordsPredicate`)
+ depending on the prefix or keywords in the user's input. 
+ 
 It implements the following operations:
 * `find n/Assignment Lab` — Finds assignments with names that contain "Assignment" or "Lab". (Case-insensitive)
 * `find mod/CS2100 CS2103T` — Finds assignments with module codes "CS2100" or "CS2103T".
 * `find d/24-10-2020 1200` — Finds assignments with due date on 24-10-2020 (regardless of time) 
 or due time of 1200 (regardless of date).
 * `find priority/HIGH` — Finds assignments with high priority.
+
+The following activity diagram summarizes what happens when a user executes find command:
+
+
 ### \[Implemented\] List by days feature
+The list command is a typical command used in ProductiveNUS. It extends `Command` and overrides the method `execute` in `CommandResult`.
+`ListCommandParser` implements `Parser<ListCommand>` and it parses the user's input to return a `ListCommand` object.
+ The constructor of `ListCommand` takes in an `Index` which is parsed from the zero based index of the user's input.
+
+Other than listing all assignments (if `list` has no arguments), the user is able to list assignments with deadlines 
+within a number of days from the current date (and time), with the number being the user input. This provides a more 
+intuitive approach for users to view assignments that are due within days (soon). They need not key in longer 
+date and time keywords with the find command to view these assignments.
+ 
+It implements the following operations:
+* `list` — Lists all assignments stored in ProductiveNUS.
+* `list 3` — Lists assignments with deadline 3 days (72 hours) from the current date. (and current time)
+* `list 2` — Lists assignments with deadline 2 days (48 hours) from the current date. (and current time)
 
 ### \[Coming up\] Delete multiple assignments feature
+The delete command is a typical command used in ProductiveNUS. It extends `Command` and overrides the method `execute` in `CommandResult`.
+`DeleteCommandParser` implements `Parser<DeleteCommand>` and it parses the user's input (index of the assignment as a positive integer)) to return a `DeleteCommand` object.
+ The constructor of `DeleteCommand` takes in an `Index` which is parsed from the one based index of the user's input.
+ 
+Multiple deleting is supported as this provides convenience to users should they want to delete more than one assignment.
+ 
+It implements the following operations:
+* `delete 1 3` — Deletes the assignment at the first and third index in list.
+* `delete 1` — Deletes the assignment at the first index in list.
 
 ### \[Coming up\] Help feature
 
