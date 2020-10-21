@@ -421,10 +421,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
+   1. If your system does not already have Java JDK 11 or above, head to [OpenJDK](https://openjdk.java.net/projects/jdk) and install Java JDK 11 or higher.
+
    1. Download the jar file and copy into an empty folder
 
    1. Double-click the jar file<br>
       Expected: Shows the GUI with an introductory message. The window size may not be optimum.
+      
+      **NOTE**: If double-clicking the jar file does not work, open up your terminal and navigate to the directory that contains the jar file. Then, enter the following command:<br>
+      `java -jar nustorage.jar`
 
 1. Saving window preferences
 
@@ -433,26 +438,12 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. Shutting Down
+1. Saving and Shutting Down
 
-    1. If you would like to save your records prior to shutting down, remember to enter the `save` command
-
-    1. Close the app by simply clicking on the close button or enter the `exit` command.
-
-### Deleting a record
-
-1. Deleting a record while all inventory/financial records are being shown
-
-   1. Prerequisites: List all inventory/financial records using the `list_inventory` or `list_financial` commands respectively. Multiple records in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First record is deleted from the list. Details of the deleted record shown in the status message.
-
-   1. Test case: `delete 0`<br>
-      Expected: No record is deleted. Error details shown in the status message.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+   1. You may shut down NUStorage by entering the `exit` command or simply clicking the close button on the top-right corner of the application.
+   
+   1. NUStorage automatically saves any changes made to records while the application is in use. Closing and re-opening the application will not result in any data loss.
+   
 
 ### Adding a record
 
@@ -460,11 +451,89 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: None
 
-    1. Test case: `add_inventory i/MacBook n/10`<br>
+    1. Test case: `add_inventory i/MacBook q/10`<br>
         Expected: An inventory item 'MacBook' is added with the quantity of 10. Details of the added record shown in the status message.
 
-    1. Test case: `add_finance op/in amt/1000`
-        Expected: A finance record of an increase by $1000.00 is added. Details of the added record shown in status message.
+    1. Test case: `add_finance amt/1000 at/2020-09-09`
+        Expected: A finance record of an increase by $1000.00 is added, time-stamped at 09 SEP 2020. Details of the added record shown in status message.
+        
+    1. Test case: `add_inventory i/Iphone q/100 c/10`
+        Expected: An inventory item 'Iphone' is added with the quantity of 10, along with a financial record depicting the record with the cost of '10' for each 'Iphone'. Details of the added record shown in status message.
 
-    1. Other incorrect add commands to try: `add`, `add_record`, `add_inventory i/MacBook` <br>
+    1. Other incorrect add commands to try: `add`, `add_record`, `add_inventory i/MacBook` `add_finance amt/1000 at/2020-13-13` <br>
         Expected: No record is added. Error details shown in the status message.
+
+
+### Deleting a record
+
+1. Deleting a record while all inventory/financial records are being shown.
+
+   1. Prerequisites: List all inventory/financial records using the `list_inventory` or `list_finance` commands respectively. Multiple records in the list.
+
+   1. Test case: `delete_finance 1`<br>
+      Expected: First finance record is deleted from the list. Details of the deleted record shown in the status message.
+      
+   1. Test case: `delete_inventory 2`<br>
+      Expected: Second inventory record is deleted from the list. Details for the deleted record shown in the status message.   
+      
+   1. Test case: `delete_inventory 0`<br>
+      Expected: No record is deleted. Error details shown in the status message.
+
+   1. Other incorrect delete commands to try: `delete_finance `, `delete_inventory x`, `delete 1`<br>
+      Expected: No record is added. Error details shown in the status message.
+      
+      
+### Editing a record
+
+1. Editing a record while all inventory/financial records are being shown.
+
+   1. Prerequisites: List all inventory/financial records using the `list_inventory` or `list_finance` commands respectively. Multiple records in the list.
+   
+   1. Test case: `edit_inventory 1 i/Pasta q/100`<br>
+      Expected: The first inventory record's item and quantity are changed to 'Pasta' and '100' respectively. Details for the edited record shown in the status message.
+      
+   1. Test case: `edit_finance 2 amt/3000 at/2021-01-02`<br>
+      Expected: The second finance record's amount and date are changed to '3000' and '02 January 2021' respectively. Details for the edited record shown in the status message.
+   
+   1. Test case: `edit 1 i/Pasta q/100`<br>
+      Expected: No record is edited. Error details shown in the status message.
+      
+   1. Other incorrect edit commands to try:<br>
+      `edit_finance 0 amt/3000 at/2021-01-02`, `edit_inventory x i/Pasta q/100`(where x is larger than the number of inventory records in the list)<br>
+      Expected: No records are edited. Error details shown in the status message.
+   
+### Listing records
+1. Listing all inventory/finance records
+
+   1. Prerequisites: None. In order for the application to display record cards, ensure that you already have some inventory/finance records saved.
+   
+   1. Test case: `list_inventory`<br>
+      Expected: All saved inventory records are listed horizontally below the status bar.
+      
+   1. Test case: `list_finance`<br>
+      Expected: All saved finance records are listed horizontally below the status bar.
+   
+   1. Test case: `list`<br>
+      Expected: No records are listed. Error details shown in the status message.
+   
+   1. Other incorrect list commands to try:<br>
+      `list-finance`, `list inventory`, `list `.<br>
+      Expected: No records are listed. Error details shown in the status message.
+      
+1. Finding certain inventory/finance records based on a certain keyword.
+
+   1. Prerequisites: Have at least 1 or more inventory/finance records saved.
+   
+   1. Test case: `find_inventory phone`<br>
+      Expected: All saved inventory records with the word 'phone' in its description/id are listed horizontally below the status bar. If there are no such records, then there will be no records listed.
+      
+   1. Test case: `find_finance 1000`<br>
+      Expected: All saved finance records with the number '1000' in its amount/id are listed horizontally below the status bar. If there are no such records, then there will be no records listed.
+      
+   1. Test case: `find finance 1000`<br>
+      Expected: No records will be displayed. Error details shown in the status message.
+      
+   1. Other incorrect find commands to try: <br>
+      `find phone`, `find_inventory `, `find-finance 1000`.
+      Expected: No records will be displayed. Error details shown in the status message.
+   
