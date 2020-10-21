@@ -243,9 +243,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Test feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed test mechanism is facilitated by `Flashcard`. Specifically, `Statistics` stored within the flashcard. `Flashcard` implements the following methods.
+The test mechanism is facilitated by `Flashcard`. Specifically, `Statistics` stored within the flashcard. `Flashcard` implements the following methods.
 * `Flashcard#getFlashcardAfterTestSuccess()` — Returns a new `Flashcard` object with `Statistics:timesTested` and `Statistics:timesTestedCorrect` incremented by one. 
 * `Flashcard#getFlashcardAfterTestFailure()` — Returns a new `Flashcard` object with `Statistics:timesTested` incremented by one.
 
@@ -269,6 +269,10 @@ The following sequence diagram shows how the test operation works:
 
 ![TestSequenceDiagram](images/TestSequenceDiagram.png)
 
+The following sequence diagram shows how the input get parsed:
+
+![TestParserSequenceDiagram](images/TestParserSequenceDiagram.png)
+
 The following activity diagram summarizes what happens when a user executes a test command on a specified flashcard:
 
 ![TestActivityDiagram](images/TestActivityDiagram.png)
@@ -284,6 +288,45 @@ The following activity diagram summarizes what happens when a user executes a te
 * **Alternative 2:** `Statistics` is made up of an `Array` of `test`, including information such as `timestamp`
   * Pros: Retrieval of useful statistics will be possible.
   * Cons: Save file will expand very quickly because each `test` record needs to be logged.
+
+_{more aspects and alternatives to be added}_
+
+### Export Feature
+
+#### Implementation
+
+The export mechanism is facilitated by `Storage` and `QuickCache`. `Storage` is used to interact with the users local data, and a new `QuickCache` containing the data to be exported is passed to `Storage` to save to local data. 
+
+Given below is an example usage scenario and how the export mechanism behaves at each step.
+
+Step 1. The user inputs the `find t/cs2100` command to find all `Flashcard` containing the tag `cs2100`. The `Model` updates its current filtered flashcard list.
+
+Step 2. The user inputs the `export out.json` command. The following sequence diagram shows how the input command gets parsed:
+
+![ExportParserSequenceDiagram](images/ExportParserSequenceDiagram.png)
+
+Step 3. The parsed `Export` command is executed. The current filtered flashcard list is exported to `out.json`, located in the `/export/` directory.
+
+The following sequence diagram shows how the export operation works as a whole:
+
+![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes an `Export` command:
+
+![ExportActivityDiagram](images/ExportActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How to output the export file
+
+* **Alternative 1 (current choice):** Predefined directory of `/export/` 
+  * Pros: Easy to implement.
+  * Cons: The user will have to navigate to his `/export/` folder to retrieve output file.
+
+* **Alternative 2:** User specifies which directory to save the export file to.
+  * Pros: More control over where the export file will end up at.
+  * Cons: Difficult to implement.
+  * Cons: Command becomes more complicated as the entire path needs to be typed out.
 
 _{more aspects and alternatives to be added}_
 

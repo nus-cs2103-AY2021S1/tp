@@ -3,8 +3,6 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":QuickCacheParser" as QuickCacheParser LOGIC_COLOR
-participant ":TestCommandParser" as TestCommandParser LOGIC_COLOR
 participant "t:TestCommand" as TestCommand LOGIC_COLOR
 end box
 
@@ -14,38 +12,10 @@ participant "lastShownList:ObservableList<Flashcard>" as ObservableList MODEL_CO
 participant "flashcard:Flashcard" as Flashcard MODEL_COLOR
 participant "updatedFlashcard:Flashcard" as UpdatedFlashcard MODEL_COLOR
 end box
-[-> LogicManager : execute(test 1 ans/Example answer)
+[-> LogicManager : execute("test 1 ans/Example answer")
 activate LogicManager
 
-LogicManager -> QuickCacheParser : parseCommand(test 1 ans/Example Answer)
-activate QuickCacheParser
-
-create TestCommandParser
-QuickCacheParser -> TestCommandParser
-activate TestCommandParser
-
-TestCommandParser -> QuickCacheParser
-deactivate TestCommandParser
-
-QuickCacheParser -> TestCommandParser : parse(1 ans/Example Answer)
-activate TestCommandParser
-
-create TestCommand
-TestCommandParser -> TestCommand
-activate TestCommand
-
-TestCommand --> TestCommandParser : t
-deactivate TestCommand
-
-TestCommandParser -> QuickCacheParser : t
-deactivate TestCommandParser
-
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-TestCommandParser -[hidden]-> QuickCacheParser
-destroy TestCommandParser
-
-QuickCacheParser --> LogicManager : t
-deactivate QuickCacheParser
+ref over LogicManager, TestCommand : Parse Test Command
 
 LogicManager -> TestCommand : execute()
 activate TestCommand
