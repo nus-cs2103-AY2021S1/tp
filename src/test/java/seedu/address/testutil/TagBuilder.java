@@ -17,6 +17,7 @@ public class TagBuilder {
 
     public static final String DEFAULT_TAG_NAME = "testTag";
     public static final String DEFAULT_FILE_ADDRESS = "./src/test/java/seedu/address/testutil/testFile.bat";
+    public static final String DEFAULT_LABEL = "testLabel";
 
     private TagName tagName;
     private FileAddress fileAddress;
@@ -39,11 +40,10 @@ public class TagBuilder {
         tagName = tagToCopy.getTagName();
         fileAddress = tagToCopy.getFileAddress();
         labels = tagToCopy.getLabels();
-
     }
 
     /**
-     * Sets the {@code Name} of the {@code Tag} that we are building.
+     * Sets the {@code TagName} of the {@code Tag} that we are building.
      */
     public TagBuilder withTagName(String tagName) {
         this.tagName = new TagName(tagName);
@@ -67,7 +67,6 @@ public class TagBuilder {
         return this;
     }
 
-    //TODO:NEED TO MODIFY DESCRIPTION
     public Tag build() {
         return new Tag(tagName, fileAddress, labels);
     }

@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LABEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_NAME;
 
 import java.io.File;
@@ -17,13 +18,15 @@ import seedu.address.model.tag.Tag;
 public class TagCommand extends Command {
 
     public static final String COMMAND_WORD = "tag";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag to the HelleFile's address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag to the HelloFile's address book. "
             + "\nParameters: "
             + PREFIX_TAG_NAME + "TAG_NAME "
             + PREFIX_FILE_ADDRESS + "FILE_ADDRESS "
+            + "[" + PREFIX_LABEL + "LABEL" + "]...\n"
             + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_TAG_NAME + "cs2103 "
-            + PREFIX_FILE_ADDRESS + "F:\\OneDrive\\CS2013T ";
+            + PREFIX_FILE_ADDRESS + "F:\\OneDrive\\CS2013T "
+            + PREFIX_LABEL + "CS2103T";
     public static final String TAG_COMMAND_USAGE = COMMAND_WORD + " " + PREFIX_TAG_NAME + "<TAG_NAME>"
             + " " + PREFIX_FILE_ADDRESS + "<FILEPATH>";
     public static final String MESSAGE_SUCCESS = "New tag added: %1$s";

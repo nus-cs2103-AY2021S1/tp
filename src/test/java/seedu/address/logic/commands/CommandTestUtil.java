@@ -23,7 +23,7 @@ import seedu.address.model.tag.TagNameContainsKeywordsPredicate;
  */
 public class CommandTestUtil {
 
-    // TODO All of these needs to be updated!
+    // TODO: All of these needs to be updated!
     public static final String VALID_TAG_NAME_CS2103 = "cs2103";
     public static final String VALID_TAG_NAME_CS2101 = "cs2101";
     public static final String INVALID_TAG_NAME = "&";
@@ -31,6 +31,8 @@ public class CommandTestUtil {
     public static final String VALID_FILE_ADDRESS_CS2101 = "./src/test/java/seedu/address/testutil/cs2101.bat";
     public static final String VALID_MAC_FILE_ADDRESS_CS2101 = "./src/test/java/seedu/address/testutil/cs2101.sh";
     public static final String VALID_MAC_FILE_ADDRESS_TESTFILE = "./src/test/java/seedu/address/testutil/testFile.sh";
+    public static final String VALID_LABEL = "CSlabel";
+    public static final String INVALID_LABEL = "@label";
 
     public static final String OLD_TAG_DESC_CS2101 = " " + PREFIX_OLD_TAG_NAME + VALID_TAG_NAME_CS2101;
     public static final String OLD_TAG_DESC_CS2103 = " " + PREFIX_OLD_TAG_NAME + VALID_TAG_NAME_CS2103;
