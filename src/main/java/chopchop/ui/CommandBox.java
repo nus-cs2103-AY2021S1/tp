@@ -1,5 +1,5 @@
 package chopchop.ui;
-;
+
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.parser.exceptions.ParseException;
 import javafx.collections.ObservableList;
