@@ -478,8 +478,9 @@ _{Explain here how the data archiving feature will be implemented}_
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+<!-- need to be updated according to our final product -->
 
-| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
+| Priority | As a …​                                 | I want to …​                | So that I can …​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | project team leader                        | see tasks assigned to members  | better know the progress of my team                                    |
@@ -488,8 +489,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | project team leader                | view a dashboard of my project   | see at a glance what needs to be done for a project               |
 | `* * *`      | forgetful user | add in members' information           | keep track of my members' contact information                                                 |
 | `* * *`    | fast typing user               | use a Command line type Interface   | have higher efficiency when managing my team's workload               |
-
-*(More to be added)*
 
 ### Use cases
 
