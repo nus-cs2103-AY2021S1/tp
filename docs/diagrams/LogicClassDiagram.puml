@@ -28,7 +28,8 @@ Class LogicManager
 }
 
 package Model{
-Class HiddenModel #FFFFFF
+package ActiveAccount{
+}
 }
 
 Class HiddenOutside #FFFFFF
@@ -51,8 +52,12 @@ ArgumentTokenizer .down.> Prefix
 XYZCommand -up-|> Command
 LogicManager .left.> Command : executes >
 
-LogicManager --> Model
-Command .right.> Model
+LogicManager -left-> Model
+LogicManager -left-> ActiveAccount
+Command .left.> Model
+Command .left.> ActiveAccount
+
+
 note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 
 Logic ..> CommandResult
