@@ -8,6 +8,7 @@ import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
 import seedu.stock.model.ModelManager;
 import seedu.stock.model.UserPrefs;
@@ -19,7 +20,7 @@ public class PrintCommandTest {
     private Model model = new ModelManager(getTypicalStockBook(), new UserPrefs(), getTypicalSerialNumberSetsBook());
 
     @Test
-    public void execute_stockAcceptedByModel_addSuccessful() {
+    public void execute_stockAcceptedByModel_addSuccessful() throws CommandException {
         CommandResult commandResult = new PrintCommand().execute(model);
 
         assertEquals(PrintCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
