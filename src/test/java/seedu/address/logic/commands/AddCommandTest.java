@@ -160,6 +160,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void unassignInstructor(Person instructor, ModuleCode moduleCode) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Module> getFilteredModuleList() {
             throw new AssertionError("This method should not be called.");
         }
