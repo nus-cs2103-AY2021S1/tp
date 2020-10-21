@@ -80,6 +80,53 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+## Centralised Add (Experienced users): `add`
+
+##### Add a staff to application: `add s-`
+
+Format: `add s- n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [c/COMMENT] [l/LEAVE]`
+
+##### Add a applicant to application: `add a-`
+
+Format: `add a- n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [c/COMMENT] [id/INTERVIEW_DATE]`
+
+##### Add a comment to staff in application: `add <index> s- c-`
+
+Format: `add <index_of_staff> s- c- t:<TITLE> d:<DATE IN DD/MM/YYYY> desc:<DESCRIPTION>`
+
+##### Add a comment to applicant in application: `add <index> a- c-`
+
+Format: `add <index_of_applicant> a- c- t:<TITLE> d:<DATE IN DD/MM/YYYY> desc:<DESCRIPTION>`
+
+##### Add leave to staff in application: `add <index> l/ `
+
+Format: `add <index_of_staff> l/ d:<DATE IN DD/MM/YYYY>`
+
+## Centralised Delete (Experienced Users): `delete`
+
+##### Delete a staff from application: `delete <index_of_staff> s-`
+
+Format: `delete <index_of_staff> s-`
+
+##### Delete a applicant from application: `delete <index_of_applicant> a-`
+
+Format: `delete <index_of_applicant> a-`
+
+##### Delete a comment from staff in application: `delete <index> s- c-`
+
+Format: `delete <index_of_staff> s- c- t:<TITLE>`
+
+##### Delete a comment from applicant in application: `delete <index> a- c-`
+
+Format: `delete <index_of_applicant> a- c- t:<TITLE>`
+
+##### Delete leave from staff in application: `delete <index> l/ `
+
+Format: `delete <index_of_staff> l/ d:<DATE IN DD/MM/YYYY>`
+
+
+
+## Adding a staff: `addstaff`
 <a name="adding-a-staff">
 <H3> Adding a staff: <code>addstaff</code></H3> 
 </a> 

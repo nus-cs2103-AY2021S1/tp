@@ -3,6 +3,7 @@ package com.eva.logic.commands;
 import static com.eva.commons.util.CollectionUtil.requireAllNonNull;
 import static com.eva.commons.util.DateUtil.dateToString;
 import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_DATE;
+import static com.eva.model.Model.PREDICATE_SHOW_ALL_STAFFS;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
@@ -62,6 +63,7 @@ public class DeleteLeaveCommand extends Command {
 
         if (removedLeave.isPresent()) {
             model.deleteStaffLeave(target, removedLeave.get());
+            model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
             return new CommandResult(String.format(MESSAGE_SUCCESS, removedLeave.get(), target.getName()));
         } else {
             throw new CommandException(String.format(MESSAGE_NO_RECORD, target.getName(), dateToString(date)));

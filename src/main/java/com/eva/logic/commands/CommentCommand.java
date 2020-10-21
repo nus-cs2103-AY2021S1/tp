@@ -20,6 +20,8 @@ import com.eva.model.person.Email;
 import com.eva.model.person.Name;
 import com.eva.model.person.Person;
 import com.eva.model.person.Phone;
+import com.eva.model.person.applicant.ApplicationStatus;
+import com.eva.model.person.applicant.InterviewDate;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.tag.Tag;
 
@@ -95,6 +97,8 @@ public class CommentCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private ApplicationStatus applicationStatus;
+        private InterviewDate interviewDate;
         private Set<Tag> tags;
         private Set<Comment> comments;
         private Set<Leave> leaves;
@@ -112,6 +116,8 @@ public class CommentCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setApplicationStatus(toCopy.applicationStatus);
+            setInterviewDate(toCopy.interviewDate);
             setComments(toCopy.comments);
             setLeaves(toCopy.leaves);
         }
@@ -153,6 +159,22 @@ public class CommentCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public Optional<ApplicationStatus> getApplicationStatus() {
+            return Optional.ofNullable(applicationStatus);
+        }
+
+        public void setApplicationStatus(ApplicationStatus applicationStatus) {
+            this.applicationStatus = applicationStatus;
+        }
+
+        public Optional<InterviewDate> getInterviewDate() {
+            return Optional.ofNullable(interviewDate);
+        }
+
+        public void setInterviewDate(InterviewDate interviewDate) {
+            this.interviewDate = interviewDate;
         }
 
         /**
