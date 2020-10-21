@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":InventoryinatorParser" as InventoryinatorParser LOGIC_COLOR
+participant ":InventoryParser" as InventoryParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,17 +16,17 @@ end box
 [-> LogicManager : execute("del bob's toenail -r 1")
 activate LogicManager
 
-LogicManager -> InventoryinatorParser : parseCommand("del bob's toenail -r 1")
-activate InventoryinatorParser
+LogicManager -> InventoryParser : parseCommand("del bob's toenail -r 1")
+activate InventoryParser
 
 create DeleteCommandParser
-InventoryinatorParser -> DeleteCommandParser
+InventoryParser -> DeleteCommandParser
 activate DeleteCommandParser
 
-DeleteCommandParser --> InventoryinatorParser
+DeleteCommandParser --> InventoryParser
 deactivate DeleteCommandParser
 
-InventoryinatorParser -> DeleteCommandParser : parse("bob's toenail -r 1")
+InventoryParser -> DeleteCommandParser : parse("bob's toenail -r 1")
 activate DeleteCommandParser
 
 create DeleteCommand
@@ -36,14 +36,14 @@ activate DeleteCommand
 DeleteCommand --> DeleteCommandParser : d
 deactivate DeleteCommand
 
-DeleteCommandParser --> InventoryinatorParser : d
+DeleteCommandParser --> InventoryParser : d
 deactivate DeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> InventoryinatorParser
+DeleteCommandParser -[hidden]-> InventoryParser
 destroy DeleteCommandParser
 
-InventoryinatorParser --> LogicManager : d
-deactivate InventoryinatorParser
+InventoryParser --> LogicManager : d
+deactivate InventoryParser
 
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand

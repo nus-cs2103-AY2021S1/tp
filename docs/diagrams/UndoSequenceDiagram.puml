@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":InventoryinatorParser" as InventoryinatorParser LOGIC_COLOR
+participant ":InventoryParser" as InventoryParser LOGIC_COLOR
 participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
 end box
 
@@ -14,18 +14,18 @@ end box
 [-> LogicManager : execute(undo)
 activate LogicManager
 
-LogicManager -> InventoryinatorParser : parseCommand(undo)
-activate InventoryinatorParser
+LogicManager -> InventoryParser : parseCommand(undo)
+activate InventoryParser
 
 create UndoCommand
-InventoryinatorParser -> UndoCommand
+InventoryParser -> UndoCommand
 activate UndoCommand
 
-UndoCommand --> InventoryinatorParser
+UndoCommand --> InventoryParser
 deactivate UndoCommand
 
-InventoryinatorParser --> LogicManager : u
-deactivate InventoryinatorParser
+InventoryParser --> LogicManager : u
+deactivate InventoryParser
 
 LogicManager -> UndoCommand : execute()
 activate UndoCommand
