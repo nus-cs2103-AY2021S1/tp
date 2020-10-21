@@ -14,7 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.task.Task;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the PlaNus data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -30,7 +30,7 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(planus, userPrefs);
 
-        logger.fine("Initializing with address book: " + planus + " and user prefs " + userPrefs);
+        logger.fine("Initializing with PlaNus: " + planus + " and user prefs " + userPrefs);
 
         this.planus = new Planus(planus);
         this.userPrefs = new UserPrefs(userPrefs);

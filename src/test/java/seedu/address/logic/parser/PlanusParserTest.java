@@ -20,6 +20,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DoneCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -60,6 +61,14 @@ public class PlanusParserTest {
     }
 
     @Test
+    public void parseCommand_done() throws Exception {
+        DoneCommand command = (DoneCommand) parser.parseCommand(
+                DoneCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
+        Index[] indexes = {INDEX_FIRST_TASK};
+        assertEquals(new DoneCommand(indexes), command);
+    }
+
+    @Test
     public void parseCommand_edit() throws Exception {
         Task task = new TaskBuilder().build();
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(task).build();
@@ -76,14 +85,14 @@ public class PlanusParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("title:foo", "desc:bar", "type:baz");
+        List<String> keywords = Arrays.asList("title:foo", "desc:bar", "type:todo");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
 
         TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_TITLE, "foo");
         predicate.setKeyword(PREFIX_DESCRIPTION, "bar");
-        predicate.setKeyword(PREFIX_TYPE, "baz");
+        predicate.setKeyword(PREFIX_TYPE, "todo");
         assertEquals(new FindCommand(predicate), command);
     }
 

@@ -12,8 +12,11 @@ public class Description {
 
     public static final String MESSAGE_CONSTRAINTS = "Descriptions should only contain alphanumerical values"
             + "as well as comma, period, question mark and exclamation mark, "
-            + "should also not be blank or start with space\n"
+            + "should also not be blank\n"
             + "example => desc:Tell Zijian to review my PR!!! Repeat, this is urgent!!! You get it?";
+
+    public static final String SEARCH_CONSTRAINTS = "Search phrase for desc should only contain alphanumerical values"
+            + "as well as comma, period, question mark and exclamation mark, and should also not be blank";
 
     /*
      * The first character of the description must not be a whitespace,

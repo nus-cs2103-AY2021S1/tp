@@ -3,21 +3,28 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Represents a Task's date and time in PlaNus task list.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
 public class DateTime {
 
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     public static final String MESSAGE_CONSTRAINTS =
             "DateTime should be in the format of dd-MM-yyyy HH:mm.";
+    public static final String SEARCH_CONSTRAINTS =
+            "Search phrase for date should be in the format of dd-MM-yyyy or HH:mm or dd-MM-yyyy HH:mm.";
     public static final String VALIDATION_REGEX =
-            "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4} (2[0-3]|[01]?[0-9]):([0-5]?[0-9])$";
+            "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4} (2[0-3]|[01][0-9]):([0-5][0-9])$";
+    private static final LocalDateTime DEFAULT_DATETIME = LocalDateTime.parse("01-01-1000 00:00", FORMATTER);
 
-    private static final String DEFAULT_DATE_TIME = "";
+    public final LocalDateTime value;
+    public final boolean isDefault;
 
-    public final String value;
 
 
     /**
@@ -28,7 +35,8 @@ public class DateTime {
     public DateTime(String dateTime) {
         requireNonNull(dateTime);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
-        value = dateTime;
+        value = LocalDateTime.parse(dateTime, FORMATTER);
+        isDefault = false;
     }
 
     /**
@@ -37,14 +45,50 @@ public class DateTime {
      * Caveat: Only called by defaultDateTime method.
      */
     private DateTime() {
-        value = DEFAULT_DATE_TIME;
+        value = DEFAULT_DATETIME; // a dummy value
+        isDefault = true;
     }
 
     /**
      * Returns true if a given string is a valid dateTime number.
+     *
+     * @param test the string value to be put to test.
+     * @return true if the test string is valid and false otherwise
      */
     public static boolean isValidDateTime(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is a valid search phrase for date time.
+     *
+     * @param test the string value to be put to test.
+     * @return true if the test string is valid and false otherwise
+     */
+    public static boolean isValidSearchPhrase(String test) {
+        return isValidDateTime(test) || isValidDate(test) || isValidTime(test);
+    }
+
+    /**
+     * Returns true if a given string is a valid date number.
+     *
+     * @param test the string value to be put to test.
+     * @return true if the test string is valid and false otherwise
+     */
+    public static boolean isValidDate(String test) {
+        String validationRegex = "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4}$";
+        return test.matches(validationRegex);
+    }
+
+    /**
+     * Returns true if a given string is a valid time number.
+     *
+     * @param test the string value to be put to test.
+     * @return true if the test string is valid and false otherwise
+     */
+    public static boolean isValidTime(String test) {
+        String validationRegex = "^(2[0-3]|[01][0-9]):([0-5][0-9])$";
+        return test.matches(validationRegex);
     }
 
     /**
@@ -57,14 +101,19 @@ public class DateTime {
 
     @Override
     public String toString() {
-        return value;
+        if (isDefault) {
+            assert !value.equals(DEFAULT_DATETIME) : "default datetime using real date time value.";
+            return "";
+        }
+        return value.format(FORMATTER);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DateTime // instanceof handles nulls
-                && value.equals(((DateTime) other).value)); // state check
+                && (value.equals(((DateTime) other).value)
+                    || isDefault && ((DateTime) other).isDefault)); // state check
     }
 
     @Override

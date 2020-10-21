@@ -73,6 +73,8 @@ public class JsonPlanusStorage implements PlanusStorage {
         requireNonNull(planus);
         requireNonNull(filePath);
 
+        logger.info("saving data to: " + filePath + ", with data: " + planus);
+
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializablePlanus(planus), filePath);
     }

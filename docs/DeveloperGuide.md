@@ -398,9 +398,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
+- 1a. The search phrase is empty or consists of only white spaces.
+
+  - 1a1. PlaNus shows an error message.
+
+    Use case ends.
+
+- 1b. The search phrase is in invalid format or includes invalid characters.
+
+    - 1b1. PlaNus shows an error message.
+
+    Use case ends.
+
 - 2a. The list is empty.
 
-  Use case ends.
+  ​Use case ends.
 
 <br>
 
