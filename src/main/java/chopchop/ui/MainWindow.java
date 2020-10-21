@@ -10,10 +10,12 @@ import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.parser.exceptions.ParseException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -33,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private HelpWindow helpWindow;
     private CommandBox commandBox;
+    private CommandOutput commandOutput;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -110,9 +113,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        this.commandBox = commandBox;
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        CommandOutput commandOutput = new CommandOutput();
+        this.commandOutput = commandOutput;
+        commandBoxPlaceholder.getChildren().add(commandOutput.getRoot());
 
         PinBox pinBox = new PinBox();
         pinBoxPlaceholder.getChildren().add(pinBox.getRoot());
@@ -120,6 +123,11 @@ public class MainWindow extends UiPart<Stage> {
         DisplayController displayController = new DisplayController(logic);
         DisplayNavigator.setDisplayController(displayController);
         displayPlaceholder.getChildren().setAll(displayController.getRoot());
+
+        CommandBox commandBox = new CommandBox(this::executeCommand);
+        this.commandBox = commandBox;
+        Region commandBoxRoot = commandBox.getRoot();
+        displayPlaceholder.setAlignment(commandBoxRoot, Pos.TOP_LEFT);
     }
 
     /**
@@ -165,13 +173,13 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Executes the command and returns the result.
      *
-     * @see seedu.address.logic.Logic#execute(String)
+     * @see chopchop.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            commandBox.setFeedbackToUser(commandResult.getFeedbackToUser());
+            this.commandOutput.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -184,7 +192,7 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            commandBox.setFeedbackToUser(e.getMessage());
+            commandOutput.setFeedbackToUser(e.getMessage());
             throw e;
         }
     }
