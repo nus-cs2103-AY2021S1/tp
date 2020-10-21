@@ -30,8 +30,9 @@ public class UnbookmarkCommand extends Command {
 
 
     public static final String MESSAGE_UNBOOKMARK_STOCK_SUCCESS = "Unbookmarked Stock: %1$s";
-    public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND = "Stock with given serial number does not exists";
-    public static final String MESSAGE_NOT_BOOKMARKED = "Stock with given serial number is not bookmarked before!";
+    public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND = "Stock with given serial number does not exists: %1$s";
+    public static final String MESSAGE_NOT_BOOKMARKED = "Stock with given serial number" +
+            " is not bookmarked before:%1$s";
 
     private final Set<SerialNumber> targetSerialNumbers;
 
@@ -55,9 +56,28 @@ public class UnbookmarkCommand extends Command {
         List<String> serials = serialNumbers.stream().map((serial) -> serial.toString().trim())
                 .collect(Collectors.toCollection(ArrayList::new));
         List<Stock> stocksToUnbookmark = new ArrayList<>();
+        List<String> stocksNotFound = new ArrayList<>();
+        List<Stock> notUpdatedStocks = new ArrayList<>();
         List<Stock> updatedStocks = new ArrayList<>();
 
-        // Find stocks to be bookmarked
+        // Find serials that are not found
+        for (String currentSerialNumber : serials) {
+            boolean noMatches = true;
+            for (Stock currentStock : lastShownStocks) {
+                String currentStockSerialNumber = currentStock.getSerialNumber().getSerialNumberAsString();
+                if (currentSerialNumber.equals(currentStockSerialNumber)) {
+                    noMatches = false;
+                }
+            }
+            if (noMatches) {
+                stocksNotFound.add(currentSerialNumber);
+            }
+        }
+
+        System.out.println(serialNumbers.size());
+        System.out.println(stocksNotFound.size());
+
+        // Find stocks to unbookmark
         for (Stock currentStock : lastShownStocks) {
             String currentStockSerialNumber = currentStock.getSerialNumber().getSerialNumberAsString();
             boolean anyMatches = false;
@@ -70,28 +90,47 @@ public class UnbookmarkCommand extends Command {
 
             if (anyMatches) {
                 stocksToUnbookmark.add(currentStock);
-            }
-        }
 
-        // Some serial numbers do not exist
-        if (serials.size() != stocksToUnbookmark.size()) {
-            throw new CommandException(MESSAGE_SERIAL_NUMBER_NOT_FOUND);
+            }
         }
 
         // Bookmark stocks
         for (Stock stockToUnbookmark: stocksToUnbookmark) {
-            if (!stockToUnbookmark.getBookmarked()) {
-                throw new CommandException(MESSAGE_NOT_BOOKMARKED);
-            }
-            stockToUnbookmark.setUnbookmarked();
 
-            model.setStock(stockToUnbookmark, stockToUnbookmark);
-            updatedStocks.add(stockToUnbookmark);
+            if (!stockToUnbookmark.getBookmarked()) {
+                notUpdatedStocks.add(stockToUnbookmark);
+            } else {
+                stockToUnbookmark.setUnbookmarked();
+                model.setStock(stockToUnbookmark, stockToUnbookmark);
+                updatedStocks.add(stockToUnbookmark);
+            }
+
         }
 
         model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_UNBOOKMARK_STOCK_SUCCESS, stocksAsString(updatedStocks)));
+        if (stocksNotFound.size() == serialNumbers.size()) {
+            return new CommandResult(String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND,arrayAsString(stocksNotFound)));
+        } else if (notUpdatedStocks.size() == serialNumbers.size()) {
+            return new CommandResult(String.format(MESSAGE_NOT_BOOKMARKED, stocksAsString(notUpdatedStocks)));
+        } else if (updatedStocks.size() == serialNumbers.size()) {
+            return new CommandResult(String.format(MESSAGE_UNBOOKMARK_STOCK_SUCCESS, stocksAsString(updatedStocks)));
+        } else if (notUpdatedStocks.size() == 0 && stocksNotFound.size() > 0) {
+            String result = String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND,arrayAsString(stocksNotFound))
+                    + "\n" + String.format(MESSAGE_UNBOOKMARK_STOCK_SUCCESS, stocksAsString(updatedStocks));
+            return new CommandResult(result);
+        } else if (stocksNotFound.size() == 0 && notUpdatedStocks.size() > 0) {
+            String result = String.format(MESSAGE_NOT_BOOKMARKED,stocksAsString(notUpdatedStocks))
+                    + "\n" + String.format(MESSAGE_UNBOOKMARK_STOCK_SUCCESS, stocksAsString(updatedStocks));
+            return new CommandResult(result);
+        }
+        else {
+            String result = String.format(MESSAGE_NOT_BOOKMARKED, stocksAsString(notUpdatedStocks))
+                    + "\n" + String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND,arrayAsString(stocksNotFound))
+                    + "\n" + String.format(MESSAGE_UNBOOKMARK_STOCK_SUCCESS, stocksAsString(updatedStocks));
+            return new CommandResult(result);
+        }
+
     }
 
     /**
@@ -115,10 +154,25 @@ public class UnbookmarkCommand extends Command {
      * @param serialNumberList The list of serial numbers to convert to String.
      * @return The String depicting each serial number in the list.
      */
-    public String serialNumberListAsString(List<SerialNumber> serialNumberList) {
+    public String serialNumbersAsString(List<SerialNumber> serialNumberList) {
         String serialNumbersAsString = "";
         for (int i = 0; i < serialNumberList.size(); i++) {
             serialNumbersAsString += "\n" + serialNumberList.get(i).toString();
+        }
+        return serialNumbersAsString;
+    }
+
+    /**
+     * Displays the list of strings in a clearer view, with each subsequent string moved
+     * to the next line.
+     *
+     * @param stringList The list of serial numbers to convert to String.
+     * @return The String depicting each serial number in the list.
+     */
+    public String arrayAsString(List<String> stringList) {
+        String serialNumbersAsString = "";
+        for (int i = 0; i < stringList.size(); i++) {
+            serialNumbersAsString += "\n" + stringList.get(i);
         }
         return serialNumbersAsString;
     }

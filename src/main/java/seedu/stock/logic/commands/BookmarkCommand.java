@@ -30,7 +30,10 @@ public class BookmarkCommand extends Command {
 
 
     public static final String MESSAGE_BOOKMARK_STOCK_SUCCESS = "Bookmarked Stock: %1$s";
-    public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND = "Stock with given serial number does not exists";
+    public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND = "Stock with given serial number does not exists:"
+            + ": %1$s";
+    public static final String MESSAGE_ALREADY_BOOKMARKED = "Stock with given serial number is already bookmarked"
+            + ": %1$s";
 
     private final Set<SerialNumber> targetSerialNumbers;
 
@@ -45,8 +48,7 @@ public class BookmarkCommand extends Command {
      * @return The result of successful execution.
      * @throws CommandException If there are any errors.
      */
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
+  public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Stock> lastShownStocks = model.getFilteredStockList();
 
@@ -54,9 +56,25 @@ public class BookmarkCommand extends Command {
         List<String> serials = serialNumbers.stream().map((serial) -> serial.toString().trim())
                 .collect(Collectors.toCollection(ArrayList::new));
         List<Stock> stocksToBookmark = new ArrayList<>();
+        List<String> stocksNotFound = new ArrayList<>();
+        List<Stock> notUpdatedStocks = new ArrayList<>();
         List<Stock> updatedStocks = new ArrayList<>();
 
-        // Find stocks to be bookmarked
+        // Find serials that are not found
+        for (String currentSerialNumber : serials) {
+            boolean noMatches = true;
+            for (Stock currentStock : lastShownStocks) {
+                String currentStockSerialNumber = currentStock.getSerialNumber().getSerialNumberAsString();
+                if (currentSerialNumber.equals(currentStockSerialNumber)) {
+                    noMatches = false;
+                }
+            }
+            if (noMatches) {
+                stocksNotFound.add(currentSerialNumber);
+            }
+        }
+
+        // Find stocks to bookmark
         for (Stock currentStock : lastShownStocks) {
             String currentStockSerialNumber = currentStock.getSerialNumber().getSerialNumberAsString();
             boolean anyMatches = false;
@@ -66,28 +84,47 @@ public class BookmarkCommand extends Command {
                     anyMatches = true;
                 }
             }
-
             if (anyMatches) {
                 stocksToBookmark.add(currentStock);
             }
         }
 
-        // Some serial numbers do not exist
-        if (serials.size() != stocksToBookmark.size()) {
-            throw new CommandException(MESSAGE_SERIAL_NUMBER_NOT_FOUND);
-        }
-
         // Bookmark stocks
         for (Stock stockToBookmark: stocksToBookmark) {
-            stockToBookmark.setBookmarked();
+            if (stockToBookmark.getBookmarked()) {
+                notUpdatedStocks.add(stockToBookmark);
+            } else {
+                stockToBookmark.setBookmarked();
+                model.setStock(stockToBookmark, stockToBookmark);
+                updatedStocks.add(stockToBookmark);
+            }
 
-            model.setStock(stockToBookmark, stockToBookmark);
-            updatedStocks.add(stockToBookmark);
         }
 
         model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_BOOKMARK_STOCK_SUCCESS, stocksAsString(updatedStocks)));
+        if (stocksNotFound.size() == serialNumbers.size()) {
+            return new CommandResult(String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND,arrayAsString(stocksNotFound)));
+        } else if (notUpdatedStocks.size() == serialNumbers.size()) {
+            return new CommandResult(String.format(MESSAGE_ALREADY_BOOKMARKED, stocksAsString(notUpdatedStocks)));
+        } else if (updatedStocks.size() == serialNumbers.size()) {
+            return new CommandResult(String.format(MESSAGE_BOOKMARK_STOCK_SUCCESS, stocksAsString(updatedStocks)));
+        } else if (notUpdatedStocks.size() == 0 && stocksNotFound.size() > 0) {
+            String result = String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND,arrayAsString(stocksNotFound))
+                    + "\n" + String.format(MESSAGE_BOOKMARK_STOCK_SUCCESS, stocksAsString(updatedStocks));
+            return new CommandResult(result);
+        } else if (stocksNotFound.size() == 0 && notUpdatedStocks.size() > 0) {
+            String result = String.format(MESSAGE_ALREADY_BOOKMARKED,stocksAsString(notUpdatedStocks))
+                    + "\n" + String.format(MESSAGE_BOOKMARK_STOCK_SUCCESS, stocksAsString(updatedStocks));
+            return new CommandResult(result);
+        }
+        else {
+            String result = String.format(MESSAGE_ALREADY_BOOKMARKED, stocksAsString(notUpdatedStocks))
+                    + "\n" + String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND,arrayAsString(stocksNotFound))
+                    + "\n" + String.format(MESSAGE_BOOKMARK_STOCK_SUCCESS, stocksAsString(updatedStocks));
+            return new CommandResult(result);
+        }
+
     }
 
     /**
@@ -115,6 +152,21 @@ public class BookmarkCommand extends Command {
         String serialNumbersAsString = "";
         for (int i = 0; i < serialNumberList.size(); i++) {
             serialNumbersAsString += "\n" + serialNumberList.get(i).toString();
+        }
+        return serialNumbersAsString;
+    }
+
+    /**
+     * Displays the list of strings in a clearer view, with each subsequent string moved
+     * to the next line.
+     *
+     * @param stringList The list of serial numbers to convert to String.
+     * @return The String depicting each serial number in the list.
+     */
+    public String arrayAsString(List<String> stringList) {
+        String serialNumbersAsString = "";
+        for (int i = 0; i < stringList.size(); i++) {
+            serialNumbersAsString += "\n" + stringList.get(i);
         }
         return serialNumbersAsString;
     }
