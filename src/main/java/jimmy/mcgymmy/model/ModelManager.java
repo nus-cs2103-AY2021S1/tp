@@ -98,11 +98,13 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteFood(Index index) {
+        logger.fine("Delete food at index: " + index.getOneBased());
         mcGymmy.removeFood(index);
     }
 
     @Override
     public void addFood(Food food) {
+        logger.fine("Add food:\n" + food.toString());
         mcGymmy.addFood(food);
         updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
     }
@@ -110,7 +112,7 @@ public class ModelManager implements Model {
     @Override
     public void setFood(Index index, Food editedFood) {
         CollectionUtil.requireAllNonNull(index, editedFood);
-
+        logger.fine("Change food at index " + index.getOneBased() + "to food:\n" + editedFood.toString())
         mcGymmy.setFood(index, editedFood);
     }
 
@@ -128,6 +130,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredFoodList(Predicate<Food> predicate) {
         requireNonNull(predicate);
+        logger.fine("Update predicate for filtered food list");
         filteredFoodItems.setPredicate(predicate);
     }
 
