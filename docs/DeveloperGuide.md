@@ -313,19 +313,17 @@ Substitutability is used in Command and Parser:
 
 Given below is an example usage scenario and how the mechanism behaves at each step.
 
+The following sequence diagram shows how add ingredients operation works when `execute("addF i/tomato")` API call:
+
 ![AddIngredientSequence](images/AddIngredientSequence.png)
 
-Step 1:
-User inputs the add ingredient command to add ingredients into the fridge.
+1. User inputs the add ingredient command to add ingredients into the fridge.
 
-Step 2:
-After successful parsing of user input, the `AddIngredientCommand#execute(Model model)` method is called.
+2. After successful parsing of user input, the `AddIngredientCommand#execute(Model model)` method is called.
 
-Step 3:
-The ingredients that the user has input will be saved into Wishful Shrinking's fridge of ingredients.
+3. The ingredients that the user has input will be saved into Wishful Shrinking's fridge of ingredients.
 
-Step 4:
-After the successful adding of the ingredient, a `CommandResult` object is instantiated and returned to `LogicManager`.
+4. After the successful adding of the ingredient, a `CommandResult` object is instantiated and returned to `LogicManager`.
 
 #### Design Considerations
 ##### Aspect 1: Concern while adding a new feature
@@ -361,9 +359,6 @@ The following sequence diagram shows how list ingredients operation works when `
 ##### Aspect 1: Concern while adding a new feature
 * Workflow must be consistent with other listing commands e.g. fridge and calories.
 
-
-
-
 ### Search Recipe feature
 
 #### Implementation
@@ -375,19 +370,17 @@ Substitutability is used in Command and Parser:
 
 Given below is an example usage scenario and how the mechanism behaves at each step.
 
+The following sequence diagram shows how search recipe operation works when `execute("searchR n/burger")` API call:
+
 ![SearchRecipeSequence](images/SearchRecipeSequence.png)
 
-Step 1:
-User inputs the search recipe command to search for the recipes they want.
+1. User inputs the search recipe command to search for the recipes they want.
 
-Step 2:
-After successful parsing of user input, the `SearchRecipeCommand#execute(Model model)` method is called.
+2. After successful parsing of user input, the `SearchRecipeCommand#execute(Model model)` method is called.
 
-Step 3:
-The list of recipes that fit the user's search will be returned to the user.
+3. The list of recipes that fit the user's search will be returned to the user.
 
-Step 4:
-After the successful searching of the recipes, a `CommandResult` object is instantiated and returned to `LogicManager`.
+4. After the successful searching of the recipes, a `CommandResult` object is instantiated and returned to `LogicManager`.
 
 #### Design Considerations
 ##### Aspect 1: Concern while adding a new feature
@@ -398,7 +391,7 @@ After the successful searching of the recipes, a `CommandResult` object is insta
   * Pros: Easy to implement.
   * Cons: User's cannot filter the recipes by two or three fields at once
 
-* **Alternative 2:** User can only search for recipes by all fields at once
+* **Alternative 2:** User can search for recipes by all fields at once
   * Pros: Harder to implement.
   * Cons: User's can filter the recipes by two or three fields at once
 
@@ -441,19 +434,17 @@ Substitutability is used in Command:
 
 Given below is an example usage scenario and how the mechanism behaves at each step.
 
+The following sequence diagram shows how recommend operation works when `execute("recommend")` API call:
+
 ![RecommendSequence](images/RecommendSequence.png)
 
-Step 1:
-User inputs the recommend command to get the recommended recipes.
+1. User inputs the recommend command to get the recommended recipes.
 
-Step 2:
-After successful parsing of user input, the `RecommendCommand#execute(Model model)` method is called.
+2. After successful parsing of user input, the `RecommendCommand#execute(Model model)` method is called.
 
-Step 3:
-The list of recommended recipes will be returned to the user.
+3. The list of recommended recipes will be returned to the user.
 
-Step 4:
-After the successful recommending of recipes, a `CommandResult` object is instantiated and returned to `LogicManager`.
+4. After the successful recommending of recipes, a `CommandResult` object is instantiated and returned to `LogicManager`.
 
 #### Design Considerations
 ##### Aspect : How do we quickly and accurately compare ingredients in each recipe and the user's fridge
