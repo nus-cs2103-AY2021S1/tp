@@ -9,41 +9,36 @@ public class Difficulty {
     public static final String MESSAGE_CONSTRAINTS = "Difficulty names should only be "
             + "low, medium, or high. "
             + "No spaces allowed. Cannot be empty.";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public final String difficulty;
+    public final String value;
 
     /**
      * Constructs a {@code Difficulty}.
      *
-     * @param difficulty A valid difficulty.
+     * @param value A valid difficulty.
      */
-    public Difficulty(String difficulty) {
-        requireNonNull(difficulty);
-        AppUtil.checkArgument(isValidDifficultyName(difficulty), MESSAGE_CONSTRAINTS);
-        this.difficulty = difficulty.toUpperCase();
+    public Difficulty(String value) {
+        requireNonNull(value);
+        AppUtil.checkArgument(isValidDifficultyName(value), MESSAGE_CONSTRAINTS);
+        this.value = value.toUpperCase();
     }
 
     /**
      * Constructs a {@code Difficulty}.
       */
     public Difficulty() {
-        this.difficulty = "UNSPECIFIED";
+        this.value = "UNSPECIFIED";
     }
 
     /**
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidDifficultyName(String test) {
-
-        if (test.matches(VALIDATION_REGEX)) {
-            String uppercaseTest = test.toUpperCase();
-            for (Difficulties difficultyLevel : Difficulties.values()) {
-                if (difficultyLevel.name().equals(uppercaseTest)) {
-                    return true;
-                }
+        String uppercaseTest = test.toUpperCase();
+        for (Difficulties difficultyLevel : Difficulties.values()) {
+            if (difficultyLevel.name().equals(uppercaseTest)) {
+                return true;
             }
-            return false;
         }
         return false;
     }
@@ -52,22 +47,22 @@ public class Difficulty {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Difficulty // instanceof handles nulls
-                && difficulty.equals(((Difficulty) other).difficulty)); // state check
+                && value.equals(((Difficulty) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return difficulty.hashCode();
+        return value.hashCode();
     }
 
     /**
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + difficulty + ']';
+        return '[' + value + ']';
     }
 
     public String getName() {
-        return difficulty;
+        return value;
     }
 }
