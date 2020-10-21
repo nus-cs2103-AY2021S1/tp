@@ -118,7 +118,6 @@ public interface Model {
      */
     boolean hasModuleCode(ModuleCode moduleCode);
 
-
     /**
      * Returns true if module list is empty.
      */
@@ -141,6 +140,8 @@ public interface Model {
      * The module with the {@code moduleCode} must exist in the address book.
      */
     void assignInstructor(Person instructor, ModuleCode moduleCode);
+
+    void unassignAllInstructors();
 
     /**
      * Unassigns an {@code instructor} from the module with the given {@code moduleCode}.

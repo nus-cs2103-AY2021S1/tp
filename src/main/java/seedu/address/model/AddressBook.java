@@ -183,6 +183,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         modules.assignInstructor(instructor, moduleCode);
     }
 
+    public void unassignAllInstructors() {
+        modules.unassignAllInstructors();
+    }
+
     /**
      * Unassigns an {@code instructor} from the module with the given {@code moduleCode}.
      * The module with the {@code moduleCode} must exist in the address book.
