@@ -229,6 +229,7 @@ and calls `FindCommandParser#parse(String args)` to parse the input into a valid
     with descriptions matching the keywords.
 
 The following sequence diagram shows how an find entries operation works:
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Some of the interactions with the utility classes,
 such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
@@ -236,6 +237,8 @@ of the find entries command.
 </div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
 
 #### Design consideration:
 
