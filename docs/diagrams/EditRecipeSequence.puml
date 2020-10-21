@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WishfulShrinkingParser" as WishfulShrinkingParser LOGIC_COLOR
+participant ":EditRecipeCommandParser" as EditRecipeCommandParser LOGIC_COLOR
+participant "command :EditRecipeCommand" as EditRecipeCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":WishfulShrinking" as WishfulShrinking MODEL_COLOR
+participant ":UniqueRecipeList" as UniqueRecipeList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("editR 1 n/Pea soup")
+activate LogicManager
+
+LogicManager -> WishfulShrinkingParser : parseCommand("editR 1 n/Pea soup")
+activate WishfulShrinkingParser
+
+create EditRecipeCommandParser
+WishfulShrinkingParser -> EditRecipeCommandParser
+activate EditRecipeCommandParser
+
+EditRecipeCommandParser --> WishfulShrinkingParser
+deactivate EditRecipeCommandParser
+
+WishfulShrinkingParser -> EditRecipeCommandParser : parse("1 n/Pea soup")
+activate EditRecipeCommandParser
+
+create EditRecipeCommand
+EditRecipeCommandParser -> EditRecipeCommand
+activate EditRecipeCommand
+
+EditRecipeCommand --> EditRecipeCommandParser : command
+deactivate EditRecipeCommand
+
+EditRecipeCommandParser --> WishfulShrinkingParser : command
+deactivate EditRecipeCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditRecipeCommandParser -[hidden]-> WishfulShrinkingParser
+destroy EditRecipeCommandParser
+
+WishfulShrinkingParser --> LogicManager : command
+deactivate WishfulShrinkingParser
+
+LogicManager -> EditRecipeCommand : execute()
+activate EditRecipeCommand
+
+EditRecipeCommand -> Model : updateFilteredRecipeList(predicate)
+activate Model
+
+Model --> EditRecipeCommand
+deactivate Model
+
+EditRecipeCommand -> Model : setRecipe(oldRecipe, newRecipe)
+activate Model
+
+Model -> WishfulShrinking : setRecipe(oldRecipe, newRecipe)
+activate WishfulShrinking
+
+WishfulShrinking --> UniqueRecipeList: setRecipe(oldRecipe, newRecipe)
+activate UniqueRecipeList
+
+UniqueRecipeList --> WishfulShrinking
+deactivate UniqueRecipeList
+
+WishfulShrinking --> Model
+deactivate WishfulShrinking
+
+Model --> EditRecipeCommand
+deactivate Model
+
+create CommandResult
+EditRecipeCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditRecipeCommand
+deactivate CommandResult
+
+EditRecipeCommand --> LogicManager : CommandResult
+deactivate EditRecipeCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

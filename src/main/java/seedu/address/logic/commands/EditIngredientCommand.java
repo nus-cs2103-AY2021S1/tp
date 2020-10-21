@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RECIPES;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INGREDIENTS;
 
 import java.util.List;
 import java.util.Optional;
@@ -66,7 +66,7 @@ public class EditIngredientCommand extends Command {
         }
 
         model.setIngredient(ingredientToEdit, editedIngredient);
-        model.updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPES);
+        model.updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
         if (ingredientToEdit.isSameIngredient(editedIngredient)) {
             return new CommandResult(String.format(MESSAGE_NOT_EDITED, editedIngredient));
         }

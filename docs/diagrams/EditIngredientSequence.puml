@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WishfulShrinkingParser" as WishfulShrinkingParser LOGIC_COLOR
+participant ":EditIngredientCommandParser" as EditIngredientCommandParser LOGIC_COLOR
+participant "command :EditIngredientCommand" as EditIngredientCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":WishfulShrinking" as WishfulShrinking MODEL_COLOR
+participant ":UniqueIngredientList" as UniqueIngredientList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("editF 1 i/tomato")
+activate LogicManager
+
+LogicManager -> WishfulShrinkingParser : parseCommand("editF 1 i/tomato")
+activate WishfulShrinkingParser
+
+create EditIngredientCommandParser
+WishfulShrinkingParser -> EditIngredientCommandParser
+activate EditIngredientCommandParser
+
+EditIngredientCommandParser --> WishfulShrinkingParser
+deactivate EditIngredientCommandParser
+
+WishfulShrinkingParser -> EditIngredientCommandParser : parse("1 i/tomato")
+activate EditIngredientCommandParser
+
+create EditIngredientCommand
+EditIngredientCommandParser -> EditIngredientCommand
+activate EditIngredientCommand
+
+EditIngredientCommand --> EditIngredientCommandParser : command
+deactivate EditIngredientCommand
+
+EditIngredientCommandParser --> WishfulShrinkingParser : command
+deactivate EditIngredientCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditIngredientCommandParser -[hidden]-> WishfulShrinkingParser
+destroy EditIngredientCommandParser
+
+WishfulShrinkingParser --> LogicManager : command
+deactivate WishfulShrinkingParser
+
+LogicManager -> EditIngredientCommand : execute()
+activate EditIngredientCommand
+
+EditIngredientCommand -> Model : updateFilteredIngredientList(predicate)
+activate Model
+
+Model --> EditIngredientCommand
+deactivate Model
+
+EditIngredientCommand -> Model : setIngredient(oldIngt, newIngt)
+activate Model
+
+Model -> WishfulShrinking : setIngredient(oldIngt, newIngt)
+activate WishfulShrinking
+
+WishfulShrinking --> UniqueIngredientList: setIngredient(oldIngt, newIngt)
+activate UniqueIngredientList
+
+UniqueIngredientList --> WishfulShrinking
+deactivate UniqueIngredientList
+
+WishfulShrinking --> Model
+deactivate WishfulShrinking
+
+Model --> EditIngredientCommand
+deactivate Model
+
+create CommandResult
+EditIngredientCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditIngredientCommand
+deactivate CommandResult
+
+EditIngredientCommand --> LogicManager : CommandResult
+deactivate EditIngredientCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
