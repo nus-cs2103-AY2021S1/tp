@@ -18,6 +18,7 @@ public class Flashcard {
     private final Category category;
     private final Note note;
     private final Rating rating;
+    private final Diagram diagram;
 
     // State fields
     private final boolean isFavourite;
@@ -25,13 +26,14 @@ public class Flashcard {
     /**
      * Identity and Data fields must be present and not null.
      */
-    public Flashcard(Question question, Answer answer, Category category, Note note, Rating rating) {
-        requireAllNonNull(question, answer, category, note, rating);
+    public Flashcard(Question question, Answer answer, Category category, Note note, Rating rating, Diagram diagram) {
+        requireAllNonNull(question, answer, category, note, rating, diagram);
         this.question = question;
         this.answer = answer;
         this.category = category;
         this.note = note;
         this.rating = rating;
+        this.diagram = diagram;
         this.isFavourite = false;
     }
 
@@ -39,14 +41,15 @@ public class Flashcard {
      * Overloaded constructor for creating a flashcard when flashcard is favourited/unfavourited.
      * All fields must be present and not null.
      */
-    public Flashcard(Question question, Answer answer, Category category, Note note, Rating rating,
+    public Flashcard(Question question, Answer answer, Category category, Note note, Rating rating, Diagram diagram,
                      boolean isFavourite) {
-        requireAllNonNull(question, answer, category, note, rating, isFavourite);
+        requireAllNonNull(question, answer, category, note, rating, diagram, isFavourite);
         this.question = question;
         this.answer = answer;
         this.category = category;
         this.note = note;
         this.rating = rating;
+        this.diagram = diagram;
         this.isFavourite = isFavourite;
     }
 
@@ -68,6 +71,10 @@ public class Flashcard {
 
     public Rating getRating() {
         return rating;
+    }
+
+    public Diagram getDiagram() {
+        return diagram;
     }
 
     public boolean isFavourite() {
@@ -115,13 +122,14 @@ public class Flashcard {
                 && otherFlashcard.getCategory().equals(getCategory())
                 && otherFlashcard.getNote().equals(getNote())
                 && otherFlashcard.getRating().equals(getRating())
+                && otherFlashcard.getDiagram().equals(getDiagram())
                 && otherFlashcard.isFavourite() == isFavourite();
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(question, answer, category, note, rating, isFavourite);
+        return Objects.hash(question, answer, category, note, rating, diagram, isFavourite);
     }
 
     @Override
@@ -141,6 +149,7 @@ public class Flashcard {
             builder.append(" Rating: ")
                     .append(getRating());
         }
+        builder.append(" Diagram: ").append(getDiagram());
         builder.append(" Favourite: ")
                 .append(isFavourite());
         return builder.toString();
