@@ -55,7 +55,6 @@ public class LessonCommand extends Command {
         requireNonNull(model);
         ArrayList<Task> tasksToAdd = lesson.createRecurringTasks();
         for (Task taskToAdd: tasksToAdd) {
-            System.out.println("date: " + taskToAdd.getDateTime());
             if (model.hasTask(taskToAdd)) {
                 throw new CommandException(MESSAGE_DUPLICATE_LESSON);
             }
