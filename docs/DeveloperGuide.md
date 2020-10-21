@@ -27,7 +27,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -62,7 +62,7 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
@@ -78,9 +78,9 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `StockBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a stock).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -97,7 +97,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/model/Model.java)
 
 The `Model`,
 
@@ -117,7 +117,7 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
@@ -125,7 +125,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.stock.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -133,90 +133,257 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Suggestion Feature
 
-#### Proposed Implementation
+The mechanism for suggestion feature is facilitated by `SuggestionCommandParser, SuggestionCommand, SuggestionUtil`.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+#### SuggestionCommand
 
-* `VersionedAddressBook#commit()` — Saves the current stock book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous stock book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone stock book state from its history.
+`SuggestionCommand` class extends `Command` interface. `SuggestionCommand` class is tasked with creating a new `CommandResult`
+with the suggestion message to be displayed to the user as its argument. The suggestion message to be displayed
+is gathered from the result of the parsing stage for suggestion.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Some of the important operations implemented here are:
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+* `SuggestionCommand#execute()`
+  Generates a new `CommandResult` with the suggestion message as its argument.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial stock book state, and the `currentStatePointer` pointing to that single stock book state.
+#### SuggestionCommandParser
+`SugestionCommandParser` class extends `Parser` interface. `SuggestionCommandParser` class is tasked with parsing the
+user inputs and generate a new `SuggestionCommand`. The main logic of the suggestion feature is encapsulated here.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+`SuggestionCommandParser` receives the user input, along with either the faulty command word or parsing error messages
+from another `Parser` object. The `parse` method inside the `SuggestionCommandParser` will then try to infer the best
+possible correct command format using the minimum edit distance heuristic provided inside `SuggestionUtil`.
 
-Step 2. The user executes `delete 5` command to delete the 5th stock in the stock book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the stock book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted stock book state.
+Some of the important operations implemented here are:
 
-![UndoRedoState1](images/UndoRedoState1.png)
+* `SuggestionCommandParser#parse()` <br>
+  Parses the user input and parsing error messages thrown from another `Parser` and returns a new `SuggestionCommand`
+  with the suggestion to be shown as its argument. The inference for the command word to be suggested is made in here.
+  After the correct command word is inferred, then it will call helper functions to generate the suggestion messages.
+* `SuggestionCommandParser#generateAddSuggestion()` <br>
+  Generates the suggestion message for an add command.
+* `SuggestionCommandParser#generateListSuggestion()` <br>
+  Generates the suggestion message for a list command.
+* `SuggestionCommandParser#generateHelpSuggestion()` <br>
+  Generates the suggestion message for a help command.
+* `SuggestionCommandParser#generateExitSuggestion()` <br>
+  Generates the suggestion message for an exit command.
+* `SuggestionCommandParser#generateUpdateSuggestion()` <br>
+  Generates the suggestion message for an update command.
+* `SuggestionCommandParser#generateDeleteSuggestion()` <br>
+  Generates the suggestion message for a delete command.
+* `SuggestionCommandParser#generateFindSuggestion()` <br>
+  Generates the suggestion message for a find command.
+* `SuggestionCommandParser#generateFindExactSuggestion()` <br>
+  Generates the suggestion message for a find exact command.
+* `SuggestionCommandParser#generateStatisticsSuggestion()` <br>
+  Generates the suggestion message for a stats command.
+* `SuggestionCommandParser#generateNoteSuggestion()` <br>
+  Generates the suggestion message for a note command.
+* `SuggestionCommandParser#generateNoteDeleteSuggestion()` <br>
+  Generates the suggestion message for a note delete command.
 
-Step 3. The user executes `add n/David …​` to add a new stock. The `add` command also calls `Model#commitAddressBook()`, causing another modified stock book state to be saved into the `addressBookStateList`.
+#### SuggestionUtil
 
-![UndoRedoState2](images/UndoRedoState2.png)
+`SuggestionUtil` class contains the utilities needed to infer the suggestion to be displayed to the user.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the stock book state will not be saved into the `addressBookStateList`.
+The utilities provided inside are:
 
-</div>
+* `SuggestionUtil#min()` <br>
+  Computes the minimum of three integers.
+* `SuggestionUtil#minimumEditDistance()` <br>
+  Computes the minimum edit distance between 2 strings.
 
-Step 4. The user now decides that adding the stock was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous stock book state, and restores the stock book to that state.
+#### Example Usage Scenario
 
-![UndoRedoState3](images/UndoRedoState3.png)
+Given below are some example usage scenarios and how the suggestion mechanism behaves at each step.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+**Example 1: Unknown command word**
 
-</div>
+Step 1. The user enters `updt n/Milk s/Fairprice` which contains an unknown command word `updt`.
 
-The following sequence diagram shows how the undo operation works:
+Step 2. The command word `updt` is extracted out in `StockBookParser` and checked if it matches any valid command word.
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+Step 3. The command word `updt` does not match any valid command word. It is then passed down to `SuggestionCommandParser`
+along with `n/Milk s/Fairprice` and `SuggestionCommandParser#parse()` is invoked.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+Step 4. Inside `SuggestionCommandParser#parse()` method, the closest command word to `updt` will be inferred.
+The inference uses the minimum edit distance heuristic. `SuggestionCommandParser#parse()` will
+count the minimum edit distance from `updt` to every other valid command word.
 
-</div>
+Step 5. The new valid command word generated is the one with the smallest edit distance to `updt`. The command word
+to be suggested in this case is `update`.
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the stock book to that state.
+Step 6. `SuggestionCommandParser#parse()` method will call `SuggestionCommandParser#generateUpdateSuggestion()`
+to generate the suggestion message to be displayed to the user.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest stock book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+Step 7. During the generation of suggestion message, `SuggestionCommandParser#generateUpdateSuggestion()` will check
+first if the compulsory prefix exist. In this case the compulsory prefix which is `sn/` does not exist.
+`sn/<serial number>` is then added to the suggestion message.
 
-</div>
+Step 8. All prefixes the user entered that is valid for `update` command and its arguments are nonempty will then
+be appended to the suggestion message. If there exist prefix whose argument is empty, then `SuggestionCommandParser#generateUpdateSuggestion()`
+will fill the argument with a default value. In this case, prefixes `n/ s/` are present and their arguments are nonempty.
+`n/Milk s/Fairprice` is then added to the suggestion message.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the stock book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 9. Lastly `SuggestionCommandParser#generateUpdateSuggestion()` will append the usage message for `update` command.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+Step 10. `SuggestionCommandParser#parse()` method returns a new `SuggestionCommand` with the suggestion message
+to be displayed as its argument.
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all stock book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 11. `SuggestionCommand` is executed and produces a new `CommandResult` to display the message to the user.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+Step 12. The suggestion `update sn/<serial number> n/Milk s/Fairprice` is displayed to the user along with what kind of
+error and the message usage information. In this case the error is `unknown command` and the message usage is from
+`UpdateCommand`.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+**Example 2: Invalid command format**
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+Step 1. The user enters `update n/Milk s/` which contains a valid command word `update`.
 
-#### Design consideration:
+Step 2. The command word `update` is extracted out in `StockBookParser` and checked if it matches any valid command word.
 
-##### Aspect: How undo & redo executes
+Step 3. The command word `update` is a valid command word. Input is then passed to `UpdateCommandParser#parse()`.
 
-* **Alternative 1 (current choice):** Saves the entire stock book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+Step 4. Inside `UpdateCommandParser#parse()`, the user input is then parsed to create a new `UpdateCommand`. However,
+since the compulsory prefix `sn/` is not provided, a `ParseException` will be thrown.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the stock being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+Step 5. `ParseException` thrown will be caught in `StockBookParser`. The user input along with parsing error messages
+will then be passed into `SuggestionCommandParser#parse()`.
 
-_{more aspects and alternatives to be added}_
+Step 6. Constructor of `SuggestionCommandParser` will separate the parsing error messages header and body and then
+`SuggestionCommandParser#parse()` is invoked.
 
-### \[Proposed\] Data archiving
+Step 7. Inside `SuggestionCommandParser#parse()` method, the closest command word to `update` will be inferred.
+The inference uses the minimum edit distance heuristic. `SuggestionCommandParser#parse()` will
+count the minimum edit distance from `update` to every other valid command word.
 
-_{Explain here how the data archiving feature will be implemented}_
+Step 8. Since `update` is already a valid command, the inference will generate `update` again.
 
+Step 9. `SuggestionCommandParser#parse()` method will call `SuggestionCommandParser#generateUpdateSuggestion()`
+to generate the suggestion message to be displayed to the user.
+
+Step 10. During the generation of suggestion message, `SuggestionCommandParser#generateUpdateSuggestion()` will check
+first if the compulsory prefix exist. In this case the compulsory prefix which is `sn/` does not exist.
+`sn/<serial number>` is then added to the suggestion message.
+
+Step 11. All prefixes the user entered that is valid for `update` command and its arguments are nonempty will then
+be appended to the suggestion message. If there exist prefix whose argument is empty, then `SuggestionCommandParser#generateUpdateSuggestion()`
+will fill the argument with a default value. In this case, the prefix `n/` is present and its argument is nonempty.
+`n/Milk` is then added to the suggestion message. The prefix `s/` is present, but its argument is empty.
+`s/<source>` is then added to the suggestion message.
+
+Step 9. Lastly `SuggestionCommandParser#generateUpdateSuggestion()` will append the usage message for `update` command.
+
+Step 10. `SuggestionCommandParser#parse()` method returns a new `SuggestionCommand` with the suggestion message
+to be displayed as its argument.
+
+Step 11. `SuggestionCommand` is executed and produces a new `CommandResult` to display the message to the user.
+
+Step 12. The suggestion `update sn/<serial number> n/Milk s/<source>` is displayed to the user along with what kind of
+error and the message usage information. In this case the error is `Invalid command format` and the message usage is from
+`UpdateCommand`.
+
+
+#### Sequence Diagram
+
+The following sequence diagram shows how the suggestion feature works for **Example 1**:
+
+![Suggestion Example 1](images/SuggestionSequenceDiagramExample1.png)
+
+The following sequence diagram shows how the suggestion feature works for **Example 2**:
+
+![Suggestion Example 2](images/SuggestionSequenceDiagramExample2.png)
+
+#### Minimum Edit Distance Heuristic
+
+The minimum edit distance between two strings is defined as the minimum cost needed to transform one into the other.
+
+The transformation cost comes from the types of editing operations performed and how many of those operations performed.
+
+There are three types of editing operations:
+* **Insertion**: <br>
+  Inserts a new character in the string. Insertion has a cost of 1. <br>
+  Example: `apple -> apples` and `sly -> slay`.
+* **Deletion**: <br>
+  Deletes a character from the string. Deletion has a cost of 1. <br>
+  Example: `oranges -> orange` and `bandana -> banana`.
+* **Substitution**: <br>
+  Change a character in the string into another different character. Substitution has a cost of 3. It is more expensive
+  to substitute than inserting or deleting a character. <br>
+  Example: `prey -> pray` and `like -> lime`.
+
+The smaller the minimum edit distance between two strings, the more similar they are.
+The algorithm to compute the minimum edit distance between two strings is implemented on `SuggestionUtil#minimumEditDistance()`.
+
+**Algorithm Explanation**
+
+Suppose there are two strings:
+* `X` with length `n`.
+* `Y` with length `m`.
+
+Define `D(i, j)` to be the minimum edit distance between the first `i` characters of `X` and the first `j` characters of `Y`.
+
+Consider doing all possible editing operations:
+* **Insertion**: <br>
+  If `i > j`, then we can insert the character at position `j + 1` in `X` to position `j + 1` at `Y`.
+  Hence, `D(i, j) + 1 = D(i, j + 1)` in this case. <br>
+  If `i < j`, then we can insert the character at position `i + 1` in `Y` to position `i + 1` at `X`.
+  Hence, `D(i, j) + 1 = D(i + 1, j)` in this case. <br>
+* **Deletion**: <br>
+  If `i > j`, then we can delete the character at position `i` in `X`.
+  Hence, `D(i, j) = D(i - 1, j) + 1` in this case. <br>
+  If `i < j`, then we can delete the character at position `j` in `Y`.
+  Hence, `D(i, j) = D(i, j - 1) + 1` in this case. <br>
+* **Substitution**: <br>
+  We can change the character at position `i` in X to match the character at position `j` in `Y`, or
+  we can change the character at position `j` in `Y` to match the character at position `i` in `X`. <br>
+  Hence, `D(i, j) = D(i - 1, j - 1) + 3` in this case. <br>
+
+The base cases for the recursion are:
+* `D(i, 0) = i` since the best way is to delete everything from `X` or inserting every character in `X` to `Y`.
+* `D(0, j) = j` since the best way is to delete everything from `Y` or inserting every character in `Y` to `X`.
+
+In all possible editing operations, the value `D(i, j)` can only change to:
+* `D(i - 1, j) + 1`
+* `D(i, j - 1) + 1`
+* `D(i - 1, j - 1) + 3`
+
+Since we want to find the minimum edit distance,
+`D(i, j) = min(D(i - 1, j) + 1, D(i, j - 1) + 1, D(i - 1, j - 1) + 3)`.
+
+Since it is a recursion, the algorithm is implemented using dynamic programming to improve speed by remembering already
+computed states. The current implementation do the following steps:
+
+1. Creates a table to store computed states (2D `dp` array).
+2. Fill up the base cases in the table.
+3. Using a double for loop, fill up the table according to the recursion formula above.
+4. Returns the minimum edit distance between the two strings compared.
+
+**Time complexity**: `O(n * n)` due to the double for loop.
+
+**Space complexity**: `O(n * n)` due to the table.
+
+#### Activity Diagram
+
+The following activity diagram summarizes what happens when the suggestion feature is triggered:
+
+![SuggestionActivityDiagram](images/SuggestionActivityDiagram.png)
+
+#### Design Consideration
+
+##### Aspect: String Comparison Heuristics
+
+* **Alternative 1 (current implementation):** minimum edit distance heuristic
+  * Pros: Provides a good estimate how far apart two strings are. A standard dynamic programming algorithm.
+  * Cons: Maybe hard to be understood to people who don't understand dynamic programming.
+
+* **Alternative 2:** substring comparison
+  * Pros: Very simple to implement. A brute force algorithm that checks every substring.
+  * Cons: The distance estimate between two strings is quite bad, especially if no substring overlaps. Slow in speed
+    compared to minimum edit distance. Generates worse suggestion compared to minimum edit distance.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -286,7 +453,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Warenager` and the **Actor** is the `user`, unless specified otherwise)
 
-#### Use case: Adding a stock
+#### Use case 1: Adding a stock
 
 **MSS**
 
@@ -308,13 +475,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. Warenager shows an error message.
 
       Use case resumes at step 1.
-      
+
 * 1c. The argument to the field header is invalid.
 
     * 1c1. Warenager shows an error message.
 
       Use case resumes at step 1.
-      
+
 * 1d. The given input has multiple required field headers.
 
     * 1d1. Warenager shows an error message.
@@ -322,7 +489,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 1.
 
 
-#### Use case: Deleting stocks
+#### Use case 2: Deleting stocks
 
 **MSS**
 
@@ -350,19 +517,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b1. Warenager shows an error message and tells user which serial numbers are not found.
 
       Use case resumes at step 2.
-      
+
 * 3c. Some inputted serial numbers are not found.
-      
+
      * 3c1. Warenager deletes the found stocks and tells user which serial numbers are not found.
-      
+
        Use case resumes at step 2.
 
-#### Use case: Find a stock by name
+#### Use case 3: Find a stock by name
 
 **MSS**
 
 1.  User requests to find a stock with name "umbrella".
-2.  Warenager shows a list of stocks with names that 
+2.  Warenager shows a list of stocks with names that
     contain the keyword "umbrella".
 3.  User views desired stock.
 
@@ -370,22 +537,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The given format is missing field header n/.
- 
+
     * 1a1. Warenager shows an error message.
     
       Use case resumes at step 1.
 
-* 1b. The given command is invalid (wrong find command). 
+* 1b. The given command is invalid (wrong find command).
 
     * 1b1. Warenager shows an error message.
-        
+
       Use case resumes at step 1.
-     
+
 * 2a. There is no stock with name that matches keyword.
 
     Use case ends.
-    
-#### Use case: Find a stock by serial number
+
+#### Use case 4: Find a stock by serial number
 
 **MSS**
 
@@ -397,22 +564,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The given format is missing field header sn/.
- 
+
     * 1a1. Warenager shows an error message.
-    
+
      Use case resumes at step 1.
 
-* 1b. The given command is invalid (wrong find command). 
+* 1b. The given command is invalid (wrong find command).
 
     * 1b1. Warenager shows an error message.
-        
+
     Use case resumes at step 1.
-     
+
 * 2a. There is no stock with serial number that matches keyword.
 
     Use case ends.
-    
-#### Use case: Find a stock by location stored
+
+#### Use case 5: Find a stock by location stored
 
 **MSS**
 
@@ -424,22 +591,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The given format is missing field header l/.
- 
+
     * 1a1. Warenager shows an error message.
-    
+
      Use case resumes at step 1.
 
-* 1b. The given command is invalid (wrong find command). 
+* 1b. The given command is invalid (wrong find command).
 
     * 1b1. Warenager shows an error message.
-        
+
     Use case resumes at step 1.
-     
+
 * 2a. There is no stock with storage location that matches keyword.
 
     Use case ends.
-    
-#### Use case: Find a stock by source of stock
+
+#### Use case 6: Find a stock by source of stock
 
 **MSS**
 
@@ -451,22 +618,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The given format is missing field header s/.
- 
+
     * 1a1. Warenager shows an error message.
-    
+
      Use case resumes at step 1.
 
-* 1b. The given command is invalid (wrong find command). 
+* 1b. The given command is invalid (wrong find command).
 
     * 1b1. Warenager shows an error message.
-        
+
     Use case resumes at step 1.
-     
+
 * 2a. There is no stock with source that matches keyword.
 
     Use case ends.
 
-#### Use case: Increment or decrement a stock's quantity
+#### Use case 7: Increment or decrement a stock's quantity
 
 **MSS**
 
@@ -490,42 +657,42 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 * 3b. The stock with the given serial number is not found.
-    
+
     * 3b1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 * 3c. The given format is missing the field header q/.
-    
+
     * 3c1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 * 3d. The given increment or decrement value is not an integer.
-    
+
     * 3d1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
-      
+ 
 * 3e. The given increment or decrement value exceeds the integer limit.
 
     * 3e1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 * 3f. The given increment value plus the stock's current quantity exceeds the integer limit.
 
     * 3f1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 * 3g. The stock's current quantity minus the given decrement value results in a negative value.
 
     * 3g1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
-#### Use case: Rewrite a stock's quantity
+#### Use case 8: Rewrite a stock's quantity
 
 **MSS**
 
@@ -549,36 +716,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 * 3b. The stock with the given serial number is not found.
-    
+
     * 3b1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 * 3c. The given format is missing the field header nq/.
-    
+
     * 3c1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 * 3d. The given quantity value is not an integer.
-    
+
     * 3d1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 * 3e. The given quantity value exceeds the integer limit.
 
     * 3e1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
-      
+
 * 3f. The given quantity value is negative.
 
     * 3f1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
-#### Use case: Update the name of a stock.
+#### Use case 9: Update the name of a stock.
 
 **MSS**
 
@@ -602,18 +769,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 * 3b. The stock with the given serial number is not found.
-    
+
     * 3b1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 * 3c. The given format is missing the field header n/.
-    
+
     * 3c1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
-#### Use case: Update the location of a stock
+#### Use case 10: Update the location of a stock
 
 **MSS**
 
@@ -637,18 +804,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 * 3b. The stock with the given serial number is not found.
-    
+
     * 3b1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 * 3c. The given format is missing the field header l/.
-    
+
     * 3c1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
-#### Use case: Update the source of a stock
+#### Use case 11: Update the source of a stock
 
 **MSS**
 
@@ -672,20 +839,224 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 * 3b. The stock with the given serial number is not found.
-    
+
     * 3b1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
 * 3c. The given format is missing the field header s/.
-    
+
     * 3c1. Warenager shows an error message.
-    
+
       Use case resumes at step 2.
 
-*{More to be added}*
+#### Use case 12: Using the stats command
 
-#### Use case: Using the help command
+**MSS**
+
+1.  User requests stats from Warenager.
+2.  Warenager shows the statistics of the desired field as a pop up.
+3.  User views the statistics in the pie chart.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given input has an additional header.
+
+    * 1a1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1b. The given input has a wrong header.
+
+    * 1b1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1c. The given input has a missing header.
+
+    * 1c1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1d. The given input is empty.
+
+    * 1d1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1e. The given input contains fields that cannot be found.
+
+    * 1e1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+#### Use case 13: Adding a note to a stock
+
+**MSS**
+
+1.  User requests to add a note to a stock.
+2.  Warenager adds the note to the stock.
+
+    Use case ends.
+    
+**Extensions**
+* 1a. The given input has an additional header.
+
+    * 1a1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1b. The given input has a wrong header.
+
+    * 1b1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1c. The given input has a missing header.
+
+    * 1c1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1d. The given input is empty.
+
+    * 1d1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1e. The stock cannot be found based on given input.
+
+    * 1e1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+#### Use case 14: Deleting a note from a stock
+
+**MSS**
+
+1.  User requests to delete a note from a stock.
+2.  Warenager deletes the note from the stock.
+
+    Use case ends.
+    
+**Extensions**
+* 1a. The given input has an additional header.
+
+    * 1a1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1b. The given input has a wrong header.
+
+    * 1b1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1c. The given input has a missing header.
+
+    * 1c1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1d. The given input is empty.
+
+    * 1d1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1e. The stock cannot be found based on given input.
+
+    * 1e1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1f. The note cannot be found based on given input.
+
+    * 1f1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+#### Use case 15: Deleting all notes from a stock
+
+**MSS**
+
+1.  User requests to delete all notes from a stock.
+2.  Warenager deletes all notes from the stock.
+
+    Use case ends.
+    
+**Extensions**
+* 1a. The given input has an additional header.
+
+    * 1a1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1b. The given input has a wrong header.
+
+    * 1b1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1c. The given input has a missing header.
+
+    * 1c1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1d. The given input is empty.
+
+    * 1d1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1e. The stock cannot be found based on given input.
+
+    * 1e1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1f. The stock specified has no notes.
+
+    * 1f1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+     
+#### Use case 16: Generating a csv file that contains all stocks
+
+**MSS**
+
+1.  User requests to print stocks in stock book.
+2.  Warenager generates a csv file containing all stocks.
+ 
+    Use case ends.
+ 
+**Extensions**
+ 
+* 1a. The given input contains has the wrong format.
+
+    * 1a1. Warenager shows an error message and suggested command.
+ 
+      Use case resumes at step 1.
+ 
+* 1b. There is an error when creating the csv file.
+ 
+    * 1b1. Warenager shows an error message.
+ 
+      Use case resumes at step 1.
+
+#### Use case 17: Generating a csv file that contains all stocks sorted in desired order
+
+ **MSS**
+ 
+ 1.  User sort stocks in stock book (Use case..) in their desired order.
+ 2.  User request to generate csv file based on the existing stock book (Use case 16).
+ 3.  Warenager generates a csv file containing all stocks.
+ 
+     Use case ends.
+
+#### Use case 18: Using the help command
 
 **MSS**
 
@@ -697,13 +1068,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The given format has an additional header.
- 
+
     * 1a1. Warenager shows an error message.
-    
+
      Use case resumes at step 1.
 
+#### Use case 19: Suggestion feature
 
-#### Use case: Exit Warenager
+**MSS**
+
+1. User types in command.
+2. Warenager detects command format is invalid.
+3. Warenager shows command suggestion to the user.
+
+   Use case ends.
+
+**Extensions**
+* 2a. The command word user provided is not valid.
+
+    * 2a1. Warenager calculates the most related command word to suggest.
+
+    Use case resumes at step 3.
+
+* 2b. The command word provided is valid, but the prefixes are not.
+
+    * 2b1. Warenager prepares to suggest the command word along with only the valid prefixes.
+
+    Use case resumes at step 3.
+
+* 2c. The command word provided is valid, but the some prefixes are missing.
+
+    * 2c1. Warenager prepares to suggest the command word along with only the missing prefixes.
+
+    Use case resumes at step 3.
+
+#### Use case 20: Exit Warenager
 
 **MSS**
 
@@ -715,12 +1114,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The given format has an additional header.
- 
+
     * 1a1. Warenager shows an error message.
-    
+
      Use case resumes at step 1.
-     
-    
+
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -739,7 +1138,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Stock**: Item in the inventory.
-* **Field**: (name, serial number, quantity, location stored, source) of the stock in inventory 
+* **Field**: (name, serial number, quantity, location stored, source) of the stock in inventory
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -767,8 +1166,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Adding a stock
 
 1. Adding a stock into the inventory.
@@ -780,17 +1177,15 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `add n/Banana s/NUS q/9999 l/`<br>
       Expected: Locations can take any values, and it should not be blank.
       Error details shown in the status message. Status bar remains the same.
-      
+
    1. Test case: ` add n/Banana s/NUS q/9999`<br>
-      Expected: Invalid command format! 
-      add: Adds a stock to the stock book. Parameters: n/NAME s/SOURCE q/QUANTITY l/LOCATION 
+      Expected: Invalid command format!
+      add: Adds a stock to the stock book. Parameters: n/NAME s/SOURCE q/QUANTITY l/LOCATION
       Example: add n/Umbrella s/Kc company q/100 l/section B,
       Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `add`, `add sn/absdsa` <br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Deleting stocks
 
@@ -799,30 +1194,29 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all stocks by default or use the `find` command. Multiple stocks in the list.
 
    1. Test case: `delete sn/1111111`<br>
-      Expected: Stock with the serial number 1111111 is deleted from the inventory. 
+      Expected: Stock with the serial number 1111111 is deleted from the inventory.
       Details of the deleted stock shown in the status message.
-      
+
    1. Test case: `delete sn/1111111 sn/11111111`<br>
-      Expected: Stock with the serial number 1111111 is deleted from the inventory. 
+      Expected: Stock with the serial number 1111111 is deleted from the inventory.
       Duplicate serial number(s) is/are ignored. Details of the deleted stock shown in the status message.
-      
+
    1. Test case: `delete sn/1111111 sn/22222222`<br>
-      Expected: Both stocks with the serial numbers 1111111 and 22222222 are deleted from the inventory. 
+      Expected: Both stocks with the serial numbers 1111111 and 22222222 are deleted from the inventory.
       Details of the deleted stock shown in the status message.
-      
+
    1. Test case: `delete sn/1111111 sn/33333333` (no stock has the serial number `33333333`) <br>
-        Expected: Only the existing stock with the serial number 1111111 is deleted. 
-        Details of this deleted stock shown in the status message.  
+        Expected: Only the existing stock with the serial number 1111111 is deleted.
+        Details of this deleted stock shown in the status message.
         Serial number `33333333` which does not belong to any stock will be shown in status message as well.
-        
+
    1. Test case: `delete 1111111`<br>
-      Expected: No stock deleted due to invalid format from missing sn/. 
+      Expected: No stock deleted due to invalid format from missing sn/.
       Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete sn/absdsa` 
+   1. Other incorrect delete commands to try: `delete`, `delete sn/absdsa`
       (where serial number is not an integer or is a negative integer)<br>
       Expected: Similar to previous.
-
 
 ### Finding a stock
 
@@ -831,74 +1225,222 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Multiple stocks in the list. Stock exists in inventory.
 
    1. Test case: `find sn/1111111`<br>
-      Expected: Stock of the serial number 1111111 is displayed from the inventory. 
+      Expected: Stock of the serial number 1111111 is displayed from the inventory.
       Status message shows success of command.
-   
+
    1. Test case: `find n/umbrella`<br>
-      Expected: All stocks with name containing "umbrella" are displayed from the inventory. 
-      Status message shows success of command.  
-         
+      Expected: All stocks with name containing "umbrella" are displayed from the inventory.
+      Status message shows success of command.
+
    1. Test case: `find l/section 3`<br>
-      Expected: All stocks with storage location containing "section 3" are displayed from the inventory. 
-      Status message shows success of command.  
-            
+      Expected: All stocks with storage location containing "section" and "3" are displayed from the inventory.
+      Status message shows success of command.
+
    1. Test case: `find s/company abc`<br>
-      Expected: All stocks with field source containing "company abc" are displayed from the inventory. 
-      Status message shows success of command.  
-            
+      Expected: All stocks with field source containing "company" and "abc" are displayed from the inventory.
+      Status message shows success of command.
+
+   1. Test case: `find n/umbrella l/section 3`<br>
+         Expected: All stocks with field name containing "umbrella" OR field location containing "section" and "3"
+         are displayed from the inventory.
+         Status message shows success of command.
+   
    1. Test case: `find 1111111`<br>
-      Expected: No stock deleted due to invalid format from missing field header
-      either n/, sn/, l/ or s/. 
-      Error details shown in the status message. Status bar remains the same.
+      Expected: No stock found due to invalid format from missing field header
+      either n/, sn/, l/ or s/.
+      Error details shown in the status message. Suggestion message will be shown too.
 
-   1. Other incorrect find commands to try: `find`, `find sn/absdsa` 
-      (where serial number is not an integer or is a negative integer)<br>
-      Expected: Similar to previous.
+   1. Test case: `find n/umbrella n/company abc`<br>
+      Expected: No stock found due to invalid format from duplicate field header of n/.
+      Error details shown in the status message. Suggestion message will be shown too.
 
-1. _{ more test cases …​ }_
+   1. Test case: `find`<br>
+      Expected: No stock found due to missing field headers.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `find q/1111`<br>
+      Expected: No stock found due to invalid field header q/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `find n/`<br>
+      Expected: No stock found due to empty input for field name.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+### Advanced finding a stock
+
+1. Finding a stock from the inventory.
+
+   1. Prerequisites: Multiple stocks in the list. Stock exists in inventory.
+
+   1. Test case: `findexact sn/1111111`<br>
+      Expected: Stock of the serial number 1111111 is displayed from the inventory.
+      Status message shows success of command.
+
+   1. Test case: `findexact n/umbrella`<br>
+      Expected: All stocks with name containing "umbrella" are displayed from the inventory.
+      Status message shows success of command.
+
+   1. Test case: `findexact l/section 3`<br>
+      Expected: All stocks with storage location containing "section" and "3" are displayed from the inventory.
+      Status message shows success of command.
+
+   1. Test case: `findexact s/company abc`<br>
+      Expected: All stocks with field source containing "company" and "abc" are displayed from the inventory.
+      Status message shows success of command.
+
+   1. Test case: `findexact n/umbrella l/section 3`<br>
+         Expected: All stocks with field name containing "umbrella" AND field location containing "section" and "3"
+         are displayed from the inventory.
+         Status message shows success of command.
+   
+   1. Test case: `findexact 1111111`<br>
+      Expected: No stock found due to invalid format from missing field header
+      either n/, sn/, l/ or s/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `findexact n/umbrella n/company abc`<br>
+      Expected: No stock found due to invalid format from duplicate field header of n/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `findexact`<br>
+      Expected: No stock found due to missing field headers.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `findexact q/1111`<br>
+      Expected: No stock found due to invalid field header q/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `findexact n/`<br>
+      Expected: No stock found due to empty input for field name.
+      Error details shown in the status message. Suggestion message will be shown too.
 
 ### Updating a stock
 
 1. Updating a stock from the inventory.
 
     1. Prerequisites: Multiple stocks in the list. Stocks exists in inventory.
-    
+
     1. Test case: `update sn/FLower11 iq/+50`<br>
        Expected: The stock with serial number Flower11 will have an increase of quantity by 50.
        Details of the updated stock is shown in the status message.
-    
+
     1. Test case: `update sn/FLower11 iq/-50`<br>
        Expected: The stock with serial number Flower11 will have a decrease of quantity by 50.
        Details of the updated stock is shown in the status message.
-    
+
     1. Test case: `update sn/Flower11 nq/2103`<br>
        Expected: The stock with serial number Flower11 will have a new quantity 2103.
        Details of the updated stock is shown in the status message.
-    
+
     1. Test case: `update sn/Flower11 n/Rose`
        Expected: The stock with serial number Flower11 will have a new name Rose.
        Details of the updated stock is shown in the status message.
-    
+
     1. Test case: `update sn/Flower11 l/Vase 3`
        Expected: The stock with serial number Flower11 will have a new location Vase 3.
        Details of the updated stock is shown in the status message.
-    
+
     1. Test case: `update sn/2103 s/Flower Distributor Association`
        Expected: The stock with serial number Flower11 will have a new source Flower Distributor Association.
        Details of the updated stock is shown in the status message.
-       
+
     1. Test case: `update sn/FLower11 iq/+50 n/Rose l/Vase 3 s/Flower Distributor Association`
        Expected: The stock with serial number Flower11 will have an increase of quantity by 50, a new name Rose,
        a new location Vase3, a new source Flower Distributor Association.
        Details of the updated stock is shown in the status message.
-    
+
     1. Test case: `update sn/FLower11 sn/Flower12 iq/+50 n/Rose l/Vase 3 s/Flower Distributor Association`
        Expected: The stock with serial number Flower11 and Flower12 will have an increase of quantity by 50, a new name Rose,
        a new location Vase3, a new source Flower Distributor Association.
        Details of the updated stock is shown in the status message.
-       
 
-1. _{ more test cases …​ }_
+### Generate statistics
+
+1. Generating statistics for a target field.
+
+    1. Test case: `stats st/source`<br>
+       Expected: A pie chart describing the distribution of source companies for the entire inventory is popped up.
+       Details of the successful generation of statistics are shown in the status message.
+
+    1. Test case: `stats st/source-qt-ntuc` (the source company `ntuc` exists) <br>
+       Expected: A pie chart describing the distribution of stocks in `ntuc` is popped up.
+       Details of the successful generation of statistics are shown in the status message.
+
+    1. Test case: `stats st/source-qt-fair price` (the source company `fair price` does not exist)<br>
+       Expected: No pop ups describing the statistics will be given or shown.
+       Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Other incorrect statistics commands to try: `stats`, `stats st/absdsa`, `stats st/source st/source`
+      Expected: Similar to previous.
+
+### Adding note to stock
+
+1. Adding a note to a stock.
+
+    1. Test case: `note sn/ntuc1 nt/first note`
+    Expected: Note is added to the stock with serial number ntuc1 and displayed in the notes column for the stock.
+    Details of the stock with successful note added is shown in status message.
+   
+   1. Test case: `note 1111111`<br>
+      Expected: No note added due to invalid format from missing field headers sn/ and nt/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `note sn/umbrella1 sn/company1 nt/first note`<br>
+      Expected: No note added due to invalid format from duplicate field header of sn/.
+      Error details shown in the status message. Status bar remains the same.
+
+   1. Test case: `note`<br>
+      Expected: No note added due to missing field headers.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `note q/1111`<br>
+      Expected: No note added due to invalid field header q/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `note sn/ntuc1 nt/`<br>
+      Expected: No note added due to empty input for field note.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+### Deleting a note from stock
+
+1. Deleting a note from stock.
+
+    1. Test case: `notedelete sn/ntuc1 ni/1`
+    Expected: Note with index 1 is deleted from the stock with serial number ntuc1
+    and display is removed from the notes column for the stock.
+    Details of the stock with successful note deleted is shown in status message.
+
+   1. Test case: `notedelete sn/ntuc1 ni/noninteger`<br>
+      Expected: No note deleted as note index given is not a positive integer.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `notedelete sn/ntuc1 ni/-99`<br>
+      Expected: No note deleted as note index given is not a positive integer.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `notedelete sn/ntuc1 ni/9999`<br>
+      Expected: No note deleted (if stock does not have note with index 9999) as note index given is not found.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `notedelete 1111111`<br>
+      Expected: No note deleted due to invalid format from missing field headers sn/ and ni/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `notedelete sn/umbrella1 sn/company1 ni/2`<br>
+      Expected: No note deleted due to invalid format from duplicate field header of sn/.
+      Error details shown in the status message. Status bar remains the same.
+
+   1. Test case: `notedelete`<br>
+      Expected: No note deleted due to missing field headers.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `notedelete q/1111`<br>
+      Expected: No note deleted due to invalid field header q/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `notedelete sn/ntuc1 ni/`<br>
+      Expected: No note delete due to empty input for field note index.
+      Error details shown in the status message. Suggestion message will be shown too.
 
 ### Saving data
 
@@ -906,4 +1448,3 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
