@@ -19,9 +19,9 @@ import seedu.address.model.ingredient.IngredientName;
 
 class SetDefaultCommandTest {
 
-    private static IngredientBook stubBook = new IngredientBook();
-    private static IngredientBook stubBook2 = new IngredientBook();
-    private static IngredientBook filledBook = new IngredientBook();
+    private static final IngredientBook stubBook = new IngredientBook();
+    private static final IngredientBook stubBook2 = new IngredientBook();
+    private static final IngredientBook filledBook = new IngredientBook();
 
     @Test
     public void execute_emptyIngredientBook_success() {

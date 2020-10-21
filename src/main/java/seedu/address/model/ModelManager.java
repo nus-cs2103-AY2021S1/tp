@@ -29,7 +29,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Ingredient> filteredIngredients;
-    private final FilteredList<SalesRecordEntry> filteredSales;
+    private final FilteredList<SalesRecordEntry> filteredSalesRecordList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -52,8 +52,8 @@ public class ModelManager implements Model {
                 Model.PREDICATE_SHOW_ALL_ACTIVE_PERSONS);
         filteredIngredients = new FilteredList<>(this.ingredientBook.getIngredientList(),
                 Model.PREDICATE_SHOW_ALL_INGREDIENTS);
-        filteredSales = new FilteredList<>(this.salesBook.getSalesRecord(),
-                Model.PREDICATE_SHOW_ALL_SALES);
+        filteredSalesRecordList = new FilteredList<>(this.salesBook.getSalesRecord(),
+                Model.PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY);
     }
 
     /**
@@ -202,7 +202,7 @@ public class ModelManager implements Model {
     @Override
     public void addSalesRecordEntry(SalesRecordEntry salesRecordEntry) {
         salesBook.addSalesRecordEntry(salesRecordEntry);
-        updateFilteredSalesList(PREDICATE_SHOW_ALL_SALES);
+        updateFilteredSalesList(PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY);
     }
 
     //=========== IngredientBook ==================================================================================
@@ -228,7 +228,7 @@ public class ModelManager implements Model {
     }
 
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
@@ -249,6 +249,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<SalesRecordEntry> getFilteredSalesRecordList() {
+        return filteredSalesRecordList;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
@@ -257,7 +262,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredSalesList(Predicate<SalesRecordEntry> predicate) {
         requireNonNull(predicate);
-        filteredSales.setPredicate(predicate);
+        filteredSalesRecordList.setPredicate(predicate);
     }
 
     @Override

@@ -59,14 +59,16 @@ public class SetCommand extends Command {
         for (Ingredient ingredient : lastShownList) {
             if (ingredient.getIngredientName().equals(targetName)) {
                 ingredientToEdit = ingredient;
-                if (ingredientToEdit.getAmount().equals(setIngredientDescriptor.getAmount().get())) {
-                    isNoChange = true;
-                }
+
             }
         }
 
         if (ingredientToEdit == null) {
             throw new CommandException(MESSAGE_NOT_FOUND);
+        }
+
+        if (ingredientToEdit.getAmount().equals(setIngredientDescriptor.getAmount().get())) {
+            isNoChange = true;
         }
 
         Ingredient updatedIngredient = createSetIngredient(ingredientToEdit, setIngredientDescriptor);

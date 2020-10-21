@@ -30,6 +30,7 @@ class SetAllCommandTest {
     private static final Amount OOLONG_TEA_AMOUNT = new Amount("10");
     private static final Amount BROWN_SUGAR_AMOUNT = new Amount("10");
     private static final IngredientBook stubBook = new IngredientBook();
+    private static final IngredientBook filledBook = new IngredientBook();
 
     private Model model = new ModelManager(getTypicalAddressBook(), new SalesBook(),
             new IngredientBook(), new UserPrefs());
@@ -66,6 +67,13 @@ class SetAllCommandTest {
                         model.getIngredientBook(), new UserPrefs());
 
         expectedModel.setIngredientBook(readOnlyToSet);
+
+        filledBook.addIngredient(new Ingredient(new IngredientName("Milk")));
+        filledBook.addIngredient(new Ingredient(new IngredientName("Pearl")));
+        filledBook.addIngredient(new Ingredient(new IngredientName("Boba")));
+        filledBook.addIngredient(new Ingredient(new IngredientName("Oolong Tea")));
+        filledBook.addIngredient(new Ingredient(new IngredientName("Brown Sugar")));
+        model.setIngredientBook(filledBook);
 
         assertCommandSuccess(setAllCommand, model, expectedMessage, expectedModel);
     }

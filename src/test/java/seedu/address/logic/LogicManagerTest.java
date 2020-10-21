@@ -77,6 +77,11 @@ public class LogicManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
     }
 
+    @Test
+    public void getFilteredSalesRecordList_modifyList_throwsUnsupportedOperationsException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredSalesRecordList().remove(0));
+    }
+
     /**
      * Executes the command and confirms that
      * - no exceptions are thrown <br>

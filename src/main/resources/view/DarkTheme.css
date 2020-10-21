@@ -235,6 +235,13 @@
     -fx-background-color: black;
 }
 
+.sales-record-list-panel-header {
+    -fx-text-fill: white;
+    -fx-font-size: 17;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-opacity: 1;
+}
+
 /*
  * Metro style Push Button
  * Author: Pedro Duque Vieira
@@ -335,6 +342,11 @@
     -fx-background-color: transparent;
     -fx-border-width: 0;
 }
+
+##salesCardPane {
+     -fx-background-color: transparent;
+     -fx-border-width: 0;
+ }
 
 #commandTypeLabel {
     -fx-font-size: 11px;
