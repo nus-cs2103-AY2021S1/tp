@@ -1,43 +1,56 @@
 ---
 layout: page
-title: User Guide
+title: CliniCal User Guide
 ---
-Clinic Calendar (CliniCal) is a **desktop app for managing patients and appointments, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CliniCal can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
-
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 1. Introduction 
+
+Welcome to the CliniCal User Guide!
+
+Clinic Calendar (CliniCal) is a **desktop app that allows doctors to manage patient records and schedule upcoming appointments**. With CliniCal, you can enhance your daily workflow through the effective scheduling of medical appointments. You can also have access to a digital database that safely stores all your patient records. 
+
+Furthermore, CliniCal is optimized for use via a Command Line Interface (CLI) and even retains the benefits of a Graphical User Interface (GUI). If you can type fast, CliniCal can get your work done faster than traditional GUI apps.
+
+Interested to know more? Take a look at our [**Quick Start**](#2-quick-start) guide. Enjoy!
+
+
+## 2. Quick Start
+
+Welcome to CliniCal! If you are new to our software, this quick start guide will get you up and running in no time! It equips you with the basics tools you need to use CliniCal appropriately.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `CliniCal.jar` from [here](https://github.com/AY2021S1-CS2103T-W11-4/tp/releases).
+1. Download the latest `CliniCal.jar` from [_here_](https://github.com/AY2021S1-CS2103T-W11-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for CliniCal.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all patients.
 
-   * **`add`**`n/John Doe p/98765432 i/S256193A a/John street, block 123, #01-01 e/johnd@example.com` : Adds a patient named `John Doe` to patient database.
+   * **`add`**`n/John Doe p/98765432 i/S2561932A a/Pickle street, Block 123, #01-01 e/johnd@example.com` : Adds a patient named `John Doe` to patient database.
 
-   * **`delete`**`3` : Deletes the 3rd patient shown in the current list.
+   * **`delete`**`3` : Deletes the 3rd patient shown in the patient list.
 
    * **`clear`** : Deletes all patients.
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [**Features**](#3-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 3. Features
+
+This section highlights the commands that CliniCal supports. These include details about the format of the command and example scenarios of the command.
 
 <div markdown="block" class="alert alert-info">
 
@@ -57,65 +70,85 @@ Clinic Calendar (CliniCal) is a **desktop app for managing patients and appointm
 
 </div>
 
-### Commands
+### 3.1 General Commands
 
-#### Viewing help : `help`
+General commands are commands that enhances general user experience when you are using the app.
 
-Shows a message explaning how to access the help page.
+#### 3.1.1 Viewing help: `help`
+
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
+#### 3.1.2 Retrieving past commands: `history`
 
-#### Adding a patient: `add`
+Retrieves a list of past commands that the user had used during the session.
+
+Format: `history`
+
+#### 3.1.3 Clearing command history: `clearhistory`
+
+Clears command history from the patient database.
+
+Format: `clearhistory`
+
+#### 3.1.4 Exiting the program: `exit`
+
+Exits the program.
+
+Format: `exit`
+
+### 3.2 Patient Commands
+
+Patient commands are commands that you can utilise to make changes to your list of patients.
+
+#### 3.2.1 Adding a patient: `add`
 
 Adds a patient to the patient database.
 
 Format: `add n/NAME p/PHONE_NUMBER i/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
 
-<div markdown="span" class="alert alert-primary">
+<div class="alert alert-primary">
+:bulb: <span style="font-weight:bold">Tips:</span>
 
-:bulb: **Tips:**<br>
-
-* A patient can have any number of allergies (including 0)
-
-* The color tag can be any standard HTML color name, such as red, green or orange.<br>
-  Check out [this link](https://www.w3schools.com/colors/colors_names.asp) for an extensive list.
+ <ul>
+    <li> A patient can have any number of allergies (including 0). </li>
+    <li> The color tag can be any standard HTML color name, such as red, green or orange. </li>
+    <li> Check out <a href="https://www.w3schools.com/colors/colors_names.asp">this link</a> for an extensive list. </li>
+ </ul>
 
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 i/S3857462J e/johnd@example.com a/John street, block 123, #01-01`
+* `add n/John Doe p/98765432 i/S3857462J e/johnd@example.com a/Pickle street, block 123, #01-01`
 * `add n/Betsy Crowe i/G7667353B e/betsycrowe@example.com a/Newgate Prison p/1234567 g/penicillin`
 
-#### Adding profile picture using command line interface: `addPicture`
+#### 3.2.2 Adding profile picture: `addpicture`
 
 Adds a profile picture to the patient’s profile by specifying filepath to desired profile picture.
 
 All patient profiles are preloaded with a stock profile picture.
 
-Format: `addPicture INDEX f/FILE_PATH`
+Format: `addpicture INDEX f/FILE_PATH`
 
 Examples:
-*  `addPicture 1 f/data/profile_picture.png` Replaces existing profile picture with 'profile_picture.png' for the 1st patient
-*  `addPicture 2 f/downloads/profile_picture.png` Replaces existing profile picture with 'profile_picture.png' found in
+*  `addpicture 1 f/data/profile_picture.png` Replaces existing profile picture with 'profile_picture.png' for the 1st patient
+*  `addpicture 2 f/downloads/profile_picture.png` Replaces existing profile picture with 'profile_picture.png' found in
                                                   'downloads' folder for the 2nd patient
 
-#### Adding profile picture using drag and drop:
+<div class="alert alert-primary">
+:bulb: <span style="font-weight:bold">Tip: You can also add a profile picture using drag and drop with your mouse!</span>
+<br>
+<br>
+<ol>
+    <li> Select the desired profile picture and drag it onto the space reserved for patient profile picture in ClinCal. </li>
+    <li> Release mouse button and patient's profile picture would be updated with your desired picture! </li>
+</ol>
+</div>
 
-Adds a profile picture to the patient’s profile by using drag and drop with your mouse.
-
-1. Select the desired profile picture and drag it onto the space reserved for patient profile picture in ClinCal.
-2. Release mouse button and patient's profile picture would be updated with your desired picture.
-
-#### Listing all patients: `list`
-
-Shows a list of all patients in the patient database.
-
-Format: `list`
-
-#### Editing a patient: `edit`
+#### 3.2.3 Editing a patient: `edit`
 
 Edits an existing patient in the patient database.
 
@@ -130,33 +163,23 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [i/NRIC] [a/ADDRESS] [e/EMAIL] [s/
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower g/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing allergies.
+*  `edit 3 ct/red` Clears the existing color tag and edits the color tag of the 3rd patient to be `red`.
 * When editing allergies (or color tag), the existing allergies (or color tag) of the patient will be removed i.e adding of allergies (or color tag) is not cumulative.
 * You can remove all the patient’s allergies by typing `g/` without specifying any allergies after it.
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing allergies.
-*  `edit 3 ct/red` Clears the existing color tag and edits the color tag of the 3rd patient to be `red`.
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes about color coding patients:**<br>
 
-#### Locating patients by name: `find`
 
-Finds patients whose names contain any of the given keywords.
+ * When a patient is tagged with a color tag, the background of the patient will be styled to show that color. The color tags can be used for a variety of purposes.
+ * For example, a doctor may color code patients at risk of terminal diseases as <span style="color:red;font-weight:bold">red</span>, for easier reference.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Patients matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+![example of color coded patient](images/Ui.png)
+</div>
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-#### Deleting a patient: `delete`
+#### 3.2.4 Deleting a patient: `delete`
 
 Deletes the specified patient from the patient database.
 
@@ -170,75 +193,77 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the patient database.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
-#### Clearing all entries : `clear`
+#### 3.2.5 Deleting all patients: `clear`
 
-Clears all entries from the patient database.
+Deletes all patient entries from the patient database.
 
 Format: `clear`
 
-#### Clearing command history : `clearhistory`
+#### 3.2.6 Finding patients: `find`
 
-Clears command history from the patient database.
+Finds all patients containing any of the specified keywords.
 
-Format: `clearhistory`
+Format: `list KEYWORD`
 
-#### Exiting the program : `exit`
+#### 3.2.7 Listing all patients: `list`
 
-Exits the program.
+Shows a list of all patients in the patient database.
 
-Format: `exit`
+Format: `list`
 
-#### Undoing the previous command: `undo`
+#### 3.2.8 Undoing the previous command: `undo`
 
-Reverts the previous command given by the user.
+Reverts CliniCal's patient list to the state before execution of the previous command.
+
+For example,
+
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note about the undo command:**<br>
+
+* The undo command only applies to commands that modify the list of patients, such as 
+  
+* 
+  
+</div>
 
 Format: `undo`
 
-#### Redoing a command : `redo`
+#### 3.2.9 Redoing a command: `redo`
 
-Redoes the most recent command that the user has undone.
+Redoes the most recent command that was most recently undone.
 
 Format: `redo`
 
-#### Retrieve past commands using command line interface: `history`
+### 3.3 Retrieving past commands using arrow keys
 
-Retrieves a list of past commands that the user had used during the session.
-
-Format: `history`
-
-#### Retrieve and reuse past commands using arrow keys:
-
-Reuse past commands using the up arrow (↑) and down arrow (↓) keys on the keyboard.
+Retrieve and reuse past commands using the <kbd>↑</kbd> arrow and <kbd>↓</kbd> arrow keys on the keyboard.
 1. Click on the text field of the command box.
-2. Press the up arrow key to display the next recent past command.
-3. Press the down arrow key to display the previously shown past command.
-4. Press enter/return key to reuse the command.
+2. Press the <kbd>↑</kbd> arrow key to display the next recent past command.
+3. Press the <kbd>↓</kbd> arrow key to display the previously shown past command.
+4. Press <kbd>Enter</kbd>/<kbd>Return</kbd> key to reuse the command.
 
-### Saving the data
+### 3.4 Saving the data
 
 CliniCal data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Color coding patients
-
-When a patient is tagged with a color tag, the background of the patient will be styled to show that color. The color tags can be used for a variety of purposes; for example, a doctor may color code patients at risk of terminal diseases as red, for easier reference.
-
-![example of color coded patient](images/Ui.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 4. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CliniCal home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## 5. Command summary
 
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER i/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…​` <br> e.g., `add n/James Ho p/22224444 i/S2686887R e/jamesho@example.com a/123, Clementi Rd, 1234665 s/M b/B+ g/sulfa g/aspirin`
-**Add profile picture** | `addProfilePicture 1 f/data/profile_picture.png`
+**Add profile picture** | `addpicture 1 f/data/profile_picture.png`
 **Clear** | `clear`
 **Clear command history** | `clearhistory`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
