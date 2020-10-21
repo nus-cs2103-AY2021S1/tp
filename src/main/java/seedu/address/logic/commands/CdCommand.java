@@ -43,6 +43,8 @@ public class CdCommand extends Command {
      * Creates a CdCommand to change the current path of the file explorer to the given {@code FileAddress}.
      */
     public CdCommand(AddressType addressType, String addressString) {
+        requireNonNull(addressType);
+        requireNonNull(addressString);
         this.addressType = addressType;
         this.addressString = addressString;
     }
@@ -89,5 +91,13 @@ public class CdCommand extends Command {
         currentPath.setAddress(newPath);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, absolutePathString));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof CdCommand // instanceof handles nulls
+                && addressType.equals(((CdCommand) other).addressType)) // address type check
+                && addressString.equals(((CdCommand) other).addressString);
     }
 }
