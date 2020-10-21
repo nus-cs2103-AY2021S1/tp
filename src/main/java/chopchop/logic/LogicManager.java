@@ -25,9 +25,9 @@ import javafx.collections.ObservableList;
 /**
  * The main CommandDispatcher governing the logic in the app.
  */
-public class CommandDispatcher implements Logic {
+public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
-    private final Logger logger = LogsCenter.getLogger(CommandDispatcher.class);
+    private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
     private final Storage storage;
@@ -37,7 +37,7 @@ public class CommandDispatcher implements Logic {
     /**
      * Constructs a {@code CommandDispatcher} with the given {@code Model} and {@code Storage}.
      */
-    public CommandDispatcher(Model model, Storage storage) {
+    public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
         this.history = new HistoryManager();
