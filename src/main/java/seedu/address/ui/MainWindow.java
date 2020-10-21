@@ -42,6 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     private LastInputDisplay lastInputDisplay;
     private ThemeWindow themeWindow;
     private HelpWindow helpWindow;
+    private FileExplorerPanel fileExplorerPanel;
 
     @FXML
     private StackPane resultDisplayPlaceHolder;
@@ -87,6 +88,9 @@ public class MainWindow extends UiPart<Stage> {
 
         // Help window
         helpWindow = new HelpWindow();
+
+        // File explorer panel
+        fileExplorerPanel = new FileExplorerPanel();
     }
 
     public static MainWindow getInstance() {
@@ -161,8 +165,7 @@ public class MainWindow extends UiPart<Stage> {
         footerbarPlaceHolder.getChildren().add(footerBar.getRoot());
 
         // file explorer panel
-        FileExplorerPanel fileExplorerPanel = new FileExplorerPanel(
-                logic.getCurrentPath(), logic.getFilteredFileList());
+        fileExplorerPanel.SetData(logic.getCurrentPath(), logic.getFilteredFileList());
         fileExplorerPlaceHolder.getChildren().add(fileExplorerPanel.getRoot());
     }
 
@@ -238,6 +241,8 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            fileExplorerPanel.UpdateCurrentPath();
 
             return commandResult;
         } catch (CommandException | ParseException e) {

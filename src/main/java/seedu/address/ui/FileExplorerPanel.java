@@ -11,6 +11,7 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.currentpath.CurrentPath;
+import seedu.address.model.currentpath.FileList;
 
 /**
  * Panel of the file explorer.
@@ -19,19 +20,38 @@ public class FileExplorerPanel extends UiPart<Region> {
     private static final String FXML = "FileExplorerPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TagListPanel.class);
 
+    private CurrentPath currentPath;
+
     @FXML
-    private TitledPane currentPath;
+    private TitledPane currentPathDisplay;
     @FXML
     private ListView<File> fileListView;
 
     /**
-     * Creates a {@code FileExplorerPanel} with the given {@code ObservableList}.
+     * Create a default {@code FileExplorerPanel} that cannot display current path and file list.
      */
-    public FileExplorerPanel(CurrentPath currentPath, ObservableList<File> fileList) {
+    public FileExplorerPanel() {
         super(FXML);
-        this.currentPath.setText(currentPath.getAddress().value);
+    }
+
+    /**
+     * Sets the current path and the list of children files.
+     *
+     * @param currentPath the current path
+     * @param fileList the list of children files
+     */
+    public void SetData(CurrentPath currentPath, ObservableList<File> fileList) {
+        this.currentPath = currentPath;
         fileListView.setItems(fileList);
         fileListView.setCellFactory(listView -> new FileListViewCell());
+        UpdateCurrentPath();
+    }
+
+    /**
+     * Updates the current path displayed on UI.
+     */
+    public void UpdateCurrentPath() {
+        currentPathDisplay.setText(currentPath.getAddress().value);
     }
 
     /**

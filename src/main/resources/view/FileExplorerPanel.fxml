@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-   <TitledPane fx:id="currentPath" text="\$path" VBox.vgrow="ALWAYS">
+   <TitledPane fx:id="currentPathDisplay" text="\$path" VBox.vgrow="ALWAYS">
       <content>
         <ListView fx:id="fileListView" />
       </content>
