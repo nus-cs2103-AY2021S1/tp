@@ -177,7 +177,6 @@ Classes used by multiple components are in the `jimmy.mcgymmy.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-<<<<<<< HEAD
 ### Clear feature
 
 The clear feature extends model with the ability to delete all the items shown in the UI.
