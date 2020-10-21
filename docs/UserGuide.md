@@ -16,6 +16,7 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
         - Favourite a flashcard : `fav`
         - Unfavourite a flashcard: `unfav`
         - Exiting the program: `exit`
+        - View a flashcard: `view`
         - Saving the data
     - FAQ
     - Command summary
@@ -42,11 +43,13 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 
    * **`list`** : Lists all flashcards.
 
-   * **`review`** : Reviews a list of all flashcards.
+   * **`review`** : Reviews the current list of flashcards.
    
    * **`fav 1`** : Favourite the 1st flashcard in the current list.
       
    * **`unfav 1`** : Unfavourite the 1st flashcard in the current list.
+   
+   * **`view 1`** : Views the 1st flashcard in the current list.
 
    * **`exit`** : Exits the app.
   
@@ -76,7 +79,9 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 
 Adds a flashcard.
 
-Format: `add q/QUESTION a/ANSWER [c/CATEGORY] [n/NOTE] [d/DIAGRAM]`
+Format: `add q/QUESTION a/ANSWER [c/CATEGORY] [r/RATING] [n/NOTE] [d/DIAGRAM]`
+
+* If a rating is specified, it must be a number between 1 and 5 inclusive. It is intended to follow the star rating on CS2103T website.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If the category does not exist, it will be created.
@@ -111,12 +116,13 @@ Examples:
 
 Edits a flashcard.
 
-Format: `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [d/DIAGRAM]`
+Format: `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]`
 
 * Edits the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer** 1, 2, 3, …
 * At least one attribute must be given
+* Specifying empty values to note or rating eg. `r/` will remove the corresponding field in the flashcard.
 
 Examples:
 * `edit 3 q/What does OOP stand for? a/Object Oriented Programming c/General`
@@ -144,17 +150,17 @@ Format: `list`
 
 ### Reviewing all flashcards: `review`
 
-Reviews a list of all flashcards.
+Reviews the current list of flashcards. This puts the user in review mode and the user can no longer input commands to the textbox.
 
 Format: `review`
 
 Examples:
-* review followed by:
-    - `[down key]` shows answer to the current flashcard
-    - `[up key]` hides answer to the current flashcard
+* `review` followed by:
+    - `[down key]` shows answer and notes of the current flashcard
+    - `[up key]` hides answer and notes of the current flashcard
     - `[right key]` skips the current flashcard and moves on to the next flashcard
     - `[left key]` returns the previous flashcard
-    - `q` quits review function
+    - `q` quits review mode
     
 ### Favourite a flashcard  : `fav`
 
@@ -176,6 +182,18 @@ Format: `unfav INDEX`
 * The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer** 1, 2, 3, …
 
+### Views a flashcard  : `view`
+
+View the specified flashcard. A "snapshot" of the flashcard is taken and displayed in the view pane to the user.  
+<div markdown="span" class="alert alert-primary">:bulb: Note: If the viewed flashcard is changed (eg. edited or deleted), the view shown remains unchanged.
+</div>
+
+Format: `view INDEX`
+
+* View the flashcard at the specified INDEX.
+* The index refers to the index number shown in the displayed flashcard list.
+* The index **must be a positive integer** 1, 2, 3, …
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -192,11 +210,12 @@ Flashcards data are saved in the hard disk automatically after any command that 
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add q/QUESTION a/ANSWER [c/CATEGORY] [n/NOTE] [d/DIAGRAM]` <br> e.g., `add q/What does OOP stand for? a/Object Oriented Programming c/General n/Important question! d/images/diagram.jpeg`
+**Add** | `add q/QUESTION a/ANSWER [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]` <br> e.g., `add q/What does OOP stand for? a/Object Oriented Programming c/General n/Important question! d/images/diagram.jpeg`
 **Delete** | `delete INDEX` <br> e.g., `delete 3`
-**Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [d/DIAGRAM]` <br> e.g., `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
+**Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]` <br> e.g., `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
 **List** | `list`
 **Review** | `review`
 **Fav** | `fav INDEX` <br> e.g., `fav 1`
 **Unfav** | `unfav INDEX` <br> e.g., `unfav 1`
+**View** | `view INDEX` <br> e.g., `view 1`
 **Exit** | `exit`
