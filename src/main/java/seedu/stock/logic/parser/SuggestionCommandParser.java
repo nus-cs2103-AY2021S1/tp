@@ -192,15 +192,16 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             toBeDisplayed.append(" " + validPrefix + CliSyntax.getDefaultDescription(validPrefix));
         } else {
             String description = argMultimap.getValue(validPrefix).get();
+            String suggestedDescription = description;
             int bestEditDistanceSoFar = Integer.MAX_VALUE;
             for (String field : SortCommandParser.FIELDS) {
                 int currentEditDistance = SuggestionUtil.minimumEditDistance(description, field);
                 if (currentEditDistance < bestEditDistanceSoFar) {
                     bestEditDistanceSoFar = currentEditDistance;
-                    description = field;
+                    suggestedDescription = field;
                 }
             }
-            toBeDisplayed.append(" " + validPrefix + description);
+            toBeDisplayed.append(" " + validPrefix + suggestedDescription);
         }
 
         if (!bodyErrorMessage.equals("")) {
