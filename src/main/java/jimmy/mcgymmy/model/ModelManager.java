@@ -146,7 +146,7 @@ public class ModelManager implements Model {
 
     @Override
     public void clearFilteredFood() {
-        addCurrentStateToHistory()
+        addCurrentStateToHistory();
         Predicate<? super Food> filterPredicate = filteredFoodItems.getPredicate();
         List<Food> lst = new ArrayList<>();
         // prevent traversal error
