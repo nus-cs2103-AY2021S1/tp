@@ -14,7 +14,7 @@ import seedu.address.model.tag.Tag;
  */
 public class SampleDataUtil {
     public static Tag[] getSampleTags() {
-        return new Tag[] {};
+        return new Tag[]{};
     }
 
     /**

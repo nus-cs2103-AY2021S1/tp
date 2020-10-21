@@ -15,6 +15,8 @@ public class TagNameContainsCharPredicate extends TagNameContainsKeywordsPredica
     @Override
     public boolean test(Tag tag) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsCharIgnoreCase(tag.getTagName().tagName, keyword));
+                .anyMatch(keyword -> StringUtil.containsCharIgnoreCase(tag.getTagName().tagName, keyword)
+                        || tag.getLabels().stream().anyMatch(
+                            label -> StringUtil.containsCharIgnoreCase(label.getLabel(), keyword)));
     }
 }

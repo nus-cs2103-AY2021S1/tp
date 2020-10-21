@@ -2,9 +2,9 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LABEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_NAME;
 
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -27,7 +27,7 @@ public class TagCommandParser implements Parser<TagCommand> {
      */
     public TagCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TAG_NAME, PREFIX_FILE_ADDRESS);
+                ArgumentTokenizer.tokenize(args, PREFIX_TAG_NAME, PREFIX_FILE_ADDRESS, PREFIX_LABEL);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TAG_NAME, PREFIX_FILE_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -36,8 +36,7 @@ public class TagCommandParser implements Parser<TagCommand> {
 
         TagName tagName = ParserUtil.parseTagName(argMultimap.getValue(PREFIX_TAG_NAME).get());
         FileAddress fileAddress = ParserUtil.parseFileAddress(argMultimap.getValue(PREFIX_FILE_ADDRESS).get());
-        Set<Label> labels = new HashSet<>();
-        //TODO: NEED TO MODIFIY DESCRIPTIONS
+        Set<Label> labels = ParserUtil.parseLabels(argMultimap.getAllValues(PREFIX_LABEL));
         Tag tag = new Tag(tagName, fileAddress, labels);
 
         return new TagCommand(tag);

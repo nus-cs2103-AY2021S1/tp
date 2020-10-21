@@ -12,5 +12,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_COMMAND = new Prefix("c/");
     public static final Prefix PREFIX_CHILD_PATH = new Prefix("./");
     public static final Prefix PREFIX_PARENT_PATH = new Prefix("../");
+    public static final Prefix PREFIX_LABEL = new Prefix("l/");
 
 }

@@ -2,10 +2,15 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.CdCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.label.Label;
 import seedu.address.model.tag.FileAddress;
 import seedu.address.model.tag.TagName;
 
@@ -102,6 +107,35 @@ public class ParserUtil {
             throw new ParseException(CdCommand.MESSAGE_PARENT_PATH_NOT_BLANK);
         }
         return trimmedAddress;
+    }
+
+    /** Parses a {@code String label} into an {@code Label}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code label} is invalid.
+     */
+    public static Label parseLabel(String label) throws ParseException {
+        requireNonNull(label);
+        String trimmedLabel = label.trim();
+        if (!Label.isValidLabel(trimmedLabel)) {
+            throw new ParseException(Label.MESSAGE_CONSTRAINTS);
+        }
+        return new Label(trimmedLabel);
+    }
+
+    /**
+     * Parses a {@code Collection<Label> labels} into an {@code Set<Label>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code labels} is invalid.
+     */
+    public static Set<Label> parseLabels(Collection<String> labels) throws ParseException {
+        requireNonNull(labels);
+        final Set<Label> labelSet = new HashSet<>();
+        for (String label : labels) {
+            labelSet.add(parseLabel(label));
+        }
+        return labelSet;
     }
 
 }
