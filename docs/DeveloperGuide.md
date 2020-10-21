@@ -114,13 +114,13 @@ Structure of the Model Component
 
 * stores a comparator used to sort the filtered list
 * stores the inventory book data
-* stores a list of InventoryBook
+* stores a list of InventoryBook for redo/undo command
 * exposes an unmodifiable `ObservableList<Item>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
 `DeliveryModelManager`
 
 * stores the delivery book data
-* stores a list of DeliveryBook
+* stores a list of DeliveryBook for redo/undo command
 * exposes an unmodifiable `ObservableList<Delivery>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
 We organised the different data classes into packages (eg.Items) which we will list out the collection of class of that data object

@@ -4,8 +4,6 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Class InventoryBook
-
 Package Item {
 Class Item
 Class Supplier
@@ -14,22 +12,16 @@ Class Name
 Class Metric
 Class Quantity
 Class UniqueItemList
-Class UniqueTagList
 Class Tag
 }
 
-InventoryBook *-right-> "1" UniqueTagList
-InventoryBook *-right-> "1" UniqueItemList
-UniqueTagList -[hidden]down- UniqueItemList
-UniqueTagList -down-> "*" Tag
-
 UniqueItemList o--> "*" Item
-Item *--> Name
-Item *--> Quantity
-Item *--> Supplier
-Item *--> MaxQuantity
+Item *--> "1" Name
+Item *--> "1" Quantity
+Item *--> "0..1" Supplier
+Item *--> "0..1"MaxQuantity
 Item *--> "*" Tag
-Item *--> Metric
+Item *--> "0..1" Metric
 
 Name -[hidden]right-> Quantity
 Quantity -[hidden]right-> Supplier
