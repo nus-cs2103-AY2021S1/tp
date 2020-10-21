@@ -7,6 +7,7 @@ import static quickcache.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 
 import org.junit.jupiter.api.Test;
 
+import quickcache.commons.core.Messages;
 import quickcache.logic.commands.DeleteCommand;
 import quickcache.model.flashcard.Flashcard;
 import quickcache.model.flashcard.FlashcardContainsTagPredicate;
@@ -51,6 +52,11 @@ public class DeleteCommandParserTest {
     @Test
     public void parse_emptyTag_throwsParseException() {
         assertParseFailure(parser, " t/ t/test", Tag.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_validIndexAndTag_throwsParseException() {
+        assertParseFailure(parser, "1 t/test", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
     private FlashcardPredicate prepareFlashcardPredicate(Set<Tag> tagsToMatch) {
