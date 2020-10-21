@@ -33,6 +33,12 @@ public class SortCommand extends Command {
     private String fieldToSort;
     private boolean isReversed;
 
+    /**
+     * Constructs a new sort command object.
+     *
+     * @param fieldToSort The field to be sorted.
+     * @param isReversed Indicates if the order will be ascending or descending.
+     */
     public SortCommand(String fieldToSort, boolean isReversed) {
         this.fieldToSort = fieldToSort;
         this.isReversed = isReversed;

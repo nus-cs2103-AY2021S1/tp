@@ -18,6 +18,7 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE_INDEX;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SORT_ORDER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SORT_TYPE;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_STATISTICS_TYPE;
@@ -26,6 +27,7 @@ import java.util.List;
 import java.util.Random;
 
 import seedu.stock.commons.util.SortUtil;
+import seedu.stock.commons.util.SortUtil.Order;
 import seedu.stock.commons.util.SuggestionUtil;
 import seedu.stock.logic.commands.AddCommand;
 import seedu.stock.logic.commands.CommandWords;
@@ -90,7 +92,8 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
                         args, PREFIX_SERIAL_NUMBER, PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY,
-                        PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION, PREFIX_QUANTITY, PREFIX_SORT_TYPE
+                        PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION, PREFIX_QUANTITY, PREFIX_SORT_TYPE,
+                        PREFIX_SORT_ORDER
                 );
         List<String> allCommandWords = CommandWords.getAllCommandWords();
         StringBuilder toBeDisplayed = new StringBuilder();
@@ -187,12 +190,30 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
      */
     private void generateSortSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
         toBeDisplayed.append(SORT_COMMAND_WORD);
-        Prefix validPrefix = PREFIX_SORT_TYPE;
+        Prefix fieldPrefix = PREFIX_SORT_TYPE;
+        Prefix orderPrefix = PREFIX_SORT_ORDER;
 
-        if (!argMultimap.getValue(validPrefix).isPresent()) {
-            toBeDisplayed.append(" " + validPrefix + CliSyntax.getDefaultDescription(validPrefix));
+        if (!argMultimap.getValue(orderPrefix).isPresent()) {
+            toBeDisplayed.append(" " + orderPrefix + CliSyntax.getDefaultDescription(orderPrefix));
         } else {
-            String description = argMultimap.getValue(validPrefix).get();
+            String description = argMultimap.getValue(orderPrefix).get();
+            String suggestedDescription = description;
+            int bestEditDistanceSoFar = Integer.MAX_VALUE;
+            for (Order order : Order.values()) {
+                String orderDescription = order.toString().toLowerCase();
+                int currentEditDistance = SuggestionUtil.minimumEditDistance(description, orderDescription);
+                if (currentEditDistance < bestEditDistanceSoFar) {
+                    bestEditDistanceSoFar = currentEditDistance;
+                    suggestedDescription = orderDescription;
+                }
+            }
+            toBeDisplayed.append(" " + orderPrefix + suggestedDescription);
+        }
+
+        if (!argMultimap.getValue(fieldPrefix).isPresent()) {
+            toBeDisplayed.append(" " + fieldPrefix + CliSyntax.getDefaultDescription(fieldPrefix));
+        } else {
+            String description = argMultimap.getValue(fieldPrefix).get();
             String suggestedDescription = description;
             int bestEditDistanceSoFar = Integer.MAX_VALUE;
             for (String field : SortUtil.FIELDS) {
@@ -202,7 +223,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
                     suggestedDescription = field;
                 }
             }
-            toBeDisplayed.append(" " + validPrefix + suggestedDescription);
+            toBeDisplayed.append(" " + fieldPrefix + suggestedDescription);
         }
 
         if (!bodyErrorMessage.equals("")) {
