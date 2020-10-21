@@ -1,5 +1,6 @@
 package seedu.stock.commons.util;
 
+import java.math.BigInteger;
 import java.util.Comparator;
 
 import seedu.stock.model.stock.Stock;
@@ -66,9 +67,9 @@ public class SortUtil {
         return new Comparator<Stock>() {
             @Override
             public int compare(Stock a, Stock b) {
-                String nameA = a.getSource().toString();
-                String nameB = b.getSource().toString();
-                return nameA.compareTo(nameB);
+                String sourceA = a.getSource().toString();
+                String sourceB = b.getSource().toString();
+                return sourceA.compareTo(sourceB);
             }
         };
     }
@@ -77,9 +78,9 @@ public class SortUtil {
         return new Comparator<Stock>() {
             @Override
             public int compare(Stock a, Stock b) {
-                String nameA = a.getLocation().toString();
-                String nameB = b.getLocation().toString();
-                return nameA.compareTo(nameB);
+                String locationA = a.getLocation().toString();
+                String locationB = b.getLocation().toString();
+                return locationA.compareTo(locationB);
             }
         };
     }
@@ -88,9 +89,9 @@ public class SortUtil {
         return new Comparator<Stock>() {
             @Override
             public int compare(Stock a, Stock b) {
-                String nameA = a.getSerialNumber().toString();
-                String nameB = b.getSerialNumber().toString();
-                return nameA.compareTo(nameB);
+                String serialNumberA = a.getSerialNumber().toString();
+                String serialNumberB = b.getSerialNumber().toString();
+                return serialNumberA.compareTo(serialNumberB);
             }
         };
     }
@@ -99,9 +100,9 @@ public class SortUtil {
         return new Comparator<Stock>() {
             @Override
             public int compare(Stock a, Stock b) {
-                String nameA = a.getQuantity().toString();
-                String nameB = b.getQuantity().toString();
-                return nameA.compareTo(nameB);
+                BigInteger quantityA = new BigInteger(a.getQuantity().toString());
+                BigInteger quantityB = new BigInteger(b.getQuantity().toString());
+                return quantityA.compareTo(quantityB);
             }
         };
     }
