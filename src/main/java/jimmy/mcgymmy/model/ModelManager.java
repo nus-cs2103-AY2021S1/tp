@@ -23,7 +23,9 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final Stack<ReadOnlyMcGymmy> mcGymmyStack = new Stack<>();
+    private final Stack<MacroList> macroListStack = new Stack<>();
 
+    private MacroList macroList;
     private final McGymmy mcGymmy;
     private final UserPrefs userPrefs;
     private final FilteredList<Food> filteredFoodItems;
@@ -31,19 +33,33 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given mcGymmy and userPrefs.
      */
-    public ModelManager(ReadOnlyMcGymmy mcGymmy, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyMcGymmy mcGymmy, ReadOnlyUserPrefs userPrefs, MacroList macroList) {
         super();
-        CollectionUtil.requireAllNonNull(mcGymmy, userPrefs);
+        CollectionUtil.requireAllNonNull(mcGymmy, userPrefs, macroList);
 
         logger.fine("Initializing with food list: " + mcGymmy + " and user prefs " + userPrefs);
 
         this.mcGymmy = new McGymmy(mcGymmy);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.macroList = macroList;
         filteredFoodItems = new FilteredList<>(this.mcGymmy.getFoodList());
     }
 
     public ModelManager() {
-        this(new McGymmy(), new UserPrefs());
+        this(new McGymmy(), new UserPrefs(), new MacroList());
+    }
+
+    //=========== MacroList ==================================================================================
+
+    @Override
+    public MacroList getMacroList() {
+        return this.macroList;
+    }
+
+    @Override
+    public void setMacroList(MacroList replacement) {
+        addCurrentStateToHistory();
+        this.macroList = replacement;
     }
 
     //=========== UserPrefs ==================================================================================
@@ -123,7 +139,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean canUndo() {
-        return !mcGymmyStack.empty();
+        return !mcGymmyStack.empty() && !macroListStack.empty();
     }
 
     /**
@@ -133,13 +149,16 @@ public class ModelManager implements Model {
     public void undo() {
         if (canUndo()) {
             assert mcGymmyStack.size() > 0 : "McGymmyStack is empty";
+            assert macroListStack.size() > 0 : "MacroListStack is empty";
             mcGymmy.resetData(mcGymmyStack.pop());
+            this.macroList = macroListStack.pop();
             updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
         }
     }
 
     private void addCurrentStateToHistory() {
         mcGymmyStack.push(new McGymmy(mcGymmy));
+        macroListStack.push(macroList);
     }
 
     //=========== Filtered Food List Accessors =============================================================

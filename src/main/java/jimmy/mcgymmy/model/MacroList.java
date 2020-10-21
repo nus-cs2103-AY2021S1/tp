@@ -1,4 +1,4 @@
-package jimmy.mcgymmy.logic.macro;
+package jimmy.mcgymmy.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import jimmy.mcgymmy.logic.macro.Macro;
 import jimmy.mcgymmy.logic.macro.exceptions.DuplicateMacroException;
 import jimmy.mcgymmy.logic.parser.PrimitiveCommandParser;
 

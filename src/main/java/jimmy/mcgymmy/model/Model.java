@@ -18,6 +18,16 @@ public interface Model {
     Predicate<Food> PREDICATE_SHOW_ALL_FOODS = unused -> true;
 
     /**
+     * Returns the current MacroList
+     */
+    public MacroList getMacroList();
+
+    /**
+     * Replaces the current MacroList
+     */
+    public void setMacroList(MacroList replacement);
+
+    /**
      * Returns the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();

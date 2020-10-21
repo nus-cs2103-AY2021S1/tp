@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.logic.macro.Macro;
-import jimmy.mcgymmy.logic.macro.MacroList;
+import jimmy.mcgymmy.model.MacroList;
 import jimmy.mcgymmy.logic.macro.exceptions.DuplicateMacroException;
 
 /**

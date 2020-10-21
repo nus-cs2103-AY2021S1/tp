@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
+import jimmy.mcgymmy.model.MacroList;
 import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.ModelManager;
 

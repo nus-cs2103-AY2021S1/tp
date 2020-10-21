@@ -5,6 +5,7 @@ import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import jimmy.mcgymmy.logic.macro.exceptions.DuplicateMacroException;
+import jimmy.mcgymmy.model.MacroList;
 
 public class MacroListTest {
     @Test
