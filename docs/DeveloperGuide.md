@@ -461,16 +461,24 @@ Use case ends.
 
     *{More to be added}*
 
-**Use Case: Add grades to CAP5BUDDY**
+**Use Case: Add assignment to CAP5BUDDY**
 
   **MSS**
-  1. User requests to add grade to CAP5BUDDY.
-  2. CAP5BUDDY retrieves current grades.
-  3. CAP5BUDDY saves new grade with previous grades.
+  1. User requests to add an assignment to a module in CAP5BUDDY.
+  2. CAP5BUDDY retrieves module from module list.
+  3. CAP5BUDDY creates and adds assignment to the gradetracker in the module retrieved.
+  4. CAP5BUDDY updates module in module list.
+  5. CAP5BUDDY displays success message.
 
      Use case ends.
 
   **Extensions**
+
+* 2a. The module to add to is invalid.
+
+    * CAP5BUDDY displays an error message.
+
+      Use case ends.
 
   * 3a. The given grade is invalid.
 
@@ -496,49 +504,54 @@ Use case ends.
       Use case ends.
 
 
-**Use Case: Edit grade in CAP5BUDDY**
+**Use Case: Edit assignment in CAP5BUDDY**
 
   **MSS**
-  1. User requests to show stored grades in CAP5BUDDY.
-  2. CAP5BUDDY shows a list of current grades.
-  3. User requests to edit grade at a specific index.
-  4. CAP5BUDDY saves new grade with previous grades.
+  1. User requests to edit an assignment in a module in CAP5BUDDY.
+  2. CAP5BUDDY retrieves the module.
+  3. CAP5BUDDY retrieves the assignment requested from the grade tracker in the module.
+  4. User requests to edit the assignment retrieved.
+  5. CAP5BUDDY edits the assignment.
+  6. CAP5BUDDY saves the edited assignment in the module.
+  7. CAP5BUDDY displays success message.
 
      Use case ends.
 
   **Extensions**
 
-  * 3a. The given grade is invalid.
+  * 2a. The given module is invalid.
 
     * CAP5BUDDY displays an error message.
 
       Use case ends.
 
-  * 4a. The provided index of the grade is invalid.
+  * 3a. The given assignment is invalid.
 
     * CAP5BUDDY displays an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
 
   *{More to be added}*
 
-**Use case: Delete a grade**
+**Use case: Delete an assignment**
 
    **MSS**
-   1. User requests to show stored grades in CAP5BUDDY.
-   2. CAP5BUDDY shows a list of current grades.
-   3. User chooses the grade to be deleted at a specific index.
-   4. CAP5BUDDY deletes the grade from the list.
+   1. User requests to delete an assignment in a module in CAP5BUDDY.
+   2. CAP5BUDDY retrieves the module.
+   3. CAP5BUDDY retrieves the assignment requested from the grade tracker in the module.
+   4. CAP5BUDDY deletes the assignment.
+   5. CAP5BUDDY updates the grade tracker in the module.
+   4. CAP5BUDDY displays success message.
 
       Use case ends.
 
    **Extensions**
 
-   * 3a. The provided index of the grade is invalid.
+   * 3a. The provided assignment is invalid.
 
-        * CAP5BUDDY displays an error message.
+      * CAP5BUDDY displays an error message.
 
-          Use case resumes at step 2.
+        Use case ends.
 
    *{More to be added}*
 
