@@ -69,39 +69,35 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
 
         // Store the serial number provided
         List<String> keywords = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
-        ArrayList<SerialNumber> serialNumbers = keywords.stream()
-                .map((keyword) -> new SerialNumber(keyword.toLowerCase()))
+        ArrayList<SerialNumber> serialNumbers = keywords.stream().map((keyword) -> new SerialNumber(keyword))
                 .collect(Collectors.toCollection(ArrayList::new));
         updateStockDescriptor.setSerialNumbers(serialNumbers);
 
         // Update name with new name provided
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            String nameLowerCased = argMultimap.getValue(PREFIX_NAME).get().toLowerCase();
-            updateStockDescriptor.setName(ParserUtil.parseName(nameLowerCased));
+            updateStockDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
 
         // Update source with new source provided
         if (argMultimap.getValue(PREFIX_SOURCE).isPresent()) {
-            String sourceLowerCased = argMultimap.getValue(PREFIX_SOURCE).get().toLowerCase();
-            updateStockDescriptor.setSource(ParserUtil.parseSource(sourceLowerCased));
+            updateStockDescriptor.setSource(ParserUtil.parseSource(argMultimap.getValue(PREFIX_SOURCE).get()));
         }
 
         // Update quantity with new quantity provided
         if (argMultimap.getValue(PREFIX_NEW_QUANTITY).isPresent()) {
-            String newQuantity = argMultimap.getValue(PREFIX_NEW_QUANTITY).get();
-            updateStockDescriptor.setQuantity(ParserUtil.parseQuantity(newQuantity));
+            updateStockDescriptor.setQuantity(
+                    ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_NEW_QUANTITY).get()));
         }
 
         // Increment quantity with increment value provided
         if (argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).isPresent()) {
-            String incrementValue = argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).get();
-            updateStockDescriptor.setQuantityAdder(ParserUtil.parseQuantityAdder(incrementValue));
+            updateStockDescriptor.setQuantityAdder(
+                    ParserUtil.parseQuantityAdder(argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).get()));
         }
 
         // Update location with new location provided
         if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
-            String locationLowerCased = argMultimap.getValue(PREFIX_LOCATION).get().toLowerCase();
-            updateStockDescriptor.setLocation(ParserUtil.parseLocation(locationLowerCased));
+            updateStockDescriptor.setLocation(ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()));
         }
 
         if (!updateStockDescriptor.isAnyFieldEdited()) {

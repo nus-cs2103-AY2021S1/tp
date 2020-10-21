@@ -13,17 +13,18 @@ public class SortUtil {
      * @return The comparator to sort the inventory.
      */
     public static Comparator<Stock> generateComparator(String field) {
-        if (field.equals("name")) {
+        switch (field) {
+        case "name":
             return generateNameComparator();
-        } else if (field.equals("source")) {
+        case "source":
             return generateSourceComparator();
-        } else if (field.equals("location")) {
+        case "location":
             return generateLocationComparator();
-        } else if (field.equals("serialnumber")) {
+        case "serialnumber":
             return generateSerialNumberComparator();
-        } else if (field.equals("quantity")) {
+        case "quantity":
             return generateQuantityComparator();
-        } else {
+        default:
             return null;
         }
     }
@@ -38,7 +39,7 @@ public class SortUtil {
             }
         };
     }
-    
+
     private static Comparator<Stock> generateSourceComparator() {
         return new Comparator<Stock>() {
             @Override

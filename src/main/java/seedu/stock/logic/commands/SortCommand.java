@@ -1,8 +1,12 @@
 package seedu.stock.logic.commands;
 
+import java.util.Comparator;
+
+import seedu.stock.commons.util.SortUtil;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.logic.commands.exceptions.SourceCompanyNotFoundException;
 import seedu.stock.model.Model;
+import seedu.stock.model.stock.Stock;
 
 public class SortCommand extends Command {
 
@@ -22,6 +26,8 @@ public class SortCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException, SourceCompanyNotFoundException {
-        return new CommandResult("This is sort" + fieldToSort);
+        Comparator<Stock> comparator = SortUtil.generateComparator(fieldToSort);
+        model.sortFilteredStockList(comparator);
+        return new CommandResult(String.format(MESSAGE_SORT_STOCK_SUCCESS, fieldToSort));
     }
 }
