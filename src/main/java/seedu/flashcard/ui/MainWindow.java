@@ -9,6 +9,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.flashcard.commons.core.GuiSettings;
@@ -39,6 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private FlashcardListPanel flashcardListPanel;
     private FlashcardAnswerCard flashcardAnswerCard;
     private FlashcardQuestionCard flashcardQuestionCard;
+    private FlashcardViewCard flashcardViewCard;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -62,6 +64,15 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane flashcardViewCardPlaceholder;
+
+    @FXML
+    private GridPane commandModePane;
+
+    @FXML
+    private GridPane reviewModePane;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -127,6 +138,9 @@ public class MainWindow extends UiPart<Stage> {
         flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
 
+        flashcardViewCard = new FlashcardViewCard(logic.getFilteredFlashcardList().get(0), 1);
+        flashcardViewCardPlaceholder.getChildren().add(flashcardViewCard.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -135,6 +149,13 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+//        questionPlaceholder.setVisible(false);
+//        answerPlaceholder.setVisible(false);
+//        questionPlaceholder.managedProperty().bind(questionPlaceholder.visibleProperty());
+//        answerPlaceholder.managedProperty().bind(answerPlaceholder.visibleProperty());
+        reviewModePane.setVisible(false);
+        reviewModePane.managedProperty().bind(reviewModePane.visibleProperty());
     }
 
     /**
@@ -183,13 +204,11 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void exitReviewMode(String exitReason) {
         getRoot().removeEventFilter(KeyEvent.KEY_PRESSED, keyDownEventHandler);
-        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        commandBoxPlaceholder.setVisible(true);
+        commandModePane.setVisible(true);
         questionPlaceholder.getChildren().clear();
         answerPlaceholder.getChildren().clear();
-        questionPlaceholder.setPrefHeight(0);
-        answerPlaceholder.setPrefHeight(0);
+        reviewModePane.setVisible(false);
         resultDisplay.setFeedbackToUser(exitReason + ReviewManager.EXIT_MESSAGE);
     }
 
@@ -199,10 +218,13 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void enterReviewMode() {
         reviewManager = new ReviewManager(logic.getFilteredFlashcardList());
-        flashcardListPanelPlaceholder.getChildren().clear();
-        commandBoxPlaceholder.getChildren().clear();
-        questionPlaceholder.setPrefHeight(100);
-        answerPlaceholder.setPrefHeight(100);
+        commandModePane.setVisible(false);
+        commandModePane.managedProperty().bind(commandModePane.visibleProperty());
+        commandBoxPlaceholder.setVisible(false);
+        commandBoxPlaceholder.managedProperty().bind(commandBoxPlaceholder.visibleProperty());
+//        questionPlaceholder.setVisible(true);
+////        answerPlaceholder.setVisible(true);
+        reviewModePane.setVisible(true);
         showReviewFlashcard(reviewManager.getCurrentFlashcard(), 1);
     }
 

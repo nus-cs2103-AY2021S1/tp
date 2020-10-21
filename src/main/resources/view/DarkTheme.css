@@ -209,6 +209,12 @@
     -fx-background-color: derive(#1d1d1d, 30%);
 }
 
+.grid-with-border {
+     -fx-background-color: transparent;
+     -fx-border-top-width: 1px;
+     -fx-hgap: 10;
+}
+
 .context-menu {
     -fx-background-color: derive(#1d1d1d, 50%);
 }
