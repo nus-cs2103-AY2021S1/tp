@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PREFIX;
+import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_KEYWORD;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -24,12 +26,12 @@ class FindModCommandParserTest {
     }
     @Test
     public void parse_argsWithEmptyParameters_throwsParseException() {
-        assertParseFailure(parser, " m/ n/ i/ ", "String can't be empty!");
+        assertParseFailure(parser, " m/ n/ i/ ", MESSAGE_EMPTY_KEYWORD);
     }
     @Test
     public void parse_argsWithDuplicateParameters_throwsParseException() {
         assertParseFailure(parser, " m/CS2103 n/Software n/Engineering i/ ",
-                "Duplicate prefix! Might have to implement a DuplicatePrefixException class!");
+                MESSAGE_DUPLICATE_PREFIX);
     }
     @Test
     public void parse_argsWithModuleParameterAsSentence_throwsParseException() {

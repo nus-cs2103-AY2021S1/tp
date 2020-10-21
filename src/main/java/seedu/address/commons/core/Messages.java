@@ -14,5 +14,6 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in FaculType";
     public static final String MESSAGE_EMPTY_KEYWORD = "Keyword cannot be empty";
     public static final String MESSAGE_DUPLICATE_PREFIX = "Prefix %s has a duplicate";
+    public static final String MESSAGE_INVALID_PHONE_KEYWORD = "Keyword should be numeric!";
 
 }

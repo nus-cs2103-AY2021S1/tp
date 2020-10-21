@@ -61,10 +61,6 @@ public class DepartmentContainsKeywordsPredicateTest {
         predicate = new DepartmentContainsKeywordsPredicate(Arrays.asList("Com", "Sci"));
         assertTrue(predicate.test(new PersonBuilder().withDepartment("Computer Science").build()));
 
-        // Only one matching keyword -> fail
-        predicate = new DepartmentContainsKeywordsPredicate(Arrays.asList("Science", "Engineering"));
-        assertFalse(predicate.test(new PersonBuilder().withDepartment("Computer Engineering").build()));
-
         // Mixed-case keywords
         predicate = new DepartmentContainsKeywordsPredicate(Arrays.asList("cOmPuTer", "SCiEnCe"));
         assertTrue(predicate.test(new PersonBuilder().withDepartment("Computer Science").build()));
@@ -76,6 +72,10 @@ public class DepartmentContainsKeywordsPredicateTest {
         DepartmentContainsKeywordsPredicate predicate =
                 new DepartmentContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withDepartment("Computing").build()));
+
+        // Only one matching keyword
+        predicate = new DepartmentContainsKeywordsPredicate(Arrays.asList("Science", "Engineering"));
+        assertFalse(predicate.test(new PersonBuilder().withDepartment("Computer Engineering").build()));
 
         // Non-matching keyword
         predicate = new DepartmentContainsKeywordsPredicate(Collections.singletonList("Engineering"));
