@@ -52,4 +52,7 @@ public class Amount {
         return value.hashCode();
     }
 
+    public Double getValue() {
+        return this.value;
+    }
 }
