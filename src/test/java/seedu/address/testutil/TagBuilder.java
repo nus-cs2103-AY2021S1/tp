@@ -39,7 +39,7 @@ public class TagBuilder {
     public TagBuilder(Tag tagToCopy) {
         tagName = tagToCopy.getTagName();
         fileAddress = tagToCopy.getFileAddress();
-        labels = new HashSet<>(tagToCopy.getLabels());
+        labels = tagToCopy.getLabels();
     }
 
     /**
@@ -60,7 +60,7 @@ public class TagBuilder {
     }
 
     /**
-     * Sets the {@code Set<Label>} of the {@code Tag} that we are building.
+     * Parses the {@code labels} into a {@code Set<Label>} and set it to the {@code Tag} that we are building.
      */
     public TagBuilder withLabels(String ... labels) {
         this.labels = SampleDataUtil.getLabelSet(labels);
