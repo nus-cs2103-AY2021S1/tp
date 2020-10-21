@@ -29,7 +29,7 @@ Welcome to CliniCal! If you are new to our software, this quick start guide will
 1. Copy the file to the folder you want to use as the _home folder_ for CliniCal.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![i](images/Ui.png)
 
 1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.<br>
    Some example commands you can try:
@@ -86,11 +86,15 @@ Format: `help`
 
 You can refer to a list of past commands that you had used during the session.
 
+![history example](images/historyExample.png)
+
 Format: `history`
 
 #### 3.1.3 Clearing command history: `clearhistory`
 
 You can clear the command history.
+
+![clear history example](images/clearHistoryExample.png)
 
 Format: `clearhistory`
 
@@ -107,6 +111,8 @@ Patient commands are commands that you can utilise to make changes to your list 
 #### 3.2.1 Adding a patient: `add`
 
 You can add your patient to the patient database.
+
+![add example](images/addExample.png)
 
 Format: `add n/NAME p/PHONE_NUMBER i/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
 
@@ -131,6 +137,8 @@ You can add a profile picture to your patient’s profile by specifying the file
 
 All patient profiles are preloaded with a stock profile picture.
 
+![add profile example](images/addProfileExample.png)
+
 Format: `addpicture INDEX f/FILE_PATH`
 
 Examples:
@@ -151,6 +159,8 @@ Examples:
 #### 3.2.3 Editing a patient: `edit`
 
 You can edit an existing patient in the patient database.
+
+![edit example](images/editExample.png)
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [i/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
 
@@ -175,11 +185,13 @@ Examples:
  * For example, you may color code patients at risk of terminal diseases as <span style="color:red;font-weight:bold">red</span>, for easier reference.
 
 
-![example of color coded patient](images/Ui.png)
+![example of color coded patient](images/colorTagExample.png)
 </div>
 
 
 #### 3.2.4 Deleting a patient: `delete`
+
+![delete example](images/deleteExample.png)
 
 You can delete a specified patient from the patient database.
 
@@ -195,11 +207,15 @@ Examples:
 
 #### 3.2.5 Deleting all patients: `clear`
 
+![clear example](images/clearExample.png)
+
 You can clear all patient entries from the patient database.
 
 Format: `clear`
 
 #### 3.2.6 Finding patients: `find`
+
+![find example](images/findExample.png)
 
 Finds all patients containing any of the specified keywords.
 
@@ -207,11 +223,15 @@ Format: `list KEYWORD`
 
 #### 3.2.7 Listing all patients: `list`
 
+![list example](images/listExample.png)
+
 You can see a list of all your patients in the patient database.
 
 Format: `list`
 
 #### 3.2.8 Undoing the previous command: `undo`
+
+![undo example](images/undoExample.png)
 
 You can revert your previous command which modified the patient database.
 
@@ -231,6 +251,8 @@ For example,
 Format: `undo`
 
 #### 3.2.9 Redoing a command: `redo`
+
+![redo example](images/redoExample.png)
 
 You can redo the most recent command that you have undone.
 
