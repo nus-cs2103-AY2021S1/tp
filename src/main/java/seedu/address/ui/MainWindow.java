@@ -131,7 +131,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        activeAccountName.textProperty().bind(logic.getActiveAccountName().getName());
+        //activeAccountName.textProperty().bind(logic.getActiveAccountName().getName());
 
         fillEntryDisplay();
 
