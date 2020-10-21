@@ -53,18 +53,6 @@ public class Fridge implements Iterable<Food> {
         internalList.remove(removeIndex.getZeroBased());
     }
 
-    /**
-     * Removes the food item
-     * The food item must exist in the list.
-     */
-    public void remove(Food toRemove) {
-        requireNonNull(toRemove);
-        assert internalList.contains(toRemove) : "Fridge does not contain food item";
-        if (internalList.contains(toRemove)) {
-            internalList.remove(toRemove);
-        }
-    }
-
     public void setFoods(Fridge replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -77,7 +65,6 @@ public class Fridge implements Iterable<Food> {
         CollectionUtil.requireAllNonNull(foods);
         internalList.setAll(foods);
     }
-
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
