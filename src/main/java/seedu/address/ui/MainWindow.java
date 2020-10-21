@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -134,7 +135,13 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new AutocompleteCommandBox(this::executeCommand, logic);
+        AutocompleteCommandBox commandBox = new AutocompleteCommandBox(this::executeCommand);
+        commandBox.setupAutocompletionListeners("cname/", () -> logic.getFilteredPersonList().stream()
+                .map(p -> p.getName().fullName).collect(Collectors.toList()));
+        commandBox.setupAutocompletionListeners("mdname/", () -> logic.getFilteredModuleList().stream()
+                .map(p -> p.getModuleName().getModuleName()).collect(Collectors.toList()));
+        commandBox.setupAutocompletionListeners("mtname/", () -> logic.getFilteredModuleList().stream()
+                .map(p -> p.getModuleName().getModuleName()).collect(Collectors.toList()));
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 

@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import javafx.collections.ObservableList;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import seedu.address.logic.Logic;
 
 
 public class AutocompleteCommandBox extends CommandBox {
@@ -19,31 +18,21 @@ public class AutocompleteCommandBox extends CommandBox {
     private boolean hasSetPrefix = false;
     private int autoCompletePos;
     private int commandPrefixPos;
-    private final Logic logic;
 
     /**
      * Creates a {@code AutocompleteCommandBox} with the given {@code CommandExecutor}.
      */
-    public AutocompleteCommandBox(CommandExecutor commandExecutor, Logic l) {
+    public AutocompleteCommandBox(CommandExecutor commandExecutor) {
         super(commandExecutor);
-        this.logic = l;
         disableFocusTraversal();
-
-        setupAutocompletionListeners("cname/", () -> logic.getFilteredPersonList().stream()
-                .map(p -> p.getName().fullName).collect(Collectors.toList()));
-        setupAutocompletionListeners("mdname/", () -> logic.getFilteredModuleList().stream()
-                .map(p -> p.getModuleName().getModuleName()).collect(Collectors.toList()));
-        setupAutocompletionListeners("mtname/", () -> logic.getFilteredModuleList().stream()
-                .map(p -> p.getModuleName().getModuleName()).collect(Collectors.toList()));
-
         setupBlockOtherKeystrokesInAcMode();
         setupExitKeys();
     }
 
     /**
-     * Setups Autocompletion Generator for stipulated command.
+     * Setups Autocompletion Generator for stipulated command prefix.
      */
-    private void setupAutocompletionListeners(String commandPrefix, Supplier<List<String>> suggestionsDataGenerator) {
+    public void setupAutocompletionListeners(String commandPrefix, Supplier<List<String>> suggestionsDataGenerator) {
         setupAutocompleteTriggers(commandPrefix);
         setupAutocompleteActionKeys(commandPrefix, suggestionsDataGenerator);
     }
