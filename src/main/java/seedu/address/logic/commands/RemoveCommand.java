@@ -69,7 +69,7 @@ public class RemoveCommand extends Command {
         OrderItem orderItem = new OrderItem(order.get(index), quantity);
         model.removeOrderItem(orderItem);
 
-        if (order.size() == index || !order.get(index).isSameOrderItem(orderItem)) {
+        if (order.size() == index || !order.get(index).isSameOrderItemDescription(orderItem)) {
             orderItem = oldItem;
         }
 

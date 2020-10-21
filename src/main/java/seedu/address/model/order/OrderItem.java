@@ -51,8 +51,7 @@ public class OrderItem extends Food {
     }
 
     /**
-     * Returns true if both OrderItems of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two OrderItems.
+     * Returns true only if both OrderItems have the same exact identity fields for all attributes.
      */
     public boolean isSameOrderItem(OrderItem orderItem) {
         if (orderItem == this) {
@@ -62,8 +61,31 @@ public class OrderItem extends Food {
         return orderItem != null
                 && orderItem.getName().equals(getName())
                 && (orderItem.getPrice() == (getPrice()))
+                && (orderItem.getQuantity() == getQuantity())
                 && (orderItem.getTags().equals(getTags()));
     }
+
+    /**
+     * Returns true if both OrderItems have the same identity fields for all attributes except for quantity.
+     * This defines a weaker notion of equality between two OrderItems.
+     */
+    public boolean isSameOrderItemDescription(OrderItem orderItem) {
+        if (orderItem == this) {
+            return true;
+        }
+
+        return orderItem != null
+                && orderItem.getName().equals(getName())
+                && (orderItem.getPrice() == (getPrice()))
+                && (orderItem.getTags().equals(getTags()));
+    }
+
+    //    @Override
+    //    public boolean equals(Object other) {
+    //        return other == this // short circuit if same object
+    //                || (other instanceof OrderItem // instanceof handles nulls
+    //                && isSameOrderItem((OrderItem) other));
+    //    }
 
     @Override
     public int hashCode() {
