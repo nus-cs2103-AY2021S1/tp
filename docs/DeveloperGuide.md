@@ -391,79 +391,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Steps 1c1-1c3 are repeated until the data entered are correct.
     Use case resumes from step 2.
     
-***Use case: UC05 - Adding a Comment on applicant***
-
-**MSS**
-
-1. User types in `add <index_of_applicant> a- c- t:<title> d:<date> desc:<description_of_comment>`. 
-2. Eva adds the comment to applicant record permanently.
-3. Eva displays the confirmed message of addition of comment to that applicant record.  
-    Use case ends.
-
-**Extensions**
-
-* 1a. Eva does not find applicant record with the keyed in index.
-
-    * 1a1. Eva informs the user that there are no such records.
-    * 1a2. Eva requests the user to type the command in again. 
-    * 1a3  User types in `add <index_of_applicant> a- c- t:<title> d:<date> desc:<description_of_comment>` with correct index of staff
-    Steps 1a1-1a3 are repeated until the data entered are correct.
-    Use case resumes from step 2.
-
-* 1b. Eva does not detect any input for <index>.
-
-    * 1b1. Eva requests the user to type the command in again. 
-    * 1b2. User types in the new command `add <index_of_applicant> a- c- t:<title> d:<date> desc:<description_of_comment>`.    
-    Steps 1b1-1b3 are repeated until the data entered are correct.
-    Use case resumes from step 2.
     
-* 1c. Eva detects missing fields
+***Use case: UC05 - Adding an applicant to record***
 
-    * 1c1. Eva shows the correct format to key in data.
-    * 1c2. Eva requests the user to add in data again.
-    * 1c3  User enters new data.
+Similar to Use Case 01, except that instead of s-, key in a-.
 
-    Steps 1c1-1c3 are repeated until the data entered are correct.
-    Use case resumes from step 2.
+Example: `add a- n/<applicantname> a/address e/<email> p/<phoneno> c/<comments>`
+
+***Use case: UC06 - Deleting an applicant from record***
+
+Similar to Use Case 02, except that instead of s-, key in a-.
+
+Example: `delete <index_of_applicant> a-`
     
+***Use case: UC07 - Adding a Comment on applicant***
+
+Similar to Use Case 03, just that instead of s-, key in a-.
+
+Example: `add <index_of_staff> s- c- t:<title> d:<date> desc:<description_of_comment>`    
+
+***Use case: UC08 - Deleting a Comment on applicant***
+
+Similar to Use Case 04 except that instead of s-, key in a-.
+
+Example: `delete <index_of_applicant> a- c- t:<title>`
 
 
-***Use case: UC06 - Deleting a Comment on applicant***
-
-**MSS**
-
-1. User types in `delete <index_of_applicant> a- c- t:<title>`. 
-2. Eva deletes the comment with entered `<title>` from applicant record permanently.
-3. Eva displays the confirmed message of deletion of comment from applicant record.  
-    Use case ends.
-
-**Extensions**
-
-* 1a. Eva does not find applicant record with the keyed in index.
-
-    * 1a1. Eva informs the user that there are no such records.
-    * 1a2. Eva requests the user to type the command in again. 
-    * 1a3  User types in `delete <index_of_applicant> a- c- t:<title>` with correct index of applicant
-    Steps 1a1-1a3 are repeated until the data entered are correct.
-    Use case resumes from step 2.
-
-* 1b. Eva does not detect any input for <index>.
-
-    * 1b1. Eva requests the user to type the command in again. 
-    * 1b2. User types in the new command `delete <index_of_applicant> a- c- t:<title>`.    
-    Steps 1b1-1b3 are repeated until the data entered are correct.
-    Use case resumes from step 2.
-    
-* 1c. Eva detects missing fields
-
-    * 1c1. Eva shows the correct format to key in data.
-    * 1c2. Eva requests the user to add in data again.
-    * 1c3  User enters new data.
-
-    Steps 1c1-1c3 are repeated until the data entered are correct.
-    Use case resumes from step 2.
-
-***Use case: UC07 - list all staff records***
+***Use case: UC09 - list all staff records***
 
 **MSS**
 
@@ -480,7 +434,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-***Use case: UC08 - Exiting the program***
+***Use case: UC10 - Exiting the program***
 
 **MSS**
 
