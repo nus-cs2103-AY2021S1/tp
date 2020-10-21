@@ -49,11 +49,11 @@ public class UniqueStockList implements Iterable<Stock> {
         internalList.add(toAdd);
     }
 
-     /**
-     * Replaces the stock {@code target} in the list with {@code updatedStock}.
-     * {@code target} must exist in the list.
-     * The person identity of {@code updatedStock} must not be the same as another existing stock in the list.
-     */
+      /**
+      * Replaces the stock {@code target} in the list with {@code updatedStock}.
+      * {@code target} must exist in the list.
+      * The person identity of {@code updatedStock} must not be the same as another existing stock in the list.
+      */
      public void setStock(Stock target, Stock updatedStock) {
         requireAllNonNull(target, updatedStock);
 

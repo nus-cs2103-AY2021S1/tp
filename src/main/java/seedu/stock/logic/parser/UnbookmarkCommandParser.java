@@ -3,7 +3,6 @@ package seedu.stock.logic.parser;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Set;
-import java.util.logging.Level;
 
 import seedu.stock.logic.commands.UnbookmarkCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;

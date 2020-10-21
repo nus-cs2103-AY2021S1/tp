@@ -80,7 +80,7 @@ public class UnbookmarkCommand extends Command {
 
         // Bookmark stocks
         for (Stock stockToUnbookmark: stocksToUnbookmark) {
-            if (!stockToUnbookmark.getBookmarked()){
+            if (!stockToUnbookmark.getBookmarked()) {
                 throw new CommandException(MESSAGE_NOT_BOOKMARKED);
             }
             stockToUnbookmark.setUnbookmarked();
