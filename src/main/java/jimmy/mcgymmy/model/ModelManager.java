@@ -118,17 +118,16 @@ public class ModelManager implements Model {
 
     @Override
     public void clearFilteredFood() {
-        List<Food> lst = new ArrayList<>();
 
-        for (Food filteredFood : filteredFoodItems) {
-            if (mcGymmy.hasFood(filteredFood)) {
+        Predicate<? super Food> filterPredicate = filteredFoodItems.getPredicate();
+        List<Food> lst = new ArrayList<>();
+        // prevent traversal error
+        for (Food filteredFood : mcGymmy.getFoodList()) {
+            if (!filterPredicate.test(filteredFood)) {
                 lst.add(filteredFood);
             }
         }
-        while (!lst.isEmpty()) {
-            Food filteredFood = lst.remove(0);
-            mcGymmy.removeFood(filteredFood);
-        }
+        mcGymmy.setFoodItems(lst);
 
         filteredFoodItems.clear();
     }
