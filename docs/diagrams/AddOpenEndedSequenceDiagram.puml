@@ -10,14 +10,14 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant "QuickCache" as QuickCache MODEL_COLOR
+participant ":QuickCache" as QuickCache MODEL_COLOR
 participant "flashcards:UniqueFlashcardList" as Flashcards MODEL_COLOR
 participant "internalList:ObservableList<Flashcard>" as ObservableList MODEL_COLOR
 end box
-[-> LogicManager : execute(test 1 ans/Example answer)
+[-> LogicManager : execute("test 1 ans/Example answer")
 activate LogicManager
 
-LogicManager -> QuickCacheParser : parseCommand(add q/question ans/ Answer)
+LogicManager -> QuickCacheParser : parseCommand("add q/question ans/ Answer")
 activate QuickCacheParser
 
 create AddOpenEndedQuestionCommandParser
@@ -27,7 +27,7 @@ activate AddOpenEndedQuestionCommandParser
 AddOpenEndedQuestionCommandParser -> QuickCacheParser
 deactivate AddOpenEndedQuestionCommandParser
 
-QuickCacheParser -> AddOpenEndedQuestionCommandParser : parse(q/question ans/Example Answer)
+QuickCacheParser -> AddOpenEndedQuestionCommandParser : parse("q/question ans/Example Answer")
 activate AddOpenEndedQuestionCommandParser
 
 create AddOpenEndedQuestionCommand
