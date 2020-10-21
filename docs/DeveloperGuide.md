@@ -465,13 +465,11 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: team leaders who are managing software projects:
 
-* team leader managing software projects
 * has a growing number of projects and team members to manage
-* prefer desktop apps over mobile apps 
-* can type fast
-* prefers typing to mouse interactions
+* prefers desktop apps over mobile apps 
+* can type fast and prefers typing to mouse interactions
 * is tech-savvy and reasonably comfortable using CLI apps
 
 **Value proposition**: manage projects, team members, and tasks on a unified platform as opposed to scattered on
