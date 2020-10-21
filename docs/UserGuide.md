@@ -99,6 +99,7 @@ You can clear the command history.
 Format: `clearhistory`
 
 <div markdown="block" class="alert alert-info">
+
 **:information_source: Note:**<br>
 
  * Use with caution, `clearhistory` cannot be undone!
@@ -137,8 +138,8 @@ Examples:
 </div>
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note about color coding patients:**<br>
 
+**:information_source: Note about color coding patients:**<br>
 
  * When your patient is tagged with a color tag, the background of the patient will be styled to show that color. The color tags can be used for a variety of purposes.
  * For example, you may color code patients at risk of terminal diseases as <span style="color:red;font-weight:bold">red</span>, for easier reference.
