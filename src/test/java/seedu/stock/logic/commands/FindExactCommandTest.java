@@ -12,14 +12,15 @@ import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.stock.model.Model;
 import seedu.stock.model.ModelManager;
 import seedu.stock.model.UserPrefs;
+import seedu.stock.model.stock.Stock;
 import seedu.stock.model.stock.predicates.NameContainsKeywordsPredicate;
 import seedu.stock.model.stock.predicates.SourceContainsKeywordsPredicate;
 
@@ -47,8 +48,9 @@ public class FindExactCommandTest {
         // expected status message to show what user has searched for
         expectedMessage = "Searching for:\n" + namePredicate.toString() + ", "
                 + sourcePredicate.toString() + "\n" + expectedMessage;
+        List<Predicate<Stock>> predicateList = Arrays.asList(namePredicate, sourcePredicate);
         expectedModel.updateFilteredStockList(
-                Stream.of(namePredicate, sourcePredicate).reduce(x -> true, Predicate::and));
+                predicateList.stream().reduce(x -> true, Predicate::and));
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.singletonList(APPLE), model.getFilteredStockList());
