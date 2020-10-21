@@ -52,6 +52,7 @@ public class LogicManager implements Logic {
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
         this.vendorIndex = model.getVendorIndex();
+
         //        try {
         //            storage.saveAddressBook(model.getAddressBook());
         //        } catch (IOException ioe) {
