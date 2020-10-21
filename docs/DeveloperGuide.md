@@ -139,6 +139,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | find a module by name          | locate details of a module without having to go through the entire list |
 | `* *`    | user                                       | add a zoom link to a module    | keep track and retrieve it easily                      |
 | `*`      | user who is overloading                    | sort modules by name           | locate a module easily                                 |
+| `* * *`  | user                                       | add a task                     | keep track of the tasks that I must complete           |
+| `* * *`  | user                                       | delete a task                  | remove a task that has been done                       |
+| `* * *`  | user                                       | edit a task                    | make necessary changes to a task                       |
+| `* *`    | user                                       | label a task as completed      |                                                        |
+| `* *`    | user                                       | find a task                    | find a task easily without looking at the entire list  |
+| `* *`    | user                                       | sort tasks based on criteria   | easily manage the tasks by order                       |
+| `* *`    | user                                       | filter tasks based on criteria | easily manage the tasks by group                       |
+| `*`      | user                                       | reset the status of a task     | change a task from labeled as completed to not completed |
+| `*`      | user                                       | archive a task                 | hide irrelevant tasks that might still be useful for future purposes |               
 
 *{More to be added}*
 
