@@ -1,7 +1,13 @@
 {
-  "flashcards" : [  {
-    "question" : "",
-    "answer" : "Object Oriented Programming",
-    "category" : "General"
-  } ]
+  "flashcards": [
+    {
+      "question": "",
+      "answer": "Software development life cycle",
+      "category": "SDLC",
+      "note": "",
+      "rating": "2",
+      "diagramFilePath": "",
+      "isFavourite": "false"
+    }
+  ]
 }

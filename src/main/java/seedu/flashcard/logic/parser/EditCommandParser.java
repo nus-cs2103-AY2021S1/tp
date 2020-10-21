@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.flashcard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_DIAGRAM;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_RATING;
@@ -23,13 +24,14 @@ public class EditCommandParser implements Parser<EditCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_QUESTION, PREFIX_ANSWER, PREFIX_CATEGORY, PREFIX_NOTE,
-                        PREFIX_RATING);
+                        PREFIX_RATING, PREFIX_DIAGRAM);
 
         Index index;
 
@@ -37,7 +39,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE),
-            pe);
+                    pe);
         }
 
         EditFlashcardDescriptor editFlashcardDescriptor = new EditFlashcardDescriptor();
@@ -56,11 +58,12 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_RATING).isPresent()) {
             editFlashcardDescriptor.setRating(ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get()));
         }
-
+        if (argMultimap.getValue(PREFIX_DIAGRAM).isPresent()) {
+            editFlashcardDescriptor.setDiagram(ParserUtil.parseDiagram(argMultimap.getValue(PREFIX_DIAGRAM).get()));
+        }
         if (!editFlashcardDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
-
         return new EditCommand(index, editFlashcardDescriptor);
     }
 

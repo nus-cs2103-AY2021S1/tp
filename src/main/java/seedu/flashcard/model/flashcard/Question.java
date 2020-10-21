@@ -22,6 +22,7 @@ public class Question {
     public Question(String question) {
         requireNonNull(question);
         checkArgument(isValidQuestion(question), MESSAGE_CONSTRAINTS);
+        assert (!question.isEmpty());
         this.question = question;
     }
 

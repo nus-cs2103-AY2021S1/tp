@@ -11,6 +11,7 @@ import seedu.flashcard.logic.commands.exceptions.CommandException;
 import seedu.flashcard.model.Model;
 import seedu.flashcard.model.flashcard.Answer;
 import seedu.flashcard.model.flashcard.Category;
+import seedu.flashcard.model.flashcard.Diagram;
 import seedu.flashcard.model.flashcard.Flashcard;
 import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
@@ -66,7 +67,8 @@ public class FavCommand extends Command {
         Category category = flashcardToFavourite.getCategory();
         Note note = flashcardToFavourite.getNote();
         Rating rating = flashcardToFavourite.getRating();
-        return new Flashcard(question, answer, category, note, rating, true);
+        Diagram diagram = flashcardToFavourite.getDiagram();
+        return new Flashcard(question, answer, category, note, rating, diagram, true);
     }
 
     @Override
