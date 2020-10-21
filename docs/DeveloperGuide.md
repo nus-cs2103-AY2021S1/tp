@@ -96,7 +96,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ### Model component
 
-![Structure of the Model Component](images/newModelClassDiagram.png) <br>
+![Structure of the Model Component](images/ModelClassDiagram.png) <br>
 Structure of the Model Component
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -135,7 +135,7 @@ Structure of Delivery Object
 
 ### Storage component
 
-![Structure of the Storage Component](images/newStorageClassDiagram.png)
+![Structure of the Storage Component](images/StorageClassDiagram.png)
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -163,6 +163,12 @@ method call to return `commandHistory`'s 2nd last command instead of the last co
 
 With `addToHistory(String command)`, `previousCommand()`, `nextCommand()` and `currentCommand()` implemented, a simple `setOnKeyPressed` under `CommandBox` class which checks
 for user's input of arrow up (which calls previousCommand()) and arrow down (which calls nextCommand()) would suffice for GUI implementation.
+
+### Find Command
+We have modified the `find` command to be able to search for `NAME`, `SUPPLIER` and `TAGS` for items. Similarly, for deliveries, it is also possible to search using the `DELIVERYNAME`, `PHONE`, `ADDRESS` or `ORDER`.
+
+By using `ArgumentMultimap`, we are able to record the searching criteria together with the prefixes. We will then pass this criteria along with the prefix to create an `ItemContainsKeywordsPredicate` object which implements `Predicate<Item>`.
+The predicate is then passed to the `InventoryModel#UpdateItemListFilter` which will then be used to set the predicate on the existing filteredlist. 
 
 ### \[Proposed\] Undo/redo feature
 
