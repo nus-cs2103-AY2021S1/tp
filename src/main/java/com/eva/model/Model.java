@@ -204,6 +204,12 @@ public interface Model {
     void addApplicant(Applicant person);
 
     /**
+     * Adds the given leave to the given staff.
+     * {@code leave} must not already exist in the staff's {@code leaves}.
+     */
+    void addApplicantApplication(Applicant target, Application toAdd);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the eva database.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the eva database.

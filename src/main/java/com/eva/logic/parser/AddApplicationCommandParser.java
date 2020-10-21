@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.AddApplicationCommand;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.person.applicant.application.Application;
@@ -20,7 +21,8 @@ public class AddApplicationCommandParser implements Parser<AddApplicationCommand
      */
     @Override
     public AddApplicationCommand parse(String userInput) throws ParseException, FileNotFoundException {
-        String filePath = userInput.split(" ")[1];
+        String indexNo = userInput.split(" ")[1];
+        String filePath = userInput.split(" ")[2];
         File file = new File(filePath);
 
         Scanner sc = new Scanner(file);
@@ -52,7 +54,8 @@ public class AddApplicationCommandParser implements Parser<AddApplicationCommand
             sc.nextLine(); // this should be number
             String company = sc.nextLine().split(" ")[1];
             String position = sc.nextLine().split(" ")[1];
-            String description = sc.nextLine().split(":")[1]; // take note of semi colon, as 2nd element needs to be entire desc
+            // take note of semi colon, as 2nd element needs to be entire desc
+            String description = sc.nextLine().split(":")[1];
             String startDate = sc.nextLine().split(" ")[1];
             String endDate = sc.nextLine().split(" ")[1];
             Experience exp = new Experience(startDate, endDate, company, position, description);
@@ -61,7 +64,8 @@ public class AddApplicationCommandParser implements Parser<AddApplicationCommand
         sc.close();
 
         Application application = new Application(name, expList, eduList);
+        Index index = ParserUtil.parseIndex(indexNo);
 
-        return new AddApplicationCommand(application);
+        return new AddApplicationCommand(index, application);
     }
 }

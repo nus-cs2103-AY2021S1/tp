@@ -250,6 +250,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addApplicantApplication(Applicant target, Application toAdd) {
+        target.setApplication(toAdd);
+    }
+
+    @Override
     public void setApplicant(Applicant target, Applicant editedPerson) {
         requireAllNonNull(target, editedPerson);
         applicantDatabase.setPerson(target, editedPerson);

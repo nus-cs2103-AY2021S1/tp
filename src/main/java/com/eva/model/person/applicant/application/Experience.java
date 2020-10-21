@@ -1,7 +1,7 @@
 package com.eva.model.person.applicant.application;
 
-import java.time.LocalDate;
 import java.time.DateTimeException;
+import java.time.LocalDate;
 
 /**
  * Represents an applicant's experience at a particular company, similar to what is seen in a resume.

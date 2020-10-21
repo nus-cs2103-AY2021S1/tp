@@ -1,8 +1,9 @@
 package com.eva.model.person.applicant.application;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.DateTimeException;
 import java.time.LocalDate;
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents an applicant's education at a particular institution, similar to what is seen in a resume.
