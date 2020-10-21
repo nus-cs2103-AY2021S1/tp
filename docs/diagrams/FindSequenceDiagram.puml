@@ -3,8 +3,6 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":McGymmyParser" as McGymmyParser LOGIC_COLOR
-participant ":PrimitiveCommandParser" as PrimitiveCommandParser LOGIC_COLOR
 participant "f:FindCommand" as FindCommand LOGIC_COLOR
 participant ":NameContainsKeywordsPredicate" as NameContainsKeywordsPredicate LOGIC_COLOR
 participant ":TagContainsKeywordsPredicate" as TagContainsKeywordsPredicate LOGIC_COLOR
@@ -18,38 +16,15 @@ end box
 [-> LogicManager : execute("find -n apple\n -t fruit")
 activate LogicManager
 
-LogicManager -> McGymmyParser : parse("find -n apple\n -t fruit")
-activate McGymmyParser
-
-McGymmyParser -> PrimitiveCommandParser : parsePrimitiveCommand("find", ["-n",\n "apple", "-t", "fruit"])
-activate PrimitiveCommandParser
 
 create FindCommand
-PrimitiveCommandParser -> FindCommand
+LogicManager -> FindCommand : Parser::parse**
 activate FindCommand
 
-FindCommand --> PrimitiveCommandParser : f
+FindCommand --> LogicManager : f
 deactivate FindCommand
 
 |||
-
-PrimitiveCommandParser -> FindCommand : getParameterSet
-activate FindCommand
-FindCommand --> PrimitiveCommandParser
-deactivate FindCommand
-
-|||
-
-PrimitiveCommandParser -> PrimitiveCommandParser : provideValuesToParameterSet
-activate PrimitiveCommandParser
-PrimitiveCommandParser --> PrimitiveCommandParser
-deactivate PrimitiveCommandParser
-
-PrimitiveCommandParser --> McGymmyParser : f
-deactivate PrimitiveCommandParser
-
-McGymmyParser --> LogicManager : f
-deactivate McGymmyParser
 
 LogicManager -> FindCommand : execute()
 activate FindCommand
@@ -61,12 +36,15 @@ activate NameContainsKeywordsPredicate
 NameContainsKeywordsPredicate --> FindCommand : namePredicate
 deactivate NameContainsKeywordsPredicate
 
+|||
+
 create TagContainsKeywordsPredicate
 FindCommand -> TagContainsKeywordsPredicate
 activate TagContainsKeywordsPredicate
 
 TagContainsKeywordsPredicate --> FindCommand : tagPredicate
 deactivate TagContainsKeywordsPredicate
+|||
 
 FindCommand -> FindCommand : Predicate::and
 activate FindCommand
@@ -75,6 +53,8 @@ deactivate FindCommand
 
 FindCommand -> Model : updateFilteredFoodList(combinedPredicate)
 activate Model
+
+|||
 
 Model --> FindCommand
 deactivate Model
