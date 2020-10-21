@@ -46,10 +46,10 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        ReadOnlyZooKeepBook currentUpdate = new ZooKeepBook();
+        ReadOnlyZooKeepBook currentRedo = new ZooKeepBook();
         boolean isEmpty = true;
         if (historyStack.getRedoSize() > 0) {
-            currentUpdate = historyStack.viewRecentRedo();
+            currentRedo = historyStack.viewRecentRedo();
             isEmpty = false;
         }
 
@@ -64,7 +64,7 @@ public class LogicManager implements Logic {
         logger.info(historyStack.toString());
 
         if (!commandText.equals("undo") && !isEmpty) {
-            historyStack.checkEdit(currentUpdate, book); // clear redo stack if a new edit has been made
+            historyStack.checkEdit(currentRedo, book); // clear redo stack if a new edit has been made
         }
 
         try {

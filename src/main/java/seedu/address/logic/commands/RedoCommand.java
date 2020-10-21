@@ -21,7 +21,7 @@ public class RedoCommand extends Command {
     private final HistoryStack historyStack;
 
     /**
-     * Creates an RedoCommand that redoes the next action
+     * Creates a RedoCommand that redoes the next action
      */
     public RedoCommand() {
         historyStack = HistoryStack.getHistoryStack();
