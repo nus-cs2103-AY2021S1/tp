@@ -211,4 +211,8 @@ public interface Model {
      * Updates recipe product names.
      */
     void updateRecipeNames(String originalName, String updatedName);
+
+    void resetItemFilters();
+
+    void setLocationList(LocationList locationList);
 }

@@ -129,6 +129,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setLocationList(LocationList locationList) {
+        this.locationList.resetData(locationList);
+    }
+
+    @Override
     public void setRecipeList(ReadOnlyRecipeList recipeList) {
         this.recipeList.resetData(recipeList);
     }
@@ -213,6 +218,10 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Item> getFilteredItemList() {
         return filteredItems;
+    }
+
+    public void resetItemFilters() {
+        filteredItems.setPredicate(x -> true);
     }
 
     @Override
