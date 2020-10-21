@@ -1,0 +1,96 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FlashcardDeckParser" as FlashcardDeckParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant ":<<ParserUtil>>" as ParserUtil LOGIC_COLOR
+participant "f:AddCommand" as AddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+end box
+
+box Flashcard MODEL_COLOR_T2
+participant "flashcardToAdd:Flashcard" as Flashcard MODEL_COLOR
+end box
+
+box ModelManager MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+
+box FlashcardDeck MODEL_COLOR_T1
+participant ":FlashcardDeck" as FlashcardDeck MODEL_COLOR
+end box
+
+
+[-> LogicManager : execute("add q/What does OOP stand for? \n a/Object-Oriented Programming ")
+activate LogicManager
+
+LogicManager -> FlashcardDeckParser : parseCommand(""add q/What does OOP stand for? \n a/Object-Oriented Programming "")
+activate FlashcardDeckParser
+
+create AddCommandParser
+FlashcardDeckParser --> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> FlashcardDeckParser
+deactivate AddCommandParser
+
+FlashcardDeckParser --> AddCommandParser : parse("q/What does OOP stand for? \n a/Object-Oriented Programming")
+activate AddCommandParser
+
+AddCommandParser --> ParserUtil :parseQuestion("What does OOP stand for? ")
+activate ParserUtil
+
+ParserUtil --> AddCommandParser
+deactivate ParserUtil
+
+AddCommandParser --> ParserUtil :parseAnswer("Object-Oriented Programming")
+activate ParserUtil
+
+ParserUtil --> AddCommandParser
+deactivate ParserUtil
+
+create Flashcard
+AddCommandParser --> Flashcard
+activate Flashcard
+
+Flashcard --> AddCommandParser
+deactivate Flashcard
+
+create AddCommand
+AddCommandParser --> AddCommand :new AddCommand(flashcardToAdd)
+activate AddCommand
+
+AddCommand --> AddCommandParser : f
+deactivate AddCommand
+
+AddCommandParser --> FlashcardDeckParser : f
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> FlashcardDeckParser
+destroy AddCommandParser
+
+FlashcardDeckParser --> LogicManager : f
+deactivate FlashcardDeckParser
+
+LogicManager --> AddCommand : execute()
+activate AddCommand
+
+activate ModelManager
+AddCommand --> ModelManager: addFlashCard()
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+activate FlashcardDeck
+ModelManager --> FlashcardDeck : addFlashCard()
+
+AddCommand -->LogicManager
+
+@enduml

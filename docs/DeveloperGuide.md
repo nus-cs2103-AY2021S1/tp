@@ -217,6 +217,32 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+## Add Feature 
+
+#### Implementation
+
+The Add feature 
+The add feature is facilitated by `LogicManager` and `ModelManager`. The add command supports the following inputs from the user
+
+* q/QUESTION
+* a/ANSWER
+* c/CATEGORY
+* n/NOTE
+* r/RATING
+* d/DIAGRAM
+* t/TAG
+
+Question and answer are mandatory inputs while the rest are optional inputs. When the user adds a flashcard, the user’s inputs will be passed on to `ParserUtil`. `ParserUtil` will conduct input validation and trim any leading and trailing whitespaces. If the user’s inputs are valid and there are no duplicate flashcard, a `Flashcard` object will be created and added to the `FlashcardDeck`. Otherwise `ParseException` will be thrown and the relevant error message will be displayed to the user. 
+
+It implements the following operations:
+* `AddCommand#execute()` - Add the flashcard to the `ModelManager` and `FlashcardDeck`
+* `AddCommandParser# parse (String args)` - Conduct input validation and parse user’s input
+
+The following sequence diagram shows how the `add` operation works:
+
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+
 ### \[Implemented\] Review feature
 
 #### Current Implementation
