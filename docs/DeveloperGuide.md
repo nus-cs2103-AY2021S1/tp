@@ -243,9 +243,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Test feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed test mechanism is facilitated by `Flashcard`. Specifically, `Statistics` stored within the flashcard. `Flashcard` implements the following methods.
+The test mechanism is facilitated by `Flashcard`. Specifically, `Statistics` stored within the flashcard. `Flashcard` implements the following methods.
 * `Flashcard#getFlashcardAfterTestSuccess()` — Returns a new `Flashcard` object with `Statistics:timesTested` and `Statistics:timesTestedCorrect` incremented by one. 
 * `Flashcard#getFlashcardAfterTestFailure()` — Returns a new `Flashcard` object with `Statistics:timesTested` incremented by one.
 
@@ -268,6 +268,10 @@ Step 2b. The user executes `test 1 ans/wrong answer` command to test the `Flashc
 The following sequence diagram shows how the test operation works:
 
 ![TestSequenceDiagram](images/TestSequenceDiagram.png)
+
+The following sequence diagram shows how the input get parsed:
+
+![TestParserSequenceDiagram](images/TestParserSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes a test command on a specified flashcard:
 
