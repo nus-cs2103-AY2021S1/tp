@@ -19,6 +19,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.ReadOnlyZooKeepBook;
 import seedu.address.model.ZooKeepBook;
 import seedu.address.model.animal.Animal;
+import seedu.address.model.animal.AnimalComparator;
 import seedu.address.testutil.AnimalBuilder;
 
 public class RedoCommandTest {
@@ -141,6 +142,11 @@ public class RedoCommandTest {
 
         @Override
         public void setAnimal(Animal target, Animal editedAnimal) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortAnimals(AnimalComparator animalComparator) {
             throw new AssertionError("This method should not be called.");
         }
 
