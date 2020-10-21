@@ -30,3 +30,4 @@ The following sequence diagram shows how add recipe operation works when `execut
 * **Alternative 2:** Allows duplicated items.
   * Pros: Users will not be restricted to adding unique recipes.
   * Cons: Storage will contain unnecessarily duplicated items.
+ 
