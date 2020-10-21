@@ -81,6 +81,8 @@ The `Model`,
 
 ## Todo List
 
+![Structure of the Todo List Component](images/TodoListClassDiagram.png)
+
 #### Task class
 
 **Task package** : [`seedu.address.model.task`](https://github.com/AY2021S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/model/task)
@@ -97,8 +99,10 @@ The `Model`,
 
 **TodoList class** : [`TodoList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/TodoList.java)
 
-* TodoList stores all the Tasks in the memory.
-* All tasks are unique
+* Wraps all data i.e. Tasks at the Todo List level
+* Stores Tasks in memory
+* Stores a UniqueTodoList
+* Duplicate Task objects are now allowed
 
 --------------------------------------------------------------------------------------------------------------------
 
