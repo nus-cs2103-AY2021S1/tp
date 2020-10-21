@@ -169,7 +169,7 @@ updated value.
 The sequence diagram for the execution of an `AddQuantityToItemCommand` is as follows:
 
 The `Item` with name banana is denoted as `itemBanana`, and the original quantity assumed to be `20`.
-![AddQuantityToItemCommandSequenceDiagram](images/AddQuantityToItemCommandSequenceDiagram.png)
+![AddQuantityToItemCommandSequenceDiagram](images/commandseqdiagrams/AddQuantityToItemCommandSequenceDiagram.png)
 
 ### List item/recipe feature
 

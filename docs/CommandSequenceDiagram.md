@@ -15,7 +15,7 @@ understand what is going on under the hood.
 ![AddItemSequence](images/commandseqdiagrams/AddItemSequenceDiagram.png)
 
 ### Add Quantity Command
-![AddQuantitySequence](images/commandseqdiagrams/AddSequenceDiagram.png)
+![AddQuantitySequence](images/commandseqdiagrams/AddQuantityToItemCommandSequenceDiagram.png)
 
 ### Delete Item Command
 ![DeleteItemSequence](images/commandseqdiagrams/DeleteItemSequenceDiagram.png)
