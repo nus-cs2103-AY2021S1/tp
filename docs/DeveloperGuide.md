@@ -127,9 +127,39 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Open Flashcard
 
-#### Proposed Implementation
+The open flashcard feature will allow the user to open a `Flashcard` specified by the given index and display it in the GUI.
+
+#### Implementation
+
+The open flashcard implementation requires the creation of an `OpenCommandParser` and an `OpenCommand`. The `OpenCommandParser` will take in a single argument for `Index`. After parsing the argument, it will then proceed to create an `OpenCommand` class instance. If no `Index` is given then a `CommandException` will be thrown.
+
+The `OpenCommand` class will have to pass the`Question` to the GUI for it to display the`Question` of the `Flashcard` to the user. This will be done by passing the question into a `Feedback` object which is an attribute of the `CommandResult` given to the GUI.
+
+The GUI will change the content of some of its placeholders to display the question and if available, its choices to the user. The GUI will revert back to its default placeholders if other commands aside from another `OpenCommand` or a `TestCommand` are called.
+
+Given below is an example usage scenario and how the `OpenCommand` mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+
+Step 2. The user executes `open 1` command to display the first flashcard in the list on the GUI.
+ 
+Step 3. This will call `OpenCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseIndex` will be called to convert the user input into the `Index` of the desired `Flashcard` to be opened.
+
+Step 4. The `index` is then passed to the `OpenCommand`
+
+Step 5. `OpenCommand#execute` will get the `Flashcard` at the specified `Index` and get its `Question` to be passed to the GUI as part of the `Feedback` attribute within the `CommandResult`.
+
+Step 6. The GUI will then proceed to get the `Question` from `Feedback` and display its choices and question to the user.
+
+The following sequence diagram shows how the open operation works:
+
+![OpenSequenceDiagram](images/OpenSequenceDiagram.png)
+
+### Delete by tag feature
+
+This delete by tag feature will allow the user to delete flashcards specified by a given set of tags.
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
