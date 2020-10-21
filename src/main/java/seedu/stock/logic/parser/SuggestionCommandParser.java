@@ -2,6 +2,7 @@ package seedu.stock.logic.parser;
 
 import static seedu.stock.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.stock.logic.commands.CommandWords.ADD_COMMAND_WORD;
+import static seedu.stock.logic.commands.CommandWords.BOOKMARK_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.DELETE_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.FIND_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.FIND_EXACT_COMMAND_WORD;
@@ -25,6 +26,7 @@ import java.util.Random;
 
 import seedu.stock.commons.util.SuggestionUtil;
 import seedu.stock.logic.commands.AddCommand;
+import seedu.stock.logic.commands.BookmarkCommand;
 import seedu.stock.logic.commands.CommandWords;
 import seedu.stock.logic.commands.DeleteCommand;
 import seedu.stock.logic.commands.ExitCommand;
@@ -164,12 +166,44 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             generatePrintSuggestion(toBeDisplayed, argMultimap);
             break;
 
+        case BookmarkCommand.COMMAND_WORD:
+            generateBookmarkSuggestion(toBeDisplayed, argMultimap);
+            break;
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
 
         return new SuggestionCommand(toBeDisplayed.toString());
     }
+
+
+    /**
+     * Generates suggestion for faulty bookmark exact command.
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param argMultimap The parsed user input fields.
+     */
+    private void generateBookmarkSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
+        List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_NAME, PREFIX_SOURCE,
+                PREFIX_SERIAL_NUMBER, PREFIX_LOCATION);
+        toBeDisplayed.append(BOOKMARK_COMMAND_WORD);
+
+        for (int i = 0; i < allowedPrefixes.size(); i++) {
+            Prefix currentPrefix = allowedPrefixes.get(i);
+            if (argMultimap.getValue(currentPrefix).isPresent()) {
+                toBeDisplayed.append(" " + currentPrefix + argMultimap.getValue(currentPrefix).get());
+            }
+        }
+
+        if (!bodyErrorMessage.equals("")) {
+            toBeDisplayed.append("\n" + bodyErrorMessage);
+        } else {
+            toBeDisplayed.append("\n" + BookmarkCommand.MESSAGE_USAGE);
+        }
+    }
+
+
 
     /**
      * Generates suggestion for faulty find exact command.
