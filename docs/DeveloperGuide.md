@@ -351,7 +351,7 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 
 The following sequence diagram shows how list ingredients operation works when `execute(fridge)` API call:
 
-![ListRecipeSequence](images/ListRecipesSequence.png)
+![ListIngredientsSequence](images/ListIngredientsSequence.png)
 
 1. User inputs the list ingredient command to show all ingredients from the ingredient list.
 
