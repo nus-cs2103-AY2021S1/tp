@@ -353,7 +353,7 @@ Given below is an example usage scenario and how the get total expenses/revenues
 
 The following sequence diagram shows how a get total expenses/revenues operation works: 
 
-[to insert sequence diagram]
+![GetTotalSequenceDiagram](images/GetTotalSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
