@@ -50,7 +50,7 @@ public class CommandTestUtil {
     public static final String VALID_NOTE_2 = "Note";
     public static final String VALID_RATING_1 = "";
     public static final String VALID_RATING_2 = "2";
-    public static final String VALID_TAG_1 = "";
+    public static final String VALID_TAG_1 = "test";
     public static final String VALID_TAG_2 = "revise";
     public static final String VALID_TAG_3 = "important";
     public static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
