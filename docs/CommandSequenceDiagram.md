@@ -23,6 +23,9 @@ understand what is going on under the hood.
 ### Delete Recipe Command
 ![DeleteRecipe](images/commandseqdiagrams/DeleteRecipeSequenceDiagram.png)
 
+### View Detailed Item Command
+![ViewDetailedItemSequenceDiagram](images/commandseqdiagrams/ViewDetailedItemSequenceDiagram.png)
+
 ### List Item Command
 ![ListItemSequenceDiagram](images/commandseqdiagrams/ListItemSequenceDiagram.png)
 
