@@ -14,7 +14,7 @@ import chopchop.model.recipe.Recipe;
 /**
  * Deletes a recipe identified using it's displayed index or name from the recipe book.
  */
-public class DeleteRecipeCommand extends Command {
+public class DeleteRecipeCommand extends Command implements Undoable {
     public static final String COMMAND_WORD = "delete recipe";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -24,6 +24,7 @@ public class DeleteRecipeCommand extends Command {
 
     public static final String MESSAGE_DELETE_RECIPE_SUCCESS = "Recipe deleted: %s";
     public static final String MESSAGE_RECIPE_NOT_FOUND = "No recipe named '%s'";
+    public static final String MESSAGE_UNDO_SUCCESS = "Recipe added: %s";
 
     private final ItemReference item;
     private Recipe recipe;
@@ -57,6 +58,14 @@ public class DeleteRecipeCommand extends Command {
 
         model.deleteRecipe(this.recipe);
         return new CommandResult(String.format(MESSAGE_DELETE_RECIPE_SUCCESS, this.recipe));
+    }
+
+    @Override
+    public CommandResult undo(Model model) {
+        requireNonNull(model);
+
+        model.addRecipe(this.recipe);
+        return new CommandResult(String.format(MESSAGE_UNDO_SUCCESS, this.recipe));
     }
 
     @Override
