@@ -210,6 +210,15 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Updates the UI to display the menu of the selected vendor.
+     */
+    @FXML
+    public void handleVendor() {
+        foodListPanel = new FoodListPanel(logic.getFilteredFoodList());
+        foodListPanelPlaceholder.getChildren().add(foodListPanel.getRoot());
+    }
+
     public VendorListPanel getVendorListPanel() {
         return vendorListPanel;
     }
@@ -232,7 +241,10 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-            fillInnerParts();
+
+            if (commandResult.isVendor()) {
+                handleVendor();
+            }
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

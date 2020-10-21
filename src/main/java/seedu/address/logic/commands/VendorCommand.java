@@ -43,9 +43,15 @@ public class VendorCommand extends Command {
             throw new CommandException(ParserUtil.MESSAGE_INVALID_VENDOR_DISPLAYED_INDEX);
         }
 
+        int oldIndex = model.getVendorIndex();
         model.setVendorIndex(index);
 
-        return new CommandResult(String.format(MESSAGE_SELECT_VENDOR_SUCCESS, vendorIndex.getOneBased()));
+        if (oldIndex != index) {
+            model.clearOrder();
+        }
+
+        return new CommandResult(String.format(MESSAGE_SELECT_VENDOR_SUCCESS, vendorIndex.getOneBased()),
+                false, false, true);
     }
 
     @Override
