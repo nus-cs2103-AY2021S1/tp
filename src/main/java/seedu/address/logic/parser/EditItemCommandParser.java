@@ -27,7 +27,6 @@ public class EditItemCommandParser implements Parser<EditItemCommand> {
     public EditItemCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ORIGINAL_ITEM_NAME, PREFIX_ITEM_NAME,
                         PREFIX_ITEM_QUANTITY, PREFIX_ITEM_DESCRIPTION, PREFIX_ITEM_TAG);

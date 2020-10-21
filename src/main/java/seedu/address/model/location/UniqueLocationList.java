@@ -55,7 +55,6 @@ public class UniqueLocationList implements Iterable<Location> {
      * @return an Optional Location that maybe exists.
      */
     public Optional<Location> findLocationFromId(int id) {
-        requireNonNull(id);
         return internalList.stream()
                 .filter(x -> x.getId() == id)
                 .findFirst();

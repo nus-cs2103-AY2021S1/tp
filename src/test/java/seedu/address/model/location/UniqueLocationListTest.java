@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalLocations.DENVER;
-import static seedu.address.testutil.TypicalLocations.NEW_YORK;
+import static seedu.address.testutil.TypicalLocations.*;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.Test;
 
@@ -111,6 +111,22 @@ public class UniqueLocationListTest {
         arr.add(NEW_YORK);
         arr.add(NEW_YORK);
         assertThrows(DuplicateLocationException.class, () -> uList.setLocations(arr));
+    }
+
+    @Test
+    public void findLocationFromId_validInput_returnsLocation() {
+        UniqueLocationList uList = new UniqueLocationList();
+        uList.add(DENVER);
+        uList.add(NEW_YORK);
+        assertEquals(NEW_YORK, uList.findLocationFromId(1).get());
+    }
+
+    @Test
+    public void findLocationFromId_invalidInput_throwsNoSuchElementException() {
+        UniqueLocationList uList = new UniqueLocationList();
+        uList.add(DENVER);
+        uList.add(NEW_YORK);
+        assertThrows(NoSuchElementException.class, () -> uList.findLocationFromId(3).get());
     }
 
     @Test

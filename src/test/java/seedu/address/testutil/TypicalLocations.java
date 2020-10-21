@@ -18,11 +18,11 @@ public class TypicalLocations {
      * Returns an {@code LocationList} with all the typical locations.
      */
     public static LocationList getTypicalLocationsList() {
-        LocationList ab = new LocationList();
+        LocationList locations = new LocationList();
         for (Location location : getTypicalLocations()) {
-            ab.addLocation(location);
+            locations.addLocation(location);
         }
-        return ab;
+        return locations;
     }
 
     public static List<Location> getTypicalLocations() {
