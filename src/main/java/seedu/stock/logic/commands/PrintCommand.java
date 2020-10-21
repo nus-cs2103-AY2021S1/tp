@@ -33,7 +33,7 @@ public class PrintCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
+        assert model != null : "Model cannot be null!";
         ObservableList<Stock> stockBookList = model.getStockBook().getStockList();
         Path csvFilePath = model.getUserPrefs().getCsvFilePath();
 
