@@ -2,8 +2,32 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+Table of Contents
+
+[1. Setting Up](#setting-up-getting-started)<br>
+[2. Design](#design)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Architecture](#architecture)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[2.2 UI Component](#ui-component)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Logic Component](#logic-component)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Model Component](#model-component)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Storage Component](#storage-component)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[2.6 Common Classes](#common-classes)<br>
+[3. Implementation](#implementation)<br>
+[4. Documentation, Logging, Testing, Configuration, Dev-Ops](#documentation-logging-testing-configuration-dev-ops)<br>
+[5. Appendix: Requirements](#appendix-requirements)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[5.1 Product Scope](#product-scope)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[5.2 User Stories](#user-stories)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[5.3 Use Cases](#use-cases)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[5.4 Non-Function Requirements](#non-functional-requirements)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[5.5 Glossary](#glossary)<br>
+[6. Appendix: Instructions For Manual Testing](#appendix-instructions-for-manual-testing)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[6.1 Launch and Shut-Down](#launch-and-shutdown)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[6.2 Adding a Record](#adding-a-record)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[6.3 Deleting a Record](#deleting-a-record)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[6.4 Editing a Record](#editing-a-record)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[6.2 Listing Records](#listing-records)<br>
+[7. Appendix: Proposed features for future implementation](#appendix-proposed-features-for-future-implementation)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -536,4 +560,16 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect find commands to try: <br>
       `find phone`, `find_inventory `, `find-finance 1000`.
       Expected: No records will be displayed. Error details shown in the status message.
+       
+## **Appendix: Proposed features for future implementation**
+
+1. Customizable Commands<br>
+   1. We understand that not everybody that uses NUStorage would be comfortable with the current names of commands. Therefore, we plan to implement a feature that allows users to rename the commands to better suit their liking.
    
+1. Graphical Depiction<br>
+   1. Currently, NUStorage only displays inventory and finance records as a static listing. We plan to include a new feature that displays the data in a graphical manner.
+   
+   1. Expanding on this, we could include a number of graphical options, such as pie charts, bar graphs and line graphs.
+   
+1. Saving inventory as items instead of records<br>
+   1. Currently, NUStorage saves inventory as records. For business that constantly deals with the same set of items daily, it might seem tiresome to constantly have to add inventory records of the same item. Thus, we plan to implement a feature that allows users to 'save' a certain inventory item for reuse, allowing them to only have to type the quantity when adding records.
