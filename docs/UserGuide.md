@@ -82,13 +82,10 @@ Adds a flashcard.
 Format: `add q/QUESTION a/ANSWER [c/CATEGORY] [r/RATING] [n/NOTE] [d/DIAGRAM]`
 
 * If a rating is specified, it must be a number between 1 and 5 inclusive. It is intended to follow the star rating on CS2103T website.
+* Diagram can be defined by a valid relative or absolute path.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If the category does not exist, it will be created.
-</div>
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Diagram can be defined by a valid relative or absolute path.
 </div>
 
 Examples:
