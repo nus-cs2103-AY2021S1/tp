@@ -1,4 +1,3 @@
-~~~~---
 layout: page
 title: Developer Guide
 ---
@@ -18,9 +17,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ### Architecture
 
 **How the architecture components interact with each other**
+<img src="images/ArchitectureDiagram.png" width="500px">
 
 ### OverAll components
-<img src="images/overallUML.png" width="500px">
 
 This is the overall design of our product. As we are using **GUI to help to display the information** and mainly focuses on
 using **CLI to take in the required commands**, thus the product consists of **6 main major components**. The product starts 
