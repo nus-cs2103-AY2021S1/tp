@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * Represents a Patient's appointment in Hospify.
+ * Represents a Patient's Nric in Hospify.
  * is valid as declared in {@link #isValidAppointment(String)}
  */
 public class Appointment {
