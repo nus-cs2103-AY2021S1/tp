@@ -31,6 +31,7 @@ public class TypicalItems {
             .withQuantity("33")
             .withTags("meat")
             .withMaxQuantity("500")
+            .withMetric("kg")
             .build();
     public static final Item SALMON = new ItemBuilder().withName("Salmon")
             .withSupplier("No Supplier")
