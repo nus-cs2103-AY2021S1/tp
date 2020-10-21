@@ -21,12 +21,12 @@ public class DeleteCommandParserTest {
     private final DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
+    public void parse_validIndex_returnsDeleteCommand() {
         assertParseSuccess(parser, "1", DeleteCommand.withIndex(INDEX_FIRST_FLASHCARD));
     }
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
+    public void parse_invalidIndex_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 }
