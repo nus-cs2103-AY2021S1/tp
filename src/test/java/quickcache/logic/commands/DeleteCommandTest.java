@@ -93,9 +93,8 @@ public class DeleteCommandTest {
         FlashcardPredicate flashcardPredicate = prepareFlashcardPredicate(tagsToMatch);
 
         DeleteCommand deleteCommand = DeleteCommand.withPredicate(flashcardPredicate, tagsToMatch);
-        String deleteWithTagsMessage = DeleteCommand.createDeleteWithTagsMessage(tagsToMatch);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FLASHCARD_SUCCESS, deleteWithTagsMessage);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FLASHCARD_SUCCESS, "with tags [test]");
 
         ModelManager expectedModel = new ModelManager(model.getQuickCache(), new UserPrefs());
         expectedModel.updateFilteredFlashcardList(flashcardPredicate);
@@ -122,9 +121,8 @@ public class DeleteCommandTest {
         FlashcardPredicate flashcardPredicate = prepareFlashcardPredicate(tagsToMatch);
 
         DeleteCommand deleteCommand = DeleteCommand.withPredicate(flashcardPredicate, tagsToMatch);
-        String deleteWithTagsMessage = DeleteCommand.createDeleteWithTagsMessage(tagsToMatch);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FLASHCARD_SUCCESS, deleteWithTagsMessage);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FLASHCARD_SUCCESS, "with tags [invalid]");
 
         ModelManager expectedModel = new ModelManager(model.getQuickCache(), new UserPrefs());
         expectedModel.updateFilteredFlashcardList(flashcardPredicate);
