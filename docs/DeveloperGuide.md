@@ -173,7 +173,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![EditAccountActivityDiagram](images/EditAccountActivityDiagram.png)
 
-
 #### Design consideration:
 
 ##### Aspect: How does edit account executes:
@@ -280,6 +279,46 @@ _{more aspects and alternatives to be added}
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}
+
+### **Get total revenue/expenses feature**
+
+#### **Implementation**
+The get total expenses/revenues mechanism is facilitated by `GetTotalCommand`. It extends `Command` and is identified by `CommonCentsParser` and `GetTotalCommandParser`. The `GetTotalCommand` interacts with `Account` and the interaction is managed by `ActiveAccount` as well as the `Model`. As such, it implements the following operations:   
+
+* `Account#getTotalExpenses()` — gets the total sum of all the expenses in the account
+* `Account#getTotalRevenue()` — gets the total sum of all the revenues in the account
+
+The operation is exposed in the `ActiveAccount` interface as `ActiveAccount#getTotalExpenses()`.
+
+Given below is an example usage scenario and how the get total expenses/revenues mechanism behaves at each step.
+
+* Step 1. The user inputs the total command to get the total expenses/revenues in the current account in ActiveAccount. `CommonCentsParser` identifies the command word and calls `GetTotalCommandParser#parse(String args)` to parse the input into a valid `GetTotalCommand`.
+
+* Step 2. `GetTotalCommand` starts to be executed. In the execution, the total sum of the expenses/revenues is first initialised to 0.00.
+
+* Step 3. If the input category is an `Expense`, `ActiveAccount#getTotalExpenses()` is called to get the total sum of all the expenses in the account. Otherwise, if the input category is a `Revenue`, `ActiveAccount#getTotalRevenue()` is called to get the total sum of all the revenues in the account.
+
+* Step 4. The total sum is updated. 
+
+The following sequence diagram shows how a get total expenses/revenues operation works: 
+
+[to insert sequence diagram]
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+[to insert activity diagram]
+
+#### **Design consideration**
+
+##### **Aspect: How get total expenses/revenues executes:**
+* Alternative 1 (current choice): Calculates the total expenses/revenues in the by retrieving the expense/revenue list. 
+    * Pros: Easy to implement.
+    * Cons: 
+
+
+
+
+
 
 
 --------------------------------------------------------------------------------------------------------------------
