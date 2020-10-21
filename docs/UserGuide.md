@@ -68,7 +68,9 @@ Adds a new stock into the inventory. Serial number for the new stock will be gen
     3. Quantity (default 0)
     4. Location in warehouse
 
-Format: `add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>`
+Format (the header fields can be in any order):<br>
+`add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>`
+`add n/<name> s/<source of stock> l/<location in warehouse> q/<quantity>`
 
 ⚠ Each specific fields specified in the `add` command should only be entered once.<br>
 e.g. `add n/banana n/apple s/fairprice q/1000 l/Fruit section` is not a valid command.
@@ -291,13 +293,20 @@ Format: `stats `, followed by one of the following:
 
 e.g. `stats st/source`, `stats st/source-qd-ntuc`
 
+### Generates a csv file that contains all stocks: `print`
+Generates a csv file that contains all stocks. Users may want to sort the stock using `sort` command
+to sort the stock in their preferred format before converting it into the csv file.
+
+Format (single): `print`
+
 ### Saving data
 Data (all stocks in inventory in json) is automatically saved to
 `[root directory]/data/stockbook.json` when any of these commands is executed:
 * add
 * delete
-* update
 * note
+* notedelete
+* update
 
 The set of used serial number sources is automatically saved to
 `[root directory]/data/serialnumbers.json` when any of these commands is executed:
@@ -358,5 +367,6 @@ Action | Format, Examples
 **Note** | `note sn/<serial number> nt/<note>`
 **NoteDelete** | `notedelete sn/<serial number> ni<note index>`
 **Update** | Any combination of prefixes, at most one of `iq/` or `nq/` may be provided, serial number must be provided. <br> `update sn/<serial number keyword> n/<new name>` <br> `update sn/<serial number keyword> iq/<+/-><increment value>` <br> `update sn/<serial number keyword> nq/<new quantity>` <br> `update sn/<serial number keyword> l/<new location>` <br> `update sn/<serial number keyword> s/<new source>` <br> `update sn/<serial number keyword> n/<new name> iq/<+/-><increment value> l/<new location> s/<new source>` <br> `update sn/<serial number keyword> n/<new name> nq/<new quantity> l/<new location> s/<new source>` <br> e.g. `update sn/NTUC1 n/Apple nq/1000 l/Fruit Section s/Fairprice`
+**print** | `print`
 **Help** | `help`
 **Exit** | `exit`
