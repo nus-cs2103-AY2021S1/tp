@@ -98,13 +98,9 @@ public class CraftItemCommandIntegrationTest {
      * Tests for crafting failure when there are insufficient ingredients to craft with
      */
     @Test
-    public void execute_insufficientIngredients_throwsCommandException() throws CommandException {
-        // set quantity of bananas to 0
-        AddQuantityToItemCommand addQuantityToItemCommand = new AddQuantityToItemCommand("Banana",
-                -Integer.parseInt(BANANA.getQuantity().value));
-        addQuantityToItemCommand.execute(model);
-
-        CraftItemCommand cic = new CraftItemCommand(APPLE.getName(), new Quantity("2"), Index.fromZeroBased(0));
+    public void execute_insufficientIngredients_throwsCommandException() {
+        // need 150 bananas for this crafting but only 99 present in inventory
+        CraftItemCommand cic = new CraftItemCommand(APPLE.getName(), new Quantity("100"), Index.fromZeroBased(0));
         String expectedMessage = CraftItemCommand.MESSAGE_INSUFFICIENT_INGREDIENTS;
         assertInventoryCommandFailure(cic, model, expectedMessage);
     }

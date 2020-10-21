@@ -26,13 +26,18 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertInventoryCommandFailure;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalItems.*;
 
 public class CraftItemCommandTest {
 
     private ModelStubWithItemAndRecipeList model;
+    private ModelStubWithItemAndRecipeList sameModel; // used to test failures
     private ModelStubWithItemAndRecipeList expectedModel;
-    private RecipeList recipeList;
+
+    private RecipeList recipeList = new RecipeList();
+    private ItemList itemList = new ItemList();
 
     @Test
     public void constructor_throwsNullException() {
@@ -41,18 +46,16 @@ public class CraftItemCommandTest {
 
     @BeforeEach
     public void setUp() {
-        ItemList itemlist = new ItemList();
-        itemlist.addItem(APPLE);
-        itemlist.addItem(BANANA);
-
+        itemList.addItem(APPLE);
+        itemList.addItem(BANANA);
         IngredientList ingredients = new IngredientList();
         ingredients.add(new Ingredient(1,3));
         // recipe to create 2 apples from 3 bananas
         Recipe recipe = new RecipeBuilder().withId(1).withIngredients(ingredients).withQuantity("2").build();
-        recipeList = new RecipeList();
         recipeList.addRecipe(recipe);
 
-        model = new ModelStubWithItemAndRecipeList(itemlist, recipeList);
+        model = new ModelStubWithItemAndRecipeList(itemList, recipeList);
+        sameModel = new ModelStubWithItemAndRecipeList(itemList, recipeList);
     }
 
     @Test
@@ -72,6 +75,69 @@ public class CraftItemCommandTest {
         expectedModel = new ModelStubWithItemAndRecipeList(expectedItemList, recipeList);
 
         assertCommandSuccess(cic, model, expectedMessage, expectedModel);
+    }
+
+    /**
+     * Tests for crafting failure when item to craft cannot be found in item list
+     */
+    @Test
+    public void execute_invalidItem_throwsCommandException() {
+        CraftItemCommand cic = new CraftItemCommand("test", new Quantity("1"), Index.fromZeroBased(0));
+        String expectedMessage = CraftItemCommand.MESSAGE_ITEM_NOT_FOUND;
+
+        assertThrows(CommandException.class, expectedMessage, () -> cic.execute(model));
+        assertEquals(sameModel, model);
+    }
+
+    /**
+     * Tests for crafting failure when recipe to craft item cannot be found
+     */
+    @Test
+    public void execute_recipeNotFound_throwsCommandException() {
+        CraftItemCommand cic = new CraftItemCommand(BANANA.getName(), new Quantity("1"), Index.fromZeroBased(0));
+        String expectedMessage = CraftItemCommand.MESSAGE_RECIPE_NOT_FOUND;
+
+        assertThrows(CommandException.class, expectedMessage, () -> cic.execute(model));
+        assertEquals(sameModel, model);
+    }
+
+    /**
+     * Tests for crafting failure when recipe index given is out of bounds
+     */
+    @Test
+    public void execute_recipeIndexInvalid_throwsCommandException() {
+        Index outOfBoundsIndex = Index.fromOneBased(model.getFilteredRecipeList().size() + 1);
+        CraftItemCommand cic = new CraftItemCommand(APPLE.getName(), new Quantity("2"), outOfBoundsIndex);
+        String expectedMessage = CraftItemCommand.MESSAGE_INDEX_OUT_OF_RANGE;
+
+        assertThrows(CommandException.class, expectedMessage, () -> cic.execute(model));
+        assertEquals(sameModel, model);
+    }
+
+    /**
+     * Tests for crafting failure when product quantity is not a multiple of recipe product quantity
+     */
+    @Test
+    public void execute_invalidProductQuantity_throwsCommandException() {
+        // trying to craft 1 apple when only 2 can be crafted at a time
+        CraftItemCommand cic = new CraftItemCommand(APPLE.getName(), new Quantity("1"), Index.fromZeroBased(0));
+        String expectedMessage = CraftItemCommand.MESSAGE_INVALID_PRODUCT_QUANTITY;
+
+        assertThrows(CommandException.class, expectedMessage, () -> cic.execute(model));
+        assertEquals(sameModel, model);
+    }
+
+    /**
+     * Tests for crafting failure when there are insufficient ingredients to craft with
+     */
+    @Test
+    public void execute_insufficientIngredients_throwsCommandException() {
+        // need 150 bananas for this crafting but only 99 present in inventory
+        CraftItemCommand cic = new CraftItemCommand(APPLE.getName(), new Quantity("100"), Index.fromZeroBased(0));
+        String expectedMessage = CraftItemCommand.MESSAGE_INSUFFICIENT_INGREDIENTS;
+
+        assertThrows(CommandException.class, expectedMessage, () -> cic.execute(model));
+        assertEquals(sameModel, model);
     }
 
     /**
