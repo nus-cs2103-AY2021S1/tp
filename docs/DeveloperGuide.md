@@ -76,11 +76,11 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a tag).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -126,8 +126,20 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Data Structure: Tag
+[Tag](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/tag/Tag.java)
+allows a file to be tagged with a compulsory `TagName`, `FileAddress` and an optional `Label`. `TagName` must contain
+at least 1 word, alphanumeric and must be unique. `FileAddress` must contain a valid file path with the correct file 
+expression (i.e passing a file path like `C:\Windows\..` is valid for Windows and `./home/...` is valid for Linux. 
+`FileAddress` can take in a relative path or absolute path. User can make use of `FindCommand` by passing the 
+`TagName` as the keyword to find tagged files.  
+
 
 ### Data Structure: Label
+[Label](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/label/Label.java)
+allows `Tag ` to keep a `Label`. A `Label` must only contains alphanumeric. It is an optional field to `Tag`. 
+Each label can only contains up to one word. Label allows the user to label their tagged file. User can also make use 
+of the `FindCommand` by passing the label as the keyword. The purpose is to keep label short and concise, as it only 
+serves as extra information of a tagged file.
 
 ### Adding of Tags: TagCommand
 
