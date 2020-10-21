@@ -80,9 +80,9 @@ class JsonAdaptedFlashcard {
      * @throws IllegalValueException if there were any data constraints violated in the adapted flashcard.
      */
     public Flashcard toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> flashcardTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            flashcardTags.add(tag.toModelType());
         }
 
         if (question == null) {
@@ -135,7 +135,7 @@ class JsonAdaptedFlashcard {
 
         final Boolean modelIsFavourite = Boolean.parseBoolean(isFavourite);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(flashcardTags);
 
         return new Flashcard(modelQuestion, modelAnswer, modelCategory, modelNote, modelRating, modelTags, modelDiagram,
                 modelIsFavourite);
