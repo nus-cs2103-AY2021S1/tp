@@ -159,7 +159,7 @@ public class Stock {
         return otherStock != null
                 && otherStock.getName().equals(getName())
                 && otherStock.getSerialNumber().equals(getSerialNumber())
-                && otherStock.getSource().equals(getSource());
+                || otherStock.getSource().equals(getSource());
     }
 
     /**
