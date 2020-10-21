@@ -14,8 +14,8 @@ Class UniqueDeliveryList
 }
 
 UniqueDeliveryList o--> "*" Delivery
-Delivery *--> DeliveryName
-Delivery *--> Phone
-Delivery *--> Address
-Delivery *--> Order
+Delivery *--> "1" DeliveryName
+Delivery *--> "1" Phone
+Delivery *--> "1" Address
+Delivery *--> "1" Order
 @enduml

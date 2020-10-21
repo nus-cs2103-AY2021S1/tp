@@ -10,16 +10,16 @@ Interface ReadOnlyDeliveryBook <<Interface>>
 Interface Models <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
+Interface ReadOnlyUserPrefs <<Interface>>
+Interface DeliveryModel <<Interface>>
+Interface InventoryModel <<Interface>>
 Class InventoryBook
 Class DeliveryBook
-Class DeliveryModel
-Class InventoryModel
 Class ReadOnlyInventoryBook
 Class ReadOnlyDeliveryBook
 Class Models
 Class ModelManagers
 Class UserPrefs
-Class ReadOnlyUserPrefs
 Class DeliveryModelManager
 Class InventoryModelManager
 Class ItemComparator
@@ -35,14 +35,14 @@ InventoryBook .up.|> ReadOnlyInventoryBook
 ModelManagers .up.|> Models
 ModelManagers o--> "1" InventoryModel
 ModelManagers o--> "1" DeliveryModel
-InventoryModel o--> "1" InventoryModelManager
-DeliveryModel o--> "1" DeliveryModelManager
+InventoryModelManager .up.|>InventoryModel
+DeliveryModelManager .up.|>DeliveryModel
 InventoryModel .up.|>Model
 DeliveryModel .up.|>Model
 InventoryModel .up.|>ObservableList
 DeliveryModel .up.|>ObservableList
-InventoryModelManager o--> "1" InventoryBook
-DeliveryModelManager o--> "1" DeliveryBook
+InventoryModelManager o--> "1..20" InventoryBook
+DeliveryModelManager o--> "1..20" DeliveryBook
 InventoryModelManager o--> "1" UserPrefs
 DeliveryModelManager o--> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
@@ -54,4 +54,6 @@ DeliveryModelManager -->"1" Delivery : filtered list
 
 InventoryBook o--> "1" UniqueItemList
 DeliveryBook o--> "1" UniqueDeliveryList
+UniqueDeliveryList o--> "*" Delivery
+UniqueItemList o--> "*" Item
 @enduml
