@@ -43,7 +43,7 @@ Clinic Calendar (CliniCal) is a **desktop app for managing patients and appointm
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -61,7 +61,7 @@ Clinic Calendar (CliniCal) is a **desktop app for managing patients and appointm
 
 #### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+You can access the help page by referring to the link provided in the show help message.
 
 ![help message](images/helpMessage.png)
 
@@ -70,7 +70,7 @@ Format: `help`
 
 #### Adding a patient: `add`
 
-Adds a patient to the patient database.
+You can add a patient to your patient database.
 
 Format: `add n/NAME p/PHONE_NUMBER i/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
 
@@ -91,7 +91,7 @@ Examples:
 
 #### Adding profile picture using command line interface: `addPicture`
 
-Adds a profile picture to the patient’s profile by specifying filepath to desired profile picture.
+You can add a profile picture to your patient’s profile by specifying a filepath to your desired profile picture.
 
 All patient profiles are preloaded with a stock profile picture.
 
@@ -104,20 +104,20 @@ Examples:
 
 #### Adding profile picture using drag and drop:
 
-Adds a profile picture to the patient’s profile by using drag and drop with your mouse.
+You can add a profile picture to your patient’s profile by dragging and dropping it with your mouse.
 
-1. Select the desired profile picture and drag it onto the space reserved for patient profile picture in ClinCal.
-2. Release mouse button and patient's profile picture would be updated with your desired picture.
+1. Select your desired profile picture and drag it onto the space reserved for patient profile picture in ClinCal.
+2. Release mouse button and your patient's profile picture would be updated with your desired picture.
 
 #### Listing all patients: `list`
 
-Shows a list of all patients in the patient database.
+You can see a list of all your patients from the patient database.
 
 Format: `list`
 
 #### Editing a patient: `edit`
 
-Edits an existing patient in the patient database.
+You can edit your existing patient in the patient database.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [i/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
 
@@ -140,7 +140,7 @@ Examples:
 
 #### Locating patients by name: `find`
 
-Finds patients whose names or IC number contain any of the given keywords.
+You can find your patients by providing name or IC number as keyword.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -160,7 +160,7 @@ Examples:
 
 #### Deleting a patient: `delete`
 
-Deletes the specified patient from the patient database.
+You can delete your patient from the patient database.
 
 Format: `delete INDEX`
 
@@ -174,43 +174,43 @@ Examples:
 
 #### Clearing all entries : `clear`
 
-Clears all entries from the patient database.
+You can clear all patient entries from the patient database.
 
 Format: `clear`
 
 #### Clearing command history : `clearhistory`
 
-Clears command history from the patient database.
+You can clear your command history for the session.
 
 Format: `clearhistory`
 
 #### Exiting the program : `exit`
 
-Exits the program.
+You can exit the program.
 
 Format: `exit`
 
 #### Undoing the previous command: `undo`
 
-Reverts the previous command given by the user.
+You can revert your previous command.
 
 Format: `undo`
 
 #### Redoing a command : `redo`
 
-Redoes the most recent command that the user has undone.
+You can redo the most recent command that you have undone.
 
 Format: `redo`
 
 #### Retrieve past commands using command line interface: `history`
 
-Retrieves a list of past commands that the user had used during the session.
+You can see a list of past commands that you had used during the session.
 
 Format: `history`
 
 #### Retrieve and reuse past commands using arrow keys
 
-Reuse past commands using the up arrow (↑) and down arrow (↓) keys on the keyboard.
+Reuse your past commands using the up arrow (↑) and down arrow (↓) keys on the keyboard.
 1. Click on the text field of the command box.
 2. Press the up arrow key to display the next recent past command.
 3. Press the down arrow key to display the previously shown past command.
@@ -218,11 +218,11 @@ Reuse past commands using the up arrow (↑) and down arrow (↓) keys on the ke
 
 ### Saving the data
 
-CliniCal data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+CliniCal data is saved in the hard disk automatically after any of your commands change the data. There is no need for you to save manually, saving you time and effort.
 
 ### Color coding patients
 
-When a patient is tagged with a color tag, the background of the patient will be styled to show that color. The color tags can be used for a variety of purposes; for example, a doctor may color code patients at risk of terminal diseases as red, for easier reference.
+When your patient is tagged with a color tag, the background of that patient will be styled to show that color. You can use the color tags for a variety of purposes; For example, you may color code patients at risk of terminal diseases as red, for easier reference.
 
 ![example of color coded patient](images/Ui.png)
 
