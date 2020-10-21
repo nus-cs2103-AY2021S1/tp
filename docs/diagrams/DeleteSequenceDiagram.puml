@@ -31,14 +31,14 @@ deactivate DeleteCommand
 
 |||
 
-PrimitiveCommandParser --> DeleteCommand : getParameterSet
+PrimitiveCommandParser -> DeleteCommand : getParameterSet
 activate DeleteCommand
 DeleteCommand --> PrimitiveCommandParser
 deactivate DeleteCommand
 
 |||
 
-PrimitiveCommandParser --> PrimitiveCommandParser : provideValuesToParameterSet
+PrimitiveCommandParser -> PrimitiveCommandParser : provideValuesToParameterSet
 activate PrimitiveCommandParser
 PrimitiveCommandParser --> PrimitiveCommandParser
 deactivate PrimitiveCommandParser
