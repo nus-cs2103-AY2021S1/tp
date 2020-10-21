@@ -52,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane pinBoxPlaceholder;
 
+    @FXML
+    private StackPane commandOutputPlaceholder;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -115,7 +118,7 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         CommandOutput commandOutput = new CommandOutput();
         this.commandOutput = commandOutput;
-        commandBoxPlaceholder.getChildren().add(commandOutput.getRoot());
+        commandOutputPlaceholder.getChildren().add(commandOutput.getRoot());
 
         PinBox pinBox = new PinBox();
         pinBoxPlaceholder.getChildren().add(pinBox.getRoot());
@@ -126,8 +129,7 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         this.commandBox = commandBox;
-        Region commandBoxRoot = commandBox.getRoot();
-        displayPlaceholder.setAlignment(commandBoxRoot, Pos.TOP_LEFT);
+        commandBoxPlaceholder.getChildren().setAll(commandBox.getRoot());
     }
 
     /**
