@@ -51,7 +51,17 @@ of these components and displaying the changes.
 
 ### Model component
 
-**API** :
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+
+The `Model`,
+
+* stores a `UserPref` object that represents the user’s preferences.
+* stores the data for these 3 types of list:
+  * module tracker
+  * contact list
+  * todo list
+* exposes an unmodifiable `ObservableList<T>` for all types of list as mentioned above which can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* does not depend on any of the other three components
 
 ### Storage component
 
