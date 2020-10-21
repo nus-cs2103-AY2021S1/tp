@@ -1,7 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORIGINAL_ITEM_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import java.util.ArrayList;

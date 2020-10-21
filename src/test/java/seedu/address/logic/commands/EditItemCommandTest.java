@@ -79,6 +79,7 @@ public class EditItemCommandTest {
                 .withQuantity(VALID_ITEM_QUANTITY_BANANA)
                 .withDescription(VALID_ITEM_DESCRIPTION_BANANA)
                 .build();
+
         expectedItemList.addItem(editedApple);
         expectedModelStub = new ModelStubWithItemList(expectedItemList);
 

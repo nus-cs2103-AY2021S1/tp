@@ -50,9 +50,9 @@ public class UniqueLocationList implements Iterable<Location> {
     }
 
     /**
-     * For use by DetailedItemDisplayCard
+     * For use by a querying class to retrieve the textual location
      * @param id id of Location
-     * @return an optional<Location> that maybe exists.
+     * @return an Optional Location that maybe exists.
      */
     public Optional<Location> findLocationFromId(int id) {
         requireNonNull(id);

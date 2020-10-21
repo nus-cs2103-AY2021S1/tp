@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_APPLE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -18,9 +19,10 @@ public class EditItemCommandParserTest {
      */
     @Test
     public void parse_validArgs_returnsEditItemCommand() {
-        String userInput = "edit -o " + VALID_ITEM_NAME_APPLE + " -n edited";
+        String userInput = " -o " + VALID_ITEM_NAME_APPLE + " -n edited";
         EditItemDescriptor descriptor = new EditItemDescriptor();
         descriptor.setName("edited");
+        System.out.println(descriptor);
         EditItemCommand expectedCommand = new EditItemCommand(VALID_ITEM_NAME_APPLE, descriptor);
 
         //expected user input constructs successful edit item command
@@ -29,6 +31,7 @@ public class EditItemCommandParserTest {
 
     @Test
     public void parse_noItemProvided_throwsParseException() {
-        assertParseFailure(parser, "a", EditItemCommand.MESSAGE_NO_ORIGINAL_ITEM);
+        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                EditItemCommand.MESSAGE_USAGE));
     }
 }
