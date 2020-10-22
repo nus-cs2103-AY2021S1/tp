@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.function.Predicate;
 
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -31,6 +33,12 @@ public class FindCommandTest {
     private Model model = new ModelManager(TypicalFoods.getTypicalMcGymmy(), new UserPrefs());
     private Model expectedModel = new ModelManager(TypicalFoods.getTypicalMcGymmy(), new UserPrefs());
 
+    @BeforeEach
+    public void setup() {
+        model = new ModelManager(TypicalFoods.getTypicalMcGymmy(), new UserPrefs());
+        expectedModel = new ModelManager(TypicalFoods.getTypicalMcGymmy(), new UserPrefs());
+    }
+    
     @Test
     public void execute_zeroKeywords_noFoodFound() {
         String expectedMessage = String.format(Messages.MESSAGE_FOOD_LISTED_OVERVIEW, 0);
@@ -62,6 +70,22 @@ public class FindCommandTest {
         assertEquals(Arrays.asList(CHICKEN_RICE, CRISPY_FRIED_FISH),
                 model.getFilteredFoodList());
     }
+    
+    @Test
+    public void execute_validTag_multipleFoodsFound() {
+        String expectedMessage = String.format(Messages.MESSAGE_FOOD_LISTED_OVERVIEW, 3);
+        TagContainsKeywordsPredicate tagPredicate = prepareTagPredicate("lunch");
+        FindCommand command = new FindCommand();
+        command.setParameters(
+                new CommandParserTestUtil.OptionalParameterStub<>(""),
+                new CommandParserTestUtil.OptionalParameterStub<>("n"),
+                new CommandParserTestUtil.OptionalParameterStub<>("t", tagPredicate),
+                new CommandParserTestUtil.OptionalParameterStub<>("d"));
+        expectedModel.updateFilteredFoodList(tagPredicate);
+        CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CHICKEN_RICE, NASI_LEMAK, DANISH_COOKIES), model.getFilteredFoodList());
+    }
+
 
     @Test
     public void execute_validDate_singleFoodFound() throws ParseException {
