@@ -46,7 +46,9 @@ Each of the four components,
 * defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
-However, for state component, it is managed by a StateManager class which provides access to the state of the App.
+However, for state component, it is managed by two classes:
+* `StateManager` class which provides general access to the state of the App.
+* `UIStateManager` class which provides the GUI access to the state of the app.
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
@@ -130,12 +132,18 @@ The `Storage` component,
 
 ![Structure of the State Component](images/StateClassDiagram.png)
 
-**API** : [`StateManager.java`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/logic/state/StateManager.java)
+**API** : [`StateManager.java`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/logic/state/StateManager.java), [`UiStateManager.java`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/ui/UiStateManager.java) 
 
-The `State` component,
+The `StateManager` component,
 * can set the state for an opened `Case` in the app, denoted by its `Index`.
 * can reset the state.
-* can request the GUI to refresh its displayed `Case`.
+* can return the state.
+* can request the `UiStateManager` to refresh its state.
+
+The `UiStateManager` component,
+* can set the state for an opened `Case` in the app, denoted by its `Index`.
+* can reset the state.
+* can refresh its state.
 
 ### Common classes
 

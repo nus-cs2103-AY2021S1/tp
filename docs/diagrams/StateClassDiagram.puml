@@ -6,8 +6,12 @@ skinparam classBackgroundColor STATE_COLOR
 
 
 Class StateManager
+Class UIStateManager
 Class Index
 
+
 StateManager o--> "0..1" Index
+StateManager .right.> UIStateManager
+UIStateManager o--> "0..1" Index
 
 @enduml
