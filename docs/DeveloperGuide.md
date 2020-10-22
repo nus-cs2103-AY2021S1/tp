@@ -139,7 +139,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Add feature
 #### Overview
 
-The Add feature in Trackr enables users to easily add models to the app. Users will be able to keep of models they are
+The Add feature in Trackr enables users to easily add models to the app. Users will be able to keep track of models they are
 in charge of.
 
 There are three types of models:
