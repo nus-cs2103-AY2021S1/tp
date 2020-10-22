@@ -26,8 +26,4 @@ deactivate XYZParser
 
 schedulerParser --[LOGIC_COLOR]> parserManager
 deactivate schedulerParser
-
-
-
-
 @enduml
