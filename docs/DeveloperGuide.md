@@ -71,7 +71,8 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+![Class Diagram of the Logic Component](images/LogicClassDiagram.png)<br>
+Figure 1: Class Diagram of Logic Component.
 
 **How the architecture components interact with each other**
 
@@ -84,6 +85,7 @@ The sections below give more details of each component.
 ### UI component
 
 ![Structure of the UI Component](images/UiComponent.png)
+Figure 2: Class Diagram of UI Component.
 
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -103,6 +105,7 @@ The `UI` component,
 ### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
+Figure 3: Class Diagram of Logic Component.
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-T11-3/tp/blob/master/src/main/java/nustorage/logic/Logic.java)
@@ -115,11 +118,12 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete_finance 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete_finance 1` Command](images/DeleteFinanceSequenceDiagram.png)
-
+![Interactions Inside the Logic Component for the `delete_finance 1` Command](images/DeleteFinanceSequenceDiagram.png)<br>
+Figure 4: Sequence Diagram of Delete Finance Command.
 ### Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+![Structure of the Model Component](images/ModelClassDiagram.png)<br>
+Figure 5: Class Diagram of Model Component.
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -137,6 +141,7 @@ This section shows the structure and logic of the storage component of NUStorage
 Given below is the class diagram of the `storage` component.
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
+Figure 6: Class Diagram of Storage Component.
 
 The storage component comprises three different sections:
 
@@ -160,25 +165,28 @@ The storage component comprises three different sections:
     * Given below is the **activity** diagram for saving the inventory. Saving finance account works similarly.
     This diagram shows the decision pathways of the storage component when saving inventory.
     
-        ![Activity Diagram for saving inventory](images/SavingInventoryActivityDiagram.png)
-
+        ![Activity Diagram for saving inventory](images/SavingInventoryActivityDiagram.png)<br>
+        Figure 7: Activity Diagram for Saving Inventory.
+        
     * The following is the **sequence** diagram for saving the inventory. Saving finance account works similarly.
     This diagram shows the function calls between classes when saving inventory.
-    
-        ![Sequence Diagram for loading finance](images/SaveInventorySequenceDiagram.png)
+        
+        ![Sequence Diagram for saving inventory](images/SaveInventorySequenceDiagram.png)<br>
+        Figure 8: Sequence Diagram for Saving Inventory.
 
 * Loading finance account:
 
     * Given below is the **activity** diagram for loading the finance account on start up. Loading inventory works similarly.
     This diagram shows the decision pathways of the storage component when loading finance account.
     
-        ![Activity Diagram for loading finance account](images/LoadingFinanceActivityDiagram.png)
-    
+        ![Activity Diagram for loading finance account](images/LoadingFinanceActivityDiagram.png)<br>
+        Figure 9: Activity Diagram for Loading Finance.
+        
     * The following is the **sequence** diagram for loading the finance account. Loading inventory works similarly.
     This diagram shows the function calls between classes when loading finance account.
     
         ![Sequence Diagram for loading finance](images/LoadFinanceSequenceDiagram.png)
-
+        Figure 10: Sequence Diagram for Loading Finance.
 
 ### Common classes
 
@@ -189,6 +197,31 @@ Classes used by multiple components are in the `nustorage.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Add Record Command Feature
+
+This section explains the implementation of the Add Record command feature. As the implementation of adding Inventory / Finance Records are very similar, in this section we will only be going through the implementation of Adding Inventory Records.
+
+The Add Inventory command results in an inventory record added to the list. All but one field in the record must be filled by the user, which are: Item Description and Quantity. There is one optional field, Cost, which when filled, creates a Finance Record that is linked to the Inventory Record reflecting said cost. 
+
+Therefore, we need to use the `ParserUtil#parseItemDescription` as well as `ParserUtil#parseQuantity` methods inside the `parser` package which checks and extracts the item description and quantity (as well as cost if the field is filled). If the compulsory fields are valid, `AddInventoryRecordCommandParser` creates an `AddInventoryRecordCommand` object. The Sequence Diagram below shows how the `AddInventoryRecordCommand` object is created in `AddInventoryRecordCommandParser`. Take a look at the Logic Class Diagram in the [Logic Component](#logic-component) section of the DG, where `AddInventoryRecordCommandParser` is represented as 'XYZCommandParser' in the diagram, if you would like to have a fuller understanding of the entire process starting from user input.
+
+![AddInventoryRecordSequenceDiagram](images/AddInventoryRecordSequenceDiagram.png)<br>
+Figure 11. Sequence Diagram for Add Inventory.
+
+The `AddInventoryRecordCommand` has been successfully created and its `execute` method would be called by `LogicManager#execute`, which is in turn called by `MainWindow#executeCommand`. Below is another sequence diagram that depicts the interactions between `LogicManager`, `AddInventoryRecordCommand`, `ModelManager` as well as `Storage`, when `AddInventoryRecordCommand#execute` is called.
+
+![inventoryCommandExecuteSequenceDiagram](images/InventoryCommandExecuteSequence.png)<br>
+Figure 12. Sequence Diagram for `AddInventoryRecordCommand#execute()`
+
+As you can see, the Inventory Record, as well as a Finance Record (if the cost field was filled), is added into NUStorage's [Model Component](#model-component). In addition, the new lists of Inventory Records and Finance Records are saved into the [Storage Component](#storage-component) of NUStorage. At the end of the operation, a `CommandResult` object is returned in which we will use for UI purposes.
+
+Now, all there is left is to display a message to the user informing him/her about the status of their command input, as well as the created inventory / finance records. The `CommandResult` object returned previously is now used to create a new `CommandBox` object, which is used to display items on NUStorage's UI. All of this happens when `UiManager#fillInnerParts()` is called. Below is a sequence diagram depicting the entire scenario.
+
+![inventoryUI](images/InventoryUI.png)<br>
+Figure 13. Sequence Diagram for `UiManager#start()`
+
+With this, the Add Inventory Record command fully finishes executing and NUStorage's UI displays the status messages for the user to see.
 
 ### \[Proposed\] Undo/redo feature
 
