@@ -1,25 +1,25 @@
 package chopchop.model.recipe;
 
-import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.StringJoiner;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import chopchop.model.Entry;
 import chopchop.model.attributes.Step;
 import chopchop.model.attributes.Tag;
 import chopchop.model.ingredient.IngredientReference;
 
+import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
+
 public class Recipe extends Entry {
     private final List<IngredientReference> ingredients = new ArrayList<>();
     private final List<Step> steps = new ArrayList<>();
-    private final HashSet<Tag> tags = new HashSet<>();
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -73,9 +73,9 @@ public class Recipe extends Entry {
         int index = 1;
         for (var tag : this.tags) {
             sb.append(index)
-                .append(" : ")
-                .append(tag.getTagName())
-                .append("\n");
+                    .append(" : ")
+                    .append(tag.getTagName())
+                    .append("\n");
             index++;
         }
         return sb.toString();
@@ -108,7 +108,6 @@ public class Recipe extends Entry {
         StringJoiner recipeJoiner = new StringJoiner(" ");
         StringJoiner ingredientJoiner = new StringJoiner(", ");
         StringJoiner stepJoiner = new StringJoiner(", ");
-        StringJoiner tagJoiner = new StringJoiner(", ");
         AtomicInteger counter = new AtomicInteger(1);
 
         this.getIngredients().forEach(ingredient -> ingredientJoiner.add(ingredient.toString()));
