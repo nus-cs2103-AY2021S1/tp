@@ -1,6 +1,6 @@
 package chopchop.model.attributes.units;
 
-import chopchop.util.Result;
+import chopchop.commons.util.Result;
 import chopchop.model.attributes.Quantity;
 import chopchop.model.exceptions.IncompatibleIngredientsException;
 

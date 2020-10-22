@@ -13,7 +13,7 @@ import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.Tag;
 import chopchop.model.exceptions.IncompatibleIngredientsException;
-import chopchop.util.Pair;
+import chopchop.commons.util.Pair;
 
 import static java.util.Objects.requireNonNull;
 
