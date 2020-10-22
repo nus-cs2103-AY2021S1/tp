@@ -3,13 +3,10 @@ package chopchop.model.ingredient;
 import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.Quantity;
 
-import java.util.Objects;
-import java.util.TreeMap;
-import java.util.Optional;
-
-import java.util.Comparator;
+import java.util.*;
 
 import chopchop.model.Entry;
+import chopchop.model.attributes.Tag;
 import chopchop.model.exceptions.IncompatibleIngredientsException;
 
 import static java.util.Objects.requireNonNull;
@@ -34,13 +31,22 @@ public class Ingredient extends Entry {
     };
 
     private final TreeMap<Optional<ExpiryDate>, Quantity> sets;
+    private final HashSet<Tag> tags;
 
     /**
      * Every field must be present and not null. Use this constructor if expiry date is not present.
      * Guarantees: details are present and not null, field values are validated, immutable.
      */
     public Ingredient(String name, Quantity quantity) {
-        this(name, quantity, null);
+        this(name, quantity, null, null);
+    }
+
+    /**
+     * Every field must be present and not null. Use this constructor if expiry date is not present.
+     * Guarantees: details are present and not null, field values are validated, immutable.
+     */
+    public Ingredient(String name, Quantity quantity, HashSet<Tag> tags) {
+        this(name, quantity, null, tags);
     }
 
     /**
@@ -48,19 +54,29 @@ public class Ingredient extends Entry {
      * Guarantees: details are present and not null, field values are validated, immutable.
      */
     public Ingredient(String name, Quantity quantity, ExpiryDate expiryDate) {
+        this(name, quantity, expiryDate, null);
+    }
+
+    /**
+     * Every field must be present and not null. If expiry date is not present, use other constructor.
+     * Guarantees: details are present and not null, field values are validated, immutable.
+     */
+    public Ingredient(String name, Quantity quantity, ExpiryDate expiryDate, HashSet<Tag> tags) {
         super(name);
         requireNonNull(quantity);
 
         this.sets = new TreeMap<>(SET_COMPARATOR);
         this.sets.put(Optional.ofNullable(expiryDate), quantity);
+        this.tags = tags;
     }
 
     /**
      * Constructs a set of ingredients directly from the map of expiry dates and quantities.
      */
-    public Ingredient(String name, TreeMap<Optional<ExpiryDate>, Quantity> sets) {
+    public Ingredient(String name, TreeMap<Optional<ExpiryDate>, Quantity> sets, HashSet<Tag> tags) {
         super(name);
         this.sets = sets;
+        this.tags = tags;
     }
 
     public Quantity getQuantity() {
@@ -88,12 +104,22 @@ public class Ingredient extends Entry {
         return this.sets.firstEntry().getKey();
     }
 
-
     public TreeMap<Optional<ExpiryDate>, Quantity> getIngredientSets() {
 
         // i want const correctness dammit
         var ret = new TreeMap<Optional<ExpiryDate>, Quantity>(SET_COMPARATOR);
         ret.putAll(this.sets);
+
+        return ret;
+    }
+
+    public HashSet<Tag> getTags() {
+
+        var ret = new HashSet<>();
+
+        if (this.tags != null) {
+            ret.addAll(this.tags);
+        }
 
         return ret;
     }
@@ -152,18 +178,19 @@ public class Ingredient extends Entry {
         return other == this
                 || (other instanceof Ingredient
                 && this.name.equals(((Ingredient) other).name)
-                && this.sets.equals(((Ingredient) other).sets));
+                && this.sets.equals(((Ingredient) other).sets))
+                && this.tags.equals(((Ingredient) other).tags);
 
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, this.sets);
+        return Objects.hash(name, this.sets, this.tags);
     }
 
     @Override
     public String toString() {
-        return String.format("%s (%s)%s",
+        return String.format("%s (%s)%",
             this.getName(),
             this.getQuantity(),
             this.getExpiryDate().map(d -> String.format(" expires: %s", d))

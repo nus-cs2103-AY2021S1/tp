@@ -20,17 +20,13 @@ import chopchop.model.ingredient.IngredientReference;
 public class Recipe extends Entry {
     private final List<IngredientReference> ingredients = new ArrayList<>();
     private final List<Step> steps = new ArrayList<>();
-    private final Set<Tag> tags = new HashSet<>();
+    private final HashSet<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Recipe(String name, List<IngredientReference> ingredients, List<Step> steps) {
-        super(name);
-        requireAllNonNull(ingredients, steps);
-        this.ingredients.addAll(ingredients);
-        this.steps.addAll(steps);
-        this.tags.addAll(tags);
+        this(name, ingredients, steps, null);
     }
 
     /**
@@ -58,6 +54,14 @@ public class Recipe extends Entry {
      */
     public List<Step> getSteps() {
         return Collections.unmodifiableList(steps);
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     @Override

@@ -45,7 +45,6 @@ public class DeleteRecipeCommand extends Command {
 
             recipeToDelete = lastShownList.get(this.item.getZeroIndex());
         } else {
-
             recipeToDelete = model
                 .findRecipeWithName(this.item.getName())
                 .orElseThrow(() -> new CommandException(String.format("no recipe named '%s'", this.item.getName())));
