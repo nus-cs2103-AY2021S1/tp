@@ -11,6 +11,7 @@ import seedu.fma.logic.commands.AddExCommand;
 import seedu.fma.logic.commands.ClearCommand;
 import seedu.fma.logic.commands.Command;
 import seedu.fma.logic.commands.DeleteCommand;
+import seedu.fma.logic.commands.DeleteExCommand;
 import seedu.fma.logic.commands.EditCommand;
 import seedu.fma.logic.commands.ExitCommand;
 import seedu.fma.logic.commands.FindCommand;
@@ -72,6 +73,9 @@ public class FixMyAbsParser {
 
         case AddExCommand.COMMAND_WORD:
             return new AddExCommandParser().parse(arguments, logBook);
+
+        case DeleteExCommand.COMMAND_WORD:
+            return new DeleteExCommandParser().parse(arguments, logBook);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

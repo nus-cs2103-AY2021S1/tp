@@ -105,6 +105,8 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered log list */
     ObservableList<Log> getFilteredLogList();
 
+    /** Returns an unmodifiable view of the filtered exercise list */
+    ObservableList<Exercise> getFilteredExerciseList();
 
     /**
      * Updates the filter of the filtered log list to filter by the given {@code predicate}.

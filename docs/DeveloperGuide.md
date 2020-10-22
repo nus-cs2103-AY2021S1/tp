@@ -143,13 +143,30 @@ Below is how it works:
 
 Step 1. User executes `addex e/<exercise name> c/<calories>`
 
-Step 2. `AddExCommandParser` parses user's input and creates and `AddExCommand`
+Step 2. `AddExCommandParser` parses user's input and creates an `AddExCommand`
 
 ![](images/AddExCommand.png)
 
 Step 3: `AddExCommand` executes and adds exercise to `Model`
 
 ![](images/AddExModel.png)
+
+### Delete Exercise feature
+
+Delete exercise function uses following classes:
+
+- `DeleteExCommandParsers` - Parses user input.
+- `DeleteExCommand` Deletes the exercise from the Exercise List.
+
+Below is how it works:
+
+Step 1. User executes `deleteex <index>`.
+
+Step 2. `DeleteExCommandParser` parses the user input and creates a `DeleteExCommand` with the target index of the exercise to be deleted.
+
+Step 3: `DeleteExCommand` executes. `getFilteredExerciseList()` is called from the Model, to get the latest shown list of exercises. If an exercise of the given index exists in the list, it is deleted exercise from `Model`.
+
+![](images/DeleteExDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
