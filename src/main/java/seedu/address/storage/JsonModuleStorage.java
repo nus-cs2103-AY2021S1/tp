@@ -12,8 +12,8 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.Module;
 import seedu.address.model.ReadOnlyTrackr;
+import seedu.address.model.module.Module;
 
 // TODO better JavaDocs
 public class JsonModuleStorage implements ModuleStorage {

@@ -1,12 +1,17 @@
 package seedu.address.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TaskList {
     private ArrayList<Task> taskList;
 
     public TaskList() {
         this.taskList = new ArrayList<>();
+    }
+
+    public TaskList(List<Task> taskList) {
+        this.taskList = new ArrayList<>(taskList);
     }
 
     /**
@@ -19,6 +24,10 @@ public class TaskList {
 
     public int getTaskListSize() {
         return this.taskList.size();
+    }
+
+    public List<Task> getTaskList() {
+        return taskList;
     }
 
     /**

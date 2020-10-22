@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.Module;
+import seedu.address.model.module.Module;
 
 public class AddModuleCommand extends Command {
     public static final String COMMAND_WORD = "addMod";
