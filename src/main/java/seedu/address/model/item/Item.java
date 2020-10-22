@@ -32,7 +32,7 @@ public class Item extends InventoryComponent {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Creates a new item. Every field must be present and not null.
      */
     public Item(int id, String name, Quantity quantity, String description, Set<Integer> locationIds,
                 Set<Integer> recipeIds, Set<Tag> tags) {
@@ -45,6 +45,25 @@ public class Item extends InventoryComponent {
         this.recipeIds.addAll(recipeIds);
         this.tags.addAll(tags);
         if (!this.getType().equals(DisplayedInventoryType.DETAILED_ITEM)) {
+            idCounter++;
+        }
+    }
+
+    /**
+     * Creates an edited item without increasing id counter.
+     * Every field must be present and not null.
+     */
+    public Item(int id, String name, Quantity quantity, String description, Set<Integer> locationIds,
+                Set<Integer> recipeIds, Set<Tag> tags, Boolean isEdited) {
+        requireAllNonNull(id, name, quantity, description, locationIds, recipeIds, tags);
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.description = description;
+        this.locationIds.addAll(locationIds);
+        this.recipeIds.addAll(recipeIds);
+        this.tags.addAll(tags);
+        if (!isEdited) {
             idCounter++;
         }
     }
