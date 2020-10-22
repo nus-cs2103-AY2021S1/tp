@@ -11,8 +11,8 @@ import chopchop.logic.commands.MakeRecipeCommand;
 import chopchop.logic.parser.ArgName;
 import chopchop.logic.parser.CommandArguments;
 import chopchop.logic.parser.ItemReference;
-import chopchop.util.Result;
-import chopchop.util.Strings;
+import chopchop.commons.util.Result;
+import chopchop.commons.util.Strings;
 
 public class MakeCommandParser {
     private static final String commandName = Strings.COMMAND_MAKE;

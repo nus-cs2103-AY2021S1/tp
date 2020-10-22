@@ -1,6 +1,6 @@
 // Strings.java
 
-package chopchop.util;
+package chopchop.commons.util;
 
 import chopchop.logic.parser.ArgName;
 

@@ -7,8 +7,8 @@ import java.util.Optional;
 import java.util.ArrayList;
 
 import chopchop.model.attributes.Quantity;
-import chopchop.util.Result;
-import chopchop.util.Strings;
+import chopchop.commons.util.Result;
+import chopchop.commons.util.Strings;
 
 import chopchop.logic.parser.ArgName;
 import chopchop.logic.parser.ItemReference;

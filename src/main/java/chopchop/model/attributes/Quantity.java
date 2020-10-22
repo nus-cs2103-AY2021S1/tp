@@ -3,8 +3,8 @@ package chopchop.model.attributes;
 import java.util.List;
 import java.util.function.BiFunction;
 
-import chopchop.util.Result;
-import chopchop.util.StringView;
+import chopchop.commons.util.Result;
+import chopchop.commons.util.StringView;
 import chopchop.model.attributes.units.Mass;
 import chopchop.model.attributes.units.Count;
 import chopchop.model.attributes.units.Volume;

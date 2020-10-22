@@ -7,12 +7,13 @@ import java.util.TreeMap;
 import java.util.Optional;
 import java.util.Comparator;
 
+import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.model.Entry;
 import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.Tag;
 import chopchop.model.exceptions.IncompatibleIngredientsException;
-import chopchop.util.Pair;
+import chopchop.commons.util.Pair;
 
 import static java.util.Objects.requireNonNull;
 
@@ -182,13 +183,13 @@ public class Ingredient extends Entry {
      *
      * @param quantity the quantity to split by
      * @return a {@code Pair} of {@code Ingredient}s split by the given quantity
-     * @throws IllegalArgumentException if the quantity provided is larger than the total quantity
+     * @throws IllegalValueException if the quantity provided is larger than the total quantity
      * of the ingredient
      */
     public Pair<Ingredient, Ingredient> split(Quantity quantity)
-            throws IllegalArgumentException, IncompatibleIngredientsException {
+            throws IllegalValueException, IncompatibleIngredientsException {
         if (this.getQuantity().compareTo(quantity) < 0 || quantity.getValue() < 0) {
-            throw new IllegalArgumentException(String.format("Insufficient '%s' to remove given quantity",
+            throw new IllegalValueException(String.format("Insufficient '%s' to remove given quantity",
                     this.name.toString()));
         }
 

@@ -1,8 +1,8 @@
 package chopchop.logic.commands;
 
-import static chopchop.util.Strings.ARG_INGREDIENT;
-import static chopchop.util.Strings.ARG_QUANTITY;
-import static chopchop.util.Strings.ARG_STEP;
+import static chopchop.commons.util.Strings.ARG_INGREDIENT;
+import static chopchop.commons.util.Strings.ARG_QUANTITY;
+import static chopchop.commons.util.Strings.ARG_STEP;
 import static java.util.Objects.requireNonNull;
 
 import chopchop.logic.commands.exceptions.CommandException;
