@@ -43,7 +43,9 @@ Cap 5.0 Buddy helps NUS SoC students to keep track of their module details effic
 
 </div>
 
-### Adding a new module: `add module`
+### Module Features
+
+#### Adding a new module: `add module`
 
 Creates and add a new module to be stored in the system.
 
@@ -55,6 +57,7 @@ Creates and add a new module to be stored in the system.
    * `add module CS2103T https:\\link` creates and add the module called CS2103T
    with the specified link into the system.
    * `add module CS2103T` creates and add the module CS2103T with no zoom link.
+
 
 ### Viewing a module: `viewmodule`
 
@@ -68,7 +71,7 @@ Views a module stored in the system
    * `viewmodule n/cs2103t` views the specified module
 
 
-### Adding a zoom link to a module: `add zoom`
+#### Adding a zoom link to a module: `add zoom`
 
   Adds a zoom link to an existing module.
 
@@ -80,7 +83,7 @@ Views a module stored in the system
   `add zoom cs2103T https://sample.zoom.us` adds a zoom link `https://sample.zoom.us` to the module named `cs2103T`
 
 
-### Deleting a module: `deletemodule`
+#### Deleting a module: `deletemodule`
 
 Deletes the module at the specified position in the module list.
 
@@ -90,7 +93,7 @@ Deletes the module at the specified position in the module list.
   * `deletemodule 1` deletes the module at position `1`
 
 
-### Editing a module : `edit zoom`
+#### Editing a module : `edit zoom`
 
 * Edits an existing module in the module list.
 
@@ -101,8 +104,10 @@ Format: `edit zoom` **_`[MODULE_NAME]`_** **_`[ZOOM_LINK]`_**
 Examples:
 * `edit zoom CS2030 https://sample.zoom.us` edits the zoom link for a module named `CS2030`
   to `https://sample.zoom.us`
+
  
 ### Adding assignment to a module: `addassignment`
+
 
   Adds an assignment that takes up a percentage of the grade and has a result from 0.00 to 1.00 to an existing module.
 
@@ -117,6 +122,46 @@ Examples:
   grade with a result of `0.80` to the module named `CS2100`
 
 
+### 4.1 Contact Features
+
+#### 4.1.1 Add a contact: `addcontact`
+
+Adds a new contact into the contact list if it does not already exist.
+
+Format: `addcontact n/NAME [e/EMAIL] [te/TELEGRAM] [t/TAG]`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+Users are required to provide at least one other contact detail apart from **Name**.
+</div>
+
+Examples of Usage:
+`addcontact n/john e/john@gmail.com te/@john123`
+
+#### 4.1.2 Delete a contact: `deletecontact`
+
+Deletes an existing contact from the contact list
+
+Format: `deletecontact CONTACT_INDEX`
+
+* Contact index refers to the index number of the contact in the contact list displayed in the application
+
+Examples of Usage:
+`deletecontact 1`
+
+#### 4.1.3 Edit a contact: `editcontact`
+
+Edits an existing contact in the contact list.
+
+Format: `editcontact CONTACT_INDEX [n/NAME] [e/EMAIL] [te/TELEGRAM]`
+
+* This feature edits the contact at the specified contact index. Contact index refers to the index number of the contact in the contact list displayed in the application
+* At least one of the contact fields must be provided
+* The edit contact must not already exist in the contact list
+
+Examples of Usage:
+`editcontact 1 n/john e/john@gmail.com`: Edits the name and email of the contact at index 1 to `john` and `john@gmail.com` respectively
+
+
 ### Calculating Cumulative Average Point(CAP): `calculatecap`
 
 Calculates the user's CAP based on completed modules
@@ -125,6 +170,15 @@ Calculates the user's CAP based on completed modules
 
   Examples:
   * `calculatecap` calculate the user's cap
+  
+### Adding an Event to the Scheduler
+
+Creates and add a new Event with the specified information from the user input
+
+  Format: `addevent n/[event name] d/[date]`
+  
+   Examples:
+    * `addevent n/CS2103T exams d/12-12-2020` adds an Event called CS2103T into the Scheduler with the date 12-12-2020.
 
 ### Undo previous user command: `undo`
 
@@ -143,6 +197,7 @@ Redoes the previously undone user command
 
   Examples:
   * `redo`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -161,9 +216,10 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add module KEYWORD`<br> e.g. `add module CS2103T [link]`, `add module CS2103T`
 **View** | `view KEYWORD `<br> e.g. `view cs2101` , `view all`
-**Delete** | `delete KEYWORD `<br> e.g. `delete 3`
+**Delete** | `deletemodule MODULE_POSITION `<br> e.g. `deletemodule 3`
 **Edit** | `edit zoom MODULE_NAME ZOOM_LINK`<br> e.g. `edit zoom CS2103T https://sample.zoom.us`
 **Add Zoom** | `add zoom MODULE_NAME ZOOM_LINK` <br> e.g. `add zoom cs2103T https://sample.zoom.us`
+**Add Assignment** | `addassignment n/MODULE_NAME a/ASSIGNMENT_NAME %/ASSIGNMENT_PERCENTAGE r/ASSIGNMENT_RESULT` <br> e.g. `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80`
 **Calculate CAP** | `calculatecap` <br> e.g. `calculatecap`
 **Undo** | `undo` <br> e.g. `undo`
 **Redo** | `redo` <br> e.g. `redo`
