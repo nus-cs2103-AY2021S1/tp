@@ -7,12 +7,25 @@ Cap 5.0 Buddy helps NUS SoC students to keep track of their module details effic
 
 1. [Quick Start](#quick-start)
 2. [Features](#features)
-   1. [Adding a module](#adding-a-new-module-add-module)
-   2. [Viewing a module](#viewing-a-module-view)
-   3. [Adding a zoom link to a module](#adding-a-zoom-link-to-a-module-add-zoom)
-   4. [Deleting a module](#deleting-a-module-delete)
-   5. [Editing a module](#editing-a-module--edit-zoom)
-   6. [Adding an assignment to a module](#adding-assignment-to-a-module-addassignment)
+    1. Module Tracker
+        1. [Adding a module](#adding-a-new-module-add-module) : `addmodule`
+        2. [Viewing a module](#viewing-a-module-view) : `viewmodule`
+        3. [Adding a zoom link to a module](#adding-a-zoom-link-to-a-module-add-zoom) : `addzoomlink`
+        4. [Deleting a module](#deleting-a-module-delete) : `deletemodule`
+        5. [Editing a module](#editing-a-module--edit-zoom) : `editmodule`
+    2. Contact List
+    3. Todo List
+        1. [Adding a task](#adding-a-task) : `addtask`
+        2. [Deleting a task](#deleting-a-task) : `deletetask`
+        3. [Editing a task](#editing-a-task) : `edittask`
+        4. [Finding a task](#finding-a-task) : `findtask`
+        5. [Marking a task as completed](#marking-a-task-as-completed) : `complete`
+        6. [Resetting a task](#resetting-a-task) : `resettask`
+        6. [Sorting tasks](#sorting-tasks) : `sorttask`
+        7. [Filtering tasks](#filtering-tasks) : `filtertask`
+        8. [Archiving a task](#archiving-a-task) : `archivetask`
+        9. [Clearing the list](#clearing-the-list) : `clear`
+    4. Scheduler
 3. [FAQ](#faq)
 4. [Command Summary](#command-summary)
 
@@ -83,6 +96,7 @@ Views a module stored in the system
   `add zoom cs2103T https://sample.zoom.us` adds a zoom link `https://sample.zoom.us` to the module named `cs2103T`
 
 
+
 ### Deleting a module: `deletemodule`
 
 Deletes the module at the specified position in the module list.
@@ -125,23 +139,117 @@ Examples:
 
 #### Adding a task: `addtask`
 
+Adds a task to the list.
+
+Format: `addtask` **_`[n/TASK_NAME]`_** **_`[t/TAG]`_** **_`[p/PRIORITY]`_** **_`[d/DATE]`_**
+
+* All fields except the name of the task are optional.
+* Name of the task should not be longer than 30 characters.
+* You can provide more than one tag.
+* Date must be in the form of YYYY-MM-DD.
+
+Examples: 
+* `addtask n/read book t/DAILY HOBBY p/low d/2020-10-10` adds the specified task.
+
 #### Deleting a task: `deletetask`
+
+Deletes a task from the list.
+
+Format: `deletetask` **_`INDEX`_**
+
+* See index from the list.
+* Index must be a positive integer.
+
+Examples:
+* `deletetask 1` deletes the first task in the list.
 
 #### Editing a task: `edittask`
 
+Edits a task in the list.
+
+Format: `edittask` `INDEX` **_`[n/TASK_NAME]`_** **_`[t/TAG]`_** **_`[p/PRIORITY]`_** **_`[d/DATE]`_**
+
+* See index from the list.
+* Index must be a positive integer.
+* At least one field must not be empty.
+
+Examples:
+* `edittask 1 n/read chapter 5 p/HIGH` edits the first task name to `read chapter 5` and
+and priority to `HIGH`.
+
 #### Finding a task: `findtask`
+
+Finds a task based on keywords.
+
+Format: `findtask` **_`[KEYWORD]`_**
+
+Examples:
+* `findtask` **_`[k/KEYWORD]`_** list all the task that matches the keyword.
 
 #### Marking a task as completed: `completetask`
 
+Labels a task as COMPLETED.
+
+Format: `completetask` **_`INDEX`_**
+
+* See index from the list.
+* Index must be a positive integer.
+
+Examples:
+* `completetask 1` label first task in the list as completed.
+
 #### Resetting a task: `resettask`
+
+Reset the status of a task back to NOT COMPLETED.
+
+Format: `resettask` **_`INDEX`_**
+
+* See index from the list.
+* Index must be a positive integer.
+
+Examples:
+* `resettask 2` reset the second task in the list.
 
 #### Sorting tasks: `sorttask`
 
+Sorts the list based on a criterion.
+
+Format: `sorttask` **_`[REVERSED]`_** **_`[CRITERION]`_**
+
+* **_`[REVERSED]`_** is a signle character 'r'.
+* Add **_`[REVERSED]`_** to reverse the ordering of the list.
+* **_`[CRITERION]`_** is pre-defined i.e. choose from `NAME`, `PRIORITY`, `DATE`.
+* **_`[CRITERION]`_** is not case-sensitive.
+
+Examples:
+* `sorrtask priority` sorts the task from lowest to highest priority.
+* `sorrtask r priority` sorts the task from the highest to the lowest.
+
 #### Filtering tasks: `filtertask`
+
+Filters the list based on a criterion.
+
+Format: `filtertask` + **_`[CRITERION]`_** + **_`[KEYWORD]`_**
+
+Examples:
+* `filtertask priority high` shows only tasks that has high priority.
 
 #### Archiving a task: `archivetask`
 
-#### Clearing the list: `clear`
+Archives a task from the list.
+
+Format: `archivetask` **_`INDEX`_**
+
+* See index from the list.
+* Index must be a positive integer.
+
+Examples: `archivetask 1` archive the first task.
+
+#### Clearing the list: `cleartask`
+
+Clears all tasks in the list.
+
+Format: `cleartask`
 
 ### Scheduler
 
