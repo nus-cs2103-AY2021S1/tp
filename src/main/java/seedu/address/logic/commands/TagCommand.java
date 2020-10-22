@@ -10,7 +10,6 @@ import java.nio.file.Paths;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.tag.FileAddress;
 import seedu.address.model.tag.Tag;
 
 /**
