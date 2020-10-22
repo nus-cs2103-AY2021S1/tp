@@ -1,13 +1,20 @@
----
-layout: page
-title: Developer Guide
----
-
--   Table of Contents
-    
-    {:toc}
+# **Trackr - Developer Guide**
+by Team W12-2
 
 ---
+
+## **Table of Contents**
+
+---
+
+
+
+## **Preface**
+This is a Developer Guide to Trackr. A student and task management system for Teach Assistants of all faculties who want to manage their students from various modules and tutorial groups, all in one place.
+
+
+---
+
 
 ## **Setting up, getting started**
 
@@ -17,15 +24,13 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
-### Architecture
+### High-Level Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
 The **_Architecture Diagram_** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
 <div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -61,13 +66,12 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 The sections below give more details of each component.
 
 ### UI component
+The UI Component defines what the user will see and interact with while using Trackr. `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
-
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -105,8 +109,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 -   stores a `UserPref` object that represents the user’s preferences.
--   stores the address book data.
--   exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+-   stores the Trackr data.
+-   exposes unmodifiable `ObservableList<Module>`, `ObservableList<TutorialGroup>` and `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 -   does not depend on any of the other three components.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
@@ -134,6 +138,34 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Add feature
+#### Overview
+
+The Add feature in Trackr enables users to easily add models to the app. Users will be able to keep of models they are
+in charge of.
+
+There are three types of models:
+- `Module`: The current module the user is teaching
+- `TutorialGroup`: The tutorial groups that the user is teaching
+- `Student`: The students currently being taught by the user
+
+#### Implementation
+Trackr contains a `UniqueList<Module>`, which in turn, contains the modules taught by the user. Each Add command
+for `Module`, `TutorialGroup`, and `Student` is split into `AddModuleCommand`, `AddTutorialGroupCommand`, and `AddStudentCommand`.
+Each command class extends `Command`. 
+
+Given below is an example of the interaction between the Model and Add commands of tracker.
+
+
+#### Design Considerations
+**Aspect: List to contain the models**
+- Option 1: Generic `UniqueList` that contains the models
+    - Pros: Abstraction, 
+    - Cons: Harder to implement
+- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
+    - Pros: Easier to implement
+    - Cons: More repetitive code
 
 ### \[Proposed\] Undo/redo feature
 
