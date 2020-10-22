@@ -16,6 +16,7 @@ import seedu.expense.logic.commands.FindCommand;
 import seedu.expense.logic.commands.HelpCommand;
 import seedu.expense.logic.commands.ListCommand;
 import seedu.expense.logic.commands.RemarkCommand;
+import seedu.expense.logic.commands.SwitchCommand;
 import seedu.expense.logic.commands.TopupCommand;
 import seedu.expense.logic.parser.exceptions.ParseException;
 
@@ -75,6 +76,9 @@ public class ExpenseBookParser {
 
         case TopupCommand.COMMAND_WORD:
             return new TopupCommandParser().parse(arguments);
+
+        case SwitchCommand.COMMAND_WORD:
+            return new SwitchCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -12,9 +12,11 @@ import javafx.collections.transformation.FilteredList;
 import seedu.expense.commons.core.GuiSettings;
 import seedu.expense.commons.core.LogsCenter;
 import seedu.expense.model.budget.Budget;
+import seedu.expense.model.budget.CategoryBudget;
 import seedu.expense.model.budget.UniqueCategoryBudgetList;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
+import seedu.expense.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the expense book data.
@@ -142,6 +144,27 @@ public class ModelManager implements Model {
     public void updateFilteredExpenseList(Predicate<Expense> predicate) {
         requireNonNull(predicate);
         filteredExpenses.setPredicate(predicate);
+    }
+
+    /**
+     * Checks if the given Tag is present in any of the category budget.
+     */
+    @Override
+    public boolean hasCategory(Tag toCheck) {
+        return budgets.contains(new CategoryBudget(toCheck));
+    }
+
+    /**
+     * Switches the expense book into the one that matches the given Tag.
+     */
+    @Override
+    public void switchCategory(Tag toCheck) {
+        requireAllNonNull(toCheck);
+        if (hasCategory(toCheck)) {
+            updateFilteredExpenseList(expense -> expense.getTags().contains(toCheck));
+            //expenseBook.setExpenses(filteredExpenses);
+            //Get Individual CategoryBudget
+        }
     }
 
     @Override

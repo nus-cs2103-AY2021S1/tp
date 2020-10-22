@@ -8,6 +8,7 @@ import seedu.expense.commons.core.GuiSettings;
 import seedu.expense.model.budget.Budget;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
+import seedu.expense.model.tag.Tag;
 
 /**
  * The API of the Model component.
@@ -104,4 +105,14 @@ public interface Model {
      * Adds the given amount to the budget.
      */
     void topupBudget(Amount amount);
+
+    /**
+     * Checks if the given Tag is present in any of the category budget.
+     */
+    boolean hasCategory(Tag toCheck);
+
+    /**
+     * Switches the expense book into the one that matches the given Tag.
+     */
+    void switchCategory(Tag toCheck);
 }
