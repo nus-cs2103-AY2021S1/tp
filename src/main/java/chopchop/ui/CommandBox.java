@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.parser.exceptions.ParseException;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 
 /**
@@ -36,6 +39,23 @@ public class CommandBox extends UiPart<Region> {
         commandHistory = new ArrayList<>();
         // No commands entered yet.
         historyPointer = -1;
+        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode().equals(KeyCode.DOWN)) {
+                    commandTextField.setText(commandHistory.get(historyPointer));
+                    if (historyPointer < commandHistory.size() - 1) {
+                        historyPointer++;
+                    }
+                }
+                if (event.getCode().equals(KeyCode.UP)) {
+                    commandTextField.setText(commandHistory.get(historyPointer));
+                    if (historyPointer > 0) {
+                        historyPointer--;
+                    }
+                }
+            }
+        });
     }
 
     /**
@@ -43,14 +63,14 @@ public class CommandBox extends UiPart<Region> {
      */
     @FXML
     private void handleCommandEntered() {
+        String command = commandTextField.getText();
         try {
-            String command = commandTextField.getText();
             commandExecutor.execute(command);
-            commandHistory.add(command);
-            historyPointer += 1;
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         } finally {
+            commandHistory.add(command);
+            historyPointer += 1;
             commandTextField.setText("");
         }
     }
