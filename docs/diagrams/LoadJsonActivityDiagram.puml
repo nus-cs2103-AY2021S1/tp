@@ -1,0 +1,18 @@
+@startuml
+start
+:User starts up application;
+:MainApp looks for an exisiting Json file to read and load;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([modulelist.json exists and is found])
+    :Attempts to read Json file;
+    :Converts Json file into Json classes;
+    :Converts Json classes into native classes;
+    :Module list is created and stores in StorageManager;
+else ([else])
+    :Create new Json file;
+endif
+stop
+@enduml
