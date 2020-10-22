@@ -295,45 +295,299 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `PIVOT` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add Investigation Case**
 
 **MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to create a new active investigation case and specifies a title
+2.  PIVOT adds the new investigation case
 
     Use case ends.
 
 **Extensions**
+* 1a. The title is empty.
+    * 1a1. PIVOT shows an error message.
+    
+	  Use case ends.
 
+**Use case: List Investigation Case**
+
+**MSS**
+1.  User requests to list investigation cases
+2.  PIVOT shows a list of investigation cases
+
+    Use case ends.
+
+**Use case: Delete Investigation Case**
+
+**MSS**
+1. User requests to list investigation cases
+2. PIVOT shows a list of investigation cases
+3. User requests to delete a specific investigation case in the list
+4. PIVOT deletes the investigation case
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+  
+  Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+      
+      Use case resumes at step 1.
+
+**Use case: Open Investigation Case**
+
+**MSS**
+1. User requests to list investigation cases
+2. PIVOT shows a list of investigation cases
+3. User requests to open a specific investigation case in the list
+4. PIVOT navigates to the specified investigation case page
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+  
+  Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+      
+      Use case resumes at step 1.
+
+**Use case: Tag Investigation Case**
+
+**MSS**
+1. User requests to list investigation cases
+2. PIVOT shows a list of investigation cases
+3. User specifies an investigation case
+4. PIVOT navigates to the specified investigation case page
+5. User requests to tag the investigation case with specific tag
+6. PIVOT tags the investigation case with specified tag
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+  
+  Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+      
+      Use case resumes at step 1.
+      
+* 5a. The given tag is invalid.
+    * 5a1. PIVOT shows an error message.
+      
+      Use case resumes at step 5.
+
+**Use case: Add Description for an Investigation Case**
+
+**MSS**
+1. User requests to list investigation cases
+2. PIVOT shows a list of investigation cases
+3. User specifies an investigation case
+4. PIVOT navigates to the specified investigation case page
+5. User requests to add a description to the investigation case
+6. PIVOT adds the description to the investigation case
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+  
+  Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+      
+      Use case resumes at step 1.
+      
+* 5a. The given description is empty.
+    * 5a1. PIVOT shows an error message.
+      
+      Use case resumes at step 5.
+
+**Use case: Add Document to Investigation Case**
+
+**MSS**
+1. User requests to add a document to investigation case, specifies a document title and reference
+2. PIVOT adds a new document to the investigation case
+   
+   Use case ends.
+
+**Extensions**
+* 1a. The title is empty.
+    * 1a1. PIVOT shows an error message.
+    
+      Use case resumes at step 1.
+
+* 1b. The reference is empty.
+    * 1b1. PIVOT shows an error message.
+    
+      Use case resumes at step 1.
+    
+* 1c. The reference is invalid.
+    * 1c1. PIVOT shows an error message.
+    
+      Use case resumes at step 1.
+
+**Use case: List Document related to Investigation Case**
+
+**MSS**
+1. User requests to list documents related to the case
+2. PIVOT shows a list of documents related to the case
+
+   Use case ends.
+
+**Use case: Delete Document from Investigation Case**
+
+**MSS**
+1. User requests to list investigation cases
+2. PIVOT shows a list of investigation cases
+3. User requests to delete a specific investigation case in the list
+4. PIVOT deletes the investigation case
+
+   Use case ends.
+
+**Extensions**
 * 2a. The list is empty.
 
   Use case ends.
 
 * 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+    
+      Use case resumes at step 1.
 
-    * 3a1. AddressBook shows an error message.
+**Use case: Open Document**
 
-      Use case resumes at step 2.
+**MSS**
+1. User requests to list documents
+2. PIVOT shows a list of documents
+3. User requests to open a specific document in the list
+4. PIVOT opens the specified document
 
-*{More to be added}*
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+    Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+    
+        Use case resumes at step 1.
+
+* 4a. The specified document does not exist in the saved reference.
+    * 4a1. PIVOT shows an error message.
+    
+        Use case resumes at step 1.
+        
+**Use case: Add Person[Suspect/Witness/Victim] in Investigation Case**
+
+**MSS**
+1. User requests to list investigation cases
+2. PIVOT shows a list of investigation cases
+3. User requests to open a specific investigation case in the list
+4. PIVOT opens the specified investigation case
+5. User requests to add a person to a specified category (suspect/witness/victim).
+6. PIVOT adds the person to a specified category (suspect/witness/victim).
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+    Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+    
+        Use case resumes at step 1.
+
+* 5a. The given category of person to add is invalid.
+    * 5a1. PIVOT shows an error message.
+    
+        Use case resumes at step 1.
+
+**Use case: List Person[Suspect/Witness/Victim] in Investigation Case**
+
+**MSS**
+1. User requests to list Persons related to the case.
+2. PIVOT shows a list of Persons related to the case.
+
+   Use case ends.
+
+**Use case: Delete Person[Suspect/Witness/Victim] in Investigation Case**
+
+**MSS**
+1. User requests to list all Persons
+2. PIVOT shows a list of all Persons
+3. User requests to delete a specific Person from the list
+4. PIVOT deletes the Person
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+    Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+    
+        Use case resumes at step 1.
+
+**Use case: Return to the Main Page**
+
+**MSS**
+1. User requests to list investigation cases
+2. PIVOT shows a list of investigation cases
+3. User requests to open a specific investigation case in the list
+4. PIVOT navigates to the specified investigation case
+5. User requests to navigate to the main page
+6. PIVOT navigates to the main page
+
+   Use case ends.
+
+**Extensions**
+* 1a. User requests to navigate to the main page.
+
+    Use case ends.
+
+**Use case: Exit Application**
+
+**MSS**
+1. User requests to exit the application
+2. PIVOT terminates.
+
+    Use case ends.
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The system should not take above 2 seconds to execute any command.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Investigation Case**: The investigation case encapsulating all relevant data the police wants to keep track of
+* **Investigation Case Tag**: The status of the case (Active/In-Progress, Closed, Cold Case)
+* **Document**: An actual document/file stored in the project directory
+* **Person**: Data stored in the investigation case (For suspects, witnesses or victims related)
+* **File Paths**: System Location of the specified file inside the project directory
 
 --------------------------------------------------------------------------------------------------------------------
 
