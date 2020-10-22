@@ -68,7 +68,9 @@ public class ProfileWindow extends UiPart<Stage> {
     @FXML
     private ImageView profilePictureField;
 
-
+    /**
+     * Instantiates a ProfileWindow object.
+     */
     public ProfileWindow(Stage root) {
         super(FXML, root);
         populateVisitList(FXCollections.observableArrayList());

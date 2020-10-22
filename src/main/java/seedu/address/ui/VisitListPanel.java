@@ -23,6 +23,9 @@ public class VisitListPanel extends UiPart<Stage> {
     @FXML
     private ListView<Visit> visitListView;
 
+    /**
+     * Instantiates a VisitListPanel object.
+     */
     public VisitListPanel(Stage root) {
         super(FXML, root);
         setup(FXCollections.observableArrayList());

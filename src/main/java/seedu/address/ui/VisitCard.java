@@ -34,6 +34,9 @@ public class VisitCard extends UiPart<Region> {
     @FXML
     private Label remarks;
 
+    /**
+     * Instantiates a VisitCard object.
+     */
     public VisitCard(Visit report, int displayedIndex) {
         super(FXML);
         this.report = report;

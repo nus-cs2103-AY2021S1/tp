@@ -32,6 +32,9 @@ public class ProfileVisitCard extends UiPart<Region> {
     @FXML
     private Label profileVisitRemarks;
 
+    /**
+     * Instantiates a ProfileVisitCard object.
+     */
     public ProfileVisitCard(Visit report) {
         super(FXML);
         this.report = report;
