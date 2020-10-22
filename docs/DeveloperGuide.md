@@ -185,7 +185,7 @@ predicate on the existing filteredList.
 
 Below is a usage example
 
-Step 1: User execute `find-i s/NTUC` command to search the list of items by Supplier <br>
+Step 1: User executes `find-i s/NTUC` command to search the list of items by Supplier <br>
 Step 2: `ArguementMultiMap` maps each prefix to their values and `ItemFindCommandParser` checks which prefix has a 
 value <br>
 Step 3: The value and prefix is then used to create the predicate and passed to `ItemFindCommand` <br>
@@ -305,7 +305,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * wants to be updated on raw materials stock level on a daily basis
 * prefer desktop apps over other types
 * can type fast
-* prefers typing than mouse interactions
+* prefers typing to mouse interactions
 * is reasonably comfortable using CLI commands
 
 **Value proposition**: manage inventory and pending delivery faster than a typical mouse/GUI driven app
