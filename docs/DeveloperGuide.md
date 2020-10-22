@@ -213,6 +213,28 @@ The following activity diagram summarises the flow of events when `DeleteQuestio
 
 Figure \___. Activity diagram for `DeleteQuestionCommand` execution
 
+### 5.3 Overdue payment filter feature
+
+The overdue payment filter feature allows the tutor to find all students who have not paid their tuition fees in the past month. It is handled by the `OverdueCommand`.
+
+The following describes the flow of how `OverdueCommand` is executed.
+
+1. Upon successfully parsing the user input, `OverdueCommand#execute(Model model)` is called to filter all students in Reeve whose last date of payment was more than a month ago.
+2. `Model#updateFilteredStudentsList(Predicate<Student> predicate)` is called to find only students that match the above condition. A new `CommandResult` is returned with a successful message indicating the number of matching students.
+3. The filtered student list replaces the displayed list on the GUI and a success message is shown in the result display.
+
+The following sequence diagram shows how the question adding operation works.
+
+![OverdueSequence](images/OverdueSequenceDiagram.png)
+
+Figure \___. Sequence diagram for `OverdueCommand` execution
+
+The following activity diagram summarises the flow of events when `OverdueCommand` is executed.
+
+![OverdueActivity](images/OverdueActivityDiagram.png)
+
+Figure \___. Activity diagram for `OverdueCommand` execution
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -369,7 +391,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-
 **UC06: Clearing all student records**
 
 **MSS**
@@ -473,6 +494,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b1. Reeve displays an error message.
 
       Use case resumes at step 2.
+
+**UC08: Finding all students with overdue tuition fees**
+
+**MSS**
+
+1. User enter command to filter all students by those who have not paid their fees in the past month.
+2. Reeve displays all students that match the above criteria.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 1b. All students have paid their fees in the past month.
+
+  * 1b1. Reeve displays an empty list.
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
