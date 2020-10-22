@@ -92,6 +92,16 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public double getTotalRevenue() {
+        return activeAccount.getTotalRevenue();
+    }
+
+    @Override
+    public double getTotalExpense() {
+        return activeAccount.getTotalExpenses();
+    }
+
+    @Override
     public Path getCommonCentsFilePath() {
         return model.getCommonCentsFilePath();
     }

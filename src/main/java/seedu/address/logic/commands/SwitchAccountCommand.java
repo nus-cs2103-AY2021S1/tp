@@ -55,7 +55,8 @@ public class SwitchAccountCommand extends Command {
         }
 
         activeAccount.setActiveAccount(toBeSwitched);
-        return new CommandResult(String.format(MESSAGE_SWITCH_ACCOUNT_SUCCESS, toBeSwitched));
+        return new CommandResult(String.format(MESSAGE_SWITCH_ACCOUNT_SUCCESS, toBeSwitched),
+            false, false, true);
     }
 
     @Override

@@ -3,8 +3,12 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.animation.PauseTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Side;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
@@ -56,6 +60,11 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private HBox entryListGridPlaceholder;
+
+    @FXML
+    private StackPane pieChartPlaceholder;
+
+    private PieChart pieChart;
 
     @FXML
     private StackPane expenseListPanelPlaceholder;
@@ -133,9 +142,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        // activeAccountName.textProperty().bind(logic.getActiveAccountName().getName());
-
         fillEntryDisplay();
+        createPieChart();
+        updateActiveAccountName();
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -153,6 +162,29 @@ public class MainWindow extends UiPart<Stage> {
 
         revenueListPanel = new RevenueListPanel(logic.getFilteredRevenueList());
         entryListGridPlaceholder.getChildren().add(revenueListPanel.getRoot());
+    }
+
+    void updateActiveAccountName() {
+        activeAccountName.setText(logic.getActiveAccountName().toString());
+    }
+
+    void createPieChart() {
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+            new PieChart.Data("Expense", logic.getTotalExpense()),
+            new PieChart.Data("Revenue", logic.getTotalRevenue())
+        );
+        pieChart = new PieChart(pieChartData);
+        pieChart.setTitle("Summary");
+        pieChart.setLegendSide(Side.LEFT);
+        pieChartPlaceholder.getChildren().add(pieChart);
+    }
+
+    void updatePieChart() {
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+            new PieChart.Data("Expense", logic.getTotalExpense()),
+            new PieChart.Data("Revenue", logic.getTotalRevenue())
+        );
+        pieChart.setData(pieChartData);
     }
 
     /**
@@ -218,6 +250,11 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            if (commandResult.isEntryListChange()) {
+                updatePieChart();
+            }
+            updateActiveAccountName();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

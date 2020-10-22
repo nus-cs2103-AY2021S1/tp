@@ -15,6 +15,7 @@
 
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.chart.PieChart?>
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Common Cents - If you have it, use it." type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/cc_logo.png" />
@@ -68,11 +69,12 @@
 <!--          <StackPane fx:id="entryListPanelPlaceholder" VBox.vgrow="ALWAYS" />-->
 <!--        </VBox>-->
 
-        <HBox fx:id="entryListGridPlaceholder" prefWidth="Infinity"
-              VBox.vgrow="ALWAYS" alignment="BASELINE_RIGHT" spacing="10" >
+        <HBox fx:id="entryListGridPlaceholder"
+              VBox.vgrow="ALWAYS" spacing="10" >
               <padding>
                 <Insets top="5" bottom="5" right="10"/>
               </padding>
+              <StackPane fx:id="pieChartPlaceholder"/>
               <StackPane fx:id="expenseListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
               <StackPane fx:id="revenueListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
         </HBox>
