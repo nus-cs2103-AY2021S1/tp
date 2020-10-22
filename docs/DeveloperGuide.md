@@ -6,6 +6,11 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## **Introduction**
+
+CAP5Buddy helps NUS SoC students to keep track of their module details efficiently. It helps them centralize key 
+module details and follows their study progress through a Command Line Interface (CLI) that allows efficient management 
+of module details. CAP5Buddy also functions as a scheduling system, todo list and contact list.
 
 ## **Setting up, getting started**
 
@@ -80,7 +85,7 @@ of the **XYZListPanel**.
 2. This results in a `Command` object which is executed by `LogicManager`.
 3. The command execution can affect the Model (e.g. adding a module).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying 
+5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
 help to the user.
 
 ### Model component
@@ -93,9 +98,9 @@ help to the user.
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-The `Storage` component facilitates the storage of CAP5BUDDY data in the hard drive. When the program attempts to save 
-data, the `Storage` component converts java data objects such as `ModuleList` and `ContactList` into a json format to store 
-at a specified file location. When the program is started, it will attempt to read existing user data and the `Storage` 
+The `Storage` component facilitates the storage of CAP5BUDDY data in the hard drive. When the program attempts to save
+data, the `Storage` component converts java data objects such as `ModuleList` and `ContactList` into a json format to store
+at a specified file location. When the program is started, it will attempt to read existing user data and the `Storage`
 component will be converting data in json format into java objects.
 
 * can save `UserPref` objects in json format and read it back.
@@ -108,16 +113,28 @@ component will be converting data in json format into java objects.
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 ### Common classes
 
-**API** :
+**API** : 
 
 ## Module List
 ![Structure of the Module List Component](images/ModuleListDiagram.png)
 
-The Module List that is stored in the model contains a list of modules. The Module List stores a Unique
-Contact List that prevents duplicate modules from being added to the Module List. Each Module contains 
-a module name, a zoom link attached to that module and a grade tracker. The grade tracker tracks the assignments
-completed for that module and a grade for that module. 
+**Module package** : [`seedu.address.model.module`](https://github.com/AY2021S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/model/module)
 
+* Module is a container class that stores :
+  * Name of a module
+  * Zoom link of a module
+  * GradeTracker of a module
+* GradeTracker is a container class that stores:
+  * Grade for a module
+  * Assignments for a module
+  
+#### ModuleList class
+**ModuleList class** : [`ModuleList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/ModuleList.java)
+
+* Wraps all data i.e. Modules at the module list level
+* Stores Modules in memory
+* Stores a UniqueModuleList
+* Duplicate Modules are not allowed
 
 ## CAP Calculator
 
@@ -127,9 +144,21 @@ completed for that module and a grade for that module.
 
 ![Structure of the Contact List Component](images/ContactListDiagram.png)
 
-The Contact List that is stored in the model contains a list of contacts. The Contact List stores a 
-Unique Contact List prevents duplicate contacts from being added.Each contact stored has their Name, 
-Email address and Telegram handle stored with it.
+#### Contact class
+
+**Contact package** : [`seedu.address.model.contact`](https://github.com/AY2021S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/model/contact)
+
+* Contact is a container class that stores :
+  * Name of a contact
+  * Email of a contact
+  * Telegram of a contact
+#### ContactList class
+**ContactList class** : [`ContactList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/ContactList.java)
+
+* Wraps all data i.e. Contacts at the contact list level
+* Stores Contacts in memory
+* Stores a UniqueContactList
+* Duplicate Contacts are not allowed
 
 ## Todo List
 
@@ -149,14 +178,89 @@ This section describes some noteworthy details on how certain features are imple
 
 ### \[Proposed\] Data archiving
 
+### 1.1 Contact List Management
+
+As a module tracking system, Cap 5 Buddy allows users to manage a list of module-related contacts with ease.
+
+The section below provides details of the implementation of each Contact List function and design considerations
+of the contact list feature.
+
+#### 1.1.1 Contact List Commands
+
+Below is a list of all `Contact` related features:
+
+1. Add a contact: Adds a new contact into the contact list
+2. Delete a contact: Deletes a pre-existing contact from the contact list
+3. Edit a contact: Edits a pre-existing contact in the contact list
+4. View all contacts: Lists out all contacts in the contact list
+
+Given below is the class diagram of the `Contact` class:
+
+![ContactClassDiagram](images/Contact/ContactClassDiagram.png)
+
+Figure ?.? Class Diagram for Contact class
+
+#### 1.1.2 Details of implementation
+
+Given below is an example usage scenario and how the mechanism for adding contact behaves at each step:
+1. `LogicManager` receives the user input `addcontact n/John e/john@gmail.com te/@johndoe` from `Ui`
+2. `LogicManager` calls `ContactListParser#parseCommand()` to create `AddContactParser`
+3. `ContactListParser` will call the respective `AddContactParser#parse()` method to parse the command arguments
+4. This creates a `AddContactCommand` and `AddContactCommand#execute` will be invoked by `LogicManager`
+5. The `Model#addContact()` operation exposed in the `Model` interface is used to add the new contact
+6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+Given below is the sequence diagram of how the operation to add a contact works:
+![AddContactSequenceDiagram](images/Contact/AddContactSequenceDiagram.png)
+Figure ?.? Sequence diagram for the execution of `AddContactCommand`
+
+The section below describes the implementation details of each Contact List feature.
+
+####Add Contact Feature
+* This feature creates and adds a new `Contact` using the contact details provided by users
+* `ContactListParser` invokes `AddContactParser#parse()` to parse and validate the command arguments
+* `AddContactCommand#execute()` will be called to add the new `Contact` if the contact does not already exist
+* The mechanism to add a contact is facilitated by `Contactlist` which implements `ContactList#addContact()`
+* This operation is exposed in the `Model` interface as `Model#addContact()`
+
+The following activity diagram summarizes what happens when a user executes the `AddContactCommand`:
+![AddContactCommandActivityDiagram](images/Contact/AddContactCommandActivityDiagram.png)
+Figure ?.? Activity diagram representing the execution of `AddContactCommand`
+
+#### Delete Contact Feature
+* This feature deletes a pre-existing `Contact` using the contact ID provided by users
+* `ContactListParser` invokes `DeleteContactParser#parse()` to parse and validate the contact ID
+* `DeleteContactCommand#execute()` will be called to delete the `Contact`
+* The mechanism to delete a contact is facilitated by `ContactList` which implements `ContactList#removeContact()`
+* This operation is exposed in the `Model` interface as `Model#deleteContact()`
+
+#### Edit Contact Feature
+* This feature edits a pre-existing `Contact` using the contact details provided by users.
+* `ContactListParser` invokes `EditContactParser#parse()` to parse and validate the contact ID and command arguments
+* `EditContactCommand#execute()` will be called to create the edited `Contact` and replace the old contact with the edited contact,
+   if the edited contact does not already exist
+* The mechanism to edit a contact is facilitated by `ContactList` which implements `ContactList#setContact()`
+* This operation is exposed in the `Model` interface as `Model#setContact()`
+
+#### View Contact Feature
+
+
+#### <br> 1.1.2 Design Considerations <br>
+##### Aspect: Data structure to support Contact related functions
+* Alternative 1: Use a `HashMap` to store contacts
+  * Pros: Will be more efficient to retrieve contacts from a HashMap.
+  * Cons: Requires additional memory to support the HashMap. This would worsen as the number of contacts stored increases.
+* Alternative 2: Use an `ArrayList` to store contacts
+
+
 ### \[Proposed\] Calculate CAP feature
 
 #### Proposed Implementation
 
-The proposed calculate CAP function is facilitated by `CalculateCapCommand`. It extends Command with a counter for total 
+The proposed calculate CAP function is facilitated by `CalculateCapCommand`. It extends Command with a counter for total
 grade points and modular credits, both stored internally `gradePoints` and `modularCredits` respectively. Additionally, it implements the following operations:
 
-* `CalculateCapCommand#accumulate(ModuleList)` - Loops through a given `ModuleList` and updates the grade points and 
+* `CalculateCapCommand#accumulate(ModuleList)` - Loops through a given `ModuleList` and updates the grade points and
 modular credits count accordingly.
 
 * `CalculateCapCommand#calculateCap()` - Calculates CAP based the grade points and modular credits counter.
@@ -164,8 +268,9 @@ modular credits count accordingly.
 The following sequence diagram shows how the calculate cap operation works:
 ![CalculateCapSequenceDiagram](images/CalculateCapSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CalculateCapCommand` 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CalculateCapCommand`
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 #### Design consideration:
 
@@ -176,13 +281,33 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
     
 * Alternative 2 : Prompts user for academic information used for last calculated cap and stores it.
     * Pros : 
-        * User does not need to input uncessary modules.
+        * User does not need to input unnecessary modules.
         * Will use less memory.(e.g Modules that the user is not currently taking does not need to be added by user).
     
     * Cons : Will require additional storage.
     
-   
+###\[Proposed\] GradeTracker feature
+####Proposed Implementation
+The proposed grade tracker feature is an association class used to store additional information for the module. 
+The `Assignments` each store their own `assignment name`, `percentage of final grade` and `result`. 
 
+![Structure of the Module List Component](images/GradeTrackerDiagram.png)
+
+When an `assignment` is added, it follows the sequence diagram as shown below. The sequence flows similarly 
+to the rest of the project as the command is parsed and then executed.
+
+![Sequence Diagram of the Add Assignment Command](images/AddAssignmentSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Format to store the grade for a module
+* Alternative 1 : Grade stores CAP.
+    * Pros : Easier to integrate with Cap Calculator
+    * Cons : User has to manually input CAP and does not know the average from the assignments accumulated
+    
+* Alternative 2 (current choice): Grade stores the raw score calculated from assignment
+    * Pros : Grade can be automatically calculated from the assignment overall percentage for user to view
+    * Cons : Requires separate CAP to be stored for Cap Calculator to access
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -225,7 +350,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | find a module by name          | locate details of a module without having to go through the entire list |
 | `* *`    | user                                       | add a zoom link to a module    | keep track and retrieve it easily                      |
 | `* *`    | user                                       | calculate my cumulative average point   | plan my academic progress for the future      |
-| `* *`    | user                                       | store graded assignments       | keep the information of the assignments that contributed to my grade      |
+| `* *`    | user                                       | add graded assignments       | add the information of the assignments that contributed to my grade      |
+| `* *`    | user                                       | edit my graded assignments     | update the information of the assignments I have completed     |
+| `* *`    | user                                       | delete graded assignments      | remove the assignments that are do not contribute to my grade anymore|
 | `*`      | user who is overloading                    | sort modules by name           | locate a module easily                                 |
 
 *{More to be added}*
@@ -750,7 +877,6 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown
