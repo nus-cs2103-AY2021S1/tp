@@ -43,7 +43,9 @@ Cap 5.0 Buddy helps NUS SoC students to keep track of their module details effic
 
 </div>
 
-### Adding a new module: `add module`
+### Module Features
+
+#### Adding a new module: `add module`
 
 Creates and add a new module to be stored in the system.
 
@@ -56,7 +58,7 @@ Creates and add a new module to be stored in the system.
    with the specified link into the system.
    * `add module CS2103T` creates and add the module CS2103T with no zoom link.
 
-### Viewing a module: `view`
+#### Viewing a module: `view`
 
 Views a module stored in the system
 
@@ -69,7 +71,7 @@ Views a module stored in the system
   * `view cs2103t` views the specified module
   * `view all` views all the modules stored
 
-### Adding a zoom link to a module: `add zoom`
+#### Adding a zoom link to a module: `add zoom`
 
   Adds a zoom link to an existing module.
 
@@ -81,7 +83,7 @@ Views a module stored in the system
   `add zoom cs2103T https://sample.zoom.us` adds a zoom link `https://sample.zoom.us` to the module named `cs2103T`
 
 
-### Deleting a module: `deletemodule`
+#### Deleting a module: `deletemodule`
 
 Deletes the module at the specified position in the module list.
 
@@ -91,7 +93,7 @@ Deletes the module at the specified position in the module list.
   * `deletemodule 1` deletes the module at position `1`
 
 
-### Editing a module : `edit zoom`
+#### Editing a module : `edit zoom`
 
 * Edits an existing module in the module list.
 
@@ -103,7 +105,7 @@ Examples:
 * `edit zoom CS2030 https://sample.zoom.us` edits the zoom link for a module named `CS2030`
   to `https://sample.zoom.us`
   
-### Adding assignment to a module: `addassignment`
+#### Adding assignment to a module: `addassignment`
 
   Adds an assignment that takes up a percentage of the grade and has a result from 0.00 to 1.00 to an existing module.
 
@@ -117,6 +119,15 @@ Examples:
   `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80` adds an assignment called `Quiz 1` that takes up `5`% of the 
   grade with a result of `0.80` to the module named `CS2100`
 
+
+
+### 4.1 Contact Features
+
+#### 4.1.1 Add a contact: `addcontact`
+
+This feature adds a new contact into the contact list if it does not already exist.
+
+Format: 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
