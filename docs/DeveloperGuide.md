@@ -201,7 +201,7 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
     
 * Alternative 2 : Prompts user for academic information used for last calculated cap and stores it.
     * Pros : 
-        * User does not need to input uncessary modules.
+        * User does not need to input unnecessary modules.
         * Will use less memory.(e.g Modules that the user is not currently taking does not need to be added by user).
     
     * Cons : Will require additional storage.
