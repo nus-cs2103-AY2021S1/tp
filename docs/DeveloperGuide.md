@@ -338,6 +338,8 @@ The following sequence diagram shows the Logic and Model Components when a sort 
 
 <div markdown="span" class="alert alert-info">:information_source:  **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
+</div>
+
 In the **Logic** Component,
 After the user keys in "sort name" as input, these key methods are called:
 * `LogicManager#execute("sort name")`: The `LogicManager` takes in a command text string ("sort name/id/feedtime").
