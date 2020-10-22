@@ -14,6 +14,7 @@ public class Strings {
     public static final ArgName ARG_INGREDIENT      = new ArgName("ingredient");
     public static final ArgName ARG_QUANTITY        = new ArgName("qty");
     public static final ArgName ARG_EXPIRY          = new ArgName("expiry");
+    public static final ArgName ARG_TAG             = new ArgName("tag");
 
     // command names
     public static final String COMMAND_ADD          = "add";

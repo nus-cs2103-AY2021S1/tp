@@ -5,8 +5,10 @@ package chopchop.logic.parser.commands;
 import java.util.List;
 import java.util.Optional;
 import java.util.ArrayList;
+import java.util.Set;
 import java.util.stream.Collectors;
 
+import chopchop.model.attributes.Tag;
 import chopchop.util.Result;
 import chopchop.util.Strings;
 import chopchop.util.StringView;
@@ -73,7 +75,7 @@ public class AddCommandParser {
 
         Optional<ArgName> foo;
         if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_QUANTITY,
-            Strings.ARG_EXPIRY))).isPresent()) {
+            Strings.ARG_EXPIRY, Strings.ARG_TAG))).isPresent()) {
 
             return Result.error("'add ingredient' command doesn't support '%s'\n%s",
                 foo.get(), AddIngredientCommand.MESSAGE_USAGE);
@@ -89,9 +91,12 @@ public class AddCommandParser {
             return Result.error("multiple expiry dates specified\n%s", AddIngredientCommand.MESSAGE_USAGE);
         }
 
+        var tags = args.getArgument(Strings.ARG_TAG);
+
         // looks weird, but basically this extracts the /qty and /expiry arguments (if present),
         // then constructs the command from it -- while returning any intermediate error messages.
         try {
+            Optional<Set<String>> tagSet = tags.isEmpty() ? Optional.empty() : Optional.of(Set.copyOf(tags));
             return Result.transpose(qtys
                 .stream()
                 .findFirst()
@@ -100,7 +105,7 @@ public class AddCommandParser {
                     .stream()
                     .findFirst()
                     .map(e -> Result.of(e)))
-                    .map(exp -> createAddIngredientCommand(name, qty, exp))
+                    .map(exp -> createAddIngredientCommand(name, qty, exp, tagSet))
                 );
         } catch (Exception e) {
             return Result.error(e.getMessage());
@@ -204,12 +209,12 @@ public class AddCommandParser {
     }
 
 
-    private static AddIngredientCommand createAddIngredientCommand(String name,
-        Optional<Quantity> qty, Optional<String> expiry) {
+    private static AddIngredientCommand createAddIngredientCommand(String name, Optional<Quantity> qty,
+        Optional<String> expiry, Optional<Set<String>> tags) {
 
         return new AddIngredientCommand(new Ingredient(name,
             qty.orElse(Count.of(1)),
-            expiry.map(ExpiryDate::new).orElse(null)
-        ));
+            expiry.map(ExpiryDate::new).orElse(null),
+            tags.map(x->x.stream().map(Tag::new).collect(Collectors.toSet())).orElse(null)));
     }
 }
