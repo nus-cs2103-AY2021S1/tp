@@ -28,7 +28,9 @@ public class ToDoUtil {
         sb.append(PREFIX_TITLE + toDo.getTitle().title + " ");
         sb.append(PREFIX_DESCRIPTION + toDo.getDescription().value + " ");
         sb.append(PREFIX_PRIORITY + toDo.getPriority().toString() + " ");
-        toDo.getTags().stream().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
+        toDo.getTags().stream().forEach(
+            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        );
         return sb.toString();
     }
 }

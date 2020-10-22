@@ -30,29 +30,27 @@ public class TaskManagerParserTest {
 
     private final TaskManagerParser parser = new TaskManagerParser();
 
-    // TODO: Update tests once commands are fixed.
+    @Test
+    public void parseCommand_addTodo() throws Exception {
+        ToDo todo = new ToDoBuilder().withTags(VALID_TAG_PROJECT).build();
+        AddTodoCommand command = (AddTodoCommand) parser.parseCommand(ToDoUtil.getTodoCommand(todo));
+        assertEquals(new AddTodoCommand(todo), command);
+    }
 
-     @Test
-     public void parseCommand_addTodo() throws Exception {
-         ToDo todo = new ToDoBuilder().withTags(VALID_TAG_PROJECT).build();
-         AddTodoCommand command = (AddTodoCommand) parser.parseCommand(ToDoUtil.getTodoCommand(todo));
-         assertEquals(new AddTodoCommand(todo), command);
-     }
+    @Test
+    public void parseCommand_addDeadline() throws Exception {
+        Deadline deadline = new DeadlineBuilder().withTags(VALID_TAG_PROJECT).build();
+        AddDeadlineCommand command =
+                (AddDeadlineCommand) parser.parseCommand(DeadlineUtil.getDeadlineCommand(deadline));
+        assertEquals(new AddDeadlineCommand(deadline), command);
+    }
 
-     @Test
-     public void parseCommand_addDeadline() throws Exception {
-         Deadline deadline = new DeadlineBuilder().withTags(VALID_TAG_PROJECT).build();
-         AddDeadlineCommand command =
-                 (AddDeadlineCommand) parser.parseCommand(DeadlineUtil.getDeadlineCommand(deadline));
-         assertEquals(new AddDeadlineCommand(deadline), command);
-     }
-
-     @Test
-     public void parseCommand_addEvent() throws Exception {
-         Event event = new EventBuilder().withTags(VALID_TAG_PROJECT).build();
-         AddEventCommand command = (AddEventCommand) parser.parseCommand(EventUtil.getEventCommand(event));
-         assertEquals(new AddEventCommand(event), command);
-     }
+    @Test
+    public void parseCommand_addEvent() throws Exception {
+        Event event = new EventBuilder().withTags(VALID_TAG_PROJECT).build();
+        AddEventCommand command = (AddEventCommand) parser.parseCommand(EventUtil.getEventCommand(event));
+        assertEquals(new AddEventCommand(event), command);
+    }
 
     @Test
     public void parseCommand_exit() throws Exception {
