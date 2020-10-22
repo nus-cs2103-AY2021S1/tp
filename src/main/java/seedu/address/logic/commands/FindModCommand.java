@@ -29,6 +29,7 @@ public class FindModCommand extends Command {
             + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "CS2 " + PREFIX_MODULE_INSTRUCTOR + "John, "
             + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "CS1 "
             + PREFIX_MODULE_NAME + "programming methodology" + PREFIX_MODULE_INSTRUCTOR + "Martin";
+
     private final List<Predicate<Module>> predicates;
 
     /**
@@ -37,6 +38,7 @@ public class FindModCommand extends Command {
     public FindModCommand(List<Predicate<Module>> predicates) {
         this.predicates = predicates;
     }
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
