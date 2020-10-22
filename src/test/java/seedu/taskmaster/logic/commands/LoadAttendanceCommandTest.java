@@ -61,6 +61,7 @@ public class LoadAttendanceCommandTest {
             File file = new File(filepath.toString());
             file.delete();
         }
+        assert(!isExistingFile);
 
         Model model = new ModelManager(SampleDataUtil.getSampleTaskmaster(), new UserPrefs());
         StorageCommand loadCommand = new LoadAttendanceCommand(filename);
@@ -77,6 +78,7 @@ public class LoadAttendanceCommandTest {
         if (!isExistingFile) {
             throw new AssertionError("Sample load file for existing file test not found.");
         }
+        assert(isExistingFile);
 
         StorageCommand loadCommand = new LoadAttendanceCommand(filename);
         loadCommand.initialiseStorage(storage);
