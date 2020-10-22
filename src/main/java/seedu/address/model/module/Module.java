@@ -29,6 +29,11 @@ public class Module {
         return Collections.unmodifiableSet(classmates);
     }
 
+    /**
+     * checks if the module contains the classmate of the given name
+     * @param name name of the classmate
+     * @return true if classmate is in module, false otherwise
+     */
     public boolean hasClassmate(Name name) {
         for (Person person : getClassmates()) {
             if (person.isSameName(name)) {

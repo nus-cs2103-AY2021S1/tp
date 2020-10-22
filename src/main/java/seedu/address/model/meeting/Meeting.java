@@ -102,7 +102,7 @@ public class Meeting {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("[" + getModule().getModuleName()  + "] ")
+        builder.append("[" + getModule().getModuleName() + "] ")
                 .append(getMeetingName())
                 .append(" Date: ")
                 .append(getDate())

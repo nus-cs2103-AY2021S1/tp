@@ -46,10 +46,10 @@ public class SampleDataUtil {
 
     public static Module[] getSampleModules() {
         return new Module[] {
-                new Module(new ModuleName("CS2103"), getPersonSet("Alex Yeoh", "Bernice Yu")),
-                new Module(new ModuleName("CS2105"), getPersonSet("Bernice Yu", "David Li")),
-                new Module(new ModuleName("CS2040"), getPersonSet("David Li", "Charlotte Oliveiro")),
-                new Module(new ModuleName("CS2100"), getPersonSet("Roy Balakrishnan", "Bernice Yu"))
+            new Module(new ModuleName("CS2103"), getPersonSet("Alex Yeoh", "Bernice Yu")),
+            new Module(new ModuleName("CS2105"), getPersonSet("Bernice Yu", "David Li")),
+            new Module(new ModuleName("CS2040"), getPersonSet("David Li", "Charlotte Oliveiro")),
+            new Module(new ModuleName("CS2100"), getPersonSet("Roy Balakrishnan", "Bernice Yu"))
         };
     }
 

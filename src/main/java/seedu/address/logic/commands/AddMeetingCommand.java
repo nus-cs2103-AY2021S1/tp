@@ -115,7 +115,8 @@ public class AddMeetingCommand extends Command {
                 sb.append(name + ", ");
             }
             String nonExistentPersonNamesString = sb.substring(0, sb.length() - 2);
-            throw new CommandException(String.format(MESSAGE_NONEXISTENT_PERSON, nonExistentPersonNamesString, moduleName));
+            throw new CommandException(String.format(MESSAGE_NONEXISTENT_PERSON, nonExistentPersonNamesString,
+                    moduleName));
         }
 
         Set<Person> personSet = new HashSet<>();
