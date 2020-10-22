@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
@@ -174,10 +173,17 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void unassignInstructor(Person instructor, ModuleCode moduleCode) throws CommandException {
+    public void unassignInstructor(Person instructor, ModuleCode moduleCode) {
         addressBook.unassignInstructor(instructor, moduleCode);
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
+
+    @Override
+    public boolean moduleCodeHasInstructor(ModuleCode moduleCode, Person instructor) {
+        requireAllNonNull(instructor, moduleCode);
+        return addressBook.moduleCodeHasInstructor(moduleCode, instructor);
+    }
+
 
     //=========== Filtered Person List Accessors =============================================================
 

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INSTRUCTOR_DOES_NOT_EXIST;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
@@ -59,9 +60,18 @@ public class UnassignCommand extends Command {
             }
         }
 
+        for (ModuleCode moduleCode : moduleCodes) {
+            if (!model.moduleCodeHasInstructor(moduleCode, instructor)) {
+                throw new CommandException(String.format(
+                    MESSAGE_INSTRUCTOR_DOES_NOT_EXIST, moduleCode));
+            }
+        }
+
         for (ModuleCode moduleCode: moduleCodes) {
             model.unassignInstructor(instructor, moduleCode);
         }
+
+
 
         return new CommandResult(MESSAGE_UNASSIGNMENT_SUCCESS);
     }

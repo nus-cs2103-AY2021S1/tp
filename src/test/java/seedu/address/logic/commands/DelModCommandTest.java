@@ -218,6 +218,11 @@ class DelModCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public boolean moduleCodeHasInstructor(ModuleCode moduleCode, Person instructor) {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**
@@ -255,6 +260,11 @@ class DelModCommandTest {
         @Override
         public boolean hasModuleCode(ModuleCode moduleCode) {
             return moduleList.containsModuleCode(moduleCode);
+        }
+
+        @Override
+        public boolean moduleCodeHasInstructor(ModuleCode moduleCode, Person instructor) {
+            throw new AssertionError("This method should not be called.");
         }
     }
 

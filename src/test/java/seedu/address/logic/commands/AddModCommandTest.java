@@ -214,6 +214,11 @@ public class AddModCommandTest {
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean moduleCodeHasInstructor(ModuleCode moduleCode, Person instructor) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

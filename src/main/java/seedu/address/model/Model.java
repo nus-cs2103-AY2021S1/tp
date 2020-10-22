@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
@@ -147,7 +146,9 @@ public interface Model {
      * Unassigns an {@code instructor} from the module with the given {@code moduleCode}.
      * The module with the {@code moduleCode} must exist in the address book.
      */
-    void unassignInstructor(Person instructor, ModuleCode moduleCode) throws CommandException;
+    void unassignInstructor(Person instructor, ModuleCode moduleCode);
+
+    boolean moduleCodeHasInstructor(ModuleCode moduleCode, Person instructor);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Module> getFilteredModuleList();

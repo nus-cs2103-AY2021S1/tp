@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_CS2103;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -88,7 +89,8 @@ public class UnassignCommandTest {
         moduleCodes.add(CS2103.getModuleCode());
         UnassignCommand unassignCommand = new UnassignCommand(INDEX_FIRST_PERSON, moduleCodes);
 
-        assertCommandFailure(unassignCommand, model, Messages.MESSAGE_INSTRUCTOR_DOES_NOT_EXIST);
+        assertCommandFailure(unassignCommand, model,
+            String.format(Messages.MESSAGE_INSTRUCTOR_DOES_NOT_EXIST, VALID_MODULE_CODE_CS2103));
     }
 
     @Test
@@ -97,7 +99,8 @@ public class UnassignCommandTest {
         moduleCodes.add(CS2103.getModuleCode());
         UnassignCommand unassignCommand = new UnassignCommand(INDEX_FIRST_PERSON, moduleCodes);
 
-        assertCommandFailure(unassignCommand, model, Messages.MESSAGE_INSTRUCTOR_DOES_NOT_EXIST);
+        assertCommandFailure(unassignCommand, model,
+            String.format(Messages.MESSAGE_INSTRUCTOR_DOES_NOT_EXIST, VALID_MODULE_CODE_CS2103));
     }
 
     @Test
@@ -236,7 +239,7 @@ public class UnassignCommandTest {
         }
 
         @Override
-        public void unassignInstructor(Person instructor, ModuleCode moduleCode) throws CommandException {
+        public void unassignInstructor(Person instructor, ModuleCode moduleCode) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -285,6 +288,11 @@ public class UnassignCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public boolean moduleCodeHasInstructor(ModuleCode moduleCode, Person instructor) {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
 
@@ -327,7 +335,7 @@ public class UnassignCommandTest {
         }
 
         @Override
-        public void unassignInstructor(Person person, ModuleCode moduleCode) throws CommandException {
+        public void unassignInstructor(Person person, ModuleCode moduleCode) {
             this.module.unassignInstructor(this.person);
         }
 
@@ -342,6 +350,11 @@ public class UnassignCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             ObservableList<Person> filteredPersonList = FXCollections.observableArrayList();
             filteredPersonList.addAll(this.person);
+        }
+
+        @Override
+        public boolean moduleCodeHasInstructor(ModuleCode moduleCode, Person instructor) {
+            return true;
         }
 
     }
