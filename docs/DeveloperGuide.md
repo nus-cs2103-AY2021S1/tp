@@ -152,8 +152,9 @@ Trackr contains a `UniqueList<Module>`, which in turn, contains the modules taug
 for `Module`, `TutorialGroup`, and `Student` is split into `AddModuleCommand`, `AddTutorialGroupCommand`, and `AddStudentCommand`.
 Each command class extends `Command`. 
 
-Given below is an example of the interaction between the Model and Add commands of tracker.
+Given below is an example of the interaction between the Model and the `AddModuleCommand` of Trackr.
 
+![AddModSequenceDiagram](images/AddModSequenceDiagram.png)
 
 #### Design Considerations
 **Aspect: List to contain the models**
