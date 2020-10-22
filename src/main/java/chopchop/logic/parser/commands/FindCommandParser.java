@@ -42,7 +42,8 @@ public class FindCommandParser {
         // we expect no named arguments
         Optional<ArgName> foo;
         if ((foo = getFirstUnknownArgument(args, new ArrayList<>())).isPresent()) {
-            return Result.error("'find' command doesn't support '%s'", foo.get());
+            return Result.error("'find' command doesn't support '%s'\n%s",
+                foo.get(), FindRecipeCommand.MESSAGE_USAGE);
         }
 
         return getCommandTarget(args)
@@ -50,7 +51,8 @@ public class FindCommandParser {
                 var words = new StringView(target.snd()).words();
 
                 if (words.isEmpty()) {
-                    return Result.error("'%s' command requires at least one search term", commandName);
+                    return Result.error("'%s' command requires at least one search term\n%s",
+                        commandName, FindRecipeCommand.MESSAGE_USAGE);
                 }
 
                 switch (target.fst()) {
