@@ -222,6 +222,16 @@ _{more aspects and alternatives to be added}_
 _{Explain here how the data archiving feature will be implemented}_
 
 
+### Vendor Command
+
+* The Vendor Command allows the user to select a vendor from the `AddressBook` to order from.
+* If the vendor does not exist, a `Command Exception will be thrown`
+* If the vendor selected is different from the current vendor, the model will clear the current order.
+
+The following diagram summarises the sequence when the VendorCommmand is executed.
+![VendorSequendeDiagram](images/VendorCommandSequenceDiagram.png)
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
