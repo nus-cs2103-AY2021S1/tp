@@ -84,6 +84,7 @@ public class AssignmentBuilder {
 
     /**
      * Sets the {@code Remind} of the {@code Assignment} that we are building.
+     *
      * @return
      */
     public AssignmentBuilder withRemindersSet() {
@@ -99,6 +100,9 @@ public class AssignmentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Done} of the {@code Assignment} that we are building.
+     */
     public AssignmentBuilder withDoneStatusSet() {
         this.done = new Done().markAsDone();
         return this;

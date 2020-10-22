@@ -6,6 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAssignments.CS2103T_TUT;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.ModuleCode;
@@ -40,7 +41,8 @@ public class JsonAdaptedAssignmentTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedAssignment assignment =
                 new JsonAdaptedAssignment(INVALID_NAME, VALID_DEADLINE, VALID_MODULE_CODE, VALID_IS_REMINDED,
-                        VALID_IS_SCHEDULED, VALID_SUGGESTED_START_TIME, VALID_SUGGESTED_END_TIME, NO_PRIORITY, VALID_IS_MARKED_DONE);
+                        VALID_IS_SCHEDULED, VALID_SUGGESTED_START_TIME, VALID_SUGGESTED_END_TIME, NO_PRIORITY,
+                        VALID_IS_MARKED_DONE);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, assignment::toModelType);
     }

@@ -19,7 +19,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Done;
 import seedu.address.testutil.AssignmentBuilder;
 
 /**
@@ -40,7 +39,8 @@ public class DoneCommandTest {
         Assignment assignmentToMarkDone = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
         DoneCommand doneCommand = new DoneCommand(INDEX_FIRST_ASSIGNMENT);
 
-        String expectedMessage = String.format(DoneCommand.MESSAGE_MARK_ASSIGNMENT_AS_DONE_SUCCESS, assignmentToMarkDone);
+        String expectedMessage = String.format(DoneCommand.MESSAGE_MARK_ASSIGNMENT_AS_DONE_SUCCESS,
+                assignmentToMarkDone);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), null);
         expectedModel.setAssignment(model.getFilteredAssignmentList().get(0), assignmentToMarkDone);
@@ -63,7 +63,8 @@ public class DoneCommandTest {
         Assignment assignmentToMarkDone = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
         DoneCommand doneCommand = new DoneCommand(INDEX_FIRST_ASSIGNMENT);
 
-        String expectedMessage = String.format(DoneCommand.MESSAGE_MARK_ASSIGNMENT_AS_DONE_SUCCESS, assignmentToMarkDone);
+        String expectedMessage = String.format(DoneCommand.MESSAGE_MARK_ASSIGNMENT_AS_DONE_SUCCESS,
+                assignmentToMarkDone);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), null);
         expectedModel.setAssignment(model.getFilteredAssignmentList().get(0), assignmentToMarkDone);

@@ -128,7 +128,8 @@ class JsonAdaptedAssignment {
         if (isScheduled) {
             final Schedule modelSchedule = new Schedule(new Deadline(suggestedStartTime),
                     new Deadline(suggestedEndTime));
-            return new Assignment(modelName, modelDeadline, modelModuleCode, modelRemind, modelSchedule, modelPriority, modelDone);
+            return new Assignment(modelName, modelDeadline, modelModuleCode, modelRemind, modelSchedule, modelPriority,
+                    modelDone);
         } else {
             return new Assignment(modelName, modelDeadline, modelModuleCode, modelRemind, new Schedule(),
                     modelPriority, modelDone);

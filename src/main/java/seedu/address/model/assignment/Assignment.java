@@ -2,11 +2,12 @@ package seedu.address.model.assignment;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Objects;
+
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Task;
-import java.util.Objects;
 
 /**
  * Represents an Assignment in the address book.
