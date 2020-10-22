@@ -58,7 +58,8 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given financeAccount, inventory and userPrefs
      */
-    public ModelManager(ReadOnlyFinanceAccount financeAccount, Inventory inventory, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyFinanceAccount financeAccount, ReadOnlyInventory inventory,
+                        ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(financeAccount, inventory, userPrefs);
 
@@ -68,7 +69,7 @@ public class ModelManager implements Model {
         this.financeAccount = new FinanceAccount(financeAccount);
         filteredFinance = new FilteredList<>(this.financeAccount.getFinanceList());
 
-        this.inventory = inventory;
+        this.inventory = new Inventory(inventory);
         filteredInventory = new FilteredList<>(this.inventory.asUnmodifiableObservableList());
         this.userPrefs = new UserPrefs(userPrefs);
 
