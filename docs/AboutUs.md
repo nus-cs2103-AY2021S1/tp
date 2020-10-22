@@ -5,9 +5,14 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the following emails:
+* Jonas Ng: `e0415645@u.nus.edu`
+* Li HuanKang:
+* David Cai:
+* Joshua Wong:
+* Michael:
 
-## Cap 5.0 Buddy
+## Cap 5.0 Buddy Team
 
 ### Jonas Ng
 
@@ -16,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/jonasngs)]
 [[portfolio](team/jonasng.md)]
 
-* Role: Team lead, Integration 
+* Role: Team lead, Integration
 * Responsibilities:
 
 ### Li Huankang (Matthias)
@@ -33,7 +38,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/michael-setia.png" width="200px">
 
-[[github](http://github.com/michael-setia)] 
+[[github](http://github.com/michael-setia)]
 [[portfolio](team/michael-setia.md)]
 
 * Role: Developer
@@ -41,7 +46,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### David Cai Qifan
 
-<img src="images/David.png" width="200px">
+<img src="images/davidcaiqifan.png" width="200px">
 
 [[github](http://github.com/davidcaiqifan)]
 [[portfolio](team/davidcaiqifan.md)]
@@ -49,12 +54,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Joshua Wong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/murtubak.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/murtubak)]
+[[portfolio](team/joshuawong.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Code quality
