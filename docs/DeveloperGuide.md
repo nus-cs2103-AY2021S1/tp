@@ -210,7 +210,7 @@ The following sequence diagram shows the sequence when LogicManager executes `fi
 
 
 
-### \[Implemented]\ Remind assignments feature
+### \[Implemented\] Remind assignments feature
 The user can set reminders for assignments.
 Reminded assignments will be displayed in the `Your Reminders` section in ProductiveNUS for easy referral.
 
