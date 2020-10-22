@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import chopchop.model.Entry;
 import chopchop.model.attributes.Quantity;
-import chopchop.util.Result;
+import chopchop.commons.util.Result;
 
 /**
  * A reference to an ingredient. Not the actual {@code Ingredient}, and knows nothing about it.

@@ -1,11 +1,12 @@
 package chopchop.logic.commands;
 
-import static chopchop.util.Strings.ARG_QUANTITY;
+import static chopchop.commons.util.Strings.ARG_QUANTITY;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Optional;
 
 import chopchop.commons.core.Messages;
+import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.History;
 import chopchop.logic.parser.ItemReference;
@@ -87,7 +88,7 @@ public class DeleteIngredientCommand extends Command implements Undoable {
 
                 return new CommandResult(String.format(MESSAGE_REMOVE_INGREDIENT_SUCCESS,
                         this.quantity.get().toString(), this.updatedIngredient.getName()));
-            } catch (IncompatibleIngredientsException | IllegalArgumentException e) {
+            } catch (IncompatibleIngredientsException | IllegalValueException e) {
                 throw new CommandException(e.getMessage());
             }
         } else {

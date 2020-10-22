@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 import chopchop.logic.commands.RedoCommand;
 import chopchop.logic.commands.UndoCommand;
-import chopchop.util.Pair;
-import chopchop.util.Result;
-import chopchop.util.Strings;
-import chopchop.util.StringView;
+import chopchop.commons.util.Pair;
+import chopchop.commons.util.Result;
+import chopchop.commons.util.Strings;
+import chopchop.commons.util.StringView;
 
 import chopchop.logic.commands.Command;
 import chopchop.logic.commands.QuitCommand;
