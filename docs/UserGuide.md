@@ -76,7 +76,7 @@ General commands are commands that enhances general user experience when you are
 
 #### 3.1.1 Viewing help: `help`
 
-You can access the help page by referring to the link provided in the message pop-up.
+Access help page by referring to the link provided in the message pop-up.
 
 ![help message](images/helpMessage.png)
 
@@ -84,7 +84,7 @@ Format: `help`
 
 #### 3.1.2 Retrieving past commands: `history`
 
-You can refer to a list of past commands that you had used during the session.
+View a list of past commands that you had used during the session.
 
 ![example of command history](images/historyExample.png)
 
@@ -92,7 +92,7 @@ Format: `history`
 
 #### 3.1.3 Clearing command history: `clearhistory`
 
-You can clear the command history.
+Clear the command history.
 
 ![example of cleared history](images/clearHistoryExample.png)
 
@@ -108,7 +108,7 @@ Format: `clearhistory`
 
 #### 3.1.4 Exiting the program: `exit`
 
-Exits the program.
+Exit the program.
 
 Format: `exit`
 
@@ -118,7 +118,7 @@ Patient commands are commands that you can utilise to make changes to your list 
 
 #### 3.2.1 Adding a patient: `add`
 
-You can add your patient to the patient database.
+Add your patient to the patient database.
 
 ![example of newly added patient](images/addExample.png)
 
@@ -148,7 +148,7 @@ Examples:
 
 #### 3.2.2 Adding profile picture: `addpicture`
 
-You can add a profile picture to your patient’s profile by specifying the filepath to desired profile picture.
+Add a profile picture to your patient’s profile by specifying the filepath to desired profile picture.
 
 All patient profiles are preloaded with a stock profile picture.
 
@@ -172,7 +172,7 @@ Examples:
 
 #### 3.2.3 Editing a patient: `edit`
 
-You can edit an existing patient in the patient database.
+Edit an existing patient in the patient database.
 
 ![example of edited patient](images/editExample.png)
 
@@ -195,7 +195,7 @@ Examples:
 
 ![example of deleted patient](images/deleteExample.png)
 
-You can delete a specified patient from the patient database.
+Delete a specified patient from the patient database.
 
 Format: `delete INDEX`
 
@@ -211,7 +211,7 @@ Examples:
 
 ![example of cleared list](images/clearExample.png)
 
-You can clear all patient entries from the patient database.
+Clear all patient entries from the patient database.
 
 Format: `clear`
 
@@ -224,7 +224,7 @@ Format: `clear`
 
 #### 3.2.6 Finding patients: `find`
 
-You can find patients whose names or IC number contain any of the given keywords.
+Find patients whose names or IC number contain any of the given keywords.
 
 ![example of finding meier](images/findExample.png)
 
@@ -247,7 +247,7 @@ Examples:
 
 ![example of listing patients](images/listExample.png)
 
-You can see a list of all your patients in the patient database.
+View a list of all your patients in the patient database.
 
 Format: `list`
 
@@ -262,7 +262,7 @@ You can revert your previous command which modified the patient database.
 
 #### 3.2.8 Undoing the previous command: `undo`
 
-You can revert your previous command which modified the patient database.
+Revert your previous command which modified the patient database.
 
 ![example of undoing command](images/undoExample.png)
 
@@ -279,7 +279,7 @@ Example:
 
 ![example redoing command](images/redoExample.png)
 
-You can redo the most recent command that you have undone.
+Redo the most recent command that you have undone.
 
 Format: `redo`
 
