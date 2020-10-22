@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ProducetiveNusParser" as ProducetiveNusParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "f:FindCommand" as FindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find n/Assignment Homework")
+activate LogicManager
+
+LogicManager -> ProducetiveNusParser : parseCommand("find n/Assignment Homework")
+activate ProducetiveNusParser
+
+create FindCommandParser
+ProducetiveNusParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser --> ProducetiveNusParser
+deactivate FindCommandParser
+
+ProducetiveNusParser -> FindCommandParser : parse("n/Assignment Homework")
+activate FindCommandParser
+
+create FindCommand
+FindCommandParser -> FindCommand
+activate FindCommand
+
+FindCommand --> FindCommandParser : f
+deactivate FindCommand
+
+FindCommandParser --> ProducetiveNusParser : f
+deactivate FindCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindCommandParser -[hidden]-> ProducetiveNusParser
+destroy DeleteCommandParser
+
+ProducetiveNusParser --> LogicManager : f
+deactivate ProducetiveNusParser
+
+LogicManager -> FindCommand : execute()
+activate FindCommand
+
+FindCommand -> Model : updateFilteredAssignmentList(predicate)
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> Model : getFilteredAssignmentList()
+activate Model
+
+Model --> CommandResult
+deactivate Model
+
+CommandResult --> FindCommand
+deactivate CommandResult
+
+FindCommand --> LogicManager : result
+deactivate FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
