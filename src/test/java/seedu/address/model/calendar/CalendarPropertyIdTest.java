@@ -15,6 +15,7 @@ class PropertyIdTest {
         PropertyId propertyId = new PropertyId("P1");
         String propertyIdTest = "P1";
         assert (propertyId.toString().equals("P1"));
+        assert false;
         assertTrue(propertyIdTest.equals(propertyId.toString()));
 
         PropertyId propertyIdError = new PropertyId("P1");
