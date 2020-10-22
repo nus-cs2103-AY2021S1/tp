@@ -19,6 +19,7 @@ public class JsonAdaptedRecipe {
     private final String name;
     private final List<JsonAdaptedIngredientReference> ingredients;
     private final List<String> steps;
+    private final JsonAdaptedTagSet tags;
 
     /**
      * Constructs a {@code JsonAdaptedRecipe} with the given recipe details.
@@ -26,10 +27,12 @@ public class JsonAdaptedRecipe {
     @JsonCreator
     public JsonAdaptedRecipe(@JsonProperty("name") String name,
                              @JsonProperty("ingredients") List<JsonAdaptedIngredientReference> ingredients,
-                             @JsonProperty("steps") List<String> steps) {
+                             @JsonProperty("steps") List<String> steps,
+                             @JsonProperty("tags") JsonAdaptedTagSet tags) {
         this.name = name;
         this.ingredients = ingredients == null ? null : new ArrayList<>(ingredients);
         this.steps = steps == null ? null : new ArrayList<>(steps);
+        this.tags = tags;
     }
 
     /**
@@ -40,6 +43,7 @@ public class JsonAdaptedRecipe {
         this.ingredients = source.getIngredients().stream().map(JsonAdaptedIngredientReference::new)
                 .collect(Collectors.toList());
         this.steps = source.getSteps().stream().map(Step::toString).collect(Collectors.toList());
+        this.tags = new JsonAdaptedTagSet(source.getTags());
     }
 
     /**
@@ -74,6 +78,6 @@ public class JsonAdaptedRecipe {
             modelSteps.add(new Step(step));
         }
 
-        return new Recipe(this.name, modelIngredients, modelSteps);
+        return new Recipe(this.name, modelIngredients, modelSteps, this.tags.toModelType());
     }
 }

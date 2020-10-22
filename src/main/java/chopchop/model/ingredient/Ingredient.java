@@ -1,16 +1,16 @@
 package chopchop.model.ingredient;
 
 import java.util.HashSet;
-import chopchop.model.attributes.ExpiryDate;
-import chopchop.model.attributes.Quantity;
 
-import chopchop.model.Entry;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.Optional;
-
 import java.util.Comparator;
+
+import chopchop.model.Entry;
+import chopchop.model.attributes.ExpiryDate;
+import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.Tag;
 import chopchop.model.exceptions.IncompatibleIngredientsException;
 
