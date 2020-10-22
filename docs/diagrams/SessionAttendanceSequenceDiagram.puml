@@ -1,26 +1,16 @@
 @startuml
+!include style.puml
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
+Participant ":Taskmaster" as tm MODEL_COLOR
+Participant ":Session" as s MODEL_COLOR
+Participant ":StudentRecordListManager" as srlm MODEL_COLOR
 
-List <|-- AbstractList
-Collection <|-- AbstractCollection
+[-> tm : markStudentAttendance(\n nusnetId, attendanceType)
+activate tm
+tm -> s ++: markStudentAttendance(\n nusnetId, attendanceType)
 
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
-}
-
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
-}
-
+s -> srlm ++: markStudentAttendance(\n nusnetId, attendanceType)
+srlm --> s --
+s --> tm --
+<-- tm --
 @enduml
