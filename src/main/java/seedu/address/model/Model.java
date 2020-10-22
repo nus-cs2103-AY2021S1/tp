@@ -121,6 +121,8 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    ObservableList<Person> getUpdatedFilteredPersonList(Predicate<Person> predicate);
+
     boolean hasMeeting(Meeting meeting);
 
     void addMeeting(Meeting meeting);

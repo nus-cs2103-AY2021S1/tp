@@ -243,6 +243,12 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    @Override
+    public ObservableList<Person> getUpdatedFilteredPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        return new FilteredList(filteredPersons, predicate);
+    }
+
     //=========== Filtered Meeting List Accessors =============================================================
 
     /**
