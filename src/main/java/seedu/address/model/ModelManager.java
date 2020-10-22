@@ -11,9 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Person;
 
 /**
@@ -26,7 +26,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Module> filteredModules;
-    private final UniqueModuleList modules;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -40,8 +39,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        modules = this.addressBook.getModuleList();
-        filteredModules = new FilteredList<>(this.modules.asUnmodifiableObservableList());
+        filteredModules = new FilteredList<>(this.addressBook.getModuleList().asUnmodifiableObservableList());
     }
 
     public ModelManager() {
@@ -113,6 +111,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean isEmptyPersonList() {
+        return addressBook.getPersonList().isEmpty();
+    }
+
+    @Override
+    public void clearContacts() {
+        addressBook.clearContacts();
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
@@ -127,7 +135,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean isEmptyModuleList() {
-        return modules.isEmptyList();
+        return addressBook.getModuleList().isEmptyList();
     }
 
     @Override
@@ -135,9 +143,6 @@ public class ModelManager implements Model {
         addressBook.clearMod();
     }
 
-    /**
-     * Checks if addressBook has the given (@code Module}
-     */
     @Override
     public boolean hasModule(Module module) {
         requireNonNull(module);
@@ -145,8 +150,32 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasModuleCode(ModuleCode moduleCode) {
+        requireNonNull(moduleCode);
+        return addressBook.hasModuleCode(moduleCode);
+    }
+
+    @Override
     public void addModule(Module module) {
         addressBook.addModule(module);
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+    }
+
+    @Override
+    public void assignInstructor(Person instructor, ModuleCode moduleCode) {
+        addressBook.assignInstructor(instructor, moduleCode);
+    }
+
+    @Override
+    public void unassignAllInstructors() {
+        addressBook.unassignAllInstructors();
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+    }
+
+    @Override
+    public void unassignInstructor(Person instructor, ModuleCode moduleCode) throws CommandException {
+        addressBook.unassignInstructor(instructor, moduleCode);
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
@@ -170,13 +199,9 @@ public class ModelManager implements Model {
     //=========== Filtered Module List Accessors =============================================================
 
     /**
-     * Returns a modifiable view of the list of {@code Module}
+     * Returns an unmodifiable view of the list of {@code Module} backed by the internal list of
+     * {@code versionedAddressBook}
      */
-    @Override
-    public UniqueModuleList getModuleList() {
-        return modules;
-    }
-
     @Override
     public ObservableList<Module> getFilteredModuleList() {
         return filteredModules;
@@ -205,7 +230,7 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
-                && modules.equals(other.modules);
+                && filteredModules.equals(other.filteredModules);
     }
 
 }

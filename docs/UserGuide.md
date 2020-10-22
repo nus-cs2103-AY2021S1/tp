@@ -48,6 +48,12 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com d/Computer Science o/B01-A3`
 * `add n/Betsy Crowe p/98765431 e/betsycrowe@example.com d/Data Science o/COM1-02-03 t/lecturer t/friend`
 
+### Listing all modules and contacts : `list`
+
+Shows a list of all modules and contacts in FaculType.
+
+Format: `list`
+
 ### Listing all contacts : `clist`
 
 Shows a list of all contacts in FaculType.
@@ -90,22 +96,23 @@ Examples:
 *  `remark 1 r/Wears red glasses` adds the remark “Wears red glasses” to the 1st contact in the list.
 *  `remark 2 r/` erases the remark of the 2nd contact in the list.
 
-### Locating contacts by name: `find`
+### Locating contacts by attributes: `find`
 
-Finds contacts whose names contain any of the given keywords.
+Finds all contacts that match the given fields.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [o/OFFICE] [r/REMARK] [t/TAG]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Contacts matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The search is case-insensitive. e.g `chris` will match `Chris`.
+* The order of the keywords do not matter. e.g. `Chris Evans` will match `Evans Chris`.
+* Partial words will be matched e.g. `Chri Evan` will match `Chris Evans`.
+* Results must contain every keyword e.g. `Chris Evans` will not match `Chris Pratt`.
+* At least one of the optional fields must be provided.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find n/John` returns all contacts with names containing `John`.
+* `find n/alex yeoh` returns all contacts with names containing `alex` and `yeoh`.
+* `find n/victor tan d/computing` returns all contacts with names containing `victor` and `tan` and with departments
+containing `computing`.
  
  
 ### Deleting a contact : `delete`
@@ -131,8 +138,8 @@ Format : `addmod m/MODULE_CODE n/MODULE_NAME`
 * `MODULE_CODE` must be unique.
 
 Examples:
-* `addmod m/CS2103 n/Software Engineering` adds a module `Software Engineering` with code `CS2103` to FaculType.
-* `addmod m/CS2102 n/Database System` adds a module `Database System` with code `CS2102` to FaculType.
+* `addmod m/CS2103 n/Software Engineering` adds a module named `Software Engineering` with code `CS2103` to FaculType.
+* `addmod m/CS2102 n/Database Systems` adds a module named `Database Systems` with code `CS2102` to FaculType.
 
 ### Deleting a module: `delmod`
 
@@ -148,34 +155,53 @@ Examples:
 
 ### Finding modules : `findmod`
 
-Finds all modules whose codes or names contain the given keywords.
+Finds all modules that match the given fields.
 
-Format : `findmod KEYWORD [MORE_KEYWORDS]`
+Format : `findmod [m/MODULE_CODE] [n/MODULE_NAME] [i/INSTRUCTOR]`
 
 * The search is insensitive. e.g. `cs2103` will match `CS2103` in FaculType.
 * Partial words will be matched. e.g. `database` will match `Database Systems` in FaculType.
-* Modules matching at least one keyword will be returned (i.e. “OR” search)
-  e.g. `CS210 algorithms` will return `CS2103`, `CS2100`, `Data Structures and Algorithms`.
-* The order of the keyword does not matter. e.g. `Statistics and Probability` will match  `Probability and Statistics`.
+* The order of the keywords do not matter. e.g. `Statistics and Probability` will match `Probability and Statistics`.
+* At least one of the optional fields must be provided.
 
 Examples :
 
-* `findmod programming` returns `Programming Methodology I`, `Programming Methodology II`
-* `findmod CS11 security` returns `CS1101S`, `Computer Security`
-* `findmod cs210` returns `CS2100`, `CS2102`, `CS2103`
+* `findmod m/cs210` returns all modules with codes containing `cs210`.
+* `findmod n/programming` returns all modules with names containing `programming`.
+* `findmod m/CS2 n/security i/Bob` returns all modules with codes containing `CS2`, names containing `programming`,
+and instructors with names containing `Bob`.
 
 ### Assigning an instructor to modules : `assign`
 
 Assigns an instructor to one or more modules.
 
-Format: `assign INDEX m/MODULE_CODE [MORE MODULE_CODES]`
-* Assigns the instructor at the specified `INDEX` to every `MODULE_CODE` specified. All of the `MODULE_CODE` **must exist** in FaculType in the first place.
+Format: `assign INDEX m/MODULE_CODE [m/MODULE_CODE]…​`
+
+* Assigns the contact at the specified `INDEX` to every `MODULE_CODE` specified. All `MODULE_CODE` **must exist** in FaculType in the first place.
 
 Examples :
-* `assign 1 m/CS3233` Assigns the existing module with code `CS3233` to contact at index 1
-* `assign 2 m/CS2030S` Assigns the existing module with code `CS2030S` to contact at index 2
-* `assign 3 m/CS2100 m/CS2106` Assigns the existing modules with code `CS2100` and `CS2106` to contact at index 3
+* `assign 1 m/CS3233` Assigns the contact at index 1 to the existing module with code `CS3233`.
+* `assign 2 m/CS2030S` Assigns the contact at index 1 to the existing module with code `CS2030S`.
+* `assign 3 m/CS2100 m/CS2106` Assigns the contact at index 3 to the existing modules with codes `CS2100` and `CS2106`.
 
+### Unassigning an instructor from modules : `assign`
+
+Unassigns an instructor from one or more modules.
+
+Format: `unassign INDEX m/MODULE_CODE [m/MODULE_CODE]…​`
+
+* Unassigns the contact at the specified `INDEX` from every `MODULE_CODE` specified. The contact **must be assigned** to all `MODULE_CODE` in the first place.
+
+Examples :
+* `unassign 1 m/CS3233` Unassigns the contact at index 1 from the existing module with code `CS3233`.
+* `unassign 2 m/CS2030S` Unassigns the contact at index 1 from the existing module with code `CS2030S`.
+* `unassign 3 m/CS2100 m/CS2106` Unassigns the contact at from 3 to the existing modules with codes `CS2100` and `CS2106`.
+
+### Clearing all assignments : `unassignall`
+
+Unassigns all instructor from all modules.
+
+Format: `unassignall`
 
 ### Reseting FaculType : `reset`
 
@@ -219,17 +245,21 @@ FaculType data is saved in the hard disk automatically after any command that ch
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL d/DEPARTMENT o/OFFICE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe p/98765431 e/betsycrowe@example.com d/Data Science t/senior lecturer t/friend`
-**Reset** | `reset`
 **Delete** | `delete INDEX`<br> e.g. `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [o/OFFICE] [t/TAG]…​`<br> e.g. `edit 1 d/Computing b/COM2`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [o/OFFICE] [t/TAG]…​` <br> e.g. `edit 1 d/Computing b/COM2`
 **Remark** | `remark INDEX [r/REMARK]`<br> e.g. `remark 1 r/Wears red glasses`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
+**Find** | `find [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [o/OFFICE] [r/REMARK] [t/TAG]` <br> e.g. `find n/Victor Tan d/Math`
 **Add modules** | `addmod m/MODULE_CODE n/MODULE_NAME`<br> e.g. `addmod m/CS2103 n/Software Engineering`
 **Delete modules** | `delmod m/MODULE_CODE`<br> e.g. `delmod m/CS2103`
-**Find modules** | `findmod KEYWORD [MORE_KEYWORDS]` <br> e.g. `findmod CS2103`
+**Find modules** | `findmod [m/MODULE_CODE] [n/MODULE_NAME] [i/INSTRUCTOR]` <br> e.g. `findmod m/CS2`
 **List all contacts and modules** | `list`
 **List all contacts** | `clist`
 **List all modules** | `mlist`
-**Assign** | `assign INDEX m/MODULE_CODE [MORE MODULE_CODES]` <br> e.g. `assign 3 m/CS2100 m/CS2106`
+**Assign a contact** | `assign INDEX m/MODULE_CODE [m/MODULE_CODE]…​` <br> e.g. `assign 3 m/CS2100 m/CS2106`
+**Unassign a contact** | `unassign INDEX m/MODULE_CODE [m/MODULE_CODE]…​` <br> e.g. `unassign 3 m/CS2100 m/CS2106`
+**Unassign all contacts** | `unassignall`
+**Clear all data** | `reset`
+**Clear all contacts** | `cclear`
+**Clear all modules** | `mclear`
 **Help** | `help`
 **Exit** | `exit`

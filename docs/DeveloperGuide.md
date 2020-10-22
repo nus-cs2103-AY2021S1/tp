@@ -155,6 +155,46 @@ Expected : Error message saying "Module list is already empty".
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Assign feature
+
+#### Implementation
+
+The assign feature is facilitated by `AssignCommand` and `AssignCommandParser`.
+It uses an operation `AddressBook#assignInstructor()` which is exposed in the `Model` interface as `Model#assignInstructor()`.
+Then, the `assignInstructor()` operation is called in both `UniqueModuleList` and `Module`. `Module#assignInstructor()` will add the instructor to the module's set of instructors.
+
+#### Design consideration:
+
+##### Aspect: How to store assignments
+* **Alternative 1 (current choice):** A module has a set of instructors assigned to it.
+  * Pros: More efficient to list the instructors of a certain module.
+  * Cons: Less efficient to list the modules of a certain instructor.
+
+* **Alternative 2:** An instructor has a set of modules they are assigned to.
+  * Pros: More efficient to list the modules of a certain instructor.
+  * Cons: Less efficient to list the instructors of a certain module.
+
+Both are equally viable options but Alternative 1 was chosen so `Person` would not have to be redesigned or have too many fields.
+
+### \[Proposed\] Switch feature
+
+#### Proposed Implementation
+
+The switch feature is facilitated by `AddressBook#switchActiveSemester()`.
+The `AddressBook` will store three module lists, one for Semester 1, one for Semester 2, and one to reference the active semester.
+All operations on `UniqueModuleList` will be done on the active semester. `AddressBook#switchActiveSemester()` toggles the active semester between Semester 1 and Semester 2.
+
+#### Design consideration:
+
+##### Aspect: Viewing a certain semester
+* **Alternative 1 (current choice):** There are two module lists and active semester references one of them.
+  * Pros: Less code to change, more difficult to test.
+  * Cons: Can only manage the modules in the active semester.
+
+* **Alternative 2:** There is only one module list and there is a filter to only show modules of a particular semester.
+  * Pros: More efficient to list the modules of a certain instructor.
+  * Cons: Need to add semester field to modules and commands, will have two copies of the same module if held in both semesters, more code to change.
+  
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

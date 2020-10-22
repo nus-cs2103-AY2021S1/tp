@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_KEYWORD;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -155,6 +156,19 @@ public class ParserUtil {
         }
         return new ModuleCode(trimmedModuleCode);
     }
+
+    /**
+     * Parses {@code Collection<String> moduleCodes} into a {@code Set<ModuleCode>}.
+     */
+    public static Set<ModuleCode> parseModuleCodes(Collection<String> moduleCodes) throws ParseException {
+        requireNonNull(moduleCodes);
+        final Set<ModuleCode> codeSet = new HashSet<>();
+        for (String code : moduleCodes) {
+            codeSet.add(parseModuleCode(code));
+        }
+        return codeSet;
+    }
+
     /**
      * Parses a {@code String moduleName} into a {@code ModuleName}.
      * Leading and trailing whitespaces will be trimmed.
@@ -168,5 +182,16 @@ public class ParserUtil {
             throw new ParseException(ModuleName.MESSAGE_CONSTRAINTS);
         }
         return new ModuleName(trimmedModuleName);
+    }
+    /**
+     *
+     */
+    public static String parseString(String string) throws ParseException {
+        requireNonNull(string);
+        String trimmedString = string.trim();
+        if (trimmedString.isEmpty() || trimmedString.isBlank()) {
+            throw new ParseException(MESSAGE_EMPTY_KEYWORD);
+        }
+        return trimmedString;
     }
 }

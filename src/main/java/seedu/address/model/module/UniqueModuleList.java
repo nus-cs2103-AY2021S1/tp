@@ -8,8 +8,10 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
+import seedu.address.model.person.Person;
 
 /**
  * A list of modules that enforces uniqueness between its elements and does not allow nulls.
@@ -31,9 +33,9 @@ public class UniqueModuleList implements Iterable<Module> {
     /**
      * Returns true if the list contains an equivalent module as the given argument.
      */
-    public boolean contains(Module toCheck) {
-        requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameModule);
+    public boolean contains(Module moduleToCheck) {
+        requireNonNull(moduleToCheck);
+        return internalList.stream().anyMatch(moduleToCheck::isSameModule);
     }
 
     /**
@@ -48,12 +50,12 @@ public class UniqueModuleList implements Iterable<Module> {
      * Adds a module to the list.
      * The module must not already exist in the list.
      */
-    public void add(Module toAdd) {
-        requireNonNull(toAdd);
-        if (contains(toAdd)) {
+    public void add(Module moduleToAdd) {
+        requireNonNull(moduleToAdd);
+        if (contains(moduleToAdd)) {
             throw new DuplicateModuleException();
         }
-        internalList.add(toAdd);
+        internalList.add(moduleToAdd);
     }
 
     /**
@@ -77,6 +79,49 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
+     * Assigns an instructor to the module with the equivalent module code from the list.
+     * The module with the module code must exist in the list.
+     */
+    public void assignInstructor(Person instructor, ModuleCode moduleCodeToAssign) {
+        requireAllNonNull(instructor, moduleCodeToAssign);
+        int indexOfModuleToAssign = 0;
+        while (!internalList.get(indexOfModuleToAssign).hasModuleCode(moduleCodeToAssign)
+                && indexOfModuleToAssign < internalList.size()) {
+            indexOfModuleToAssign++;
+        }
+        Module moduleToAssign = internalList.get(indexOfModuleToAssign);
+        moduleToAssign.assignInstructor(instructor);
+        internalList.set((indexOfModuleToAssign), moduleToAssign);
+    }
+
+    /**
+     * Unassigns all instructors from all modules.
+     */
+    public void unassignAllInstructors() {
+        for (int index = 0; index < internalList.size(); index++) {
+            Module toSet = internalList.get(index);
+            Module moduleWithEmptyInstructors = toSet.moduleWithEmptyInstructors();
+            internalList.set((index), moduleWithEmptyInstructors);
+        }
+    }
+
+    /**
+     * Unassigns an instructor from the module with the equivalent module code from the list.
+     * The module with the module code must exist in the list.
+     */
+    public void unassignInstructor(Person instructor, ModuleCode moduleToUnassign) throws CommandException {
+        requireAllNonNull(instructor, moduleToUnassign);
+        int indexOfModuleToUnassign = 0;
+        while (!internalList.get(indexOfModuleToUnassign).hasModuleCode(moduleToUnassign)
+                && indexOfModuleToUnassign < internalList.size()) {
+            indexOfModuleToUnassign++;
+        }
+        Module toSet = internalList.get(indexOfModuleToUnassign);
+        toSet.unassignInstructor(instructor);
+        internalList.set((indexOfModuleToUnassign), toSet);
+    }
+
+    /**
      * Clear all the modules inside the list.
      */
     public void clearAll() {
@@ -85,7 +130,6 @@ public class UniqueModuleList implements Iterable<Module> {
 
     /**
      * Returns true if the internal list is empty.
-     * @return
      */
     public boolean isEmptyList() {
         return internalList.isEmpty();
@@ -104,16 +148,16 @@ public class UniqueModuleList implements Iterable<Module> {
 
     /**
      * Removes the module with the equivalent module code from the list.
-     * The module with the module code must exist.
+     * The module with the module code must exist in the list.
      */
-    public void removeModuleWithCode(ModuleCode toRemove) {
-        requireNonNull(toRemove);
-        int indexOfModuleToBeRemoved = 0;
-        while (!internalList.get(indexOfModuleToBeRemoved).hasModuleCode(toRemove)
-                && indexOfModuleToBeRemoved < internalList.size()) {
-            indexOfModuleToBeRemoved++;
+    public void removeModuleWithCode(ModuleCode moduleToRemove) {
+        requireNonNull(moduleToRemove);
+        int indexOfModuleToRemove = 0;
+        while (!internalList.get(indexOfModuleToRemove).hasModuleCode(moduleToRemove)
+                && indexOfModuleToRemove < internalList.size()) {
+            indexOfModuleToRemove++;
         }
-        internalList.remove(indexOfModuleToBeRemoved);
+        internalList.remove(indexOfModuleToRemove);
     }
 
     public void setModules(UniqueModuleList replacement) {
