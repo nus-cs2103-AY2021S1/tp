@@ -64,6 +64,13 @@ public class OrderManager implements ReadOnlyOrderManager {
     }
 
     /**
+     * Clears the contents of orderHistory.
+     */
+    public void clearOrderHistory() {
+        this.orderHistory.clear();
+    }
+
+    /**
      * Resets the existing data of this {@code OrderManager} with {@code newData}.
      */
     public void resetData(ReadOnlyOrderManager newData) {
