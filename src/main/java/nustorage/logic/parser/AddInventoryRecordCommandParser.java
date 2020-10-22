@@ -16,7 +16,7 @@ import nustorage.model.record.InventoryRecord;
 /**
  * Parses input arguments and creates a new AddInventory object
  */
-public class    AddInventoryRecordCommandParser implements Parser<AddInventoryRecordCommand> {
+public class AddInventoryRecordCommandParser implements Parser<AddInventoryRecordCommand> {
 
     /**
      * Parses Inventory commands arguments from the user.
