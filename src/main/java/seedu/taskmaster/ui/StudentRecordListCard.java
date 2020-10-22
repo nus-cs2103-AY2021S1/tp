@@ -43,10 +43,21 @@ public class StudentRecordListCard extends UiPart<Region> {
         super(FXML);
         this.studentRecord = studentRecord;
         id.setText(displayedIndex + ". ");
-        name.setText(studentRecord.getName().fullName);
-        nusnetId.setText(studentRecord.getNusnetId().value);
-        attendanceStatus.setText(studentRecord.getAttendanceType().name());
-        classParticipation.setText(studentRecord.getClassParticipation().description());
+
+        String studentName = studentRecord.getName().fullName;
+        String studentNusnetId = studentRecord.getNusnetId().value;
+        String studentAttendanceStatus = studentRecord.getAttendanceType().name();
+        String studentClassParticipation = studentRecord.getClassParticipation().description();
+
+        assert studentName.length() > 0;
+        assert studentNusnetId.length() > 0;
+        assert studentAttendanceStatus.length() > 0;
+        assert studentClassParticipation.length() > 0;
+
+        name.setText(studentName);
+        nusnetId.setText(studentNusnetId);
+        attendanceStatus.setText(studentAttendanceStatus);
+        classParticipation.setText(studentClassParticipation);
     }
 
     @Override
