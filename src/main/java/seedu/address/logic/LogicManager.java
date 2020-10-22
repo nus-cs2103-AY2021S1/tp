@@ -13,8 +13,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyModuleList;
-import seedu.address.model.person.Module;
+import seedu.address.model.ReadOnlyTrackr;
+import seedu.address.model.module.Module;
+import seedu.address.model.person.Student;
 import seedu.address.storage.Storage;
 
 /**
@@ -55,7 +56,17 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyModuleList getModuleList() {
+    public ReadOnlyTrackr<Student> getStudentList() {
+        return model.getStudentList();
+    }
+
+    @Override
+    public ObservableList<Student> getFilteredStudentList() {
+        return model.getFilteredStudentList();
+    }
+
+    @Override
+    public ReadOnlyTrackr<Module> getModuleList() {
         return model.getModuleList();
     }
 
@@ -65,8 +76,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getModuleListFilePath() {
-        return model.getModuleListFilePath();
+    public Path getTrackrFilePath() {
+        return model.getTrackrFilePath();
     }
 
     @Override

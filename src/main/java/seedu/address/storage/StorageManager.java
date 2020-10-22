@@ -7,24 +7,29 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.model.ReadOnlyTrackr;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.module.Module;
+import seedu.address.model.person.Student;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of Trackr data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
+    private StudentStorage studentStorage;
     private ModuleStorage moduleStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given storages.
      */
-    public StorageManager(ModuleStorage moduleStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(StudentStorage studentStorage, ModuleStorage moduleStorage,
+                          UserPrefsStorage userPrefsStorage) {
         super();
+        this.studentStorage = studentStorage;
         this.moduleStorage = moduleStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
@@ -46,8 +51,38 @@ public class StorageManager implements Storage {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
+    // ================ Student methods ==============================
 
-    // ================ AddressBook methods ==============================
+    @Override
+    public Path getStudentFilePath() {
+        return studentStorage.getStudentFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyTrackr<Student>> readStudentList() throws DataConversionException, IOException {
+        return readStudentList(studentStorage.getStudentFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyTrackr<Student>> readStudentList(Path filePath)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to read student data from file: " + filePath);
+        return studentStorage.readStudentList(filePath);
+    }
+
+    @Override
+    public void saveStudentList(ReadOnlyTrackr<Student> studentList) throws IOException {
+        saveStudentList(studentList, studentStorage.getStudentFilePath());
+    }
+
+    @Override
+    public void saveStudentList(ReadOnlyTrackr<Student> studentList, Path filePath) throws IOException {
+        logger.fine("Attempting to write to student data file: " + filePath);
+        studentStorage.saveStudentList(studentList, filePath);
+    }
+
+
+    // ================ Module methods ==============================
 
     @Override
     public Path getModuleFilePath() {
@@ -55,24 +90,24 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyModuleList> readModuleList() throws DataConversionException, IOException {
+    public Optional<ReadOnlyTrackr<Module>> readModuleList() throws DataConversionException, IOException {
         return readModuleList(moduleStorage.getModuleFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyModuleList> readModuleList(Path filePath) throws DataConversionException, IOException {
-        logger.fine("Attempting to read data from file: " + filePath);
+    public Optional<ReadOnlyTrackr<Module>> readModuleList(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read module data from file: " + filePath);
         return moduleStorage.readModuleList(filePath);
     }
 
     @Override
-    public void saveModuleList(ReadOnlyModuleList moduleList) throws IOException {
+    public void saveModuleList(ReadOnlyTrackr<Module> moduleList) throws IOException {
         saveModuleList(moduleList, moduleStorage.getModuleFilePath());
     }
 
     @Override
-    public void saveModuleList(ReadOnlyModuleList moduleList, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
+    public void saveModuleList(ReadOnlyTrackr<Module> moduleList, Path filePath) throws IOException {
+        logger.fine("Attempting to write to module data file: " + filePath);
         moduleStorage.saveModuleList(moduleList, filePath);
     }
 

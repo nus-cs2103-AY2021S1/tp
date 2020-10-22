@@ -11,7 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Module;
+import seedu.address.model.module.Module;
+import seedu.address.model.person.Student;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -19,26 +20,36 @@ import seedu.address.model.person.Module;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final ModuleList moduleList;
-    private final UserPrefs userPrefs;
+    private final Trackr<Student> studentList;
+    private final Trackr<Module> moduleList;
+
+    private final FilteredList<Student> filteredStudents;
     private final FilteredList<Module> filteredModules;
 
+    private final UserPrefs userPrefs;
+
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given ReadOnlyTrackrs and userPrefs.
      */
-    public ModelManager(ReadOnlyModuleList moduleList, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyTrackr<Student> studentList, ReadOnlyTrackr<Module> moduleList,
+                        ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(moduleList, userPrefs);
+        requireAllNonNull(studentList, userPrefs);
+        logger.fine("Initializing with student data: " + studentList
+                + " module data: " + moduleList
+                + " and user prefs: " + userPrefs);
 
-        logger.fine("Initializing with address book: " + moduleList + " and user prefs " + userPrefs);
+        this.studentList = new Trackr<>(studentList);
+        this.moduleList = new Trackr<>(moduleList);
 
-        this.moduleList = new ModuleList(moduleList);
+        this.filteredStudents = new FilteredList<>(this.studentList.getList());
+        this.filteredModules = new FilteredList<>(this.moduleList.getList());
+
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredModules = new FilteredList<>(this.moduleList.getModuleList());
     }
 
     public ModelManager() {
-        this(new ModuleList(), new UserPrefs());
+        this(new Trackr<Student>(), new Trackr<Module>(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,57 +77,106 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getModuleListFilePath() {
+    public Path getTrackrFilePath() {
         return userPrefs.getAddressBookFilePath();
     }
 
     @Override
-    public void setModuleListFilePath(Path moduleListFilePath) {
-        requireNonNull(moduleListFilePath);
-        userPrefs.setAddressBookFilePath(moduleListFilePath);
+    public void setTrackrFilePath(Path trackrFilePath) {
+        requireNonNull(trackrFilePath);
+        userPrefs.setAddressBookFilePath(trackrFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== studentList ================================================================================
 
     @Override
-    public void setModuleList(ReadOnlyModuleList moduleList) {
+    public void setStudentList(ReadOnlyTrackr<Student> studentList) {
+        this.studentList.resetData(studentList);
+    }
+
+    @Override
+    public ReadOnlyTrackr<Student> getStudentList() {
+        return studentList;
+    }
+
+    @Override
+    public boolean hasStudent(Student student) {
+        requireNonNull(student);
+        return studentList.hasObject(student);
+    }
+
+    @Override
+    public void deleteStudent(Student target) {
+        studentList.removeObject(target);
+    }
+
+    @Override
+    public void addStudent(Student student) {
+        studentList.addObject(student);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+    }
+
+    @Override
+    public void setStudent(Student target, Student editedStudent) {
+        requireAllNonNull(target, editedStudent);
+        studentList.setObject(target, editedStudent);
+    }
+
+    //=========== Filtered Student List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Student}.
+     */
+    @Override
+    public ObservableList<Student> getFilteredStudentList() {
+        return filteredStudents;
+    }
+
+    @Override
+    public void updateFilteredStudentList(Predicate<Student> predicate) {
+        requireNonNull(predicate);
+        filteredStudents.setPredicate(predicate);
+    }
+
+    //=========== moduleList ================================================================================
+
+    @Override
+    public void setModuleList(ReadOnlyTrackr<Module> moduleList) {
         this.moduleList.resetData(moduleList);
     }
 
     @Override
-    public ReadOnlyModuleList getModuleList() {
+    public ReadOnlyTrackr<Module> getModuleList() {
         return moduleList;
     }
 
     @Override
     public boolean hasModule(Module module) {
         requireNonNull(module);
-        return moduleList.hasModule(module);
+        return moduleList.hasObject(module);
     }
 
     @Override
     public void deleteModule(Module target) {
-        moduleList.removeModule(target);
+        moduleList.removeObject(target);
     }
 
     @Override
     public void addModule(Module module) {
-        moduleList.addModule(module);
+        moduleList.addObject(module);
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
     @Override
     public void setModule(Module target, Module editedModule) {
         requireAllNonNull(target, editedModule);
-
-        moduleList.setModule(target, editedModule);
+        moduleList.setObject(target, editedModule);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Module List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Module}.
      */
     @Override
     public ObservableList<Module> getFilteredModuleList() {
@@ -128,17 +188,6 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
     }
-
-    //    @Override
-    //    public void addTutorialGroup(TutorialGroup tutorialGroup) {
-    //        moduleList.addTutorialGroup(tutorialGroup);
-    //    }
-    //
-    //    @Override
-    //    public boolean hasTutorialGroup(TutorialGroup tutorialGroup) {
-    //        requireAllNonNull(tutorialGroup);
-    //        return moduleList.hasTutorialGroup(tutorialGroup);
-    //    }
 
     @Override
     public boolean equals(Object obj) {
@@ -154,9 +203,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return moduleList.equals(other.moduleList)
+        return studentList.equals(other.studentList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredModules.equals(other.filteredModules);
+                && filteredStudents.equals(other.filteredStudents);
     }
 
 }

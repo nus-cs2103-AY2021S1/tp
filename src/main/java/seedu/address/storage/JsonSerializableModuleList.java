@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.ModuleList;
-import seedu.address.model.ReadOnlyModuleList;
-import seedu.address.model.person.Module;
+import seedu.address.model.ReadOnlyTrackr;
+import seedu.address.model.Trackr;
+import seedu.address.model.module.Module;
 
 @JsonRootName(value = "modulelist")
 public class JsonSerializableModuleList {
@@ -20,7 +20,7 @@ public class JsonSerializableModuleList {
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableModuleList} with the given modules.
      */
     @JsonCreator
     public JsonSerializableModuleList(@JsonProperty("modules") List<JsonAdaptedModule> modules) {
@@ -28,27 +28,27 @@ public class JsonSerializableModuleList {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyModuleList} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableModuleList}.
      */
-    public JsonSerializableModuleList(ReadOnlyModuleList source) {
-        modules.addAll(source.getModuleList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
+    public JsonSerializableModuleList(ReadOnlyTrackr<Module> source) {
+        modules.addAll(source.getList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this module list into the model's {@code ModuleList} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public ModuleList toModelType() throws IllegalValueException {
-        ModuleList moduleList = new ModuleList();
+    public Trackr<Module> toModelType() throws IllegalValueException {
+        Trackr<Module> moduleList = new Trackr<>();
         for (JsonAdaptedModule jsonAdaptedModule : modules) {
             Module module = jsonAdaptedModule.toModelType();
-            if (moduleList.hasModule(module)) {
+            if (moduleList.hasObject(module)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_MODULE);
             }
-            moduleList.addModule(module);
+            moduleList.addObject(module);
         }
         return moduleList;
     }
