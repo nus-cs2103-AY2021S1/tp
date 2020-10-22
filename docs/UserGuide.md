@@ -3,15 +3,16 @@ layout: page
 title: ProductiveNUS
 ---
 
-ProductiveNUS is a **desktop application for managing and scheduling your academic tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
-It is a convenient platform for you to keep track of your lessons and assignments at hand and being able to type quickly will make the process fast as well.
+ProductiveNUS is a **desktop application for managing and scheduling your academic tasks, optimized for use via a Command Line Interface** (CLI) contained in a **Graphical User Interface** (GUI). ProductiveNUS allows you to keep track of all your lessons and assignments at hand and type in your assignments quickly so that no time is wasted.
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Table of Contents
 1. Getting started
 2. Features
 3. FAQ
 4. Summary of commands supported
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Getting started
@@ -235,7 +236,12 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ProductiveNUS app home folder.
+**A**: 
+1. Install the app in your other computer and start the app.
+2. Notice that a data file named `addressbook.json` is created under the `/data` folder.
+3. Close the app in your other computer.
+4. Overwrite the newly created data file with the data file from your previous computer.
+5. All your existing data has been successfully transferred!
 
 --------------------------------------------------------------------------------------------------------------------
 
