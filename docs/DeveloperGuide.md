@@ -87,45 +87,70 @@ This section describes some noteworthy details on how certain features are imple
 
 ### \[Proposed\] Data archiving
 
-1.1 **Add contact feature** 
+### 1.1 Contact List Management
 
-This feature allows a user to add a new module-related contact to the Cap 5 Buddy module tracker system.
+As a module tracking system, Cap 5 Buddy allows users to manage a list of module-related contacts with ease. 
 
-1.1.1 Details of implementation
+The section below provides details of the implementation of each Contact List function and design considerations
+of the contact list feature.
 
-The mechanism to add a contact is facilitated by the following classes:
+#### 1.1.1 Contact List Commands
 
-* `ContactList`: Stores a list of unique contacts belonging to the user. 
+Below is a list of all `Contact` related features:
 
-    Additionally, it implements the following operation(s):
-    * `ContactList#addContact(Contact)` - Adds a new ```Contact``` into ```ContactList```.
+1. Add a contact: Adds a new contact into the contact list
+2. Delete a contact: Deletes a pre-existing contact from the contact list
+3. Edit a contact: Edits a pre-existing contact in the contact list
+4. View all contacts: Lists out all contacts in the contact list
 
-    This operation is exposed in the ```Model``` interface as Model#addContact(contact).
-
-* `AddContactParser`: Parsers the user input with the aid of `ArgumentTokenizer` to create a `AddContactCommand`
- 
-Given below is the class diagram of the ```Contact``` class:
+Given below is the class diagram of the `Contact` class:
 ![ContactClassDiagram](images/Contact/ContactClassDiagram.png)
 Figure ?.? Class Diagram for Contact class
 
-Given below is an example usage scenario and how the mechanism for adding contacts behaves at each step:
+#### 1.1.2 Details of implementation
 
-Step 1: The user inputs `addcontact n/John e/john@gmail.com te/@johndoe` into the command box to create a new 
-```Contact``` with the arguments fields provided. 
-
-Step 2: `AddContactParser` parses the individual arguments and determines if the arguments are valid. 
-The new Contact object with the specified fields is created to instantiate an ```AddContactCommand``` 
-
-Step 3: `AddContactCommand` calls `Model#addContact(...)` to add the new `Contact` into the user's `ContactList` 
-if the Contact does not already exist.
+Given below is an example usage scenario and how the mechanism for adding contact behaves at each step:
+1. `LogicManager` receives the user input `addcontact n/John e/john@gmail.com te/@johndoe` from `Ui`
+2. `LogicManager` calls `ContactListParser#parseCommand()` to create `AddContactParser`
+3. `ContactListParser` will call the respective `AddContactParser#parse()` method to parse the command arguments using `ArgumentTokenizer`
+4. This creates a `AddContactCommand` and `AddContactCommand#execute` will be invoked by `LogicManager` 
+5. The `Model#addContact()` operation exposed in the `Model` interface is used to add the new contact
+6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to add a contact works:
 ![AddContactSequenceDiagram](images/Contact/AddContactSequenceDiagram.png)
-Figure ?.? Sequence diagram for the execution of ```AddContactCommand```
+Figure ?.? Sequence diagram for the execution of `AddContactCommand`
 
-The following activity diagram summarizes what happens when a user executes the ```AddContactCommand```:
+The section below describes the implementation details of each Contact List feature.
+
+####Add Contact Feature 
+* This feature creates and adds a new `Contact` using the contact details provided by users
+* `ContactListParser` invokes `AddContactParser#parse()` to parse and validate the command arguments
+* `AddContactCommand#execute()` will be called to add the new `Contact` if the contact does not already exist
+* The mechanism to add a contact is facilitated by `Contactlist` which implements `ContactList#addContact()`
+* This operation is exposed in the `Model` interface as `Model#addContact()`
+
+The following activity diagram summarizes what happens when a user executes the `AddContactCommand`:
 ![AddContactCommandActivityDiagram](images/Contact/AddContactCommandActivityDiagram.png)
-Figure ?.? Activity diagram representing the execution of ```AddContactCommand```
+Figure ?.? Activity diagram representing the execution of `AddContactCommand`
+
+#### Delete Contact Feature
+* This feature deletes a pre-existing `Contact` using the contact ID provided by users
+* `ContactListParser` invokes `DeleteContactParser#parse()` to parse and validate the contact ID
+* `DeleteContactCommand#execute()` will be called to delete the `Contact`
+* The mechanism to delete a contact is facilitated by `ContactList` which implements `ContactList#removeContact()`
+* This operation is exposed in the `Model` interface as `Model#deleteContact()` 
+
+#### Edit Contact Feature
+* This feature edits a pre-existing `Contact` using the contact details provided by users.
+* `ContactListParser` invokes `EditContactParser#parse()` to parse and validate the contact ID and command arguments
+* `EditContactCommand#execute()` will be called to create the edited `Contact` and replace the old contact with the edited contact, 
+   if the edited contact does not already exist
+* The mechanism to edit a contact is facilitated by `ContactList` which implements `ContactList#setContact()`
+* This operation is exposed in the `Model` interface as `Model#setContact()`
+
+#### View Contact Feature
+
 
 #### <br> 1.1.2 Design Considerations <br>
 ##### Aspect: Data structure to support Contact related functions
