@@ -7,6 +7,7 @@ import java.util.List;
 
 import chopchop.commons.core.Messages;
 import chopchop.commons.exceptions.IllegalValueException;
+import chopchop.commons.util.Pair;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.History;
 import chopchop.logic.parser.ItemReference;
@@ -14,7 +15,6 @@ import chopchop.model.Model;
 import chopchop.model.exceptions.IncompatibleIngredientsException;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
-import chopchop.util.Pair;
 
 /**
  * Makes a dish according to the recipe identified by the index number or name used in the displayed recipe list,
