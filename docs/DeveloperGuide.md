@@ -136,7 +136,33 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Hello
+### Add feature
+#### Overview
+
+The Add feature in Trackr enables users to easily add models to the app. Users will be able to keep of models they are
+in charge of.
+
+There are three types of models:
+- `Module`: The current module the user is teaching
+- `TutorialGroup`: The tutorial groups that the user is teaching
+- `Student`: The students currently being taught by the user
+
+#### Implementation
+Trackr contains a `UniqueList<Module>`, which in turn, contains the modules taught by the user. Each Add command
+for `Module`, `TutorialGroup`, and `Student` is split into `AddModuleCommand`, `AddTutorialGroupCommand`, and `AddStudentCommand`.
+Each command class extends `Command`. 
+
+Given below is an example of the interaction between the Model and Add commands of tracker.
+
+
+#### Design Considerations
+**Aspect: List to contain the models**
+- Option 1: Generic `UniqueList` that contains the models
+    - Pros: Abstraction, 
+    - Cons: Harder to implement
+- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
+    - Pros: Easier to implement
+    - Cons: More repetitive code
 
 ### \[Proposed\] Undo/redo feature
 
