@@ -12,7 +12,7 @@ import seedu.taskmaster.commons.exceptions.DataConversionException;
 import seedu.taskmaster.model.ReadOnlyTaskmaster;
 import seedu.taskmaster.model.ReadOnlyUserPrefs;
 import seedu.taskmaster.model.UserPrefs;
-import seedu.taskmaster.model.attendance.Attendance;
+import seedu.taskmaster.model.session.StudentRecord;
 
 /**
  * Manages storage of Taskmaster data in local storage.
@@ -93,7 +93,7 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<List<Attendance>> readAttendance(Path filepath)
+    public Optional<List<StudentRecord>> readAttendance(Path filepath)
             throws DataConversionException, IOException {
         logger.fine("Attempting to load attendance from file: " + filepath);
         return taskmasterStorage.readAttendance(filepath);

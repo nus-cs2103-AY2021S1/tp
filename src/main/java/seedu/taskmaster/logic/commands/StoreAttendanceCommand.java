@@ -6,6 +6,7 @@ import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_ATTENDANCE_FILENAME
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.model.Model;
@@ -49,7 +50,9 @@ public class StoreAttendanceCommand extends StorageCommand {
 
         // TODO
         try {
+            String newlineCharacter = "\n";
             storage.saveAttendance(model.getTaskmaster(), filepath);
+            Files.write(filepath, newlineCharacter.getBytes(), StandardOpenOption.APPEND);
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }

@@ -34,7 +34,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private StudentListPanel studentListPanel;
-    private AttendanceListPanel attendanceListPanel; ///////////////////////////attendance stufffffffffffff
+    private StudentRecordListPanel studentRecordListPanel; ///////////////////////////attendance stufffffffffffff
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -77,7 +77,7 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
 
         //add menu items
-        MenuItem newMenuItem = new MenuItem("Attendance");
+        MenuItem newMenuItem = new MenuItem("StudentRecord");
         newMenuItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -146,8 +146,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up with attendance instead.
      */
     void fillInnerParts2() {
-        attendanceListPanel = new AttendanceListPanel(logic.getFilteredAttendanceList());
-        viewListPanelPlaceholder.getChildren().add(attendanceListPanel.getRoot());
+        studentRecordListPanel = new StudentRecordListPanel(logic.getFilteredStudentRecordList());
+        viewListPanelPlaceholder.getChildren().add(studentRecordListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

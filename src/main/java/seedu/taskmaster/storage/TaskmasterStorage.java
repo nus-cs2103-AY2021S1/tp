@@ -8,7 +8,7 @@ import java.util.Optional;
 import seedu.taskmaster.commons.exceptions.DataConversionException;
 import seedu.taskmaster.model.ReadOnlyTaskmaster;
 import seedu.taskmaster.model.Taskmaster;
-import seedu.taskmaster.model.attendance.Attendance;
+import seedu.taskmaster.model.session.StudentRecord;
 
 /**
  * Represents a storage for {@link Taskmaster}.
@@ -47,5 +47,5 @@ public interface TaskmasterStorage {
 
     void saveAttendance(ReadOnlyTaskmaster taskmaster, Path filePath) throws IOException;
 
-    Optional<List<Attendance>> readAttendance(Path filePath) throws DataConversionException, IOException;
+    Optional<List<StudentRecord>> readAttendance(Path filePath) throws DataConversionException, IOException;
 }
