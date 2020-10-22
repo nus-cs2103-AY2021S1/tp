@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.assignment.Deadline;
+import seedu.address.model.task.Deadline;
 
 /**
  * Parses input arguments and creates a new ScheduleCommand object

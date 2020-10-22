@@ -11,7 +11,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Deadline;
+import seedu.address.model.task.Deadline;
 
 /**
  * Lists all tasks in ProductiveNUS to the user.

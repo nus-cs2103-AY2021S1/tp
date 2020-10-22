@@ -4,6 +4,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.ModuleCode;
+import seedu.address.model.task.Name;
+import seedu.address.model.task.Task;
+
 /**
  * Represents an Assignment in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
