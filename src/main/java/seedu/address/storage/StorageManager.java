@@ -7,7 +7,9 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -18,14 +20,20 @@ public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private ModuleListStorage moduleListStorage;
+    private ContactListStorage contactListStorage;
+    private TodoListStorage todoListStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code ModuleListStorage},
+     * {@code ContactListStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(ModuleListStorage moduleListStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(ModuleListStorage moduleListStorage, ContactListStorage contactListStorage,
+                          TodoListStorage todoListStorage, UserPrefsStorage userPrefsStorage) {
         super();
         this.moduleListStorage = moduleListStorage;
+        this.contactListStorage = contactListStorage;
+        this.todoListStorage = todoListStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -47,7 +55,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ ModuleList methods ==============================
 
     @Override
     public Path getModuleListFilePath() {
@@ -76,4 +84,59 @@ public class StorageManager implements Storage {
         moduleListStorage.saveModuleList(moduleList, filePath);
     }
 
+    // ================ ContactList methods ==============================
+    @Override
+    public Path getContactListFilePath() {
+        return contactListStorage.getContactListFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyContactList> readContactList() throws DataConversionException, IOException {
+        return readContactList(contactListStorage.getContactListFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyContactList> readContactList(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return contactListStorage.readContactList(filePath);
+    }
+
+    @Override
+    public void saveContactList(ReadOnlyContactList contactList) throws IOException {
+        saveContactList(contactList, contactListStorage.getContactListFilePath());
+    }
+
+    @Override
+    public void saveContactList(ReadOnlyContactList contactList, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        contactListStorage.saveContactList(contactList, filePath);
+    }
+
+    // ================ TodoList methods ==============================
+    @Override
+    public Path getTodoListFilePath() {
+        return todoListStorage.getTodoListFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyTodoList> readTodoList() throws DataConversionException, IOException {
+        return readTodoList(todoListStorage.getTodoListFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyTodoList> readTodoList(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read Todo list data from file: " + filePath);
+        return todoListStorage.readTodoList(filePath);
+    }
+
+    @Override
+    public void saveTodoList(ReadOnlyTodoList todoList) throws IOException {
+        saveTodoList(todoList, todoListStorage.getTodoListFilePath());
+    }
+
+    @Override
+    public void saveTodoList(ReadOnlyTodoList todoList, Path filePath) throws IOException {
+        logger.fine("Attempting to write Todo list to data file: " + filePath);
+        todoListStorage.saveTodoList(todoList, filePath);
+    }
 }

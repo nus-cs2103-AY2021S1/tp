@@ -8,21 +8,25 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.todolistcommands.AddTodoCommand;
-import seedu.address.logic.commands.todolistcommands.DeleteTodoCommand;
-import seedu.address.logic.commands.todolistcommands.EditTodoCommand;
-import seedu.address.logic.commands.todolistcommands.FindTodoCommand;
-import seedu.address.logic.commands.todolistcommands.HelpTodoCommand;
-import seedu.address.logic.commands.todolistcommands.ListTodoCommand;
-import seedu.address.logic.commands.todolistcommands.ViewTodoCommand;
+import seedu.address.logic.commands.todolistcommands.AddTaskCommand;
+import seedu.address.logic.commands.todolistcommands.CompleteTaskCommand;
+import seedu.address.logic.commands.todolistcommands.DeleteTaskCommand;
+import seedu.address.logic.commands.todolistcommands.EditTaskCommand;
+import seedu.address.logic.commands.todolistcommands.FindTaskCommand;
+import seedu.address.logic.commands.todolistcommands.HelpTaskCommand;
+import seedu.address.logic.commands.todolistcommands.ListTaskCommand;
+import seedu.address.logic.commands.todolistcommands.ResetTaskCommand;
+import seedu.address.logic.commands.todolistcommands.ViewTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.todolistparsers.AddTodoParser;
-import seedu.address.logic.parser.todolistparsers.DeleteTodoParser;
-import seedu.address.logic.parser.todolistparsers.EditTodoParser;
-import seedu.address.logic.parser.todolistparsers.FindTodoParser;
-import seedu.address.logic.parser.todolistparsers.ViewTodoParser;
+import seedu.address.logic.parser.todolistparsers.AddTaskParser;
+import seedu.address.logic.parser.todolistparsers.CompleteTaskParser;
+import seedu.address.logic.parser.todolistparsers.DeleteTaskParser;
+import seedu.address.logic.parser.todolistparsers.EditTaskParser;
+import seedu.address.logic.parser.todolistparsers.FindTaskParser;
+import seedu.address.logic.parser.todolistparsers.ResetTaskParser;
+import seedu.address.logic.parser.todolistparsers.ViewTaskParser;
 
-public class TodoListParser {
+public class TodoListParser implements FeatureParser {
     /**
      * Used for initial separation of command word and args.
      */
@@ -44,32 +48,38 @@ public class TodoListParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-        case AddTodoCommand.COMMAND_WORD:
-            return new AddTodoParser().parse(arguments);
+        case AddTaskCommand.COMMAND_WORD:
+            return new AddTaskParser().parse(arguments);
 
-        case EditTodoCommand.COMMAND_WORD:
-            return new EditTodoParser().parse(arguments);
+        case EditTaskCommand.COMMAND_WORD:
+            return new EditTaskParser().parse(arguments);
 
-        case DeleteTodoCommand.COMMAND_WORD:
-            return new DeleteTodoParser().parse(arguments);
+        case DeleteTaskCommand.COMMAND_WORD:
+            return new DeleteTaskParser().parse(arguments);
 
         //case ClearCommand.COMMAND_WORD:
         //return new ClearCommand();
 
-        case FindTodoCommand.COMMAND_WORD:
-            return new FindTodoParser().parse(arguments);
+        case FindTaskCommand.COMMAND_WORD:
+            return new FindTaskParser().parse(arguments);
 
-        case ListTodoCommand.COMMAND_WORD:
-            return new ListTodoCommand();
+        case ListTaskCommand.COMMAND_WORD:
+            return new ListTaskCommand();
+
+        case ResetTaskCommand.COMMAND_WORD:
+            return new ResetTaskParser().parse(arguments);
+
+        case CompleteTaskCommand.COMMAND_WORD:
+            return new CompleteTaskParser().parse(arguments);
 
         //case ExitCommand.COMMAND_WORD:
         //return new ExitCommand();
 
-        case HelpTodoCommand.COMMAND_WORD:
-            return new HelpTodoCommand();
+        case HelpTaskCommand.COMMAND_WORD:
+            return new HelpTaskCommand();
 
-        case ViewTodoCommand.COMMAND_WORD:
-            return new ViewTodoParser().parse(arguments);
+        case ViewTaskCommand.COMMAND_WORD:
+            return new ViewTaskParser().parse(arguments);
 
         //case AddAssignmentCommand.COMMAND_WORD:
         //return new AddAssignmentParser().parse(arguments);

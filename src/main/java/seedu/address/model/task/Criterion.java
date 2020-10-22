@@ -4,7 +4,7 @@ package seedu.address.model.task;
  * Represents the Criterion that is related to tasks.
  */
 public enum Criterion {
-    DESCRIPTION,
+    NAME,
     DATE,
     PRIORITY;
 

@@ -21,7 +21,7 @@ You can reach us at the following emails:
 [[github](https://github.com/jonasngs)]
 [[portfolio](team/jonasng.md)]
 
-* Role: Team lead, Integration 
+* Role: Team lead, Integration
 * Responsibilities:
 
 ### Li Huankang (Matthias)
@@ -38,7 +38,7 @@ You can reach us at the following emails:
 
 <img src="images/michael-setia.png" width="200px">
 
-[[github](http://github.com/michael-setia)] 
+[[github](http://github.com/michael-setia)]
 [[portfolio](team/michael-setia.md)]
 
 * Role: Developer
