@@ -249,7 +249,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | find a module by name          | locate details of a module without having to go through the entire list |
 | `* *`    | user                                       | add a zoom link to a module    | keep track and retrieve it easily                      |
 | `* *`    | user                                       | calculate my cumulative average point   | plan my academic progress for the future      |
-| `* *`    | user                                       | store graded assignments       | keep the information of the assignments that contributed to my grade      |
+| `* *`    | user                                       | add graded assignments       | add the information of the assignments that contributed to my grade      |
+| `* *`    | user                                       | edit my graded assignments     | update the information of the assignments I have completed     |
+| `* *`    | user                                       | delete graded assignments      | remove the assignments that are do not contribute to my grade anymore|
 | `*`      | user who is overloading                    | sort modules by name           | locate a module easily                                 |
 
 *{More to be added}*
