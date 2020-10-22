@@ -70,7 +70,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'PlaNus.jar'
 }
 
 defaultTasks 'clean', 'test'
