@@ -34,6 +34,8 @@ public class GetTotalCommand extends Command {
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) {
         requireAllNonNull(model, activeAccount);
+        assert(model != null);
+        assert(activeAccount != null);
 
         Double totalSum = 0.00;
         if (this.category.isExpense()) {
