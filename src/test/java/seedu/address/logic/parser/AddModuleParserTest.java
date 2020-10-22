@@ -18,9 +18,13 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 // import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 // import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 // import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.ZOOMLINK_DESC_CS2103T;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalModules.CS2103;
 import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
@@ -45,7 +49,8 @@ public class AddModuleParserTest {
     public void parse_allFieldsPresent_success() throws ParseException {
         //Contact expectedPerson = new ContactBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
-        Module expectedModule = new ModuleBuilder().withName(VALID_MODULENAME_CS2103T).withZoomLink(VALID_ZOOMLINK_CS2103T).build();
+        Module expectedModule = new ModuleBuilder().withName(VALID_MODULENAME_CS2103T)
+                .withZoomLink(VALID_ZOOMLINK_CS2103T).build();
 
         Command command = parser.parse(NAME_DESC_CS2103T + ZOOMLINK_DESC_CS2103T);
         AddModuleCommand test2 = new AddModuleCommand(expectedModule);
