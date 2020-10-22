@@ -126,7 +126,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### \[Implemented\] Import timetable feature
-The user can import information about their lessons by giving their NUSMods timetable URL to ProductiveNUS to import.
+The user can import information about their lessons into ProductiveNUS using their NUSMods timetable URL.
 
 #### Reasons for implementation:
 Users may find it inconvenient to constantly refer to their NUSMods timetable whenever they want to check if they are
