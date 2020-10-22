@@ -13,7 +13,7 @@ import seedu.resireg.model.Model;
  */
 public class HelpCommand extends Command {
 
-    public static final String COMMAND_WORD = "help";
+    public static final String COMMAND_WORD = CommandWordEnum.HELP_COMMAND.toString();
 
     public static final Help HELP = new Help(COMMAND_WORD,
             "Gets help for a command or ResiReg in general.",

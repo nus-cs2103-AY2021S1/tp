@@ -10,7 +10,7 @@ import seedu.resireg.model.Model;
  */
 public class ListCommand extends Command {
 
-    public static final String COMMAND_WORD = "students";
+    public static final String COMMAND_WORD = CommandWordEnum.LIST_COMMAND.toString();
 
     public static final String MESSAGE_SUCCESS = "Listed all students";
 

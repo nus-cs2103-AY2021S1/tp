@@ -16,7 +16,7 @@ import seedu.resireg.model.student.Student;
  */
 public class DeleteCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = CommandWordEnum.DELETE_COMMAND.toString();
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Student: %1$s";
     public static final String MESSAGE_ROOM_ALLOCATION_EXISTS =

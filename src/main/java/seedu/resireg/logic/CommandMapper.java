@@ -8,6 +8,7 @@ import seedu.resireg.logic.commands.AddCommand;
 import seedu.resireg.logic.commands.AllocateCommand;
 import seedu.resireg.logic.commands.ClearCommand;
 import seedu.resireg.logic.commands.Command;
+import seedu.resireg.logic.commands.CommandWordEnum;
 import seedu.resireg.logic.commands.DeallocateCommand;
 import seedu.resireg.logic.commands.DeleteCommand;
 import seedu.resireg.logic.commands.EditCommand;
@@ -60,9 +61,9 @@ public class CommandMapper {
         commandMap.addCommand(ListRoomCommand.COMMAND_WORD, ListRoomCommand.HELP, new ListRoomCommandParser()::parse);
         commandMap.addCommand(AllocateCommand.COMMAND_WORD, AllocateCommand.HELP, new AllocateCommandParser()::parse);
         commandMap.addCommand(DeallocateCommand.COMMAND_WORD, DeallocateCommand.HELP,
-                new DeallocateCommandParser()::parse);
+            new DeallocateCommandParser()::parse);
         commandMap.addCommand(ReallocateCommand.COMMAND_WORD, ReallocateCommand.HELP,
-                new ReallocateCommandParser()::parse);
+            new ReallocateCommandParser()::parse);
         commandMap.addCommand(RedoCommand.COMMAND_WORD, RedoCommand.HELP, unused -> new RedoCommand());
         commandMap.addCommand(UndoCommand.COMMAND_WORD, UndoCommand.HELP, unused -> new UndoCommand());
 
@@ -73,12 +74,17 @@ public class CommandMapper {
         return commandMap.getCommandWordToHelpMap();
     }
 
+
     /**
      * Returns a parser which parses user inputs and returns the appropriate Command.
      *
      * @return Parser.
      */
-    AddressBookParser getParser() {
+    AddressBookParser getParser(Map<String, String> aliasWordMap) {
+        for(String alias : aliasWordMap.keySet()) {
+            String commandWord = aliasWordMap.get(alias);
+            commandMap.addAliasCommand(alias, commandWord);
+        }
         return parser;
     }
 
@@ -92,8 +98,13 @@ public class CommandMapper {
         }
 
         void addCommand(String commandWord, Help help, Parser<Command> parser) {
-            commandWordToHelp.put(commandWord, help);
-            commandWordToParser.put(commandWord, parser);
+            commandWordToHelp.put(commandWord, parser);
+            commandWordToParser.put(command.getCommandWord(), command.getCommandParser());
+        }
+
+        void addAliasCommand(String alias, String commandWord) {
+            commandWordToHelp.put(commandWord, commandWordToHelp.get(commandWord));
+            commandWordToParser.put(commandWord, commandWordToParser.get(commandWord));
         }
 
         Map<String, Help> getCommandWordToHelpMap() {

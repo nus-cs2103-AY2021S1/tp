@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.resireg.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.resireg.commons.core.GuiSettings;
 import seedu.resireg.commons.core.LogsCenter;
+import seedu.resireg.model.alias.CommandWordAlias;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
@@ -69,6 +73,33 @@ public class ModelManager implements Model {
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         userPrefs.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public Map<String, String> getAliasWordMap() {
+        return userPrefs.getAliasWordMap();
+    }
+
+    @Override
+    public void setCommandAliases(List<CommandWordAlias> commandAliases) {
+        requireNonNull(commandAliases);
+        userPrefs.setCommandAliases(commandAliases);
+    }
+
+    @Override
+    public boolean hasAlias(CommandWordAlias target) {
+        return userPrefs.hasAlias(target);
+    }
+
+    @Override
+    public void deleteAlias(CommandWordAlias target) {
+        userPrefs.deleteAlias(target);
+    }
+
+    @Override
+    public void addAlias(CommandWordAlias source) {
+        requireNonNull(source);
+        userPrefs.addAlias(source);
     }
 
     @Override

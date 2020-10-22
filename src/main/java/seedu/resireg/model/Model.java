@@ -1,10 +1,13 @@
 package seedu.resireg.model;
 
 import java.nio.file.Path;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.resireg.commons.core.GuiSettings;
+import seedu.resireg.model.alias.CommandWordAlias;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
@@ -41,6 +44,32 @@ public interface Model {
      * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the user prefs' command aliases.
+     */
+     Map<String, String> getAliasWordMap();
+
+    /**
+     * Sets the user prefs' command aliases.
+     */
+    void setCommandAliases(List<CommandWordAlias> commandAliases);
+
+    /**
+     * Returns true if a command alias with the same data as {@code alias} exists in user preferences.
+     */
+    boolean hasAlias(CommandWordAlias target);
+    /**
+     * Deletes the given alias.
+     * The alias must exist in user prefs.
+     */
+    void deleteAlias(CommandWordAlias target);
+
+    /**
+     * Adds the given alias.
+     * {@code alias} must not already exist in user prefs.
+     */
+    void addAlias(CommandWordAlias source);
 
     /**
      * Returns the user prefs' address book file path.
