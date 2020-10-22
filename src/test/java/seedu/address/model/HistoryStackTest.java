@@ -17,8 +17,9 @@ public class HistoryStackTest {
         ZooKeepBook book = new ZooKeepBook();
         HistoryStack historyStack = HistoryStack.getHistoryStack();
         historyStack.clearHistory();
+        historyStack.clearRedo();
         historyStack.addToHistory(book);
-        assertEquals(historyStack.toString(), "[0 animals]");
+        assertEquals(historyStack.toString(), "Undo stack: [0 animals]" + "\n" + "Redo stack: []");
     }
 
     @Test
@@ -27,9 +28,10 @@ public class HistoryStackTest {
         ZooKeepBook bookB = new ZooKeepBook();
         HistoryStack historyStack = HistoryStack.getHistoryStack();
         historyStack.clearHistory();
+        historyStack.clearRedo();
         historyStack.addToHistory(bookA);
         historyStack.addToHistory(bookB);
-        assertEquals(historyStack.toString(), "[0 animals]");
+        assertEquals(historyStack.toString(), "Undo stack: [0 animals]" + "\n" + "Redo stack: []");
     }
 
     @Test
@@ -37,9 +39,10 @@ public class HistoryStackTest {
         ZooKeepBook book = new ZooKeepBook();
         HistoryStack historyStack = HistoryStack.getHistoryStack();
         historyStack.clearHistory();
+        historyStack.clearRedo();
         historyStack.addToHistory(book);
         historyStack.removeRecentHistory();
-        assertEquals(historyStack.toString(), "[]");
+        assertEquals(historyStack.toString(), "Undo stack: []" + "\n" + "Redo stack: []");
     }
 
     @Test
@@ -47,17 +50,19 @@ public class HistoryStackTest {
         ZooKeepBook book = new ZooKeepBook();
         HistoryStack historyStack = HistoryStack.getHistoryStack();
         historyStack.clearHistory();
+        historyStack.clearRedo();
         historyStack.addToHistory(book);
         assertEquals(historyStack.viewRecentHistory().toString(), "0 animals");
     }
 
     @Test
-    public void execute_getSize() {
+    public void execute_getHistorySize() {
         ZooKeepBook book = new ZooKeepBook();
         HistoryStack historyStack = HistoryStack.getHistoryStack();
         historyStack.clearHistory();
+        historyStack.clearRedo();
         historyStack.addToHistory(book);
-        assertEquals(historyStack.getSize(), 1);
+        assertEquals(historyStack.getHistorySize(), 1);
     }
 
     @Test
@@ -65,6 +70,57 @@ public class HistoryStackTest {
         ZooKeepBook book = new ZooKeepBook();
         HistoryStack historyStack = HistoryStack.getHistoryStack();
         historyStack.clearHistory();
-        assertEquals(historyStack.toString(), "[]");
+        historyStack.clearRedo();
+        assertEquals(historyStack.toString(), "Undo stack: []" + "\n" + "Redo stack: []");
+    }
+
+    @Test
+    public void execute_addToRedo_success() {
+        ZooKeepBook book = new ZooKeepBook();
+        HistoryStack historyStack = HistoryStack.getHistoryStack();
+        historyStack.clearHistory();
+        historyStack.clearRedo();
+        historyStack.addToRedo(book);
+        assertEquals(historyStack.toString(), "Undo stack: []" + "\n" + "Redo stack: [0 animals]");
+    }
+
+    @Test
+    public void execute_removeRecentRedo() {
+        ZooKeepBook book = new ZooKeepBook();
+        HistoryStack historyStack = HistoryStack.getHistoryStack();
+        historyStack.clearHistory();
+        historyStack.clearRedo();
+        historyStack.addToRedo(book);
+        historyStack.removeRecentRedo();
+        assertEquals(historyStack.toString(), "Undo stack: []" + "\n" + "Redo stack: []");
+    }
+
+    @Test
+    public void execute_viewRecentRedo() {
+        ZooKeepBook book = new ZooKeepBook();
+        HistoryStack historyStack = HistoryStack.getHistoryStack();
+        historyStack.clearHistory();
+        historyStack.clearRedo();
+        historyStack.addToRedo(book);
+        assertEquals(historyStack.viewRecentRedo().toString(), "0 animals");
+    }
+
+    @Test
+    public void execute_getRedoSize() {
+        ZooKeepBook book = new ZooKeepBook();
+        HistoryStack historyStack = HistoryStack.getHistoryStack();
+        historyStack.clearHistory();
+        historyStack.clearRedo();
+        historyStack.addToRedo(book);
+        assertEquals(historyStack.getRedoSize(), 1);
+    }
+
+    @Test
+    public void execute_clearRedo() {
+        ZooKeepBook book = new ZooKeepBook();
+        HistoryStack historyStack = HistoryStack.getHistoryStack();
+        historyStack.clearHistory();
+        historyStack.clearRedo();
+        assertEquals(historyStack.toString(), "Undo stack: []" + "\n" + "Redo stack: []");
     }
 }

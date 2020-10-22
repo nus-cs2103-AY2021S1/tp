@@ -27,7 +27,8 @@ public class TypicalAnimals {
             .withMedicalConditions("Healthy").build();
     public static final Animal BUTTERCUP = new AnimalBuilder().withName("Buttercup").withId("456")
             .withSpecies("Reticulated Python")
-            .withMedicalConditions("Skin Infection", "Inclusion Body Disease").build();
+            .withMedicalConditions("Skin Infection", "Inclusion Body Disease")
+            .withFeedTimes("1300").build();
     public static final Animal COCO = new AnimalBuilder().withName("Coco").withId("125")
             .withSpecies("Chihuahua").build();
     public static final Animal ESTHER = new AnimalBuilder().withName("Esther").withId("126")

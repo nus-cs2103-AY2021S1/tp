@@ -6,74 +6,85 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.HistoryStack;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.ReadOnlyZooKeepBook;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.ZooKeepBook;
 import seedu.address.model.animal.Animal;
 import seedu.address.model.animal.AnimalComparator;
-import seedu.address.storage.JsonZooKeepBookStorage;
-import seedu.address.testutil.TypicalAnimals;
+import seedu.address.testutil.AnimalBuilder;
 
-public class SnapCommandTest {
-    private Path makePath(String fileName) {
-        return Path.of("src", "test", "data", "SnapCommandTest", fileName + SnapCommand.FILE_FORMAT);
-    }
-
+public class RedoCommandTest {
     @Test
-    public void constructor_nullConstructor_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new SnapCommand(null, null));
-    }
+    public void execute_redoSuccessful() throws Exception {
+        HistoryStack historyStack = HistoryStack.getHistoryStack();
+        historyStack.clearHistory();
+        historyStack.clearRedo();
 
-    @Test
-    public void execute_validFileName_success() throws Exception {
+        ZooKeepBook bookA = new ZooKeepBook();
+        bookA.addAnimal(new AnimalBuilder().withName("Bob").build());
+
+        ZooKeepBook bookB = new ZooKeepBook();
+        bookB.addAnimal(new AnimalBuilder().withName("Bob").build());
+        bookB.addAnimal(new AnimalBuilder().withName("Tom").withId("1234").build());
+
+        historyStack.addToHistory(bookA);
+        historyStack.addToHistory(bookB);
+
         ModelStub modelStub = new ModelStub();
-        String validFileName = "ZooKeepBookTest_19-10-2020";
-        Path path = makePath(validFileName);
-        CommandResult commandResult = new SnapCommand(path, validFileName).execute(modelStub);
 
-        // assert that command has executed successfully
-        assertEquals(String.format(SnapCommand.MESSAGE_SUCCESS, validFileName + SnapCommand.FILE_FORMAT),
-                commandResult.getFeedbackToUser());
+        CommandResult testResult = new UndoCommand().execute(modelStub);
+        CommandResult commandResult = new RedoCommand().execute(modelStub);
 
-        // assert that contents of created file is equal
-        ReadOnlyZooKeepBook expectedBook = modelStub.getZooKeepBook();
-        ReadOnlyZooKeepBook savedBook = new JsonZooKeepBookStorageStub(path).readZooKeepBook().get();
-        assertEquals(expectedBook, savedBook);
+        assertEquals(RedoCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
+        assertEquals(historyStack.getRedoSize(), 0);
+    }
+
+    @Test
+    public void execute_noRedoAvailable_throwsCommandException() {
+        RedoCommand redoCommand = new RedoCommand();
+        ModelStub modelStub = new ModelStub();
+
+        assertThrows(CommandException.class, RedoCommand.MESSAGE_NO_REDO, () -> redoCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        final String fileName = "zookeepbook_19-10-2020";
-        Path path = makePath(fileName);
-        SnapCommand snapCommand = new SnapCommand(path, fileName);
+        HistoryStack historyStack = HistoryStack.getHistoryStack();
+        historyStack.clearHistory();
+        ZooKeepBook book = new ZooKeepBook();
+        book.addAnimal(new AnimalBuilder().withName("Bob").build());
+        historyStack.addToHistory(book);
+
+        RedoCommand redoCommand = new RedoCommand();
 
         // same object -> returns true
-        assertTrue(snapCommand.equals(snapCommand));
+        assertTrue(redoCommand.equals(redoCommand));
 
         // same values -> returns true
-        SnapCommand snapCommandCopy = new SnapCommand(path, fileName);
-        assertTrue(snapCommand.equals(snapCommandCopy));
-
-        // different file names -> returns false
-        SnapCommand snapCommandWithDifferentFileName = new SnapCommand(path, fileName + "x");
-        assertFalse(snapCommand.equals(snapCommandWithDifferentFileName));
+        RedoCommand redoCommandCopy = new RedoCommand();
+        assertTrue(redoCommand.equals(redoCommandCopy));
 
         // different types -> returns false
-        assertFalse(snapCommand.equals(1));
+        assertFalse(redoCommand.equals(1));
 
         // null -> returns false
-        assertFalse(snapCommand.equals(null));
+        assertFalse(redoCommand.equals(null));
+
     }
 
     private class ModelStub implements Model {
+
+        private ZooKeepBook zooKeepBook = new ZooKeepBook();
+
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -81,10 +92,7 @@ public class SnapCommandTest {
 
         @Override
         public ReadOnlyUserPrefs getUserPrefs() {
-            UserPrefs userPrefs = new UserPrefs();
-            userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
-            userPrefs.setZooKeepBookFilePath(Paths.get("zookeepbook.json"));
-            return userPrefs;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -113,13 +121,13 @@ public class SnapCommandTest {
         }
 
         @Override
-        public void setZooKeepBook(ReadOnlyZooKeepBook newData) {
-            throw new AssertionError("This method should not be called.");
+        public void setZooKeepBook(ReadOnlyZooKeepBook zooKeepBook) {
+            this.zooKeepBook.resetData(zooKeepBook);
         }
 
         @Override
         public ReadOnlyZooKeepBook getZooKeepBook() {
-            return TypicalAnimals.getTypicalZooKeepBook();
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -149,28 +157,6 @@ public class SnapCommandTest {
 
         @Override
         public void updateFilteredAnimalList(Predicate<Animal> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-    }
-
-    private class JsonZooKeepBookStorageStub extends JsonZooKeepBookStorage {
-
-        public JsonZooKeepBookStorageStub(Path filePath) {
-            super(filePath);
-        }
-
-        @Override
-        public Path getZooKeepBookFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void saveZooKeepBook(ReadOnlyZooKeepBook zooKeepBook) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void saveZooKeepBook(ReadOnlyZooKeepBook zooKeepBook, Path filePath) {
             throw new AssertionError("This method should not be called.");
         }
     }

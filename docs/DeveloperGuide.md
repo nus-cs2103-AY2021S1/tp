@@ -158,6 +158,10 @@ The following classes reference the above methods:
 * `UndoCommand`
 * `LogicManager`
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Classes pertaining to the Redo command also refer to these methods, but will be excluded here and explained in the section below instead.
+
+</div>
+
 Given below is an example usage scenario and how the undo mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `HistoryStack` will be initialized with a single state, which is the current state.
@@ -181,7 +185,7 @@ Step 4. The user now decides that deleting the person was a mistake, and decides
 
 ![UndoState3](images/UndoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `HistoryStack` only contains a single state, then there is no previous state to restore. The `undo` command uses `HistoryStack#getSize()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `HistoryStack` only contains a single state, then there is no previous state to restore. The `undo` command uses `HistoryStack#getHistorySize()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -215,6 +219,99 @@ New command | Undo command
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
+
+### Redo feature (by Jun Cheng)
+
+#### Implementation
+
+The Redo feature was added as a complement to the Undo feature which was done earlier. The addition of this
+feature required the integration of the `RedoCommand` class, which extends from the `Command` class like all other commands.
+The `HistoryStack` class also has new key features to support the `redo` command:
+
+* `HistoryStack#addToRedo(ReadOnlyZooKeepBook)` - Adds a given state of the ZooKeep book into the redo stack.
+* `HistoryStack#removeRecentRedo()` - Removes the most 'recent' update of the ZooKeep book from the redo stack.
+* `HistoryStack#viewRecentRedo()` - Returns (but does not remove) the most 'recent' update of the ZooKeep book.
+* `HistoryStack#clearRedo()` - Clears the future updates of the ZooKeep book stored in the redo stack.
+
+The `RedoCommand` class references some of these methods to accomplish the feature required. Given below is an example
+usage scenario and how the redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The ZooKeep book is initialised with the initial state
+given in `data/zookeepbook.json`, and the `HistoryStack` consists of 2 stacks; the history stack and the redo stack,
+each in their respective initial states.
+
+![RedoState0](images/RedoState0.png)
+
+Step 2. The user executes `add n/Harambe...` to add a new animal into the ZooKeep book. The `LogicManager` calls
+`Model#getZooKeepBook()` to retrieve the new state of the book and calls `HistoryStack#addToHistory(ReadOnlyZooKeepBook)`
+as per normal undo protocol.
+
+![RedoState1](images/RedoState1.png)
+
+Step 3. The user then executes `delete 567` which deletes the animal in the book with an ID of 567. Similar to step 2, 
+`LogicManager` will call `Model#getZooKeepBook()` to retrieve the new state of the book and then calls 
+`HistoryStack#addToHistory(ReadOnlyZooKeepBook)` to store this state into the history stack.
+
+![RedoState2](images/RedoState2.png)
+
+Step 4. Now the user thinks that deleting that animal was a mistake and restores the previous state by 
+executing `undo` (explained in the previous section). However, before the current state is deleted and replaced with 
+the previous one, `HistoryStack#addToRedo(ReadOnlyZooKeepBook)` is called to store the current state into the redo 
+stack for further use.
+
+![RedoState3](images/RedoState3.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If `UndoCommand` is never executed, the 
+redo stack will remain empty and calling `RedoCommand` will do nothing, since there are no future states recorded in
+the stack for retrieval. 
+
+</div>
+
+Step 5. However, now the user decides that deleting that animal was the correct decision after all, and now executes 
+`redo` which calls `HistoryStack#viewRecentRedo()` to retrieve the future state of the ZooKeep book where the animal
+was deleted. The future state is then loaded into the model using `Model#setZooKeepBook(ReadOnlyZooKeepBook)`.
+Lastly, `HistoryStack#removeRecentRedo()` is called to delete that state from redo stack. 
+
+![RedoState4](images/RedoState4.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If commands which alter the state of the 
+ZooKeep book (e.g. add or delete) are executed after an undo command, the redo stack will be emptied since the 
+immediate future has been altered and the future states previously stored in the redo stack are now invalid. Hence 
+executing redo now will do nothing.
+
+</div>
+
+
+The following sequence diagram illustrates how the `Redo` operation is performed:
+
+![RedoSequenceDiagram](images/RedoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `RedoCommand` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following 2 activity diagrams summarise what happens when a user executes the `undo` and `redo` commands:
+
+Undo command | Redo command
+:-------------------------:|:-------------------------:
+![UndoCommandWithRedoActivityDiagram](images/UndoCommandWithRedoActivityDiagram.png) | ![RedoCommandActivityDiagram](images/RedoCommandActivityDiagram.png)
+
+
+#### Design consideration:
+
+##### Aspect: How redo executes
+
+* **Alternative 1 (current choice):** Saves the entire ZooKeep book as a state.
+  * Pros: Easy to implement, works with all commands immediately.
+  * Cons: May have performance issues in terms of memory usage as product scales.
+
+* **Alternative 2:** Individual command knows how to redo by
+  itself.
+  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
+
+
 ### Snapshot feature (by Aizat)
 
 #### Implementation
@@ -230,75 +327,43 @@ parses the user's input as a file name and then creates a `SnapCommand` object w
 * We chose to prevent users from creating a snapshot if the specified file name already exists
 as overwriting a file is irreversible and would be disastrous for zookeepers if done unintentionally
 
-### Feeding times feature (by Jeremy)
+### Sort feature (by Malcolm)
 
 #### Implementation
 
-The feeding time feature utilizes a TreeSet with a custom comparator.
+This section explains the implementation of the Sort command feature in the ZooKeepBook. This feature is used to sort the animals based on the different categories: **name, id or feedtime**.
+  
+The following sequence diagram shows the Logic and Model Components when a sort command is being executed:
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
-Each Animal object has a `FeedTimes` TreeSet.
+<div markdown="span" class="alert alert-info">:information_source:  **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
-The custom comparator `FeedTimeComparator` compares the integer values of the feeding times, returning them in ascending order.
-
-The feeding times feature allows for the following functionallity:
-
-* Add multiple feeding times to each animal listing.
-* Ensure feeding times are always displayed in chronological order.
-
-The following notable methods are used for the feeding times feature:
-* `ParserUtil#parseFeedTimes(feedTimes)` - returns a Set of `FeedTime` objects from user input
-* `FeedTime#isValidFeedTime(feedTimeText)` - validates the feeding time to ensure it is in the HHmm format
-
-The parsing and displaying of feeding times were adapted from the Medical Condition field.
-
-Given below is an example usage scenario and how addition of feeding times behaves at each step.
-
-Step 1. The user inputs an add command, specifying feeding times to be added for an Animal (eg. add n/Pikachu i/1307 s/Pokemon f/1234 f/0001 f/2200)
-
-[image of state]
-
-Step 2. The `ZooKeepBook` class receives the user input. `AddCommand.COMMAND_WORD` is used to identify the type of command.
-
-[image of state]
-
-Step 3. The `AddCommandParser` class receives the arguments in the user input. The `ArgumentTokenizer` class is called with the `PREFIX_FEED_TIME` variable.
-
-[image of state]
-
-Step 4. The `ArgumentTokenizer` class returns the feeding times found in the users input. A set of `FeedTime` objects is created by the `parseFeedTimes` method in the `ParserUtil` class.
-
-[image of state]
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** A ParseException is thrown by parseFeedTimes if the feeding time input does not match the defined format.
-</div>
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The TreeSet created by parseFeedTimes utilizes the FeedTimeComparator, ensuring that the set is returned in chronological order.
 </div>
 
-Step 5. An `Animal` object is created with the Set of `FeedTime` objects.
+In the **Logic** Component,
+After the user keys in "sort name" as input, these key methods are called:
+* `LogicManager#execute("sort name")`: The `LogicManager` takes in a command text string ("sort name/id/feedtime").
+* `ZooKeepBookParser#parseCommand("sort name")`: The `ZooKeepBookParser` parses the user input into a command word ("sort") and arguments ("name"). Using the command word, a `SortCommandParser` is created. 
+* `SortCommandParser#parse("name")`: The `SortCommandParser` takes in the argument("name") and parses it. An `AnimalComparator` is created and contains the specific static comparator required to sort the animals according to the category provided. A `SortCommand` is created with the `AnimalComparator` as an attribute.
+	* The `AnimalComparator` contains 3 different static comparators to be used for sorting: `ANIMAL_NAME_COMPARATOR`,  `ANIMAL_ID_COMPARATOR` and `ANIMAL_FEEDTIME_COMPARATOR`.
+	* In this case, the `ANIMAL_NAME_COMPARATOR` is taken.
+* `SortCommand#execute(model)`: The `SortCommand` uses the `AnimalComparator` to sort the animals and returns a `CommandResult` object which represents the result of a command execution. 
 
+In the **Model** Component,
+The in-memory model of the ZooKeepBook data sorts and updates the animal list. The following key methods are used: 
+* `Model#sortAnimals(animalComparator)`: sorts the animals in the `ZooKeepBook` using the given `AnimalComparator` object.
+* `ZooKeepBook#sortAnimals(animalComparator)` : Retrieves the static comparator in the `AnimalComparator` object and creates a `SortedList` object. The `UniqueAnimalList` in the `ZooKeepBook` is then replaced by this `SortedList` object.
+* `ZooKeepBook#updateFilteredAnimalList(predicate)`: Updates the filter of the filtered animal list to filter by the given predicate, which will be true here so that the sorted list will be displayed once sorted.
 
-The following sequence diagram shows how the operation of adding feeding times works:
+Upon the completion of the user command, a success message (Sorted all animals by name) and the updated sorted list is displayed below the message.
 
-[image of sequence diagram]
+The following activity diagram summarises what happens when a user executes a sort command.
 
-
-The following activity diagram summarizes what happens when feeding times are added to an Animal:
-
-[image of activity diagram]
-
-#### Design consideration:
-
-##### Aspect: How chronological order is maintained
-
-* **Alternative 1 (current choice):** Store the feeding times in chronological order
-  * Pros: Quick to display when retrieving information
-  * Cons: Initial creation and storage of feeding times takes longer
-
-* **Alternative 2:** Sort the feeding times when information is retrieved
-  itself.
-  * Pros: Quick during the initial creation of Animal objects
-  * Cons: Additional processing time required when displaying each Animal object
-
+![SortCommandActivityDiagram](images/SortCommandActivityDiagram.png)
+  
+#### Design Consideration  
+##### Aspect: Sorting based on different categories  
+We chose to allow the user to sort not only based on animal names but also by their id and feedtime to ease the convenience of the user when he needs data to be sorted in other ways.
 
 --------------------------------------------------------------------------------------------------------------------
 
