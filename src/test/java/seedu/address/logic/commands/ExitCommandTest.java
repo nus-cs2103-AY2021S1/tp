@@ -15,6 +15,6 @@ public class ExitCommandTest {
     @Test
     public void execute_exit_success() {
         CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
-        assertEquals("Exiting Common Cents as requested ...", expectedCommandResult.getFeedbackToUser());
+        assertEquals("Exiting Common Cents as requested ... Good bye.", expectedCommandResult.getFeedbackToUser());
     }
 }

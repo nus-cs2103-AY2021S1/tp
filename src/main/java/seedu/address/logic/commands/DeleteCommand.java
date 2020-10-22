@@ -55,6 +55,7 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_INDEX);
         }
 
+        activeAccount.setPreviousState();
         if (isExpense) {
             Expense toDelete = expenseList.get(index);
             activeAccount.deleteExpense(toDelete);

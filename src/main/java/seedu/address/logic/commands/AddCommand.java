@@ -49,6 +49,7 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) {
         requireAllNonNull(model, activeAccount);
+        activeAccount.setPreviousState();
 
         if (entry instanceof Expense) {
             activeAccount.addExpense((Expense) entry);

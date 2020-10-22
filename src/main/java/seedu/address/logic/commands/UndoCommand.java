@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.account.ActiveAccount;
 
@@ -15,9 +16,15 @@ public class UndoCommand extends Command {
     public static final String MESSAGE_NO_PREVIOUS_COMMAND = "You did not input any command prior to this!";
 
     @Override
-    public CommandResult execute(Model model, ActiveAccount activeAccount) {
+    public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
         requireAllNonNull(model, activeAccount);
-        // TODO:
+
+        if (activeAccount.hasNoPreviousState()) {
+            throw new CommandException(MESSAGE_NO_PREVIOUS_COMMAND);
+        }
+
+        activeAccount.returnToPreviousState();
+        model.setAccount(activeAccount.getAccount());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

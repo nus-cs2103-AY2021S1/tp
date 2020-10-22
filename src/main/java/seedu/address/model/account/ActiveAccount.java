@@ -1,5 +1,6 @@
 package seedu.address.model.account;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -17,6 +18,18 @@ public interface ActiveAccount {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Entry> PREDICATE_SHOW_ALL_ENTRY = unused -> true;
 
+
+    void setPreviousState();
+
+    Optional<ActiveAccount> getPreviousState();
+
+    ActiveAccount getCopy();
+
+    void returnToPreviousState();
+
+    boolean hasNoPreviousState();
+
+    void resetPreviousState();
     /**
      * Replaces account data with the data in {@code newActiveAccount}.
      */

@@ -3,6 +3,7 @@ package seedu.address.model.account;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -16,8 +17,9 @@ import seedu.address.model.account.entry.Revenue;
  */
 public class ActiveAccountManager implements ActiveAccount {
     private final Account activeAccount;
-    private final FilteredList<Expense> filteredExpenses;
-    private final FilteredList<Revenue> filteredRevenues;
+    private FilteredList<Expense> filteredExpenses;
+    private FilteredList<Revenue> filteredRevenues;
+    private Optional<ActiveAccount> previousState;
 
     /**
      * Initializes an ActiveAccountManager with the given account.
@@ -29,6 +31,56 @@ public class ActiveAccountManager implements ActiveAccount {
         this.activeAccount = new Account(account);
         filteredExpenses = new FilteredList<>(this.activeAccount.getExpenseList());
         filteredRevenues = new FilteredList<>(this.activeAccount.getRevenueList());
+        previousState = Optional.empty();
+    }
+
+    private ActiveAccountManager(ReadOnlyAccount account, FilteredList<Expense> filteredExpenses,
+                                 FilteredList<Revenue> filteredRevenues, Optional<ActiveAccount> previousState) {
+        this.activeAccount = new Account(account);
+        this.filteredExpenses = filteredExpenses;
+        this.filteredRevenues = filteredRevenues;
+        this.previousState = previousState;
+    }
+    //=========== ActiveAccount ================================================================================
+
+
+    @Override
+    public void setPreviousState() {
+        previousState = Optional.of(this.getCopy());
+    }
+
+    @Override
+    public Optional<ActiveAccount> getPreviousState() {
+        return previousState;
+    }
+
+    @Override
+    public ActiveAccount getCopy() {
+        Account copiedAccount = getAccount();
+        FilteredList<Expense> copiedExpenses = new FilteredList<>(copiedAccount.getExpenseList());
+        FilteredList<Revenue> copiedRevenues = new FilteredList<>(copiedAccount.getRevenueList());
+        return new ActiveAccountManager(copiedAccount, copiedExpenses, copiedRevenues, previousState);
+    }
+
+    @Override
+    public void returnToPreviousState() {
+        previousState.ifPresent((prevState) -> {
+            Account prevStateAccount = prevState.getAccount();
+            setActiveAccount(prevStateAccount);
+            filteredExpenses = new FilteredList<>(activeAccount.getExpenseList());
+            filteredRevenues = new FilteredList<>(activeAccount.getRevenueList());
+            previousState = prevState.getPreviousState();
+        });
+    }
+
+    @Override
+    public boolean hasNoPreviousState() {
+        return previousState.isEmpty();
+    }
+
+    @Override
+    public void resetPreviousState() {
+        previousState = Optional.empty();
     }
 
     //=========== Account ================================================================================

@@ -61,6 +61,7 @@ public class EditCommand extends Command {
         requireNonNull(model);
         assert(activeAccount != null && model != null);
 
+
         List<? extends Entry> lastShownList;
         if (editEntryDescriptor.isEntryExpense()) {
             lastShownList = activeAccount.getFilteredExpenseList();
@@ -76,6 +77,7 @@ public class EditCommand extends Command {
         Entry entryToEdit = lastShownList.get(index.getZeroBased());
         Entry editedEntry = createEditedEntry(entryToEdit, editEntryDescriptor);
 
+        activeAccount.setPreviousState();
         if (entryToEdit instanceof Expense) {
             activeAccount.setExpense((Expense) entryToEdit, (Expense) editedEntry);
             activeAccount.updateFilteredExpenseList(ActiveAccount.PREDICATE_SHOW_ALL_EXPENSES);

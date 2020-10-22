@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -17,9 +18,37 @@ public class ActiveAccountStub implements ActiveAccount {
     public void setActiveAccount(ReadOnlyAccount newActiveAccount) {
 
     }
+
+    @Override
+    public void setPreviousState() {
+    }
+
+    @Override
+    public Optional<ActiveAccount> getPreviousState() {
+        return Optional.empty();
+    }
+
+    @Override
+    public ActiveAccount getCopy() {
+        return null;
+    }
+
+    @Override
+    public void returnToPreviousState() {
+    }
+    @Override
+    public boolean hasNoPreviousState() {
+        return true;
+    }
+
+    @Override
+    public void resetPreviousState() {
+    }
+
     @Override
     public void setName(Name name){}
     @Override
+
     public Account getAccount() {
         return null;
     }
