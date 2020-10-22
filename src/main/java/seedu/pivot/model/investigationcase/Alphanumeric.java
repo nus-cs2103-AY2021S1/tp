@@ -30,10 +30,10 @@ public abstract class Alphanumeric {
      * Returns true if a given string is a valid name.
      */
     protected static boolean isValidAlphanum(String test, boolean canBeBlank) {
-        return canBeBlank ? test.isEmpty() || test.matches(VALIDATION_REGEX)
+        return canBeBlank
+                ? test.isEmpty() || test.matches(VALIDATION_REGEX)
                 : test.matches(VALIDATION_REGEX);
     }
-
 
     @Override
     public String toString() {

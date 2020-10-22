@@ -24,8 +24,6 @@ public class OpenCommandParser implements Parser<OpenCommand> {
      */
     public OpenCommand parse(String args) throws ParseException {
 
-        Index index;
-
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, OpenCommand.MESSAGE_USAGE));
@@ -33,12 +31,8 @@ public class OpenCommandParser implements Parser<OpenCommand> {
         final String openType = matcher.group("commandWord");
         final String indexString = matcher.group("arguments");
 
-        try {
-            index = ParserUtil.parseIndex(indexString);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, OpenCommand.MESSAGE_USAGE), pe);
-        }
+        Index index = ParserUtil.getParsedIndex(indexString, OpenCommand.MESSAGE_USAGE);
+
         switch(openType) {
         case TYPE_CASE:
             return new OpenCaseCommand(index);
@@ -46,4 +40,6 @@ public class OpenCommandParser implements Parser<OpenCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, OpenCommand.MESSAGE_USAGE));
         }
     }
+
+
 }

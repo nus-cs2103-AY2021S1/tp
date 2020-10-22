@@ -38,6 +38,7 @@ public class DeleteSuspectCommand extends DeleteCommand {
         List<Case> lastShownList = model.getFilteredCaseList();
 
         assert(StateManager.atCasePage()) : "Program should be at case page";
+        assert(caseIndex.getZeroBased() < lastShownList.size()) : "index should be valid";
 
         Case openCase = lastShownList.get(caseIndex.getZeroBased());
         List<Suspect> updatedSuspects = openCase.getSuspects();
@@ -48,11 +49,11 @@ public class DeleteSuspectCommand extends DeleteCommand {
 
         Suspect suspectToDelete = updatedSuspects.get(suspectIndex.getZeroBased());
         updatedSuspects.remove(suspectIndex.getZeroBased());
-        Case editedCase = new Case(openCase.getTitle(), openCase.getDescription(), openCase.getStatus(),
+        Case updatedCase = new Case(openCase.getTitle(), openCase.getDescription(), openCase.getStatus(),
                 openCase.getDocuments(), updatedSuspects, openCase.getVictims(), openCase.getWitnesses(),
                 openCase.getTags());
 
-        model.setCase(openCase, editedCase);
+        model.setCase(openCase, updatedCase);
         model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
         return new CommandResult(String.format(MESSAGE_DELETE_SUSPECT_SUCCESS, suspectToDelete));
     }

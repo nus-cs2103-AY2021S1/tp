@@ -59,15 +59,15 @@ public class Case {
     }
 
     public List<Document> getDocuments() {
-        return documents;
+        return Collections.unmodifiableList(documents);
     }
 
     public List<Suspect> getSuspects() {
-        return suspects;
+        return Collections.unmodifiableList(suspects);
     }
 
     public List<Victim> getVictims() {
-        return victims;
+        return Collections.unmodifiableList(victims);
     }
 
     /**
@@ -78,9 +78,8 @@ public class Case {
         return Collections.unmodifiableSet(tags);
     }
 
-    // TODO: Consider using Collections.unmodifiableList(witnessList) here.
     public List<Witness> getWitnesses() {
-        return witnesses;
+        return Collections.unmodifiableList(witnesses);
     }
 
     /**
