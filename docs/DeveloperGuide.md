@@ -134,19 +134,39 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### \[Implemented\] Find by specific fields feature
+
+The user can find assignments by name, module code, due date or time or priority level of assignment.
+ Multiple keywords are allowed.
+
+#### Reasons for Implementation
+Finding assignments by only one available field, like name of assignment, restricts the user's process of finding assignments
+based on what he is interested to view in his assignment list. In the case of finding assignments, it is likely that the user will
+want to view assignments of highest priority so that he can complete them first. It is also likely for the user to want to view 
+assignments under this particular module, or view assignments due on this particular date and time. 
+
+Allowing finding of assignments by different fields provides more categories for the user to search by and this will make
+the finding process easier and more convenient.
+
+#### Current Implementation
 The find command is a typical command used in ProductiveNUS. It extends `Command` and overrides the method `execute` in `CommandResult`.
 `FindCommandParser` implements `Parser<FindCommand>` and it parses the user's input to return a `FindCommand` object.
  The constructor of `FindCommand` takes in a Predicate (`NameContainsKeywordsPredicate`, `DeadlineContainsKeywordsPredicate`, `ModuleCodeContainsKeywordsPredicate` or `PriorityContainsKeywordsPredicate`)
- depending on the prefix or keywords in the user's input. 
+ depending on the prefix (n/, mod/, d/, priority/) or keywords in the user's input. The assignment list to be displayed is
+ updated according to the Predicate passed into `FindCommand`.
  
-It implements the following operations:
+It can implement the following operations:
 * `find n/Assignment Lab` — Finds assignments with names that contain "Assignment" or "Lab". (Case-insensitive)
 * `find mod/CS2100 CS2103T` — Finds assignments with module codes "CS2100" or "CS2103T".
 * `find d/24-10-2020 1200` — Finds assignments with due date on 24-10-2020 (regardless of time) 
 or due time of 1200 (regardless of date).
 * `find priority/HIGH` — Finds assignments with high priority.
 
+
+
+
 The following activity diagram summarizes what happens when a user executes find command:
+
+
 
 
 ### \[Implemented\] List by days feature
