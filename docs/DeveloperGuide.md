@@ -129,13 +129,28 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Data Structure: Label
 
+### Deleting Tags: UntagCommand
+
+[UntagCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/UntagCommand.java)
+removes the `Tag` specified by the unique tag name from the `AddressBook`.
+
+The command checks the existence of the `Tag` with `model.findFilteredTagList()`, and call method `model.deleteTag()` to delete it.
+
+### Renaming of Tags: RetagCommand
+
+[RetagCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/RetagCommand.java)
+rename the `Tag` specified by the unique tag name with a different tag name.
+
+The command checks the presence of the `Tag` using `java.io.File.exists()`, and that the new tag name is unique, i.e. not present in the `AddressBook`.
+It then gets the filepath of the `Tag` before safely deleting it. Then, a new `Tag` is created with the filepath, and the new tag name.
+
 ### Adding of Tags: TagCommand
 
 [TagCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/TagCommand.java) 
 adds a new `Tag` to `AddressBook` if the tag's `TagName` is not a duplicate and the tag's `FileAddress`
 is pointing to a valid file.
 
-TagCommand checks if the file is present using `java.io.File.exists()`.
+TagCommand checks the presence of the `Tag` using `java.io.File.exists()`.
 
 ### Opening of Tags: OpenCommand
 
