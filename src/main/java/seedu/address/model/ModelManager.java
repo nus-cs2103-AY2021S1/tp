@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -193,6 +195,34 @@ public class ModelManager implements Model {
         meetingBook.addMeeting(meeting);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
+
+    @Override
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireAllNonNull(target, editedMeeting);
+
+        meetingBook.setMeeting(target, editedMeeting);
+    }
+
+    @Override
+    public void updatePersonInMeetingBook(Person ...persons) {
+        requireNonNull(persons);
+        Person personToUpdate = persons[0];
+        boolean isReplacement = persons.length > 1;
+
+        filteredMeetings.stream().filter(meeting -> meeting.getMembers().contains(personToUpdate)).forEach(meeting -> {
+            Set<Person> updatedMembers = new HashSet<>(meeting.getMembers());
+            updatedMembers.remove(personToUpdate);
+            if (isReplacement) {
+                assert persons.length == 2;
+                Person editedPerson = persons[1];
+                updatedMembers.add(editedPerson);
+            }
+            Meeting updatedMeeting = new Meeting(meeting.getMeetingName(), meeting.getDate(),
+                    meeting.getTime(), updatedMembers);
+            meetingBook.setMeeting(meeting, updatedMeeting);
+        });
+    }
+
     //=========== Modules ===================================================================================
     @Override
     public void addModule(Module module) {
@@ -217,13 +247,6 @@ public class ModelManager implements Model {
     @Override
     public void setModuleBook(ReadOnlyModuleBook newBook) {
         this.moduleBook.resetData(newBook);
-    }
-
-    @Override
-    public void setMeeting(Meeting target, Meeting editedMeeting) {
-        requireAllNonNull(target, editedMeeting);
-
-        meetingBook.setMeeting(target, editedMeeting);
     }
 
     //=========== Filtered Person List Accessors =============================================================
