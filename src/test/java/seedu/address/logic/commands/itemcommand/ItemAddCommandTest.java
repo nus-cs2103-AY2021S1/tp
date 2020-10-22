@@ -71,7 +71,17 @@ public class ItemAddCommandTest {
     public void execute_duplicateItem_updateMaxQuantityUnsuccessful() {
         Item currentItem = new ItemBuilder().withName("Chicken").withQuantity("2").withMaxQuantity("500").build();
         Item finalItem = new ItemBuilder().withName("Chicken").withQuantity("4").withMaxQuantity("5000").build();
-        InventoryModelStub modelStub = new ItemModelStubRejectingDuplicatingMaxQuantityInventory(currentItem);
+        InventoryModelStub modelStub = new ItemModelStubAcceptingDuplicatingInventory(currentItem);
+        Models models = new ModelsManager(modelStub, new DeliveryModelManager());
+
+        assertThrows(CommandException.class, () -> new ItemAddCommand(finalItem).execute(models));
+    }
+
+    @Test
+    public void execute_duplicateItem_updateMetricUnsuccessful() {
+        Item currentItem = new ItemBuilder().withName("Chicken").withQuantity("2").withMaxQuantity("500").build();
+        Item finalItem = new ItemBuilder().withName("Chicken").withQuantity("4").withMetric("kg").build();
+        InventoryModelStub modelStub = new ItemModelStubAcceptingDuplicatingInventory(currentItem);
         Models models = new ModelsManager(modelStub, new DeliveryModelManager());
 
         assertThrows(CommandException.class, () -> new ItemAddCommand(finalItem).execute(models));
@@ -105,84 +115,85 @@ public class ItemAddCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class InventoryModelStub implements InventoryModel {
+        private static final String MESSAGE_METHOD_SHOULD_NOT_BE_CALLED = "This method should not be called.";
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
         }
 
         @Override
         public ReadOnlyUserPrefs getUserPrefs() {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
         }
 
         @Override
         public GuiSettings getGuiSettings() {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
         }
 
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
         }
 
         @Override
         public void setStatesLimit(int limit) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
         }
 
         @Override
         public Path getInventoryBookFilePath() {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
         }
 
         @Override
         public void setInventoryBookFilePath(Path inventoryBookFilePath) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
         }
 
         @Override
         public void addItem(Item item) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
         }
 
         @Override
         public Item addOnExistingItem(Item item) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
         }
 
         @Override
         public void setInventoryBook(ReadOnlyInventoryBook newData) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
         }
 
         @Override
         public ReadOnlyInventoryBook getInventoryBook() {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
         }
 
         @Override
         public boolean hasItem(Item item) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
         }
 
         @Override
         public void deleteItem(Item target) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
         }
 
         @Override
         public void setItem(Item target, Item editedItem) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
         }
 
         @Override
         public ObservableList<Item> getFilteredAndSortedItemList() {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
         }
 
         @Override
         public void updateItemListFilter(Predicate<Item> predicate) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
         }
 
         @Override
@@ -247,37 +258,6 @@ public class ItemAddCommandTest {
         @Override
         public ReadOnlyInventoryBook getInventoryBook() {
             return new InventoryBook();
-        }
-    }
-
-    /**
-     * A Model stub that rejects duplicate item if it contains a max quantity
-     */
-    private class ItemModelStubRejectingDuplicatingMaxQuantityInventory extends InventoryModelStub {
-        private final Item item;
-
-        ItemModelStubRejectingDuplicatingMaxQuantityInventory(Item item) {
-            requireNonNull(item);
-            this.item = item;
-        }
-
-        @Override
-        public Item addOnExistingItem(Item item) {
-            Name name = item.getName();
-            Quantity quantity = item.getQuantity().add(item.getQuantity());
-            Supplier supplier = item.getSupplier();
-            Set<Tag> providedItemTags = item.getTags();
-            Set<Tag> combinedTags = new HashSet<>(providedItemTags);
-            Quantity maxQuantity = item.getMaxQuantity().orElse(null);
-            Metric metric = item.getMetric().orElse(null);
-
-            return new Item(name, quantity, supplier, combinedTags, maxQuantity, metric);
-        }
-
-        @Override
-        public boolean hasItem(Item item) {
-            requireNonNull(item);
-            return this.item.isSameItem(item);
         }
     }
 
