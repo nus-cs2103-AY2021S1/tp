@@ -30,7 +30,7 @@ public class DatePredicate implements Predicate<Food> {
     }
 
     /**
-     * Check if the food contains the same date as the input (format insensitive)
+     * Checks if the food contains the same date as the input (format insensitive)
      *
      * @param food The food to be checked
      * @return True if Food contains the date equal to the input date, false otherwise
