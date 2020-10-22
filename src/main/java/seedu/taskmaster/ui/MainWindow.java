@@ -81,7 +81,7 @@ public class MainWindow extends UiPart<Stage> {
         newMenuItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                fillInnerParts2();
+                fillInnerParts2(0);
             }
         });
         attendanceMenu.getItems().add(newMenuItem);
@@ -145,7 +145,8 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up with attendance instead.
      */
-    void fillInnerParts2() {
+    void fillInnerParts2(int index) {
+        assert index > 0;
         studentRecordListPanel = new StudentRecordListPanel(logic.getFilteredStudentRecordList());
         viewListPanelPlaceholder.getChildren().add(studentRecordListPanel.getRoot());
 
@@ -206,28 +207,6 @@ public class MainWindow extends UiPart<Stage> {
     private void handleStudent() {
         fillInnerParts();
     }
-
-    /**
-     * Switches to attendance tab.
-     */
-
-    //change this to take in a parameter when implementing multiple attendances
-    @FXML
-    private void handleAttendance() {
-        fillInnerParts2();
-    }
-
-    /*
-    //remember to call this function over at UiManager
-    void addAttendanceInstances(some_form_of_list list_of_attendances) {
-        for loop:
-            MenuItem menuItemToAdd = new MenuItem(attendance.name);
-            menuItemToAdd.setOnAction(
-                    e -> { handleAttendance(i) }
-            );
-    }
-
-     */
 
     public StudentListPanel getStudentListPanel() {
         return studentListPanel;

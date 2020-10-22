@@ -26,4 +26,8 @@ public class ClassParticipation {
         return "Class Participation Score:" +
                 + score + " out of " + maxScore;
     }
+
+    public String description() {
+        return "To be implemented";
+    }
 }

@@ -1,0 +1,20 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR_T4
+skinparam classBackgroundColor MODEL_COLOR
+
+Class Taskmaster
+
+package Session {
+    Class SessionList
+    Class Session
+    Interface StudentRecordList <<Interface>>
+}
+
+Taskmaster *--down-> "1" SessionList
+SessionList *--down-> "*" Session
+Taskmaster o--right-> "1" Session
+Session *--> "1" StudentRecordList
+
+@enduml

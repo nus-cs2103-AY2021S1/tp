@@ -1,0 +1,29 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+package Session {
+    Class Session
+    Interface StudentRecordList <<Interface>>
+    Class StudentRecordListManager
+    Class StudentRecord
+    Class AttendanceType
+    Class ClassParticipation
+}
+
+package Student {
+    Class Name
+    Class NusnetId
+}
+
+Session *-down-> "1" StudentRecordList
+StudentRecordListManager .up.|> StudentRecordList
+StudentRecordListManager o--> "*" StudentRecord
+
+StudentRecord *--> Name
+StudentRecord *--> NusnetId
+StudentRecord *--> AttendanceType
+StudentRecord *--> ClassParticipation
+@enduml
