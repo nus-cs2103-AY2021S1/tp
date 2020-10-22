@@ -2,6 +2,7 @@ package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -60,8 +61,8 @@ public class Task {
         return new Task(name, this.tags, this.priority, this.date, this.status);
     }
 
-    public Optional<Set<Tag>> getTag() {
-        return Optional.ofNullable(this.tags);
+    public Optional<Set<Tag>> getTags() {
+        return Optional.ofNullable(this.tags).map(Collections::unmodifiableSet);
     }
 
     public Task setTags(Set<Tag> tags) {
