@@ -1,13 +1,14 @@
 package seedu.fma.logic.commands;
 
+import seedu.fma.commons.core.LogsCenter;
 import seedu.fma.commons.core.Messages;
 import seedu.fma.commons.core.index.Index;
 import seedu.fma.logic.commands.exceptions.CommandException;
 import seedu.fma.model.Model;
 import seedu.fma.model.exercise.Exercise;
-import seedu.fma.model.log.Log;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import static java.util.Objects.requireNonNull;
 
@@ -15,6 +16,8 @@ import static java.util.Objects.requireNonNull;
  * Deletes an exercise identified using it's displayed index from the exercise book.
  */
 public class DeleteExCommand extends Command {
+
+    private static final Logger logger = LogsCenter.getLogger(DeleteExCommand.class);
 
     public static final String COMMAND_WORD = "deleteex";
 
@@ -33,6 +36,7 @@ public class DeleteExCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("Executing DeleteExCommand.");
         requireNonNull(model);
         List<Exercise> lastShownList = model.getFilteredExerciseList();
 
