@@ -133,6 +133,48 @@ Classes used by multiple components are in the `seedu.stock.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Feature
+
+The mechanism for add feature is facilitated by `AddCommandParser`, `AddCommand` and `model`.
+
+#### AddCommand
+
+`AddCommand` class extends `Command` interface. `AddCommand` class is tasked to add the new stock into the stock book
+and creating a new `CommandResult` to be displayed to the user in the user interface.
+
+Some of the important operations implemented here are:
+
+* `AddCommand#execute()`
+  Adds a stock in the stock book if it is not present and returns a new `CommandResult` 
+  to be displayed to the user in the user interface.
+
+#### AddCommandParser
+`AddCommandParser` class extends `Parser` interface. `AddCommandParser` class is tasked with parsing the
+user inputs and generate a new `AddCommand`. The main logic of the add feature is encapsulated here.
+
+`AddCommandParser` receives the user input, and extracts the arguments of the required prefixes. 
+The `parse` method inside the `AddCommandParser` receives the user input, and extracts the 
+arguments of the required prefixes. This `parse` method will then return an `Addcommand` with the given stock
+as argument if the user input is a valid `Addcommand` and throw a `ParseException` otherwise.
+
+Some important operations implemented here are:
+
+* `AddCommandParser#parse()` <br>
+  Returns `Addcommand` to be executed.
+* `AddCommandParser#arePrefixesPresent()` <br>
+  Returns true if all required prefixes are present in the user input.
+* `AddCommandParser#doesPrefixesAppearOnce()` <br>
+  Returns true if all required prefixes appear only once in the user input.
+
+#### Example Usage Scenario
+
+Given below are some example usage scenarios and how the add feature behaves at each step.
+
+**Example 1: Unknown command word**
+
+Step 1. The user enters `updt n/Milk s/Fairprice` which contains an unknown command word `updt`.
+
+
 ### Suggestion Feature
 
 The mechanism for suggestion feature is facilitated by `SuggestionCommandParser, SuggestionCommand, SuggestionUtil`.
