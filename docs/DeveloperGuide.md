@@ -233,9 +233,6 @@ Notably, there are various wrapper classes to ensure type safety, namely `ArgNam
 
 Furthermore, instead of pointlessly instantiating objects that do not store any state, all of the parsing work (save the main `CommandParser`) is done by static methods, in the various `_CommandParser` classes (eg. `AddCommandParser`, `ListCommandParser`).
 
-
-
-
 One of the more complex commands to parse is the `add recipe` command; here is the sequence diagram detailing how it is parsed:
 <div style="text-align: center; padding-bottom: 2em">
 <h2 style="background-color: pink">TODO: sequence diagram for <code>add recipe</code></h2>
@@ -243,6 +240,40 @@ Figure 10: <i>A sequence diagram for parsing an <code>add recipe</code> command<
 </div>
 
 
+<h4>Design Considerations</h4>
+**1. Use of exceptions**
+
+The parser written in an exception-free manner, using monadic result types (`Result`, `Optional`) instead.
+  - Option A: use exceptions
+    - Pros: easier interfacing with the rest of ChopChop and existing AB3 code
+    - Cons: harder to visualise error source and propagation
+  - **Option B (chosen)**: use monadic types
+    - Pros: more explicit, easier to visualise error source and propagation
+    - Cons: harder to write
+
+**2. Numbered vs named item references**
+
+ChopChop allows referring to items (recipes and ingredients) both by their full name, as well as by its index number (as in AB3).
+
+  - Option A: allow only numbers
+    - Pros: easier to implement
+    - Cons: less intuitive for the user, index number can change as views are updated
+  - Option B: allow only names
+    - Pros: easier to implement
+    - Cons: full name of the ingredient or recipe might be tedious to type out each time
+  - **Option C (chosen)**: allow both
+    - Pros: best of both worlds
+    - Cons: slightly more code to implement
+
+
+
+
+
+### Quantity and Unit Handling
+
+Main developer: **zhiayang**
+
+blah blah blah blah
 
 
 
