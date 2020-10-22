@@ -53,7 +53,6 @@ public class JsonFinanceAccountStorage implements FinanceAccountStorage {
     public Optional<ReadOnlyFinanceAccount> readFinanceAccount(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        // TODO: THIS LINE IS CAUSING A LOADING ERROR
         Optional<JsonSerializableFinanceAccount> jsonFinanceAccount = JsonUtil.readJsonFile(
                 filePath, JsonSerializableFinanceAccount.class);
 
