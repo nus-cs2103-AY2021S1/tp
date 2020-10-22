@@ -202,7 +202,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 The proposed Find entries feature is facilitated by `FindCommand`. It extends `Command` and 
 is identified by `CommonCentsParser` and `FindCommandParser`. The FindCommand interacts 
-with `Account` and the interaction is managed by `ActiveAccount`. As such, it implements the following
+with `Account` and the interactions are managed by `ActiveAccount`. As such, it implements the following
 operations: 
 * `Account#updateFilteredExpenseList(Predicate<Expense> predicate)` — Updates the expense 
 list that has the given keywords as predicate.
@@ -227,7 +227,8 @@ and calls `FindCommandParser#parse(String args)` to parse the input into a valid
     `ActiveAccount#updateFilteredExpenseList()` is called to update the current revenue list with revenues
     with descriptions matching the keywords.
 
-The following sequence diagram shows how an find entries operation works:
+The following sequence diagram shows how a find entry operation works:
+
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Some of the interactions with the utility classes,
