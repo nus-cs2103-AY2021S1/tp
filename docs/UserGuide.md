@@ -37,8 +37,6 @@ track of inventory items and pending deliveries, OneShelf is for you!
 
 --------------------------------------------------------------------------------------------------------------------
 
-
-
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -89,22 +87,29 @@ Alternatives:
 ![Help Summary Screenshot](images/HelpSummaryWindow.png)
 Figure 3: Help Summary Window
 
-### Adding an item: `add-i`
+### Adding an item: `add-i` or `add-d`
 
-Adds item to OneShelf, if there's already an item inside with the same name and supplier, it adds on to existing
-quantity of existing item.
+Adds inventory item or pending delivery to OneShelf.
 
 Format: `add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]...​`
+* Adds `QUANTITY` from the current quantity of an inventory item if the item already exist.
+An item is uniquely identified by its NAME and SUPPLIER.
+
+Examples: `add-i n/CHICKEN q/10 s/NTUC max/50`
+
+Assuming that your inventory item is empty, entering the above command would add a new chicken item that was previously purchased from NTUC. <br>
+By entering `add-i n/CHICKEN q/10 max/50`, a new inventory item would be added instead of increasing the quantity since the second chicken has no supplier. <br>
+On the other hand, by entering `add-i n/CHICKEN q/10 s/NTUC` again would increase the quantity of Chicken from NTUC to be 20kg.
+
+
+Format: `add-d n/NAME p/PHONE a/ADDRESS o/ORDER`
+
+Examples: `add-d n/DAMITH p/91111111 a/Blk 251 Orchard Road o/Nasi goreng x1`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A item can have any number of tags (including 0)
+* An item can have any number of tags (including 0)
+* Unlike inventory item, pending delivery does not have a quantity.
 </div>
-
-### Adding a delivery: `add-d`
-
-Adds delivery to OneShelf
-
-Format: `add-d n/NAME, p/PHONE, a/ADDRESS, o/ORDER`
 
 ### Removing quantity from an item: `remove-i`
 
@@ -239,9 +244,10 @@ OneShelf data are saved in the hard disk automatically after any command that ch
 OneShelf commands are traversable much like Window's command prompt with the arrow up key traversing into previous commands and arrow down key traversing into next commands.  
 
 
-### Sorting items`[Coming Soon]`
+### Sorting items
 
-Implicit sorting done. Can be explicitly called for lexicographical sorting
+Implicit sorting done.
+Inventory is sorted by % max quantity in ascending order, if it max quantity does not exist for that particular item then it'll be flushed to the end and sorted in ascending order. If 2 items have the same quantity, they are then sorted lexiographically.
 
 
 
