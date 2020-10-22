@@ -77,6 +77,10 @@ public class CdCommand extends Command {
             throw new CommandException(MESSAGE_NO_PARENT_PATH);
         }
 
+        if (!FileAddress.isValidFileAddress(absolutePathString)) {
+            throw new CommandException(FileAddress.MESSAGE_CONSTRAINTS);
+        }
+
         File pathToSet = new File(absolutePathString);
         if (!pathToSet.exists()) {
             throw new CommandException(String.format(MESSAGE_PATH_NOT_FOUND, addressString));
