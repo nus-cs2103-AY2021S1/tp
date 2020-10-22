@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.task.Task;
 
 /**
@@ -107,6 +108,12 @@ public class ModelManager implements Model {
     @Override
     public void addTask(Task task) {
         planus.addTask(task);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
+
+    @Override
+    public void addLesson(Lesson lesson) {
+        planus.addLesson(lesson);
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 

@@ -20,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.Planus;
 import seedu.address.model.ReadOnlyPlanus;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 
@@ -110,6 +111,11 @@ public class AddCommandTest {
 
         @Override
         public void addTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addLesson(Lesson lesson) {
             throw new AssertionError("This method should not be called.");
         }
 

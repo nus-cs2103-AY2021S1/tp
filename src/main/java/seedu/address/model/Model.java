@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.task.Task;
 
 /**
@@ -74,6 +75,12 @@ public interface Model {
      * {@code task} must not already exist in PlaNus.
      */
     void addTask(Task task);
+
+    /**
+     * Adds the given lesson.
+     * {@code lesson} must not already exist in PlaNus.
+     */
+    void addLesson(Lesson lesson);
 
     /**
      * Replaces the given task {@code target} with {@code editedTask}.

@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.lesson.Lesson;
+import seedu.address.model.lesson.UniqueLessonList;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
@@ -15,6 +17,7 @@ import seedu.address.model.task.UniqueTaskList;
 public class Planus implements ReadOnlyPlanus {
 
     private final UniqueTaskList tasks;
+    private final UniqueLessonList lessons;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class Planus implements ReadOnlyPlanus {
      */
     {
         tasks = new UniqueTaskList();
+        lessons = new UniqueLessonList();
     }
 
     public Planus() {}
@@ -47,6 +51,10 @@ public class Planus implements ReadOnlyPlanus {
         this.tasks.setTasks(tasks);
     }
 
+    public void setLessons(List<Lesson> lessons) {
+        this.lessons.setLessons(lessons);
+    }
+
     /**
      * Resets the existing data of this {@code Planus} with {@code newData}.
      */
@@ -54,6 +62,7 @@ public class Planus implements ReadOnlyPlanus {
         requireNonNull(newData);
 
         setTasks(newData.getTaskList());
+        setLessons(newData.getLessonList());
     }
 
     //// task-level operations
@@ -72,6 +81,14 @@ public class Planus implements ReadOnlyPlanus {
      */
     public void addTask(Task task) {
         tasks.add(task);
+    }
+
+    /**
+     * Adds a task to PlaNus.
+     * The task must not already exist in the PlaNus task list.
+     */
+    public void addLesson(Lesson lesson) {
+        lessons.add(lesson);
     }
 
     /**
@@ -122,6 +139,11 @@ public class Planus implements ReadOnlyPlanus {
     @Override
     public ObservableList<Task> getTaskList() {
         return tasks.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Lesson> getLessonList() {
+        return lessons.asUnmodifiableObservableList();
     }
 
     @Override

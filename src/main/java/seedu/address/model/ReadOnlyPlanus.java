@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.task.Task;
 
 /**
@@ -14,4 +15,9 @@ public interface ReadOnlyPlanus {
      */
     ObservableList<Task> getTaskList();
 
+    /**
+     * Returns an unmodifiable view of the lesson list.
+     * This list will not contain any duplicate lessons.
+     */
+    ObservableList<Lesson> getLessonList();
 }
