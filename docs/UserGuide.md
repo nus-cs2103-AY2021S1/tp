@@ -204,23 +204,16 @@ Examples:
 
 >**ResiReg** has many general features such as Command Line Interface (CLI) sugar for more efficient usage by experienced users.
 
-#### 1. Asking for help as a first time user
+#### 1. Asking for help as a first time user : `help`
 
-As a first-time user, you can get a walkthrough of all the available commands and their syntax to understand the usage of the commands, using the `help` command.
+Shows a list of all available commands and their purpose to understand the usage of the commands.
 
-##### Command
-```
-help
-```
-##### Execution Example
-```
-help
-```
+Format: `help`
 
-*Action*: Lists all user command and their purpose. Includes a link to this User Guide.
+* Lists all user commands and their purpose.
+* Also includes a link to this User Guide, so that the user can access further details.
 
-*Output*:
-The Command History panel on the left will display all available command details.
+Examples:
 ```
 Commands available:
 add: Adds a student to ResiReg.
@@ -232,23 +225,13 @@ You can also refer to our user guide at: https://ay2021s1-cs2103-t16-3.github.io
 ```
 
 
-#### 2. Checking the syntax for a command
+#### 2. Checking the syntax for a command 
 
-Occasionally, you may need to check the syntax of a command if you need to use the command but are unsure of the command usage.
+Shows the purpose, syntax, and parameters of a command if you need to use the command but are unsure of its syntax.
 
-##### Command
-```
-help <command_word>
-```
-##### Execution Example
-```
-help rooms
-```
+Format: `help <command_word>`
 
-*Action*: Shows details of the command, including syntax and usage.
-
-*Output*:
-The Command History panel on the left will display the command details, including syntax and usage.
+Examples:
 ```
 rooms: Lists all rooms within the system. If the --vacant flag is specified, lists only vacant rooms i.e rooms which have no students allocated to them. 
 Otherwise, if the --allocated flag is specified, lists only allocated rooms i.e. rooms which have students allocated to them. 
