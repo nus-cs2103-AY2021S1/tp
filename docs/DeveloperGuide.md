@@ -459,7 +459,7 @@ testers are expected to do more *exploratory* testing.
 
    4. Test case: `remove 0`<br>
       Expected: No item is deleted. Error details shown in the status message.
-      
+
    5. Test case: `remove 1 0`<br>
       Expected: No item is deleted. Error details shown in the status message.
 
