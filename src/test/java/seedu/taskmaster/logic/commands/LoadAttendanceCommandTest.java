@@ -64,7 +64,7 @@
 //
 //        Model model = new ModelManager(SampleDataUtil.getSampleTaskmaster(), new UserPrefs());
 //        StorageCommand loadCommand = new LoadAttendanceCommand(filename);
-//        loadCommand.initaliseStorage(storage);
+//        loadCommand.initialiseStorage(storage);
 //        String expectedMessage = LoadAttendanceCommand.MESSAGE_NO_FILE_FOUND;
 //        assertCommandFailure(loadCommand, model, expectedMessage);
 //    }
@@ -79,7 +79,7 @@
 //        }
 //
 //        StorageCommand loadCommand = new LoadAttendanceCommand(filename);
-//        loadCommand.initaliseStorage(storage);
+//        loadCommand.initialiseStorage(storage);
 //
 //        try {
 //            Optional<ReadOnlyTaskmaster> optionalReadOnlyTaskmaster = storage.readTaskmaster();

@@ -57,7 +57,7 @@ public class StoreAttendanceCommandTest {
         Model model = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         StorageCommand storeCommand = new StoreAttendanceCommand(filename);
-        storeCommand.initaliseStorage(storage);
+        storeCommand.initialiseStorage(storage);
         String successMessage = StoreAttendanceCommand.MESSAGE_SAVE_SUCCESS_OVERWRITE;
         CommandResult expectedCommandResult = new CommandResult(String.format(successMessage, filename));
         assertCommandSuccess(storeCommand, model, expectedCommandResult, expectedModel);
@@ -78,7 +78,7 @@ public class StoreAttendanceCommandTest {
         Model model = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         StorageCommand storeCommand = new StoreAttendanceCommand(filename);
-        storeCommand.initaliseStorage(storage);
+        storeCommand.initialiseStorage(storage);
         String successMessage = StoreAttendanceCommand.MESSAGE_SAVE_SUCCESS_NEWFILE;
         CommandResult expectedCommandResult = new CommandResult(String.format(successMessage, filename));
         assertCommandSuccess(storeCommand, model, expectedCommandResult, expectedModel);

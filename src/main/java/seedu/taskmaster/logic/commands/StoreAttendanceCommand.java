@@ -36,6 +36,7 @@ public class StoreAttendanceCommand extends StorageCommand {
      * @param filename of the file the attendance is saved to
      */
     public StoreAttendanceCommand(String filename) {
+        assert filename.length() > 0;
         this.filename = filename;
         this.storage = null;
     }
