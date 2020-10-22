@@ -3,10 +3,11 @@ package seedu.pivot.model.investigationcase;
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.util.AppUtil.checkArgument;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
+
+import seedu.pivot.commons.util.FileUtil;
 
 /**
  * Represents a Document's reference in an investigation case.
@@ -15,7 +16,9 @@ import java.util.Objects;
 public class Reference {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "File should be placed in the ./data/reference folder. Please only enter the file name.";
+            "File should be placed in the ./reference folder. "
+                    + "Please only enter the non-blank file name with its extension.";
+
     private static final String DEFAULT_FILEPATH = "./references/";
     private final Path path;
     private final String fileName;
@@ -33,14 +36,20 @@ public class Reference {
     }
 
     /**
-     * Returns true if a given file path exists.
+     * Returns true if a given file path is valid.
      */
     public static boolean isValidReference(String fileName) {
         if (fileName.isEmpty()) {
             return false;
         }
-        Path filePath = Paths.get(DEFAULT_FILEPATH + fileName);
-        return Files.exists(filePath);
+        return FileUtil.isValidPath(DEFAULT_FILEPATH + fileName);
+    }
+
+    /**
+     * Returns true is the {@code Reference} exists in the program.
+     */
+    public boolean isExists() {
+        return FileUtil.isFileExists(path);
     }
 
     @Override
