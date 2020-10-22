@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Quantity;
+import seedu.address.model.tag.Tag;
 
 /**
  * A utility class to help with building Item objects.
@@ -16,12 +17,14 @@ public class ItemBuilder {
     public static final String DEFAULT_QUANTITY = "25";
     public static final String DEFAULT_DESCRIPTION = "Rare drop from Bob";
     public static final Set<Integer> DEFAULT_RECIPES = new HashSet<>();
+    public static final Set<Tag> DEFAULT_TAG = new HashSet<>();
 
     private int id;
     private String name;
     private Quantity quantity;
     private String description;
     private Set<Integer> recipes;
+    private Set<Tag> tags;
 
     /**
      * Creates a {@code ItemBuilder} with the default details.
@@ -32,6 +35,7 @@ public class ItemBuilder {
         this.quantity = new Quantity(DEFAULT_QUANTITY);
         this.description = DEFAULT_DESCRIPTION;
         this.recipes = DEFAULT_RECIPES;
+        this.tags = DEFAULT_TAG;
     }
 
     /**
@@ -82,6 +86,14 @@ public class ItemBuilder {
      */
     public ItemBuilder withDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    /**
+     * Sets the {@code Tags} of the {@code Item} that we are building.
+     */
+    public ItemBuilder withTags(Set<Tag> tags) {
+        this.tags = tags;
         return this;
     }
 

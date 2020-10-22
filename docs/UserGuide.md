@@ -48,6 +48,7 @@ in this document.
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
 ___________________________________________________________________
 
 ## Legend:
@@ -55,7 +56,7 @@ ___________________________________________________________________
 A legend for the styling used in this guide to describe the commands' format.
 
 Key | Meaning
------|---------
+-------|-------------
 term | Command/variable term<br>
 **term** | Compulsory to be included in the command<br>
 \<term\> | User Input Variable like recipe name or item name<br>
@@ -63,6 +64,7 @@ term | Command/variable term<br>
 \[term1/ term2\] | Optional terms to specify parameters, only 1 of term1 or term2 _ should be input
 -term | Option field to add to or an argument parameter
 default | If no parameter is given as input, this will be the input parameter.
+
 ___________________________________________________________________
 
 ## Command summary
@@ -70,7 +72,7 @@ ___________________________________________________________________
 A summary of the commands for the features currently implemented.
 
 Action | Format
---------|------------------
+-------|---------------------------------
 **Add Item** | `addi` **-n \<item name\>** \[-q \<qty\>\] \[-d \<desc\>\] \[-l \<location1, location2, …\>\] 
 **Add Recipe** | `addr` **-n \<product name\>** **-items \<item name\[quantity\], … >** \[-pc \<num>\] \[-d \<desc\>\]
 **Add quantity to item** | `addq` **-n \<item name\>** **-q \<qty\>**
@@ -103,11 +105,13 @@ Inventoryinator's features and their descriptions, as of v1.2.
 - **q:** quantity to add (default: 1)
 - **d:** description of item (default: “No description given.”)
 - **l:** locations where item can be found in game 
+- **t:** user defined **tag** for an item
 - Adds an item to the inventory, with the given fields
 
 **EXAMPLE:**
-- `addi` -n <u>banana</u> -q 44 -d edible banana -l Bob’s banana farm
-- Adds new entry of 44 <u>banana</u>, with description edible <u>banana</u>, found at **location** <u>Bob’s banana farm</u>
+- `addi` -n <u>banana</u> -q 44 -d edible banana -l Bob’s banana farm -t delicious, consumable
+- Adds new entry of 44 <u>banana</u>, with description edible <u>banana</u>, 
+found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 
 ### Adding a new Recipe: `addr`
 **NAME:**
