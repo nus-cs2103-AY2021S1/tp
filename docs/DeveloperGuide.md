@@ -211,7 +211,7 @@ Figure 11. Sequence Diagram for Add Inventory.
 
 The `AddInventoryRecordCommand` has been successfully created and its `execute` method would be called by `LogicManager#execute`, which is in turn called by `MainWindow#executeCommand`. Below is another sequence diagram that depicts the interactions between `LogicManager`, `AddInventoryRecordCommand`, `ModelManager` as well as `Storage`, when `AddInventoryRecordCommand#execute` is called.
 
-![inventoryCommandExecuteSequenceDiagram](images/InventoryCommandExecuteSequence.png)<br>
+![inventoryCommandExecuteSequenceDiagram](images/InventoryCommandExecuteSequenceDiagram.png)<br>
 Figure 12. Sequence Diagram for `AddInventoryRecordCommand#execute()`
 
 As you can see, the Inventory Record, as well as a Finance Record (if the cost field was filled), is added into NUStorage's [Model Component](#model-component). In addition, the new lists of Inventory Records and Finance Records are saved into the [Storage Component](#storage-component) of NUStorage. At the end of the operation, a `CommandResult` object is returned in which we will use for UI purposes.
