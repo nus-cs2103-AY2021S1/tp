@@ -1,13 +1,9 @@
 package chopchop.ui;
 
-import static java.util.Objects.requireNonNull;
-
-import chopchop.logic.commands.CommandResult;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.parser.exceptions.ParseException;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 
@@ -23,9 +19,6 @@ public class CommandBox extends UiPart<Region> {
 
     @FXML
     private TextField commandTextField;
-
-    @FXML
-    private TextArea displayBox;
 
     /**
      * Constructs {@code CommandBox}
@@ -72,16 +65,6 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Displays the commandResult to the user.
-     *
-     * @param feedbackToUser
-     */
-    public void setFeedbackToUser(String feedbackToUser) {
-        requireNonNull(feedbackToUser);
-        displayBox.setText(feedbackToUser);
-    }
-
-    /**
      * Represents a function that can execute commands.
      */
     @FunctionalInterface
@@ -89,9 +72,9 @@ public class CommandBox extends UiPart<Region> {
         /**
          * Executes the command and returns the result.
          *
-         * @see seedu.address.logic.Logic#execute(String)
+         * @see chopchop.logic.Logic#execute(String)
          */
-        CommandResult execute(String commandText) throws CommandException, ParseException;
+        chopchop.logic.commands.CommandResult execute(String commandText) throws CommandException, ParseException;
     }
 
 }
