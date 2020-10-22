@@ -6,16 +6,20 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.account.entry.Amount;
 import seedu.address.model.account.entry.Entry;
 import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.ExpenseList;
 import seedu.address.model.account.entry.Revenue;
 import seedu.address.model.account.entry.RevenueList;
 
+
 /**
  * Wraps all data that represents one business Common Cents.
  */
 public class Account implements ReadOnlyAccount {
+    private static final double INITIAL_SUM = 0.00;
+
     // identity field
     private Name name;
 
@@ -181,6 +185,37 @@ public class Account implements ReadOnlyAccount {
     }
 
     //// util methods
+
+    /**
+     * Returns the total sum of the expenses.
+     */
+    public double getTotalExpense() {
+        double sum = INITIAL_SUM;;
+        for (Expense expense : expenses) {
+            Amount amount = expense.getAmount();
+            sum = sum + amount.getValue();
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the total sum of the revenues.
+     */
+    public double getTotalRevenue() {
+        double sum = INITIAL_SUM;;
+        for (Revenue revenue : revenues) {
+            Amount amount = revenue.getAmount();
+            sum = sum + amount.getValue();
+        }
+        return sum;
+    }
+
+    /**
+     * Calculates the total profits.
+     */
+    public double getProfits() {
+        return getTotalRevenue() - getTotalExpense();
+    }
 
     @Override
     public String toString() {

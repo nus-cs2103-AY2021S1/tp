@@ -7,7 +7,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import seedu.address.model.account.entry.Amount;
 import seedu.address.model.account.entry.Entry;
 import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
@@ -140,25 +139,18 @@ public class ActiveAccountManager implements ActiveAccount {
     }
 
     @Override
-    public Double getTotalExpenses() {
-        Double sum = 0.00;
-        ObservableList<Expense> expenses = activeAccount.getExpenseList();
-        for (Expense expense : expenses) {
-            Amount amount = expense.getAmount();
-            sum = sum + amount.getValue();
-        }
-        return sum;
+    public double getTotalExpenses() {
+        return activeAccount.getTotalExpense();
     }
 
     @Override
-    public Double getTotalRevenue() {
-        Double sum = 0.00;
-        ObservableList<Revenue> revenues = activeAccount.getRevenueList();
-        for (Revenue revenue : revenues) {
-            Amount amount = revenue.getAmount();
-            sum = sum + amount.getValue();
-        }
-        return sum;
+    public double getTotalRevenue() {
+        return activeAccount.getTotalRevenue();
+    }
+
+    @Override
+    public double getProfits() {
+        return activeAccount.getProfits();
     }
 
     @Override

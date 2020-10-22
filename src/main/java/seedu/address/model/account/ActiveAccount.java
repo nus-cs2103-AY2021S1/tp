@@ -110,11 +110,13 @@ public interface ActiveAccount {
     /**
      * Returns the total sum of the expenses.
      */
-    public Double getTotalExpenses();
+    public double getTotalExpenses();
 
     /**
      * Returns the total sum of the revenues.
      */
-    public Double getTotalRevenue();
+    public double getTotalRevenue();
+
+    public double getProfits();
 
 }
