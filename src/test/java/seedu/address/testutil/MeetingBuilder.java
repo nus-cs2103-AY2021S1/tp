@@ -12,7 +12,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.util.SampleDataUtil;
 
 public class MeetingBuilder {
-    public static final String DEFAULT_MODULE = "CS2102";
+    public static final String DEFAULT_MODULE = "CS2103";
     public static final String DEFAULT_NAME = "Weekly Meeting";
     public static final String DEFAULT_DATE = "2020-10-03";
     public static final String DEFAULT_TIME = "10:00";
@@ -24,7 +24,7 @@ public class MeetingBuilder {
     private Set<Person> members;
 
     /**
-     * Creates a {@code MeetingBuilder} with the default details.
+     * Creates a {@code PersonBuilder} with the default details.
      */
     public MeetingBuilder() {
         module = SampleDataUtil.getModule(DEFAULT_MODULE);
@@ -38,18 +38,16 @@ public class MeetingBuilder {
      * Initializes the MeetingBuilder with the data of {@code meetingToCopy}.
      */
     public MeetingBuilder(Meeting meetingToCopy) {
-        module = meetingToCopy.getModule();
         meetingName = meetingToCopy.getMeetingName();
         date = meetingToCopy.getDate();
         time = meetingToCopy.getTime();
-        members = meetingToCopy.getParticipants();
     }
 
     /**
      * Sets the {@code Module} of the {@code Meeting} that we are building.
      */
-    public MeetingBuilder withModule(String module) {
-        this.module = SampleDataUtil.getModule(DEFAULT_MODULE);
+    public MeetingBuilder withModule(Module module) {
+        this.module = module;
         return this;
     }
 
@@ -80,8 +78,8 @@ public class MeetingBuilder {
     /**
      * Sets the {@code Members} of the {@code Meeting} that we are building.
      */
-    public MeetingBuilder withMembers(String members) {
-        this.members = SampleDataUtil.getPersonSet(members);
+    public MeetingBuilder withMembers(Set<Person> members) {
+        this.members = members;
         return this;
     }
 

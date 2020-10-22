@@ -5,17 +5,19 @@ import static seedu.address.testutil.TypicalPersons.ALICIA;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import seedu.address.model.MeetingBook;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.person.Person;
 
 public class TypicalMeetings {
 
     public static final Meeting CS2103_NO_MEMBERS = new MeetingBuilder().withName("CS2103")
             .withDate("2020-10-07")
             .withTime("10:00")
-            .withMembers(ALICE.getName().toString())
+            .withMembers(new HashSet<Person>(Arrays.asList(ALICE)))
             .build();
 
     public static final Meeting CS2103 = new MeetingBuilder().withName("CS2103")
@@ -27,7 +29,7 @@ public class TypicalMeetings {
     public static final Meeting CS2103_EDITED_MEMBER = new MeetingBuilder().withName("CS2103")
             .withDate("2020-10-07")
             .withTime("10:00")
-            .withMembers(ALICIA.getName().toString())
+            .withMembers(new HashSet<Person>(Arrays.asList(ALICIA)))
             .build();
 
     /*
