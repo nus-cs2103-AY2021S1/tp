@@ -28,7 +28,6 @@ import seedu.address.model.propertybook.PropertyBook;
 import seedu.address.model.propertybook.ReadOnlyPropertyBook;
 import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
 import seedu.address.model.selleraddressbook.SellerAddressBook;
-import seedu.address.storage.calendar.MeetingBookStorage;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -368,10 +367,7 @@ public class ModelManager implements Model {
     public void updateSortedMeetingList(Comparator<CalendarMeeting> comparator) {
         requireAllNonNull(comparator);
         sortedMeetings.setComparator(comparator);
-//        sortedMeetings.filtered(PREDICATE_SHOW_ALL_MEETINGS).setPredicate(PREDICATE_SHOW_ALL_MEETINGS);
-        filteredMeetings.setAll(sortedMeetings);
-        filteredMeetings.setPredicate(PREDICATE_SHOW_ALL_MEETINGS);
-//        meetingBook.setMeetings(sortedMeetings);
+        meetingBook.setMeetings(sortedMeetings);
     }
 
     //=========== Filtered Person List Accessors =============================================================
