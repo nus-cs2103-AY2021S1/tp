@@ -10,6 +10,7 @@ import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.DeleteCommand;
 import seedu.pivot.logic.commands.exceptions.CommandException;
+import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Victim;
@@ -39,7 +40,8 @@ public class DeleteVictimCommand extends DeleteCommand {
         requireNonNull(model);
         List<Case> lastShownList = model.getFilteredCaseList();
 
-        assert(caseIndex.getZeroBased() >= lastShownList.size()) : "index should be valid";
+        assert(StateManager.atCasePage()) : "Program should be at case page";
+        assert(caseIndex.getZeroBased() < lastShownList.size()) : "index should be valid";
 
         Case stateCase = lastShownList.get(caseIndex.getZeroBased());
         List<Victim> updatedVictims = stateCase.getVictims();
@@ -52,11 +54,11 @@ public class DeleteVictimCommand extends DeleteCommand {
         Victim victimToDelete = updatedVictims.get(victimIndex.getZeroBased());
         updatedVictims.remove(victimToDelete);
 
-        Case editedCase = new Case(stateCase.getTitle(), stateCase.getDescription(),
+        Case updatedCase = new Case(stateCase.getTitle(), stateCase.getDescription(),
                 stateCase.getStatus(), stateCase.getDocuments(), stateCase.getSuspects(),
                 updatedVictims, stateCase.getWitnesses(), stateCase.getTags());
 
-        model.setCase(stateCase, editedCase);
+        model.setCase(stateCase, updatedCase);
         model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
 
         return new CommandResult(String.format(MESSAGE_DELETE_VICTIM_SUCCESS, victimToDelete));
