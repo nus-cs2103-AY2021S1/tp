@@ -4,12 +4,17 @@ import static java.util.Objects.requireNonNull;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_TITLE;
 
+import java.util.logging.Logger;
+
+import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.logic.commands.AddCommand;
 import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
+
+
 
 /**
  * Adds a case to PIVOT.
@@ -28,6 +33,7 @@ public class AddCaseCommand extends AddCommand {
 
     public static final String MESSAGE_ADD_CASE_SUCCESS = "New case added: %1$s";
     public static final String MESSAGE_DUPLICATE_CASE = "This case already exists in PIVOT";
+    private static final Logger logger = LogsCenter.getLogger(AddCaseCommand.class);
 
     private final Case investigationCase;
 
@@ -43,11 +49,13 @@ public class AddCaseCommand extends AddCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("Adding case to PIVOT...");
         requireNonNull(model);
 
         assert(StateManager.atMainPage()) : "Program should be at main page";
 
         if (model.hasCase(investigationCase)) {
+            logger.warning("Failed to add case: Tried to add a case that exists in PIVOT");
             throw new CommandException(MESSAGE_DUPLICATE_CASE);
         }
 
