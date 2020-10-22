@@ -5,6 +5,8 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant ":Name" as Name LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -13,24 +15,37 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("contact delete Alex Yeoh")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
+LogicManager -> AddressBookParser : parseCommand("contact delete Alex Yeoh")
 activate AddressBookParser
 
 create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
+AddressBookParser -> DeleteCommandParser : DeleteCommandParser()
 activate DeleteCommandParser
 
 DeleteCommandParser --> AddressBookParser
 deactivate DeleteCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("1")
+AddressBookParser -> DeleteCommandParser : parse("Alex Yeoh")
 activate DeleteCommandParser
 
+DeleteCommandParser -> ParserUtil : parseName("Alex Yeoh")
+activate ParserUtil
+
+create Name
+ParserUtil -> Name : Name("Alex Yeoh") 
+activate Name
+
+Name --> ParserUtil : n
+deactivate Name
+
+ParserUtil --> DeleteCommandParser : n
+deactivate ParserUtil
+
 create DeleteCommand
-DeleteCommandParser -> DeleteCommand
+DeleteCommandParser -> DeleteCommand : DeleteCommand(n)
 activate DeleteCommand
 
 DeleteCommand --> DeleteCommandParser : d
@@ -48,7 +63,19 @@ deactivate AddressBookParser
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePerson(1)
+DeleteCommand -> Model : deletePerson(p)
+activate Model
+
+Model --> DeleteCommand
+deactivate Model
+
+DeleteCommand -> Model : updatePersonInMeetingBook(p)
+activate Model
+
+Model --> DeleteCommand
+deactivate Model
+
+DeleteCommand -> Model : updatePersonInModuleBook(p)
 activate Model
 
 Model --> DeleteCommand
