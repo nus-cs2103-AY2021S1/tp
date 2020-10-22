@@ -38,7 +38,7 @@ public class JsonTodoListStorage implements TodoListStorage {
      * @throws DataConversionException if the file is not in the correct format.
      */
     public Optional<ReadOnlyTodoList> readTodoList(Path filePath) throws DataConversionException {
-        assert(!(filePath == null));
+        assert filePath != null;
         Optional<JsonSerializableTodoList> jsonTodoList = JsonUtil.readJsonFile(
                 filePath, JsonSerializableTodoList.class);
         if (!jsonTodoList.isPresent()) {
@@ -63,7 +63,7 @@ public class JsonTodoListStorage implements TodoListStorage {
      * @param filePath location of the data. Cannot be null.
      */
     public void saveTodoList(ReadOnlyTodoList todoList, Path filePath) throws IOException {
-        requireAllNonNull(todoList, filePath);
+        assert todoList != null && filePath != null;
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableTodoList(todoList), filePath);
     }
