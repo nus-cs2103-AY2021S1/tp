@@ -1,23 +1,15 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PARTICIPANT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
-import seedu.address.logic.commands.AddMeetingCommand;
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.DeleteMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.MeetingName;
-import seedu.address.model.meeting.Time;
 import seedu.address.model.module.ModuleName;
-import seedu.address.model.person.Name;
-
-import java.util.Set;
-import java.util.stream.Stream;
 
 public class DeleteMeetingCommandParser implements Parser<DeleteMeetingCommand> {
 

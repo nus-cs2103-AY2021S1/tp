@@ -33,6 +33,10 @@ public class DeleteMeetingCommand extends Command {
     private final ModuleName targetModuleName;
     private final MeetingName targetMeetingName;
 
+    /**
+     * @param targetModuleName name of the module that the soon to be deleted meeting belongs to
+     * @param targetMeetingName name of the soon to be deleted meeting
+     */
     public DeleteMeetingCommand(ModuleName targetModuleName, MeetingName targetMeetingName) {
         this.targetModuleName = targetModuleName;
         this.targetMeetingName = targetMeetingName;
