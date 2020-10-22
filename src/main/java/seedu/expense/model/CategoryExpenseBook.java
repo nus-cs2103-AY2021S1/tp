@@ -1,8 +1,10 @@
 package seedu.expense.model;
 
+import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.expense.model.budget.CategoryBudget;
 import seedu.expense.model.expense.Expense;
+import seedu.expense.model.tag.Tag;
 
 import java.util.function.Predicate;
 
@@ -60,5 +62,17 @@ public class CategoryExpenseBook extends ExpenseBook {
     public void updateFilteredBudgets(Predicate<CategoryBudget> predicate) {
         requireNonNull(predicate);
         filteredBudgets.setPredicate(predicate);
+    }
+
+    public ObservableList<Expense> getFilteredExpenses() {
+        return this.filteredExpenses;
+    }
+
+    public ObservableList<CategoryBudget> getFilteredBudgets() {
+        return this.filteredBudgets;
+    }
+
+    public boolean containsCategory(Tag toCheck) {
+        return budgets.contains(new CategoryBudget(toCheck));
     }
 }

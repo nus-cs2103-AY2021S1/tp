@@ -27,9 +27,6 @@ public class ModelManager implements Model {
     private final ExpenseBook expenseBook;
     private final CategoryExpenseBook categoryExpenseBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Expense> filteredExpenses;
-    private final UniqueCategoryBudgetList budgets;
-    private final FilteredList<CategoryBudget> filteredBudgets;
 
     /**
      * Initializes a ModelManager with the given expenseBook and userPrefs.
@@ -42,9 +39,6 @@ public class ModelManager implements Model {
 
         this.expenseBook = new ExpenseBook(expenseBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredExpenses = new FilteredList<>(this.expenseBook.getExpenseList());
-        budgets = this.expenseBook.getBudgets();
-        filteredBudgets = new FilteredList<>(this.expenseBook.getBudgetList());
         categoryExpenseBook = new CategoryExpenseBook(this.expenseBook);
     }
 
@@ -130,12 +124,12 @@ public class ModelManager implements Model {
 
     @Override
     public Budget getTotalBudget() {
-        return budgets;
+        return expenseBook.getBudgets();
     }
 
     @Override
     public void topupBudget(Amount amount) {
-        budgets.topupBudget(amount);
+        expenseBook.topupBudget(amount);
     }
 
     //=========== Filtered Expense List Accessors =============================================================
@@ -146,13 +140,14 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Expense> getFilteredExpenseList() {
-        return filteredExpenses;
+        return categoryExpenseBook.getFilteredExpenses();
     }
 
     @Override
     public void updateFilteredExpenseList(Predicate<Expense> predicate) {
         requireNonNull(predicate);
-        filteredExpenses.setPredicate(predicate);
+        categoryExpenseBook.updateFilteredExpenses(predicate);
+        //filteredExpenses.setPredicate(predicate);
     }
 
     /**
@@ -160,7 +155,7 @@ public class ModelManager implements Model {
      */
     @Override
     public boolean hasCategory(Tag toCheck) {
-        return budgets.contains(new CategoryBudget(toCheck));
+        return categoryExpenseBook.containsCategory(toCheck);
     }
 
     /**
@@ -196,7 +191,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredBudgetList(Predicate<CategoryBudget> predicate) {
         requireNonNull(predicate);
-        filteredBudgets.setPredicate(predicate);
+        categoryExpenseBook.updateFilteredBudgets(predicate);
     }
 
     @Override
@@ -214,8 +209,7 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return expenseBook.equals(other.expenseBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredExpenses.equals(other.filteredExpenses);
+                && userPrefs.equals(other.userPrefs);
     }
 
 }
