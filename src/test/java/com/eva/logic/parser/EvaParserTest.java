@@ -34,9 +34,9 @@ import com.eva.testutil.PersonBuilder;
 import com.eva.testutil.StaffBuilder;
 
 
-public class AddressBookParserTest {
+public class EvaParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final EvaParser parser = new EvaParser();
 
     @Test
     public void parseCommand_addStaff() throws Exception {
