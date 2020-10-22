@@ -267,7 +267,7 @@ By default, `FindCommand.COMMAND_WORD` is `“find”`
 
 * `alias find get` -> `FindCommand.COMMAND_WORD` will be updated to `“get”`
 
-This mapping will also be stored in an external JSON so that the customisation remains even after the app is closed. 
+This mapping will also be stored in an external JSON so that the customisation remains even after the app is closed.
 
 To maintain some degree of simplicity and neatness, we require that the `AliasCommand.COMMAND_WORD` itself to not be customisable. Furthermore, the user also has the ability to revert the command keywords back to their default using the `DefaultAliasCommand` with the default `COMMAND_WORD` as `defaultalias`. This is made a little longer and slightly more complicated to input because this will override the entire customisation to default and user will not be able to retrieve his previous customisations. Like the AliasCommand, `DefaultAliasCommand.COMMAND_WORD` itself is not customisable.
 
