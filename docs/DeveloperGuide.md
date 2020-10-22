@@ -225,10 +225,10 @@ Figure 12. Sequence Diagram for the Add Inventory command.
 
 The `AddInventoryRecordCommand` has been successfully created and its `execute` method would be called by `LogicManager#execute`, which then called by `MainWindow#executeCommand`. Below is another sequence diagram that depicts the interactions between `LogicManager`, `AddInventoryRecordCommand`, `ModelManager` as well as `Storage`, when `AddInventoryRecordCommand#execute` is called.
 
-![inventoryCommandExecuteSequenceDiagram](images/InventoryCommandExecuteSequenceDiagram.png)<br>
+![inventoryCommandExecuteSequenceDiagram](images/AddInventoryCommandExecuteSequenceDiagram.png)<br>
 Figure 13. Sequence Diagram for `AddInventoryRecordCommand#execute()`
 
-As you can see, the Inventory Record, as well as a Finance Record (if the cost field was filled), is added into NUStorage's [Model Component](#model-component). In addition, the updated lists of Inventory Records and Finance Records are saved into the [Storage Component](#storage-component) of NUStorage. At the end of the operation, a `CommandResult` object is returned in which we will use for UI purposes.
+As you can see, the Inventory Record, as well as a Finance Record (if the cost field was filled), is added into NUStorage's [Model Component](#234-model-component). In addition, the updated lists of Inventory Records and Finance Records are saved into the [Storage Component](#235-storage-component) of NUStorage. At the end of the operation, a `CommandResult` object is returned in which we will use for UI purposes.
 
 Now, all there is left is to display a message to the user informing him/her about the status of their command input, as well as the created inventory / finance records. The `CommandResult` object returned previously is now used to create a new `CommandBox` object, which is used to display items on NUStorage's UI. This happens when `UiManager#fillInnerParts()` is called. Below is a sequence diagram depicting the entire scenario.
 
@@ -257,7 +257,7 @@ The `EditFinanceCommand` has been successfully created and its `execute` method 
 ![EditFinanceCommandExecuteSequenceDiagram](images/EditFinanceCommandExecuteSequenceDiagram.png)<br>
 Figure 16. Sequence Diagram for `EditFinanceCommand#execute()`
 
-As you can see, the original Finance Record in NUStorage's [Model Component](#model-component) has now been updated with the new values. In addition, the updated list of Finance Records is saved into the [Storage Component](#storage-component) of NUStorage. At the end of the operation, a `CommandResult` object is returned in which we will use for UI purposes.
+As you can see, the original Finance Record in NUStorage's [Model Component](#234-model-component) has now been updated with the new values. In addition, the updated list of Finance Records is saved into the [Storage Component](#235-storage-component) of NUStorage. At the end of the operation, a `CommandResult` object is returned in which we will use for UI purposes.
 
 Now, all there is left is to display a message to the user informing him/her about the status of their command input, as well as the edited finance records. The `CommandResult` object returned previously is now used to create a new `CommandBox` object, which is used to display items on NUStorage's UI. This happens when `UiManager#fillInnerParts()` is called. Below is a sequence diagram depicting the entire scenario.
 
@@ -278,15 +278,15 @@ If the index provided is valid, then `DeleteInventoryRecordCommandParser` create
 
 Take a look at the Logic Class diagram in the [Logic Component](#233-logic-component) of the DG, where `DeleteInventoryRecordCommandParser` is represented as 'XYZCommandParser' in the diagram for a better understanding.
 
-![DeleteInventorySequenceDiagram](images/DeleteInventorySequenceDiagram.png)<br>
+![DeleteInventoryRecordSequenceDiagram](images/DeleteInventoryRecordSequenceDiagram.png)<br>
 Figure 18. Sequence Diagram for the Delete Inventory command.
 
 The `DeleteInventoryRecordCommand` has been successfully created and its `execute` method would be called by `LogicManager#execute`, which then called by `MainWindow#executeCommand`. Below is another sequence diagram that depicts the interactions between `LogicManager`, `EditFinanceCommand`, `ModelManager` as well as `Storage`, when `EditFinanceCommand#execute` is called.
 
-![EditFinanceCommandExecuteSequenceDiagram](images/EditFinanceCommandExecuteSequenceDiagram.png)<br>
-Figure 19. Sequence Diagram for `EditFinanceCommand#execute()`
+![DeleteInventoryRecordCommandExecuteSequenceDiagram](images/DeleteInventoryRecordCommandExecuteSequenceDiagram.png)<br>
+Figure 19. Sequence Diagram for `DeleteInventoryRecordCommand#execute()`
 
-As you can see, the original Finance Record in NUStorage's [Model Component](#model-component) has now been updated with the new values. In addition, the updated list of Finance Records is saved into the [Storage Component](#storage-component) of NUStorage. At the end of the operation, a `CommandResult` object is returned in which we will use for UI purposes.
+As you can see, the original Finance Record in NUStorage's [Model Component](#234-model-component) has now been updated with the new values. In addition, the updated list of Finance Records is saved into the [Storage Component](#235-storage-component) of NUStorage. At the end of the operation, a `CommandResult` object is returned in which we will use for UI purposes.
 
 Now, all there is left is to display a message to the user informing him/her about the status of their command input, as well as the edited finance records. The `CommandResult` object returned previously is now used to create a new `CommandBox` object, which is used to display items on NUStorage's UI. This happens when `UiManager#fillInnerParts()` is called. Below is a sequence diagram depicting the entire scenario.
 
