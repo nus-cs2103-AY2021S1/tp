@@ -8,13 +8,14 @@ import seedu.address.model.account.ActiveAccount;
 /**
  * Calculates the profit in an account.
  */
-public class CalculateCommand extends Command {
-    public static final String COMMAND_WORD = "calculate";
+public class GetProfitCommand extends Command {
+    public static final String COMMAND_WORD = "profit";
     public static final String MESSAGE_SUCCESS = "Profit: ";
 
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) {
         requireAllNonNull(model, activeAccount);
+        assert false;
 
         Double totalRevenue = activeAccount.getTotalRevenue();
         Double totalExpenses = activeAccount.getTotalExpenses();
