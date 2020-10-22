@@ -37,6 +37,8 @@ public class CraftItemCommand extends Command {
             + PREFIX_RECIPE_ID + "2";
 
     public static final String MESSAGE_SUCCESS = "%2$s %1$s crafted";
+    public static final String MESSAGE_SUCCESS_EXCESS = "%2$s %1$s crafted instead of %3$s, extras crafted"
+            + " due to recipe";
     public static final String MESSAGE_ITEM_NOT_FOUND = "Item to craft is not found in the item list.";
     public static final String MESSAGE_INVALID_PRODUCT_QUANTITY = "Crafting failed, please enter a valid "
             + "product quantity";
@@ -46,8 +48,9 @@ public class CraftItemCommand extends Command {
     public static final String MESSAGE_INDEX_OUT_OF_RANGE = "Recipe ID is out of range";
 
     private final String itemName;
-    private final int productQuantity;
+    private int productQuantity;
     private final Index index;
+    private boolean hasCraftedExcess;
 
     /**
      * Creates a command to craft the item
@@ -62,6 +65,7 @@ public class CraftItemCommand extends Command {
         this.itemName = itemName;
         this.productQuantity = Integer.parseInt(productQuantity.value);
         this.index = index;
+        this.hasCraftedExcess = false;
     }
 
     @Override
@@ -99,20 +103,30 @@ public class CraftItemCommand extends Command {
         int recipeProductQuantity = Integer.parseInt(recipeToUse.getProductQuantity().value);
 
         // check the product quantity
-        if (productQuantity == 0 || productQuantity % recipeProductQuantity != 0) {
+        if (productQuantity == 0) {
             throw new CommandException(MESSAGE_INVALID_PRODUCT_QUANTITY);
+        }
+
+        // check if quantity to craft is not a multiple of recipe product quantity
+        int intendedQuantity = productQuantity;
+        if (productQuantity % recipeProductQuantity != 0) {
+            // round up to craft extra
+            productQuantity = ((productQuantity / recipeProductQuantity) + 1) * recipeProductQuantity;
+            hasCraftedExcess = true;
         }
 
         // check if item can be crafted
         IngredientList ingredientList = recipeToUse.getIngredients();
         ArrayList<Item> itemList = new ArrayList<>(model.getFilteredItemList());
+
         // Storage into hashmap to use for updating
         HashMap<Integer, Integer> requiredIngredients = new HashMap<>();
 
-        // check the ingredients quantity
+        // check if there is enough of each ingredient in inventory
         if (!checkIngredients(ingredientList, itemList, requiredIngredients, recipeProductQuantity)) {
             throw new CommandException(MESSAGE_INSUFFICIENT_INGREDIENTS);
         }
+
         // update ingredients, decrease by quantity required since ingredients are consumed
         requiredIngredients.forEach((itemId, quantityRequired) -> {
             try {
@@ -122,10 +136,16 @@ public class CraftItemCommand extends Command {
                 assert false;
             }
         });
+
         // update the product
         new AddQuantityToItemCommand(itemName, productQuantity).execute(model);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, itemToCraft, productQuantity));
+        if (hasCraftedExcess) {
+            return new CommandResult(String.format(MESSAGE_SUCCESS_EXCESS, itemToCraft,
+                    productQuantity, intendedQuantity));
+        } else {
+            return new CommandResult(String.format(MESSAGE_SUCCESS, itemToCraft, productQuantity));
+        }
     }
 
     /**

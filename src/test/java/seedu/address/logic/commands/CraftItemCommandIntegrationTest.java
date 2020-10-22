@@ -53,6 +53,22 @@ public class CraftItemCommandIntegrationTest {
     }
 
     /**
+     * Tests for success crafting when excess crafting is done due to the recipe
+     */
+    @Test
+    public void execute_craft_excess_success() throws CommandException {
+        CraftItemCommand cic = new CraftItemCommand(APPLE.getName(), new Quantity("1"), Index.fromZeroBased(0));
+        String expectedMessage = String.format(CraftItemCommand.MESSAGE_SUCCESS_EXCESS, APPLE.getName(), 2, 1);
+        // simulate crafting in expected model manually
+        AddQuantityToItemCommand use3Bananas = new AddQuantityToItemCommand("Banana", -3);
+        AddQuantityToItemCommand craft1Apple = new AddQuantityToItemCommand("Apple", 2);
+        use3Bananas.execute(expectedModel);
+        craft1Apple.execute(expectedModel);
+
+        assertCommandSuccess(cic, model, expectedMessage, expectedModel);
+    }
+
+    /**
      * Tests for crafting failure when item to craft cannot be found in item list
      */
     @Test
@@ -84,12 +100,12 @@ public class CraftItemCommandIntegrationTest {
     }
 
     /**
-     * Tests for crafting failure when product quantity is not a multiple of recipe product quantity
+     * Tests for crafting failure when product quantity is 0.
      */
     @Test
     public void execute_invalidProductQuantity_throwsCommandException() {
         // trying to craft 1 apple when only 2 can be crafted at a time
-        CraftItemCommand cic = new CraftItemCommand(APPLE.getName(), new Quantity("1"), Index.fromZeroBased(0));
+        CraftItemCommand cic = new CraftItemCommand(APPLE.getName(), new Quantity("0"), Index.fromZeroBased(0));
         String expectedMessage = CraftItemCommand.MESSAGE_INVALID_PRODUCT_QUANTITY;
         assertInventoryCommandFailure(cic, model, expectedMessage);
     }

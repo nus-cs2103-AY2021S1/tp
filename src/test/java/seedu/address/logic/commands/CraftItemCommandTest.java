@@ -78,6 +78,28 @@ public class CraftItemCommandTest {
     }
 
     /**
+     * Tests for success crafting when excess crafting is done due to the recipe
+     */
+    @Test
+    public void execute_craft_excess_success() {
+        CraftItemCommand cic = new CraftItemCommand(APPLE.getName(), new Quantity("1"), Index.fromZeroBased(0));
+        String expectedMessage = String.format(CraftItemCommand.MESSAGE_SUCCESS_EXCESS, APPLE.getName(), 2, 1);
+        // simulate crafting in expected model manually
+        // 2 more apples added
+        Item editedApple = new ItemBuilder().withId(1).withName("Apple")
+                .withDescription("Recovers 10 hp").withQuantity("11").build();
+        // 3 bananas removed
+        Item editedBanana = new ItemBuilder().withId(2).withName("Banana")
+                .withDescription("Used as bait").withQuantity("96").build();
+        ItemList expectedItemList = new ItemList();
+        expectedItemList.addItem(editedApple);
+        expectedItemList.addItem(editedBanana);
+        ModelStubWithItemAndRecipeList expectedModel = new ModelStubWithItemAndRecipeList(expectedItemList, recipeList);
+
+        assertCommandSuccess(cic, model, expectedMessage, expectedModel);
+    }
+
+    /**
      * Tests for crafting failure when item to craft cannot be found in item list
      */
     @Test
@@ -115,12 +137,11 @@ public class CraftItemCommandTest {
     }
 
     /**
-     * Tests for crafting failure when product quantity is not a multiple of recipe product quantity
+     * Tests for crafting failure when product quantity is 0
      */
     @Test
     public void execute_invalidProductQuantity_throwsCommandException() {
-        // trying to craft 1 apple when only 2 can be crafted at a time
-        CraftItemCommand cic = new CraftItemCommand(APPLE.getName(), new Quantity("1"), Index.fromZeroBased(0));
+        CraftItemCommand cic = new CraftItemCommand(APPLE.getName(), new Quantity("0"), Index.fromZeroBased(0));
         String expectedMessage = CraftItemCommand.MESSAGE_INVALID_PRODUCT_QUANTITY;
 
         assertThrows(CommandException.class, expectedMessage, () -> cic.execute(model));
