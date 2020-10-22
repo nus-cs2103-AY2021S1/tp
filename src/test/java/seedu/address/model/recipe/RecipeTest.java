@@ -1,6 +1,8 @@
 package seedu.address.model.recipe;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_DESC_APPLE_PIE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_DESC_APPLE_PIE_ALTERNATE;
@@ -10,11 +12,34 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_QUANTITY
 import static seedu.address.testutil.TypicalRecipes.APPLE_PIE;
 import static seedu.address.testutil.TypicalRecipes.BANANA_PIE;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.RecipeBuilder;
 
 public class RecipeTest {
+    @BeforeEach
+    public void setUp() {
+        // set static variables back to default
+        Recipe.setIdCounter(0);
+    }
+    /**
+     * Test Set Recipe
+     */
+    @Test
+    public void setRecipeCounter_expectedRecipeCounter() {
+        // Default value of counter is 0
+        assertEquals(Recipe.getIdCounter(), 0);
+        // Set value of counter to some other value
+        Recipe.setIdCounter(10);
+        assertEquals(Recipe.getIdCounter(), 10);
+
+        Recipe r = new RecipeBuilder(APPLE_PIE).build();
+        // After building new item, recipe counter updates
+        assertEquals(Recipe.getIdCounter(), 11);
+
+        assertThrows(AssertionError.class, () -> Recipe.setIdCounter(-1));
+    }
     /**
      * Tests for recipe equality, defined as two recipes having the same id.
      */
@@ -50,6 +75,9 @@ public class RecipeTest {
 
         // same object -> returns true
         assertTrue(APPLE_PIE.equals(APPLE_PIE));
+
+        // different instance type
+        assertFalse(APPLE_PIE.equals(new Object()));
 
         // null -> returns false
         assertFalse(APPLE_PIE.equals(null));

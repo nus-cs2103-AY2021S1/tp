@@ -49,6 +49,9 @@ class JsonSerializableRecipeList {
         RecipeList recipeList = new RecipeList();
         for (JsonAdaptedRecipe jsonAdaptedRecipe : recipes) {
             Recipe recipe = jsonAdaptedRecipe.toModelType();
+            if (recipe.getId() > Recipe.getIdCounter()) {
+                Recipe.setIdCounter(recipe.getId());
+            }
             if (recipeList.hasRecipe(recipe)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_RECIPE);
             }

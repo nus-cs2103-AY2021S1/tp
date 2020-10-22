@@ -1,10 +1,13 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalTags.getTypicalTagSet;
+
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.item.ItemPrecursor;
 import seedu.address.model.item.Quantity;
+import seedu.address.model.tag.Tag;
 
 /**
  * A utility class to help with building ItemPrecursor objects.
@@ -15,11 +18,13 @@ public class ItemPrecursorBuilder {
     public static final String DEFAULT_QUANTITY = "25";
     public static final String DEFAULT_DESCRIPTION = "Rare drop from Bob";
     public static final Set<String> DEFAULT_LOCATIONS = new HashSet<>();
+    public static final Set<Tag> DEFAULT_TAGS = new HashSet<>(getTypicalTagSet());
 
     private String name;
     private Quantity quantity;
     private String description;
     private Set<String> locations;
+    private Set<Tag> tags;
 
     /**
      * Creates a {@code ItemBuilder} with the default details.
@@ -29,6 +34,7 @@ public class ItemPrecursorBuilder {
         this.quantity = new Quantity(DEFAULT_QUANTITY);
         this.description = DEFAULT_DESCRIPTION;
         this.locations = DEFAULT_LOCATIONS;
+        this.tags = DEFAULT_TAGS;
     }
 
     /**
@@ -41,6 +47,7 @@ public class ItemPrecursorBuilder {
         Set<String> locationSet = new HashSet<>();
         locationSet.addAll(itemToCopy.getLocationNames());
         locations = locationSet;
+        tags = itemToCopy.getTags();
     }
 
     /**
@@ -76,12 +83,20 @@ public class ItemPrecursorBuilder {
     }
 
     /**
+     * Sets the {@code tags} of the {@code Item} that we are building.
+     */
+    public ItemPrecursorBuilder withTags(Set<Tag> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
      * Builds an item precursor.
      *
      * @return a sample ItemPrecursor.
      */
     public ItemPrecursor build() {
         return new ItemPrecursor(1, name, quantity, description,
-                locations, new HashSet<>());
+                locations, tags);
     }
 }

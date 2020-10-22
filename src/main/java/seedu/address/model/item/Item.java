@@ -46,11 +46,21 @@ public class Item extends InventoryComponent {
         this.tags.addAll(tags);
         if (!this.getType().equals(DisplayedInventoryType.DETAILED_ITEM)) {
             idCounter++;
+            // TODO Fix ID by parsing Setting counter to MAX ID when encountered in json
         }
     }
 
     public static int getIdCounter() {
         return idCounter;
+    }
+
+    /**
+     * Used only when parsing items to populate list for first time.
+     * @param i id counter for next item.
+     */
+    public static void setIdCounter(int i) {
+        assert i >= 0 : "Item ID should never be negative";
+        idCounter = i;
     }
 
     public int getId() {

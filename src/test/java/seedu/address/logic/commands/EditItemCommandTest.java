@@ -12,6 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_BANAN
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_BANANA;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalItems.APPLE;
+import static seedu.address.testutil.TypicalTags.getTypicalTagSet;
 
 import java.util.function.Predicate;
 
@@ -71,6 +72,7 @@ public class EditItemCommandTest {
         EditItemCommand.EditItemDescriptor descriptor = new EditItemCommand.EditItemDescriptor();
         descriptor.setQuantity(new Quantity(VALID_ITEM_QUANTITY_BANANA));
         descriptor.setDescription(VALID_ITEM_DESCRIPTION_BANANA);
+        descriptor.setTags(getTypicalTagSet());
         EditItemCommand eic = new EditItemCommand(VALID_ITEM_NAME_APPLE, descriptor);
         String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, apple);
 
@@ -78,7 +80,9 @@ public class EditItemCommandTest {
         Item editedApple = new ItemBuilder(APPLE)
                 .withQuantity(VALID_ITEM_QUANTITY_BANANA)
                 .withDescription(VALID_ITEM_DESCRIPTION_BANANA)
+                .withTags(getTypicalTagSet())
                 .build();
+
         expectedItemList.addItem(editedApple);
         expectedModelStub = new ModelStubWithItemList(expectedItemList);
 

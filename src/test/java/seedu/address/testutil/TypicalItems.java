@@ -2,6 +2,8 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.ItemParserUtil.DEFAULT_DESCRIPTION;
 import static seedu.address.logic.parser.ItemParserUtil.DEFAULT_QUANTITY;
+import static seedu.address.testutil.TypicalTags.getSingleTagSet;
+import static seedu.address.testutil.TypicalTags.getTypicalTagSet;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,7 +23,9 @@ public class TypicalItems {
             .withRecipe(new HashSet<>())
             .withName("Apple")
             .withDescription("Recovers 10 hp")
-            .withQuantity("9").build();
+            .withQuantity("9")
+            .withTags(getTypicalTagSet())
+            .build();
     public static final Item BANANA = new ItemBuilder()
             .withId(2)
             .withRecipe(new HashSet<>())
@@ -33,7 +37,9 @@ public class TypicalItems {
             .withId(3)
             .withRecipe(new HashSet<>())
             .withDescription(DEFAULT_DESCRIPTION)
-            .withQuantity(DEFAULT_QUANTITY).build();
+            .withQuantity(DEFAULT_QUANTITY)
+            .withTags(getSingleTagSet())
+            .build();
 
     private TypicalItems() {} // prevents instantiation
 
