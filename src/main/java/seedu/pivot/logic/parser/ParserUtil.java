@@ -1,6 +1,7 @@
 package seedu.pivot.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.pivot.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -22,6 +23,22 @@ import seedu.pivot.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    /**
+     * Obtains the parsed index and throws relevant parse exception based on messageUsage
+     * @param indexString
+     * @param messageUsage
+     * @return Index
+     * @throws ParseException if specified index is invalid (not non-zero unsigned integer)
+     */
+    public static Index getParsedIndex(String indexString, String messageUsage) throws ParseException {
+        try {
+            return ParserUtil.parseIndex(indexString);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, messageUsage), pe);
+        }
+    }
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -125,6 +142,9 @@ public class ParserUtil {
 
     /**
      * Parses {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
      */
     public static Description parseDescription(String description) throws ParseException {
         requireNonNull(description);

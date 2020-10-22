@@ -10,15 +10,19 @@ public abstract class DeleteCommand extends Command {
     //TODO: Consider abstracting this out further, find a way to represent any item type or show
     // of all different item types and the delete command usage
     public static final String MESSAGE_USAGE_MAIN_PAGE = COMMAND_WORD
-            + ": Deletes the specified type of item identified by the index number"
+            + ": Deletes the item of a specified type identified by the index number"
             + " used in the displayed list.\n"
-            + "Parameters (for 'case' TYPE): TYPE INDEX (must be a positive integer)\n"
+            + "Format: '" + COMMAND_WORD + " TYPE PARAMETERS'\n\n"
+            + "TYPE 'case'\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " case 1";
 
     public static final String MESSAGE_USAGE_CASE_PAGE = COMMAND_WORD
             + ": Deletes the specified type of item identified by the index number"
             + " used in the displayed list in current case.\n"
-            + "Parameters (for 'suspect','victim','witness', 'docs' TYPE): TYPE INDEX (must be a positive integer)\n"
+            + "Format: '" + COMMAND_WORD + " TYPE PARAMETERS'\n\n"
+            + "TYPE 'suspect','victim','witness', 'docs'\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " suspect 1";
 
 }

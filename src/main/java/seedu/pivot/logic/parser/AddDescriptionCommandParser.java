@@ -13,6 +13,8 @@ import seedu.pivot.model.investigationcase.Description;
 public class AddDescriptionCommandParser implements Parser<AddDescriptionCommand> {
     @Override
     public AddDescriptionCommand parse(String args) throws ParseException {
+        assert(StateManager.atCasePage()) : "Program should be at case page";
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DESC);
 
@@ -22,7 +24,6 @@ public class AddDescriptionCommandParser implements Parser<AddDescriptionCommand
                     AddDescriptionCommand.MESSAGE_USAGE));
         }
 
-        assert(StateManager.atCasePage()) : "Program should be at case page";
         Description description = ParserUtil.parseDescription(argMultimap
                         .getValue(PREFIX_DESC).orElse(""));
         Index index = StateManager.getState();

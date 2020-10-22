@@ -13,10 +13,10 @@ import seedu.pivot.model.investigationcase.Reference;
  */
 class JsonAdaptedDocument {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "DOCUMENT's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Document's %s field is missing!";
 
-    private String name;
-    private String reference;
+    private final String name;
+    private final String reference;
 
     /**
      * Constructs a {@code JsonAdaptedDocument} with the given {@code documentStorageName }.
@@ -31,22 +31,22 @@ class JsonAdaptedDocument {
      * Converts a given {@code Document} into this class for Jackson use.
      */
     public JsonAdaptedDocument(Document source) {
-        name = source.getName().alphaNum;
+        name = source.getName().getAlphaNum();
         reference = source.getReference().getFileName();
     }
 
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Document} object.
+     * Converts this Jackson-friendly adapted Document object into the model's {@code Document} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted Document.
      */
     public Document toModelType() throws IllegalValueException {
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "document name"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "name"));
         }
         if (reference == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "document reference"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "reference"));
         }
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);

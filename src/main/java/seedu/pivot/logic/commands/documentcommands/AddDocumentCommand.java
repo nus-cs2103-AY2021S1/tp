@@ -11,6 +11,7 @@ import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.AddCommand;
 import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.exceptions.CommandException;
+import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Document;
@@ -52,7 +53,8 @@ public class AddDocumentCommand extends AddCommand {
         List<Case> lastShownList = model.getFilteredCaseList();
 
         //check for valid index
-        assert(index.getZeroBased() >= lastShownList.size()) : "index should be valid";
+        assert(StateManager.atCasePage()) : "Program should be at case page";
+        assert(index.getZeroBased() < lastShownList.size()) : "index should be valid";
 
         //get current case in state
         Case stateCase = lastShownList.get(index.getZeroBased());

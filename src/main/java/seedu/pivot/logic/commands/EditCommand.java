@@ -17,6 +17,7 @@ import seedu.pivot.commons.core.Messages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.commons.util.CollectionUtil;
 import seedu.pivot.logic.commands.exceptions.CommandException;
+import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Description;
@@ -35,14 +36,16 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the case identified "
-            + "by the index number used in the displayed case list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the specified type identified "
+            + "by the index number used in the displayed case list.\n"
             + "Existing values will be overwritten by the input values.\n"
+            + "Format: '" + COMMAND_WORD + " TYPE PARAMETERS'\n\n"
+            + "TYPE 'case'\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_STATUS + "STATUS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 ";
+            + "Example: " + COMMAND_WORD + " 1 t:Triple Kovan Murders";
 
     public static final String MESSAGE_EDIT_CASE_SUCCESS = "Edited Case: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -67,6 +70,8 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Case> lastShownList = model.getFilteredCaseList();
+
+        assert(StateManager.atMainPage()) : "Program should be at main page";
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
@@ -134,7 +139,7 @@ public class EditCommand extends Command {
         private List<Suspect> suspects;
         private List<Victim> victims;
         private Set<Tag> tags;
-        private ArrayList<Witness> witnesses;
+        private List<Witness> witnesses;
 
         public EditCaseDescriptor() {}
 
@@ -159,7 +164,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(title, description,
-                    status, suspects, victims, tags);
+                    status, documents, suspects, victims, witnesses, tags);
         }
 
         public void setTitle(Title title) {
@@ -199,7 +204,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code suspects} is used internally.
          */
         public void setSuspects(List<Suspect> suspects) {
-            this.suspects = (suspects != null) ? new ArrayList<>() : null;
+            this.suspects = (suspects != null) ? new ArrayList<>(suspects) : null;
         }
 
         /**
@@ -214,7 +219,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code victims} is used internally.
          */
         public void setVictims(List<Victim> victims) {
-            this.victims = (victims != null) ? new ArrayList<>() : null;
+            this.victims = (victims != null) ? new ArrayList<>(victims) : null;
         }
 
         /**
@@ -229,7 +234,7 @@ public class EditCommand extends Command {
          * Sets {@code witnesses} to this object's {@code witnesses}.
          * A defensive copy of {@code witnesses} is used internally.
          */
-        public void setWitnesses(ArrayList<Witness> witnesses) {
+        public void setWitnesses(List<Witness> witnesses) {
             this.witnesses = (witnesses != null) ? new ArrayList<>(witnesses) : null;
         }
 
@@ -274,7 +279,12 @@ public class EditCommand extends Command {
 
             return getTitle().equals(e.getTitle())
                     && getStatus().equals(e.getStatus())
-                    && getDocuments().equals(e.getDocuments())
+                    //&& getDescription().equals(e.getDescription())
+                    && getStatus().equals(e.getStatus())
+                    //&& getSuspects().equals(e.getSuspects())
+                    //&& getVictims().equals(e.getVictims())
+                    //&& getWitnesses().equals(e.getWitnesses())
+                    //&& getDocuments().equals(e.getDocuments())
                     && getTags().equals(e.getTags());
         }
 

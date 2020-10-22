@@ -40,7 +40,7 @@ public class DeleteDocumentCommand extends DeleteCommand {
         List<Case> lastShownList = model.getFilteredCaseList();
 
         assert(StateManager.atCasePage()) : "Program should be at case page";
-        assert(caseIndex.getZeroBased() >= lastShownList.size()) : "index should be valid";
+        assert(caseIndex.getZeroBased() < lastShownList.size()) : "index should be valid";
 
         //get case from state
         Case stateCase = lastShownList.get(caseIndex.getZeroBased());

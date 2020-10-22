@@ -10,11 +10,14 @@ import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.AddCommand;
 import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.exceptions.CommandException;
+import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Description;
 
-
+/**
+ * Adds a Description to an opened Case in PIVOT.
+ */
 public class AddDescriptionCommand extends AddCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_DESC
@@ -32,10 +35,10 @@ public class AddDescriptionCommand extends AddCommand {
     private final Description description;
 
     /**
-     * Creates an AddDescriptionCommand to add the specified {@code Description}
+     * Creates an AddDescriptionCommand to add the specified {@code Description}.
      *
-     * @param index
-     * @param description
+     * @param index Index of the Case in PIVOT.
+     * @param description Description to be added.
      */
     public AddDescriptionCommand(Index index, Description description) {
         requireNonNull(index);
@@ -50,7 +53,8 @@ public class AddDescriptionCommand extends AddCommand {
         List<Case> lastShownList = model.getFilteredCaseList();
 
         //check for valid index
-        assert(index.getZeroBased() >= lastShownList.size()) : "index should be valid";
+        assert(StateManager.atCasePage()) : "Program should be at case page";
+        assert(index.getZeroBased() < lastShownList.size()) : "index should be valid";
 
         Case stateCase = lastShownList.get(index.getZeroBased());
         Description stateCaseDescription = stateCase.getDescription();

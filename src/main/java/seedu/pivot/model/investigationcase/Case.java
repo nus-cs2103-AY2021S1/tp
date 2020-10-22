@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.pivot.model.tag.Tag;
 
@@ -59,15 +60,15 @@ public class Case {
     }
 
     public List<Document> getDocuments() {
-        return documents;
+        return documents.stream().collect(Collectors.toList());
     }
 
     public List<Suspect> getSuspects() {
-        return suspects;
+        return suspects.stream().collect(Collectors.toList());
     }
 
     public List<Victim> getVictims() {
-        return victims;
+        return victims.stream().collect(Collectors.toList());
     }
 
     /**
@@ -78,9 +79,8 @@ public class Case {
         return Collections.unmodifiableSet(tags);
     }
 
-    // TODO: Consider using Collections.unmodifiableList(witnessList) here.
     public List<Witness> getWitnesses() {
-        return witnesses;
+        return witnesses.stream().collect(Collectors.toList());
     }
 
     /**

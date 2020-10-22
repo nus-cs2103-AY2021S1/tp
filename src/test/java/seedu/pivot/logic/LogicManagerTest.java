@@ -41,7 +41,7 @@ public class LogicManagerTest {
     private Logic logic;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws IOException {
         JsonPivotStorage pivotStorage =
                 new JsonPivotStorage(temporaryFolder.resolve("pivot.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
@@ -65,11 +65,11 @@ public class LogicManagerTest {
     public void execute_validCommand_success() throws Exception {
         //TODO: check that the state is empty first.
         String listCommand = ListCommand.COMMAND_WORD + " " + TYPE_CASE;
-        assertCommandSuccess(listCommand, ListCaseCommand.MESSAGE_SUCCESS, model);
+        assertCommandSuccess(listCommand, ListCaseCommand.MESSAGE_LIST_CASE_SUCCESS, model);
     }
 
     @Test
-    public void execute_storageThrowsIoException_throwsCommandException() {
+    public void execute_storageThrowsIoException_throwsCommandException() throws IOException {
         // Setup LogicManager with JsonPivotIoExceptionThrowingStub
         JsonPivotStorage pivotStorage =
                 new JsonPivotIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionPivot.json"));
