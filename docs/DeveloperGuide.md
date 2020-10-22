@@ -235,6 +235,21 @@ Then, a query is made for any `Recipe` in the `Item`, or has the `Item` as a pro
 
 Lastly, the deleted `Recipe` also cascade their `Recipe` deletion to any items that contain them. This concludes the deletion routine.
  
+After successful deletion occurs, the resulting `CommandResult` with a success message is returned 
+successfully to the  `LogicManager` and subsequently displayed on the GUI.
+
+#### Alternative Implementation and Reasoning against its implementation
+
+One problem with the current implementation is that there is a deep coupling between 
+the internal structure of the `Model`, that is namely the `FilteredItemList` and `FilteredRecipeList`,
+ with no direct methods manipulating these classes from the `ModelManager` facade design pattern itself.
+
+This causes some direct manipulation of non-neighbouring classes, which violates Law of Demeter. 
+However, the facade design pattern applied to `ModelManager` also prevents excessive bloat and coupling.
+
+Hence adding extra methods that manipulate the internal structure of `ModelManager` facade class reduces the
+size of the class significantly, improving readability and preventing `ModelManager` from entailing extra responsibility.
+
 The following sequence diagram details in depth how the delete item command works:
 
 Initial user input is shown in depth, but as the input is converted into the internal representation of the system,
