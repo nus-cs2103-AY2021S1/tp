@@ -51,7 +51,7 @@ ProductiveNUS is a **desktop application for managing and scheduling your academ
    
    * **`done`**`3` : Marks the 3rd assignment as done.
   
-   * **`undone`**`3` : Marks the 3rd assignment as undone.
+   * **`undone`**`3` : Marks the 3rd assignment as not done.
    
    * **`exit`** : Exits the application.
 
@@ -208,16 +208,16 @@ Format: `done INDEX`
 * The index refers to the index number shown in the displayed assignment list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-### Marking assignments as undone : `undone`
+### Marking assignments as not done : `undone`
 
-Marks the specified assignment as undone.
+Marks the specified assignment as not done.
 
 Format: `undone INDEX`
 
 **Tip:**
-Assignments are marked as undone by default.
+Assignments are marked as not done by default.
 
-* Marks the assignment at the specified `INDEX` as undone.
+* Marks the assignment at the specified `INDEX` as not done.
 * The index refers to the index number shown in the displayed assignment list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
