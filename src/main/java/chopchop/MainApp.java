@@ -184,6 +184,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting ChopChop " + MainApp.VERSION);
+        primaryStage.setResizable(false);
         ui.start(primaryStage);
     }
 
