@@ -79,6 +79,13 @@ The `UI` component,
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 * Listens for changes to `State` data so that the UI can be updated with the modified data.
 
+The example for observing states is illustrated with the Sequence Diagram below.
+The `MainWindow` observes the `UiStateManager` for any changes to its internal state.
+Upon invoking `open case 1`, the state changes and the `MainWindow` if notified by its `Observer`.
+It then retrieves the information it requires and displays on its display panel.
+
+![Structure of the Ui Component when updating state](images/UiStateSequenceDiagram.png)
+
 ### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
@@ -146,6 +153,10 @@ The `UiStateManager` component,
 * can reset the state.
 * can refresh its state.
 
+When the `StateManager` modifies its State, it will also call upon `UiStateManager` to update its state as well.
+This triggers any observation set on the respective `State` managers by the other components.
+One such example can be found in the `UI` component.
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
@@ -160,7 +171,7 @@ This section describes some noteworthy details on how certain features are imple
 The `open case` command allows the user to open an investigation case listed on the `Main Page` in the GUI.
 PIVOT then extracts and displays the key information about the `Case` in the `Case Page` Panel.
 
-#### Implementation
+#### Implementation: Open Case
 The `open case` mechanism is facilitated by `OpenCaseCommand`. It extends abstract class `OpenCommand` and contains a target `Index` of the `Case` to be opened.
 It implements `OpenCaseCommand#execute()` as required in the abstract parent class. The Sequence Diagram below shows how the `OpenCaseCommand` works.
 
@@ -179,6 +190,12 @@ Upon observing a change in state, the GUI will then extract the `Case` and updat
 <div markdown="span" class="alert alert-info">:information_source: **Note:** When the user gives an invalid `Index`, such as `open case -1`, `OpenCaseCommand` will raise and error and display the proper command format for the user.
 </div>
 
+#### Implementation: Return
+The `return` mechanism is facilitated by `ReturnCommand`.
+It allows the user to close the `Case Page` panel and return to the `Main Page`.
+Its implementation is similar to the `OpenCaseCommand` except it resets the state in `StateManager` instead of setting a state.
+
+![Interactions Inside the Logic Component for the `return` Command](images/ReturnSequenceDiagram.png)
 
 
 ### \[Proposed\] Undo/redo feature
