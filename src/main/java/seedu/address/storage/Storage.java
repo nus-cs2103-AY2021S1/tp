@@ -5,14 +5,16 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.model.ReadOnlyTrackr;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.module.Module;
+import seedu.address.model.person.Student;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends ModuleStorage, UserPrefsStorage {
+public interface Storage extends StudentStorage, ModuleStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -21,12 +23,21 @@ public interface Storage extends ModuleStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
+    Path getStudentFilePath();
+
+    @Override
+    Optional<ReadOnlyTrackr<Student>> readStudentList() throws DataConversionException, IOException;
+
+    @Override
+    void saveStudentList(ReadOnlyTrackr<Student> studentList) throws IOException;
+
+    @Override
     Path getModuleFilePath();
 
     @Override
-    Optional<ReadOnlyModuleList> readModuleList() throws DataConversionException, IOException;
+    Optional<ReadOnlyTrackr<Module>> readModuleList() throws DataConversionException, IOException;
 
     @Override
-    void saveModuleList(ReadOnlyModuleList moduleList) throws IOException;
+    void saveModuleList(ReadOnlyTrackr<Module> moduleList) throws IOException;
 
 }

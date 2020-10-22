@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Module;
+import seedu.address.model.module.Module;
 
 public class ModuleCard extends UiPart<Region> {
     private static final String FXML = "ModuleListCard.fxml";
@@ -39,7 +39,7 @@ public class ModuleCard extends UiPart<Region> {
         super(FXML);
         this.module = module;
         id.setText(displayedIndex + ". ");
-        moduleId.setText(module.getModuleId());
+        moduleId.setText(module.getModuleId().toString());
         totalStudents.setText("Total Students: " + module.getTotalStudents());
         totalGroups.setText("Total Groups: " + module.getTotalGroups());
         //        person.getTags().stream()

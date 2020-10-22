@@ -1,67 +1,69 @@
-package seedu.address.model.person;
+package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import seedu.address.model.Showable;
+import seedu.address.model.Task;
 import seedu.address.model.TaskList;
-import seedu.address.model.TutorialGroup;
+import seedu.address.model.tutorialgroup.TutorialGroup;
 
-/**
- * Represents a Student's Module in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidModuleId(String)}
- */
-public class Module {
-    public static final String MESSAGE_CONSTRAINTS = "Modules can take any values, and it should not be blank";
 
-    /*
-     * The first character of the module must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
+public class Module implements Showable<Module> {
 
-    // TODO make a module ID class?
-    public static final String VALIDATION_REGEX = "[^\\s].*";
-
-    private final String moduleId;
+    private final ModuleId moduleId;
     private List<TutorialGroup> tutorialGroups;
     private TaskList taskList;
-    private int totalStudents = 0;
-    private int totalGroups = 0;
 
     /**
      * Constructs an {@code Module}.
      *
      * @param moduleId
      */
-    public Module(String moduleId) {
+    public Module(ModuleId moduleId) {
         requireNonNull(moduleId);
-        checkArgument(isValidModuleId(moduleId), MESSAGE_CONSTRAINTS);
         this.moduleId = moduleId;
         this.tutorialGroups = new ArrayList<>();
         this.taskList = new TaskList();
     }
 
     /**
-     * Returns true if a given string is a valid module.
-     * @param test input moduleId to test
-     * @return boolean that indicates if string is valid
+     * Constructs an {@code Module}.
+     * @param moduleId
+     * @param taskList
+     * @param tutorialGroups
      */
-    public static boolean isValidModuleId(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public Module(ModuleId moduleId, List<TutorialGroup> tutorialGroups, List<Task> taskList) {
+        requireNonNull(moduleId);
+        requireNonNull(tutorialGroups);
+        this.moduleId = moduleId;
+        this.tutorialGroups = tutorialGroups;
+        this.taskList = new TaskList(taskList);
     }
 
-    public String getModuleId() {
+
+    public ModuleId getModuleId() {
         return this.moduleId;
     }
 
     public int getTotalStudents() {
-        return this.totalStudents;
+        return this.tutorialGroups.stream().map(TutorialGroup::getStudentList)
+                .map(List::size).reduce(Integer::sum).orElse(0);
     }
 
     public int getTotalGroups() {
-        return this.totalGroups;
+        return this.tutorialGroups.size();
+    }
+
+    public List<TutorialGroup> getTutorialGroups() {
+        return Collections.unmodifiableList(tutorialGroups);
+    }
+
+    public List<Task> getTaskList() {
+        return Collections.unmodifiableList(taskList.getTaskList());
     }
 
     public void addTutorialGroup(TutorialGroup tutorialGroup) {
@@ -91,7 +93,7 @@ public class Module {
      * Returns true if both modules of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two modules.
      */
-    public boolean isSameModule(Module otherModule) {
+    public boolean isSame(Module otherModule) {
         if (otherModule == this) {
             return true;
         }
@@ -102,6 +104,6 @@ public class Module {
 
     @Override
     public String toString() {
-        return getModuleId();
+        return getModuleId().toString();
     }
 }
