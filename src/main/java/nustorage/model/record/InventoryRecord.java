@@ -14,6 +14,7 @@ public class InventoryRecord {
     private final LocalDateTime dateTime;
     private int quantity;
     private final String itemName;
+    private int financeID;
 
     /**
      * Constructs an InventoryRecord.
@@ -23,6 +24,7 @@ public class InventoryRecord {
         this.itemName = itemName;
         this.quantity = 0;
         this.dateTime = LocalDateTime.now();
+        this.financeID = -1;
     }
 
     /**
@@ -34,6 +36,7 @@ public class InventoryRecord {
         this.itemName = itemName;
         this.quantity = quantity;
         this.dateTime = LocalDateTime.now();
+        this.financeID = -1;
     }
 
     /**
@@ -46,8 +49,12 @@ public class InventoryRecord {
         this.itemName = itemName;
         this.quantity = quantity;
         this.dateTime = dateTime;
+        this.financeID = -1;
     }
 
+    public void setFinanceRecord(FinanceRecord financeRecord) {
+        this.financeID = financeRecord.getID();
+    }
 
     /**
      * Increase or decrease the number of this item in stock.
@@ -82,6 +89,10 @@ public class InventoryRecord {
 
     public LocalTime getTime() {
         return dateTime.toLocalTime();
+    }
+
+    public int getFinanceID() {
+        return financeID;
     }
 
     @Override
