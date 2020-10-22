@@ -54,7 +54,7 @@ public class Time {
     @Override
     public String toString() {
         if (isDefault) {
-            assert !value.equals(DEFAULT_TIME) : "default time using real time value.";
+            assert value.equals(DEFAULT_TIME) : "default time using real time value.";
             return "";
         }
         return value.format(FORMATTER);

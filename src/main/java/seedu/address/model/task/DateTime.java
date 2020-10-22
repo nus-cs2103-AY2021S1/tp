@@ -79,7 +79,7 @@ public class DateTime {
     @Override
     public String toString() {
         if (isDefault) {
-            assert !value.equals(DEFAULT_DATETIME) : "default datetime using real date time value.";
+            assert value.equals(DEFAULT_DATETIME) : "default datetime using real date time value.";
             return "";
         }
         return value.format(FORMATTER);

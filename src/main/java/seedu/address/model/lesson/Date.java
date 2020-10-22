@@ -54,7 +54,7 @@ public class Date {
     @Override
     public String toString() {
         if (isDefault) {
-            assert !value.equals(DEFAULT_DATE) : "default date using real date value.";
+            assert value.equals(DEFAULT_DATE) : "default date using real date value.";
             return "";
         }
         return value.format(FORMATTER);
