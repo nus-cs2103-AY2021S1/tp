@@ -122,6 +122,11 @@ public class AddEventCommandTest {
         }
 
         @Override
+        public void doneTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setTaskManager(ReadOnlyTaskManager newData) {
             throw new AssertionError("This method should not be called.");
         }
