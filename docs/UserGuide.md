@@ -109,15 +109,12 @@ Examples:
 
 ### Finding a tag : `find`
 
-Finds a tag by its tag name and/or label.
+Finds a tag by its keyword (can be tag name and/or label).
 
-Format: `find t/TAG_NAME [l/LABEL]` or
-        `find [t/TAG_NAME] l/LABEL`
-
+Format: `find KEYWORD`
+        
 Examples:
-* `find t/notes`
-* `find l/important`
-* `find t/notes l/important`
+* `find notes`
 
 ### Changing working directory : `cd`
 
@@ -171,7 +168,7 @@ Action | Format, Examples
 **Show** | `show t/TAG_NAME`
 **Untag** | `untag t/TAG_NAME`
 **Retag** | `retag o/OLD_TAG_NAME t/NEW_TAG_NAME` <br> e.g., `retag o/mytag t/newtag`
-**Find** | `find t/TAG_NAME [l/LABEL]` or `find [t/TAG_NAME] l/LABEL` <br> e.g., `find t/newtag l/important` or `find t/newtag` or `find l/important`
+**Find** | `find KEYWORD` or `find [t/TAG_NAME] l/LABEL` <br> e.g., `find newtag`
 **Changing directory**| `cd f/FILE_PATH`
 **Open** | `open t/TAG_NAME`
 **List** | `ls`
