@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ArchiveCommandParser" as ArchiveCommandParser LOGIC_COLOR
+participant "a:ArchiveCommand" as ArchiveCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "p:Person" as Person MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("archive 2")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("archive 2")
+activate AddressBookParser
+
+create ArchiveCommandParser
+AddressBookParser -> ArchiveCommandParser
+activate ArchiveCommandParser
+
+ArchiveCommandParser --> AddressBookParser
+deactivate ArchiveCommandParser
+
+AddressBookParser -> ArchiveCommandParser : parse("2")
+activate ArchiveCommandParser
+
+create ArchiveCommand
+ArchiveCommandParser -> ArchiveCommand
+activate ArchiveCommand
+
+ArchiveCommand --> ArchiveCommandParser : a
+deactivate ArchiveCommand
+
+ArchiveCommandParser --> AddressBookParser : a
+deactivate ArchiveCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ArchiveCommandParser -[hidden]-> AddressBookParser
+destroy ArchiveCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> ArchiveCommand : execute()
+activate ArchiveCommand
+
+create Person
+ArchiveCommand -> Person
+activate Person
+
+Person --> ArchiveCommand : p
+deactivate Person
+
+ArchiveCommand -> Model : setPerson(p)
+activate Model
+
+Model --> ArchiveCommand
+deactivate Model
+
+ArchiveCommand -> Model : updateFilteredPersonList(PREDICATE_SHOW_ALL_ACTIVE_PERSONS)
+activate Model
+
+Model --> ArchiveCommand
+deactivate Model
+
+ArchiveCommand --> LogicManager : result
+deactivate ArchiveCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
