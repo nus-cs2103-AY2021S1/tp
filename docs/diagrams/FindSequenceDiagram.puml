@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":ProducetiveNusParser" as ProducetiveNusParser LOGIC_COLOR
+participant ":ProductiveNusParser" as ProductiveNusParser LOGIC_COLOR
 participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
 participant "f:FindCommand" as FindCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,17 +16,17 @@ end box
 [-> LogicManager : execute("find n/Assignment Homework")
 activate LogicManager
 
-LogicManager -> ProducetiveNusParser : parseCommand("find n/Assignment Homework")
-activate ProducetiveNusParser
+LogicManager -> ProductiveNusParser : parseCommand("find n/Assignment Homework")
+activate ProductiveNusParser
 
 create FindCommandParser
-ProducetiveNusParser -> FindCommandParser
+ProductiveNusParser -> FindCommandParser
 activate FindCommandParser
 
-FindCommandParser --> ProducetiveNusParser
+FindCommandParser --> ProductiveNusParser
 deactivate FindCommandParser
 
-ProducetiveNusParser -> FindCommandParser : parse("n/Assignment Homework")
+ProductiveNusParser -> FindCommandParser : parse("n/Assignment Homework")
 activate FindCommandParser
 
 create FindCommand
@@ -36,14 +36,14 @@ activate FindCommand
 FindCommand --> FindCommandParser : f
 deactivate FindCommand
 
-FindCommandParser --> ProducetiveNusParser : f
+FindCommandParser --> ProductiveNusParser : f
 deactivate FindCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-FindCommandParser -[hidden]-> ProducetiveNusParser
-destroy DeleteCommandParser
+FindCommandParser -[hidden]-> ProductiveNusParser
+destroy FindCommandParser
 
-ProducetiveNusParser --> LogicManager : f
-deactivate ProducetiveNusParser
+ProductiveNusParser --> LogicManager : f
+deactivate ProductiveNusParser
 
 LogicManager -> FindCommand : execute()
 activate FindCommand
@@ -54,15 +54,15 @@ activate Model
 Model --> FindCommand
 deactivate Model
 
+FindCommand --> Model : getFilteredAssignmentList()
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
 create CommandResult
 FindCommand -> CommandResult
 activate CommandResult
-
-CommandResult --> Model : getFilteredAssignmentList()
-activate Model
-
-Model --> CommandResult
-deactivate Model
 
 CommandResult --> FindCommand
 deactivate CommandResult

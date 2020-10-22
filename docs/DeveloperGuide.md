@@ -154,9 +154,7 @@ or due time of 1200 (regardless of date).
 * `find priority/HIGH` — Finds assignments with high priority.
 
 
-
-
-The following activity diagram summarizes what happens when a user executes find command:
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 
 
