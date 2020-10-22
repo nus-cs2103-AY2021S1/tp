@@ -129,6 +129,64 @@ Classes used by multiple components are in the `seedu.taskmaster.commons` packag
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Additional Features to Be Implemented**
+
+### SessionList
+
+Author: **Joshua Chew** 
+* Implementing the classes that encapsulate a list of tutorial sessions.
+
+![Structure of the SessionList Component](images/SessionListClassDiagram.png)
+
+The `SessionList`,
+
+* is stored by the Taskmaster.
+* encapsulates a list of zero, one or more Session objects.
+* can provide a list of the names of all Session objects that it contains (to pass to the UI).
+
+The `Session`,
+
+* stores a SessionName.
+* stores a StudentRecordList.
+* can mark the attendance of a particular student in the StudentRecordList.
+* can mark the attendance of all students in the StudentRecordList with a single Command.
+
+The current running Session is also stored as an attribute in the Taskmaster.
+
+Given below is the planned Sequence Diagram for interactions within the `Session` component for the `Taskmaster#markStudentAttendance(nusnetId, attendanceType)` API call.
+
+![Interactions Inside the Session class for the `markStudentAttendance'` method call](images/MarkStudentAttendanceSequenceDiagram.png)
+
+<br>
+
+### Storage
+
+Author: **Jaya Rengam** 
+* Change/Add classes in the Storage package to store data related to Sessions.
+
+![Structure of the Storage Component](images/NewStorageClassDiagram.png)
+
+A new method `JsonTaskmasterStorage#saveSessionList` will store the SessionList in the running Taskmaster to a separate .json file.
+* The SessionList will be represented by a `JsonSerializableSessionList`, which contains a `List<JsonSerializableSession>`
+* Each `JsonSerializableSession` will contain a `List<JsonAdaptedStudentRecord>`
+
+**To-Do:**
+* Update `TaskmasterStorage` interface (add `saveSessionList(ReadOnlyTaskmaster taskmaster)` method)
+* Implement `saveSessionList` method in `JsonTaskmasterStorage`
+* Create the new `JsonSerializable..`/`JsonAdapted..` classes
+<br>
+
+**_Notes from developer:_**
+* This implementation of the feature uses Jackson libraries/formatting that is used in existing AB3 Storage classes
+<br>
+
+Alternative implementations:
+* Store the SessionList as a JSON field in the existing Taskmaster file
+    * Doing it this way would mean that the file would be repeatedly overwritten and any format errors will invalidate the whole file, including the StudentList.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
