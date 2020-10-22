@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefWidth="249.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
    <TitledPane fx:id="currentPathDisplay" text="\$path" VBox.vgrow="ALWAYS">
       <content>
-        <ListView fx:id="fileListView" />
+        <ListView fx:id="fileListView" prefHeight="10000.0" />
       </content>
+      <VBox.margin>
+         <Insets />
+      </VBox.margin>
    </TitledPane>
 </VBox>
