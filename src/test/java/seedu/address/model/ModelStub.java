@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -112,7 +113,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void sortMeeting() {
+    public ObservableList<CalendarMeeting> getSortedMeetingList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateSortedMeetingList(Comparator<CalendarMeeting> comparator) {
         throw new AssertionError("This method should not be called.");
     }
 
