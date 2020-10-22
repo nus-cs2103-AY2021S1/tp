@@ -9,12 +9,16 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import jimmy.mcgymmy.commons.core.Messages;
 import jimmy.mcgymmy.logic.parser.CommandParserTestUtil;
 import jimmy.mcgymmy.logic.predicate.FoodContainsKeywordsPredicate;
+import jimmy.mcgymmy.logic.predicate.NameContainsKeywordsPredicate;
+import jimmy.mcgymmy.logic.predicate.TagContainsKeywordsPredicate;
 import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.ModelManager;
 import jimmy.mcgymmy.model.UserPrefs;
+import jimmy.mcgymmy.model.food.Food;
 import jimmy.mcgymmy.testutil.TypicalFoods;
 
 /**
@@ -35,6 +39,7 @@ public class FindCommandTest {
                 new CommandParserTestUtil.OptionalParameterStub<>("t"),
                 new CommandParserTestUtil.OptionalParameterStub<>("d"));
         expectedModel.updateFilteredFoodList(predicate);
+        ObservableList<Food> curr = expectedModel.getFilteredFoodList();
         CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredFoodList());
     }
@@ -60,5 +65,19 @@ public class FindCommandTest {
      */
     private FoodContainsKeywordsPredicate preparePredicate(String userInput) {
         return new FoodContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code TagContainsKeywordsPredicate}.
+     */
+    private TagContainsKeywordsPredicate prepareTagPredicate(String userInput) {
+        return new TagContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     */
+    private NameContainsKeywordsPredicate prepareNamePredicate(String userInput) {
+        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
