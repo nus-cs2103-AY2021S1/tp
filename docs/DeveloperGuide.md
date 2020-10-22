@@ -127,8 +127,8 @@ This section describes some noteworthy details on how certain features are imple
 
 ### \[Implemented\] Find by specific fields feature
 
-The user can find assignments by name, module code, due date or time or priority level of assignment.
- Multiple keywords are allowed.
+The user can find assignments by name, module code, due date/time or priority level. 
+Multiple keywords are allowed of the same type of field. (Fields are name, module code, due date/time and priority)
 
 #### Reasons for Implementation
 Finding assignments by only one available field, like name of assignment, restricts the user's process of finding assignments
