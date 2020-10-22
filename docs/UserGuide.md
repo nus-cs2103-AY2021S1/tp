@@ -214,7 +214,6 @@ Example: `addtask n/Do User Guide tp/30 done/done td/29-02-2020 00:00:00` create
 Assigns a task to a teammate within a project
 
 Format: `assign TASKINDEX TEAMMATE_GIT_USERNAME  ` (teammate git username is the unique name of each teammate)
--  
 
 Example: `assign 3 Lucas98` assigns task number 3 in the list to user *Lucas98*.
 
