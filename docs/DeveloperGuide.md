@@ -6,6 +6,11 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## **Introduction**
+
+CAP5Buddy helps NUS SoC students to keep track of their module details efficiently. It helps them centralize key 
+module details and follows their study progress through a Command Line Interface (CLI) that allows efficient management 
+of module details. CAP5Buddy also functions as a scheduling system, todo list and contact list.
 
 ## **Setting up, getting started**
 
