@@ -142,7 +142,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Add feature
 #### Overview
 
-The Add feature in Trackr enables users to easily add models to the app. Users will be able to keep of models they are
+The Add feature in Trackr enables users to easily add models to the app. Users will be able to keep track of models they are
 in charge of.
 
 There are three types of models:
@@ -155,8 +155,9 @@ Trackr contains a `UniqueList<Module>`, which in turn, contains the modules taug
 for `Module`, `TutorialGroup`, and `Student` is split into `AddModuleCommand`, `AddTutorialGroupCommand`, and `AddStudentCommand`.
 Each command class extends `Command`. 
 
-Given below is an example of the interaction between the Model and Add commands of tracker.
+Given below is an example of the interaction between the Model and the `AddModuleCommand` of Trackr.
 
+![AddModSequenceDiagram](images/AddModSequenceDiagram.png)
 
 #### Design Considerations
 **Aspect: List to contain the models**
@@ -341,7 +342,7 @@ _{More to be added}_
 
 (For all use cases below, the **System** is the `Trackr` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a person**
+**Use case: UC01 - Add a person**
 
 **MSS**
 
@@ -358,7 +359,7 @@ Use case ends.
     -   2a1. Trackr shows an error message
     Use Case resumes at 2
 
-**Use case: Delete a person**
+**Use case: UC02 - Delete a person**
 
 **MSS**
 
@@ -381,7 +382,7 @@ Use case ends.
 
         Use case resumes at step 2.
 
-**Use case: Loading a save file**
+**Use case: UC03 - Loading a save file**
 
 **MSS**
 
@@ -407,7 +408,7 @@ Use case ends.
 
         Use case resumes at step 4.
 
-**Use case: Search for a person**
+**Use case: UC04 - Search for a person**
 
 **MSS**
 
@@ -430,7 +431,7 @@ Use case ends.
 
     Use case resumes at 1.
 
-**Use case: Add a checklist of task**
+**Use case: UC05 - Add a checklist of task**
 
 **MSS**
 
@@ -447,7 +448,7 @@ Use case ends.
     -   2a1. Trackr shows an error message
     Use Case resumes at 2
 
-**Use case: Mark a task in the list as done**
+**Use case: UC06 - Mark a task in the list as done**
 
 **MSS**
 
