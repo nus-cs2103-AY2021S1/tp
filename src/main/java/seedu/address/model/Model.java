@@ -197,6 +197,11 @@ public interface Model {
      */
     void clearOrder();
 
+    /**
+     * Clears the orderHistory.
+     */
+    void resetOrder();
+
     void setVendorIndex(int vendorIndex);
 
     /**

@@ -47,7 +47,7 @@ public class VendorCommand extends Command {
         model.setVendorIndex(index);
 
         if (oldIndex != index) {
-            model.clearOrder();
+            model.resetOrder();
         }
 
         return new CommandResult(String.format(MESSAGE_SELECT_VENDOR_SUCCESS, vendorIndex.getOneBased()),
