@@ -125,6 +125,41 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Implemented\] Import timetable feature
+The user can import information about their lessons into ProductiveNUS using their NUSMods timetable URL.
+
+#### Reasons for implementation:
+Users may find it inconvenient to constantly refer to their NUSMods timetable whenever they want to check if they are
+available on a specific date and time. By giving users the option to add their lesson information into ProductiveNUS,
+it will help increase the user's convenience as all their academic related schedule can be found in one place.
+
+ProdutiveNUS can also better schedule the user's work with their timetable information available, avoiding any clashes
+in schedule.
+
+#### Current implementation:
+- The import command is a typical command used in ProductiveNUS. It extends `Command` and overrides the method `execute`
+in `CommandResult`. `ImportCommandParser` implements `Parser<ImportCommand>` and it parses the user's input to return an
+`ImportCommand` object. The constructor of `ImportCommand` takes in the prefix url/ and the user's NUSMods timetable
+url.
+
+- A call to `TimetableRetriever` will be made. `TimetableRetriever` takes the user's timetable data which was parsed by
+`ImportCommandParser` and makes a HTTP GET request to NUSMods API. NUSMods sends `TimetableRetriever` the relevant JSON
+data. The data is parsed and returns as a list of `Lessons`.
+
+The following sequence diagram shows the sequence when LogicManager executes `import` command.
+![Interactions Inside the Logic Component for the `import url/URL` Command](images/ImportSequenceDiagram.png)
+
+1. The `execute` method of `LogicManager` is called when a user keys in an input into the application and `execute`
+takes in the input.
+2. The `parseCommand` method of `ProductiveNusParser` parses the user input and returns an initialized
+`ImportCommandParser` object and further calls the `parse` method of this object to identify the URL in the user input.
+3. It calls the `TimetableUrlParser` with the URL and it returns a `TimetableData` object.
+4. `ImportCommandParser` returns an `ImportCommand` object.
+5. There is return call to `LogicManager` which then calls the overridden `execute` method of `ImportCommand`.
+6. The `execute` method of `ImportCommand` will call the `retrieveLessons` method from `TimetableRetriever`, which
+ returns a list of lessons to be added.
+7. The `execute` method returns a `CommandResult` object.
+
 ### \[Implemented\] Find by specific fields feature
 
 The user can find assignments by name, module code, due date/time or priority level. 

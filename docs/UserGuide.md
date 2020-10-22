@@ -184,9 +184,9 @@ Format: `prioritize INDEX priority/PRIORITY`
 
 ### Removing priority for assignments : `unprioritize`
 
-Sets a priority tag for the specified assignment.
+Removes a priority tag for the specified assignment.
 
-Format: `prioritze INDEX`
+Format: `unprioritze INDEX`
 
 * Removes the priority of the assignment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed assignment list.
