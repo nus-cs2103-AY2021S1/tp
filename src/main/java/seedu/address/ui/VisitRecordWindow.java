@@ -12,7 +12,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-
 import javafx.stage.WindowEvent;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -141,7 +140,6 @@ public class VisitRecordWindow extends UiPart<Stage> {
         this.msg = commandResult.getFeedbackToUser();
         this.hide();
         this.msg = "";
-
     }
 
 

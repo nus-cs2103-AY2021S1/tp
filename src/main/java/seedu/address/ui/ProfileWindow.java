@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -23,8 +22,6 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.ProfileUtil;
 import seedu.address.logic.Logic;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.ProfilePicture;
 import seedu.address.model.visit.Visit;
@@ -58,7 +55,6 @@ public class ProfileWindow extends UiPart<Stage> {
 
     @FXML
     private ListView<Visit> profileVisitList;
-
 
     @FXML
     private TextArea icNumberField;
@@ -94,16 +90,16 @@ public class ProfileWindow extends UiPart<Stage> {
         // Add handlers to ProfileWindow for user actions.
         // (esc, q - Exit), (p - Generate .txt for user Profile)
         getRoot().addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
-                    if (KeyCode.ESCAPE == event.getCode()) {
-                        logger.info("User pressed 'esc'. Closing Profile Panel..");
-                        getRoot().hide();
-                        logger.info("Profile Panel Closed.");
-                    } else if (KeyCode.Q == event.getCode()) {
-                        logger.info("User pressed 'q'. Closing Profile Panel.");
-                        getRoot().hide();
-                        logger.info("Profile Panel Closed.");
-                    }
-                }
+            if (KeyCode.ESCAPE == event.getCode()) {
+                logger.info("User pressed 'esc'. Closing Profile Panel..");
+                getRoot().hide();
+                logger.info("Profile Panel Closed.");
+            } else if (KeyCode.Q == event.getCode()) {
+                logger.info("User pressed 'q'. Closing Profile Panel.");
+                getRoot().hide();
+                logger.info("Profile Panel Closed.");
+            }
+        }
         );
     }
 
@@ -124,7 +120,7 @@ public class ProfileWindow extends UiPart<Stage> {
         addressField.setText(ProfileUtil.stringifyAddress(person.getAddress()));
         bloodTypeField.setText(ProfileUtil.stringifyBloodType(person.getBloodType()));
         sexField.setText(ProfileUtil.stringifySex(person.getSex()));
-        icNumberField.setText(ProfileUtil.stringifyICNumber(person.getIcNumber()));
+        icNumberField.setText(ProfileUtil.stringifyIcNumber(person.getIcNumber()));
 
         ProfilePicture thisProfilePic = person.getProfilePicture();
         File profilePic = new File(thisProfilePic.toString());

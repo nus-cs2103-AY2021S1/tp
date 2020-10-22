@@ -101,19 +101,17 @@ public class Visit implements Comparable<Visit> {
 
     @Override
     public String toString() {
-        return "N/A"; // placeholder String before parser for VisitCommand is implemented
-        //             final StringBuilder builder = new StringBuilder();
-        //             builder.append("Date: ")
-        //                    .append(getVisitDate())
-        //                    .append(" Name: ")
-        //                    .append(getPatientName())
-        //                    .append(" Diagnosis: ")
-        //                    .append(getDiagnosis())
-        //                    .append(" Prescription: ")
-        //                    .append(getPrescription())
-        //                    .append(" Comment: ")
-        //                    .append(getComment()).append("\n");
-        //             return builder.toString();
+        final StringBuilder builder = new StringBuilder();
+        builder.append("-----------------\n")
+            .append("Date: ")
+            .append(getVisitDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
+            .append("\nDiagnosis: ")
+            .append(getDiagnosis())
+            .append("\nPrescription: ")
+            .append(getPrescription())
+            .append("\nComment: ")
+            .append(getComment()).append("\n\n");
+        return builder.toString();
     }
 
     /**

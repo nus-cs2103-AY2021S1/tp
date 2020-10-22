@@ -66,6 +66,22 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public CommandResult execute(Command cmd) throws CommandException {
+        logger.info("----------------[USER COMMAND][" + cmd.toString() + "]");
+
+        CommandResult commandResult;
+        commandResult = cmd.execute(model);
+
+        try {
+            storage.saveCliniCal(model.getCliniCal());
+        } catch (IOException ioe) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        }
+
+        return commandResult;
+    }
+
+    @Override
     public CommandResult runImageTransfer(Patient patient, File profilePic) throws CommandException,
                                                                                    IllegalValueException {
         requireNonNull(patient);
@@ -92,22 +108,7 @@ public class LogicManager implements Logic {
         return commandResult;
     }
 
-    @Override
-    public CommandResult execute(Command cmd) throws CommandException {
-        logger.info("----------------[USER COMMAND][" + cmd.toString() + "]");
 
-        CommandResult commandResult;
-        Command command = cmd;
-        commandResult = command.execute(model);
-
-        try {
-            storage.saveCliniCal(model.getCliniCal());
-        } catch (IOException ioe) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
-        }
-
-        return commandResult;
-    }
 
     @Override
     public ReadOnlyCliniCal getCliniCal() {

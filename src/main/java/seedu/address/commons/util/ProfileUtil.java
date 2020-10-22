@@ -7,10 +7,17 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Set;
 
-import seedu.address.model.patient.*;
-import seedu.address.model.visit.VisitHistory;
-import seedu.address.model.visit.Visit;
 import seedu.address.model.allergy.Allergy;
+import seedu.address.model.patient.Address;
+import seedu.address.model.patient.BloodType;
+import seedu.address.model.patient.Email;
+import seedu.address.model.patient.IcNumber;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.Sex;
+import seedu.address.model.visit.Visit;
+import seedu.address.model.visit.VisitHistory;
+
 
 /**
  * Helper functions for handling various {@code Person} data for displaying in {@code ProfileWindow}.
@@ -112,7 +119,7 @@ public class ProfileUtil {
      * @param icNumber {@code IcNumber} instance to be shown as a {@code String}. Cannot be null
      * @return a {@code String} representing the {@code IcNumber} instance
      */
-    public static String stringifyICNumber(IcNumber icNumber) {
+    public static String stringifyIcNumber(IcNumber icNumber) {
         requireNonNull(icNumber, "Address cannot be null.");
         return icNumber.value;
     }
