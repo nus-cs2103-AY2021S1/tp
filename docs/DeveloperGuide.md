@@ -42,62 +42,41 @@ Coming soon.
 
 #### Proposed Implementation
 
-The proposed priority feature would involve the UI javafx feature as well as a newly implemented field for the Clientlist. 
+The proposed priority feature would involve the UI javafx feature as well as a newly implemented field for the Clientlist.This field for the Clientlist would affect the UI of the ClientList. 
 
-Additionally, the priority feature would come with a command that sorts the entire list based on the priorities set for the Clientlist.
+There would be 4 settings for the priority feature: High, Medium, Low, Undefined. If a user never include any of the settings, it would default to undefined. The priority feature would change the entries in the Clientlist, changing the colors of the UI for each entry based on the priority assigned for the Client. 
 
-Note : The proposed sort feature will ONLY involve the UI in filtering BASED on the priority of the individuals rather than other fields. This means that sorting or filtering a list would NOT affect deleting or editing commands on users that are currently not shown in the filtered or sorted list. 
+![Proposed UI](images/UIPriority.png)
 
-It would implement the following commands:
-<to be filled in>
-<filter /p important first or important last>
+Firstly, the field would be added to the Person class. This would be similar to the method described in the tutorial:  https://nus-cs2103-ay2021s1.github.io/tp/tutorials/AddRemark.html, where instead of adding a command, we would be editing the add command to include an optional priority field. 
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Given below is an example usage scenario and how the priority mechanism behaves when a user is added. Note that this addition of users via addcommand is the same command used when the user launches the application for the first time. 
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Step 1. The user adds a command using addcommand and specifies the user. The addcommandparser will check if there was an empty string input for the priority field, if there is, we will set it as Undefined. If the user puts any other input other than the predefined inputs(H for high, M for medium, L for low), the user will get an error message. 
 
-Step 1. The user launches the application for the first time. As the application is pre-loaded with data, it would look like this: <Insert png>
-    
-Step 2: The user decides to add a client into the clientlist. The user would set the priority of the user as 1 for example. 
-Based on what the user has added, we would append/attach/add a box of a predetermined type and shape into the personcard fxml, changing the design of it. If we are unable to append any objects to the personcard fxml, we can redesign different personcard fxml files and add them based on the tag that the user has created.
+Step 2: The addcommand parser will pass the command to the addcommand in the logic package to check if the user is a duplicated user or not.  If the person is a valid person, the person would be passed on to the UI.
 
-Step 3. The user decides to filter the application based on a certain priority. In this case, we will assume that the priority would be 4 (High)
+Step 3: In the UI, as it is an addCommand, the MainWindow will update the PersonListPanel, which will call the updateItem based on the Person and H. This will go to the PersonListViewCell, and would attempt to create a person class. 
 
-Firstly, there would need to be a comparator to be able to build it. 
+Step 4: To identify between the different levels of priority, I propose to use a PriorityParser class which would parse the PersonCard to identify the type of person it is and would adjust the GUI based on it. The results would then be used to create a new PersonCard class and with a custom GUI based on the priority of the individual.
 
-Implementation idea 1: Changing the UI to use a FilteredList object only. 
-To implement this, we would create a FilteredList fxml object and set the items inside into the ListView object that is currently used for the PersonListPanel class. 
-https://stackoverflow.com/questions/30915007/javafx-filteredlist-filtering-based-on-property-of-items-in-the-list
-
-However, the problem with this is that the FilteredList currently looks different compared to what the ListView looks like, so this might break/ not work. It is still worth a try since it is relatively easy to implement. 
-
-But the problem after this would be trying to get the listener to work, I.E: telling when one should start to filter the listfilter object or whatnot. Therefore, an extra class would have to be created to handle that.
-
-Implementation idea 2: Changing the way objects are added into the ListView object. 
-
-The idea behind this would be to restart the entire list, and only ADD in objects to the ListView UI based on what is being filtered. I prefer this idea but I have not really implemented it. This is because we would have to create a filter class WITHIN the UI, which deals with the filtering of the clients based on the different steps being done. This idea can be supported because since the filterer is based on the UI only, and would not affect any changes inside the clientlist, and would be valid as part of the UI implementation. 
-
-We have decided to change the colors of the boxes based on the 
-We have decided to prioritise the implementation of the filter function based on the UI only and not affect other classes since the filtering should not "delete" or modify any other values inside the listview.  
+Step 5: This card would be returned back to the PersonListViewCell, updated on the PersonListPanel and finally shown in the Mainwindow. 
 
 The following sequence diagram shows how the Priority operation works:
 
-<INSERT THE WRAP TEXT INSIDE>
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+![Proposed Sequence Diagram](images/ImplementationSuggestionSequence.png)
 
 #### Design consideration:
 
-##### Aspect: How Priority filter works.
+##### Aspect: How Priority feature works.
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+* **Alternative 1 (current choice):** Create a parser to settle the image inside the UI class. 
+  * Pros: Decreased coupling, easier to find bugs.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
+* **Alternative 2:** Do aside the parser, just put the switch cases inside the PersonListViewCell
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+  * Pros: Will use less memory (No need to show the parser field).
+  * Cons: Increased coupling
 
 _{more aspects and alternatives to be added}_
 
