@@ -58,7 +58,7 @@ public class DeleteItemCommand extends Command {
         model.deleteItem(itemToDelete);
         List<Recipe> recipeList = new ArrayList<>(model.getFilteredRecipeList());
 
-        // remove recipes from consideration that are not soft deleted,
+        // remove recipes from consideration that are not deleted,
         // nor contain deleted item as product or ingredient
         recipeList.removeIf(y -> !y.getProductName().equals(productName)
                 && y.getIngredients()
@@ -66,6 +66,14 @@ public class DeleteItemCommand extends Command {
                 .stream()
                 .noneMatch(z -> z.isItem(itemToDelete.getId())));
 
+        // Cascade delete for the recipe in each item.
+        for (Recipe r : recipeList) {
+            for (Item i : model.getFilteredItemList()) {
+                if (i.getRecipeIds().contains(r.getId())) {
+                    i.removeRecipeId(r.getId());
+                }
+            }
+        }
         // delete recipes connected to this identified item as a product, or an ingredient
         recipeList.forEach(model::deleteRecipe);
         return new CommandResult(String.format(MESSAGE_SUCCESS, itemToDelete));
