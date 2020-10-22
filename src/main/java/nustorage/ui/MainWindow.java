@@ -250,7 +250,7 @@ public class MainWindow extends UiPart<Stage> {
         userInput.trim();
         String[] userInputArr = userInput.split("_");
         if (userInputArr.length > 0) {
-            return userInput.split("_")[0].equals("list");
+            return userInput.split("_")[0].equals("goto");
         }
         return false;
     }
