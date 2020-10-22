@@ -9,7 +9,7 @@ Interface ReadOnlyProductivenus <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
 Class Productivenus
-Class ReadOnlyAddressBook
+Class ReadOnlyProductivenus
 Class Model
 Class ModelManager
 Class UserPrefs
@@ -35,15 +35,15 @@ Package Task {
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-Productivenus .up.|> ReadOnlyAddressBook
+Productivenus .up.|> ReadOnlyProductivenus
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" Productivenus
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniqueAssignmentList
+Productivenus *--> "1" UniqueAssignmentList
 UniqueAssignmentList o--> "*" Assignment
 Assignment *--> "1"Name
 Assignment *--> "1"ModuleCode
