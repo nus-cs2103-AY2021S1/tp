@@ -10,11 +10,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.assignment.DeadlineContainsKeywordsPredicate;
-import seedu.address.model.assignment.ModuleCode;
 import seedu.address.model.assignment.ModuleCodeContainsKeywordsPredicate;
 import seedu.address.model.assignment.NameContainsKeywordsPredicate;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.PriorityContainsKeywordsPredicate;
+import seedu.address.model.task.ModuleCode;
+
 
 
 public class FindCommandParserTest {
