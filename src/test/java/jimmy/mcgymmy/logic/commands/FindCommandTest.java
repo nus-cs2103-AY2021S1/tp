@@ -38,7 +38,7 @@ public class FindCommandTest {
         model = new ModelManager(TypicalFoods.getTypicalMcGymmy(), new UserPrefs());
         expectedModel = new ModelManager(TypicalFoods.getTypicalMcGymmy(), new UserPrefs());
     }
-    
+
     @Test
     public void execute_zeroKeywords_noFoodFound() {
         String expectedMessage = String.format(Messages.MESSAGE_FOOD_LISTED_OVERVIEW, 0);
@@ -70,7 +70,7 @@ public class FindCommandTest {
         assertEquals(Arrays.asList(CHICKEN_RICE, CRISPY_FRIED_FISH),
                 model.getFilteredFoodList());
     }
-    
+
     @Test
     public void execute_validTag_multipleFoodsFound() {
         String expectedMessage = String.format(Messages.MESSAGE_FOOD_LISTED_OVERVIEW, 3);
