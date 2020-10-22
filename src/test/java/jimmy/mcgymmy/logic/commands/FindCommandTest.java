@@ -2,6 +2,8 @@ package jimmy.mcgymmy.logic.commands;
 
 import static jimmy.mcgymmy.testutil.TypicalFoods.CHICKEN_RICE;
 import static jimmy.mcgymmy.testutil.TypicalFoods.CRISPY_FRIED_FISH;
+import static jimmy.mcgymmy.testutil.TypicalFoods.DANISH_COOKIES;
+import static jimmy.mcgymmy.testutil.TypicalFoods.NASI_LEMAK;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
