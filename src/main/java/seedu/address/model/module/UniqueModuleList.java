@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
 import seedu.address.model.person.Person;
@@ -109,7 +108,7 @@ public class UniqueModuleList implements Iterable<Module> {
      * Unassigns an instructor from the module with the equivalent module code from the list.
      * The module with the module code must exist in the list.
      */
-    public void unassignInstructor(Person instructor, ModuleCode moduleToUnassign) throws CommandException {
+    public void unassignInstructor(Person instructor, ModuleCode moduleToUnassign) {
         requireAllNonNull(instructor, moduleToUnassign);
         int indexOfModuleToUnassign = 0;
         while (!internalList.get(indexOfModuleToUnassign).hasModuleCode(moduleToUnassign)
@@ -119,6 +118,26 @@ public class UniqueModuleList implements Iterable<Module> {
         Module toSet = internalList.get(indexOfModuleToUnassign);
         toSet.unassignInstructor(instructor);
         internalList.set((indexOfModuleToUnassign), toSet);
+    }
+
+    /**
+     * Checks whether an {@code instructor} in the module with the given {@code moduleCode} exists.
+     * The module with the {@code moduleCode} must exist in the address book.
+     * @return true if the {@code instructor} is an instructor of the module with the {@code moduleCode}
+     */
+    public boolean moduleCodeHasInstructor(ModuleCode moduleCode, Person instructor) {
+        requireAllNonNull(instructor, moduleCode);
+
+        for (int index = 0; index < internalList.size(); index++) {
+
+            Module moduleToCheck = internalList.get(index);
+            if (moduleToCheck.hasModuleCode(moduleCode)
+                && !moduleToCheck.hasInstructor(instructor)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**

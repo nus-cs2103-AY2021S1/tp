@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.UniqueModuleList;
@@ -191,10 +190,20 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Unassigns an {@code instructor} from the module with the given {@code moduleCode}.
      * The module with the {@code moduleCode} must exist in the address book.
      */
-    public void unassignInstructor(Person instructor, ModuleCode moduleCode) throws CommandException {
+    public void unassignInstructor(Person instructor, ModuleCode moduleCode) {
         requireAllNonNull(instructor, moduleCode);
 
         modules.unassignInstructor(instructor, moduleCode);
+    }
+
+    /**
+     * Checks whether an {@code instructor} in the module with the given {@code moduleCode} exists.
+     * The module with the {@code moduleCode} must exist in the address book.
+     * @return true if the {@code instructor} is an instructor of the module with the {@code moduleCode}
+     */
+    public boolean moduleCodeHasInstructor(ModuleCode moduleCode, Person instructor) {
+        requireAllNonNull(instructor, moduleCode);
+        return modules.moduleCodeHasInstructor(moduleCode, instructor);
     }
 
     //// util methods
