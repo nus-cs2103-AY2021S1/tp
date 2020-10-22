@@ -342,7 +342,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Add Flashcard with open-ended question feature
 
-The proposed Add mechanism is facilitated by `QuickCache` . It is stored internally as a `UniqueFlashcardList` inside the `QuickCache` object.
+The Add mechanism is facilitated by `QuickCache` . It is stored internally as a `UniqueFlashcardList` inside the `QuickCache` object.
 
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
@@ -368,7 +368,7 @@ The following sequence diagram shows how the Add operation works:
 
 ### Add Flashcard with Multiple Choice question feature
 
-The proposed Add Multiple Choice Question mechanism is facilitated by `QuickCache` . It is stored internally as a `UniqueFlashcardList` inside the `QuickCache` object.
+The Add Multiple Choice Question mechanism is facilitated by `QuickCache` . It is stored internally as a `UniqueFlashcardList` inside the `QuickCache` object.
 
 Given below is an example usage scenario and how the addmcq mechanism behaves at each step.
 
@@ -393,7 +393,7 @@ The following sequence diagram shows how the Addmcq operation works:
 
 ### Delete Flashcard feature
 
-The proposed Delete mechanism is facilitated by `QuickCache` . It will delete the flashcard at the provided index stored in the `UniqueFlashcardList` inside the `QuickCache` object.
+The  Delete mechanism is facilitated by `QuickCache` . It will delete the flashcard at the provided index stored in the `UniqueFlashcardList` inside the `QuickCache` object.
 
 Given below is an example usage scenario and how the delete mechanism behaves at each step.
 
@@ -418,7 +418,7 @@ The following sequence diagram shows how the delete operation works:
   
 ### Edit Flashcard feature
 
-The proposed Delete mechanism is facilitated by `QuickCache` . It will edit the flashcard at the provided index stored in the `UniqueFlashcardList` inside the `QuickCache` object.
+The Delete mechanism is facilitated by `QuickCache` . It will edit the flashcard at the provided index stored in the `UniqueFlashcardList` inside the `QuickCache` object.
 
 Given below is an example usage scenario and how the edit mechanism behaves at each step.
 
