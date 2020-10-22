@@ -44,6 +44,7 @@ public class JsonLogBookStorage implements LogBookStorage {
      */
     public Optional<ReadOnlyLogBook> readLogBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
+        assert filePath != null;
 
         Optional<JsonSerializableLogBook> jsonLogBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableLogBook.class);
