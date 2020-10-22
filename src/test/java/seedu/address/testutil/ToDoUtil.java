@@ -27,7 +27,7 @@ public class ToDoUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_TITLE + toDo.getTitle().title + " ");
         sb.append(PREFIX_DESCRIPTION + toDo.getDescription().value + " ");
-        sb.append(PREFIX_PRIORITY + toDo.getPriority().level.toString());
+        sb.append(PREFIX_PRIORITY + toDo.getPriority().toString() + " ");
         toDo.getTags().stream().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
         return sb.toString();
     }

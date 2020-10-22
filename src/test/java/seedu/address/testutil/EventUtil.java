@@ -29,9 +29,9 @@ public class EventUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_TITLE + event.getTitle().title + " ");
         sb.append(PREFIX_DESCRIPTION + event.getDescription().value + " ");
-        sb.append(PREFIX_PRIORITY + event.getPriority().level.toString());
-        sb.append(PREFIX_TASK_DATE + event.getEventDate().toString());
-        sb.append(PREFIX_TASK_TIME + event.getEventTime().toString());
+        sb.append(PREFIX_PRIORITY + event.getPriority().level.toString() + " ");
+        sb.append(PREFIX_TASK_DATE + event.getEventDate().toString() + " ");
+        sb.append(PREFIX_TASK_TIME + event.getEventTime().toString() + " ");
         event.getTags().stream().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
         return sb.toString();
     }

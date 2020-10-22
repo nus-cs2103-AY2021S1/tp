@@ -28,8 +28,8 @@ public class DeadlineUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_TITLE + deadline.getTitle().title + " ");
         sb.append(PREFIX_DESCRIPTION + deadline.getDescription().value + " ");
-        sb.append(PREFIX_PRIORITY + deadline.getPriority().level.toString());
-        sb.append(PREFIX_TASK_DATE + deadline.getDeadlineDate().toString());
+        sb.append(PREFIX_PRIORITY + deadline.getPriority().level.toString() + " ");
+        sb.append(PREFIX_TASK_DATE + deadline.getDeadlineDate().toString() + " ");
         deadline.getTags().stream().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
         return sb.toString();
     }
