@@ -8,6 +8,7 @@ import nustorage.commons.exceptions.DataConversionException;
 import nustorage.model.Inventory;
 import nustorage.model.ReadOnlyAddressBook;
 import nustorage.model.ReadOnlyFinanceAccount;
+import nustorage.model.ReadOnlyInventory;
 import nustorage.model.ReadOnlyUserPrefs;
 import nustorage.model.UserPrefs;
 
@@ -38,9 +39,9 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, FinanceAc
     void saveFinanceAccount(ReadOnlyFinanceAccount financeAccount) throws IOException;
 
     @Override
-    Optional<Inventory> readInventory() throws DataConversionException, IOException;
+    Optional<ReadOnlyInventory> readInventory() throws DataConversionException, IOException;
 
     @Override
-    void saveInventory(Inventory inventory) throws IOException;
+    void saveInventory(ReadOnlyInventory inventory) throws IOException;
 
 }

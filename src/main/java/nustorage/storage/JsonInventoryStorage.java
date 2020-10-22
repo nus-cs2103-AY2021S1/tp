@@ -45,14 +45,14 @@ public class JsonInventoryStorage implements InventoryStorage {
 
 
     @Override
-    public Optional<Inventory> readInventory() throws DataConversionException, IOException {
+    public Optional<ReadOnlyInventory> readInventory() throws DataConversionException, IOException {
         assert filePath != null : "Inventory file path is null!";
         return readInventory(filePath);
     }
 
 
     @Override
-    public Optional<Inventory> readInventory(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyInventory> readInventory(Path filePath) throws DataConversionException, IOException {
         requireNonNull(filePath);
 
         // TODO: THIS LINE IS CAUSING A LOADING ERROR
@@ -73,14 +73,14 @@ public class JsonInventoryStorage implements InventoryStorage {
 
 
     @Override
-    public void saveInventory(Inventory inventory) throws IOException {
+    public void saveInventory(ReadOnlyInventory inventory) throws IOException {
         assert inventory != null : "Inventory is null!";
         saveInventory(inventory, filePath);
     }
 
 
     @Override
-    public void saveInventory(Inventory inventory, Path filePath) throws IOException {
+    public void saveInventory(ReadOnlyInventory inventory, Path filePath) throws IOException {
         requireAllNonNull(inventory, filePath);
 
         FileUtil.createIfMissing(filePath);

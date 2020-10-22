@@ -1,6 +1,10 @@
 package nustorage.model;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
@@ -23,6 +27,11 @@ public class Inventory implements Iterable<InventoryRecord>, ReadOnlyInventory {
 
     }
 
+    public Inventory(ReadOnlyInventory toBeCopied) {
+        this();
+        resetData(toBeCopied);
+    }
+
     /**
      * Adds InventoryRecord into inventory.
      * @param inventoryRecord to be added.
@@ -39,11 +48,20 @@ public class Inventory implements Iterable<InventoryRecord>, ReadOnlyInventory {
         internalList.remove(inventoryRecord);
     }
 
+    public void resetData(ReadOnlyInventory newData) {
+        requireNonNull(newData);
+        setInventoryRecord(newData.asUnmodifiableObservableList());
+    }
+
     /**
      * Checks if Inventory contains given InventoryRecord
      */
     public boolean hasInventoryRecord(InventoryRecord inventoryRecord) {
         return internalList.contains(inventoryRecord);
+    }
+
+    public void setInventoryRecord(List<InventoryRecord> inventoryRecords) {
+        this.internalList.setAll(inventoryRecords);
     }
 
     /**
