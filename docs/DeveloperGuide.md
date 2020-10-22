@@ -82,11 +82,11 @@ The `UI` component,
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding an order item).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("remove 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -260,10 +260,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | NUS resident                           | add a food item to my supper order |                                                                        |
 | `* * *`  | NUS resident | remove a food item from my supper order |                                    |
 | `* * *`  | NUS resident | see the menu | view all the items currently ordered by me |
-| `* * *` | NUS resident | see the vendor list and select vendor | confirm which vendor to order from       
-| `* * ` | NUS resident | see the total price of my current order | decide whether I want to order more   
-| `*`      | NUS resident | confirm order | finalize my supper selection                     |
-
+| `* * *` | NUS resident | see the vendor list and select vendor | confirm which vendor to order from |
+| `* * ` | NUS resident | see the total price of my current order | decide whether I want to order more |
+| `*` | NUS resident | confirm order | finalize my supper selection |
+| `* * *` | NUS resident | undo my commands | fix any mistakes made while ordering |
+| `* * *` | NUS resident | submit my order |  |
+| `* *` | NUS resident | clear the current order | start a new order |
 *{More to be added}*
 
 ### Use cases
@@ -288,16 +290,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use Case resumes at step 2
 - 3b. The user has already selected a different vendor.
+  
   - 3b1. SupperStrikers clears the order of the current vendor.
   
   Use case resumes at step 4.
-
-**Use case: Creating a new supper order**
-
-**MSS**
-
-1. User requests to start a new supper order
-2. SupperStrikers creates a new supper order
 
 **Use case: Viewing current order**
 
@@ -306,13 +302,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list all the items in the current order
 2. SupperStrikers displays the current order to the user
 
+**Use case: Viewing total**
+
+**MSS**
+
+1. User requests to see the total price of the current order
+2. SupperStrikers displays the total price of the current order to the user
+
+**Use case: Clearing current order**
+
+**MSS**
+
+1. User requests to clear the current order
+2. SupperStrikers clears the current order
+3. SupperStrikers creates a new empty order of the selected order  
+
+**Use case: Submit order**
+
+**MSS**
+
+1. User requests to submit the current order
+2. SupperStrikers displays a copy of the order in a submittable format to the user
+
 **Use case: Add an item**
 
 **MSS**
 
 1. User requests to add a specified quantity of an item listed in the vendor menu
 2. SupperStrikers adds the item along with the quantity specified into the current order
-3. User requests to list all the items in the current order
 4. SupperStrikers displays the updated order with the newly added item
 
 **Extensions**
@@ -328,6 +345,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1b1. SupperStrikers shows an error message.
 
     Use Case resumes at step 1
+  
+- 1c. The quantity is not specified
+
+  - 1c1. SupperStrikers adds the quantity of the item by 1.
+
+    Use case resumes at step 1.
 
 **Use case: Remove an item**
 
@@ -349,18 +372,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. SupperStrikers shows an error message.
 
       Use case ends.
-      
+    
 * 1c. The given quantity is invalid.
+     
      * 1c1. SupperStrikers shows an error message.
      
       Use case ends.
-      
-* 1d. The given quantity is larger or equal to the quantity fo the order item.
-     * 1d1. SupperStrikers removes the order item at the specified index.
      
+* 1d. The given quantity is larger or equal to the quantity to the order item.
+
+     * 1d1. SupperStrikers removes the order item at the specified index.
+
      Use case ends.
-      
- 
+
+* 1e. The quantity is not specified.
+
+     - 1e1. SupperStrikers removes the order item at the specified index.
+
+     Use case ends.
 
 *{More to be added}*
 
