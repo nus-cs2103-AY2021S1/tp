@@ -39,10 +39,11 @@ import seedu.fma.testutil.LogBuilder;
 public class AddCommandParserTest {
     private final AddCommandParser parser = new AddCommandParser();
     private final Clock fixedClock = Clock.fixed(Instant.now(), ZoneId.of("GMT+8"));
+    private final LogBook logBook = new LogBook();
 
     @BeforeEach
-    public void setUp() {
-        new LogBook().setExercises(Arrays.asList(getSampleExercises()));
+    void setup() {
+        logBook.setExercises(Arrays.asList(getSampleExercises()));
     }
 
     @Test
@@ -52,19 +53,19 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + EXERCISE_DESC_A + REP_DESC_A + COMMENT_DESC_A,
-                new AddCommand(expectedLog));
+                new AddCommand(expectedLog), logBook);
 
         // multiple exercises - last exercise accepted
         assertParseSuccess(parser, EXERCISE_DESC_B + EXERCISE_DESC_A + REP_DESC_A + COMMENT_DESC_A,
-                new AddCommand(expectedLog));
+                new AddCommand(expectedLog), logBook);
 
         // multiple reps - last rep accepted
         assertParseSuccess(parser, EXERCISE_DESC_A + REP_DESC_B + REP_DESC_A + COMMENT_DESC_A,
-                new AddCommand(expectedLog));
+                new AddCommand(expectedLog), logBook);
 
         // multiple comments - last comment accepted
         assertParseSuccess(parser, EXERCISE_DESC_A + REP_DESC_A + COMMENT_DESC_B + COMMENT_DESC_A,
-                new AddCommand(expectedLog));
+                new AddCommand(expectedLog), logBook);
     }
 
     // TODO Uncomment this test once we make comments optional.
@@ -86,33 +87,33 @@ public class AddCommandParserTest {
 
         // missing exercise prefix
         assertParseFailure(parser, VALID_EXERCISE_JUMPING_JACKS + REP_DESC_A + COMMENT_DESC_A,
-                expectedMessage);
+                expectedMessage, logBook);
 
         // missing rep prefix
         assertParseFailure(parser, EXERCISE_DESC_A + VALID_REP_A + COMMENT_DESC_A,
-                expectedMessage);
+                expectedMessage, logBook);
 
         // missing email prefix
         assertParseFailure(parser, EXERCISE_DESC_A + VALID_REP_A + VALID_COMMENT_A,
-                expectedMessage);
+                expectedMessage, logBook);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid exercise name
         assertParseFailure(parser, INVALID_EXERCISE_DESC + REP_DESC_A + COMMENT_DESC_A,
-                Name.MESSAGE_CONSTRAINTS);
+                Name.MESSAGE_CONSTRAINTS, logBook);
 
         // invalid rep
         assertParseFailure(parser, EXERCISE_DESC_A + INVALID_REP_DESC + COMMENT_DESC_A,
-                Rep.MESSAGE_CONSTRAINTS);
+                Rep.MESSAGE_CONSTRAINTS, logBook);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_EXERCISE_DESC + INVALID_REP_DESC + COMMENT_DESC_A,
-                Name.MESSAGE_CONSTRAINTS);
+                Name.MESSAGE_CONSTRAINTS, logBook);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + EXERCISE_DESC_A + REP_DESC_A + COMMENT_DESC_A,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE), logBook);
     }
 }

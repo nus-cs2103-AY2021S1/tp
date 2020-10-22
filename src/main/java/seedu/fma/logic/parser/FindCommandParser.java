@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import seedu.fma.logic.commands.FindCommand;
 import seedu.fma.logic.parser.exceptions.ParseException;
+import seedu.fma.model.ReadOnlyLogBook;
 import seedu.fma.model.util.NameContainsKeywordsPredicate;
 
 /**
@@ -18,7 +19,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      * and returns a FindCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public FindCommand parse(String args) throws ParseException {
+    public FindCommand parse(String args, ReadOnlyLogBook logBook) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
