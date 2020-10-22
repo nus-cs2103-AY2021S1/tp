@@ -140,7 +140,7 @@ Email address and Telegram handle stored with it.
 This section describes some noteworthy details on how certain features are implemented.
 
 ### \[Proposed\] Add Event feature
-
+![Structure of the Add Event command](images/AddEventSequenceDiagram.png)
 #### Proposed Implementation
 The idea of this feature is to be able to allow the user to keep track of his/her current events that
 will be happening. Events can be either a one time event like an exam for a particular module, or a recurring
