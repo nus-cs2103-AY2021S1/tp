@@ -121,6 +121,26 @@ public class ExpenseBook implements ReadOnlyExpenseBook {
         return expenses.tallyExpenses();
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @see UniqueCategoryBudgetList#tallyAmounts()
+     */
+    @Override
+    public double tallyBudgets() {
+        return budgets.tallyAmounts();
+    }
+
+    /**
+     * Tallies the balance of budgets and expenses in the expense book.
+     *
+     * @return tallied balance of the expense book
+     */
+    @Override
+    public double tallyBalance() {
+        return tallyBudgets() - tallyExpenses();
+    }
+
     //// util methods
 
     @Override

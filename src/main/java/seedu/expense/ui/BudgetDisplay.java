@@ -85,10 +85,8 @@ public class BudgetDisplay extends UiPart<Region> {
      * @return Formatted budget balance as String.
      */
     private String budgetBalance() {
-        UniqueCategoryBudgetList budget = expenseBook.getBudgets();
-        double budgetAmount = budget.getAmount().asDouble();
-        double expensesSum = expenseBook.tallyExpenses();
-        double balance = budgetAmount - expensesSum;
+        double budgetAmount = expenseBook.tallyBudgets();
+        double balance = expenseBook.tallyBalance();
         return String.format(BUDGET_BALANCE, balance, budgetAmount);
     }
 
