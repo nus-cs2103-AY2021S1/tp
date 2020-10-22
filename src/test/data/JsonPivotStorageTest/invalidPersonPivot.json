@@ -1,0 +1,7 @@
+{
+  "persons": [ {
+    "title": "Person with invalid name field: Ha!ns Mu@ster",
+    "description": "",
+    "suspects": []
+  } ]
+}
