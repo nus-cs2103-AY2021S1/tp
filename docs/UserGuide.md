@@ -141,6 +141,8 @@ Examples:
 
 Removes all food items in McGymmy.
 
+Format: `clear`
+
 <div markdown="block" class="alert alert-info">
 
 :information_source:
@@ -150,13 +152,13 @@ Removes all food items in McGymmy.
 
 </div>
 
-Format: `clear`
-
 ![clear command example](images/CommandImagesForUG/Clear.png)
 
 ### Tagging food items : `tag`
 
 Tags a food item in McGymmy.
+
+Format: `tag INDEX -t TAG_NAME`
 
 <div markdown="block" class="alert alert-info">
 
@@ -166,13 +168,15 @@ Tags a food item in McGymmy.
 * The index refers to the index number shown in the displayed food list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Format: `tag INDEX -t TAG_NAME`
+</div>
 
 ![tag command example](images/CommandImagesForUG/Tag.png)
 
 ### Tagging food items : `untag`
 
 Untags a food item in McGymmy.
+
+Format: `untag INDEX -t TAG_NAME`
 
 <div markdown="block" class="alert alert-info">
 
@@ -184,13 +188,13 @@ Untags a food item in McGymmy.
 
 </div>
 
-Format: `untag INDEX -t TAG_NAME`
-
 ![untag command example](images/CommandImagesForUG/Untag.png)
 
 ### Finding a food item: `find`
 
 Finds food items based on the keywords supplied.
+
+Format: `find KEYWORDS`
 
 <div markdown="block" class="alert alert-info">
 
@@ -200,13 +204,13 @@ Finds food items based on the keywords supplied.
 
 </div>
 
-Format: `find KEYWORDS`
-
 ![find_command_example](images/CommandImagesForUG/Find.png)
 
 ### Listing all food items : `list`
 
 Shows a list of all food items in McGymmy.
+
+Format: `list`
 
 <div markdown="block" class="alert alert-info">
 
@@ -216,8 +220,6 @@ Shows a list of all food items in McGymmy.
 * All additional input after the *command word* `list` will be ignored. E.g. `list` and `list 123` will have the same effect.
 
 </div>
-
-Format: `list`
 
 ![list command example](images/CommandImagesForUG/List.png)
 
@@ -372,7 +374,7 @@ Examples:
     * Example usage of this macro: `addWith100cal Banana -p 2000`
     * The following command will be executed by the macro: `add -n Banana -c 100 -p 2000`
     * i.e. in `add -n \$ -c 100 -p \p`, `\$` and `\p` will be substituted with Banana and 2000 respectively.
-    
+
 * `macro addFoodWithFries; add -n \$ ; add -n \$ With Fries`
     * Example usage of this macro: `addFoodWithFries Ice Cream`
     * The following commands will be executed by the macro: `add -n Ice Cream` and `add -n Ice Cream With Fries`.
