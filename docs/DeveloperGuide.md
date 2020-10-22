@@ -295,7 +295,7 @@ _{More to be added}_
 
 (For all use cases below, the **System** is the `Trackr` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a person**
+**Use case: UC01 - Add a person**
 
 **MSS**
 
@@ -312,7 +312,7 @@ Use case ends.
     -   2a1. Trackr shows an error message
     Use Case resumes at 2
 
-**Use case: Delete a person**
+**Use case: UC02 - Delete a person**
 
 **MSS**
 
@@ -335,7 +335,7 @@ Use case ends.
 
         Use case resumes at step 2.
 
-**Use case: Loading a save file**
+**Use case: UC03 - Loading a save file**
 
 **MSS**
 
@@ -361,7 +361,7 @@ Use case ends.
 
         Use case resumes at step 4.
 
-**Use case: Search for a person**
+**Use case: UC04 - Search for a person**
 
 **MSS**
 
@@ -384,7 +384,7 @@ Use case ends.
 
     Use case resumes at 1.
 
-**Use case: Add a checklist of task**
+**Use case: UC05 - Add a checklist of task**
 
 **MSS**
 
@@ -401,7 +401,7 @@ Use case ends.
     -   2a1. Trackr shows an error message
     Use Case resumes at 2
 
-**Use case: Mark a task in the list as done**
+**Use case: UC06 - Mark a task in the list as done**
 
 **MSS**
 
