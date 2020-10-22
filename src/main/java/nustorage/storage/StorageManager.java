@@ -8,9 +8,9 @@ import java.util.logging.Logger;
 
 import nustorage.commons.core.LogsCenter;
 import nustorage.commons.exceptions.DataConversionException;
-import nustorage.model.Inventory;
 import nustorage.model.ReadOnlyAddressBook;
 import nustorage.model.ReadOnlyFinanceAccount;
+import nustorage.model.ReadOnlyInventory;
 import nustorage.model.ReadOnlyUserPrefs;
 import nustorage.model.UserPrefs;
 
@@ -152,26 +152,26 @@ public class StorageManager implements Storage {
 
 
     @Override
-    public Optional<Inventory> readInventory() throws DataConversionException, IOException {
+    public Optional<ReadOnlyInventory> readInventory() throws DataConversionException, IOException {
         return readInventory(inventoryStorage.getInventoryFilePath());
     }
 
 
     @Override
-    public Optional<Inventory> readInventory(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyInventory> readInventory(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read finance account from data file: " + filePath);
         return inventoryStorage.readInventory(filePath);
     }
 
 
     @Override
-    public void saveInventory(Inventory inventory) throws IOException {
+    public void saveInventory(ReadOnlyInventory inventory) throws IOException {
         saveInventory(inventory, inventoryStorage.getInventoryFilePath());
     }
 
 
     @Override
-    public void saveInventory(Inventory inventory, Path filePath) throws IOException {
+    public void saveInventory(ReadOnlyInventory inventory, Path filePath) throws IOException {
         logger.fine("Attempting to write finance account to data file: " + filePath);
         inventoryStorage.saveInventory(inventory, filePath);
     }
