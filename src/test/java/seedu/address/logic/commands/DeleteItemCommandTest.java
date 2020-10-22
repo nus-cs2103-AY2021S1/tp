@@ -2,9 +2,11 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalItems.APPLE;
+import static seedu.address.testutil.TypicalItems.BANANA;
 import static seedu.address.testutil.TypicalItems.PEAR;
 import static seedu.address.testutil.TypicalItems.getTypicalItemList;
 import static seedu.address.testutil.TypicalRecipes.getTypicalRecipeList;
@@ -24,6 +26,7 @@ import seedu.address.model.ReadOnlyRecipeList;
 import seedu.address.model.RecipeList;
 import seedu.address.model.item.Item;
 import seedu.address.model.recipe.Recipe;
+
 
 public class DeleteItemCommandTest {
     private ModelStubWithItemAndRecipeList modelStub;
@@ -93,6 +96,27 @@ public class DeleteItemCommandTest {
         assertFalse(modelStub.getItemList().getItemList().contains(PEAR));
     }
 
+    @Test
+    public void equals() {
+        DeleteItemCommand deleteAppleCommand = new DeleteItemCommand(APPLE.getName());
+        DeleteItemCommand deleteApple2Command = new DeleteItemCommand(APPLE.getName());
+        DeleteItemCommand deleteBananaCommand = new DeleteItemCommand(BANANA.getName());
+
+        // same object -> returns true
+        assertTrue(deleteAppleCommand.equals(deleteAppleCommand));
+
+        // same values -> returns true
+        assertTrue(deleteAppleCommand.equals(deleteApple2Command));
+
+        // different types -> returns false
+        assertFalse(deleteAppleCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(deleteAppleCommand.equals(null));
+
+        // different product name -> returns false
+        assertFalse(deleteAppleCommand.equals(deleteBananaCommand));
+    }
     /**
      * A Model stub which contains a item and a recipe list.
      */

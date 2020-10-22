@@ -5,11 +5,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_TAG;
 import static seedu.address.logic.parser.ItemParserUtil.DEFAULT_DESCRIPTION;
 import static seedu.address.logic.parser.ItemParserUtil.DEFAULT_QUANTITY;
 
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -18,6 +18,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.ItemPrecursor;
 import seedu.address.model.item.Quantity;
+import seedu.address.model.tag.Tag;
 
 
 /**
@@ -34,7 +35,7 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
     public AddItemCommand parse(String args) throws ParseException, IOException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ITEM_NAME, PREFIX_ITEM_QUANTITY,
-                        PREFIX_ITEM_DESCRIPTION, PREFIX_ITEM_LOCATION);
+                        PREFIX_ITEM_DESCRIPTION, PREFIX_ITEM_LOCATION, PREFIX_ITEM_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_ITEM_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -47,11 +48,12 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
                 .orElse(DEFAULT_QUANTITY));
         String description = ItemParserUtil.parseDescription(argMultimap.getValue(PREFIX_ITEM_DESCRIPTION)
                 .orElse(DEFAULT_DESCRIPTION));
-        // TODO Item only allows registering one item location
         Set<String> locationList = ItemParserUtil.parseLocations(argMultimap.getAllValues(PREFIX_ITEM_LOCATION));
 
+        Set<Tag> tagList = ItemParserUtil.parseTags(argMultimap.getAllValues(PREFIX_ITEM_TAG));
+
         ItemPrecursor itemPrecursor = new ItemPrecursor(Item.getIdCounter() + 1, name, quantity, description,
-                locationList, new HashSet<>());
+                locationList, tagList);
 
         return new AddItemCommand(itemPrecursor);
     }

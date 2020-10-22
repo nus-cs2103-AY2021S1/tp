@@ -105,11 +105,13 @@ Inventoryinator's features and their descriptions, as of v1.2.
 - **q:** quantity to add (default: 1)
 - **d:** description of item (default: “No description given.”)
 - **l:** locations where item can be found in game 
+- **t:** user defined **tag** for an item
 - Adds an item to the inventory, with the given fields
 
 **EXAMPLE:**
-- `addi` -n <u>banana</u> -q 44 -d edible banana -l Bob’s banana farm
-- Adds new entry of 44 <u>banana</u>, with description edible <u>banana</u>, found at **location** <u>Bob’s banana farm</u>
+- `addi` -n <u>banana</u> -q 44 -d edible banana -l Bob’s banana farm -t delicious, consumable
+- Adds new entry of 44 <u>banana</u>, with description edible <u>banana</u>, 
+found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 
 ### Adding a new Recipe: `addr`
 **NAME:**

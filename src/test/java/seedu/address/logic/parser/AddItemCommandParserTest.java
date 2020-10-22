@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.ITEM_NAME_DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.ITEM_NAME_DESC_BANANA;
 import static seedu.address.logic.commands.CommandTestUtil.ITEM_QUANTITY_DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.ITEM_QUANTITY_DESC_BANANA;
+import static seedu.address.logic.commands.CommandTestUtil.ITEM_TAG_MULTIPARSE;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_DESCRIPTION_BANANA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_LOCATION_PEACH_ORCHARD;
@@ -20,6 +21,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalItemPrecursors.DEFAULT_DESCRIPTION_PRECURSOR;
 import static seedu.address.testutil.TypicalItemPrecursors.DEFAULT_QUANTITY_PRECURSOR;
+import static seedu.address.testutil.TypicalItemPrecursors.DEFAULT_TAGS_PRECURSOR;
 import static seedu.address.testutil.TypicalItemPrecursors.LOCATED_BANANA_PRECURSOR;
 
 import org.junit.jupiter.api.Test;
@@ -44,7 +46,8 @@ public class AddItemCommandParserTest {
                         + ITEM_NAME_DESC_BANANA
                         + ITEM_QUANTITY_DESC_BANANA
                         + ITEM_DESCRIPTION_DESC_BANANA
-                        + ITEM_LOCATION_DESC_PEACH_ORCHARD,
+                        + ITEM_LOCATION_DESC_PEACH_ORCHARD
+                        + ITEM_TAG_MULTIPARSE,
                 new AddItemCommand(expectedItem));
 
         // multiple names - last name accepted
@@ -52,7 +55,8 @@ public class AddItemCommandParserTest {
                         + ITEM_NAME_DESC_BANANA
                         + ITEM_QUANTITY_DESC_BANANA
                         + ITEM_DESCRIPTION_DESC_BANANA
-                        + ITEM_LOCATION_DESC_PEACH_ORCHARD,
+                        + ITEM_LOCATION_DESC_PEACH_ORCHARD
+                        + ITEM_TAG_MULTIPARSE,
                 new AddItemCommand(expectedItem));
 
         // multiple quantities - last quantity accepted
@@ -60,7 +64,8 @@ public class AddItemCommandParserTest {
                         + ITEM_QUANTITY_DESC_APPLE
                         + ITEM_QUANTITY_DESC_BANANA
                         + ITEM_DESCRIPTION_DESC_BANANA
-                        + ITEM_LOCATION_DESC_PEACH_ORCHARD,
+                        + ITEM_LOCATION_DESC_PEACH_ORCHARD
+                        + ITEM_TAG_MULTIPARSE,
                 new AddItemCommand(expectedItem));
 
         // multiple descriptions - last description accepted
@@ -68,7 +73,8 @@ public class AddItemCommandParserTest {
                         + ITEM_QUANTITY_DESC_BANANA
                         + ITEM_DESCRIPTION_DESC_APPLE
                         + ITEM_DESCRIPTION_DESC_BANANA
-                        + ITEM_LOCATION_DESC_PEACH_ORCHARD,
+                        + ITEM_LOCATION_DESC_PEACH_ORCHARD
+                        + ITEM_TAG_MULTIPARSE,
                 new AddItemCommand(expectedItem));
     }
 
@@ -81,7 +87,8 @@ public class AddItemCommandParserTest {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE
                         + ITEM_NAME_DESC_BANANA
                         + ITEM_QUANTITY_DESC_BANANA
-                        + ITEM_LOCATION_DESC_PEACH_ORCHARD,
+                        + ITEM_LOCATION_DESC_PEACH_ORCHARD
+                        + ITEM_TAG_MULTIPARSE,
                 new AddItemCommand(expectedDefaultDescription));
 
         ItemPrecursor expectedDefaultQuantity = new ItemPrecursorBuilder(DEFAULT_QUANTITY_PRECURSOR)
@@ -91,7 +98,19 @@ public class AddItemCommandParserTest {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE
                         + ITEM_NAME_DESC_BANANA
                         + ITEM_DESCRIPTION_DESC_BANANA
-                        + ITEM_LOCATION_DESC_PEACH_ORCHARD,
+                        + ITEM_LOCATION_DESC_PEACH_ORCHARD
+                        + ITEM_TAG_MULTIPARSE,
+                new AddItemCommand(expectedDefaultQuantity));
+
+        ItemPrecursor expectedEmptyTag = new ItemPrecursorBuilder(DEFAULT_TAGS_PRECURSOR)
+                .build();
+
+        //No quantity given
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE
+                        + ITEM_NAME_DESC_BANANA
+                        + ITEM_DESCRIPTION_DESC_BANANA
+                        + ITEM_LOCATION_DESC_PEACH_ORCHARD
+                        + ITEM_TAG_MULTIPARSE,
                 new AddItemCommand(expectedDefaultQuantity));
     }
 

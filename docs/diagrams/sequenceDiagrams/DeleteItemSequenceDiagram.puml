@@ -4,8 +4,8 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":InventoryParser" as InventoryParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":DeleteItemCommandParser" as DeleteCommandParser LOGIC_COLOR
+participant "d:DeleteItemCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -13,57 +13,60 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete bob's toenail")
+[-> LogicManager : input Command "deli -n bob's toenail")
 activate LogicManager
 
-LogicManager -> InventoryParser : parseCommand("delete bob's toenail")
+LogicManager -> InventoryParser : parseCommand("deli -n bob's toenail")
 activate InventoryParser
+deactivate LogicManager
 
 create DeleteCommandParser
 InventoryParser -> DeleteCommandParser
 activate DeleteCommandParser
 
-DeleteCommandParser --> InventoryParser
-deactivate DeleteCommandParser
-
-InventoryParser -> DeleteCommandParser : parse("bob's toenail")
-activate DeleteCommandParser
+DeleteCommandParser --> InventoryParser : parse("bob's toenail")
 
 create DeleteCommand
 DeleteCommandParser -> DeleteCommand
 activate DeleteCommand
 
-DeleteCommand --> DeleteCommandParser : d
+DeleteCommand --> DeleteCommandParser : deleteItemCommand
 deactivate DeleteCommand
 
-DeleteCommandParser --> InventoryParser : d
+DeleteCommandParser --> InventoryParser : deleteItemCommand
 deactivate DeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 DeleteCommandParser -[hidden]-> InventoryParser
 destroy DeleteCommandParser
 
-InventoryParser --> LogicManager : d
+InventoryParser --> LogicManager : deleteItemCommand
+activate LogicManager
 deactivate InventoryParser
 
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deleteItem("bob's toenail")
+DeleteCommand -> Model : getItem("bob's toenail")
 activate Model
 
-Model --> DeleteCommand
+Model --> DeleteCommand : Item
 deactivate Model
 
+DeleteCommand -> Model :deleteItem(Item)
+activate Model
+Model --> DeleteCommand
+
+DeleteCommand -> Model : deleteRecipes(Item)
+Model --> DeleteCommand
 create CommandResult
 DeleteCommand -> CommandResult
+DeleteCommand -[hidden]-> LogicManager
+destroy DeleteCommand
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> LogicManager : CommandResult
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
-
-[<--LogicManager
+[<--LogicManager : Output to User Interface
 deactivate LogicManager
 @enduml

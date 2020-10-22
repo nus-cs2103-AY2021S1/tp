@@ -19,7 +19,7 @@ public class DeleteRecipeCommandParserTest {
         String userInput = " -n " + APPLE.getName() + " -i 1";
         DeleteRecipeCommand expectedCommand = new DeleteRecipeCommand(APPLE.getName(), Index.fromOneBased(1));
 
-        //expected user input constructs successful delete recipe command
+        //expected user input constructs successful DeleteRecipeCommand
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

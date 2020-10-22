@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_INGREDIENTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_PRODUCT_NAME;
@@ -27,6 +28,12 @@ import seedu.address.model.recipe.Recipe;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
+
+    //Delimiters
+    public static final String DELIMITER_1 = ",";
+    public static final String DELIMITER_2 = ", ";
+    public static final String DELIMITER_3 = " , ";
+
     // items
     public static final String VALID_ITEM_NAME_APPLE = "Apple";
     public static final String VALID_ITEM_NAME_BANANA = "Banana";
@@ -36,6 +43,19 @@ public class CommandTestUtil {
     public static final String VALID_ITEM_DESCRIPTION_BANANA = "Used as bait";
     public static final String VALID_ITEM_LOCATION_PEACH_ORCHARD = "Bob's peach orchard";
     public static final String VALID_ITEM_LOCATION_SPINACH_GARDEN = "Bob's spinach garden";
+    public static final String VALID_ITEM_LOCATIONS_DELIMITER_1 = VALID_ITEM_LOCATION_PEACH_ORCHARD
+            + DELIMITER_1 + VALID_ITEM_LOCATION_SPINACH_GARDEN;
+    public static final String VALID_ITEM_LOCATIONS_DELIMITER_2 = VALID_ITEM_LOCATION_PEACH_ORCHARD
+            + DELIMITER_2 + VALID_ITEM_LOCATION_SPINACH_GARDEN;
+    public static final String VALID_ITEM_LOCATIONS_DELIMITER_3 = VALID_ITEM_LOCATION_PEACH_ORCHARD
+            + DELIMITER_3 + VALID_ITEM_LOCATION_SPINACH_GARDEN;
+
+    public static final String VALID_TAG_BERT = "bertmodel";
+    public static final String VALID_TAG_TUTURU = "tuturu";
+    public static final String VALID_TAG_ASD = "asd";
+    public static final String VALID_TAG_ABC = "abc";
+    public static final String VALID_TOKENIZABLE_TAGS = VALID_TAG_ASD
+            + DELIMITER_1 + VALID_TAG_TUTURU + DELIMITER_3 + VALID_TAG_BERT + DELIMITER_2 + VALID_TAG_ABC;
 
     public static final String VALID_ITEM_QUANTITY_ORIGINAL = "50";
     public static final int VALID_QUANTITY_INT = 100;
@@ -80,6 +100,18 @@ public class CommandTestUtil {
             + PREFIX_ITEM_LOCATION + VALID_ITEM_LOCATION_PEACH_ORCHARD;
     public static final String ITEM_LOCATION_DESC_SPINACH_GARDEN = " "
             + PREFIX_ITEM_LOCATION + VALID_ITEM_LOCATION_SPINACH_GARDEN;
+    public static final String ITEM_LOCATION_DESCS_1 = " "
+            + PREFIX_ITEM_LOCATION + VALID_ITEM_LOCATIONS_DELIMITER_1;
+    public static final String ITEM_LOCATION_DESCS_2 = " "
+            + PREFIX_ITEM_LOCATION + VALID_ITEM_LOCATIONS_DELIMITER_3;
+    public static final String ITEM_LOCATION_DESCS_3 = " "
+            + PREFIX_ITEM_LOCATION + VALID_ITEM_LOCATIONS_DELIMITER_3;
+    public static final String ITEM_TAG_MULTIPARSE = " "
+            + PREFIX_ITEM_TAG + VALID_TOKENIZABLE_TAGS;
+    public static final String ITEM_TAG_BERT = " "
+            + PREFIX_ITEM_TAG + VALID_TAG_BERT;
+
+
 
     public static final String RECIPE_PRODUCT_NAME_APPLE_PIE = " "
             + PREFIX_RECIPE_PRODUCT_NAME + VALID_RECIPE_PRODUCT_NAME_APPLE_PIE;

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORIGINAL_ITEM_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
@@ -35,9 +36,11 @@ public class EditItemCommand extends Command {
             + "[" + PREFIX_ORIGINAL_ITEM_NAME + "NAME] "
             + "[" + PREFIX_ITEM_NAME + "NAME] "
             + "[" + PREFIX_ITEM_QUANTITY + "QUANTITY] "
-            + "[" + PREFIX_ITEM_DESCRIPTION + "DESCRIPTION] \n"
+            + "[" + PREFIX_ITEM_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_ITEM_TAG + "TAG/TAGS] "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_ITEM_QUANTITY + "20 ";
+            + PREFIX_ITEM_QUANTITY + "20 "
+            + PREFIX_ITEM_TAG + "tag1, tag2,tag3 , tag4";
 
     public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -107,13 +110,13 @@ public class EditItemCommand extends Command {
         String updatedName = editItemDescriptor.getName().orElse(itemToEdit.getName());
         Quantity updatedQuantity = editItemDescriptor.getQuantity().orElse(itemToEdit.getQuantity());
         String updatedDescription = editItemDescriptor.getDescription().orElse(itemToEdit.getDescription());
+        Set<Tag> updatedTags = editItemDescriptor.getTags().orElse(itemToEdit.getTags());
         // ID, locations, recipe ids, and tags cannot be changed
         int id = itemToEdit.getId();
         Set<Integer> locations = Set.copyOf(itemToEdit.getLocationIds());
         Set<Integer> recipes = Set.copyOf(itemToEdit.getRecipeIds());
-        Set<Tag> tags = itemToEdit.getTags();
 
-        return new Item(id, updatedName, updatedQuantity, updatedDescription, locations, recipes, tags, true);
+        return new Item(id, updatedName, updatedQuantity, updatedDescription, locations, recipes, updatedTags, true);
     }
 
     @Override

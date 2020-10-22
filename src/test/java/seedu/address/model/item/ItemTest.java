@@ -12,12 +12,38 @@ import static seedu.address.testutil.TypicalItems.BANANA;
 
 import java.util.HashSet;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.ItemBuilder;
 
 public class ItemTest {
+
+    @BeforeEach
+    public void setUp() {
+        // set static variables back to default
+        Item.setIdCounter(0);
+    }
+
+    /**
+     * Test Set Recipe
+     */
+    @Test
+    public void setItemCounter_expectedItemCounter() {
+        // Default value of counter is 0
+        assertEquals(Item.getIdCounter(), 0);
+        // Set value of counter to some other value
+        Item.setIdCounter(10);
+        assertEquals(Item.getIdCounter(), 10);
+
+        Item i = new ItemBuilder(APPLE).build();
+        // After building new item, recipe counter updates
+        assertEquals(Item.getIdCounter(), 11);
+
+        Assertions.assertThrows(AssertionError.class, () -> Item.setIdCounter(-1));
+    }
 
     /**
      * Tests that UnsupportedOperationException is thrown when

@@ -51,6 +51,9 @@ class JsonSerializableItemList {
         ItemList itemList = new ItemList();
         for (JsonAdaptedItem jsonAdaptedItem : items) {
             Item item = jsonAdaptedItem.toModelType();
+            if (item.getId() > Item.getIdCounter()) {
+                Item.setIdCounter(item.getId());
+            }
             if (itemList.hasItem(item)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ITEM);
             }

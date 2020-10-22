@@ -13,6 +13,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_ITEM_QUANTITY = new Prefix("-q ");
     public static final Prefix PREFIX_ITEM_DESCRIPTION = new Prefix("-d ");
     public static final Prefix PREFIX_ITEM_LOCATION = new Prefix("-l ");
+    public static final Prefix PREFIX_ITEM_TAG = new Prefix("-t ");
 
     // recipes start here
     public static final Prefix PREFIX_RECIPE_PRODUCT_NAME = new Prefix("-n ");

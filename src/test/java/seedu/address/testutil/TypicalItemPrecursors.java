@@ -4,6 +4,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_DESCRIPTIO
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_LOCATION_PEACH_ORCHARD;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_BANANA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_BANANA;
+import static seedu.address.testutil.TypicalTags.getTypicalTagSet;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -22,7 +23,7 @@ public class TypicalItemPrecursors {
     public static final ItemPrecursor LOCATED_BANANA_PRECURSOR = new ItemPrecursorBuilder().withName("Banana")
             .withDescription("Used as bait")
             .withQuantity("99")
-            .withLocations(new HashSet<>(Collections.singletonList("Bob's peach orchard"))).build();
+            .withLocations(new HashSet<>(Collections.singletonList(VALID_ITEM_LOCATION_PEACH_ORCHARD))).build();
     public static final ItemPrecursor DEFAULT_DESCRIPTION_PRECURSOR = new ItemPrecursorBuilder()
             .withName(VALID_ITEM_NAME_BANANA)
             .withDescription(ItemParserUtil.DEFAULT_DESCRIPTION)
@@ -34,6 +35,13 @@ public class TypicalItemPrecursors {
             .withDescription(VALID_ITEM_DESCRIPTION_BANANA)
             .withQuantity(ItemParserUtil.DEFAULT_QUANTITY)
             .withLocations(new HashSet<>(Collections.singletonList(VALID_ITEM_LOCATION_PEACH_ORCHARD)))
+            .build();
+    public static final ItemPrecursor DEFAULT_TAGS_PRECURSOR = new ItemPrecursorBuilder()
+            .withName(VALID_ITEM_NAME_BANANA)
+            .withDescription(VALID_ITEM_DESCRIPTION_BANANA)
+            .withQuantity(ItemParserUtil.DEFAULT_QUANTITY)
+            .withLocations(new HashSet<>(Collections.singletonList(VALID_ITEM_LOCATION_PEACH_ORCHARD)))
+            .withTags(getTypicalTagSet())
             .build();
 
     private TypicalItemPrecursors() {} // prevents instantiation
