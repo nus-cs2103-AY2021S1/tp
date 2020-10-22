@@ -46,14 +46,16 @@ Interested? Read on to get started!
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the __parameters__ to be supplied by the user.<br>
-    e.g. in `add_inventory i/[ITEM]`, `ITEM` is a parameter which can be used as `add_inventory i/MacBook`.
+  e.g. in `add_inventory i/ITEM`, `ITEM` is a parameter which can be used as `add_inventory i/MacBook`.
 * Items in square brackets are optional.<br>
-  e.g `amt/AMOUNT at/[DATE] [TIME]` can be used as the possible formats:
+  e.g `amt/AMOUNT [at/DATE] [TIME]` can be used as the possible formats:
   * `amt/200 at/2020-04-10 18:00`
   * `amt/200 at/2020-04-10`
   * `amt/200 at/18:00`
   * `amt/200 at/2020-04-10`
   * `amt/200`
+* Inputs that require date and time have specific formats. The format for the date has to be in `YYYY-MM-DD` while the format for the time has to be in `HH:mm` and both are case-sensitive.<br>
+  e.g. `2020-01-01` will show up as `01 Jan 2020` for the date while `13:00` will show up as `13:00` for the time in the NUStorage's response box.
 
 </div>
 
@@ -79,7 +81,7 @@ Accompanying the details of each command are figures that show an example of the
 
 Adds and stores a new inventory record into the inventory list.
 
-__Format:__ `add_inventory i/[ITEM_NAME] q/[QUANTITY] c/[ITEM_COST]`
+__Format:__ `add_inventory i/ITEM_NAME q/QUANTITY [c/ITEM_COST]`
 
 __Example:__ `add_inventory i/iphone q/10`
 
@@ -95,7 +97,7 @@ __Result:__ item `iphone` of quantity `10` is added to the inventory.
 
 Removes the specified record from the inventory list.
 
-__Format:__ `delete_inventory [INDEX]`
+__Format:__ `delete_inventory INDEX`
 
 __Example:__ `delete_inventory 1`
 
@@ -111,7 +113,7 @@ __Result:__ record at index `1` is removed from the inventory list of records.
 
 Edits the specified record in the inventory list.
 
-__Format:__ `edit_inventory [INDEX] i/[ITEM_NAME] q/[QUANTITY]`
+__Format:__ `edit_inventory INDEX i/ITEM_NAME q/QUANTITY`
 
 __Example:__ `edit_inventory 1 i/iPad q/100`
 
@@ -149,13 +151,13 @@ Adds and stores a new finance record into the account.
 
 Note: Date and time are default to current location's datetime unless specified
 
-__Format:__ `add_finance amt/[AMOUNT] at/[DATE] [TIME]`
+__Format:__ `add_finance amt/AMOUNT [at/DATE] [TIME]`
 
 __Example:__ `add_finance amt/30000 at/2020-03-03`
 
 ![Add finance command example](images/commands/add_finance_command.jpg)
 
-__Result:__ finance record of amount `$30000` on `3rd March 2020` is added to the the finance account.
+__Result:__ finance record of amount `$30000` on `3rd March 2020` is added to the finance account.
 
 ![Add finance result example](images/commands/add_finance_result.jpg)
 
@@ -165,7 +167,7 @@ __Result:__ finance record of amount `$30000` on `3rd March 2020` is added to th
 
 Deletes the specified finance record from the account.
 
-__Format:__ `delete_finance [INDEX]`
+__Format:__ `delete_finance INDEX`
 
 __Example:__ `delete_finance 1`
 
@@ -181,13 +183,13 @@ __Result:__ record at index `1` is removed from the finance account records.
 
 Edits the specified record in the finance account.
 
-__Format:__ `edit_finance [INDEX] amt/[AMOUNT] at/[DATE]`
+__Format:__ `edit_finance INDEX amt/AMOUNT [at/DATE]`
 
-__Example:__ `edit_finance 1 amt/120 at/2020-10-01`
+__Example:__ `edit_finance 1 amt/120`
 
 ![Edit finance command example](images/commands/edit_finance_command.jpg)
 
-__Result:__ record changed to amount `$120` on `1st Oct 2020`.
+__Result:__ finance amount changed from `$100` to `$120` on `1st Oct 2020`.
 
 ![Edit finance result example](images/commands/edit_finance_result.jpg)
 
@@ -243,13 +245,13 @@ __Result:__ Undo or redo the previous command.
 
 Action | Format, Examples
 --------|------------------
-__Add inventory__ | `add_inventory i/[ITEM] q/[QUANTITY] c/[ITEM_COST]` <br> e.g. `add_inventory i/MacBook pro q/200 c/50`
-__Delete inventory__ | `delete_inventory [INDEX]` <br> e.g. `delete_inventory 4`
-__Edit inventory__ | `edit_inventory [INDEX] i/[ITEM_NAME] q/[QUANTITY]`<br> e.g. `edit_inventory 3 i/Lenovo Y50 q/10`
+__Add inventory__ | `add_inventory i/ITEM q/QUANTITY [c/ITEM_COST]` <br> e.g. `add_inventory i/MacBook pro q/200 c/50`
+__Delete inventory__ | `delete_inventory INDEX` <br> e.g. `delete_inventory 4`
+__Edit inventory__ | `edit_inventory INDEX i/ITEM_NAME q/QUANTITY`<br> e.g. `edit_inventory 3 i/Lenovo Y50 q/10`
 __List inventory__ | `list_inventory`
-__Add finance__ | `add_finance amt/[AMOUNT] at/[DATE] [TIME]` <br> e.g. `add_finance amt/420.69 at/2020-04-23`
-__Delete finance__ | `delete_finance [INDEX]` <br> e.g. `delete_finance 2`
-__Edit finance__ | `edit_finance [INDEX] amt/[AMOUNT] at/[DATE] [TIME]` <br> e.g. `edit_finance 1 amt/120 at/2020-10-01`
+__Add finance__ | `add_finance amt/AMOUNT [at/DATE] [TIME]` <br> e.g. `add_finance amt/420.69 at/2020-04-23`
+__Delete finance__ | `delete_finance INDEX` <br> e.g. `delete_finance 2`
+__Edit finance__ | `edit_finance INDEX amt/AMOUNT [at/DATE] [TIME]` <br> e.g. `edit_finance 1 amt/120 at/2020-10-01`
 __List finance__ | `list_finance`
 __Exit programme__ | `exit`
 
