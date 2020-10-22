@@ -80,6 +80,32 @@ The following sequence diagram shows how the Priority operation works:
 
 _{more aspects and alternatives to be added}_
 
+### \[Proposed\] Policy feature
+
+#### Proposed Implementation
+
+Policy (class) is a field in Person that is uniquely different from the current fields in Person
+ such as phone, address, email, etc. A Person can have up to a single Policy. 
+ 
+ Policy class contains 3 attributes: String name, String description.
+
+Prior to adding a Policy field to a Person, User creates the Policy objects 
+via `addp` (Add Policy Command). A collection stores these Policy objects to be referenced and
+ a json file stores Policy objects that are created. 
+ 
+ A user can then add one of these Policy objects as a field in a Person object by specifying with 
+  `z/ [POLICY_NAME]` during Add Command.
+  
+Sequence diagram to create new Policy:
+
+<img src="images/AddPolicySequenceDiagram.png"/>
+
+Additionally, a new Command, ClearPolicyCommand will clear the collection of Policy classes
+in the list to facilitate the management of Policy objects.
+
+When adding the Policy field to a Person object, the Policy name has to be correct, and
+the Policy object should already be created.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
