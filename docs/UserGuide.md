@@ -7,36 +7,31 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
- OneShelf is a desktop application for you to manage all of restaurant inventories, table reservations and pending deliveries.
+ OneShelf is a desktop application for you to manage restaurant inventories and pending deliveries.
 It is easy to build and customise your inventories by using
 only Command Line Interface. If you are a busy restaurant manager
 who prefers to use the Command Line Interface and needs to keep
-track of multiple items, OneShelf is for you!
+track of inventory items and pending deliveries, OneShelf is for you!
 
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `oneshelf.jar` from [here]().
+2. Download the latest `oneshelf.jar` from [here](https://github.com/AY2021S1-CS2103T-T12-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Inventory Book.
+3. Copy the file to the folder you want to use as the _home folder_ for your Inventory Book.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The similar GUI shown below (Figure 1) should appear in a few seconds. <br>
+   *Note how the app contains some sample data but the installed version on your desktop might have a different data set.*<br>
    ![Ui](images/Ui.png)
+   Figure 1: Introduction to OneShelf User Interface
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * **`list-i`** : Lists all items.
-
-   * **`add-i`**`add-i n/Chicken q/3 s/ShengSiong t/Poultry` : Adds a item named `Chicken` to OneShelf.
-
-   * **`delete-i`**`3` : Deletes the item shown in the current list.
-
-   * **`clear-i`** : Deletes all items.
-
-   * **`exit`** : Exits the app.
+5. Type the command `help start` in the command box and press Enter to execute it. <br>
+   A new help window shown below (Figure 2) should appear on your desktop.
+   ![Help Window](images/UiHelpStart.png)
+   Figure 2: Help Start Window
+   
 
 1. Refer to the [Features](#features) below for details of each command.
 
