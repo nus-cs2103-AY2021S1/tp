@@ -230,11 +230,10 @@ parses the user's input as a file name and then creates a `SnapCommand` object w
 * We chose to prevent users from creating a snapshot if the specified file name already exists
 as overwriting a file is irreversible and would be disastrous for zookeepers if done unintentionally
 
-### Sort feature (by Malcolm)  
-  
+### Sort feature (by Malcolm)
 
-#### Implementation  
-  
+#### Implementation
+
 This section explains the implementation of the Sort command feature in the ZooKeepBook. This feature is used to sort the animals based on the different categories: **name, id or feedtime**.
   
 The following sequence diagram shows the Logic and Model Components when a sort command is being executed:
