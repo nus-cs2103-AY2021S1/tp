@@ -21,7 +21,7 @@ import seedu.address.model.person.Name;
 public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
+     * Parses the given {@code String} of arguments in the context of the AddMeetingCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
