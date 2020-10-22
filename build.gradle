@@ -26,6 +26,7 @@ test {
 
     testLogging {
         // showStandardStreams = true
+        exceptionFormat "full"
     }
 }
 
@@ -76,6 +77,10 @@ dependencies {
 
 shadowJar {
     archiveName = 'chopchop.jar'
+}
+
+run {
+    enableAssertions = true
 }
 
 defaultTasks 'clean', 'test'
