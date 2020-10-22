@@ -43,7 +43,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        addressBookParser = new CommandMapper(model.getAliasWordMap()).getParser();
+        addressBookParser = new CommandMapper(model.getCommandWordAliases()).getParser();
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
 

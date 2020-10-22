@@ -4,9 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.resireg.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -76,28 +75,27 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Map<String, String> getAliasWordMap() {
-        return userPrefs.getAliasWordMap();
+    public List<CommandWordAlias> getCommandWordAliases() {
+        return Collections.unmodifiableList(userPrefs.getCommandWordAliases());
     }
 
     @Override
-    public void setCommandAliases(List<CommandWordAlias> commandAliases) {
-        requireNonNull(commandAliases);
-        userPrefs.setCommandAliases(commandAliases);
+    public String getCommandWordAliasesAsString() {
+        return userPrefs.getCommandWordAliasesAsString();
     }
 
     @Override
-    public boolean hasAlias(CommandWordAlias target) {
+    public boolean hasCommandWordAlias(CommandWordAlias target) {
         return userPrefs.hasAlias(target);
     }
 
     @Override
-    public void deleteAlias(CommandWordAlias target) {
+    public void deleteCommandWordAlias(CommandWordAlias target) {
         userPrefs.deleteAlias(target);
     }
 
     @Override
-    public void addAlias(CommandWordAlias source) {
+    public void addCommandWordAlias(CommandWordAlias source) {
         requireNonNull(source);
         userPrefs.addAlias(source);
     }

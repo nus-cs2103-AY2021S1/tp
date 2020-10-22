@@ -64,6 +64,13 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
         saveUserPrefs(userPrefs, filePath);
     }
 
+    /**
+     * Saves the UserPrefs object as a Json file.
+     *
+     * @param userPrefs the existing data to be saved
+     * @param filePath the file path denoting the storage
+     * @throws IOException
+     */
     public void saveUserPrefs(ReadOnlyUserPrefs userPrefs, Path filePath) throws IOException {
         requireNonNull(userPrefs);
         requireNonNull(filePath);

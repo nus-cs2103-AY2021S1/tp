@@ -11,12 +11,12 @@ import seedu.resireg.model.alias.CommandWordAlias;
 /**
  * Adds a student to the address book.
  */
-public class AddAliasCommand extends Command {
+public class DeleteAliasCommand extends Command {
 
-    public static final String COMMAND_WORD = CommandWordEnum.ADD_ALIAS_COMMAND.toString();
+    public static final String COMMAND_WORD = CommandWordEnum.DELETE_ALIAS_COMMAND.toString();
 
-    public static final String MESSAGE_SUCCESS = "New alias added: %1$s";
-    public static final String MESSAGE_DUPLICATE_ALIAS = "This alias already exists in ResiReg";
+    public static final String MESSAGE_SUCCESS = "The alias %1$s has been deleted.";
+    public static final String MESSAGE_INVALID_ALIAS = "This alias doesn't exist.";
 
     public static final Help HELP = new Help(COMMAND_WORD,
         "Adds an alias to ResiReg.\n",
@@ -24,32 +24,33 @@ public class AddAliasCommand extends Command {
             + PREFIX_COMMAND + "COMMAND "
             + PREFIX_ALIAS + "ALIAS ");
 
-    private final CommandWordAlias toAdd;
+    private final CommandWordAlias toDelete;
 
     /**
      * Creates an AddCommand to add the specified {@code Student}
      */
-    public AddAliasCommand(CommandWordAlias alias) {
+    public DeleteAliasCommand(CommandWordAlias alias) {
         requireNonNull(alias);
-        toAdd = alias;
+        toDelete = alias;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasCommandWordAlias(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_ALIAS);
+        if (!model.hasCommandWordAlias(toDelete)) {
+            throw new CommandException(MESSAGE_INVALID_ALIAS);
         }
 
-        model.addCommandWordAlias(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        model.deleteCommandWordAlias(toDelete);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toDelete));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof AddAliasCommand // instanceof handles nulls
-            && toAdd.equals(((AddAliasCommand) other).toAdd));
+            || (other instanceof DeleteAliasCommand // instanceof handles nulls
+            && toDelete.equals(((DeleteAliasCommand) other).toDelete));
     }
 }
+

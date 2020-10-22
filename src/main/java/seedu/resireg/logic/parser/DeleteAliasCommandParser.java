@@ -7,6 +7,7 @@ import static seedu.resireg.logic.parser.CliSyntax.PREFIX_COMMAND;
 import java.util.stream.Stream;
 
 import seedu.resireg.logic.commands.AddAliasCommand;
+import seedu.resireg.logic.commands.DeleteAliasCommand;
 import seedu.resireg.logic.parser.exceptions.ParseException;
 import seedu.resireg.model.alias.Alias;
 import seedu.resireg.model.alias.CommandWord;
@@ -15,14 +16,14 @@ import seedu.resireg.model.alias.CommandWordAlias;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddAliasCommandParser implements Parser<AddAliasCommand> {
+public class DeleteAliasCommandParser implements Parser<DeleteAliasCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddAliasCommand parse(String args) throws ParseException {
+    public DeleteAliasCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_COMMAND, PREFIX_ALIAS);
 
@@ -37,7 +38,7 @@ public class AddAliasCommandParser implements Parser<AddAliasCommand> {
 
         CommandWordAlias commandWordAlias = new CommandWordAlias(commandWord, alias);
 
-        return new AddAliasCommand(commandWordAlias);
+        return new DeleteAliasCommand(commandWordAlias);
     }
 
     /**

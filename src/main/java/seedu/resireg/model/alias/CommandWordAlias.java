@@ -36,8 +36,9 @@ public class CommandWordAlias {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof CommandWordAlias // instanceof handles nulls
-            && commandWord.equals(((CommandWordAlias) other).commandWord)) // state check
-            && alias.equals(((CommandWordAlias) other).alias); // state check
+            && alias.equals(((CommandWordAlias) other).alias) // state check
+            && commandWord.equals(((CommandWordAlias) other).commandWord));
+
 
     }
 

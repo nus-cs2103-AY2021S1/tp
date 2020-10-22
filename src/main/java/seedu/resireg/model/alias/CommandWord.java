@@ -15,7 +15,7 @@ import seedu.resireg.logic.commands.CommandWordEnum;
 public class CommandWord {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Command words should should be as defined in the User Guide. Type help to know more.";
+        "Invalid command word. Type \"help\" to see a list of command words.";
 
     public final String commandWord;
 
@@ -47,7 +47,7 @@ public class CommandWord {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof Alias // instanceof handles nulls
+            || (other instanceof CommandWord // instanceof handles nulls
             && commandWord.equals(((CommandWord) other).commandWord)); // state check
     }
 

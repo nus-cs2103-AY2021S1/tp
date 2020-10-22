@@ -15,7 +15,9 @@ public enum CommandWordEnum {
     REALLOCATE_COMMAND("reallocate"),
     REDO_COMMAND("redo"),
     UNDO_COMMAND("undo"),
-    ADD_ALIAS_COMMAND("alias");
+    ADD_ALIAS_COMMAND("alias"),
+    DELETE_ALIAS_COMMAND("dealias"),
+    LIST_ALIAS_COMMAND("aliases");
 
     private String commandWord;
 

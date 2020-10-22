@@ -13,7 +13,7 @@ public interface ReadOnlyUserPrefs {
 
     GuiSettings getGuiSettings();
 
-    List<CommandWordAlias> getCommandAliases();
+    List<CommandWordAlias> getCommandWordAliases();
 
     Path getAddressBookFilePath();
 

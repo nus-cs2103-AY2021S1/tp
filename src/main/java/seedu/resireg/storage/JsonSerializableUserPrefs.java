@@ -32,8 +32,8 @@ class JsonSerializableUserPrefs {
      */
     @JsonCreator
     public JsonSerializableUserPrefs(@JsonProperty("guiSettings") GuiSettings guiSettings,
-                                     @JsonProperty("aliases") List<JsonAdaptedCommandWordAlias> aliases,
-                                     @JsonProperty("addressBookFilePath") Path addressBookFilePath){
+                                     @JsonProperty("commandWordAliases") List<JsonAdaptedCommandWordAlias> aliases,
+                                     @JsonProperty("addressBookFilePath") Path addressBookFilePath) {
         this.commandWordAliases.addAll(aliases);
         this.guiSettings = guiSettings;
         this.addressBookFilePath = addressBookFilePath;
@@ -45,7 +45,7 @@ class JsonSerializableUserPrefs {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableUserPrefs(ReadOnlyUserPrefs source) {
-        commandWordAliases.addAll(source.getCommandAliases().stream().map(JsonAdaptedCommandWordAlias::new)
+        commandWordAliases.addAll(source.getCommandWordAliases().stream().map(JsonAdaptedCommandWordAlias::new)
             .collect(Collectors.toList()));
         this.guiSettings = source.getGuiSettings();
         this.addressBookFilePath = source.getAddressBookFilePath();
@@ -58,8 +58,8 @@ class JsonSerializableUserPrefs {
      */
     public UserPrefs toModelType() throws IllegalValueException {
         UserPrefs userPrefs = new UserPrefs();
-        for (JsonAdaptedCommandWordAlias jsonAdpatedCommandWordAlias : commandWordAliases) {
-            CommandWordAlias commandWordAlias = jsonAdpatedCommandWordAlias.toModelType();
+        for (JsonAdaptedCommandWordAlias jsonAdaptedCommandWordAlias : commandWordAliases) {
+            CommandWordAlias commandWordAlias = jsonAdaptedCommandWordAlias.toModelType();
             if (userPrefs.hasAlias(commandWordAlias)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ALIAS);
             }

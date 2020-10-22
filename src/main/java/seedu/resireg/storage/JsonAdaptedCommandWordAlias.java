@@ -44,7 +44,8 @@ class JsonAdaptedCommandWordAlias {
      */
     public CommandWordAlias toModelType() throws IllegalValueException {
         if (commandWord == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, CommandWord.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                CommandWord.class.getSimpleName()));
         }
         if (!CommandWord.isValidCommandWord(commandWord)) {
             throw new IllegalValueException(CommandWord.MESSAGE_CONSTRAINTS);

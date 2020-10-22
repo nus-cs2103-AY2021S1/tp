@@ -5,9 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 import seedu.resireg.commons.core.GuiSettings;
@@ -19,7 +17,7 @@ import seedu.resireg.model.alias.CommandWordAlias;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private List<CommandWordAlias> commandAliases = new ArrayList<>();
+    private List<CommandWordAlias> commandWordAliases = new ArrayList<>();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
 
     /**
@@ -41,7 +39,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setCommandAliases(newUserPrefs.getCommandAliases());
+        setCommandAliases(newUserPrefs.getCommandWordAliases());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
     }
 
@@ -54,36 +52,36 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public List<CommandWordAlias> getCommandAliases() {
-        return commandAliases;
+    public List<CommandWordAlias> getCommandWordAliases() {
+        return commandWordAliases;
     }
 
-    public Map<String, String> getAliasWordMap() {
-        final Map<String, String> map = new HashMap<>();
-        for(CommandWordAlias commandWordAlias : getCommandAliases()) {
-            final String commandWord = commandWordAlias.getCommandWord().toString();
-            final String alias = commandWordAlias.getAlias().toString();
-            map.put(commandWord, alias);
-        }
-        return map;
+    /**
+     * Resets the existing commandAliases of this {@code UserPrefs} with new {@code commandAliases}.
+     */
+    public void setCommandAliases(List<CommandWordAlias> commandWordAliases) {
+        requireNonNull(commandWordAliases);
+        this.commandWordAliases = commandWordAliases;
     }
 
-    public void setCommandAliases(List<CommandWordAlias> commandAliases) {
-        requireNonNull(commandAliases);
-        this.commandAliases = commandAliases;
-    }
-
+    /**
+     * Checks whether the existing commandAliases of this {@code UserPrefs} contains the target object.
+     */
     public boolean hasAlias(CommandWordAlias target) {
-        return commandAliases.contains(target);
+        return commandWordAliases.stream().anyMatch(commandWordAlias ->
+            commandWordAlias.getAlias().equals(target.getAlias()));
     }
 
     public void deleteAlias(CommandWordAlias target) {
-        commandAliases.remove(target);
+        commandWordAliases.remove(target);
     }
 
+    /**
+     * Adds a new command word alias to the  existing commandAliases list of this {@code UserPrefs}
+     */
     public void addAlias(CommandWordAlias source) {
         requireNonNull(source);
-        commandAliases.add(source);
+        commandWordAliases.add(source);
     }
 
 
@@ -108,22 +106,29 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && commandAliases.equals(o.commandAliases)
+                && commandWordAliases.equals(o.commandWordAliases)
                 && addressBookFilePath.equals(o.addressBookFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, commandAliases, addressBookFilePath);
+        return Objects.hash(guiSettings, commandWordAliases, addressBookFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("Command Aliases : " + commandAliases);
+        sb.append("Command Aliases : " + commandWordAliases);
         sb.append("\nLocal data file location : " + addressBookFilePath);
         return sb.toString();
     }
 
+    public String getCommandWordAliasesAsString() {
+        String res = "";
+        for(CommandWordAlias commandWordAlias : commandWordAliases) {
+            res = res + commandWordAlias.toString() + "\n";
+        }
+        return res;
+    }
 }

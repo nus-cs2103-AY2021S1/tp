@@ -2,7 +2,6 @@ package seedu.resireg.model;
 
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -48,28 +47,29 @@ public interface Model {
     /**
      * Returns the user prefs' command aliases.
      */
-     Map<String, String> getAliasWordMap();
+    List<CommandWordAlias> getCommandWordAliases();
 
     /**
-     * Sets the user prefs' command aliases.
+     * Returns the user prefs' command aliases.
      */
-    void setCommandAliases(List<CommandWordAlias> commandAliases);
+    String getCommandWordAliasesAsString();
 
     /**
-     * Returns true if a command alias with the same data as {@code alias} exists in user preferences.
+     * Returns true if a command alias with the same data as {@code target} exists in user preferences.
      */
-    boolean hasAlias(CommandWordAlias target);
+    boolean hasCommandWordAlias(CommandWordAlias target);
+
     /**
      * Deletes the given alias.
      * The alias must exist in user prefs.
      */
-    void deleteAlias(CommandWordAlias target);
+    void deleteCommandWordAlias(CommandWordAlias target);
 
     /**
      * Adds the given alias.
      * {@code alias} must not already exist in user prefs.
      */
-    void addAlias(CommandWordAlias source);
+    void addCommandWordAlias(CommandWordAlias source);
 
     /**
      * Returns the user prefs' address book file path.

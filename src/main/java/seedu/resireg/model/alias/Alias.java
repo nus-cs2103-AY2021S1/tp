@@ -10,7 +10,7 @@ import static seedu.resireg.commons.util.AppUtil.checkArgument;
 public class Alias {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Aliases should only contain alphanumeric characters and spaces, and it should not be blank";
+        "Aliases should only contain alphanumeric characters and spaces, and it should not be a command word";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -35,7 +35,8 @@ public class Alias {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidAlias(String test) {
-        return test.matches(VALIDATION_REGEX);
+
+        return test.matches(VALIDATION_REGEX) && !CommandWord.isValidCommandWord(test);
     }
 
 
