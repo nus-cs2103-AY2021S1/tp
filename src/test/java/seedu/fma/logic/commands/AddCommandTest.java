@@ -48,7 +48,6 @@ public class AddCommandTest {
         Log validLog = new LogBuilder().build();
         AddCommand addCommand = new AddCommand(validLog);
         ModelStub modelStub = new ModelStubWithLog(validLog);
-
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_LOG, () -> addCommand.execute(modelStub));
     }
 

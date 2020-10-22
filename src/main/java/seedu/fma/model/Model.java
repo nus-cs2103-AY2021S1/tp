@@ -104,6 +104,7 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered log list */
     ObservableList<Log> getFilteredLogList();
 
+
     /**
      * Updates the filter of the filtered log list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
