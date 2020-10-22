@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.bid.Bid;
@@ -26,6 +28,7 @@ import seedu.address.model.propertybook.PropertyBook;
 import seedu.address.model.propertybook.ReadOnlyPropertyBook;
 import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
 import seedu.address.model.selleraddressbook.SellerAddressBook;
+import seedu.address.storage.calendar.MeetingBookStorage;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -47,6 +50,7 @@ public class ModelManager implements Model {
     private final FilteredList<Bid> filteredBids;
     private final FilteredList<CalendarMeeting> filteredMeetings;
     private final FilteredList<Property> filteredProperties;
+    private final SortedList<CalendarMeeting> sortedMeetings;
 
     /**
      * Initializes a ModelManager with the given addressBook, userPrefs, bidBook, meetingManager and propertyBook.
@@ -81,6 +85,7 @@ public class ModelManager implements Model {
         filteredBids = new FilteredList<>(this.bidBook.getBidList());
         filteredMeetings = new FilteredList<>(this.meetingBook.getMeetingList());
         filteredProperties = new FilteredList<>(this.propertyBook.getPropertyList());
+        sortedMeetings = new SortedList<>(this.meetingBook.getMeetingList());
 
     }
 
@@ -350,9 +355,23 @@ public class ModelManager implements Model {
         meetingBook.setMeeting(target, editedMeeting);
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
     @Override
-    public void sortMeeting() {
-        //filteredMeetings.sortMeeting();
+    public ObservableList<CalendarMeeting> getSortedMeetingList() {
+        return sortedMeetings;
+    }
+
+    @Override
+    public void updateSortedMeetingList(Comparator<CalendarMeeting> comparator) {
+        requireAllNonNull(comparator);
+        sortedMeetings.setComparator(comparator);
+//        sortedMeetings.filtered(PREDICATE_SHOW_ALL_MEETINGS).setPredicate(PREDICATE_SHOW_ALL_MEETINGS);
+        filteredMeetings.setAll(sortedMeetings);
+        filteredMeetings.setPredicate(PREDICATE_SHOW_ALL_MEETINGS);
+//        meetingBook.setMeetings(sortedMeetings);
     }
 
     //=========== Filtered Person List Accessors =============================================================
