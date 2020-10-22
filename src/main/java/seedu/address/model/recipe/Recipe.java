@@ -45,6 +45,16 @@ public class Recipe extends InventoryComponent {
         return idCounter;
     }
 
+    /**
+     * Used only when parsing Recipes to populate
+     * list for initialization of application
+     * @param id id counter for next recipe.
+     */
+    public static void setIdCounter(int id) {
+        assert id >= 0 : "Recipe ID should never be negative";
+        idCounter = id;
+    }
+
     public int getId() {
         return id;
     }
