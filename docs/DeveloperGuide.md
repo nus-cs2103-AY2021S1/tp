@@ -129,6 +129,36 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Additional Features to Be Implemented**
+
+### SessionList
+
+Joshua Chew will implement the classes that encapsulate a list of tutorial sessions.
+
+![Structure of the SessionList Component](images/SessionListClassDiagram.png)
+
+The `SessionList`,
+
+* is stored by the Taskmaster.
+* encapsulates a list of zero, one or more Session objects.
+* can provide a list of the names of all Session objects that it contains (to pass to the UI).
+
+The `Session`,
+
+* stores a SessionName.
+* stores a StudentRecordList.
+* can mark the attendance of a particular student in the StudentRecordList.
+* can mark the attendance of all students in the StudentRecordList with a single Command.
+
+The current running Session is also stored as an attribute in the Taskmaster.
+
+Given below is the planned Sequence Diagram for interactions within the `Session` component for the `Taskmaster#markStudentAttendance(nusnetId, attendanceType)` API call.
+
+![Interactions Inside the Session class for the `markStudentAttendance'` method call](images/MarkStudentAttendanceSequenceDiagram.png)
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
