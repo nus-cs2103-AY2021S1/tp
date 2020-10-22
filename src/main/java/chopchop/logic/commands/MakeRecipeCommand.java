@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import chopchop.commons.core.Messages;
+import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.History;
 import chopchop.logic.parser.ItemReference;
@@ -74,7 +75,7 @@ public class MakeRecipeCommand extends Command implements Undoable {
 
             try {
                 this.ingredients.add(new Pair<>(ingredient, ingredient.split(ingredientRef.getQuantity()).snd()));
-            } catch (IncompatibleIngredientsException | IllegalArgumentException e) {
+            } catch (IncompatibleIngredientsException | IllegalValueException e) {
                 throw new CommandException(String.format(MESSAGE_MAKE_RECIPE_ERROR, ingredient.getName()));
             }
         }
