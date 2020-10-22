@@ -102,7 +102,7 @@ public class EditMeetingCommand extends Command {
         Set<Name> updatedMemberNames = editMeetingDescriptor.getMemberNames().orElse(null);
         Set<Person> updatedMembers = getUpdatedMembers(meetingToEdit, updatedMemberNames, model);
 
-        return new Meeting(updatedMeetingName, updatedDate, updatedTime, updatedMembers);
+        return new Meeting(meetingToEdit.getModule(), updatedMeetingName, updatedDate, updatedTime, updatedMembers);
     }
 
     private static Set<Person> getUpdatedMembers(Meeting meetingToEdit,

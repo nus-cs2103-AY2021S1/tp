@@ -54,7 +54,7 @@ public class DeleteCommand extends Command {
                 .filter(meeting -> meeting.getMembers().contains(personToDelete)).map(meeting -> {
                     Set<Person> updatedMembers = new HashSet<>(meeting.getMembers());
                     updatedMembers.remove(personToDelete);
-                    Meeting updatedMeeting = new Meeting(meeting.getMeetingName(), meeting.getDate(),
+                    Meeting updatedMeeting = new Meeting(meeting.getModule(), meeting.getMeetingName(), meeting.getDate(),
                             meeting.getTime(), updatedMembers);
                     model.setMeeting(meeting, updatedMeeting);
                     return updatedMeeting;

@@ -80,7 +80,7 @@ public class AddLabelCommand extends Command {
                     Set<Person> updatedMembers = new HashSet<>(meeting.getMembers());
                     updatedMembers.remove(personToLabel);
                     updatedMembers.add(labelledPerson);
-                    Meeting updatedMeeting = new Meeting(meeting.getMeetingName(), meeting.getDate(),
+                    Meeting updatedMeeting = new Meeting(meeting.getModule(), meeting.getMeetingName(), meeting.getDate(),
                             meeting.getTime(), updatedMembers);
                     model.setMeeting(meeting, updatedMeeting);
                     return updatedMeeting;

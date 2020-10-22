@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARTICIPANT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
@@ -14,6 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Time;
+import seedu.address.model.module.ModuleName;
 import seedu.address.model.person.Name;
 
 public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
@@ -25,19 +27,20 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
      */
     public AddMeetingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE, PREFIX_TIME, PREFIX_PARTICIPANT);
+                ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_NAME, PREFIX_DATE, PREFIX_TIME, PREFIX_PARTICIPANT);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DATE, PREFIX_TIME, PREFIX_PARTICIPANT)
+        if (!arePrefixesPresent(argMultimap, PREFIX_MODULE, PREFIX_NAME, PREFIX_DATE, PREFIX_TIME, PREFIX_PARTICIPANT)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
         }
 
+        ModuleName moduleName = ParserUtil.parseModuleName(argMultimap.getValue(PREFIX_MODULE).get());
         MeetingName meetingName = ParserUtil.parseMeetingName(argMultimap.getValue(PREFIX_NAME).get());
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         Time time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
         Set<Name> nameList = ParserUtil.parseNames(argMultimap.getAllValues(PREFIX_PARTICIPANT));
 
-        return new AddMeetingCommand(meetingName, date, time, nameList);
+        return new AddMeetingCommand(moduleName, meetingName, date, time, nameList);
     }
 
     /**
