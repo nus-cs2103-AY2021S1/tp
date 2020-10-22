@@ -104,16 +104,28 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 ### Common classes
 
-**API** :
+**API** : 
 
 ## Module List
 ![Structure of the Module List Component](images/ModuleListDiagram.png)
 
-The Module List that is stored in the model contains a list of modules. The Module List stores a Unique
-Contact List that prevents duplicate modules from being added to the Module List. Each Module contains 
-a module name, a zoom link attached to that module and a grade tracker. The grade tracker tracks the assignments
-completed for that module and a grade for that module. 
+**Module package** : [`seedu.address.model.module`](https://github.com/AY2021S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/model/module)
 
+* Module is a container class that stores :
+  * Name of a module
+  * Zoom link of a module
+  * GradeTracker of a module
+* GradeTracker is a container class that stores:
+  * Grade for a module
+  * Assignments for a module
+  
+#### ModuleList class
+**ModuleList class** : [`ModuleList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/ModuleList.java)
+
+* Wraps all data i.e. Modules at the module list level
+* Stores Modules in memory
+* Stores a UniqueModuleList
+* Duplicate Modules are not allowed
 
 ## CAP Calculator
 
@@ -123,9 +135,21 @@ completed for that module and a grade for that module.
 
 ![Structure of the Contact List Component](images/ContactListDiagram.png)
 
-The Contact List that is stored in the model contains a list of contacts. The Contact List stores a 
-Unique Contact List prevents duplicate contacts from being added.Each contact stored has their Name, 
-Email address and Telegram handle stored with it.
+#### Contact class
+
+**Contact package** : [`seedu.address.model.contact`](https://github.com/AY2021S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/model/contact)
+
+* Contact is a container class that stores :
+  * Name of a contact
+  * Email of a contact
+  * Telegram of a contact
+#### ContactList class
+**ContactList class** : [`ContactList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/ContactList.java)
+
+* Wraps all data i.e. Contacts at the contact list level
+* Stores Contacts in memory
+* Stores a UniqueContactList
+* Duplicate Contacts are not allowed
 
 ## Todo List
 
