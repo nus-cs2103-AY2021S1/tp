@@ -53,8 +53,12 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Exercise sitUps = new Exercise(new Name("Sit ups"),new Calories( 30));
-        Exercise flyingKicks = new Exercise(new Name("Flying kicks"),new Calories( 20));
+        Exercise sitUps = new Exercise(
+                new Name("Sit ups"),
+                new Calories(30));
+        Exercise flyingKicks = new Exercise(
+                new Name("Flying kicks"),
+                new Calories(20));
 
         Log logSitsUp = new LogBuilder()
                 .withExercise(sitUps)
@@ -158,7 +162,8 @@ public class AddCommandTest {
          * @param exercise
          */
         @Override
-        public boolean hasExercise(Exercise exercise) {throw new AssertionError("This method should not be called.");
+        public boolean hasExercise(Exercise exercise) {
+            throw new AssertionError("This method should not be called.");
         }
 
         /**
@@ -168,7 +173,8 @@ public class AddCommandTest {
          * @param target
          */
         @Override
-        public void deleteExercise(Exercise target) {throw new AssertionError("This method should not be called.");
+        public void deleteExercise(Exercise target) {
+            throw new AssertionError("This method should not be called.");
         }
 
         /**
@@ -178,19 +184,22 @@ public class AddCommandTest {
          * @param exercise
          */
         @Override
-        public void addExercise(Exercise exercise) {throw new AssertionError("This method should not be called.");
+        public void addExercise(Exercise exercise) {
+            throw new AssertionError("This method should not be called.");
         }
 
         /**
          * Replaces the given exercise {@code target} with {@code editedExercise}.
          * {@code target} must exist in the log book.
-         * The exercise identity of {@code editedExercise} must not be the same as another existing exercise in the log book.
+         * The exercise identity of {@code editedExercise} must not be
+         * the same as another existing exercise in the log book.
          *
          * @param target
          * @param editedExercise
          */
         @Override
-        public void setExercise(Exercise target, Exercise editedExercise) {throw new AssertionError("This method should not be called.");
+        public void setExercise(Exercise target, Exercise editedExercise) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

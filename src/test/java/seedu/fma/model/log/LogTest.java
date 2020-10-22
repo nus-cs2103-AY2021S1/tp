@@ -36,7 +36,8 @@ public class LogTest {
         // Check all the variables are equal
         assertEquals(VALID_EXERCISE_A, logA.getExercise());
         assertEquals(VALID_REP_A, logA.getReps());
-        Calories calories = new Calories(VALID_EXERCISE_A.getCaloriesPerRep().value * Integer.parseInt(VALID_REP_A_STR));
+        Calories calories = new Calories(VALID_EXERCISE_A.getCaloriesPerRep()
+                .value * Integer.parseInt(VALID_REP_A_STR));
         assertTrue(calories.equals(logA.getCalories()));
     }
 

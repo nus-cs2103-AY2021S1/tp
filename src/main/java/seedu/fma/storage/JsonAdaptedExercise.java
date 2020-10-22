@@ -1,12 +1,14 @@
 package seedu.fma.storage;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.fma.commons.exceptions.IllegalValueException;
 import seedu.fma.model.exercise.Exercise;
 import seedu.fma.model.util.Calories;
 import seedu.fma.model.util.Name;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 /**
  * Jackson-friendly version of {@link Exercise}.

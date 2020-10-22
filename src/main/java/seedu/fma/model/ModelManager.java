@@ -152,7 +152,8 @@ public class ModelManager implements Model {
     /**
      * Replaces the given exercise {@code target} with {@code editedExercise}.
      * {@code target} must exist in the log book.
-     * The exercise identity of {@code editedExercise} must not be the same as another existing exercise in the log book.
+     * The exercise identity of {@code editedExercise} must not be the same as
+     * another existing exercise in the log book.
      *
      * @param target
      * @param editedExercise

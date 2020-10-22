@@ -42,7 +42,7 @@ public class ExerciseCard extends UiPart<Region> {
         this.exercise = exercise;
         id.setText(displayedIndex + ". ");
         name.setText(exercise.getName().value);
-        calories.setText(Integer.toString(exercise.getCaloriesPerRep()));
+        calories.setText(exercise.getCaloriesPerRep().toString());
     }
 
     @Override

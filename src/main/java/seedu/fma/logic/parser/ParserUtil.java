@@ -99,6 +99,12 @@ public class ParserUtil {
         return new Name(trimmedName);
     }
 
+    /**
+     * Parses calories string input
+     * @param calories string input
+     * @return Calories object
+     * @throws ParseException
+     */
     public static Calories parseCalories(String calories) throws ParseException {
         requireNonNull(calories);
 

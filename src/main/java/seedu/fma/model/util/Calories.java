@@ -32,9 +32,10 @@ public class Calories {
             return false;
         }
 
-        for (char c : calories.toCharArray())
-        {
-            if (!Character.isDigit(c)) return false;
+        for (char c : calories.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
         }
         return true;
     }

@@ -44,8 +44,8 @@ public class FixMyAbsParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        switch (commandWord) {
 
+        switch (commandWord) {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments, logBook);
 
@@ -61,20 +61,20 @@ public class FixMyAbsParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments, logBook);
 
-            case ListCommand.COMMAND_WORD:
-                return new ListCommand();
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
 
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
-            case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
-            case AddExCommand.COMMAND_WORD:
-                return new AddExCommandParser().parse(arguments, logBook);
+        case AddExCommand.COMMAND_WORD:
+            return new AddExCommandParser().parse(arguments, logBook);
 
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
