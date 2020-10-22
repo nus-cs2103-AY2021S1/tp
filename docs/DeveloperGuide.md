@@ -158,6 +158,10 @@ The following classes reference the above methods:
 * `UndoCommand`
 * `LogicManager`
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Classes pertaining to the Redo command also refer to these methods, but will be excluded here and explained in the section below instead.
+
+</div>
+
 Given below is an example usage scenario and how the undo mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `HistoryStack` will be initialized with a single state, which is the current state.
@@ -181,7 +185,7 @@ Step 4. The user now decides that deleting the person was a mistake, and decides
 
 ![UndoState3](images/UndoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `HistoryStack` only contains a single state, then there is no previous state to restore. The `undo` command uses `HistoryStack#getSize()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `HistoryStack` only contains a single state, then there is no previous state to restore. The `undo` command uses `HistoryStack#getHistorySize()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
