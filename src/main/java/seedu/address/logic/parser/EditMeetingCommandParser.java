@@ -15,7 +15,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.DeleteMeetingCommand;
 import seedu.address.logic.commands.EditMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.MeetingName;
@@ -43,7 +42,8 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
 
         EditMeetingCommand.EditMeetingDescriptor editMeetingDescriptor = new EditMeetingCommand.EditMeetingDescriptor();
         if (argMultimap.getValue(PREFIX_NEWNAME).isPresent()) {
-            editMeetingDescriptor.setMeetingName(ParserUtil.parseMeetingName(argMultimap.getValue(PREFIX_NEWNAME).get()));
+            editMeetingDescriptor.setMeetingName(ParserUtil.parseMeetingName(
+                    argMultimap.getValue(PREFIX_NEWNAME).get()));
         }
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             editMeetingDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));

@@ -62,7 +62,8 @@ public class EditMeetingCommand extends Command {
      * @param targetMeetingName name of the soon to be edited meeting
      * @param editMeetingDescriptor details to edit the meeting with
      */
-    public EditMeetingCommand(ModuleName targetModuleName, MeetingName targetMeetingName, EditMeetingCommand.EditMeetingDescriptor editMeetingDescriptor) {
+    public EditMeetingCommand(ModuleName targetModuleName, MeetingName targetMeetingName,
+                              EditMeetingCommand.EditMeetingDescriptor editMeetingDescriptor) {
         requireNonNull(targetModuleName);
         requireNonNull(targetMeetingName);
         requireNonNull(editMeetingDescriptor);
