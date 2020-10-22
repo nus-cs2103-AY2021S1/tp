@@ -36,7 +36,7 @@ public class AddDeadlineCommand extends Command {
     private final Deadline toAdd;
 
     /**
-     * Creates an TodoCommand to add the specified {@code Task}
+     * Creates an DeadlineCommand to add the specified {@code Task}
      */
     public AddDeadlineCommand(Deadline task) {
         requireNonNull(task);

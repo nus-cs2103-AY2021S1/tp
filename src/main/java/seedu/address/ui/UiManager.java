@@ -21,6 +21,7 @@ public class UiManager implements Ui {
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
     private static final String ICON_APPLICATION = "/images/address_book_32.png";
+    private static String commandDescription = "";
 
     private Logic logic;
     private MainWindow mainWindow;
@@ -49,6 +50,10 @@ public class UiManager implements Ui {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
         }
+    }
+
+    public static void setCommandDescription (String commandDesc) {
+        commandDescription = commandDesc;
     }
 
     private Image getImage(String imagePath) {
