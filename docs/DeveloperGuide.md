@@ -82,7 +82,11 @@ of the **XYZListPanel**.
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-The `Storage` component,
+The `Storage` component facilitates the storage of CAP5BUDDY data in the hard drive. When the program attempts to save 
+data, the `Storage` component converts java data objects such as `ModuleList` and `ContactList` into a json format to store 
+at a specified file location. When the program is started, it will attempt to read existing user data and the `Storage` 
+component will be converting data in json format into java objects.
+
 * can save `UserPref` objects in json format and read it back.
 * can save the module list data in json format and read it back.
 * can save the contact list data in json format and read it back.
