@@ -48,7 +48,6 @@ public class TagCommand extends Command {
     private boolean filePresent(String address) {
         assert address != null;
         File file = new File(address);
-        System.out.println(file.getAbsolutePath());
         return file.exists();
     }
 
