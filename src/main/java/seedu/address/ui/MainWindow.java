@@ -282,9 +282,6 @@ public class MainWindow extends UiPart<Stage> {
                         visitListPanel.hide();
                     }
                     handleEmptyVisitList();
-                } else {
-                    visitListPanel.setup(visits);
-                    handleShowVisitList();
                 }
             }
 

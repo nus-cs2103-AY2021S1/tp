@@ -11,9 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.visit.Visit;
-/**
- * Saves new record to Visit List.
- */
+
 public class SaveVisitCommand extends Command {
     public static final String MESSAGE_SAVE_VISIT_SUCCESS = "Saved visit report to Person: %1$s";
     private static final int NEW_REPORT = -1;
@@ -26,6 +24,9 @@ public class SaveVisitCommand extends Command {
     private String diagnosis;
     private String remarks;
 
+    /**
+     * Saves new record to Visit List.
+     */
     public SaveVisitCommand(int index, int reportIdx, String date, String meds, String dg, String rmk) {
         CollectionUtil.requireAllNonNull(index, reportIdx, date);
         this.index = Index.fromOneBased(index);

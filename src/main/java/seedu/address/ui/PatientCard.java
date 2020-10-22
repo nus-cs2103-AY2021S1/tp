@@ -88,12 +88,12 @@ public class PatientCard extends UiPart<Region> {
 
         id.setText(displayedIndex + ". ");
         name.setText(patient.getName().fullName);
-        phone.setText(patient.getPhone().value);
-        icNumber.setText(patient.getIcNumber().value);
-        address.setText(patient.getAddress().value);
-        email.setText(patient.getEmail().value);
-        sex.setText(patient.getSex().value);
-        bloodType.setText(patient.getBloodType().type);
+        phone.setText("Phone: " + patient.getPhone().value);
+        icNumber.setText("IC Number: " + patient.getIcNumber().value);
+        address.setText("Address: " + patient.getAddress().value);
+        email.setText("Email: " + patient.getEmail().value);
+        sex.setText("Sex: " + patient.getSex().value);
+        bloodType.setText("Blood Type: " + patient.getBloodType().type);
         visitHistory.setText(patient.getVisitHistory().toString());
         patient.getAllergies().stream()
                 .sorted(Comparator.comparing(tag -> tag.allergyName))

@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -153,7 +154,7 @@ public class VisitRecordWindow extends UiPart<Stage> {
     public void setOldReportInfo(int idx, int reportIdx, Visit report, Logic logic) {
         this.index = idx;
         this.reportIdx = reportIdx;
-        this.date = report.getVisitDate().toString();
+        this.date = report.getVisitDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         this.logic = logic;
 
         medicine.setText(report.getPrescription());

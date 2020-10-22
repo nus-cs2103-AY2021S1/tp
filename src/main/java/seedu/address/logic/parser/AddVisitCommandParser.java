@@ -23,7 +23,7 @@ public class AddVisitCommandParser implements Parser<AddVisitCommand> {
         String date;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            // Take date from '/v' prefix or use current timing for report date.
+            // Take date from '/vd' prefix or use current timing for report date.
             date = ParserUtil.parseVisitReport(argMultimap.getValue(PREFIX_VISIT_DATE)
                 .orElse(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
         } catch (IllegalValueException ive) {

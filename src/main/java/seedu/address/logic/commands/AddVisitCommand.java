@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VISIT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VISIT_DATE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.List;
@@ -22,10 +22,10 @@ public class AddVisitCommand extends Command {
             + "by the index number used in the last person listing. "
             + "Calls window popup for user to fill in details.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_VISIT + "[DATE i.e. DD/MM/YYYY]\n"
+            + PREFIX_VISIT_DATE + "[DATE i.e. DD/MM/YYYY]\n"
             + "Only dates from year 19xx to 2xxx are accepted\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_VISIT + "01/01/2019";
+            + PREFIX_VISIT_DATE + "01/01/2019";
 
     public static final String MESSAGE_ADD_VISIT_PROMPT = "Please fill in the form";
 

@@ -26,7 +26,7 @@ public class Visit implements Comparable<Visit> {
     private String comment;
 
     /**
-     * Date must be in the correct format.
+     * Instantiates a Visit object.
      */
     public Visit(LocalDate visitDate, Name patientName, String diagnosis, String prescription, String comment) {
         requireAllNonNull(visitDate, patientName, diagnosis, prescription, comment);
@@ -37,6 +37,9 @@ public class Visit implements Comparable<Visit> {
         this.comment = comment;
     }
 
+    /**
+     * Instantiates a Visit object.
+     */
     public Visit(String value) {
         requireNonNull(value);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");

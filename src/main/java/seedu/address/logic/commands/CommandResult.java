@@ -95,6 +95,10 @@ public class CommandResult {
         this.oldReport = report;
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * and other fields set to their default value.
+     */
     public CommandResult(String feedbackToUser, Patient profilePatient, ObservableList<Visit> profileReportList) {
         this(feedbackToUser, false, false, false, false, true, false);
         this.profilePatient = profilePatient;

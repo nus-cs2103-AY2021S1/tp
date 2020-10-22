@@ -57,7 +57,7 @@ public class DeleteVisitCommand extends Command {
         if (id != EMPTY_REPORT_INDICATOR) {
             try {
                 editedPerson = new Patient(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getIcNumber(),
-                    personToEdit.getVisitHistory(), personToEdit.getAddress(), personToEdit.getEmail(),
+                    personToEdit.getVisitHistory().deleteVisit(id), personToEdit.getAddress(), personToEdit.getEmail(),
                     personToEdit.getProfilePicture(),
                     personToEdit.getSex(), personToEdit.getBloodType(), personToEdit.getAllergies(),
                     personToEdit.getColorTag());
