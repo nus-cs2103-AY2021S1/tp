@@ -28,36 +28,37 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.stock.logic.commands.FindCommand;
+import seedu.stock.logic.commands.FindExactCommand;
 import seedu.stock.model.stock.predicates.LocationContainsKeywordsPredicate;
 import seedu.stock.model.stock.predicates.NameContainsKeywordsPredicate;
 import seedu.stock.model.stock.predicates.SerialNumberContainsKeywordsPredicate;
 import seedu.stock.model.stock.predicates.SourceContainsKeywordsPredicate;
 
 
-public class FindCommandParserTest {
+public class FindExactCommandParserTest {
 
-    private FindCommandParser parser = new FindCommandParser();
+    private FindExactCommandParser parser = new FindExactCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindExactCommand.MESSAGE_USAGE));
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsFindExactCommand() {
 
         // no leading and trailing whitespaces
-        FindCommand expectedFindCommand =
-                new FindCommand(Collections.singletonList(
+        FindExactCommand expectedFindExactCommand =
+                new FindExactCommand(Collections.singletonList(
                         new SourceContainsKeywordsPredicate(Arrays.asList(VALID_SOURCE_APPLE_KEYWORDS))));
-        assertParseSuccess(parser, SOURCE_DESC_APPLE, expectedFindCommand);
+        assertParseSuccess(parser, SOURCE_DESC_APPLE, expectedFindExactCommand);
 
-        FindCommand expectedSecondFindCommand =
-                new FindCommand(Collections.singletonList(
+        FindExactCommand expectedSecondFindExactCommand =
+                new FindExactCommand(Collections.singletonList(
                         new NameContainsKeywordsPredicate(Arrays.asList(VALID_NAME_BANANA_KEYWORDS))));
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, NAME_DESC_BANANA_WITH_WHITESPACES_BETWEEN, expectedSecondFindCommand);
+        assertParseSuccess(parser, NAME_DESC_BANANA_WITH_WHITESPACES_BETWEEN, expectedSecondFindExactCommand);
 
     }
 
@@ -73,19 +74,19 @@ public class FindCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser,
                 PREAMBLE_WHITESPACE + NAME_DESC_BANANA,
-                new FindCommand(Collections.singletonList(expectedNamePredicate)));
+                new FindExactCommand(Collections.singletonList(expectedNamePredicate)));
 
         // field headers in different order
         assertParseSuccess(parser,
                 PREAMBLE_WHITESPACE + LOCATION_DESC_APPLE + NAME_DESC_BANANA + SERIAL_NUMBER_DESC_BANANA,
-                new FindCommand(Arrays.asList(expectedNamePredicate,
+                new FindExactCommand(Arrays.asList(expectedNamePredicate,
                         expectedLocationPredicate, expectedSnPredicate)));
 
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindExactCommand.MESSAGE_USAGE);
 
         // missing any prefix
         assertParseFailure(parser, VALID_NAME_BANANA, expectedMessage);
@@ -95,7 +96,7 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_duplicateCompulsoryFields_failure() {
-        String expectedMessage = String.format(MESSAGE_DUPLICATE_HEADER_FIELD, FindCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_DUPLICATE_HEADER_FIELD, FindExactCommand.MESSAGE_USAGE);
 
         // multiple name
         assertParseFailure(parser, NAME_DESC_BANANA + NAME_DESC_APPLE + SOURCE_DESC_BANANA
@@ -103,7 +104,7 @@ public class FindCommandParserTest {
 
         // multiple source
         assertParseFailure(parser, NAME_DESC_BANANA + SOURCE_DESC_BANANA + SOURCE_DESC_APPLE
-               + LOCATION_DESC_BANANA, expectedMessage);
+                + LOCATION_DESC_BANANA, expectedMessage);
 
         // multiple location
         assertParseFailure(parser, NAME_DESC_BANANA + SOURCE_DESC_BANANA
@@ -120,8 +121,8 @@ public class FindCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BANANA + SOURCE_DESC_BANANA
-                        + LOCATION_DESC_BANANA,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                        + QUANTITY_DESC_BANANA + LOCATION_DESC_BANANA,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindExactCommand.MESSAGE_USAGE));
 
     }
 
@@ -130,7 +131,7 @@ public class FindCommandParserTest {
         // quantity field present
         assertParseFailure(parser,
                 NAME_DESC_BANANA + SOURCE_DESC_BANANA + QUANTITY_DESC_BANANA + LOCATION_DESC_BANANA,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindExactCommand.MESSAGE_USAGE));
 
     }
 
