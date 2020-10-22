@@ -1,4 +1,4 @@
-~~~~---
+---
 layout: page
 title: Developer Guide
 ---
@@ -50,6 +50,15 @@ of these components and displaying the changes.
 **API** :
 
 ### Model component
+
+![Structure of the Module List Component](images/ModuleListDiagram.png)
+
+![Structure of the Contact List Component](images/ContactListDiagram.png)
+
+
+The Model stores the module list and contact list data. In the module list, each module stores its module name, zoom 
+link and a grade tracker that stores the assignments for this module and the grades. Each assignment has its own name, grade 
+
 
 **API** :
 
