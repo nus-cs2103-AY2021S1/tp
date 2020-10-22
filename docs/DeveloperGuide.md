@@ -214,7 +214,7 @@ Step 3. The user executes `edit 1 d/difficultyLevel` to edit the difficulty in t
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### \[Proposed\] Add Flashcard with open-ended question feature
+### Add Flashcard with open-ended question feature
 
 The proposed Add mechanism is facilitated by `QuickCache` . It is stored internally as a `UniqueFlashcardList` inside the `QuickCache` object.
 
@@ -240,7 +240,7 @@ The following sequence diagram shows how the Add operation works:
   * Pros: Easy to implement and CLI-optimized.
   * Cons: May be complicated as there will be too many fields in the `add` command.
 
-### \[Proposed\] Add Flashcard with Multiple Choice question feature
+### Add Flashcard with Multiple Choice question feature
 
 The proposed Add Multiple Choice Question mechanism is facilitated by `QuickCache` . It is stored internally as a `UniqueFlashcardList` inside the `QuickCache` object.
 
@@ -265,7 +265,7 @@ The following sequence diagram shows how the Addmcq operation works:
   * Pros: Easy to implement and CLI-optimized.
   * Cons: May be complicated as there will be too many fields in the `add` command.
 
-### \[Proposed\] Delete Flashcard feature
+### Delete Flashcard feature
 
 The proposed Delete mechanism is facilitated by `QuickCache` . It will delete the flashcard at the provided index stored in the `UniqueFlashcardList` inside the `QuickCache` object.
 
@@ -290,7 +290,7 @@ The following sequence diagram shows how the delete operation works:
   * Pros: Easy to implement and CLI-optimized.
   * Cons: User have to know the index of the specified flashcard.
   
-### \[Proposed\] Edit Flashcard feature
+### Edit Flashcard feature
 
 The proposed Delete mechanism is facilitated by `QuickCache` . It will edit the flashcard at the provided index stored in the `UniqueFlashcardList` inside the `QuickCache` object.
 
@@ -303,9 +303,13 @@ Step 2. The user executes `edit 1 ...` command to edit some of the fields given 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
 </div>
 
+The following sequence diagram shows how the edit operation works:
+
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
 #### Design consideration:
 
-##### Aspect: How delete executes
+##### Aspect: How edit executes
 
 * **Alternative 1 (current choice):** Provide the index of the flashcard to be edited.
   * Pros: Easy to implement and CLI-optimized.
