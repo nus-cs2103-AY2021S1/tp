@@ -44,6 +44,14 @@ public class Ingredient extends Entry {
         this(name, quantity, null, null);
     }
 
+    public Ingredient(String name, Quantity quantity, Set<Tag> tags) {
+        this(name, quantity, null, tags);
+    }
+
+    public Ingredient(String name, Quantity quantity, ExpiryDate expiryDate) {
+        this(name, quantity, expiryDate, null);
+    }
+
     /**
      * Every field(less tag) must be present and not null. If expiry date is not present, use other constructor.
      * Guarantees: details(less tag) are present and not null, field values are validated, immutable.
@@ -59,6 +67,10 @@ public class Ingredient extends Entry {
         } else {
             this.tags = new HashSet<>(tags);
         }
+    }
+
+    public Ingredient(String name, TreeMap<Optional<ExpiryDate>, Quantity> sets) {
+        this(name, sets, null);
     }
 
     /**
