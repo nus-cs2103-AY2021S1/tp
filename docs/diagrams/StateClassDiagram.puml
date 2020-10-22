@@ -1,7 +1,13 @@
 @startuml
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor STATE_COLOR
+skinparam classBackgroundColor STATE_COLOR
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+
+Class StateManager
+Class Index
+
+StateManager o--> "0..1" Index
+
 @enduml
