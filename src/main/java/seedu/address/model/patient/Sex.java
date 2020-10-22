@@ -40,6 +40,9 @@ public class Sex {
      * Returns if a given string is a valid sex.
      */
     public static boolean isValidSex(String test) {
+        if (test.equals("N/A")) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 

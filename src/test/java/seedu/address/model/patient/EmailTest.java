@@ -57,5 +57,6 @@ public class EmailTest {
         assertTrue(Email.isValidEmail("a1+be!@example1.com")); // mixture of alphanumeric and special characters
         assertTrue(Email.isValidEmail("peter_jack@very-very-very-long-example.com")); // long domain name
         assertTrue(Email.isValidEmail("if.you.dream.it_you.can.do.it@example.com")); // long local part
+        assertTrue(Email.isValidEmail("N/A")); // N/A is a valid placeholder
     }
 }

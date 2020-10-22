@@ -7,9 +7,19 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **1. Setting up, getting started**
+## **1. Introduction**
 
-Refer to the guide: [_Setting up and getting started_](SettingUp.md).
+### 1.1 Purpose
+
+This document details the architecture and software design of the software application CliniCal, which is implemented as part of our CS2103T project. This document is updated when the design and implementation of the software is modified after every milestone. Each milestone will include a version of this document, and the current milestone of this project is `v1.3`.
+
+### 1.2 Audience
+
+The Developer Guide is for those who are interested in understanding the architecture and software design of CliniCal. Specifically, this guide has been written with the current and future CliniCal developers in mind, as this document details the knowledge necessary to modify the codebase to customize for specific operating needs or extend existing functionalities.
+
+### 1.3 Setting up
+
+The code of CliniCal is open sourced and published for free on a git repository hosted on GitHub. Developers who wish to download the code and/or set up an environment to contribute code should refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -460,7 +470,7 @@ Step 3. The `CommandHistory#clearHistory` is then called which will clear all co
     * Cons:
         * Command history is not persistent so recently used commands is only kept during the same usage.
 
-### 3.5 Peek Commands With Arrow Keys feature
+### 3.5 Retrieve and reuse past commands using arrow keys feature
 
 #### 3.5.1 Implementation
 This feature allows users to navigate and reuse past commands using up and down arrow keys.

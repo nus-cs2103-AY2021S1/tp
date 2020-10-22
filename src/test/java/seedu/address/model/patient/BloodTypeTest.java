@@ -54,5 +54,6 @@ public class BloodTypeTest {
         assertTrue(BloodType.isValidBloodType("O-")); // O RhD negative
         assertTrue(BloodType.isValidBloodType("AB-")); // AB RhD negative
         assertTrue(BloodType.isValidBloodType("a+")); // lower-case alphabet in ABO system
+        assertTrue(BloodType.isValidBloodType("N/A")); // N/A is a valid placeholder
     }
 }
