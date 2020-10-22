@@ -25,9 +25,11 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final ExpenseBook expenseBook;
+    private final CategoryExpenseBook categoryExpenseBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Expense> filteredExpenses;
     private final UniqueCategoryBudgetList budgets;
+    private final FilteredList<CategoryBudget> filteredBudgets;
 
     /**
      * Initializes a ModelManager with the given expenseBook and userPrefs.
@@ -42,6 +44,8 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredExpenses = new FilteredList<>(this.expenseBook.getExpenseList());
         budgets = this.expenseBook.getBudgets();
+        filteredBudgets = new FilteredList<>(this.expenseBook.getBudgetList());
+        categoryExpenseBook = new CategoryExpenseBook(this.expenseBook);
     }
 
     public ModelManager() {
@@ -93,6 +97,11 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyExpenseBook getExpenseBook() {
         return expenseBook;
+    }
+
+    @Override
+    public ReadOnlyExpenseBook getCategoryExpenseBook() {
+        return categoryExpenseBook;
     }
 
     @Override
@@ -158,13 +167,36 @@ public class ModelManager implements Model {
      * Switches the expense book into the one that matches the given Tag.
      */
     @Override
-    public void switchCategory(Tag toCheck) {
-        requireAllNonNull(toCheck);
-        if (hasCategory(toCheck)) {
-            updateFilteredExpenseList(expense -> expense.getTags().contains(toCheck));
-            //expenseBook.setExpenses(filteredExpenses);
-            //Get Individual CategoryBudget
+    public void switchCategory(Tag category) {
+        requireAllNonNull(category);
+        if (hasCategory(category)) {
+            updateFilteredExpenseList(expense -> expense.getTags().contains(category));
+            updateCategoryExpenseBook(category);
         }
+    }
+
+    /**
+     * Updates the CategoryExpenseBook to the given category
+     *
+     * @param category
+     */
+    @Override
+    public void updateCategoryExpenseBook(Tag category) {
+        requireNonNull(category);
+
+        if (category.equals(new Tag("Default"))) {
+            categoryExpenseBook.updateFilteredBudgets(budget -> true);
+            categoryExpenseBook.updateFilteredExpenses(expense -> true);
+        } else {
+            categoryExpenseBook.updateFilteredBudgets(budget -> budget.getTag().equals(category));
+            categoryExpenseBook.updateFilteredExpenses(expense -> expense.getTags().contains(category));
+        }
+    }
+
+    @Override
+    public void updateFilteredBudgetList(Predicate<CategoryBudget> predicate) {
+        requireNonNull(predicate);
+        filteredBudgets.setPredicate(predicate);
     }
 
     @Override

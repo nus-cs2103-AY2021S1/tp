@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.expense.model.budget.CategoryBudget;
 import seedu.expense.model.budget.UniqueCategoryBudgetList;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.expense.UniqueExpenseList;
@@ -14,8 +15,6 @@ import seedu.expense.model.expense.UniqueExpenseList;
  * Duplicates are not allowed (by .isSameExpense comparison)
  */
 public class ExpenseBook implements ReadOnlyExpenseBook {
-
-
     private final UniqueCategoryBudgetList budgets;
     private final UniqueExpenseList expenses;
 
@@ -71,6 +70,10 @@ public class ExpenseBook implements ReadOnlyExpenseBook {
     @Override
     public UniqueCategoryBudgetList getBudgets() {
         return budgets;
+    }
+
+    public ObservableList<CategoryBudget> getBudgetList() {
+        return budgets.asUnmodifiableObservableList();
     }
 
     //// expense-level operations

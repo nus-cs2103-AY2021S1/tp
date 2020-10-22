@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.expense.commons.core.GuiSettings;
 import seedu.expense.model.budget.Budget;
+import seedu.expense.model.budget.CategoryBudget;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.tag.Tag;
@@ -60,6 +61,11 @@ public interface Model {
     ReadOnlyExpenseBook getExpenseBook();
 
     /**
+     * Returns the CategoryExpenseBook
+     */
+    ReadOnlyExpenseBook getCategoryExpenseBook();
+
+    /**
      * Returns true if an expense with the same identity as {@code expense} exists in the expense book.
      */
     boolean hasExpense(Expense expense);
@@ -95,6 +101,20 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredExpenseList(Predicate<Expense> predicate);
+
+    /**
+     * Updates the filter of the filtered budget list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredBudgetList(Predicate<CategoryBudget> predicate);
+
+    /**
+     * Updates the category expense book by the given {@code category}.
+     *
+     * @throws NullPointerException if {@code category} is null.
+     */
+    void updateCategoryExpenseBook(Tag category);
 
     /**
      * Returns the budget.
