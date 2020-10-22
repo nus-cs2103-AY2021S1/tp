@@ -1,10 +1,11 @@
 ---
+
 # **Trackr - Developer Guide**
 by Team W12-2
 
 ---
+
 ## **Table of Contents**
-    
 
 ---
 
