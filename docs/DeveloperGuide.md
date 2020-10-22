@@ -71,7 +71,17 @@ of the **XYZListPanel**.
 
 ### Logic component
 
-**API** :
+![LogicClassDiagram](images/LogicClassDiagram.png)
+
+**API** : `Logic.java`
+
+1. Logic uses the `ParserManager` class to create the respective Parser classes: `ModuleListParser`, `ContactListParser`
+ and `TodoListParser`. Depending on the user command, the user command will be parsed by the relevant Parser class.
+2. This results in a `Command` object which is executed by `LogicManager`.
+3. The command execution can affect the Model (e.g. adding a module).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying 
+help to the user.
 
 ### Model component
 

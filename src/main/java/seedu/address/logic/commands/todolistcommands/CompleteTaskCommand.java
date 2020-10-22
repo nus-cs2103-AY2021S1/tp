@@ -10,26 +10,27 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 
-
 /**
- * Deletes a task identified using it's displayed index from the todo list.
+ * Marks a task identified using it's displayed index from the todo list as completed.
  */
-public class DeleteTaskCommand extends Command {
+public class CompleteTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "deletetask";
+    public static final String COMMAND_WORD = "completetask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Deletes the task identified by the index number used in the displayed todo list.\n"
+        + ": Mark the task identified by the index number used in the displayed todo list as COMPLETED.\n"
         + "Parameters: INDEX (must be a positive integer)\n"
-        + "Example: " + COMMAND_WORD + " 1";
+        + "Example: " + COMMAND_WORD + " 1 \n"
+        + "Note : To mark or undo a task to NOT COMPLETED please use the 'resettask' command";
 
-    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
+    public static final String MESSAGE_COMPLETE_TASK_SUCCESS = "Completed Task: %1$s";
 
     private final Index targetIndex;
 
-    public DeleteTaskCommand(Index targetIndex) {
+    public CompleteTaskCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -42,16 +43,17 @@ public class DeleteTaskCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteTask(taskToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
+        Task taskToComplete = lastShownList.get(targetIndex.getZeroBased());
+        Task completedTask = taskToComplete.setStatus(Status.COMPLETED);
+        model.setTask(taskToComplete, completedTask);
+        return new CommandResult(String.format(MESSAGE_COMPLETE_TASK_SUCCESS, taskToComplete));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof DeleteTaskCommand // instanceof handles nulls
-            && targetIndex.equals(((DeleteTaskCommand) other).targetIndex)); // state check
+            || (other instanceof CompleteTaskCommand // instanceof handles nulls
+            && targetIndex.equals(((CompleteTaskCommand) other).targetIndex)); // state check
     }
 
     @Override
