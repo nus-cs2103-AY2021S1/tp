@@ -25,7 +25,7 @@ deactivate FindTaskParser
 
 TodoListParser -> FindTaskParser : parse(arguments)
 activate FindTaskParser
-    ref over FindTaskParser: Tokenize command argument using ArgumentTokenizer
+    ref over FindTaskParser: Parse command argument using ArgumentTokenizer
 
 create FindTaskCriteria
 FindTaskParser -> FindTaskCriteria
@@ -35,9 +35,9 @@ FindTaskCriteria --> FindTaskParser
 deactivate FindTaskCriteria
 
 opt user provides keywords to search for tasks by name
-    ref over FindTaskParser: Parse search keywords
+
     create NameContainsKeywordsPredicate
-    FindTaskParser -> NameContainsKeywordsPredicate
+    FindTaskParser -> NameContainsKeywordsPredicate: NameContainsKeywordsPredicate(searchKeywords)
     activate NameContainsKeywordsPredicate
 
     NameContainsKeywordsPredicate --> FindTaskParser
