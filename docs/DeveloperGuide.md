@@ -205,8 +205,23 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
     
     * Cons : Will require additional storage.
     
-   
+###\[Proposed\] GradeTracker feature
+####Proposed Implementation
+The proposed grade tracker feature is an association class used to store additional information for the module. 
+The `Assignments` each store their own `assignment name`, `percentage of final grade` and `result`. 
 
+![Structure of the Module List Component](images/GradeTrackerDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Format to store the grade for a module
+* Alternative 1 : Grade stores CAP.
+    * Pros : Easier to integrate with Cap Calculator
+    * Cons : User has to manually input CAP and does not know the average from the assignments accumulated
+    
+* Alternative 2 (current choice): Grade stores the raw score calculated from assignment
+    * Pros : Grade can be automatically calculated from the assignment overall percentage for user to view
+    * Cons : Requires separate CAP to be stored for Cap Calculator to access
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
