@@ -235,9 +235,10 @@ OneShelf data are saved in the hard disk automatically after any command that ch
 OneShelf commands are traversable much like Window's command prompt with the arrow up key traversing into previous commands and arrow down key traversing into next commands.  
 
 
-### Sorting items`[Coming Soon]`
+### Sorting items
 
-Implicit sorting done. Can be explicitly called for lexicographical sorting
+Implicit sorting done.
+Inventory is sorted by % max quantity in ascending order, if it max quantity does not exist for that particular item then it'll be flushed to the end and sorted in ascending order. If 2 items have the same quantity, they are then sorted lexiographically.
 
 
 
