@@ -1,6 +1,6 @@
 package seedu.address.ui;
 
-import static seedu.address.model.assignment.Deadline.DEADLINE_DATE_TIME_FORMAT;
+import static seedu.address.model.task.Deadline.DEADLINE_DATE_TIME_FORMAT;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -13,7 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Deadline;
+import seedu.address.model.task.Deadline;
 
 /**
  * An UI component that displays information of a {@code Assignment}.
