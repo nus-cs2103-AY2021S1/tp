@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.IOException;
@@ -39,8 +38,7 @@ public class JsonTodoListStorage implements TodoListStorage {
      * @throws DataConversionException if the file is not in the correct format.
      */
     public Optional<ReadOnlyTodoList> readTodoList(Path filePath) throws DataConversionException {
-        requireNonNull(filePath);
-
+        assert(!(filePath == null));
         Optional<JsonSerializableTodoList> jsonTodoList = JsonUtil.readJsonFile(
                 filePath, JsonSerializableTodoList.class);
         if (!jsonTodoList.isPresent()) {
