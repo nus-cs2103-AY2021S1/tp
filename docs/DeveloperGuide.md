@@ -212,17 +212,17 @@ The following sequence diagram shows how the add feature works for **Example 1**
 
 The following activity diagram summarizes what happens when the add feature is triggered:
 
-* TODO  Sequence diagram
+* TODO Sequence diagram
 
 #### Design Consideration
 
 ##### Aspect: Input format for add command.
 
-* **Alternative 1 (current implementation):** Required Prefixes must only appear once.
+* **Alternative 1 (current implementation):** Required prefixes must only appear once.
   * Pros: No ambiguity on which prefix extract, and corresponding arguments used in the creation of stock.
   * Cons: User have to backtrack and change the argument corresponding to the field header.
 
-* **Alternative 2:** Required Prefix can appear for than once.
+* **Alternative 2:** Required prefix can appear for than once.
   * Pros: Only the argument corresponding to the last appearance of the prefix will be used. Allows users to input prefix and
   corresponding arguments to override the last occurence of this prefix.
   * Cons: Users may type 2 of the required prefixes accidentally and add a wrong stock into the stockbook.
