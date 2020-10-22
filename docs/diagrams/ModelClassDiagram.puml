@@ -17,19 +17,23 @@ Class ReadOnlyUserPrefs
 
 Package Assignment {
 Class Assignment
-Class Deadline
 Class Remind
-Class Name
-Class ModuleCode
 class Priority
+Class Schedule
 Class UniqueAssignmentList
 }
 
 Package Lesson {
+class Lesson
+Class UniqueLessonList
 }
 
 Package Task {
-
+abstract class Task
+Class Deadline
+Class Name
+Class ModuleCode
+Class UniqueTaskList
 }
 
 Class HiddenOutside #FFFFFF
@@ -45,15 +49,26 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 Productivenus *--> "1" UniqueAssignmentList
 UniqueAssignmentList o--> "*" Assignment
-Assignment *--> "1"Name
-Assignment *--> "1"ModuleCode
 Assignment *--> "1"Remind
-Assignment *--> "1"Deadline
+Assignment *--> "1"Schedule
 Assignment *--> "1"Priority
 
+Task <|-- Assignment
+Productivenus *--> "1" UniqueTaskList
+UniqueTaskList o--> "*" Task
+Task *--> "1"Name
+Task *--> "1"Deadline
+Task *--> "1"ModuleCode
+
+Task <|-- Lesson
+Productivenus *--> "1" UniqueLessonList
+UniqueLessonList o--> "*" Lesson
+
+Lesson -[hidden]right-> Task
 Name -[hidden]right-> ModuleCode
 ModuleCode -[hidden]right-> Deadline
 Deadline -[hidden]right-> Remind
 Remind -[hidden]right-> Priority
 ModelManager -->"1" Assignment : filtered list
+ModelManager -->"1" Task : filtered list
 @enduml
