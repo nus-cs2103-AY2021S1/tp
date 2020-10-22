@@ -17,7 +17,10 @@ public class CommandOutput extends UiPart<Region> {
     @FXML
     private TextArea displayBox;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 668a247387e91a030311f20ff90cde1297b7fe45
     /**
      * Constructs {@code CommandBox}
      */
@@ -35,5 +38,5 @@ public class CommandOutput extends UiPart<Region> {
         displayBox.setText(feedbackToUser);
     }
 
-
+    
 }
