@@ -134,7 +134,7 @@ class JsonAdaptedCase {
                     Status.class.getSimpleName()));
         }
         if (!Status.isValidStatus(status)) {
-            logger.warning("Description is invalid. Check data");
+            logger.warning("Status is invalid. Check data");
             throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
         }
         final Status modelStatus = Status.createStatus(status);
