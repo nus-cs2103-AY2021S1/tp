@@ -125,6 +125,15 @@ Calculates the user's CAP based on completed modules
 
   Examples:
   * `calculatecap` calculate the user's cap
+  
+### Adding an Event to the Scheduler
+
+Creates and add a new Event with the specified information from the user input
+
+  Format: `addevent n/[event name] d/[date]`
+  
+   Examples:
+    * `addevent n/CS2103T exams d/12-12-2020` adds an Event called CS2103T into the Scheduler with the date 12-12-2020.
 
 ### Undo previous user command: `undo`
 
