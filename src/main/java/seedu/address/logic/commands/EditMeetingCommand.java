@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PARTICIPANT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
@@ -37,7 +37,7 @@ public class EditMeetingCommand extends Command {
             + "[" + PREFIX_NAME + "NEW_MEETINGNAME] "
             + "[" + PREFIX_DATE + "NEW_DATE] "
             + "[" + PREFIX_TIME + "NEW_TIME] "
-            + "[" + PREFIX_MEMBER + "NEW_MEMBERS]...\n"
+            + "[" + PREFIX_PARTICIPANT + "NEW_MEMBERS]...\n"
             + "Example: " + COMMAND_WORD + " CS2103 Project Meeting "
             + PREFIX_DATE + "2020-10-10 "
             + PREFIX_TIME + "11:30";

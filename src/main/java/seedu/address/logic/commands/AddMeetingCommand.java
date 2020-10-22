@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PARTICIPANT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.ArrayList;
@@ -34,13 +34,13 @@ public class AddMeetingCommand extends Command {
             + PREFIX_NAME + "MEETING NAME "
             + PREFIX_DATE + "DATE "
             + PREFIX_TIME + "TIME "
-            + "[" + PREFIX_MEMBER + "MEMBERS]...\n"
+            + "[" + PREFIX_PARTICIPANT + "PARTICIPANTS]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS2103 weekly meeting "
             + PREFIX_DATE + "2020-09-20 "
             + PREFIX_TIME + "10:00 "
-            + PREFIX_MEMBER + "Alex "
-            + PREFIX_MEMBER + "Roy";
+            + PREFIX_PARTICIPANT + "Alex "
+            + PREFIX_PARTICIPANT + "Roy";
 
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the meeting book";

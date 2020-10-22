@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PARTICIPANT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.ArrayList;
@@ -28,11 +28,11 @@ public class AddModuleCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to the timetable. "
             + "Parameters: "
             + PREFIX_NAME + "MODULE NAME "
-            + "[" + PREFIX_MEMBER + "MEMBERS]...\n"
+            + "[" + PREFIX_PARTICIPANT + "MEMBERS]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS2103 "
-            + PREFIX_MEMBER + "Jay "
-            + PREFIX_MEMBER + "Roy";
+            + PREFIX_PARTICIPANT + "Jay "
+            + PREFIX_PARTICIPANT + "Roy";
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module is already in the timetable";
