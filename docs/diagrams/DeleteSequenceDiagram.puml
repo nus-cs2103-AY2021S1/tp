@@ -35,7 +35,7 @@ DeleteCommandParser -> ParserUtil : parseName("Alex Yeoh")
 activate ParserUtil
 
 create Name
-ParserUtil -> Name : Name("Alex Yeoh") 
+ParserUtil -> Name : Name("Alex Yeoh")
 activate Name
 
 Name --> ParserUtil : n
