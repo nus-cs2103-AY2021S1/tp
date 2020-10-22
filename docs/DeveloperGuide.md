@@ -80,7 +80,7 @@ The `UI` component,
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a tag).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -114,6 +114,9 @@ The `Model`,
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The storage creates the UserPref and data with default value when the json files are missing/changed. During execution, The storage will update the address book data everytime the user executes a command. However, UserPref is only updated when the app is closed.
+</div>
 
 ### Common classes
 
@@ -161,6 +164,22 @@ CdCommand calls `setAddress` in `CurrentPath` to set the current directory to th
 The list of children files `FileList` under `CurrentPath` will be updated to fit the new current directory when `setAddress` is called.
 The `javafx.scene.control.ListView` in `FileExplorer` will also be updated as it is bound to the `FileList` of the children files 
 under the `CurrentPath`.
+
+### Showing a tag's file path: ShowCommand
+
+[ShowCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/ShowCommand.java)
+searches the list of Tags stored in `AddressBook` and shows the tag's file path in the `ResultDisplay`.
+`CommandException` is thrown if tag is not present.
+
+ShowCommand gets the specified tag by applying `TagNameEqualsKeywordPredicate` that extends from `java.util.function.predicate` to `ObservableList<Tag>`.
+
+### Listing out all the tags: ListCommand
+
+[ListCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/ListCommand.java)
+lists the Tags stored in `AddressBook` and shows them as `TagCard` which is contained in `TagListPanel`.
+ListCommand shouldn't take in any argument. `CommandException` will be thrown if the user's input contains an argument.
+
+ListCommand updates the `ObservableList<Tag>` by using `java.util.function.predicate`.
 
 ### Internal File Explorer
 
