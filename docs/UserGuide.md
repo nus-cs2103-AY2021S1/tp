@@ -6,18 +6,18 @@
    3.1 [Command format](#31-command-format)<br>
    3.2 [View help: `help`](#32-view-help-help)<br>
    3.3 [Add an item: `add`](#33-add-an-item-add)<br>
-   ---3.3.1 [Add a module: `addMod`](#331-add-a-module-add-module)<br>
-   ---3.3.2 [Add a tutorial group: `addTG`](#332-add-a-tg-add-tg)<br>
-   ---3.3.3 [Add a student: `addStudent`](#333-add-a-student-add-student)<br>
-   ---3.3.4 [Add a reminder: `addTask`](#334-add-a-task-add-task)<br>
+   ---3.3.1 [Add a module: `addMod`](#331-add-a-module-addmod)<br>
+   ---3.3.2 [Add a tutorial group: `addTG`](#332-add-a-tutorial-group-addtg)<br>
+   ---3.3.3 [Add a student: `addStudent`](#333-add-a-student-addstudent)<br>
+   ---3.3.4 [Add a task: `addTask`](#334-add-a-task-addtask)<br>
    3.4 [List items: `list`](#34-list-items-list)<br>
    3.5 [Filter students: `filter`](#35-filter-students-filter)<br>
    3.6 [Delete an item: `delete`](#36-delete-an-item-delete)<br>
-   3.7 [Find for an item: `find`](#37-find-for-an-item-find)<br>
-   ---3.7.1 [Find a module: `findMod`](#371-find-a-module-find-module)<br>
-   ---3.7.2 [Find a tutorial group: `findTG`](#372-find-a-tg-find-tg)<br>
-   ---3.7.3 [Find a student: `findStudent`](#373-find-a-student-find-student)<br>
-   3.8 [Mark a reminder as done: `done`](#38-mark-a-reminder-as-done-done)<br>
+   3.7 [Find an item: `find`](#37-find-an-item-find)<br>
+   ---3.7.1 [Find a module: `findMod`](#371-find-a-module-findmod)<br>
+   ---3.7.2 [Find a tutorial group: `findTG`](#372-find-a-tutorial-group-findtg)<br>
+   ---3.7.3 [Find a student: `findStudent`](#373-find-a-student-findstudent)<br>
+   3.8 [Mark a task as done: `done`](#38-mark-a-task-as-done-done)<br>
 4. [FAQ](#4-faq)
 5. [Command Summary](#5-command-summary)
 
@@ -77,13 +77,13 @@ Format: `addTG GROUP_CODE`
 
 Example: `addTG T03`
 
-#### 3.3.3 Add a student: `addStudents`
+#### 3.3.3 Add a student: `addStudent`
 
 Adds a student to the current tutorial group in view.
 
 Format: `addStudent n/STUDENT_NAME id/STUDENT_ID`
 
-Example: `addStudents n/John Doe id/A1234567X`
+Example: `addStudent n/John Doe id/A1234567X`
 
 #### 3.3.4 Add a task: `addTask`
 
@@ -121,11 +121,11 @@ Format: `delete INDEX`
 
 Example: `delete 1`
 
-### 3.7 Find for an item: `find`
+### 3.7 Find an item: `find`
 
-Finds for and retrieves an item from the current list in view.
+Finds and retrieves an item from the current list in view.
 
-#### 3.7.1 Find for a module: `findMod`
+#### 3.7.1 Find a module: `findMod`
 
 Searches for and retrieves a module from within the database.
 
@@ -133,7 +133,7 @@ Format: `findMod MODULE_CODE`
 
 Example: `findMod CS2103T`
 
-#### 3.7.2 Find for a tutorial group: `findTG`
+#### 3.7.2 Find a tutorial group: `findTG`
 
 Searches for and retrieves a student from within the database.
 
@@ -141,7 +141,7 @@ Format: `findTG GROUP_CODE`
 
 Example: `findTG T03`
 
-#### 3.7.3 Find for a student: `findStudent`
+#### 3.7.3 Find a student: `findStudent`
 
 Searches for and retrieves a student from within the database.
 
