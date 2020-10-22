@@ -11,11 +11,11 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.bid.Bid;
 import seedu.address.model.calendar.CalendarTime;
 import seedu.address.model.calendar.CalendarVenue;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.price.Price;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -137,6 +137,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static CalendarTime parseTime(String time) throws ParseException {
@@ -151,23 +152,23 @@ public class ParserUtil {
         }
     }
 
-    //=========== Bids ================================================================================
-
     /**
-     *  trims off any excess white spaces for a given string
-     * @param bidAmount string to trim
-     * @return a string that has no white spaces on the sides
-     * @throws ParseException If the bidAmount is in the wrong format.
+     * Parses a {@code String askingPrice} into an {@code Price}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code askingPrice} is invalid.
      */
-    public static double parseBidAmount(String bidAmount) throws ParseException {
-        requireNonNull(bidAmount);
-        String trimmedBidAmount = bidAmount.trim();
+    public static Price parsePrice(String askingPrice) throws ParseException {
+        requireNonNull(askingPrice);
+        String trimmedAskingPrice = askingPrice.trim();
         try {
-            double numericalBidAmount = Double.parseDouble(trimmedBidAmount);
-            return numericalBidAmount;
+            double doublePrice = Double.parseDouble(trimmedAskingPrice);
+            if (!Price.isValidPrice(doublePrice)) {
+                throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+            }
+            return new Price(doublePrice);
         } catch (NumberFormatException e) {
-            throw new ParseException(Bid.MESSAGE_CONSTRAINTS_BID_AMOUNT);
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         }
     }
-
 }

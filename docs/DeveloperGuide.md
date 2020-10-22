@@ -228,10 +228,6 @@ categorized accordingly to the entities. Specifically: Bidder, Seller, Bid, Prop
         - Pros: to replace the deprecated `Observable` class since Java 9. Greater number of functions, such
         as being able to keep track of what has changed.
         - Cons: Will require heavy edits to the existing code base.
- 
-
-This section describes some noteworthy details on how certain features are implemented. The details of the features are
-categorized accordingly to the entities. Specifically: Bidder, Seller, Bid, Property and Meeting.
 
 ### 2. Bid
 
