@@ -15,7 +15,7 @@ UniqueStudentList o-right-> Student
 Student -up-> "*" Tag
 
 Student *--> Name
-Student *--> Phone
+Student *--> Telegram
 Student *--> Email
 Student *--> Address
 @enduml

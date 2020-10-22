@@ -125,7 +125,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.taskmaster.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -133,7 +133,8 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ### SessionList
 
-Joshua Chew will implement the classes that encapsulate a list of tutorial sessions.
+Author: **Joshua Chew**
+* Implementing the classes that encapsulate a list of tutorial sessions.
 
 ![Structure of the SessionList Component](images/SessionListClassDiagram.png)
 
@@ -154,9 +155,91 @@ The current running Session is also stored as an attribute in the Taskmaster.
 
 Given below is the planned Sequence Diagram for interactions within the `Session` component for the `Taskmaster#markStudentAttendance(nusnetId, attendanceType)` API call.
 
-![Interactions Inside the Session class for the `markStudentAttendance'` method call](images/MarkStudentAttendanceSequenceDiagram.png)
+![Interactions iside the Session class for the `markStudentAttendance'` method call](images/MarkStudentAttendanceSequenceDiagram.png)
+
+<br>
+
+### StudentRecordList
+
+Author: **Goh Siau Chiak**
+
+* Implementing the classes that encapsulate a list of student records.
+
+![Structure of StudentRecordList Component](images/StudentRecordDiagram.png)
+
+The `StudentRecordList`,
+* is stored by a `Session`.
+* encapsulates a list of zero or more `StudentRecord` objects.
+* can provide a list of the `StudentRecord` objects that it contains (to pass to the UI).
+* can mark the attendance of a student in the `Session`.
+
+The `StudentRecord`,
+* represents a record of a student's attendance in a particular `Session`
+* contains
+  * a `NusnetId` that indicates which student the record represents
+  * the `Name` of the student represented
+  * the `AttendanceType` of the student for the `Session`
+  * a `ClassParticipation` representing points awarded to the student for participating in the `Session`
+
+Given below is the Sequence Diagram for interactions within the `StudentRecordListManager` component when `StudentRecordListManager#markStudentAttendance(nusnetId, attendanceType)` is called.
+
+![Interactions inside the StudentRecordListManager class for the `markStudentAttendance'` method call](images/StudentRecordListAttendanceSequenceDiagram.png)
 
 
+Alternative implementations:
+* Store a `Student` object in the `StudentRecord` instead of just their `Name` and `NusnetId`.
+  * Doing so will incur unnecessary memory usage, because `StudentRecord` only needs the `Name` for display purposes, and `NusnetId` for identification purposes.
+  * This memory usage is significant when one considers the fact that it will be likely that for most users, the same students (that the TA is teaching) will be contained in multiple `Session` objects.
+  * Since editing of `NusnetId` is not allowed, there will be no issues with syncing of data. For example, even if the name of a particular student is edited after his `StudentRecord` was saved, we can find that student using their `NusnetId`.
+
+<br>
+
+### Storage
+
+Author: **Jaya Rengam** 
+* Change/Add classes in the Storage package to store data related to Sessions.
+
+![Structure of the Storage Component](images/NewStorageClassDiagram.png)
+
+A new method `JsonTaskmasterStorage#saveSessionList` will store the SessionList in the running Taskmaster to a separate .json file.
+* The SessionList will be represented by a `JsonSerializableSessionList`, which contains a `List<JsonSerializableSession>`
+* Each `JsonSerializableSession` will contain a `List<JsonAdaptedStudentRecord>`
+
+**To-Do:**
+* Update `TaskmasterStorage` interface (add `saveSessionList(ReadOnlyTaskmaster taskmaster)` method)
+* Implement `saveSessionList` method in `JsonTaskmasterStorage`
+* Create the new `JsonSerializable..`/`JsonAdapted..` classes
+<br>
+
+**_Notes from developer:_**
+* This implementation of the feature uses Jackson libraries/formatting that is used in existing AB3 Storage classes
+<br>
+
+Alternative implementations:
+* Store the SessionList as a JSON field in the existing Taskmaster file
+    * Doing it this way would mean that the file would be repeatedly overwritten and any format errors will invalidate the whole file, including the StudentList.
+
+
+### UI
+
+Author: **Lim Jin Feng**
+* Change/Add classes in the UI package to display newly implemented functionality such as ClassRecords.
+
+![Structure of the UI Component](images/UpdatedUiClassDiagram.png)
+
+A new method `MainWindow#fillInnerParts2` will change the contents of the Ui to the student record, from the student list.
+* This is implemented in such a way to accomodate future expansion.
+
+**To-Do:**
+* Support displaying of Sessions when Sessions are implemented.
+* Support displaying of any new future implementation.
+
+**_Notes from developer:_**
+* Implementation still buggy: Ui does not update accordingly for student records.
+
+Alternative implementations considered:
+* Use FXML's tab feature to display class records
+    * Does not support future expansion when sessions is implemented - there may be an indefinite amount of sessions created.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -277,7 +360,7 @@ Extensions
 Use case ends.
 * 3a. The given input is invalid.
     * 3a1. System shows an error message.
-        Use case resumes at step 2. 
+        Use case resumes at step 2.
 <br>
 
 **Use case: Save attendance of all students**
@@ -290,7 +373,7 @@ Use case ends.
 * 1a. The given input is invalid.
 
     * 1a1. System shows an error message.
-    Use case resumes at step 1.    
+    Use case resumes at step 1.
 <br>
 
 **Use case: Retrieve attendance of all students from storage**
@@ -303,7 +386,7 @@ Use case ends.
 * 1a. The given input is invalid.
     * 1a1. System shows an error message.
     Use case resumes at step 1.
-    
+
 <br>
 
 **Use case: Retrieve list of all attendances saved in storage**
