@@ -1,9 +1,9 @@
 package seedu.fma.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.fma.logic.parser.CliSyntax.PREFIX_COMMENT;
-import static seedu.fma.logic.parser.CliSyntax.PREFIX_EXERCISE;
-import static seedu.fma.logic.parser.CliSyntax.PREFIX_REPS;
+import static seedu.fma.logic.parser.CliSyntax.PREFIX_C;
+import static seedu.fma.logic.parser.CliSyntax.PREFIX_E;
+import static seedu.fma.logic.parser.CliSyntax.PREFIX_R;
 import static seedu.fma.model.Model.PREDICATE_SHOW_ALL_LOGS;
 
 import java.time.LocalDateTime;
@@ -31,12 +31,12 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed log list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_EXERCISE + "EXERCISE] "
-            + "[" + PREFIX_REPS + "REPS] "
-            + "[" + PREFIX_COMMENT + "COMMENT] "
+            + "[" + PREFIX_E + "EXERCISE] "
+            + "[" + PREFIX_R + "REPS] "
+            + "[" + PREFIX_C + "COMMENT] "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_REPS + "3000 "
-            + PREFIX_COMMENT + "I love my abs 3000";
+            + PREFIX_R + "3000 "
+            + PREFIX_C + "I love my abs 3000";
 
     public static final String MESSAGE_EDIT_LOG_SUCCESS = "Edited Log: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

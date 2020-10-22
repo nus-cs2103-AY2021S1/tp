@@ -12,7 +12,7 @@ import static seedu.fma.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.fma.logic.commands.CommandTestUtil.REP_DESC_A;
 import static seedu.fma.logic.commands.CommandTestUtil.REP_DESC_B;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_COMMENT_A;
-import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_JUMPING_JACKS;
+import static seedu.fma.logic.commands.CommandTestUtil.EXERCISE_B;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_LOG_A;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_A;
 import static seedu.fma.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -86,7 +86,7 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing exercise prefix
-        assertParseFailure(parser, VALID_EXERCISE_JUMPING_JACKS + REP_DESC_A + COMMENT_DESC_A,
+        assertParseFailure(parser, EXERCISE_B + REP_DESC_A + COMMENT_DESC_A,
                 expectedMessage, logBook);
 
         // missing rep prefix
