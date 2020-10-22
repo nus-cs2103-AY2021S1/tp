@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 // import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModuleList;
 import seedu.address.model.ReadOnlyContactList;
@@ -107,7 +108,7 @@ public class AddModuleCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getModuleListFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -193,6 +194,11 @@ public class AddModuleCommandTest {
 
         @Override
         public void updateFilteredContactList(Predicate<Contact> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getContactListFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 

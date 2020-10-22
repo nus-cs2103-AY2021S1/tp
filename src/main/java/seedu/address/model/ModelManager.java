@@ -82,7 +82,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getModuleListFilePath() {
         return userPrefs.getModuleListFilePath();
     }
 
@@ -162,6 +162,11 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedContact);
 
         contactList.setContact(target, editedContact);
+    }
+
+    @Override
+    public Path getContactListFilePath() {
+        return userPrefs.getContactListFilePath();
     }
 
     //=========== Todo List =============================================================

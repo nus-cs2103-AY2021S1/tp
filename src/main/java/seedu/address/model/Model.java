@@ -46,7 +46,7 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getModuleListFilePath();
 
     /**
      * Sets the user prefs' address book file path.
@@ -139,6 +139,12 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredContactList(Predicate<Contact> predicate);
+
+    /**
+     * Returns the file path of the contact list.
+     * @return Path contact list file path.
+     */
+    public Path getContactListFilePath();
 
     // ============================ TodoList ==================================================
 

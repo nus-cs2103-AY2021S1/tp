@@ -230,6 +230,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code priority} is invalid.
      */
     public static Priority parseTaskPriority(String priority) throws ParseException {
+        assert priority != null;
         String priorityAllUpperCase = priority.toUpperCase();
         switch(priorityAllUpperCase) {
         case("HIGHEST"):
@@ -252,6 +253,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code date} is invalid.
      */
     public static Date parseTaskDate(String date) throws ParseException {
+        assert date != null;
         if (!Date.isValidDate(date)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
@@ -265,10 +267,16 @@ public class ParserUtil {
      * @throws ParseException if the given {@code criterion} is invalid.
      */
     public static Criterion parseTaskCriterion(String criterion) throws ParseException {
+        assert criterion != null;
         String criterionAllUpperCase = criterion.toUpperCase();
         switch(criterionAllUpperCase) {
         case("NAME"):
             return Criterion.NAME;
+        String criterionAllUpperCase = criterion.toUpperCase();
+        switch(criterionAllUpperCase) {
+        case("DESCRIPTION"):
+        case("DESC"):
+            return Criterion.DESCRIPTION;
         case("DATE"):
         case("DEADLINE"):
             return Criterion.DATE;
