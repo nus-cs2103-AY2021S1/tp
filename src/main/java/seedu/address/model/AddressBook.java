@@ -70,6 +70,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
         setVendors(newData.getVendorList());
+        selectVendor(newData.getVendorIndex());
     }
 
     //// vendor-level operations
@@ -101,11 +102,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         vendors.setVendor(target, editedVendor);
     }
 
-    /**
-     * Returns a new AddressBook which has the selected vendor from {@code vendorIndex}
-     */
-    public AddressBook selectVendor(int vendorIndex) {
-        return new AddressBook(this.getVendorList(), vendorIndex);
+    public void selectVendor(int vendorIndex) {
+       this.vendorIndex = vendorIndex;
     }
 
     @Override
