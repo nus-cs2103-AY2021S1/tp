@@ -209,15 +209,15 @@ public class ModelManager implements Model {
         Person personToUpdate = persons[0];
         boolean isReplacement = persons.length > 1;
 
-        filteredMeetings.stream().filter(meeting -> meeting.getMembers().contains(personToUpdate)).forEach(meeting -> {
-            Set<Person> updatedMembers = new HashSet<>(meeting.getMembers());
+        filteredMeetings.stream().filter(meeting -> meeting.getParticipants().contains(personToUpdate)).forEach(meeting -> {
+            Set<Person> updatedMembers = new HashSet<>(meeting.getParticipants());
             updatedMembers.remove(personToUpdate);
             if (isReplacement) {
                 assert persons.length == 2;
                 Person editedPerson = persons[1];
                 updatedMembers.add(editedPerson);
             }
-            Meeting updatedMeeting = new Meeting(meeting.getMeetingName(), meeting.getDate(),
+            Meeting updatedMeeting = new Meeting(meeting.getModule(), meeting.getMeetingName(), meeting.getDate(),
                     meeting.getTime(), updatedMembers);
             meetingBook.setMeeting(meeting, updatedMeeting);
         });

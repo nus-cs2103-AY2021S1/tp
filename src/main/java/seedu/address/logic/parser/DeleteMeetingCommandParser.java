@@ -22,8 +22,7 @@ public class DeleteMeetingCommandParser implements Parser<DeleteMeetingCommand> 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_NAME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_MODULE, PREFIX_NAME)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_MODULE, PREFIX_NAME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteMeetingCommand.MESSAGE_USAGE));
         }
 
