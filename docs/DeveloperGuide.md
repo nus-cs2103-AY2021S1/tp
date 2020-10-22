@@ -226,7 +226,8 @@ The `UI` component will work the same
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
 The design will look like:
-<img src="images/Ui-v1.3.png" width="400px">
+
+<img src="images/Ui-v1.3.png" width="500px">
 
 --------------------------------------------------------------------------------------------------------------------
 

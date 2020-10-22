@@ -4,14 +4,11 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import seedu.fma.commons.core.GuiSettings;
 import seedu.fma.commons.core.LogsCenter;
@@ -124,14 +121,14 @@ public class MainWindow extends UiPart<Stage> {
         logListPanelPlaceholder.getChildren().add(logListPanel.getRoot());
 
         try {
-            exerciseListPanel = new ExerciseListPanel(logic.getExerciseList());
+            exerciseListPanel = new ExerciseListPanel(logic.getLogBook().getExerciseList());
             exerciseListPanelPlaceholder.getChildren().add(exerciseListPanel.getRoot());
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
 
         gridBoxPlaceholder = new HBox();
-//        gridBoxPlaceholder.setBackground(new Background(new BackgroundFill(new Color())));
+        //gridBoxPlaceholder.setBackground(new Background(new BackgroundFill(new Color())));
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 

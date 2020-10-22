@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.fma.commons.core.GuiSettings;
-import seedu.fma.model.exercise.Exercise;
 import seedu.fma.model.log.Log;
 
 /**
@@ -80,8 +79,6 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered log list */
     ObservableList<Log> getFilteredLogList();
 
-    /** Returns an unmodifiable view of the exercise list */
-    ObservableList<Exercise> getExerciseList();
 
     /**
      * Updates the filter of the filtered log list to filter by the given {@code predicate}.

@@ -13,7 +13,6 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.fma.commons.core.GuiSettings;
 import seedu.fma.commons.core.LogsCenter;
-import seedu.fma.model.exercise.Exercise;
 import seedu.fma.model.log.Log;
 
 /**
@@ -117,15 +116,6 @@ public class ModelManager implements Model {
 
         logBook.setLog(target, editedLog);
     }
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Exercise}
-     */
-    @Override
-    public ObservableList<Exercise> getExerciseList() {
-        return logBook.getExerciseList();
-    }
-
 
     //=========== Filtered Log List Accessors =============================================================
 
