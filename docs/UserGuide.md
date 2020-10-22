@@ -62,10 +62,11 @@ Format: `help`
 
 Tags a file with a unique tag name.
 
-Format: `tag t/TAG_NAME f/FILE_PATH`
+Format: `tag t/TAG_NAME f/FILE_PATH [l/LABEL]`
 
 Examples:
-* `tag t/Users f/C:\Users`
+* (Without label) `tag t/Users f/C:\Users`
+* (With label) `tag t/Users f/C:\Users l/Important`
 
 ### Displaying file path of a tag : `show`
 
@@ -105,6 +106,18 @@ Format: `retag o/OLD_TAG_NAME t/NEW_TAG_NAME`
 Examples:
 * `retag o/notes t/secret`
 
+### Finding a tag : `find`
+
+Finds a tag by its tag name and/or label.
+
+Format: `find t/TAG_NAME [l/LABEL]` or
+        `find [t/TAG_NAME] l/LABEL`
+
+Examples:
+* `find t/notes`
+* `find l/important`
+* `find t/notes l/important`
+
 ### Changing working directory : `cd`
 
 Changes the current working directory.
@@ -141,10 +154,10 @@ Format: `exit`
 **Q**: What is the structure of the application?<br>
 **A**: You can find the Design Guide [here](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/docs/DeveloperGuide.md)
 
-**Q**: How to I report a bug?<br>
+**Q**: How do I report a bug?<br>
 **A**: Please create a new issue on [this](https://github.com/AY2021S1-CS2103T-F12-1/tp/issues) webpage.
 
-**Q**: Can I contribute to the project?
+**Q**: Can I contribute to the project?<br>
 **A**: Sorry, as this is a school project, we are not accepting any contributors at this period.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -153,10 +166,11 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-**Tag** | `tag t/TAG_NAME f/FILE_PATH` <br> e.g., `tag t/newTag f/c:/myfolder/file.jpg`
+**Tag** | `tag t/TAG_NAME f/FILE_PATH , [l/LABEL]` <br> e.g., `tag t/newTag f/c:/myfolder/file.jpg l/MyFile` or `tag t/newTag f/c:/myfolder/file.jpg` 
 **Show** | `show t/TAG_NAME`
 **Untag** | `untag t/TAG_NAME`
 **Retag** | `retag o/OLD_TAG_NAME t/NEW_TAG_NAME` <br> e.g., `retag o/mytag t/newtag`
+**Find** | `find t/TAG_NAME [l/LABEL]` or `find [t/TAG_NAME] l/LABEL` <br> e.g., `find t/newtag l/important` or `find t/newtag` or `find l/important`
 **Changing directory**| `cd f/FILE_PATH`
 **Open** | `open t/TAG_NAME`
 **List** | `ls`
