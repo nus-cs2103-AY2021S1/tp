@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalModules.CS2103;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -19,9 +20,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
-import seedu.address.model.module.ModuleInstructorsContainsKeywordsPredicate;
-import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
+import seedu.address.model.module.predicates.ModuleCodeContainsKeywordsPredicate;
+import seedu.address.model.module.predicates.ModuleInstructorsContainsKeywordsPredicate;
+import seedu.address.model.module.predicates.ModuleNameContainsKeywordsPredicate;
 import seedu.address.testutil.TypicalModules;
 
 class FindModCommandTest {
@@ -44,16 +45,16 @@ class FindModCommandTest {
                 new ModuleInstructorsContainsKeywordsPredicate(Arrays.asList("third", "fourth"));
 
         FindModCommand findModFirstCommand =
-                new FindModCommand(firstCodePredicate, firstNamePredicate, firstInstructorPredicate);
+                new FindModCommand(Arrays.asList(firstCodePredicate, firstNamePredicate, firstInstructorPredicate));
         FindModCommand findModSecondCommand =
-                new FindModCommand(secondCodePredicate, secondNamePredicate, secondInstructorPredicate);
+                new FindModCommand(Arrays.asList(secondCodePredicate, secondNamePredicate, secondInstructorPredicate));
 
         // same object -> returns true
         assertTrue(findModFirstCommand.equals(findModFirstCommand));
 
         // same values -> returns true
         FindModCommand findFirstCommandCopy =
-                new FindModCommand(firstCodePredicate, firstNamePredicate, firstInstructorPredicate);
+                new FindModCommand(Arrays.asList(firstCodePredicate, firstNamePredicate, firstInstructorPredicate));
         assertTrue(findModFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -75,8 +76,9 @@ class FindModCommandTest {
         ModuleNameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Linear Algebra");
         ModuleInstructorsContainsKeywordsPredicate instructorPredicate = prepareInstructorPredicate("KENSON");
 
-        FindModCommand command = new FindModCommand(codePredicate, namePredicate, instructorPredicate);
-        Predicate<Module> composedPredicate = getComposedPredicate(codePredicate, namePredicate, instructorPredicate);
+        List<Predicate<Module>> predicateList = Arrays.asList(codePredicate, namePredicate, instructorPredicate);
+        FindModCommand command = new FindModCommand(predicateList);
+        Predicate<Module> composedPredicate = getComposedPredicate(predicateList);
         expectedModel.updateFilteredModuleList(composedPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredModuleList());
@@ -92,8 +94,9 @@ class FindModCommandTest {
         ModuleNameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Software Engineering");
         ModuleInstructorsContainsKeywordsPredicate instructorPredicate = prepareInstructorPredicate("ZOE");
 
-        FindModCommand command = new FindModCommand(codePredicate, namePredicate, instructorPredicate);
-        Predicate<Module> composedPredicate = getComposedPredicate(codePredicate, namePredicate, instructorPredicate);
+        List<Predicate<Module>> predicateList = Arrays.asList(codePredicate, namePredicate, instructorPredicate);
+        FindModCommand command = new FindModCommand(predicateList);
+        Predicate<Module> composedPredicate = getComposedPredicate(predicateList);
         expectedModel.updateFilteredModuleList(composedPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredModuleList());
@@ -108,8 +111,9 @@ class FindModCommandTest {
         ModuleNameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Programming Methodology 2");
         ModuleInstructorsContainsKeywordsPredicate instructorPredicate = prepareInstructorPredicate("CARL");
 
-        FindModCommand command = new FindModCommand(codePredicate, namePredicate, instructorPredicate);
-        Predicate<Module> composedPredicate = getComposedPredicate(codePredicate, namePredicate, instructorPredicate);
+        List<Predicate<Module>> predicateList = Arrays.asList(codePredicate, namePredicate, instructorPredicate);
+        FindModCommand command = new FindModCommand(predicateList);
+        Predicate<Module> composedPredicate = getComposedPredicate(predicateList);
         expectedModel.updateFilteredModuleList(composedPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.singletonList(CS2030), model.getFilteredModuleList());
@@ -126,8 +130,9 @@ class FindModCommandTest {
         ModuleNameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Programming Methodology 2");
         ModuleInstructorsContainsKeywordsPredicate instructorPredicate = prepareInstructorPredicate("CARL");
 
-        FindModCommand command = new FindModCommand(codePredicate, namePredicate, instructorPredicate);
-        Predicate<Module> composedPredicate = getComposedPredicate(codePredicate, namePredicate, instructorPredicate);
+        List<Predicate<Module>> predicateList = Arrays.asList(codePredicate, namePredicate, instructorPredicate);
+        FindModCommand command = new FindModCommand(predicateList);
+        Predicate<Module> composedPredicate = getComposedPredicate(predicateList);
         expectedModel.updateFilteredModuleList(composedPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.singletonList(CS2030), model.getFilteredModuleList());
@@ -144,8 +149,9 @@ class FindModCommandTest {
         // "m/" parameter kept, and is a partial keyword
         ModuleCodeContainsKeywordsPredicate codePredicate = prepareCodePredicate("cs2");
 
-        FindModCommand command = new FindModCommand(codePredicate, namePredicate, instructorPredicate);
-        Predicate<Module> composedPredicate = getComposedPredicate(codePredicate, namePredicate, instructorPredicate);
+        List<Predicate<Module>> predicateList = Arrays.asList(codePredicate, namePredicate, instructorPredicate);
+        FindModCommand command = new FindModCommand(predicateList);
+        Predicate<Module> composedPredicate = getComposedPredicate(predicateList);
         expectedModel.updateFilteredModuleList(composedPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CS2030, CS2100, CS2103), model.getFilteredModuleList());
@@ -163,9 +169,9 @@ class FindModCommandTest {
     private ModuleInstructorsContainsKeywordsPredicate prepareInstructorPredicate(String userInput) {
         return new ModuleInstructorsContainsKeywordsPredicate(Arrays.asList(userInput.trim().split("\\s+")));
     }
-    private Predicate<Module> getComposedPredicate(Predicate<Module> ...predicates) {
-        Predicate composedPredicate = module -> true;
-        for (Predicate predicate : predicates) {
+    private Predicate<Module> getComposedPredicate(List<Predicate<Module>> predicates) {
+        Predicate<Module> composedPredicate = module -> true;
+        for (Predicate<Module> predicate : predicates) {
             if (predicate == null) {
                 continue;
             }

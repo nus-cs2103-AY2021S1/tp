@@ -20,7 +20,6 @@ public class DelModCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Module deleted: %1$s";
 
-
     private final ModuleCode moduleCode;
 
     /**

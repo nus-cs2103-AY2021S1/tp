@@ -36,9 +36,9 @@ public class DelModCommandParser implements Parser<DelModCommand> {
 
         try {
             return new DelModCommand(moduleCode);
-        } catch (IllegalArgumentException pe) {
+        } catch (IllegalArgumentException e) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DelModCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DelModCommand.MESSAGE_USAGE), e);
         }
     }
 }

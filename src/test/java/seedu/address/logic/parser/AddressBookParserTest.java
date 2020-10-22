@@ -31,9 +31,9 @@ import seedu.address.logic.commands.MlistCommand;
 import seedu.address.logic.commands.ResetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
-import seedu.address.model.module.ModuleInstructorsContainsKeywordsPredicate;
-import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
+import seedu.address.model.module.predicates.ModuleCodeContainsKeywordsPredicate;
+import seedu.address.model.module.predicates.ModuleInstructorsContainsKeywordsPredicate;
+import seedu.address.model.module.predicates.ModuleNameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -115,7 +115,7 @@ public class AddressBookParserTest {
                 new ModuleNameContainsKeywordsPredicate(Arrays.asList("Software", "Engineering"));
         ModuleInstructorsContainsKeywordsPredicate instructorPredicate =
                 new ModuleInstructorsContainsKeywordsPredicate(Collections.singletonList("Damith"));
-        assertEquals(new FindModCommand(codePredicate, namePredicate, instructorPredicate), command);
+        assertEquals(new FindModCommand(Arrays.asList(codePredicate, namePredicate, instructorPredicate)), command);
     }
 
     @Test
