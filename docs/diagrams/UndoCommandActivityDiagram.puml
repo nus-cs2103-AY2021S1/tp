@@ -6,6 +6,8 @@ start
 'diamond we place it as the true branch instead.
 
 if () then ([exists at least one previous state])
+    :Retrieve current state from history;
+    :Add current state to redo;
     :Remove current state from history;
     :Set ZooKeepBook to most
     recent state (previous state);

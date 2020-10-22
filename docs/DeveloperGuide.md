@@ -219,6 +219,99 @@ New command | Undo command
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
+
+### Redo feature (by Jun Cheng)
+
+#### Implementation
+
+The Redo feature was added as a complement to the Undo feature which was done earlier. The addition of this
+feature required the integration of the `RedoCommand` class, which extends from the `Command` class like all other commands.
+The `HistoryStack` class also has new key features to support the `redo` command:
+
+* `HistoryStack#addToRedo(ReadOnlyZooKeepBook)` - Adds a given state of the ZooKeep book into the redo stack.
+* `HistoryStack#removeRecentRedo()` - Removes the most 'recent' update of the ZooKeep book from the redo stack.
+* `HistoryStack#viewRecentRedo()` - Returns (but does not remove) the most 'recent' update of the ZooKeep book.
+* `HistoryStack#clearRedo()` - Clears the future updates of the ZooKeep book stored in the redo stack.
+
+The `RedoCommand` class references some of these methods to accomplish the feature required. Given below is an example
+usage scenario and how the redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The ZooKeep book is initialised with the initial state
+given in `data/zookeepbook.json`, and the `HistoryStack` consists of 2 stacks; the history stack and the redo stack,
+each in their respective initial states.
+
+![RedoState0](images/RedoState0.png)
+
+Step 2. The user executes `add n/Harambe...` to add a new animal into the ZooKeep book. The `LogicManager` calls
+`Model#getZooKeepBook()` to retrieve the new state of the book and calls `HistoryStack#addToHistory(ReadOnlyZooKeepBook)`
+as per normal undo protocol.
+
+![RedoState1](images/RedoState1.png)
+
+Step 3. The user then executes `delete 567` which deletes the animal in the book with an ID of 567. Similar to step 2, 
+`LogicManager` will call `Model#getZooKeepBook()` to retrieve the new state of the book and then calls 
+`HistoryStack#addToHistory(ReadOnlyZooKeepBook)` to store this state into the history stack.
+
+![RedoState2](images/RedoState2.png)
+
+Step 4. Now the user thinks that deleting that animal was a mistake and restores the previous state by 
+executing `undo` (explained in the previous section). However, before the current state is deleted and replaced with 
+the previous one, `HistoryStack#addToRedo(ReadOnlyZooKeepBook)` is called to store the current state into the redo 
+stack for further use.
+
+![RedoState3](images/RedoState3.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If `UndoCommand` is never executed, the 
+redo stack will remain empty and calling `RedoCommand` will do nothing, since there are no future states recorded in
+the stack for retrieval. 
+
+</div>
+
+Step 5. However, now the user decides that deleting that animal was the correct decision after all, and now executes 
+`redo` which calls `HistoryStack#viewRecentRedo()` to retrieve the future state of the ZooKeep book where the animal
+was deleted. The future state is then loaded into the model using `Model#setZooKeepBook(ReadOnlyZooKeepBook)`.
+Lastly, `HistoryStack#removeRecentRedo()` is called to delete that state from redo stack. 
+
+![RedoState4](images/RedoState4.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If commands which alter the state of the 
+ZooKeep book (e.g. add or delete) are executed after an undo command, the redo stack will be emptied since the 
+immediate future has been altered and the future states previously stored in the redo stack are now invalid. Hence 
+executing redo now will do nothing.
+
+</div>
+
+
+The following sequence diagram illustrates how the `Redo` operation is performed:
+
+![RedoSequenceDiagram](images/RedoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `RedoCommand` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following 2 activity diagrams summarise what happens when a user executes the `undo` and `redo` commands:
+
+Undo command | Redo command
+:-------------------------:|:-------------------------:
+![UndoCommandWithRedoActivityDiagram](images/UndoCommandWithRedoActivityDiagram.png) | ![RedoCommandActivityDiagram](images/RedoCommandActivityDiagram.png)
+
+
+#### Design consideration:
+
+##### Aspect: How redo executes
+
+* **Alternative 1 (current choice):** Saves the entire ZooKeep book as a state.
+  * Pros: Easy to implement, works with all commands immediately.
+  * Cons: May have performance issues in terms of memory usage as product scales.
+
+* **Alternative 2:** Individual command knows how to redo by
+  itself.
+  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
+
+
 ### Snapshot feature (by Aizat)
 
 #### Implementation
