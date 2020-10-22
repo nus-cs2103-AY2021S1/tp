@@ -2,15 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -46,6 +43,7 @@ public class DeleteCommand extends Command {
         // Update address book
         List<Person> filteredList = model.getFilteredPersonList().stream()
                 .filter(person -> person.isSameName(targetName)).collect(Collectors.toList());
+        assert filteredList.size() == 1;
         Person personToDelete = filteredList.get(0);
         model.deletePerson(personToDelete);
 
@@ -59,6 +57,7 @@ public class DeleteCommand extends Command {
                     model.setMeeting(meeting, updatedMeeting);
                     return updatedMeeting;
                 }).collect(Collectors.toList());
+        model.updatePersonInMeetingBook(personToDelete);
 
         // todo update module book
         //        List<Meeting> filteredModuleList = model.getFilteredModuleList().stream()
