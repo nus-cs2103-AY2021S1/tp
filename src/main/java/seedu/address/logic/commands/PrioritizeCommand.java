@@ -11,6 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Done;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
@@ -79,8 +80,9 @@ public class PrioritizeCommand extends Command {
         Remind updatedRemind = assignmentToPrioritize.getRemind();
         Schedule updatedSchedule = assignmentToPrioritize.getSchedule();
         Priority updatedPriority = priority;
+        Done updatedDone = assignmentToPrioritize.getDone();
 
         return new Assignment(updatedName, updatedDeadline, updatedModuleCode, updatedRemind, updatedSchedule,
-                updatedPriority);
+                updatedPriority, updatedDone);
     }
 }

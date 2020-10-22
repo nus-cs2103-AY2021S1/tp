@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Done;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
@@ -77,8 +78,9 @@ public class UnprioritizeCommand extends NegateCommand {
         Remind updatedRemind = assignmentToUnprioritize.getRemind();
         Schedule updatedSchedule = assignmentToUnprioritize.getSchedule();
         Priority priority = new Priority();
+        Done updatedDone = assignmentToUnprioritize.getDone();
 
         return new Assignment(updatedName, updatedDeadline, updatedModuleCode, updatedRemind, updatedSchedule,
-                priority);
+                priority, updatedDone);
     }
 }

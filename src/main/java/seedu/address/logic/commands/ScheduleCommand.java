@@ -16,6 +16,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Done;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
@@ -160,9 +161,10 @@ public class ScheduleCommand extends Command {
         ModuleCode updatedModuleCode = assignmentToSchedule.getModuleCode();
         Remind updatedRemind = assignmentToSchedule.getRemind();
         Priority priority = assignmentToSchedule.getPriority();
+        Done updatedDone = assignmentToSchedule.getDone();
 
         return new Assignment(updatedName, updatedDeadline, updatedModuleCode, updatedRemind, schedule,
-                priority);
+                priority, updatedDone);
     }
 
     @Override

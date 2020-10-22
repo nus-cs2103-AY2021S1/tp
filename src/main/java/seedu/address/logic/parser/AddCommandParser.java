@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Done;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
@@ -56,12 +57,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         Remind remind = new Remind();
         Schedule schedule = new Schedule();
         Priority priority = new Priority();
+        Done done = new Done();
 
         if (isRemindPresent) {
             remind = remind.setReminder();
         }
 
-        Assignment assignment = new Assignment(name, deadline, moduleCode, remind, schedule, priority);
+        Assignment assignment = new Assignment(name, deadline, moduleCode, remind, schedule, priority, done);
         return new AddCommand(assignment);
     }
 
