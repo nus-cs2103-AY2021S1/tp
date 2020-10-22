@@ -19,6 +19,7 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted task: %1$s";
 
+    // TODO: Change to use universal invalid index message
     public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "Index invalid";
 
     private final Index targetIndex;
