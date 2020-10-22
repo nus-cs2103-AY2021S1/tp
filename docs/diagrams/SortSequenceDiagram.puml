@@ -68,4 +68,7 @@ deactivate SortCommand
 
 destroy SortCommand
 
+[<--LogicManager
+deactivate LogicManager
+
 @enduml
