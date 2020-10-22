@@ -164,7 +164,7 @@ PIVOT then extracts and displays the key information about the `Case` in the `Ca
 The `open case` mechanism is facilitated by `OpenCaseCommand`. It extends abstract class `OpenCommand` and contains a target `Index` of the `Case` to be opened.
 It implements `OpenCaseCommand#execute()` as required in the abstract parent class. The Sequence Diagram below shows how the `OpenCaseCommand` works.
 
-##### Insert Diagram Here
+![Interactions Inside the Logic Component for the `open case 1` Command](images/OpenCaseSequenceDiagram.png)
 
 As the user invokes `open case [INDEX]`, the arguments are passed from the GUI to the `Logic` component, which is then passed to the `Parser`, implemented by `PivotParser`.
 
@@ -174,6 +174,7 @@ In `PivotParser`, the arguments are processed and passed onto the `OpenCommandPa
 </div>
 
 Upon invoking `OpenCaseCommand#execute()`, the class will extract the `Case` that is to be opened, and update the state in `StateManager`.
+Upon observing a change in state, the GUI will then extract the `Case` and update its display panel with the case information.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** When the user gives an invalid `Index`, such as `open case -1`, `OpenCaseCommand` will raise and error and display the proper command format for the user.
 </div>
