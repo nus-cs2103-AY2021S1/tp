@@ -6,19 +6,33 @@ skinparam classBackgroundColor STORAGE_COLOR
 
 Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
-Interface AddressBookStorage <<Interface>>
+Interface ModuleListStorage <<Interface>>
+Interface ContactListStorage <<Interface>>
+Interface TodoListStorage <<Interface>>
 
 Class StorageManager
 Class JsonUserPrefsStorage
-Class JsonAddressBookStorage
+Class JsonModuleListStorage
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
-StorageManager o--> AddressBookStorage
+StorageManager o--> ModuleListStorage
+StorageManager o--> ContactListStorage
+StorageManager o--> TodoListStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAddressBookStorage .left.|> AddressBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
-JsonSerializableAddressBookStorage .right.> JsonSerializablePerson
-JsonSerializablePerson .right.> JsonAdaptedTag
+JsonModuleListStorage .up.|> ModuleListStorage
+JsonModuleListStorage .down.> JsonSerializableModuleList
+JsonSerializableModuleList .right.> JsonAdaptedModule
+JsonAdaptedModule .right.> JsonAdaptedTag
+
+JsonContactListStorage .up.|> ContactListStorage
+JsonContactListStorage .down.> JsonSerializableContactList
+JsonSerializableContactList .down.> JsonAdaptedContact
+JsonAdaptedContact.> JsonAdaptedTag
+
+JsonTodoListStorage .up.|> TodoListStorage
+JsonTodoListStorage .down.> JsonSerializableTodoList
+JsonSerializableTodoList .down.> JsonAdaptedTask
+JsonAdaptedTask .left.> JsonAdaptedTag
 @enduml

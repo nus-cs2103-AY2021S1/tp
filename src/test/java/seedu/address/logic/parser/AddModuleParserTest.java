@@ -16,29 +16,45 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 // import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 // import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 // import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 // import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 // import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.ZOOMLINK_DESC_CS2103T;
 import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddModuleCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
 //import seedu.address.model.person.Email;
 //import seedu.address.model.person.Name;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.modulelistparsers.AddModuleParser;
 import seedu.address.model.contact.Contact;
 //import seedu.address.model.tag.Tag;
+import seedu.address.model.module.Module;
 import seedu.address.testutil.ContactBuilder;
+import seedu.address.testutil.ModuleBuilder;
 
 public class AddModuleParserTest {
     private AddModuleParser parser = new AddModuleParser();
 
     @Test
-    public void parse_allFieldsPresent_success() {
-        Contact expectedPerson = new ContactBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+    public void parse_allFieldsPresent_success() throws ParseException {
+        //Contact expectedPerson = new ContactBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
+        Module expectedModule = new ModuleBuilder().withName(VALID_MODULENAME_CS2103T)
+                .withZoomLink(VALID_ZOOMLINK_CS2103T).build();
+
+        Command command = parser.parse(NAME_DESC_CS2103T + ZOOMLINK_DESC_CS2103T);
+        AddModuleCommand test2 = new AddModuleCommand(expectedModule);
+
+        // assertParseSuccess(parser, NAME_DESC_CS2103T + ZOOMLINK_DESC_CS2103T, new AddModuleCommand(expectedModule));
         // whitespace only preamble
         // assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + EMAIL_DESC_BOB
         //         + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
