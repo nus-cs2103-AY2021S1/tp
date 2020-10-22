@@ -3,6 +3,7 @@ package seedu.fma.testutil;
 import static seedu.fma.model.util.SampleDataUtil.getSampleExercises;
 
 import seedu.fma.model.exercise.Exercise;
+import seedu.fma.model.util.Calories;
 import seedu.fma.model.util.Name;
 
 
@@ -12,10 +13,10 @@ import seedu.fma.model.util.Name;
 public class ExerciseBuilder {
     public static final Exercise SAMPLE_EXERCISE = getSampleExercises()[0];
     public static final String DEFAULT_EXERCISE_NAME = SAMPLE_EXERCISE.getName().toString();
-    public static final int DEFAULT_CALORIES_PER_REP = SAMPLE_EXERCISE.getCaloriesPerRep();
+    public static final Calories DEFAULT_CALORIES_PER_REP = SAMPLE_EXERCISE.getCaloriesPerRep();
 
     private Name name;
-    private int caloriesPerRep;
+    private Calories caloriesPerRep;
 
     /**
      * Creates a {@code ExerciseBuilder} with the default details.
@@ -44,7 +45,7 @@ public class ExerciseBuilder {
     /**
      * Sets the {@code caloriesPerRep} of the {@code Exercise} that we are building.
      */
-    public ExerciseBuilder withCaloriesPerRep(int caloriesPerRep) {
+    public ExerciseBuilder withCaloriesPerRep(Calories caloriesPerRep) {
         this.caloriesPerRep = caloriesPerRep;
         return this;
     }

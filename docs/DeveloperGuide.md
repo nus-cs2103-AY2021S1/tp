@@ -2,16 +2,17 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
 
---------------------------------------------------------------------------------------------------------------------
+- Table of Contents
+  {:toc}
+
+---
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Design**
 
@@ -19,7 +20,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
+The **_Architecture Diagram_** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -28,22 +29,23 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 </div>
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+
+- At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+- At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+- [**`UI`**](#ui-component): The UI of the App.
+- [**`Logic`**](#logic-component): The command executor.
+- [**`Model`**](#model-component): Holds the data of the App in memory.
+- [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
-* defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+- defines its _API_ in an `interface` with the same name as the Component.
+- exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
@@ -51,7 +53,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -70,8 +72,8 @@ The `UI` component uses JavaFx UI framework. The layout of these UI parts are de
 
 The `UI` component,
 
-* Executes user commands using the `Logic` component.
-* Listens for changes to `Model` data so that the UI can be updated with the modified data.
+- Executes user commands using the `Logic` component.
+- Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
 ### Logic component
 
@@ -101,17 +103,15 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 The `Model`,
 
-* stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
-
+- stores a `UserPref` object that represents the user’s preferences.
+- stores the address book data.
+- exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- does not depend on any of the other three components.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
-
 
 ### Storage component
 
@@ -120,18 +120,36 @@ The `Model`,
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
-* can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+
+- can save `UserPref` objects in json format and read it back.
+- can save the address book data in json format and read it back.
 
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Add Exercise feature
+
+- AddExCommandParsers parse user input
+- AddExercise adds the exercise in the logbook
+
+Below is how it works:
+
+Step 1. User executes `addex e/<exercise name> c/<calories>`
+
+Step 2. `AddExCommandParser` parses user's input and creates and `AddExCommand`
+
+![](images/AddExCommand.png)
+
+Step 3: `AddExCommand` executes and adds exercise to `Model`
+
+![](images/AddExModel.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -139,9 +157,9 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
+- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
+- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
@@ -202,44 +220,47 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+- **Alternative 1 (current choice):** Saves the entire address book.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
+  - Pros: Easy to implement.
+  - Cons: May have performance issues in terms of memory usage.
+
+- **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the log being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+  - Pros: Will use less memory (e.g. for `delete`, just save the log being deleted).
+  - Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
+
 _{Explain here how the data archiving feature will be implemented}_
 
 ### \[Proposed\] Better user interface
 
 We plan to change and improve the user interface to support exercise by adding `ExerciseListCard` and `ExerciseListPanel` which is similar to `LogListCard` and `LogListPanel` to the
- `MainWindow`.
- 
+`MainWindow`.
+
 The `UI` component will work the same
-* Executes user commands using the `Logic` component.
-* Listens for changes to `Model` data so that the UI can be updated with the modified data.
+
+- Executes user commands using the `Logic` component.
+- Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
 The design will look like:
 
 <img src="images/Ui-v1.3.png" width="500px">
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+- [Documentation guide](Documentation.md)
+- [Testing guide](Testing.md)
+- [Logging guide](Logging.md)
+- [Configuration guide](Configuration.md)
+- [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Requirements**
 
@@ -247,40 +268,39 @@ The design will look like:
 
 **Target user profile**:
 
-* has a need to keep track of exercises done
-* has a need to keep track of calories burnt over time
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+- has a need to keep track of exercises done
+- has a need to keep track of calories burnt over time
+- prefer desktop apps over other types
+- can type fast
+- prefers typing to mouse interactions
+- is reasonably comfortable using CLI apps
 
 **Value proposition**: simple and quick way to monitor exercises and quantify fitness progress
-
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                    | I want to …​                                     | So that I can…​                                                     |
-| -------- | ----------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | user                          | see usage instructions                              | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                          | add an exercise                                     | track what I have done in the app                                      |
-| `* * *`  | user                          | delete a log                                     | remove exercises that I no longer want to track                        |
-| `* * *`  | user                          | update an exercise                                  | edit what the app is tracking                                          |
-| `* * *`  | user                          | list exercises                                      | view what the app is tracking                                          |
-| `* *`    | impatient user                | have quick app response times                       | not waste time waiting for it to load                                  |
-| `* *`    | new user                      | see the app populated with sample data              | view what the app will looks like when there is input                  |
-| `* *`    | user ready to use the app     | reset all current data                              | begin using the app for real without any sample data                   |
-| `* *`    | busy user                     | use my keyboard to log exercises                    | log exercises as quickly as possible                                   |
-| `* *`    | forgetful user                | have easy to remember input commands                | use the app quickly without constantly referring to the manual         |
-| `* *`    | indecisive  user              | view a list of exercises I can do                   | start exercising without having to think of what to do                 |
-| `*`      | user                          | have a graph showing my calories burnt over time    | see if I am making progress                                            |
-| `*`      | user                          | view the calories I have burnt over time            | feel a sense of accomplishment                                         |
-| `* `     | tech savvy user               | import my own list of exercises                     | view and track it in the application                                   |
-| `* `     | unmotivated user              | have reminders of the last time I exercised         | feel more motivated to start exercising again                          |
-| `* `     | careless user                 | be able to undo actions                             | fix any mistakes I may have done regarding input                       |
+| Priority | As a …​                   | I want to …​                                     | So that I can…​                                                |
+| -------- | ------------------------- | ------------------------------------------------ | -------------------------------------------------------------- |
+| `* * *`  | user                      | see usage instructions                           | refer to instructions when I forget how to use the App         |
+| `* * *`  | user                      | add an exercise                                  | track what I have done in the app                              |
+| `* * *`  | user                      | delete a log                                     | remove exercises that I no longer want to track                |
+| `* * *`  | user                      | update an exercise                               | edit what the app is tracking                                  |
+| `* * *`  | user                      | list exercises                                   | view what the app is tracking                                  |
+| `* *`    | impatient user            | have quick app response times                    | not waste time waiting for it to load                          |
+| `* *`    | new user                  | see the app populated with sample data           | view what the app will looks like when there is input          |
+| `* *`    | user ready to use the app | reset all current data                           | begin using the app for real without any sample data           |
+| `* *`    | busy user                 | use my keyboard to log exercises                 | log exercises as quickly as possible                           |
+| `* *`    | forgetful user            | have easy to remember input commands             | use the app quickly without constantly referring to the manual |
+| `* *`    | indecisive user           | view a list of exercises I can do                | start exercising without having to think of what to do         |
+| `*`      | user                      | have a graph showing my calories burnt over time | see if I am making progress                                    |
+| `*`      | user                      | view the calories I have burnt over time         | feel a sense of accomplishment                                 |
+| `* `     | tech savvy user           | import my own list of exercises                  | view and track it in the application                           |
+| `* `     | unmotivated user          | have reminders of the last time I exercised      | feel more motivated to start exercising again                  |
+| `* `     | careless user             | be able to undo actions                          | fix any mistakes I may have done regarding input               |
 
-*{More to be added}*
+_{More to be added}_
 
 ### Use cases
 
@@ -295,19 +315,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to delete a specific exercise in the list
 4. FixMyAbs deletes the exercise
 
-    Use case ends.
-    
+   Use case ends.
+
 **Extensions**
 
-* 2a. The list is empty.
+- 2a. The list is empty.
 
   Use case ends.
-    
-* 3a. The given index is invalid.
 
-    * 3a1. FixMyAbs shows an error message.
-    
-      Use case resumes at step 2.
+- 3a. The given index is invalid.
+
+  - 3a1. FixMyAbs shows an error message.
+
+    Use case resumes at step 2.
 
 **Use case: UC-02 - Edit an exercise**
 
@@ -318,21 +338,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to edit a specific exercise in the list
 4. FixMyAbs edits the exercise according to user specifications
 
-    Use case ends.
-    
+   Use case ends.
+
 **Extensions**
 
-* 2a. The list is empty.
+- 2a. The list is empty.
 
   Use case ends.
-    
-* 3a. The given index is invalid.
 
-    * 3a1. FixMyAbs shows an error message.
-    
-      Use case resumes at step 2.
-      
-*{More to be added}*
+- 3a. The given index is invalid.
+
+  - 3a1. FixMyAbs shows an error message.
+
+    Use case resumes at step 2.
+
+_{More to be added}_
 
 ### Non-Functional Requirements
 
@@ -340,13 +360,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 exercises without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-*{More to be added}*
+_{More to be added}_
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+- **Mainstream OS**: Windows, Linux, Unix, OS-X
 
----------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Instructions for manual testing**
 
@@ -370,7 +390,7 @@ testers are expected to do more *exploratory* testing.
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+      Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 

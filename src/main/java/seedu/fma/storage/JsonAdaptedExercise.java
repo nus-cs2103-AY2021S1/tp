@@ -5,7 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.fma.commons.exceptions.IllegalValueException;
 import seedu.fma.model.exercise.Exercise;
+import seedu.fma.model.util.Calories;
 import seedu.fma.model.util.Name;
+
+
 
 /**
  * Jackson-friendly version of {@link Exercise}.
@@ -31,7 +34,7 @@ class JsonAdaptedExercise {
      */
     public JsonAdaptedExercise(Exercise source) {
         name = source.getName().toString();
-        caloriesPerRep = source.getCaloriesPerRep();
+        caloriesPerRep = source.getCaloriesPerRep().value;
     }
 
     /**
@@ -49,6 +52,6 @@ class JsonAdaptedExercise {
         }
         final Name modelName = new Name(name);
 
-        return new Exercise(modelName, caloriesPerRep);
+        return new Exercise(modelName, new Calories(caloriesPerRep));
     }
 }

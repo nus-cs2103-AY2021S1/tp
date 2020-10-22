@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.fma.commons.core.GuiSettings;
 import seedu.fma.commons.core.LogsCenter;
+import seedu.fma.model.exercise.Exercise;
 import seedu.fma.model.log.Log;
 
 /**
@@ -115,6 +116,53 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedLog);
 
         logBook.setLog(target, editedLog);
+    }
+
+    /**
+     * Returns true if a exercise with the same identity as {@code exercise} exists in the log book.
+     */
+    @Override
+    public boolean hasExercise(Exercise exercise) {
+        requireNonNull(exercise);
+        return logBook.hasExercise(exercise);
+    }
+
+    /**
+     * Deletes the given exercise.
+     * The exercise must exist in the log book.
+     *
+     * @param target
+     */
+    @Override
+    public void deleteExercise(Exercise target) {
+        logBook.removeExercise(target);
+    }
+
+    /**
+     * Adds the given exercise.
+     * {@code exercise} must not already exist in the log book.
+     *
+     * @param exercise
+     */
+    @Override
+    public void addExercise(Exercise exercise) {
+        logBook.addExercise(exercise);
+    }
+
+    /**
+     * Replaces the given exercise {@code target} with {@code editedExercise}.
+     * {@code target} must exist in the log book.
+     * The exercise identity of {@code editedExercise} must not be the same as
+     * another existing exercise in the log book.
+     *
+     * @param target
+     * @param editedExercise
+     */
+    @Override
+    public void setExercise(Exercise target, Exercise editedExercise) {
+        requireAllNonNull(target, editedExercise);
+
+        logBook.setExercise(target, editedExercise);
     }
 
     //=========== Filtered Log List Accessors =============================================================

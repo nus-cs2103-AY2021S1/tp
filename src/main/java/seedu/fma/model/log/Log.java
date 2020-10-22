@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import seedu.fma.model.exercise.Exercise;
+import seedu.fma.model.util.Calories;
 
 /**
  * Represents a Log in the FixMyAbs. Guarantees: details are present and not null, field values
@@ -74,8 +75,8 @@ public class Log {
         return comment;
     }
 
-    public int getCalories() {
-        return exercise.getCaloriesPerRep() * reps.getReps();
+    public Calories getCalories() {
+        return new Calories(exercise.getCaloriesPerRep().value * reps.getReps());
     }
 
     /**

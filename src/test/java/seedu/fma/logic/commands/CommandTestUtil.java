@@ -2,9 +2,9 @@ package seedu.fma.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.fma.logic.parser.CliSyntax.PREFIX_COMMENT;
-import static seedu.fma.logic.parser.CliSyntax.PREFIX_EXERCISE;
-import static seedu.fma.logic.parser.CliSyntax.PREFIX_REPS;
+import static seedu.fma.logic.parser.CliSyntax.PREFIX_C;
+import static seedu.fma.logic.parser.CliSyntax.PREFIX_E;
+import static seedu.fma.logic.parser.CliSyntax.PREFIX_R;
 import static seedu.fma.model.util.SampleDataUtil.getSampleExercises;
 import static seedu.fma.testutil.Assert.assertThrows;
 
@@ -31,8 +31,8 @@ import seedu.fma.testutil.LogBuilder;
  */
 
 public class CommandTestUtil {
-    public static final String VALID_EXERCISE_SIT_UP = "Sit ups";
-    public static final String VALID_EXERCISE_JUMPING_JACKS = "Jumping jacks";
+    public static final String EXERCISE_A = "Sit ups";
+    public static final String EXERCISE_B = "Jumping jacks";
 
     public static final String VALID_REP_A_STR = "5";
     public static final String VALID_REP_B_STR = "10";
@@ -66,17 +66,18 @@ public class CommandTestUtil {
             VALID_YEAR_B, VALID_MONTH_B, VALID_DAY_B, VALID_HOUR_B, VALID_MINUTE_B
     );
 
-    public static final String EXERCISE_DESC_A = " " + PREFIX_EXERCISE + VALID_EXERCISE_SIT_UP;
-    public static final String EXERCISE_DESC_B = " " + PREFIX_EXERCISE + VALID_EXERCISE_JUMPING_JACKS;
-    public static final String REP_DESC_A = " " + PREFIX_REPS + VALID_REP_A;
-    public static final String REP_DESC_B = " " + PREFIX_REPS + VALID_REP_B;
-    public static final String COMMENT_DESC_A = " " + PREFIX_COMMENT + VALID_COMMENT_A_STR;
-    public static final String COMMENT_DESC_B = " " + PREFIX_COMMENT + VALID_COMMENT_B_STR;
+    public static final String EXERCISE_DESC_A = " " + PREFIX_E + EXERCISE_A;
+    public static final String EXERCISE_DESC_B = " " + PREFIX_E + EXERCISE_B;
+    public static final String REP_DESC_A = " " + PREFIX_R + VALID_REP_A;
+    public static final String REP_DESC_B = " " + PREFIX_R + VALID_REP_B;
+    public static final String COMMENT_DESC_A = " " + PREFIX_C + VALID_COMMENT_A_STR;
+    public static final String COMMENT_DESC_B = " " + PREFIX_C + VALID_COMMENT_B_STR;
+    public static final String CALORIES_DESC_A = " " + PREFIX_C + "90";
 
     // '?' not allowed in exercise names
-    public static final String INVALID_EXERCISE_DESC = " " + PREFIX_EXERCISE + "Sit ups?";
-    public static final String INVALID_REP_DESC = " " + PREFIX_REPS + "911a"; // 'a' not allowed in rep
-    public static final String INVALID_COMMENT_DESC = " " + PREFIX_COMMENT + "    "; // comment cannot be blank
+    public static final String INVALID_EXERCISE_DESC = " " + PREFIX_E + "Sit ups?";
+    public static final String INVALID_REP_DESC = " " + PREFIX_R + "911a"; // 'a' not allowed in rep
+    public static final String INVALID_COMMENT_DESC = " " + PREFIX_C + "    "; // comment cannot be blank
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

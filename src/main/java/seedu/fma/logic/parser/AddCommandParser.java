@@ -1,11 +1,9 @@
 package seedu.fma.logic.parser;
 
 import static seedu.fma.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.fma.logic.parser.CliSyntax.PREFIX_COMMENT;
-import static seedu.fma.logic.parser.CliSyntax.PREFIX_EXERCISE;
-import static seedu.fma.logic.parser.CliSyntax.PREFIX_REPS;
-
-import java.util.stream.Stream;
+import static seedu.fma.logic.parser.CliSyntax.PREFIX_C;
+import static seedu.fma.logic.parser.CliSyntax.PREFIX_E;
+import static seedu.fma.logic.parser.CliSyntax.PREFIX_R;
 
 import seedu.fma.logic.commands.AddCommand;
 import seedu.fma.logic.parser.exceptions.ParseException;
@@ -27,28 +25,20 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args, ReadOnlyLogBook logBook) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_EXERCISE, PREFIX_REPS, PREFIX_COMMENT);
+                ArgumentTokenizer.tokenize(args, PREFIX_E, PREFIX_R, PREFIX_C);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_EXERCISE, PREFIX_REPS, PREFIX_COMMENT)
+        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_E, PREFIX_R, PREFIX_C)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Exercise exercise = ParserUtil.parseExercise(argMultimap.getValue(PREFIX_EXERCISE).get(), logBook);
-        Rep rep = ParserUtil.parseRep(argMultimap.getValue(PREFIX_REPS).get());
-        Comment comment = ParserUtil.parseComment(argMultimap.getValue(PREFIX_COMMENT).get());
+        Exercise exercise = ParserUtil.parseExercise(argMultimap.getValue(PREFIX_E).get(), logBook);
+        Rep rep = ParserUtil.parseRep(argMultimap.getValue(PREFIX_R).get());
+        Comment comment = ParserUtil.parseComment(argMultimap.getValue(PREFIX_C).get());
 
         Log log = new Log(exercise, rep, comment);
 
         return new AddCommand(log);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }

@@ -1,9 +1,9 @@
 package seedu.fma.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.fma.logic.parser.CliSyntax.PREFIX_COMMENT;
-import static seedu.fma.logic.parser.CliSyntax.PREFIX_EXERCISE;
-import static seedu.fma.logic.parser.CliSyntax.PREFIX_REPS;
+import static seedu.fma.logic.parser.CliSyntax.PREFIX_C;
+import static seedu.fma.logic.parser.CliSyntax.PREFIX_E;
+import static seedu.fma.logic.parser.CliSyntax.PREFIX_R;
 
 import seedu.fma.logic.commands.exceptions.CommandException;
 import seedu.fma.model.Model;
@@ -18,13 +18,13 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a log to the log book. "
             + "Parameters: "
-            + PREFIX_EXERCISE + "EXERCISE "
-            + PREFIX_REPS + "REPS "
-            + PREFIX_COMMENT + "COMMENT \n"
+            + PREFIX_E + "EXERCISE "
+            + PREFIX_R + "REPS "
+            + PREFIX_C + "COMMENT \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_EXERCISE + "Sit ups "
-            + PREFIX_REPS + "30 "
-            + PREFIX_COMMENT + "my abs hurt:( \n";
+            + PREFIX_E + "Sit ups "
+            + PREFIX_R + "30 "
+            + PREFIX_C + "my abs hurt:( \n";
 
     public static final String MESSAGE_SUCCESS = "New log added: %1$s";
     public static final String MESSAGE_DUPLICATE_LOG = "This log already exists in the log book";

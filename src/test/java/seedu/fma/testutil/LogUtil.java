@@ -2,9 +2,9 @@
 
 package seedu.fma.testutil;
 
-import static seedu.fma.logic.parser.CliSyntax.PREFIX_COMMENT;
-import static seedu.fma.logic.parser.CliSyntax.PREFIX_EXERCISE;
-import static seedu.fma.logic.parser.CliSyntax.PREFIX_REPS;
+import static seedu.fma.logic.parser.CliSyntax.PREFIX_C;
+import static seedu.fma.logic.parser.CliSyntax.PREFIX_E;
+import static seedu.fma.logic.parser.CliSyntax.PREFIX_R;
 
 import seedu.fma.logic.commands.AddCommand;
 import seedu.fma.logic.commands.EditCommand;
@@ -31,9 +31,9 @@ public class LogUtil {
      */
     public static String getLogDetails(Log log) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_EXERCISE + log.getExercise().getName().value + " ");
-        sb.append(PREFIX_REPS + log.getReps().value + " ");
-        sb.append(PREFIX_COMMENT + log.getComment().value + " ");
+        sb.append(PREFIX_E + log.getExercise().getName().value + " ");
+        sb.append(PREFIX_R + log.getReps().value + " ");
+        sb.append(PREFIX_C + log.getComment().value + " ");
         return sb.toString();
     }
 
@@ -43,10 +43,10 @@ public class LogUtil {
     public static String getEditLogDescriptorDetails(EditCommand.EditLogDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getExercise().ifPresent(
-            exercise -> sb.append(PREFIX_EXERCISE).append(exercise.getName().value).append(" ")
+            exercise -> sb.append(PREFIX_E).append(exercise.getName().value).append(" ")
         );
-        descriptor.getRep().ifPresent(rep -> sb.append(PREFIX_REPS).append(rep.value).append(" "));
-        descriptor.getComment().ifPresent(comment -> sb.append(PREFIX_COMMENT).append(comment.value).append(" "));
+        descriptor.getRep().ifPresent(rep -> sb.append(PREFIX_R).append(rep.value).append(" "));
+        descriptor.getComment().ifPresent(comment -> sb.append(PREFIX_C).append(comment.value).append(" "));
         return sb.toString();
     }
 }

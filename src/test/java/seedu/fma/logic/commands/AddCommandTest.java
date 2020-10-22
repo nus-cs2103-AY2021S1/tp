@@ -21,6 +21,7 @@ import seedu.fma.model.ReadOnlyLogBook;
 import seedu.fma.model.ReadOnlyUserPrefs;
 import seedu.fma.model.exercise.Exercise;
 import seedu.fma.model.log.Log;
+import seedu.fma.model.util.Calories;
 import seedu.fma.model.util.Name;
 import seedu.fma.testutil.LogBuilder;
 
@@ -52,8 +53,12 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Exercise sitUps = new Exercise(new Name("Sit ups"), 30);
-        Exercise flyingKicks = new Exercise(new Name("Flying kicks"), 20);
+        Exercise sitUps = new Exercise(
+                new Name("Sit ups"),
+                new Calories(30));
+        Exercise flyingKicks = new Exercise(
+                new Name("Flying kicks"),
+                new Calories(20));
 
         Log logSitsUp = new LogBuilder()
                 .withExercise(sitUps)
@@ -148,6 +153,52 @@ public class AddCommandTest {
 
         @Override
         public void setLog(Log target, Log editedLog) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Returns true if a exercise with the same identity as {@code exercise} exists in the log book.
+         *
+         * @param exercise
+         */
+        @Override
+        public boolean hasExercise(Exercise exercise) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Deletes the given exercise.
+         * The exercise must exist in the log book.
+         *
+         * @param target
+         */
+        @Override
+        public void deleteExercise(Exercise target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Adds the given exercise.
+         * {@code exercise} must not already exist in the log book.
+         *
+         * @param exercise
+         */
+        @Override
+        public void addExercise(Exercise exercise) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Replaces the given exercise {@code target} with {@code editedExercise}.
+         * {@code target} must exist in the log book.
+         * The exercise identity of {@code editedExercise} must not be
+         * the same as another existing exercise in the log book.
+         *
+         * @param target
+         * @param editedExercise
+         */
+        @Override
+        public void setExercise(Exercise target, Exercise editedExercise) {
             throw new AssertionError("This method should not be called.");
         }
 

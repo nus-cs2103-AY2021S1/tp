@@ -2,7 +2,7 @@ package seedu.fma.model.exercise;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_JUMPING_JACKS;
+import static seedu.fma.logic.commands.CommandTestUtil.EXERCISE_B;
 import static seedu.fma.testutil.Assert.assertThrows;
 import static seedu.fma.testutil.TypicalExercises.EXERCISE_A;
 import static seedu.fma.testutil.TypicalExercises.EXERCISE_C;
@@ -10,6 +10,7 @@ import static seedu.fma.testutil.TypicalExercises.EXERCISE_C;
 import org.junit.jupiter.api.Test;
 
 import seedu.fma.model.exercise.exceptions.ExerciseNotFoundException;
+import seedu.fma.model.util.Calories;
 import seedu.fma.model.util.Name;
 import seedu.fma.testutil.ExerciseBuilder;
 
@@ -18,14 +19,14 @@ public class ExerciseTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
         // null name
-        assertThrows(NullPointerException.class, () -> new Exercise(null, 123));
+        assertThrows(NullPointerException.class, () -> new Exercise(null, new Calories(123)));
     }
 
     @Test
     public void constructor_invalidCaloriesPerRep_throwsIllegalArgumentException() {
         // invalid caloriesPerRep
         assertThrows(IllegalArgumentException.class, () ->
-                new Exercise(new Name("jumping jacks"), -10));
+                new Exercise(new Name("jumping jacks"), new Calories(-10)));
     }
 
     @Test
@@ -47,7 +48,7 @@ public class ExerciseTest {
         assertNotEquals(EXERCISE_C, EXERCISE_A);
 
         // different name -> returns false
-        Exercise editedSitUp = new ExerciseBuilder(EXERCISE_A).withName(VALID_EXERCISE_JUMPING_JACKS).build();
+        Exercise editedSitUp = new ExerciseBuilder(EXERCISE_A).withName(EXERCISE_B).build();
         assertNotEquals(editedSitUp, EXERCISE_A);
     }
 

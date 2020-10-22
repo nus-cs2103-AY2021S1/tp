@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.fma.logic.commands.AddCommand;
+import seedu.fma.logic.commands.AddExCommand;
 import seedu.fma.logic.commands.ClearCommand;
 import seedu.fma.logic.commands.Command;
 import seedu.fma.logic.commands.DeleteCommand;
@@ -43,8 +44,8 @@ public class FixMyAbsParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        switch (commandWord) {
 
+        switch (commandWord) {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments, logBook);
 
@@ -68,6 +69,9 @@ public class FixMyAbsParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case AddExCommand.COMMAND_WORD:
+            return new AddExCommandParser().parse(arguments, logBook);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -19,6 +19,7 @@ import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.fma.model.util.Calories;
 import seedu.fma.testutil.LogBuilder;
 
 public class LogTest {
@@ -35,8 +36,9 @@ public class LogTest {
         // Check all the variables are equal
         assertEquals(VALID_EXERCISE_A, logA.getExercise());
         assertEquals(VALID_REP_A, logA.getReps());
-        int calories = VALID_EXERCISE_A.getCaloriesPerRep() * Integer.parseInt(VALID_REP_A_STR);
-        assertTrue(calories == logA.getCalories());
+        Calories calories = new Calories(VALID_EXERCISE_A.getCaloriesPerRep()
+                .value * Integer.parseInt(VALID_REP_A_STR));
+        assertTrue(calories.equals(logA.getCalories()));
     }
 
     @Test
