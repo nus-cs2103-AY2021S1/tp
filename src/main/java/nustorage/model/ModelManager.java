@@ -58,7 +58,8 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given financeAccount, inventory and userPrefs
      */
-    public ModelManager(ReadOnlyFinanceAccount financeAccount, ReadOnlyInventory inventory, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyFinanceAccount financeAccount, ReadOnlyInventory inventory,
+                        ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(financeAccount, inventory, userPrefs);
 

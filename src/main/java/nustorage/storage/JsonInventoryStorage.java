@@ -14,7 +14,6 @@ import nustorage.commons.exceptions.DataConversionException;
 import nustorage.commons.exceptions.IllegalValueException;
 import nustorage.commons.util.FileUtil;
 import nustorage.commons.util.JsonUtil;
-import nustorage.model.Inventory;
 import nustorage.model.ReadOnlyInventory;
 
 

@@ -2,7 +2,6 @@ package nustorage.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,6 +26,10 @@ public class Inventory implements Iterable<InventoryRecord>, ReadOnlyInventory {
 
     }
 
+    /**
+     * Constructs inventory object to hold InventoryRecords.
+     * @param toBeCopied ReadOnlyInventory to be copied over.
+     */
     public Inventory(ReadOnlyInventory toBeCopied) {
         this();
         resetData(toBeCopied);
@@ -48,6 +51,11 @@ public class Inventory implements Iterable<InventoryRecord>, ReadOnlyInventory {
         internalList.remove(inventoryRecord);
     }
 
+
+    /**
+     * Reset data with new data.
+     * @param newData New data to be set.
+     */
     public void resetData(ReadOnlyInventory newData) {
         requireNonNull(newData);
         setInventoryRecord(newData.asUnmodifiableObservableList());

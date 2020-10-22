@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 
 import nustorage.commons.core.LogsCenter;
 import nustorage.commons.exceptions.DataConversionException;
-import nustorage.model.Inventory;
 import nustorage.model.ReadOnlyAddressBook;
 import nustorage.model.ReadOnlyFinanceAccount;
 import nustorage.model.ReadOnlyInventory;
