@@ -174,7 +174,7 @@ Format: `unremind INDEX`
 
 Sets a priority tag for the specified assignment.
 
-Format: `prioritze INDEX priorty/PRIORITY`
+Format: `prioritize INDEX priority/PRIORITY`
 
 * Sets the priority to the assignment at the specified `INDEX`.
 * Priority levels include LOW, MEDIUM and HIGH.
