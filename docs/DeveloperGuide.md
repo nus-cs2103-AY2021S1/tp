@@ -479,6 +479,56 @@ The following activity diagram summarizes what happens when the suggestion featu
   * Cons: The distance estimate between two strings is quite bad, especially if no substring overlaps. Slow in speed
     compared to minimum edit distance. Generates worse suggestion compared to minimum edit distance.
 
+### Find Feature
+
+The mechanism for the Find feature (as with the FindExact feature) is facilitated by classes `FindCommand`, `FindCommandParser`, `FindUtil` and `FieldContainsKeywordsPredicate` subclasses that include:
+* `NameContainsKeywordsPredicate`
+* `SerialNumberContainsKeywordsPredicate`
+* `SourceContainsKeywordsPredicate`
+* `LocationContainsKeywordsPredicate`
+
+#### FindCommandParser
+The `FindCommandParser` class implements the `Parser` interface. `FindCommandParser` class is tasked with parsing the user inputs, generating a list of `FieldContainsKeywordsPredicate`s and then constructing a `FindCommand` with the list of `FieldContainsKeywordsPredicate`s. 
+
+`FindCommandParser` implements the following important operations:
+
+* `FindCommandParser#parse()` - Parses the user input to produce a `FindCommand`.
+* `FindCommandParser#parsePrefixAndKeywords()` - Generates a list of `FieldContainsKeywordsPredicate` from a map of `Prefix`s and keywords.
+* `FindCommandParser#generatePredicate() - Generates a `FieldContainsKeywordsPredicate` from a `Prefix` and keywords.
+
+#### FindCommand
+The `FindCommand` class extends the `Command` interface. The `FindCommand` class is tasked with creating a new `CommandResult` that represents the result of the execution of a `FindCommand`. 
+The construction of a `FindCommand` takes in a list of `FieldContainsKeywordsPredicate`. These predicates will be evaluated to filter out the Stock items.
+When a `FindCommand` is executed, a `CommandResult` is constructed with the status message, showing the searched terms and searched results of the number of stocks found from the search, to be displayed to the user as its argument.
+
+`FindCommand` implements the following important operations:
+
+* `FindCommand#execute()` - Executes the search and returns the result message of the search.
+
+####FindUtil
+The `FindUtil` class is part of the util package. It provides utility to combine the list of `FieldContainsKeywordsPredicate`s of the `FindCommand` into a single `Predicate<Stock>`.
+`Find` feature requires the `Stock` to fulfill only one `FieldContainsKeywordsPredicate` in the list for `Stock` to be displayed. The mechansim used to combine the predicates into a single Predicate<Stock> for `Find` is Java 8 Predicate method, Predicate.or().
+`FindExact` feature requires the `Stock` to fulfill all `FieldContainsKeywordsPredicate` in the list for `Stock` to be displayed. The mechansim used to combine the predicates into a single Predicate<Stock> for `FindExact` is Java 8 Predicate method, Predicate.and().
+
+`FindUtil` implements the following important operations:
+
+* `FindUtil#generateCombinedPredicatesWithOr()` - Combines predicates using Predicate.or()
+* `FindUtil#generateCombinedPredicatesWithAnd()` - Combines predicates using Predicate.and()
+
+####FieldContainsKeywordsPredicate
+
+`FieldContainsKeywordsPredicate` is an abstract class that implements the interface Predicate<Stock>. Its subclasses are `NameContainsKeywordsPredicate`, `LocationContainsKeywordsPredicate`, `SerialNumberContainsKeywordsPredicate` and `SourceContainsKeywordsPredicate`, which inherit and implement the method `test(Stock)`, and is constructed with a list of String keywords to test.
+
+* `NameContainsKeywordsPredicate` implements test() to evaluate true when a `Stock`'s name contains all the keywords in the list.
+* `SerialNumberContainsKeywordsPredicate` implements test() to evaluate true when a `Stock`'s serial number contains all the keywords in the list.
+* `LocationContainsKeywordsPredicate` implements test() to evaluate true when a `Stock`'s location stored contains all the keywords in the list.
+* `SourceContainsKeywordsPredicate` implements test() to evaluate true when a `Stock`'s source contains all the keywords in the list.
+
+For all FieldContainsKeywordsPredicate, if keyword given is an empty string, method test() evaluates to false.
+
+`FieldContainsKeywordsPredicate` implements the following important operations:
+* `FieldContainsKeywordsPredicate#test()` - Evaluates this predicate on the given argument.
+
 ### Statistics Feature
 
 The backend mechanism for statistics feature is facilitated by `StockBookParser, StatisticsCommandParser, StatisticsCommand`
