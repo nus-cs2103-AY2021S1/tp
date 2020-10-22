@@ -213,6 +213,71 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### Autocomplete Feature
+
+<<INCLUDE CLASS DIAGRAM>>
+
+This autocomplete mechanism is facilitated by `AutocompleteCommandBox`. It extends `CommandBox` with an autocomplete mode, which is a state stored internally as `isAutocompleteMode`. 
+This new class exposes one public function:
+
+* `setupAutocompletionListeners(String commandPrefix, Suppler<List<Strings>> data)` — Attaches a new autocomplete listener which triggers autocomplete mode with `commandPrefix` and generates suggestions from `data` supplier.
+
+The following acitivity diagram gives a high level overview of the Autocomplete mechanism:
+
+![AutocompleteActivityDiagram](images/AutocompleteActivityDiagram.png)
+
+From this diagram we see that there is 2 states of the mechanism:
+
+* `isAutocompleteMode` — Triggered by commandPrefix
+* `hasSetPrefix` — Set using `Tab` / `Shift-Tab`
+
+Prefix in the context of the autocomplete class refers to the string we use to filter out suggestions. For example, the prefix
+'ja' would give me 'jay', 'jason' as possible suggestions.
+
+#### Sample scenario : Generating name suggestions
+Given below is an example usage scenario and how the autocomplete mechanism behaves at each step.
+
+Context : 
+```
+ AutocompleteCommandBox commandBox = new AutocompleteCommandBox(cmdExecutor);
+ commandBox.setupAutocompletionListeners("cname/", () -> logic.getFilteredPersonList().stream()
+         .map(p -> p.getName().fullName).collect(Collectors.toList()));
+
+```
+See here that the commandPrefix is set to `cname/` and we are generating suggestions from the person list.
+
+Step 1. User triggers Autocomplete mode by typing in command prefix.
+<< Include Sequence Diagram >>
+
+Step 2. After typing in his desired prefix, user sets prefix using `Tab`.
+
+Step 3. User is happy with the suggestions, user proceeds to lock in suggestion with `Enter`
+
+Step 4. CommandBox removes commandPrefix and moves caret to End.
+
+
+
+#### Design consideration:
+
+##### Aspect: Autocomplete Trigger
+
+* **Alternative 1 (current choice):** Check substring from caret position
+  * Pros: Able to support names with spaces.
+  * Cons:
+      * Slightly more difficult to implement, as there are more edge cases.
+      * Unable to support editing of suggestions.
+
+* **Alternative 2:** Using regex to match pattern (e.g. `.*<CMD_PREFIX>\S*`)
+  * Pros: 
+      * Less complex code. (Lesser Conditionals)
+      * Able to support moving caret around to adjust suggestion
+  * Cons: Unable to support names with spaces as space is the delimiter.
+
+#### Side Note
+
+Because we iterate through autocompletion suggestions using `Tab` and `Shift-Tab` which conflicts with the inbuilt
+focus traversals commands. We have to disable it using the `AutocompleteCommandBox#DisableFocusTraversal()` operation.
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
