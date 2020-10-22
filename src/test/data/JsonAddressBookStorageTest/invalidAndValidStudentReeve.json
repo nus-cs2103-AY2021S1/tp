@@ -3,7 +3,7 @@
     "name": "Valid Student",
     "phone": "9482424",
     "school": "NUS High School",
-    "year": "Year 6",
+    "year": "JC 2",
     "admin" : {
       "classVenue": "Kent Ridge Road",
       "classTime": "1 1500-1700",
@@ -16,7 +16,7 @@
     "name": "Student With Invalid Phone Field",
     "phone": "948asdf2424",
     "school": "NUS High School",
-    "year": "Year 6",
+    "year": "JC 2",
     "admin": {
       "classVenue": "Kent Ridge Road",
       "classTime": "1 1500-1700",
