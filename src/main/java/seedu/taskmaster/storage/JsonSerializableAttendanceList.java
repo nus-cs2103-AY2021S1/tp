@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.taskmaster.commons.exceptions.IllegalValueException;
-import seedu.taskmaster.model.attendance.Attendance;
+import seedu.taskmaster.model.session.StudentRecord;
 import seedu.taskmaster.model.student.NusnetId;
 
 
@@ -19,7 +19,7 @@ import seedu.taskmaster.model.student.NusnetId;
 @JsonRootName(value = "attendanceList")
 class JsonSerializableAttendanceList {
 
-    public static final String MESSAGE_DUPLICATE_STUDENT = "Attendance list contains duplicate NusnetId(s).";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "StudentRecord list contains duplicate NusnetId(s).";
 
     private final List<JsonAdaptedAttendance> attendances = new ArrayList<>();
 
@@ -37,7 +37,7 @@ class JsonSerializableAttendanceList {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAttendanceList}.
      */
-    public static JsonSerializableAttendanceList getSerializableListFromAttendances(List<Attendance> source) {
+    public static JsonSerializableAttendanceList getSerializableListFromAttendances(List<StudentRecord> source) {
         return new JsonSerializableAttendanceList(source.stream()
                                                     .map(JsonAdaptedAttendance::new)
                                                     .collect(Collectors.toList()));
@@ -48,12 +48,12 @@ class JsonSerializableAttendanceList {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public List<Attendance> toModelType() throws IllegalValueException {
-        List<Attendance> newAttendances = new ArrayList<>();
+    public List<StudentRecord> toModelType() throws IllegalValueException {
+        List<StudentRecord> newAttendances = new ArrayList<>();
         List<NusnetId> nusnetIds = new ArrayList<>();
 
         for (JsonAdaptedAttendance jsonAdaptedAttendance: attendances) {
-            Attendance modelAttendance = jsonAdaptedAttendance.toModelType();
+            StudentRecord modelAttendance = jsonAdaptedAttendance.toModelType();
 
             // check for duplicates
             NusnetId nusnetId = modelAttendance.getNusnetId();

@@ -1,11 +1,11 @@
-package seedu.taskmaster.model.attendance;
+package seedu.taskmaster.model.session;
 
 public enum AttendanceType {
     PRESENT,
     ABSENT,
     NO_RECORD;
 
-    public static final String MESSAGE_CONSTRAINTS = "Attendance type can only be 'present', 'absent' or 'empty.";
+    public static final String MESSAGE_CONSTRAINTS = "StudentRecord type can only be 'present', 'absent' or 'empty.";
 
     /**
      * Returns true if a given string is a valid attendance type.
