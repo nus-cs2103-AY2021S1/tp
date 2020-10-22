@@ -43,10 +43,27 @@ public class JsonAdaptedTask {
      */
     public JsonAdaptedTask(Task source) {
         name = source.getName().get().getValue();
-        tag = new JsonAdaptedTag(source.getTag().get());
-        priority = source.getPriority().get().toString();
-        date = source.getDate().get().toString();
-        status = source.getStatus().get().toString();
+        if (source.getTag() == null) {
+            tag = null;
+        } else {
+            tag = new JsonAdaptedTag(source.getTag().get());
+        }
+        if (source.getPriority().get() == null) {
+            priority = null;
+        } else {
+            priority = source.getPriority().get().toString();
+        }
+        if (source.getDate().get() == null) {
+            date = null;
+        } else {
+            date = source.getDate().get().toString();
+        }
+        if (source.getStatus().get() == null) {
+            status = null;
+        } else {
+            status = source.getStatus().get().toString();
+        }
+
     }
 
     /**
