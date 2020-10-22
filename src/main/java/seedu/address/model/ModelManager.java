@@ -36,7 +36,6 @@ public class ModelManager implements Model {
     private FilteredList<Food> filteredFoods;
     private FilteredList<OrderItem> filteredOrderItems;
 
-    private int vendorIndex = 0;
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -183,18 +182,18 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public AddressBook selectVendor(int vendorIndex) {
-        return this.addressBook.selectVendor(vendorIndex);
+    public void selectVendor(int vendorIndex) {
+        this.addressBook.selectVendor(vendorIndex);
     }
 
     @Override
     public void setVendorIndex(int vendorIndex) {
-        this.vendorIndex = vendorIndex;
+        this.addressBook.selectVendor(vendorIndex);
     }
 
     @Override
     public int getVendorIndex() {
-        return this.vendorIndex;
+        return this.addressBook.getVendorIndex();
     }
 
     //=========== MenuManager ================================================================================

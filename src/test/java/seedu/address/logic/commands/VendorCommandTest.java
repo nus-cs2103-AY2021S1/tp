@@ -30,8 +30,8 @@ public class VendorCommandTest {
         Index first = Index.fromOneBased(1);
         VendorCommand vendorCommand = new VendorCommand(first);
 
-        Model expectedModel = new ModelManager(getTypicalAddressBook().selectVendor(first.getZeroBased()),
-                new UserPrefs());
+        Model expectedModel = initialiseModel();
+        expectedModel.selectVendor(first.getZeroBased());
         String expectedMessage = String.format(VendorCommand.MESSAGE_SELECT_VENDOR_SUCCESS, 1);
         CommandResult expectedCommandResult = new CommandResult(expectedMessage, false,
                 false, true);
@@ -44,8 +44,8 @@ public class VendorCommandTest {
         Index third = Index.fromOneBased(3);
         VendorCommand vendorCommand = new VendorCommand(third);
 
-        Model expectedModel = new ModelManager(getTypicalAddressBook().selectVendor(third.getZeroBased()),
-                new UserPrefs());
+        Model expectedModel = initialiseModel();
+        expectedModel.selectVendor(third.getZeroBased());
         String expectedMessage = String.format(VendorCommand.MESSAGE_SELECT_VENDOR_SUCCESS, 3);
         CommandResult expectedCommandResult = new CommandResult(expectedMessage, false,
                 false, true);

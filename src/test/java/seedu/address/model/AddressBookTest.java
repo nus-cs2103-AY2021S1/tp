@@ -90,16 +90,19 @@ public class AddressBookTest {
     @Test
     public void selectVendorIndex_validIndex_success() {
         assertEquals(addressBook.getVendorIndex(), 0);
-        AddressBook newAddressBook = getTypicalAddressBook().selectVendor(1);
-        assertEquals(newAddressBook.getVendorIndex(), 1);
+        AddressBook addressBook = getTypicalAddressBook();
+        addressBook.selectVendor(1);
+        assertEquals(addressBook.getVendorIndex(), 1);
     }
 
     @Test
     public void selectVendor_validIndex_success() {
-        AddressBook addressBook1 = getTypicalAddressBook().selectVendor(1);
+        AddressBook addressBook1 = getTypicalAddressBook();
+        addressBook1.selectVendor(1);
         assertEquals(addressBook1.getSelectedVendor(), BENSON);
 
-        AddressBook addressBook2 = getTypicalAddressBook().selectVendor(4);
+        AddressBook addressBook2 = getTypicalAddressBook();
+        addressBook2.selectVendor(4);
         assertEquals(addressBook2.getSelectedVendor(), ELLE);
     }
 
