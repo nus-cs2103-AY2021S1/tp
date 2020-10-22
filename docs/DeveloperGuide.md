@@ -147,7 +147,7 @@ url.
 data. The data is parsed and returns as a list of `Lessons`.
 
 The following sequence diagram shows the sequence when LogicManager executes `import` command.
-![Interactions Inside the Logic Component for the `import url/URL` Command](images/FindSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `import url/URL` Command](images/ImportSequenceDiagram.png)
 
 1. The `execute` method of `LogicManager` is called when a user keys in an input into the application and `execute`
 takes in the input.
@@ -156,7 +156,7 @@ takes in the input.
 3. It calls the `TimetableUrlParser` with the URL and it returns a `TimetableData` object.
 4. `ImportCommandParser` returns an `ImportCommand` object.
 5. There is return call to `LogicManager` which then calls the overridden `execute` method of `ImportCommand`.
-6. The `execute` method of `Importommand` will call the `retrieveLessons` method from `TimetableRetriever`, which
+6. The `execute` method of `ImportCommand` will call the `retrieveLessons` method from `TimetableRetriever`, which
  returns a list of lessons to be added.
 7. The `execute` method returns a `CommandResult` object.
 
