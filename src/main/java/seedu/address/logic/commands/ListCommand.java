@@ -25,7 +25,8 @@ public class ListCommand extends Command {
             + "A day represents 24 hours.\n"
             + "If no index is keyed in, all your assignments will be displayed.\n"
             + "Parameters: [INDEX] (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + COMMAND_WORD + " 3\n"
+            + "The above example will list all your assignments 72 hours (3 days) from the current date and time.";
 
     public static final String MESSAGE_SUCCESS = "Listed your assignments";
 
@@ -60,5 +61,12 @@ public class ListCommand extends Command {
             model.updateFilteredAssignmentList((showLimitedAssignments()));
         }
         return new CommandResult(ListCommand.MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ListCommand // instanceof handles nulls
+                && numberOfDays.equals(((ListCommand) other).numberOfDays)); // state check
     }
 }
