@@ -213,6 +213,11 @@ The `Assignments` each store their own `assignment name`, `percentage of final g
 
 ![Structure of the Module List Component](images/GradeTrackerDiagram.png)
 
+When an `assignment` is added, it follows the sequence diagram as shown below. The sequence flows similarly 
+to the rest of the project as the command is parsed and then executed.
+
+![Sequence Diagram of the Add Assignment Command](images/AddAssignmentSequenceDiagram.png)
+
 #### Design consideration:
 
 ##### Aspect: Format to store the grade for a module
