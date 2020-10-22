@@ -24,7 +24,6 @@ public class DatePredicate implements Predicate<Food> {
         try {
             tempDate = ParserUtil.parseDate(date);
         } catch (ParseException e) {
-            logger.info("Invalid date: " + date);
             throw new ParseException("Invalid date: " + date);
         }
         this.date = tempDate;
