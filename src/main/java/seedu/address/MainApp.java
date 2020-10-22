@@ -69,9 +69,9 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s planus and {@code userPrefs}. <br>
-     * The data from the sample planus will be used instead if {@code storage}'s planus is not found,
-     * or an empty planusk will be used instead if errors occur when reading {@code storage}'s planus.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s PlaNus and {@code userPrefs}. <br>
+     * The data from the sample PlaNus will be used instead if {@code storage}'s PlaNus is not found,
+     * or an empty PlaNus will be used instead if errors occur when reading {@code storage}'s PlaNus.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyPlanus> planusOptional;
