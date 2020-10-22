@@ -39,7 +39,7 @@
                     <items>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <StackPane fx:id="tagListPlaceholder" prefHeight="294.0" prefWidth="143.0" VBox.vgrow="ALWAYS" />
+                              <StackPane fx:id="tagListPlaceholder" prefWidth="143.0" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
@@ -53,7 +53,7 @@
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <StackPane fx:id="fileExplorerPlaceHolder" prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                              <StackPane fx:id="fileExplorerPlaceHolder" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                     </items>
