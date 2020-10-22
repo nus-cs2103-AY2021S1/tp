@@ -272,7 +272,7 @@ public class ParserUtil {
         switch(criterionAllUpperCase) {
         case("DESCRIPTION"):
         case("DESC"):
-            return Criterion.DESCRIPTION;
+            return Criterion.NAME;
         case("DATE"):
         case("DEADLINE"):
             return Criterion.DATE;

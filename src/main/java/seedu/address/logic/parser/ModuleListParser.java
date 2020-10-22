@@ -38,7 +38,7 @@ import seedu.address.logic.parser.modulelistparsers.ViewModuleParser;
 /**
  * Parses user input.
  */
-public class ModuleListParser {
+public class ModuleListParser implements FeatureParser {
 
     /**
      * Used for initial separation of command word and args.
