@@ -168,7 +168,7 @@ Action | Format, Examples
 **Show** | `show t/TAG_NAME`
 **Untag** | `untag t/TAG_NAME`
 **Retag** | `retag o/OLD_TAG_NAME t/NEW_TAG_NAME` <br> e.g., `retag o/mytag t/newtag`
-**Find** | `find KEYWORD` or `find [t/TAG_NAME] l/LABEL` <br> e.g., `find newtag`
+**Find** | `find KEYWORD` <br> e.g., `find newtag`
 **Changing directory**| `cd f/FILE_PATH`
 **Open** | `open t/TAG_NAME`
 **List** | `ls`
