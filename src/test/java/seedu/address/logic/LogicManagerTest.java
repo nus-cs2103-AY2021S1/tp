@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.FILE_ADDRESS_DESC_CS2101;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.USER_DIRECTORY_ADDRESS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTags.CS2101;
 
@@ -24,6 +25,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.tag.FileAddress;
 import seedu.address.model.tag.Tag;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
@@ -82,7 +84,7 @@ public class LogicManagerTest {
                 + FILE_ADDRESS_DESC_CS2101;
         Tag expectedTag = new TagBuilder(CS2101).build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addTag(expectedTag.toAbsolute());
+        expectedModel.addTag(expectedTag.toAbsolute(false, new FileAddress(USER_DIRECTORY_ADDRESS)));
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(tagCommand, CommandException.class, expectedMessage, expectedModel);
     }

@@ -3,6 +3,7 @@ package seedu.address.model.tag;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.File;
+import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -52,12 +53,19 @@ public class Tag {
      * @return The same tag but with absolute file address.
      * @throws IllegalArgumentException If file does not exist.
      */
-    public Tag toAbsolute() {
-        File file = new File(fileAddress.value);
+    public Tag toAbsolute(boolean isAbsolutePath, FileAddress currentPath) {
+        File file;
+
+        if (isAbsolutePath) {
+            file = new File(fileAddress.value);
+        } else {
+            file = new File(currentPath.value, fileAddress.value);
+        }
+
         if (!file.exists()) {
             throw new IllegalArgumentException("Tag address not valid!");
         }
-        FileAddress absAddress = new FileAddress(file.getAbsolutePath());
+        FileAddress absAddress = new FileAddress(Paths.get(file.getAbsolutePath()).normalize().toString());
 
         return new Tag(tagName, absAddress, labels);
     }

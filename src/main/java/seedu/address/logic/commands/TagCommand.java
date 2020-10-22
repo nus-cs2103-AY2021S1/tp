@@ -6,10 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LABEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_NAME;
 
 import java.io.File;
+import java.nio.file.Paths;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.tag.FileAddress;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -44,9 +44,9 @@ public class TagCommand extends Command {
         toTag = tag;
     }
 
-    private boolean filePresent(FileAddress address) {
+    private boolean filePresent(String address) {
         assert address != null;
-        File file = new File(address.value);
+        File file = new File(address);
         return file.exists();
     }
 
@@ -66,12 +66,22 @@ public class TagCommand extends Command {
         }
 
         // Check if file is present
-        if (!filePresent(toTag.getFileAddress())) {
-            throw new CommandException(
-                    String.format(MESSAGE_FILE_NOT_FOUND, toTag.getFileAddress().value));
+        String path;
+        boolean isAbsolutePath = Paths.get(toTag.getFileAddress().value).isAbsolute();
+
+        if (isAbsolutePath) {
+            path = toTag.getFileAddress().value;
+        } else {
+            path = Paths.get(model.getCurrentPath().getAddress().value, toTag.getFileAddress().value)
+                    .normalize().toString();
         }
 
-        model.addTag(toTag.toAbsolute());
+        if (!filePresent(path)) {
+            throw new CommandException(
+                    String.format(MESSAGE_FILE_NOT_FOUND, path));
+        }
+
+        model.addTag(toTag.toAbsolute(isAbsolutePath, model.getCurrentPath().getAddress()));
         return new CommandResult(String.format(MESSAGE_SUCCESS, toTag));
     }
 

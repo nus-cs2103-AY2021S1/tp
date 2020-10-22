@@ -1,8 +1,9 @@
-#HelloFile
+# HelloFile
 
 HelloFile is a desktop app for managing files, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). By tagging frequently used files/folders with a short nickname, you will be able to manage and access your files with ease.
+![Illustration](images/Illustrations.PNG)
 
-##Table of Contents
+## Table of Contents
 [Getting started](#Getting-Started)<br>
 [Features](#Features)<br>
 [FAQ](#FAQ)<br>
@@ -62,10 +63,11 @@ Format: `help`
 
 Tags a file with a unique tag name.
 
-Format: `tag t/TAG_NAME f/FILE_PATH`
+Format: `tag t/TAG_NAME f/FILE_PATH [l/LABEL]`
 
 Examples:
-* `tag t/Users f/C:\Users`
+* (Without label) `tag t/Users f/C:\Users`
+* (With label) `tag t/Users f/C:\Users l/Important`
 
 ### Displaying information of a tagged file : `show`
 
@@ -104,6 +106,15 @@ Format: `retag o/OLD_TAG_NAME t/NEW_TAG_NAME`
 
 Examples:
 * `retag o/notes t/secret`
+
+### Finding a tag : `find`
+
+Finds a tag by its keyword (can be tag name and/or label).
+
+Format: `find KEYWORD`
+        
+Examples:
+* `find notes`
 
 ### Changing current directory : `cd`
 
@@ -147,10 +158,10 @@ Format: `exit`
 **Q**: What is the structure of the application?<br>
 **A**: You can find the Design Guide [here](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/docs/DeveloperGuide.md)
 
-**Q**: How to I report a bug?<br>
+**Q**: How do I report a bug?<br>
 **A**: Please create a new issue on [this](https://github.com/AY2021S1-CS2103T-F12-1/tp/issues) webpage.
 
-**Q**: Can I contribute to the project?
+**Q**: Can I contribute to the project?<br>
 **A**: Sorry, as this is a school project, we are not accepting any contributors at this period.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -159,15 +170,16 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-**Tag** | `tag t/TAG_NAME f/FILE_PATH` <br> e.g., `tag t/newTag f/C:/myfolder/file.jpg`
+**Tag** | `tag t/TAG_NAME f/FILE_PATH , [l/LABEL]` <br> e.g., `tag t/newTag f/c:/myfolder/file.jpg l/MyFile` or `tag t/newTag f/c:/myfolder/file.jpg` 
 **Show** | `show t/TAG_NAME`
 **Untag** | `untag t/TAG_NAME`
 **Retag** | `retag o/OLD_TAG_NAME t/NEW_TAG_NAME` <br> e.g., `retag o/mytag t/newtag`
+**Find** | `find KEYWORD` <br> e.g., `find newtag`
+**Open** | `open t/TAG_NAME`
+**List** | `ls`
 **Cd to an absolute file Path**| `cd f/ABSOLUTE_FILE_PATH` <br> e.g., `cd f/C:\Users`
 **Cd to a relative file Path**| `cd ./RELATIVE_FILE_PATH` <br> e.g., `cd ./project01`
 **Cd to the parent file Path**| `cd ../`
-**Open** | `open t/TAG_NAME`
-**List** | `ls`
 **Clear** | `clear`
-**Help** | `help [c/COMMAND]`
+**Help** | `help`
 **Exit** | `exit`

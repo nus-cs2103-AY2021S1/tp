@@ -164,6 +164,21 @@ However, one draw back of using `java.awt.Desktop` is that the platform that Hel
 support `Desktop`. This means that our application will never work on a headless environment. 
 You can check whether the environment supports `Desktop` using the provided method `java.awt.Desktop.isDesktopSupported()`.
 
+### Deleting Tags: UntagCommand
+
+[UntagCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/UntagCommand.java)
+removes the `Tag` specified by the unique tag name from the `AddressBook`.
+
+The command checks the existence of the `Tag` with `model.findFilteredTagList()`, and call method `model.deleteTag()` to delete it.
+
+### Renaming of Tags: RetagCommand
+
+[RetagCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/RetagCommand.java)
+rename the `Tag` specified by the unique tag name with a different tag name.
+
+The command checks the presence of the `Tag` using `java.io.File.exists()`, and that the new tag name is unique, i.e. not present in the `AddressBook`.
+It then gets the filepath of the `Tag` before safely deleting it. Then, a new `Tag` is created with the filepath, and the new tag name.
+
 ### Changing of Directory: CdCommand
 
 [CdCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/CdCommand.java)
@@ -252,16 +267,21 @@ When starting the app, the current path saved last time will be loaded, and the 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                                     | I want to …​                                       | So that I can…​                                        |
-| -------- | ---------------------------------------------------------------| ------------------------------------------------------| ----------------------------------------------------------|
-| `* * *`  | Student with lots of file                                      | tag my files with a easy to remember tag              | get file path                                             |
-| `* * *`  | First time user                                                | use a help command                                    | start to remember how to use the command                  |
-| `* * *`  | Student who prefers to type                                    | use typing to interact with my file system            | use keyboard as much as possible                          |
-| `* * *`  | Student who is familiar with command line applications         | name my files                                         | access the file easily next time                          |
-| `* *`    | CS student with a lot of project                               | hide private contact details                          | minimize chance of someone else seeing them by accident   |
-| `*`      | Forgetful user who always forget where his files are located   | tag frequently used files with a easy to remember tag | locate my files easily                                    |
-| `*`      | Intermediate user                                              | delete file                                           | not be distracted by it.                                  |
-| `*`      | Developer                                                      | open files with a quick command                       | focus on coding and not look to find my files             |
+| Priority | As a …​                                                     | I want to …​                                       | So that I can…​                                            |
+| -------- | ---------------------------------------------------------------| ------------------------------------------------------| --------------------------------------------------------------|
+| `* * *`  | Student with lots of file                                      | tag my files with a easy to remember tag              | get file path                                                 |
+| `* * *`  | First time user                                                | use a help command                                    | start to remember how to use the command                      |
+| `* * *`  | Student who prefers to type                                    | use typing to interact with my file system            | use keyboard as much as possible                              |
+| `* * *`  | Student who is familiar with command line applications         | name my files                                         | access the file easily next time                              |
+| `* * *`  | CS student with many categories of files                       | categorise my files and folders                       | easily manage my files and search files based on categories   |
+| `* * *`  | First time user                                                | use help command                                      | start to remember how to use the command                      |
+| `* * *`  | Student with lots of files                                     | see a list of my tags                                 | find the tag that I created easily                            |
+| `* * *`  | Developer                                                      | open files with a quick command                       | focus on coding and not look to find my files                 |
+| `* *`    | CS student with a lot of project                               | hide private contact details                          | minimize chance of someone else seeing them by accident       |
+| `* *`    | Command line user                                              | use commands similar to Linux                         | use the similar Linux command without having to relearn       |
+| `*`      | Forgetful user who always forget where his files are located   | tag frequently used files with a easy to remember tag | locate my files easily                                        |
+| `*`      | Intermediate user                                              | delete file                                           | not be distracted by it.                                      |
+
 
 
 ### Use cases
