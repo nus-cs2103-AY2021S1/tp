@@ -44,7 +44,7 @@ class JsonSerializableInventory {
      */
     public JsonSerializableInventory(ReadOnlyInventory source) {
         this.inventoryRecords.addAll(
-                source.asUnmodifiableObservableList()
+                source.getInventoryRecordList()
                         .stream()
                         .map(JsonAdaptedInventoryRecord::new)
                         .collect(Collectors.toList())
