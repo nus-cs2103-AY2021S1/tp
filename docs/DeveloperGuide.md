@@ -241,6 +241,26 @@ Given below is the planned Sequence Diagram for interaction to set the class par
 
 <br>
 
+### UI
+
+Author: **Lim Jin Feng**
+* Change/Add classes in the UI package to display newly implemented functionality such as ClassRecords.
+
+![Structure of the UI Component](images/UpdatedUiClassDiagram.png)
+
+A new method `MainWindow#fillInnerParts2` will change the contents of the Ui to the student record, from the student list.
+* This is implemented in such a way to accomodate future expansion.
+
+**To-Do:**
+* Support displaying of Sessions when Sessions are implemented.
+* Support displaying of any new future implementation.
+
+**_Notes from developer:_**
+* Implementation still buggy: Ui does not update accordingly for student records.
+
+Alternative implementations considered:
+* Use FXML's tab feature to display class records
+    * Does not support future expansion when sessions is implemented - there may be an indefinite amount of sessions created.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
