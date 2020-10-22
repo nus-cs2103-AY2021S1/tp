@@ -12,6 +12,12 @@ import chopchop.model.EntryBook;
 import chopchop.model.Model;
 import chopchop.model.attributes.NameContainsKeywordsPredicate;
 import chopchop.model.ingredient.Ingredient;
+<<<<<<< HEAD
+import chopchop.model.ingredient.IngredientBook;
+import chopchop.model.recipe.Recipe;
+import chopchop.model.recipe.RecipeBook;
+=======
+>>>>>>> b04c1647ff463527478c9337eb1f7248df163b1e
 
 public class CommandTestUtil {
     public static final String VALID_INGREDIENT_NAME_APRICOT = "Apricot";
@@ -59,7 +65,7 @@ public class CommandTestUtil {
      * - the CommandException message matches {@code expectedMessage} <br>
      * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
      */
-    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
+    public static void assertIngredientCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         EntryBook<Ingredient> expectedIndBook = new EntryBook<>(actualModel.getIngredientBook());
@@ -69,17 +75,57 @@ public class CommandTestUtil {
         assertEquals(expectedIndBook, actualModel.getIngredientBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredIngredientList());
     }
+
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
      */
+<<<<<<< HEAD
+    public static void assertRecipeCommandFailure(Command command, Model actualModel, String expectedMessage) {
+        // we are unable to defensively copy the model for comparison later, so we can
+        // only do so by copying its components.
+        RecipeBook expectedRecipeBook = new RecipeBook(actualModel.getRecipeBook());
+        List<Recipe> expectedFilteredList = new ArrayList<>(actualModel.getFilteredRecipeList());
+
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertEquals(expectedRecipeBook, actualModel.getRecipeBook());
+        assertEquals(expectedFilteredList, actualModel.getFilteredRecipeList());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the ingredient at the given {@code targetIndex} in the
+     * {@code model}'s ingredient book.
+     */
+    public static void showIngredientAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredIngredientList().size());
+
+        Ingredient ind = model.getFilteredIngredientList().get(targetIndex.getZeroBased());
+        final String[] splitName = ind.getName().fullName.split("\\s+");
+=======
     public static void showPersonAtIndex(Model model, ItemReference targetIndex) {
         assertTrue(targetIndex.getZeroIndex() < model.getFilteredIngredientList().size());
 
         Ingredient person = model.getFilteredIngredientList().get(targetIndex.getZeroIndex());
         final String[] splitName = person.getName().split("\\s+");
+>>>>>>> b04c1647ff463527478c9337eb1f7248df163b1e
         model.updateFilteredIngredientList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredIngredientList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the recipe at the given {@code targetIndex} in the
+     * {@code model}'s recipe book.
+     */
+    public static void showRecipeAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredRecipeList().size());
+
+        Recipe rec = model.getFilteredRecipeList().get(targetIndex.getZeroBased());
+        final String[] splitName = rec.getName().fullName.split("\\s+");
+        model.updateFilteredRecipeList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredRecipeList().size());
     }
 }

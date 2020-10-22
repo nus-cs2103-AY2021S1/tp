@@ -1,13 +1,18 @@
 package chopchop.model.ingredient;
 
 import java.util.HashSet;
+import chopchop.model.attributes.ExpiryDate;
+import chopchop.model.attributes.Quantity;
+
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.Optional;
+
 import java.util.Comparator;
 
 import chopchop.model.Entry;
+
 import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.Tag;
@@ -96,6 +101,7 @@ public class Ingredient extends Entry {
         return this.sets.firstEntry().getKey();
     }
 
+
     public TreeMap<Optional<ExpiryDate>, Quantity> getIngredientSets() {
 
         // i want const correctness dammit
@@ -180,6 +186,7 @@ public class Ingredient extends Entry {
                 || (other instanceof Ingredient
                 && this.name.equals(((Ingredient) other).name)
                 && this.sets.equals(((Ingredient) other).sets));
+
     }
 
     @Override
@@ -189,7 +196,6 @@ public class Ingredient extends Entry {
 
     @Override
     public String toString() {
-
         return String.format("%s (%s)%s \nTags: \n%s",
             this.getName(),
             this.getQuantity(),

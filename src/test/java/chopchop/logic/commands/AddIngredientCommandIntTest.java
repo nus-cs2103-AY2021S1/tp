@@ -1,6 +1,7 @@
 package chopchop.logic.commands;
 
 import static chopchop.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static chopchop.logic.commands.CommandTestUtil.assertIngredientCommandFailure;
 import static chopchop.testutil.TypicalIngredients.getTypicalIngredientBook;
 
 import chopchop.model.EntryBook;
@@ -30,4 +31,15 @@ public class AddIngredientCommandIntTest {
         assertCommandSuccess(new AddIngredientCommand(validIngredient), model,
             String.format(AddIngredientCommand.MESSAGE_SUCCESS, validIngredient), expectedModel);
     }
+<<<<<<< HEAD
+
+    @Test
+    public void execute_duplicateIngredient_throwsCommandException() {
+        Ingredient indInList = model.getIngredientBook().getFoodEntryList().get(0);
+        assertIngredientCommandFailure(new AddIngredientCommand(indInList), model,
+            AddIngredientCommand.MESSAGE_DUPLICATE_INGREDIENT);
+    }
+
+=======
+>>>>>>> b04c1647ff463527478c9337eb1f7248df163b1e
 }

@@ -2,20 +2,25 @@ package chopchop.model.recipe;
 
 import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.StringJoiner;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 import chopchop.model.Entry;
 import chopchop.model.attributes.Step;
+import chopchop.model.attributes.Tag;
 import chopchop.model.ingredient.IngredientReference;
 
 public class Recipe extends Entry {
     private final List<IngredientReference> ingredients = new ArrayList<>();
     private final List<Step> steps = new ArrayList<>();
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -25,6 +30,18 @@ public class Recipe extends Entry {
         requireAllNonNull(ingredients, steps);
         this.ingredients.addAll(ingredients);
         this.steps.addAll(steps);
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Recipe(String name, List<IngredientReference> ingredients, List<Step> steps, Set<Tag> tags) {
+        super(name);
+        requireAllNonNull(name, ingredients, steps);
+        this.ingredients.addAll(ingredients);
+        this.steps.addAll(steps);
+        this.tags.addAll(tags);
     }
 
     /**
