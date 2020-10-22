@@ -46,7 +46,7 @@ public class ModelManager implements Model {
 
         this.inventory = new Inventory();
         this.financeAccount = new FinanceAccount();
-        filteredInventory = new FilteredList<>(this.inventory.asUnmodifiableObservableList());
+        filteredInventory = new FilteredList<>(this.inventory.getInventoryRecordList());
         filteredFinance = new FilteredList<>(this.financeAccount.getFinanceList());
 
         this.addressBook = new AddressBook(addressBook);
@@ -70,7 +70,7 @@ public class ModelManager implements Model {
         filteredFinance = new FilteredList<>(this.financeAccount.getFinanceList());
 
         this.inventory = new Inventory(inventory);
-        filteredInventory = new FilteredList<>(this.inventory.asUnmodifiableObservableList());
+        filteredInventory = new FilteredList<>(this.inventory.getInventoryRecordList());
         this.userPrefs = new UserPrefs(userPrefs);
 
         // duplicate so programme runs. will be deleted.
@@ -163,7 +163,7 @@ public class ModelManager implements Model {
     public void deleteInventoryRecord(InventoryRecord target) {
         requireAllNonNull(target);
 
-        inventory.deleteInventoryRecord(target);
+        inventory.removeInventoryRecord(target);
     }
 
     //=========== FinanceAccount ================================================================================
