@@ -254,7 +254,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | NUS resident                           | add a food item to my supper order |                                                                        |
-| `* * *`  | NUS resident | delete my supper order |                                    |
+| `* * *`  | NUS resident | remove a food item from my supper order |                                    |
 | `* * *`  | NUS resident | see the menu | view all the items currently ordered by me |
 | `* * *` | NUS resident | see the vendor list and select vendor | confirm which vendor to order from                     |
 | `*`      | NUS resident | confirm order | finalize my supper selection                     |
@@ -395,17 +395,17 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all vendors using the `vendor` command.
 
-   2. Test case: `vendor i/1`<br>
+   2. Test case: `vendor 1`<br>
       Expected: First vendor is selected. The menu from the selected vendor is displayed.
 
    3. Test case: `vendor`<br>
       Expected: No vendor is selected. The list of vendors is displayed again.
 
-   4. Test case: `vendor i/0`<br>
+   4. Test case: `vendor 0`<br>
 
       Expected: No vendor is selected. Error details shown in status message. Status bar remains the same.
 
-   5. Other incorrect delete commands to try: `vendor i/x`, `...` (where x is larger than the list size)<br>
+   5. Other incorrect delete commands to try: `vendor x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 2. _{ more test cases …​ }_
@@ -414,7 +414,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Creating a supper order while a vendor has been chosen
 
-   1. Prerequisites: Select a vendor using the `vendor i/x` command (where x is the index of the chosen vendor).
+   1. Prerequisites: Select a vendor using the `vendor x` command (where x is the index of the chosen vendor).
 
    2. Test case: `create`
 
@@ -439,34 +439,40 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: Create a supper order using the `view` command.
 
-   2. Test case: `add i/1 q/1`<br>
-      Expected: 1 order of the first item from the menu is added into the order. Details of the added order shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `add 1 1`<br>
+      Expected: 1 order of the first item from the menu is added into the order. Details of the added order shown in the status message.
 
-   3. Test case: `add i/1 q/0`<br>
-      Expected: No item is added. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `add 1 0`<br>
+      Expected: No item is added. Error details shown in the status message.
 
-   4. Test case: `add i/0 q/1`<br>
+   4. Test case: `add 0 1`<br>
 
-      Expected: No item is added. Error details shown in the status message. Status bar remains the same.
+      Expected: No item is added. Error details shown in the status message.
 
-   5. Other incorrect add commands to try: `add`, `add 0 9`, `add i/x q/y`, `...` (where x is larger than the menu size)<br>
+   5. Other incorrect add commands to try: `add`, `add -1 -1`, `add x y`, `...` (where x is larger than the menu size)<br>
       Expected: Similar to previous.
 
 2. _{ more test cases …​ }_
 
-### Deleting an item
+### Removing an item
 
-1. Deleting an item while all items currently in the order are being shown
+1. Removing an item while an order is currently active
 
-   1. Prerequisites: List all items using the `view` command. There is atleast one item in the order.
+   1. Prerequisites: List all items using the `view` command. There is at least one item in the order.
 
-   2. Test case: `delete i/1`<br>
-      Expected: First item is deleted from the order. Details of the deleted order shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `remove 1`<br>
+      Expected: All the quantity of the first item is removed from the order. Details of the removed order shown in the status message.
 
-   3. Test case: `delete i/0`<br>
-      Expected: No item is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `remove 1 1`<br>
+      Expected: 1 order of the first item from the user's order is removed from the order. Details of the removed order shown in the status message.
 
-   4. Other incorrect delete commands to try: `delete`, `delete i/x`, `...` (where x is larger than the list size)<br>
+   4. Test case: `remove 0`<br>
+      Expected: No item is deleted. Error details shown in the status message.
+      
+   5. Test case: `remove 1 0`<br>
+      Expected: No item is deleted. Error details shown in the status message.
+
+   6. Other incorrect delete commands to try: `remove`, `remove -1 -1`,`remove x y`, `...` (where x is larger than the list size or y is larger than the user's order quantity amount)<br>
       Expected: Similar to previous.
 2. _{ more test cases …​ }
 
