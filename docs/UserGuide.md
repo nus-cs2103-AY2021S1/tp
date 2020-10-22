@@ -8,44 +8,6 @@ Cap 5.0 Buddy helps NUS SoC students to keep track of their module details effic
 * Table of Contents
 {:toc}
 
-1. [Quick Start](#quick-start)
-2. [Features](#features)
-    1. Module Tracker
-        1. [Adding a module](#adding-a-new-module-add-module) : `addmodule`
-        2. [Viewing a module](#viewing-a-module-view) : `viewmodule`
-        3. [Adding a zoom link to a module](#adding-a-zoom-link-to-a-module-add-zoom) : `addzoomlink`
-        4. [Deleting a module](#deleting-a-module-delete) : `deletemodule`
-        5. [Editing a module](#editing-a-module--edit-zoom) : `editmodule`
-    2. Grade Tracker
-    3. CAP Calculator
-    4. Contact List
-    5. Todo List
-        1. [Adding a task](#adding-a-task) : `addtask`
-        2. [Deleting a task](#deleting-a-task) : `deletetask`
-        3. [Editing a task](#editing-a-task) : `edittask`
-        4. [Finding a task](#finding-a-task) : `findtask`
-        5. [Marking a task as completed](#marking-a-task-as-completed) : `complete`
-        6. [Resetting a task](#resetting-a-task) : `resettask`
-        6. [Sorting tasks](#sorting-tasks) : `sorttask`
-        7. [Filtering tasks](#filtering-tasks) : `filtertask`
-        8. [Archiving a task](#archiving-a-task) : `archivetask`
-        9. [Clearing the list](#clearing-the-list) : `clear`
-    6. Scheduler
-        1. [Adding a module](#adding-a-new-module-add-module)
-        2. [Viewing a module](#viewing-a-module-viewmodule)
-        3. [Adding a zoom link to a module](#adding-a-zoom-link-to-a-module-add-zoom)
-        4. [Deleting a module](#deleting-a-module-deletemodule)
-        5. [Editing a module](#editing-a-module--edit-zoom)
-        6. [Adding an assignment to a module](#adding-assignment-to-a-module-addassignment)
-        7. [Adding a contact](#411-add-a-contact-addcontact)
-        8. [Deleting a contact](#412-delete-a-contact-deletecontact)
-        9. [Editing a contact](#413-edit-a-contact-editcontact)
-        10. [Calculating Cumulative Average Point(CAP)](#calculating-cumulative-average-pointcap-calculatecap)
-        11. [Adding an Event to the Scheduler](#adding-an-event-to-the-scheduler)
-        12. [Undo previous user command](#undo-previous-user-command-undo)
-        13. [Redo previous user command](#undo-previous-user-command-redo)
-3. [FAQ](#faq)
-4. [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -362,12 +324,13 @@ Redoes the previously undone user command
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add module KEYWORD`<br> e.g. `add module CS2103T [link]`, `add module CS2103T`
-**View** | `view KEYWORD `<br> e.g. `view cs2101` , `view all`
+**Add** | `addmodule n/MODULE_NAME l/ZOOM_LINK`<br> e.g. `addmodule n/CS2103T l/https://sample.zoom.us`
+**View** | `viewmodule n/MODULE_NAME`<br> e.g. `viewmodule n/cs2101`
 **Delete** | `deletemodule MODULE_POSITION `<br> e.g. `deletemodule 3`
-**Edit** | `edit zoom MODULE_NAME ZOOM_LINK`<br> e.g. `edit zoom CS2103T https://sample.zoom.us`
-**Add Zoom** | `add zoom MODULE_NAME ZOOM_LINK` <br> e.g. `add zoom cs2103T https://sample.zoom.us`
+**Edit** | `editmodule n/MODULE_NAME e/NEW_NAME l/NEW_LINK`<br> e.g. `editmodule n/CS2103T e/CS2100 l/https://sample.zoom.us`
+**Add Zoom** | `addzoomlink n/MODULE_NAME l/ZOOM_LINK` <br> e.g. `addzoomlink n/cs2103T l/https://sample.zoom.us`
 **Add Assignment** | `addassignment n/MODULE_NAME a/ASSIGNMENT_NAME %/ASSIGNMENT_PERCENTAGE r/ASSIGNMENT_RESULT` <br> e.g. `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80`
 **Calculate CAP** | `calculatecap` <br> e.g. `calculatecap`
+**Add Event** | `addevent n/EVENT_NAME d/DATE` <br> e.g. `addevent n/CS2103T d/12-12-2020`
 **Undo** | `undo` <br> e.g. `undo`
 **Redo** | `redo` <br> e.g. `redo`
