@@ -21,6 +21,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final Pivot pivot;
+    private final VersionedPivot versionedPivot;
     private final UserPrefs userPrefs;
     private final FilteredList<Case> filteredCases;
 
@@ -34,6 +35,7 @@ public class ModelManager implements Model {
         logger.fine("Initializing with PIVOT: " + pivot + " and user prefs " + userPrefs);
 
         this.pivot = new Pivot(pivot);
+        this.versionedPivot = new VersionedPivot(this.pivot);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredCases = new FilteredList<>(this.pivot.getCaseList());
     }
@@ -80,7 +82,7 @@ public class ModelManager implements Model {
     //=========== PIVOT ================================================================================
 
     @Override
-    public void setPivotBook(ReadOnlyPivot pivot) {
+    public void setPivot(ReadOnlyPivot pivot) {
         this.pivot.resetData(pivot);
     }
 
@@ -111,6 +113,18 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedCase);
         pivot.setCase(target, editedCase);
         StateManager.refresh();
+    }
+
+    //=========== Versioned Pivot ===========================================================================
+    @Override
+    public void commitPivot() {
+        this.versionedPivot.commit(pivot);
+    }
+
+    @Override
+    public void undoPivot() {
+        Pivot pivot = this.versionedPivot.undo();
+        setPivot(pivot);
     }
 
     //=========== Filtered Case List Accessors =============================================================

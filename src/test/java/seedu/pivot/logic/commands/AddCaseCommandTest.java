@@ -116,7 +116,7 @@ public class AddCaseCommandTest {
         }
 
         @Override
-        public void setPivotBook(ReadOnlyPivot newData) {
+        public void setPivot(ReadOnlyPivot newData) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -147,6 +147,16 @@ public class AddCaseCommandTest {
 
         @Override
         public void updateFilteredCaseList(Predicate<Case> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitPivot() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoPivot() {
             throw new AssertionError("This method should not be called.");
         }
     }
