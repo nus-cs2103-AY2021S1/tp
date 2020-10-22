@@ -147,12 +147,7 @@ class JsonAdaptedCase {
 
         final List<Document> modelDocument = new ArrayList<>();
         for (JsonAdaptedDocument document : documents) {
-            try {
-                Document doc = document.toModelType();
-                modelDocument.add(document.toModelType());
-            } catch (IllegalValueException e) {
-                throw e;
-            }
+            modelDocument.add(document.toModelType());
         }
 
         final Set<Tag> modelTags = new HashSet<>(caseTags);
