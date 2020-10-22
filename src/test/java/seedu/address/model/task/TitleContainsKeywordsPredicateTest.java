@@ -70,8 +70,8 @@ public class TitleContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new ToDoBuilder().withTitle("CS2103 Project").build()));
 
         // Keywords match phone, email and address, but does not match name
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("12345", "random description", "Low"));
-        assertFalse(predicate.test(new ToDoBuilder().withTitle("Lecture").withDescription("random description")
+        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Project", "random", "Low"));
+        assertFalse(predicate.test(new ToDoBuilder().withTitle("Lecture").withDescription("random")
                 .withPriority("Low").build()));
     }
 }

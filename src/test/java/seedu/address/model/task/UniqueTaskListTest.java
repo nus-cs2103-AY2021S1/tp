@@ -3,9 +3,8 @@ package seedu.address.model.task;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PROJECT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_PROJECT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_PROJECT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.ATTEND;
@@ -20,7 +19,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 import seedu.address.testutil.EventBuilder;
-import seedu.address.testutil.ToDoBuilder;
 
 public class UniqueTaskListTest {
 
@@ -46,7 +44,7 @@ public class UniqueTaskListTest {
     public void contains_taskWithSameIdentityFieldsInList_returnsTrue() {
         uniqueTaskList.add(ATTEND);
         Event editedAttend = new EventBuilder(ATTEND)
-                .withDescription(VALID_DESCRIPTION_PROJECT).withTags(VALID_TAG_PROJECT).build();
+                .withPriority(VALID_PRIORITY_PROJECT).withTags(VALID_TAG_PROJECT).build();
         assertTrue(uniqueTaskList.contains(editedAttend));
     }
 

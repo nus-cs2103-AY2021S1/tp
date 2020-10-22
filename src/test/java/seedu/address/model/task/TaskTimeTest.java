@@ -32,7 +32,6 @@ public class TaskTimeTest {
         assertFalse(TaskTime.isValidTime("1pm"));
         assertFalse(TaskTime.isValidTime("12 noon"));
         assertFalse(TaskTime.isValidTime("Noon"));
-        assertFalse(TaskTime.isValidTime("24:00"));
         assertFalse(TaskTime.isValidTime("23:60"));
         assertFalse(TaskTime.isValidTime("1:1"));
         assertFalse(TaskTime.isValidTime("12:1"));

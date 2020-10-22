@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PROJECT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_PROJECT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASKDATE_PROJECT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_PROJECT;
@@ -85,7 +86,7 @@ public class DeadlineTest {
         assertFalse(CRAFT.equals(editedCraft));
 
         // different tags -> returns false
-        editedCraft = new DeadlineBuilder(CRAFT).withTags(VALID_TAG_PROJECT).build();
+        editedCraft = new DeadlineBuilder(CRAFT).withTags(VALID_TAG_LECTURE).build();
         assertFalse(CRAFT.equals(editedCraft));
     }
 }
