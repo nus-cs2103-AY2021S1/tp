@@ -133,7 +133,7 @@ The open flashcard feature will allow the user to open a flashcard specified by 
 
 #### Implementation
 
-The open flashcard implementation requires the creation of an `OpenCommandParser` and an `OpenCommand`. The `OpenCommandParser` will take in a single argument for `Index`. After parsing the argument, it will then proceed to create an `OpenCommand` class instance. If no `Index` is given then a `CommandException` will be thrown.
+The open flashcard implementation requires the creation of an `OpenCommandParser` and an `OpenCommand`. The `OpenCommandParser#parse` will take in a single argument for `Index`. After parsing the argument, it will then proceed to create an `OpenCommand` class instance. If no `Index` is given then a `CommandException` will be thrown.
 
 The `OpenCommand` class will have to pass the `Question` to the GUI for it to display the`Question` of the `Flashcard` to the user. This will be done by passing the `Question` into a `Feedback` object which is an attribute of the `CommandResult` given to the GUI.
 
@@ -163,7 +163,7 @@ The display statistics of flashcard feature will allow the user to view a Pie Ch
 
 #### Implementation
 
-The display statistics of flashcard implementation requires the creation of a `StatsCommandParser` and a `StatsCommand`. The `StatsCommandParser` will take in a single argument for `Index`. After parsing the argument, it will then proceed to create a `StatsCommand` class instance. If no `Index` is given then a `CommandException` will be thrown.
+The display statistics of flashcard implementation requires the creation of a `StatsCommandParser` and a `StatsCommand`. The `StatsCommandParser#parse` will take in a single argument for `Index`. After parsing the argument, it will then proceed to create a `StatsCommand` class instance. If no `Index` is given then a `CommandException` will be thrown.
 
 The `StatsCommand` class will have to pass the `Statistics` to the GUI for it to display the `Statistics` of the `Flashcard` to the user. This will be done by passing the `Statistics` into a `Feedback` object which is an attribute of the `CommandResult` given to the GUI.
 
@@ -193,15 +193,15 @@ The clear statistics of flashcard feature will allow the user to reset the stati
 
 #### Implementation
 
-The clear statistics of flashcard implementation requires the creation of a `ClearStatsCommandParser` and a `ClearStatsCommand`. The `ClearStatsCommandParser` will take in a single argument for `Index`. After parsing the argument, it will then proceed to create a `ClearStatsCommand` class instance. If no `Index` is given then a `CommandException` will be thrown.
+The clear statistics of flashcard implementation requires the creation of a `ClearStatsCommandParser` and a `ClearStatsCommand`. The `ClearStatsCommandParser#parse` will take in a single argument for `Index`. After parsing the argument, it will then proceed to create a `ClearStatsCommand` class instance. If no `Index` is given then a `CommandException` will be thrown.
 
-The `ClearStatsCommand` class will replace the `Flashcard` at the specified `Index` with a new `Flashcard` that has its `Statistics` reset to default numbers.
+The `ClearStatsCommand` class will replace the `Flashcard` at the specified `Index` with a copy of the original `Flashcard` that has its `Statistics` reset to zero for all fields.
 
 Given below is an example usage scenario and how the `ClearStatsCommand` mechanism behaves at each step.
 
 Step 1. The user launches the application after a few times of playing around with the `TestCommand` feature. The `QuickCache` will be initialized with the existing QuickCache state.
 
-Step 2. The user executes `stats 1` command to display the `Statistics` of the first flashcard in the list on the GUI. The user sees that the `Statistics` is not the default value.
+Step 2. The user executes `stats 1` command to display the `Statistics` of the first flashcard in the list on the GUI. The user sees that the `Statistics` has values that are not zero.
 
 Step 3. The user executes `clearstats 1` command to clear the `Statistics` of the first flashcard in the list on the GUI.
  
@@ -209,7 +209,7 @@ Step 4. This will call `ClearStatsCommandParser#parse` which will then parse the
 
 Step 5. The `index` is then passed to the `ClearStatsCommand`
 
-Step 6. `ClearStatsCommand#execute` will get the `Flashcard` at the specified `Index` and call `ClearStatsCommand#getFlashcardAfterClearStatistics` which will give a copy of the `Flashcard` with the `Statistics` reset. The original `Flashcard` will then be replaced by the new `Flashcard` copy.
+Step 6. `ClearStatsCommand#execute` will get the `Flashcard` at the specified `Index` and call `ClearStatsCommand#getFlashcardAfterClearStatistics` which will give a copy of the original `Flashcard` with its `Statistics` reset to zero for all fields. The original `Flashcard` will then be replaced by the new `Flashcard` copy.
 
 Step 7. After execution, `CommandResult` will contain a message indicating that it has cleared the `Statistics` of the `Flashcard` on the specified index.
 
@@ -225,7 +225,7 @@ This find by tag and question keywords feature will allow the user to find flash
 
 #### Implementation
 
-The find by tag and question keywords implementation requires changes to be made to the `FindCommandParser`. Currently, `FindCommandParser` takes in the keyword arguments as a single `String` which is then split into individual keywords. The proposed implementation will require the `ArgumentTokenizer` and `ParseUtil` to parse for any `PREFIX_TAG` and/or `PREFIX_QUESTION`. `ParserUtil` will parse them accordingly and insert them into the necessary `Predicate<Flashcard>` which will be used for filtering the `Flashcard` list. If neither of them are provided or the `Tag` provided is non-aplhanumeric, then a `CommandException` will be thrown.
+The find by tag and question keywords implementation requires changes to be made to the `FindCommandParser`. Currently, `FindCommandParser#parse` takes in the keyword arguments as a single `String` which is then split into individual keywords. The proposed implementation will require the `ArgumentTokenizer` and `ParseUtil` to parse for any `PREFIX_TAG` and/or `PREFIX_QUESTION`. `ParserUtil` will parse them accordingly and insert them into the necessary `Predicate<Flashcard>` which will be used for filtering the `Flashcard` list. If neither of them are provided or the `Tag` provided is non-aplhanumeric, then a `CommandException` will be thrown.
 
 Since more than one `Predicate<Flashcard>` will be used, a class called `FlashcardPredicate` will be introduced that collects all `Predicate<Flashcard>` into one class.
 
