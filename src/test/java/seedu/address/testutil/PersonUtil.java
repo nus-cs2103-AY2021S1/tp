@@ -5,8 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 //import java.util.Set;
-import seedu.address.logic.commands.AddModuleCommand;
-import seedu.address.logic.commands.EditModuleCommand;
+import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
+import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
 import seedu.address.model.contact.Contact;
 //import seedu.address.model.tag.Tag;
 
