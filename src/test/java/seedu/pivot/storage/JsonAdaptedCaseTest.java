@@ -19,7 +19,7 @@ import seedu.pivot.model.investigationcase.Title;
 public class JsonAdaptedCaseTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_DESCRIPTION = "Esm@nd@";
-    private static final String INVALID_DOCUMENT_REFERENCE = "test1";
+    private static final String INVALID_DOCUMENT_REFERENCE = "invalid :across ?/\0 OS";
     private static final String INVALID_DOCUMENT_NAME = " ";
     private static final String INVALID_STATUS = "status";
     private static final String INVALID_TAG = "#friend";
