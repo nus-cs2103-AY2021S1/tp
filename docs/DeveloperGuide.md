@@ -154,6 +154,17 @@ However, one draw back of using `java.awt.Desktop` is that the platform that Hel
 support `Desktop`. This means that our application will never work on a headless environment. 
 You can check whether the environment supports `Desktop` using the provided method `java.awt.Desktop.isDesktopSupported()`.
 
+### Changing of Directory: CdCommand
+
+[CdCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/CdCommand.java)
+changes the current directory of the HelloFile internal File Explorer. `CommandException` is thrown if the given directory 
+is invalid, cannot be found, or cannot be set as the current directory (*e.g. the given directory is not a folder*).
+
+CdCommand calls `setAddress` in `CurrentPath` to set the current directory to the absolute address parsed from the user input.
+The list of children files `FileList` under `CurrentPath` will be updated to fit the new current directory when `setAddress` is called.
+The `javafx.scene.control.ListView` in `FileExplorer` will also be updated as it is bound to the `FileList` of the children files 
+under the `CurrentPath`.
+
 ### Showing a tag's file path: ShowCommand
 
 [ShowCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/ShowCommand.java)
@@ -169,6 +180,34 @@ lists the Tags stored in `AddressBook` and shows them as `TagCard` which is cont
 ListCommand shouldn't take in any argument. `CommandException` will be thrown if the user's input contains an argument.
 
 ListCommand updates the `ObservableList<Tag>` by using `java.util.function.predicate`.
+
+### Internal File Explorer
+
+Internal File Explorer is a simple file explorer that supports viewing files on your PC. It contains a `CurrentPath` that 
+represents the directory the explorer is viewing, as well as a `FileList` of the children files under that directory. The 
+users can use `CdCommand` to change the current directory of the explorer, so he or she can view files under different directories.
+
+The purpose of implementing Internal File Explorer is to make tagging files easier by supporting tagging files using their 
+relative paths (*e.g. the file name*). This can make tagging files easier especially when the user wants to tag multiple files 
+under the same directory.
+
+**Implementation of Internal File Explorer:**
+
+Model
+
+The model class `CurrentPath` saves the current directory of the explorer, and keeps a `FileList` of the children files under 
+that directory.
+
+UI
+
+`FileExplorerPanel` is the UI component for displaying Internal File Explorer, it is a `javafx.scene.control.TitledPane` with 
+its title as the current directory and its content as the list of children files. The infomation of Children files are display 
+using `FileCard` in the `javafx.scene.control.ListView` of the file explorer panel.
+
+Storage
+
+The current directory of the File Explorer is kept in `SavedFilePath`, and it is saved into json files upon exiting the app.
+When starting the app, the current path saved last time will be loaded, and the current path of the explorer will be set to that.
 
 --------------------------------------------------------------------------------------------------------------------
 
