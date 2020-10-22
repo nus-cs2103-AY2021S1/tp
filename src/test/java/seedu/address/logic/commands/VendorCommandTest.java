@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalVendors.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -23,32 +24,33 @@ public class VendorCommandTest {
         return new ModelManager(getTypicalAddressBook(), new UserPrefs());
     }
 
-    //    @Test
-    //    public void execute_validDefaultIndex_success() {
-    //        Model model = initialiseModel();
-    //        Index first = Index.fromOneBased(1);
-    //        VendorCommand vendorCommand = new VendorCommand(first);
-    //
-    //        Model expectedModel = model.selectVendor(first.getZeroBased());
-    //        String expectedMessage = String.format(VendorCommand.MESSAGE_SELECT_VENDOR_SUCCESS, 1);
-    //        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false,
-    //                false, true);
-    //        assertCommandSuccess(vendorCommand, model, expectedCommandResult, expectedModel);
-    //    }
+    @Test
+    public void execute_validDefaultIndex_success() {
+        Model model = initialiseModel();
+        Index first = Index.fromOneBased(1);
+        VendorCommand vendorCommand = new VendorCommand(first);
 
-    //    @Test
-    //    public void execute_validIndex_success() {
-    //        Model model = initialiseModel();
-    //        Index third = Index.fromOneBased(3);
-    //        VendorCommand vendorCommand = new VendorCommand(third);
-    //
-    //        Model expectedModel = new ModelManager(getTypicalAddressBook().selectVendor(third.getZeroBased()),
-    //                new UserPrefs());
-    //        String expectedMessage = String.format(VendorCommand.MESSAGE_SELECT_VENDOR_SUCCESS, 3);
-    //        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false,
-    //                false, true);
-    //        assertCommandSuccess(vendorCommand, model, expectedCommandResult, expectedModel);
-    //    }
+        Model expectedModel = initialiseModel();
+        expectedModel.selectVendor(first.getZeroBased());
+        String expectedMessage = String.format(VendorCommand.MESSAGE_SELECT_VENDOR_SUCCESS, 1);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false,
+                false, true);
+        assertCommandSuccess(vendorCommand, model, expectedCommandResult, expectedModel);
+    }
+
+    @Test
+    public void execute_validIndex_success() {
+        Model model = initialiseModel();
+        Index third = Index.fromOneBased(3);
+        VendorCommand vendorCommand = new VendorCommand(third);
+
+        Model expectedModel = initialiseModel();
+        expectedModel.selectVendor(third.getZeroBased());
+        String expectedMessage = String.format(VendorCommand.MESSAGE_SELECT_VENDOR_SUCCESS, 3);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false,
+                false, true);
+        assertCommandSuccess(vendorCommand, model, expectedCommandResult, expectedModel);
+    }
 
     @Test
     public void execute_invalidIndex_throwsCommandException() {
