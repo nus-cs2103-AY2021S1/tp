@@ -27,7 +27,7 @@ Main -[#grey]-> UI
 Main -[#grey]-> Logic
 Main -[#grey]-> Storage
 Main -up[#grey]-> Model
-State -[STATE_COLOR]-> UI
+State -[#orange]-> UI
 Model -[MODEL_COLOR]-> State
 
 Storage .right[STORAGE_COLOR].>File
