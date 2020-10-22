@@ -173,5 +173,5 @@ Action | Format, Examples
 **Open** | `open t/TAG_NAME`
 **List** | `ls`
 **Clear** | `clear`
-**Help** | `help [c/COMMAND]`
+**Help** | `help`
 **Exit** | `exit`
