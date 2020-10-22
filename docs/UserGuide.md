@@ -55,6 +55,9 @@ Modduke is a **desktop app for managing contacts, optimized for use via a Comman
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  
+* There are 2 special tags `prof` and `ta`. Contacts with either of these tags will be classified as professor or ta
+ respectively. Users are not allowed to tag a contact as both `prof` and `ta`.
 
 </div>
 
@@ -63,7 +66,7 @@ Modduke is a **desktop app for managing contacts, optimized for use via a Comman
 
 Adds a contact to Modduke.
 
-Format: `contact add n/NAME p/PHONE_NUMBER e/EMAIL`
+Format: `contact add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...`
 
 Note: All fields are required. No duplicate names.
 
