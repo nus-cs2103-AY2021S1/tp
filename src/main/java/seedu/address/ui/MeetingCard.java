@@ -49,7 +49,7 @@ public class MeetingCard extends UiPart<Region> {
         name.setText("[" + meeting.getModule().getModuleName() + "] " + meeting.getMeetingName().meetingName);
         time.setText(meeting.getTime().toString());
         date.setText(meeting.getDate().toString());
-        meeting.getMembers().stream()
+        meeting.getParticipants().stream()
                 .sorted(Comparator.comparing(participant -> participant.getName().fullName))
                 .forEach(participant -> participants.getChildren()
                         .add(new Label(participant.getName().getFirstName())));

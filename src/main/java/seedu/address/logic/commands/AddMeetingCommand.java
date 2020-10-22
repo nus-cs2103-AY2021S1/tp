@@ -74,16 +74,14 @@ public class AddMeetingCommand extends Command {
      * Creates an AddMeetingCommand to add the specified {@code Meeting}
      * For Testing.
      */
-    /*
     public AddMeetingCommand(Meeting toAdd) {
         requireAllNonNull(toAdd);
         this.moduleName = toAdd.getModule().getModuleName();
         this.meetingName = toAdd.getMeetingName();
         this.date = toAdd.getDate();
         this.time = toAdd.getTime();
-        this.nameList = toAdd.getMembers().stream().map(person -> person.getName()).collect(Collectors.toSet());
+        this.nameList = toAdd.getParticipants().stream().map(person -> person.getName()).collect(Collectors.toSet());
     }
-     */
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

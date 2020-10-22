@@ -48,7 +48,7 @@ public class Meeting {
         return this.time;
     }
 
-    public Set<Person> getMembers() {
+    public Set<Person> getParticipants() {
         return Collections.unmodifiableSet(members);
     }
 
@@ -90,7 +90,7 @@ public class Meeting {
                 && otherMeeting.getMeetingName().equals(getMeetingName())
                 && otherMeeting.getDate().equals(getDate())
                 && otherMeeting.getTime().equals(getTime())
-                && otherMeeting.getMembers().equals(getMembers());
+                && otherMeeting.getParticipants().equals(getParticipants());
     }
 
     @Override
@@ -109,7 +109,7 @@ public class Meeting {
                 .append(" Time: ")
                 .append(getTime())
                 .append(" Members: ");
-        getMembers().forEach(member -> builder.append(member.getName() + ", "));
+        getParticipants().forEach(member -> builder.append(member.getName() + ", "));
         return builder.substring(0, builder.length() - 2);
     }
 }

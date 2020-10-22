@@ -132,13 +132,13 @@ Examples:
 
 Adds a meeting at a given date and time with specified members, and a provided meeting name
 
-Format: `meeting add n/MEETING_NAME d/MEETING_DATE t/MEETING_TIME m/MEMBERS`
+Format: `meeting add m/MODULE n/MEETING_NAME d/MEETING_DATE t/MEETING_TIME p/PARTICIPANTS`
 
-* Creates a meeting with the provided meeting name
+* Creates a meeting with the provided meeting name for the given module
 * All the fields must be provided
 * Date is in the YYYY-MM-dd format and time is in the HH:mm format
 * There can be multiple members separated by a ","
-* Members added need to be contacts that are already existing in the address book
+* Participants added need to be contacts that are exist in the given module
 
 Examples:
 *  `meeting add n/CS2103 weekly meeting d/2020-09-20 t/10:00 m/Jay, Roy, Jerryl, Yeeloon, Ekam`

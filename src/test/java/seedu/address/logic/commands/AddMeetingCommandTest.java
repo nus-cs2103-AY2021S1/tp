@@ -37,7 +37,7 @@ public class AddMeetingCommandTest {
     @Test
     public void constructor_nullParams_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new AddMeetingCommand(null, null, null, null));
+                new AddMeetingCommand(null, null, null, null, null));
     }
 
     @Test

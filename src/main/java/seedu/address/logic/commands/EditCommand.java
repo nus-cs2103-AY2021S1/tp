@@ -89,8 +89,8 @@ public class EditCommand extends Command {
 
         // update meeting book
         List<Meeting> filteredMeetingList = model.getFilteredMeetingList().stream()
-                .filter(meeting -> meeting.getMembers().contains(personToEdit)).map(meeting -> {
-                    Set<Person> updatedMembers = new HashSet<>(meeting.getMembers());
+                .filter(meeting -> meeting.getParticipants().contains(personToEdit)).map(meeting -> {
+                    Set<Person> updatedMembers = new HashSet<>(meeting.getParticipants());
                     updatedMembers.remove(personToEdit);
                     updatedMembers.add(editedPerson);
                     Meeting updatedMeeting = new Meeting(meeting.getModule(), meeting.getMeetingName(), meeting.getDate(),

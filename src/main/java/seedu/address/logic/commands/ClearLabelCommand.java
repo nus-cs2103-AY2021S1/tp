@@ -50,8 +50,8 @@ public class ClearLabelCommand extends Command {
 
         // update meeting book
         List<Meeting> filteredMeetingList = model.getFilteredMeetingList().stream()
-                .filter(meeting -> meeting.getMembers().contains(personToClear)).map(meeting -> {
-                    Set<Person> updatedMembers = new HashSet<>(meeting.getMembers());
+                .filter(meeting -> meeting.getParticipants().contains(personToClear)).map(meeting -> {
+                    Set<Person> updatedMembers = new HashSet<>(meeting.getParticipants());
                     updatedMembers.remove(personToClear);
                     updatedMembers.add(clearedPerson);
                     Meeting updatedMeeting = new Meeting(meeting.getModule(), meeting.getMeetingName(), meeting.getDate(),

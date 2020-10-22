@@ -76,8 +76,8 @@ public class AddLabelCommand extends Command {
 
         // update meeting book
         List<Meeting> filteredMeetingList = model.getFilteredMeetingList().stream()
-                .filter(meeting -> meeting.getMembers().contains(personToLabel)).map(meeting -> {
-                    Set<Person> updatedMembers = new HashSet<>(meeting.getMembers());
+                .filter(meeting -> meeting.getParticipants().contains(personToLabel)).map(meeting -> {
+                    Set<Person> updatedMembers = new HashSet<>(meeting.getParticipants());
                     updatedMembers.remove(personToLabel);
                     updatedMembers.add(labelledPerson);
                     Meeting updatedMeeting = new Meeting(meeting.getModule(), meeting.getMeetingName(), meeting.getDate(),

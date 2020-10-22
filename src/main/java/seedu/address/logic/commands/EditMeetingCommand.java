@@ -133,7 +133,7 @@ public class EditMeetingCommand extends Command {
                 updatedMembers.addAll(filteredList);
             }
         } else {
-            updatedMembers = meetingToEdit.getMembers();
+            updatedMembers = meetingToEdit.getParticipants();
         }
         assert updatedMembers != null;
         return updatedMembers;
