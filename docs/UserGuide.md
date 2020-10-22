@@ -69,9 +69,9 @@ Examples:
 * (Without label) `tag t/Users f/C:\Users`
 * (With label) `tag t/Users f/C:\Users l/Important`
 
-### Displaying file path of a tag : `show`
+### Displaying information of a tagged file : `show`
 
-Displays the file path of a specified tag.
+Displays the information of the tagged file.
 
 Format: `show t/TAG_NAME`
 
@@ -91,7 +91,7 @@ Examples:
 
 ### Removing a tag : `untag`
 
-Removes the tag from the list of managed tag.
+Removes the tag from the list of tags.
 
 Format: `untag t/TAG_NAME`
 
@@ -100,7 +100,7 @@ Examples:
 
 ### Renaming a tag : `retag`
 
-Renames the unique tag name.
+Renames a tag.
 
 Format: `retag o/OLD_TAG_NAME t/NEW_TAG_NAME`
 
@@ -116,18 +116,24 @@ Format: `find KEYWORD`
 Examples:
 * `find notes`
 
-### Changing working directory : `cd`
+### Changing current directory : `cd`
 
-Changes the current working directory.
+Changes the current directory of the HelloFile internal File Explorer.
 
-Format: `cd f/FILE_PATH`
+Format 1: `cd f/ABSOLUTE_FILE_PATH`
+
+Format 2: `cd ./RELATIVE_FILE_PATH`
+
+Format 3: `cd ../`
 
 Examples:
-* `retag f/../notes/`
+* `cd f/C:\Users`
+* `cd ./tp`
+* `cd ../`
 
 ### Listing all tags : `ls`
 
-Lists all the managed tags.
+Lists all managed tags.
 
 Format: `ls`
 
@@ -137,9 +143,9 @@ Clears the list of managed tags.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Exiting the application : `exit`
 
-Exits the program.
+Exits the application.
 
 Format: `exit`
 
@@ -169,9 +175,11 @@ Action | Format, Examples
 **Untag** | `untag t/TAG_NAME`
 **Retag** | `retag o/OLD_TAG_NAME t/NEW_TAG_NAME` <br> e.g., `retag o/mytag t/newtag`
 **Find** | `find KEYWORD` <br> e.g., `find newtag`
-**Changing directory**| `cd f/FILE_PATH`
 **Open** | `open t/TAG_NAME`
 **List** | `ls`
+**Cd to an absolute file Path**| `cd f/ABSOLUTE_FILE_PATH` <br> e.g., `cd f/C:\Users`
+**Cd to a relative file Path**| `cd ./RELATIVE_FILE_PATH` <br> e.g., `cd ./project01`
+**Cd to the parent file Path**| `cd ../`
 **Clear** | `clear`
 **Help** | `help`
 **Exit** | `exit`
