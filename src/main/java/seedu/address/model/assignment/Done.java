@@ -15,7 +15,7 @@ public class Done {
     }
 
     public Done(boolean isMarkedDone) {
-        this.isMarkedDone= isMarkedDone;
+        this.isMarkedDone = isMarkedDone;
     }
 
     /**
@@ -36,5 +36,12 @@ public class Done {
      */
     public boolean isMarkedDone() {
         return isMarkedDone;
+    }
+
+    /**
+     * Returns a tick symbol if done. Otherwise, returns a cross symbol.
+     */
+    public String toString() {
+        return isMarkedDone ? "Done \u2714" : "Undone \u2718";
     }
 }
