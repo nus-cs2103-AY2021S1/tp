@@ -1,17 +1,19 @@
 package seedu.fma.logic.parser;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import seedu.fma.logic.commands.DeleteExCommand;
-import seedu.fma.model.LogBook;
-
-import java.util.Arrays;
-
 import static seedu.fma.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.fma.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.fma.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.fma.model.util.SampleDataUtil.getSampleExercises;
 import static seedu.fma.testutil.TypicalIndexes.INDEX_FIRST_LOG;
+
+import java.util.Arrays;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import seedu.fma.logic.commands.DeleteExCommand;
+import seedu.fma.model.LogBook;
+
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

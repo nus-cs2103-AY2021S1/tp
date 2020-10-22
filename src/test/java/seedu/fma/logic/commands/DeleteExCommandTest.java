@@ -1,13 +1,5 @@
 package seedu.fma.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.fma.commons.core.Messages;
-import seedu.fma.commons.core.index.Index;
-import seedu.fma.model.Model;
-import seedu.fma.model.ModelManager;
-import seedu.fma.model.UserPrefs;
-import seedu.fma.model.exercise.Exercise;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.fma.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -15,6 +7,16 @@ import static seedu.fma.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.fma.testutil.TypicalIndexes.INDEX_FIRST_LOG;
 import static seedu.fma.testutil.TypicalIndexes.INDEX_SECOND_LOG;
 import static seedu.fma.testutil.TypicalLogs.getTypicalLogBook;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.fma.commons.core.Messages;
+import seedu.fma.commons.core.index.Index;
+import seedu.fma.model.Model;
+import seedu.fma.model.ModelManager;
+import seedu.fma.model.UserPrefs;
+import seedu.fma.model.exercise.Exercise;
+
 
 public class DeleteExCommandTest {
     private Model model = new ModelManager(getTypicalLogBook(), new UserPrefs());
