@@ -2,7 +2,9 @@ package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.FILE_ADDRESS_DESC_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.USER_DIRECTORY_ADDRESS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTags.CS2101;
 

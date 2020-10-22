@@ -1,5 +1,9 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.USER_DIRECTORY_ADDRESS;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
@@ -7,8 +11,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.tag.FileAddress;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.TagBuilder;
-
-import static seedu.address.logic.commands.CommandTestUtil.*;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
