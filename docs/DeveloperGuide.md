@@ -190,6 +190,7 @@ The following sequence diagram shows how the calculate cap operation works:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CalculateCapCommand` 
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 #### Design consideration:
 
@@ -791,7 +792,6 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown
