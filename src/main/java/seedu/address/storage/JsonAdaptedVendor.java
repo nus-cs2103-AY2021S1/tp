@@ -30,7 +30,7 @@ class JsonAdaptedVendor {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private Menu menu = new Menu();
+    private List<JsonAdaptedFood> menu = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedVendor} with the given vendor details.
@@ -46,7 +46,9 @@ class JsonAdaptedVendor {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        this.menu.setOrderedFoodList(foodList);
+        if (foodList != null) {
+            this.menu.addAll(foodList);
+        }
     }
 
     /**
@@ -60,7 +62,7 @@ class JsonAdaptedVendor {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        menu = source.getMenu();
+        menu.addAll(source.getMenu().getFoods());
         //TODO add a value in menu
     }
 
@@ -73,6 +75,10 @@ class JsonAdaptedVendor {
         final List<Tag> vendorTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             vendorTags.add(tag.toModelType());
+        }
+        final Menu vendorMenu = new Menu();
+        for (JsonAdaptedFood food : menu) {
+            vendorMenu.add(food.toModelType());
         }
 
         if (name == null) {
@@ -115,7 +121,7 @@ class JsonAdaptedVendor {
         final Set<Tag> modelTags = new HashSet<>(vendorTags);
 
         //TODO: check the menu
-        return new Vendor(modelName, modelPhone, modelEmail, modelAddress, modelTags, menu);
+        return new Vendor(modelName, modelPhone, modelEmail, modelAddress, modelTags, vendorMenu);
     }
 
 }
