@@ -107,7 +107,7 @@ public class AddModuleCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getModuleListFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -193,6 +193,11 @@ public class AddModuleCommandTest {
 
         @Override
         public void updateFilteredContactList(Predicate<Contact> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getContactListFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
