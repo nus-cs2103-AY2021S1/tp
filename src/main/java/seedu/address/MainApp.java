@@ -87,7 +87,7 @@ public class MainApp extends Application {
         OrderManager initialOrderManager = new OrderManager();
         try {
             addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            if (addressBookOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
@@ -104,6 +104,12 @@ public class MainApp extends Application {
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
+        }
+        try {
+            storage.saveAddressBook(initialData);
+        } catch (IOException e) {
+            logger.warning("Something unexpected occurred!");
+            assert false;
         }
 
         return new ModelManager(initialData, userPrefs, initialMenuManagers, initialOrderManager);
