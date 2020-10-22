@@ -127,18 +127,16 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Data Structure: Tag
 [Tag](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/tag/Tag.java)
-allows a file to be tagged with a compulsory `TagName`, `FileAddress` and an optional `Label`. `TagName` must contain
-at least 1 word, alphanumeric and must be unique. `FileAddress` must contain a valid file path with the correct file 
-expression (i.e passing a file path like `C:\Windows\..` is valid for Windows and `./home/...` is valid for Linux. 
-`FileAddress` can take in a relative path or absolute path. User can make use of `FindCommand` by passing the 
-`TagName` as the keyword to find tagged files.  
+is a class that stores tags. It contains a compulsory `TagName`, a `FileAddress` and an optional `Label`. `TagName` must 
+contain at least 1 alphanumeric word, and must be unique. `FileAddress` must contain a valid file path
+(i.e passing a file path like `C:\Windows\..` is valid for Windows and `./home/...` is valid for Linux).`FileAddress` 
+can take in a relative path or absolute path.
 
 
 ### Data Structure: Label
 [Label](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/label/Label.java)
-allows `Tag ` to keep a `Label`. A `Label` must only contains alphanumeric. It is an optional field to `Tag`. 
-Each label can only contains up to one word. Label allows the user to label their tagged file. User can also make use 
-of the `FindCommand` by passing the label as the keyword. The purpose is to keep label short and concise, as it only 
+stores a `Label`, which is an optional field in `Tag`. A `Label` must only contain alphanumeric characters, and up to 
+one word. `Label` allows the user to label their tagged file. The purpose is to keep label short and concise, as it only 
 serves as extra information of a tagged file.
 
 ### Adding of Tags: TagCommand
