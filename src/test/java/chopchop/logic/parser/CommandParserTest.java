@@ -17,10 +17,10 @@ public class CommandParserTest {
 
         var tests = Map.of(
             "add ingredient squid /qty 30g /expiry 2020-12-24",
-            "Result(AddIngredientCommand: squid (30g) expires: 2020-12-24)",
+            "Result(AddIngredientCommand: squid (30g) expires: 2020-12-24 \nTags: \nNo tags attached)",
 
             "add ingredient milk /qty 600ml",
-            "Result(AddIngredientCommand: milk (600ml))",
+            "Result(AddIngredientCommand: milk (600ml) \nTags: \nNo tags attached)",
 
             "add recipe cake /ingredient milk /qty 400ml /ingredient flour /qty 500g "
                 + "/ingredient egg /qty 7 /step mix /step bake /step eat",

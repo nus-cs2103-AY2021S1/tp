@@ -4,13 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static chopchop.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the food entry book.
- * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
+ * Represents a Tag for both Recipe and Ingredient.
+ * E.G. "Halal", "Vegetarian" for Recipe. "Carbs", "Vitamin E" for Ingredient.
+ * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}.
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Tag name should be alphanumeric";
+    public static final String VALIDATION_REGEX = ".+";
 
     public final String tagName;
 
@@ -32,11 +33,15 @@ public class Tag {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public String getTagName() {
+        return this.tagName;
+    }
+
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Tag // instanceof handles nulls
-                && tagName.equals(((Tag) other).tagName)); // state check
+        return other == this
+            || (other instanceof Tag
+            && tagName.equals(((Tag) other).tagName));
     }
 
     @Override

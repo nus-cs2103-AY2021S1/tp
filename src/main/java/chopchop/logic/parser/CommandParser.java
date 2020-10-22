@@ -11,6 +11,7 @@ import chopchop.util.Strings;
 import chopchop.util.StringView;
 
 import chopchop.logic.commands.Command;
+import chopchop.logic.commands.QuitCommand;
 
 import static chopchop.logic.parser.commands.AddCommandParser.parseAddCommand;
 import static chopchop.logic.parser.commands.HelpCommandParser.parseHelpCommand;
@@ -105,6 +106,8 @@ public class CommandParser {
                 case Strings.COMMAND_FIND:      return parseFindCommand(args);
                 case Strings.COMMAND_LIST:      return parseListCommand(args);
                 case Strings.COMMAND_DELETE:    return parseDeleteCommand(args);
+
+                case Strings.COMMAND_QUIT:      return Result.of(new QuitCommand());
 
                 default:
                     return Result.error("unknown command '%s'", args.getCommand());

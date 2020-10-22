@@ -5,8 +5,10 @@ package chopchop.logic.parser.commands;
 import java.util.List;
 import java.util.Optional;
 import java.util.ArrayList;
+import java.util.Set;
 import java.util.stream.Collectors;
 
+import chopchop.model.attributes.Tag;
 import chopchop.util.Result;
 import chopchop.util.Strings;
 import chopchop.util.StringView;
@@ -73,33 +75,41 @@ public class AddCommandParser {
 
         Optional<ArgName> foo;
         if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_QUANTITY,
-            Strings.ARG_EXPIRY))).isPresent()) {
+            Strings.ARG_EXPIRY, Strings.ARG_TAG))).isPresent()) {
 
-            return Result.error("'add ingredient' command doesn't support '%s'", foo.get());
+            return Result.error("'add ingredient' command doesn't support '%s'\n%s",
+                foo.get(), AddIngredientCommand.MESSAGE_USAGE);
         }
 
         var qtys = args.getArgument(Strings.ARG_QUANTITY);
         if (qtys.size() > 1) {
-            return Result.error("multiple quantities specified");
+            return Result.error("multiple quantities specified\n%s", AddIngredientCommand.MESSAGE_USAGE);
         }
 
         var exps = args.getArgument(Strings.ARG_EXPIRY);
         if (exps.size() > 1) {
-            return Result.error("multiple expiry dates specified");
+            return Result.error("multiple expiry dates specified\n%s", AddIngredientCommand.MESSAGE_USAGE);
         }
+
+        var tags = args.getArgument(Strings.ARG_TAG);
 
         // looks weird, but basically this extracts the /qty and /expiry arguments (if present),
         // then constructs the command from it -- while returning any intermediate error messages.
-        return Result.transpose(qtys
-            .stream()
-            .findFirst()
-            .map(Quantity::parse))
-            .then(qty -> Result.transpose(exps
+        try {
+            Optional<Set<String>> tagSet = tags.isEmpty() ? Optional.empty() : Optional.of(Set.copyOf(tags));
+            return Result.transpose(qtys
                 .stream()
                 .findFirst()
-                .map(e -> Result.of(e)))
-                .map(exp -> createAddIngredientCommand(name, qty, exp))
-            );
+                .map(Quantity::parse))
+                .then(qty -> Result.transpose(exps
+                    .stream()
+                    .findFirst()
+                    .map(e -> Result.of(e)))
+                    .map(exp -> createAddIngredientCommand(name, qty, exp, tagSet))
+                );
+        } catch (Exception e) {
+            return Result.error(e.getMessage());
+        }
     }
 
     /**
@@ -113,7 +123,8 @@ public class AddCommandParser {
         if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_QUANTITY,
             Strings.ARG_INGREDIENT, Strings.ARG_STEP))).isPresent()) {
 
-            return Result.error("'add recipe' command doesn't support '%s'", foo.get());
+            return Result.error("'add recipe' command doesn't support '%s'\n%s",
+                foo.get(), AddRecipeCommand.MESSAGE_USAGE);
         }
 
         return parseIngredientList(args)
@@ -198,12 +209,12 @@ public class AddCommandParser {
     }
 
 
-    private static AddIngredientCommand createAddIngredientCommand(String name,
-        Optional<Quantity> qty, Optional<String> expiry) {
+    private static AddIngredientCommand createAddIngredientCommand(String name, Optional<Quantity> qty,
+        Optional<String> expiry, Optional<Set<String>> tags) {
 
         return new AddIngredientCommand(new Ingredient(name,
             qty.orElse(Count.of(1)),
-            expiry.map(ExpiryDate::new).orElse(null)
-        ));
+            expiry.map(ExpiryDate::new).orElse(null),
+            tags.map(x->x.stream().map(Tag::new).collect(Collectors.toSet())).orElse(null)));
     }
 }

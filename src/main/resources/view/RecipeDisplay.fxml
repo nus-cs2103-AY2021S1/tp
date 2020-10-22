@@ -12,11 +12,11 @@
                <children>
                   <VBox>
                      <children>
-                        <TextArea fx:id="recipeName" prefHeight="230.0" prefWidth="200.0" />
+                        <TextArea fx:id="recipeName" prefHeight="230.0" prefWidth="200.0" editable="false"/>
                      </children>
                   </VBox>
                   <Pane prefHeight="5.0" prefWidth="300.0" />
-                  <TextArea fx:id="ingredientDisplay" prefHeight="233.0" prefWidth="200.0" />
+                  <TextArea fx:id="ingredientDisplay" prefHeight="233.0" prefWidth="200.0" editable="false"/>
                </children>
             </VBox>
          </children>
@@ -25,7 +25,7 @@
    <right>
       <HBox BorderPane.alignment="CENTER_LEFT">
          <children>
-            <TextArea fx:id="instructionDisplay" prefHeight="465.0" prefWidth="310.0" />
+            <TextArea fx:id="instructionDisplay" prefHeight="465.0" prefWidth="310.0" editable="false"/>
             <Pane prefHeight="400.0" prefWidth="8.0" />
          </children>
       </HBox>
