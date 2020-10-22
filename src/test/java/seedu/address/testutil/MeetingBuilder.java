@@ -16,6 +16,7 @@ public class MeetingBuilder {
     public static final String DEFAULT_NAME = "Weekly Meeting";
     public static final String DEFAULT_DATE = "2020-10-03";
     public static final String DEFAULT_TIME = "10:00";
+    public static final String DEFAULT_MEMBERS = "Alex Yeoh";
 
     private Module module;
     private MeetingName meetingName;
