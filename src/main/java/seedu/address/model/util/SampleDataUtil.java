@@ -44,25 +44,36 @@ public class SampleDataUtil {
         };
     }
 
-    public static Meeting[] getSampleMeetings() {
-        return new Meeting[] {
-            new Meeting(new MeetingName("CS2103 Weekly Meeting"), new Date("2020-09-20"),
-                new Time("10:00"), getPersonSet("Alex Yeoh", "Bernice Yu")),
-            new Meeting(new MeetingName("CS2040 Project Meeting"), new Date("2020-10-19"),
-                new Time("17:30"), getPersonSet("Charlotte Oliveiro", "David Li", "Irfan Ibrahim")),
-            new Meeting(new MeetingName("CS2103 Emergency Meeting"), new Date("2020-10-10"),
-                new Time("16:00"), getPersonSet("Bernice Yu", "Roy Balakrishnan", "David Li")),
-            new Meeting(new MeetingName("CS2102 Report Discussion"), new Date("2020-09-08"),
-                new Time("08:00"), getPersonSet("Roy Balakrishnan", "Charlotte Oliveiro")),
-        };
-    }
-
     public static Module[] getSampleModules() {
         return new Module[] {
             new Module(new ModuleName("CS2103"), getPersonSet("Alex Yeoh", "Bernice Yu")),
             new Module(new ModuleName("CS2105"), getPersonSet("Bernice Yu", "David Li")),
             new Module(new ModuleName("CS2040"), getPersonSet("David Li", "Charlotte Oliveiro")),
             new Module(new ModuleName("CS2100"), getPersonSet("Roy Balakrishnan", "Bernice Yu"))
+        };
+    }
+
+    public static Meeting[] getSampleMeetings() {
+        return new Meeting[] {
+            new Meeting(getModule("CS2103"),
+                    new MeetingName("Weekly Meeting"),
+                    new Date("2020-09-20"),
+                    new Time("10:00"),
+                    getPersonSet("Alex Yeoh", "Bernice Yu")),
+            new Meeting(getModule("CS2105"),
+                    new MeetingName("Project Meeting"),
+                    new Date("2020-10-19"),
+                    new Time("17:30"),
+                    getPersonSet("Bernice Yu", "David Li")),
+            new Meeting(getModule("CS2040"),
+                    new MeetingName("Emergency Meeting"),
+                    new Date("2020-10-10"),
+                    new Time("16:00"),
+                    getPersonSet("David Li", "Charlotte Oliveiro")),
+            new Meeting(getModule("CS2100"),
+                    new MeetingName("Report Discussion"),
+                    new Date("2020-09-08"),
+                    new Time("08:00"), getPersonSet("Roy Balakrishnan", "Bernice Yu")),
         };
     }
 
@@ -113,5 +124,14 @@ public class SampleDataUtil {
             }
         }
         return personSet;
+    }
+
+    public static Module getModule(String string) {
+        for (Module module: getSampleModules()) {
+            if (module.isSameName(new ModuleName(string))) {
+                return module;
+            }
+        }
+        return null;
     }
 }
