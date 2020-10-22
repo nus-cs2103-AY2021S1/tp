@@ -1,4 +1,4 @@
-~~~~---
+---
 layout: page
 title: Developer Guide
 ---
@@ -20,7 +20,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 **How the architecture components interact with each other**
 ![Structure of the Overall Product](images/ArchitectureDiagram.png)
 
-### OverAll components
+### Overall components
 
 This is the overall design of our product. As we are using **GUI to help to display the information** and mainly focuses on
 using **CLI to take in the required commands**, thus the product consists of **6 main major components**. The product starts
@@ -75,15 +75,6 @@ of the **XYZListPanel**.
 
 ### Model component
 
-![Structure of the Module List Component](images/ModuleListDiagram.png)
-
-![Structure of the Contact List Component](images/ContactListDiagram.png)
-
-
-The Model stores the module list and contact list data. In the module list, each module stores its module name, zoom 
-link and a grade tracker that stores the assignments for this module and the grades. Each assignment has its own name, grade 
-
-
 **API** :
 
 ### Storage component
@@ -105,13 +96,26 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 **API** :
 
-## Grades Tracker
+## Module List
+![Structure of the Module List Component](images/ModuleListDiagram.png)
+
+The Module List that is stored in the model contains a list of modules. The Module List stores a Unique
+Contact List that prevents duplicate modules from being added to the Module List. Each Module contains 
+a module name, a zoom link attached to that module and a grade tracker. The grade tracker tracks the assignments
+completed for that module and a grade for that module. 
+
 
 ## CAP Calculator
 
 ## Scheduler
 
 ## Contact List
+
+![Structure of the Contact List Component](images/ContactListDiagram.png)
+
+The Contact List that is stored in the model contains a list of contacts. The Contact List stores a 
+Unique Contact List prevents duplicate contacts from being added.Each contact stored has their Name, 
+Email address and Telegram handle stored with it.
 
 ## Todo List
 
@@ -207,6 +211,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | find a module by name          | locate details of a module without having to go through the entire list |
 | `* *`    | user                                       | add a zoom link to a module    | keep track and retrieve it easily                      |
 | `* *`    | user                                       | calculate my cumulative average point   | plan my academic progress for the future      |
+| `* *`    | user                                       | store graded assignments       | keep the information of the assignments that contributed to my grade      |
 | `*`      | user who is overloading                    | sort modules by name           | locate a module easily                                 |
 
 *{More to be added}*
@@ -445,22 +450,22 @@ Use case ends.
 
   *{More to be added}*
 
-  **Use Case: View all contact details of a lecturer**
+**Use Case: View all contact details of a lecturer**
 
-    **MSS**
-    1. User requests to view all contact details of a lecturer.
-    2. User provides the name of the lecturer.
-    3. CAP5BUDDY searches for the specified lecturer from storage.
-    4. CAP5BUDDY retrieves all contact details of the lecturer from storage.
-    4. CAP5BUDDY displays the desired contact details.
+  **MSS**
+   1. User requests to view all contact details of a lecturer.
+   2. User provides the name of the lecturer.
+   3. CAP5BUDDY searches for the specified lecturer from storage.
+   4. CAP5BUDDY retrieves all contact details of the lecturer from storage.
+   5. CAP5BUDDY displays the desired contact details.
 
-    **Extensions**
+  **Extensions**
 
-    * 3a. The specified lecturer name does not exist.
+   * 3a. The specified lecturer name does not exist.
 
-      * CAP5BUDDY displays an error message.
+     * CAP5BUDDY displays an error message.
 
-      Use case ends.
+     Use case ends.
 
   **Use Case: View the email of a Lecturer**
 
@@ -531,23 +536,21 @@ Use case ends.
 **Use Case: Add assignment to CAP5BUDDY**
 
   **MSS**
-  1. User requests to add an assignment to a module in CAP5BUDDY.
-  2. CAP5BUDDY retrieves module from module list.
-  3. CAP5BUDDY creates and adds assignment to the gradetracker in the module retrieved.
-  4. CAP5BUDDY updates module in module list.
-  5. CAP5BUDDY displays success message.
-
-     Use case ends.
+   1. User requests to add an assignment to a module in CAP5BUDDY.
+   2. CAP5BUDDY retrieves module from module list.
+   3. CAP5BUDDY creates and adds assignment to the gradetracker in the module retrieved.
+   4. CAP5BUDDY updates module in module list.
+   5. CAP5BUDDY displays success message.
 
   **Extensions**
 
-* 2a. The module to add to is invalid.
+ * 2a. The module to add to is invalid.
 
     * CAP5BUDDY displays an error message.
 
       Use case ends.
 
-  * 3a. The given grade is invalid.
+ * 3a. The given grade is invalid.
 
     * CAP5BUDDY displays an error message.
 
@@ -559,8 +562,6 @@ Use case ends.
   1. User requests to view grades for a module.
   2. CAP5BUDDY retrieves current grades.
   3. CAP5BUDDY displays current grades.
-
-     Use case ends.
 
   **Extensions**
 
@@ -581,8 +582,6 @@ Use case ends.
   5. CAP5BUDDY edits the assignment.
   6. CAP5BUDDY saves the edited assignment in the module.
   7. CAP5BUDDY displays success message.
-
-     Use case ends.
 
   **Extensions**
 
@@ -610,8 +609,6 @@ Use case ends.
    5. CAP5BUDDY updates the grade tracker in the module.
    4. CAP5BUDDY displays success message.
 
-      Use case ends.
-
    **Extensions**
 
    * 3a. The provided assignment is invalid.
@@ -631,7 +628,7 @@ Use case ends.
   **Extensions**
   * 1a. The provide event information is invalid, missing date and time.
 
-        * CAP5BUDDY displays an error message.
+       * CAP5BUDDY displays an error message.
 
           Use case resumes at step 1.
 

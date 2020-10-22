@@ -81,14 +81,14 @@ Views a module stored in the system
   `add zoom cs2103T https://sample.zoom.us` adds a zoom link `https://sample.zoom.us` to the module named `cs2103T`
 
 
-### Deleting a module: `delete`
+### Deleting a module: `deletemodule`
 
-Deletes the module at the specified position from the system
+Deletes the module at the specified position in the module list.
 
  Format: `delete` **_`[MODULE_POSITION]`_**
 
   Examples:
-  * `delete 1` deletes the module at position `1`
+  * `deletemodule 1` deletes the module at position `1`
 
 
 ### Editing a module : `edit zoom`
