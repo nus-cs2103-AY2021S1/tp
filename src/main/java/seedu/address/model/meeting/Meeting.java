@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Meeting {
 
@@ -40,7 +41,8 @@ public class Meeting {
      */
     public Meeting(String localDateTime) {
         requireAllNonNull(localDateTime);
-        startDateTime = LocalDateTime.parse(localDateTime);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        startDateTime = LocalDateTime.parse(localDateTime, formatter);
         isDone = false;
         publishDate = LocalDate.now();
     }

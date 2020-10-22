@@ -37,7 +37,7 @@ public class TaskFilterCommand extends Command {
         + PREFIX_TASK_PROGRESS + "50)||("
         + PREFIX_TASK_IS_DONE + "false)\n";
     public static final String MESSAGE_FILTER_TASK_SUCCESS = "Here are the filtered tasks:";
-
+    //TODO: CHOOSE ONE PREDICATE OR MULTIPLE???
     private final Predicate<Task> predicate;
 
     /**
