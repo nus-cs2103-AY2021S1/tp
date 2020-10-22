@@ -37,16 +37,16 @@ class JsonAdaptedDocument {
 
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Document} object.
+     * Converts this Jackson-friendly adapted Document object into the model's {@code Document} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted Document.
      */
     public Document toModelType() throws IllegalValueException {
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "document name"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "name"));
         }
         if (reference == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "document reference"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "reference"));
         }
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
