@@ -20,8 +20,8 @@ public class Year {
      */
     public static final Pattern YEAR_FORMAT = Pattern.compile("(?<school>[^\\d\\s]+)\\s*(?<level>\\d)");
 
-    private final SchoolType schoolType;
-    private final Integer level;
+    public final SchoolType schoolType;
+    public final Integer level;
 
     /**
      * Constructs a {@code Year}.

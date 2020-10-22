@@ -6,11 +6,13 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.NameComparator;
+import seedu.address.model.student.YearComparator;
+import seedu.address.model.student.admin.ClassTimeComparator;
 
 public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = "empty command (to be filled)";
-    public static final String[] SUPPORTED_COMPARISON_MEANS = new String[] {"name"};
+    public static final String[] SUPPORTED_COMPARISON_MEANS = new String[] {"name", "classTime", "year"};
     public static final String COMMAND_WORD = "sort";
 
     private final String comparisonMeans;
@@ -31,9 +33,17 @@ public class SortCommand extends Command {
             model.updateSortedStudentList(new NameComparator());
             break;
 
+        case "classTime":
+            model.updateSortedStudentList(new ClassTimeComparator());
+            break;
+
+        case "year":
+            model.updateSortedStudentList(new YearComparator());
+            break;
+
         default:
             assert false; //shouldn't reach default branch
-            throw new CommandException("Shouldn't be called"); //todo change later
+            throw new CommandException("Shouldn't be called");
         }
 
         return new CommandResult(
