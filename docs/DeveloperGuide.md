@@ -1,4 +1,3 @@
----
 layout: page
 title: Developer Guide
 ---
@@ -18,17 +17,17 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ### Architecture
 
 **How the architecture components interact with each other**
+![Structure of the Overall Product](images/ArchitectureDiagram.png)
 
 ### OverAll components
-<img src="images/overallUML.png" width="500px">
 
 This is the overall design of our product. As we are using **GUI to help to display the information** and mainly focuses on
-using **CLI to take in the required commands**, thus the product consists of **6 main major components**. The product starts 
+using **CLI to take in the required commands**, thus the product consists of **6 main major components**. The product starts
 from the Launcher classes, that initiates based on our pre-set settings and then activates the MainApp class
 the will run the GUI with these settings. MainApp will also start the _brain_ and -muscles_ of the program, which are the Logic, Storage,
-Model and Ui components. 
+Model and Ui components.
 
-The role of the **Logic** component is to act as the _brain_ of the program, where all the parsing of information will be done, and the 
+The role of the **Logic** component is to act as the _brain_ of the program, where all the parsing of information will be done, and the
 execution of the commands will be carried out.
 
 The role of the **Storage** component is to represent the _memory_ of the program, where the storing and tracking of the different items happens.
@@ -42,6 +41,30 @@ of these components and displaying the changes.
 ## Module Tracker
 
 ### UI component
+![Structure of the UserInterface Component](images/UiClassDiagram.png)
+
+The job of the UI component is to be the _face_ of the product, which the user directly interacts with.
+It is in charge of containing the logic that **breaks down and executes the user input**, and displaying the **GUI** of the
+product.
+
+It composes of a few main classes, that serves as the focal point of this component. Such classes are **UiPart**,
+**MainWindow**, **UiManager** and the respective panel displays, **(XYZListPanel)**. The rest of the classes are supporting
+classes to help make the GUI.
+
+The MainWindow is what the user actually sees, which has a **CommandBox**, **XYZListPanel**, **ResultDisplay** and **StatusBar**. These
+components are stacking on top of one another using **stackPane** to ensure a smooth looking GUI. The order of the components
+are as follows, **CommandBox**, **ResultDisplay**, **XYZListPanel** and **StatusBar**.
+
+The **CommandBox** is just a textField component where the user can enter the commands. Upon pressing *Enter*, extracting of the
+text occurs and is sent to the logic to be parsed and executed.
+
+Next, after the executing is completed, a **CommandResult** object returns and is then passed to the **ResultDisplay** for the
+relevant information to be shown in this component. This is being displayed in a TextArea component.
+
+Lastly, the **XYZListPanel** is in charge of displaying all the modules, contacts, etc that is the product is tracking.
+Each of these items are being displayed in a *cell* under their respective **XYZCard**, which will be displayed in the *ListCell*
+of the **XYZListPanel**.
+
 
 **API** :
 
@@ -65,8 +88,19 @@ help to the user.
 
 ### Storage component
 
-**API** :
+![Structure of the Storage Component](images/StorageClassDiagram.png)
 
+**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+
+The `Storage` component,
+* can save `UserPref` objects in json format and read it back.
+* can save the module list data in json format and read it back.
+* can save the contact list data in json format and read it back.
+* can save the todo list data in json format and read it back.
+
+### Common classes
+
+Classes used by multiple components are in the `seedu.addressbook.commons` package.
 ### Common classes
 
 **API** :
@@ -96,6 +130,40 @@ This section describes some noteworthy details on how certain features are imple
 ##### Aspect: How undo & redo executes
 
 ### \[Proposed\] Data archiving
+
+### \[Proposed\] Calculate CAP feature
+
+#### Proposed Implementation
+
+The proposed calculate CAP function is facilitated by `CalculateCapCommand`. It extends Command with a counter for total 
+grade points and modular credits, both stored internally `gradePoints` and `modularCredits` respectively. Additionally, it implements the following operations:
+
+* `CalculateCapCommand#accumulate(ModuleList)` - Loops through a given `ModuleList` and updates the grade points and 
+modular credits count accordingly.
+
+* `CalculateCapCommand#calculateCap()` - Calculates CAP based the grade points and modular credits counter.
+
+The following sequence diagram shows how the calculate cap operation works:
+![CalculateCapSequenceDiagram](images/CalculateCapSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CalculateCapCommand` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+#### Design consideration:
+
+##### Aspect: Information used to calculate cap
+* Alternative 1 (current choice): Calculates based on academic information on mods tagged as completed.
+    * Pros : Easy to implement
+    * Cons : User has to manually input every module taken
+    
+* Alternative 2 : Prompts user for academic information used for last calculated cap and stores it.
+    * Pros : 
+        * User does not need to input uncessary modules.
+        * Will use less memory.(e.g Modules that the user is not currently taking does not need to be added by user).
+    
+    * Cons : Will require additional storage.
+    
+   
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -138,6 +206,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | delete a module                | remove modules that are completed                      |
 | `* *`    | user                                       | find a module by name          | locate details of a module without having to go through the entire list |
 | `* *`    | user                                       | add a zoom link to a module    | keep track and retrieve it easily                      |
+| `* *`    | user                                       | calculate my cumulative average point   | plan my academic progress for the future      |
 | `*`      | user who is overloading                    | sort modules by name           | locate a module easily                                 |
 
 *{More to be added}*
