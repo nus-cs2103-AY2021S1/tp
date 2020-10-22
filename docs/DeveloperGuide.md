@@ -156,6 +156,30 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Open Case/Return feature
+The `open case` command allows the user to open an investigation case listed on the `Main Page` in the GUI.
+PIVOT then extracts and displays the key information about the `Case` in the `Case Page` Panel.
+
+#### Implementation
+The `open case` mechanism is facilitated by `OpenCaseCommand`. It extends abstract class `OpenCommand` and contains a target `Index` of the `Case` to be opened.
+It implements `OpenCaseCommand#execute()` as required in the abstract parent class. The Sequence Diagram below shows how the `OpenCaseCommand` works.
+
+##### Insert Diagram Here
+
+As the user invokes `open case [INDEX]`, the arguments are passed from the GUI to the `Logic` component, which is then passed to the `Parser`, implemented by `PivotParser`.
+
+In `PivotParser`, the arguments are processed and passed onto the `OpenCommandParser` to further process the arguments and create a new `OpenCaseCommand`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** TWhen the user gives an invalid `type`, such as `open suspect 1`, `OpenCommandParser` will raise and error and display the proper command format for the user.
+</div>
+
+Upon invoking `OpenCaseCommand#execute()`, the class will extract the `Case` that is to be opened, and update the state in `StateManager`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** When the user gives an invalid `Index`, such as `open case -1`, `OpenCaseCommand` will raise and error and display the proper command format for the user.
+</div>
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
