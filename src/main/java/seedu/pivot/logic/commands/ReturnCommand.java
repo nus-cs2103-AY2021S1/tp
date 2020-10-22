@@ -1,10 +1,10 @@
 package seedu.pivot.logic.commands;
 
+import java.util.logging.Logger;
+
 import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
-
-import java.util.logging.Logger;
 
 /**
  * Returns the program to the Main Page.
