@@ -95,7 +95,7 @@ public interface Model {
      * Selects the vendor with index {@code vendorIndex} .
      * {@code vendorIndex} must be a valid index in the model.
      */
-   void selectVendor(int vendorIndex);
+    void selectVendor(int vendorIndex);
 
 
     /**
