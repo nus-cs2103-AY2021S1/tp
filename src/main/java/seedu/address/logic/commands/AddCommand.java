@@ -50,9 +50,10 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model, ActiveAccount activeAccount) {
         requireAllNonNull(model, activeAccount);
 
-        if (this.entry instanceof Expense) {
+        if (entry instanceof Expense) {
             activeAccount.addExpense((Expense) entry);
-        } else if (this.entry instanceof Revenue) {
+        } else {
+            assert entry instanceof Revenue;
             activeAccount.addRevenue((Revenue) entry);
         }
         model.setAccount(activeAccount.getAccount());

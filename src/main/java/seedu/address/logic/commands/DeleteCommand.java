@@ -58,7 +58,8 @@ public class DeleteCommand extends Command {
         if (isExpense) {
             Expense toDelete = expenseList.get(index);
             activeAccount.deleteExpense(toDelete);
-        } else if (isRevenue) {
+        } else {
+            assert isRevenue;
             Revenue toDelete = revenueList.get(index);
             activeAccount.deleteRevenue(toDelete);
         }

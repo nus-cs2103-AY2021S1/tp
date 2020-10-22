@@ -65,6 +65,7 @@ public class EditCommand extends Command {
         if (editEntryDescriptor.isEntryExpense()) {
             lastShownList = activeAccount.getFilteredExpenseList();
         } else {
+            assert editEntryDescriptor.isEntryRevenue();
             lastShownList = activeAccount.getFilteredRevenueList();
         }
 
@@ -79,6 +80,7 @@ public class EditCommand extends Command {
             activeAccount.setExpense((Expense) entryToEdit, (Expense) editedEntry);
             activeAccount.updateFilteredExpenseList(ActiveAccount.PREDICATE_SHOW_ALL_EXPENSES);
         } else {
+            assert editedEntry instanceof Revenue;
             activeAccount.setRevenue((Revenue) entryToEdit, (Revenue) editedEntry);
             activeAccount.updateFilteredRevenueList(ActiveAccount.PREDICATE_SHOW_ALL_REVENUE);
         }

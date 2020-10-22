@@ -43,10 +43,9 @@ public class FindCommandParser implements Parser<FindCommand> {
             Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
             if (category.isExpense()) {
                 return new FindCommand(new ExpenseDescriptionContainsKeywordsPredicate(keywords));
-            } else if (category.isRevenue()) {
-                return new FindCommand(new RevenueDescriptionContainsKeywordsPredicate(keywords));
             } else {
-                return null;
+                assert category.isRevenue();
+                return new FindCommand(new RevenueDescriptionContainsKeywordsPredicate(keywords));
             }
         } else {
             return new FindCommand(new ExpenseDescriptionContainsKeywordsPredicate(keywords),

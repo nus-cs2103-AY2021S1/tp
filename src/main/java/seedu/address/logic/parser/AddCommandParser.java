@@ -50,6 +50,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (category.isExpense()) {
             entry = new Expense(description, amount, tagList);
         } else {
+            assert category.isRevenue();
             entry = new Revenue(description, amount, tagList);
         }
 

@@ -42,7 +42,8 @@ public class ClearCommand extends Command {
 
         if (isExpense) {
             activeAccount.clearExpenses();
-        } else if (isRevenue) {
+        } else {
+            assert isRevenue;
             activeAccount.clearRevenues();
         }
         model.setAccount(activeAccount.getAccount());
