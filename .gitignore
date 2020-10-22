@@ -27,3 +27,4 @@ docs/_site/
 .project
 .settings/
 bin/
+.vscode/
