@@ -125,9 +125,13 @@ Examples:
 
 #### 4.1.1 Add a contact: `addcontact`
 
-This feature adds a new contact into the contact list if it does not already exist.
+Adds a new contact into the contact list if it does not already exist.
 
-Format: 
+Format: `addcontact n/NAME [e/EMAIL] [te/TELEGRAM] [t/TAG]`
+
+<div class="note">       
+    **NOTE**: Source [here](//developer.run)
+</div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
