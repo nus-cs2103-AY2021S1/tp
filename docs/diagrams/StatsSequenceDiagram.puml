@@ -75,7 +75,6 @@ Flashcard --> StatsCommand : statistics
 deactivate Flashcard
 
 StatsCommand --> LogicManager : result
-destroy Flashcard
 deactivate StatsCommand
 
 [<--LogicManager : result

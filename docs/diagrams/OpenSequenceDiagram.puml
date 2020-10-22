@@ -69,7 +69,6 @@ Flashcard --> OpenCommand : question
 deactivate Flashcard
 
 OpenCommand --> LogicManager : result
-destroy Flashcard
 deactivate OpenCommand
 
 [<--LogicManager : result
