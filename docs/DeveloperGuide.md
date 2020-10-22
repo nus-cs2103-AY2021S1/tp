@@ -21,10 +21,6 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 The ***Architecture Diagram*** given above explains the high-level design of HelloFile. Given below is a quick overview of each component.
 
-<div markdown="span" class="alert alert-primary">
-
-</div>
-
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -84,7 +80,7 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("untag t/tag123")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -126,7 +122,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how we implement certain features.
 
 ### Data Structure: Tag
 [Tag](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/tag/Tag.java)
@@ -134,7 +130,6 @@ is a class that stores tags. It contains a compulsory `TagName`, a `FileAddress`
 contain at least 1 alphanumeric word, and must be unique. `FileAddress` must contain a valid file path
 (i.e passing a file path like `C:\Windows\..` is valid for Windows and `./home/...` is valid for Linux).`FileAddress` 
 can take in a relative path or absolute path.
-
 
 ### Data Structure: Label
 [Label](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/label/Label.java)
@@ -146,9 +141,16 @@ serves as extra information of a tagged file.
 
 [TagCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/TagCommand.java) 
 adds a new `Tag` to `AddressBook` if the tag's `TagName` is not a duplicate and the tag's `FileAddress`
-is pointing to a valid file.
+is pointing to a valid file. 
 
-TagCommand checks if the file is present using `java.io.File.exists()`.
+Firstly, `TagCommand` checks if the file address given is absolute or relative file path.
+If the address is relative, it converts the relative path to absolute address by concatenating the relative
+path to the current path stored in `Model`.
+
+We designed `TagCommand` this way so that the users can use our File Explorer interface to navigate to
+a folder, then tag files using relative file addresses.
+
+Lastly, TagCommand checks if the file is present using `java.io.File.exists()` before adding the tag to `Model`.
 
 ### Opening of Tags: OpenCommand
 
@@ -157,26 +159,27 @@ searches the list of Tags stored in `AddressBook` and opens the file located at 
 if the file is present. `CommandException` is thrown if tag is not present or if the file cannot be found.
 
 We implemented OpenCommand using `java.awt.Desktop`,
-which supports various desktop capabilities such as open. This ensures that our application can operation across
+which supports various desktop capabilities such as `open()`. `Desktop` ensures that our application can operation across
 most java-supported platforms.
 
-However, one draw back of using `java.awt.Desktop` is that the platform that HelloFile operates on must
+However, there is one significant draw back of using `java.awt.Desktop`. The platform that HelloFile operates on must
 support `Desktop`. This means that our application will never work on a headless environment. 
-You can check whether the environment supports `Desktop` using the provided method `java.awt.Desktop.isDesktopSupported()`.
+As a developer, you can check whether the environment supports `Desktop`
+using the library method `java.awt.Desktop.isDesktopSupported()`.
 
 ### Deleting Tags: UntagCommand
 
 [UntagCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/UntagCommand.java)
 removes the `Tag` specified by the unique tag name from the `AddressBook`.
 
-The command checks the existence of the `Tag` with `model.findFilteredTagList()`, and call method `model.deleteTag()` to delete it.
+This command checks the existence of the `Tag` with `model.findFilteredTagList()`, and calls method `model.deleteTag()` to delete it.
 
 ### Renaming of Tags: RetagCommand
 
 [RetagCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/RetagCommand.java)
 rename the `Tag` specified by the unique tag name with a different tag name.
 
-The command checks the presence of the `Tag` using `java.io.File.exists()`, and that the new tag name is unique, i.e. not present in the `AddressBook`.
+This command checks the presence of the `Tag` using `java.io.File.exists()`, and that the new tag name is unique, i.e. not present in the `AddressBook`.
 It then gets the filepath of the `Tag` before safely deleting it. Then, a new `Tag` is created with the filepath, and the new tag name.
 
 ### Changing of Directory: CdCommand
@@ -186,9 +189,15 @@ changes the current directory of the HelloFile internal File Explorer. `CommandE
 is invalid, cannot be found, or cannot be set as the current directory (*e.g. the given directory is not a folder*).
 
 CdCommand calls `setAddress` in `CurrentPath` to set the current directory to the absolute address parsed from the user input.
-The list of children files `FileList` under `CurrentPath` will be updated to fit the new current directory when `setAddress` is called.
-The `javafx.scene.control.ListView` in `FileExplorer` will also be updated as it is bound to the `FileList` of the children files 
+Then, `CurrentPath` will update the list of children files `FileList` to fit the new current directory.
+Moreover, it also updates `javafx.scene.control.ListView` in `FileExplorer` as `ListView` is bound to the `FileList` of the children files 
 under the `CurrentPath`.
+
+### Find a specific tag: FindCommand
+
+[FindCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/FindCommand.java)
+applies a `TagContainsCharPredicate` to the list of `FilteredTags` in `Model`. This effectively searches for tags.
+`TagContainsCharPredicate` matches any tag with `TagName` or any `Label` that contains the keyword given.
 
 ### Showing a tag's file path: ShowCommand
 
@@ -202,15 +211,15 @@ ShowCommand gets the specified tag by applying `TagNameEqualsKeywordPredicate` t
 
 [ListCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/ListCommand.java)
 lists the Tags stored in `AddressBook` and shows them as `TagCard` which is contained in `TagListPanel`.
-ListCommand shouldn't take in any argument. `CommandException` will be thrown if the user's input contains an argument.
+ListCommand shouldn't take in any argument. A `CommandException` will be thrown if the user's input contains an argument.
 
 ListCommand updates the `ObservableList<Tag>` by using `java.util.function.predicate`.
 
 ### Internal File Explorer
 
-Internal File Explorer is a simple file explorer that supports viewing files on your PC. It contains a `CurrentPath` that 
+Internal File Explorer is a simple file explorer that supports viewing files on your computer. It contains a `CurrentPath` that 
 represents the directory the explorer is viewing, as well as a `FileList` of the children files under that directory. The 
-users can use `CdCommand` to change the current directory of the explorer, so he or she can view files under different directories.
+user can use `CdCommand` to change the current directory of the explorer, so he or she can view files under different directories.
 
 The purpose of implementing Internal File Explorer is to make tagging files easier by supporting tagging files using their 
 relative paths (*e.g. the file name*). This can make tagging files easier especially when the user wants to tag multiple files 
@@ -225,14 +234,15 @@ that directory.
 
 UI
 
-`FileExplorerPanel` is the UI component for displaying Internal File Explorer, it is a `javafx.scene.control.TitledPane` with 
-its title as the current directory and its content as the list of children files. The infomation of Children files are display 
-using `FileCard` in the `javafx.scene.control.ListView` of the file explorer panel.
+`FileExplorerPanel` is the UI component for displaying Internal File Explorer. It is a `javafx.scene.control.TitledPane` with 
+its title as the current directory and its content as the list of children files. 
+We use `FileCard` in the `javafx.scene.control.ListView` of the file explorer panel to display information of children files.
 
 Storage
 
-The current directory of the File Explorer is kept in `SavedFilePath`, and it is saved into json files upon exiting the app.
-When starting the app, the current path saved last time will be loaded, and the current path of the explorer will be set to that.
+We keep the current directory of the File Explorer in `SavedFilePath`. HelloFile saves the directory in json format upon exiting the app,
+and loads the current path saved last time when the app starts. By doing so, the state of the File Explorer will
+persist across every use of our app.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -254,10 +264,10 @@ When starting the app, the current path saved last time will be loaded, and the 
 
 * Tech savvy NUS Computer Science Student
 * Has a need to manage a significant number of files
-* Prefer desktop apps over other types
+* Prefers desktop apps over other types
 * Can type fast
 * Prefers typing to mouse interactions
-* Reasonably comfortable using CLI apps
+* Reasonably comfortable with CLI apps
 
 **Value proposition**: CS students can manage/access their files by typing
                        and using a simple GUI. Help CS students to see file relations easily.
@@ -552,8 +562,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1. Should work on any mainstream OS as long as it has Java 11 or above installed.
-2. Should be able to hold up to 1000 tags without sluggishness longer than 5 seconds.
+1. The app should work on any mainstream OS as long as it has Java 11 or above installed.
+2. The app should be able to hold up to 1000 tags without sluggishness longer than 5 seconds.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. The source code should be open source.
 5. The application should be usable by a tech-savvy NUS CS student who has never used a similar file management system before.
