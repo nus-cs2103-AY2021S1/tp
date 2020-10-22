@@ -164,6 +164,21 @@ However, one draw back of using `java.awt.Desktop` is that the platform that Hel
 support `Desktop`. This means that our application will never work on a headless environment. 
 You can check whether the environment supports `Desktop` using the provided method `java.awt.Desktop.isDesktopSupported()`.
 
+### Deleting Tags: UntagCommand
+
+[UntagCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/UntagCommand.java)
+removes the `Tag` specified by the unique tag name from the `AddressBook`.
+
+The command checks the existence of the `Tag` with `model.findFilteredTagList()`, and call method `model.deleteTag()` to delete it.
+
+### Renaming of Tags: RetagCommand
+
+[RetagCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/RetagCommand.java)
+rename the `Tag` specified by the unique tag name with a different tag name.
+
+The command checks the presence of the `Tag` using `java.io.File.exists()`, and that the new tag name is unique, i.e. not present in the `AddressBook`.
+It then gets the filepath of the `Tag` before safely deleting it. Then, a new `Tag` is created with the filepath, and the new tag name.
+
 ### Changing of Directory: CdCommand
 
 [CdCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/CdCommand.java)
