@@ -42,18 +42,15 @@ public class AddCommand extends Command {
      * Creates an AddCommand to add the specified {@code Entry}
      */
     public AddCommand(Entry entry) {
-        assert false;
         requireNonNull(entry);
         this.entry = entry;
     }
 
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) {
-        assert false;
         requireAllNonNull(model, activeAccount);
 
         if (this.entry instanceof Expense) {
-            assert false;
             activeAccount.addExpense((Expense) entry);
         } else if (this.entry instanceof Revenue) {
             activeAccount.addRevenue((Revenue) entry);
