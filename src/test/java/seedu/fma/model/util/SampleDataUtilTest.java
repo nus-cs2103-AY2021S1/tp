@@ -40,12 +40,12 @@ class SampleDataUtilTest {
     @Test
     void testGetSampleExercises() {
         Exercise[] sampleExercises = {
-            new Exercise(new Name("Flying kicks"), 15),
-            new Exercise(new Name("Sit ups"), 30),
-            new Exercise(new Name("Pull ups"), 20),
-            new Exercise(new Name("Jumping jacks"), 15),
-            new Exercise(new Name("Run 100m"), 30),
-            new Exercise(new Name("Stretch"), 20),
+            new Exercise(new Name("Flying kicks"), new Calories(15)),
+            new Exercise(new Name("Sit ups"), new Calories(30)),
+            new Exercise(new Name("Pull ups"), new Calories(20)),
+            new Exercise(new Name("Jumping jacks"), new Calories(15)),
+            new Exercise(new Name("Run 100m"), new Calories(30)),
+            new Exercise(new Name("Stretch"), new Calories(20)),
         };
         for (int i = 0; i < getSampleExercises().length; i++) {
             assertEquals(sampleExercises[i], getSampleExercises()[i]);

@@ -6,8 +6,10 @@ package seedu.fma.logic.parser;
 public class CliSyntax {
 
     /* Prefix definitions */
-    public static final Prefix PREFIX_EXERCISE = new Prefix("e/");
-    public static final Prefix PREFIX_REPS = new Prefix("r/");
-    public static final Prefix PREFIX_COMMENT = new Prefix("c/");
+    public static final Prefix PREFIX_E = new Prefix("e/");
+    public static final Prefix PREFIX_R = new Prefix("r/");
+    public static final Prefix PREFIX_C = new Prefix("c/");
+    public static final Prefix PREFIX_M = new Prefix("m/");
+    public static final Prefix PREFIX_D = new Prefix("d/");
 
 }

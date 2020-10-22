@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.fma.commons.core.index.Index;
 import seedu.fma.commons.util.StringUtil;
@@ -15,6 +16,7 @@ import seedu.fma.model.exercise.exceptions.ExerciseNotFoundException;
 import seedu.fma.model.log.Comment;
 import seedu.fma.model.log.Rep;
 import seedu.fma.model.tag.Tag;
+import seedu.fma.model.util.Calories;
 import seedu.fma.model.util.Name;
 
 /**
@@ -97,6 +99,16 @@ public class ParserUtil {
         return new Name(trimmedName);
     }
 
+    public static Calories parseCalories(String calories) throws ParseException {
+        requireNonNull(calories);
+
+        if (!Calories.isValidCalories(calories)) {
+            throw new ParseException(Calories.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Calories(Integer.parseInt(calories));
+    }
+
     /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
@@ -122,5 +134,13 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

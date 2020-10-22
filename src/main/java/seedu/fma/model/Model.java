@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.fma.commons.core.GuiSettings;
+import seedu.fma.model.exercise.Exercise;
 import seedu.fma.model.log.Log;
 
 /**
@@ -75,6 +76,30 @@ public interface Model {
      * The log identity of {@code editedLog} must not be the same as another existing log in the log book.
      */
     void setLog(Log target, Log editedLog);
+
+    /**
+     * Returns true if a exercise with the same identity as {@code exercise} exists in the log book.
+     */
+    boolean hasExercise(Exercise exercise);
+
+    /**
+     * Deletes the given exercise.
+     * The exercise must exist in the log book.
+     */
+    void deleteExercise(Exercise target);
+
+    /**
+     * Adds the given exercise.
+     * {@code exercise} must not already exist in the log book.
+     */
+    void addExercise(Exercise exercise);
+
+    /**
+     * Replaces the given exercise {@code target} with {@code editedExercise}.
+     * {@code target} must exist in the log book.
+     * The exercise identity of {@code editedExercise} must not be the same as another existing exercise in the log book.
+     */
+    void setExercise(Exercise target, Exercise editedExercise);
 
     /** Returns an unmodifiable view of the filtered log list */
     ObservableList<Log> getFilteredLogList();

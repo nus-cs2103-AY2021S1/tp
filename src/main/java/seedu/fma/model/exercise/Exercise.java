@@ -1,10 +1,10 @@
 package seedu.fma.model.exercise;
 
 import static seedu.fma.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.fma.commons.util.IntegerUtil.requirePositiveInteger;
 
 import java.util.Objects;
 
+import seedu.fma.model.util.Calories;
 import seedu.fma.model.util.Name;
 
 /**
@@ -17,14 +17,13 @@ public class Exercise {
 
     // Identity fields
     private final Name name;
-    private final int caloriesPerRep;
+    private final Calories caloriesPerRep;
 
     /**
      * Every field must be present and not null.
      */
-    public Exercise(Name name, int caloriesPerRep) {
+    public Exercise(Name name, Calories caloriesPerRep) {
         requireAllNonNull(name, caloriesPerRep);
-        requirePositiveInteger(caloriesPerRep);
         this.name = name;
         this.caloriesPerRep = caloriesPerRep;
     }
@@ -33,7 +32,7 @@ public class Exercise {
         return name;
     }
 
-    public int getCaloriesPerRep() {
+    public Calories getCaloriesPerRep() {
         return caloriesPerRep;
     }
 
@@ -70,7 +69,6 @@ public class Exercise {
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, caloriesPerRep);
     }
 

@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.fma.logic.commands.AddCommand;
+import seedu.fma.logic.commands.AddExCommand;
 import seedu.fma.logic.commands.ClearCommand;
 import seedu.fma.logic.commands.Command;
 import seedu.fma.logic.commands.DeleteCommand;
@@ -60,17 +61,20 @@ public class FixMyAbsParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments, logBook);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            case ListCommand.COMMAND_WORD:
+                return new ListCommand();
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
 
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            case HelpCommand.COMMAND_WORD:
+                return new HelpCommand();
 
-        default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            case AddExCommand.COMMAND_WORD:
+                return new AddExCommandParser().parse(arguments, logBook);
+
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
