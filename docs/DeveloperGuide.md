@@ -90,7 +90,17 @@ help to the user.
 
 ### Model component
 
-**API** :
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+
+The `Model`,
+
+* stores a `UserPref` object that represents the user’s preferences.
+* stores the data for these 3 types of list:
+  * module tracker
+  * contact list
+  * todo list
+* exposes an unmodifiable `ObservableList<T>` for all types of list as mentioned above which can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* does not depend on any of the other three components
 
 ### Storage component
 
@@ -161,6 +171,31 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 * Duplicate Contacts are not allowed
 
 ## Todo List
+
+![Structure of the Todo List Component](images/TodoListClassDiagram.png)
+
+#### Task class
+
+**Task package** : [`seedu.address.model.task`](https://github.com/AY2021S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/model/task)
+
+* Task is a container class that stores :
+  * Name of a task
+  * Tags of a task
+  * Priority of a task
+  * Date or deadline of a task
+  * Status of a task<br/>
+  Only name is compulsory when creating a new Task.
+
+#### TodoList class
+
+**TodoList class** : [`TodoList.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/TodoList.java)
+
+* Wraps all data i.e. Tasks at the Todo List level
+* Stores Tasks in memory
+* Stores a UniqueTodoList
+* Duplicate Task objects are now allowed
+
+TodoList will be explained more comprehensively in the [TodoList feature](#todolist-feature) Section
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -276,7 +311,7 @@ Figure ?.? Activity diagram representing the execution of `AddContactCommand`
 #### View Contact Feature
 
 
-#### <br> 1.1.2 Design Considerations <br>
+#### 1.1.2 Design Considerations <br>
 ##### Aspect: Data structure to support Contact related functions
 * Alternative 1: Use a `HashMap` to store contacts
   * Pros: Will be more efficient to retrieve contacts from a HashMap.
@@ -315,9 +350,97 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
      * User does not need to input unnecessary modules.
      * Will use less memory.(e.g Modules that the user is not currently taking does not need to be added by user). 
     * Cons : Will require additional storage.
+
+### TodoList feature
+
+#### Implementation
+
+The TodoList feature has two main component :
+
+* **Containee component** (Task-related classes)
+  * `Class Task` - container class to store information about a task
+  * `Class TaskName` - wrapper class to store the name of a task
+  * `Class Date` - wrapper class to store the date/deadline of a task
+  * `Enum Priority` - enum class to represent priority of a task
+  * `Enum Status` - enum class to represent the progress status of a task
+
+* **Container component** (List-like classes)
+  * Class `UniqueTodoList` - container class for storing tasks
+  * Class `TodoList` - wrapper class for UniqueTodoList
+  * Interface `ReadOnlyTodoList` - interface for displaying the list on the GUI
+
+##### Containee Component
+
+The Task class mainly functions as a class to store all the informations related to a task i.e. name, tag, priority,
+date, and status. It does not have any subclasses.
+
+The Task class supports the following operations :
+
+* Setters for all the field
+* Getters for all the field
+* `Task#isSameTask()` - checks if two tasks are the same i.e. have the same name 
+(weaker than Task#equals() which requires all the fields to be the same)
+* `Task#hasSameTag()` - checks if the task has the specified tag
+* `Task#hasSamePriority()` - checks if the task has the specified priority
+* `Task#hasSameDate()` - checks if the task has the specified date
+
+##### Container Component
+
+The TodoList class is facilitated by UniqueTodoList. The UniqueTodoList is stored internally inside
+the TodoList class which act like a wrapper class. 
+
+The TodoList class supports the following operations :
+
+* `TodoList#resetData()` - replaces all data in TodoList with new data.
+* `TodoList#hasTask()` - checks if the specified task exist in the list.
+* `TodoList#addTask()` - adds a task to the list.
+* `TodoList#setTask()` - replaces a task with the specified task.
+* `TodoList#removeTask()` - removes the specified task from the list.
+
+The operations above are exposed in the Model interface as :
+
+* `Model#hasTask()`
+* `Model#addTask()`
+* `Model#setTask()`
+* `Model#deleteTask()`
+
+TodoList implements ReadOnlyTodoList which require the following operation :
+
+* `ReadOnlyTodoList#getTodoList()` - returns an ObservableList with type Task that is immutable, and we cannot
+  modify the elements.
+
+#### Design Consideration
+
+##### Aspect: Task type
+
+* Alternative 1 (current): <br/>
+  Use one concrete class i.e. Task without inheritance involved. The type of the task
+  is represented by the Tag field instead.
+  
+  Pros :
+  * Easier to implement
+  * Types are not pre-defined i.e. can simply add a different tag to represent different type of task
+  
+  Cons :
+  * All type of task have the same pre-defined field
+
+* Alternative 2 : <br/>
+  Use one abstract class i.e. Task with inheritance. Each subclasses represent a type of a Task.
+  
+  Pros :
+  * Difference between type are clear and standardized
+  * Can be considered more OOP
+  
+  Cons :
+  * Types must be pre-defined i.e. cannot add new type of classes without adding codes
+  
+  Alternative 1 is chosen since we prioritize user freedom to create custom type for the task.
+  
     
-###\[Proposed\] GradeTracker feature
-####Proposed Implementation
+### \[Proposed\] GradeTracker feature
+
+#### Proposed Implementation
+
 The proposed grade tracker feature is an association class used to store additional information for the module. 
 The `Assignments` each store their own `assignment name`, `percentage of final grade` and `result`. 
 
@@ -338,6 +461,7 @@ to the rest of the project as the command is parsed and then executed.
 * Alternative 2 (current choice): Grade stores the raw score calculated from assignment
     * Pros : Grade can be automatically calculated from the assignment overall percentage for user to view
     * Cons : Requires separate CAP to be stored for Cap Calculator to access
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -384,6 +508,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | edit my graded assignments     | update the information of the assignments I have completed     |
 | `* *`    | user                                       | delete graded assignments      | remove the assignments that are do not contribute to my grade anymore|
 | `*`      | user who is overloading                    | sort modules by name           | locate a module easily                                 |
+| `* * *`  | user                                       | add a task                     | keep track of the tasks that I must complete           |
+| `* * *`  | user                                       | delete a task                  | remove a task that has been done                       |
+| `* * *`  | user                                       | edit a task                    | make necessary changes to a task                       |
+| `* *`    | user                                       | label a task as completed      |                                                        |
+| `* *`    | user                                       | find a task                    | find a task easily without looking at the entire list  |
+| `* *`    | user                                       | sort tasks based on criteria   | easily manage the tasks by order                       |
+| `* *`    | user                                       | filter tasks based on criteria | easily manage the tasks by group                       |
+| `*`      | user                                       | reset the status of a task     | change a task from labeled as completed to not completed |
+| `*`      | user                                       | archive a task                 | hide irrelevant tasks that might still be useful for future purposes |               
 
 *{More to be added}*
 
@@ -923,23 +1056,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 

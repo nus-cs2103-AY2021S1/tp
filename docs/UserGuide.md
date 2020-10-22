@@ -31,6 +31,19 @@ Cap 5.0 Buddy helps NUS SoC students to keep track of their module details effic
         8. [Archiving a task](#archiving-a-task) : `archivetask`
         9. [Clearing the list](#clearing-the-list) : `clear`
     6. Scheduler
+        1. [Adding a module](#adding-a-new-module-add-module)
+        2. [Viewing a module](#viewing-a-module-viewmodule)
+        3. [Adding a zoom link to a module](#adding-a-zoom-link-to-a-module-add-zoom)
+        4. [Deleting a module](#deleting-a-module-deletemodule)
+        5. [Editing a module](#editing-a-module--edit-zoom)
+        6. [Adding an assignment to a module](#adding-assignment-to-a-module-addassignment)
+        7. [Adding a contact](#411-add-a-contact-addcontact)
+        8. [Deleting a contact](#412-delete-a-contact-deletecontact)
+        9. [Editing a contact](#413-edit-a-contact-editcontact)
+        10. [Calculating Cumulative Average Point(CAP)](#calculating-cumulative-average-pointcap-calculatecap)
+        11. [Adding an Event to the Scheduler](#adding-an-event-to-the-scheduler)
+        12. [Undo previous user command](#undo-previous-user-command-undo)
+        13. [Redo previous user command](#undo-previous-user-command-redo)
 3. [FAQ](#faq)
 4. [Command Summary](#command-summary)
 
