@@ -16,7 +16,10 @@ import javafx.scene.layout.StackPane;
 public class DisplayController extends UiPart<Region> {
 
     private static final String FXML = "DisplayPanel.fxml";
-    private static final String WELCOME_MESSAGE = "Welcome to ChopChop! If you need any help, press 'F1'";
+    private static final String WELCOME_MESSAGE = "Welcome to ChopChop! If you need any help, press 'F1'"
+            + "\nTo add recipes: add recipe <REFERENCE> [/ingredient INGREDIENT [/qty QTY1]...]... (/step STEP)..."
+            + "\nTo add recipes: add ingredient NAME [/qty QUANTITY] [/expiry DATE]"
+            + "\nNote that [] denoted optional arguments.";
 
     private final TextDisplay textDisplay;
     private Logic logic;
@@ -42,7 +45,13 @@ public class DisplayController extends UiPart<Region> {
                 }
             }
         });
-        displayWelcomeMessage();
+        if (!logic.getFilteredRecipeList().isEmpty()) {
+            displayRecipeList();
+        } else if (!logic.getFilteredIngredientList().isEmpty()) {
+            displayIngredientList();
+        } else {
+            displayWelcomeMessage();
+        }
     }
 
     /**
