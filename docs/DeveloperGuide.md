@@ -219,6 +219,27 @@ Alternative implementations:
 * Store the SessionList as a JSON field in the existing Taskmaster file
     * Doing it this way would mean that the file would be repeatedly overwritten and any format errors will invalidate the whole file, including the StudentList.
 
+### ClassParticipation
+
+Author: **Theodore Leebrant**
+* Implementing the class in charge of representing the class participation of each student in a session.
+
+![Class Participation](images/ClassParticipation.png)
+
+The `ClassParticipation` is planned to
+* store a `score` and the maximum score (`maxScore`) attainable
+* have mutators for both the score and the maximum score.
+* be used by the StudentRecord
+
+**To do**
+* make a corresponding command in Taskmaster to set score
+* implement a default scoring system at launch
+
+Given below is the planned Sequence Diagram for interaction to set the class participation mark via `Taskmaster#markStudentParticipation(nusnetId, score)`.
+
+![Activity Diagram for Class Participation](images/ClassPartActivity.png)
+
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
