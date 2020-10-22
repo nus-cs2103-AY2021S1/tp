@@ -187,7 +187,7 @@ the finding process easier and more convenient.
 - The assignment list to be displayed is
  updated according to the Predicate passed into `FindCommand`.
  
-It can implement the following operations:
+It implements the following operations:
 * `find n/Assignment Lab` — Finds assignments with names that contain "Assignment" or "Lab". (Case-insensitive)
 * `find mod/CS2100 CS2103T` — Finds assignments with module codes "CS2100" or "CS2103T".
 * `find d/24-10-2020 1200` — Finds assignments with due date on 24-10-2020 (regardless of time) 
@@ -207,6 +207,27 @@ The following sequence diagram shows the sequence when LogicManager executes `fi
 4. There is return call to `LogicManager` which then calls the overridden `execute` method of `FindCommand`.
 5. The `execute` method of `FindCommand` will call the `updateFilteredAssignmentList` method and then the `getFilteredAssignmentListMethod` of the `Model` object.
 6. The `execute` method returns a `CommandResult` object.
+
+
+
+### \[Implemented]\ Remind assignments feature
+The user can set reminders for assignments.
+Reminded assignments will be displayed in the `Your Reminders` section in ProductiveNUS for easy referral.
+
+#### Reasons for Implementation
+It is likely that the user will want to receive reminders for assignments with deadlines that are far away, so that he will not forget to complete those assignments. It is also likely that the user will want to receive reminders for assignments that require more attention, so that he will know which assignments to focus on and plan his time accordingly.
+
+Displaying reminded assignments in a list separate from the main assignment list allows for easy referral and is hence more convenient for the user.
+
+#### Current Implementation
+- The remind command is a typical command used in ProductiveNUS.
+- It extends `Command` and overrides the method `execute` in `CommandResult`.
+- `RemindCommandParser` implements `Parser<RemindCommand>` and it parses the user's input to return a `RemindCommand` object.
+- The constructor of `RemindCommand` takes in an `Index` which is parsed from the zero based index of the user's input.
+
+It implements the following operations:
+* `remind 3` - Sets reminders for the 3rd assignment in the displayed assignment list.
+* `remind 2` - Sets reminders for the 2nd assignment in the displayed assignment list.
 
 
 
