@@ -2,6 +2,7 @@ package seedu.address.model.order;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
@@ -66,8 +67,10 @@ public class OrderManager implements ReadOnlyOrderManager {
     /**
      * Clears the contents of orderHistory.
      */
-    public void clearOrderHistory() {
+    public void resetOrder() {
         this.orderHistory.clear();
+        this.order.setOrderItems(new ArrayList<>());
+        saveChanges();
     }
 
     /**

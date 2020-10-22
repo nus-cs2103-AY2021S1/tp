@@ -316,8 +316,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void clearOrderHistory() {
-        orderManager.clearOrderHistory();
+    public void resetOrder() {
+        orderManager.resetOrder();
     }
 
     @Override

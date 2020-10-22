@@ -47,9 +47,7 @@ public class VendorCommand extends Command {
         model.setVendorIndex(index);
 
         if (oldIndex != index) {
-            model.clearOrderHistory();
-            // Note that clearOrder also saved the new Order into current OrderHistory
-            model.clearOrder();
+            model.resetOrder();
         }
 
         return new CommandResult(String.format(MESSAGE_SELECT_VENDOR_SUCCESS, vendorIndex.getOneBased()),
