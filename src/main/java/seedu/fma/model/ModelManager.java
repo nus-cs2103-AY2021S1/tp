@@ -5,6 +5,7 @@ import static seedu.fma.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -25,6 +26,7 @@ public class ModelManager implements Model {
     private final LogBook logBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Log> filteredLogs;
+    private final FilteredList<Exercise> filteredExercises;
 
     /**
      * Initializes a ModelManager with the given logBook and userPrefs.
@@ -41,6 +43,7 @@ public class ModelManager implements Model {
         SortedList<Log> sortedLogs = new SortedList<>(this.logBook.getLogList(),
                 Comparator.comparing(Log::getDateTime).reversed());
         filteredLogs = new FilteredList<>(sortedLogs);
+        filteredExercises = new FilteredList<>(this.logBook.getExerciseList());
     }
 
     public ModelManager() {
@@ -176,6 +179,15 @@ public class ModelManager implements Model {
         return filteredLogs;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Exercise} backed by the internal list of
+     * {@code versionedLogBook}
+     */
+    @Override
+    public ObservableList<Exercise> getFilteredExerciseList() {
+        return filteredExercises;
+    }
+
     @Override
     public void updateFilteredLogList(Predicate<Log> predicate) {
         requireNonNull(predicate);
@@ -198,7 +210,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return logBook.equals(other.logBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredLogs.equals(other.filteredLogs);
+                && filteredLogs.equals(other.filteredLogs)
+                && filteredExercises.equals(other.filteredExercises);
     }
 
     //=========== Debugging ===============================================================================

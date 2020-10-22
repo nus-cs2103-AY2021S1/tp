@@ -6,16 +6,7 @@ import static seedu.fma.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.fma.logic.commands.AddCommand;
-import seedu.fma.logic.commands.AddExCommand;
-import seedu.fma.logic.commands.ClearCommand;
-import seedu.fma.logic.commands.Command;
-import seedu.fma.logic.commands.DeleteCommand;
-import seedu.fma.logic.commands.EditCommand;
-import seedu.fma.logic.commands.ExitCommand;
-import seedu.fma.logic.commands.FindCommand;
-import seedu.fma.logic.commands.HelpCommand;
-import seedu.fma.logic.commands.ListCommand;
+import seedu.fma.logic.commands.*;
 import seedu.fma.logic.parser.exceptions.ParseException;
 import seedu.fma.model.ReadOnlyLogBook;
 
@@ -72,6 +63,9 @@ public class FixMyAbsParser {
 
         case AddExCommand.COMMAND_WORD:
             return new AddExCommandParser().parse(arguments, logBook);
+
+        case DeleteExCommand.COMMAND_WORD:
+            return new DeleteExCommandParser().parse(arguments, logBook);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
