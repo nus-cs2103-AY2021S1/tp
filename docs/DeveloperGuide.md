@@ -132,7 +132,9 @@ The user can find assignments by name, module code, due date or time or priority
 
 #### Reasons for Implementation
 Finding assignments by only one available field, like name of assignment, restricts the user's process of finding assignments
-based on what he is interested to view in his assignment list. In the case of finding assignments, it is likely that the user will
+based on what he is interested to view in his assignment list. 
+
+In the case of finding assignments, it is likely that the user will
 want to view assignments of highest priority so that he can complete them first. It is also likely for the user to want to view 
 assignments under this particular module, or view assignments due on this particular date and time. 
 
@@ -140,10 +142,14 @@ Allowing finding of assignments by different fields provides more categories for
 the finding process easier and more convenient.
 
 #### Current Implementation
-The find command is a typical command used in ProductiveNUS. It extends `Command` and overrides the method `execute` in `CommandResult`.
-`FindCommandParser` implements `Parser<FindCommand>` and it parses the user's input to return a `FindCommand` object.
- The constructor of `FindCommand` takes in a Predicate (`NameContainsKeywordsPredicate`, `DeadlineContainsKeywordsPredicate`, `ModuleCodeContainsKeywordsPredicate` or `PriorityContainsKeywordsPredicate`)
- depending on the prefix (n/, mod/, d/, priority/) or keywords in the user's input. The assignment list to be displayed is
+- The find command is a typical command used in ProductiveNUS. It extends `Command` and overrides the method `execute` in `CommandResult`.
+
+- `FindCommandParser` implements `Parser<FindCommand>` and it parses the user's input to return a `FindCommand` object.
+
+- The constructor of `FindCommand` takes in a Predicate (`NameContainsKeywordsPredicate`, `DeadlineContainsKeywordsPredicate`, `ModuleCodeContainsKeywordsPredicate` or `PriorityContainsKeywordsPredicate`)
+ depending on the prefix (n/, mod/, d/, priority/) or keywords in the user's input. 
+ 
+- The assignment list to be displayed is
  updated according to the Predicate passed into `FindCommand`.
  
 It can implement the following operations:
@@ -153,9 +159,19 @@ It can implement the following operations:
 or due time of 1200 (regardless of date).
 * `find priority/HIGH` — Finds assignments with high priority.
 
+#### Usage Scenario
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+A usage scenario would be when a user wants to find assignments with the name 'Lab'.
 
+The following sequence diagram shows the sequence when LogicManager executes `find` command.
+![Interactions Inside the Logic Component for the `find n/Lab` Command](images/FindSequenceDiagram.png)
+
+1. The `execute` method of `LogicManager` is called when a user keys in an input into the application and `execute` takes in the input.
+2. The `parseCommand` method of `ProductiveNusParser` parses the user input and returns an initialized `FindCommandParser` object and further calls the `parse` method of this object to identify keywords and prefixes in the user input.
+3. If user input is valid, it returns a `FindCommand` object, which takes in a predicate. (`NameContainsKeywordsPredicate` in this example user input)
+4. There is return call to `LogicManager` which then calls the overridden `execute` method of `FindCommand`.
+5. The `execute` method of `FindCommand` will call the `updateFilteredAssignmentList` method and then the `getFilteredAssignmentListMethod` of the `Model` object.
+6. The `execute` method returns a `CommandResult` object.
 
 
 

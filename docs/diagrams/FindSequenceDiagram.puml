@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("find n/Assignment Homework")
+[-> LogicManager : execute("find n/Lab")
 activate LogicManager
 
-LogicManager -> ProductiveNusParser : parseCommand("find n/Assignment Homework")
+LogicManager -> ProductiveNusParser : parseCommand("find n/Lab")
 activate ProductiveNusParser
 
 create FindCommandParser
@@ -26,7 +26,7 @@ activate FindCommandParser
 FindCommandParser --> ProductiveNusParser
 deactivate FindCommandParser
 
-ProductiveNusParser -> FindCommandParser : parse("n/Assignment Homework")
+ProductiveNusParser -> FindCommandParser : parse("n/Lab")
 activate FindCommandParser
 
 create FindCommand
