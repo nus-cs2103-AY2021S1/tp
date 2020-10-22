@@ -23,7 +23,7 @@ import chopchop.storage.Storage;
 import javafx.collections.ObservableList;
 
 /**
- * The main CommandDispatcher governing the logic in the app.
+ * The main LogicManager governing the logic in the app.
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
@@ -35,7 +35,7 @@ public class LogicManager implements Logic {
     private final CommandParser parser;
 
     /**
-     * Constructs a {@code CommandDispatcher} with the given {@code Model} and {@code Storage}.
+     * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
     public LogicManager(Model model, Storage storage) {
         this.model = model;
