@@ -327,6 +327,41 @@ parses the user's input as a file name and then creates a `SnapCommand` object w
 * We chose to prevent users from creating a snapshot if the specified file name already exists
 as overwriting a file is irreversible and would be disastrous for zookeepers if done unintentionally
 
+### Sort feature (by Malcolm)
+
+#### Implementation
+
+This section explains the implementation of the Sort command feature in the ZooKeepBook. This feature is used to sort the animals based on the different categories: **name, id or feedtime**.
+  
+The following sequence diagram shows the Logic and Model Components when a sort command is being executed:
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source:  **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+In the **Logic** Component,
+After the user keys in "sort name" as input, these key methods are called:
+* `LogicManager#execute("sort name")`: The `LogicManager` takes in a command text string ("sort name/id/feedtime").
+* `ZooKeepBookParser#parseCommand("sort name")`: The `ZooKeepBookParser` parses the user input into a command word ("sort") and arguments ("name"). Using the command word, a `SortCommandParser` is created. 
+* `SortCommandParser#parse("name")`: The `SortCommandParser` takes in the argument("name") and parses it. An `AnimalComparator` is created and contains the specific static comparator required to sort the animals according to the category provided. A `SortCommand` is created with the `AnimalComparator` as an attribute.
+	* The `AnimalComparator` contains 3 different static comparators to be used for sorting: `ANIMAL_NAME_COMPARATOR`,  `ANIMAL_ID_COMPARATOR` and `ANIMAL_FEEDTIME_COMPARATOR`.
+	* In this case, the `ANIMAL_NAME_COMPARATOR` is taken.
+* `SortCommand#execute(model)`: The `SortCommand` uses the `AnimalComparator` to sort the animals and returns a `CommandResult` object which represents the result of a command execution. 
+
+In the **Model** Component,
+The in-memory model of the ZooKeepBook data sorts and updates the animal list. The following key methods are used: 
+* `Model#sortAnimals(animalComparator)`: sorts the animals in the `ZooKeepBook` using the given `AnimalComparator` object.
+* `ZooKeepBook#sortAnimals(animalComparator)` : Retrieves the static comparator in the `AnimalComparator` object and creates a `SortedList` object. The `UniqueAnimalList` in the `ZooKeepBook` is then replaced by this `SortedList` object.
+* `ZooKeepBook#updateFilteredAnimalList(predicate)`: Updates the filter of the filtered animal list to filter by the given predicate, which will be true here so that the sorted list will be displayed once sorted.
+
+Upon the completion of the user command, a success message (Sorted all animals by name) and the updated sorted list is displayed below the message.
+
+The following activity diagram summarises what happens when a user executes a sort command.
+
+![SortCommandActivityDiagram](images/SortCommandActivityDiagram.png)
+  
+#### Design Consideration  
+##### Aspect: Sorting based on different categories  
+We chose to allow the user to sort not only based on animal names but also by their id and feedtime to ease the convenience of the user when he needs data to be sorted in other ways.
 
 --------------------------------------------------------------------------------------------------------------------
 
