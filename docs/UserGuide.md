@@ -56,18 +56,17 @@ Creates and add a new module to be stored in the system.
    with the specified link into the system.
    * `add module CS2103T` creates and add the module CS2103T with no zoom link.
 
-### Viewing a module: `view`
+### Viewing a module: `viewmodule`
 
 Views a module stored in the system
 
- Format: `view` **_`[MODULE_NAME]`_**
+ Format: `viewmodule` **_`n/[MODULE_NAME]`_**
 
-  * Using the keyword all in place of specified module name will display all module details
-
+  * Views information for a module named **_`[MODULE_NAME]`_**
 
   Examples:
-  * `view cs2103t` views the specified module
-  * `view all` views all the modules stored
+   * `viewmodule n/cs2103t` views the specified module
+
 
 ### Adding a zoom link to a module: `add zoom`
 
@@ -117,6 +116,33 @@ Examples:
   `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80` adds an assignment called `Quiz 1` that takes up `5`% of the 
   grade with a result of `0.80` to the module named `CS2100`
 
+
+### Calculating Cumulative Average Point(CAP): `calculatecap`
+
+Calculates the user's CAP based on completed modules
+
+ Format: `calculatecap`
+
+  Examples:
+  * `calculatecap` calculate the user's cap
+
+### Undo previous user command: `undo`
+
+Undoes the previous user command
+
+ Format: `undo`
+
+  Examples:
+  * `undo` 
+
+### Undo previous user command: `redo`
+
+Redoes the previously undone user command
+
+ Format: `redo`
+
+  Examples:
+  * `redo`   
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -133,8 +159,11 @@ Examples:
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add module KEYWORD`<br> e.g., `add module CS2103T [link]`, `add module CS2103T`
-**View** | `view KEYWORD `<br> e.g., `view cs2101` , `view all`
-**Delete** | `delete KEYWORD `<br> e.g., `delete 3`
-**Edit** | `edit zoom MODULE_NAME ZOOM_LINK`<br> e.g., `edit zoom CS2103T https://sample.zoom.us`
-**Add Zoom** | `add zoom MODULE_NAME ZOOM_LINK` <br> e.g., `add zoom cs2103T https://sample.zoom.us`
+**Add** | `add module KEYWORD`<br> e.g. `add module CS2103T [link]`, `add module CS2103T`
+**View** | `view KEYWORD `<br> e.g. `view cs2101` , `view all`
+**Delete** | `delete KEYWORD `<br> e.g. `delete 3`
+**Edit** | `edit zoom MODULE_NAME ZOOM_LINK`<br> e.g. `edit zoom CS2103T https://sample.zoom.us`
+**Add Zoom** | `add zoom MODULE_NAME ZOOM_LINK` <br> e.g. `add zoom cs2103T https://sample.zoom.us`
+**Calculate CAP** | `calculatecap` <br> e.g. `calculatecap`
+**Undo** | `undo` <br> e.g. `undo`
+**Redo** | `redo` <br> e.g. `redo`
