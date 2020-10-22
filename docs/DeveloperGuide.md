@@ -102,16 +102,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
-
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
-
+* stores the data in ProductiveNUS.
+* exposes an unmodifiable `ObservableList<Assignment>` and an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
 ### Storage component
 
@@ -121,7 +113,7 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save assignment and lesson data in json format and read it back.
 
 ### Common classes
 
@@ -164,9 +156,101 @@ takes in the input.
 3. It calls the `TimetableUrlParser` with the URL and it returns a `TimetableData` object.
 4. `ImportCommandParser` returns an `ImportCommand` object.
 5. There is return call to `LogicManager` which then calls the overridden `execute` method of `ImportCommand`.
-6. The `execute` method of `Importommand` will call the `retrieveLessons` method from `TimetableRetriever`, which
+6. The `execute` method of `ImportCommand` will call the `retrieveLessons` method from `TimetableRetriever`, which
  returns a list of lessons to be added.
 7. The `execute` method returns a `CommandResult` object.
+
+### \[Implemented\] Find by specific fields feature
+
+The user can find assignments by name, module code, due date/time or priority level. 
+Multiple keywords are allowed of the same type of field. (Fields are name, module code, due date/time and priority)
+
+#### Reasons for Implementation
+Finding assignments by only one available field, like name of assignment, restricts the user's process of finding assignments
+based on what he is interested to view in his assignment list. 
+
+In the case of finding assignments, it is likely that the user will
+want to view assignments of highest priority so that he can complete them first. It is also likely for the user to want to view 
+assignments under this particular module, or view assignments due on this particular date and time. 
+
+Allowing finding of assignments by different fields provides more categories for the user to search by and this will make
+the finding process easier and more convenient.
+
+#### Current Implementation
+- The find command is a typical command used in ProductiveNUS. It extends `Command` and overrides the method `execute` in `CommandResult`.
+
+- `FindCommandParser` implements `Parser<FindCommand>` and it parses the user's input to return a `FindCommand` object.
+
+- The constructor of `FindCommand` takes in a Predicate (`NameContainsKeywordsPredicate`, `DeadlineContainsKeywordsPredicate`, `ModuleCodeContainsKeywordsPredicate` or `PriorityContainsKeywordsPredicate`)
+ depending on the prefix (n/, mod/, d/, priority/) or keywords in the user's input. 
+ 
+- The assignment list to be displayed is
+ updated according to the Predicate passed into `FindCommand`.
+ 
+It can implement the following operations:
+* `find n/Assignment Lab` — Finds assignments with names that contain "Assignment" or "Lab". (Case-insensitive)
+* `find mod/CS2100 CS2103T` — Finds assignments with module codes "CS2100" or "CS2103T".
+* `find d/24-10-2020 1200` — Finds assignments with due date on 24-10-2020 (regardless of time) 
+or due time of 1200 (regardless of date).
+* `find priority/HIGH` — Finds assignments with high priority.
+
+#### Usage Scenario
+
+A usage scenario would be when a user wants to find assignments with the name 'Lab'.
+
+The following sequence diagram shows the sequence when LogicManager executes `find` command.
+![Interactions Inside the Logic Component for the `find n/Lab` Command](images/FindSequenceDiagram.png)
+
+1. The `execute` method of `LogicManager` is called when a user keys in an input into the application and `execute` takes in the input.
+2. The `parseCommand` method of `ProductiveNusParser` parses the user input and returns an initialized `FindCommandParser` object and further calls the `parse` method of this object to identify keywords and prefixes in the user input.
+3. If user input is valid, it returns a `FindCommand` object, which takes in a predicate. (`NameContainsKeywordsPredicate` in this example user input)
+4. There is return call to `LogicManager` which then calls the overridden `execute` method of `FindCommand`.
+5. The `execute` method of `FindCommand` will call the `updateFilteredAssignmentList` method and then the `getFilteredAssignmentListMethod` of the `Model` object.
+6. The `execute` method returns a `CommandResult` object.
+
+
+
+### \[Implemented\] List by days feature
+
+The user can list all his assignments (`list` without a subsequent argument index), or list assignments with deadlines 
+within a number of days from the current date (and time), with the number being the user input after `list`. 
+
+#### Reasons for Implementation
+It is likely that the user will want to view assignments that are due within days (soon) from the current date, so that he will know which assignments to complete first in order to meet the deadlines.
+It is different from the `find` command as users can list all assignments with deadlines within a period of time (from the current date and time to a number of days later, depending on the index he keys in).
+`find` by deadline (date or time) will only display assignments due on this particular day or time.
+
+It also provides a more intuitive approach for users to view assignments that are more urgent to complete.
+
+#### Current Implementation
+- The list command is a typical command used in ProductiveNUS. 
+- It extends `Command` and overrides the method `execute` in `CommandResult`.
+- `ListCommandParser` implements `Parser<ListCommand>` and it parses the user's input to return a `ListCommand` object.
+- The constructor of `ListCommand` takes in an `Index` which is parsed from the zero based index of the user's input.
+
+It implements the following operations:
+* `list` — Lists all assignments stored in ProductiveNUS.
+* `list 3` — Lists assignments with deadline 3 days (72 hours) from the current date. (and current time)
+* `list 2` — Lists assignments with deadline 2 days (48 hours) from the current date. (and current time)
+
+### \[Coming up\] Delete multiple assignments feature
+The user can delete multiple assignments at a time, when more than one index is keyed in.
+
+#### Reasons for Implementation
+It will provide convenience to users who want to delete more than one assignment at a time, and it makes the deleting process faster.
+
+
+#### Current Implementation
+- The `delete` command is a typical command used in ProductiveNUS. 
+- It extends `Command` and overrides the method `execute` in `CommandResult`.
+- `DeleteCommandParser` implements `Parser<DeleteCommand>` and it parses the user's input (index of the assignment as a positive integer)) to return a `DeleteCommand` object.
+- The constructor of `DeleteCommand` takes in an `Index` which is parsed from the one based index of the user's input.
+ 
+It can implement the following operations:
+* `delete 1 3` — Deletes the assignment at the first and third index in list.
+* `delete 1` — Deletes the assignment at the first index in list.
+
+### \[Coming up\] Help feature
 
 ### \[Proposed\] Undo/redo feature
 
