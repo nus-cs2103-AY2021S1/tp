@@ -1,0 +1,47 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ReeveParser" as ReeveParser LOGIC_COLOR
+participant "o:OverdueCommand" as Command LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("overdue")
+activate LogicManager
+
+LogicManager -> ReeveParser : parseCommand("overdue")
+activate ReeveParser
+
+create Command
+ReeveParser -> Command
+activate Command
+
+Command --> ReeveParser : o
+deactivate Command
+
+ReeveParser --> LogicManager : o
+deactivate ReeveParser
+
+LogicManager -> Command : execute()
+activate Command
+
+Command -> Model : updateFilteredStudentList()
+activate Model
+
+Model --> Command
+deactivate Model
+
+Command --> LogicManager : result
+deactivate Command
+
+Command -[hidden]-> LogicManager
+destroy Command
+
+[<-- LogicManager
+deactivate LogicManager
+@enduml
