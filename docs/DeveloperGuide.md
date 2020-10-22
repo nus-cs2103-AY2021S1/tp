@@ -258,6 +258,113 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
     * Cons : Will require additional storage.
    
 
+### TodoList feature for Managing Tasks
+
+#### Implementation
+
+The TodoList feature has two main component :
+
+* **Containee component** (Task-related classes)
+  * `Class Task` - container class to store information about a task
+  * `Class TaskName` - wrapper class to store the name of a task
+  * `Class Date` - wrapper class to store the date/deadline of a task
+  * `Enum Priority` - enum class to represent priority of a task
+  * `Enum Status` - enum class to represent the progress status of a task
+
+* **Container component** (List-like classes)
+  * Class `UniqueTodoList` - container class for storing tasks
+  * Class `TodoList` - wrapper class for UniqueTodoList
+  * Interface `ReadOnlyTodoList` - interface for displaying the list on the GUI
+
+##### Containee Component
+
+The Task class mainly functions as a class to store all the informations related to a task i.e. name, tag, priority,
+date, and status. It does not have any subclasses.
+
+The Task class supports the following operations :
+
+* Setters for all the field
+* Getters for all the field
+* `Task#isSameTask()` - checks if two tasks are the same i.e. have the same name 
+(weaker than Task#equals() which requires all the fields to be the same)
+* `Task#hasSameTag()` - checks if the task has the specified tag
+* `Task#hasSamePriority()` - checks if the task has the specified priority
+* `Task#hasSameDate()` - checks if the task has the specified date
+
+##### Container Component
+
+The TodoList class is facilitated by UniqueTodoList. The UniqueTodoList is stored internally inside
+the TodoList class which act like a wrapper class. 
+
+The TodoList class supports the following operations :
+
+* `TodoList#resetData()` - replaces all data in TodoList with new data.
+* `TodoList#hasTask()` - checks if the specified task exist in the list.
+* `TodoList#addTask()` - adds a task to the list.
+* `TodoList#setTask()` - replaces a task with the specified task.
+* `TodoList#removeTask()` - removes the specified task from the list.
+
+The operations above are exposed in the Model interface as :
+
+* `Model#hasTask()`
+* `Model#addTask()`
+* `Model#setTask()`
+* `Model#deleteTask()`
+
+TodoList implements ReadOnlyTodoList which require the following operation :
+
+* `ReadOnlyTodoList#getTodoList()` - returns an ObservableList with type Task that is immutable, and we cannot
+  modify the elements.
+
+### Command (Logic) Component
+
+The following are the commands related to TodoList:
+
+* Add a task: Adds a task to the list.
+* Delete a task: Deletes a task from the list.
+* Edit a task: Edits the details of a task.
+* Find a task: Find a task using a keyword.
+* Sort list: Sort the list based on a criterion.
+
+The command classes can be found under the todolistcommands package.
+
+The following is an example  of how the command executes for adding a task:
+
+1. `LogicManager` receives the user input `adtask n/read book` from `Ui`
+2. `LogicManager` will check the type of command by checking the existence of `task` as substring.
+3. `LogicManager` calls `TodoListParser#parseCommand()` to create `AddTaskParser`
+3. `TodoListParser` will call the respective `AddTaskParser#parse()` method to parse the command arguments
+4. This creates a `AddTaskCommand` and `AddTaskCommand#execute` will be invoked by `LogicManager`
+5. The `Model#addTask()` operation exposed in the `Model` interface is used to add the new task
+6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+#### Design Consideration
+
+##### Aspect: Task type
+
+* Alternative 1 (current): <br/>
+  Use one concrete class i.e. Task without inheritance involved. The type of the task
+  is represented by the Tag field instead.
+  
+  Pros :
+  * Easier to implement
+  * Types are not pre-defined i.e. can simply add a different tag to represent different type of task
+  
+  Cons :
+  * All type of task have the same pre-defined field
+
+* Alternative 2 : <br/>
+  Use one abstract class i.e. Task with inheritance. Each subclasses represent a type of a Task.
+  
+  Pros :
+  * Difference between type are clear and standardized
+  * Can be considered more OOP
+  
+  Cons :
+  * Types must be pre-defined i.e. cannot add new type of classes without adding codes
+  
+  Alternative 1 is chosen since we prioritize user freedom to create custom type for the task.
+  
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
