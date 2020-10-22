@@ -1,11 +1,15 @@
 package seedu.pivot.storage;
 
+import java.util.logging.Logger;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.exceptions.IllegalValueException;
 import seedu.pivot.model.investigationcase.Name;
 import seedu.pivot.model.investigationcase.Witness;
+
 
 
 /**
@@ -14,6 +18,7 @@ import seedu.pivot.model.investigationcase.Witness;
 public class JsonAdaptedWitness {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Witness' %s field is missing!";
+    private static final Logger logger = LogsCenter.getLogger(JsonAdaptedWitness.class);
 
     private final String name;
 
@@ -38,10 +43,13 @@ public class JsonAdaptedWitness {
      * @throws IllegalValueException if there were any data constraints violated in the adapted witness.
      */
     public Witness toModelType() throws IllegalValueException {
+        logger.info("Converting JSON to Witness");
         if (name == null) {
+            logger.warning("Witness name is null. Check data");
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!Name.isValidName(name)) {
+            logger.warning("Witness name is invalid. Check data");
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
