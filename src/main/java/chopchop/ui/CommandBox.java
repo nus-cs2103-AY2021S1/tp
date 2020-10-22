@@ -1,5 +1,7 @@
 package chopchop.ui;
 
+import java.util.ArrayList;
+
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.parser.exceptions.ParseException;
 import javafx.collections.ObservableList;
@@ -16,6 +18,9 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+    private final ArrayList<String> commandHistory;
+
+    private int historyPointer;
 
     @FXML
     private TextField commandTextField;
@@ -28,6 +33,9 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandHistory = new ArrayList<>();
+        // No commands entered yet.
+        historyPointer = -1;
     }
 
     /**
@@ -36,7 +44,10 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void handleCommandEntered() {
         try {
-            commandExecutor.execute(commandTextField.getText());
+            String command = commandTextField.getText();
+            commandExecutor.execute(command);
+            commandHistory.add(command);
+            historyPointer += 1;
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         } finally {
