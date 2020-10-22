@@ -214,9 +214,19 @@ The following activity diagram summarizes what happens when a user executes a ne
 _{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
-
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Better user interface
+
+We plan to change and improve the user interface to support exercise by adding `ExerciseListCard` and `ExerciseListPanel` which is similar to `LogListCard` and `LogListPanel` to the
+ `MainWindow`.
+ 
+The `UI` component will work the same
+* Executes user commands using the `Logic` component.
+* Listens for changes to `Model` data so that the UI can be updated with the modified data.
+
+The design will look like:
+<img src="images/Ui-v1.3.png" width="400px">
 
 --------------------------------------------------------------------------------------------------------------------
 
