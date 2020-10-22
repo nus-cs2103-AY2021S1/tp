@@ -53,6 +53,7 @@ public class AddQuantityToItemCommandIntegrationTest {
     public void execute_addQuantity_success() {
         AddQuantityToItemCommand aic = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, VALID_QUANTITY_INCREMENT);
         String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, apple);
+        System.out.println(expectedMessage);
 
         // expected model should contain the edited apple
         Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_INCREASED_QUANTITY).build();

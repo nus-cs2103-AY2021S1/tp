@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import seedu.address.model.item.Item;
 import seedu.address.model.recipe.IngredientList;
 import seedu.address.model.recipe.ProductQuantity;
 import seedu.address.model.recipe.Recipe;
@@ -8,11 +9,15 @@ public class RecipeBuilder {
     public static final int DEFAULT_ID = 1;
     public static final String DEFAULT_PRODUCT_QUANTITY = "1";
     public static final String DEFAULT_DESCRIPTION = "Craftable Material";
+    public static final String DEFAULT_PRODUCT_NAME = "Apple";
+    public static final int DEFAULT_PRODUCT_ID = 0;
 
     private int id;
     private ProductQuantity quantity;
     private IngredientList ingredients;
     private String description;
+    private String productName;
+    private int productId;
 
     /**
      * Creates a {@code RecipeBuilder} with the default details.
@@ -22,6 +27,8 @@ public class RecipeBuilder {
         this.quantity = new ProductQuantity(DEFAULT_PRODUCT_QUANTITY);
         this.ingredients = TypicalIngredients.getTypicalIngredientList();
         this.description = DEFAULT_DESCRIPTION;
+        this.productName = DEFAULT_PRODUCT_NAME;
+        this.productId = DEFAULT_PRODUCT_ID;
     }
 
     /**
@@ -32,6 +39,8 @@ public class RecipeBuilder {
         quantity = recipeToCopy.getProductQuantity();
         ingredients = recipeToCopy.getIngredients();
         description = recipeToCopy.getDescription();
+        productName = recipeToCopy.getProductName();
+        productId = recipeToCopy.getProductId();
     }
 
     /**
@@ -67,12 +76,21 @@ public class RecipeBuilder {
     }
 
     /**
+     * Sets the {@code product name} and {@code product id} of the {@code Recipe} that we are building.
+     */
+    public RecipeBuilder withProduct(Item item) {
+        this.productName = item.getName();
+        this.productId = item.getId();
+        return this;
+    }
+
+    /**
      * Builds a recipe.
      *
      * @return a sample Recipe
      */
     public Recipe build() {
-        return new Recipe(id, ingredients, 0, "Apple",
+        return new Recipe(id, ingredients, productId, productName,
                 quantity, description);
     }
 }

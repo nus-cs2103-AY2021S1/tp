@@ -46,7 +46,6 @@ public class Item extends InventoryComponent {
         this.tags.addAll(tags);
         if (!this.getType().equals(DisplayedInventoryType.DETAILED_ITEM)) {
             idCounter++;
-            // TODO Fix ID by parsing Setting counter to MAX ID when encountered in json
         }
     }
 
@@ -160,7 +159,15 @@ public class Item extends InventoryComponent {
 
     @Override
     public String toString() {
-        return name;
+        return "Item{"
+                + "id=" + id
+                + ", name='" + name + '\''
+                + ", quantity=" + quantity
+                + ", description='" + description + '\''
+                + ", locationIds=" + locationIds
+                + ", recipeIds=" + recipeIds
+                + ", tags=" + tags
+                + '}';
     }
 
     /**

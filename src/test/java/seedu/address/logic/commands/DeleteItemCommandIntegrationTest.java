@@ -49,6 +49,13 @@ public class DeleteItemCommandIntegrationTest {
                 .stream()
                 .noneMatch(z -> z.isItem(itemToDelete.getId())));
 
+        for (Recipe r : recipeList) {
+            for (Item i : model.getFilteredItemList()) {
+                if (i.getRecipeIds().contains(r.getId())) {
+                    i.removeRecipeId(r.getId());
+                }
+            }
+        }
         recipeList.forEach(expectedModel::deleteRecipe);
 
         assertCommandSuccess(deleteItemCommand, model, expectedMessage, expectedModel);
@@ -59,6 +66,15 @@ public class DeleteItemCommandIntegrationTest {
         String itemName = "Someone's Toenail";
         DeleteItemCommand deleteItemCommand = new DeleteItemCommand(itemName);
         assertInventoryCommandFailure(deleteItemCommand, model, DeleteItemCommand.MESSAGE_ITEM_NOT_FOUND);
+    }
+
+    @Test
+    public void execute_deleteItemInRecipe_cascadestoOtherItemRecipes() {
+        DeleteItemCommand dc = new DeleteItemCommand(APPLE.getName());
+        ModelManager expectedModel = new ModelManager(model.getItemList(), model.getLocationList(),
+                model.getRecipeList(), new UserPrefs());
+
+
     }
 
     @Test

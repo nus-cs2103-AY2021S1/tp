@@ -4,8 +4,8 @@
     "name" : "Apple",
     "quantity" : "9",
     "description" : "Recovers 10 hp",
-    "locationId" : [ ],
-    "recipeId" : [ ],
+    "locationIds" : [ ],
+    "recipeIds" : [ 3 ],
     "isDeleted" : false,
     "tagged" : [ ]
   }, {
@@ -13,8 +13,8 @@
     "name" : "Banana",
     "quantity" : "99",
     "description" : "Used as bait",
-    "locationId" : [ ],
-    "recipeId" : [ ],
+    "locationIds" : [ ],
+    "recipeIds" : [ ],
     "isDeleted" : false,
     "tagged" : [ ]
   }, {
@@ -22,9 +22,18 @@
     "name" : "Pear",
     "quantity" : "0",
     "description" : "None",
-    "locationId" : [ ],
-    "recipeId" : [ ],
+    "locationIds" : [ ],
+    "recipeIds" : [ ],
     "isDeleted" : false,
     "tagged" : [ ]
-  } ]
+  }, {
+    "id" : 4,
+    "name" : "Apple pie",
+    "quantity" : "25",
+    "description" : "Rare drop from Bob",
+    "locationIds" : [ ],
+    "recipeIds" : [ 1 ],
+    "isDeleted" : false,
+    "tagged" : [ ]
+  }]
 }
