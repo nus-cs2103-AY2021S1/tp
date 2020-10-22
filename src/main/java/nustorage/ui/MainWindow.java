@@ -219,6 +219,12 @@ public class MainWindow extends UiPart<Stage> {
 
             if (isUiCommand(commandText)) {
                 commandResult = uiLogic.execute(commandText);
+                String userInput = commandText.trim();
+                if (userInput.split("_")[1].equals("inventory")) {
+                    logic.execute("list_inventory");
+                } else {
+                    logic.execute("list_finance");
+                }
             } else if (tabPane.getSelectionModel().getSelectedItem().getText().equals("Finance")) {
                 commandResult = logic.execute(commandText);
             } else if (tabPane.getSelectionModel().getSelectedItem().getText().equals("Inventory")) {
@@ -250,7 +256,7 @@ public class MainWindow extends UiPart<Stage> {
         userInput.trim();
         String[] userInputArr = userInput.split("_");
         if (userInputArr.length > 0) {
-            return userInput.split("_")[0].equals("list");
+            return userInput.split("_")[0].equals("goto");
         }
         return false;
     }
