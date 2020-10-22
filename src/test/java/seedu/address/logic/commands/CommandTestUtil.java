@@ -27,6 +27,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_NAME_CS2103 = "cs2103";
     public static final String VALID_TAG_NAME_CS2101 = "cs2101";
     public static final String INVALID_TAG_NAME = "&";
+    public static final String USER_DIRECTORY_ADDRESS = System.getProperty("user.dir");
     public static final String VALID_FILE_ADDRESS_CS2103 = "./src/test/java/seedu/address/testutil/cs2103.bat";
     public static final String VALID_FILE_ADDRESS_CS2101 = "./src/test/java/seedu/address/testutil/cs2101.bat";
     public static final String VALID_MAC_FILE_ADDRESS_CS2101 = "./src/test/java/seedu/address/testutil/cs2101.sh";

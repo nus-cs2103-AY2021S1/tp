@@ -5,13 +5,17 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import seedu.address.model.explorer.CurrentPath;
+import seedu.address.model.explorer.FileList;
 import seedu.address.model.tag.Tag;
 
 public class ModelStubWithTagAndTaglist extends ModelStub {
     private final List<Tag> tags;
+    private final CurrentPath currentPath;
 
     ModelStubWithTagAndTaglist() {
         tags = new ArrayList<>();
+        currentPath = new CurrentPath(System.getProperty("user.dir"), new FileList());
     }
 
     @Override
@@ -27,6 +31,11 @@ public class ModelStubWithTagAndTaglist extends ModelStub {
     @Override
     public boolean hasTag(Tag tag) {
         return tags.contains(tag);
+    }
+
+    @Override
+    public CurrentPath getCurrentPath() {
+        return this.currentPath;
     }
 
     @Override
