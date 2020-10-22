@@ -33,7 +33,8 @@ public class UndoneCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         markFirstAssignmentAsDone();
-        Assignment assignmentToMarkUndone = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
+        Assignment assignmentToMarkUndone = model.getFilteredAssignmentList()
+                .get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
         UndoneCommand undoneCommand = new UndoneCommand(INDEX_FIRST_ASSIGNMENT);
 
         String expectedMessage = String.format(
@@ -61,7 +62,8 @@ public class UndoneCommandTest {
         markFirstAssignmentAsDone();
         model.updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENT);
 
-        Assignment assignmentToMarkAsUndone = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
+        Assignment assignmentToMarkAsUndone = model.getFilteredAssignmentList()
+                .get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
         UndoneCommand undoneCommand = new UndoneCommand(INDEX_FIRST_ASSIGNMENT);
 
         String expectedMessage = String.format(
