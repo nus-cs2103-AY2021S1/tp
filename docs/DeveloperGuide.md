@@ -168,13 +168,44 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
-
+### \[Proposed\] Add Event feature
+![Structure of the Add Event command](images/AddEventSequenceDiagram.png)
 #### Proposed Implementation
+The idea of this feature is to be able to allow the user to keep track of his/her current events that
+will be happening. Events can be either a one time event like an exam for a particular module, or a recurring
+event like a weekly tutorial class.
+
+How we are currently implementing this feature is by following the same implementation as the AB3. We have an event
+object under the Model package. Two classes called EventName and EventTime act as information containers to store
+the respective data and help support the Event class.
+
+We also make sure in the Logic package, there are personal sub-parsers for each of the existing Event
+related commands, and an overall Parser known as SchedulerParser that is in charge of managing all of the
+sub-parsers of the Scheduler. 
+
+Each of the commands of the Scheduler will always return a CommandResult class, that is basically an information
+container that stores all the relevant data of the results. This CommandResult object is then passes back up to the
+UiManager, where it is then passed to the GUI components for it to be displayed.
 
 #### Design consideration:
 
-##### Aspect: How undo & redo executes
+##### Aspect: Whether to create a new Parser for Scheduler.
+Option 1 **(Current implementation)**: A custom Parser in charge of all **Scheduler** related commands **only**.
+Pros: 
+- More OOP orientated.
+- More defensive programming.
+Cons:
+- More Parsers to handle by the ParserManager
+
+Option 2: Place the Scheduler related parser together with the rest of the other parsers for other features, like module list, etc.
+Pros:
+- Faster to implement.
+- Less effort needed, simply add on to the existing Parser.
+Cons:
+- Mess and less readible, hard to distinguish between differnt commands.
+- Higher chance of errors, as we are mixing all the different parsers for every feature into a single Parser.
+- LONG methods.
+
 
 ### \[Proposed\] Data archiving
 
@@ -281,9 +312,8 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
     
 * Alternative 2 : Prompts user for academic information used for last calculated cap and stores it.
     * Pros : 
-        * User does not need to input unnecessary modules.
-        * Will use less memory.(e.g Modules that the user is not currently taking does not need to be added by user).
-    
+     * User does not need to input unnecessary modules.
+     * Will use less memory.(e.g Modules that the user is not currently taking does not need to be added by user). 
     * Cons : Will require additional storage.
     
 ###\[Proposed\] GradeTracker feature
