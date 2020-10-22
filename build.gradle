@@ -79,4 +79,8 @@ shadowJar {
     archiveName = 'chopchop.jar'
 }
 
+run {
+    enableAssertions = true
+}
+
 defaultTasks 'clean', 'test'

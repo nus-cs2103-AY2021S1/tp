@@ -20,23 +20,31 @@ public class DisplayNavigator {
     }
 
     /**
-     * Loads the RecipeViewPanel onto the swappable display region.
-     */
-    protected static void loadRecipePanel() {
-        displayController.displayRecipeList();
-    }
-
-    /**
      * Loads the RecipeDisplay onto the swappable display region.
      * @param recipe
      */
     protected static void loadRecipeDisplay(Recipe recipe) {
         displayController.displayRecipe(recipe);
     }
+
+    /**
+     * Loads the RecipeViewPanel onto the swappable display region.
+     */
+    public static void loadRecipePanel() {
+        displayController.displayRecipeList();
+    }
+
     /**
      * Loads the IngredientViewPanel into the swappable display region.
      */
-    protected static void loadIngredientPanel() {
+    public static void loadIngredientPanel() {
         displayController.displayIngredientList();
+    }
+
+    /**
+     * Returns true iff there is a valid display controller.
+     */
+    public static boolean hasDisplayController() {
+        return displayController != null;
     }
 }

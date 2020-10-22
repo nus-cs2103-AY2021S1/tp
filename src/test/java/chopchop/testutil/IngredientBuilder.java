@@ -60,7 +60,7 @@ public class IngredientBuilder {
     }
 
     public Ingredient build() {
-        return new Ingredient(name, qty, expDate);
+        return new Ingredient(name, qty, expDate, null);
     }
 
 }
