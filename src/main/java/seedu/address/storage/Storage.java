@@ -7,13 +7,14 @@ import java.util.Optional;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends ModuleListStorage, ContactListStorage, UserPrefsStorage {
+public interface Storage extends ModuleListStorage, ContactListStorage, TodoListStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -38,5 +39,14 @@ public interface Storage extends ModuleListStorage, ContactListStorage, UserPref
 
     @Override
     void saveContactList(ReadOnlyContactList contactList) throws IOException;
+
+    @Override
+    Path getTodoListFilePath();
+
+    @Override
+    Optional<ReadOnlyTodoList> readTodoList() throws DataConversionException, IOException;
+
+    @Override
+    void saveTodoList(ReadOnlyTodoList todoList) throws IOException;
 
 }
