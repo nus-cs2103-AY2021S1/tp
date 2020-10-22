@@ -129,9 +129,36 @@ Adds a new contact into the contact list if it does not already exist.
 
 Format: `addcontact n/NAME [e/EMAIL] [te/TELEGRAM] [t/TAG]`
 
-<div class="note">       
-    **NOTE**: Source [here](//developer.run)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+Users are required to provide at least one other contact detail apart from **Name**.
 </div>
+
+Examples of Usage:
+`addcontact n/john e/john@gmail.com te/@john123`
+
+#### 4.1.2 Delete a contact: `deletecontact`
+
+Deletes an existing contact from the contact list
+
+Format: `deletecontact CONTACT_INDEX`
+
+* Contact index refers to the index number of the contact in the contact list displayed in the application
+
+Examples of Usage:
+`deletecontact 1`
+
+#### 4.1.3 Edit a contact: `editcontact`
+
+Edits an existing contact in the contact list.
+
+Format: `editcontact CONTACT_INDEX [n/NAME] [e/EMAIL] [te/TELEGRAM]`
+
+* This feature edits the contact at the specified contact index. Contact index refers to the index number of the contact in the contact list displayed in the application
+* At least one of the contact fields must be provided
+* The edit contact must not already exist in the contact list
+
+Examples of Usage:
+`editcontact 1 n/john e/john@gmail.com`: Edits the name and email of the contact at index 1 to `john` and `john@gmail.com` respectively
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
