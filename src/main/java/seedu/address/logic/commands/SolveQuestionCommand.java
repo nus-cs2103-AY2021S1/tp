@@ -39,7 +39,7 @@ public class SolveQuestionCommand extends QuestionCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Student> lastShownList = model.getFilteredStudentList();
+        List<Student> lastShownList = model.getFilteredPersonList();
         if (studentIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
@@ -58,7 +58,7 @@ public class SolveQuestionCommand extends QuestionCommand {
         Question solvedQuestion = questionList.get(questionIndex.getZeroBased());
 
         model.setPerson(asker, replacement);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, solvedQuestion));
     }
 

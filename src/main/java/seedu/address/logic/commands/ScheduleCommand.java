@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.Comparator;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
@@ -46,14 +45,10 @@ public class ScheduleCommand extends Command {
         Predicate<Student> predicate = student -> student.getAdmin().getClassTime().isSameDay(day);
 
         // updates the list that is currently showed in the ui
-        model.updateFilteredStudentList(predicate);
-
-        // Comparator to sort student based on classTime
-        Comparator<Student> cmp = (Comparator.comparing(o -> o.getAdmin().getClassTime()));
-        model.sortStudentList(cmp);
+        model.updateFilteredPersonList(predicate);
 
         return new CommandResult(
-                String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
+                String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
     @Override

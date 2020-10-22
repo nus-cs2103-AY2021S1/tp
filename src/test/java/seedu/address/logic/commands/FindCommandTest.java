@@ -70,25 +70,25 @@ public class FindCommandTest {
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = prepareNamePredicate(" ");
-        expectedModel.updateFilteredStudentList(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
 
         FindCommand command = new FindCommand(new FindStudentDescriptorBuilder()
                 .withNamePredicate(predicate).build());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredStudentList());
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = prepareNamePredicate("Kurz Elle Kunz");
-        expectedModel.updateFilteredStudentList(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
 
         FindCommand command = new FindCommand(new FindStudentDescriptorBuilder()
                 .withNamePredicate(predicate).build());
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredStudentList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
 
     @Test
@@ -100,7 +100,7 @@ public class FindCommandTest {
         List<Predicate<Student>> predicates = Arrays.asList(namePredicate,
                 schoolPredicate, yearMatchPredicate);
         Predicate<Student> consolidatedPredicates = consolidatePredicates(predicates);
-        expectedModel.updateFilteredStudentList(consolidatedPredicates);
+        expectedModel.updateFilteredPersonList(consolidatedPredicates);
 
         FindCommand.FindStudentDescriptor descriptor = new FindStudentDescriptorBuilder()
                 .withNamePredicate(namePredicate).withSchoolPredicate(schoolPredicate)
@@ -108,7 +108,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(descriptor);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(FIONA), model.getFilteredStudentList());
+        assertEquals(Arrays.asList(FIONA), model.getFilteredPersonList());
     }
 
     @Test
@@ -120,7 +120,7 @@ public class FindCommandTest {
         List<Predicate<Student>> predicates = Arrays.asList(namePredicate,
                 schoolPredicate, yearMatchPredicate);
         Predicate<Student> consolidatedPredicates = consolidatePredicates(predicates);
-        expectedModel.updateFilteredStudentList(consolidatedPredicates);
+        expectedModel.updateFilteredPersonList(consolidatedPredicates);
 
         FindCommand.FindStudentDescriptor descriptor = new FindStudentDescriptorBuilder()
                 .withNamePredicate(namePredicate).withSchoolPredicate(schoolPredicate)
@@ -128,7 +128,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(descriptor);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(new ArrayList<>(), model.getFilteredStudentList());
+        assertEquals(new ArrayList<>(), model.getFilteredPersonList());
     }
 
     /**

@@ -10,7 +10,7 @@ import seedu.address.model.student.UniqueStudentList;
 
 /**
  * Wraps all data at the Reeve level
- * Duplicates    are not allowed (by .isSameStudent comparison)
+ * Duplicates are not allowed (by .isSameStudent comparison)
  */
 public class Reeve implements ReadOnlyReeve {
 

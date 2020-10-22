@@ -40,7 +40,7 @@ public class AddQuestionCommand extends QuestionCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Student> lastShownList = model.getFilteredStudentList();
+        List<Student> lastShownList = model.getFilteredPersonList();
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
@@ -56,7 +56,7 @@ public class AddQuestionCommand extends QuestionCommand {
                 asker.getSchool(), asker.getYear(), asker.getAdmin(), questions);
         model.setPerson(asker, replacement);
 
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, questionToAdd));
     }
 

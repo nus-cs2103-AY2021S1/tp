@@ -9,7 +9,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -110,7 +109,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addStudent(Student student) {
+        public void addPerson(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -125,12 +124,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasStudent(Student student) {
+        public boolean hasPerson(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteStudent(Student target) {
+        public void deletePerson(Student target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -140,17 +139,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Student> getFilteredStudentList() {
+        public ObservableList<Student> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredStudentList(Predicate<Student> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void sortStudentList(Comparator<? super Student> cmp) {
+        public void updateFilteredPersonList(Predicate<Student> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -167,7 +161,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasStudent(Student student) {
+        public boolean hasPerson(Student student) {
             requireNonNull(student);
             return this.student.isSameStudent(student);
         }
@@ -180,13 +174,13 @@ public class AddCommandTest {
         final ArrayList<Student> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasStudent(Student student) {
+        public boolean hasPerson(Student student) {
             requireNonNull(student);
             return personsAdded.stream().anyMatch(student::isSameStudent);
         }
 
         @Override
-        public void addStudent(Student student) {
+        public void addPerson(Student student) {
             requireNonNull(student);
             personsAdded.add(student);
         }
