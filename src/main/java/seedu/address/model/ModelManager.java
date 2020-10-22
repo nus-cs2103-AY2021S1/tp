@@ -18,7 +18,6 @@ import seedu.address.model.account.Account;
  * Represents the in-memory model of the Common Cents data.
  */
 public class ModelManager implements Model {
-    private static final int FIRST_ACCOUNT_INDEX = 0;
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final CommonCents commonCents;
@@ -124,6 +123,11 @@ public class ModelManager implements Model {
     }
 
     //=========== Filtered Account List Accessors =============================================================
+
+    @Override
+    public boolean hasNoAccount() {
+        return filteredAccounts.isEmpty();
+    }
 
     /**
      * Returns an unmodifiable view of the list of {@code Account} backed by the internal list of

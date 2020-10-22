@@ -78,6 +78,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public boolean hasNoAccount() {
+        return true;
+    };
+
+    @Override
     public ObservableList<Account> getFilteredAccountList() {
         return null;
     }

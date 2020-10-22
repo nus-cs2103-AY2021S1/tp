@@ -59,6 +59,8 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
         requireNonNull(model);
+        assert(activeAccount != null && model != null);
+
         List<? extends Entry> lastShownList;
         if (editEntryDescriptor.isEntryExpense()) {
             lastShownList = activeAccount.getFilteredExpenseList();

@@ -1,6 +1,6 @@
 @startuml
 start
-repeat :User executes command;
+repeat :User enters command;
 repeat  while () is ([invalid args])
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
