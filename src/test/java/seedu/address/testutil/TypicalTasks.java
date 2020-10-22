@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_PROJECT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASKDATE_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASKDATE_PROJECT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASKTIME_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASKTIME_PROJECT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_PROJECT;
 
@@ -57,10 +58,26 @@ public class TypicalTasks {
             .withDeadlineDate("2020-10-25").withDoneStatus(1).build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
-    public static final Deadline PROJECT = new DeadlineBuilder().withTitle(VALID_TITLE_PROJECT)
+    public static final ToDo TODO_PROJECT = new ToDoBuilder().withTitle(VALID_TITLE_PROJECT)
             .withDescription(VALID_DESCRIPTION_PROJECT).withPriority(VALID_PRIORITY_PROJECT)
-            .withDeadlineDate(VALID_TASKDATE_PROJECT).withTags(VALID_TAG_PROJECT).build();
-    public static final Event LECTURE = new EventBuilder().withTitle(VALID_TITLE_LECTURE)
+            .withTags(VALID_TAG_PROJECT).build();
+    public static final Deadline DEADLINE_PROJECT = new DeadlineBuilder().withTitle(VALID_TITLE_PROJECT)
+            .withDescription(VALID_DESCRIPTION_PROJECT).withPriority(VALID_PRIORITY_PROJECT)
+            .withDeadlineDate(VALID_TASKDATE_PROJECT)
+            .withTags(VALID_TAG_PROJECT).build();
+    public static final Event EVENT_PROJECT = new EventBuilder().withTitle(VALID_TITLE_PROJECT)
+            .withDescription(VALID_DESCRIPTION_PROJECT).withPriority(VALID_PRIORITY_PROJECT)
+            .withEventDate(VALID_TASKDATE_PROJECT).withEventTime(VALID_TASKTIME_PROJECT)
+            .withTags(VALID_TAG_PROJECT).build();
+
+    public static final ToDo TODO_LECTURE = new ToDoBuilder().withTitle(VALID_TITLE_LECTURE)
+            .withDescription(VALID_DESCRIPTION_LECTURE).withPriority(VALID_PRIORITY_LECTURE)
+            .withTags(VALID_TAG_LECTURE).build();
+    public static final Deadline DEADLINE_LECTURE = new DeadlineBuilder().withTitle(VALID_TITLE_LECTURE)
+            .withDescription(VALID_DESCRIPTION_LECTURE).withPriority(VALID_PRIORITY_LECTURE)
+            .withDeadlineDate(VALID_TASKDATE_LECTURE)
+            .withTags(VALID_TAG_LECTURE).build();
+    public static final Event EVENT_LECTURE = new EventBuilder().withTitle(VALID_TITLE_LECTURE)
             .withDescription(VALID_DESCRIPTION_LECTURE).withPriority(VALID_PRIORITY_LECTURE)
             .withEventDate(VALID_TASKDATE_LECTURE).withEventTime(VALID_TASKTIME_LECTURE)
             .withTags(VALID_TAG_LECTURE).build();

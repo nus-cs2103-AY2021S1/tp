@@ -34,7 +34,8 @@ public class CommandTestUtil {
     public static final String VALID_PRIORITY_LECTURE = "Medium";
     public static final String VALID_TASKDATE_PROJECT = "2020-12-31";
     public static final String VALID_TASKDATE_LECTURE = "2020-10-31";
-    public static final String VALID_TASKTIME_LECTURE = "12:00";
+    public static final String VALID_TASKTIME_PROJECT = "16:00";
+    public static final String VALID_TASKTIME_LECTURE = "10:00";
     public static final String VALID_TAG_PROJECT = "project";
     public static final String VALID_TAG_LECTURE = "lecture";
 
@@ -46,6 +47,7 @@ public class CommandTestUtil {
     public static final String PRIORITY_DESC_LECTURE = " " + PREFIX_PRIORITY + VALID_PRIORITY_LECTURE;
     public static final String TASKDATE_DESC_PROJECT = " " + PREFIX_TASK_DATE + VALID_TASKDATE_PROJECT;
     public static final String TASKDATE_DESC_LECTURE = " " + PREFIX_TASK_DATE + VALID_TASKDATE_LECTURE;
+    public static final String TASKTIME_DESC_PROJECT = " " + PREFIX_TASK_TIME + VALID_TASKTIME_PROJECT;
     public static final String TASKTIME_DESC_LECTURE = " " + PREFIX_TASK_TIME + VALID_TASKTIME_LECTURE;
     public static final String TAG_DESC_PROJECT = " " + PREFIX_TAG + VALID_TAG_PROJECT;
     public static final String TAG_DESC_LECTURE = " " + PREFIX_TAG + VALID_TAG_LECTURE;
