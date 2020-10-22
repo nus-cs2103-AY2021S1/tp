@@ -3,7 +3,7 @@ package seedu.address.model;
 import java.io.File;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.currentpath.FileList;
+import seedu.address.model.explorer.FileList;
 import seedu.address.model.tag.Tag;
 
 /**

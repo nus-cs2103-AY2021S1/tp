@@ -8,6 +8,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.CdCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.label.Label;
 import seedu.address.model.tag.FileAddress;
@@ -48,8 +49,6 @@ public class ParserUtil {
         return new TagName(trimmedName);
     }
 
-
-
     /**
      * Parses a {@code String address} into an {@code FileAddress}.
      * Leading and trailing whitespaces will be trimmed.
@@ -66,7 +65,51 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String label} into an {@code Label}.
+     * Parses an address string as an absolute address.
+     * @param address the address string
+     * @return the absolute address string
+     * @throws ParseException if the given address string is blank.
+     */
+    public static String parseAbsoluteAddress(String address) throws ParseException {
+        requireNonNull(address);
+        String trimmedAddress = address.trim();
+        if (trimmedAddress.isBlank()) {
+            throw new ParseException(CdCommand.MESSAGE_BLANK_PATH);
+        }
+        return trimmedAddress;
+    }
+
+    /**
+     * Parses an address string as a child address.
+     * @param address the address string
+     * @return the child address string
+     * @throws ParseException if the address string given is blank.
+     */
+    public static String parseChildAddress(String address) throws ParseException {
+        requireNonNull(address);
+        String trimmedAddress = address.trim();
+        if (trimmedAddress.isBlank()) {
+            throw new ParseException(CdCommand.MESSAGE_BLANK_PATH);
+        }
+        return trimmedAddress;
+    }
+
+    /**
+     * Parses an address string as a parent address.
+     * @param address the address string
+     * @return the parent address string
+     * @throws ParseException if the given address string is not blank.
+     */
+    public static String parseParentAddress(String address) throws ParseException {
+        requireNonNull(address);
+        String trimmedAddress = address.trim();
+        if (!trimmedAddress.isBlank()) {
+            throw new ParseException(CdCommand.MESSAGE_PARENT_PATH_NOT_BLANK);
+        }
+        return trimmedAddress;
+    }
+
+    /** Parses a {@code String label} into an {@code Label}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code label} is invalid.

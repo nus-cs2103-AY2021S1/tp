@@ -30,6 +30,21 @@
        -fx-background-color: transparent;
 }
 
+.titled-pane {
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+}
+
+.titled-pane > .title {
+    -fx-background-color: rgba(0, 0, 0, 0.6);
+}
+
+.titled-pane > *.content{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
 /*----------scroll bar----------*/
 .scroll-bar {
     -fx-background-color: rgba(0, 0, 0, 0.3);

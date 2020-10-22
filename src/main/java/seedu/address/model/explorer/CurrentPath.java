@@ -1,4 +1,6 @@
-package seedu.address.model.currentpath;
+package seedu.address.model.explorer;
+
+import static java.util.Objects.requireNonNull;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ public class CurrentPath {
      * @param fileList the list to be the children file list
      */
     public CurrentPath(String filePath, FileList fileList) {
+        requireNonNull(fileList);
         address = new FileAddress(filePath);
         childrenFiles = fileList;
         updateChildrenFileList();
@@ -29,7 +32,13 @@ public class CurrentPath {
         return address;
     }
 
+    public String getParentAddress() {
+        File file = new File(address.value);
+        return file.getParent();
+    }
+
     public void setAddress(FileAddress address) {
+        requireNonNull(address);
         this.address = address;
         updateChildrenFileList();
     }

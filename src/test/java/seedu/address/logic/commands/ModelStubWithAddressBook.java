@@ -4,7 +4,7 @@ import java.io.File;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.currentpath.FileList;
+import seedu.address.model.explorer.FileList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 

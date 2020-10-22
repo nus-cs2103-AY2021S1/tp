@@ -15,7 +15,7 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.currentpath.CurrentPath;
+import seedu.address.model.explorer.CurrentPath;
 import seedu.address.model.tag.Tag;
 import seedu.address.storage.Storage;
 
