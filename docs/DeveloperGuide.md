@@ -2,16 +2,19 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+## Introduction
 
 This is the developer guide for `Inventoryinator` a brownfield project evolved
 from [AddressBook3](https://github.com/nus-cs2103-AY2021S1/tp).
+
 ![inventoryinator](images/inventoryinator.jpg)
 
 Inventoryinator is a **desktop app for game inventories, optimized for use via a Command Line Interface** (CLI) 
 while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Inventoryinator can
 get your inventory management tasks done faster than traditional GUI apps.
+
+* Table of Contents
+{:toc}
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -105,7 +108,7 @@ The `UI` component,
 
 1. `Logic` uses the `InventoryinatorParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding an item).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -122,7 +125,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the Inventoryinator data
+* stores the Inventoryinator data like items, recipes etc.
 * exposes an unmodifiable `ObservableList<Item>` and `ObservableList<Recipe>` which can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -141,15 +144,20 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are stored in the `seedu.addressbook.commons` package.
+Classes used by multiple components are stored in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **Feature Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Add Quantity feature
+
+The add quantity feature allows users to easily modify the quantity stored of a recorded item,
+without having to using `edit`.
+
+#### Implementation
 
 `AddQuantityToItemCommand` facilitates the addition of a user-input quantity to an existing `Item`.
 This command is a specific invocation of an `EditItemCommand` that only modifies the `Item`'s quantity,
@@ -169,7 +177,41 @@ updated value.
 The sequence diagram for the execution of an `AddQuantityToItemCommand` is as follows:
 
 The `Item` with name banana is denoted as `itemBanana`, and the original quantity assumed to be `20`.
-![AddQuantityToItemCommandSequenceDiagram](images/AddQuantityToItemCommandSequenceDiagram.png)
+![AddQuantityToItemCommandSequenceDiagram](images/commandseqdiagrams/AddQuantityToItemCommandSequenceDiagram.png)
+
+### View detailed item feature
+
+The view detailed item feature allows users to view the detailed information of a recorded item, as compared to the 
+default list display of all items which may truncate some information.
+
+#### Implementation
+
+During execution of view command, `LogicManager` detects that it is a view command, then has `InventoryParser` parse
+the item name that the user has input using `ViewDetailsCommandParser`. After parsing, `LogicManager` then has 
+`ViewDetailsCommand` filter the list of items such that only the exact item the user has requested remains.
+
+After executing the view command, `LogicManager` sends feedback to `InventoryMainWindow` that the command has a 
+`DisplayedInventoryType` of `DETAILED_ITEM`, which prompts `InventoryListPanel` to change the display card of items
+into a more detailed display card on the GUI.
+
+This is the sequence diagram of view detailed item command:
+
+![ViewDetailedItemSequenceDiagram](images/commandseqdiagrams/ViewDetailedItemSequenceDiagram.png )
+
+#### Reasoning behind current implementation
+
+View detailed item was first implemented with the idea of changing GUI on demand, but we eventually realised due to
+AB3's abstraction, `Model` and `Logic` can't communicate directly, which means we could not change the GUI during
+execution of the command. It was only after looking at the `help` command that we discovered how AB3 used `LogicManager`
+to communicate with `MainWindow` to make changes to the GUI. This led to us changing the implementation of 
+`CommandResult`, augmenting it to send feedback of `DisplayedInventoryType`.
+
+#### Alternative implementation
+
+One problem with the current implementation is that it is rather slow due to AB3's amount of abstraction. An alternative
+implementation is to create an association class between `Logic` and `Model`, and allow for `Logic` to access `Model`'s 
+`FilteredItemList` directly, which would greatly simplify the command execution process. However, this might not be
+possible without breaking abstraction or heavy modifications to `Model` or `ModelManager`.
 
 ### List item/recipe feature
 
@@ -208,6 +250,23 @@ The following sequence diagram shows how the list items operation works:
 
 The following sequence diagram shows how the list recipes operation works:
 ![ListRecipeSequenceDiagram](images/commandseqdiagrams/ListRecipeSequenceDiagram.png)
+
+### Find items feature
+
+The find items feature allows users to search, case-insensitively, for items using search keys. Item names that match or contain any of the
+ keys will be displayed.
+
+#### Implementation
+
+The `FindItemCommand` object facilitates this feature. The search keys are parsed by the `FindItemCommandParser` which
+ creates a `NameMatchesKeywordsPredicate` object and passes it to `FindItemCommand`. Upon execution, the predicate object
+ is passed on to `Model` which updates the `filteredItemsList` using the predicate. The predicate checks whether an item's
+ name matches or contains any of the search keys. case-insensitively. Finally, the `FindItemCommand` returns a `CommandResult`,
+ set to display the `filteredItemsList`. If there are any items that are found, the number of items found is displayed.
+ If none are found, a message is shown to the user.
+
+The following sequence diagram illustrates how the find items command works.
+![FindItemSequenceDiagram](images/commandseqdiagrams/FindItemSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -302,7 +361,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: We store a stack of commands which is added to whenever the user runs a new command that
           modifies the inventory state. When undo is invoked, the stack is popped and added to a
           redo stack, and the command will be negated and run. When redo is invoked, the redo stack
-          is popped and the command is run.
+          is popped, and the command is run.
   * Cons: Harder to implement as each command has to be negated individually. This has considerably
           many edge cases to consider.
 
@@ -316,10 +375,10 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Target user profile**:
 
 * has a need to manage a significant number of items in a game.
-* prefer desktop apps over other types
+* prefers desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
-* is very comfortable with using CLI apps
+* is very comfortable using CLI apps
 
 **Value proposition**: manage inventory faster than a typical mouse/GUI driven app
 
@@ -332,27 +391,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new item                 |                                                                        |
 | `* * *`  | user                                       | add a recipe                   |                                                                        |
-| `* * *`  | user                                       | delete a item                  | remove item that I no longer need to track                             |
+| `* * *`  | user                                       | delete an item                 | remove item that I no longer need to track                             |
 | `* * *`  | user                                       | delete a recipe                | remove recepies that I no longer need to use                           |
-| `* * *`  | user                                       | find a item by name            | locate details of items without having to go through the entire list   |
-| `* * `   | user                                       | tag a item by location         | locate items by where they are located                                 |
-| `* * `   | user                                       | use del command to delete both recipes and items         | improve user experience in the application   |
-*{More to be added in later iterations}*
+| `* * *`  | user                                       | find an item by name           | locate details of items without having to go through the entire list   |
+| `* * *`  | user                                       | list all my items              | visually see what items are currently stored in my inventory           |
+| `* * *`  | user                                       | list all my recipes            | visually see what items are currently stored in my inventory           |
+| `* * *`  | user                                       | see a detailed view of an  item| see additional information on the item not displayed by default        |
+| `* * `   | user                                       | tag an item by location        | locate items by where they are located                                 |
+| `* * `   | user                                       | tag an item using custom tags  | further organise and categorise my items                               |
+| `* * `   | user                                       | undo commands                  | revert changes that I no longer want                                   |
+| `* * `   | user                                       | simulate crafting              | easily find out if I have enough items to make what I want             |
+| `* * `   | experienced user                           | use shortcuts                  | quickly use commands instead of typing them out in full                |
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 items without noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands)
  should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  A user should be able to view visually the output from the Application
+4.  A user should be able to view visually the output from the application.
+5.  Should work without requiring internet connectivity.
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Item**: An item represents an object you obtain in a game. Eg a <u>Rock</u>
-* **Recipe**: An recipe is associated with multiple items, and represents the consumption of items in the input,
- to produce an item of the output. Eg: a 3 <u>Sticks</u> -> <u>Staff</u>
-* **Location**: The place where a Item can be found in game. Eg: <u>Sleepywood</u>
-* **Inventory**: The entire state of the inventoryinator, including recipes, items and item quantities.
+* **Recipe**: A recipe is associated with multiple items, and represents the consumption of items in the input,
+ to produce an item of the output. Eg: 3 <u>Sticks</u> -> <u>Staff</u>
+* **Location**: The place where an item can be found in game. Eg: <u>Sleepywood</u>
+* **Inventory**: The entire state of the Inventoryinator, including recipes, items, locations etc.
