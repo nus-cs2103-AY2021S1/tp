@@ -136,33 +136,33 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 #### Proposed Implementation
 
 The proposed undo mechanism is facilitated by `VersionedPivot`. It extends `Pivot` with an undo history, stored internally as an `pivotStateStack`. 
-`pivotStateStack` stores the entire pivot at any point. Additionally, it implements the following operations:
+`pivotStateStack` stores the entire Pivot at any point. Additionally, it implements the following operations:
 
-* `VersionedPivot#commit()` — Saves the current pivot state in its history.
-* `VersionePivot#undo()` — Restores the previous pivot state from its history.
-* `VersionedPivot#redo()` — Restores a previously undone pivot state from its history.
+* `VersionedPivot#commit()` — Saves the current Pivot state in its history.
+* `VersionePivot#undo()` — Restores the previous Pivot state from its history.
+* `VersionedPivot#redo()` — Restores a previously undone Pivot state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitPivot()` and `Model#undoPivot()` respectively.
 
 Given below is an example usage scenario and how the undo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedPivot` will be initialized with the initial pivot state.
+Step 1. The user launches the application for the first time. The `VersionedPivot` will be initialized with the initial Pivot state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitPivot()`, causing the modified state of the pivot after the `delete 5` command executes to be saved in the `pivotStateStack`.
+Step 2. The user executes `delete 5` command to delete the 5th case in Pivot. The `delete` command calls `Model#commitPivot()`, causing the modified state of Pivot after the `delete 5` command executes to be saved in the `pivotStateStack`.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitPivot()`, causing another modified pivot state to be saved into the `pivotStateStack`.
+Step 3. The user executes `add case t:Lost Wallet …​` to add a new case. The `add case` command also calls `Model#commitPivot()`, causing another modified Pivot state to be saved into the `pivotStateStack`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitPivot()`, so the pivot state will not be saved into the `pivotStateStack`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitPivot()`, so the Pivot state will not be saved into the `pivotStateStack`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoPivot()`, which will pop the current state from the `pivotStateStack`, and return the previous pivot state, restoring pivot to that state.
+Step 4. The user now decides that adding the case was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoPivot()`, which will pop the current state from the `pivotStateStack`, and return the previous Pivot state, restoring Pivot to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -177,7 +177,7 @@ The following sequence diagram shows how the undo operation works:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitPivot()` or `Model#undoPivot()`. Thus, the `pivotStateStack` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify Pivot, such as `list`, will usually not call `Model#commitPivot()` or `Model#undoPivot()`. Thus, the `pivotStateStack` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
