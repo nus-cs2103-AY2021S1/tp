@@ -33,6 +33,8 @@ public class StudentRecordListCard extends UiPart<Region> {
     private Label attendanceStatus;
     @FXML
     private Label name;
+    @FXML
+    private Label classParticipation;
 
     /**
      * Creates a {@code StudentRecordListCard} with the given {@code AttendanceType} and index to display.
@@ -44,6 +46,7 @@ public class StudentRecordListCard extends UiPart<Region> {
         name.setText(studentRecord.getName().fullName);
         nusnetId.setText(studentRecord.getNusnetId().value);
         attendanceStatus.setText(studentRecord.getAttendanceType().name());
+        classParticipation.setText(studentRecord.getClassParticipation().description());
     }
 
     @Override
