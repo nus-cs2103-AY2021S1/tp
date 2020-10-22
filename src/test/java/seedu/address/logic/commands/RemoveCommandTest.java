@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalOrderItems.NUGGETS;
 import static seedu.address.testutil.TypicalVendors.getTypicalAddressBook;
 
-import java.util.HashSet;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -17,6 +17,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.order.OrderItem;
+import seedu.address.testutil.OrderItemBuilder;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
@@ -27,7 +28,7 @@ public class RemoveCommandTest {
 
     private Model initialiseModel() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        model.addOrderItem(new OrderItem("Hashybrownies", 4.20, new HashSet<>(), 3));
+        model.addOrderItem(NUGGETS);
         return model;
     }
 
@@ -50,13 +51,13 @@ public class RemoveCommandTest {
         Model model = initialiseModel();
         Index first = Index.fromOneBased(1);
         RemoveCommand removeCommand = new RemoveCommand(first, 1);
-        OrderItem item = new OrderItem("Hashybrownies", 4.20, new HashSet<>(), 2);
+        OrderItem itemRemoved = new OrderItemBuilder(NUGGETS).withQuantity(1).build();
+        OrderItem remainingItems = new OrderItemBuilder(NUGGETS).withQuantity(4).build();
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.addOrderItem(item);
+        expectedModel.addOrderItem(remainingItems);
 
-        item.setQuantity(1);
-        String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_ORDERITEM_SUCCESS, item);
+        String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_ORDERITEM_SUCCESS, itemRemoved);
 
         assertCommandSuccess(removeCommand, model, expectedMessage, expectedModel);
     }

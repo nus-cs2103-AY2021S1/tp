@@ -4,7 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalOrderItems.CHEESE_PRATA;
 import static seedu.address.testutil.TypicalOrderItems.MILO;
+import static seedu.address.testutil.TypicalOrderItems.NASI_GORENG;
+import static seedu.address.testutil.TypicalOrderItems.NUGGETS;
 import static seedu.address.testutil.TypicalOrderItems.PRATA;
 import static seedu.address.testutil.TypicalOrderItems.VALID_NAME_PRATA;
 import static seedu.address.testutil.TypicalOrderItems.VALID_PRICE_MILO;
@@ -172,5 +175,50 @@ public class OrderTest {
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> order.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void getOrderItem_emptyList_throwsOrderItemNotFoundException() {
+        assertThrows(OrderItemNotFoundException.class, () -> order.getOrderItem(VALID_NAME_PRATA));
+    }
+
+    @Test
+    public void getOrderItem_listWithoutSpecifiedItem_throwsOrderItemNotFoundException() {
+        order.add(CHEESE_PRATA);
+        order.add(NUGGETS);
+        order.add(NASI_GORENG);
+        assertThrows(OrderItemNotFoundException.class, () -> order.getOrderItem(VALID_NAME_PRATA));
+    }
+
+    @Test
+    public void setOrder_nullOrder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> order.setOrder(null));
+    }
+
+    @Test
+    public void setOrder_replaceList_success() {
+        order.add(NASI_GORENG);
+        order.add(MILO);
+        Order replacementOrder = new Order();
+        replacementOrder.add(CHEESE_PRATA);
+        replacementOrder.add(PRATA);
+        replacementOrder.add(NUGGETS);
+        order.setOrder(replacementOrder);
+        assertEquals(order, replacementOrder);
+    }
+
+    @Test
+    public void toString_emptyOrder_success() {
+        assertEquals(order.toString(), "");
+    }
+
+    @Test
+    public void toString_properOrder_success() {
+        order.add(MILO);
+        order.add(PRATA);
+        order.add(CHEESE_PRATA);
+        StringBuilder text = new StringBuilder();
+        text.append(MILO.toString() + '\n').append(PRATA.toString() + '\n').append(CHEESE_PRATA.toString() + '\n');
+        assertEquals(order.toString(), text.toString());
     }
 }
