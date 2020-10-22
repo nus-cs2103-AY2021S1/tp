@@ -52,24 +52,24 @@ public class TaskManagerParserTest {
 //        AddEventCommand command = (AddEventCommand) parser.parseCommand(EventUtil.getEventCommand(event));
 //        assertEquals(new AddEventCommand(event), command);
 //    }
-//
-//    @Test
-//    public void parseCommand_exit() throws Exception {
-//        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
-//        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " lol") instanceof ExitCommand);
-//    }
-//
+
+    @Test
+    public void parseCommand_exit() throws Exception {
+        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
+        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " lol") instanceof ExitCommand);
+    }
+
 //    @Test
 //    public void parseCommand_help() throws Exception {
 //        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
 //        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " lol") instanceof  HelpCommand);
 //    }
-//
-//    @Test
-//    public void parseCommand_list() throws Exception {
-//        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-//        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " lol") instanceof ListCommand);
-//    }
+
+    @Test
+    public void parseCommand_list() throws Exception {
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " lol") instanceof ListCommand);
+    }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {

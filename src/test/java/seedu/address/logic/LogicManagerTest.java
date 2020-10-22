@@ -20,6 +20,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.AddTodoCommand;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -57,19 +58,19 @@ public class LogicManagerTest {
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
     }
 
-    // TODO: Fix tests in v1.3
-//
-//    @Test
-//    public void execute_commandExecutionError_throwsCommandException() {
-//        String deleteCommand = "delete 9";
-//        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-//    }
-//
-//    @Test
-//    public void execute_validCommand_success() throws Exception {
-//        String listCommand = ListCommand.COMMAND_WORD;
-//        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
-//    }
+//     TODO: Fix tests in v1.3
+
+    @Test
+    public void execute_commandExecutionError_throwsCommandException() {
+        String deleteCommand = "delete 9";
+        assertCommandException(deleteCommand, DeleteCommand.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_validCommand_success() throws Exception {
+        String listCommand = ListCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+    }
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
