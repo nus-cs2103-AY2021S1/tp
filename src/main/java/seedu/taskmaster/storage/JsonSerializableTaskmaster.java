@@ -28,6 +28,7 @@ class JsonSerializableTaskmaster {
      */
     @JsonCreator
     public JsonSerializableTaskmaster(@JsonProperty("students") List<JsonAdaptedStudent> students) {
+        assert students != null;
         this.students.addAll(students);
     }
 
