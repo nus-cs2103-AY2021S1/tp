@@ -104,7 +104,9 @@ Below is a list of all `Contact` related features:
 4. View all contacts: Lists out all contacts in the contact list
 
 Given below is the class diagram of the `Contact` class:
+
 ![ContactClassDiagram](images/Contact/ContactClassDiagram.png)
+
 Figure ?.? Class Diagram for Contact class
 
 #### 1.1.2 Details of implementation
@@ -112,7 +114,7 @@ Figure ?.? Class Diagram for Contact class
 Given below is an example usage scenario and how the mechanism for adding contact behaves at each step:
 1. `LogicManager` receives the user input `addcontact n/John e/john@gmail.com te/@johndoe` from `Ui`
 2. `LogicManager` calls `ContactListParser#parseCommand()` to create `AddContactParser`
-3. `ContactListParser` will call the respective `AddContactParser#parse()` method to parse the command arguments using `ArgumentTokenizer`
+3. `ContactListParser` will call the respective `AddContactParser#parse()` method to parse the command arguments 
 4. This creates a `AddContactCommand` and `AddContactCommand#execute` will be invoked by `LogicManager` 
 5. The `Model#addContact()` operation exposed in the `Model` interface is used to add the new contact
 6. A `CommandResult` from the command execution is returned to `LogicManager`
