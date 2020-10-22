@@ -23,7 +23,7 @@ public class SampleDataUtil {
         return new Flashcard[] {
             new Flashcard(new Question("What does SDLC stand for?"), new Answer("Software development life cycle"),
                 new Category("SDLC"), new Note(""), new Rating(""),
-                    getTagSet(""), new Diagram("")),
+                    getTagSet(), new Diagram("")),
             new Flashcard(new Question("What is a revision control software?"),
                 new Answer("It is the software tool that automate the process of Revision Control"),
                 new Category("Revision history"), new Note(""), new Rating("2"),

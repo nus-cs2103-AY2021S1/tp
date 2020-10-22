@@ -79,9 +79,10 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 
 Adds a flashcard.
 
-Format: `add q/QUESTION a/ANSWER [c/CATEGORY] [r/RATING] [n/NOTE]`
+Format: `add q/QUESTION a/ANSWER [c/CATEGORY] [r/RATING] [n/NOTE] [d/DIAGRAM]`
 
 * If a rating is specified, it must be a number between 1 and 5 inclusive. It is intended to follow the star rating on CS2103T website.
+* Diagram can be defined by a valid relative or absolute path.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If the category does not exist, it will be created.
@@ -91,6 +92,9 @@ Examples:
 * `add q/What does OOP stand for? a/Object Oriented Programming c/General`
 * `add q/What does OOP stand for? a/Object Oriented Programming`
 * `add q/What does OOP stand for? a/Object Oriented Programming c/General n/Important question!`
+* `add q/What does OOP stand for? a/Object Oriented Programming d/images/diagram`
+* `add q/What does OOP stand for? a/Object Oriented Programming c/General n/Important question! d/images/diagram`
+
 
 ### Deleting a flashcard  : `delete`
 
@@ -109,7 +113,7 @@ Examples:
 
 Edits a flashcard.
 
-Format: `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING]`
+Format: `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]`
 
 * Edits the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
@@ -203,9 +207,9 @@ Flashcards data are saved in the hard disk automatically after any command that 
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add q/QUESTION a/ANSWER [c/CATEGORY] [n/NOTE] [r/RATING]` <br> e.g., `add q/What does OOP stand for? a/Object Oriented Programming c/General`
+**Add** | `add q/QUESTION a/ANSWER [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]` <br> e.g., `add q/What does OOP stand for? a/Object Oriented Programming c/General n/Important question! d/images/diagram.jpeg`
 **Delete** | `delete INDEX` <br> e.g., `delete 3`
-**Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING]` <br> e.g., `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
+**Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]` <br> e.g., `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
 **List** | `list`
 **Review** | `review`
 **Fav** | `fav INDEX` <br> e.g., `fav 1`

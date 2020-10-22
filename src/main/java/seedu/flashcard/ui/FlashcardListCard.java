@@ -14,7 +14,7 @@ import seedu.flashcard.model.flashcard.Flashcard;
 /**
  * An UI component that displays information of a {@code Flashcard}.
  */
-public class FlashcardCard extends UiPart<Region> {
+public class FlashcardListCard extends UiPart<Region> {
 
     private static final String FXML = "FlashcardListCard.fxml";
 
@@ -34,11 +34,7 @@ public class FlashcardCard extends UiPart<Region> {
     @FXML
     private Label question;
     @FXML
-    private Label answer;
-    @FXML
     private Label category;
-    @FXML
-    private Label note;
     @FXML
     private TextFlow ratingPane;
     @FXML
@@ -51,20 +47,14 @@ public class FlashcardCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code FlashcardCard} with the given {@code Flashcard} and index to display.
+     * Creates a {@code FlashcardListCard} with the given {@code Flashcard} and index to display.
      */
-    public FlashcardCard(Flashcard flashcard, int displayedIndex) {
+    public FlashcardListCard(Flashcard flashcard, int displayedIndex) {
         super(FXML);
         this.flashcard = flashcard;
         id.setText(displayedIndex + ". ");
         question.setText(flashcard.getQuestion().toString());
-        answer.setText(flashcard.getAnswer().toString());
         category.setText(flashcard.getCategory().toString());
-        if (flashcard.getNote().toString().length() > 0) {
-            note.setText(flashcard.getNote().toString());
-        } else {
-            note.setVisible(false);
-        }
         if (flashcard.getRating().toString().length() > 0) {
             rating.setText(flashcard.getRating().toString());
             ratingIcon.setText(" \uD83D\uDFCA");
@@ -80,7 +70,7 @@ public class FlashcardCard extends UiPart<Region> {
             tags.setVisible(false);
         }
         if (flashcard.isFavourite()) {
-            favouriteIcon.setText("\u2661");
+            favouriteIcon.setText("\u2764");
         } else {
             favouriteIcon.setVisible(false);
         }
@@ -95,12 +85,12 @@ public class FlashcardCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FlashcardCard)) {
+        if (!(other instanceof FlashcardListCard)) {
             return false;
         }
 
         // state check
-        FlashcardCard card = (FlashcardCard) other;
+        FlashcardListCard card = (FlashcardListCard) other;
         return id.getText().equals(card.id.getText())
                 && flashcard.equals(card.flashcard);
     }

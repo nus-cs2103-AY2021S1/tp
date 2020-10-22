@@ -12,32 +12,40 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane styleClass="pane-with-border" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+<StackPane styleClass="pane-with-round-border" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <padding>
         <Insets bottom="5" left="15" right="15" top="5" />
     </padding>
-    <GridPane HBox.hgrow="ALWAYS">
+    <GridPane alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" spacing="5" GridPane.columnIndex="0">
+        <VBox alignment="TOP_CENTER" spacing="5" GridPane.columnIndex="0">
             <padding>
                 <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
             <HBox alignment="CENTER_LEFT" spacing="5">
-                <Label fx:id="id" styleClass="cell_question_label">
-                    <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>
-                </Label>
-                <Label fx:id="question" styleClass="cell_question_label" text="\$question" />
-            <ImageView fx:id="diagram" fitHeight="27.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true" />
+                <Label fx:id="question" styleClass="cell_question_label" text="\$question" wrapText="true"/>
             </HBox>
 
+            <HBox spacing="15">
+                <padding>
+                    <Insets bottom="15" top="15" />
+                </padding>
+                <Label fx:id="category" styleClass="cell_small_label" text="\$category" />
+                <TextFlow fx:id="ratingPane">
+                    <Text fx:id="rating" text="\$rating"></Text>
+                    <Text fx:id="ratingIcon"></Text>
+                </TextFlow>
+                <Text fx:id="favouriteIcon" text="\$favouriteIcon"/>
+            </HBox>
+            <ImageView fx:id="diagram" fitHeight="400.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" />
             <FlowPane fx:id="tags" />
-            <Label fx:id="category" styleClass="cell_small_label" text="\$category" />
         </VBox>
+
+
       <rowConstraints>
          <RowConstraints />
       </rowConstraints>
