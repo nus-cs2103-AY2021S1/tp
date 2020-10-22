@@ -1,0 +1,27 @@
+@startuml
+
+start
+
+:User enters the command to add a contact;
+
+:AddContactParser parsers the command arguments;
+
+if () then ([command arguments are valid])
+        :Create an AddContactCommand with the newly created Contact as a field;
+        :Execute AddContactCommand;
+        if() then ([the Contact object created exists in the Contact List])
+            :Throw an exception to inform users that the Contact could not be added;
+            :Update UI to display error message;
+        else ([else])
+            :Add the Contact into the user's contact list;
+            :Update UI to display newly added Contact;
+        endif
+else ([else])
+        :Throw an exception to inform users of the invalid command;
+        :Update UI to display error message;
+
+endif
+
+stop
+
+@enduml
