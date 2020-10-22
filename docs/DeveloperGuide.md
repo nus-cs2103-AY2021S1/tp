@@ -76,7 +76,7 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -129,8 +129,18 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Data Structure: Tag
+[Tag](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/tag/Tag.java)
+is a class that stores tags. It contains a compulsory `TagName`, a `FileAddress` and an optional `Label`. `TagName` must 
+contain at least 1 alphanumeric word, and must be unique. `FileAddress` must contain a valid file path
+(i.e passing a file path like `C:\Windows\..` is valid for Windows and `./home/...` is valid for Linux).`FileAddress` 
+can take in a relative path or absolute path.
+
 
 ### Data Structure: Label
+[Label](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/label/Label.java)
+stores a `Label`, which is an optional field in `Tag`. A `Label` must only contain alphanumeric characters, and up to 
+one word. `Label` allows the user to label their tagged file. The purpose is to keep label short and concise, as it only 
+serves as extra information of a tagged file.
 
 ### Adding of Tags: TagCommand
 
@@ -228,11 +238,11 @@ When starting the app, the current path saved last time will be loaded, and the 
 **Target user profile**:
 
 * Tech savvy NUS Computer Science Student
-* has a need to manage a significant number of files
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Has a need to manage a significant number of files
+* Prefer desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Reasonably comfortable using CLI apps
 
 **Value proposition**: CS students can manage/access their files by typing
                        and using a simple GUI. Help CS students to see file relations easily.
