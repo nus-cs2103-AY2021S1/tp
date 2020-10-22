@@ -1,0 +1,81 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InventoryParser" as InventoryParser LOGIC_COLOR
+participant ":AddQuantityToItemCommandParser" as AddQuantityToItemCommandParser LOGIC_COLOR
+participant ":AddQuantityToItemCommand" as AddQuantityToItemCommand LOGIC_COLOR
+participant ":EditItemCommand" as EditItemCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addq -n banana -q 50")
+activate LogicManager
+
+LogicManager -> InventoryParser : parseCommand("addq -n banana -q 50")
+activate InventoryParser
+
+create AddQuantityToItemCommandParser
+InventoryParser -> AddQuantityToItemCommandParser
+activate AddQuantityToItemCommandParser
+
+AddQuantityToItemCommandParser --> InventoryParser
+deactivate AddQuantityToItemCommandParser
+
+InventoryParser -> AddQuantityToItemCommandParser : parse("-n banana -q 50")
+activate AddQuantityToItemCommandParser
+
+create AddQuantityToItemCommand
+AddQuantityToItemCommandParser -> AddQuantityToItemCommand
+activate AddQuantityToItemCommand
+
+AddQuantityToItemCommand --> AddQuantityToItemCommandParser : d
+deactivate AddQuantityToItemCommand
+
+AddQuantityToItemCommandParser --> InventoryParser : d
+deactivate AddQuantityToItemCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddQuantityToItemCommandParser -[hidden]-> InventoryParser
+destroy AddQuantityToItemCommandParser
+
+InventoryParser --> LogicManager : d
+deactivate InventoryParser
+
+LogicManager -> AddQuantityToItemCommand : execute()
+activate AddQuantityToItemCommand
+
+create EditItemCommand
+AddQuantityToItemCommand -> EditItemCommand : EditItemDescriptor
+activate EditItemCommand
+
+EditItemCommand -> EditItemCommand : createEditedItem(itemBanana, editItemDescriptor)
+
+EditItemCommand -> Model : setItem(itemBanana, editedItemBanana)
+activate Model
+
+Model --> EditItemCommand
+deactivate Model
+
+create CommandResult
+EditItemCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditItemCommand
+deactivate CommandResult
+
+EditItemCommand --> AddQuantityToItemCommand
+deactivate EditItemCommand
+
+AddQuantityToItemCommand --> LogicManager : result
+deactivate AddQuantityToItemCommand
+
+destroy EditItemCommand
+[<--LogicManager
+deactivate LogicManager
+destroy AddQuantityToItemCommand
+@enduml

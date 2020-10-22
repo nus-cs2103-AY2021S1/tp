@@ -19,6 +19,7 @@ import seedu.address.model.RecipeList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.item.NameMatchesKeywordsPredicate;
 import seedu.address.testutil.TypicalItems;
+import seedu.address.ui.DisplayedInventoryType;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindItemCommand}.
@@ -66,8 +67,11 @@ public class FindItemCommandTest {
         FindItemCommand command = new FindItemCommand(predicate);
 
         expectedModel.updateFilteredItemList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredItemList());
+
+        CommandResult expectedResult = new CommandResult(expectedMessage,
+                false, false, DisplayedInventoryType.ITEMS);
+        assertCommandSuccess(command, model, expectedResult, expectedModel);
+        assertEquals(Collections.emptyList(), expectedModel.getFilteredItemList());
     }
 
     @Test
@@ -78,8 +82,11 @@ public class FindItemCommandTest {
         FindItemCommand command = new FindItemCommand(predicate);
 
         expectedModel.updateFilteredItemList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(TypicalItems.APPLE, TypicalItems.BANANA), model.getFilteredItemList());
+
+        CommandResult expectedResult = new CommandResult(expectedMessage,
+                false, false, DisplayedInventoryType.ITEMS);
+        assertCommandSuccess(command, model, expectedResult, expectedModel);
+        assertEquals(Arrays.asList(TypicalItems.APPLE, TypicalItems.BANANA), expectedModel.getFilteredItemList());
     }
 
     /**

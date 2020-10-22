@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.item.NameMatchesKeywordsPredicate;
+import seedu.address.ui.DisplayedInventoryType;
 
 /**
  * Finds and lists all items in item list whose name contains any of the keywords.
@@ -34,9 +35,11 @@ public class FindItemCommand extends Command {
 
         if (filteredItemListNotEmpty) {
             return new CommandResult(
-                    String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW, filteredItemListSize));
+                    String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW, filteredItemListSize),
+                    false, false, DisplayedInventoryType.ITEMS);
         } else {
-            return new CommandResult(Messages.MESSAGE_NO_ITEM_MATCH);
+            return new CommandResult(Messages.MESSAGE_NO_ITEM_MATCH,
+                    false, false, DisplayedInventoryType.ITEMS);
         }
     }
 
