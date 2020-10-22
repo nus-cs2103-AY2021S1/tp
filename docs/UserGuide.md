@@ -43,7 +43,13 @@ track of inventory items and pending deliveries, OneShelf is for you!
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+OneShelf has 2 main features that it is able to store, namely are:
+1. Inventory items
+2. Pending deliveries
+
+From here onwards, the term `item` and `delivery` are used specifically for inventory items and pending deliveries respectively.
+
+**:information_source: Notes about the item command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add-i n/Chicken`.
@@ -57,6 +63,7 @@ track of inventory items and pending deliveries, OneShelf is for you!
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME q/QUANTITY`, `q/QUANTITY n/NAME` is also acceptable.
 
+*Note: The above notes are also applicable for `delivery`.*
 </div>
 
 
@@ -64,21 +71,23 @@ track of inventory items and pending deliveries, OneShelf is for you!
 ### Viewing help : `help`
 
 Format: `help start`
-Shows a guide for user to kick-start their journey in OneShelf.
+If you are a first time user, we strongly encourage you to enter `help start` and follow the guide to kick-start your journey in OneShelf.
 
 Alternatives:
 * Press `F1` at any point in the usage of the app
 * GUI navigation menu at the top left
 
 Format: `help summary`
-Shows a summary of all the possible commands in OneShelf.
+
+We understand that even if you are not a first time user, it is not easy to remember all the commands within a single session.
+Should you need a list of summary commands, you can enter `help summary` and a new window similar to Figure 3 should appear.
 
 Alternatives:
 * Press `F2` at any point in the usage of the app
 * GUI navigation menu at the top left
 
 ![Help Summary Screenshot](images/HelpSummaryWindow.png)
-
+Figure 3: Help Summary Window
 
 ### Adding an item: `add-i`
 
