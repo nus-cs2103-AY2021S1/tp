@@ -40,7 +40,8 @@ public class AddDeadlineCommandTest {
 
         CommandResult commandResult = new AddDeadlineCommand(validDeadline).execute(modelStub);
 
-        assertEquals(String.format(AddDeadlineCommand.MESSAGE_SUCCESS, validDeadline), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddDeadlineCommand.MESSAGE_SUCCESS, validDeadline),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validDeadline), modelStub.tasksAdded);
     }
 
@@ -50,8 +51,8 @@ public class AddDeadlineCommandTest {
         AddDeadlineCommand addDeadlineCommand = new AddDeadlineCommand(validDeadline);
         ModelStub modelStub = new ModelStubWithTask(validDeadline);
 
-        assertThrows(CommandException.class, AddDeadlineCommand.MESSAGE_DUPLICATE_TASK,
-                () -> addDeadlineCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddDeadlineCommand.MESSAGE_DUPLICATE_TASK, ()
+            -> addDeadlineCommand.execute(modelStub));
     }
 
     @Test

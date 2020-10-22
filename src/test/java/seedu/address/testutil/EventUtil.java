@@ -32,9 +32,7 @@ public class EventUtil {
         sb.append(PREFIX_PRIORITY + event.getPriority().level.toString());
         sb.append(PREFIX_TASK_DATE + event.getEventDate().toString());
         sb.append(PREFIX_TASK_TIME + event.getEventTime().toString());
-        event.getTags().stream().forEach(
-                s -> sb.append(PREFIX_TAG + s.tagName + " ")
-        );
+        event.getTags().stream().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
         return sb.toString();
     }
 }

@@ -14,12 +14,12 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.TaskTime;
 import seedu.address.model.task.Title;
-import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_TITLE = "Lecture$";

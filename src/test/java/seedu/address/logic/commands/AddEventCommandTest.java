@@ -20,11 +20,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTaskManager;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TaskManager;
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Event;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.ToDo;
-import seedu.address.testutil.DeadlineBuilder;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.ToDoBuilder;
 
@@ -52,8 +50,8 @@ public class AddEventCommandTest {
         AddEventCommand addEventCommand = new AddEventCommand(validEvent);
         ModelStub modelStub = new ModelStubWithTask(validEvent);
 
-        assertThrows(CommandException.class, AddEventCommand.MESSAGE_DUPLICATE_TASK,
-                () -> addEventCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddEventCommand.MESSAGE_DUPLICATE_TASK, ()
+            -> addEventCommand.execute(modelStub));
     }
 
     @Test

@@ -10,9 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TASKTIME_LECTUR
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_LECTURE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.ATTEND;
-import static seedu.address.testutil.TypicalTasks.ATTEND;
 import static seedu.address.testutil.TypicalTasks.BAKE;
-import static seedu.address.testutil.TypicalTasks.ELECT;
 import static seedu.address.testutil.TypicalTasks.FISH;
 
 import org.junit.jupiter.api.Test;

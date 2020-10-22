@@ -50,8 +50,8 @@ public class AddTodoCommandTest {
         AddTodoCommand addTodoCommand = new AddTodoCommand(validTodo);
         ModelStub modelStub = new ModelStubWithTask(validTodo);
 
-        assertThrows(CommandException.class, AddTodoCommand.MESSAGE_DUPLICATE_TASK,
-                () -> addTodoCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddTodoCommand.MESSAGE_DUPLICATE_TASK, ()
+            -> addTodoCommand.execute(modelStub));
     }
 
     @Test

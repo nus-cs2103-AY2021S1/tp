@@ -116,7 +116,7 @@ public class UniqueTaskListTest {
     }
 
     @Test
-    public void remove_task_desNotExist_throwsTaskNotFoundException() {
+    public void remove_taskDoesNotExist_throwsTaskNotFoundException() {
         assertThrows(TaskNotFoundException.class, () -> uniqueTaskList.remove(ATTEND));
     }
 

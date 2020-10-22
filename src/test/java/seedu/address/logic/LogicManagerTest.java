@@ -1,7 +1,6 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_PROJECT;
 import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_PROJECT;
@@ -58,11 +57,10 @@ public class LogicManagerTest {
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
     }
 
-//     TODO: Fix tests in v1.3
-
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
+        // Update universal invalid index message
         assertCommandException(deleteCommand, DeleteCommand.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
