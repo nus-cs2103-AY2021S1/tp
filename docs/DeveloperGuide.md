@@ -332,6 +332,9 @@ as overwriting a file is irreversible and would be disastrous for zookeepers if 
 #### Implementation
 
 This section explains the implementation of the Sort command feature in the ZooKeepBook. This feature is used to sort the animals based on the different categories: **name, id or feedtime**.
+* For the animal name, it will be in alphabetical order.
+* For the animal id, it will be in increasing order.
+* For the animal feed time, it will be from earliest to latest. 
   
 The following sequence diagram shows the Logic and Model Components when a sort command is being executed:
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
