@@ -4,120 +4,120 @@ title: Developer Guide
 ---
 Table of Contents
 
-[1. Setting Up](#setting-up-getting-started)<br>
-[2. Design](#design)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Architecture](#architecture)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[2.2 UI Component](#ui-component)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Logic Component](#logic-component)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Model Component](#model-component)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Storage Component](#storage-component)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[2.6 Common Classes](#common-classes)<br>
-[3. Implementation](#implementation)<br>
-[4. Documentation, Logging, Testing, Configuration, Dev-Ops](#documentation-logging-testing-configuration-dev-ops)<br>
-[5. Appendix: Requirements](#appendix-requirements)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[5.1 Product Scope](#product-scope)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[5.2 User Stories](#user-stories)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[5.3 Use Cases](#use-cases)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[5.4 Non-Function Requirements](#non-functional-requirements)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[5.5 Glossary](#glossary)<br>
-[6. Appendix: Instructions For Manual Testing](#appendix-instructions-for-manual-testing)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[6.1 Launch and Shut-Down](#launch-and-shutdown)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[6.2 Adding a Record](#adding-a-record)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[6.3 Deleting a Record](#deleting-a-record)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[6.4 Editing a Record](#editing-a-record)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[6.2 Listing Records](#listing-records)<br>
-[7. Appendix: Proposed features for future implementation](#appendix-proposed-features-for-future-implementation)
+---
+
+## 1. **Setting up, getting started**
+
+To get starte, please refer to the sertting up guide [here](SettingUp.md).
+
+---
+
+## 2. **Design**
+
+### 2.1. Architecture
 
 
---------------------------------------------------------------------------------------------------------------------
-
-## **Setting up, getting started**
-
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Design**
-
-### Architecture
+The architecture diagram given below explains the high-level design of the software NUStorage.
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
-
 <div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+Given below is a quick overview of each of the components.
+
+#### 2.1.1. [Main classes](#211-main-classes)
+
+**`Main`** has two classes: [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). This component is responsible for:
+
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+#### 2.1.2. Common classes
 
-The rest of the App consists of four components.
+**`Commons`** represents a collection of classes used by multiple other components to support the software.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+#### 2.1.3. Core classes
 
-Each of the four components,
+##### 2.1.3.1. UI
 
-* defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+**`UI`** contains the user interface elements and is responsible for taking in user inputs and displaying the corresponding results and infomative feedback messages.
+
+##### 2.1.3.2. Logic
+
+**`Logic`** is responsible for executing the commands and ensuring the logic flow of the software.
+
+##### 2.1.3.3. Model
+
+**`Model`** represents a collection of model objects used by the software to hold the data of the application in memory while the app is running.
+
+##### 2.1.3.4. Storage
+
+**`Storage`** is responsible for:
+
+* At app launch: Reading the data files and convert them into their corresponding `model` objects.
+* When a command is executed: Converting the `model` objects into their corresponding serializable formats, then store these serializable objects into the data file.
+
+Each of the four components in the **core classes**:
+
+* Defines its *API* in an `interface` with the same name as the Component.
+* Exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
-**How the architecture components interact with each other**
+---
+
+### 2.2. Interactions between architectural components
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![Architecture sequence diagram](images/ArchitectureSequenceDiagram.png)
 
-The sections below give more details of each component.
+Section 2.3 elaborates on each of the components in detail.
 
-### UI component
+### 2.3. 2.3 Details of Architectural Components
+
+#### 2.3.1. UI component
+
+Given below is the class diagram of the UI component of NUStorage.
 
 ![Structure of the UI Component](images/UiComponent.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-T11-3/tp/blob/master/src/main/java/nustorage/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of different parts, for example, `CommandBox`, `ResultDisplay`, `TabPane`, `StatusBarFooter` etc.
-The `TabPane` holds multiple `Tab` objects, for example, `Inventory` and `Finance`.
+The UI component consists of a `MainWindow` that is made up of `CommandBox`, `ResultDisplay`, `TabPane`, `StatusBarFooter` and `HelpWindow`. The `TabPane` holds multiple `Tab` objects such as `Inventory` and `Finance`.
 
-All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+Every component in UI, including the `MainWindow`, inherits from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T11-3/tp/blob/master/src/main/java/nustorage/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T11-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in the corresponding `.fxml` files with the same name, located in the `src/main/resources/view` directory. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T11-3/tp/blob/master/src/main/java/nustorage/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T11-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
-The `UI` component,
+The `UI` component:
 
 * Executes user commands using the `Logic` component.
 * Updates itself with modified data whenever there are changes made by the user.
 
-### Logic component
+#### 2.3.2. Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
-**API** :
+**API**:
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-T11-3/tp/blob/master/src/main/java/nustorage/logic/Logic.java)
 
 1. `Logic` uses the `NuStorageParser` class to parse the user command.
-1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+2. This results in a `Command` object which is executed by the `LogicManager`.
+3. The command execution can affect the `Model` (e.g. adding a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete_finance 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete_finance 1` Command](images/DeleteFinanceSequenceDiagram.png)
 
-### Model component
+#### 2.3.3. Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -125,14 +125,14 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 The `Model`,
 
-* stores a `UserPref` object that represents the user’s preferences.
-* stores Inventory and financeAccount data.
-* exposes unmodifiable `ObservableList<InventoryRecord>` and `ObservableList<FinanceRecord>` that can be 'observed' e.g. the UI can be bound to the lists so that the UI automatically updates when the data in the lists change.
-* does not depend on any of the other three components (UI, Logic and Storage).
+* Stores a `UserPref` object that represents the user’s preferences.
+* Stores Inventory and financeAccount data.
+* Exposes unmodifiable `ObservableList<InventoryRecord>` and `ObservableList<FinanceRecord>` that can be 'observed' e.g. the UI can be bound to the lists so that the UI automatically updates when the data in the lists change.
+* Does __not__ depend on any of the other three components (UI, Logic and Storage).
 
-### Storage component
+#### 2.3.4. Storage component
 
-This section shows the structure and logic of the storage component of NUStorage. All storage-related classes are stored in the package `nustorage.storage`. 
+This section shows the structure and logic of the storage component of NUStorage. All storage-related classes are stored in the package `nustorage.storage`.
 
 Given below is the class diagram of the `storage` component.
 
@@ -141,58 +141,56 @@ Given below is the class diagram of the `storage` component.
 The storage component comprises three different sections:
 
 1. The `UserPrefStorage` section:
-    - loads the user preferences and settings on start up.
-    - stores the user preferences and settings upon exiting .
+   * loads the user preferences and settings on start up.
+   * stores the user preferences and settings upon exiting .
 
 2. The `FinanceAccountStorage` section:
-    - loads the previously saved finance records on start up.
-    - stores new finance records as they are added / logged into the software.
-    
-3. The `InventoryStorage` section:
-    - loads the previously saved inventory records on start up.
-    - stores new inventory records as they are added / logged into the software.
+   * loads the previously saved finance records on start up.
+   * stores new finance records as they are added / logged into the software.
 
+3. The `InventoryStorage` section:
+   * loads the previously saved inventory records on start up.
+   * stores new inventory records as they are added / logged into the software.
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T11-3/tp/blob/master/src/main/java/nustorage/storage/Storage.java)
 
 * Saving inventory:
 
-    * Given below is the **activity** diagram for saving the inventory. Saving finance account works similarly.
-    This diagram shows the decision pathways of the storage component when saving inventory.
-    
-        ![Activity Diagram for saving inventory](images/SavingInventoryActivityDiagram.png)
+  * Given below is the **activity** diagram for saving the inventory. Saving finance account works similarly.
+  This diagram shows the decision pathways of the storage component when saving inventory.
 
-    * The following is the **sequence** diagram for saving the inventory. Saving finance account works similarly.
-    This diagram shows the function calls between classes when saving inventory.
-    
-        ![Sequence Diagram for loading finance](images/SaveInventorySequenceDiagram.png)
+      ![Activity Diagram for saving inventory](images/SavingInventoryActivityDiagram.png)
+
+  * The following is the **sequence** diagram for saving the inventory. Saving finance account works similarly.
+  This diagram shows the function calls between classes when saving inventory.
+
+      ![Sequence Diagram for loading finance](images/SaveInventorySequenceDiagram.png)
 
 * Loading finance account:
 
-    * Given below is the **activity** diagram for loading the finance account on start up. Loading inventory works similarly.
-    This diagram shows the decision pathways of the storage component when loading finance account.
-    
-        ![Activity Diagram for loading finance account](images/LoadingFinanceActivityDiagram.png)
-    
-    * The following is the **sequence** diagram for loading the finance account. Loading inventory works similarly.
-    This diagram shows the function calls between classes when loading finance account.
-    
-        ![Sequence Diagram for loading finance](images/LoadFinanceSequenceDiagram.png)
+  * Given below is the **activity** diagram for loading the finance account on start up. Loading inventory works similarly.
+  This diagram shows the decision pathways of the storage component when loading finance account.
 
+      ![Activity Diagram for loading finance account](images/LoadingFinanceActivityDiagram.png)
 
-### Common classes
+  * The following is the **sequence** diagram for loading the finance account. Loading inventory works similarly.
+  This diagram shows the function calls between classes when loading finance account.
+
+      ![Sequence Diagram for loading finance](images/LoadFinanceSequenceDiagram.png)
+
+#### 2.3.5. Common classes
 
 Classes used by multiple components are in the `nustorage.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-## **Implementation**
+## 3. **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### 3.1. [Proposed] Undo/redo feature
 
-#### Proposed Implementation
+#### 3.1.1. Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -255,9 +253,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
-#### Design consideration:
+#### 3.1.2. Design considerations
 
-##### Aspect: How undo & redo executes
+##### 3.1.2.1. Aspect: How undo & redo executes
 
 * **Alternative 1 (current choice):** Saves the entire address book.
   * Pros: Easy to implement.
@@ -270,14 +268,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### 3.2. \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## 4. **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -285,11 +283,11 @@ _{Explain here how the data archiving feature will be implemented}_
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-## **Appendix: Requirements**
+## 5. **Appendix: Requirements**
 
-### Product scope
+### 5.1. Product scope
 
 **Target user profile**:
 
@@ -299,11 +297,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 * Proficient in english to allow them to check the user guide when they are having trouble with the app
 
-
 **Value proposition**: manage inventories and finances faster than the typical paper and pen
 
-
-### User stories
+### 5.2. User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -318,20 +314,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use cases
-For all use cases (unless specified otherwise):
-- The **System** is `NUStorage`
-- The **Actor** is `User`
+### 5.3. Use cases
 
+For all use cases (unless specified otherwise):
+
+* The **System** is `NUStorage`
+* The **Actor** is `User`
 
 **Use case: Add an inventory item**
 
 **MSS**
 
-1.  User requests to list inventory
-2.  NUStorage shows the inventory list
-3.  User requests to add a specific inventory item into the list
-4.  NUStorage adds the item to the list
+1. User requests to list inventory
+2. NUStorage shows the inventory list
+3. User requests to add a specific inventory item into the list
+4. NUStorage adds the item to the list
 
     Use case ends.
 
@@ -360,10 +357,10 @@ For all use cases (unless specified otherwise):
 
 **MSS**
 
-1.  User requests to list finances
-2.  NUStorage shows the finance record list
-3.  User requests to add a specific finance record into the list
-4.  NUStorage adds the record to the list
+1. User requests to list finances
+2. NUStorage shows the finance record list
+3. User requests to add a specific finance record into the list
+4. NUStorage adds the record to the list
 
     Use case ends.
 
@@ -416,23 +413,23 @@ For all use cases (unless specified otherwise):
 
 
 
-### Non-Functional Requirements
+### 5.4. Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 100 financial records and 100 inventory items without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 100 financial records and 100 inventory items without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
 
-### Glossary
+### 5.5. Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Inventory**: An item that a user wishes to record. An inventory item can refer to any existing object
 * **Finances**: A record that allows a user to monitor his earnings and spending.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-## **Appendix: Instructions for manual testing**
+## 6. **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -441,7 +438,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### 6.1. Launch and shutdown
 
 1. Initial launch
 
@@ -451,7 +448,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file<br>
       Expected: Shows the GUI with an introductory message. The window size may not be optimum.
-      
+
       **NOTE**: If double-clicking the jar file does not work, open up your terminal and navigate to the directory that contains the jar file. Then, enter the following command:<br>
       `java -jar nustorage.jar`
 
@@ -465,11 +462,10 @@ testers are expected to do more *exploratory* testing.
 1. Saving and Shutting Down
 
    1. You may shut down NUStorage by entering the `exit` command or simply clicking the close button on the top-right corner of the application.
-   
-   1. NUStorage automatically saves any changes made to records while the application is in use. Closing and re-opening the application will not result in any data loss.
-   
 
-### Adding a record
+   1. NUStorage automatically saves any changes made to records while the application is in use. Closing and re-opening the application will not result in any data loss.
+
+### 6.2. Adding a record
 
 1. Adding a financial/inventory record.
 
@@ -487,8 +483,7 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect add commands to try: `add`, `add_record`, `add_inventory i/MacBook` `add_finance amt/1000 at/2020-13-13` <br>
         Expected: No record is added. Error details shown in the status message.
 
-
-### Deleting a record
+### 6.3. Deleting a record
 
 1. Deleting a record while all inventory/financial records are being shown.
 
@@ -507,7 +502,7 @@ testers are expected to do more *exploratory* testing.
       Expected: No record is added. Error details shown in the status message.
       
       
-### Editing a record
+### 6.4. Editing a record
 
 1. Editing a record while all inventory/financial records are being shown.
 
@@ -526,7 +521,8 @@ testers are expected to do more *exploratory* testing.
       `edit_finance 0 amt/3000 at/2021-01-02`, `edit_inventory x i/Pasta q/100`(where x is larger than the number of inventory records in the list)<br>
       Expected: No records are edited. Error details shown in the status message.
    
-### Listing records
+### 6.5. Listing records
+
 1. Listing all inventory/finance records
 
    1. Prerequisites: None. In order for the application to display record cards, ensure that you already have some inventory/finance records saved.
@@ -561,7 +557,7 @@ testers are expected to do more *exploratory* testing.
       `find phone`, `find_inventory `, `find-finance 1000`.
       Expected: No records will be displayed. Error details shown in the status message.
        
-## **Appendix: Proposed features for future implementation**
+## 7. **Appendix: Proposed features for future implementation**
 
 1. Customizable Commands<br>
    1. We understand that not everybody that uses NUStorage would be comfortable with the current names of commands. Therefore, we plan to implement a feature that allows users to rename the commands to better suit their liking.
