@@ -101,19 +101,19 @@ Format: `edit zoom` **_`[MODULE_NAME]`_** **_`[ZOOM_LINK]`_**
 Examples:
 * `edit zoom CS2030 https://sample.zoom.us` edits the zoom link for a module named `CS2030`
   to `https://sample.zoom.us`
-  
+ 
 ### Adding assignment to a module: `addassignment`
 
   Adds an assignment that takes up a percentage of the grade and has a result from 0.00 to 1.00 to an existing module.
 
-  Format: `addassignment` **_`n/[MODULE_NAME]`_** **_`a/[ASSIGNMENT_NAME]`_** 
+  Format: `addassignment` **_`n/[MODULE_NAME]`_** **_`a/[ASSIGNMENT_NAME]`_**
   **_`%/[ASSIGNMENT_PERCENTAGE]`_** **_`r/[ASSIGNMENT_RESULT]`_**
 
   * Adds an assignment **_`[ASSIGNMENT_NAME]`_** that takes up **_`[ASSIGNMENT_PERCENTAGE]`_**
   of the grade with a result of **_`[ASSIGMENT_RESULT]`_** to a module named **_`[MODULE_NAME]`_**
 
   Example of usage:
-  `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80` adds an assignment called `Quiz 1` that takes up `5`% of the 
+  `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80` adds an assignment called `Quiz 1` that takes up `5`% of the
   grade with a result of `0.80` to the module named `CS2100`
 
 
@@ -133,7 +133,7 @@ Undoes the previous user command
  Format: `undo`
 
   Examples:
-  * `undo` 
+  * `undo`
 
 ### Undo previous user command: `redo`
 
@@ -142,7 +142,7 @@ Redoes the previously undone user command
  Format: `redo`
 
   Examples:
-  * `redo`   
+  * `redo`
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ

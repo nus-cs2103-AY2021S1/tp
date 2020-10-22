@@ -80,7 +80,7 @@ of the **XYZListPanel**.
 2. This results in a `Command` object which is executed by `LogicManager`.
 3. The command execution can affect the Model (e.g. adding a module).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying 
+5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
 help to the user.
 
 ### Model component
@@ -93,9 +93,9 @@ help to the user.
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-The `Storage` component facilitates the storage of CAP5BUDDY data in the hard drive. When the program attempts to save 
-data, the `Storage` component converts java data objects such as `ModuleList` and `ContactList` into a json format to store 
-at a specified file location. When the program is started, it will attempt to read existing user data and the `Storage` 
+The `Storage` component facilitates the storage of CAP5BUDDY data in the hard drive. When the program attempts to save
+data, the `Storage` component converts java data objects such as `ModuleList` and `ContactList` into a json format to store
+at a specified file location. When the program is started, it will attempt to read existing user data and the `Storage`
 component will be converting data in json format into java objects.
 
 * can save `UserPref` objects in json format and read it back.
@@ -114,9 +114,9 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ![Structure of the Module List Component](images/ModuleListDiagram.png)
 
 The Module List that is stored in the model contains a list of modules. The Module List stores a Unique
-Contact List that prevents duplicate modules from being added to the Module List. Each Module contains 
+Contact List that prevents duplicate modules from being added to the Module List. Each Module contains
 a module name, a zoom link attached to that module and a grade tracker. The grade tracker tracks the assignments
-completed for that module and a grade for that module. 
+completed for that module and a grade for that module.
 
 
 ## CAP Calculator
@@ -127,8 +127,8 @@ completed for that module and a grade for that module.
 
 ![Structure of the Contact List Component](images/ContactListDiagram.png)
 
-The Contact List that is stored in the model contains a list of contacts. The Contact List stores a 
-Unique Contact List prevents duplicate contacts from being added.Each contact stored has their Name, 
+The Contact List that is stored in the model contains a list of contacts. The Contact List stores a
+Unique Contact List prevents duplicate contacts from being added.Each contact stored has their Name,
 Email address and Telegram handle stored with it.
 
 ## Todo List
@@ -151,7 +151,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### 1.1 Contact List Management
 
-As a module tracking system, Cap 5 Buddy allows users to manage a list of module-related contacts with ease. 
+As a module tracking system, Cap 5 Buddy allows users to manage a list of module-related contacts with ease.
 
 The section below provides details of the implementation of each Contact List function and design considerations
 of the contact list feature.
@@ -176,8 +176,8 @@ Figure ?.? Class Diagram for Contact class
 Given below is an example usage scenario and how the mechanism for adding contact behaves at each step:
 1. `LogicManager` receives the user input `addcontact n/John e/john@gmail.com te/@johndoe` from `Ui`
 2. `LogicManager` calls `ContactListParser#parseCommand()` to create `AddContactParser`
-3. `ContactListParser` will call the respective `AddContactParser#parse()` method to parse the command arguments 
-4. This creates a `AddContactCommand` and `AddContactCommand#execute` will be invoked by `LogicManager` 
+3. `ContactListParser` will call the respective `AddContactParser#parse()` method to parse the command arguments
+4. This creates a `AddContactCommand` and `AddContactCommand#execute` will be invoked by `LogicManager`
 5. The `Model#addContact()` operation exposed in the `Model` interface is used to add the new contact
 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
@@ -187,7 +187,7 @@ Figure ?.? Sequence diagram for the execution of `AddContactCommand`
 
 The section below describes the implementation details of each Contact List feature.
 
-####Add Contact Feature 
+####Add Contact Feature
 * This feature creates and adds a new `Contact` using the contact details provided by users
 * `ContactListParser` invokes `AddContactParser#parse()` to parse and validate the command arguments
 * `AddContactCommand#execute()` will be called to add the new `Contact` if the contact does not already exist
@@ -203,12 +203,12 @@ Figure ?.? Activity diagram representing the execution of `AddContactCommand`
 * `ContactListParser` invokes `DeleteContactParser#parse()` to parse and validate the contact ID
 * `DeleteContactCommand#execute()` will be called to delete the `Contact`
 * The mechanism to delete a contact is facilitated by `ContactList` which implements `ContactList#removeContact()`
-* This operation is exposed in the `Model` interface as `Model#deleteContact()` 
+* This operation is exposed in the `Model` interface as `Model#deleteContact()`
 
 #### Edit Contact Feature
 * This feature edits a pre-existing `Contact` using the contact details provided by users.
 * `ContactListParser` invokes `EditContactParser#parse()` to parse and validate the contact ID and command arguments
-* `EditContactCommand#execute()` will be called to create the edited `Contact` and replace the old contact with the edited contact, 
+* `EditContactCommand#execute()` will be called to create the edited `Contact` and replace the old contact with the edited contact,
    if the edited contact does not already exist
 * The mechanism to edit a contact is facilitated by `ContactList` which implements `ContactList#setContact()`
 * This operation is exposed in the `Model` interface as `Model#setContact()`
@@ -221,17 +221,17 @@ Figure ?.? Activity diagram representing the execution of `AddContactCommand`
 * Alternative 1: Use a `HashMap` to store contacts
   * Pros: Will be more efficient to retrieve contacts from a HashMap.
   * Cons: Requires additional memory to support the HashMap. This would worsen as the number of contacts stored increases.
-* Alternative 2: Use an `ArrayList` to store contacts 
+* Alternative 2: Use an `ArrayList` to store contacts
 
 
 ### \[Proposed\] Calculate CAP feature
 
 #### Proposed Implementation
 
-The proposed calculate CAP function is facilitated by `CalculateCapCommand`. It extends Command with a counter for total 
+The proposed calculate CAP function is facilitated by `CalculateCapCommand`. It extends Command with a counter for total
 grade points and modular credits, both stored internally `gradePoints` and `modularCredits` respectively. Additionally, it implements the following operations:
 
-* `CalculateCapCommand#accumulate(ModuleList)` - Loops through a given `ModuleList` and updates the grade points and 
+* `CalculateCapCommand#accumulate(ModuleList)` - Loops through a given `ModuleList` and updates the grade points and
 modular credits count accordingly.
 
 * `CalculateCapCommand#calculateCap()` - Calculates CAP based the grade points and modular credits counter.
@@ -239,7 +239,7 @@ modular credits count accordingly.
 The following sequence diagram shows how the calculate cap operation works:
 ![CalculateCapSequenceDiagram](images/CalculateCapSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CalculateCapCommand` 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CalculateCapCommand`
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -249,14 +249,14 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 * Alternative 1 (current choice): Calculates based on academic information on mods tagged as completed.
     * Pros : Easy to implement
     * Cons : User has to manually input every module taken
-    
+   
 * Alternative 2 : Prompts user for academic information used for last calculated cap and stores it.
-    * Pros : 
+    * Pros :
         * User does not need to input uncessary modules.
         * Will use less memory.(e.g Modules that the user is not currently taking does not need to be added by user).
-    
+   
     * Cons : Will require additional storage.
-    
+   
 
 --------------------------------------------------------------------------------------------------------------------
 
