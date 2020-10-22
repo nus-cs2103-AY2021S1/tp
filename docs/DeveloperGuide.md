@@ -220,7 +220,7 @@ New command | Undo command
 
 #### Implementation
 
-The Redo feature was added as a complement to the Undo feature which was done earlier by Zhi Yuan. The addition of this
+The Redo feature was added as a complement to the Undo feature which was done earlier. The addition of this
 feature required the integration of the `RedoCommand` class, which extends from the `Command` class like all other commands.
 The `HistoryStack` class also has new key features to support the `redo` command:
 
@@ -250,12 +250,10 @@ Step 3. The user then executes `delete 567` which deletes the animal in the book
 
 ![RedoState2](images/RedoState2.png)
 
-Step 4. Now the user thinks that deleting that previous animal was a mistake and wants to restore it by executing `undo`,
-which will call `HistoryStack#removeRecentHistory()` to delete the current state and exposes the previous state, which
-in turn is retrieved using `HistoryStack#viewRecentHistory()` and finally loaded into the model using 
-`Model#setZooKeepBook(ReadOnlyZooKeepBook)`. However, before deleting the current state, the 
-`HistoryStack#addToRedo(ReadOnlyZooKeepBook)` is called to store the current state into the redo stack in case of
-further use.
+Step 4. Now the user thinks that deleting that animal was a mistake and restores the previous state by 
+executing `undo` (explained in the previous section). However, before the current state is deleted and replaced with 
+the previous one, `HistoryStack#addToRedo(ReadOnlyZooKeepBook)` is called to store the current state into the redo 
+stack for further use.
 
 ![RedoState3](images/RedoState3.png)
 
