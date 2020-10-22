@@ -221,9 +221,9 @@ public class MainWindow extends UiPart<Stage> {
                 commandResult = uiLogic.execute(commandText);
                 String userInput = commandText.trim();
                 if (userInput.split("_")[1].equals("inventory")) {
-                    commandResult = logic.execute("list_inventory");
+                    logic.execute("list_inventory");
                 } else {
-                    commandResult = logic.execute("list_finance");
+                    logic.execute("list_finance");
                 }
             } else if (tabPane.getSelectionModel().getSelectedItem().getText().equals("Finance")) {
                 commandResult = logic.execute(commandText);
