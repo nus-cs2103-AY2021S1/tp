@@ -102,8 +102,12 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* contains the `AddressBook` and `MenuManager`, `OrderManager` components.
+    * `AddressBook` stores the data for vendors.
+    * `MenuManager` stores the data for food items.
+    * `OrderManager` stores the data for order items.
+
+* Each of these coponents exposes an unmodifiable `ObservableList` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
@@ -256,7 +260,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | NUS resident                           | add a food item to my supper order |                                                                        |
 | `* * *`  | NUS resident | remove a food item from my supper order |                                    |
 | `* * *`  | NUS resident | see the menu | view all the items currently ordered by me |
-| `* * *` | NUS resident | see the vendor list and select vendor | confirm which vendor to order from                     |
+| `* * *` | NUS resident | see the vendor list and select vendor | confirm which vendor to order from       
+| `* * ` | NUS resident | see the total price of my current order | decide whether I want to order more   
 | `*`      | NUS resident | confirm order | finalize my supper selection                     |
 
 *{More to be added}*
@@ -273,6 +278,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. SupperStrikers displays the list of vendors
 3. User requests to choose a specified vendor
 4. SupperStrikers displays the menu of the selected vendor
+5. SupperStrikers creates a new empty order of the selected vendor
 
 **Extensions**
 
@@ -281,6 +287,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 3a1. SupperStrikers displays an error message.
 
     Use Case resumes at step 2
+- 3b. The user has already selected a different vendor.
+  - 3b1. SupperStrikers clears the order of the current vendor.
+  
+  Use case resumes at step 4.
 
 **Use case: Creating a new supper order**
 
@@ -313,40 +323,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use Case resumes at step 1
 
-- 1b. There is no current order.
+- 1b. The given quantity is negative.
 
   - 1b1. SupperStrikers shows an error message.
 
     Use Case resumes at step 1
 
-- 1c. The given quantity is negative.
-
-  - 1c1. SupperStrikers shows an error message.
-
-    Use Case resumes at step 1
-
-**Use case: Delete an item**
+**Use case: Remove an item**
 
 **MSS**
 
-1.  User requests to list all the items in the current order
-2.  SupperStrikers shows the current order
-3.  User requests to delete a specific item in the current order
-4.  SupperStrikers deletes the item
+1.  User requests to remove a quantity of a specific item in the current order
+2.  SupperStrikers decreases the quantity of the item by the quantity provided.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 1b. The given index is invalid.
 
-    * 3a1. SupperStrikers shows an error message.
+    * 1b1. SupperStrikers shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
+      
+* 1c. The given quantity is invalid.
+     * 1c1. SupperStrikers shows an error message.
+     
+      Use case ends.
+      
+* 1d. The given quantity is larger or equal to the quantity fo the order item.
+     * 1d1. SupperStrikers removes the order item at the specified index.
+     
+     Use case ends.
+      
+ 
 
 *{More to be added}*
 
@@ -407,29 +421,6 @@ testers are expected to do more *exploratory* testing.
 
    5. Other incorrect delete commands to try: `vendor x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-2. _{ more test cases …​ }_
-
-### Creating a new supper order
-
-1. Creating a supper order while a vendor has been chosen
-
-   1. Prerequisites: Select a vendor using the `vendor x` command (where x is the index of the chosen vendor).
-
-   2. Test case: `create`
-
-      Expected: New supper order created.
-
-1. _{ more test cases …​ }_
-
-### Viewing a current order
-
-1. Viewing an order while the order is currently active
-
-   1. Prerequisites: Create a supper order using the `order` command.
-
-   2. Test case: `order`<br>
-      Expected: All the items in the current order are displayed along with their associated quantities.
 
 2. _{ more test cases …​ }_
 
