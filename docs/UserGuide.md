@@ -33,7 +33,7 @@ It is a convenient platform for you to keep track of your lessons and assignment
 
    * **`delete`**`3` : Deletes the 3rd assignment shown in the current list.
 
-   * **`import YOUR_NUSMODS_URL`** : Imports your timetable.
+   * **`import url/YOUR_NUSMODS_URL`** : Imports your timetable.
 
    * **`list`**`2` : Lists assignments with deadline 2 days from current date (48 hours from current date and time).
    
@@ -41,7 +41,11 @@ It is a convenient platform for you to keep track of your lessons and assignment
 
    * **`remind`**`3` : Sets reminders for the 3rd assignment which will be displayed in `Your Reminders` section.
    
-   * **`unremind`**`3` : Removes reminders set for the 3rd assignment (assignment will be removed from `Your Reminders` section)
+   * **`unremind`**`3` : Removes reminders set for the 3rd assignment (assignment will be removed from `Your Reminders` section).
+
+   * **`prioritize`**`3 priority/HIGH` : Sets a "HIGH" priority tag for the 3rd assignment.
+   
+   * **`unprioritize`**`3` : Removes the priority tag for the 3rd assignment.
 
    * **`exit`** : Exits the application.
 
@@ -144,6 +148,7 @@ Examples:
 - `find priority/HIGH` Finds all assignments with high priority.
 
 ### Setting reminders for assignments : `remind`
+
 Sets reminders for the specified assignment which will be displayed in `Your Reminders` section.
 
 Format: `remind INDEX`
@@ -156,11 +161,34 @@ Examples:
 * `list` followed by `remind 2` sets reminders for the 2nd assignment in the assignment list.
 
 ### Removing reminders for assignments : `unremind`
+
 Removes reminders set for the specified assignment (assignment will be removed from `Your Reminders` section)
 
 Format: `unremind INDEX`
 
 * Removes reminders set for the assignment at the specified `INDEX`.
+* The index refers to the index number shown in the displayed assignment list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+### Setting priority for assignments : `prioritize`
+
+Sets a priority tag for the specified assignment.
+
+Format: `prioritze INDEX priorty/PRIORITY`
+
+* Sets the priority to the assignment at the specified `INDEX`.
+* Priority levels include LOW, MEDIUM and HIGH.
+* The index refers to the index number shown in the displayed assignment list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* If the assignment already has a priority tag, this command will replace the previous priority tag with the new one.
+
+### Removing priority for assignments : `unprioritize`
+
+Sets a priority tag for the specified assignment.
+
+Format: `prioritze INDEX`
+
+* Removes the priority of the assignment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed assignment list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -189,8 +217,10 @@ Action | Format, Examples
 --------|------------------
 **add** | `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE​ [remind]` <br> e.g., `add n/Math tutorial d/21-03-2020 1100 mod/ST2334`
 **delete** | `delete INDEX`<br> e.g., `delete 3`
-**import** | `import NUSMODS_URL`
+**import** | `import url/NUSMODS_URL`
 **list** | `list [NUMBER]` e.g., `list 2`, `list`
 **find** | `find PREFIX/ KEYWORD [MORE KEYWORD]` e.g., `find mod/CS2103T CS2100`, `find priority/HIGH`
 **remind** | `remind INDEX`
 **unremind** | `unremind INDEX`
+**prioritize** | `prioritize INDEX priority/PRIORITY`
+**unprioritize** | `unprioritize INDEX`
