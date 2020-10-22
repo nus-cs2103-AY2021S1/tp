@@ -13,7 +13,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ModuleListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.module.Module;
 import seedu.address.storage.Storage;
 
@@ -65,7 +67,7 @@ public class LogicManager implements Logic {
 
     @Override
     public Path getModuleListFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getModuleListFilePath();
     }
 
     @Override
@@ -76,5 +78,20 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public ReadOnlyContactList getContactList() {
+        return model.getContactList();
+    }
+
+    @Override
+    public ObservableList<Contact> getFilteredContactList() {
+        return model.getFilteredContactList();
+    }
+
+    @Override
+    public Path getContactListFilePath() {
+        return model.getModuleListFilePath();
     }
 }
