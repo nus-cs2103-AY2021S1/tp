@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
 
+import java.io.IOException;
 import java.nio.file.Path;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +24,7 @@ public class StorageManagerTest {
     private StorageManager storageManager;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws IOException {
         JsonPivotStorage pivotStorage = new JsonPivotStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(pivotStorage, userPrefsStorage);

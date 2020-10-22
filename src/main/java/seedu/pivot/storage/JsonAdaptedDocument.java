@@ -42,9 +42,9 @@ class JsonAdaptedDocument {
 
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Document} object.
+     * Converts this Jackson-friendly adapted Document object into the model's {@code Document} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted Document.
      */
     public Document toModelType() throws IllegalValueException {
         logger.info("Converting JSON to Document");

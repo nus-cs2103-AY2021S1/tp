@@ -19,14 +19,16 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private PivotStorage pivotStorage;
     private UserPrefsStorage userPrefsStorage;
+    private ReferenceStorage referenceStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code PivotStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(PivotStorage pivotStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(PivotStorage pivotStorage, UserPrefsStorage userPrefsStorage) throws IOException {
         super();
         this.pivotStorage = pivotStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.referenceStorage = new ReferenceStorage();
     }
 
     // ================ UserPrefs methods ==============================
@@ -74,6 +76,12 @@ public class StorageManager implements Storage {
     public void savePivot(ReadOnlyPivot pivot, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         pivotStorage.savePivot(pivot, filePath);
+    }
+
+    // ================ ReferenceStorage methods ==============================
+    @Override
+    public void addReferenceTestFile() throws IOException {
+        referenceStorage.addTestFile();
     }
 
 }

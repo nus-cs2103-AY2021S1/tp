@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.core.Messages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.CommandResult;
@@ -18,6 +20,8 @@ import seedu.pivot.model.investigationcase.Suspect;
 public class DeleteSuspectCommand extends DeleteCommand {
 
     public static final String MESSAGE_DELETE_SUSPECT_SUCCESS = "Deleted Suspect: %1$s";
+
+    private static final Logger logger = LogsCenter.getLogger(DeleteSuspectCommand.class);
 
     private final Index caseIndex;
     private final Index suspectIndex;
@@ -34,6 +38,8 @@ public class DeleteSuspectCommand extends DeleteCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("Deleting suspect from current case...");
+
         requireNonNull(model);
         List<Case> lastShownList = model.getFilteredCaseList();
 
@@ -44,6 +50,7 @@ public class DeleteSuspectCommand extends DeleteCommand {
         List<Suspect> updatedSuspects = openCase.getSuspects();
 
         if (suspectIndex.getZeroBased() >= updatedSuspects.size()) {
+            logger.info("Invalid index: " + suspectIndex.getOneBased());
             throw new CommandException(Messages.MESSAGE_INVALID_SUSPECTS_DISPLAYED_INDEX);
         }
 
