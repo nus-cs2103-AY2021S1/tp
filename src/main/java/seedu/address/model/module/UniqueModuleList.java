@@ -121,7 +121,7 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
-     * Checks whether an {@code instructor} in the module with the given (@code moduleCode} exists.
+     * Checks whether an {@code instructor} in the module with the given {@code moduleCode} exists.
      * The module with the {@code moduleCode} must exist in the address book.
      * @return true if the {@code instructor} is an instructor of the module with the {@code moduleCode}
      */
