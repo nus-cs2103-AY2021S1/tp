@@ -1,7 +1,9 @@
 package seedu.pivot.logic.state;
 
 import java.util.Optional;
+import java.util.logging.Logger;
 
+import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.ui.UiStateManager;
 
@@ -11,6 +13,7 @@ import seedu.pivot.ui.UiStateManager;
 public class StateManager {
 
     private static Optional<Index> state = Optional.empty();
+    private static final Logger logger = LogsCenter.getLogger(StateManager.class);
 
     /**
      * Gets the state of the program.
@@ -28,6 +31,7 @@ public class StateManager {
      * @param index Index of a case in the list.
      */
     public static void setState(Index index) {
+        logger.info("StateManager: Setting state with index" + index);
         assert (index != null) : "index should not be null";
         state = Optional.of(index);
         UiStateManager.setCasePanelState(index);
@@ -37,6 +41,7 @@ public class StateManager {
      * Resets the state of program to an empty state.
      */
     public static void resetState() {
+        logger.info("StateManager: Resetting State");
         state = Optional.empty();
         UiStateManager.resetCasePanelState();
     }
@@ -59,7 +64,11 @@ public class StateManager {
         return state.isEmpty();
     }
 
+    /**
+     * Requests UIStateManager to refresh the GUI.
+     */
     public static void refresh() {
+        logger.info("StateManager: Requests UIStateManager to refresh state");
         UiStateManager.refresh();
     }
 }
