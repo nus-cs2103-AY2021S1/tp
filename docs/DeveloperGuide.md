@@ -235,11 +235,31 @@ Saving and loading is done by the external class `JsonUtil`, who's static method
 - `JsonUtil#readJsonFile(Path filePath, Class<T> classOfObjectToDeserialize)` — Reads the Json file found at the file path, and converts it into the object of class T by using an `ObjectMapper`.
 - `JsonUtil#saveJsonFile(T jsonFile, Path filePath)` — Converts the object of class T into a Json file at the file path using the `FileUtil`.
 
+Given below is an example usage scenario and how the load mechanism behaves in every step.
 
+Step 1. The user launches the application. The MainApp will seek for a ModuleStorage and pass it to the StorageManager who will call `readModuleList(Path filePath)` to attempt to read module data from the Json file. If the file does not already exist, a new Json file is created.
 
+Step 2. The `JsonSerializableModuleList` is broken down into individual `JsonAdaptedModule` objects that are also converted into `Module` objects. To fill these modules with their identity fields such as `moduleId`, the Json file is read and the values of the fields are used to construct the `Module`. For the data fields such as the list of `TutorialGroup` objects, the list of `JsonAdaptedTutorialGroup` is converted into their corresponding class `TutorialGroup`.
 
+Step 3. The process is repeated in `JsonAdaptedTutorialGroup` to obtain the list of Student objects by converting `JsonAdaptedStudent` objects.
 
+Step 4. Once all layers of the Json objects have been converted to their corresponding class, the module list is ready and is used by `StorageManager`, available to be used by `ModelManager` in future to display these objects in the UI.
 
+The following activity diagram summarizes how data from the Json file is read and loaded when a user starts up the application:
+
+![LoadJsonActivityDiagram](images/LoadJsonActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How the Json file is structured.
+
+-   **Alternative 1 (current choice):** Saves the entire module list in a single file, nesting all internal components.
+    -   Pros: Easy to implement due to abstraction allowing conversion process to be done.
+    -   Cons: Easier for file to get corrupted, and will lead to massive lost of data should data corruption occur.
+
+-   **Alternative 2:** Saving lists of modules, tutorial groups, and students in separate Json files.
+    -   Pros: Easier to test each list individually to check the Json structure of each object type, and data corruption will lead to only data in separate lists to be lost (e.g. A corrupted `TutorialGroup` list will lead to no loss in the `Module` list)
+    -   Cons: Difficult to reconstruct the Json classes into the native classes and more data required to be stored for `StorageManager` to know which objects belong to which (e.g. Which `Module` a `TutorialGroup` belongs to).
 
 
 
