@@ -15,6 +15,7 @@ import nustorage.commons.exceptions.IllegalValueException;
 import nustorage.commons.util.FileUtil;
 import nustorage.commons.util.JsonUtil;
 import nustorage.model.Inventory;
+import nustorage.model.ReadOnlyInventory;
 
 
 /**
@@ -45,6 +46,7 @@ public class JsonInventoryStorage implements InventoryStorage {
 
     @Override
     public Optional<Inventory> readInventory() throws DataConversionException, IOException {
+        assert filePath != null : "Inventory file path is null!";
         return readInventory(filePath);
     }
 
@@ -72,6 +74,7 @@ public class JsonInventoryStorage implements InventoryStorage {
 
     @Override
     public void saveInventory(Inventory inventory) throws IOException {
+        assert inventory != null : "Inventory is null!";
         saveInventory(inventory, filePath);
     }
 
