@@ -27,11 +27,10 @@ public class AddSuspectCommand extends AddCommand {
     private static final String MESSAGE_DUPLICATE_SUSPECT = "This suspect already exists in the case.";
 
     private final Index index;
-    private final Suspect toAdd;
+    private final Suspect suspect;
 
     /**
-     * Creates an AddSuspectCommand to add the specified {@code Suspect
-     * }
+     * Creates an AddSuspectCommand to add the specified {@code Suspect}
      *
      * @param suspect
      */
@@ -39,7 +38,7 @@ public class AddSuspectCommand extends AddCommand {
         requireNonNull(index);
         requireNonNull(suspect);
         this.index = index;
-        toAdd = suspect;
+        this.suspect = suspect;
     }
 
     @Override
@@ -48,29 +47,30 @@ public class AddSuspectCommand extends AddCommand {
         List<Case> lastShownList = model.getFilteredCaseList();
 
         assert(StateManager.atCasePage()) : "Program should be at case page";
+        assert(index.getZeroBased() < lastShownList.size()) : "index should be valid";
 
         Case openCase = lastShownList.get(index.getZeroBased());
         List<Suspect> updatedSuspects = openCase.getSuspects();
 
-        if (updatedSuspects.contains(toAdd)) {
+        if (updatedSuspects.contains(suspect)) {
             throw new CommandException(MESSAGE_DUPLICATE_SUSPECT);
         }
 
-        updatedSuspects.add(toAdd);
-        Case editedCase = new Case(openCase.getTitle(), openCase.getDescription(), openCase.getStatus(),
+        updatedSuspects.add(suspect);
+        Case updatedCase = new Case(openCase.getTitle(), openCase.getDescription(), openCase.getStatus(),
                 openCase.getDocuments(), updatedSuspects, openCase.getVictims(), openCase.getWitnesses(),
                 openCase.getTags());
 
-        model.setCase(openCase, editedCase);
+        model.setCase(openCase, updatedCase);
         model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
-        return new CommandResult(String.format(MESSAGE_ADD_SUSPECT_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_ADD_SUSPECT_SUCCESS, suspect));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddSuspectCommand // instanceof handles nulls
-                && toAdd.equals(((AddSuspectCommand) other).toAdd)
+                && suspect.equals(((AddSuspectCommand) other).suspect)
                 && index.equals(((AddSuspectCommand) other).index));
     }
 }

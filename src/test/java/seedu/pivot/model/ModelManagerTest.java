@@ -117,7 +117,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentPivot, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getTitle().alphaNum.split("\\s+");
+        String[] keywords = ALICE.getTitle().getAlphaNum().split("\\s+");
         modelManager.updateFilteredCaseList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(pivot, userPrefs)));
 

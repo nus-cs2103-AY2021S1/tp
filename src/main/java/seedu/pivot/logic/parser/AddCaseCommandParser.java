@@ -12,6 +12,7 @@ import java.util.Set;
 
 import seedu.pivot.logic.commands.casecommands.AddCaseCommand;
 import seedu.pivot.logic.parser.exceptions.ParseException;
+import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Description;
 import seedu.pivot.model.investigationcase.Document;
@@ -25,6 +26,8 @@ import seedu.pivot.model.tag.Tag;
 public class AddCaseCommandParser implements Parser<AddCaseCommand> {
     @Override
     public AddCaseCommand parse(String args) throws ParseException {
+        assert(StateManager.atMainPage()) : "Program should be at main page";
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_STATUS, PREFIX_TAG);
 

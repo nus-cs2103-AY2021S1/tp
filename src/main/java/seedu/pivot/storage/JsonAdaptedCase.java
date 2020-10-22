@@ -72,13 +72,15 @@ class JsonAdaptedCase {
      * Converts a given {@code Case} into this class for Jackson use.
      */
     public JsonAdaptedCase(Case source) {
-        title = source.getTitle().alphaNum;
-        description = source.getDescription().alphaNum;
+        title = source.getTitle().getAlphaNum();
+        description = source.getDescription().getAlphaNum();
         status = source.getStatus().name();
         documents.addAll(source.getDocuments().stream()
                 .map(JsonAdaptedDocument::new)
                 .collect(Collectors.toList()));
-        suspects.addAll(source.getSuspects().stream().map(JsonAdaptedSuspect::new).collect(Collectors.toList()));
+        suspects.addAll(source.getSuspects().stream()
+                .map(JsonAdaptedSuspect::new)
+                .collect(Collectors.toList()));
         victims.addAll(source.getVictims().stream()
                 .map(JsonAdaptedVictim::new)
                 .collect(Collectors.toList()));
@@ -102,7 +104,8 @@ class JsonAdaptedCase {
         }
 
         if (title == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Title.class.getSimpleName()));
         }
         if (!Title.isValidTitle(title)) {
             throw new IllegalValueException(Title.MESSAGE_CONSTRAINTS);
@@ -119,7 +122,8 @@ class JsonAdaptedCase {
         final Description modelDescription = new Description(description);
 
         if (status == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Status.class.getSimpleName()));
         }
         if (!Status.isValidStatus(status)) {
             throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
@@ -136,8 +140,6 @@ class JsonAdaptedCase {
             modelVictims.add(victim.toModelType());
         }
 
-        final Set<Tag> modelTags = new HashSet<>(caseTags);
-
         final List<Witness> modelWitnesses = new ArrayList<>();
         for (JsonAdaptedWitness witness : witnesses) {
             modelWitnesses.add(witness.toModelType());
@@ -148,9 +150,10 @@ class JsonAdaptedCase {
             modelDocument.add(document.toModelType());
         }
 
+        final Set<Tag> modelTags = new HashSet<>(caseTags);
+
         return new Case(modelTitle, modelDescription, modelStatus, modelDocument,
                 modelSuspects, modelVictims, modelWitnesses, modelTags);
-
     }
 
 }

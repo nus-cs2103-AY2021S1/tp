@@ -1,5 +1,9 @@
 package seedu.pivot.model.investigationcase;
 
+/**
+ * Represents a Victim in the investigation case.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Victim extends CasePerson {
 
     /**
@@ -11,10 +15,21 @@ public class Victim extends CasePerson {
         super(name);
     }
 
+    /**
+     * Returns true if both suspects have the same identity and data fields.
+     * This defines a stronger notion of equality between two suspects.
+     */
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Victim // instanceof handles nulls
-                && this.getName().equals(((Victim) other).getName())); // state check
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Victim)) {
+            return false;
+        }
+
+        Victim otherVictim = (Victim) other;
+        return otherVictim.getName().equals(getName());
     }
 }
