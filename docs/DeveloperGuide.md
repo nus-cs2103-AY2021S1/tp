@@ -38,7 +38,47 @@ Coming soon.
 
 ## **Implementation**
 
-Coming soon.
+### \[Proposed\] Priority Feature
+
+#### Proposed Implementation
+
+The proposed priority feature would involve the UI javafx feature as well as a newly implemented field for the Clientlist.This field for the Clientlist would affect the UI of the ClientList. 
+
+There would be 4 settings for the priority feature: High, Medium, Low, Undefined. If a user never include any of the settings, it would default to undefined. The priority feature would change the entries in the Clientlist, changing the colors of the UI for each entry based on the priority assigned for the Client. 
+
+![Proposed UI](images/UIPriority.png)
+
+Firstly, the field would be added to the Person class. This would be similar to the method described in the tutorial:  https://nus-cs2103-ay2021s1.github.io/tp/tutorials/AddRemark.html, where instead of adding a command, we would be editing the add command to include an optional priority field. 
+
+Given below is an example usage scenario and how the priority mechanism behaves when a user is added. Note that this addition of users via addcommand is the same command used when the user launches the application for the first time. 
+
+Step 1. The user adds a command using addcommand and specifies the user. The addcommandparser will check if there was an empty string input for the priority field, if there is, we will set it as Undefined. If the user puts any other input other than the predefined inputs(H for high, M for medium, L for low), the user will get an error message. 
+
+Step 2: The addcommand parser will pass the command to the addcommand in the logic package to check if the user is a duplicated user or not.  If the person is a valid person, the person would be passed on to the UI.
+
+Step 3: In the UI, as it is an addCommand, the MainWindow will update the PersonListPanel, which will call the updateItem based on the Person and H. This will go to the PersonListViewCell, and would attempt to create a person class. 
+
+Step 4: To identify between the different levels of priority, I propose to use a PriorityParser class which would parse the PersonCard to identify the type of person it is and would adjust the GUI based on it. The results would then be used to create a new PersonCard class and with a custom GUI based on the priority of the individual.
+
+Step 5: This card would be returned back to the PersonListViewCell, updated on the PersonListPanel and finally shown in the Mainwindow. 
+
+The following sequence diagram shows how the Priority operation works:
+
+![Proposed Sequence Diagram](images/ImplementationSuggestionSequence.png)
+
+#### Design consideration:
+
+##### Aspect: How Priority feature works.
+
+* **Alternative 1 (current choice):** Create a parser to settle the image inside the UI class. 
+  * Pros: Decreased coupling, easier to find bugs.
+
+* **Alternative 2:** Do aside the parser, just put the switch cases inside the PersonListViewCell
+  itself.
+  * Pros: Will use less memory (No need to show the parser field).
+  * Cons: Increased coupling
+
+_{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
