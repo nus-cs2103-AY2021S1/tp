@@ -93,6 +93,10 @@ public class ModelManager implements Model {
         return mcGymmy;
     }
 
+    /**
+     * Sets McGymmy and saves the current state to the history
+     * @param mcGymmy
+     */
     @Override
     public void setMcGymmy(ReadOnlyMcGymmy mcGymmy) {
         saveCurrentStateToHistory();
@@ -106,6 +110,12 @@ public class ModelManager implements Model {
         return mcGymmy.hasFood(food);
     }
 
+    /**
+     * Deletes the given food and saves the current state to the history
+     * The index must be valid
+     *
+     * @param index
+     */
     @Override
     public void deleteFood(Index index) {
         logger.fine("Delete food at index: " + index.getOneBased());
@@ -113,6 +123,9 @@ public class ModelManager implements Model {
         mcGymmy.removeFood(index);
     }
 
+    /**
+     * Adds the given food and saves the current state to the history
+     */
     @Override
     public void addFood(Food food) {
         logger.fine("Add food:\n" + food.toString());
@@ -121,6 +134,10 @@ public class ModelManager implements Model {
         updateFilterPredicate(PREDICATE_SHOW_ALL_FOODS);
     }
 
+    /**
+     * Replaces the given food {@code target} with {@code editedFood}, and saves the current state to the history
+     * The index must be valid
+     */
     @Override
     public void setFood(Index index, Food editedFood) {
         CollectionUtil.requireAllNonNull(index, editedFood);
@@ -136,7 +153,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Undo the previous change to mcGymmy
+     * Undo the previous change to mcGymmy, remove that state from history
      */
     @Override
     public void undo() {
@@ -184,8 +201,10 @@ public class ModelManager implements Model {
     public void updateFilteredFoodList(Predicate<Food> predicate) {
         requireNonNull(predicate);
         logger.fine("Update predicate for filtered food list");
-        saveCurrentStateToHistory();
-        updateFilterPredicate(predicate);
+        if (!predicate.equals(filterPredicate)) {
+            saveCurrentStateToHistory();
+            updateFilterPredicate(predicate);
+        }
     }
 
     private void updateFilterPredicate(Predicate<Food> predicate) {
