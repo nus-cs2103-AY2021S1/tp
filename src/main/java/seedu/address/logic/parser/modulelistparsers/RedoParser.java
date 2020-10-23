@@ -1,6 +1,6 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.modulelistparsers;
 
-import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.modulelistcommands.RedoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
