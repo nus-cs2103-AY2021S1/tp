@@ -151,6 +151,23 @@ Step 3: `AddExCommand` executes and adds exercise to `Model`
 
 ![](images/AddExModel.png)
 
+### Edit Exercise feature
+
+Edit exercise function uses following classes:
+
+- `EditExCommandParser` - Parses user input.
+- `EdutExCommand` Deletes the exercise from the Exercise List.
+
+Below is how it works:
+
+Step 1. User executes `editex <index> [e/EXERCISE] [c/CALORIES]`.
+
+Step 2. `EditExCommandParser` parses the user input and creates a `EditExCommand` with the target index of the exercise to be deleted.
+
+Step 3: `EditExCommand` executes. `getFilteredExerciseList()` is called from the Model, to get the latest shown list of exercises. If an exercise of the given index exists in the list, it is edited in `Model`.
+
+![](images/EditExDiagram.png)
+
 ### Delete Exercise feature
 
 Delete exercise function uses following classes:
