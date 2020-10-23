@@ -22,8 +22,8 @@ public class DoneCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": mark the task identified by the index number used in the displayed task list as done.\n"
-            + "Parameters: INDEX (one or more positive integers that is separated by a white space)\n"
-            + "Example: " + COMMAND_WORD + " 1 2 3";
+            + "Parameters: INDEX:TIME_TAKEN (one or more positive integers that is separated by a white space)\n"
+            + "Example: " + COMMAND_WORD + " 1:20 2:10 3:120";
 
     public static final String MESSAGE_DONE_TASK_SUCCESS = "Task: %1$s is marked as complete.";
 

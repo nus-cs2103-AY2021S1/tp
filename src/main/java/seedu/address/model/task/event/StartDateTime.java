@@ -26,7 +26,7 @@ public class StartDateTime {
             value = DateUtil.DEFAULT_DATETIME;
         } else {
             checkArgument(isValidStartDateTime(dateTime), DateUtil.MESSAGE_CONSTRAINTS);
-            value = LocalDateTime.parse(dateTime, DateUtil.DATE_FORMATTER);
+            value = LocalDateTime.parse(dateTime, DateUtil.DATETIME_FORMATTER);
             isNull = false;
         }
     }
@@ -85,7 +85,7 @@ public class StartDateTime {
         if (isNull) {
             return "";
         } else {
-            return value.format(DateUtil.DATE_FORMATTER);
+            return value.format(DateUtil.DATETIME_FORMATTER);
         }
     }
 

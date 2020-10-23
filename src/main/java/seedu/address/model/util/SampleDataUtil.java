@@ -32,11 +32,11 @@ public class SampleDataUtil {
                     new Description("Programming Assignment 2 of CS3230, Very hard."),
                     getTagSet("colleagues", "friends"), Status.createCompleteStatus(),
                     new Duration(20), DoneDateTime.createDoneNow()),
-            Event.createUserEvent(new Title("CCA Orientation"), new StartDateTime("16-01-2021 13:00"),
-                    new EndDateTime("16-01-2021 18:00"), Description.defaultDescription(),
+            Event.createUserEvent(new Title("CCA Orientation"), new StartDateTime("25-11-2020 13:00"),
+                    new EndDateTime("25-11-2020 18:00"), Description.defaultDescription(),
                     getTagSet("neighbours")),
-            Event.createUserEvent(new Title("CS2105 tutorial"), new StartDateTime("19-01-2021 13:00"),
-                    new EndDateTime("19-01-2021 15:00"), Description.defaultDescription(),
+            Event.createUserEvent(new Title("CS2105 tutorial"), new StartDateTime("25-11-2020 13:00"),
+                    new EndDateTime("25-11-2020 15:00"), Description.defaultDescription(),
                     getTagSet("neighbours")),
         };
     }

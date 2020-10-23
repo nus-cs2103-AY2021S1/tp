@@ -1,8 +1,6 @@
 package seedu.address.model.task.event;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 import seedu.address.commons.util.DateUtil;
 import seedu.address.model.lesson.Time;
@@ -29,7 +27,7 @@ public class EndDateTime {
             value = DateUtil.DEFAULT_DATETIME;
         } else {
             checkArgument(isValidEndDateTime(dateTime), DateUtil.MESSAGE_CONSTRAINTS);
-            value = LocalDateTime.parse(dateTime, DateUtil.DATE_FORMATTER);
+            value = LocalDateTime.parse(dateTime, DateUtil.DATETIME_FORMATTER);
             isNull = false;
         }
     }

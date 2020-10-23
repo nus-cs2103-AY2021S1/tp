@@ -3,7 +3,6 @@ package seedu.address.model.task.deadline;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import seedu.address.commons.util.DateUtil;
 import seedu.address.model.lesson.Time;
@@ -14,16 +13,7 @@ import seedu.address.model.lesson.Time;
  */
 public class DeadlineDateTime {
 
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-    public static final String MESSAGE_CONSTRAINTS =
-            "DateTime should be in the format of dd-MM-yyyy HH:mm.";
-    public static final String DAY_MESSAGE_CONSTRAINTS =
-            "Day should be in the format of MON, TUE, ..., SUN or MONDAY, TUESDAY, ..., SUNDAY";
-    public static final String SEARCH_CONSTRAINTS =
-            "Search phrase for date should be in the format of dd-MM-yyyy or HH:mm or dd-MM-yyyy HH:mm.";
-    public static final String VALIDATION_REGEX =
-            "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4} (2[0-3]|[01][0-9]):([0-5][0-9])$";
-    public static final LocalDateTime DEFAULT_DATETIME = LocalDateTime.parse("01-01-1000 00:00", FORMATTER);
+    public static final LocalDateTime DEFAULT_DATETIME = LocalDateTime.parse("01-01-1000 00:00", DateUtil.DATETIME_FORMATTER);
     public final LocalDateTime value;
     public final boolean isNull;
 
@@ -37,8 +27,8 @@ public class DeadlineDateTime {
             this.isNull = true;
             value = DEFAULT_DATETIME;
         } else {
-            checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
-            value = LocalDateTime.parse(dateTime, FORMATTER);
+            checkArgument(isValidDateTime(dateTime), DateUtil.MESSAGE_CONSTRAINTS);
+            value = LocalDateTime.parse(dateTime, DateUtil.DATETIME_FORMATTER);
             isNull = false;
         }
     }
@@ -58,7 +48,7 @@ public class DeadlineDateTime {
      * @return true if the test string is valid and false otherwise
      */
     public static boolean isValidDateTime(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return DateUtil.isValidDateTime(test);
     }
 
     /**
@@ -76,7 +66,7 @@ public class DeadlineDateTime {
         if (isNull) {
             return "";
         } else {
-            return value.format(FORMATTER);
+            return value.format(DateUtil.DATETIME_FORMATTER);
         }
     }
 

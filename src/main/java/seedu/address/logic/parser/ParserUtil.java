@@ -86,7 +86,7 @@ public class ParserUtil {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();
         if (!DeadlineDateTime.isValidDateTime(trimmedDateTime)) {
-            throw new ParseException(DeadlineDateTime.MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
         }
         return new DeadlineDateTime(trimmedDateTime);
     }
