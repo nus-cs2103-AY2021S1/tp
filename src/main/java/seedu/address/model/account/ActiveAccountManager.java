@@ -34,6 +34,10 @@ public class ActiveAccountManager implements ActiveAccount {
         previousState = Optional.empty();
     }
 
+    /**
+     * Initializes an ActiveAccountManager with the given account, expenses,
+     * revenues and previous state of ActiveAccount.
+     */
     private ActiveAccountManager(ReadOnlyAccount account, FilteredList<Expense> filteredExpenses,
                                  FilteredList<Revenue> filteredRevenues, Optional<ActiveAccount> previousState) {
         this.activeAccount = new Account(account);
@@ -43,10 +47,12 @@ public class ActiveAccountManager implements ActiveAccount {
     }
     //=========== ActiveAccount ================================================================================
 
-
     @Override
-    public void setPreviousState() {
-        previousState = Optional.of(this.getCopy());
+    public ActiveAccount getCopy() {
+        Account copiedAccount = getAccount();
+        FilteredList<Expense> copiedExpenses = new FilteredList<>(copiedAccount.getExpenseList());
+        FilteredList<Revenue> copiedRevenues = new FilteredList<>(copiedAccount.getRevenueList());
+        return new ActiveAccountManager(copiedAccount, copiedExpenses, copiedRevenues, previousState);
     }
 
     @Override
@@ -55,11 +61,18 @@ public class ActiveAccountManager implements ActiveAccount {
     }
 
     @Override
-    public ActiveAccount getCopy() {
-        Account copiedAccount = getAccount();
-        FilteredList<Expense> copiedExpenses = new FilteredList<>(copiedAccount.getExpenseList());
-        FilteredList<Revenue> copiedRevenues = new FilteredList<>(copiedAccount.getRevenueList());
-        return new ActiveAccountManager(copiedAccount, copiedExpenses, copiedRevenues, previousState);
+    public boolean hasNoPreviousState() {
+        return previousState.isEmpty();
+    }
+
+    @Override
+    public void setPreviousState() {
+        previousState = Optional.of(this.getCopy());
+    }
+
+    @Override
+    public void removePreviousState() {
+        previousState = Optional.empty();
     }
 
     @Override
@@ -71,16 +84,6 @@ public class ActiveAccountManager implements ActiveAccount {
             filteredRevenues = new FilteredList<>(activeAccount.getRevenueList());
             previousState = prevState.getPreviousState();
         });
-    }
-
-    @Override
-    public boolean hasNoPreviousState() {
-        return previousState.isEmpty();
-    }
-
-    @Override
-    public void resetPreviousState() {
-        previousState = Optional.empty();
     }
 
     //=========== Account ================================================================================

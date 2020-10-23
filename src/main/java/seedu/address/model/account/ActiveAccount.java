@@ -18,18 +18,36 @@ public interface ActiveAccount {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Entry> PREDICATE_SHOW_ALL_ENTRY = unused -> true;
 
-
-    void setPreviousState();
-
-    Optional<ActiveAccount> getPreviousState();
-
+    /**
+     * Returns a copy of this {@code ActiveAccount}.
+     */
     ActiveAccount getCopy();
 
-    void returnToPreviousState();
+    /**
+     * Returns the most recent previous state of this {@code ActiveAccount}.
+     */
+    Optional<ActiveAccount> getPreviousState();
 
+    /**
+     * Returns true if this {@code ActiveAccount} does not have a previous state.
+     */
     boolean hasNoPreviousState();
 
-    void resetPreviousState();
+    /**
+     * Sets the existing data of this {@code ActiveAccount} {@code ActiveAccount} to be the previous state.
+     */
+    void setPreviousState();
+
+    /**
+     * Removes the previous state of this {@code ActiveAccount}.
+     */
+    void removePreviousState();
+
+    /**
+     * Resets the existing data of this {@code ActiveAccount} with the data of the previous state.
+     */
+    void returnToPreviousState();
+
     /**
      * Replaces account data with the data in {@code newActiveAccount}.
      */

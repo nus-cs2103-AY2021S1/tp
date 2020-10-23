@@ -42,7 +42,7 @@ public class ActiveAccountStub implements ActiveAccount {
     }
 
     @Override
-    public void resetPreviousState() {
+    public void removePreviousState() {
     }
 
     @Override

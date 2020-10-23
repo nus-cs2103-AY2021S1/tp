@@ -6,9 +6,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.account.ActiveAccount;
 
-
-
-
+/**
+ * Undo the latest command executed in CommonCents.
+ */
 public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";
 

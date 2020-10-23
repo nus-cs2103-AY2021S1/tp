@@ -49,6 +49,7 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) {
         requireAllNonNull(model, activeAccount);
+        // Set previous state for undo before new entry is added
         activeAccount.setPreviousState();
 
         if (entry instanceof Expense) {
