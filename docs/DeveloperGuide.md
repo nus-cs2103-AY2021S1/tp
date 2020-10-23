@@ -850,6 +850,12 @@ Step 11. `SortCommand#execute()` returns the `CommandResult`. The message genera
 
 Step 12. The sort success message is displayed to the user.
 
+#### Sequence Diagram
+
+The following sequence diagram shows how the sort feature works for **Example 1**:
+
+![SortFeatureExample1](images/SortFeatureExample1.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
