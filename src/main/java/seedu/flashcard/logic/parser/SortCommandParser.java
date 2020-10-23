@@ -20,11 +20,7 @@ public class SortCommandParser implements Parser<SortCommand> {
     public SortCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CRITERIA);
-        boolean isPrefixValid = argMultimap.getValue(PREFIX_CRITERIA).isPresent() && (
-                argMultimap.getValue(PREFIX_CRITERIA).get().equals("a")
-                        || argMultimap.getValue(PREFIX_CRITERIA).get().equals("d"));
-
-        if (!isPrefixValid || argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.getValue(PREFIX_CRITERIA).isPresent() || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
         try {

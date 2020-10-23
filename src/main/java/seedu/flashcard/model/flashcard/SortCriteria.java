@@ -35,7 +35,7 @@ public enum SortCriteria implements Comparator<Flashcard> {
     };
 
     public static final String MESSAGE_INVALID_SORT_CRITERIA = "Invalid sort criteria";
-    private static final Map<String, SortCriteria> SORT_CRITERIA_MAP = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+    private static final Map<String, SortCriteria> SORT_CRITERIA_MAP = new TreeMap<>();
 
     static {
         for (SortCriteria sortCriteria : values()) {
