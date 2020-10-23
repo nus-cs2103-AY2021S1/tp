@@ -4,27 +4,42 @@ by Team W12-2
 ---
 
 ## **Table of Contents**
+* Section 1 - Preface
+* Section 2 - Setting up, getting started
+* Section 3 - Design
+    * 3.1 - High-Level Architecture 
+    * 3.2 - UI Component
+    * 3.3 - Logic Component
+    * 3.4 - Model Component
+    * 3.5 - Storage Component
+    * 3.6 - Common Classes
+* Section 4 - Implementation
+    * 4.1 - Add feature
+    * 4.2 - Undo/redo feature
+    * 4.3 - Data saving and loading
+* Section 5 - Documentation, logging, testing, configuration, dev-ops
+* Section 6 - Appendix
 
 ---
 
 
 
-## **Preface**
-This is a Developer Guide to Trackr. A student and task management system for Teach Assistants of all faculties who want to manage their students from various modules and tutorial groups, all in one place.
+## **Section 1 - Preface**
+This is a Developer Guide to Trackr. A student and task management system for Teaching Assistants of all faculties who want to manage their students from various modules and tutorial groups, all in one place.
 
 
 ---
 
 
-## **Setting up, getting started**
+## **Section 2 - Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ---
 
-## **Design**
+## **Section 3 - Design**
 
-### High-Level Architecture
+### Section 3.1 - High-Level Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -65,7 +80,7 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### UI component
+### Section 3.2 - UI component
 The UI Component defines what the user will see and interact with while using Trackr. `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -80,7 +95,7 @@ The `UI` component,
 -   Executes user commands using the `Logic` component.
 -   Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+### Section 3.3 - Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -100,7 +115,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+### Section 3.4 - Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -118,7 +133,7 @@ The `Model`,
 
 </div>
 
-### Storage component
+### Section 3.5 - Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -135,11 +150,11 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ---
 
-## **Implementation**
+## **Section 4 - Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add feature
+### Section 4.1 - Add feature
 #### Overview
 
 The Add feature in Trackr enables users to easily add models to the app. Users will be able to keep track of models they are
@@ -168,7 +183,7 @@ Given below is an example of the interaction between the Model and the `AddModul
     - Pros: Easier to implement
     - Cons: More repetitive code
 
-### \[Proposed\] Undo/redo feature
+### Section 4.2 - \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
@@ -249,7 +264,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### Data saving and loading
+### Section 4.3 - Data saving and loading
 
 #### Implementation
 
@@ -298,7 +313,7 @@ The following activity diagram summarizes how data from the Json file is read an
 
 ---
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **Section 5 - Documentation, logging, testing, configuration, dev-ops**
 
 -   [Documentation guide](Documentation.md)
 -   [Testing guide](Testing.md)
@@ -307,7 +322,7 @@ The following activity diagram summarizes how data from the Json file is read an
 -   [DevOps guide](DevOps.md)
 
 ---
-
+# **Section 6 - Appendix**
 ## **Appendix: Requirements**
 
 ### Product scope
