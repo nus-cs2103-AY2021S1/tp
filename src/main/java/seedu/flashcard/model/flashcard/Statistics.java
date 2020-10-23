@@ -54,7 +54,10 @@ public class Statistics {
      * Returns true if a given statistics is a valid statistics.
      */
     public static boolean isValidStatistics(int reviewFrequency, int successFrequency) {
-        return reviewFrequency >= 0 && successFrequency >= 0 && reviewFrequency >= successFrequency;
+        boolean isReviewFrequencyValid = reviewFrequency >= 0;
+        boolean isSuccessFrequencyValid = successFrequency >= 0;
+        boolean isReviewFrequencyGreaterThanOrEqualToSuccessFrequency = reviewFrequency >= successFrequency;
+        return  isReviewFrequencyValid && isSuccessFrequencyValid && isReviewFrequencyGreaterThanOrEqualToSuccessFrequency;
     }
 
     /**
