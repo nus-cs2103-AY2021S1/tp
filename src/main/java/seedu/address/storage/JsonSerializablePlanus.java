@@ -48,7 +48,7 @@ class JsonSerializablePlanus {
     }
 
     /**
-     * Converts this address book into the model's {@code Planus} object.
+     * Converts this PlaNus into the model's {@code Planus} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
