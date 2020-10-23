@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import chopchop.logic.history.CommandHistory;
-import chopchop.logic.history.History;
+import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.ItemReference;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.model.EntryBook;
@@ -38,7 +38,7 @@ public class CommandTestUtil {
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
                                             Model expectedModel) {
         try {
-            CommandResult result = command.execute(actualModel, new HistoryStub());
+            CommandResult result = command.execute(actualModel, new HistoryManagerStub());
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
@@ -68,7 +68,8 @@ public class CommandTestUtil {
         EntryBook<Ingredient> expectedIndBook = new EntryBook<>(actualModel.getIngredientBook());
         List<Ingredient> expectedFilteredList = new ArrayList<>(actualModel.getFilteredIngredientList());
 
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel, new HistoryStub()));
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel,
+                new HistoryManagerStub()));
         assertEquals(expectedIndBook, actualModel.getIngredientBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredIngredientList());
     }
@@ -89,23 +90,19 @@ public class CommandTestUtil {
     /**
      * A default history stub that have all of the methods failing.
      */
-    public static class HistoryStub implements History {
-        @Override
+    public static class HistoryManagerStub extends HistoryManager {
         public void add(CommandHistory command) {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
         public CommandResult undo(Model model) {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
         public CommandResult redo(Model model) {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
         public String getHistory() {
             throw new AssertionError("This method should not be called.");
         }

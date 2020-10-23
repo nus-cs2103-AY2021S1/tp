@@ -11,7 +11,6 @@ import chopchop.logic.commands.RedoCommand;
 import chopchop.logic.commands.UndoCommand;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.CommandHistory;
-import chopchop.logic.history.History;
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.CommandParser;
 import chopchop.logic.parser.exceptions.ParseException;
@@ -31,7 +30,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final History history;
+    private final HistoryManager history;
     private final CommandParser parser;
 
     /**

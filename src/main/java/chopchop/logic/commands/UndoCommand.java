@@ -3,7 +3,7 @@ package chopchop.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import chopchop.logic.commands.exceptions.CommandException;
-import chopchop.logic.history.History;
+import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 
 /**
@@ -13,10 +13,10 @@ public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";
 
     @Override
-    public CommandResult execute(Model model, History history) throws CommandException {
+    public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
         requireNonNull(model);
-        requireNonNull(history);
+        requireNonNull(historyManager);
 
-        return history.undo(model);
+        return historyManager.undo(model);
     }
 }

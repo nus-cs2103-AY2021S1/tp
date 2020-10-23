@@ -9,7 +9,7 @@ import chopchop.commons.core.Messages;
 import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.commons.util.Pair;
 import chopchop.logic.commands.exceptions.CommandException;
-import chopchop.logic.history.History;
+import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.ItemReference;
 import chopchop.model.Model;
 import chopchop.model.exceptions.IncompatibleIngredientsException;
@@ -49,7 +49,7 @@ public class MakeRecipeCommand extends Command implements Undoable {
     }
 
     @Override
-    public CommandResult execute(Model model, History history) throws CommandException {
+    public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
         requireNonNull(model);
 
         if (this.item.isIndexed()) {

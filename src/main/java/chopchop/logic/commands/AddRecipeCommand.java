@@ -6,7 +6,7 @@ import static chopchop.commons.util.Strings.ARG_STEP;
 import static java.util.Objects.requireNonNull;
 
 import chopchop.logic.commands.exceptions.CommandException;
-import chopchop.logic.history.History;
+import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 import chopchop.model.recipe.Recipe;
 
@@ -43,7 +43,7 @@ public class AddRecipeCommand extends Command implements Undoable {
     }
 
     @Override
-    public CommandResult execute(Model model, History history) throws CommandException {
+    public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
         requireNonNull(model);
 
         if (model.hasRecipe(this.recipe)) {
