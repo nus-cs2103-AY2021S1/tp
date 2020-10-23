@@ -20,7 +20,7 @@ public class ListRecipeCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.resetRecipeFilters();
+
         if (model.getFilteredRecipeList().isEmpty()) {
             return new CommandResult(MESSAGE_NO_RECIPES, false, false, DisplayedInventoryType.RECIPES);
         } else {

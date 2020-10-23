@@ -74,8 +74,8 @@ public class AddQuantityToItemCommand extends Command {
             throw new CommandException(MESSAGE_NEGATIVE_QUANTITY);
         }
 
-        Quantity updatedQuantity = new Quantity(Integer.toString(Integer.parseInt(itemToEdit.getQuantity().value)
-                + quantity));
+        Quantity updatedQuantity = new Quantity(Integer.toString((itemToEdit.getQuantity().number
+                + quantity)));
         assert updatedQuantity.number >= 0;
 
         EditItemDescriptor editItemDescriptor = new EditItemDescriptor();

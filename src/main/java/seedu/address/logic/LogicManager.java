@@ -50,6 +50,10 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = inventoryParser.parseCommand(commandText);
+        // clear filters to prepare for command execution
+        model.resetItemFilters();
+        model.resetRecipeFilters();
+
         commandResult = command.execute(model);
 
         try {
@@ -134,6 +138,8 @@ public class LogicManager implements Logic {
             inventoryList.addAll(model.getFilteredItemList());
             break;
         case RECIPES:
+            model.resetItemFilters();
+            // model.resetRecipeFilters();
             model.getFilteredRecipeList()
                     .forEach(recipe -> inventoryList.add(recipe.print(model.getFilteredItemList())));
             break;
