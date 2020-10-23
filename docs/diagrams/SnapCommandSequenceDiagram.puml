@@ -1,0 +1,73 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ZooKeepBookParser" as ZooKeepBookParser LOGIC_COLOR
+participant ":SnapCommandParser" as SnapCommandParser LOGIC_COLOR
+participant "snapCommand:SnapCommand" as SnapCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":StorageManager" as StorageManager MODEL_COLOR
+end box
+
+[-> LogicManager : execute("snap zookeepbook_10-2020")
+activate LogicManager
+
+LogicManager -> ZooKeepBookParser : parseCommand("snap zookeepbook_10-2020")
+activate ZooKeepBookParser
+
+create SnapCommandParser
+ZooKeepBookParser -> SnapCommandParser
+activate SnapCommandParser
+
+SnapCommandParser --> ZooKeepBookParser
+deactivate SnapCommandParser
+
+ZooKeepBookParser -> SnapCommandParser : parse("zookeepbook_10-2020")
+activate SnapCommandParser
+
+create SnapCommand
+SnapCommandParser -> SnapCommand
+activate SnapCommand
+
+SnapCommand --> SnapCommandParser
+deactivate SnapCommand
+
+SnapCommandParser --> ZooKeepBookParser : snapCommand
+destroy SnapCommandParser
+
+ZooKeepBookParser --> LogicManager : snapCommand
+deactivate ZooKeepBookParser
+
+LogicManager -> SnapCommand : execute(model)
+activate SnapCommand
+
+SnapCommand -> Model : getZooKeepBook()
+activate Model
+
+Model -> SnapCommand : readOnlyZooKeepBook
+deactivate Model
+
+create StorageManager
+SnapCommand -> StorageManager
+activate StorageManager
+
+StorageManager -> SnapCommand
+deactivate StorageManager
+
+SnapCommand -> StorageManager : saveZooKeepBook(readOnlyZooKeepBook, savePath)
+activate StorageManager
+
+StorageManager -> SnapCommand
+deactivate StorageManager
+
+SnapCommand -> LogicManager : commandResult
+destroy SnapCommand
+destroy StorageManager
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

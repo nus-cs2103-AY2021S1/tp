@@ -316,14 +316,24 @@ Undo command | Redo command
 
 #### Implementation
 
-The snapshot feature is implemented by the `SnapCommand` and `SnapCommandParser` classes. `SnapCommandParser`
-parses the user's input as a file name and then creates a `SnapCommand` object with the file name as a parameter.
+The snapshot feature is implemented by the `SnapCommand` and `SnapCommandParser` classes. 
+`SnapCommandParser` parses the user's input as a file name and then creates a `SnapCommand` 
+object with a `Path` object representing the save destination and file name as parameters.
 
 `SnapCommand` executes by copying the current state of the zookeep book and then utilising
-`StorageManager`'s save method to save the zookeep book with the specified file name.
+`StorageManager`'s save method to save the copied zookeep book with the user specified file name.
+
+The following sequence diagram illustrates the creation and execution of a `SnapCommand`:
+
+![SnapCommandSequenceDiagram](images/SnapCommandSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifelines for `SnapCommandParser`, `SnapCommand`, `StorageManager` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 #### Design considerations:
-
+##### Aspect: Overwriting files
 * We chose to prevent users from creating a snapshot if the specified file name already exists
 as overwriting a file is irreversible and would be disastrous for zookeepers if done unintentionally
 
