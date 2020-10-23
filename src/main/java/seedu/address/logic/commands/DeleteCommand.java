@@ -43,7 +43,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Initialize a DeleteCommand using Nric, set targetIndex to empty Optional
-     * @param targetNric
+     * @param targetNric Nric of patient
      */
     public DeleteCommand(Nric targetNric) {
         this.targetNric = Optional.ofNullable(targetNric);

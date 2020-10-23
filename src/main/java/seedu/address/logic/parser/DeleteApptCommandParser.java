@@ -11,22 +11,23 @@ import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.appointmentcommand.AddApptCommand;
+import seedu.address.logic.commands.appointmentcommand.DeleteApptCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Appointment;
 
 /**
- * Parses input arguments and creates a new AddApptCommand object
+ * Parses input arguments and creates a new DeleteApptCommand object
  */
-public class AddApptCommandParser implements Parser<AddApptCommand> {
+public class DeleteApptCommandParser implements Parser<DeleteApptCommand> {
 
     private final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddApptCommand
-     * and returns an AddApptCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the DeleteApptCommand
+     * and returns an DeleteApptCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddApptCommand parse(String args) throws ParseException {
+    public DeleteApptCommand parse(String args) throws ParseException {
         logger.info("----------------[STRING TO PARSE][" + args + "]");
         logger.log(Level.INFO, "Start parsing");
         requireNonNull(args);
@@ -48,6 +49,7 @@ public class AddApptCommandParser implements Parser<AddApptCommand> {
         }
         assert !appointment.equals(new Appointment()) : "Appointment should not be empty!";
 
-        return new AddApptCommand(index, appointment);
+        return new DeleteApptCommand(index, appointment);
     }
+
 }
