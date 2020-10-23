@@ -16,7 +16,7 @@ import seedu.flashcard.model.flashcard.QuestionContainsKeywordsPredicate;
 import seedu.flashcard.model.flashcard.TagsContainsKeywordsPredicate;
 
 /**
- * Finds and lists all flashcards in flashcard deck who contains any of the argument keywords.
+ * Finds and lists all flashcards in flashcard deck which contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
