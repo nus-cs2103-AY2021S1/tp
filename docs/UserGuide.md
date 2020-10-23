@@ -2,7 +2,7 @@
 
 **Welcome to Reeve!**
 
-Reeve is a desktop application for **private tutors to to better manage both administrative and academic details of their students**, optimised for use via a 
+Reeve is a desktop application for **private tutors to to better manage both administrative and academic details of their students**, optimised for use via a
 **Command Line Interface (CLI)** for receiving inputs while still having the benefits of a **Graphical User Interface (GUI)** for displaying information.
 
 * Table of Contents
@@ -26,7 +26,7 @@ Reeve is a desktop application for **private tutors to to better manage both adm
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`add n/Alex p/93211234 s/Commonwealth Secondary School y/Primary 6 v/Blk 33 West Coast Rd #21-214 
+   * **`add`**`add n/Alex p/93211234 s/Commonwealth Secondary School y/Primary 6 v/Blk 33 West Coast Rd #21-214
    t/1 1430-1630 f/25 d/12/12/2020` : Adds a student named `Alex` to Reeve.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
@@ -80,9 +80,9 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/L
 </div>
 
 Example:
-* `add n/Alex p/93211234 s/Commonwealth Secondary School y/Primary 6 v/Blk 33 West Coast Rd #21-214 
+* `add n/Alex p/93211234 s/Commonwealth Secondary School y/Primary 6 v/Blk 33 West Coast Rd #21-214
 t/1 1430-1630 f/25 d/12/12/2020`
-* `add n/John Doe p/98765432 s/Woodlands Secondary School y/Secondary 2 v/347 Woodlands Ave 3, Singapore 730347 
+* `add n/John Doe p/98765432 s/Woodlands Secondary School y/Secondary 2 v/347 Woodlands Ave 3, Singapore 730347
 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
 
 ### Listing all students : `list`
@@ -152,7 +152,7 @@ Format: `question INDEX [a/QUESTION_ADD] [s/QUESTION_INDEX] [d/QUESTION_INDEX]`
 * Exactly one of the optional fields must be present.
 * The index and question index **must be positive integers** 1, 2, 3, …​
 * The `a/` field adds a new unanswered question to the student at the specified `INDEX`.
-* The `s/` field marks an unanswered question, of the student at the specified `INDEX`, at the specified 
+* The `s/` field marks an unanswered question, of the student at the specified `INDEX`, at the specified
 `QUESTION_INDEX` as solved.
 * The `d/` field deletes the question at the specified `QUESTION_INDEX` from the student at the specified `INDEX`.
 

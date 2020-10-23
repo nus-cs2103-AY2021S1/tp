@@ -141,7 +141,7 @@ It is handled by the `EditCommand`.
 The following describes the flow of how `EditCommand` is executed.
 
 1. Upon successfully parsing the user input, `EditCommand#execute(Model model)` is called to edit the existing student to the new edited student.
-2. `Model#setStudent(Student student)` is called to replace the student with edited student within the model. 
+2. `Model#setStudent(Student student)` is called to replace the student with edited student within the model.
 3. `Model#updateFilteredStudentsList(Predicate<Student> predicate)` is then called to update the student list with the new edited student.
 4. A new `CommandResult` is returned with a successful message indicating that the student has been edited.
 5. The edited student is now shown on the student list.
@@ -332,34 +332,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Reeve requests for appropriate input.
 
       Use case resumes from step 1.
-        	
+
 * 1b. User provides input with invalid format.
     * 1b1. Reeve requests for appropriate input with valid format.
-      
+
       Use case resumes from step 1.
-        	
+
 **UC02: Searching for a student**
 
 **MSS**
 
 1.  User enters a command to find all students that match the given search parameter (name, school, year or subject).
-2.  Reeve displays all students matching the criteria. 
-    
+2.  Reeve displays all students matching the criteria.
+
     Use case ends.
 
 **Extensions**
 
 * 1a. User provides input with invalid data into the search parameter.
-    * 1a1. Reeve displays erroneous field and expected format.       
-      
-      Use case resumes at step 1.      
+    * 1a1. Reeve displays erroneous field and expected format.    
+
+      Use case resumes at step 1.   
 * 1b. User provides input without a search parameter.
-    * 1a1. Reeve displays a message indicating a search parameter was not provided.       
-      
+    * 1a1. Reeve displays a message indicating a search parameter was not provided.
+
       Use case resumes at step 1.
 * 1c. No students match the given criteria.
-    * 1c1. Reeve displays a message indicating no match found.    
-      
+    * 1c1. Reeve displays a message indicating no match found.   
+
       Use case ends.
 
 **UC03: Editing a student's details**
@@ -384,11 +384,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 * 3b. User provides input without any parameters.
     * 3b1. Reeve requests for input with parameters.
-      
+
       Use case resumes at step 2.
 * 3c. User provides input with invalid format.
 	* 3c1. Reeve requests for input with valid format.
-	
+
 	  Use case resumes at step 2.
 
 **UC04: Deleting a student**
@@ -412,8 +412,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Reeve displays an error message.
 
       Use case resumes at step 2.
-    
-**UC05: Listing all students** 
+
+**UC05: Listing all students**
 
 **MSS**
 
@@ -421,7 +421,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Reeve displays the students list with student details.
 
    Use case ends.
- 
+
 
 **UC06: Clearing all student records**
 
@@ -429,7 +429,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User enters a command to clear the students list.
 2. Reeve displays a success message.
-   
+
    Use case ends.
 
 
@@ -441,7 +441,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Reeve displays all students that match the above criteria.
 
    Use case ends.
-   
+
 **Extensions**
 
 * 1a. The list is empty.
