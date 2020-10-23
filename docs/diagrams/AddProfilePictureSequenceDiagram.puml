@@ -1,5 +1,5 @@
 @startuml
-skinparam defaultFontSize 16
+skinparam defaultFontSize 17
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
