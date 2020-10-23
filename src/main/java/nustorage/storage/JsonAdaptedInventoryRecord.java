@@ -35,6 +35,8 @@ class JsonAdaptedInventoryRecord {
      * Converts a given {@code InventoryRecord} into this class for Jackson use.
      */
     public JsonAdaptedInventoryRecord(InventoryRecord source) {
+        assert source != null : "Source inventory record is null!";
+
         this.quantity = source.getQuantity();
         this.itemName = source.getItemName();
         this.dateTime = source.getDateTime();

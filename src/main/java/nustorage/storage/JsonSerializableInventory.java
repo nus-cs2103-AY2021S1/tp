@@ -43,6 +43,8 @@ class JsonSerializableInventory {
      * @param source future changes to this will not affect the created {@code JsonSerializableInventory}.
      */
     public JsonSerializableInventory(ReadOnlyInventory source) {
+        assert source != null : "Source inventory is null!";
+
         this.inventoryRecords.addAll(
                 source.getInventoryRecordList()
                         .stream()
