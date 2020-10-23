@@ -35,21 +35,19 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         List<Assignment> lastShownList = model.getFilteredAssignmentList();
         List<Assignment> deletedAssignments = new ArrayList<>();
 
         for (Index targetIndex : targetIndexes) {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
+            } else {
+                Assignment assignmentToDelete = lastShownList.get(targetIndex.getZeroBased());
+                deletedAssignments.add(assignmentToDelete);
+                model.deleteAssignment(assignmentToDelete);
             }
         }
-
-        for (Index targetIndex : targetIndexes) {
-            Assignment assignmentToDelete = lastShownList.get(targetIndex.getZeroBased());
-            deletedAssignments.add(assignmentToDelete);
-            model.deleteAssignment(assignmentToDelete);
-        }
-
 
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, deletedAssignments));
     }

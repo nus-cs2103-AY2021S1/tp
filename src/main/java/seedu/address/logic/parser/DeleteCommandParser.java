@@ -23,8 +23,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
     public DeleteCommand parse(String args) throws ParseException {
         try {
             String[] indexes = args.split("\\s+");
-            System.out.println(Arrays.toString(indexes));
             List<Index> parsedIndexes = new ArrayList<>();
+
             for (String s : indexes) {
                 if (!s.isEmpty()) {
                     Index index = ParserUtil.parseIndex(s);
