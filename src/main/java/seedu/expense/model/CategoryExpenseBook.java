@@ -97,4 +97,14 @@ public class CategoryExpenseBook extends ExpenseBook {
     public boolean containsCategory(Tag toCheck) {
         return budgets.contains(new CategoryBudget(toCheck));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof CategoryExpenseBook // instanceof handles nulls
+            && expenses.equals(((CategoryExpenseBook) other).expenses))
+            && budgets.equals(((CategoryExpenseBook) other).budgets)
+            && filteredExpenses.equals(((CategoryExpenseBook) other).filteredExpenses)
+            && filteredBudgets.equals(((CategoryExpenseBook) other).filteredBudgets);
+    }
 }
