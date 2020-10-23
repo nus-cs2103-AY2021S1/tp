@@ -38,6 +38,8 @@ class JsonSerializableFinanceAccount {
 
 
     public JsonSerializableFinanceAccount(ReadOnlyFinanceAccount source) {
+        assert source != null : "Source finance account is null!";
+
         financeRecords.addAll(
                 source.getFinanceList()
                         .stream()
