@@ -7,6 +7,7 @@ import java.util.Map;
 
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.roomtype.RoomType;
+import seedu.resireg.model.semester.AcademicYear;
 import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.semester.SemesterNumber;
 
@@ -34,7 +35,7 @@ public class SemesterBuilder {
      * Initializes the SemesterBuilder with the data of {@code semesterToCopy}.
      */
     public SemesterBuilder(Semester semesterToCopy) {
-        academicYear = semesterToCopy.getAcademicYear();
+        academicYear = semesterToCopy.getAcademicYear().value;
         semesterNumber = semesterToCopy.getSemesterNumber();
         allocations = semesterToCopy.getAllocations();
         roomFees = semesterToCopy.getRoomFees();
@@ -76,6 +77,6 @@ public class SemesterBuilder {
      * Returns a new {@code Semester} created.
      */
     public Semester build() {
-        return new Semester(academicYear, semesterNumber, allocations, roomFees);
+        return new Semester(new AcademicYear(academicYear), semesterNumber, allocations, roomFees);
     }
 }

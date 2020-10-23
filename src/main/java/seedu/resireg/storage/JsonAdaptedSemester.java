@@ -44,7 +44,7 @@ public class JsonAdaptedSemester {
      * Converts a given {@code Semester} into this class for Jackson use.
      */
     public JsonAdaptedSemester(Semester source) {
-        academicYear = source.getAcademicYear();
+        academicYear = source.getAcademicYear().value;
         semesterNumber = source.getSemesterNumber().value;
         allocations.addAll(source.getAllocations().stream()
                 .map(JsonAdaptedAllocation::new)
