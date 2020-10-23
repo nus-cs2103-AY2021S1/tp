@@ -8,6 +8,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import org.json.simple.parser.ParseException;
 
@@ -44,7 +47,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks = new UniqueTaskList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+        autoUpdateTaskList();
+    }
 
     /**
      * Creates an AddressBook using the Assignments in the {@code toBeCopied}
@@ -52,6 +57,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
+        autoUpdateTaskList();
     }
 
     //// list overwrite operations
@@ -209,6 +215,30 @@ public class AddressBook implements ReadOnlyAddressBook {
         retrieveTasks();
         filterOverdueTasks();
         sortTasks();
+    }
+
+    private void autoUpdateTaskList() {
+        Thread javaFx = Thread.currentThread();
+        System.out.println(javaFx.getName());
+        javaFx.setPriority(Thread.MAX_PRIORITY);
+
+        Runnable task = ()-> {
+            Task upcomingTask = tasks.getInternalList().get(0);
+            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
+                    .withResolverStyle(ResolverStyle.STRICT);
+            LocalDateTime time = LocalDateTime.parse(upcomingTask.getTime().value, inputFormat);
+            boolean isOverdue = time.isBefore(LocalDateTime.now());
+
+            if (isOverdue) {
+                synchronized (tasks) {
+                    updateTasks();
+                    tasks.notifyAll();
+                }
+            }
+        };
+
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+        executor.scheduleAtFixedRate(task, 0, 1, TimeUnit.SECONDS);
     }
 
     //// util methods

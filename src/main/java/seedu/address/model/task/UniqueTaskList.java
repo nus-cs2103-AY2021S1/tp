@@ -29,8 +29,6 @@ public class UniqueTaskList implements Iterable<Task> {
     private final ObservableList<Task> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
-    private Task upcomingTask = internalList.get(0);
-
 
     /**
      * Returns true if the list contains an equivalent task as the given argument.
@@ -122,18 +120,5 @@ public class UniqueTaskList implements Iterable<Task> {
     public int hashCode() {
         return internalList.hashCode();
     }
-
-    //@Override
-    //public void run() {
-    //    DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
-    //            .withResolverStyle(ResolverStyle.STRICT);
-    //    LocalDateTime time = LocalDateTime.parse(upcomingTask.getTime().value, inputFormat);
-    //    boolean isOverdue = time.isBefore(LocalDateTime.now());
-    //
-    //    if (isOverdue) {
-    //        Thread.onSpinWait();
-    //        System.out.println("Successfully updated in real time");
-    //    }
-    //}
 }
 
