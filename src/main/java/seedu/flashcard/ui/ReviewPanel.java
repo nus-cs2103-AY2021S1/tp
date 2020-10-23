@@ -2,31 +2,33 @@ package seedu.flashcard.ui;
 
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 import seedu.flashcard.logic.ReviewManager;
 import seedu.flashcard.model.flashcard.Flashcard;
 
 /**
  * An UI component that displays review function.
  */
-public class ReviewPanel extends TestPanel {
+public class ReviewPanel extends StudyPanel {
+
+    private final ReviewManager reviewManager;
 
     /**
-     * Creates a {@code FlashcardListCard} with the given {@code Flashcard} and index to display.
+     * Creates a {@code ReviewPanel} that handles review mode.
      */
     public ReviewPanel(ObservableList<Flashcard> flashcardList, MainWindow parent) {
-        super(flashcardList, parent);
+        super(parent);
+        reviewManager = new ReviewManager(flashcardList);
+        showReviewFlashcard(flashcardList.get(0));
+        handleStudy();
     }
 
     /**
      * Executes review function.
      */
     @Override
-    protected void handleReview() {
+    protected void handleStudy() {
         keyDownEventHandler = new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -38,24 +40,22 @@ public class ReviewPanel extends TestPanel {
                     if (!reviewManager.hasNextFlashcard()) {
                         exitReviewMode(ReviewManager.NO_NEXT_FLASHCARD_MESSAGE + "\n");
                     } else {
-                        showReviewFlashcard(reviewManager.getNextFlashcard(),
-                                reviewManager.getCurrentIndex() + 1);
+                        showReviewFlashcard(reviewManager.getNextFlashcard());
                     }
                     break;
                 case 37: // left arrow key down
                     if (!reviewManager.hasPreviousFlashcard()) {
                         exitReviewMode(ReviewManager.NO_PREVIOUS_FLASHCARD_MESSAGE + "\n");
                     } else {
-                        showReviewFlashcard(reviewManager.getPrevFlashcard(),
-                                reviewManager.getCurrentIndex() + 1);
+                        showReviewFlashcard(reviewManager.getPrevFlashcard());
                     }
                     break;
                 case 40: // up arrow key down
                     FlashcardAnswerCard flashcardAnswerCard = new FlashcardAnswerCard(reviewManager.getCurrentFlashcard());
-                    answerPlaceholder.getChildren().add(flashcardAnswerCard.getRoot());
+                    showAnswer(flashcardAnswerCard);
                     break;
                 case 38: // down arrow key down
-                    answerPlaceholder.getChildren().clear();
+                    hideAnswer();
                     break;
                 case 81: // 'q' key down
                     exitReviewMode("");

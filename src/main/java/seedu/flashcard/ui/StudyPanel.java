@@ -1,21 +1,18 @@
 package seedu.flashcard.ui;
 
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import seedu.flashcard.logic.ReviewManager;
 import seedu.flashcard.model.flashcard.Flashcard;
 
 /**
- * An UI component that displays review function.
+ * An UI component that handles an abstract study mode.
  */
-public abstract class TestPanel extends UiPart<Region> {
+public abstract class StudyPanel extends UiPart<Region> {
 
-    private static final String FXML = "TestPanel.fxml";
+    private static final String FXML = "StudyPanel.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,53 +21,64 @@ public abstract class TestPanel extends UiPart<Region> {
      *
      */
 
-    protected final ObservableList<Flashcard> flashcardList;
-    protected final ReviewManager reviewManager;
     protected EventHandler<KeyEvent> keyDownEventHandler;
     protected final MainWindow parent;
 
     @FXML
-    protected StackPane questionPlaceholder;
+    private StackPane questionPlaceholder;
 
     @FXML
-    protected StackPane answerPlaceholder;
+    private StackPane answerPlaceholder;
 
     /**
-     * Creates a {@code FlashcardListCard} with the given {@code Flashcard} and index to display.
+     * Creates a {@code StudyPanel} with the given parent {@code MainWindow}
      */
-    public TestPanel(ObservableList<Flashcard> flashcardList, MainWindow parent) {
+    public StudyPanel(MainWindow parent) {
         super(FXML);
-        this.flashcardList = flashcardList;
         this.parent = parent;
-        reviewManager = new ReviewManager(flashcardList);
-        FlashcardQuestionCard questionCard = new FlashcardQuestionCard(reviewManager.getCurrentFlashcard());
-        questionPlaceholder.getChildren().add(questionCard.getRoot());
-        handleReview();
     }
 
     /**
-     * Makes window show the current flashcard being reviewed.
+     * Shows the current flashcard being reviewed.
      *
      * @param flashcard      the FlashCard being reviewed.
-     * @param displayedIndex the displayed index of the Flashcard being reviewed.
      */
-    protected void showReviewFlashcard(Flashcard flashcard, int displayedIndex) {
+    protected void showReviewFlashcard(Flashcard flashcard) {
         questionPlaceholder.getChildren().clear();
         FlashcardQuestionCard flashcardQuestionCard = new FlashcardQuestionCard(flashcard);
         questionPlaceholder.getChildren().add(flashcardQuestionCard.getRoot());
         answerPlaceholder.getChildren().clear();
     }
 
+    /**
+     * Clears up current window to exit study mode and calls parent to exit study mode.
+     * @param exitReason Message to show user on exit.
+     */
     protected void exitReviewMode(String exitReason) {
         parent.getRoot().removeEventFilter(KeyEvent.KEY_PRESSED, keyDownEventHandler);
         questionPlaceholder.getChildren().clear();
         answerPlaceholder.getChildren().clear();
-        parent.exitReviewMode(exitReason);
+        parent.exitStudyMode(exitReason);
     }
 
     /**
-     * Executes review function.
+     * Shows the answer to the flashcard.
+     * @param flashcardAnswerCard
      */
-    protected abstract void handleReview();
+    protected void showAnswer(FlashcardAnswerCard flashcardAnswerCard) {
+        answerPlaceholder.getChildren().add(flashcardAnswerCard.getRoot());
+    }
+
+    /**
+     * Hides the answer to the flashcard.
+     */
+    protected void hideAnswer() {
+        answerPlaceholder.getChildren().clear();
+    }
+
+    /**
+     * Executes abstract study function.
+     */
+    protected abstract void handleStudy();
 
 }

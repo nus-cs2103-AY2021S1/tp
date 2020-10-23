@@ -49,7 +49,7 @@
           </padding>
         </StackPane>
 
-        <StackPane fx:id="reviewPanePlaceholder"  VBox.vgrow="ALWAYS" HBox.hgrow = "ALWAYS"></StackPane>
+        <StackPane fx:id="studyPanePlaceholder"  VBox.vgrow="ALWAYS" HBox.hgrow = "ALWAYS"></StackPane>
 
         <GridPane fx:id="commandModePane" styleClass="grid-with-border" VBox.vgrow="ALWAYS">
           <padding>

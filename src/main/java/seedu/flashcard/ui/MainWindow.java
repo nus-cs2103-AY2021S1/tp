@@ -3,7 +3,6 @@ package seedu.flashcard.ui;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
@@ -19,7 +18,6 @@ import seedu.flashcard.logic.ReviewManager;
 import seedu.flashcard.logic.commands.CommandResult;
 import seedu.flashcard.logic.commands.exceptions.CommandException;
 import seedu.flashcard.logic.parser.exceptions.ParseException;
-import seedu.flashcard.model.flashcard.Flashcard;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -62,7 +60,7 @@ public class MainWindow extends UiPart<Stage> {
     private GridPane commandModePane;
 
     @FXML
-    private StackPane reviewPanePlaceholder;
+    private StackPane studyPanePlaceholder;
 
 
     /**
@@ -141,8 +139,8 @@ public class MainWindow extends UiPart<Stage> {
 
         commandModePane.managedProperty().bind(commandModePane.visibleProperty());
 
-        reviewPanePlaceholder.setVisible(false);
-        reviewPanePlaceholder.managedProperty().bind(reviewPanePlaceholder.visibleProperty());
+        studyPanePlaceholder.setVisible(false);
+        studyPanePlaceholder.managedProperty().bind(studyPanePlaceholder.visibleProperty());
     }
 
     /**
@@ -189,24 +187,23 @@ public class MainWindow extends UiPart<Stage> {
      * Cleans up window back to command mode.
      */
     @FXML
-    public void exitReviewMode(String exitReason) {
+    public void exitStudyMode(String exitReason) {
         commandBoxPlaceholder.setVisible(true);
         commandModePane.setVisible(true);
-        reviewPanePlaceholder.getChildren().clear();
-        reviewPanePlaceholder.setVisible(false);
+        studyPanePlaceholder.getChildren().clear();
+        studyPanePlaceholder.setVisible(false);
         resultDisplay.setFeedbackToUser(exitReason + ReviewManager.EXIT_MESSAGE);
     }
 
     /**
-     * Sets up window for review mode.
+     * Sets up window for study mode ( which is either review or quiz mode).
      */
     @FXML
-    private void enterReviewMode() {
+    private void enterStudyMode(StudyPanel studyPanel) {
         commandModePane.setVisible(false);
         commandBoxPlaceholder.setVisible(false);
-        ReviewPanel reviewPanel = new ReviewPanel(logic.getFilteredFlashcardList(), this);
-        reviewPanePlaceholder.getChildren().add(reviewPanel.getRoot());
-        reviewPanePlaceholder.setVisible(true);
+        studyPanePlaceholder.getChildren().add(studyPanel.getRoot());
+        studyPanePlaceholder.setVisible(true);
     }
 
     /**
@@ -242,7 +239,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isReviewMode()) {
-                enterReviewMode();
+                enterStudyMode(new ReviewPanel(logic.getFilteredFlashcardList(), this));
             }
 
             if (commandResult.getViewIndex() != null) {
