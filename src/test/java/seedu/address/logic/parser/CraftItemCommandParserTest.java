@@ -16,10 +16,22 @@ public class CraftItemCommandParserTest {
     private final CraftItemCommandParser parser = new CraftItemCommandParser();
 
     @Test
-    public void parse_validArgs_returnsCraftItemCommand() {
+    public void parse_allFieldsPresent_success() {
         String userInput = " -n " + APPLE.getName() + " -q " + APPLE.getQuantity() + " -i 1";
         CraftItemCommand expectedCommand = new CraftItemCommand(APPLE.getName(), APPLE.getQuantity(),
                 Index.fromOneBased(1));
+
+        //expected user input constructs successful craft item command
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    /**
+     * Tests for user input missing recipe index to return craft item command.
+     */
+    @Test
+    public void parse_missingIndex_success() {
+        String userInput = " -n " + APPLE.getName() + " -q " + APPLE.getQuantity();
+        CraftItemCommand expectedCommand = new CraftItemCommand(APPLE.getName(), APPLE.getQuantity());
 
         //expected user input constructs successful craft item command
         assertParseSuccess(parser, userInput, expectedCommand);

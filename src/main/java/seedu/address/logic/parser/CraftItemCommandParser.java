@@ -31,15 +31,22 @@ public class CraftItemCommandParser implements Parser<CraftItemCommand> {
         try {
             ArgumentMultimap argMultimap =
                     ArgumentTokenizer.tokenize(args, PREFIX_ITEM_NAME, PREFIX_ITEM_QUANTITY, PREFIX_RECIPE_ID);
-            if (!arePrefixesPresent(argMultimap, PREFIX_ITEM_NAME, PREFIX_ITEM_QUANTITY, PREFIX_RECIPE_ID)
+            // only item name and quantity need to be present, allow for missing recipe id
+            if (!arePrefixesPresent(argMultimap, PREFIX_ITEM_NAME, PREFIX_ITEM_QUANTITY)
                     || !argMultimap.getPreamble().isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         CraftItemCommand.MESSAGE_USAGE));
             }
             itemName = ItemParserUtil.parseName(argMultimap.getValue(PREFIX_ITEM_NAME).get());
             quantity = ItemParserUtil.parseQuantity(argMultimap.getValue(PREFIX_ITEM_QUANTITY).get());
-            index = ItemParserUtil.parseIndex(argMultimap.getValue(PREFIX_RECIPE_ID).get());
-            return new CraftItemCommand(itemName, quantity, index);
+
+            if (arePrefixesPresent(argMultimap, PREFIX_RECIPE_ID)) {
+                index = ItemParserUtil.parseIndex(argMultimap.getValue(PREFIX_RECIPE_ID).get());
+                return new CraftItemCommand(itemName, quantity, index);
+            } else {
+                // craft item command will add in the default index
+                return new CraftItemCommand(itemName, quantity);
+            }
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, CraftItemCommand.MESSAGE_USAGE), pe);

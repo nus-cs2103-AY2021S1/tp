@@ -36,8 +36,8 @@ public class CraftItemCommandTest {
     private ModelStubWithItemAndRecipeList model;
     private ModelStubWithItemAndRecipeList sameModel; // used to test failures
 
-    private RecipeList recipeList = new RecipeList();
-    private ItemList itemList = new ItemList();
+    private final RecipeList recipeList = new RecipeList();
+    private final ItemList itemList = new ItemList();
 
     @Test
     public void constructor_throwsNullException() {
@@ -59,7 +59,7 @@ public class CraftItemCommandTest {
     }
 
     @Test
-    public void execute_craft_success() {
+    public void execute_allFieldsPresent_success() {
         CraftItemCommand cic = new CraftItemCommand(APPLE.getName(), new Quantity("2"), Index.fromZeroBased(0));
         String expectedMessage = String.format(CraftItemCommand.MESSAGE_SUCCESS, APPLE.getName(), 2);
         // simulate crafting in expected model manually
@@ -78,10 +78,33 @@ public class CraftItemCommandTest {
     }
 
     /**
+     * Tests for crafting success and filled missing recipe index with the default
+     */
+    @Test
+    public void execute_missingRecipeId_success() {
+        CraftItemCommand cic = new CraftItemCommand(APPLE.getName(), new Quantity("2"));
+        String expectedMessage = CraftItemCommand.MESSAGE_MISSING_RECIPE_INDEX
+            + String.format(CraftItemCommand.MESSAGE_SUCCESS, APPLE.getName(), 2);
+        // simulate crafting in expected model manually
+        // 2 more apples added
+        Item editedApple = new ItemBuilder().withId(1).withName("Apple")
+                .withDescription("Recovers 10 hp").withQuantity("11").build();
+        // 3 bananas removed
+        Item editedBanana = new ItemBuilder().withId(2).withName("Banana")
+                .withDescription("Used as bait").withQuantity("96").build();
+        ItemList expectedItemList = new ItemList();
+        expectedItemList.addItem(editedApple);
+        expectedItemList.addItem(editedBanana);
+        ModelStubWithItemAndRecipeList expectedModel = new ModelStubWithItemAndRecipeList(expectedItemList, recipeList);
+
+        assertCommandSuccess(cic, model, expectedMessage, expectedModel);
+    }
+
+    /**
      * Tests for success crafting when excess crafting is done due to the recipe
      */
     @Test
-    public void execute_craft_excess_success() {
+    public void execute_craftExcess_success() {
         CraftItemCommand cic = new CraftItemCommand(APPLE.getName(), new Quantity("1"), Index.fromZeroBased(0));
         String expectedMessage = String.format(CraftItemCommand.MESSAGE_SUCCESS_EXCESS, APPLE.getName(), 2, 1);
         // simulate crafting in expected model manually
@@ -197,6 +220,10 @@ public class CraftItemCommandTest {
                 Index.fromOneBased(2));
         // different index -> returns false
         assertFalse(craftItemCommand.equals(craftDifferentIndex));
+
+        // different hasDefaultIndex -> returns false
+        CraftItemCommand craftNoRecipeIndex = new CraftItemCommand("a", new Quantity("1"));
+        assertFalse(craftItemCommand.equals(craftNoRecipeIndex));
     }
 
     /**

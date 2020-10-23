@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_ID;
+import static seedu.address.logic.parser.ItemParserUtil.DEFAULT_INDEX;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,18 +40,21 @@ public class CraftItemCommand extends Command {
     public static final String MESSAGE_SUCCESS = "%2$s %1$s crafted";
     public static final String MESSAGE_SUCCESS_EXCESS = "%2$s %1$s crafted instead of %3$s, extras crafted"
             + " due to recipe";
+    public static final String MESSAGE_MISSING_RECIPE_INDEX = "First recipe used as recipe index was not provided.\n";
     public static final String MESSAGE_ITEM_NOT_FOUND = "Item to craft is not found in the item list.";
     public static final String MESSAGE_INVALID_PRODUCT_QUANTITY = "Crafting failed, please enter a valid "
             + "product quantity";
     public static final String MESSAGE_INSUFFICIENT_INGREDIENTS = "Crafting failed, insufficient "
             + "ingredients in inventory.";
-    public static final String MESSAGE_RECIPE_NOT_FOUND = "Recipe cannot be not found in the recipe list";
+    public static final String MESSAGE_RECIPE_NOT_FOUND = "No relevant recipes found in the recipe list";
     public static final String MESSAGE_INDEX_OUT_OF_RANGE = "Recipe ID is out of range";
 
     private final String itemName;
     private int productQuantity;
     private final Index index;
+
     private boolean hasCraftedExcess;
+    private final boolean hasDefaultIndex;
 
     /**
      * Creates a command to craft the item
@@ -66,6 +70,20 @@ public class CraftItemCommand extends Command {
         this.productQuantity = Integer.parseInt(productQuantity.value);
         this.index = index;
         this.hasCraftedExcess = false;
+        this.hasDefaultIndex = false;
+    }
+
+    /**
+     * Constructs a craft item command with a default recipe index as user did not provide one
+     */
+    public CraftItemCommand(String itemName, Quantity productQuantity) {
+        requireNonNull(itemName);
+        requireNonNull(productQuantity);
+        this.itemName = itemName;
+        this.productQuantity = Integer.parseInt(productQuantity.value);
+        this.index = DEFAULT_INDEX;
+        this.hasCraftedExcess = false;
+        this.hasDefaultIndex = true;
     }
 
     @Override
@@ -80,9 +98,10 @@ public class CraftItemCommand extends Command {
         if (tempItemList.isEmpty()) {
             throw new CommandException(MESSAGE_ITEM_NOT_FOUND);
         }
+
         Item itemToCraft;
         itemToCraft = tempItemList.stream()
-                .findFirst()// Get the first (and only) item matching or else throw Error
+                .findFirst() // Get the first (and only) item matching or else throw Error
                 .orElseThrow(() -> new CommandException(MESSAGE_ITEM_NOT_FOUND));
 
         // fetch the recipe
@@ -102,12 +121,11 @@ public class CraftItemCommand extends Command {
 
         int recipeProductQuantity = Integer.parseInt(recipeToUse.getProductQuantity().value);
 
-        // check the product quantity
         if (productQuantity == 0) {
             throw new CommandException(MESSAGE_INVALID_PRODUCT_QUANTITY);
         }
 
-        // check if quantity to craft is not a multiple of recipe product quantity
+        // check if quantity to craft is not an exact multiple of recipe product quantity
         int intendedQuantity = productQuantity;
         if (productQuantity % recipeProductQuantity != 0) {
             // round up to craft extra
@@ -115,10 +133,8 @@ public class CraftItemCommand extends Command {
             hasCraftedExcess = true;
         }
 
-        // check if item can be crafted
         IngredientList ingredientList = recipeToUse.getIngredients();
         ArrayList<Item> itemList = new ArrayList<>(model.getFilteredItemList());
-
         // Storage into hashmap to use for updating
         HashMap<Integer, Integer> requiredIngredients = new HashMap<>();
 
@@ -137,19 +153,28 @@ public class CraftItemCommand extends Command {
             }
         });
 
-        // update the product
+        // update the quantity of the item crafted
         new AddQuantityToItemCommand(itemName, productQuantity).execute(model);
 
-        if (hasCraftedExcess) {
-            return new CommandResult(String.format(MESSAGE_SUCCESS_EXCESS, itemToCraft,
-                    productQuantity, intendedQuantity));
-        } else {
-            return new CommandResult(String.format(MESSAGE_SUCCESS, itemToCraft, productQuantity));
+        String displayMessage = "";
+        // indicate if user left out the index field
+        if (hasDefaultIndex) {
+            displayMessage += MESSAGE_MISSING_RECIPE_INDEX;
         }
+
+        // indicate if crafted more than intended due to recipe
+        if (hasCraftedExcess) {
+            displayMessage += String.format(MESSAGE_SUCCESS_EXCESS, itemToCraft,
+                    productQuantity, intendedQuantity);
+        } else {
+            displayMessage += String.format(MESSAGE_SUCCESS, itemToCraft, productQuantity);
+        }
+
+        return new CommandResult(displayMessage);
     }
 
     /**
-     * Checks if there is sufficient amount of ingredients in the inventory.
+     * Checks if there is sufficient amount of ingredients in the inventory to proceed with crafting.
      * @param ingredientList The ingredient list to be checked.
      * @param itemList The existing item list in the model to check with.
      * @param requiredIngredients The required amount of ingredients to consume.
@@ -175,6 +200,8 @@ public class CraftItemCommand extends Command {
                 || (other instanceof CraftItemCommand // instanceof handles nulls
                 && itemName.equals(((CraftItemCommand) other).itemName)
                 && productQuantity == (((CraftItemCommand) other).productQuantity)
-                && index.equals(((CraftItemCommand) other).index));
+                && index.equals(((CraftItemCommand) other).index))
+                && hasCraftedExcess == (((CraftItemCommand) other).hasCraftedExcess)
+                && hasDefaultIndex == (((CraftItemCommand) other).hasDefaultIndex);
     }
 }
