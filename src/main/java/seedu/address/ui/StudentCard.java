@@ -67,6 +67,7 @@ public class StudentCard extends UiPart<Region> {
         fee.setText("Fee: " + student.getAdmin().getFee().toString());
         payment.setText("Last Payment Date: " + student.getAdmin().getPaymentDate().toString());
         details.setText("Additional Details: \n" + student.getAdmin().getFormattedDetails());
+        details.setVisible(!student.getDetails().isEmpty());
         questions.setText("Questions:\n" + student.getQuestions()
                 .stream()
                 .map(Question::toString)
