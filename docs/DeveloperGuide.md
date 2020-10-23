@@ -349,7 +349,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | accountant | edit my financial records | update my financial status |
 | `*`      | user | be able to exit the app safely | ... |
 
-### 5.3. Use cases
+### 5.3. Use Cases
 
 For all use cases (unless specified otherwise):
 
@@ -452,7 +452,7 @@ For all use cases (unless specified otherwise):
 2. Should be able to hold up to 100 financial records and 100 inventory items without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-### 5.5. Glossary
+### 5.5. Glossary and Terms
 
 * **Mainstream OS**: Windows, Linux, MacOS
 * **Inventory**: An item that a user wishes to record. An inventory item can refer to any existing object.
@@ -460,7 +460,7 @@ For all use cases (unless specified otherwise):
 
 ---
 
-## 6. Appendix: Instructions for manual testing
+## 6. Appendix: Instructions for Manual Testing
 
 Given below are instructions to test the app manually.
 
@@ -469,7 +469,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### 6.1. Launch and shutdown
+### 6.1. Launching and Shutting Down
 
 1. Initial launch
 
@@ -496,7 +496,7 @@ testers are expected to do more *exploratory* testing.
 
    1. NUStorage automatically saves any changes made to records while the application is in use. Closing and re-opening the application will not result in any data loss.
 
-### 6.2. Adding a record
+### 6.2. Adding a Record
 
 1. Adding a financial/inventory record.
 
@@ -514,7 +514,7 @@ testers are expected to do more *exploratory* testing.
    5. Other incorrect add commands to try: `add`, `add_record`, `add_inventory i/MacBook` `add_finance amt/1000 at/2020-13-13` <br>
      Expected: No record is added. Error details shown in the status message.
 
-### 6.3. Deleting a record
+### 6.3. Deleting a Record
 
 1. Deleting a record while all inventory/financial records are being shown.
 
@@ -532,7 +532,7 @@ testers are expected to do more *exploratory* testing.
    5. Other incorrect delete commands to try: `delete_finance `, `delete_inventory x`, `delete 1`<br>
    Expected: No record is added. Error details shown in the status message.
 
-### 6.4. Editing a record
+### 6.4. Editing a Record
 
 1. Editing a record while all inventory/financial records are being shown.
 
@@ -551,7 +551,7 @@ testers are expected to do more *exploratory* testing.
    `edit_finance 0 amt/3000 at/2021-01-02`, `edit_inventory x i/Pasta q/100`(where x is larger than the number of inventory records in the list)<br>
    Expected: No records are edited. Error details shown in the status message.
 
-### 6.5. Listing records
+### 6.5. Listing Records
 
 1. Listing all inventory/finance records
 
@@ -587,7 +587,7 @@ testers are expected to do more *exploratory* testing.
    `find phone`, `find_inventory `, `find-finance 1000`.
    Expected: No records will be displayed. Error details shown in the status message.
 
-## 7. Appendix: Proposed features for future implementation
+## 7. Appendix: Proposed Features for Future Implementation
 
 1. Customizable Commands<br>
    1. We understand that not everybody that uses NUStorage would be comfortable with the current names of commands. Therefore, we plan to implement a feature that allows users to rename the commands to better suit their liking.

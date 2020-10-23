@@ -19,7 +19,7 @@ Interested? Read on to get started!
 
 ---
 
-## 2. Quick start
+## 2. Quick Start Guide
 
 1. Ensure that you have `Java 11` or above installed on your device.
 2. Download the latest release of `NUStorage.jar` [here](https://github.com/AY2021S1-CS2103T-T11-3/tp/releases).
@@ -73,7 +73,7 @@ Accompanying the details of each command are figures that show an example of the
 
 ---
 
-### 4.1. Inventory commands
+### 4.1. Inventory Commands
 
 ---
 
@@ -141,7 +141,7 @@ __Result:__ inventory is listed.
 
 ---
 
-### 4.2. Finance commands
+### 4.2. Finance Commands
 
 ---
 
@@ -211,7 +211,7 @@ __Result:__ finance account is listed.
 
 ---
 
-### 4.3. Universal commands
+### 4.3. Universal Commands
 
 ---
 
@@ -241,7 +241,7 @@ __Result:__ Undo or redo the previous command.
 
 ---
 
-## 5. Command summary
+## 5. Command Summary
 
 Action | Format, Examples
 --------|------------------
@@ -279,4 +279,3 @@ Currently, NUStorage does not support the merging of data between different devi
 Modifying the storage file is possible but NOT RECOMMENDED! Doing so may result in a complete data loss.
 
 ---
-
