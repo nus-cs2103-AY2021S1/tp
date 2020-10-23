@@ -75,7 +75,7 @@ public interface Quantity extends Comparable<Quantity> {
         );
 
         if (input.isEmpty()) {
-            return Result.error("empty input");
+            return Result.error("quantity string cannot be empty");
         }
 
         // this is a bit iffy, but this condition will accept things like "-31.4-48.145.201-4".
@@ -85,7 +85,7 @@ public interface Quantity extends Comparable<Quantity> {
 
         // do-notation would be really nice here.
         if (num.isError()) {
-            return Result.error("couldn't parse number: %s", num.getError());
+            return Result.error("couldn't parse number from quantity '%s': %s", input, num.getError());
         }
 
         var unit = p.snd().trim();
@@ -99,7 +99,7 @@ public interface Quantity extends Comparable<Quantity> {
                     .map(fn -> num.then(n -> fn.apply(n, unit.toString())))
                     .filter(Result::hasValue)
                     .findFirst(),
-                String.format("unknown unit '%s'", unit))
+                String.format("unknown unit '%s' (from '%s')", unit, input))
             );
     }
 
