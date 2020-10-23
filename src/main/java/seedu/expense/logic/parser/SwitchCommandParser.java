@@ -6,7 +6,6 @@ import static seedu.expense.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.expense.commons.exceptions.IllegalValueException;
 import seedu.expense.logic.commands.SwitchCommand;
-import seedu.expense.logic.commands.TopupCommand;
 import seedu.expense.logic.parser.exceptions.ParseException;
 import seedu.expense.model.tag.Tag;
 
@@ -26,14 +25,14 @@ public class SwitchCommandParser implements Parser<SwitchCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
         if (!argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TopupCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SwitchCommand.MESSAGE_USAGE));
         }
 
         Tag category;
         try {
             category = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
         } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TopupCommand.MESSAGE_USAGE), ive);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SwitchCommand.MESSAGE_USAGE), ive);
         }
         return new SwitchCommand(category);
     }

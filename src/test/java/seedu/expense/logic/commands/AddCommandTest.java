@@ -21,8 +21,10 @@ import seedu.expense.model.Model;
 import seedu.expense.model.ReadOnlyExpenseBook;
 import seedu.expense.model.ReadOnlyUserPrefs;
 import seedu.expense.model.budget.Budget;
+import seedu.expense.model.budget.CategoryBudget;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
+import seedu.expense.model.tag.Tag;
 import seedu.expense.testutil.ExpenseBuilder;
 
 public class AddCommandTest {
@@ -126,6 +128,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ReadOnlyExpenseBook getCategoryExpenseBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasExpense(Expense expense) {
             throw new AssertionError("This method should not be called.");
         }
@@ -151,12 +158,32 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updateFilteredBudgetList(Predicate<CategoryBudget> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateCategoryExpenseBook(Tag category) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Budget getTotalBudget() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void topupBudget(Amount amount) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasCategory(Tag toCheck) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void switchCategory(Tag category) {
             throw new AssertionError("This method should not be called.");
         }
     }

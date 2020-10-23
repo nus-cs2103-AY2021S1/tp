@@ -25,7 +25,7 @@ public class BudgetDisplay extends UiPart<Region> {
     private static final String GREEN_BAR_STYLE_CLASS = "green-bar";
     private static final String ORANGE_BAR_STYLE_CLASS = "orange-bar";
     private static final String RED_BAR_STYLE_CLASS = "red-bar";
-    private final ReadOnlyExpenseBook expenseBook;
+    private final ReadOnlyExpenseBook categoryExpenseBook;
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     @FXML
@@ -45,13 +45,13 @@ public class BudgetDisplay extends UiPart<Region> {
 
     /**
      * Constructor for {@code BudgetDisplay}.
-     * @param expenseBook expenseBook to be stored.
+     * @param categoryExpenseBook expenseBook to be stored.
      */
-    public BudgetDisplay(ReadOnlyExpenseBook expenseBook) {
+    public BudgetDisplay(ReadOnlyExpenseBook categoryExpenseBook) {
         super(FXML);
 
-        requireNonNull(expenseBook);
-        this.expenseBook = expenseBook;
+        requireNonNull(categoryExpenseBook);
+        this.categoryExpenseBook = categoryExpenseBook;
 
         budgetHeader.setText(HEADER_MESSAGE);
 
@@ -70,10 +70,10 @@ public class BudgetDisplay extends UiPart<Region> {
      * @return Progress as double.
      */
     private double getProgress() {
-        UniqueCategoryBudgetList budget = expenseBook.getBudgets();
+        UniqueCategoryBudgetList budget = categoryExpenseBook.getBudgets();
         double budgetAmount = budget.getAmount().asDouble();
         assert budgetAmount >= 0;
-        double expensesSum = expenseBook.tallyExpenses();
+        double expensesSum = categoryExpenseBook.tallyExpenses();
         assert expensesSum >= 0;
         return 1 - expensesSum / budgetAmount;
 
@@ -85,8 +85,8 @@ public class BudgetDisplay extends UiPart<Region> {
      * @return Formatted budget balance as String.
      */
     private String budgetBalance() {
-        double budgetAmount = expenseBook.tallyBudgets();
-        double balance = expenseBook.tallyBalance();
+        double budgetAmount = categoryExpenseBook.tallyBudgets();
+        double balance = categoryExpenseBook.tallyBalance();
         return String.format(BUDGET_BALANCE, balance, budgetAmount);
     }
 

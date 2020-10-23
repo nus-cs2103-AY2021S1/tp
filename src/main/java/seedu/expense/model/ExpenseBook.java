@@ -35,7 +35,7 @@ public class ExpenseBook implements ReadOnlyExpenseBook {
     }
 
     /**
-     * Creates an ExpenseBook using the Expenses in the {@code toBeCopied}
+     * Creates an ExpenseBook using the Expenses and Budgets in the {@code toBeCopied}
      */
     public ExpenseBook(ReadOnlyExpenseBook toBeCopied) {
         this();
@@ -73,6 +73,12 @@ public class ExpenseBook implements ReadOnlyExpenseBook {
         return budgets;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @see UniqueCategoryBudgetList#asUnmodifiableObservableList()
+     */
+    @Override
     public ObservableList<CategoryBudget> getBudgetList() {
         return budgets.asUnmodifiableObservableList();
     }

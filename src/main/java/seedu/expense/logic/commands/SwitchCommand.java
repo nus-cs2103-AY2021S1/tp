@@ -5,7 +5,6 @@ import static seedu.expense.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.expense.logic.commands.exceptions.CommandException;
 import seedu.expense.model.Model;
-import seedu.expense.model.expense.Expense;
 import seedu.expense.model.tag.Tag;
 
 /**
@@ -27,7 +26,7 @@ public class SwitchCommand extends Command {
     private final Tag toMatch;
 
     /**
-     * Creates an SwitchCommand to switch to the specified {@code CategoryBudget}
+     * Creates an SwitchCommand to switch to the specified {@code Tag} category
      */
     public SwitchCommand(Tag tag) {
         requireNonNull(tag);

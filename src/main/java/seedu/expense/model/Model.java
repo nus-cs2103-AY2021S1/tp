@@ -132,7 +132,7 @@ public interface Model {
     boolean hasCategory(Tag toCheck);
 
     /**
-     * Switches the expense book into the one that matches the given Tag.
+     * Switches the category expense book into the one that matches the given Tag.
      */
     void switchCategory(Tag toCheck);
 }

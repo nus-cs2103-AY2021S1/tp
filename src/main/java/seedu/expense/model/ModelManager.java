@@ -8,12 +8,10 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.expense.commons.core.GuiSettings;
 import seedu.expense.commons.core.LogsCenter;
 import seedu.expense.model.budget.Budget;
 import seedu.expense.model.budget.CategoryBudget;
-import seedu.expense.model.budget.UniqueCategoryBudgetList;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.tag.Tag;
@@ -147,11 +145,33 @@ public class ModelManager implements Model {
     public void updateFilteredExpenseList(Predicate<Expense> predicate) {
         requireNonNull(predicate);
         categoryExpenseBook.updateFilteredExpenses(predicate);
-        //filteredExpenses.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredBudgetList(Predicate<CategoryBudget> predicate) {
+        requireNonNull(predicate);
+        categoryExpenseBook.updateFilteredBudgets(predicate);
+    }
+
+    /**
+     * Updates the {@code categoryExpenseBook} to the given {@code category}
+     */
+    @Override
+    public void updateCategoryExpenseBook(Tag category) {
+        requireNonNull(category);
+
+        if (category.equals(new Tag("Default"))) {
+            updateFilteredBudgetList(budget -> true);
+            updateFilteredExpenseList(expense -> true);
+        } else {
+            updateFilteredBudgetList(budget -> budget.getTag().equals(category));
+            updateFilteredExpenseList(expense -> expense.getTags().contains(category));
+        }
     }
 
     /**
      * Checks if the given Tag is present in any of the category budget.
+     * @see CategoryExpenseBook#containsCategory(Tag)
      */
     @Override
     public boolean hasCategory(Tag toCheck) {
@@ -159,39 +179,14 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Switches the expense book into the one that matches the given Tag.
+     * Switches the {@code categoryExpenseBook} to one that matches the given {@code category}.
      */
     @Override
     public void switchCategory(Tag category) {
         requireAllNonNull(category);
         if (hasCategory(category)) {
-            updateFilteredExpenseList(expense -> expense.getTags().contains(category));
             updateCategoryExpenseBook(category);
         }
-    }
-
-    /**
-     * Updates the CategoryExpenseBook to the given category
-     *
-     * @param category
-     */
-    @Override
-    public void updateCategoryExpenseBook(Tag category) {
-        requireNonNull(category);
-
-        if (category.equals(new Tag("Default"))) {
-            categoryExpenseBook.updateFilteredBudgets(budget -> true);
-            categoryExpenseBook.updateFilteredExpenses(expense -> true);
-        } else {
-            categoryExpenseBook.updateFilteredBudgets(budget -> budget.getTag().equals(category));
-            categoryExpenseBook.updateFilteredExpenses(expense -> expense.getTags().contains(category));
-        }
-    }
-
-    @Override
-    public void updateFilteredBudgetList(Predicate<CategoryBudget> predicate) {
-        requireNonNull(predicate);
-        categoryExpenseBook.updateFilteredBudgets(predicate);
     }
 
     @Override
@@ -211,5 +206,4 @@ public class ModelManager implements Model {
         return expenseBook.equals(other.expenseBook)
                 && userPrefs.equals(other.userPrefs);
     }
-
 }

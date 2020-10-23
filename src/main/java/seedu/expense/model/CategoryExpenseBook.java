@@ -1,19 +1,28 @@
 package seedu.expense.model;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.expense.model.budget.CategoryBudget;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.tag.Tag;
 
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Wraps all data at the category-expense-book level
+ * Duplicates are not allowed (by .isSameExpense comparison)
+ * Contains only items with matched category Tag in {@code filteredExpenses}
+ * and {@code filteredBudgets}
+ */
 public class CategoryExpenseBook extends ExpenseBook {
     private final FilteredList<Expense> filteredExpenses;
     private final FilteredList<CategoryBudget> filteredBudgets;
 
+    /**
+     * Creates a CategoryExpenseBook using the Expenses and Budgets in the {@code toBeCopied}
+     */
     CategoryExpenseBook(ExpenseBook expenseBook) {
         super(expenseBook);
         filteredExpenses = new FilteredList<>(expenseBook.getExpenseList());
@@ -54,11 +63,21 @@ public class CategoryExpenseBook extends ExpenseBook {
         return tallyBudgets() - tallyExpenses();
     }
 
+    /**
+     * Updates the filter of the filtered expense list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     public void updateFilteredExpenses(Predicate<Expense> predicate) {
         requireNonNull(predicate);
         filteredExpenses.setPredicate(predicate);
     }
 
+    /**
+     * Updates the filter of the filtered budget list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     public void updateFilteredBudgets(Predicate<CategoryBudget> predicate) {
         requireNonNull(predicate);
         filteredBudgets.setPredicate(predicate);
@@ -72,6 +91,9 @@ public class CategoryExpenseBook extends ExpenseBook {
         return this.filteredBudgets;
     }
 
+    /**
+     * Checks if the given Tag is present in any of the category budget.
+     */
     public boolean containsCategory(Tag toCheck) {
         return budgets.contains(new CategoryBudget(toCheck));
     }

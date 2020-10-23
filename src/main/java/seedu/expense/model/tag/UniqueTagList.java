@@ -1,16 +1,26 @@
 package seedu.expense.model.tag;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.expense.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.expense.model.tag.exceptions.DuplicateTagException;
 import seedu.expense.model.tag.exceptions.TagNotFoundException;
 
-import java.util.Iterator;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.expense.commons.util.CollectionUtil.requireAllNonNull;
-
+/**
+ * A list of tags that enforces uniqueness between its elements and does not allow nulls.
+ * A tag is considered unique by comparing using {@code Tag#equals(Tag)}.
+ * As such, adding and updating of tags uses Tag#equals(Tag) for equality so as
+ * to ensure that the tag being added or updated is unique in terms of identity in the UniqueTagList.
+ * <p>
+ * Supports a minimal set of list operations.
+ *
+ * @see Tag#equals(Object)
+ */
 public class UniqueTagList implements Iterable<Tag> {
     private final ObservableList<Tag> internalList = FXCollections.observableArrayList();
     private final ObservableList<Tag> internalUnmodifiableList =

@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.expense.model.budget.CategoryBudget;
 import seedu.expense.model.budget.UniqueCategoryBudgetList;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.expense.exceptions.DuplicateExpenseException;
@@ -83,6 +84,11 @@ public class ExpenseBookTest {
         assertThrows(UnsupportedOperationException.class, () -> expenseBook.getExpenseList().remove(0));
     }
 
+    @Test
+    public void getBudgetList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> expenseBook.getBudgetList().remove(0));
+    }
+
     /**
      * A stub ReadOnlyExpenseBook whose expenses list can violate interface constraints.
      */
@@ -101,12 +107,27 @@ public class ExpenseBookTest {
         }
 
         @Override
+        public ObservableList<CategoryBudget> getBudgetList() {
+            return budgets.asUnmodifiableObservableList();
+        }
+
+        @Override
         public UniqueCategoryBudgetList getBudgets() {
             return budgets;
         }
 
         @Override
         public double tallyExpenses() {
+            return -1; // should not be called
+        }
+
+        @Override
+        public double tallyBudgets() {
+            return -1; // should not be called
+        }
+
+        @Override
+        public double tallyBalance() {
             return -1; // should not be called
         }
     }
