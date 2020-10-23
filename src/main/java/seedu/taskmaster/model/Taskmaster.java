@@ -107,6 +107,9 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      * Marks the attendance of a {@code target} student with {@code attendanceType}
      */
     public void markStudent(Student target, AttendanceType attendanceType) {
+        assert target != null;
+        assert attendanceType != null;
+
         studentRecordList.markStudentAttendance(target.getNusnetId(), attendanceType);
     }
 
@@ -114,6 +117,9 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      * Marks the attendance of a Student given the NUSNET ID
      */
     public void markStudentWithNusnetId(NusnetId nusnetId, AttendanceType attendanceType) {
+        assert nusnetId != null;
+        assert attendanceType != null;
+
         studentRecordList.markStudentAttendance(nusnetId, attendanceType);
     }
 

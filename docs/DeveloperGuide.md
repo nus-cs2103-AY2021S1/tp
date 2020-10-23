@@ -133,7 +133,7 @@ Classes used by multiple components are in the `seedu.taskmaster.commons` packag
 
 ### SessionList
 
-Author: **Joshua Chew** 
+Author: **Joshua Chew**
 * Implementing the classes that encapsulate a list of tutorial sessions.
 
 ![Structure of the SessionList Component](images/SessionListClassDiagram.png)
@@ -155,7 +155,42 @@ The current running Session is also stored as an attribute in the Taskmaster.
 
 Given below is the planned Sequence Diagram for interactions within the `Session` component for the `Taskmaster#markStudentAttendance(nusnetId, attendanceType)` API call.
 
-![Interactions Inside the Session class for the `markStudentAttendance'` method call](images/MarkStudentAttendanceSequenceDiagram.png)
+![Interactions iside the Session class for the `markStudentAttendance'` method call](images/MarkStudentAttendanceSequenceDiagram.png)
+
+<br>
+
+### StudentRecordList
+
+Author: **Goh Siau Chiak**
+
+* Implementing the classes that encapsulate a list of student records.
+
+![Structure of StudentRecordList Component](images/StudentRecordDiagram.png)
+
+The `StudentRecordList`,
+* is stored by a `Session`.
+* encapsulates a list of zero or more `StudentRecord` objects.
+* can provide a list of the `StudentRecord` objects that it contains (to pass to the UI).
+* can mark the attendance of a student in the `Session`.
+
+The `StudentRecord`,
+* represents a record of a student's attendance in a particular `Session`
+* contains
+  * a `NusnetId` that indicates which student the record represents
+  * the `Name` of the student represented
+  * the `AttendanceType` of the student for the `Session`
+  * a `ClassParticipation` representing points awarded to the student for participating in the `Session`
+
+Given below is the Sequence Diagram for interactions within the `StudentRecordListManager` component when `StudentRecordListManager#markStudentAttendance(nusnetId, attendanceType)` is called.
+
+![Interactions inside the StudentRecordListManager class for the `markStudentAttendance'` method call](images/StudentRecordListAttendanceSequenceDiagram.png)
+
+
+Alternative implementations:
+* Store a `Student` object in the `StudentRecord` instead of just their `Name` and `NusnetId`.
+  * Doing so will incur unnecessary memory usage, because `StudentRecord` only needs the `Name` for display purposes, and `NusnetId` for identification purposes.
+  * This memory usage is significant when one considers the fact that it will be likely that for most users, the same students (that the TA is teaching) will be contained in multiple `Session` objects.
+  * Since editing of `NusnetId` is not allowed, there will be no issues with syncing of data. For example, even if the name of a particular student is edited after his `StudentRecord` was saved, we can find that student using their `NusnetId`.
 
 <br>
 
@@ -184,7 +219,48 @@ Alternative implementations:
 * Store the SessionList as a JSON field in the existing Taskmaster file
     * Doing it this way would mean that the file would be repeatedly overwritten and any format errors will invalidate the whole file, including the StudentList.
 
+### ClassParticipation
 
+Author: **Theodore Leebrant**
+* Implementing the class in charge of representing the class participation of each student in a session.
+
+![Class Participation](images/ClassParticipation.png)
+
+The `ClassParticipation` is planned to
+* store a `score` and the maximum score (`maxScore`) attainable
+* have mutators for both the score and the maximum score.
+* be used by the StudentRecord
+
+**To do**
+* make a corresponding command in Taskmaster to set score
+* implement a default scoring system at launch
+
+Given below is the planned Sequence Diagram for interaction to set the class participation mark via `Taskmaster#markStudentParticipation(nusnetId, score)`.
+
+![Activity Diagram for Class Participation](images/ClassPartActivity.png)
+
+<br>
+
+### UI
+
+Author: **Lim Jin Feng**
+* Change/Add classes in the UI package to display newly implemented functionality such as ClassRecords.
+
+![Structure of the UI Component](images/UpdatedUiClassDiagram.png)
+
+A new method `MainWindow#fillInnerParts2` will change the contents of the Ui to the student record, from the student list.
+* This is implemented in such a way to accomodate future expansion.
+
+**To-Do:**
+* Support displaying of Sessions when Sessions are implemented.
+* Support displaying of any new future implementation.
+
+**_Notes from developer:_**
+* Implementation still buggy: Ui does not update accordingly for student records.
+
+Alternative implementations considered:
+* Use FXML's tab feature to display class records
+    * Does not support future expansion when sessions is implemented - there may be an indefinite amount of sessions created.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

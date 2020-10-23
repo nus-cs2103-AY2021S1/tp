@@ -1,0 +1,19 @@
+@startuml
+!include style.puml
+
+Participant ":StudentRecordListManager" as srlm MODEL_COLOR
+Participant ":StudentRecord" as sr MODEL_COLOR
+
+[-> srlm : markStudentAttendance(\n nusnetId, attendanceType)
+activate srlm
+
+loop find student
+    alt found student
+        srlm -> sr ++: setAttendanceType(attendanceType)
+        sr --> srlm --
+    else student not found
+        <-- srlm: StudentNotFoundException()
+    end
+end
+<-- srlm --
+@enduml
