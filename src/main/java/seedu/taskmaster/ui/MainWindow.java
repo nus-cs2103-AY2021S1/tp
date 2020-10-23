@@ -146,7 +146,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up with attendance instead.
      */
     void fillInnerParts2(int index) {
-        assert index > 0;
+        assert index >= 0;
         studentRecordListPanel = new StudentRecordListPanel(logic.getFilteredStudentRecordList());
         viewListPanelPlaceholder.getChildren().add(studentRecordListPanel.getRoot());
 

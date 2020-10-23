@@ -63,7 +63,7 @@ public class StudentRecordListManager implements StudentRecordList {
      * Marks the attendance of students represented by the list of {@code nusnetIds} with {@code attendanceType}.
      */
     @Override
-    public void markAllAttendance(List<NusnetId> nusnetIds, AttendanceType attendanceType) {
+    public void markAllStudents(List<NusnetId> nusnetIds, AttendanceType attendanceType) {
         for (NusnetId nusnetId : nusnetIds) {
             markStudentAttendance(nusnetId, attendanceType);
         }

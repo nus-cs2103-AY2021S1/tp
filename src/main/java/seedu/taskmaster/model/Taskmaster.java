@@ -123,6 +123,13 @@ public class Taskmaster implements ReadOnlyTaskmaster {
         studentRecordList.markStudentAttendance(nusnetId, attendanceType);
     }
 
+    /**
+     * Marks the attendances of all students represented by their {@code nusnetIds} with {@code attendanceType}.
+     */
+    public void markAllStudents(List<NusnetId> nusnetIds, AttendanceType attendanceType) {
+        studentRecordList.markAllStudents(nusnetIds, attendanceType);
+    }
+
     //// util methods
 
     @Override
@@ -148,7 +155,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      * Sets the {@code AttendanceType} of all {@code StudentRecords} to NO_RECORD
      */
     public void clearAttendance() {
-        this.studentRecordList.markAllAttendance(
+        this.studentRecordList.markAllStudents(
                 studentRecordList.asUnmodifiableObservableList().stream()
                         .map(StudentRecord::getNusnetId).collect(Collectors.toList()),
                 AttendanceType.NO_RECORD);

@@ -27,8 +27,8 @@ public class MarkCommand extends Command {
 
     public static final String MESSAGE_MARK_STUDENT_SUCCESS = "Marked %1$s as %2$s";
 
+    protected final AttendanceType attendanceType;
     private final Index targetIndex;
-    private final AttendanceType attendanceType;
 
     /**
      * @param targetIndex of the student in the filtered student list to mark

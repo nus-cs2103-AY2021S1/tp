@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -130,6 +131,16 @@ public class ModelManager implements Model {
         requireAllNonNull(nusnetId, attendanceType);
         taskmaster.markStudentWithNusnetId(nusnetId, attendanceType);
         updateFilteredStudentRecordList(PREDICATE_SHOW_ALL_STUDENT_RECORDS);
+    }
+
+    @Override
+    public void markAllStudents(List<Student> students, AttendanceType attendanceType) {
+        List<NusnetId> nusnetIds = students
+                .stream()
+                .map(Student::getNusnetId)
+                .collect(Collectors.toList());
+
+        taskmaster.markAllStudents(nusnetIds, attendanceType);
     }
 
     @Override
