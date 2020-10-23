@@ -16,7 +16,9 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import com.eva.commons.core.GuiSettings;
+import com.eva.commons.core.PanelState;
 import com.eva.logic.commands.exceptions.CommandException;
+import com.eva.model.CurrentView;
 import com.eva.model.EvaDatabase;
 import com.eva.model.Model;
 import com.eva.model.ReadOnlyEvaDatabase;
@@ -101,6 +103,21 @@ public class AddCommandTest {
 
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public PanelState getPanelState() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPanelState(PanelState panelState) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setCurrentView(CurrentView currentView) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -227,6 +244,11 @@ public class AddCommandTest {
         @Override
         public ObservableList<Staff> getFilteredStaffList() {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public CurrentView<Staff> getCurrentViewStaff() {
+            return null;
         }
 
         @Override

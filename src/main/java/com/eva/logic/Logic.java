@@ -3,9 +3,11 @@ package com.eva.logic;
 import java.nio.file.Path;
 
 import com.eva.commons.core.GuiSettings;
+import com.eva.commons.core.PanelState;
 import com.eva.logic.commands.CommandResult;
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.logic.parser.exceptions.ParseException;
+import com.eva.model.CurrentView;
 import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
@@ -62,6 +64,16 @@ public interface Logic {
      * Returns the user prefs' GUI settings.
      */
     GuiSettings getGuiSettings();
+
+    /**
+     * Returns the current PanelState.
+     */
+    PanelState getPanelState();
+
+    /**
+     * Returns the current staff being viewed.
+     */
+    CurrentView<Staff> getCurrentViewStaff();
 
     /**
      * Set the user prefs' GUI settings.

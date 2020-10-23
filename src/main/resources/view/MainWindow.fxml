@@ -38,42 +38,29 @@
             </MenuBar>
             <Label fx:id="EvaLogo" VBox.vgrow="NEVER" text="EVA" />
             <StackPane fx:id="sideBarPlaceholder" VBox.vgrow="ALWAYS" />
-            <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
           </VBox>
           <VBox>
-            <VBox fx:id="staffList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+            <StackPane fx:id="headerNamePlaceholder" VBox.vgrow="NEVER" />
+            <VBox styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
               <padding>
                 <Insets bottom="5" />
               </padding>
-              <StackPane fx:id="staffListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-            </VBox>
-            <VBox fx:id="applicantList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-              <padding>
-                <Insets bottom="5" />
-              </padding>
-              <StackPane fx:id="aplicantListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              <StackPane fx:id="panelPlaceholder" VBox.vgrow="ALWAYS"/>
             </VBox>
             <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                       minHeight="70" prefHeight="70" maxHeight="70">
+                       minHeight="80" prefHeight="80" maxHeight="80">
               <padding>
-                <Insets top="5" bottom="5" />
+                <Insets bottom="5" />
               </padding>
             </StackPane>
 
             <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
               <padding>
-                <Insets top="5" bottom="5" />
+                <Insets bottom="5" />
               </padding>
             </StackPane>
           </VBox>
         </SplitPane>
-<<<<<<< HEAD
-
-
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-=======
->>>>>>> f38056e6e838f2ee9e04473dbce43d63f375ac47
       </VBox>
     </Scene>
   </scene>

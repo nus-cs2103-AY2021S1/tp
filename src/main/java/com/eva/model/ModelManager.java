@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 
 import com.eva.commons.core.GuiSettings;
 import com.eva.commons.core.LogsCenter;
+import com.eva.commons.core.PanelState;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.staff.Staff;
@@ -34,6 +35,9 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Staff> filteredStaffs;
     private final FilteredList<Applicant> filteredApplicants;
+    private CurrentView<Staff> currentViewStaff;
+    private CurrentView<Applicant> currentViewApplicant;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -55,6 +59,9 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.personDatabase.getPersonList());
         filteredStaffs = new FilteredList<>(this.staffDatabase.getPersonList());
         filteredApplicants = new FilteredList<>(this.applicantDatabase.getPersonList());
+
+        this.currentViewStaff = new CurrentView<>();
+        this.currentViewApplicant = new CurrentView<>();
     }
 
     public ModelManager() {
@@ -83,6 +90,34 @@ public class ModelManager implements Model {
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         userPrefs.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public PanelState getPanelState() {
+        return userPrefs.getPanelState();
+    }
+
+    @Override
+    public void setPanelState(PanelState panelState) {
+        userPrefs.setPanelState(panelState);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public void setCurrentView(CurrentView currentView) {
+        if (currentView.getCurrentView().isPresent()) {
+            if (currentView.getCurrentView().get() instanceof Staff) {
+                this.currentViewStaff = currentView;
+                // this.currentViewApplicant = new CurrentView<>();
+            } else if (currentView.getCurrentView().get() instanceof Applicant) {
+                this.currentViewApplicant = currentView;
+                // this.currentViewStaff = new CurrentView<>();
+            } else {
+                throw new IllegalArgumentException(); // placeholder exception
+            }
+        } else {
+            throw new IllegalArgumentException(); // placeholder exception
+        }
     }
 
     @Override
@@ -280,6 +315,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Staff> getFilteredStaffList() {
         return filteredStaffs;
+    }
+
+    @Override
+    public CurrentView<Staff> getCurrentViewStaff() {
+        return currentViewStaff;
     }
 
     @Override

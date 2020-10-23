@@ -15,6 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import com.eva.commons.core.GuiSettings;
+import com.eva.commons.core.PanelState;
 import com.eva.model.person.NameContainsKeywordsPredicate;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
@@ -41,7 +42,7 @@ public class ModelManagerTest {
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setPersonDatabaseFilePath(Paths.get("address/book/file/path"));
-        userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
+        userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4, PanelState.STAFF_LIST));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
@@ -58,7 +59,7 @@ public class ModelManagerTest {
 
     @Test
     public void setGuiSettings_validGuiSettings_setsGuiSettings() {
-        GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4);
+        GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4, PanelState.STAFF_LIST);
         modelManager.setGuiSettings(guiSettings);
         assertEquals(guiSettings, modelManager.getGuiSettings());
     }

@@ -6,11 +6,13 @@ import java.util.logging.Logger;
 
 import com.eva.commons.core.GuiSettings;
 import com.eva.commons.core.LogsCenter;
+import com.eva.commons.core.PanelState;
 import com.eva.logic.commands.Command;
 import com.eva.logic.commands.CommandResult;
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.logic.parser.AddressBookParser;
 import com.eva.logic.parser.exceptions.ParseException;
+import com.eva.model.CurrentView;
 import com.eva.model.Model;
 import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.person.Person;
@@ -98,6 +100,16 @@ public class LogicManager implements Logic {
     @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
+    }
+
+    @Override
+    public PanelState getPanelState() {
+        return model.getPanelState();
+    }
+
+    @Override
+    public CurrentView<Staff> getCurrentViewStaff() {
+        return model.getCurrentViewStaff();
     }
 
     @Override

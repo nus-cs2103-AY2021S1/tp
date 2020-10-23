@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import com.eva.commons.core.GuiSettings;
+import com.eva.commons.core.PanelState;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.staff.Staff;
@@ -41,6 +42,15 @@ public interface Model {
      * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the current PanelState.
+     */
+    PanelState getPanelState();
+
+    void setPanelState(PanelState panelState);
+
+    void setCurrentView(CurrentView currentView);
 
     /**
      * Returns the user prefs' persons data file path.
@@ -168,8 +178,15 @@ public interface Model {
      */
     void setStaff(Staff target, Staff editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list.
+     */
     ObservableList<Staff> getFilteredStaffList();
+
+    /**
+     * Returns the current staff being viewed.
+     */
+    CurrentView<Staff> getCurrentViewStaff();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.

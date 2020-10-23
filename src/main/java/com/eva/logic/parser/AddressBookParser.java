@@ -19,6 +19,7 @@ import com.eva.logic.commands.ExitCommand;
 import com.eva.logic.commands.FindCommand;
 import com.eva.logic.commands.HelpCommand;
 import com.eva.logic.commands.ListCommand;
+import com.eva.logic.commands.ViewCommand;
 import com.eva.logic.parser.comment.CommentCommandParser;
 import com.eva.logic.parser.comment.DeleteCommandParser;
 import com.eva.logic.parser.exceptions.ParseException;
@@ -80,7 +81,7 @@ public class AddressBookParser {
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            return new ListCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -93,6 +94,9 @@ public class AddressBookParser {
 
         case AddApplicantCommand.COMMAND_WORD:
             return new AddApplicantCommandParser().parse(arguments);
+
+        case ViewCommand.COMMAND_WORD:
+            return new ViewCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
