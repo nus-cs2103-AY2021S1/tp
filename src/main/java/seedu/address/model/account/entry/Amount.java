@@ -1,7 +1,5 @@
 package seedu.address.model.account.entry;
 
-import seedu.address.model.account.entry.exceptions.InvalidAmountException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
