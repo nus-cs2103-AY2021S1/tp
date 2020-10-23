@@ -1,10 +1,15 @@
 package chopchop.ui;
 
+import java.util.ArrayList;
+
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.parser.exceptions.ParseException;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 
 /**
@@ -16,6 +21,9 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+    private final ArrayList<String> commandHistory;
+
+    private int historyPointer;
 
     @FXML
     private TextField commandTextField;
@@ -28,6 +36,26 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandHistory = new ArrayList<>();
+        // No commands entered yet.
+        historyPointer = 0;
+        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode().equals(KeyCode.DOWN)) {
+                    if (historyPointer < commandHistory.size() - 1) {
+                        historyPointer++;
+                        commandTextField.setText(commandHistory.get(historyPointer));
+                    }
+                }
+                if (event.getCode().equals(KeyCode.UP)) {
+                    if (historyPointer > 0) {
+                        historyPointer--;
+                        commandTextField.setText(commandHistory.get(historyPointer));
+                    }
+                }
+            }
+        });
     }
 
     /**
@@ -35,11 +63,14 @@ public class CommandBox extends UiPart<Region> {
      */
     @FXML
     private void handleCommandEntered() {
+        String command = commandTextField.getText();
         try {
-            commandExecutor.execute(commandTextField.getText());
+            commandExecutor.execute(command);
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         } finally {
+            commandHistory.add(command);
+            historyPointer = commandHistory.size();
             commandTextField.setText("");
         }
     }
