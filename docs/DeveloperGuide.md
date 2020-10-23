@@ -324,7 +324,7 @@ method to update the patients' profile pictures.
 This feature comprises the `AddProfilePictureCommand` class. Given below is an example usage scenario and how the mechanism behaves at each step.
 
 <p align="center">
-    <img src="images/AddProfilePictureSequenceDiagram.png"/>
+    <img src="images/AddProfilePictureSequenceDiagram.png" width="2050" height="500"/>
     <br>
     <em style="color:#CC5500">Figure 18. Logic Component Interactions for AddProfilePicture Command</em>
 </p>
