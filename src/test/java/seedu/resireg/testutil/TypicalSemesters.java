@@ -1,7 +1,6 @@
 package seedu.resireg.testutil;
 
 import seedu.resireg.model.semester.Semester;
-import seedu.resireg.model.semester.SemesterNumber;
 
 /**
  * A utility class containing a list of {@code Semester} objects to be used in tests.

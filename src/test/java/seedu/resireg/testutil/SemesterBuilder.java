@@ -8,6 +8,7 @@ import java.util.Map;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.roomtype.RoomType;
 import seedu.resireg.model.semester.AcademicYear;
+import seedu.resireg.model.semester.RoomRate;
 import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.semester.SemesterNumber;
 
@@ -19,7 +20,7 @@ public class SemesterBuilder {
     private AcademicYear academicYear;
     private SemesterNumber semesterNumber;
     private List<Allocation> allocations;
-    private Map<RoomType, Integer> roomFees;
+    private Map<RoomType, RoomRate> roomFees;
 
     /**
      * Creates a {@code SemesterBuilder} with the default details.
@@ -68,7 +69,7 @@ public class SemesterBuilder {
     /**
      * Sets the {@code roomFees} of the {@code Semester} that we are building.
      */
-    public SemesterBuilder withRoomFees(HashMap<RoomType, Integer> roomFees) {
+    public SemesterBuilder withRoomFees(HashMap<RoomType, RoomRate> roomFees) {
         this.roomFees = roomFees;
         return this;
     }

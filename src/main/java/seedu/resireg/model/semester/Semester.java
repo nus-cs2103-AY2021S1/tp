@@ -23,7 +23,7 @@ public class Semester {
 
     // Data fields
     private final List<Allocation> allocations;
-    private final Map<RoomType, Integer> roomFees;
+    private final Map<RoomType, RoomRate> roomFees;
 
     /**
      * SemesterNumber should be present and not null.
@@ -40,7 +40,7 @@ public class Semester {
      * All fields should be present and not null.
      */
     public Semester(AcademicYear academicYear, SemesterNumber semesterNumber,
-                    List<Allocation> allocations, Map<RoomType, Integer> roomFees) {
+                    List<Allocation> allocations, Map<RoomType, RoomRate> roomFees) {
         requireAllNonNull(academicYear, semesterNumber, allocations, roomFees);
         this.academicYear = academicYear;
         this.semesterNumber = semesterNumber;
@@ -56,7 +56,7 @@ public class Semester {
         return allocations;
     }
 
-    public Map<RoomType, Integer> getRoomFees() {
+    public Map<RoomType, RoomRate> getRoomFees() {
         return roomFees;
     }
 
@@ -91,10 +91,10 @@ public class Semester {
         }
 
         Semester otherSemester = (Semester) other;
-        return otherSemester.getAcademicYear() == getAcademicYear()
+        return otherSemester.getAcademicYear().equals(getAcademicYear())
                 && otherSemester.getSemesterNumber().equals(getSemesterNumber())
-                && otherSemester.getRoomFees().equals(getRoomFees())
-                && otherSemester.getAllocations().equals(getAllocations());
+                && Objects.equals(otherSemester.getRoomFees(), getRoomFees())
+                && Objects.equals(otherSemester.getAllocations(), getAllocations());
     }
 
     @Override
@@ -102,14 +102,14 @@ public class Semester {
         final StringBuilder builder = new StringBuilder();
         builder.append(" Academic Year: ")
                 .append(getAcademicYear())
-                .append(" Room Fees: ( ");
+                .append(" Room Fees: (");
         getRoomFees().forEach((roomType, fee) ->
                 builder.append(" Room type: ")
                         .append(roomType.toString())
                         .append(", Fee: ")
                         .append(fee)
                         .append(" "));
-        builder.append(" ) ");
+        builder.append(") ");
         return builder.toString();
     }
 
