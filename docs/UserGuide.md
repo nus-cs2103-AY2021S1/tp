@@ -66,7 +66,7 @@ Format: `list`
 
 Adds a task of the specified type to PlaNus.
 
-Format: `add title:TITLE type:TYPE_OF_TASK [desc:DESCRIPTION] [date:DATE_TIME] [mod:MODULE_CODE]`
+Format: `add title:TITLE type:TYPE_OF_TASK [desc:DESCRIPTION] [date:DATE_TIME] [tag:MODULE_CODE]`
 
 * Adds the task of the specified `type:TYPE_OF_TASK` to PlaNus.
 * The type must be of the following types(case-sensitive):
@@ -85,7 +85,7 @@ Adds a task with title "Return book", of type "deadline", and a date and time of
 
 Adds a lesson to PlaNus.
 
-Format: `lesson title:TITLE mod:MODULE_CODE [desc:DESCRIPTION] day:DAY from:TIME to:TIME start:DATE end:DATE`
+Format: `lesson title:TITLE tag:MODULE_CODE [desc:DESCRIPTION] day:DAY from:TIME to:TIME start:DATE end:DATE`
 
 * Adds a lesson to PlaNus, starting from the date specified in `start:DATE` to the
  date specified in `end:DATE`, on the days specified in `day:DAY` from the time specified in `from:TIME` to the time
@@ -96,7 +96,7 @@ Format: `lesson title:TITLE mod:MODULE_CODE [desc:DESCRIPTION] day:DAY from:TIME
 
 Examples:
 
-* `lesson title:CS2103T Lecture mod:CS2103T desc:Most exciting lecture in NUS! day:Mon from:12:00 to:14:00 start:01-01-2020 end:01-05-2020 ` Adds a lesson to PlaNus with a title "CS2103 Lecture", under the module "CS2103T", with a description "Most exciting lecture in NUS!", on all Mondays 12:00-14:00 in the date range 01-01-2020 to 01-05-2020.
+* `lesson title:CS2103T Lecture tag:CS2103T desc:Most exciting lecture in NUS! day:Mon from:12:00 to:14:00 start:01-01-2020 end:01-05-2020 ` Adds a lesson to PlaNus with a title "CS2103 Lecture", under the module "CS2103T", with a description "Most exciting lecture in NUS!", on all Mondays 12:00-14:00 in the date range 01-01-2020 to 01-05-2020.
 
 ### Delete a task : `delete`
 
@@ -146,7 +146,7 @@ Available attributes in v1.3 include:
 * `type:` find all tasks of the given type
 * `date:` find all tasks with the given date and/or time
 * `status:` find all tasks with the given status
-* `mod:` find all tasks related with the given module
+* `tag:` find all tasks related with the given module tag
 
 Examples:
 
@@ -203,10 +203,10 @@ Format: `exit`
 | ---------- | ------------------------------------------------------------ |
 | **Help**   | `help`                                                       |
 | **List**   | `list`                                                       |
-| **Add**    | `add title:TITLE type:TYPE_OF_TASK [desc:DESCRIPTION] [date:DATE_TIME] [mod:MODULE_CODE]` <br> e.g. `add title:Read textbook type:todo mod:CS2103T` |
-| **Lesson** | `title:TITLE mod:MODULE_CODE [desc:DESCRIPTION] day:DAY from:TIME to:TIME start:DATE end:DATE`<br>e.g.`lesson title:CS2103T Lecture mod:CS2103T desc:Most exciting lecture in NUS! day:Mon from:12:00 to:14:00 start:01-01-2020 end:01-05-2020` |
+| **Add**    | `add title:TITLE type:TYPE_OF_TASK [desc:DESCRIPTION] [date:DATE_TIME] [tag:MODULE_CODE]` <br> e.g. `add title:Read textbook type:todo tag:CS2103T` |
+| **Lesson** | `title:TITLE tag:MODULE_CODE [desc:DESCRIPTION] day:DAY from:TIME to:TIME start:DATE end:DATE`<br>e.g.`lesson title:CS2103T Lecture tag:CS2103T desc:Most exciting lecture in NUS! day:Mon from:12:00 to:14:00 start:01-01-2020 end:01-05-2020` |
 | **Delete** | `delete INDEX...` <br> e.g. `delete 3`                       |
 | **Done**   | `done INDEX...`<br> e.g. `done 1 2 3`                        |
 | **Find**   | `find ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...` <br> e.g.`find title:dinner type:todo` |
-| **Edit**   | `edit INDEX [title:TITLE] [date:DATE] [desc:DESCRIPTION] [type:TYPE] [mod:MODULE_CODE]`<br>e.g. `edit 1 date:02-02-2020 12:00 mod:CS2101` |
+| **Edit**   | `edit INDEX [title:TITLE] [date:DATE] [desc:DESCRIPTION] [type:TYPE] [tag:MODULE_CODE]`<br>e.g. `edit 1 date:02-02-2020 12:00 tag:CS2101` |
 | **Exit**   | `exit`                                                       |
