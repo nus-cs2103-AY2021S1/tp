@@ -39,6 +39,8 @@ class JsonAdaptedFinanceRecord {
      * Converts a given {@code FinanceRecord} into this class for Jackson use.
      */
     public JsonAdaptedFinanceRecord(FinanceRecord source) {
+        assert source != null : "Source finance record is null!";
+
         this.id = source.getID();
         this.amount = source.getAmount();
         this.dateTime = source.getDatetime();
