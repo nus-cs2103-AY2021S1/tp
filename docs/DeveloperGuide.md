@@ -4,21 +4,21 @@ by Team W12-2
 ---
 
 ## **Table of Contents**
-* Section 1 - Preface
-* Section 2 - Setting up, getting started
-* Section 3 - Design
-    * 3.1 - High-Level Architecture 
-    * 3.2 - UI Component
-    * 3.3 - Logic Component
-    * 3.4 - Model Component
-    * 3.5 - Storage Component
-    * 3.6 - Common Classes
-* Section 4 - Implementation
-    * 4.1 - Add feature
-    * 4.2 - Undo/redo feature
-    * 4.3 - Data saving and loading
-* Section 5 - Documentation, logging, testing, configuration, dev-ops
-* Section 6 - Appendix
+* [Section 1 - Preface](#section-1---preface)
+* [Section 2 - Setting up, getting started](#section-2---setting-up-getting-started)
+* [Section 3 - Design](#section-3---design)
+    * [3.1 - High-Level Architecture](#section-31---high-level-architecture)
+    * [3.2 - UI Component](#section-32---ui-component)
+    * [3.3 - Logic Component](#section-33---logic-component)
+    * [3.4 - Model Component](#section-34---model-component)
+    * [3.5 - Storage Component](#section-35---storage-component)
+    * [3.6 - Common Classes](#section-36---common-classes)
+* [Section 4 - Implementation](#section-4---implementation)
+    * [4.1 - Add feature](#section-41---add-feature)
+    * [4.2 - Undo/redo feature](#section-42---proposed-undoredo-feature)
+    * [4.3 - Data saving and loading](#section-43---data-saving-and-loading)
+* [Section 5 - Documentation, logging, testing, configuration, dev-ops](#section-5---documentation-logging-testing-configuration-dev-ops)
+* [Section 6 - Appendix](#section-6---appendix)
 
 ---
 
@@ -144,7 +144,7 @@ The `Storage` component,
 -   can save `UserPref` objects in json format and read it back.
 -   can save the module data in json format and read it back.
 
-### Common classes
+### Section 3.6 - Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
