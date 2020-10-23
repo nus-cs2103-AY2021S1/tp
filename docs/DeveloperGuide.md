@@ -1567,7 +1567,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 3.
 
-#### Use case 20: Exit Warenager
+#### Use case 20: Sort stocks by field and order
+
+**MSS**
+
+1. User types in command
+2. User provides the field to sort and the sort order.
+3. Warenager sorts the inventory according to the field and order specified.
+
+   Use case ends.
+
+**Extensions**
+* 2a. The field user provided is not valid but the order is valid.
+
+    * 2a1. Warenager will generate command suggestion to the user (Use case 19).
+    
+    Use case ends.
+
+* 2b. The order user provided is not valid but the field is valid.
+
+    * 2b1. Warenager will generate command suggestion for the user (Use case 19).
+
+    Use case ends.
+
+* 2c. Both the order and field user provided is not valid.
+
+    * 2c1. Warenager will generate command suggesstion for the user (Use case 19).
+
+    Use case ends.
+
+#### Use case 21: Exit Warenager
 
 **MSS**
 
