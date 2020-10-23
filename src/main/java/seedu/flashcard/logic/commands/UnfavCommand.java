@@ -17,6 +17,7 @@ import seedu.flashcard.model.flashcard.Flashcard;
 import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
 import seedu.flashcard.model.flashcard.Rating;
+import seedu.flashcard.model.flashcard.Statistics;
 import seedu.flashcard.model.tag.Tag;
 
 /**
@@ -71,7 +72,8 @@ public class UnfavCommand extends Command {
         Rating rating = flashcardToUnfavourite.getRating();
         Set<Tag> tags = flashcardToUnfavourite.getTags();
         Diagram diagram = flashcardToUnfavourite.getDiagram();
-        return new Flashcard(question, answer, category, note, rating, tags, diagram, false);
+        Statistics statistics = flashcardToUnfavourite.getStatistics();
+        return new Flashcard(question, answer, category, note, rating, tags, diagram, statistics, false);
     }
 
     @Override

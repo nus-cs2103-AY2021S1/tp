@@ -74,7 +74,6 @@ public class FlashcardListCard extends UiPart<Region> {
         } else {
             favouriteIcon.setVisible(false);
         }
-
     }
 
     @Override
