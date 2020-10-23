@@ -1,13 +1,12 @@
 package seedu.address.model.appointment;
 
-import seedu.address.model.patient.Patient;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_APPOINTMENT_START_END;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
+
+import seedu.address.model.patient.Name;
 
 
 /**
@@ -16,17 +15,14 @@ import java.util.Objects;
  */
 public class Appointment {
 
-    private String patientName;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
-
-    public Appointment() {
-    }
+    private Name patientName;
+    private AppointmentDateTime startTime;
+    private AppointmentDateTime endTime;
 
     /**
      * Patient name, appointment time must be present and not null.
      */
-    public Appointment(String patientName, LocalDateTime startTime, LocalDateTime end) {
+    public Appointment(Name patientName, AppointmentDateTime startTime, AppointmentDateTime end) {
         requireAllNonNull(patientName, startTime, end);
         checkArgument(isValidStartEnd(startTime, end), MESSAGE_INVALID_APPOINTMENT_START_END);
         // should also check whether a patient is inside the patient database
@@ -37,36 +33,25 @@ public class Appointment {
 
     /**
      * Validates that starting time of appointment provided is earlier than ending time provided
+     *
      * @param startTime starting time of the appointment
-     * @param endTime ending time of the appointment
+     * @param endTime   ending time of the appointment
      * @return true if starting time is earlier than ending time
      */
-    public static boolean isValidStartEnd(LocalDateTime startTime, LocalDateTime endTime) {
+    public static boolean isValidStartEnd(AppointmentDateTime startTime, AppointmentDateTime endTime) {
         return startTime.compareTo(endTime) < 0;
     }
 
-    public String getPatientName() {
+    public Name getPatientName() {
         return patientName;
     }
 
-    public void setPatientName(String patient) {
-        this.patientName = patient;
-    }
-
-    public LocalDateTime getStartTime() {
+    public AppointmentDateTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public LocalDateTime getEndTime() {
+    public AppointmentDateTime getEndTime() {
         return endTime;
-    }
-
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
     }
 
     /**
@@ -120,4 +105,5 @@ public class Appointment {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(patientName, startTime, endTime);
     }
+
 }
