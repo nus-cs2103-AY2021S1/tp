@@ -36,7 +36,7 @@ public class JsonMacroListStorage implements MacroListStorage {
 
         Optional<JsonSerializableMacroList> jsonMacroList = JsonUtil.readJsonFile(
                 filePath, JsonSerializableMacroList.class);
-        if (!jsonMacroList.isPresent()) {
+        if (jsonMacroList.isEmpty()) {
             return Optional.empty();
         }
 

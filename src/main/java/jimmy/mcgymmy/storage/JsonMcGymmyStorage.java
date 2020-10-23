@@ -47,7 +47,7 @@ public class JsonMcGymmyStorage implements McGymmyStorage {
 
         Optional<JsonSerializableMcGymmy> jsonMcGymmy = JsonUtil.readJsonFile(
                 filePath, JsonSerializableMcGymmy.class);
-        if (!jsonMcGymmy.isPresent()) {
+        if (jsonMcGymmy.isEmpty()) {
             return Optional.empty();
         }
 
