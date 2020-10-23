@@ -49,34 +49,7 @@
           </padding>
         </StackPane>
 
-        <GridPane fx:id ="reviewModePane" styleClass="grid-with-border"  VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets bottom="10" left="10" right="10" top="10" />
-          </padding>
-          <rowConstraints>
-            <RowConstraints percentHeight="75.0"/>
-            <RowConstraints percentHeight="25.0"/>
-          </rowConstraints>
-          <columnConstraints>
-            <ColumnConstraints percentWidth="15.0"/>
-            <ColumnConstraints percentWidth="70.0"/>
-            <ColumnConstraints percentWidth="15.0"/>
-          </columnConstraints>
-          <VBox VBox.vgrow="ALWAYS" styleClass="pane-with-no-border" HBox.hgrow = "ALWAYS" GridPane.rowIndex="0" GridPane.columnIndex="1">
-            <StackPane  fx:id="questionPlaceholder"  VBox.vgrow="ALWAYS" />
-            <padding>
-              <Insets bottom="5" />
-            </padding>
-          </VBox>
-
-          <VBox VBox.vgrow="ALWAYS" styleClass="pane-with-no-border" HBox.hgrow = "ALWAYS"  GridPane.rowIndex="1" GridPane.columnIndex="1">
-            <StackPane fx:id="answerPlaceholder" VBox.vgrow="ALWAYS" >
-            </StackPane>
-          </VBox>
-
-
-        </GridPane>
-
+        <StackPane fx:id="reviewPanePlaceholder"  VBox.vgrow="ALWAYS" HBox.hgrow = "ALWAYS"></StackPane>
 
         <GridPane fx:id="commandModePane" styleClass="grid-with-border" VBox.vgrow="ALWAYS">
           <padding>
