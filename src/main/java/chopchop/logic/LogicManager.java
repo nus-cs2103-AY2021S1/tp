@@ -2,6 +2,7 @@ package chopchop.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.logging.Logger;
 
 import chopchop.commons.core.GuiSettings;
@@ -28,7 +29,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final HistoryManager history;
+    private final HistoryManager historyManager;
     private final CommandParser parser;
 
     /**
@@ -37,7 +38,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        this.history = new HistoryManager();
+        this.historyManager = new HistoryManager();
         this.parser = new CommandParser();
     }
 
@@ -50,16 +51,17 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
+        this.historyManager.addInput(commandText);
         var res = this.parser.parse(commandText);
         if (res.isError()) {
             throw new ParseException(res.getError());
         }
 
         var cmd = res.getValue();
-        var result = cmd.execute(this.model, this.history);
+        var result = cmd.execute(this.model, this.historyManager);
 
         if (cmd instanceof Undoable) {
-            this.history.add((Undoable) cmd);
+            this.historyManager.addCommand((Undoable) cmd);
         }
 
         try {
@@ -100,6 +102,16 @@ public class LogicManager implements Logic {
     @Override
     public Path getIngredientBookFilePath() {
         return this.model.getIngredientBookFilePath();
+    }
+
+    @Override
+    public List<String> getInputHistory() {
+        return this.historyManager.getInputHistory();
+    }
+
+    @Override
+    public List<String> getInputHistory(String prefix) {
+        return this.historyManager.getInputHistory(prefix);
     }
 
     @Override

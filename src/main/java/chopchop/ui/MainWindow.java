@@ -125,7 +125,7 @@ public class MainWindow extends UiPart<Stage> {
         DisplayNavigator.setDisplayController(displayController);
         displayPlaceholder.getChildren().setAll(displayController.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeCommand, this.logic);
         this.commandBox = commandBox;
         commandBoxPlaceholder.getChildren().setAll(commandBox.getRoot());
     }
