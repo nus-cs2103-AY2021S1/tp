@@ -22,14 +22,14 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     public DeleteCommand parse(String args) throws ParseException {
         try {
-            System.out.println("hi 1");
-            System.out.println(args);
-            String[] indexes = args.split("\\d+");
+            String[] indexes = args.split("\\s+");
             System.out.println(Arrays.toString(indexes));
             List<Index> parsedIndexes = new ArrayList<>();
             for (String s : indexes) {
-                Index index = ParserUtil.parseIndex(s);
-                parsedIndexes.add(index);
+                if (!s.isEmpty()) {
+                    Index index = ParserUtil.parseIndex(s);
+                    parsedIndexes.add(index);
+                }
             }
             return new DeleteCommand(parsedIndexes);
         } catch (ParseException pe) {
