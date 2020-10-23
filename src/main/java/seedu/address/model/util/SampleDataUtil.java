@@ -39,7 +39,7 @@ public class SampleDataUtil {
                     new School("Montford Secondary School"), new Year(SchoolType.SECONDARY, 4),
                     new Admin(new ClassVenue("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                             new ClassTime("1 1500-1600"), new Fee("50"),
-                            new PaymentDate("30/6/20"), getDetailSet()),
+                            new PaymentDate("30/6/20"), getDetailList()),
                     getSolvedQuestions("Read your textbook", "Explain heat flow.")),
             new Student(new Name("Charlotte Oliveiro"), new Phone("93210283"),
                     new School("Raffles Girls School"), new Year(SchoolType.SECONDARY, 3),
