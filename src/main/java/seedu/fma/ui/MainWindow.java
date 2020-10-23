@@ -132,6 +132,7 @@ public class MainWindow extends UiPart<Stage> {
         //gridBoxPlaceholder.setBackground(new Background(new BackgroundFill(new Color())));
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        assert (resultDisplayPlaceholder.getChildren().size() > 0);
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getLogBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
