@@ -1,6 +1,8 @@
 package seedu.resireg.model.util;
 
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -11,6 +13,9 @@ import seedu.resireg.model.room.Floor;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.room.RoomNumber;
 import seedu.resireg.model.room.roomtype.RoomType;
+import seedu.resireg.model.semester.AcademicYear;
+import seedu.resireg.model.semester.Semester;
+import seedu.resireg.model.semester.SemesterNumber;
 import seedu.resireg.model.student.Email;
 import seedu.resireg.model.student.Name;
 import seedu.resireg.model.student.Phone;
@@ -23,6 +28,14 @@ import seedu.resireg.model.tag.Tag;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
+    public static Semester getSampleSemester() {
+        return new Semester(
+                new AcademicYear(LocalDate.now().getYear()),
+                new SemesterNumber(1),
+                Arrays.asList(getSampleAllocations()),
+                new HashMap<>());
+    }
+
     public static Student[] getSampleStudents() {
         return new Student[] {
             new Student(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
@@ -69,6 +82,7 @@ public class SampleDataUtil {
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
+        sampleAb.setSemester(getSampleSemester());
         for (Student sampleStudent : getSampleStudents()) {
             sampleAb.addStudent(sampleStudent);
         }
