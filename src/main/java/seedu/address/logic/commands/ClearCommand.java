@@ -47,7 +47,8 @@ public class ClearCommand extends Command {
             activeAccount.clearRevenues();
         }
         model.setAccount(activeAccount.getAccount());
-        return new CommandResult(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, category));
+        return new CommandResult(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, category),
+            false, false, true);
     }
 
     @Override

@@ -92,7 +92,8 @@ public class EditCommand extends Command {
         }
         model.setAccount(activeAccount.getAccount());
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedEntry));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedEntry),
+            false, false, true);
     }
 
     private static Entry createEditedEntry(Entry entryToEdit, EditEntryDescriptor editEntryDescriptor) {

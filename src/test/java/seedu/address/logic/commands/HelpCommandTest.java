@@ -18,7 +18,7 @@ public class HelpCommandTest {
     public void execute_help_success() {
         model.addAccount(getTypicalAccount());
         expectedModel.addAccount(getTypicalAccount());
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false);
+        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false, false);
         assertCommandSuccess(new HelpCommand(), model, expectedCommandResult, expectedModel);
     }
 }
