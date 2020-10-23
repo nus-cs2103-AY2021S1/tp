@@ -139,7 +139,7 @@ This section describes some noteworthy details on how certain features are imple
 
 The undo feature is facilitated by a stack data structure.
 
-The `HistoryStack` class wraps a stack designed to hold 'ReadOnlyZooKeepBook' objects.
+The `HistoryStack` class wraps a stack designed to hold `ReadOnlyZooKeepBook` objects.
 
 The Singleton Pattern is employed here since only one history instance should exist in the running of the application.
 
