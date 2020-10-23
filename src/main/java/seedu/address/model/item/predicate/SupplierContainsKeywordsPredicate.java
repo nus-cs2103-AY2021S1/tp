@@ -6,12 +6,15 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.item.Item;
 
+/**
+ * Tests that a {@code Item}'s {@code Supplier} matches any of the keywords given.
+ */
 public class SupplierContainsKeywordsPredicate implements Predicate<Item> {
 
     private final List<String> keywords;
 
     /**
-     * Constructor for NameContainsKeywordsPredicate.
+     * Constructor for SupplierContainsKeywordsPredicate.
      *
      * @param keywords List of keywords
      */

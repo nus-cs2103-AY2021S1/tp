@@ -15,7 +15,7 @@ public class TagContainsKeywordsPredicate implements Predicate<Item> {
     private final List<String> keywords;
 
     /**
-     * Constructor for ItemContainsKeywordsPredicate.
+     * Constructor for SupplierContainsKeywordsPredicate.
      * @param keywords List of keywords
      */
     public TagContainsKeywordsPredicate(List<String> keywords) {
