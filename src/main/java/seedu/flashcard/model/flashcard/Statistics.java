@@ -8,8 +8,8 @@ import java.util.Objects;
  * Represents the Statistics on the Flashcard.
  */
 public class Statistics {
-    public static final String STATISTICS_CONSTRAINT = "Review frequency and success frequency should be positive integers,"
-            + "and review frequency should be greater than or equals to success frequency";
+    public static final String STATISTICS_CONSTRAINT = "Review frequency and success frequency should be positive "
+            + "integers, and review frequency should be greater than or equals to success frequency";
 
     private final int reviewFrequency;
     private final int successFrequency;
