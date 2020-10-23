@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.ParserUtil.parseSchool;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -317,29 +317,29 @@ public class ParserUtilTest {
 
     @Test
     public void parseAdditionalDetails_invalidDetail_throwsParseException() {
-        Set<String> invalidSet = Set.of(INVALID_ADDITIONAL_DETAIL);
+        List<String> invalidSet = List.of(INVALID_ADDITIONAL_DETAIL);
         assertThrows(ParseException.class, () -> ParserUtil.parseAdditionalDetails(invalidSet));
     }
 
     @Test
     public void parseAdditionalDetails_validDetails_returnsDetails() throws Exception {
-        Set<String> validSet = Set.of(VALID_ADDITIONAL_DETAIL_CONVICT, VALID_ADDITIONAL_DETAIL_WEEB);
-        Set<AdditionalDetail> expectedSet = validSet.stream()
+        List<String> validList = List.of(VALID_ADDITIONAL_DETAIL_CONVICT, VALID_ADDITIONAL_DETAIL_WEEB);
+        List<AdditionalDetail> expectedSet = validList.stream()
                 .map(AdditionalDetail::new)
-                .collect(Collectors.toSet());
-        assertEquals(expectedSet, ParserUtil.parseAdditionalDetails(validSet));
+                .collect(Collectors.toList());
+        assertEquals(expectedSet, ParserUtil.parseAdditionalDetails(validList));
     }
 
     @Test
     public void parseAdditionalDetails_validDetailsSpace_returnsTrimmedDetails() throws Exception {
-        Set<String> baseSet = Set.of(VALID_ADDITIONAL_DETAIL_CONVICT, VALID_ADDITIONAL_DETAIL_WEEB);
-        Set<String> validSet = baseSet.stream()
+        List<String> baseList = List.of(VALID_ADDITIONAL_DETAIL_CONVICT, VALID_ADDITIONAL_DETAIL_WEEB);
+        List<String> validList = baseList.stream()
                 .map(string -> WHITESPACE + string + WHITESPACE)
-                .collect(Collectors.toSet());
-        Set<AdditionalDetail> expectedSet = baseSet.stream()
+                .collect(Collectors.toList());
+        List<AdditionalDetail> expectedSet = baseList.stream()
                 .map(AdditionalDetail::new)
-                .collect(Collectors.toSet());
-        assertEquals(expectedSet, ParserUtil.parseAdditionalDetails(validSet));
+                .collect(Collectors.toList());
+        assertEquals(expectedSet, ParserUtil.parseAdditionalDetails(validList));
     }
 
     @Test

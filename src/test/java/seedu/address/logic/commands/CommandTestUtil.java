@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAILS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_TEXT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYMENT;
@@ -78,6 +79,9 @@ public class CommandTestUtil {
 
     public static final String QUESTION_DESC_AMY = " " + PREFIX_DETAILS + VALID_QUESTION_AMY;
 
+    public static final String ADDITIONAL_DETAIL_DESC_AMY = " " + PREFIX_DETAIL_TEXT + VALID_ADDITIONAL_DETAILS_AMY;
+    public static final String ADDITIONAL_DETAIL_DESC_BOB = " " + PREFIX_DETAIL_TEXT + VALID_ADDITIONAL_DETAILS_BOB;
+
     public static final String QUESTION_MATH = "What is 1 + 1?";
     public static final String QUESTION_PHYSICS = "How does Newton's Second Law work?";
     public static final String QUESTION_EMO = "What is the point of life?";
@@ -93,8 +97,6 @@ public class CommandTestUtil {
     public static final String INVALID_FEE_DESC = " " + PREFIX_FEE + "$20"; // '$' allowed for schools
     // 'alphabets' not allowed in payment date
     public static final String INVALID_PAYMENT_DESC = " " + PREFIX_PAYMENT + "alphabets";
-    public static final String INVALID_ADDITIONAL_DETAIL_DESC = " " + PREFIX_DETAILS + "hubby*";
-    // '*' not allowed in details
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

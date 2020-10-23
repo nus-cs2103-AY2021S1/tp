@@ -43,7 +43,7 @@ public class TypicalStudents {
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
             .withSchool("Anderson Secondary").withYear(SchoolType.SECONDARY, 3).withPhone("94351253")
             .withClassVenue("123, Jurong West Ave 6, #08-111")
-            .withDetails("Clever")
+            .withDetails("owesMoney", "friends")
             .build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withSchool("Pei Hwa Secondary").withYear(SchoolType.SECONDARY, 2).withPhone("98765432")
