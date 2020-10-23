@@ -2,9 +2,9 @@ package seedu.address.model.student.admin;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * Represents all administrative details of a Student in Reeve.
@@ -17,13 +17,13 @@ public class Admin {
     private final ClassTime classTime;
     private final Fee fee;
     private final PaymentDate paymentDate;
-    private final Set<AdditionalDetail> details = new HashSet<>();
+    private final List<AdditionalDetail> details = new ArrayList<>();
 
     /**
      * venue, time, fee, date and details are not null.
      */
     public Admin(ClassVenue venue, ClassTime time, Fee fee, PaymentDate date,
-                 Set<AdditionalDetail> details) {
+                 List<AdditionalDetail> details) {
         requireAllNonNull(venue, time, fee, date, details);
         this.classVenue = venue;
         this.classTime = time;
@@ -48,7 +48,7 @@ public class Admin {
         return paymentDate;
     }
 
-    public Set<AdditionalDetail> getDetails() {
+    public List<AdditionalDetail> getDetails() {
         return details;
     }
 
@@ -98,7 +98,7 @@ public class Admin {
                 .append(fee)
                 .append(" Last Paid: ")
                 .append(paymentDate)
-                .append(" Notes: ");
+                .append(" Details: ");
         details.forEach(builder::append);
         return builder.toString();
     }

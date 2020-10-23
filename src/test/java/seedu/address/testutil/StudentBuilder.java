@@ -1,9 +1,7 @@
 package seedu.address.testutil;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
@@ -50,7 +48,7 @@ public class StudentBuilder {
     private ClassTime time;
     private Fee fee;
     private PaymentDate paymentDate;
-    private Set<AdditionalDetail> details = new HashSet<>();
+    private List<AdditionalDetail> details = new ArrayList<>();
 
     private List<Question> questions = new ArrayList<>();
 
@@ -166,7 +164,7 @@ public class StudentBuilder {
      * Sets the {@code Details} of the {@code Student} that we are building.
      */
     public StudentBuilder withDetails(String... details) {
-        this.details = SampleDataUtil.getDetailSet(details);
+        this.details = SampleDataUtil.getDetailList(details);
         return this;
     }
 
