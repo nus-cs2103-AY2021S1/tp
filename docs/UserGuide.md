@@ -66,37 +66,37 @@ Format: `list`
 
 Adds a task of the specified type to PlaNus.
 
-Format: `add title:TITLE type:TYPE_OF_TASK [desc:DESCRIPTION] [date:DATE_TIME]`
+Format: `add title:TITLE type:TYPE_OF_TASK [desc:DESCRIPTION] [date:DATE_TIME] [mod:MODULE_CODE]`
 
 * Adds the task of the specified `type:TYPE_OF_TASK` to PlaNus.
 * The type must be of the following types(case-sensitive):
-  * todo
   * deadline
   * event
 
 Examples:
 
-* `add title:return book type:todo` Adds a task with title return book and type todo to PlaNus.
-* `add title:Birthday party type:event desc:Frank’s birthday party date:01-01-2020 18:00`
-  Adds a task with title “Birthday party” , type event,
-  description “Frank’s birthday party” , and date and time “01-01-2020 18:00” to PlaNus.
+* `add title:Return book type:todo date:01-01-2020 18:00` 
+Adds a task with title "Return book", of type "deadline", and a date and time of "01-01-2020" to PlaNus.
+* `add title:Birthday party type:deadline desc:Frank’s birthday party date:01-01-2020 18:00`
+  Adds a task with title “Birthday party”, of type "event",
+  description “Frank’s birthday party” and a date and time of “01-01-2020 18:00” to PlaNus.
   
 ### Add a lesson: `lesson`
 
 Adds a lesson to PlaNus.
 
-Format: `lesson title:TITLE [desc:DESCRIPTION] day:DAY from:TIME to:TIME start:DATE end:DATE`
+Format: `lesson title:TITLE mod:MODULE_CODE [desc:DESCRIPTION] day:DAY from:TIME to:TIME start:DATE end:DATE`
 
-* Adds multiple recurring tasks of  `type:lesson` to PlaNus, starting from the date specified in `start:DATE` to the
- date specified in `end:DATE`, on the day specified in `day:DAY` from the time specified in `from:TIME` to the time
+* Adds a lesson to PlaNus, starting from the date specified in `start:DATE` to the
+ date specified in `end:DATE`, on the days specified in `day:DAY` from the time specified in `from:TIME` to the time
  specified in `to:TIME`.
-* The format of day must be as follows (case-insensitive):
+* The format of day in `day:DAY` must be as follows (case-insensitive):
   * Mon - Sun
   * Monday - Sunday
 
 Examples:
 
-* `lesson title:CS2103T Lecture desc:Most exciting lecture in NUS! day:Mon from:12:00 to:14:00 start:01-01-2020 end:01-05-2020 ` Adds a recurring lesson to PlaNus with a title "CS2103 Lecture", description "Most exciting lecture in NUS!", on all Mondays 12:00-14:00 in the date range 01-01-2020 to 01-05-2020.
+* `lesson title:CS2103T Lecture mod:CS2103T desc:Most exciting lecture in NUS! day:Mon from:12:00 to:14:00 start:01-01-2020 end:01-05-2020 ` Adds a lesson to PlaNus with a title "CS2103 Lecture", under the module "CS2103T", with a description "Most exciting lecture in NUS!", on all Mondays 12:00-14:00 in the date range 01-01-2020 to 01-05-2020.
 
 ### Delete a task : `delete`
 
@@ -146,6 +146,7 @@ Available attributes in v1.3 include:
 * `type:` find all tasks of the given type
 * `date:` find all tasks with the given date and/or time
 * `status:` find all tasks with the given status
+* `mod:` find all tasks related with the given module
 
 Examples:
 
@@ -200,10 +201,12 @@ Format: `exit`
 
 | Action     | Format, Examples                                             |
 | ---------- | ------------------------------------------------------------ |
-| **Add**    | `add title:TITLE type:TYPE_OF_TASK [desc:DESCRIPTION] [date:DATE_TIME]` <br> e.g. `add title:return book type:todo` |
-| **Delete** | `delete INDEX...` <br> e.g. `delete 3`                       |
-| **List**   | `list`                                                       |
 | **Help**   | `help`                                                       |
+| **List**   | `list`                                                       |
+| **Add**    | `add title:TITLE type:TYPE_OF_TASK [desc:DESCRIPTION] [date:DATE_TIME] [mod:MODULE_CODE]` <br> e.g. `add title:Read textbook type:todo mod:CS2103T` |
+| **Lesson** | `title:TITLE mod:MODULE_CODE [desc:DESCRIPTION] day:DAY from:TIME to:TIME start:DATE end:DATE`<br>e.g.`lesson title:CS2103T Lecture mod:CS2103T desc:Most exciting lecture in NUS! day:Mon from:12:00 to:14:00 start:01-01-2020 end:01-05-2020` |
+| **Delete** | `delete INDEX...` <br> e.g. `delete 3`                       |
 | **Done**   | `done INDEX...`<br> e.g. `done 1 2 3`                        |
 | **Find**   | `find ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...` <br> e.g.`find title:dinner type:todo` |
+| **Edit**   | `edit INDEX [title:TITLE] [date:DATE] [desc:DESCRIPTION] [type:TYPE] [mod:MODULE_CODE]`<br>e.g. `edit 1 date:02-02-2020 12:00 mod:CS2101` |
 | **Exit**   | `exit`                                                       |
