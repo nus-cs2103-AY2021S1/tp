@@ -6,6 +6,7 @@ import chopchop.commons.core.Messages;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 import chopchop.model.attributes.NameContainsKeywordsPredicate;
+import chopchop.ui.DisplayNavigator;
 
 /**
  * Finds and lists all recipes in address book whose name contains any of the argument keywords.
@@ -34,6 +35,11 @@ public class FindRecipeCommand extends Command {
     public CommandResult execute(Model model, HistoryManager historyManager) {
         requireNonNull(model);
         model.updateFilteredRecipeList(predicate);
+
+        if (DisplayNavigator.hasDisplayController()) {
+            DisplayNavigator.loadRecipePanel();
+        }
+
         return new CommandResult(
                 String.format(Messages.MESSAGE_RECIPES_LISTED_OVERVIEW, model.getFilteredRecipeList().size()));
     }
