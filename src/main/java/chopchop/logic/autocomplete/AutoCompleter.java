@@ -284,8 +284,6 @@ public class AutoCompleter {
 
                 if (cmd.equals(Strings.COMMAND_MAKE)) {
                     return RequiredCompletion.RECIPE_NAME;
-                } else if (cmd.equals(Strings.COMMAND_USE)) {
-                    return RequiredCompletion.INGREDIENT_NAME;
                 } else {
                     return RequiredCompletion.NONE;
                 }
@@ -338,7 +336,6 @@ public class AutoCompleter {
 
     private boolean commandRequiresItemReference(String commandName) {
         return List.of(
-            Strings.COMMAND_USE,
             Strings.COMMAND_MAKE,
             Strings.COMMAND_DELETE
         ).indexOf(commandName) >= 0;

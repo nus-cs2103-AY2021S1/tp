@@ -34,7 +34,6 @@ public class AutoCompleterTest {
 
         // test command completion
         tests.put("a",                                      "add");
-        tests.put("u",                                      "use");
         tests.put("f",                                      "find");
         tests.put("l",                                      "list");
         tests.put("q",                                      "quit");
@@ -73,11 +72,10 @@ public class AutoCompleterTest {
         // recipe name completion
         tests.put("delete recipe a",                        "delete recipe Apricot Salad");
         tests.put("make cus",                               "make Custard Salad");
-        tests.put("use ba",                                 "use Banana");
 
         // things that don't change
         tests.put("",                                       "");
-        tests.put("kk",                                     "kk")
+        tests.put("kk",                                     "kk");
         tests.put("add recipe",                             "add recipe");
         tests.put("find recipe",                            "find recipe");
 

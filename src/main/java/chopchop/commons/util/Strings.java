@@ -20,7 +20,6 @@ public class Strings {
 
     // command names
     public static final String COMMAND_ADD          = "add";
-    public static final String COMMAND_USE          = "use";
     public static final String COMMAND_HELP         = "help";
     public static final String COMMAND_LIST         = "list";
     public static final String COMMAND_FIND         = "find";
