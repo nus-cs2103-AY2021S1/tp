@@ -1,13 +1,15 @@
-# HelloFile
+---
+layout: page
+title: User Guide
+---
+* Table of Contents
+{:toc}
 
-HelloFile is a desktop app for managing files, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). By tagging frequently used files/folders with a short nickname, you will be able to manage and access your files with ease.
-![Illustration](images/Illustrations.PNG)
+## Introduction
 
-## Table of Contents
-[Getting started](#Getting-Started)<br>
-[Features](#Features)<br>
-[FAQ](#FAQ)<br>
-[Command summary](#Command-summary)<br>
+HelloFile is a desktop app for managing files, optimised for use via a Command Line Interface (CLI) while still having
+the benefits of a Graphical User Interface (GUI). By tagging frequently used files/folders with a short nickname, you
+will be able to manage and access your files with ease.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -21,6 +23,9 @@ HelloFile is a desktop app for managing files, optimised for use via a Command L
 1. Move HelloFile.jar to the folder you intend to use as the home folder for HelloFile.
 2. Double-click the HelloFile.jar icon to start the application. Alternatively, run the command `java -jar HelloFile.jar` in the command line.
 3. Type `help` into the command box, followed by pressing the `Enter` key to view the supported features. Alternatively, click the help button in the menu bar to access our webpage.
+
+### User Interface
+![Illustration](images/Illustrations.PNG)
 
 ### Basic workflow
 1. Tag important files with the `tag` command for ease of access.
@@ -49,7 +54,7 @@ HelloFile is a desktop app for managing files, optimised for use via a Command L
 
 * Every tag name is case-sensitive. e.g tag name `notes` is different from tag name `Notes`.
 
-* Only the `cd` command accepts relative file path, all other commands require absolute file path.
+* Only the `cd` and `tag` command accepts relative file path, all other commands require absolute file path.
 
 </div>
 
@@ -68,6 +73,7 @@ Format: `tag t/TAG_NAME f/FILE_PATH [l/LABEL]`
 Examples:
 * (Without label) `tag t/Users f/C:\Users`
 * (With label) `tag t/Users f/C:\Users l/Important`
+* (With relative path) `tag t/Users f/.\Users`
 
 ### Displaying information of a tagged file : `show`
 
@@ -139,7 +145,8 @@ Format: `ls`
 
 ### Clearing all tags : `clear`
 
-Clears the list of managed tags.
+Clears the list of all tags.
+**Warning: All tags will be deleted!**
 
 Format: `clear`
 
@@ -156,7 +163,7 @@ Format: `exit`
 **A**: No. HelloFile is currently unable to track a file if its name or directory is changed. You will need to delete the old tag and retag the file.
 
 **Q**: What is the structure of the application?<br>
-**A**: You can find the Design Guide [here](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/docs/DeveloperGuide.md)
+**A**: You can find it in the Developer Guide [here](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/docs/DeveloperGuide.md)
 
 **Q**: How do I report a bug?<br>
 **A**: Please create a new issue on [this](https://github.com/AY2021S1-CS2103T-F12-1/tp/issues) webpage.
