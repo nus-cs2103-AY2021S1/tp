@@ -72,6 +72,7 @@ class JsonSerializablePlanus {
                 }
                 planus.addTask(task);
             }
+            planus.addLesson(lesson);
         }
         return planus;
     }
