@@ -211,10 +211,12 @@ public class ModelManager implements Model {
 
         filteredMeetings.stream().filter(meeting -> meeting.getMembers().contains(personToUpdate)).forEach(meeting -> {
             Set<Person> updatedMembers = new HashSet<>(meeting.getMembers());
+            logger.fine("Removing contact from relevant meeting.");
             updatedMembers.remove(personToUpdate);
             if (isReplacement) {
                 assert persons.length == 2;
                 Person editedPerson = persons[1];
+                logger.fine("Adding edited contact to relevant meeting.");
                 updatedMembers.add(editedPerson);
             }
             Meeting updatedMeeting = new Meeting(meeting.getMeetingName(), meeting.getDate(),

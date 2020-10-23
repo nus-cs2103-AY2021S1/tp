@@ -42,11 +42,11 @@ public class Person {
     }
 
     /**
-     * Mark a person as Professor or TA if there's a prof tag or ta tag. Otherwise mark person as normal CONTACT.
+     * Mark a person as Professor or TA if there's a prof tag or ta tag. Otherwise set PersonType as CONTACT.
      */
     private PersonType parseTags(Set<Tag> tags) {
-        Tag profTag = new Tag("prof");
-        Tag taTag = new Tag("ta");
+        Tag profTag = new Tag(Tag.PROF_TAG_NAME);
+        Tag taTag = new Tag(Tag.TA_TAG_NAME);
 
         if (tags.contains(profTag)) {
             return PersonType.PROFESSOR;
