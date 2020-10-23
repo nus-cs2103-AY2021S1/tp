@@ -109,7 +109,7 @@ public class AddIngredientCommandTest {
     }
 
     /**
-     * A Model stub that always accept the ingredient being added.
+     * A Model stub that always accepts the ingredient being added.
      */
     private class ModelStubAcceptingIngredientAdded extends ModelStub {
         final ArrayList<Ingredient> ingredientsAdded = new ArrayList<>();

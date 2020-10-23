@@ -1,6 +1,7 @@
 package chopchop.model.ingredient;
 
 import java.util.HashSet;
+
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
@@ -9,8 +10,8 @@ import java.util.Comparator;
 
 import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.model.Entry;
-import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.ExpiryDate;
+import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.Tag;
 import chopchop.model.exceptions.IncompatibleIngredientsException;
 import chopchop.commons.util.Pair;
@@ -235,12 +236,14 @@ public class Ingredient extends Entry {
         return other == this
                 || (other instanceof Ingredient
                 && this.name.equals(((Ingredient) other).name)
-                && this.sets.equals(((Ingredient) other).sets));
+                && this.sets.equals(((Ingredient) other).sets))
+                && this.tags.equals(((Ingredient) other).tags);
+
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, this.sets);
+        return Objects.hash(name, this.sets, this.tags);
     }
 
     @Override
