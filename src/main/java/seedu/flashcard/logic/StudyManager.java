@@ -6,7 +6,7 @@ import seedu.flashcard.model.flashcard.Flashcard;
 /**
  * Maintains state for the review function.
  */
-public class ReviewManager {
+public class StudyManager {
     public static final String NO_NEXT_FLASHCARD_MESSAGE = "There are no more flashcards to review";
     public static final String NO_PREVIOUS_FLASHCARD_MESSAGE = "No previous flashcards available for review";
     private ObservableList<Flashcard> flashcardList;
@@ -16,7 +16,7 @@ public class ReviewManager {
      * Creates a {@code ReviewManager} with the specified list of flashcards.
      * @param flashcardList
      */
-    public ReviewManager(ObservableList<Flashcard> flashcardList) {
+    public StudyManager(ObservableList<Flashcard> flashcardList) {
         this.flashcardList = flashcardList;
         currentIndex = 0;
     }

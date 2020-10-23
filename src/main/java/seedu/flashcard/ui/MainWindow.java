@@ -245,6 +245,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleView(commandResult.getViewIndex(), commandResult.isShowAnswer());
             }
 
+            if (commandResult.isQuizMode()) {
+                enterStudyMode(new QuizPanel(logic.getFilteredFlashcardList(), this));
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

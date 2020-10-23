@@ -14,41 +14,41 @@ import seedu.flashcard.model.UserPrefs;
 import seedu.flashcard.model.flashcard.Flashcard;
 
 
-public class ReviewManagerTest {
+public class StudyManagerTest {
 
     private Model model;
-    private ReviewManager reviewManager;
+    private StudyManager studyManager;
 
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalFlashcardDeck(), new UserPrefs());
-        reviewManager = new ReviewManager(model.getFilteredFlashcardList());
+        studyManager = new StudyManager(model.getFilteredFlashcardList());
     }
 
     @Test
     public void execute_getFirstFlashcard_success() {
         Flashcard expectedFlashcard = FLASHCARD_1;
-        assertEquals(expectedFlashcard, reviewManager.getCurrentFlashcard());
+        assertEquals(expectedFlashcard, studyManager.getCurrentFlashcard());
     }
 
     @Test
     public void execute_reviewNextFlashcardFromFirstFlashcard_success() {
         Flashcard expectedFlashcard = FLASHCARD_2;
-        assertEquals(expectedFlashcard, reviewManager.getNextFlashcard());
+        assertEquals(expectedFlashcard, studyManager.getNextFlashcard());
     }
 
     @Test
     public void execute_reviewPreviousFlashcardFromFirstFlashcard_success() {
-        assertEquals(null, reviewManager.getPrevFlashcard());
+        assertEquals(null, studyManager.getPrevFlashcard());
     }
 
     @Test
     public void execute_reviewPreviousFlashcardFromSecondFlashcard_success() {
         Flashcard expectedFlashcard = FLASHCARD_1;
         // Set currentIndex of reviewManager to 1.
-        reviewManager.getNextFlashcard();
+        studyManager.getNextFlashcard();
         // Return flashcard at index 0.
-        assertEquals(expectedFlashcard, reviewManager.getPrevFlashcard());
+        assertEquals(expectedFlashcard, studyManager.getPrevFlashcard());
     }
 
 }
