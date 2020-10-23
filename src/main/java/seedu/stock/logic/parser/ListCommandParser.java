@@ -2,9 +2,9 @@ package seedu.stock.logic.parser;
 
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.stock.logic.commands.ListCommand;
 import seedu.stock.logic.commands.ListAllCommand;
 import seedu.stock.logic.commands.ListBookmarkCommand;
+import seedu.stock.logic.commands.ListCommand;
 import seedu.stock.logic.commands.ListLowStocksCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 
