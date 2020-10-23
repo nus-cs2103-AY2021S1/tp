@@ -347,7 +347,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | forgetful business owner | save my records | track my financial records more easily |
 | `* * *`  | small business owner | add and remove inventories     | update my inventory status |
 | `* *`    | accountant | edit my financial records | update my financial status |
-| `*`      | user | be able to exit the app safely | ... | 
+| `*`      | user | be able to exit the app safely | ... |
 
 ### 5.3. Use cases
 
@@ -598,5 +598,5 @@ testers are expected to do more *exploratory* testing.
    2. Expanding on this, we could include a number of graphical options, such as pie charts, bar graphs and line graphs.
 
 3. Saving inventory as items instead of records<br>
-   1. Currently, NUStorage saves inventory as records. For business that constantly deals with the same set of items daily, it might seem tiresome to constantly have to add inventory records of the same item. 
+   1. Currently, NUStorage saves inventory as records. For business that constantly deals with the same set of items daily, it might seem tiresome to constantly have to add inventory records of the same item.
    2. Thus, we plan to implement a feature that allows users to 'save' a certain inventory item for reuse, allowing them to only have to type the quantity when adding records.
