@@ -27,6 +27,4 @@
         <StackPane fx:id="answerPlaceholder" VBox.vgrow="ALWAYS" >
         </StackPane>
     </VBox>
-
-
 </GridPane>
