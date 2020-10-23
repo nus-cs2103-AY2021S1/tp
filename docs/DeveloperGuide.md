@@ -155,6 +155,24 @@ The following activity diagram summarises the flow of events when `OverdueComman
 
 Figure \___. Activity diagram for `OverdueCommand` execution
 
+**5.1.?** **Schedule Command**
+
+This section describes the operations that `ScheduleCommand` performs.
+
+**Step 1.** Upon successful parsing of the user input date into `LocalDate` , the `ScheduleCommand#execute(Model model)` method is called.
+
+**Step 2.** The method `LocalDate#getDayOfWeek()` is then called on the `LocalDate` that is parsed from the user input to get the `dayOfWeek`.
+
+**Step 3.** The `dayOfWeek` is then used to create a `Predicate<Student>` to check if the student has the same day as the date.
+
+**Step 4.** Then the method `Model#updateFilteredPersonList(Predicate<Student>)` is then called to filter students based on predicate created in **Step 3**.
+
+**Step 5.** The StudentListPanel is then populated with the students that have lesson on the day.
+
+The following activity diagram summarizes the flow of events when the `ScheduleCommand` is being executed:
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
