@@ -7,6 +7,8 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -27,6 +29,8 @@ public class AddAdditionalDetailCommand extends AdditionalDetailCommand {
             + PREFIX_DETAIL_TEXT + "Eats sweets in class";
 
     public static final String MESSAGE_SUCCESS = "New detail added to %s: %s";
+
+    private static Logger logger = Logger.getLogger("Add Additional Detail Log");
 
     private final Index index;
     private final AdditionalDetail detailToAdd;
@@ -50,10 +54,13 @@ public class AddAdditionalDetailCommand extends AdditionalDetailCommand {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        assert(index != null && detailToAdd != null);
         requireNonNull(model);
+        logger.log(Level.INFO, "Beginning command execution");
 
         List<Student> lastShownList = model.getFilteredPersonList();
         if (index.getZeroBased() >= lastShownList.size()) {
+            logger.log(Level.WARNING, "Invalid student index input error");
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
@@ -66,6 +73,7 @@ public class AddAdditionalDetailCommand extends AdditionalDetailCommand {
 
         model.setPerson(studentToAddDetail, updatedStudent);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        logger.log(Level.INFO, "Execution complete");
         return new CommandResult(String.format(MESSAGE_SUCCESS, updatedStudent.getName(), detailToAdd));
     }
 

@@ -8,6 +8,8 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -31,6 +33,8 @@ public class EditAdditionalDetailCommand extends AdditionalDetailCommand {
 
     public static final String MESSAGE_SUCCESS = "Detail edited for %s: %s";
     public static final String MESSAGE_BAD_DETAIL_INDEX = "There is no detail at this index";
+
+    private static Logger logger = Logger.getLogger("Edit Additional Detail Log");
 
     private final Index studentIndex;
     private final Index detailIndex;
@@ -58,16 +62,20 @@ public class EditAdditionalDetailCommand extends AdditionalDetailCommand {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        assert(studentIndex != null && detailIndex != null && detailToAdd != null);
         requireNonNull(model);
+        logger.log(Level.INFO, "Beginning command execution");
 
         List<Student> lastShownList = model.getFilteredPersonList();
         if (studentIndex.getZeroBased() >= lastShownList.size()) {
+            logger.log(Level.WARNING, "Invalid student index input error");
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         Student studentToAddDetail = lastShownList.get(studentIndex.getZeroBased());
 
         if (detailIndex.getZeroBased() >= studentToAddDetail.getDetails().size()) {
+            logger.log(Level.WARNING, "Invalid detail index input error");
             throw new CommandException(MESSAGE_BAD_DETAIL_INDEX);
         }
 
@@ -78,6 +86,7 @@ public class EditAdditionalDetailCommand extends AdditionalDetailCommand {
 
         model.setPerson(studentToAddDetail, updatedStudent);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        logger.log(Level.INFO, "Execution complete");
         return new CommandResult(String.format(MESSAGE_SUCCESS, updatedStudent.getName(), detailToAdd));
     }
 
