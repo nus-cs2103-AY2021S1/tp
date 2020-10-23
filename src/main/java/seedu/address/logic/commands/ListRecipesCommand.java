@@ -27,7 +27,6 @@ public class ListRecipesCommand extends Command {
             assert(recipes.get(i).getName().toString().length() != 0);
             builder.append((i + 1) + ". " + recipes.get(i).getName() + "\n");
         }
-        return new CommandResult(MESSAGE_SUCCESS + builder.toString(), false,
-                false, true, false, false, false, false);
+        return new CommandResult(MESSAGE_SUCCESS + builder.toString(), COMMAND_WORD);
     }
 }
