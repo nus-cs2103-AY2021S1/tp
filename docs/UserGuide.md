@@ -148,7 +148,7 @@ Examples:
 
 ### Locating items by keywords: `find-i`
 
-Finds items whose atributes contain any of the given keywords.
+Finds items whose attributes contain any of the given keywords.
 
 Format: `find-i PREFIX KEYWORD [MORE_KEYWORDS]`
 
@@ -158,9 +158,12 @@ Format: `find-i PREFIX KEYWORD [MORE_KEYWORDS]`
 * Only full words will be matched e.g. `chicke` will not match `chicken`
 * Items matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `chicken steak` will return `chicken steak`, `steak beef`
+* More than one Prefix can be specified (i.e. `AND` search).
+  e.g. 'find-i n/Chicken s/NTUC' will return items matching name and supplier.
 
 Examples:
 * `find-i n/Chicken` returns `chicken` and `chicken salad` items.
+* `find-i s/Cold Storage t/meat` returns item with supplier of Cold Storage and tags of meat.
 
 ### Locating deliveries by keywords: `find-d`
 
