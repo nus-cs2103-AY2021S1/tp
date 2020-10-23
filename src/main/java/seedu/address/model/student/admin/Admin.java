@@ -97,13 +97,9 @@ public class Admin {
                 .append(" Fee: ")
                 .append(fee)
                 .append(" Last Paid: ")
-                .append(paymentDate);
-
-        if (!details.isEmpty()) {
-            builder.append(" Details:");
-            details.forEach(builder::append);
-        }
-
+                .append(paymentDate)
+                .append(" Details: ");
+        details.forEach(builder::append);
         return builder.toString();
     }
 }
