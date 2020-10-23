@@ -116,7 +116,7 @@ public class AddCommandParser {
     }
 
     /**
-     * Parses an 'add ingredient' command. Syntax:
+     * Parses an 'add recipe' command. Syntax:
      * {@code add recipe NAME [/ingredient INGREDIENT_NAME [/qty QTY1]...]... [/step STEP]...}
      */
     private static Result<AddRecipeCommand> parseAddRecipeCommand(String name, CommandArguments args) {
@@ -124,7 +124,7 @@ public class AddCommandParser {
 
         Optional<ArgName> foo;
         if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_QUANTITY,
-            Strings.ARG_INGREDIENT, Strings.ARG_STEP))).isPresent()) {
+            Strings.ARG_INGREDIENT, Strings.ARG_STEP, Strings.ARG_TAG))).isPresent()) {
 
             return Result.error("'add recipe' command doesn't support '%s'\n%s",
                 foo.get(), AddRecipeCommand.MESSAGE_USAGE);
