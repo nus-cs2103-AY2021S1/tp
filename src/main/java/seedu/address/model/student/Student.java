@@ -118,9 +118,13 @@ public class Student {
                 .append(getSchool())
                 .append(" Year: ")
                 .append(getYear())
-                .append(getAdmin())
-                .append(" Questions: ");
-        questions.forEach(builder::append);
+                .append(getAdmin());
+
+        if (!questions.isEmpty()) {
+            builder.append(" Questions: ");
+            questions.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 
