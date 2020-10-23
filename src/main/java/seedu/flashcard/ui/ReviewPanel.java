@@ -12,8 +12,8 @@ import seedu.flashcard.model.flashcard.Flashcard;
  */
 public class ReviewPanel extends StudyPanel {
 
-    private final ReviewManager reviewManager;
     public static final String EXIT_MESSAGE = "Exited review mode";
+    private final ReviewManager reviewManager;
 
     /**
      * Creates a {@code ReviewPanel} that handles review mode.
