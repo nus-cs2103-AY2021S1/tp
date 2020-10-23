@@ -13,6 +13,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_COMMENT = new Prefix("c/");
     public static final Prefix PREFIX_LEAVE = new Prefix("l/");
+    public static final Prefix PREFIX_STAFF = new Prefix("s-");
+    public static final Prefix PREFIX_APPLICANT = new Prefix("a-");
+    public static final Prefix PREFIX_ADDORDELETE_COMMENT = new Prefix("c-");
     // public static final Prefix PREFIX_DATE = new Prefix("d/");
     public static final Prefix PREFIX_INTERVIEW_DATE = new Prefix("id/");
     public static final Prefix PREFIX_STAFF = new Prefix("-staff");

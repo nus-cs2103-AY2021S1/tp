@@ -1,6 +1,5 @@
 package com.eva.logic;
 
-import static com.eva.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static com.eva.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static com.eva.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static com.eva.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -17,9 +16,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import com.eva.commons.core.Messages;
 import com.eva.logic.commands.AddCommand;
 import com.eva.logic.commands.CommandResult;
 // import com.eva.logic.commands.ListCommand;
+import com.eva.logic.commands.DeleteCommand;
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.Model;
@@ -61,7 +62,8 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertParseException(deleteCommand,
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
     /*

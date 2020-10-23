@@ -3,6 +3,7 @@ package com.eva.logic.commands;
 import static com.eva.commons.util.CollectionUtil.requireAllNonNull;
 import static com.eva.logic.parser.CliSyntax.PREFIX_LEAVE;
 import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_DATE;
+import static com.eva.model.Model.PREDICATE_SHOW_ALL_STAFFS;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -18,7 +19,7 @@ import com.eva.model.person.staff.leave.Leave;
  * Adds the given leave period to an existing staff member.
  */
 public class AddLeaveCommand extends Command {
-    public static final String COMMAND_WORD = "addl";
+    public static final String COMMAND_WORD = "addleave";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds specified leave(s) taken to the record of the staff taking leave "
@@ -69,7 +70,7 @@ public class AddLeaveCommand extends Command {
             model.addStaffLeave(staffToTakeLeave, leave);
             sb.append(leave.toString()).append(", ");
         }
-
+        model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, staffToTakeLeave.getName(), sb));
     }
 }
