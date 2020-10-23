@@ -1,13 +1,11 @@
 package seedu.stock.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import java.util.function.Predicate;
 
 import seedu.stock.model.Model;
 import seedu.stock.model.stock.Stock;
-
 import seedu.stock.model.stock.predicates.LowStocksPredicate;
-
-import java.util.function.Predicate;
 
 /**
  * Lists all persons in the address book to the user.

@@ -30,9 +30,4 @@ public class LowStocksPredicate implements Predicate<Stock> {
         }
     }
 
-//    @Override
-//    public String toString() {
-//        return "Source: " + keywords.stream().reduce((keyword, next) -> keyword + " " + next).get();
-//    }
-
 }

@@ -8,8 +8,6 @@ import seedu.stock.logic.commands.ListBookmarkCommand;
 import seedu.stock.logic.commands.ListLowStocksCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 
-import java.util.logging.Level;
-
 /**
  * Parses input arguments and creates a new ListCommand object
  */
