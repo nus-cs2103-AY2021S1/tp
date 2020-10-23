@@ -1,7 +1,8 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.modulelistparsers;
 
 
-import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.modulelistcommands.UndoCommand;
+import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 
