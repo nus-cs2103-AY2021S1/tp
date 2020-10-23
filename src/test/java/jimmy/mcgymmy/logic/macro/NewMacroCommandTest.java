@@ -11,7 +11,7 @@ import jimmy.mcgymmy.model.ModelManager;
 
 // Integration tests
 public class NewMacroCommandTest {
-    private Model model = new ModelManager();
+    private final Model model = new ModelManager();
 
     @Test
     public void noMacroDeclaration_throwsCommandException() {

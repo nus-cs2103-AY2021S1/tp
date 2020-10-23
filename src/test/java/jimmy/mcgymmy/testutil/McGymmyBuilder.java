@@ -10,7 +10,7 @@ import jimmy.mcgymmy.model.food.Food;
  */
 public class McGymmyBuilder {
 
-    private McGymmy mcGymmy;
+    private final McGymmy mcGymmy;
 
     public McGymmyBuilder() {
         mcGymmy = new McGymmy();

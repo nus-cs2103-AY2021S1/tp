@@ -28,7 +28,7 @@ public class EditCommandTest {
     private static final String VALID_NAME_BOB = "Robert Donald";
     private static final String VALID_PROTEIN_BOB = "99999999";
     private static final String VALID_DATE = "12-04-2020";
-    private Model model = new ModelManager(getTypicalMcGymmy(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalMcGymmy(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
