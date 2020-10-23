@@ -34,12 +34,11 @@ public class Amount {
      * Returns true if a given string is a valid monetary value.
      */
     public static boolean isValidAmount(String test) {
-        double value = Double.parseDouble(test);
-        if (value > MAX_AMOUNT) {
-            return false;
+        if (test.matches(VALIDATION_REGEX)) {
+            double value = Double.parseDouble(test);
+            return !(value > MAX_AMOUNT);
         }
-
-        return test.matches(VALIDATION_REGEX);
+        return false;
     }
 
     @Override
