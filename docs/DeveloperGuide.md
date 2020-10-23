@@ -171,7 +171,7 @@ This section describes the operations that `ScheduleCommand` performs.
 
 The following activity diagram summarizes the flow of events when the `ScheduleCommand` is being executed:
 
-
+![ScheduleActivity](images/ScheduleActivityDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 

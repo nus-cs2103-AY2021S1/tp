@@ -1,0 +1,9 @@
+@startuml
+(*) --> "user calls schedule command with date"
+"user calls schedule command with date" --> "Parses date"
+"Parses date" --> "get the dayOfWeek"
+"get the dayOfWeek" --> "creates a Predicate<Student>"
+"creates a Predicate<Student>" --> "filter student list"
+"filter student list" --> "display result"
+"display result" --> (*)
+@enduml
