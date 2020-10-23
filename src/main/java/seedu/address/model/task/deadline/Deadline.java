@@ -19,34 +19,38 @@ import seedu.address.model.task.Title;
 public class Deadline extends Task {
 
     // Identity fields
-    private final DateTime dateTime;
+    private final DeadlineDateTime deadlineDateTime;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
     private final Status status;
+    private final Duration duration;
+    private final DoneDateTime doneDateTime;
 
     /**
      * Every field must be present and not null.
      */
-    public Deadline(Title title, DateTime dateTime, Description description, Set<Tag> tags) {
+    public Deadline(Title title, DeadlineDateTime deadlineDateTime, Description description, Set<Tag> tags,
+                     Status status, Duration duration, DoneDateTime doneDateTime) {
         super(title, description, tags);
-        requireAllNonNull(dateTime);
-        this.dateTime = dateTime;
-        this.status = Status.createIncompleteStatus();
-    }
-
-    /**
-     * Every field must be present and not null.
-     */
-    public Deadline(Title title, DateTime dateTime, Description description, Set<Tag> tags, Status status) {
-        super(title, description, tags);
-        requireAllNonNull(dateTime);
-        this.dateTime = dateTime;
+        requireAllNonNull(deadlineDateTime);
+        this.deadlineDateTime = deadlineDateTime;
         this.status = status;
+        this.duration = duration;
+        this.doneDateTime = doneDateTime;
     }
 
-    public DateTime getDateTime() {
-        return dateTime;
+    /**
+     * Factory method to create a new Deadline object
+     */
+    public static Deadline createDeadline(Title title, DeadlineDateTime deadlineDateTime,
+                                          Description description, Set<Tag> tags) {
+        return new Deadline(title, deadlineDateTime, description, tags, Status.createIncompleteStatus(),
+                Duration.createNullDuration(), DoneDateTime.createNullDoneDateTime());
+    }
+
+    public DeadlineDateTime getDateTime() {
+        return deadlineDateTime;
     }
 
     /**
@@ -59,6 +63,10 @@ public class Deadline extends Task {
 
     public Status getStatus() {
         return status;
+    }
+
+    public boolean isDone() {
+        return status.isCompleted;
     }
 
     /**
@@ -74,8 +82,12 @@ public class Deadline extends Task {
                 && otherDeadline.getDateTime().equals(getDateTime());
     }
 
-    public Deadline markAsDone() {
-        return new Deadline(super.getTitle(), dateTime, super.getDescription(), tags, Status.createCompleteStatus());
+    /**
+     * mark the task as done by updating the status, duration and done time.
+     */
+    public Deadline markAsDone(int durationInMinutes) {
+        return new Deadline(title, deadlineDateTime, description, tags, Status.createIncompleteStatus(),
+                new Duration(durationInMinutes), DoneDateTime.createDoneNow());
     }
 
     /**
@@ -103,7 +115,7 @@ public class Deadline extends Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, dateTime, description, tags, status);
+        return Objects.hash(title, deadlineDateTime, description, tags, status);
     }
 
     @Override

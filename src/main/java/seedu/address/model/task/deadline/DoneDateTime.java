@@ -3,6 +3,7 @@ package seedu.address.model.task.deadline;
 import seedu.address.model.lesson.Date;
 import seedu.address.model.lesson.Time;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -13,7 +14,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Task's date and time in PlaNus task list.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
-public class DateTime {
+public class DoneDateTime {
 
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
     public static final String MESSAGE_CONSTRAINTS =
@@ -33,15 +34,31 @@ public class DateTime {
      *
      * @param dateTime A valid date and time.
      */
-    public DateTime(String dateTime) {
+    public DoneDateTime(String dateTime) {
         if (dateTime.isEmpty() || dateTime.isBlank() || dateTime == null) {
             this.isNull = true;
-            value = DEFAULT_DATETIME;
+            this.value = DEFAULT_DATETIME;
         } else {
             checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
-            value = LocalDateTime.parse(dateTime, FORMATTER);
-            isNull = false;
+            this.value = LocalDateTime.parse(dateTime, FORMATTER);
+            this.isNull = false;
         }
+    }
+
+    private DoneDateTime(LocalDateTime value) {
+        this.value = value;
+        this.isNull = false;
+    }
+
+    /**
+     * Constructs a DoneDateTime object of default value when the task is not done.
+     */
+    public static DoneDateTime createNullDoneDateTime() {
+        return new DoneDateTime("");
+    }
+
+    public static DoneDateTime createDoneNow() {
+        return new DoneDateTime(LocalDateTime.now());
     }
 
     public boolean isNull() {
@@ -80,9 +97,9 @@ public class DateTime {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DateTime // instanceof handles nulls
-                && (value.equals(((DateTime) other).value)
-                    || isNull && ((DateTime) other).isNull())); // state check
+                || (other instanceof DeadlineDateTime // instanceof handles nulls
+                && (value.equals(((DeadlineDateTime) other).value)
+                || isNull && ((DeadlineDateTime) other).isNull())); // state check
     }
 
     @Override
