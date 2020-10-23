@@ -1,0 +1,23 @@
+@startuml
+
+(*) --> User enters command
+--> if "" then
+---> [invalid args] "User enters command"
+    else
+    -down-> [valid args] "Account is retrieved from ActiveAccount"
+    endif
+--> if "" then
+--> [expense predicate exists] "Expense list is updated"
+else
+--> if "" then
+--> [revenue predicate exists] "Revenue list is updated"
+    --> (*)
+    else
+    --> [else] (*)
+endif
+
+
+endif
+
+
+@enduml

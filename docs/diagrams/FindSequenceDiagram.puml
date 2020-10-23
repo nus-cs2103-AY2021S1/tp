@@ -1,0 +1,62 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CommonCentsParser" as CommonCentsParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant ":FindCommand" as FindCommand LOGIC_COLOR
+end box
+
+box ActiveAccount ACTIVEACCOUNT_COLOR_T1
+participant ":ActiveAccountManager" as ActiveAccount LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("find k/cases flowers")
+activate LogicManager
+
+LogicManager -> CommonCentsParser: parseCommand("find k/cases flowers")
+activate CommonCentsParser
+
+CommonCentsParser -> FindCommandParser: parse("find k/cases flowers")
+activate FindCommandParser
+
+create FindCommand
+FindCommandParser -> FindCommand
+activate FindCommand
+
+FindCommand -> FindCommandParser
+deactivate FindCommand
+
+FindCommandParser --> CommonCentsParser
+deactivate FindCommandParser
+
+CommonCentsParser --> LogicManager
+deactivate CommonCentsParser
+
+LogicManager -> FindCommand: execute(model, activeAccount)
+activate FindCommand
+
+alt expenseList != null
+FindCommand -> ActiveAccount: updateFilteredExpenseList()
+activate ActiveAccount
+
+ActiveAccount --> FindCommand
+deactivate ActiveAccount
+else
+end
+
+alt (revenueList != null)
+FindCommand -> ActiveAccount: updateFilteredRevenueList()
+activate ActiveAccount
+
+ActiveAccount --> FindCommand
+deactivate ActiveAccount
+else
+end
+FindCommand --> LogicManager
+deactivate FindCommand
+
+deactivate LogicManager
+@enduml
+

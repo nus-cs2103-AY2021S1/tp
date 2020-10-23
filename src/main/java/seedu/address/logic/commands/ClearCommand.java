@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
 
@@ -34,6 +35,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
         requireNonNull(model);
+        assert(!isNull(model));
 
         boolean isExpense = this.category.isExpense();
         boolean isRevenue = this.category.isRevenue();

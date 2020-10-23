@@ -83,6 +83,10 @@ public interface Model {
      */
     void setAccount(Account editedAccount);
 
+    /**
+     * Checks if the filtered account list is empty.
+     */
+    public boolean hasNoAccount();
 
     /** Returns an unmodifiable view of the filtered account list */
     ObservableList<Account> getFilteredAccountList();

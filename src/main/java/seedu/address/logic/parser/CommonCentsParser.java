@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddAccountCommand;
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.CalculateCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteAccountCommand;
@@ -17,6 +16,7 @@ import seedu.address.logic.commands.EditAccountCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.GetProfitCommand;
 import seedu.address.logic.commands.GetTotalCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListAccountCommand;
@@ -76,6 +76,12 @@ public class CommonCentsParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case GetTotalCommand.COMMAND_WORD:
+            return new GetTotalCommandParser().parse(arguments);
+
+        case GetProfitCommand.COMMAND_WORD:
+            return new GetProfitCommand();
+
         // Account-level Commands
         case AddAccountCommand.COMMAND_WORD:
             return new AddAccountCommandParser().parse(arguments);
@@ -91,12 +97,6 @@ public class CommonCentsParser {
 
         case ListAccountCommand.COMMAND_WORD:
             return new ListAccountCommand();
-
-        case GetTotalCommand.COMMAND_WORD:
-            return new GetTotalCommandParser().parse(arguments);
-
-        case CalculateCommand.COMMAND_WORD:
-            return new CalculateCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
