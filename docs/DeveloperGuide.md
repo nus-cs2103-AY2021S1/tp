@@ -56,9 +56,11 @@ For example, the `Logic` component (see the class diagram given below) defines i
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
  the command `delete 1`.
 
+The sections below give more details of each component:
+
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
-The sections below give more details of each component.
+<!--The lifelines should not stop at the end of the activation bars-->
 
 ### UI component
 
@@ -119,7 +121,10 @@ The `Model`,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
+<!--Use composition instead of aggregation?-->
+
 The `Storage` component,
+
 * can save `Project` objects, `Person` objects, `Task` objects, `Meeting` objects and their details in json format and read it back.
 * can save the main catalogue data in json format and read it back.
 
@@ -145,14 +150,10 @@ The possible values of `Status` form a hierarchy structure as follows.
     * `TASK`
   * `PERSON`
 
-A lower-level scope always belongs to any parent scopes. For example, if the app is currently in `PROJECT` scope, it is 
-also in the `CATALOGUE` scope. However, it is not necessarily in `TASK` scope because `TASK` is a child level of `PROJECT`
-and it is definitely not in `PERSON` scope because `PERSON` is parallel to `PROJECT`.
+A lower-level scope always belongs to any parent scopes. For example, if the app is currently in `PROJECT` scope, it is also in the `CATALOGUE` scope. However, it is not necessarily in `TASK` scope because `TASK` is a child level of `PROJECT` and it is definitely not in `PERSON` scope because `PERSON` is parallel to `PROJECT`.
 
-The `status` of `MainCatalogue` is open to be accessed in other `Model` components and `Logic` components by a public getter.
-The `MainCatalogue` has a field `project` which is an `Optional` object of `Project`. 
-This is a pointer to the project that is expected to be the focus for the application if it is in the `PROJECT` or lower status.
-Similarly, there is a pointer in each `Project` to keep the task of focus if the application is in `TASK` status.
+The `status` of `MainCatalogue` is open to be accessed in other `Model` components and `Logic` components by a public getter. The `MainCatalogue` has a field `project` which is an `Optional` object of `Project`. 
+This is a pointer to the project that is expected to be the focus for the application if it is in the `PROJECT` or lower status. Similarly, there is a pointer in each `Project` to keep the task of focus if the application is in `TASK` status.
 The switch of `status` is implemented by the following operations:
 
 * `MainCatalogue#enter(Project project)` — Switches to `PROJECT` status and updates the project on view to the given project.
@@ -161,11 +162,7 @@ The switch of `status` is implemented by the following operations:
 
 These operations are exposed in `Model` and `Logic` interfaces with the same name.
 
-In the GUI design of the application, the three columns correspond to three levels of the status. The left column refers to the top level,
-which is `CATALOGUE`, and it thus consists of a list of projects. The middle column refers to the middle level, which can be `PROJECT`
-or `PERSON`, and it shows the details of the project or person of focus as stored in `MainCatalogue`. The right column refers to the bottom
-level, which can be `TASK`, and it shows the details of the object this status refers to that is of focus as stored in its parent object (
-project or person).
+In the GUI design of the application, the three columns correspond to three levels of the status. The left column refers to the top level, which is `CATALOGUE`, and it thus consists of a list of projects. The middle column refers to the middle level, which can be `PROJECT` or `PERSON`, and it shows the details of the project or person of focus as stored in `MainCatalogue`. The right column refers to the bottom level, which can be `TASK`, and it shows the details of the object this status refers to that is of focus as stored in its parent object (project or person).
 
 Users are allowed to switch the scoping status while using the app using user input commands. Relevant commands include:
 
@@ -334,7 +331,7 @@ The implementation of New Teammate involves both the storing of the New Teammate
 The New Teammate created is added in the following places:
  - global static variable `allPeople` in the Person class 
  - within the project it was created for, in the associated Participation class
- 
+
 The New Teammate command has to be prefixed with `newteammate` and include **all** of the following fields:
  - `mn/` prefix followed by the name of the new teammate
  - `mg/` prefix followed by the teammate's Github User Name
@@ -342,10 +339,10 @@ The New Teammate command has to be prefixed with `newteammate` and include **all
  - `me/` prefix followed by the email of teammate
  - `ma/` prefix followed by the address of the teammate
  - *Each of the fields above is validated upon entry by the user, and failing the validation, will display to the user that the command failed, and requesting the user to try again.*
- 
+
 The teammate is created in the project scope and assigned to that project. Further assignment of that user to other projects can be done in the scope of other projects.
 
-Given below is an example usage scenario and how the `NewTeammate` mechanism behaves at each step.
+Given below is an example usage scenario and how the `NewTeammate` mechanism behaves at each step:
 
 Step 1: The user enters `start 1` for example to start project 1 from the mainscreen.The user is greeted with the projects list on the left, and the description of the project in the centre.
 
@@ -362,94 +359,11 @@ LogicManager then calls the method `execute` of the NewTeammateCommand which sto
 The diagram below summarises what is happening above with the help of a sequence diagram:
 ![NewTeammateSequenceDiagramImagae](images/NewTeammateSequenceDiagram.png)
 
-
 The diagram below gives a short overview on what happens when a user's input is received:
+
 ![NewTeammateActivityDiagramImagae](images/NewTeammateActivityDiagram.png)
 
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedMainCatalogue`. It extends `MainCatalogue` with an undo/redo history, stored internally as an `mainCatalogueStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedMainCatalogue#commit()` — Saves the current main catalogue state in its history.
-* `VersionedMainCatalogue#undo()` — Restores the previous main catalogue state from its history.
-* `VersionedMainCatalogue#redo()` — Restores a previously undone main catalogue state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitMainCatalogue()`, `Model#undoMainCatalogue()` and `Model#redoMainCatalogue()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedMainCatalogue` will be initialized with the initial main catalogue state, and the `currentStatePointer` pointing to that single main catalogue state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th project in the main catalogue. The `delete` command calls `Model#commitMainCatalogue()`, causing the modified state of the main catalogue after the `delete 5` command executes to be saved in the `mainCatalogueStateList`, and the `currentStatePointer` is shifted to the newly inserted main catalogue state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new project. The `add` command also calls `Model#commitMainCatalogue()`, causing another modified main catalogue state to be saved into the `mainCatalogueStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitMainCatalogue()`, so the main catalogue state will not be saved into the `mainCatalogueStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the project was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoMainCatalogue()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous main catalogue state, and restores the main catalogue to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial MainCatalogue state, then there are no previous MainCatalogue states to restore. The `undo` command uses `Model#canUndoMainCatalogue()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoMainCatalogue()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the main catalogue to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `mainCatalogueStateList.size() - 1`, pointing to the latest main catalogue state, then there are no undone MainCatalogue states to restore. The `redo` command uses `Model#canRedoMainCatalogue()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the main catalogue, such as `list`, will usually not call `Model#commitMainCatalogue()`, `Model#undoMainCatalogue()` or `Model#redoMainCatalogue()`. Thus, the `mainCatalogueStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitMainCatalogue()`. Since the `currentStatePointer` is not pointing at the end of the `mainCatalogueStateList`, all main catalogue states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire main catalogue.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the project being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
+<!--TODO: Task and Meeting implementation-->
 
 
 --------------------------------------------------------------------------------------------------------------------
