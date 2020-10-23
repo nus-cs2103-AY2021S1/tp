@@ -21,6 +21,7 @@ class MacronutrientTest {
     private static int PROTEINMULTIPLIER = 4;
     private static int FATSMULTIPLIER = 9;
     private static int INVALIDMULTIPLIER = 5;
+    private static int DEFAULTAMOUNT =  10;
 
     @Test
     public void amount_lesserThanZero_throwIllegalArgumentException() {
@@ -51,12 +52,12 @@ class MacronutrientTest {
 
     @Test
     public void getTotalCalories() {
-        assertEquals(new MacronutrientStub(4, 4).getTotalCalories(), 16);
+        assertEquals(new MacronutrientStub(DEFAULTAMOUNT , CARBOHYDRATEMULTIPLIER).getTotalCalories(), 40);
     }
 
     @Test
     public void getCaloricMultiplier() {
-        assertEquals(new MacronutrientStub(4, PROTEINMULTIPLIER).getCaloricMultiplier(), PROTEINMULTIPLIER);
+        assertEquals(new MacronutrientStub(DEFAULTAMOUNT, PROTEINMULTIPLIER).getCaloricMultiplier(), PROTEINMULTIPLIER);
         assertEquals(DEFAULT_FAT_1.getCaloricMultiplier(), FATSMULTIPLIER);
         assertEquals(DEFAULT_CARBOHYDRATE_1.getCaloricMultiplier(), CARBOHYDRATEMULTIPLIER);
         assertEquals(DEFAULT_PROTEIN_1.getCaloricMultiplier(), PROTEINMULTIPLIER);
