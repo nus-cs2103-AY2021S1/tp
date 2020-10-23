@@ -48,23 +48,23 @@ activate SnapCommand
 SnapCommand -> Model : getZooKeepBook()
 activate Model
 
-Model -> SnapCommand : readOnlyZooKeepBook
+Model --> SnapCommand : readOnlyZooKeepBook
 deactivate Model
 
 create StorageManager
 SnapCommand -> StorageManager
 activate StorageManager
 
-StorageManager -> SnapCommand
+StorageManager --> SnapCommand
 deactivate StorageManager
 
 SnapCommand -> StorageManager : saveZooKeepBook(readOnlyZooKeepBook, savePath)
 activate StorageManager
 
-StorageManager -> SnapCommand
+StorageManager --> SnapCommand
 deactivate StorageManager
 
-SnapCommand -> LogicManager : commandResult
+SnapCommand --> LogicManager : commandResult
 destroy SnapCommand
 destroy StorageManager
 
