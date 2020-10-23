@@ -1,7 +1,0 @@
-{
-  "persons": [ {
-    "name": "Valid Recipe",
-    "ingredients": ["Apple (14g)"],
-    "steps": ["CUT"]
-  } ]
-}
