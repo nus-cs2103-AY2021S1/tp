@@ -10,15 +10,24 @@ import static seedu.address.testutil.TypicalItems.getTypicalItemList;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.item.Item;
+import seedu.address.testutil.ItemBuilder;
 
 public class ItemListTest {
-    private final ItemList itemList = new ItemList();
 
+    private ItemList itemList;
+    private Item apple;
+
+    @BeforeEach
+    public void setUp() {
+        itemList = new ItemList();
+        apple = new ItemBuilder(APPLE).build();
+    }
     @Test
     public void constructor() {
         assertEquals(new ItemList(), itemList);
@@ -44,13 +53,13 @@ public class ItemListTest {
 
     @Test
     public void hasItem_itemNotInItemList_returnsFalse() {
-        assertFalse(itemList.hasItem(APPLE));
+        assertFalse(itemList.hasItem(apple));
     }
 
     @Test
     public void hasItem_itemInItemList_returnsTrue() {
-        itemList.addItem(APPLE);
-        assertTrue(itemList.hasItem(APPLE));
+        itemList.addItem(apple);
+        assertTrue(itemList.hasItem(apple));
     }
 
     @Test
@@ -60,9 +69,9 @@ public class ItemListTest {
 
     @Test
     public void deleteItem_itemInItemList_returnsTrue() {
-        itemList.addItem(APPLE);
-        itemList.deleteItem(APPLE);
-        assertFalse(itemList.hasItem(APPLE));
+        itemList.addItem(apple);
+        itemList.deleteItem(apple);
+        assertFalse(itemList.hasItem(apple));
     }
 
     /**

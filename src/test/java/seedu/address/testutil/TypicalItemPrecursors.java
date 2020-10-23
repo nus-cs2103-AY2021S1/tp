@@ -38,13 +38,13 @@ public class TypicalItemPrecursors {
             .withDescription(VALID_ITEM_DESCRIPTION_BANANA)
             .withQuantity(ItemParserUtil.DEFAULT_QUANTITY)
             .withLocations(new HashSet<>(Collections.singletonList(VALID_ITEM_LOCATION_PEACH_ORCHARD)))
+            .withTags(getTypicalTagSet())
             .build();
     public static final ItemPrecursor DEFAULT_TAGS_PRECURSOR = new ItemPrecursorBuilder()
             .withName(VALID_ITEM_NAME_BANANA)
             .withDescription(VALID_ITEM_DESCRIPTION_BANANA)
             .withQuantity(ItemParserUtil.DEFAULT_QUANTITY)
             .withLocations(new HashSet<>(Collections.singletonList(VALID_ITEM_LOCATION_PEACH_ORCHARD)))
-            .withTags(getTypicalTagSet())
             .build();
 
     private TypicalItemPrecursors() {} // prevents instantiation

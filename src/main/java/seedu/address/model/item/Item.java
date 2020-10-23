@@ -159,15 +159,7 @@ public class Item extends InventoryComponent {
 
     @Override
     public String toString() {
-        return "Item{"
-                + "id=" + id
-                + ", name='" + name + '\''
-                + ", quantity=" + quantity
-                + ", description='" + description + '\''
-                + ", locationIds=" + locationIds
-                + ", recipeIds=" + recipeIds
-                + ", tags=" + tags
-                + '}';
+        return name;
     }
 
     /**

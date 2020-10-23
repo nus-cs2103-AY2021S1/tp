@@ -105,13 +105,12 @@ public class AddItemCommandParserTest {
         ItemPrecursor expectedEmptyTag = new ItemPrecursorBuilder(DEFAULT_TAGS_PRECURSOR)
                 .build();
 
-        //No quantity given
+        //No tag given
         assertParseSuccess(parser, PREAMBLE_WHITESPACE
                         + ITEM_NAME_DESC_BANANA
                         + ITEM_DESCRIPTION_DESC_BANANA
-                        + ITEM_LOCATION_DESC_PEACH_ORCHARD
-                        + ITEM_TAG_MULTIPARSE,
-                new AddItemCommand(expectedDefaultQuantity));
+                        + ITEM_LOCATION_DESC_PEACH_ORCHARD,
+                new AddItemCommand(expectedEmptyTag));
     }
 
     /**

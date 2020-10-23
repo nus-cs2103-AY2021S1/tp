@@ -55,7 +55,7 @@ public class TypicalItems {
     public static ItemList getTypicalItemList() {
         ItemList ab = new ItemList();
         for (Item item : getTypicalItems()) {
-            ab.addItem(item);
+            ab.addItem(new ItemBuilder(item).build());
         }
         return ab;
     }

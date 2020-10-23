@@ -7,7 +7,7 @@
     "locationIds" : [ ],
     "recipeIds" : [ 3 ],
     "isDeleted" : false,
-    "tagged" : [ ]
+    "tagged" : [ "abc", "asd", "tuturu", "bertmodel" ]
   }, {
     "id" : 2,
     "name" : "Banana",
@@ -25,7 +25,7 @@
     "locationIds" : [ ],
     "recipeIds" : [ ],
     "isDeleted" : false,
-    "tagged" : [ ]
+    "tagged" : [ "abc" ]
   }, {
     "id" : 4,
     "name" : "Apple pie",

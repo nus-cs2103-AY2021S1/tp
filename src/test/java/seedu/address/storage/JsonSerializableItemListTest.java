@@ -6,11 +6,13 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ItemList;
+import seedu.address.model.item.Item;
 import seedu.address.testutil.TypicalItems;
 
 public class JsonSerializableItemListTest {
@@ -20,6 +22,11 @@ public class JsonSerializableItemListTest {
     private static final Path TYPICAL_ITEMS_FILE = TEST_DATA_FOLDER.resolve("typicalItemsItemList.json");
     private static final Path INVALID_ITEM_FILE = TEST_DATA_FOLDER.resolve("invalidItemItemList.json");
     private static final Path DUPLICATE_ITEM_FILE = TEST_DATA_FOLDER.resolve("duplicateItemItemList.json");
+
+    @BeforeEach
+    public void setUp() {
+        Item.setIdCounter(0);
+    }
 
     @Test
     public void toModelType_typicalItemsFile_success() throws Exception {

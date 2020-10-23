@@ -34,11 +34,11 @@ public class TypicalRecipes {
      * Returns an {@code RecipeList} with all the typical recipes.
      */
     public static RecipeList getTypicalRecipeList() {
-        RecipeList ab = new RecipeList();
+        RecipeList recipeList = new RecipeList();
         for (Recipe recipe : getTypicalRecipes()) {
-            ab.addRecipe(recipe);
+            recipeList.addRecipe(new RecipeBuilder(recipe).build());
         }
-        return ab;
+        return recipeList;
     }
 
     public static List<Recipe> getTypicalRecipes() {

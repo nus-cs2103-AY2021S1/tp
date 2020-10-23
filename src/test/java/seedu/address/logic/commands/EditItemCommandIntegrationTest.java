@@ -49,13 +49,13 @@ public class EditItemCommandIntegrationTest {
         descriptor.setQuantity(new Quantity(VALID_ITEM_QUANTITY_BANANA));
         descriptor.setDescription(VALID_ITEM_DESCRIPTION_BANANA);
         EditItemCommand eic = new EditItemCommand(VALID_ITEM_NAME_APPLE, descriptor);
-        String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, apple);
 
         // expected model should contain the edited apple
         Item editedApple = new ItemBuilder(APPLE)
                 .withQuantity(VALID_ITEM_QUANTITY_BANANA)
                 .withDescription(VALID_ITEM_DESCRIPTION_BANANA)
                 .build();
+        String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedApple);
         expectedModel.addItem(editedApple);
 
         assertCommandSuccess(eic, model, expectedMessage, expectedModel);
@@ -69,13 +69,13 @@ public class EditItemCommandIntegrationTest {
         EditItemCommand.EditItemDescriptor descriptor = new EditItemCommand.EditItemDescriptor();
         descriptor.setName(VALID_ITEM_NAME_BANANA);
         EditItemCommand eic = new EditItemCommand(VALID_ITEM_NAME_APPLE, descriptor);
-        String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, VALID_ITEM_NAME_BANANA);
         model.addRecipe(BANANA_PIE);
 
         Item editedApple = new ItemBuilder(APPLE).withName(VALID_ITEM_NAME_BANANA).build();
         expectedModel.addItem(editedApple);
         Recipe updatedRecipe = BANANA_PIE.setProductName(VALID_ITEM_NAME_BANANA);
         expectedModel.addRecipe(updatedRecipe);
+        String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedApple);
 
         assertCommandSuccess(eic, model, expectedMessage, expectedModel);
     }

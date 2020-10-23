@@ -45,7 +45,8 @@ public class ItemPrecursorBuilder {
         Set<String> locationSet = new HashSet<>();
         locationSet.addAll(itemToCopy.getLocationNames());
         locations = locationSet;
-        tags = itemToCopy.getTags();
+        tags = new HashSet<>();
+        tags.addAll(itemToCopy.getTags());
     }
 
     /**

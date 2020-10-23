@@ -21,6 +21,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.item.Item;
 import seedu.address.model.recipe.Recipe;
+import seedu.address.testutil.ItemBuilder;
 
 public class DeleteItemCommandIntegrationTest {
 
@@ -34,7 +35,7 @@ public class DeleteItemCommandIntegrationTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Item itemToDelete = APPLE;
+        Item itemToDelete = new ItemBuilder(APPLE).build();
         DeleteItemCommand deleteItemCommand = new DeleteItemCommand(itemToDelete.getName());
         String expectedMessage = String.format(DeleteItemCommand.MESSAGE_SUCCESS, itemToDelete);
         ModelManager expectedModel = new ModelManager(model.getItemList(), model.getLocationList(),
@@ -66,15 +67,6 @@ public class DeleteItemCommandIntegrationTest {
         String itemName = "Someone's Toenail";
         DeleteItemCommand deleteItemCommand = new DeleteItemCommand(itemName);
         assertInventoryCommandFailure(deleteItemCommand, model, DeleteItemCommand.MESSAGE_ITEM_NOT_FOUND);
-    }
-
-    @Test
-    public void execute_deleteItemInRecipe_cascadestoOtherItemRecipes() {
-        DeleteItemCommand dc = new DeleteItemCommand(APPLE.getName());
-        ModelManager expectedModel = new ModelManager(model.getItemList(), model.getLocationList(),
-                model.getRecipeList(), new UserPrefs());
-
-
     }
 
     @Test

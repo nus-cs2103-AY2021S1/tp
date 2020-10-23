@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.item.Item;
+import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.IngredientList;
 import seedu.address.model.recipe.ProductQuantity;
 import seedu.address.model.recipe.Recipe;
@@ -63,7 +64,10 @@ public class RecipeBuilder {
      * Sets the {@code Ingredients} of the {@code Recipe} that we are building.
      */
     public RecipeBuilder withIngredients(IngredientList ingredients) {
-        this.ingredients = ingredients;
+        this.ingredients = new IngredientList();
+        for (Ingredient i : ingredients) {
+            this.ingredients.add(new Ingredient(i.getKey(), i.getValue()));
+        }
         return this;
     }
 

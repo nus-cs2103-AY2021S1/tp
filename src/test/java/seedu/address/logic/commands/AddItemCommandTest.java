@@ -1,13 +1,17 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ItemList;
 import seedu.address.model.ReadOnlyItemList;
@@ -17,6 +21,12 @@ import seedu.address.testutil.ItemBuilder;
 import seedu.address.testutil.ItemPrecursorBuilder;
 
 public class AddItemCommandTest {
+
+    @BeforeEach
+    public void setUp() {
+        Item.setIdCounter(0);
+    }
+
     @Test
     public void constructor_nullItem_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddItemCommand(null));
