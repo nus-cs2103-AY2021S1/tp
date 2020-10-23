@@ -222,7 +222,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void switchCategory(Tag category) {
-        requireAllNonNull(category);
+        requireNonNull(category);
         if (hasCategory(category)) {
             updateCategoryExpenseBook(category);
         }

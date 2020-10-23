@@ -28,12 +28,14 @@ import seedu.expense.logic.commands.FindCommand;
 import seedu.expense.logic.commands.HelpCommand;
 import seedu.expense.logic.commands.ListCommand;
 import seedu.expense.logic.commands.RemarkCommand;
+import seedu.expense.logic.commands.SwitchCommand;
 import seedu.expense.logic.parser.exceptions.ParseException;
 import seedu.expense.model.expense.DateMatchesPredicate;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.expense.NameContainsKeywordsPredicate;
 import seedu.expense.model.expense.Remark;
 import seedu.expense.model.expense.TagsMatchesPredicate;
+import seedu.expense.model.tag.Tag;
 import seedu.expense.testutil.EditExpenseDescriptorBuilder;
 import seedu.expense.testutil.ExpenseBuilder;
 import seedu.expense.testutil.ExpenseUtil;
@@ -117,6 +119,16 @@ public class ExpenseBookParserTest {
         RemarkCommand command = (RemarkCommand) parser.parseCommand(RemarkCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_EXPENSE.getOneBased() + " " + PREFIX_REMARK + remark.value);
         assertEquals(new RemarkCommand(INDEX_FIRST_EXPENSE, remark), command);
+    }
+
+    @Test
+    public void parseCommand_switch() throws Exception {
+        Tag foodTag = new Tag("Food");
+        SwitchCommand command = (SwitchCommand) parser.parseCommand(
+            SwitchCommand.COMMAND_WORD + " " + PREFIX_TAG + "Food"
+        );
+        SwitchCommand switchCommand = new SwitchCommand(foodTag);
+        assertEquals(switchCommand, command);
     }
 
     @Test

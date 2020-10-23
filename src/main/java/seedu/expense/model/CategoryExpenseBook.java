@@ -23,7 +23,7 @@ public class CategoryExpenseBook extends ExpenseBook {
     /**
      * Creates a CategoryExpenseBook using the Expenses and Budgets in the {@code toBeCopied}
      */
-    CategoryExpenseBook(ExpenseBook expenseBook) {
+    public CategoryExpenseBook(ExpenseBook expenseBook) {
         super(expenseBook);
         filteredExpenses = new FilteredList<>(expenseBook.getExpenseList());
         filteredBudgets = new FilteredList<>(expenseBook.getBudgetList());

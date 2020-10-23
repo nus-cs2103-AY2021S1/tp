@@ -3,6 +3,8 @@ package seedu.expense.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.expense.logic.parser.CliSyntax.PREFIX_TAG;
 
+import seedu.expense.commons.core.LogsCenter;
+import seedu.expense.logic.LogicManager;
 import seedu.expense.logic.commands.exceptions.CommandException;
 import seedu.expense.model.Model;
 import seedu.expense.model.tag.Tag;
@@ -20,8 +22,8 @@ public class SwitchCommand extends Command {
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_TAG + "Food ";
 
-    public static final String MESSAGE_INVALID_CATEGORY = "No such category account: %1$s";
-    public static final String MESSAGE_SUCCESS = "Category expense switched: %1$s";
+    public static final String MESSAGE_INVALID_CATEGORY = "No such category account: %s";
+    public static final String MESSAGE_SUCCESS = "Category expense switched: %s";
 
     private final Tag toMatch;
 
@@ -40,6 +42,9 @@ public class SwitchCommand extends Command {
         if (!model.hasCategory(toMatch)) {
             throw new CommandException(MESSAGE_INVALID_CATEGORY);
         }
+
+        LogsCenter.getLogger(LogicManager.class).info(
+            "----------------[USER COMMAND][" + COMMAND_WORD + " " + toMatch + "]");
 
         model.switchCategory(toMatch);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toMatch));
