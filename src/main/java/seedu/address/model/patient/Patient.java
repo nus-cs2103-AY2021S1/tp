@@ -7,10 +7,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.tag.Tag;
+import seedu.address.model.allergy.Allergy;
 
 /**
- * Represents a Patient in the address book.
+ * Represents a Patient in Hospify.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Patient {
@@ -23,47 +23,69 @@ public class Patient {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Allergy> allergies = new HashSet<>();
+    private final Set<Appointment> appointments = new HashSet<>();
+    private final MedicalRecord medicalRecord;
 
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Nric nric, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, nric, email, address, tags);
+    public Patient(Name name, Nric nric, Phone phone, Email email, Address address,
+                   Set<Allergy> allergies, Set<Appointment> appointments, MedicalRecord medicalRecord) {
+        requireAllNonNull(name, phone, nric, email, address, allergies, appointments);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.nric = nric;
-        this.tags.addAll(tags);
+        this.allergies.addAll(allergies);
+        this.appointments.addAll(appointments);
+        this.medicalRecord = medicalRecord;
     }
 
     public Name getName() {
+        assert name != null : "Name should not be empty";
         return name;
     }
 
     public Phone getPhone() {
+        assert phone != null : "Phone number should not be empty";
         return phone;
     }
 
     public Email getEmail() {
+        assert email != null : "Email should not be empty";
         return email;
     }
 
     public Address getAddress() {
+        assert address != null : "Address should not be empty";
         return address;
     }
 
     public Nric getNric() {
+        assert nric != null : "Nric should not be empty";
         return nric;
     }
 
+    public MedicalRecord getMedicalRecord() {
+        return medicalRecord;
+    }
+
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable allergy set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Allergy> getAllergies() {
+        return Collections.unmodifiableSet(allergies);
+    }
+
+    /**
+     * Returns an immutable appointment set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Appointment> getAppointments() {
+        return Collections.unmodifiableSet(appointments);
     }
 
     /**
@@ -101,13 +123,15 @@ public class Patient {
                 && otherPatient.getEmail().equals(getEmail())
                 && otherPatient.getAddress().equals(getAddress())
                 && otherPatient.getNric().equals(getNric())
-                && otherPatient.getTags().equals(getTags());
+                && otherPatient.getAllergies().equals(getAllergies())
+                && otherPatient.getAppointments().equals(getAppointments())
+                && otherPatient.getMedicalRecord().equals(getMedicalRecord());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, nric, phone, email, address, tags);
+        return Objects.hash(name, nric, phone, email, address, allergies, appointments, medicalRecord);
     }
 
     @Override
@@ -122,9 +146,12 @@ public class Patient {
                 .append(getEmail())
                 .append(" Address: ")
                 .append(getAddress())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(" Allergies: ");
+        getAllergies().forEach(builder::append);
+        builder.append(" Appointments: ");
+        getAppointments().forEach(builder::append);
+        builder.append(" Medical Record URL: ")
+                .append(getMedicalRecord());
         return builder.toString();
     }
-
 }

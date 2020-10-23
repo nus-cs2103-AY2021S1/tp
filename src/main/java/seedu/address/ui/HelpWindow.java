@@ -2,56 +2,68 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.CountCommand;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCommand;
 
 /**
  * Controller for a help page
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String COMMAND_SUMMARY = "                                          COMMAND SUMMARY"
-            + "                                         \n\n"
-            + "Action │ Format, Examples \n"
-            + "───────┼────────────────"
-            + "────────────────────────"
-            + "────────────────────────"
-            + "────────────────────────\n"
-            + "Add    │ add n/NAME ic/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ \n"
-            + "       | e.g., add n/James Ho ic/S1234567A p/22224444 e/jamesho@example.com a/123, Clementi Rd, \n"
-            + "       | 1234665 t/friend t/colleague \n"
-            + "Clear  │ clear \n"
-            + "Delete │ delete INDEX \n"
-            + "       | e.g., delete 3 \n"
-            + "       | delete NRIC \n"
-            + "       | e.g., delete S1234567A \n"
-            + "Edit   │ edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ic/NRIC] [t/TAG]…​ \n"
-            + "       | e.g.,edit 2 n/James Lee e/jameslee@example.com ic/S1234567A \n"
-            + "Find   │ find KEYWORD [MORE_KEYWORDS] [NRIC] [MORE_NRICs] \n"
-            + "       | e.g., find James Jake \n"
-            + "       | e.g., find Curry Davis Heskey S1234567A \n"
-            + "List   │ list \n"
-            + "Help   │ help \n"
-            + "Count  │ count \n\n";
-
     public static final String USERGUIDE_URL = "https://ay2021s1-cs2103t-w15-3.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = COMMAND_SUMMARY
-            + "For more information, please refer to the user guide: \n"
+    public static final String MORE_INFO = "For more information, please refer to the user guide: "
             + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
+    private final CommandDescription addCommandDes =
+            new CommandDescription(AddCommand.COMMAND_WORD, AddCommand.MESSAGE_USAGE);
+    private final CommandDescription clearCommandDes =
+            new CommandDescription(ClearCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD);
+    private final CommandDescription deleteCommandDes =
+            new CommandDescription(DeleteCommand.COMMAND_WORD, DeleteCommand.MESSAGE_USAGE);
+    private final CommandDescription editCommandDes =
+            new CommandDescription(EditCommand.COMMAND_WORD, EditCommand.MESSAGE_USAGE);
+    private final CommandDescription findCommandDes =
+            new CommandDescription(FindCommand.COMMAND_WORD, FindCommand.MESSAGE_USAGE);
+    private final CommandDescription listCommandDes =
+            new CommandDescription(ListCommand.COMMAND_WORD, ListCommand.COMMAND_WORD);
+    private final CommandDescription helpCommandDes =
+            new CommandDescription(HelpCommand.COMMAND_WORD, HelpCommand.MESSAGE_USAGE);
+    private final CommandDescription countCommandDes =
+            new CommandDescription(CountCommand.COMMAND_WORD, CountCommand.MESSAGE_UASGE);
+
+    public final ObservableList<CommandDescription> commandDescriptions = FXCollections
+            .observableArrayList(addCommandDes, clearCommandDes, deleteCommandDes, editCommandDes,
+                    findCommandDes, listCommandDes, helpCommandDes, countCommandDes);
 
     @FXML
     private Button copyButton;
 
     @FXML
-    private Label helpMessage;
+    private TableView<CommandDescription> helpTable;
+
+    @FXML
+    private Label moreInfo;
+
+    @FXML
+    private Label copyButtonNotification;
 
     /**
      * Creates a new HelpWindow.
@@ -60,7 +72,8 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
+        moreInfo.setText(MORE_INFO);
+        helpTable.setItems(commandDescriptions);
     }
 
     /**
@@ -72,21 +85,22 @@ public class HelpWindow extends UiPart<Stage> {
 
     /**
      * Shows the help window.
-     * @throws IllegalStateException
-     * <ul>
-     *     <li>
-     *         if this method is called on a thread other than the JavaFX Application Thread.
-     *     </li>
-     *     <li>
-     *         if this method is called during animation or layout processing.
-     *     </li>
-     *     <li>
-     *         if this method is called on the primary stage.
-     *     </li>
-     *     <li>
-     *         if {@code dialogStage} is already showing.
-     *     </li>
-     * </ul>
+     *
+     * @throws IllegalStateException <ul>
+     *                                   <li>
+     *                                       if this method is called on a thread other
+     *                                       than the JavaFX Application Thread.
+     *                                   </li>
+     *                                   <li>
+     *                                       if this method is called during animation or layout processing.
+     *                                   </li>
+     *                                   <li>
+     *                                       if this method is called on the primary stage.
+     *                                   </li>
+     *                                   <li>
+     *                                       if {@code dialogStage} is already showing.
+     *                                   </li>
+     *                               </ul>
      */
     public void show() {
         logger.fine("Showing help page about the application.");
@@ -122,6 +136,7 @@ public class HelpWindow extends UiPart<Stage> {
     private void copyUrl() {
         final Clipboard clipboard = Clipboard.getSystemClipboard();
         final ClipboardContent url = new ClipboardContent();
+        copyButtonNotification.setText("Link Copied!");
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
     }

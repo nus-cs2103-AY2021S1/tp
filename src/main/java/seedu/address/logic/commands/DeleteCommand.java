@@ -14,7 +14,7 @@ import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a patient identified using it's displayed index or Nric from Hospify.
  */
 public class DeleteCommand extends Command {
 
@@ -22,10 +22,10 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + " or deletes the person by his Nric number."
-            + "Parameters: INDEX (must be a positive integer) or NRIC (e.g. A00000001I)\n"
-            + "Example: " + COMMAND_WORD + " 1"
-            + "Example: " + COMMAND_WORD + " A00000001I";
+            + " or deletes the person by his NRIC number."
+            + "Parameters: INDEX (must be a positive integer) or NRIC (e.g. S1234567A)\n"
+            + "Example: " + COMMAND_WORD + " 3\n"
+            + "Example: " + COMMAND_WORD + " S1234567A";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
@@ -71,6 +71,7 @@ public class DeleteCommand extends Command {
         }
 
         model.deletePatient(patientToDelete);
+        assert !model.hasPatient(patientToDelete) : "Patient not deleted!";
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, patientToDelete));
     }
 

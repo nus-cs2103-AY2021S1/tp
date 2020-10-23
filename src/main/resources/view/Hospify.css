@@ -4,11 +4,15 @@
 }
 
 .background-pink {
-    -fx-background-color:  derive(#F4C2C2, 80%)
+    -fx-background-color:  derive(#F4C2C2, 80%);
 }
 
 .background-mud {
     -fx-background-color: #534B4B;
+}
+
+.background-babyBlue {
+    -fx-background-color: #89CFF0;
 }
 
 .list-pill-cell {
@@ -17,6 +21,17 @@
     -fx-border-width:3;
     -fx-border-color: #707070;
     -fx-background-color: #F4C2C2;
+}
+
+.table-column {
+    -fx-background-color: #F4C2C2;
+    -fx-border-color: white;
+    -fx-border-width: 2;
+    -fx-text-fill: black;
+}
+
+.bold {
+    -fx-font-weight: bold;
 }
 
 .rounded-border {
@@ -34,8 +49,9 @@
     -fx-border-color: transparent;
 }
 
-.text-dark {
+.label.text-dark{
     -fx-text-fill: black;
+    -fx-font-weight: bold;
 }
 
 .background-transparent {
@@ -116,14 +132,14 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    -fx-border-color: transparent transparent transparent #4d4d4d;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent;
 }
 
 .list-view {
@@ -189,7 +205,7 @@
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 .result-display .label {
@@ -232,7 +248,7 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#7A7373, 0%);
 }
 
 .menu-bar .label {
@@ -321,12 +337,11 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#f7dcdc, 20%);
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
-    -fx-background-insets: 3;
+    -fx-background-color: derive(#bdbdbd, 30%);
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
@@ -357,7 +372,7 @@
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-color: #534B4B;
     -fx-background-insets: 0;
     -fx-border-color: #383838 #383838 #ffffff #383838;
     -fx-border-insets: 0;
@@ -372,8 +387,8 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
-    -fx-background-radius: 0;
+    -fx-background-color: white;
+    -fx-background-radius: 1;
 }
 
 #tags {
@@ -381,9 +396,9 @@
     -fx-vgap: 3;
 }
 
-#tags .label {
+#allergies .label {
     -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
+    -fx-background-color: #ff0900;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
@@ -397,4 +412,42 @@
     -fx-border-color: black;
     -fx-background-color: white;
     -fx-padding: 0 15 0 20;
+}
+
+#helpWindow {
+    -fx-border-color: black;
+    -fx-border-width: 3;
+    -fx-text-fill: white;
+    -fx-background-color: #89CFF0;
+    -fx-border-radius: 20;
+}
+
+#pill-button {
+    -fx-background-color: #5ea4c4;
+    -fx-background-radius: 20;
+    -fx-border-color: #e3e3e3;
+    -fx-border-width: 2;
+    -fx-border-radius: 20;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+#pill-button:hover {
+    -fx-background-color: derive(#89CFF0, 30%);
+    -fx-background-radius: 20;
+    -fx-border-color: black;
+    -fx-border-width: 2;
+    -fx-border-radius: 20;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+#patientName {
+    -fx-font-weight: bold;
+    -fx-font-size: 45;
+    -fx-text-fill: black;
+}
+
+.centerItems {
+    -fx-alignment: CENTER;
 }

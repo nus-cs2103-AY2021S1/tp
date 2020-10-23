@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.patient.KeywordsPredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all patients in Hospify whose name contains any of the argument keywords or Nric.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
@@ -17,8 +17,8 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
             + "the specified keywords or exact NRIC (case-insensitive)"
             + " and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob s1234567A";
+            + "Parameters: KEYWORD [MORE_KEYWORDS] [NRIC] [MORE_NRICs]...\n"
+            + "Example: " + COMMAND_WORD + " alice bob s1234567a";
 
     private final KeywordsPredicate predicate;
 
