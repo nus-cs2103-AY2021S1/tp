@@ -1,11 +1,7 @@
 package seedu.address.logic.parser.modulelistparsers;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULAR_CREDITS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -34,7 +30,7 @@ public class EditModuleParser implements Parser<EditModuleCommand> {
     public EditModuleCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_EDIT_NAME, PREFIX_NAME, PREFIX_ZOOM_LINK,
-                PREFIX_TAG, PREFIX_MODULAR_CREDITS);
+                PREFIX_TAG, PREFIX_MODULAR_CREDITS, PREFIX_GRADE_POINT);
         ArgumentMultimap argMultimap = tokenizer.tokenize();
 
         String moduleName;
@@ -66,10 +62,13 @@ public class EditModuleParser implements Parser<EditModuleCommand> {
             editModuleDescriptor.setModularCredits(ParserUtil
                     .parseModularCredits(argMultimap.getValue(PREFIX_MODULAR_CREDITS).get()));
         }
+        if (argMultimap.getValue(PREFIX_GRADE_POINT).isPresent()) {
+            editModuleDescriptor.setGradePoint(ParserUtil
+                    .parseGradePoint(argMultimap.getValue(PREFIX_GRADE_POINT).get()));
+        }
         if (!editModuleDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditModuleCommand.MESSAGE_NOT_EDITED);
         }
-
         return new EditModuleCommand(moduleName, editModuleDescriptor);
     }
 

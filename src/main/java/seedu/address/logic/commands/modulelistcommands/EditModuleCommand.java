@@ -20,6 +20,7 @@ import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
+import seedu.address.model.module.grade.GradePoint;
 import seedu.address.model.module.grade.GradeTracker;
 import seedu.address.model.tag.Tag;
 
@@ -95,10 +96,12 @@ public class EditModuleCommand extends Command {
         // Address updatedAddress = editModuleDescriptor.getAddress().orElse(ModuleToEdit.getAddress());
         Set<Tag> updatedTags = editModuleDescriptor.getTags().orElse(moduleToEdit.getTags());
         // return new Module(updatedName, updatedEmail, updatedAddress, updatedTags);
-
         ModuleName moduleName = editModuleDescriptor.getModuleName().orElse(moduleToEdit.getName());
         ZoomLink zoomLink = editModuleDescriptor.getZoomLink().orElse(moduleToEdit.getLink());
-        GradeTracker gradeTracker = editModuleDescriptor.getGradeTracker().orElse((moduleToEdit.getGradeTracker()));
+        GradeTracker gradeTracker = gradeTracker = moduleToEdit.getGradeTracker();
+        if (editModuleDescriptor.gradePoint != null) {
+            gradeTracker.setGradePoint(Optional.of(editModuleDescriptor.gradePoint));
+        }
         ModularCredits modularCredits = editModuleDescriptor
                 .getModularCredits().orElse((moduleToEdit.getModularCredits()));
         return new Module(moduleName, zoomLink, gradeTracker, updatedTags, modularCredits);
@@ -140,6 +143,7 @@ public class EditModuleCommand extends Command {
         private ZoomLink zoomLink;
         private GradeTracker gradeTracker;
         private ModularCredits modularCredits;
+        private GradePoint gradePoint;
 
         public EditModuleDescriptor() {}
 
@@ -155,6 +159,8 @@ public class EditModuleCommand extends Command {
             setZoomLink(toCopy.zoomLink);
             setGradeTracker(toCopy.gradeTracker);
             setModularCredits(toCopy.modularCredits);
+            setGradePoint(toCopy.gradePoint);
+            //this.gradeTracker.setGradePoint(toCopy.gradeTracker.getGradePoint());
         }
 
         /*
@@ -162,7 +168,7 @@ public class EditModuleCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(moduleName, zoomLink, modularCredits);
+            return CollectionUtil.isAnyNonNull(moduleName, zoomLink, modularCredits, gradePoint);
         }
 
         /*public void setName(Name name) {
@@ -211,6 +217,10 @@ public class EditModuleCommand extends Command {
             this.gradeTracker = gradeTracker;
         }
 
+        public void setGradePoint(GradePoint gradePoint) {
+            this.gradePoint = gradePoint;
+        }
+
         /**
          * Sets {@code modularCredits} to this object's {@code modularCredits}.
          * A defensive copy of {@code modularCredits} is used internally.
@@ -230,12 +240,6 @@ public class EditModuleCommand extends Command {
         public Optional<GradeTracker> getGradeTracker() {
             return Optional.ofNullable(gradeTracker);
         }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
         public Optional<ModularCredits> getModularCredits() {
             return Optional.ofNullable(modularCredits);
         }

@@ -50,12 +50,13 @@ public class GradeTracker {
         this.gradePoint = newGradePoint;
     }
 
-    public Optional<Double> getGradePoint() {
-        if (gradePoint.isPresent()) {
+    public Optional<GradePoint> getGradePoint() {
+        /*if (gradePoint.isPresent()) {
             return Optional.of(gradePoint.get().gradePoint);
         } else {
             return Optional.empty();
-        }
+        }*/
+        return gradePoint;
     }
 
     public void addAssignment(Assignment newAssignment) {

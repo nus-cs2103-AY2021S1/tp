@@ -22,19 +22,19 @@ public class JsonAdaptedGradeTracker {
 
     private final List<JsonAdaptedAssignment> assignments = new ArrayList<>();
     private final double grade;
-    private final Optional<Double> gradePoint;
-
+    //private final Optional<GradePoint> gradePoint;
+    private final String gradePoint;
     /**
      * Constructs a {@code JsonAdaptedGradeTracker} with the given Grade Tracker details.
      */
     @JsonCreator
     public JsonAdaptedGradeTracker(@JsonProperty("assignments") List<JsonAdaptedAssignment> assignments,
-                             @JsonProperty("grade") double grade, @JsonProperty("gradepoint") double gradePoint) {
+                             @JsonProperty("grade") double grade, @JsonProperty("gradepoint") String gradePoint) {
         this.grade = grade;
         if (assignments != null) {
             this.assignments.addAll(assignments);
         }
-        this.gradePoint = Optional.of(gradePoint);
+        this.gradePoint = gradePoint;
     }
 
     /**
@@ -46,7 +46,11 @@ public class JsonAdaptedGradeTracker {
                 .collect(Collectors.toList()));
         this.grade = source.getGrade().gradeResult;
         assert source.getGradePoint() != null : "Assertion error, gradepoint not defined";
-        this.gradePoint = source.getGradePoint();
+        if (source.getGradePoint().isEmpty()) {
+            this.gradePoint = null;
+        } else {
+            this.gradePoint = source.getGradePoint().get().toString();
+        }
     }
 
     /**
@@ -71,12 +75,12 @@ public class JsonAdaptedGradeTracker {
         }
         final Grade modelGrade = new Grade(grade);
         final Optional<GradePoint> modelGradePoint;
-        if (gradePoint.isEmpty()) {
+        if (gradePoint == null) {
             modelGradePoint = Optional.empty();
-        } else if (!GradePoint.isValidGradePoint(gradePoint.get())) {
+        } else if (!GradePoint.isValidGradePoint(gradePoint)) {
             throw new IllegalValueException(GradeTracker.MESSAGE_INVALID_GRADEPOINT);
         } else {
-            modelGradePoint = Optional.of(new GradePoint(gradePoint.get()));
+            modelGradePoint = Optional.of(new GradePoint(Double.parseDouble(gradePoint)));
         }
         modelGradeTracker.setGrade(modelGrade);
         modelGradeTracker.setGradePoint(modelGradePoint);

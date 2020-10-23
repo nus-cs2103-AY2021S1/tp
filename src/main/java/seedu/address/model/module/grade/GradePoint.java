@@ -16,18 +16,24 @@ public class GradePoint {
      * @param gradePoint A valid grade result.
      */
     public GradePoint(double gradePoint) {
-        checkArgument(isValidGradePoint(gradePoint), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidGradePoint(Double.toString(gradePoint)), MESSAGE_CONSTRAINTS);
         this.gradePoint = gradePoint;
     }
 
     /**
-     * Checks if the grade can be placed into the grade tracker.
+     * Checks if the grade point can be placed into the grade tracker.
      *
-     * @param test grade to be checked.
+     * @param test grade point to be checked.
      * @return true if the grade is valid.
      */
-    public static boolean isValidGradePoint(double test) {
-        if (test >= 0 && test <= 5) {
+    public static boolean isValidGradePoint(String test) {
+        double convertedGradePoint;
+        try {
+            convertedGradePoint = Double.parseDouble(test);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        if (convertedGradePoint >= 0 && convertedGradePoint <= 5) {
             return true;
         } else {
             return false;
