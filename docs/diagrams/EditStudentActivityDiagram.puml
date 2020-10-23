@@ -5,20 +5,20 @@ start
 if() then ([command is valid])
     if() then ([there are edited student fields])
     :Edit command is executed;
-        if() then ([provided student index is invalid])
+        if() then ([student index is invalid])
             :Display invalid student index error message;
-        else ([provided student index is valid])
+        else ([student index is valid])
             if() then ([edited student is unique])
-            :replace student with edited student in student list;
+            :Replace student with edited student in student list;
             :Display edit student success message;
-            else ([student already exists])
+            else ([edited student already exists])
             :Display duplicate student error message;
             endif
         endif
     else ([there are no edited student fields])
     :Display no edits made message;
     endif
-else ([command is invalid - missing or invalid arguments])
+else ([command is invalid - missing or invalid parameters])
     :Display parse error message;
 endif
 stop
