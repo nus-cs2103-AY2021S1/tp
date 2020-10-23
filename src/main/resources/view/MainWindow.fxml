@@ -8,19 +8,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.stage.*?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600.0" minWidth="900.0" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
   <scene>
-    <Scene>
+    <Scene fill="BLACK">
       <stylesheets>
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+      <VBox style="-fx-background-color: BLACK;">
+        <MenuBar fx:id="menuBar" minWidth="-Infinity" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
@@ -29,43 +29,49 @@
           </Menu>
         </MenuBar>
 
-        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" minWidth="-Infinity" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="SOMETIMES">
+          <padding>
+            <Insets bottom="5" left="10" right="10" top="5" />
+          </padding>
+        </StackPane>
+            <HBox maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+               <children>
+      
+              <VBox fx:id="vendorList" minWidth="-Infinity" styleClass="pane-with-border" HBox.hgrow="SOMETIMES">
+              <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+              </padding>
+                     <children>
+                        <Label style="-fx-text-fill: WHITE;" text="Vendors" />
+                 <StackPane fx:id="vendorListPanelPlaceholder" minWidth="-Infinity" prefWidth="200.0" />
+                     </children>
+            </VBox>
+      
+              <VBox fx:id="foodList" minWidth="-Infinity" styleClass="pane-with-border" HBox.hgrow="SOMETIMES">
+                <padding>
+                  <Insets bottom="10" left="10" right="10" top="10" />
+                </padding>
+                     <Label style="-fx-text-fill: WHITE;" text="Menu" />
+                <StackPane fx:id="foodListPanelPlaceholder" minWidth="-Infinity" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+            </VBox>
+      
+              <VBox fx:id="orderItemList" minWidth="-Infinity" styleClass="pane-with-border" HBox.hgrow="SOMETIMES">
+                <padding>
+                  <Insets bottom="10" left="10" right="10" top="10" />
+                </padding>
+                     <Label style="-fx-text-fill: WHITE;" text="Order" />
+                <StackPane fx:id="orderItemListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+              </VBox>
+               </children>
+            </HBox>
+
+        <StackPane fx:id="commandBoxPlaceholder" minWidth="-Infinity" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
-          <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
-          </padding>
-        </StackPane>
-
-        <VBox fx:id="vendorList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-        <padding>
-          <Insets bottom="10" left="10" right="10" top="10" />
-        </padding>
-               <Label style="-fx-text-fill: WHITE;" text="Vendors" />
-        <StackPane fx:id="vendorListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-      </VBox>
-
-        <VBox fx:id="foodList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets bottom="10" left="10" right="10" top="10" />
-          </padding>
-               <Label style="-fx-text-fill: WHITE;" text="Menu" />
-          <StackPane fx:id="foodListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-      </VBox>
-
-        <VBox fx:id="orderItemList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets bottom="10" left="10" right="10" top="10" />
-          </padding>
-               <Label style="-fx-text-fill: WHITE;" text="Order" />
-          <StackPane fx:id="orderItemListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-        </VBox>
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+        <StackPane fx:id="statusbarPlaceholder" minWidth="-Infinity" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
   </scene>
