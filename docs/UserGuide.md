@@ -267,7 +267,7 @@ OneShelf commands are traversable much like Window's command prompt with the arr
 
 * Inventory items are sorted based on percentage of quantity in ascending order. 
 * If the maximum quantity does not exist for that particular item then it the item will be located at the end of the list.
-* If 2 items have the same quantity, they are then sorted lexiographically.
+* If 2 items have the same quantity, they are then sorted lexicographically.
 
 
 
