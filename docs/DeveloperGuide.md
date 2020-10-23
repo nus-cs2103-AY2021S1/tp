@@ -452,12 +452,6 @@ For all use cases (unless specified otherwise):
 2. Should be able to hold up to 100 financial records and 100 inventory items without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-### 5.5. Glossary and Terms
-
-* **Mainstream OS**: Windows, Linux, MacOS
-* **Inventory**: An item that a user wishes to record. An inventory item can refer to any existing object.
-* **Finance**: A record that allows a user to monitor his earnings and spending.
-
 ---
 
 ## 6. Appendix: Instructions for Manual Testing
@@ -600,3 +594,10 @@ testers are expected to do more *exploratory* testing.
 3. Saving inventory as items instead of records<br>
    1. Currently, NUStorage saves inventory as records. For business that constantly deals with the same set of items daily, it might seem tiresome to constantly have to add inventory records of the same item.
    2. Thus, we plan to implement a feature that allows users to 'save' a certain inventory item for reuse, allowing them to only have to type the quantity when adding records.
+
+## 8. Glossary and Terms
+
+* **Mainstream OS**: Windows, Linux, MacOS
+* **Inventory**: An item that a user wishes to record. An inventory item can refer to any existing object.
+* **Finance**: A record that allows a user to monitor his earnings and spending.
+
