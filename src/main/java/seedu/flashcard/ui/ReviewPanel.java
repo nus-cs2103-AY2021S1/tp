@@ -21,7 +21,7 @@ public class ReviewPanel extends StudyPanel {
     public ReviewPanel(ObservableList<Flashcard> flashcardList, MainWindow parent) {
         super(parent);
         reviewManager = new ReviewManager(flashcardList);
-        showReviewFlashcard(flashcardList.get(0));
+        showFlashcard(flashcardList.get(0));
         handleStudy();
     }
 
@@ -39,16 +39,16 @@ public class ReviewPanel extends StudyPanel {
                 switch (event.getCode().getCode()) {
                 case 39: // right arrow key down
                     if (!reviewManager.hasNextFlashcard()) {
-                        exitReviewMode(ReviewManager.NO_NEXT_FLASHCARD_MESSAGE + "\n" + EXIT_MESSAGE);
+                        exitStudyMode(ReviewManager.NO_NEXT_FLASHCARD_MESSAGE + "\n" + EXIT_MESSAGE);
                     } else {
-                        showReviewFlashcard(reviewManager.getNextFlashcard());
+                        showFlashcard(reviewManager.getNextFlashcard());
                     }
                     break;
                 case 37: // left arrow key down
                     if (!reviewManager.hasPreviousFlashcard()) {
-                        exitReviewMode(ReviewManager.NO_PREVIOUS_FLASHCARD_MESSAGE + "\n" + EXIT_MESSAGE);
+                        exitStudyMode(ReviewManager.NO_PREVIOUS_FLASHCARD_MESSAGE + "\n" + EXIT_MESSAGE);
                     } else {
-                        showReviewFlashcard(reviewManager.getPrevFlashcard());
+                        showFlashcard(reviewManager.getPrevFlashcard());
                     }
                     break;
                 case 40: // up arrow key down
@@ -60,7 +60,7 @@ public class ReviewPanel extends StudyPanel {
                     hideAnswer();
                     break;
                 case 81: // 'q' key down
-                    exitReviewMode(EXIT_MESSAGE);
+                    exitStudyMode(EXIT_MESSAGE);
                     break;
                 default:
                     break;

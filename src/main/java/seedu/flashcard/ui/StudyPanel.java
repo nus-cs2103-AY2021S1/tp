@@ -43,7 +43,7 @@ public abstract class StudyPanel extends UiPart<Region> {
      *
      * @param flashcard      the FlashCard being reviewed.
      */
-    protected void showReviewFlashcard(Flashcard flashcard) {
+    protected void showFlashcard(Flashcard flashcard) {
         questionPlaceholder.getChildren().clear();
         FlashcardQuestionCard flashcardQuestionCard = new FlashcardQuestionCard(flashcard);
         questionPlaceholder.getChildren().add(flashcardQuestionCard.getRoot());
@@ -54,7 +54,7 @@ public abstract class StudyPanel extends UiPart<Region> {
      * Clears up current window to exit study mode and calls parent to exit study mode.
      * @param exitReason Message to show user on exit.
      */
-    protected void exitReviewMode(String exitReason) {
+    protected void exitStudyMode(String exitReason) {
         parent.getRoot().removeEventFilter(KeyEvent.KEY_PRESSED, keyDownEventHandler);
         questionPlaceholder.getChildren().clear();
         answerPlaceholder.getChildren().clear();
