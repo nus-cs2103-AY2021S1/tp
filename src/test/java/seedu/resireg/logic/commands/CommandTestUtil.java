@@ -172,4 +172,12 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredRoomList().size());
     }
 
+    /**
+     * Deletes the first student in {@code model}'s filtered list from {@code model}'s resireg.
+     */
+    public static void deleteFirstStudent(Model model) {
+        Student firstStudent = model.getFilteredStudentList().get(0);
+        model.deleteStudent(firstStudent);
+        model.saveStateResiReg();
+    }
 }

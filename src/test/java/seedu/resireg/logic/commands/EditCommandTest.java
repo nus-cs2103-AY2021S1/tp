@@ -1,6 +1,7 @@
 package seedu.resireg.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.resireg.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.resireg.logic.commands.CommandTestUtil.DESC_BOB;
@@ -147,6 +148,75 @@ public class EditCommandTest {
                 new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void executeUndoRedo_validIndexUnfilteredList_success() throws Exception {
+        Student editedStudent = new StudentBuilder().build();
+        Student studentToEdit = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        EditStudentDescriptor desc = new EditStudentDescriptorBuilder(editedStudent).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, desc);
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setStudent(studentToEdit, editedStudent);
+        expectedModel.saveStateResiReg();
+
+        // edit -> first student edited
+        editCommand.execute(model);
+
+        // undo -> reverts resireg back to prev state and filtered student list to show all students
+        expectedModel.undoResiReg();
+        assertCommandSuccess(new UndoCommand(), model, UndoCommand.MESSAGE_SUCCESS, expectedModel);
+
+        // redo -> same first student edited again
+        expectedModel.redoResiReg();
+        assertCommandSuccess(new RedoCommand(), model, RedoCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void executeUndoRedo_invalidIndexUnfilteredList_failure() {
+        Index outofBounds = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
+        EditStudentDescriptor desc = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditCommand editCommand = new EditCommand(outofBounds, desc);
+
+        // execution failed -> resireg state not added into model
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+
+        // single resireg state in mode -> undo and redo fails
+        assertCommandFailure(new UndoCommand(), model, UndoCommand.MESSAGE_FAILURE);
+        assertCommandFailure(new RedoCommand(), model, RedoCommand.MESSAGE_FAILURE);
+    }
+
+    /**
+     * 1. Edits a {@code Student} from a filtered list.
+     * 2. Undo the edit.
+     * 3. The unfiltered list should be shown. The index of the unfiltered list
+     * should be verified to be different from the index at the filtered list.
+     * 4. Redo the edit. This ensures {@code RedoCommand} edits the student object
+     * regardless of indexing.
+     */
+    @Test
+    public void executeUndoRedo_validIndexFilteredList_sameStudentEdited() throws Exception {
+        Student editedStudent = new StudentBuilder().build();
+        EditStudentDescriptor desc = new EditStudentDescriptorBuilder(editedStudent).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, desc);
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+
+        showStudentAtIndex(model, INDEX_SECOND_PERSON);
+        Student studentToEdit = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        expectedModel.setStudent(studentToEdit, editedStudent);
+        expectedModel.saveStateResiReg();
+
+        // edit -> edits second student in unfiltered list / first student in filtered student list
+        editCommand.execute(model);
+
+        // undo -> reverts resireg back to prev state and filtered student list to show all students
+        expectedModel.undoResiReg();
+        assertCommandSuccess(new UndoCommand(), model, UndoCommand.MESSAGE_SUCCESS, expectedModel);
+
+        assertNotEquals(model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased()), studentToEdit);
+        // redo -> edits same second student in unfiltered student list
+        expectedModel.redoResiReg();
+        assertCommandSuccess(new RedoCommand(), model, RedoCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
