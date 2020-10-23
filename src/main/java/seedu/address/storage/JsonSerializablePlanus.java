@@ -28,6 +28,17 @@ class JsonSerializablePlanus {
     private final List<JsonAdaptedEvent> events = new ArrayList<>();
     private final List<JsonAdaptedLesson> lessons = new ArrayList<>();
 
+
+    /**
+     * Constructs a {@code JsonSerializablePlanus} with the given tasks.
+     */
+    @JsonCreator
+    public JsonSerializablePlanus(@JsonProperty("deadlines") List<JsonAdaptedDeadline> deadlines,
+                                  @JsonProperty("events") List<JsonAdaptedEvent> events) {
+        this.deadlines.addAll(deadlines);
+        this.events.addAll(events);
+    }
+
     /**
      * Converts a given {@code ReadOnlyPlanus} into this class for Jackson use.
      *

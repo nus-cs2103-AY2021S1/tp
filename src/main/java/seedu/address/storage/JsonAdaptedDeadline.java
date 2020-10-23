@@ -157,8 +157,8 @@ class JsonAdaptedDeadline {
 
         final Duration modelDuration;
 
-        if (Duration.isValidDuration(duration)) {
-            throw new IllegalValueException(DateUtil.MESSAGE_CONSTRAINTS);
+        if (!Duration.isValidDuration(duration)) {
+            throw new IllegalValueException(Duration.INVALID_DURATION_FORMAT);
         } else {
             modelDuration = new Duration(duration);
         }

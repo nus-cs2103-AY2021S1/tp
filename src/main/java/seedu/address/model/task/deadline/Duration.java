@@ -7,6 +7,7 @@ package seedu.address.model.task.deadline;
 public class Duration {
 
     public static final int NULL_VALUE = -1;
+    public static final String INVALID_DURATION_FORMAT = "The valid of duration is not valid";
     public final int valueInMinutes;
     public final boolean isNull;
     /**
@@ -36,7 +37,7 @@ public class Duration {
     }
 
     public static boolean isValidDuration(int duration) {
-        return duration >= 0;
+        return duration == NULL_VALUE || duration >= 0;
     }
 
     @Override
