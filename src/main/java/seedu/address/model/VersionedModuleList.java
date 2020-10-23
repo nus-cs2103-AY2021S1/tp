@@ -2,11 +2,9 @@ package seedu.address.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class VersionedModuleList extends ModuleList {
     private List<ReadOnlyModuleList> moduleListStateList = new ArrayList<>();
-    private Optional<ReadOnlyModuleList> redoStatePointer;
     private int currentStatePointer;
 
     /**
@@ -17,22 +15,21 @@ public class VersionedModuleList extends ModuleList {
         super(toBeCopied);
         moduleListStateList.add(toBeCopied);
         this.currentStatePointer = 0;
-        this.redoStatePointer = Optional.empty();
     }
     /**
      * Saves the current module list state in history.
      */
     public void commit(ModuleList moduleList) {
-        moduleListStateList.add(moduleList);
+        moduleListStateList.subList(this.currentStatePointer + 1, moduleListStateList.size()).clear();
+        moduleListStateList.add(new ModuleList(moduleList));
         this.currentStatePointer += 1;
-        this.redoStatePointer = Optional.empty();
     }
 
     /**
      * Restores the previous module list state from history.
      */
     public void undo() {
-        redoStatePointer = Optional.of(moduleListStateList.remove(this.currentStatePointer));
+        assert !isIndexZero() : "Assertion error, there are no instructions to undo";
         this.currentStatePointer -= 1;
     }
 
@@ -40,12 +37,16 @@ public class VersionedModuleList extends ModuleList {
      * Restores the previously undone module list state from history.
      */
     public void redo() {
-        moduleListStateList.add(redoStatePointer.get());
+        assert !isLastIndex() : "Assertion error, there are no instructions to redo";
         this.currentStatePointer += 1;
     }
 
     public boolean isIndexZero() {
         return currentStatePointer == 0;
+    }
+
+    public boolean isLastIndex() {
+        return currentStatePointer >= moduleListStateList.size() - 1;
     }
 
     /**
