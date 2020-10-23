@@ -6,7 +6,6 @@ import seedu.address.model.lesson.Time;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
@@ -42,6 +41,10 @@ public class DeadlineDateTime {
             value = LocalDateTime.parse(dateTime, FORMATTER);
             isNull = false;
         }
+    }
+
+    public static DeadlineDateTime createNullDeadlineDateTime() {
+        return new DeadlineDateTime("");
     }
 
     public boolean isNull() {

@@ -16,10 +16,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lesson.Date;
 import seedu.address.model.lesson.Time;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Title;
-import seedu.address.model.task.Type;
+import seedu.address.model.task.deadline.DeadlineDateTime;
+import seedu.address.model.task.event.EndDateTime;
+import seedu.address.model.task.event.StartDateTime;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -27,6 +28,8 @@ import seedu.address.model.task.Type;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String DAY_MESSAGE_CONSTRAINTS = "Day should be in the format of MON, TUE,"
+            + " ..., SUN or MONDAY, TUESDAY, ..., SUNDAY";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -79,14 +82,47 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code dateTime} is invalid.
      */
-    public static DateTime parseDateTime(String dateTime) throws ParseException {
+    public static DeadlineDateTime parseDateTime(String dateTime) throws ParseException {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();
-        if (!DateTime.isValidDateTime(trimmedDateTime)) {
-            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+        if (!DeadlineDateTime.isValidDateTime(trimmedDateTime)) {
+            throw new ParseException(DeadlineDateTime.MESSAGE_CONSTRAINTS);
         }
-        return new DateTime(trimmedDateTime);
+        return new DeadlineDateTime(trimmedDateTime);
     }
+
+    /**
+     * Parses a {@code String dateTime} into a {@code DateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateTime} is invalid.
+     */
+    public static StartDateTime parseStartDateTime(String date, String time) throws ParseException {
+        requireNonNull(date, time);
+        String trimmedDate = date.trim();
+        String trimmedtime = time.trim();
+        if (!StartDateTime.isValidStartDateTime(trimmedDate, trimmedtime)) {
+            throw new ParseException(StartDateTime.MESSAGE_CONSTRAINTS);
+        }
+        return new StartDateTime(trimmedDate, trimmedtime);
+    }
+
+    /**
+     * Parses a {@code String dateTime} into a {@code DateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateTime} is invalid.
+     */
+    public static EndDateTime parseEndDateTime(String date, String time) throws ParseException {
+        requireNonNull(date, time);
+        String trimmedDate = date.trim();
+        String trimmedtime = time.trim();
+        if (!EndDateTime.isValidEndDateTime(trimmedDate, trimmedtime)) {
+            throw new ParseException(EndDateTime.MESSAGE_CONSTRAINTS);
+        }
+        return new EndDateTime(trimmedDate, trimmedtime);
+    }
+
 
     /**
      * Parses a {@code String time} into a {@code LocalTime}.
@@ -153,22 +189,8 @@ public class ParserUtil {
         case "SUNDAY":
             return DayOfWeek.SUNDAY;
         default:
-            throw new ParseException(DateTime.DAY_MESSAGE_CONSTRAINTS);
+            throw new ParseException(DAY_MESSAGE_CONSTRAINTS);
         }
-    }
-    /**
-     * Parses a {@code String type} into an {@code Type}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code type} is invalid.
-     */
-    public static Type parseType(String type) throws ParseException {
-        requireNonNull(type);
-        String trimmedType = type.trim();
-        if (!Type.isValidType(trimmedType)) {
-            throw new ParseException(Type.MESSAGE_CONSTRAINTS);
-        }
-        return new Type(trimmedType);
     }
 
     /**

@@ -23,6 +23,8 @@ public class StartDateTime {
             "Search phrase for date should be in the format of dd-MM-yyyy or HH:mm or dd-MM-yyyy HH:mm.";
     public static final String VALIDATION_REGEX =
             "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4} (2[0-3]|[01][0-9]):([0-5][0-9])$";
+    public static final String DATE_VALIDATION_REGEX = "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4}$";
+    public static final String TIME_VALIDATION_REGEX = "^(2[0-3]|[01][0-9]):([0-5][0-9])$";
     public static final LocalDateTime DEFAULT_DATETIME = LocalDateTime.parse("01-01-1000 00:00", FORMATTER);
     public final LocalDateTime value;
     public final boolean isNull;
@@ -37,10 +39,23 @@ public class StartDateTime {
             this.isNull = true;
             value = DEFAULT_DATETIME;
         } else {
-            checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
+            checkArgument(isValidStartDateTime(dateTime), MESSAGE_CONSTRAINTS);
             value = LocalDateTime.parse(dateTime, FORMATTER);
             isNull = false;
         }
+    }
+
+    /**
+     * Constructs a {@code DateTime}.
+     *
+     * @param date A valid date.
+     * @param time A valid time.
+     */
+    public StartDateTime(String date, String time) {
+        checkArgument(isValidStartDateTime(date, time), MESSAGE_CONSTRAINTS);
+        String datetime = date + " " + time;
+        value = LocalDateTime.parse(datetime, FORMATTER);
+        isNull = false;
     }
 
     public boolean isNull() {
@@ -50,11 +65,23 @@ public class StartDateTime {
     /**
      * Returns true if a given string is a valid dateTime number.
      *
-     * @param test the string value to be put to test.
+     * @param datetime the string value to be put to test.
      * @return true if the test string is valid and false otherwise
      */
-    public static boolean isValidDateTime(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidStartDateTime(String datetime) {
+        return datetime.matches(VALIDATION_REGEX);
+    }
+
+
+    /**
+     * Returns true if a given string is a valid dateTime number.
+     *
+     * @param date the string value of date to be put to test.
+     * @param time the string value of time to be put to test.
+     * @return true if the test string is valid and false otherwise
+     */
+    public static boolean isValidStartDateTime(String date, String time) {
+        return date.matches(DATE_VALIDATION_REGEX) && time.matches(TIME_VALIDATION_REGEX);
     }
 
     /**
@@ -64,7 +91,7 @@ public class StartDateTime {
      * @return true if the test string is valid and false otherwise
      */
     public static boolean isValidSearchPhrase(String test) {
-        return isValidDateTime(test) || Date.isValidDate(test) || Time.isValidTime(test);
+        return isValidStartDateTime(test) || Date.isValidDate(test) || Time.isValidTime(test);
     }
 
     @Override

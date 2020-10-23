@@ -10,11 +10,13 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
 
-import seedu.address.model.task.DateTime;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
-import seedu.address.model.task.Type;
+import seedu.address.model.task.event.EndDateTime;
+import seedu.address.model.task.event.Event;
+import seedu.address.model.task.event.StartDateTime;
 
 /**
  * Lesson class to store information about a module's lessons.
@@ -75,11 +77,14 @@ public class Lesson {
         }
         ArrayList<Task> tasksToAdd = new ArrayList<>();
         while (currentDate.isBefore(this.endDate) || currentDate.isEqual(this.endDate)) {
-            LocalDateTime localDateTime = LocalDateTime.of(currentDate, getStartTime());
-            String dateTime = localDateTime.format(DateTime.FORMATTER);
-            DateTime eventDateTime = new DateTime(dateTime);
-            Task taskToAdd = new Task(title, eventDateTime, description, new Type("lesson"), new HashSet<>());
-            tasksToAdd.add(taskToAdd);
+            LocalDateTime localStartDateTime = LocalDateTime.of(currentDate, getStartTime());
+            LocalDateTime localEndDateTime = LocalDateTime.of(currentDate, getStartTime());
+            String startDateTimeString = localStartDateTime.format(DateUtil.FORMATTER);
+            String endDateTimeString = localEndDateTime.format(DateUtil.FORMATTER);
+            StartDateTime startDateTime = new StartDateTime(startDateTimeString);
+            EndDateTime endDateTime = new EndDateTime(endDateTimeString);
+            Event eventToAdd = Event.createLessonEvent(title, startDateTime, endDateTime, description, new HashSet<>());
+            tasksToAdd.add(eventToAdd);
             currentDate = currentDate.plusDays(7);
         }
         return tasksToAdd;
