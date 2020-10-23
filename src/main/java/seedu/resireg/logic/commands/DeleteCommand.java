@@ -12,7 +12,7 @@ import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.student.Student;
 
 /**
- * Deletes a student identified using it's displayed index from the address book.
+ * Deletes a student identified using its displayed index from the address book.
  */
 public class DeleteCommand extends Command {
 
