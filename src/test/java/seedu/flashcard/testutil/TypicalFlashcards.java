@@ -6,6 +6,7 @@ import java.util.List;
 
 import seedu.flashcard.model.FlashcardDeck;
 import seedu.flashcard.model.flashcard.Flashcard;
+import seedu.flashcard.model.flashcard.Statistics;
 
 /**
  * A utility class containing a list of {@code Flashcard} objects to be used in tests.
@@ -26,7 +27,28 @@ public class TypicalFlashcards {
 
     public static final Flashcard FLASHCARD_3 = new FlashcardBuilder()
             .withQuestion("It is recommended that assertions to be used liberally in the code. True or False?")
+            .withAnswer("True")
+            .build();
+
+    public static final Flashcard FLASHCARD_4 = new FlashcardBuilder()
+            .withQuestion("Can the singleton pattern can reduce testability?")
+            .withAnswer("Yes").withCategory("Singleton")
+            .withStatistics(new Statistics(3, 2))
+            .build();
+
+    public static final Flashcard FLASHCARD_5 = new FlashcardBuilder()
+            .withQuestion("The Command pattern uses polymorphism. True or False?")
+            .withAnswer("True")
+            .withCategory("Command Pattern")
+            .withStatistics(new Statistics(1, 0))
+            .build();
+
+    public static final Flashcard FLASHCARD_6 = new FlashcardBuilder()
+            .withQuestion("IMore test cases is always better. True or False?")
+            .withStatistics(new Statistics(5, 2))
             .withAnswer("True").build();
+
+
 
     private TypicalFlashcards() {
     } // prevents instantiation
@@ -42,7 +64,22 @@ public class TypicalFlashcards {
         return ab;
     }
 
+    /**
+     * Returns an {@code AddressBook} with flashcards that have been reviewed before.
+     */
+    public static FlashcardDeck getReviewedFlashcardDeck() {
+        FlashcardDeck ab = new FlashcardDeck();
+        for (Flashcard flashcard : getReviewedFlashcards()) {
+            ab.addFlashcard(flashcard);
+        }
+        return ab;
+    }
+
     public static List<Flashcard> getTypicalFlashcards() {
         return new ArrayList<>(Arrays.asList(FLASHCARD_1, FLASHCARD_2, FLASHCARD_3));
+    }
+
+    public static List<Flashcard> getReviewedFlashcards() {
+        return new ArrayList<>(Arrays.asList(FLASHCARD_4, FLASHCARD_5, FLASHCARD_6));
     }
 }
