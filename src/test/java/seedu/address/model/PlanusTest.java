@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.testutil.TaskBuilder;
@@ -88,6 +89,7 @@ public class PlanusTest {
      */
     private static class PlanusStub implements ReadOnlyPlanus {
         private final ObservableList<Task> tasks = FXCollections.observableArrayList();
+        private final ObservableList<Lesson> lessons = FXCollections.observableArrayList();
 
         PlanusStub(Collection<Task> tasks) {
             this.tasks.setAll(tasks);
@@ -96,6 +98,11 @@ public class PlanusTest {
         @Override
         public ObservableList<Task> getTaskList() {
             return tasks;
+        }
+
+        @Override
+        public ObservableList<Lesson> getLessonList() {
+            return lessons;
         }
     }
 

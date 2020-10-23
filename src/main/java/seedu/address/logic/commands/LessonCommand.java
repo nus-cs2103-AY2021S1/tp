@@ -60,6 +60,8 @@ public class LessonCommand extends Command {
             }
             model.addTask(taskToAdd);
         }
+
+        model.addLesson(lesson);
         return new CommandResult(String.format(MESSAGE_SUCCESS, lesson));
     }
 
