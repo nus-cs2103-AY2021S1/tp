@@ -60,7 +60,7 @@ deactivate UpdateStockDescriptor
 loop stocks
     UpdateCommand -> UpdateStockDescriptor : getSerialNumbers()
     activate UpdateStockDescriptor
-    
+
     UpdateStockDescriptor --> UpdateCommand
     deactivate UpdateStockDescriptor
 end
@@ -68,13 +68,13 @@ end
 loop stocks to update
     UpdateCommand -> UpdateCommand : createUpdatedStock()
     activate UpdateCommand
-    
+
     UpdateCommand --> UpdateCommand
     deactivate UpdateCommand
-    
+
     UpdateCommand -> Model : setStock()
     activate Model
-    
+
     Model --> UpdateCommand
     deactivate Model
 end
