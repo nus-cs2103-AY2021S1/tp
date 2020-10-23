@@ -17,9 +17,6 @@ public class FoodContainsKeywordsPredicate implements Predicate<Food> {
 
     @Override
     public boolean test(Food food) {
-        if (keywords.contains("") && keywords.size() == 1) {
-            return true;
-        }
         return new TagContainsKeywordsPredicate(keywords).test(food)
                 || new NameContainsKeywordsPredicate(keywords).test(food);
     }
