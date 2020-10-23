@@ -15,6 +15,13 @@ Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
+Package Module {
+Class Module
+Class ModuleName
+Class ModuleCode
+Class UniqueModuleList
+}
+
 Package Person {
 Class Person
 Class Address
@@ -48,9 +55,19 @@ Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
 
+AddressBook *--> "1" UniqueModuleList
+UniqueModuleList o--> "*" Module
+Module *--> ModuleCode
+Module *--> ModuleName
+Module *--> "*" Person
+
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
+UniqueModuleList -[hidden]right-> UniquePersonList
+ModuleName -[hidden]right-> ModuleCode
+
 ModelManager -->"1" Person : filtered list
+ModelManager -->"1" Module : filtered list
 @enduml

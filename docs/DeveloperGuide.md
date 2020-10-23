@@ -103,7 +103,8 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores FaculType data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Person>` and `ObservableList<Module>` that can be 'observed' e.g. the UI
+ can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
@@ -132,6 +133,41 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Find by attributes feature
+
+#### Implementation
+
+The find mechanism is facilitated by `FindCommand` and `FindCommandParser`. It allows users to search for contacts by
+ their respective attributes. It uses `ModelManager#updateFilteredPersonList(Predicate p)` which is
+  exposed in the `Model` interface as `Model#updateFilteredList(Predicate p)`. The method updates the
+  current person list and filters it according to the given predicate which will then be shown accordingly in the GUI.
+
+The following sequence diagram shows how the find by attributes operation works:
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` should
+ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+The following activity diagram summarizes what happens when a user executes a find command:
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How find executes
+
+* **Alternative 1 (current choice):** AND Searching from multiple attributes and keywords.
+  * Pros: Provides the ability to narrow down search results by adding more keywords and attributes.
+  * Cons: Unable to search for multiple persons with different attributes.
+
+* **Alternative 2:** AND Searching across attributes, OR Searching between keywords.
+  * Pros: Provides the ability to narrow down search results by adding more attributes as well as expanding the search
+   scope by adding more keywords (i.e: more flexible).
+  * Cons: A possible source of confusion as they use different searching methods.
+
+Both options are equally feasible. However, Alternative 1 was chosen to avoid confusion for prospective users.
 
 ### Assign feature
 
@@ -206,6 +242,7 @@ The following sequence diagram shows how the unassignall operation works:
 * **Alternative 2:** Unassign a certain instructor from all modules he/she teaches.
  * Pros : More efficient to unassign a certain instructor from all modules he/she teaches.
  * Cons : Less efficient to unassign all instructors from all modules.
+ 
 ### \[Proposed\] Switch feature
 
 #### Proposed Implementation
@@ -224,7 +261,7 @@ All operations on `UniqueModuleList` will be done on the active semester. `Addre
 * **Alternative 2:** There is only one module list and there is a filter to only show modules of a particular semester.
   * Pros: More efficient to list the modules of a certain instructor.
   * Cons: Need to add semester field to modules and commands, will have two copies of the same module if held in both semesters, more code to change.
-  
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -648,6 +685,24 @@ testers are expected to do more *exploratory* testing.
       Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+### Finding a contact
+
+1. Finding a contact while all contacts are being shown
+
+   1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
+
+   1. Test case: `find n/Alice d/Math`<br>
+      Expected: All contacts that has "Alice" in their name, and "Math" in their department is shown.
+      . Timestamp in the status bar is updated.
+
+   1. Test case: `find n/`<br>
+      Expected: No contacts filtered. Error details shown in the status message. Status bar remains the same.
+      
+   1. Other incorrect find commands to try: `find p/abcdef`, `find`, `find Alice`, `...`
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
