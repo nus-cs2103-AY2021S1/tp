@@ -172,7 +172,7 @@ and deliveries based on different fields. There could also be many similar items
 this will definitely aid the user in find them quickly. <br>
 
 We have modified the `find` command to be able to search for `NAME`, `SUPPLIER` 
-and `TAGS` for items using `find-i` Similarly, for deliveries, it is also possible 
+and `TAGS` for items using `find-i`. Similarly, for deliveries, it is also possible 
 to search using the `DELIVERYNAME`, `PHONE`, `ADDRESS` or `ORDER` using `find-d`.
 Note that the implementation of `find-i` and `find-d` are relatively similar and in this example, we will only show
 `find-i`.
