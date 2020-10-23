@@ -9,9 +9,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import chopchop.model.attributes.Tag;
-import chopchop.util.Result;
-import chopchop.util.Strings;
-import chopchop.util.StringView;
+import chopchop.commons.util.Result;
+import chopchop.commons.util.Strings;
+import chopchop.commons.util.StringView;
 
 import chopchop.model.recipe.Recipe;
 import chopchop.model.ingredient.Ingredient;
@@ -84,32 +84,35 @@ public class AddCommandParser {
         var qtys = args.getArgument(Strings.ARG_QUANTITY);
         if (qtys.size() > 1) {
             return Result.error("multiple quantities specified\n%s", AddIngredientCommand.MESSAGE_USAGE);
+        } else if (qtys.size() == 1 && qtys.get(0).isEmpty()) {
+            return Result.error("quantity cannot be empty");
         }
 
         var exps = args.getArgument(Strings.ARG_EXPIRY);
         if (exps.size() > 1) {
             return Result.error("multiple expiry dates specified\n%s", AddIngredientCommand.MESSAGE_USAGE);
+        } else if (exps.size() == 1 && exps.get(0).isEmpty()) {
+            return Result.error("expiry date cannot be empty");
         }
 
         var tags = args.getArgument(Strings.ARG_TAG);
 
         // looks weird, but basically this extracts the /qty and /expiry arguments (if present),
         // then constructs the command from it -- while returning any intermediate error messages.
-        try {
-            Optional<Set<String>> tagSet = tags.isEmpty() ? Optional.empty() : Optional.of(Set.copyOf(tags));
-            return Result.transpose(qtys
+        Optional<Set<String>> tagSet = tags.isEmpty()
+            ? Optional.empty()
+            : Optional.of(Set.copyOf(tags));
+
+        return Result.transpose(qtys
+            .stream()
+            .findFirst()
+            .map(Quantity::parse))
+            .then(qty -> Result.transpose(exps
                 .stream()
                 .findFirst()
-                .map(Quantity::parse))
-                .then(qty -> Result.transpose(exps
-                    .stream()
-                    .findFirst()
-                    .map(e -> Result.of(e)))
-                    .map(exp -> createAddIngredientCommand(name, qty, exp, tagSet))
-                );
-        } catch (Exception e) {
-            return Result.error(e.getMessage());
-        }
+                .map(e -> Result.of(e)))
+                .then(exp -> createAddIngredientCommand(name, qty, exp, tagSet))
+            );
     }
 
     /**
@@ -154,6 +157,10 @@ public class AddCommandParser {
             if (p.fst().equals(Strings.ARG_INGREDIENT)) {
 
                 var name = p.snd();
+                if (name.isEmpty()) {
+                    return Result.error("ingredient name cannot be empty");
+                }
+
                 Optional<Quantity> quantity = Optional.empty();
 
                 // check the next argument for a quantity (which is optional)
@@ -209,12 +216,16 @@ public class AddCommandParser {
     }
 
 
-    private static AddIngredientCommand createAddIngredientCommand(String name, Optional<Quantity> qty,
+    private static Result<AddIngredientCommand> createAddIngredientCommand(String name, Optional<Quantity> qty,
         Optional<String> expiry, Optional<Set<String>> tags) {
 
-        return new AddIngredientCommand(new Ingredient(name,
-            qty.orElse(Count.of(1)),
-            expiry.map(ExpiryDate::new).orElse(null),
-            tags.map(x->x.stream().map(Tag::new).collect(Collectors.toSet())).orElse(null)));
+        return Result.transpose(expiry
+            .map(ExpiryDate::of))
+            .map(exp -> {
+                var tagList = tags.map(x -> x.stream().map(Tag::new).collect(Collectors.toSet())).orElse(null);
+
+                return new AddIngredientCommand(new Ingredient(name,
+                    qty.orElse(Count.of(1)), exp.orElse(null), tagList));
+            });
     }
 }

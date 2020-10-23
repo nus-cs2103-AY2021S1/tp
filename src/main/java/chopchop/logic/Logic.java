@@ -1,6 +1,7 @@
 package chopchop.logic;
 
 import java.nio.file.Path;
+import java.util.List;
 
 import chopchop.commons.core.GuiSettings;
 import chopchop.logic.commands.CommandResult;
@@ -59,6 +60,16 @@ public interface Logic {
      * Returns the user prefs' GUI settings.
      */
     GuiSettings getGuiSettings();
+
+    /**
+     * Returns the input history.
+     */
+    List<String> getInputHistory();
+
+    /**
+     * Returns the input history filtered by a prefix.
+     */
+    List<String> getInputHistory(String prefix);
 
     /**
      * Set the user prefs' GUI settings.

@@ -23,7 +23,7 @@ import javafx.stage.Stage;
  */
 public class MainWindow extends UiPart<Stage> {
 
-    private static final String FXML = "MainWindow2.fxml";
+    private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -125,7 +125,7 @@ public class MainWindow extends UiPart<Stage> {
         DisplayNavigator.setDisplayController(displayController);
         displayPlaceholder.getChildren().setAll(displayController.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeCommand, this.logic);
         this.commandBox = commandBox;
         commandBoxPlaceholder.getChildren().setAll(commandBox.getRoot());
     }

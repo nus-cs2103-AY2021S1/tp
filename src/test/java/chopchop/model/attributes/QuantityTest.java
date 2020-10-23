@@ -4,8 +4,8 @@ package chopchop.model.attributes;
 
 import java.util.Map;
 
-import chopchop.util.Pair;
-import chopchop.util.Result;
+import chopchop.commons.util.Pair;
+import chopchop.commons.util.Result;
 import chopchop.model.attributes.units.Mass;
 import chopchop.model.attributes.units.Count;
 import chopchop.model.attributes.units.Volume;
@@ -71,9 +71,9 @@ public class QuantityTest {
     @Test
     void parse_invalidUnits_failure() {
         var tests = Map.of(
-            "10 lg",        "unknown unit 'lg'",
-            "3.1.4 cups",   "couldn't parse number: multiple points",
-            "",             "empty input"
+            "10 lg",        "unknown unit 'lg' (from '10 lg')",
+            "3.1.4 cups",   "couldn't parse number from quantity '3.1.4 cups': multiple points",
+            "",             "quantity string cannot be empty"
         );
 
         tests.forEach((k, v) -> {

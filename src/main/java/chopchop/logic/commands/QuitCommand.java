@@ -2,15 +2,12 @@
 
 package chopchop.logic.commands;
 
+import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 
 public class QuitCommand extends Command {
-
-    public QuitCommand() {
-    }
-
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model, HistoryManager historyManager) {
         return new CommandResult("", /* showHelp: */ false, /* exit: */ true);
     }
 }
