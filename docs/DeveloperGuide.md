@@ -96,26 +96,52 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ### Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+![Structure of the Model Component](images/ModelClassDiagram.png) <br>
+Structure of the Model Component
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/inventoryModel/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-The `Model`,
+`Models`,
 
-* stores a `UserPref` object that represents the user’s preferences.
-* stores OneShelf's data.
-* exposes an unmodifiable `ObservableList` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
+
+* stores a map of Models(eg. InventoryModel and DeliveryModel)
+* Each model stores the current state of the Book(eg. InventoryModel stores the current state of the InventoryBook)
+* used for undo/redo feature
+
+`Model`
+
+* stores a `UserPref` object that represents the users preference
+
+`InventoryModelManager`
+
+* stores a comparator used to sort the filtered list
+* stores the inventory book data
+* stores a list of InventoryBook for redo/undo command
+* exposes an unmodifiable `ObservableList<Item>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+
+`DeliveryModelManager`
+
+* stores the delivery book data
+* stores a list of DeliveryBook for redo/undo command
+* exposes an unmodifiable `ObservableList<Delivery>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+
+We organised the different data classes into packages (eg.Items) which we will list out the collection of class of that data object
+
+![Structure of the Item Component](images/ItemClassDiagram.png) <br>
+Structure of Items Object
+
+![Structure of the Delivery Component](images/DeliveryClassDiagram.png) <br>
+Structure of Delivery Object
 
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the inventoryBook/deliveryBook data in json format and read it back.
 
 ### Common classes
 
@@ -138,41 +164,64 @@ method call to return `commandHistory`'s 2nd last command instead of the last co
 With `addToHistory(String command)`, `previousCommand()`, `nextCommand()` and `currentCommand()` implemented, a simple `setOnKeyPressed` under `CommandBox` class which checks
 for user's input of arrow up (which calls previousCommand()) and arrow down (which calls nextCommand()) would suffice for GUI implementation.
 
-### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+### Finding Items and Delivery
+OneShelf is capable of storing many items and deliveries. Therefore, there is an utmost importance to have the ability to be able to find item and delivery based on different fields. There could also be many similar item and this will definitely benefit the user to find it quickly. <br>
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+We have modified the `find` command to be able to search for `NAME`, `SUPPLIER` and `TAGS` for items using `find-i` Similarly, for deliveries, it is also possible to search using the `DELIVERYNAME`, `PHONE`, `ADDRESS` or `ORDER` using `find-d`
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+By using `ArgumentMultimap`, we are able to record the searching criteria together with the prefixes. We will then pass this criteria along with the prefix to create an `ItemContainsKeywordsPredicate` object which implements `Predicate<Item>`.
+The predicate is then passed to the `InventoryModel#UpdateItemListFilter` which will then be used to set the predicate on the existing filteredlist.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Below is a usage example
+
+Step 1: User execute `find s/NTUC` command to search the list of items by Supplier <br>
+Step 2: `ArguementMultiMap` maps each prefix to their values and `ItemFindCommandParser` checks which prefix has a value <br>
+Step 3: The value and prefix is then used to create the predicate and passed to `ItemFindCommand` <br>
+Step 4: `ItemFindCommand` executes the command and update the filteredList <br>
+
+Below is a sequence diagram of the above
+
+![ItemFindCommandSequenceDiagram](images/ItemFindCommandSequenceDiagram.png)
+
+
+### Undo/Redo Command
+
+Each `Model` internally stores its undo and redo history as a (for `DeliveryModel`) `deliveryBookStateList` and `deliveryBookStatePointer`. There are corresponding analogs for `InventoryModel`.
+Additionally, the following commands are implemented by `ModelsManager`.
+
+* `ModelsManager#commit()` — Saves the current book states of all the `Model`s it contains in their history.
+* `ModelsManager#undo()` — Restores the previous book states from each `Model` from their history.
+* `ModelsManager#redo()` — Restores all previously undone book states from every `Model`'s history.
+
+These operations are exposed in the `Models` interface as `Models#commit()`, `Models#undo()` and `Models#redo()` respectively.
+
+The `ModelsManager` class calls `Model#commit()`, `Model#undo()`, and `Model#redo` on each of the models it contains, which then handle the respective tasks.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. Each `Model` will be initialized with its initial state, and the pointer pointing to their respective book's state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th item in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete-i 5` command to delete the 5th item in the inventory book. The `delete-i` command calls `Models#commit()`, causing the modified state of the inventory and delivery books after the `delete-i 5` command executes to be saved in the `inventoryBookStateList`, `deliveryBookStateList`, 
+and the `inventoryBookStatePointer`, `deliveryBookStatePointer` are shifted to the newly inserted books state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new item. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add-d n/David p/12345678 …​` to add a new Delivery. The `add-d` command also calls `Models#commit()`, causing another set of modified book states to be saved into the `inventoryBookStateList` and `deliveryBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Models#commit()`, so the states will not be saved into the `inventoryBookStateList` and `deliveryBookStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the item was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the delivery was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Models#undo()`, which will shift the `deliveryBookStatePointer` and `inventoryBookStatePointer` once to the left, pointing it to the previous states, and restores the inventoryBook/deliveryBook to those states.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the current state pointers are at index 0, pointing to the initial state, then there are no previous books states to restore. The `undo` command uses `InventoryModel#canUndo()` and `DeliveryModel#canUndo()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -185,17 +234,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Models#redo()`, which shifts the `inventoryBookStatePointer` and `deliveryBookStatePointer` once to the right, pointing to the previously undone state, and restores the inventoryBook and deliveryBook to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the current pointers are pointing to the latest state, then there are no undone InventoryBook/DeliveryBook states to restore. The `redo` command uses `InventoryModel#canRedo()` and `DeliveryModel#canRedo()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list-i`. Commands that do not modify the inventoryBook and deliveryBook, such as `list-d` and `find-i`, will usually not call `Models#commit()`, `Models#undo()` or `Models#redo()`. Thus, the `inventoryBookStateList` and `deliveryBookStateList` remain unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear-d`, which calls `Models#commit()`. Since the state pointers are not pointing at the end of the respective state lists, all states after the current state will be purged. Reason: It no longer makes sense to redo the `add-d n/David p/12345678 …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -207,7 +256,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire state.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
@@ -284,7 +333,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `InventoryBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `OneShelf` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete an item**
 
@@ -305,7 +354,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. InventoryBook shows an error message.
+    * 3a1. OneShelf shows an error message.
 
       Use case resumes at step 2.
 
@@ -314,21 +363,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User request to update item.
-2. InventoryBook updates the item accordingly.
+2. OneShelf updates the item accordingly.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. InventoryBook detect invalid data input.
+* 1a. OneShelf detect invalid data input.
 
-  * 1a1. InventoryBook shows an error message.
+  * 1a1. OneShelf shows an error message.
 
   Use case ends.
 
-* 1b. InventoryBook unable to detect existing item name and supplier.
+* 1b. OneShelf unable to detect existing item name and supplier.
 
-  * 1b1. InventoryBook adds a new item into the inventory.
+  * 1b1. OneShelf adds a new item into the inventory.
 
   Use case ends.
   
@@ -354,19 +403,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-  * 3a1. InventoryBook shows an error message.
+  * 3a1. OneShelf shows an error message.
 
         Use case resumes at step 2.
 
 * 3b. The given data to edit is invalid.
 
-  * 3b1. InventoryBook shows an error message.
+  * 3b1. OneShelf shows an error message.
 
         Use case resumes at step 2.
 
-* 3c. InventoryBook detects a duplicate after editing.
+* 3c. OneShelf detects a duplicate after editing.
 
-  * 3c1. InventoryBook shows an error message.
+  * 3c1. OneShelf shows an error message.
 
         Use case resumes at step 2.
 
@@ -375,18 +424,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 items without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Project should not cost any money
-5.  Should work on 32-bit and 64-bit environments
-6.  Should not take up more than 50 MB of disk space
-7.  Should not take up more than 250 MB of RAM
-8.  Commands should receive a response within 1 second
-9.  The system is not required to change the physical inventory
-10. The system should operate within a local network
-11. The data should be secured using a password
-12. Users should be able to get fluent with the syntax by their 10th usage
-13. The system should not provide functionality that breaks and local laws within a country it is distributed to
-14. The system should still be able to function without connection to a network
-15. The system should only be used by one user
+4.  Should work on 32-bit and 64-bit environments.
+5.  Should not take up more than 50 MB of disk space.
+6.  Should not take up more than 250 MB of RAM.
+7.  Add, Delete, List, Undo, Redo, Edit, and Remove Commands should receive a response within 1 second regardless of data size.
+8.  All other commands should receive a response withing 5 seconds regardless of data size.
+9.  The data should be secured using a password.
+10. Users should be able to get fluent with the syntax by their 10th usage.
+11. The system should still be able to function without connection to a network.
+12. The system should only be used by one user.
+13. Storing 100 states of the models for the Undo and Redo Commands should not take more than 100 KB.
+14. Storing 100 states of history of commands the user has entered should not take more than 10 KB.
 
 ### Glossary
 
@@ -443,7 +491,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: First time user running OneShelf <br>
    Expected: OneShelf will load a sample data file.
-   
+
 1. Dealing with corrupted data files
 
    1. Prerequisite: There is an existing json file (inventorybook.json or deliverybook.json)

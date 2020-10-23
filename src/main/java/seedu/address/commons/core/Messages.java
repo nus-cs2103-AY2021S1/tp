@@ -39,17 +39,27 @@ public class Messages {
                 .append("GENERAL COMMANDS\n")
                 .append(DIVIDER)
                 .append("Open up help options: help summary OR help start\n")
-                .append("Clear all data: clear\n")
-                .append("List all data: list\n")
+                .append("Undo previous command: undo\n")
+                .append("Redo undone command: redo\n")
                 .append("Exit application: exit\n")
                 .append(DIVIDER)
                 .append("INVENTORY SPECIFIC COMMANDS\n")
                 .append(DIVIDER)
-                .append("Add inventory: add n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]\n")
-                .append("Delete an inventory item: delete INDEX\n")
-                .append("Edit an inventory item: edit INDEX [n/NAME] [q/QUANTITY]"
+                .append("Add inventory: add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]\n")
+                .append("Delete an inventory item: delete-i INDEX\n")
+                .append("Edit an inventory item: edit-i INDEX [n/NAME] [q/QUANTITY]"
                         + " [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]\n")
-                .append("Find an inventory item: find KEYWORD [MORE_KEYWORDS]\n");
+                .append("Find an inventory item: find-i KEYWORD [MORE_KEYWORDS]\n")
+                .append("Clear all inventory items: clear-i\n")
+                .append("List all inventory items: list-i\n")
+                .append("DELIVERY SPECIFIC COMMANDS\n")
+                .append(DIVIDER)
+                .append("Add delivery: add-d n/NAME p/PHONE a/ADDRESS o/ORDER\n")
+                .append("Delete a delivery: delete-d INDEX\n")
+                .append("Edit a delivery: edit-d INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]\n")
+                .append("Find a delivery: find-d KEYWORD [MORE_KEYWORDS]\n")
+                .append("Clear all deliveries: clear-d\n")
+                .append("List all deliveries: list-d\n");
         return summary.toString();
     }
 }

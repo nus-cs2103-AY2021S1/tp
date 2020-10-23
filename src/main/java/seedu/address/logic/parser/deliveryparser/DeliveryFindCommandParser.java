@@ -31,7 +31,7 @@ public class DeliveryFindCommandParser implements Parser<DeliveryFindCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_ORDER);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_ORDER)
+        if (!onlyOnePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_ORDER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeliveryFindCommand.MESSAGE_USAGE));
         }
@@ -62,7 +62,13 @@ public class DeliveryFindCommandParser implements Parser<DeliveryFindCommand> {
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    private static boolean onlyOnePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        int i = 0;
+        for (Prefix p: prefixes) {
+            if (argumentMultimap.getValue(p).isPresent()) {
+                i++;
+            }
+        }
+        return i == 1 && Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
