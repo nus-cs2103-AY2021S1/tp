@@ -6,6 +6,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Parses input arguments and creates a new DeleteCommand object
  */
@@ -18,8 +22,16 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     public DeleteCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
-            return new DeleteCommand(index);
+            System.out.println("hi 1");
+            System.out.println(args);
+            String[] indexes = args.split("\\d+");
+            System.out.println(Arrays.toString(indexes));
+            List<Index> parsedIndexes = new ArrayList<>();
+            for (String s : indexes) {
+                Index index = ParserUtil.parseIndex(s);
+                parsedIndexes.add(index);
+            }
+            return new DeleteCommand(parsedIndexes);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
