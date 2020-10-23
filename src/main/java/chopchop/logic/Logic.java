@@ -27,16 +27,6 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Computes the completion for the given user input. If there is no completion
-     * available, the string is returned as-is.
-     *
-     * @param commandText the command
-     * @param textCursor  the cursor position in the text box
-     * @return            the auto-completed input
-     */
-    String getCompletionForInput(String commandText, int textCursor);
-
-    /**
      * Returns the RecipeBook.
      */
     ReadOnlyEntryBook<Recipe> getRecipeBook();

@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 
 import chopchop.commons.core.GuiSettings;
 import chopchop.commons.core.LogsCenter;
-import chopchop.logic.autocomplete.AutoCompleter;
 import chopchop.logic.commands.CommandResult;
 import chopchop.logic.commands.Undoable;
 import chopchop.logic.commands.exceptions.CommandException;
@@ -32,7 +31,6 @@ public class LogicManager implements Logic {
     private final Storage storage;
     private final HistoryManager historyManager;
     private final CommandParser parser;
-    private final AutoCompleter completer;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -42,7 +40,6 @@ public class LogicManager implements Logic {
         this.storage = storage;
         this.historyManager = new HistoryManager();
         this.parser = new CommandParser();
-        this.completer = new AutoCompleter();
     }
 
     /**
@@ -75,11 +72,6 @@ public class LogicManager implements Logic {
         }
 
         return result;
-    }
-
-    @Override
-    public String getCompletionForInput(String commandText, int cursor) {
-        return this.completer.getCompletionForInput(this.parser, commandText, cursor);
     }
 
     @Override
