@@ -103,7 +103,7 @@ public class Admin {
         if (!details.isEmpty()) {
             builder.append("\nDetails:\n");
             String detailList = details.stream()
-                    .map(AdditionalDetail::toString)
+                    .map(detail -> String.format("- %s", detail))
                     .collect(Collectors.joining("\n"));
             builder.append(detailList);
         }
