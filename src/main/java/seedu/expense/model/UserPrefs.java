@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path expenseBookFilePath = Paths.get("data", "expensebook.json");
+    private Path aliasMapFilePath = Paths.get("data", "aliasmap.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -50,6 +51,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     public Path getExpenseBookFilePath() {
         return expenseBookFilePath;
+    }
+
+    public Path getAliasMapFilePath() {
+        return aliasMapFilePath;
     }
 
     public void setExpenseBookFilePath(Path expenseBookFilePath) {

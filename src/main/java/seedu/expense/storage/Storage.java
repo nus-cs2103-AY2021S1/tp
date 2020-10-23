@@ -8,6 +8,7 @@ import seedu.expense.commons.exceptions.DataConversionException;
 import seedu.expense.model.ReadOnlyExpenseBook;
 import seedu.expense.model.ReadOnlyUserPrefs;
 import seedu.expense.model.UserPrefs;
+import seedu.expense.model.alias.AliasMap;
 
 /**
  * API of the Storage component
@@ -29,4 +30,13 @@ public interface Storage extends ExpenseBookStorage, UserPrefsStorage {
     @Override
     void saveExpenseBook(ReadOnlyExpenseBook expenseBook) throws IOException;
 
+    Path getAliasMapFilePath();
+
+    Optional<AliasMap> readAliasMap() throws DataConversionException, IOException;
+
+    Optional<AliasMap> readAliasMap(Path filePath) throws DataConversionException, IOException;
+
+    void saveAliasMap(AliasMap aliasMap) throws IOException;
+
+    void saveAliasMap(AliasMap aliasMap, Path filePath) throws IOException;
 }

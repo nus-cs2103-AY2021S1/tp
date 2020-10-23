@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.expense.commons.core.GuiSettings;
 import seedu.expense.commons.core.LogsCenter;
+import seedu.expense.model.alias.AliasEntry;
+import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.budget.Budget;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
@@ -23,13 +25,15 @@ public class ModelManager implements Model {
 
     private final ExpenseBook expenseBook;
     private final UserPrefs userPrefs;
+    private final AliasMap aliasMap;
     private final FilteredList<Expense> filteredExpenses;
     private final Budget budget;
 
     /**
      * Initializes a ModelManager with the given expenseBook and userPrefs.
      */
-    public ModelManager(ReadOnlyExpenseBook expenseBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyExpenseBook expenseBook, ReadOnlyUserPrefs userPrefs,
+                        AliasMap aliasMap) {
         super();
         requireAllNonNull(expenseBook, userPrefs);
 
@@ -37,12 +41,13 @@ public class ModelManager implements Model {
 
         this.expenseBook = new ExpenseBook(expenseBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.aliasMap = new AliasMap(aliasMap);
         filteredExpenses = new FilteredList<>(this.expenseBook.getExpenseList());
         budget = this.expenseBook.getBudget();
     }
 
     public ModelManager() {
-        this(new ExpenseBook(), new UserPrefs());
+        this(new ExpenseBook(), new UserPrefs(), new AliasMap());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -124,6 +129,40 @@ public class ModelManager implements Model {
     @Override
     public void topupBudget(Amount amount) {
         budget.topupBudget(amount);
+    }
+
+    //=========== AliasMap ================================================================================
+
+    @Override
+    public void setAliasMap(AliasMap aliasMap) {
+        this.aliasMap.resetData(aliasMap);
+    }
+
+    @Override
+    public AliasMap getAliasMap() {
+        return aliasMap;
+    }
+
+    @Override
+    public boolean hasAlias(AliasEntry alias) {
+        requireNonNull(alias);
+        return aliasMap.hasAlias(alias);
+    }
+
+    @Override
+    public void deleteAlias(AliasEntry alias) {
+        aliasMap.removeAlias(alias);
+    }
+
+    @Override
+    public void addAlias(AliasEntry alias) {
+        aliasMap.addAlias(alias);
+    }
+
+    @Override
+    public void setAlias(AliasEntry target, AliasEntry editedExpense) throws IllegalArgumentException {
+        requireAllNonNull(target, editedExpense);
+        aliasMap.setAlias(target, editedExpense);
     }
 
     //=========== Filtered Expense List Accessors =============================================================
