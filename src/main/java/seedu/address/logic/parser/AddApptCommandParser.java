@@ -38,7 +38,8 @@ public class AddApptCommandParser implements Parser<AddApptCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddApptCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddApptCommand.MESSAGE_USAGE), pe);
         }
 
         Appointment appointment = new Appointment();

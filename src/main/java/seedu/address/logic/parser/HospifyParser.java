@@ -19,6 +19,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.appointmentcommand.AddApptCommand;
 import seedu.address.logic.commands.appointmentcommand.DeleteApptCommand;
+import seedu.address.logic.commands.appointmentcommand.EditApptCommand;
 import seedu.address.logic.commands.appointmentcommand.ShowApptCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -57,6 +58,9 @@ public class HospifyParser {
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
+
+        case EditApptCommand.COMMAND_WORD:
+            return new EditApptCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
