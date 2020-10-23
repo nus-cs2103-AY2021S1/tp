@@ -15,13 +15,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.HospifyBook;
 import seedu.address.model.patient.Patient;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
-public class TypicalPersons {
+public class TypicalPatients {
 
     public static final Patient ALICE = new PersonBuilder().withName("Alice Pauline").withNric("S0000001A")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
@@ -57,7 +57,7 @@ public class TypicalPersons {
             .withPhone("8482131").withEmail("hans@example.com").withAddress("chicago ave")
             .withMedicalRecord("www.sample.com/09").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Patient's details found in {@code CommandTestUtil}
     public static final Patient AMY = new PersonBuilder().withName(VALID_NAME_AMY).withNric("S1234567A")
             .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
             .withAllergies(VALID_ALLERGY_NUT).withMedicalRecord("www.sample.com/10").build();
@@ -67,20 +67,20 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private TypicalPatients() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code HospifyBook} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
-        for (Patient patient : getTypicalPersons()) {
+    public static HospifyBook getTypicalHospifyBook() {
+        HospifyBook ab = new HospifyBook();
+        for (Patient patient : getTypicalPatients()) {
             ab.addPatient(patient);
         }
         return ab;
     }
 
-    public static List<Patient> getTypicalPersons() {
+    public static List<Patient> getTypicalPatients() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

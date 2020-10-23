@@ -48,10 +48,10 @@ public interface Model {
     /**
      * Replaces Hospify data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setHospifyBook(ReadOnlyHospifyBook hospifyBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the HospifyBook */
+    ReadOnlyHospifyBook getHospifyBook();
 
     /**
      * Returns true if a patient with the same identity as {@code person} exists in Hospify.

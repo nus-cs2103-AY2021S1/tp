@@ -6,7 +6,7 @@ import seedu.address.model.patient.Patient;
 /**
  * Unmodifiable view of Hospify
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyHospifyBook {
 
     /**
      * Returns an unmodifiable view of the patient list.
