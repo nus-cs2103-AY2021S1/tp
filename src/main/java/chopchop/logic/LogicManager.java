@@ -7,10 +7,8 @@ import java.util.logging.Logger;
 import chopchop.commons.core.GuiSettings;
 import chopchop.commons.core.LogsCenter;
 import chopchop.logic.commands.CommandResult;
-import chopchop.logic.commands.RedoCommand;
-import chopchop.logic.commands.UndoCommand;
+import chopchop.logic.commands.Undoable;
 import chopchop.logic.commands.exceptions.CommandException;
-import chopchop.logic.history.CommandHistory;
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.CommandParser;
 import chopchop.logic.parser.exceptions.ParseException;
@@ -54,15 +52,14 @@ public class LogicManager implements Logic {
 
         var res = this.parser.parse(commandText);
         if (res.isError()) {
-            this.history.add(new CommandHistory(commandText));
             throw new ParseException(res.getError());
         }
 
         var cmd = res.getValue();
         var result = cmd.execute(this.model, this.history);
 
-        if (!(cmd instanceof UndoCommand || cmd instanceof RedoCommand)) {
-            this.history.add(new CommandHistory(commandText, cmd));
+        if (cmd instanceof Undoable) {
+            this.history.add((Undoable) cmd);
         }
 
         try {

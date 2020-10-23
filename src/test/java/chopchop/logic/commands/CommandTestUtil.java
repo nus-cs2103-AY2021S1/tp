@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import chopchop.logic.history.CommandHistory;
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.ItemReference;
 import chopchop.logic.commands.exceptions.CommandException;
@@ -91,7 +90,7 @@ public class CommandTestUtil {
      * A default history stub that have all of the methods failing.
      */
     public static class HistoryManagerStub extends HistoryManager {
-        public void add(CommandHistory command) {
+        public void add(Command command) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -100,10 +99,6 @@ public class CommandTestUtil {
         }
 
         public CommandResult redo(Model model) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        public String getHistory() {
             throw new AssertionError("This method should not be called.");
         }
     }
