@@ -31,10 +31,10 @@
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
-          <Menu mnemonicParsing="false" text="Students">
+          <Menu mnemonicParsing="false" text="Students" onAction="#handleStudent" >
             <MenuItem fx:id="studentPage" mnemonicParsing="false" onAction="#handleStudent" text="Student List" />
           </Menu>
-          <Menu fx:id="attendanceMenu"  mnemonicParsing="false" text="Attendance">
+          <Menu fx:id="studentRecordMenu"  mnemonicParsing="false" text="Student Records">
           </Menu>
 
         </MenuBar>
