@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import seedu.flashcard.logic.StudyManager;
 import seedu.flashcard.model.flashcard.Flashcard;
 
 /**
@@ -18,11 +19,12 @@ public abstract class StudyPanel extends UiPart<Region> {
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
-     *
      */
 
     protected EventHandler<KeyEvent> keyDownEventHandler;
     protected final MainWindow parent;
+
+    protected final StudyManager studyManager;
 
     @FXML
     private StackPane questionPlaceholder;
@@ -33,15 +35,16 @@ public abstract class StudyPanel extends UiPart<Region> {
     /**
      * Creates a {@code StudyPanel} with the given parent {@code MainWindow}
      */
-    public StudyPanel(MainWindow parent) {
+    public StudyPanel(StudyManager studyManager, MainWindow parent) {
         super(FXML);
+        this.studyManager = studyManager;
         this.parent = parent;
     }
 
     /**
      * Shows the current flashcard being reviewed.
      *
-     * @param flashcard      the FlashCard being reviewed.
+     * @param flashcard the FlashCard being reviewed.
      */
     protected void showFlashcard(Flashcard flashcard) {
         questionPlaceholder.getChildren().clear();
@@ -52,6 +55,7 @@ public abstract class StudyPanel extends UiPart<Region> {
 
     /**
      * Clears up current window to exit study mode and calls parent to exit study mode.
+     *
      * @param exitReason Message to show user on exit.
      */
     protected void exitStudyMode(String exitReason) {
@@ -63,6 +67,7 @@ public abstract class StudyPanel extends UiPart<Region> {
 
     /**
      * Shows the answer to the flashcard.
+     *
      * @param flashcardAnswerCard
      */
     protected void showAnswer(FlashcardAnswerCard flashcardAnswerCard) {

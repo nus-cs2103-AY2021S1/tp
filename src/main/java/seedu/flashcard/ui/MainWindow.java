@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import seedu.flashcard.commons.core.GuiSettings;
 import seedu.flashcard.commons.core.LogsCenter;
 import seedu.flashcard.logic.Logic;
+import seedu.flashcard.logic.StudyManager;
 import seedu.flashcard.logic.commands.CommandResult;
 import seedu.flashcard.logic.commands.exceptions.CommandException;
 import seedu.flashcard.logic.parser.exceptions.ParseException;
@@ -238,7 +239,8 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isReviewMode()) {
-                enterStudyMode(new ReviewPanel(logic.getFilteredFlashcardList(), this));
+                StudyManager studyManager = new StudyManager(logic.getFilteredFlashcardList(), logic);
+                enterStudyMode(new ReviewPanel(studyManager, this));
             }
 
             if (commandResult.getViewIndex() != null) {
@@ -246,7 +248,8 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isQuizMode()) {
-                enterStudyMode(new QuizPanel(logic.getFilteredFlashcardList(), this));
+                StudyManager studyManager = new StudyManager(logic.getFilteredFlashcardList(), logic);
+                enterStudyMode(new QuizPanel(studyManager, this));
             }
 
             return commandResult;
@@ -255,5 +258,9 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    public void setResultDisplayMessage(String message) {
+        resultDisplay.setFeedbackToUser(message);
     }
 }

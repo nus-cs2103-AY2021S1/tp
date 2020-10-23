@@ -1,23 +1,32 @@
 package seedu.flashcard.logic;
 
+import java.util.HashMap;
+
 import javafx.collections.ObservableList;
+import seedu.flashcard.logic.commands.IncrementStatsCommand;
+import seedu.flashcard.logic.commands.exceptions.CommandException;
 import seedu.flashcard.model.flashcard.Flashcard;
 
 /**
  * Maintains state for the review function.
  */
 public class StudyManager {
-    public static final String NO_NEXT_FLASHCARD_MESSAGE = "There are no more flashcards to review";
-    public static final String NO_PREVIOUS_FLASHCARD_MESSAGE = "No previous flashcards available for review";
     private ObservableList<Flashcard> flashcardList;
+    private Logic logic;
+    private HashMap<Flashcard, Boolean> reviewedStatusMap;
     private int currentIndex;
 
+
     /**
-     * Creates a {@code ReviewManager} with the specified list of flashcards.
+     * Creates a {@code StudyManager} with the specified list of flashcards and logic manager
+     *
      * @param flashcardList
+     * @param logic
      */
-    public StudyManager(ObservableList<Flashcard> flashcardList) {
+    public StudyManager(ObservableList<Flashcard> flashcardList, Logic logic) {
         this.flashcardList = flashcardList;
+        this.logic = logic;
+        initialiseHashMap();
         currentIndex = 0;
     }
 
@@ -52,4 +61,31 @@ public class StudyManager {
     public int getCurrentIndex() {
         return currentIndex;
     }
+
+    private void initialiseHashMap() {
+        reviewedStatusMap = new HashMap<>();
+        for (Flashcard flashcard : flashcardList) {
+            reviewedStatusMap.put(flashcard, false);
+        }
+    }
+
+    public void markCurrentFlashcardAsReviewed() {
+        reviewedStatusMap.replace(getCurrentFlashcard(), true);
+    }
+
+    public boolean isCurrentFlashcardReviewed() {
+        return reviewedStatusMap.get(getCurrentFlashcard());
+    }
+
+    /**
+     * Increments review frequency and success frequency in Statistics.
+     *
+     * @param isCorrect Represents the correctness of the answer to the flashcard.
+     * @throws CommandException
+     */
+    public void incrementCurrentFlashcardStatistics(boolean isCorrect) throws CommandException {
+        logic.executeCommand(new IncrementStatsCommand(getCurrentFlashcard(), isCorrect));
+
+    }
+
 }
