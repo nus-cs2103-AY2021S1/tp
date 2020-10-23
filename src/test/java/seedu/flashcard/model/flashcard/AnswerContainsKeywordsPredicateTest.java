@@ -49,7 +49,7 @@ public class AnswerContainsKeywordsPredicateTest {
         assertTrue(predicate.test(new FlashcardBuilder().withAnswer("object oriented programming").build()));
 
         // Multiple keywords
-        predicate = new AnswerContainsKeywordsPredicate(Arrays.asList("objected", "oriented"));
+        predicate = new AnswerContainsKeywordsPredicate(Arrays.asList("object", "oriented"));
         assertTrue(predicate.test(
                 new FlashcardBuilder().withAnswer("object oriented programming").build()));
 
