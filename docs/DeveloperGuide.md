@@ -301,7 +301,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1a1. PlaNus shows an error message.
 
     Use case resumes at step 1.
-    
+
 - 1b. The task already exists.
 
   - 1b1. PlaNus shows an error message.

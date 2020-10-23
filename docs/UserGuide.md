@@ -80,7 +80,7 @@ Examples:
 * `add title:Birthday party type:event desc:Frank’s birthday party date:01-01-2020 18:00`
   Adds a task with title “Birthday party” , type event,
   description “Frank’s birthday party” , and date and time “01-01-2020 18:00” to PlaNus.
-  
+
 ### Add a lesson: `lesson`
 
 Adds a lesson to PlaNus.
@@ -135,7 +135,7 @@ Finds a task by a set of defined attributes.
 Format: `find ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...`
 
 If different attributes are supplied, tasks that match all attributes will be displayed.
-If multiple search phrases of the same attribute is supplied, tasks that match any of the 
+If multiple search phrases of the same attribute is supplied, tasks that match any of the
 search phrase will be displayed.
 
 Search phrases supplied must be valid input.
@@ -160,7 +160,7 @@ Examples:
 * `find title:dinner title:lunch type:todo` will list all tasks with the type `todo` and title that includes either
   `dinner` or `lunch`
 
-  
+
 
 ### Edit a task: `edit`
 
