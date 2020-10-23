@@ -38,6 +38,7 @@ public class CommandBox extends UiPart<Region> {
         // No commands entered yet.
         historyPointer = 0;
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+
             if (event.getCode().equals(KeyCode.DOWN) && historyPointer < logic.getInputHistory().size()) {
                 historyPointer++;
 
@@ -50,14 +51,37 @@ public class CommandBox extends UiPart<Region> {
                 }
 
                 event.consume();
-            }
 
-            if (event.getCode().equals(KeyCode.UP) && historyPointer > 0) {
+            } else if (event.getCode().equals(KeyCode.UP) && historyPointer > 0) {
+
                 historyPointer--;
                 String command = logic.getInputHistory().get(historyPointer);
                 commandTextField.setText(command);
                 commandTextField.positionCaret(command.length());
                 event.consume();
+
+            } else if (event.getCode().equals(KeyCode.TAB)) {
+
+                var text = commandTextField.getText();
+                var cursor = commandTextField.getCaretPosition();
+
+                // first split the thing by cursor position -- only complete the first portion.
+                var fst = text.substring(0, cursor);
+                var snd = text.substring(cursor);
+
+                var completion = logic.getCompletionForInput(fst);
+
+                // now, we can change the cursor position accordingly.
+                cursor = completion.length();
+
+                commandTextField.setText(completion);
+                commandTextField.positionCaret(cursor);
+                event.consume();
+
+            } else {
+
+                // when the user presses any other key, just reset the completion state.
+                logic.resetCompletionState();
             }
         });
     }
