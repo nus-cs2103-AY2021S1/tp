@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.State;
@@ -24,7 +25,7 @@ public class LessonCard extends UiPart<Region> {
      * or an exception will be thrown by JavaFX during runtime.
      */
 
-    public final Task task;
+    public final Lesson lesson;
 
     @FXML
     private HBox cardPane;
@@ -52,15 +53,10 @@ public class LessonCard extends UiPart<Region> {
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
      */
-    public LessonCard(Task task, int displayedIndex) {
+    public LessonCard(Lesson lesson, int displayedIndex) {
         super(FXML);
-        this.task = task;
+        this.lesson = lesson;
         id.setText(displayedIndex + ". ");
-        title.setText(task.getTitle().title);
-        type.setText(task.getType().value);
-        loadStatus(task);
-        loadDescription(task);
-        loadDateTime(task);
     }
 
     private boolean loadStatus(Task task) {
@@ -107,6 +103,6 @@ public class LessonCard extends UiPart<Region> {
         // state check
         LessonCard card = (LessonCard) other;
         return id.getText().equals(card.id.getText())
-                && task.equals(card.task);
+                && lesson.equals(card.lesson);
     }
 }

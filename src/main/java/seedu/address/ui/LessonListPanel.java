@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.task.Task;
+import seedu.address.model.lesson.Lesson;
 
 /**
  * Panel containing the list of tasks.
@@ -18,12 +18,12 @@ public class LessonListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(TaskListPanel.class);
 
     @FXML
-    private ListView<Task> lessonListView;
+    private ListView<Lesson> lessonListView;
 
     /**
      * Creates a {@code TaskListPanel} with the given {@code ObservableList}.
      */
-    public LessonListPanel(ObservableList<Task> lessonList) {
+    public LessonListPanel(ObservableList<Lesson> lessonList) {
         super(FXML);
         lessonListView.setItems(lessonList);
         lessonListView.setCellFactory(listView -> new LessonListViewCell());
@@ -32,16 +32,16 @@ public class LessonListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Task} using a {@code TaskCard}.
      */
-    class LessonListViewCell extends ListCell<Task> {
+    class LessonListViewCell extends ListCell<Lesson> {
         @Override
-        protected void updateItem(Task task, boolean empty) {
-            super.updateItem(task, empty);
+        protected void updateItem(Lesson lesson, boolean empty) {
+            super.updateItem(lesson, empty);
 
-            if (empty || task == null) {
+            if (empty || lesson == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new LessonCard(task, getIndex() + 1).getRoot());
+                setGraphic(new LessonCard(lesson, getIndex() + 1).getRoot());
             }
         }
     }

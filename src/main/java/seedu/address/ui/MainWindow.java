@@ -118,7 +118,7 @@ public class MainWindow extends UiPart<Stage> {
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
-//        lessonListPanel = new LessonListPanel(logic.getFilteredTaskList());
+//        lessonListPanel = new LessonListPanel(logic.getFilteredLessonList());
 //        taskListPanelPlaceholder.getChildren().add(lessonListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
