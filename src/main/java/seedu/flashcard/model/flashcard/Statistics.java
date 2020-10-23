@@ -57,7 +57,8 @@ public class Statistics {
         boolean isReviewFrequencyValid = reviewFrequency >= 0;
         boolean isSuccessFrequencyValid = successFrequency >= 0;
         boolean isReviewFrequencyGreaterThanOrEqualToSuccessFrequency = reviewFrequency >= successFrequency;
-        return  isReviewFrequencyValid && isSuccessFrequencyValid && isReviewFrequencyGreaterThanOrEqualToSuccessFrequency;
+        return isReviewFrequencyValid && isSuccessFrequencyValid
+                && isReviewFrequencyGreaterThanOrEqualToSuccessFrequency;
     }
 
     /**
