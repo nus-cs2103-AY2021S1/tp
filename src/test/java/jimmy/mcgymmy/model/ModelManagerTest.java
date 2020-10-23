@@ -46,14 +46,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setMcGymmyFilePath(Paths.get("jimmy/mcgymmy/file/path"));
+        userPrefs.setMcGymmyFilePath(Paths.get("jimmy", "mcgymmy", "file", "path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setMcGymmyFilePath(Paths.get("new/jimmy/mcgymmy/file/path"));
+        userPrefs.setMcGymmyFilePath(Paths.get("new" , "jimmy", "mcgymmy", "file", "path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -76,7 +76,7 @@ public class ModelManagerTest {
 
     @Test
     public void setMcGymmyFilePath_validPath_setsMcGymmyFilePath() {
-        Path path = Paths.get("jimmy/mcgymmy/file/path");
+        Path path = Paths.get("jimmy", "mcgymmy", "file", "path");
         modelManager.setMcGymmyFilePath(path);
         assertEquals(path, modelManager.getMcGymmyFilePath());
     }
