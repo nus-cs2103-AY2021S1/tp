@@ -110,7 +110,7 @@
 
                 <StackPane fx:id="statusbarPlaceholder"
                            VBox.vgrow="NEVER"
-                           GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="2"/>
+                           GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2"/>
             </GridPane>
         </Scene>
     </scene>
