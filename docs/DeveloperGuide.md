@@ -303,6 +303,12 @@ Step 11. Returns a new `CommandResult` containing the updated stocks message as 
 
 Step 12. The updated stocks message is displayed to the user.
 
+#### Sequence Diagram
+
+The following sequence diagram shows how the update feature works for **Example 1**:
+
+![Update Example 1](images/UpdateSequenceDiagramExample1.png)
+
 ### Suggestion Feature
 
 The mechanism for suggestion feature is facilitated by `SuggestionCommandParser, SuggestionCommand, SuggestionUtil`.

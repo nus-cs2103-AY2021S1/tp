@@ -1,0 +1,93 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StockBookParser" as StockBookParser LOGIC_COLOR
+participant ":UpdateCommandParser" as UpdateCommandParser LOGIC_COLOR
+participant ":UpdateCommand" as UpdateCommand LOGIC_COLOR
+participant ":UpdateStockDescriptor" as UpdateStockDescriptor << class >> LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute()
+activate LogicManager
+
+LogicManager -> StockBookParser : parseCommand()
+activate StockBookParser
+
+create UpdateCommandParser
+StockBookParser -> UpdateCommandParser
+activate UpdateCommandParser
+
+UpdateCommandParser --> StockBookParser
+deactivate UpdateCommandParser
+
+StockBookParser -> UpdateCommandParser : parse(args)
+activate UpdateCommandParser
+
+create UpdateCommand
+UpdateCommandParser -> UpdateCommand
+activate UpdateCommand
+
+UpdateCommand --> UpdateCommandParser
+deactivate UpdateCommand
+
+UpdateCommandParser --> StockBookParser
+deactivate UpdateCommandParser
+
+StockBookParser --> LogicManager
+deactivate StockBookParser
+
+LogicManager -> UpdateCommand : execute()
+activate UpdateCommand
+
+UpdateCommand -> Model : getFilteredStockList()
+activate Model
+
+Model --> UpdateCommand
+deactivate Model
+
+UpdateCommand -> UpdateStockDescriptor : getSerialNumbers()
+activate UpdateStockDescriptor
+
+UpdateStockDescriptor --> UpdateCommand
+deactivate UpdateStockDescriptor
+
+loop stocks
+    UpdateCommand -> UpdateStockDescriptor : getSerialNumbers()
+    activate UpdateStockDescriptor
+    
+    UpdateStockDescriptor --> UpdateCommand
+    deactivate UpdateStockDescriptor
+end
+
+loop stocks to update
+    UpdateCommand -> UpdateCommand : createUpdatedStock()
+    activate UpdateCommand
+    
+    UpdateCommand --> UpdateCommand
+    deactivate UpdateCommand
+    
+    UpdateCommand -> Model : setStock()
+    activate Model
+    
+    Model --> UpdateCommand
+    deactivate Model
+end
+
+UpdateCommand -> Model : updateFilteredStockList()
+activate Model
+
+Model --> UpdateCommand
+deactivate Model
+
+UpdateCommand --> LogicManager
+deactivate UpdateCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
