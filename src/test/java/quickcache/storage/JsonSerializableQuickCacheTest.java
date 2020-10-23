@@ -30,7 +30,7 @@ public class JsonSerializableQuickCacheTest {
     }
 
     @Test
-    public void toModelType_invalidFlashcaedFile_throwsIllegalValueException() throws Exception {
+    public void toModelType_invalidFlashcardFile_throwsIllegalValueException() throws Exception {
         JsonSerializableQuickCache dataFromFile = JsonUtil.readJsonFile(INVALID_FLASHCARD_FILE,
                 JsonSerializableQuickCache.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);

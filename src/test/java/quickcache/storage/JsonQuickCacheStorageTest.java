@@ -26,7 +26,7 @@ public class JsonQuickCacheStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
+    public void readQuickCache_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> readAddressBook(null));
     }
 
@@ -51,12 +51,12 @@ public class JsonQuickCacheStorageTest {
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
+    public void readQuickCache_invalidFlashcardQuickCache_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
+    public void readQuickCache_invalidAndValidFlashcardQuickCache_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
     }
 
@@ -87,7 +87,7 @@ public class JsonQuickCacheStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
+    public void saveQuickCache_nullQuickCache_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveQuickCache(null, "SomeFile.json"));
     }
 
@@ -104,7 +104,7 @@ public class JsonQuickCacheStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
+    public void saveQuickCache_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveQuickCache(new QuickCache(), null));
     }
 }
