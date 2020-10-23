@@ -67,6 +67,8 @@ public class BookmarkCommand extends Command {
                 String currentStockSerialNumber = currentStock.getSerialNumber().getSerialNumberAsString();
                 if (currentSerialNumber.equals(currentStockSerialNumber)) {
                     noMatches = false;
+                } else {
+                    assert false : "FALSE";
                 }
             }
             if (noMatches) {
