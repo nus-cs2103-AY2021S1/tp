@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.task.deadline.Deadline;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
@@ -118,14 +119,14 @@ public class UniqueTaskList implements Iterable<Task> {
      * {@code tasks} must not contain duplicate tasks.
      * each task in tasks must exist in the list.
      */
-    public void markAsDone(Task[] tasks) {
-        requireNonNull(tasks);
-        for (int i = 0; i < tasks.length; i++) {
-            int index = internalList.indexOf(tasks[i]);
+    public void markAsDone(Deadline[] deadlines) {
+        requireNonNull(deadlines);
+        for (int i = 0; i < deadlines.length; i++) {
+            int index = internalList.indexOf(deadlines[i]);
             if (index == -1) {
                 throw new TaskNotFoundException();
             }
-            internalList.set(index, tasks[i].markAsDone());
+            internalList.set(index, deadlines[i].markAsDone());
         }
     }
 

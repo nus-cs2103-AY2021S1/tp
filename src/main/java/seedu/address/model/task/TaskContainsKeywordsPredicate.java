@@ -78,20 +78,20 @@ public class TaskContainsKeywordsPredicate implements Predicate<Task> {
                     .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getDescription().value, keyword));
         }
 
-        if (prefix.equals("date:")) {
-            return words.stream()
-                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getDateTime().toString(), keyword));
-        }
-
-        if (prefix.equals("type:")) {
-            return words.stream()
-                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getType().value, keyword));
-        }
-        if (prefix.equals("status:")) {
-            // must be an exact match here
-            return words.stream()
-                    .anyMatch(keyword -> task.getStatus().value.toString().toLowerCase().equals(keyword.toLowerCase()));
-        }
+        //        if (prefix.equals("date:")) {
+        //            return words.stream()
+        //                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getDateTime().toString(), keyword));
+        //        }
+        //
+        //        if (prefix.equals("type:")) {
+        //            return words.stream()
+        //                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getType().value, keyword));
+        //        }
+        //        if (prefix.equals("status:")) {
+        //            // must be an exact match here
+        //            return words.stream()
+        //                    .anyMatch(keyword -> task.getStatus().value.toString().toLowerCase().equals(keyword.toLowerCase()));
+        //        }
 
         return false;
     }

@@ -1,12 +1,12 @@
 package seedu.address.model.task.deadline;
 
-import seedu.address.model.lesson.Date;
-import seedu.address.model.lesson.Time;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
+import seedu.address.commons.util.DateUtil;
+import seedu.address.model.lesson.Time;
 
 /**
  * Represents a Task's date and time in PlaNus task list.
@@ -68,7 +68,7 @@ public class DeadlineDateTime {
      * @return true if the test string is valid and false otherwise
      */
     public static boolean isValidSearchPhrase(String test) {
-        return isValidDateTime(test) || Date.isValidDate(test) || Time.isValidTime(test);
+        return isValidDateTime(test) || DateUtil.isValidDate(test) || Time.isValidTime(test);
     }
 
     @Override

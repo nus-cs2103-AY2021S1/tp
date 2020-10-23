@@ -18,7 +18,6 @@ import java.util.stream.Stream;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.commands.LessonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.lesson.Date;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.Time;
 import seedu.address.model.task.Description;
@@ -56,10 +55,10 @@ public class LessonCommandParser implements Parser<LessonCommand> {
             startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get());
             endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_END_DATE).get());
         } else {
-            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
         }
         if (!isStartDateBeforeEndDate(startDate, endDate)) {
-            throw new ParseException(Date.RANGE_CONSTRAINTS);
+            throw new ParseException(DateUtil.RANGE_CONSTRAINTS);
         }
         if (argMultimap.getValue(PREFIX_START_TIME).isPresent()
                 && argMultimap.getValue(PREFIX_END_TIME).isPresent()) {

@@ -1,5 +1,6 @@
 package seedu.address.commons.util;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class DateUtil {
@@ -14,6 +15,8 @@ public class DateUtil {
             "Search phrase for date should be in the format of dd-MM-yyyy or HH:mm or dd-MM-yyyy HH:mm.";
     public static final String DAY_MESSAGE_CONSTRAINTS =
             "Day should be in the format of MON, TUE, ..., SUN or MONDAY, TUESDAY, ..., SUNDAY";
+    public static final LocalDateTime DEFAULT_DATETIME = LocalDateTime.parse("01-01-1000 00:00", FORMATTER);
+    public static final String RANGE_CONSTRAINTS = "Start date should be before end date";
 
     /**
      * Returns true if a given string is a valid date number.

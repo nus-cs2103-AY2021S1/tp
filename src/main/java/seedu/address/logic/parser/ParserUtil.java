@@ -11,9 +11,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.lesson.Date;
 import seedu.address.model.lesson.Time;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
@@ -102,7 +102,7 @@ public class ParserUtil {
         String trimmedDate = date.trim();
         String trimmedtime = time.trim();
         if (!StartDateTime.isValidStartDateTime(trimmedDate, trimmedtime)) {
-            throw new ParseException(StartDateTime.MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
         }
         return new StartDateTime(trimmedDate, trimmedtime);
     }
@@ -118,7 +118,7 @@ public class ParserUtil {
         String trimmedDate = date.trim();
         String trimmedtime = time.trim();
         if (!EndDateTime.isValidEndDateTime(trimmedDate, trimmedtime)) {
-            throw new ParseException(EndDateTime.MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
         }
         return new EndDateTime(trimmedDate, trimmedtime);
     }
@@ -150,8 +150,8 @@ public class ParserUtil {
         requireNonNull(date);
         String trimmedDate = date.trim();
         DateTimeFormatter parser = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        if (!Date.isValidDate(trimmedDate)) {
-            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        if (!DateUtil.isValidDate(trimmedDate)) {
+            throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
         }
         return LocalDate.parse(trimmedDate, parser);
     }

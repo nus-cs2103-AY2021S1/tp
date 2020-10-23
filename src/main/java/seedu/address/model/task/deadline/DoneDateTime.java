@@ -1,13 +1,11 @@
 package seedu.address.model.task.deadline;
 
-import seedu.address.model.lesson.Date;
-import seedu.address.model.lesson.Time;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.commons.util.DateUtil;
+import seedu.address.model.lesson.Time;
+
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
@@ -82,7 +80,7 @@ public class DoneDateTime {
      * @return true if the test string is valid and false otherwise
      */
     public static boolean isValidSearchPhrase(String test) {
-        return isValidDateTime(test) || Date.isValidDate(test) || Time.isValidTime(test);
+        return isValidDateTime(test) || DateUtil.isValidDate(test) || Time.isValidTime(test);
     }
 
     @Override
