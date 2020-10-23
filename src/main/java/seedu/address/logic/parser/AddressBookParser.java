@@ -22,6 +22,7 @@ import seedu.address.logic.commands.ScheduleCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.UnprioritizeCommand;
 import seedu.address.logic.commands.UnremindCommand;
+import seedu.address.logic.commands.UnscheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -89,6 +90,9 @@ public class AddressBookParser {
 
         case ScheduleCommand.COMMAND_WORD:
             return new ScheduleCommandParser().parse(arguments);
+
+        case UnscheduleCommand.COMMAND_WORD:
+            return new UnscheduleCommandParser().parse(arguments);
 
         case PrioritizeCommand.COMMAND_WORD:
             return new PrioritizeCommandParser().parse(arguments);

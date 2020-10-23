@@ -19,6 +19,25 @@
     -fx-text-fill: #e0de9b !important;
 }
 
+.high-priority {
+    -fx-background-color: #f54947 !important;
+    -fx-text-fill: #010504 !important;
+}
+
+.low-priority {
+    -fx-background-color: #73f079 !important;
+    -fx-text-fill: #010504 !important;
+}
+
+.medium-priority {
+    -fx-background-color: #eef567 !important;
+    -fx-text-fill: #010504 !important;
+}
+
+.none-priority {
+    -fx-text-fill: transparent !important;
+}
+
 .start-soon {
     -fx-text-fill: #d06651 !important;
 }
