@@ -74,7 +74,7 @@ public class CommandBox extends UiPart<Region> {
             setStyleToIndicateCommandFailure();
         } finally {
             historyPointer = logic.getInputHistory().size();
-            commandTextField.setText("");
+            commandTextField.clear();
         }
     }
 
