@@ -517,7 +517,7 @@ When a `FindCommand` is executed, a `CommandResult` is constructed with the stat
 
 * `FindCommand#execute()` - Executes the search and returns the result message of the search.
 
-####FindUtil
+#### FindUtil
 The `FindUtil` class is part of the util package. It provides utility to combine the list of `FieldContainsKeywordsPredicate`s of the `FindCommand` into a single `Predicate<Stock>`.
 `Find` feature requires the `Stock` to fulfill only one `FieldContainsKeywordsPredicate` in the list for `Stock` to be displayed. The mechansim used to combine the predicates into a single Predicate<Stock> for `Find` is Java 8 Predicate method, Predicate.or().
 `FindExact` feature requires the `Stock` to fulfill all `FieldContainsKeywordsPredicate` in the list for `Stock` to be displayed. The mechansim used to combine the predicates into a single Predicate<Stock> for `FindExact` is Java 8 Predicate method, Predicate.and().
@@ -527,7 +527,7 @@ The `FindUtil` class is part of the util package. It provides utility to combine
 * `FindUtil#generateCombinedPredicatesWithOr()` - Combines predicates using Predicate.or()
 * `FindUtil#generateCombinedPredicatesWithAnd()` - Combines predicates using Predicate.and()
 
-####FieldContainsKeywordsPredicate
+#### FieldContainsKeywordsPredicate
 
 `FieldContainsKeywordsPredicate` is an abstract class that implements the interface Predicate<Stock>. Its subclasses are `NameContainsKeywordsPredicate`, `LocationContainsKeywordsPredicate`, `SerialNumberContainsKeywordsPredicate` and `SourceContainsKeywordsPredicate`, which inherit and implement the method `test(Stock)`, and is constructed with a list of String keywords to test.
 
@@ -741,6 +741,81 @@ are more useful when working out the compositions of the data.
 #### Future statistical features
 With the expansion of more data fields for each stock, there will be more varieties of statistics that can be
 shown based on these new fields.
+
+### Sort Feature
+
+The mechanism for sort feature is facilitated by `SortCommandParser, SortCommand, SortUtil`.
+
+#### SortCommand
+
+`SortCommand` class extends `Command` interface. `SortCommand` class is tasked with creating a new `CommandResult`
+with the sort result to be displayed to the user as its argument. The sort message generated is based on the sorted
+field.
+
+Some of the important operations implemented here are:
+
+* `SortCommand#execute()` <br>
+  Generates a new `CommandResult` with the sort result as its argument. Creates the comparator needed to sort
+  from the `fieldToSort` and `isReversed` passed down by `SortCommandParser#parse()`. 
+  After the comparator is created, `Model#sortFilteredStockList()` is called with the comparator as
+  its argument to sort the inventory.
+
+#### SuggestionCommandParser
+
+`SortCommandParser` class implements `Parser` interface. `SortCommandParser` class is tasked with parsing the
+user inputs and generate a new `SortCommand`.
+
+`SortCommandParser` receives the user input and gets the compulsory prefixes needed for sort feature to function.
+If any of the compulsory prefixes are not present or their values are invalid, then a `ParseException` will be thrown
+indicating an error in parsing the user input.
+
+Some of the important operations implemented here are:
+
+* `SortCommandParser#parse()` <br>
+  Generates a new `SortCommand` with the field to be sorted and its order as the arguments. This method is tasked
+  with parsing the compulsory prefixes needed and passing their values to `SortCommand`. If any of the compulsory
+  prefixes are not present or their values are invalid, a `ParseException` will be thrown.
+
+#### SortUtil
+
+`SortUtil` class contains the utilities needed to generate the comparator for the sorting to be executed.
+
+The utilities provided inside are:
+
+* `SortUtil#getFieldDescription()` <br>
+  Generates a string describing the current sorted field.
+
+* `SortUtil#generateComparator()` <br>
+  Generates a suitable comparator for sorting based on the provided field.
+
+* `SortUtil#generateReverseComparator()` <br>
+  Generates a reversed comparator for sorting based on the provided field.
+
+* `SortUtil#generateNameComparator()` <br>
+  Generates a comparator based on name field. The behavior is that it will compare two names `n1`, `n2` and
+  returns an integer with value
+    * `< 0` if `n1 < n2`
+    * `= 0` if `n1 == n2`
+    * `> 0` if `n1 > n2`
+  
+  Based on this behavior, this method by default sort by name in ascending order.
+
+* `SortUtil#generateSourceComparator()` <br>
+  Generates a comparator based on source field. It will compare two sources `s1`, `s2` and have the same exact
+  behaviour as `SortUtil#generateNameComparator()`. This method by default sort by source in ascending order.
+
+* `SortUtil#generateLocationComparator()` <br>
+  Generates a comparator based on location field. It will compare two locations `l1`, `l2` and have the same exact
+  behaviour as `SortUtil#generateNameComparator()`. This method by default sort by location in ascending order.
+
+* `SortUtil#generateSerialNumberComparator()` <br>
+  Generates a comparator based on serial number field. It will compare two serial numbers `sn1`, `sn2` 
+  and have the same exact behaviour as `SortUtil#generateNameComparator()`.
+  This method by default sort by serial number in ascending order.
+
+* `SortUtil#generateQuantityComparator()` <br>
+  Generates a comparator based on quantity field. It will compare two quantity `q1`, `q2` and have the same exact
+  behaviour as `SortUtil#generateNameComparator()`. This method by default sort by quantity in ascending order.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
