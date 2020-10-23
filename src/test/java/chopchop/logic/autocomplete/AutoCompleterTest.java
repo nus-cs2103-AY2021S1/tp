@@ -33,44 +33,56 @@ public class AutoCompleterTest {
         var tests = new HashMap<String, String>();
 
         // test command completion
-        tests.put("a",                                    "add");
-        tests.put("u",                                    "use");
-        tests.put("f",                                    "find");
-        tests.put("l",                                    "list");
-        tests.put("q",                                    "quit");
-        tests.put("h",                                    "help");
-        tests.put("m",                                    "make");
-        tests.put("u",                                    "undo");
-        tests.put("r",                                    "redo");
-        tests.put("d",                                    "delete");
+        tests.put("a",                                      "add");
+        tests.put("u",                                      "use");
+        tests.put("f",                                      "find");
+        tests.put("l",                                      "list");
+        tests.put("q",                                      "quit");
+        tests.put("h",                                      "help");
+        tests.put("m",                                      "make");
+        tests.put("u",                                      "undo");
+        tests.put("r",                                      "redo");
+        tests.put("d",                                      "delete");
 
         // test... non-completion
-        tests.put("add",                                  "add");
+        tests.put("add",                                    "add");
 
         // target completion (recipes)
-        tests.put("add r",                                "add recipe");
-        tests.put("find r",                               "find recipe");
-        tests.put("list r",                               "list recipe");
-        tests.put("delete r",                             "delete recipe");
+        tests.put("add r",                                  "add recipe");
+        tests.put("find r",                                 "find recipe");
+        tests.put("list r",                                 "list recipe");
+        tests.put("delete r",                               "delete recipe");
 
         // target completion (ingredients)
-        tests.put("add i",                                "add ingredient");
-        tests.put("find i",                               "find ingredient");
-        tests.put("list i",                               "list ingredient");
-        tests.put("delete i",                             "delete ingredient");
+        tests.put("add i",                                  "add ingredient");
+        tests.put("find i",                                 "find ingredient");
+        tests.put("list i",                                 "list ingredient");
+        tests.put("delete i",                               "delete ingredient");
 
         // argument completion
-        tests.put("add recipe cake /i",                   "add recipe cake /ingredient");
-        tests.put("add recipe cake /q",                   "add recipe cake /qty");
-        tests.put("add ingredient milk /q",               "add ingredient milk /qty");
-        tests.put("add ingredient milk /e",               "add ingredient milk /expiry");
+        tests.put("add recipe cake /i",                     "add recipe cake /ingredient");
+        tests.put("add recipe cake /q",                     "add recipe cake /qty");
+        tests.put("add ingredient milk /q",                 "add ingredient milk /qty");
+        tests.put("add ingredient milk /e",                 "add ingredient milk /expiry");
 
         // ingredient name completion
-        tests.put("add recipe cake /ingredient a",        "add recipe cake /ingredient Apricot");
-        tests.put("add recipe cake /ingredient b",        "add recipe cake /ingredient Banana");
+        tests.put("add recipe cake /ingredient a",          "add recipe cake /ingredient Apricot");
+        tests.put("add recipe cake /ingredient b",          "add recipe cake /ingredient Banana");
+        tests.put("delete ingredient a",                    "delete ingredient Apricot");
 
         // recipe name completion
-        tests.put("delete recipe a",                      "delete recipe Apricot Salad");
+        tests.put("delete recipe a",                        "delete recipe Apricot Salad");
+        tests.put("make cus",                               "make Custard Salad");
+        tests.put("use ba",                                 "use Banana");
+
+        // things that don't change
+        tests.put("",                                       "");
+        tests.put("kk",                                     "kk")
+        tests.put("add recipe",                             "add recipe");
+        tests.put("find recipe",                            "find recipe");
+
+
+
 
         var completer = new AutoCompleter();
 
