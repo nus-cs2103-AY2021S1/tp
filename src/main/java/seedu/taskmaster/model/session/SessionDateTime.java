@@ -19,9 +19,21 @@ public class SessionDateTime {
         this.localDateTime = localDateTime;
     }
 
+    private LocalDateTime getLocalDateTime() {
+        return this.localDateTime;
+    }
+
     @Override
     public String toString() {
         return localDateTime.toLocalDate().format(DATE_FORMAT) + " "
                 + localDateTime.toLocalTime().format(TIME_FORMAT);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SessionDateTime // instanceof handles nulls
+                && localDateTime.equals(((SessionDateTime) other).getLocalDateTime())); // state check
+    }
+
 }

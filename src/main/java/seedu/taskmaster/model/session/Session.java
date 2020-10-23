@@ -46,4 +46,23 @@ public class Session {
     public String toString() {
         return String.format(STRING_FORMAT, sessionName.toString(), sessionDateTime);
     }
+
+    /**
+     * Returns true if both sessions have the same identity and data fields.
+     * This defines a stronger notion of equality between two sessions.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof Session)) {
+            return false;
+        }
+        Session otherSession = (Session) other;
+        return otherSession.getSessionName().equals(getSessionName())
+                && otherSession.getSessionDateTime().equals(getSessionDateTime())
+                && otherSession.getStudentRecords().equals(getStudentRecords());
+    }
+
 }
