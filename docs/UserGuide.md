@@ -133,6 +133,32 @@ Example:
 
 ---
 
+### Undoing a command: `undo`
+
+Undoes the most recently used command. No changes if no previous state exists.
+
+Format: `undo`
+
+---
+
+### Redoing an undo: `redo`
+
+Redoes the previous undo. No changes if no previous state exists.
+
+Format: `redo`
+
+---
+
+### Sorting animals: `sort`
+
+Sorts the animals by the given field in lexicographical order.
+
+Format: `sort fieldname`
+
+Example: `sort name` sorts all animals by name in alphabetical order.
+
+---
+
 #### Manually saving data
 
 Animal data is saved in the hard disk with the preferred file name automatically after any command that changes the data. 
