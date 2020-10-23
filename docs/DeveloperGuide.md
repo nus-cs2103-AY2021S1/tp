@@ -160,6 +160,44 @@ takes in the input.
  returns a list of lessons to be added.
 7. The `execute` method returns a `CommandResult` object.
 
+### \[Implemented\] Schedule an assignment
+
+The user can input a deadline and expected time for an assignment to get a suggested start time and end time to work on the assignment.
+The suggested time will be within working hours from 6am to 11pm local time.
+The expected hours for an assignment ranges from 1 to 5 hours.
+The suggested time will not class with any of the suggested time for other assignments and lessons.
+
+#### Reasons for Implementation
+
+User may find it convenient to be suggested a time slot where they can do their assignment before a specific date and at a
+specific time which he is free from all lessons and other assignment.
+
+#### Current Implementation
+- The schedule command is a typical command used in ProductiveNUS. It extends `Command` and overrides the method `execute` in `CommandResult`.
+
+- `ScheduleCommandParser` implements `Parser<ScheduleCommand>` and it parses the user's input to return a `ScheduleCommand` object.
+
+- The constructor of `ScheduleCommand` takes in (`Index`, `ExpectedHours`, `DoBefore`) where `Index` is a zero-based index
+with the prefix (expected/, dobefore/) in the user's input. 
+ 
+- The suggested schedule will be display in the assignment card shown in list.
+ 
+It implements the following operations:
+* `schedule 3 expected/2 dobefore/01-01-2001 0101` - Suggest schedule for the 3rd assignment in the displayed assignment list
+with expected hours of 2 and need to be done before 01:01 01-01-2001.
+* `schedule 2 expected/5 dobefore/02-02-2002 0202` - Suggest schedule for the 2nd assignment in the displayed assignment 
+with expected hours of 5 and need to be done before 02:02 02-02-2002.
+
+#### Usage Scenario
+
+A usage scenario would be when a user wants to schedule an assignment.
+
+1. The `execute` method of `LogicManager` is called when a user keys in an input into the application and `execute` takes in the input.
+2. The `parseCommand` method of `ProductiveNusParser` parses the user input and returns an initialized `ScheduleCommandParser` object and further calls the `parse` method of this object to identify keywords and prefixes in the user input.
+3. If user input is valid, it returns a `ScheduleCommand` object, which takes in a predicate. (`ExpectedHours` in this example user input)
+4. There is return call to `LogicManager` which then calls the overridden `execute` method of `ScheduleCommand`.
+6. The `execute` method returns a `ScheduleResult` object.
+
 ### \[Implemented\] Find by specific fields feature
 
 The user can find assignments by name, module code, due date/time or priority level. 
@@ -273,85 +311,48 @@ It can implement the following operations:
 
 ### \[Coming up\] Help feature
 
-### \[Proposed\] Undo/redo feature
+### \[Implemented\] Undo
 
-#### Proposed Implementation
+The user can undo the most recent command that changes the data of the assignments or lessons.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+#### Reasons for Implementation
+It is likely that the user might type in command mistakenly will want to go the previous state.
+Instead of using a combination of adding, deleting, editting, ..., a single undo command will 
+help solving the problem easily.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+#### Current Implementation
+- The undo command is a typical command used in ProductiveNUS. 
+- It extends `Command` and overrides the method `execute` in `CommandResult`.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+It implements the following operations:
+* `Undo` — Undo the most recent command that changes the data of the assignments or lessons.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+#### Usage Scenario
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+A usage scenario would be when a user wants to undo the most recent command that changes the data of the assignments
 
-![UndoRedoState0](images/UndoRedoState0.png)
+1. The `execute` method of `LogicManager` is called when a user keys in an input into the application and `execute` takes in the input.
+2. The `execute` calls the `UndoCommand`.
+4. There is return call to `LogicManager` which then calls the overridden `execute` method of `UndoCommand`.
+5. The `execute` method of `UndoCommand` will call the `getPreviousModel` of the `Model` object and reassign `Model`.
+6. The `execute` method returns a `CommandResult` object.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+### \[Coming up\] Delete multiple assignments feature
+The user can delete multiple assignments at a time, when more than one index is keyed in.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+#### Reasons for Implementation
+It will provide convenience to users who want to delete more than one assignment at a time, and it makes the deleting process faster.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
+#### Current Implementation
+- The `delete` command is a typical command used in ProductiveNUS. 
+- It extends `Command` and overrides the method `execute` in `CommandResult`.
+- `DeleteCommandParser` implements `Parser<DeleteCommand>` and it parses the user's input (index of the assignment as a positive integer)) to return a `DeleteCommand` object.
+- The constructor of `DeleteCommand` takes in an `Index` which is parsed from the one based index of the user's input.
+ 
+It can implement the following operations:
+* `delete 1 3` — Deletes the assignment at the first and third index in list.
+* `delete 1` — Deletes the assignment at the first index in list.
 
 ### \[Proposed\] Data archiving
 
