@@ -101,7 +101,7 @@ public class CraftItemCommandTest {
     }
 
     /**
-     * Tests for success crafting when excess crafting is done due to the recipe
+     * Tests for crafting success when excess crafting is done due to the recipe
      */
     @Test
     public void execute_craftExcess_success() {

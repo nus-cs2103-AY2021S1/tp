@@ -37,10 +37,13 @@ public class CraftItemCommand extends Command {
             + PREFIX_ITEM_QUANTITY + "1 "
             + PREFIX_RECIPE_ID + "2";
 
+    // success messages
     public static final String MESSAGE_SUCCESS = "%2$s %1$s crafted";
     public static final String MESSAGE_SUCCESS_EXCESS = "%2$s %1$s crafted instead of %3$s, extras crafted"
             + " due to recipe";
     public static final String MESSAGE_MISSING_RECIPE_INDEX = "First recipe used as recipe index was not provided.\n";
+
+    // failure messages
     public static final String MESSAGE_ITEM_NOT_FOUND = "Item to craft is not found in the item list.";
     public static final String MESSAGE_INVALID_PRODUCT_QUANTITY = "Crafting failed, please enter a valid "
             + "product quantity";
@@ -90,15 +93,17 @@ public class CraftItemCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (productQuantity == 0) {
+            throw new CommandException(MESSAGE_INVALID_PRODUCT_QUANTITY);
+        }
+
         // fetch the item
         List<Item> tempItemList = new ArrayList<>(model.getFilteredItemList());
-
         // filter to only get matching items
         tempItemList.removeIf(x -> !x.getName().equals(itemName));
         if (tempItemList.isEmpty()) {
             throw new CommandException(MESSAGE_ITEM_NOT_FOUND);
         }
-
         Item itemToCraft;
         itemToCraft = tempItemList.stream()
                 .findFirst() // Get the first (and only) item matching or else throw Error
@@ -111,20 +116,14 @@ public class CraftItemCommand extends Command {
         if (tempRecipeList.isEmpty()) {
             throw new CommandException(MESSAGE_RECIPE_NOT_FOUND);
         }
-
         Recipe recipeToUse;
         try {
             recipeToUse = tempRecipeList.get(index.getZeroBased());
         } catch (IndexOutOfBoundsException e) {
-            throw new CommandException(MESSAGE_INDEX_OUT_OF_RANGE); //index out of range
+            throw new CommandException(MESSAGE_INDEX_OUT_OF_RANGE);
         }
 
         int recipeProductQuantity = recipeToUse.getProductQuantity().number;
-
-        if (productQuantity == 0) {
-            throw new CommandException(MESSAGE_INVALID_PRODUCT_QUANTITY);
-        }
-
         // check if quantity to craft is not an exact multiple of recipe product quantity
         int intendedQuantity = productQuantity;
         if (productQuantity % recipeProductQuantity != 0) {
@@ -143,7 +142,7 @@ public class CraftItemCommand extends Command {
             throw new CommandException(MESSAGE_INSUFFICIENT_INGREDIENTS);
         }
 
-        // update ingredients, decrease by quantity required since ingredients are consumed
+        // update ingredients, decrease each by quantity required since ingredients are consumed
         requiredIngredients.forEach((itemId, quantityRequired) -> {
             try {
                 new AddQuantityToItemCommand(itemList.get(itemId).getName(), -quantityRequired).execute(model);
@@ -157,7 +156,7 @@ public class CraftItemCommand extends Command {
         new AddQuantityToItemCommand(itemName, productQuantity).execute(model);
 
         String displayMessage = "";
-        // indicate if user left out the index field
+        // indicate if user left out the recipe index
         if (hasDefaultIndex) {
             displayMessage += MESSAGE_MISSING_RECIPE_INDEX;
         }

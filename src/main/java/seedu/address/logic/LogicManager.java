@@ -138,12 +138,12 @@ public class LogicManager implements Logic {
             inventoryList.addAll(model.getFilteredItemList());
             break;
         case RECIPES:
-            model.resetItemFilters();
-            // model.resetRecipeFilters();
+            // convert recipes to printable form
             model.getFilteredRecipeList()
                     .forEach(recipe -> inventoryList.add(recipe.print(model.getFilteredItemList())));
             break;
         case DETAILED_ITEM:
+            // adds the single matching item into the inventory list
             model.getFilteredItemList().forEach(item -> inventoryList.add(item.detailedItem()));
             break;
         case UNCHANGED:

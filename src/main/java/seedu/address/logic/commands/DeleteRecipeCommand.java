@@ -57,7 +57,7 @@ public class DeleteRecipeCommand extends Command {
         try {
             recipeToDelete = recipeList.get(index.getZeroBased());
         } catch (IndexOutOfBoundsException e) {
-            throw new CommandException(MESSAGE_INDEX_NOT_FOUND); //index out of range
+            throw new CommandException(MESSAGE_INDEX_NOT_FOUND);
         }
 
         // delete the recipe id from the ingredients

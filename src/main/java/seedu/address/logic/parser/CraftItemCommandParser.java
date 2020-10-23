@@ -27,7 +27,6 @@ public class CraftItemCommandParser implements Parser<CraftItemCommand> {
         String itemName;
         Quantity quantity;
         Index index;
-        //TODO make index optional
         try {
             ArgumentMultimap argMultimap =
                     ArgumentTokenizer.tokenize(args, PREFIX_ITEM_NAME, PREFIX_ITEM_QUANTITY, PREFIX_RECIPE_ID);
@@ -40,6 +39,7 @@ public class CraftItemCommandParser implements Parser<CraftItemCommand> {
             itemName = ItemParserUtil.parseName(argMultimap.getValue(PREFIX_ITEM_NAME).get());
             quantity = ItemParserUtil.parseQuantity(argMultimap.getValue(PREFIX_ITEM_QUANTITY).get());
 
+            // check if user input has recipe id
             if (arePrefixesPresent(argMultimap, PREFIX_RECIPE_ID)) {
                 index = ItemParserUtil.parseIndex(argMultimap.getValue(PREFIX_RECIPE_ID).get());
                 return new CraftItemCommand(itemName, quantity, index);

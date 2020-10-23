@@ -61,8 +61,9 @@ public class ItemTest {
     @Test
     public void testEditItemConstructor() {
         int initialIdCounter = Item.getIdCounter();
-        Item editedItem = new Item(1, "x", new Quantity("1"), "x", new HashSet<Integer>(),
-                new HashSet<Integer>(), new HashSet<Tag>(), true);
+        Item editedItem = new Item(1, VALID_ITEM_NAME_BANANA, new Quantity(VALID_ITEM_QUANTITY_BANANA),
+                VALID_ITEM_DESCRIPTION_BANANA, new HashSet<Integer>(), new HashSet<Integer>(),
+                new HashSet<Tag>(), true);
         int updatedIdCounter = Item.getIdCounter();
         assertEquals(initialIdCounter, updatedIdCounter);
     }
