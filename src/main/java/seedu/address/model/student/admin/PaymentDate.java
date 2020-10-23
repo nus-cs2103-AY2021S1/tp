@@ -14,7 +14,7 @@ import java.time.format.DateTimeParseException;
 public class PaymentDate {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Payment dates should be in the form dd/mm/yy, and should not be blank";
+            "Payment dates should be valid and in the form dd/mm/yy, and should not be blank";
 
     public static final String VALIDATION_REGEX = "(\\d{1,2})(\\/)(\\d{1,2})(\\/)(\\d{2}|\\d{4})";
 
