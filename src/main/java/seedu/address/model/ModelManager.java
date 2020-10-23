@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final CliniCal cliniCal;
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
+    private final ObservableList<Appointment> appointments;
     private final VersionedCliniCal versionedCliniCal;
 
     /**
@@ -36,6 +38,7 @@ public class ModelManager implements Model {
         this.cliniCal = new CliniCal(cliniCal);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatients = new FilteredList<>(this.cliniCal.getPatientList());
+        appointments = this.cliniCal.getAppointmentList();
         this.versionedCliniCal = new VersionedCliniCal(this.cliniCal);
     }
 
@@ -169,6 +172,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Appointment> getAppointmentList() {
+        return appointments;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -184,7 +192,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return cliniCal.equals(other.cliniCal)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPatients.equals(other.filteredPatients);
+                && filteredPatients.equals(other.filteredPatients)
+                && appointments.equals(other.appointments);
     }
 
 }

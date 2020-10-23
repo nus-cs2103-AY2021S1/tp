@@ -9,7 +9,7 @@ import java.time.format.DateTimeParseException;
 public class AppointmentDateTime {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Times should be entered in the format: 2007-12-03T10:15";
+            "Times should be entered in the format: 2020-12-25T23:36";
     // Compared to other classes, this class uses the LocalDateTime class to check validity of the String
     // rather than a regex.
 

@@ -20,6 +20,7 @@ import seedu.address.model.CliniCal;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyCliniCal;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.PatientBuilder;
 
@@ -140,6 +141,11 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Patient> getFilteredPatientList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Appointment> getAppointmentList() {
             throw new AssertionError("This method should not be called.");
         }
 
