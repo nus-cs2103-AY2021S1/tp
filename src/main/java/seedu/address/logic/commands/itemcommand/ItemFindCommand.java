@@ -2,7 +2,6 @@ package seedu.address.logic.commands.itemcommand;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
@@ -38,7 +37,6 @@ public class ItemFindCommand extends ItemCommand {
 
         InventoryModel inventoryModel = models.getInventoryModel();
         inventoryModel.updateItemListFilter(predicate);
-
         return new CommandResult(
                 String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW,
                         inventoryModel.getFilteredAndSortedItemList().size()));

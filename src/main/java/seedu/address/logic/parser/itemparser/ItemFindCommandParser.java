@@ -60,7 +60,7 @@ public class ItemFindCommandParser implements Parser<ItemFindCommand> {
         }
 
         Predicate<Item> finalPredicate = predicateList.get(0);
-        for(int i = 1; i < predicateList.size(); i++) {
+        for (int i = 1; i < predicateList.size(); i++) {
             finalPredicate = finalPredicate.and(predicateList.get(i));
         }
         return new ItemFindCommand(finalPredicate);

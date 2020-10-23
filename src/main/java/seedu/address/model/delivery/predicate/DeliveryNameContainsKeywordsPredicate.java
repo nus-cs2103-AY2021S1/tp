@@ -23,6 +23,7 @@ public class DeliveryNameContainsKeywordsPredicate implements Predicate<Delivery
 
     @Override
     public boolean test(Delivery delivery) {
+        assert(delivery != null);
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(delivery.getName().fullName, keyword));
     }

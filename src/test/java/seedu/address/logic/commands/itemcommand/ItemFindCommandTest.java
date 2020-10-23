@@ -9,13 +9,16 @@ import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.UserPrefs;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.InventoryModelManager;
+import seedu.address.model.item.Item;
 import seedu.address.model.item.predicate.NameContainsKeywordsPredicate;
+import seedu.address.model.item.predicate.SupplierContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code ItemFindCommand}.
@@ -56,17 +59,38 @@ public class ItemFindCommandTest {
     @Test
     public void execute_zeroKeywords_noItemFound() {
         String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        NameContainsKeywordsPredicate predicate = prepareNamePredicate(" ");
         ItemFindCommand command = new ItemFindCommand(predicate);
         expectedInventoryModel.updateItemListFilter(predicate);
         assertCommandSuccess(command, inventoryModel, expectedMessage, expectedInventoryModel);
         assertEquals(Collections.emptyList(), inventoryModel.getFilteredAndSortedItemList());
     }
 
+    @Test
+    public void execute_twoFieldSpecified_itemFound() {
+        String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 1);
+        Predicate<Item> predicate = prepareNamePredicate("Chicken")
+                .and(prepareSupplierPredicate("GIANT"));
+        ItemFindCommand command = new ItemFindCommand(predicate);
+        expectedInventoryModel.updateItemListFilter(predicate);
+        assertCommandSuccess(command, inventoryModel, expectedMessage, expectedInventoryModel);
+        assertEquals(expectedInventoryModel.getFilteredAndSortedItemList(),
+                inventoryModel.getFilteredAndSortedItemList());
+    }
+
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
+    private NameContainsKeywordsPredicate prepareNamePredicate(String userInput) {
         return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
+
+    /**
+     * Parses {@code userInput} into a {@code SupplierContainsKeywordsPredicate}.
+     */
+    private SupplierContainsKeywordsPredicate prepareSupplierPredicate(String userInput) {
+        return new SupplierContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+
 }

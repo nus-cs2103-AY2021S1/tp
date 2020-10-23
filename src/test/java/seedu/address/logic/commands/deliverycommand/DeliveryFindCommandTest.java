@@ -5,13 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_DELIVERIES_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.TypicalDeliveries.getTypicalDeliveryBook;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,12 +25,12 @@ import seedu.address.testutil.DeliveryBuilder;
 
 class DeliveryFindCommandTest {
 
-    private static final Delivery KELVIN = new DeliveryBuilder().withName("Kelvin Tan")
+    private static final Delivery KELVIN = new DeliveryBuilder().withName("Kelvin")
             .withPhone("91234332")
             .withAddress("Clementi Blk 235 #11-111")
             .withOrder("Char Kway Teow")
             .build();
-    private static final Delivery MARCUS = new DeliveryBuilder().withName("Marcus Phua")
+    private static final Delivery MARCUS = new DeliveryBuilder().withName("Marcus")
             .withPhone("8198264")
             .withAddress("Jurong Blk 231 #15-123")
             .withOrder("Seafood Hor Fun x5")
@@ -54,20 +53,27 @@ class DeliveryFindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noItemFound() {
-        executeNameTest(0, " ",
+        executeTest(0, prepareDeliveryNamePredicate(" "),
                 deliveryModel, expectedDeliveryModel, Collections.emptyList());
     }
 
     @Test
     public void execute_matchingSubstring_itemsFound() {
-        executeAddressTest(2, "blk 23", testModel, expectedTestModel,
+        executeTest(2, prepareAddressPredicate("blk 23"), testModel, expectedTestModel,
                 testModel.getFilteredDeliveryList());
     }
 
     @Test
     public void execute_matchingKeywordsNotInOrder_itemsFound() {
-        executeAddressTest(2, "23 blk", testModel, expectedTestModel,
+        executeTest(2, prepareAddressPredicate("23 blk"), testModel, expectedTestModel,
                 testModel.getFilteredDeliveryList());
+    }
+
+    @Test
+    public void execute_twoFieldSpecified_itemsFound() {
+        executeTest(1, prepareDeliveryNamePredicate("Kelvin")
+                .and(prepareAddressPredicate("Clementi")), testModel,
+                expectedTestModel, testModel.getFilteredDeliveryList());
     }
 
     @Test
@@ -99,26 +105,25 @@ class DeliveryFindCommandTest {
     /**
      * Parses {@code userInput} into a {@code DeliveryNameContainsKeywordsPredicate}.
      */
-    private DeliveryNameContainsKeywordsPredicate prepareNamePredicate(String userInput) {
-        return new DeliveryNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s*")));
+    private DeliveryNameContainsKeywordsPredicate prepareDeliveryNamePredicate(String userInput) {
+        return new DeliveryNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 
     /**
      * Parses {@code userInput} into a {@code AddressContainsKeywordsPredicate}.
      */
     private AddressContainsKeywordsPredicate prepareAddressPredicate(String userInput) {
-        return new AddressContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s*")));
+        return new AddressContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 
     /**
      * Carries out an {@code execute} test with relevant arguments.
      */
-    private void executeNameTest(int numItemsMatched, String userInput,
+    private void executeTest(int numItemsMatched, Predicate<Delivery> predicate,
                              DeliveryModel actualModel, DeliveryModel expectedModel,
                              List<Delivery> expectedFilteredDeliveries) {
 
         String expectedMessage = String.format(MESSAGE_DELIVERIES_LISTED_OVERVIEW, numItemsMatched);
-        DeliveryNameContainsKeywordsPredicate predicate = prepareNamePredicate(userInput);
         DeliveryFindCommand command = new DeliveryFindCommand(predicate);
         expectedModel.updateFilteredDeliveryList(predicate);
 
@@ -126,19 +131,4 @@ class DeliveryFindCommandTest {
         assertEquals(expectedFilteredDeliveries, actualModel.getFilteredDeliveryList());
     }
 
-    /**
-     * Carries out an {@code execute} test with relevant arguments.
-     */
-    private void executeAddressTest(int numItemsMatched, String userInput,
-                                 DeliveryModel actualModel, DeliveryModel expectedModel,
-                                 List<Delivery> expectedFilteredDeliveries) {
-
-        String expectedMessage = String.format(MESSAGE_DELIVERIES_LISTED_OVERVIEW, numItemsMatched);
-        AddressContainsKeywordsPredicate predicate = prepareAddressPredicate(userInput);
-        DeliveryFindCommand command = new DeliveryFindCommand(predicate);
-        expectedModel.updateFilteredDeliveryList(predicate);
-
-        assertCommandSuccess(command, actualModel, expectedMessage, expectedModel);
-        assertEquals(expectedFilteredDeliveries, actualModel.getFilteredDeliveryList());
-    }
 }

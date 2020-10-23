@@ -66,7 +66,7 @@ public class DeliveryFindCommandParser implements Parser<DeliveryFindCommand> {
         }
 
         Predicate<Delivery> finalPredicate = predicateList.get(0);
-        for(int i = 1; i < predicateList.size(); i++) {
+        for (int i = 1; i < predicateList.size(); i++) {
             finalPredicate = finalPredicate.and(predicateList.get(i));
         }
 
