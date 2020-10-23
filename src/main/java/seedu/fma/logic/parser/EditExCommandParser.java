@@ -16,8 +16,8 @@ import seedu.fma.model.ReadOnlyLogBook;
 public class EditExCommandParser implements Parser<EditExCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EditExCommand
+     * and returns an EditExCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
