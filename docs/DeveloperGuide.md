@@ -154,6 +154,58 @@ Then, the `assignInstructor()` operation is called in both `UniqueModuleList` an
 
 Both are equally viable options but Alternative 1 was chosen so `Person` would not have to be redesigned or have too many fields.
 
+### Unassign feature
+
+The assign feature is facilitated by `UnassignCommand` and `UnassignCommandParser`.
+It uses an operation `AddressBook#unassignInstructor()` which is exposed in the `Model` interface as `Model#unassignInstructor()`.
+Then, the `unassignInstructor()` operation is called in both `UniqueModuleList` and `Module`. `Module#unassignInstructor()` will remove the instructor from the module's set of instructors.
+
+The following sequence diagram shows how the unassign operation works:
+
+![UnassignSequenceDiagram](images/UnassignSequenceDiagram.png)
+
+#### Unassigning a certain instructor from one or more modules
+a. Prerequisites : Unassign all instructors from all modules using the `unassignall` command. There are only 3 modules with module codes `CS2103`, `CS2100`, `CS1010S` in FaculType.
+Contact on index `1` is an instructor of module with module code `CS2103` and `CS2100`, while contact on index `2` is an instructor of module with module code `CS2100` and `CS1010S`.
+
+b. Test case : `unassign 1 m/CS2103 m/CS2100`<br>
+Expected : First contact is unassigned from both CS2103 and CS2100 modules. First contact is no longer an instructor of CS2103 nor CS2100 module.
+
+c. Test case : `unassign 2 m/CS2103 m/CS2100`<br>
+Expected : No contact is unassigned from any modules because instructor on index `2` is not an instructor of module `CS2103`.
+
+d. Test case : `unassign 0 m/CS1010S`<br>
+Expected : No contact is unassigned from any modules. Error details shown in the status message. Status bar remains the same.
+
+e. Test case : `unassign 1 m/CS3230`<br>
+Expected : No contact is unassigned from any modules. Error details shown in the status message. Status bar remains the same.
+
+f. Other incorrect unassign commands to try : `unassign`, `unassign x m/y` (where x is larger that the list size or is not an instructor of module y), `unassign a m/b` (where b does not exist in FaculType)<br>
+Expected : Similar to previous.
+
+{ more test cases ... }
+
+### Unassignall feature
+
+The assign feature is facilitated by `UnassignallCommand` and `UnassignallCommandParser`.
+It uses an operation `AddressBook#unassignAllInstructors()` which is exposed in the `Model` interface as `Model#unassignAllInstructors()`.
+Then, the `unassignAllInstructors()` operation is called in both `UniqueModuleList` and `Module`. `Module#unassignAllInstructors()` will remove all instructors from all modules' set of instructors.
+
+The following sequence diagram shows how the unassignall operation works:
+
+![UnassignallSequenceDiagram](images/UnassignallSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How unassignall executes
+
+* **Alternative 1 (current choice):** Unassigns all instructors from all modules.
+ * Pros : More efficient to unassign all instructors from all modules.
+ * Cons : Less efficient to unassign a certain instructor from all modules he/she teaches.
+ 
+* **Alternative 2:** Unassign a certain instructor from all modules he/she teaches.
+ * Pros : More efficient to unassign a certain instructor from all modules he/she teaches.
+ * Cons : Less efficient to unassign all instructors from all modules.
 ### \[Proposed\] Switch feature
 
 #### Proposed Implementation
