@@ -29,6 +29,7 @@
       </HBox>
       <Label fx:id="nusnetId" styleClass="cell_small_label" text="\$nusnetId" />
       <Label fx:id="attendanceStatus" styleClass="cell_small_label" text="\$attendanceStatus" />
+      <Label fx:id="classParticipation" styleClass="cell_small_label" text="\$classParticipation" />
     </VBox>
       <rowConstraints>
          <RowConstraints />
