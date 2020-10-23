@@ -1,5 +1,5 @@
 {
-  "_comment": "Hospify save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "Hospify save file which contains the same Person values as in TypicalPatients#getTypicalHospifyBook()",
   "persons" : [ {
     "name" : "Alice Pauline",
     "nric" : "S0000001A",
