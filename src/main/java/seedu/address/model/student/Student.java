@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.Admin;
 
 /**
@@ -57,6 +58,10 @@ public class Student {
 
     public List<Question> getQuestions() {
         return questions;
+    }
+
+    public List<AdditionalDetail> getDetails() {
+        return admin.getDetails();
     }
 
     /**
