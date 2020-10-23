@@ -1,7 +1,7 @@
 ![PlanusLogo](images/PlanusLogo.png)
 ---
 
-User Guide v1.3
+User Guide v1.3 - Gabriella Teh
 ---
 
 PlaNus is a desktop app for **managing tasks, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PlaNus can get your tasks managed faster than traditional GUI apps.
@@ -9,17 +9,17 @@ PlaNus is a desktop app for **managing tasks, optimized for use via a Command Li
 ## Quick start
 
 * [Features](#features)
-  * [Show all commands : `help`](#show-all-commands--help)
-  * [List all tasks : `list`](#list-all-tasks--list)
-  * [Add a task: `add`](#add-a-task-add)
-  * [Add a lesson: `lesson`](#add-a-lesson-lesson)
-  * [Delete a task : `delete`](#delete-a-task--delete)
-  * [Mark a task as done: `done`](#mark-a-task-as-done-done)
-  * [Find a task : `find`](#find-a-task-by-attribute-find)
-  * [Edit a task : `edit`](#edit-a-task-edit`)
-  * [Exit the program : `exit`](#exit-the-program--exit)
-* [FAQ](#faq)
-* [Command summary](#command-summary)
+  * [Show all commands : `help`](#show-all-commands--help) - Gabriella Teh
+  * [List all tasks : `list`](#list-all-tasks--list) - Marcus Tan
+  * [Add a task: `add`](#add-a-task-add) - Li Gangwei
+  * [Add a lesson: `lesson`](#add-a-lesson-lesson) - Marcus Tan
+  * [Delete a task : `delete`](#delete-a-task--delete) - Li Beining
+  * [Mark a task as done: `done`](#mark-a-task-as-done-done) - Li Beining
+  * [Find a task : `find`](#find-a-task-by-attribute-find) - Zhou Zijian
+  * [Edit a task : `edit`](#edit-a-task-edit`) - Gabriella Teh
+  * [Exit the program : `exit`](#exit-the-program--exit) - Li Gangwei
+* [FAQ](#faq) - Li Gangwei
+* [Command summary](#command-summary) - Zhou Zijian
 
 --------------------------------------------------------------------------------------------------------------------
 
