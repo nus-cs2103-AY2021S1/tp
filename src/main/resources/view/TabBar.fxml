@@ -9,7 +9,16 @@
 <StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1">
 
     <TabPane fx:id="tabBar" stylesheets="@TabPane.css" tabClosingPolicy="UNAVAILABLE">
-        <Tab fx:id="bidderTab" text="Untitled Tab 1">
+        <Tab fx:id="propertyTab" text="Property Tab">
+            <VBox fx:id="propertyList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets bottom="10" left="10" right="10" top="10" />
+                </padding>
+                <StackPane fx:id="propertyListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+            </VBox>
+        </Tab>
+
+        <Tab fx:id="bidderTab" text="Bidder Tab">
             <content>
                 <VBox fx:id="bidderList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                     <padding>
@@ -19,7 +28,7 @@
                 </VBox>
             </content>
         </Tab>
-        <Tab fx:id="sellerTab" text="Untitled Tab 1">
+        <Tab fx:id="sellerTab" text="Seller Tab">
             <content>
                 <VBox fx:id="sellerList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                     <padding>
@@ -29,7 +38,7 @@
                 </VBox>
             </content>
         </Tab>
-        <Tab fx:id="bidTab" text="Untitled Tab 2">
+        <Tab fx:id="bidTab" text="Bid Tab">
             <VBox fx:id="bidList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                 <padding>
                     <Insets bottom="10" left="10" right="10" top="10" />
@@ -37,22 +46,6 @@
                 <StackPane fx:id="bidListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
         </Tab>
-        <Tab fx:id="calenderTab" text="Untitled Tab 2">
-            <VBox fx:id="calendarMeetingList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                <padding>
-                    <Insets bottom="10" left="10" right="10" top="10" />
-                </padding>
-                <StackPane fx:id="meetingListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-            </VBox>
-        </Tab>
 
-        <Tab fx:id="propertyTab" text="Property Tab">
-            <VBox fx:id="propertyList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                <padding>
-                    <Insets bottom="10" left="10" right="10" top="10" />
-                </padding>
-                <StackPane fx:id="propertyListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-            </VBox>
-        </Tab>
     </TabPane>
 </StackPane>
