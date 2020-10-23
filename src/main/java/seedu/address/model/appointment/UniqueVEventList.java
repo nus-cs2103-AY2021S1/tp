@@ -1,25 +1,22 @@
 package seedu.address.model.appointment;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import jfxtras.icalendarfx.components.VEvent;
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.VEventUtil;
-import seedu.address.model.appointment.exceptions.DuplicateVEventException;
-import seedu.address.model.patient.Patient;
-import seedu.address.model.patient.UniquePatientList;
-
-import java.util.Iterator;
-import java.util.List;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.commons.util.VEventUtil.isSameVEvent;
 
+import java.util.Iterator;
+import java.util.List;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import jfxtras.icalendarfx.components.VEvent;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.appointment.exceptions.DuplicateVEventException;
+
 /**
  * A list of vEvents that provides functionality to map from appointments to vEvents.
  * VEvents with the same patientName, startTime and endTime are not allowed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  */
 public class UniqueVEventList implements Iterable<VEvent> {
@@ -60,12 +57,12 @@ public class UniqueVEventList implements Iterable<VEvent> {
         return vEvents.remove(index.getZeroBased());
     }
 
-    /**
-     * Get all appointments backed by vEvents observable list.
-     */
-    public List<Appointment> getAllAppointments() {
-        return VEventUtil.vEventsToAppsMapper(this.vEvents);
-    }
+    // /**
+    //  * Get all appointments backed by vEvents observable list.
+    //  */
+    // public List<Appointment> getAllAppointments() {
+    //     return VEventUtil.vEventsToAppsMapper(this.vEvents);
+    // }
 
     /**
      * Returns the VEvent object.
@@ -81,6 +78,7 @@ public class UniqueVEventList implements Iterable<VEvent> {
     /**
      * Sets the vEvent object at the specified index in the list. This should not result in a duplicate
      * vEvent
+     *
      * @param index  of the vEvent in the list.
      * @param vEvent object.
      */
@@ -135,6 +133,7 @@ public class UniqueVEventList implements Iterable<VEvent> {
 
     /**
      * Validates if all events in the list are unique
+     *
      * @param vEventList list to be checked
      * @return true if all events are unique
      */

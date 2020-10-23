@@ -1,10 +1,10 @@
 package seedu.address.commons.util;
 
-import jfxtras.icalendarfx.components.VEvent;
-import seedu.address.model.appointment.Appointment;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import jfxtras.icalendarfx.components.VEvent;
+import seedu.address.model.appointment.Appointment;
 
 
 /**
@@ -78,6 +78,7 @@ public class VEventUtil {
     /**
      * Compares between 2 vEvents to see whether they are the same. Attributes used to determine this include
      * patient name, start, and end time
+     *
      * @param vEventOne first event to be compared
      * @param vEventTwo second event to be compared
      * @return true if both vEvents are the same

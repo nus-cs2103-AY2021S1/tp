@@ -11,16 +11,27 @@ public class AppointmentDateTime {
     public static final String MESSAGE_CONSTRAINTS =
             "Times should be entered in the format: 2007-12-03T10:15";
 
+    /*
+     * A regex pattern for the ISO Date format, with additional hours and minutes.
+     */
     public static final String VALIDATION_REGEX = "\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d";
-    
+
     public final LocalDateTime dateTime;
 
+    /**
+     * Constructs a {@code AppointmentDateTime}.
+     *
+     * @param dateTime a valid dateTime string to be parsed by LocalDateTime.
+     */
     public AppointmentDateTime(String dateTime) {
         requireNonNull(dateTime);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
         this.dateTime = LocalDateTime.parse(dateTime);
     }
 
+    /**
+     * Returns true if a given string is a valid AppointmentDateTime.
+     */
     public static boolean isValidDateTime(String test) {
         try {
             LocalDateTime.parse(test);

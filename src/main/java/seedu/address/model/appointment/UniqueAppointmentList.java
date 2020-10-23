@@ -1,15 +1,15 @@
 package seedu.address.model.appointment;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
-import seedu.address.model.appointment.exceptions.ConflictingAppointmentException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
+import seedu.address.model.appointment.exceptions.ConflictingAppointmentException;
 
 /**
  * A list of appointments that prevents time conflicts between its elements and does not allow nulls.
@@ -18,7 +18,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  * that the appointment being added or updated is unique in terms of appointment time in the UniqueAppointmentList.
  * However, the removal of an appointment uses Appointment#equals(Object) so as to ensure
  * that the appointment with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Appointment#hasTimeConflict(Appointment)
@@ -89,13 +89,13 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
      * Replaces the contents of this list with {@code Appointments}.
      * {@code Appointments} must not contain duplicate Appointments.
      */
-    public void setAppointments(List<Appointment> Appointments) {
-        requireAllNonNull(Appointments);
-        if (!AppointmentsAreUnique(Appointments)) {
+    public void setAppointments(List<Appointment> appointments) {
+        requireAllNonNull(appointments);
+        if (!appointmentsAreUnique(appointments)) {
             throw new ConflictingAppointmentException();
         }
 
-        internalList.setAll(Appointments);
+        internalList.setAll(appointments);
     }
 
     /**
@@ -114,7 +114,7 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueAppointmentList // instanceof handles nulls
-                        && internalList.equals(((UniqueAppointmentList) other).internalList));
+                && internalList.equals(((UniqueAppointmentList) other).internalList));
     }
 
     @Override
@@ -125,14 +125,15 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     /**
      * Returns true if {@code Appointments} contains only unique Appointments.
      */
-    private boolean AppointmentsAreUnique(List<Appointment> Appointments) {
-        for (int i = 0; i < Appointments.size() - 1; i++) {
-            for (int j = i + 1; j < Appointments.size(); j++) {
-                if (Appointments.get(i).hasTimeConflict(Appointments.get(j))) {
+    private boolean appointmentsAreUnique(List<Appointment> appointments) {
+        for (int i = 0; i < appointments.size() - 1; i++) {
+            for (int j = i + 1; j < appointments.size(); j++) {
+                if (appointments.get(i).hasTimeConflict(appointments.get(j))) {
                     return false;
                 }
             }
         }
         return true;
     }
+
 }
