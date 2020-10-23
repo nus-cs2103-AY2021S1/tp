@@ -1,18 +1,18 @@
 package seedu.address.model.recipe;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 
 /**
  * Tests that a {@code Recipe}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate extends RecipeContainsKeywordsPredicate
-        implements Predicate<Recipe> {
+public class NameContainsKeywordsPredicate implements RecipeContainsKeywordsPredicate {
+
+    protected final List<String> keywords;
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
-        super(keywords);
+        this.keywords = keywords;
     }
 
     @Override
