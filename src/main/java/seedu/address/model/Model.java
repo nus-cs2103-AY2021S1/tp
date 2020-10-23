@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -180,6 +181,13 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
      */
     void updateFilteredMeetingList(Predicate<CalendarMeeting> predicate);
 
-    void sortMeeting();
+    /** Returns an unmodifiable view of the sorted meeting list */
+    ObservableList<CalendarMeeting> getSortedMeetingList();
+
+    /**
+     * Updates the comparator of the sorted meeting list to filter by the given {@code compatator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updateSortedMeetingList(Comparator<CalendarMeeting> comparator);
 
 }
