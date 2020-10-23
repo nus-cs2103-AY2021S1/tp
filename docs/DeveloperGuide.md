@@ -332,7 +332,14 @@ as overwriting a file is irreversible and would be disastrous for zookeepers if 
 #### Implementation
 
 This section explains the implementation of the Sort command feature in the ZooKeepBook. This feature is used to sort the animals based on the different categories: **name, id or feedtime**.
+<<<<<<< HEAD
 
+=======
+* For the animal name, it will be in alphabetical order.
+* For the animal id, it will be in increasing order.
+* For the animal feed time, it will be from earliest to latest. 
+  
+>>>>>>> a904570e8a2308a94048dee8f61047e06b869435
 The following sequence diagram shows the Logic and Model Components when a sort command is being executed:
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
@@ -480,17 +487,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AnimalBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ZooKeepBook` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add an animal**
 
 **MSS**
 
-1. User specifies the add command with name, species and ID of animal
+1. User specifies the add command with name, ID and species of animal
 
-2. AnimalBook adds the animal
+2. ZooKeepBook adds the animal
 
-3. AnimalBook refreshes to show the updated list
+3. ZooKeepBook shows the new animal added
+
+4. ZooKeepBook refreshes to show the updated list
 
    Use case ends
 
@@ -498,15 +507,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The command is incorrectly formatted
 
-  AnimalBook shows an error message
+  * 1a1. ZooKeepBook shows an error message
 
-  Use case resumes at step 1
+  * Use case resumes at step 1
 
 * 2a. The given ID is already taken
 
-  AnimalBook shows an error message
+  * 2a1. ZooKeepBook shows an error message
 
-  Use case resumes at step 1
+  * Use case resumes at step 1
 
 **Use case: Delete an animal**
 
@@ -514,9 +523,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User specifies the delete command with ID of animal
 
-2. AnimalBook deletes the animal
+2. ZooKeepBook deletes the animal
 
-3. AnimalBook refreshes to show the updated list
+3. ZooKeepBook shows the deleted animal
+
+4. ZooKeepBook refreshes to show the updated list
 
    Use case ends
 
@@ -524,15 +535,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The command is incorrectly formatted
 
-  AnimalBook shows an error message
+  * 1a1. ZooKeepBook shows an error message
 
-  Use case resumes at step 1
+  * Use case resumes at step 1
 
 * 2a. The given ID does not exist
 
-  AnimalBook shows an error message
+  * 2a1. ZooKeepBook shows an error message
 
-  Use case resumes at step 1
+  * Use case resumes at step 1
 
 **Use case: List all animals**
 
@@ -540,7 +551,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User specifies the list command
 
-2. AnimalBook displays list of all existing animals
+2. ZooKeepBook displays list of all existing animals
 
    Use case ends
 
@@ -550,7 +561,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User specifies the exit command
 
-2. AnimalBook quits
+2. ZooKeepBook quits
 
    Use case ends
 
@@ -560,10 +571,92 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User specifies the help command
 
-2. AnimalBook displays list of all available commands
+2. ZooKeepBook displays list of all available commands
+
+   Use case ends
+   
+**Use case: Find animals based on keywords**
+
+**MSS**
+
+1. User specifies the keywords (case-insensitive) regarding an animal's name, id, species, medical condition or feed time
+
+2. ZooKeepBook searches for all animals with any of the exact keywords
+
+3. ZooKeepBook shows the list of animals with any of those keywords
 
    Use case ends
 
+**Extensions**
+
+* 1a. The command is incorrectly formatted
+
+  * 1a1. ZooKeepBook shows an error message
+
+  * Use case resumes at step 1
+  
+**Use case: Sort all animals**
+
+**MSS**
+
+1. User specifies the sort command and the specific category (name, id or feedtime)
+
+2. ZooKeepBook sorts the animals according to the category
+
+3. ZooKeepBook shows a success message
+
+4. ZooKeepBook refreshes to show the sorted list
+
+   Use case ends
+
+**Extensions**
+
+* 1a. The command is incorrectly formatted
+
+  * 1a1. ZooKeepBook shows an error message
+
+  * Use case resumes at step 1
+
+**Use case: Undo last command**
+
+**MSS**
+
+1. User enters undo command.
+
+2. ZooKeepBook reverts to the state before last command was made.
+
+3. ZooKeepBook shows a success message
+
+   Use case ends
+
+**Extensions**
+
+* 2a. There is no previous state to revert to.
+
+  * 2a1. ZooKeepBook shows an error message
+
+  * Use case ends
+
+**Use case: Redo last undo**
+
+**MSS**
+
+1. User enters redo command.
+
+2. ZooKeepBook reverts to the state before undo command was made.
+
+3. ZooKeepBook shows a success message
+
+   Use case ends
+
+**Extensions**
+
+* 2a. There is no previous state to revert to.
+
+  * 2a1. ZooKeepBook shows an error message
+
+  * Use case ends
+  
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
