@@ -216,6 +216,69 @@ PlantUML, the lifeline reaches the end of diagram.
   * Pros: Will use less memory (only the information being used is copied into consumptionList).
   * Cons: Not future proof (need to restructure the whole command if wanted to show more information from the recipe)
 
+### Edit Recipe feature
+
+#### Implementation
+This feature allows users to edit an existing recipe its index in the recipe list.
+
+Substitutability is used in Command and Parser:
+* `EditRecipeCommand` extends `Command`
+* `EditRecipeCommandParser` implements `Parser<EditRecipeCommand>`
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+![EditRecipeSequence](images/EditRecipeSequence.png)
+
+1. User inputs the edit recipe command followed by an index specifying the recipe to edit, then the
+ values of fields to be modified.
+
+2. After successful parsing of user input, the `EditRecipeCommand#execute(Model model)` method is called.
+
+3. The recipe that the user has input will be saved into Wishful Shrinking's recipe list.
+
+4. After the successful adding of the recipe, a `CommandResult` object is instantiated and returned to
+ `LogicManager`.
+
+#### Design Considerations
+##### Aspect 1: Concern while adding a new feature
+* Workflow must be consistent with other edit commands e.g edit ingredient command.
+
+##### Aspect 2: How do we provide users with ease in editing an ingredient 
+* **Alternative 1 (current choice):** User can directly edit the command that added the existing recipe
+  * Pros: Easy for users to edit a recipe.
+  * Cons: Involves another command to set the command box to the command of the recipe to edit.
+
+* **Alternative 2:** User need to retype the existing recipe's field if they want to modify using the existing
+ recipe
+  * Pros: Easy to implement.
+  * Cons: Not user friendly.
+
+### Get Edit Recipe feature
+
+#### Implementation
+This feature allows users to get the command of an existing recipe to edit.
+
+Substitutability is used in Command and Parser:
+* `GetEditRecipeCommand` extends `Command`
+* `GetEditRecipeCommandParser` implements `Parser<GetEditRecipeCommand>`
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+![GetEditRecipeSequence](images/GetEditRecipeSequence.png)
+
+1. User inputs the get edit recipe command followed by an index specifying the recipe to edit.
+
+2. After successful parsing of user input, the `GetEditRecipeCommand#execute(Model model)` method is called.
+
+3. The edited recipe that the user has input will be saved into Wishful Shrinking's recipe list.
+
+4. After the successful adding of the recipe, a `CommandResult` object is instantiated and returned to
+ `LogicManager`.
+
+#### Design Considerations
+##### Aspect 1: Concern while adding a new feature
+* Workflow must be consistent with other get edit commands e.g get edit ingredient command.
+
 ### List Consumption feature
 
 List Consumption feature is used to list out all the recipes that user ate. This feature will also calculate 
@@ -367,6 +430,71 @@ The following sequence diagram shows how list ingredients operation works when `
 #### Design consideration:
 ##### Aspect 1: Concern while adding a new feature
 * Workflow must be consistent with other listing commands e.g. fridge and calories.
+
+### Edit Ingredient feature
+
+#### Implementation
+This feature allows users to edit an existing ingredient in the fridge using its index in the ingredient list.
+
+Substitutability is used in Command and Parser:
+* `EditIngredientCommand` extends `Command`
+* `EditIngredientCommandParser` implements `Parser<EditIngredientCommand>`
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+![EditIngredientSequence](images/EditIngredientSequence.png)
+
+1. User inputs the edit ingredient command followed by an index specifying the ingredient to edit, then the
+ values of
+  fields to be modified.
+
+2. After successful parsing of user input, the `EditIngredientCommand#execute(Model model)` method is called.
+
+3. The ingredient that the user has input will be saved into Wishful Shrinking's fridge of ingredients.
+
+4. After the successful adding of the ingredient, a `CommandResult` object is instantiated and returned to
+ `LogicManager`.
+
+#### Design Considerations
+##### Aspect 1: Concern while adding a new feature
+* Workflow must be consistent with other edit commands e.g edit recipe command.
+
+##### Aspect 2: How do we provide users with ease in editing an ingredient 
+* **Alternative 1 (current choice):** User can directly edit the command that added the existing ingredient
+  * Pros: Easy for users to edit an ingredient.
+  * Cons: Involves another command to set the command box to the command of the ingredient to edit.
+
+* **Alternative 2:** User need to retype the existing ingredient's field if they want to modify from the
+ existing ingredient
+  * Pros: Easy to implement.
+  * Cons: Not user friendly.
+
+### Get Edit Ingredient feature
+
+#### Implementation
+This feature allows users to get the command of an existing ingredient to edit.
+
+Substitutability is used in Command and Parser:
+* `GetEditIngredientCommand` extends `Command`
+* `GetEditIngredientCommandParser` implements `Parser<GetEditIngredientCommand>`
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+![GetEditIngredientSequence](images/GetEditIngredientSequence.png)
+
+1. User inputs the get edit ingredient command followed by an index specifying the ingredient to edit.
+
+2. After successful parsing of user input, the `GetEditIngredientCommand#execute(Model model)` method is called.
+
+3. The edited ingredient that the user has input will be saved into Wishful Shrinking's ingredient list.
+
+4. After the successful adding of the ingredient, a `CommandResult` object is instantiated and returned to
+ `LogicManager`.
+
+#### Design Considerations
+##### Aspect 1: Concern while adding a new feature
+* Workflow must be consistent with other get edit commands e.g get edit recipe command.
+
 
 ### Search Recipe feature
 
