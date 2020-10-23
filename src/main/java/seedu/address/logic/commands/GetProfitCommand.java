@@ -15,7 +15,6 @@ public class GetProfitCommand extends Command {
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) {
         requireAllNonNull(model, activeAccount);
-        assert false;
 
         Double totalRevenue = activeAccount.getTotalRevenue();
         Double totalExpenses = activeAccount.getTotalExpenses();

@@ -47,6 +47,9 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
     @FXML
+    private HBox accountNameBar;
+
+    @FXML
     private Label activeAccountName;
 
     @FXML
@@ -59,12 +62,12 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private HBox entryListGridPlaceholder;
+    private HBox entryListPlaceholder;
 
     @FXML
     private StackPane pieChartPlaceholder;
 
-    private PieChart pieChart;
+    private LabeledPieChart pieChart;
 
     @FXML
     private StackPane expenseListPanelPlaceholder;
@@ -141,10 +144,12 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
+    public void fillInnerParts() {
         fillEntryDisplay();
         createPieChart();
         updateActiveAccountName();
+
+        accountNameBar.getChildren().setAll(activeAccountName);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -156,35 +161,40 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().addAll(commandBox.getRoot());
     }
 
-    void fillEntryDisplay() {
+    private void fillEntryDisplay() {
         expenseListPanel = new ExpenseListPanel(logic.getFilteredExpenseList());
-        entryListGridPlaceholder.getChildren().add(expenseListPanel.getRoot());
+        entryListPlaceholder.getChildren().add(expenseListPanel.getRoot());
 
         revenueListPanel = new RevenueListPanel(logic.getFilteredRevenueList());
-        entryListGridPlaceholder.getChildren().add(revenueListPanel.getRoot());
+        entryListPlaceholder.getChildren().add(revenueListPanel.getRoot());
     }
 
     void updateActiveAccountName() {
         activeAccountName.setText(logic.getActiveAccountName().toString());
     }
 
+    private void updatePieChart() {
+        ObservableList<PieChart.Data> pieChartData = createPieChartDataFromLogic();
+        setPieChartData(pieChartData);
+    }
+
     void createPieChart() {
-        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-            new PieChart.Data("Expense", logic.getTotalExpense()),
-            new PieChart.Data("Revenue", logic.getTotalRevenue())
-        );
-        pieChart = new PieChart(pieChartData);
-        pieChart.setTitle("Summary");
+        ObservableList<PieChart.Data> pieChartData = createPieChartDataFromLogic();
+        pieChart = new LabeledPieChart();
+        setPieChartData(pieChartData);
         pieChart.setLegendSide(Side.LEFT);
         pieChartPlaceholder.getChildren().add(pieChart);
     }
 
-    void updatePieChart() {
-        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+    private ObservableList<PieChart.Data> createPieChartDataFromLogic() {
+        return FXCollections.observableArrayList(
             new PieChart.Data("Expense", logic.getTotalExpense()),
             new PieChart.Data("Revenue", logic.getTotalRevenue())
         );
-        pieChart.setData(pieChartData);
+    }
+
+    private void setPieChartData(ObservableList<PieChart.Data> pieChartData) {
+        pieChart.getData().setAll(pieChartData);
     }
 
     /**
