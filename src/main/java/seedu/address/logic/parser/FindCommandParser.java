@@ -14,15 +14,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.State;
-import seedu.address.model.task.Status;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
 import seedu.address.model.task.Title;
-import seedu.address.model.task.Type;
 
 
 /**
@@ -73,15 +70,12 @@ public class FindCommandParser implements Parser<FindCommand> {
             if (prefix.equals(PREFIX_DESCRIPTION) && !Description.isValidDescription(trimmed)) {
                 throw new ParseException(Description.SEARCH_CONSTRAINTS);
             }
-            if (prefix.equals(PREFIX_TYPE) && !Type.isValidType(trimmed)) {
-                throw new ParseException(Type.SEARCH_CONSTRAINTS);
+            if (prefix.equals(PREFIX_DATE_TIME) && !DateUtil.isValidSearchPhrase(trimmed)) {
+                throw new ParseException(DateUtil.SEARCH_CONSTRAINTS);
             }
-            if (prefix.equals(PREFIX_DATE_TIME) && !DateTime.isValidSearchPhrase(trimmed)) {
-                throw new ParseException(DateTime.SEARCH_CONSTRAINTS);
-            }
-            if (prefix.equals(PREFIX_STATUS) && State.toState(trimmed) == null) {
-                throw new ParseException(Status.SEARCH_CONSTRAINTS);
-            }
+//            if (prefix.equals(PREFIX_STATUS) && !Status.isValidStatus(trimmed)) {
+//                throw new ParseException(Status.SEARCH_CONSTRAINTS);
+//            } //now the status only have a boolean value of isCompleted.
         }
         values.forEach(val -> predicate.setKeyword(prefix, val));
     }

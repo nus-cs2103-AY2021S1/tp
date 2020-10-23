@@ -35,6 +35,9 @@ public class Duration {
         return isNull;
     }
 
+    public static boolean isValidDuration(int duration) {
+        return duration >= 0;
+    }
 
     @Override
     public String toString() {

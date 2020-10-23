@@ -20,11 +20,14 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
-import seedu.address.model.task.Type;
+import seedu.address.model.task.deadline.Deadline;
+import seedu.address.model.task.deadline.DeadlineDateTime;
+import seedu.address.model.task.event.EndDateTime;
+import seedu.address.model.task.event.Event;
+import seedu.address.model.task.event.StartDateTime;
 
 /**
  * Edits the details of an existing task in PlaNus task list.
@@ -75,6 +78,8 @@ public class EditCommand extends Command {
         }
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
+        checkEditability(taskToEdit);
+
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
         if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
@@ -86,6 +91,18 @@ public class EditCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 
+    private void checkEditability(Task task) throws CommandException {
+        if (task instanceof Event) {
+            if (((Event) task).isLesson()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_EVENT_EDIT_TYPE);
+            }
+        } else {
+            if (((Deadline) task).isDone()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_DEADLINE_EDIT_STATUS);
+            }
+        }
+    }
+
     /**
      * Creates and returns a {@code Task} with the details of {@code taskToEdit}
      * edited with {@code editTaskDescriptor}.
@@ -94,12 +111,16 @@ public class EditCommand extends Command {
         assert taskToEdit != null;
 
         Title updatedTitle = editTaskDescriptor.getTitle().orElse(taskToEdit.getTitle());
-        DateTime updatedDateTime = editTaskDescriptor.getDateTime().orElse(taskToEdit.getDateTime());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
-        Type updatedType = editTaskDescriptor.getType().orElse(taskToEdit.getType());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedTitle, updatedDateTime, updatedDescription, updatedType, updatedTags);
+        if (taskToEdit instanceof Deadline) {
+            Deadline deadlineToEdit = (Deadline) taskToEdit;
+            return Deadline.createDeadline(updatedTitle, deadlineToEdit.getDeadlineDateTime(), updatedDescription, updatedTags);
+        } else {
+            Event eventToEdit = (Event) taskToEdit;
+            return Event.createUserEvent(updatedTitle, eventToEdit.getStartDateTime(), eventToEdit.getEndDateTime(), updatedDescription, updatedTags);
+        }
     }
 
     @Override
@@ -120,15 +141,15 @@ public class EditCommand extends Command {
                 && editTaskDescriptor.equals(e.editTaskDescriptor);
     }
 
+
+
     /**
-     * Stores the details to edit the task with. Each non-empty field value will replace the
+     * Stores the details to edit the deadline with. Each non-empty field value will replace the
      * corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
         private Title title;
-        private DateTime dateTime;
         private Description description;
-        private Type type;
         private Set<Tag> tags;
 
         public EditTaskDescriptor() {}
@@ -139,9 +160,7 @@ public class EditCommand extends Command {
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setTitle(toCopy.title);
-            setDateTime(toCopy.dateTime);
             setDescription(toCopy.description);
-            setType(toCopy.type);
             setTags(toCopy.tags);
         }
 
@@ -149,7 +168,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, dateTime, description, type, tags);
+            return CollectionUtil.isAnyNonNull(title, description, tags);
         }
 
         public void setTitle(Title title) {
@@ -160,28 +179,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(title);
         }
 
-        public void setDateTime(DateTime dateTime) {
-            this.dateTime = dateTime;
-        }
-
-        public Optional<DateTime> getDateTime() {
-            return Optional.ofNullable(dateTime);
-        }
-
         public void setDescription(Description description) {
             this.description = description;
         }
 
         public Optional<Description> getDescription() {
             return Optional.ofNullable(description);
-        }
-
-        public void setType(Type type) {
-            this.type = type;
-        }
-
-        public Optional<Type> getType() {
-            return Optional.ofNullable(type);
         }
 
         /**
@@ -217,10 +220,9 @@ public class EditCommand extends Command {
             EditTaskDescriptor e = (EditTaskDescriptor) other;
 
             return getTitle().equals(e.getTitle())
-                    && getDateTime().equals(e.getDateTime())
                     && getDescription().equals(e.getDescription())
-                    && getType().equals(e.getType())
                     && getTags().equals(e.getTags());
         }
     }
+
 }

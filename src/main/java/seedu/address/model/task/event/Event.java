@@ -27,7 +27,7 @@ public class Event extends Task {
     /**
      * Every field must be present and not null.
      */
-    private Event(Title title, StartDateTime startDateTime, EndDateTime endDateTime, Description description,
+    public Event(Title title, StartDateTime startDateTime, EndDateTime endDateTime, Description description,
                   Set<Tag> tags, boolean isLesson) {
         super(title, description, tags);
         requireAllNonNull(startDateTime, endDateTime);

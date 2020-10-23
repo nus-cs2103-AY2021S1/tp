@@ -6,6 +6,9 @@ package seedu.address.model.task.deadline;
  */
 public class Status {
 
+    public static final String COMPLETE_TEXT = "complete";
+    public static final String INCOMPLETE_TEXT = "incomplete";
+
     public final boolean isCompleted;
 
     /**
@@ -30,12 +33,15 @@ public class Status {
         return new Status(false);
     }
 
+    public static boolean isComplete(String status) {
+        return status.equals(COMPLETE_TEXT);
+    }
     @Override
     public String toString() {
         if (isCompleted) {
-            return "completed";
+            return COMPLETE_TEXT;
         } else {
-            return "incomplete";
+            return INCOMPLETE_TEXT;
         }
     }
 

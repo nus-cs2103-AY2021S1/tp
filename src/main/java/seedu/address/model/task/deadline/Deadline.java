@@ -49,8 +49,16 @@ public class Deadline extends Task {
                 Duration.createNullDuration(), DoneDateTime.createNullDoneDateTime());
     }
 
-    public DeadlineDateTime getDateTime() {
+    public DeadlineDateTime getDeadlineDateTime() {
         return deadlineDateTime;
+    }
+
+    public DoneDateTime getDoneDateTime() {
+        return doneDateTime;
+    }
+
+    public int getDuration() {
+        return duration.valueInMinutes;
     }
 
     /**
@@ -79,7 +87,7 @@ public class Deadline extends Task {
 
         return otherDeadline != null
                 && otherDeadline.getTitle().equals(getTitle())
-                && otherDeadline.getDateTime().equals(getDateTime());
+                && otherDeadline.getDeadlineDateTime().equals(getDeadlineDateTime());
     }
 
     /**
@@ -106,7 +114,7 @@ public class Deadline extends Task {
 
         Deadline otherDeadline = (Deadline) other;
         return otherDeadline.getTitle().equals(getTitle())
-                && otherDeadline.getDateTime().equals(getDateTime())
+                && otherDeadline.getDeadlineDateTime().equals(getDeadlineDateTime())
                 && otherDeadline.getDescription().equals(getDescription())
                 && otherDeadline.getTags().equals(getTags())
                 && otherDeadline.getStatus().equals(getStatus());
@@ -123,7 +131,7 @@ public class Deadline extends Task {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
                 .append(" Done by: ")
-                .append(getDateTime())
+                .append(getDeadlineDateTime())
                 .append(" Description: ")
                 .append(getDescription())
                 .append(" Tags: ");

@@ -15,12 +15,12 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.stream.Stream;
 
+import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.commands.LessonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lesson.Date;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.Time;
-import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Title;
 
@@ -77,7 +77,7 @@ public class LessonCommandParser implements Parser<LessonCommand> {
         if (argMultimap.getValue(PREFIX_DAY).isPresent()) {
             dayOfWeek = ParserUtil.parseDay(argMultimap.getValue(PREFIX_DAY).get());
         } else {
-            throw new ParseException(DateTime.DAY_MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateUtil.DAY_MESSAGE_CONSTRAINTS);
         }
         requireAllNonNull(startDate, endDate, startTime, endTime, dayOfWeek);
         Lesson lesson = new Lesson(title, description, dayOfWeek, startTime, endTime, startDate, endDate);

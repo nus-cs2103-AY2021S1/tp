@@ -12,57 +12,59 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.State;
-import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
-import seedu.address.model.task.Type;
+import seedu.address.model.task.event.EndDateTime;
+import seedu.address.model.task.event.Event;
+import seedu.address.model.task.event.StartDateTime;
+
 
 
 /**
  * Jackson-friendly version of {@link Task}.
  */
-class JsonAdaptedTask {
+class JsonAdaptedEvent {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
-    private static final Logger logger = LogsCenter.getLogger(JsonAdaptedTask.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonAdaptedEvent.class);
 
     private final String title;
-    private final String dateTime;
+    private final String startDateTime;
+    private final String endDateTime;
     private final String description;
-    private final String type;
-    private final String status;
+    private final boolean isLesson;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("dateTime") String dateTime,
-           @JsonProperty("description") String description, @JsonProperty("type") String type,
-                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("status") String status) {
+    public JsonAdaptedEvent(@JsonProperty("title") String title, @JsonProperty("startDateTime") String startDateTime,
+                            @JsonProperty("endDateTime") String endDateTime,
+                            @JsonProperty("description") String description, @JsonProperty("isLesson") boolean isLesson,
+                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.title = title;
-        this.dateTime = dateTime;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
         this.description = description;
-        this.type = type;
+        this.isLesson = isLesson;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        this.status = status;
     }
 
     /**
      * Converts a given {@code Task} into this class for Jackson use.
      */
-    public JsonAdaptedTask(Task source) {
+    public JsonAdaptedEvent(Event source) {
         title = source.getTitle().title;
-        dateTime = source.getDateTime().toString();
+        startDateTime = source.getStartDateTime().toString();
+        endDateTime = source.getEndDateTime().toString();
         description = source.getDescription().value;
-        type = source.getType().value;
-        status = source.getStatus().value.toString();
+        isLesson = source.isLesson();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -75,7 +77,7 @@ class JsonAdaptedTask {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted task.
      */
-    public Task toModelType() throws IllegalValueException {
+    public Event toModelType() throws IllegalValueException {
         final List<Tag> taskTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             taskTags.add(tag.toModelType());
@@ -89,20 +91,30 @@ class JsonAdaptedTask {
         }
         final Title modelTitle = new Title(title);
 
-        if (dateTime == null) {
+        if (startDateTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    DateTime.class.getSimpleName()));
+                    StartDateTime.class.getSimpleName()));
         }
 
-        final DateTime modelDateTime;
+        final StartDateTime modelStartDateTime;
 
-        if (dateTime.equals("")) {
-            logger.info("Datetime for task with title: '" + title + "' is empty. Creating a default datetime for it");
-            modelDateTime = DateTime.defaultDateTime();
-        } else if (!DateTime.isValidDateTime(dateTime)) {
-            throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
+         if (!DateUtil.isValidDateTime(startDateTime) || startDateTime.equals("")) {
+            throw new IllegalValueException(DateUtil.MESSAGE_CONSTRAINTS);
         } else {
-            modelDateTime = new DateTime(dateTime);
+             modelStartDateTime = new StartDateTime(startDateTime);
+        }
+
+        if (endDateTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    StartDateTime.class.getSimpleName()));
+        }
+
+        final EndDateTime modelEndDateTime;
+
+        if (!DateUtil.isValidDateTime(endDateTime) || endDateTime.equals("")) {
+            throw new IllegalValueException(DateUtil.MESSAGE_CONSTRAINTS);
+        } else {
+            modelEndDateTime = new EndDateTime(endDateTime);
         }
 
         // tentatively description field is not allowed to be empty
@@ -121,22 +133,9 @@ class JsonAdaptedTask {
             modelDescription = new Description(description);
         }
 
-        if (type == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Type.class.getSimpleName()));
-        }
-        if (!Type.isValidType(type)) {
-            throw new IllegalValueException(Type.MESSAGE_CONSTRAINTS);
-        }
-        final Type modelType = new Type(type);
-
         final Set<Tag> modelTags = new HashSet<>(taskTags);
 
-        if (status == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
-        }
-        final Status modelStatus = new Status(State.toState(status));
-
-        return new Task(modelTitle, modelDateTime, modelDescription, modelType, modelTags, modelStatus);
+        return new Event(modelTitle, modelStartDateTime, modelEndDateTime, modelDescription, modelTags, isLesson);
     }
 
 }

@@ -32,9 +32,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DATE_TIME,
-                        PREFIX_DESCRIPTION, PREFIX_TYPE, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESCRIPTION, PREFIX_TAG);
         Index index;
 
         try {
@@ -47,16 +45,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {
             editTaskDescriptor.setTitle(ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get()));
         }
-        if (argMultimap.getValue(PREFIX_DATE_TIME).isPresent()) {
-            editTaskDescriptor.setDateTime(ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATE_TIME).get()));
-        }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editTaskDescriptor.setDescription(ParserUtil
                     .parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION)
                     .get()));
-        }
-        if (argMultimap.getValue(PREFIX_TYPE).isPresent()) {
-            editTaskDescriptor.setType(ParserUtil.parseType(argMultimap.getValue(PREFIX_TYPE).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);
 
