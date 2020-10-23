@@ -10,7 +10,7 @@ import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
  * @param <T> The type of the parameter.
  */
 public class OptionalParameter<T> extends AbstractParameter {
-    private ParameterConverter<T> converter;
+    private final ParameterConverter<T> converter;
     private Optional<T> value = Optional.empty();
 
     /**

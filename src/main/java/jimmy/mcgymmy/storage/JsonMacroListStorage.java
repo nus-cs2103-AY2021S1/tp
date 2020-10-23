@@ -18,7 +18,7 @@ public class JsonMacroListStorage implements MacroListStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonMacroListStorage.class);
 
-    private Path filePath;
+    private final Path filePath;
 
     public JsonMacroListStorage(Path filePath) {
         this.filePath = filePath;

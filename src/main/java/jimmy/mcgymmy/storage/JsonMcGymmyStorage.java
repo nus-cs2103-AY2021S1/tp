@@ -21,7 +21,7 @@ public class JsonMcGymmyStorage implements McGymmyStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonMcGymmyStorage.class);
 
-    private Path filePath;
+    private final Path filePath;
 
     public JsonMcGymmyStorage(Path filePath) {
         this.filePath = filePath;
