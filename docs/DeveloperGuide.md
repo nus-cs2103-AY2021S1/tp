@@ -214,14 +214,14 @@ While not itself a component, various utility types are placed in the `chopchop.
 -----------------------------
 ## **Implementation Details**
 
-This section explains, in detail, the implemenation of some noteworthy features.
+This section explains, in detail, the implementation of some noteworthy features.
 
 
 ### Command Parser
 
 Main developer: **zhiayang**
 
-The command parser is part of the *Logic* component, and is responsible for taking the input command as a string and either returning a valid `Command` to be executed, or a sensible error message.
+The command parser is part of the *Logic* component, and is responsible for taking the input command as a string and either returning a valid `Command` to be executed, or a sensible error message. It was completely rewritten due to the requirement of different parsing semantics.
 
 Shown below is the class diagram for the various Parser components:
 <div style="text-align: center; padding-bottom: 2em">
@@ -229,7 +229,7 @@ Shown below is the class diagram for the various Parser components:
 Figure 9: <i>The class diagram for the parser</i>
 </div>
 
-Notably, there are various wrapper classes to ensure type safety, namely `ArgName`, `CommandArguments`, and `ItemReference`, used instead of passing raw strings around in an error-prone manner.
+Notably, there are various wrapper classes to ensure type safety, namely `CommandArguments`, `ArgName`, and `ItemReference`, used instead of passing raw strings around in an error-prone manner.
 
 Furthermore, instead of pointlessly instantiating objects that do not store any state, all of the parsing work (save the main `CommandParser`) is done by static methods, in the various `_CommandParser` classes (eg. `AddCommandParser`, `ListCommandParser`).
 
