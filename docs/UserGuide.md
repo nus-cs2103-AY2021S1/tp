@@ -178,6 +178,8 @@ Format: `find-d PREFIX KEYWORD [MORE_KEYWORDS]`
 * Any phone/address/order containing the search string within them will be matched. e.g. "Holland V" will match "Holland Village"
 * Items matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Bernice Adam` will return `Bernice Yeo`, `Adam Tan`
+* More than one Prefix can be specified (i.e. `AND` search).
+  e.g. 'find-d n/Bernice p/85783742' will return delivery matching name and phone.
 
 Examples:
 * `find-d n/John` returns `John Tay` and `John Lim`'s deliveries
