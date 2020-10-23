@@ -130,6 +130,7 @@ For simplicity, we only show 2 example persons, david and ben. The user can view
 
 Step 2. The user executes `archive 2` command to archive the 2nd person (ben) in the client list. 
 The `archive` command creates a new `Person` with `isArchive` set to `true`, then calls `Model#setPerson(originalPerson, editedPerson)` to update the model.
+
 This is followed by `Model#updateFilteredPersonList(PREDICATE_SHOW_ALL_ACTIVE_PERSONS)` to view all the active persons, 
 where `PREDICATE_SHOW_ALL_ACTIVE_PERSONS` is used to filter `Person`s with `isArchive` set to `false`. 
 
@@ -163,23 +164,25 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ##### Potential issues with other commands and Resolutions
 
-Since the archive is implemented using predicate filtering, it might potentially conflict with FindCommand, 
+Since the archive is implemented using predicate filtering, it might potentially conflict with `FindCommand`, 
 if it were to be implemented in future. However, this can be easily resolved using predicate composition with conjunction 
-(AND) logic, a method already available in Java’s Predicates. 
+(AND) logic, a method already available in `Java`’s `Predicate`s. 
 
-As an example, predicate1 could be a filter for archive, and predicate2 could be from the find command:
+As an example, `predicate1` could be a filter for archive, and `predicate2` could be from the find command:
 
-`Predicate<Person> composedPredicate = predicate1.and(predicate2);`
+```java11
+Predicate<Person> composedPredicate = predicate1.and(predicate2);
+```
 
 ##### Aspect: How archive executes
 
 * **Alternative 1 (current choice):** Uses a variable in `Person` to track if he is in the archive.
   * Pros: Easy to implement.
-  * Cons: With an additional variable in the Person class, we must ensure that the reading and updating of the variable is correct. 
-  A Person would also “know” that he is archived or not, which may not be that ideal.
+  * Cons: With an additional variable in the `Person` class, we must ensure that the reading and updating of the variable is correct. 
+  A `Person` would also “know” that he is archived or not, which may not be that ideal.
 
 * **Alternative 2:** Have a separate storage for archive.
-  * Pros: A more intuitive solution, and only storage "knows" about the presence of an archive.
+  * Pros: A more intuitive solution, and only `Storage`-related modules "knows" about the presence of an archive.
   * Cons: We must ensure that the implementation the reading and saving of the 2 different storages, and updating of the models are correct, which is time-consuming.
 
 --------------------------------------------------------------------------------------------------------------------
