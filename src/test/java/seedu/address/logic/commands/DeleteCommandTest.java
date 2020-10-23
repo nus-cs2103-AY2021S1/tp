@@ -31,14 +31,17 @@
 //
 //    @Test
 //    public void execute_validIndexUnfilteredList_success() {
-//        Assignment assignmentToDelete = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
-//        List<Index> assignments = new ArrayList<>(INDEX_FIRST_ASSIGNMENT, INDEX_SECOND_ASSIGNMENT);
-//        DeleteCommand deleteCommand = new DeleteCommand(assignments);
+//        Assignment firstAssignmentToDelete = model.getFilteredAssignmentList()
+//        .get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
 //
-//        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, assignmentToDelete);
+//        List<Index> assignmentIndexesToDelete = new ArrayList<>();
+//        assignmentIndexesToDelete.add(INDEX_FIRST_ASSIGNMENT);
+//        DeleteCommand deleteCommand = new DeleteCommand(assignmentIndexesToDelete);
+//
+//        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, assignmentIndexesToDelete);
 //
 //        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), null);
-//        expectedModel.deleteAssignment(assignmentToDelete);
+//        expectedModel.deleteAssignment(firstAssignmentToDelete);
 //
 //        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
 //    }
