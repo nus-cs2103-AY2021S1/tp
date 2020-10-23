@@ -83,8 +83,7 @@ public class Ingredient extends Entry {
         this.sets = sets;
         this.tags = (tags == null
             ? new HashSet<>()
-            : new HashSet<>(tags)
-        );
+            : new HashSet<>(tags));
     }
 
     public Quantity getQuantity() {
