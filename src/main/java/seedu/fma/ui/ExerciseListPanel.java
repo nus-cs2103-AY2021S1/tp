@@ -13,7 +13,6 @@ import seedu.fma.model.exercise.Exercise;
  */
 public class ExerciseListPanel extends UiPart<Region> {
     private static final String FXML = "ExerciseListPanel.fxml";
-    //private final Exerciseger exerciseger = ExercisesCenter.getExerciseger(ExerciseListPanel.class);
 
     @FXML
     private ListView<Exercise> exerciseListView;
@@ -36,6 +35,7 @@ public class ExerciseListPanel extends UiPart<Region> {
             super.updateItem(exercise, empty);
 
             if (empty || exercise == null) {
+                assert exercise == null;
                 setGraphic(null);
                 setText(null);
             } else {
