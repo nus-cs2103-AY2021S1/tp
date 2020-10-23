@@ -303,6 +303,9 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Food> getFilteredFoodList(int index) {
         //todo the filteredFoods need to be changed
+        if (index < 0) {
+            return filteredFoods;
+        }
         if (menuManagers.get(index).getFoodList() == null) {
             updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS, index);
         }

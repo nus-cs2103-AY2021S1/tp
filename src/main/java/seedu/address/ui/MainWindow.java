@@ -117,12 +117,14 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
-        vendorListPanel = new VendorListPanel(logic.getFilteredVendorList());
-        vendorListPanelPlaceholder.getChildren().add(vendorListPanel.getRoot());
-
+    void fillInnerParts(boolean bool) {
         foodListPanel = new FoodListPanel(logic.getFilteredFoodList());
         foodListPanelPlaceholder.getChildren().add(foodListPanel.getRoot());
+        setFoodListDisplay(bool);
+
+        vendorListPanel = new VendorListPanel(logic.getFilteredVendorList());
+        vendorListPanelPlaceholder.getChildren().add(vendorListPanel.getRoot());
+        setVendorListDisplay(!bool);
 
         orderItemListPanel = new OrderItemListPanel(logic.getFilteredOrderItemList());
         orderItemListPanelPlaceholder.getChildren().add(orderItemListPanel.getRoot());
@@ -135,8 +137,6 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-
-        displayMenu(true);
     }
 
     /**
@@ -165,9 +165,9 @@ public class MainWindow extends UiPart<Stage> {
      * Displays menu if boolean is true, otherwise display vendor list.
      */
     void displayMenu(boolean bool) {
-        setVendorListDisplay(bool);
+        setVendorListDisplay(!bool);
         setFoodListDisplay(bool);
-        setOrderItemListDisplay(bool);
+        setOrderItemListDisplay(true);
     }
 
     /**
