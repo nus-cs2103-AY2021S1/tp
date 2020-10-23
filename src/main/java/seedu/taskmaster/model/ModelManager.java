@@ -12,8 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.taskmaster.commons.core.GuiSettings;
 import seedu.taskmaster.commons.core.LogsCenter;
-import seedu.taskmaster.model.session.AttendanceType;
-import seedu.taskmaster.model.session.StudentRecord;
+import seedu.taskmaster.model.record.AttendanceType;
+import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.student.Student;
 

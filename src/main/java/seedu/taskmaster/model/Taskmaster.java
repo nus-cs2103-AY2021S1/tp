@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
-import seedu.taskmaster.model.session.AttendanceType;
-import seedu.taskmaster.model.session.StudentRecord;
-import seedu.taskmaster.model.session.StudentRecordList;
-import seedu.taskmaster.model.session.StudentRecordListManager;
+import seedu.taskmaster.model.record.AttendanceType;
+import seedu.taskmaster.model.record.StudentRecord;
+import seedu.taskmaster.model.record.StudentRecordList;
+import seedu.taskmaster.model.record.StudentRecordListManager;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.student.Student;
 import seedu.taskmaster.model.student.UniqueStudentList;

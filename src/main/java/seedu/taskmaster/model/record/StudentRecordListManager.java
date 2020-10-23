@@ -1,4 +1,4 @@
-package seedu.taskmaster.model.session.record;
+package seedu.taskmaster.model.record;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.taskmaster.commons.util.CollectionUtil.requireAllNonNull;

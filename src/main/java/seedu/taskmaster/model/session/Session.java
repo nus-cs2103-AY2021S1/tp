@@ -1,8 +1,8 @@
 package seedu.taskmaster.model.session;
 
-import seedu.taskmaster.model.session.record.StudentRecord;
-import seedu.taskmaster.model.session.record.StudentRecordList;
 import javafx.collections.ObservableList;
+import seedu.taskmaster.model.record.StudentRecord;
+import seedu.taskmaster.model.record.StudentRecordList;
 
 /**
  * Represents a tutorial session conducted by a teaching assistant.

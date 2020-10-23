@@ -12,7 +12,7 @@ import seedu.taskmaster.commons.exceptions.DataConversionException;
 import seedu.taskmaster.model.ReadOnlyTaskmaster;
 import seedu.taskmaster.model.ReadOnlyUserPrefs;
 import seedu.taskmaster.model.UserPrefs;
-import seedu.taskmaster.model.session.StudentRecord;
+import seedu.taskmaster.model.record.StudentRecord;
 
 /**
  * Manages storage of Taskmaster data in local storage.

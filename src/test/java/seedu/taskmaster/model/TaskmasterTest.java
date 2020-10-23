@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.taskmaster.model.session.StudentRecord;
+import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.student.Student;
 import seedu.taskmaster.model.student.exceptions.DuplicateStudentException;
 import seedu.taskmaster.testutil.StudentBuilder;

@@ -1,4 +1,4 @@
-package seedu.taskmaster.model.session.record;
+package seedu.taskmaster.model.record;
 
 import seedu.taskmaster.model.student.Name;
 import seedu.taskmaster.model.student.NusnetId;

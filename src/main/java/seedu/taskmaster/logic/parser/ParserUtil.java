@@ -9,7 +9,7 @@ import java.util.Set;
 import seedu.taskmaster.commons.core.index.Index;
 import seedu.taskmaster.commons.util.StringUtil;
 import seedu.taskmaster.logic.parser.exceptions.ParseException;
-import seedu.taskmaster.model.session.AttendanceType;
+import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.student.Email;
 import seedu.taskmaster.model.student.Name;
 import seedu.taskmaster.model.student.NusnetId;
