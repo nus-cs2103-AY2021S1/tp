@@ -710,7 +710,7 @@ The following sequence diagram shows how the Logic aspect of the statistics feat
 
 The following sequence diagram shows how the Ui aspect of the statistics feature works for **Example 1**:
 
-![Statistics-Ui Example 1](images/StatisticsCommandSequenceDiagramUiExample1.png
+![Statistics-Ui Example 1](images/StatisticsCommandSequenceDiagramUiExample1.png)
 
 #### Activity Diagram
 
@@ -816,6 +816,40 @@ The utilities provided inside are:
 * `SortUtil#generateQuantityComparator()` <br>
   Generates a comparator based on quantity field. It will compare two quantity `q1`, `q2` and have the same exact
   behaviour as `SortUtil#generateNameComparator()`. This method by default sort by quantity in ascending order.
+
+#### Example Usage Scenario
+
+Given below are some example usage scenarios and how the sort mechanism behaves at each step.
+
+**Example 1: Sort by name and in ascending order**
+
+Step 1. The user enters `sort o/ascending by/name` to the CLI.
+
+Step 2. The command word `sort` is extracted out in `StockBookParser` and checked if it matches any valid command word.
+
+Step 3. `sort` is a valid command word. User input prefixes and their values are passed down to `SortCommandParser#parse()`
+
+Step 4. `SortCommandParser#parse()` will check if the prefixes `o/` and `by/` both exist.
+
+Step 5. Both prefixes exist. `SortCommandParser#parse()` will extract the value of the prefix `o/` which in this case is
+`ascending` and create a new enum `Order` with value `ASCENDING`.
+
+Step 6. Since the `Order` is `ASCENDING`, `isReversed` will be set to `false`.
+
+Step 7. `SortCommandParser#parse()` will extract the value of the prefix `by/` which in this case is `name`
+and create a new enum `Field` with value `NAME`
+
+Step 8. The method returns a new `SortCommand` with the `NAME` and `isReversed` as its arguments.
+
+Step 9. `LogicManager` calls `SortCommand#execute()`. `SortCommand#execute()` generates the comparator based on
+the field and `isReversed`.
+
+Step 10. `SortCommand#execute()` calls `Model#sortFilteredStockList()` and sorts the inventory.
+
+Step 11. `SortCommand#execute()` returns the `CommandResult`. The message generated is based on the field sorted.
+
+Step 12. The sort success message is displayed to the user.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
