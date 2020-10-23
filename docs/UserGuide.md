@@ -128,7 +128,7 @@ Examples:
 * `list` followed by `done 2 3` marks the 2nd and the 3rd tasks in the results of the `list` command status to be done.
 * `find title:homework` followed by `done 1` marks the 1st task in the results of the `find` command status to be done.
 
-### Find a task by attribute: `find`
+### Find a task by an attribute: `find`
 
 Finds a task by a set of defined attributes.
 
