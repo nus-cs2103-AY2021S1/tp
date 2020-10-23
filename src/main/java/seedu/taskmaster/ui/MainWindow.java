@@ -57,7 +57,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem studentPage;
 
     @FXML
-    private Menu attendanceMenu;
+    private Menu studentRecordMenu;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -77,14 +77,14 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
 
         //add menu items
-        MenuItem newMenuItem = new MenuItem("StudentRecord");
+        MenuItem newMenuItem = new MenuItem("Student Record List");
         newMenuItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 fillInnerParts2(0);
             }
         });
-        attendanceMenu.getItems().add(newMenuItem);
+        studentRecordMenu.getItems().add(newMenuItem);
     }
 
     public Stage getPrimaryStage() {
@@ -146,7 +146,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up with attendance instead.
      */
     void fillInnerParts2(int index) {
-        assert index > 0;
+        assert index >= 0;
         studentRecordListPanel = new StudentRecordListPanel(logic.getFilteredStudentRecordList());
         viewListPanelPlaceholder.getChildren().add(studentRecordListPanel.getRoot());
 
