@@ -2,22 +2,32 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
+1. Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+-----------------
 
-## **Setting up, getting started**
+## **Introduction**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+For more information on the ChopChop application itself, read the [_User Guide_](UserGuide.md) instead.
 
---------------------------------------------------------------------------------------------------------------------
+This developer guide specifies the design architecture and details some of the software design decisions in the implementation of the ChopChop application. It is intended to be read by contributors, testers, and future maintainers.
 
+## **Setting Up**
+
+To setup the development environment, refer to [_Setting up and getting started_](SettingUp.md).
+
+-------------
 ## **Design**
 
-### Architecture
+This section of the developer guide details the overall design of ChopChop, including the various subcomponents and how they fit together.
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+### Component Architecture
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ArchitectureDiagram.png" width="450" /> <br />
+Figure 1: <i>The architecture diagram of ChopChop</i>
+</div>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -27,103 +37,265 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/MainApp.java). It is responsible for:
+* During launch: initialising the components in the correct sequence, and connecting them up with each other.
+* During shutdown: shutting down the components and invoking cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
-The rest of the App consists of four components.
+The rest of the App broadly consists of these four components:
 
-* [**`UI`**](#ui-component): The UI of the App.
+* [**`UI`**](#ui-component): The user interface (UI).
 * [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`Model`**](#model-component): The in-memory data manager.
+* [**`Storage`**](#storage-component): The on-disk data manager.
 
-Each of the four components,
+Each of these components:
+* defines its *API* in an `interface` with the same name as the component.
+* exposes its functionality using a concrete `{Component Name}Manager` class, implementing the corresponding `interface`.
 
-* defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+For example, the `Logic` component defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements said interface.
 
-For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
-
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete recipe #1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete recipe #1`:
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ArchitectureSequenceDiagram.png" width="574" /> <br />
+Figure 2: <i>A sequence diagram showing the execution of <code>delete recipe #1</code></i>
+</div>
 
-The sections below give more details of each component.
 
-### UI component
+The following sections break down the various components in greater detail.
 
-![Structure of the UI Component](images/UiClassDiagram.png)
 
-**API** :
-[`Ui.java`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/ui/Ui.java)
+
+
+----------------
+### UI Component
+
+The *UI* component is responsible for all the user-facing views in the graphical user interface. This includes displaying recipes and ingredients, receiving command input from the user, and printing command results to the user.
+
+The class diagram of the UI component is shown below:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UiClassDiagram.png" /> <br />
+Figure 3: <i>The class diagram of the UI component</i>
+</div>
+
+**Interface**: [`Ui.java`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`HelpWindow`, `PinBox`, `CommandOutput`, `DisplayController`. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The graphical user interface is built using the JavaFX UI framework. The layout of these parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/resources/view/MainWindow.fxml).
 
-The `UI` component,
+The `UI` component:
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
-TODO: Update to actually reflect proper Logic structure
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)
 
-**API** :
-[`Logic.java`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/logic/Logic.java)
 
-1. `Logic` uses the `CommandParser` class to parse the user command.
+
+-------------------
+### Logic Component
+
+The *Logic* component is responsible for parsing command input, executing commands, and updating the Model component of any changes to data caused by running a command.
+
+The class diagram of the Logic component is shown below:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/LogicClassDiagram.png" /> <br />
+Figure 4: <i>The class diagram of the Logic component</i>
+</div>
+
+**Interface**: [`Logic.java`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/logic/Logic.java)
+
+This is the general flow of events when a command is executed:
+1. `Logic` uses its `CommandParser` to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
-1. After command execution, the command is saved by the `HistoryManager` to keep track of command history and allow for undoing/redoing of commands.
+1. After command execution, the command is saved by the `HistoryManager` to keep track of command history, and to allow for undoing/redoing of commands.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete recipe #1")` API call.
+For example, this is a sequence diagram showing the deletion of a recipe:
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/DeleteSequenceDiagram.png" /> <br />
+Figure 5: <i>A sequence diagram showing the execution of <code>delete recipe #1</code> in the Logic component</i>
+</div>
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-### Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/model/Model.java)
 
-The `Model`,
 
-* stores a `UserPref` object that represents the user’s preferences.
-* stores the recipe and ingredient book data.
-* exposes an unmodifiable `ObservableList<Recipe>` and `ObservableList<Ingredient>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
 
-### Storage component
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/storage/Storage.java)
 
-The `Storage` component,
-* can save `UserPref` objects in json format and read it back.
-* can save the recipe and ingredient book data in json format and read it back.
+-------------------
+### Model Component
 
-### Common classes
+The *Model* component is responsible for holding the data of the application (eg. the recipes and ingredients) in-memory during execution, and mediating access to this data for each of the other components of the system.
 
-Classes used by multiple components are in the `chopchop.commons` package.
+The class diagram of the *Model* component is shown below:
 
---------------------------------------------------------------------------------------------------------------------
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ModelClassDiagram.png" /> <br />
+Figure 6: <i>The class diagram of the Model component</i>
+</div>
 
-## **Implementation**
+**Interface**: [`Model.java`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/model/Model.java)
 
-This section describes some noteworthy details on how certain features are implemented.
+The Model component:
+* Stores a `UserPref` object that represents the user's preferences.
+* Stores the recipe and ingredient book data.
+* Exposes an `ObservableList` of both `Recipe` and `Ingredient`, for UI component to observe and update its graphical interface.
+
+
+Of note in the Model component are the `Recipe` and `Ingredient` classes; below is the class diagram for both:
+<div style="text-align: center; padding-bottom: 2em">
+<h2 style="background-color: pink">TODO: class diagram for Recipe and Ingredient</h2>
+Figure 7: <i>The class diagram for Recipes and Ingredients</i>
+</div>
+
+Note that an instance of `Recipe` only stores `IngredientReferences` to the ingredients it uses, and not the actual `Ingredients` themselves — since the actual instance of the ingredient that will be used by the recipe is indeterminate.
+
+Only when a recipe is made are the references are resolved to their actual ingredient.
+
+
+
+---------------------
+### Storage Component
+
+The storage component is responsible for the saving and loading of both the user preferences, and more importantly the recipe and ingredient data, to and from disk. Both pieces of data are stored in Javascript Object Notation (JSON) files, which is a human-readable (and editable) plain-text format.
+
+Currently, the Jackson library is used for (de)serialisation.
+
+The class diagram of the *Storage* component is shown below:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/StorageClassDiagram.png"> <br />
+Figure 8: <i>The class diagram of the Storage component</i>
+</div>
+
+**Interface**: [`Storage.java`](https://github.com/AY2021S1-CS2103T-T10-3/tp/blob/master/src/main/java/chopchop/storage/Storage.java)
+
+As mentioned above, the `Storage` component:
+* Saves and loads `UserPref`.
+* Saves and loads the *Recipe Book* and the *Ingredient Book*.
+
+Each entity (eg. `Recipe`, `IngredientSet`) that needs to be saved has a corresponding `JsonAdapted{X}` class in the `chopchop.storage` package. This adapter class is responsible for converting, using Jackson, the 'normal' objects to a string representation (or to another adapter class), and to convert this string representation back to a 'normal' object.
+
+For example, the `Ingredient` class has a corresponding `JsonAdaptedIngredient` that saves and loads the ingredient's name, quantities, and expiry dates.
+
+
+
+------------------
+### Utility Classes
+
+While not itself a component, various utility types are placed in the `chopchop.commons` package; these are used by all the components in ChopChop, and comprise three sub-parts in their respective packages:
+
+1. `core` contains classes to handle GUI settings, logging, and versioning.
+2. `exceptions` contains exception types common across ChopChop.
+3. `util` contains utility classes for file IO and argument validation, as well as functional types.
+
+
+
+
+
+
+
+
+
+-----------------------------
+## **Implementation Details**
+
+This section explains, in detail, the implementation of some noteworthy features.
+
+
+### Command Parser
+
+Main developer: **zhiayang**
+
+The command parser is part of the *Logic* component, and is responsible for taking the input command as a string and either returning a valid `Command` to be executed, or a sensible error message. It was completely rewritten due to the requirement of different parsing semantics.
+
+Shown below is the class diagram for the various Parser components:
+<div style="text-align: center; padding-bottom: 2em">
+<h2 style="background-color: pink">TODO: class diagram for Parser stuff</h2>
+Figure 9: <i>The class diagram for the parser</i>
+</div>
+
+Notably, there are various wrapper classes to ensure type safety, namely `CommandArguments`, `ArgName`, and `ItemReference`, used instead of passing raw strings around in an error-prone manner.
+
+Furthermore, instead of pointlessly instantiating objects that do not store any state, all of the parsing work (save the main `CommandParser`) is done by static methods, in the various `_CommandParser` classes (eg. `AddCommandParser`, `ListCommandParser`).
+
+One of the more complex commands to parse is the `add recipe` command; here is the sequence diagram detailing how it is parsed:
+<div style="text-align: center; padding-bottom: 2em">
+<h2 style="background-color: pink">TODO: sequence diagram for <code>add recipe</code></h2>
+Figure 10: <i>A sequence diagram for parsing an <code>add recipe</code> command</i>
+</div>
+
+
+<h4>Design Considerations</h4>
+**1. Use of exceptions**
+
+The parser written in an exception-free manner, using monadic result types (`Result`, `Optional`) instead.
+  - Option A: use exceptions
+    - Pros: easier interfacing with the rest of ChopChop and existing AB3 code
+    - Cons: harder to visualise error source and propagation
+  - **Option B (chosen)**: use monadic types
+    - Pros: more explicit, easier to visualise error source and propagation
+    - Cons: harder to write
+
+**2. Numbered vs named item references**
+
+ChopChop allows referring to items (recipes and ingredients) both by their full name, as well as by its index number (as in AB3).
+
+  - Option A: allow only numbers
+    - Pros: easier to implement
+    - Cons: less intuitive for the user, index number can change as views are updated
+  - Option B: allow only names
+    - Pros: easier to implement
+    - Cons: full name of the ingredient or recipe might be tedious to type out each time
+  - **Option C (chosen)**: allow both
+    - Pros: best of both worlds
+    - Cons: slightly more code to implement
+
+
+
+
+
+### Quantity and Unit Handling
+
+Main developer: **zhiayang**
+
+blah blah blah blah
+
+
+
+<div style="height: 15em">
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 style="background-color: #1077ff">TODO: stuff below isn't done</h2>
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -139,7 +311,7 @@ These operations are exposed in the `Model` interface as `Model#commitAddressBoo
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialised with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
@@ -186,7 +358,7 @@ Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Sinc
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following activity diagram summarises what happens when a user executes a new command:
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
@@ -256,100 +428,100 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. User enters the details according to the format.
 3. FRMS displays a confirmation message with the new recipe.
 
-    Use case ends. 
+    Use case ends.
 
-**Extensions:**  
+**Extensions:**
 * 2a. FRMS detects invalid input format.
     * 2a1. FRMS displays error messages.
-    * 2a2. User enters new data. 
-	     Steps a-b are repeated until the data entered are correct.  
+    * 2a2. User enters new data.
+	     Steps a-b are repeated until the data entered are correct.
 	      User case resumes from step 3.
 * 2b. FRMS detects a duplicate recipe.
     * 2a1. FRMS displays error messages.
-    * 2a2. User enters new data. 
-	     Steps a-b are repeated until the data entered are correct.  
-	      User case resumes from step 3.	      
+    * 2a2. User enters new data.
+	     Steps a-b are repeated until the data entered are correct.
+	      User case resumes from step 3.
 
 
 **Use case: U2 - Delete recipe**
 
-**MSS:** 
+**MSS:**
 
 1. User chooses to delete a recipe.
 2. User enters the recipe name.
 3. FRMS displays a confirmation message.
 
-    Use case ends. 
+    Use case ends.
 
-**Extensions:**  
+**Extensions:**
 * 2a. FRMS detects invalid input format.
     * 2a1. FRMS displays error messages.
-    * 2a2. User enters new data. 
-	     Steps a-b are repeated until the data entered are correct.  
+    * 2a2. User enters new data.
+	     Steps a-b are repeated until the data entered are correct.
 	      User case resumes from step 3.
 * 2b. FRMS detects invalid input of recipe name.
     * 2a1. FRMS displays error messages.
-    * 2a2. User enters new data. 
-	     Steps a-b are repeated until the data entered are correct.  
+    * 2a2. User enters new data.
+	     Steps a-b are repeated until the data entered are correct.
 	      User case resumes from step 3.
 
 
 **Use case: U3 - View recipe**
 
-**MSS:** 
+**MSS:**
 
 1. User chooses to view all recipes.
 2. User requests for the recipes.
 3. FRMS display all the recipes.
 
-    Use case ends. 
+    Use case ends.
 
-**Extensions:**  
+**Extensions:**
 * 2a. FRMS detects invalid input format.
     * 2a1. FRMS displays error messages.
     * 2a2. User enters data according to the correct format.
-	     Steps a-b are repeated until the data entered are correct.  
+	     Steps a-b are repeated until the data entered are correct.
 	      User case resumes from step 3.
 
 
 **Use case: U4 - Filter recipes**
 
-**MSS:** 
+**MSS:**
 
 1. User chooses to view a list of filtered recipes.
 2. User enters the filter conditions.
 3. FMRS displays a filtered list of recipes.
 
-    Use case ends. 
+    Use case ends.
 
-**Extensions:**  
+**Extensions:**
 * 2a. FRMS detects invalid input format.
     * 2a1. FRMS displays error messages.
-    * 2a2. User enters new data. 
-	     Steps a-b are repeated until the data entered are correct.  
+    * 2a2. User enters new data.
+	     Steps a-b are repeated until the data entered are correct.
 	      User case resumes from step 3.
 * 2b. Filtered list does not contain any recipes.
     * 2a1. FRMS displays error messages.
-    * 2a2. User enters new data. 
-	     Steps a-b are repeated until the data entered are correct.  
+    * 2a2. User enters new data.
+	     Steps a-b are repeated until the data entered are correct.
 	      User case resumes from step 3.
 
 
 **Use case: U5 - List ingredients**
 
-**MSS:** 
+**MSS:**
 
 1. User chooses to view all ingredients.
 2. User inputs the command to request for the ingredients.
 3. FRMS shows the confirmation message and displays the complete list of ingredients.
 
-    Use case ends. 
-     
-**Extensions:**  
+    Use case ends.
+
+**Extensions:**
 * 2a. FRMS detects invalid input format.
     * 2a1. FRMS displays error messages.
-    * 2a2. User enters data according to the correct format.  
-	     Steps a-b are repeated until the data entered are correct.  
+    * 2a2. User enters data according to the correct format.
+	     Steps a-b are repeated until the data entered are correct.
 	      User case resumes from step 3.
 
 
@@ -365,14 +537,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. FRMS detects invalid input format.
     * 2a1. FRMS displays error messages.
-    * 2a2. User enters new data.  
-      Steps a-b are repeated until the data entered are correct.  
-	      User case resumes from step 3.  
+    * 2a2. User enters new data.
+      Steps a-b are repeated until the data entered are correct.
+	      User case resumes from step 3.
 * 2b. FRMS detects a duplicate ingredient.
     * 2b1. FRMS displays error messages.
-    * 2b2. User enters new data.  
-      Steps a-b are repeated until the data entered are correct.  
-	      User case resumes from step 3.  
+    * 2b2. User enters new data.
+      Steps a-b are repeated until the data entered are correct.
+	      User case resumes from step 3.
 
 
 **Use case: U7 - Delete Ingredient**
@@ -386,19 +558,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions:**
 * 2a. FRMS detects invalid input format.
     * 2a1. FRMS displays error messages.
-    * 2a2. User enters new data.  
-      Steps a-b are repeated until the data entered are correct.  
-	      User case resumes from step 3.  
+    * 2a2. User enters new data.
+      Steps a-b are repeated until the data entered are correct.
+	      User case resumes from step 3.
 * 2b. FRMS detects invalid input of ingredient name.
     * 2b. FRMS displays error messages.
-    * 2b. User enters new data.  
-      Steps a-b are repeated until the data entered are correct.  
-	      User case resumes from step 3.  
+    * 2b. User enters new data.
+      Steps a-b are repeated until the data entered are correct.
+	      User case resumes from step 3.
 
 
 
 
-**Use case: U8 - View expiring ingredients** 
+**Use case: U8 - View expiring ingredients**
 
 **MSS:**
 1. User chooses to view a list of expiring ingredients.
@@ -408,19 +580,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions:**
 * 2a. FRMS detects invalid input format.
     * 2a1. FRMS displays error messages.
-    * 2a2. User enters new data.  
-      Steps a-b are repeated until the data entered are correct.  
-	      User case resumes from step 3.  
+    * 2a2. User enters new data.
+      Steps a-b are repeated until the data entered are correct.
+	      User case resumes from step 3.
 * 2b. Filtered list does not contain any ingredients in the date range.
     * 2a1. FRMS displays error messages.
-    * 2a2. User enters new data.  
-      Steps a-b are repeated until the data entered are correct.  
+    * 2a2. User enters new data.
+      Steps a-b are repeated until the data entered are correct.
 	      User case resumes from step 3.
 
 
 
 **Use case: U9 - Filter ingredients**
- 
+
 **MSS:**
 1. User chooses to view a list of filtered ingredients.
 2. User enters the filter conditions.
@@ -430,14 +602,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. FRMS detects invalid input format.
     * 2a1. FRMS displays error messages.
-    * 2a2. User enters new data.  
-      Steps a-b are repeated until the data entered are correct.  
-	      User case resumes from step 3.  
+    * 2a2. User enters new data.
+      Steps a-b are repeated until the data entered are correct.
+	      User case resumes from step 3.
 * 2b. Filtered list does not contain any ingredients.
     * 2a1. FRMS displays error messages.
-    * 2a2. User enters new data.  
-      Steps a-b are repeated until the data entered are correct.  
-	      User case resumes from step 3.      
+    * 2a2. User enters new data.
+      Steps a-b are repeated until the data entered are correct.
+	      User case resumes from step 3.
 
 
 
