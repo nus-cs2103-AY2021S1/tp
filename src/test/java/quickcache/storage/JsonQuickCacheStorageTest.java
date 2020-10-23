@@ -64,24 +64,24 @@ public class JsonQuickCacheStorageTest {
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         QuickCache original = getTypicalQuickCacheForStorage();
-        JsonQuickCacheStorage jsonAddressBookStorage = new JsonQuickCacheStorage(filePath);
+        JsonQuickCacheStorage jsonQuickCacheStorage = new JsonQuickCacheStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveQuickCache(original, filePath);
-        ReadOnlyQuickCache readBack = jsonAddressBookStorage.readQuickCache(filePath).get();
+        jsonQuickCacheStorage.saveQuickCache(original, filePath);
+        ReadOnlyQuickCache readBack = jsonQuickCacheStorage.readQuickCache(filePath).get();
         assertEquals(original, new QuickCache(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addFlashcard(RANDOM2);
         original.removeFlashcard(RANDOM1);
-        jsonAddressBookStorage.saveQuickCache(original, filePath);
-        readBack = jsonAddressBookStorage.readQuickCache(filePath).get();
+        jsonQuickCacheStorage.saveQuickCache(original, filePath);
+        readBack = jsonQuickCacheStorage.readQuickCache(filePath).get();
         assertEquals(original, new QuickCache(readBack));
 
         // Save and read without specifying file path
         original.addFlashcard(RANDOM3);
-        jsonAddressBookStorage.saveQuickCache(original); // file path not specified
-        readBack = jsonAddressBookStorage.readQuickCache().get(); // file path not specified
+        jsonQuickCacheStorage.saveQuickCache(original); // file path not specified
+        readBack = jsonQuickCacheStorage.readQuickCache().get(); // file path not specified
         assertEquals(original, new QuickCache(readBack));
 
     }
