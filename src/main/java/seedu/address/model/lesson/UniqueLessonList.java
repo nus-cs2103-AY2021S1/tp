@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.task.exceptions.DuplicateTaskException;
-import seedu.address.model.task.exceptions.TaskNotFoundException;
+import seedu.address.model.lesson.exceptions.DuplicateLessonException;
+import seedu.address.model.lesson.exceptions.LessonNotFoundException;
 
 
 /**
@@ -44,7 +44,7 @@ public class UniqueLessonList implements Iterable<Lesson> {
     public void add(Lesson toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateTaskException();
+            throw new DuplicateLessonException();
         }
         internalList.add(toAdd);
     }
@@ -56,7 +56,7 @@ public class UniqueLessonList implements Iterable<Lesson> {
     public void remove(Lesson toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new TaskNotFoundException();
+            throw new LessonNotFoundException();
         }
     }
 
@@ -69,7 +69,7 @@ public class UniqueLessonList implements Iterable<Lesson> {
         for (int i = 0; i < lessons.length; i++) {
             int index = internalList.indexOf(lessons[i]);
             if (index == -1) {
-                throw new TaskNotFoundException();
+                throw new LessonNotFoundException();
             }
             internalList.remove(lessons[i]);
         }
@@ -82,7 +82,7 @@ public class UniqueLessonList implements Iterable<Lesson> {
     public void setLessons(List<Lesson> lessons) {
         requireAllNonNull(lessons);
         if (!lessonsAreUnique(lessons)) {
-            throw new DuplicateTaskException();
+            throw new DuplicateLessonException();
         }
 
         internalList.setAll(lessons);
