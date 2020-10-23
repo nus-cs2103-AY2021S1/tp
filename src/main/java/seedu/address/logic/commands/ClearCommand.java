@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.isNull;
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
 
 import seedu.address.commons.core.category.Category;
@@ -34,7 +34,7 @@ public class ClearCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
-        requireNonNull(model);
+        requireAllNonNull(model, activeAccount);
         assert(!isNull(model));
 
         boolean isExpense = this.category.isExpense();
@@ -42,11 +42,13 @@ public class ClearCommand extends Command {
 
         if (isExpense) {
             activeAccount.clearExpenses();
-        } else if (isRevenue) {
+        } else {
+            assert isRevenue;
             activeAccount.clearRevenues();
         }
         model.setAccount(activeAccount.getAccount());
-        return new CommandResult(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, category));
+        return new CommandResult(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, category),
+            false, false, true);
     }
 
     @Override

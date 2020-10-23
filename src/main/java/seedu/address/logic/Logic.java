@@ -47,6 +47,10 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of revenues. */
     ObservableList<Revenue> getFilteredRevenueList();
 
+    double getTotalRevenue();
+
+    double getTotalExpense();
+
     /**
      * Returns the user prefs' Common Cents file path.
      */
