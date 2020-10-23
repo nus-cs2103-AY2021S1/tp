@@ -1,0 +1,24 @@
+@startuml
+start
+:User starts app for the first time;
+
+:User views 2 clients in active list;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([User executes view archived clients])
+    :User views 0 clients in archive;
+    :User attempts to archive
+    client while in archive mode;
+    :User views error;
+
+else ([else])
+    :User archives client;
+    :User views 1 client in active list;
+    :User executes view archived clients;
+    :User views 1 client in archive;
+
+endif
+stop
+@enduml
