@@ -88,6 +88,10 @@ public class Patient {
         return Collections.unmodifiableSet(appointments);
     }
 
+    public Set<Appointment> getModifiableAppointments() {
+        return appointments;
+    }
+
     /**
      * Returns true if both patients of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two patients.
