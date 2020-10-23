@@ -67,7 +67,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseName(null));
     }
 
     @Test
@@ -90,7 +90,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseProtein_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseProtein((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseProtein(null));
     }
 
     @Test
@@ -113,7 +113,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseCarb_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseCarb((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCarb(null));
     }
 
     @Test
@@ -136,7 +136,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseFat_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseFat((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseFat(null));
     }
 
     @Test
