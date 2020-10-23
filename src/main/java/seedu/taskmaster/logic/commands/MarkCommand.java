@@ -53,4 +53,23 @@ public class MarkCommand extends Command {
         model.markStudent(studentToMark, attendanceType);
         return new CommandResult(String.format(MESSAGE_MARK_STUDENT_SUCCESS, studentToMark, attendanceType));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof MarkCommand)) {
+            return false;
+        }
+
+        // state check
+        MarkCommand m = (MarkCommand) other;
+
+        return targetIndex.equals(m.targetIndex)
+                && attendanceType.equals(m.attendanceType);
+    }
 }
