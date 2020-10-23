@@ -1,16 +1,12 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.lesson.Lesson;
-import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.State;
-import seedu.address.model.task.Task;
 
 /**
  * An UI component that displays information of a {@code Task}.
@@ -36,15 +32,11 @@ public class LessonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label status;
+    private Label dayOfWeek;
     @FXML
-    private CheckBox statusSign;
+    private Label time;
     @FXML
-    private Label type;
-    @FXML
-    private HBox dateTimeHolder;
-    @FXML
-    private Label dateTime;
+    private Label recurrence;
     @FXML
     private HBox descriptionHolder;
     @FXML
@@ -57,33 +49,19 @@ public class LessonCard extends UiPart<Region> {
         super(FXML);
         this.lesson = lesson;
         id.setText(displayedIndex + ". ");
+        title.setText(lesson.getTitle().title);
+        dayOfWeek.setText(lesson.getDayOfWeek().toString());
+        time.setText(lesson.getStartTime().toString() + " - " + lesson.getEndTime().toString());
+        recurrence.setText(lesson.getStartDate().toString() + " to " + lesson.getEndDate().toString());
+        loadDescription(lesson);
     }
 
-    private boolean loadStatus(Task task) {
-        if (task.getStatus().value.equals(State.COMPLETE)) {
-            statusSign.setSelected(true);
-        }
-        status.setText(task.getStatus().value.toString());
-        return true;
-    }
-
-    private boolean loadDateTime(Task task) {
-        if (task.getDateTime().equals(DateTime.defaultDateTime())) {
-            card.getChildren().remove(dateTimeHolder);
-            return false;
-        } else {
-            dateTime.setText(task.getDateTime().toString());
-            return true;
-        }
-
-    }
-
-    private boolean loadDescription(Task task) {
-        if (task.getDescription().equals(Description.defaultDescription())) {
+    private boolean loadDescription(Lesson lesson) {
+        if (lesson.getDescription().equals(Description.defaultDescription())) {
             card.getChildren().remove(descriptionHolder);
             return false;
         } else {
-            description.setText(task.getDescription().value.toString());
+            description.setText(lesson.getDescription().value.toString());
             return true;
         }
     }
