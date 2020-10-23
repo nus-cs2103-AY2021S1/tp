@@ -93,7 +93,7 @@ public class StorageManager implements Storage {
      * @param profilePic Patient's profile picture
      * @return String destination file path
      */
-    public static String addPictureToProfile(String patientName, File profilePic) {
+    public static String addPicture(String patientName, File profilePic) {
         try {
             assert patientName != "" || profilePic != null : "Patient name cannot be blank."
                                                             + "Profile picture cannot be null.";
