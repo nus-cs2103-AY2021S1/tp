@@ -11,17 +11,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static chopchop.logic.commands.CommandTestUtil.assertIngredientCommandFailure;
+import static chopchop.logic.commands.CommandTestUtil.assertCommandFailure;
 import static chopchop.logic.commands.CommandTestUtil.assertCommandSuccess;
-<<<<<<< HEAD
-import static chopchop.logic.commands.CommandTestUtil.showIngredientAtIndex;
-import static chopchop.testutil.TypicalIndexes.INDEX_FIRST_INGREDIENT;
-import static chopchop.testutil.TypicalIndexes.INDEX_SECOND_INGREDIENT;
-=======
 import static chopchop.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static chopchop.testutil.TypicalReferences.INDEXED_FIRST;
 import static chopchop.testutil.TypicalReferences.INDEXED_SECOND;
->>>>>>> b04c1647ff463527478c9337eb1f7248df163b1e
 import static chopchop.testutil.TypicalIngredients.getTypicalIngredientBook;
 
 public class DeleteIngredientCommandTest {
@@ -46,16 +40,12 @@ public class DeleteIngredientCommandTest {
         var outOfBoundIndex = ItemReference.ofOneIndex(model.getFilteredIngredientList().size() + 1);
         var deleteCommand = new DeleteIngredientCommand(outOfBoundIndex);
 
-        assertIngredientCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INGREDIENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INGREDIENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
-<<<<<<< HEAD
-        showIngredientAtIndex(model, INDEX_FIRST_INGREDIENT);
-=======
         showPersonAtIndex(model, INDEXED_FIRST);
->>>>>>> b04c1647ff463527478c9337eb1f7248df163b1e
 
         var indToDelete = model.getFilteredIngredientList().get(INDEXED_FIRST.getZeroIndex());
         var deleteCommand = new DeleteIngredientCommand(INDEXED_FIRST);
@@ -71,11 +61,7 @@ public class DeleteIngredientCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-<<<<<<< HEAD
-        showIngredientAtIndex(model, INDEX_FIRST_INGREDIENT);
-=======
         showPersonAtIndex(model, INDEXED_FIRST);
->>>>>>> b04c1647ff463527478c9337eb1f7248df163b1e
 
         var outOfBoundIndex = INDEXED_SECOND;
         // ensures that outOfBoundIndex is still in bounds of ingredient book list
@@ -83,7 +69,7 @@ public class DeleteIngredientCommandTest {
 
         DeleteIngredientCommand deleteCommand = new DeleteIngredientCommand(outOfBoundIndex);
 
-        assertIngredientCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INGREDIENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INGREDIENT_DISPLAYED_INDEX);
     }
 
     @Test

@@ -1,5 +1,7 @@
 package chopchop.model.recipe;
 
+import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -14,7 +16,6 @@ import chopchop.model.attributes.Step;
 import chopchop.model.attributes.Tag;
 import chopchop.model.ingredient.IngredientReference;
 
-import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 
 public class Recipe extends Entry {
     private final List<IngredientReference> ingredients = new ArrayList<>();
