@@ -1,11 +1,9 @@
 package chopchop.ui;
 
-import java.util.ArrayList;
-
+import chopchop.logic.Logic;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.parser.exceptions.ParseException;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -21,7 +19,7 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
-    private final ArrayList<String> commandHistory;
+    private final Logic logic;
 
     private int historyPointer;
 
@@ -31,29 +29,35 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Constructs {@code CommandBox}
      */
-    public CommandBox(CommandExecutor commandExecutor) {
+    public CommandBox(CommandExecutor commandExecutor, Logic logic) {
         super(FXML);
         this.commandExecutor = commandExecutor;
+        this.logic = logic;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
-        commandHistory = new ArrayList<>();
         // No commands entered yet.
         historyPointer = 0;
-        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode().equals(KeyCode.DOWN)) {
-                    if (historyPointer < commandHistory.size() - 1) {
-                        historyPointer++;
-                        commandTextField.setText(commandHistory.get(historyPointer));
-                    }
+        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode().equals(KeyCode.DOWN) && historyPointer < logic.getInputHistory().size()) {
+                historyPointer++;
+
+                if (historyPointer == logic.getInputHistory().size()) {
+                    commandTextField.clear();
+                } else {
+                    var command = logic.getInputHistory().get(historyPointer);
+                    commandTextField.setText(command);
+                    commandTextField.positionCaret(command.length());
                 }
-                if (event.getCode().equals(KeyCode.UP)) {
-                    if (historyPointer > 0) {
-                        historyPointer--;
-                        commandTextField.setText(commandHistory.get(historyPointer));
-                    }
-                }
+
+                event.consume();
+            }
+
+            if (event.getCode().equals(KeyCode.UP) && historyPointer > 0) {
+                historyPointer--;
+                String command = logic.getInputHistory().get(historyPointer);
+                commandTextField.setText(command);
+                commandTextField.positionCaret(command.length());
+                event.consume();
             }
         });
     }
@@ -69,9 +73,8 @@ public class CommandBox extends UiPart<Region> {
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         } finally {
-            commandHistory.add(command);
-            historyPointer = commandHistory.size();
-            commandTextField.setText("");
+            historyPointer = logic.getInputHistory().size();
+            commandTextField.clear();
         }
     }
 

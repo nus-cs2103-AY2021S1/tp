@@ -1,21 +1,24 @@
 package chopchop.logic.history;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 import chopchop.logic.commands.CommandResult;
+import chopchop.logic.commands.Undoable;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.model.Model;
 
 /**
  * The HistoryManager of the main LogicManager.
  */
-public class HistoryManager implements History {
+public class HistoryManager {
     public static final String MESSAGE_CANNOT_UNDO = "No commands to undo";
     public static final String MESSAGE_CANNOT_REDO = "No commands to redo";
 
-    private final List<CommandHistory> commandHistory;
+    private final List<Undoable> commandHistory;
+    private final List<String> inputHistory;
     private int currentIndex;
 
     /**
@@ -23,54 +26,71 @@ public class HistoryManager implements History {
      */
     public HistoryManager() {
         this.commandHistory = new ArrayList<>();
+        this.inputHistory = new ArrayList<>();
         this.currentIndex = 0;
     }
 
-    @Override
-    public void add(CommandHistory command) {
+    /**
+     * Adds an input to the history.
+     */
+    public void addInput(String input) {
+        this.inputHistory.add(input);
+    }
+
+    /**
+     * Adds an undoable command to the history.
+     */
+    public void addCommand(Undoable command) {
         this.commandHistory.subList(this.currentIndex, this.commandHistory.size()).clear();
         this.commandHistory.add(command);
         this.currentIndex = this.commandHistory.size();
     }
 
-    @Override
+    /**
+     * Undo a command and returns the result.
+     *
+     * @param model {@code Model} which the undo should operate on.
+     * @return feedback message of the operation result for display.
+     * @throws CommandException If an error occurs during undo execution.
+     */
     public CommandResult undo(Model model) throws CommandException {
-        for (var i = this.currentIndex - 1; i >= 0; i--) {
-            var command = this.commandHistory.get(i).getCommand();
-
-            if (command.isPresent()) {
-                this.currentIndex = i;
-                return command.get().undo(model);
-            }
+        if (this.currentIndex == 0) {
+            throw new CommandException(MESSAGE_CANNOT_UNDO);
         }
 
-        throw new CommandException(MESSAGE_CANNOT_UNDO);
+        this.currentIndex--;
+        return this.commandHistory.get(this.currentIndex).undo(model);
     }
 
-    @Override
+    /**
+     * Redo a command and returns the result.
+     *
+     * @param model {@code Model} which the redo should operate on.
+     * @return feedback message of the operation result for display.
+     * @throws CommandException If an error occurs during redo execution.
+     */
     public CommandResult redo(Model model) throws CommandException {
-        while (this.currentIndex < this.commandHistory.size()) {
-            var command = this.commandHistory.get(this.currentIndex).getCommand();
-            this.currentIndex++;
-
-            if (command.isPresent()) {
-                return command.get().redo(model, this);
-            }
+        if (this.currentIndex == this.commandHistory.size()) {
+            throw new CommandException(MESSAGE_CANNOT_REDO);
         }
 
-        throw new CommandException(MESSAGE_CANNOT_REDO);
+        var result = this.commandHistory.get(this.currentIndex).redo(model, this);
+        this.currentIndex++;
+        return result;
     }
 
-    @Override
-    public String getHistory() {
-        var sj = new StringJoiner("\n");
-        var reversedHistory = this.commandHistory.listIterator(this.currentIndex);
+    /**
+     * Returns the input history.
+     */
+    public List<String> getInputHistory() {
+        return Collections.unmodifiableList(this.inputHistory);
+    }
 
-        while (reversedHistory.hasPrevious()) {
-            var command = reversedHistory.previous();
-            sj.add(command.getCommandText());
-        }
-
-        return sj.toString();
+    /**
+     * Returns the input history filtered by a prefix.
+     */
+    public List<String> getInputHistory(String prefix) {
+        return this.inputHistory.stream().filter(input -> input.startsWith(prefix))
+                .collect(Collectors.toUnmodifiableList());
     }
 }

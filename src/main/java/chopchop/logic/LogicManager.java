@@ -2,16 +2,14 @@ package chopchop.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.logging.Logger;
 
 import chopchop.commons.core.GuiSettings;
 import chopchop.commons.core.LogsCenter;
 import chopchop.logic.commands.CommandResult;
-import chopchop.logic.commands.RedoCommand;
-import chopchop.logic.commands.UndoCommand;
+import chopchop.logic.commands.Undoable;
 import chopchop.logic.commands.exceptions.CommandException;
-import chopchop.logic.history.CommandHistory;
-import chopchop.logic.history.History;
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.CommandParser;
 import chopchop.logic.parser.exceptions.ParseException;
@@ -31,7 +29,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final History history;
+    private final HistoryManager historyManager;
     private final CommandParser parser;
 
     /**
@@ -40,7 +38,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        this.history = new HistoryManager();
+        this.historyManager = new HistoryManager();
         this.parser = new CommandParser();
     }
 
@@ -53,17 +51,17 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
+        this.historyManager.addInput(commandText);
         var res = this.parser.parse(commandText);
         if (res.isError()) {
-            this.history.add(new CommandHistory(commandText));
             throw new ParseException(res.getError());
         }
 
         var cmd = res.getValue();
-        var result = cmd.execute(this.model, this.history);
+        var result = cmd.execute(this.model, this.historyManager);
 
-        if (!(cmd instanceof UndoCommand || cmd instanceof RedoCommand)) {
-            this.history.add(new CommandHistory(commandText, cmd));
+        if (cmd instanceof Undoable) {
+            this.historyManager.addCommand((Undoable) cmd);
         }
 
         try {
@@ -104,6 +102,16 @@ public class LogicManager implements Logic {
     @Override
     public Path getIngredientBookFilePath() {
         return this.model.getIngredientBookFilePath();
+    }
+
+    @Override
+    public List<String> getInputHistory() {
+        return this.historyManager.getInputHistory();
+    }
+
+    @Override
+    public List<String> getInputHistory(String prefix) {
+        return this.historyManager.getInputHistory(prefix);
     }
 
     @Override

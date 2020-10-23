@@ -1,6 +1,6 @@
 package chopchop.logic.commands;
 
-import chopchop.logic.history.History;
+import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 
 /**
@@ -16,7 +16,7 @@ public class HelpCommand extends Command {
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
     @Override
-    public CommandResult execute(Model model, History history) {
+    public CommandResult execute(Model model, HistoryManager historyManager) {
         return new CommandResult(SHOWING_HELP_MESSAGE, /* showHelp: */ true, /* exit: */ false);
     }
 }

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import chopchop.commons.core.Messages;
 import chopchop.logic.commands.exceptions.CommandException;
-import chopchop.logic.history.History;
+import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.ItemReference;
 import chopchop.model.Model;
 import chopchop.model.recipe.Recipe;
@@ -36,7 +36,7 @@ public class DeleteRecipeCommand extends Command implements Undoable {
     }
 
     @Override
-    public CommandResult execute(Model model, History history) throws CommandException {
+    public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
         requireNonNull(model);
 
         if (this.item.isIndexed()) {

@@ -33,7 +33,7 @@ public class AddIngredientCommandTest {
         var validIngredient = new IngredientBuilder().build();
 
         var commandResult = new AddIngredientCommand(validIngredient)
-                .execute(modelStub, new CommandTestUtil.HistoryStub());
+                .execute(modelStub, new CommandTestUtil.HistoryManagerStub());
 
         assertEquals(String.format(AddIngredientCommand.MESSAGE_ADD_INGREDIENT_SUCCESS, validIngredient),
             commandResult.getFeedbackToUser());
@@ -47,7 +47,7 @@ public class AddIngredientCommandTest {
         var milk3 = new IngredientBuilder().withName("milk").withQuantity(Volume.millilitres(950)).build();
 
         var modelStub = new ModelStubAcceptingIngredientAdded();
-        var historyStub = new CommandTestUtil.HistoryStub();
+        var historyStub = new CommandTestUtil.HistoryManagerStub();
 
         assertEquals(String.format(AddIngredientCommand.MESSAGE_ADD_INGREDIENT_SUCCESS, milk1),
             new AddIngredientCommand(milk1).execute(modelStub, historyStub).getFeedbackToUser());
