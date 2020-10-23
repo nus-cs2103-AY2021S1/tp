@@ -7,11 +7,15 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 
 public class Meeting {
     // Identity fields
+    private final Module module;
     private final MeetingName meetingName;
+
+    //Data fields
     private final Date date;
     private final Time time;
     private final Set<Person> members = new HashSet<>();
@@ -19,12 +23,17 @@ public class Meeting {
     /**
      * Every field must be present and not null.
      */
-    public Meeting(MeetingName name, Date date, Time time, Set<Person> members) {
-        requireAllNonNull(name, date, time);
+    public Meeting(Module module, MeetingName name, Date date, Time time, Set<Person> members) {
+        requireAllNonNull(module, name, date, time, members);
+        this.module = module;
         this.meetingName = name;
         this.date = date;
         this.time = time;
         this.members.addAll(members);
+    }
+
+    public Module getModule() {
+        return this.module;
     }
 
     public MeetingName getMeetingName() {
@@ -39,7 +48,7 @@ public class Meeting {
         return this.time;
     }
 
-    public Set<Person> getMembers() {
+    public Set<Person> getParticipants() {
         return Collections.unmodifiableSet(members);
     }
 
@@ -52,6 +61,7 @@ public class Meeting {
         }
 
         return otherMeeting != null
+                && otherMeeting.getModule().equals(getModule())
                 && otherMeeting.getMeetingName().equals(getMeetingName())
                 && otherMeeting.getDate().equals(getDate())
                 && otherMeeting.getTime().equals(getTime());
@@ -76,28 +86,30 @@ public class Meeting {
         }
 
         Meeting otherMeeting = (Meeting) other;
-        return otherMeeting.getMeetingName().equals(getMeetingName())
+        return otherMeeting.getModule().equals(getModule())
+                && otherMeeting.getMeetingName().equals(getMeetingName())
                 && otherMeeting.getDate().equals(getDate())
                 && otherMeeting.getTime().equals(getTime())
-                && otherMeeting.getMembers().equals(getMembers());
+                && otherMeeting.getParticipants().equals(getParticipants());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(meetingName, date, time, members);
+        return Objects.hash(module, meetingName, date, time, members);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getMeetingName())
+        builder.append("[" + getModule().getModuleName() + "] ")
+                .append(getMeetingName())
                 .append(" Date: ")
                 .append(getDate())
                 .append(" Time: ")
                 .append(getTime())
                 .append(" Members: ");
-        getMembers().forEach(member -> builder.append(member.getName() + ", "));
+        getParticipants().forEach(member -> builder.append(member.getName() + ", "));
         return builder.substring(0, builder.length() - 2);
     }
 }
