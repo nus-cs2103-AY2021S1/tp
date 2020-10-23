@@ -8,6 +8,10 @@
       "rating": "2",
       "tagged" : [ ],
       "diagramFilePath": "",
+      "statistics": {
+        "reviewFrequency": 0,
+        "successFrequency": 0
+      },
       "isFavourite": "false"
     },
     {
@@ -18,6 +22,10 @@
       "rating": "2",
       "tagged" : [ ],
       "diagramFilePath": "",
+      "statistics": {
+        "reviewFrequency": 4,
+        "successFrequency": 3
+      },
       "isFavourite": "false"
     },
     {
