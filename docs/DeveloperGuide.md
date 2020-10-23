@@ -170,8 +170,8 @@ OneShelf is capable of storing many items and deliveries. Therefore, there is an
 
 We have modified the `find` command to be able to search for `NAME`, `SUPPLIER` and `TAGS` for items using `find-i` Similarly, for deliveries, it is also possible to search using the `DELIVERYNAME`, `PHONE`, `ADDRESS` or `ORDER` using `find-d`
 
-By using `ArgumentMultimap`, we are able to record the searching criteria together with the prefixes. We will then pass this criteria along with the prefix to create an `ItemContainsKeywordsPredicate` object which implements `Predicate<Item>`.
-The predicate is then passed to the `InventoryModel#UpdateItemListFilter` which will then be used to set the predicate on the existing filteredlist.
+By using `ArgumentMultimap`, we are able to record the searching criteria together with the prefixes. We will then pass this criteria along with the prefix to create a Predicate that matches the specified field object which implements `Predicate<Item>`.
+The predicate is then combined and passed to the `InventoryModel#UpdateItemListFilter` which will then be used to set the predicate on the existing filteredlist.
 
 Below is a usage example
 
@@ -180,10 +180,19 @@ Step 2: `ArguementMultiMap` maps each prefix to their values and `ItemFindComman
 Step 3: The value and prefix is then used to create the predicate and passed to `ItemFindCommand` <br>
 Step 4: `ItemFindCommand` executes the command and update the filteredList <br>
 
+<div markdown="block" class="alert alert-info">
+
+There is a slight difference in `ADDRESS`, `PHONE`, `ORDER` predicate. The original implementation of predicates will only return true if there is an exact match.
+The issue comes with that these field might be too long and logically do not make sense to search the whole content of the field.
+Hence, we have modified it to allow the predicate to match the substrings of the whole content.
+
 Below is a sequence diagram of the above
 
 ![ItemFindCommandSequenceDiagram](images/ItemFindCommandSequenceDiagram.png)
 
+The following activity diagram summarizes what happens when a user executes a `find` command:
+
+![FindCommandActivityDiagram](images/FindActivityDiagram.png)
 
 ### Undo/Redo Command
 
