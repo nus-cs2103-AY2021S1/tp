@@ -332,19 +332,15 @@ as overwriting a file is irreversible and would be disastrous for zookeepers if 
 #### Implementation
 
 This section explains the implementation of the Sort command feature in the ZooKeepBook. This feature is used to sort the animals based on the different categories: **name, id or feedtime**.
-<<<<<<< HEAD
 
-=======
 * For the animal name, it will be in alphabetical order.
 * For the animal id, it will be in increasing order.
 * For the animal feed time, it will be from earliest to latest. 
-  
->>>>>>> a904570e8a2308a94048dee8f61047e06b869435
+
 The following sequence diagram shows the Logic and Model Components when a sort command is being executed:
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source:  **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
 </div>
 
 In the **Logic** Component,
@@ -389,8 +385,8 @@ The feeding times feature allows for the following functionality:
 * Ensure feeding times are always displayed in chronological order.
 
 The following notable methods are used for the feeding times feature:
-* `ParserUtil#parseFeedTimes(feedTimes)` - returns a Set of `FeedTime` objects from user input
-* `FeedTime#isValidFeedTime(feedTimeText)` - validates the feeding time to ensure it is in the HHmm format
+* `ParserUtil#parseFeedTimes(Collection<String>)` - returns a Set of `FeedTime` objects from user input
+* `FeedTime#isValidFeedTime(String)` - validates the feeding time to ensure it is in the HHmm format
 
 The parsing and displaying of feeding times were adapted from the Medical Condition field.
 
@@ -575,6 +571,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends
    
+
 **Use case: Find animals based on keywords**
 
 **MSS**
@@ -595,6 +592,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * Use case resumes at step 1
   
+
 **Use case: Sort all animals**
 
 **MSS**
