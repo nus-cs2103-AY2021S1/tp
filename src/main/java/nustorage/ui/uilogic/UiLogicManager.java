@@ -9,7 +9,7 @@ import nustorage.logic.parser.exceptions.ParseException;
 
 public class UiLogicManager implements UiLogic {
 
-    public static final String COMMAND_WORD_NAVIGATION = "list";
+    public static final String COMMAND_WORD_NAVIGATION = "goto";
     public static final String INVENTORY_TAB = "inventory";
     public static final String FINANCE_TAB = "finance";
 

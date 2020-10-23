@@ -3,16 +3,17 @@ package nustorage.model.record;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-
-import nustorage.model.record.exceptions.NegativeNumberOfItemException;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Class to record movement in the Inventory.
  */
 public class InventoryRecord {
 
+    private static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
+
     private final LocalDateTime dateTime;
-    private int quantity;
+    private final int quantity;
     private final String itemName;
     private int financeID;
 
@@ -54,18 +55,6 @@ public class InventoryRecord {
 
     public void setFinanceRecord(FinanceRecord financeRecord) {
         this.financeID = financeRecord.getID();
-    }
-
-    /**
-     * Increase or decrease the number of this item in stock.
-     * @param change Positive or negative integer.
-     * @throws NegativeNumberOfItemException Thrown when number of items goes below 0.
-     */
-    public void changeAmount(int change) throws NegativeNumberOfItemException {
-        if (quantity + change < 0) {
-            throw new NegativeNumberOfItemException(this);
-        }
-        this.quantity += change;
     }
 
     /**

@@ -21,6 +21,7 @@ import nustorage.model.Inventory;
 import nustorage.model.Model;
 import nustorage.model.ModelManager;
 import nustorage.model.ReadOnlyFinanceAccount;
+import nustorage.model.ReadOnlyInventory;
 import nustorage.model.ReadOnlyUserPrefs;
 import nustorage.model.UserPrefs;
 import nustorage.storage.FinanceAccountStorage;
@@ -107,8 +108,8 @@ public class MainApp extends Application {
         Optional<ReadOnlyFinanceAccount> optionalFinanceAccount;
         ReadOnlyFinanceAccount initialFinanceAccount;
 
-        Optional<Inventory> optionalInventory;
-        Inventory initialInventory;
+        Optional<ReadOnlyInventory> optionalInventory;
+        ReadOnlyInventory initialInventory;
 
         try {
             optionalFinanceAccount = storage.readFinanceAccount();

@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import nustorage.commons.exceptions.DataConversionException;
 import nustorage.model.Inventory;
+import nustorage.model.ReadOnlyInventory;
 
 
 /**
@@ -27,14 +28,14 @@ public interface InventoryStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException             if there was any problem when reading from the storage.
      */
-    Optional<Inventory> readInventory() throws DataConversionException, IOException;
+    Optional<ReadOnlyInventory> readInventory() throws DataConversionException, IOException;
 
 
     /**
      * @param filePath overrides default storage filepath.
      * @see #readInventory()
      */
-    Optional<Inventory> readInventory(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyInventory> readInventory(Path filePath) throws DataConversionException, IOException;
 
 
     /**
@@ -43,14 +44,14 @@ public interface InventoryStorage {
      * @param inventory given inventory to be stored, cannot be null.
      * @throws IOException if there's any problems writing to file.
      */
-    void saveInventory(Inventory inventory) throws IOException;
+    void saveInventory(ReadOnlyInventory inventory) throws IOException;
 
 
     /**
      * @param filePath overrides default storage filepath.
-     * @see #saveInventory(Inventory, Path)
+     * @see #saveInventory(ReadOnlyInventory, Path)
      */
-    void saveInventory(Inventory inventory, Path filePath) throws IOException;
+    void saveInventory(ReadOnlyInventory inventory, Path filePath) throws IOException;
 
 }
 

@@ -45,6 +45,7 @@ public class JsonFinanceAccountStorage implements FinanceAccountStorage {
 
     @Override
     public Optional<ReadOnlyFinanceAccount> readFinanceAccount() throws DataConversionException {
+        assert filePath != null : "Finance file path is null!";
         return readFinanceAccount(filePath);
     }
 
@@ -71,6 +72,7 @@ public class JsonFinanceAccountStorage implements FinanceAccountStorage {
 
     @Override
     public void saveFinanceAccount(ReadOnlyFinanceAccount financeAccount) throws IOException {
+        assert financeAccount != null : "Finance account is null!";
         saveFinanceAccount(financeAccount, filePath);
     }
 

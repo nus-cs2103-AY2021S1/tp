@@ -1,78 +1,123 @@
 package nustorage.model;
 
-import java.util.Iterator;
-import java.util.stream.Collectors;
+import static java.util.Objects.requireNonNull;
 
-import javafx.collections.FXCollections;
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import nustorage.model.record.InventoryRecord;
+import nustorage.model.record.InventoryRecordList;
 
 /**
  * Class to store different InventoryRecords.
  */
-public class Inventory implements Iterable<InventoryRecord>, ReadOnlyInventory {
+public class Inventory implements ReadOnlyInventory {
 
-    private final ObservableList<InventoryRecord> internalList = FXCollections.observableArrayList();
-    private final ObservableList<InventoryRecord> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+    private final InventoryRecordList inventoryRecords;
 
-    /**
-     * Constructs inventory object to hold InventoryRecords.
+    /*
+     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
+     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     *
+     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
+     *   among constructors.
      */
+    {
+        inventoryRecords = new InventoryRecordList();
+    }
+
     public Inventory() {
 
     }
 
     /**
-     * Adds InventoryRecord into inventory.
-     * @param inventoryRecord to be added.
+     * Creates an Inventory using the InventoryRecord in the {@code toBeCopied}
      */
-    public void addInventoryRecord(InventoryRecord inventoryRecord) {
-        internalList.add(inventoryRecord);
+    public Inventory(ReadOnlyInventory toBeCopied) {
+        this();
+        resetData(toBeCopied);
+    }
+
+    //// list overwrite operations
+
+    /**
+     * Replaces the contents of the InventoryRecordList with {@code inventoryRecords}.
+     * {@code inventoryRecords} must not contain duplicate records.
+     */
+    public void setInventoryRecords(List<InventoryRecord> inventoryRecords) {
+        this.inventoryRecords.setInventoryRecords(inventoryRecords);
     }
 
     /**
-     * Removes InventoryRecord from inventory.
-     * @param inventoryRecord to be removed.
+     * Resets the existing data of this {@code Inventory} with {@code newData}.
      */
-    public void deleteInventoryRecord(InventoryRecord inventoryRecord) {
-        internalList.remove(inventoryRecord);
+    public void resetData(ReadOnlyInventory newData) {
+        requireNonNull(newData);
+
+        setInventoryRecords(newData.getInventoryRecordList());
     }
 
+    //// InventoryRecord-level operations
+
     /**
-     * Checks if Inventory contains given InventoryRecord
+     * Returns true if an inventory record with the same identity as {@code inventoryRecord} exists in the inventory.
      */
     public boolean hasInventoryRecord(InventoryRecord inventoryRecord) {
-        return internalList.contains(inventoryRecord);
+        requireNonNull(inventoryRecord);
+        return inventoryRecords.contains(inventoryRecord);
     }
 
     /**
-     * Edit target with edited Inventory record
+     * Adds a inventory record to the inventory.
+     * The inventory record must not already exist in the inventory.
+     */
+    public void addInventoryRecord(InventoryRecord inventoryRecord) {
+        inventoryRecords.add(inventoryRecord);
+    }
+
+    /**
+     * Replaces the given inventory record {@code target} in the list with {@code editedInventoryRecord}.
+     * {@code target} must exist in the inventory.
+     * The inventory record identity of {@code editedInventoryRecord}
+     * must not be the same as another existing record in the inventory.
      */
     public void setInventoryRecord(InventoryRecord target, InventoryRecord editedInventoryRecord) {
-        int index = internalList.indexOf(target);
-        internalList.remove(index);
-        internalList.add(index, editedInventoryRecord);
+        requireNonNull(editedInventoryRecord);
+
+        inventoryRecords.setInventoryRecord(target, editedInventoryRecord);
     }
 
-    public ObservableList<InventoryRecord> getInventoryList() {
-        return internalList;
+    /**
+     * Removes {@code key} from this {@code Inventory}.
+     * {@code key} must exist in the inventory.
+     */
+    public void removeInventoryRecord(InventoryRecord key) {
+        inventoryRecords.remove(key);
     }
 
-    public ObservableList<InventoryRecord> asUnmodifiableObservableList() {
-        return internalUnmodifiableList;
-    }
-
-    @Override
-    public Iterator<InventoryRecord> iterator() {
-        return internalList.iterator();
-    }
+    //// util methods
 
     @Override
     public String toString() {
-        return internalList.stream()
-                .map(InventoryRecord::toString)
-                .collect(Collectors.joining("\n"));
+        return inventoryRecords.asUnmodifiableObservableList().size() + " inventory records";
+    }
+
+    @Override
+    public ObservableList<InventoryRecord> getInventoryRecordList() {
+        return inventoryRecords.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Inventory // instanceof handles nulls
+                && inventoryRecords.equals(((Inventory) other).inventoryRecords));
+    }
+
+    @Override
+    public int hashCode() {
+        return inventoryRecords.hashCode();
     }
 }
+
 
