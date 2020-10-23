@@ -135,19 +135,36 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add recipe feature
 
-#### Proposed Implementation
+Add recipe feature allows users to add their personal recipes into the collection.
 
-The proposed undo/redo mechanism is facilitated by `AddRecipeCommand`. It extends `Command`.
+#### Implementation
+Substitutability is used in Command and Parser:
+* `AddRecipeCommand` extends `Command`
+* `AddRecipeCommandParser` implements `Parser<AddRecipeCommand>`
 
-* `AddRecipeCommand#execute()`: Do validity check then add recipe into model if passed.
+The following sequence diagram shows how add recipe operation works when `execute(addR n/Salad i/Veggies - 100g img/images/healthy3.jpg instr/Eat tag/healthy)` API call:
 
-These operations are exposed in the `Command` interface as `Command#execute()`.
-The following sequence diagram shows how the undo operation works:
+![AddRecipeSequenceDiagram](images/AddRecipeSequence.png)
 
-![UndoSequenceDiagram](images/AddRecipeSequence.png)
+1. `LogicManager` receives user input and undergoes logic operation for output.
+1. `LogicManager` will pass the input to `WishfulShrinkingParser`.
+1. `WishfulShrinkingParser` creates `AddRecipeCommandParser` to parse and validate the user input.
+1. `AddRecipeCommandParser` creates `AddRecipeCommand` with successfully parsed input.
+1. `LogicManager` executes `AddRecipeCommand`.
+1. Pass the `Recipe` to `Model` which responsible in adding it to `UniqueRecipeList`.
+1. `AddRecipeCommand` return a `CommandResult` back to `LogicManager`.
 
 #### Design consideration:
-* Workflow must be consistent with other adding commands e.g add ingredients, consumption.
+##### Aspect 1: Concern while adding a new feature
+* Workflow must be consistent with other commands.
+##### Aspect 2: Should we allow adding duplicated recipes ?
+* **Alternative 1 (current choice):** Restricts to unique recipes.
+  * Pros: Storage will contain unique items.
+  * Cons: A uniqueness check must be done when adding recipe is performed, which could make the app run slower.
+
+* **Alternative 2:** Allows duplicated items.
+  * Pros: Users will not be restricted to adding unique recipes.
+  * Cons: Storage will contain unnecessarily duplicated items.
 
 ### Eat recipe feature
 
@@ -161,19 +178,13 @@ Substitutability is used in Command and Parser:
 
 Given bellow is the simplified step on how eat recipe is done:
 
-Step 1:
-
-User input is change into command.
+Step 1: User input is change into command.
 ![EatRecipeStep1](images/EatRecipeStep1.png)
 
-Step 2:
-
-Execute the command (make a copy of recipe from recipeList).
+Step 2: Execute the command (make a copy of recipe from recipeList).
 ![EatRecipeStep2](images/EatRecipeStep2.png)
 
-Step 3:
-
-Add the copy recipe into consumptionList.
+Step 3: Add the copy recipe into consumptionList.
 ![EatRecipeStep3](images/EatRecipeStep3.png)
 
 
@@ -185,15 +196,9 @@ The following sequence diagram shows how eat recipe operation works when `execut
 PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-1. `LogicManager` receive user input and undergoes logic operation for output.
-1. `LogicManager` will pass the input to `WishfulShrinkingParser`.
-1. `WishfulShrinkingParser` create `EatRecipeCommandParser` to parse and validate the user input.
-1. `EatRecipeCommandParser` create `EatRecipeCommand` with successfully parsed input.
-1. `LogicManager` execute `EatRecipeCommand`.
-1. `EatRecipeCommand` get the list of recipe.
-1. Get related recipe detail using the user input.
-1. Pass the recipe to `Model` which responsible in adding it to consumption list.
-1. `EatRecipeCommand` return a `CommandResult` back to `LogicManager`.
+1. User inputs eat recipe command to add a recipe to consumption list.
+1. After successful parsing the user inputs, `EatRecipeCommand#method` method is called.
+1. After successfully added recipe into consumption list, a `CommandResult` object is instantiated and returned to `LogicManager`.
 
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:** Delete a recipe in recipeList would not affect the consumptionList
@@ -287,18 +292,15 @@ The following sequence diagram shows how eat recipe operation works when `execut
 
 ![ListConsumptionSequenceDiagram](images/ListConsumptionSequenceDiagram.png)
 
-1. `LogicManager` receive user input and undergoes logic operation for output.
-1. `LogicManager` will pass the input to `WishfulShrinkingParser`.
-1. `WishfulShrinkingParser` create `ListConsumptionCommandParser` to parse and validate the user input.
-1. `LogicManager` execute `ListConsumptionCommand`.
-1. `ListConsumptionCommand` get the consumption list.
-1. `ListConsumptionCommand` return a `CommandResult` back to `LogicManager`.
+1. User inputs the list consumption command to add recipe to consumption list.
+1. After successful parsing the user inputs, `ListConsumptionCommand#method` method is called.
+1. After successfully fetch the consumption list, a `CommandResult` object is instantiated and returned to `LogicManager`.
 
 #### Design consideration:
 ##### Aspect 1: Concern while adding a new feature
 * Workflow must be consistent with other adding commands e.g. list recipe and ingredient.
 ##### Aspect 2: What are the informations to list from a recipe in consumption list
-* **Alternative 1 (current choice):** Listing recipe with name and calories.
+* **Alternative 1 (current choice):** Listing recipe with images, name and calories.
   * Pros: Cleaner UI.
   * Cons: Other details that is not used become an extra data in memory.
 
@@ -530,34 +532,81 @@ The following sequence diagram shows how search recipe operation works when `exe
   * Pros: Harder to implement.
   * Cons: User's can filter the recipes by two or three fields at once
 
-### Delete Consumption feature
+### Search Ingredient feature
+This feature allows users search ingredient in the ingredient list based on the name.
 
 #### Implementation
-This feature allows users to delete the recipes they have eaten in the calorie tracker.
+
+Substitutability is used in Command and Parser:
+* `SearchIngredientCommand` extends `Command`
+* `SearchIngredientCommandParser` implements `Parser<SearchIngredientCommand>`
+
+The following sequence diagram shows how eat recipe operation works when `execute(searchF avocado)` API call:
+
+![SearchIngredientSequence](images/SearchIngredientSequence.png)
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** The lifeline for `EatRecipeCommandParser` should end at the destroy marker (X) but due to a limitation of 
+PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+1. User inputs the search ingredient command to search for the ingredient from the ingredient list.
+1. After successful parsing of user input, the `SearchIngredientCommand#execute(Model model)` method is called.
+1. The list of ingredient that fit the user's search will be returned to the user.
+1. After the successful searching of the recipes, a `CommandResult` object is instantiated and returned to `LogicManager`.
+
+#### Design Considerations
+##### Aspect 1: Concern while adding a new feature
+* Workflow must be consistent with other searching commands e.g. search recipe.
+
+### Delete consumption feature
+
+#### Implementation
+This feature allows users to delete the recipes they have consumed in the consumption list.
 
 Substitutability is used in Command and Parser:
 * `DeleteConsumptionCommand` extends `Command`
 * `DeleteConsumptionCommandParser` implements `Parser<DeleteConsumptionCommand>`
 
-Given below is an example usage scenario and how the mechanism behaves at each step.
+The following sequence diagram shows how eat Consumption operation works when `execute(deleteC 1)` API call:
 
 ![DeleteConsumptionSequence](images/DeleteConsumptionSequence.png)
 
-Step 1:
-User inputs the delete consumption command to delete the recipes eaten in the calorie tracker.
+Given below is an example usage scenario and how the mechanism behaves at each step.
 
-Step 2:
-After successful parsing of user input, the `DeleteConsumptionCommand#execute(Model model)` method is called.
+1. User inputs the delete consumption command to delete a `Consumption` from the `ConsumptionList`.
+1. After successful parsing of user input, the `DeleteConsumptionCommand#execute(Model model)` method is called.
+1. The `Consumption` that the user has specified by using index will be deleted from the `ConsumptionList`.
+1. After the successful deleting of an `Consumption`, a `CommandResult` object is instantiated and returned to `LogicManager`.
 
-Step 3:
-The recipe that the user has specified will be deleted from the consumption list.
-
-Step 4:
-After the successful deleting of recipes, a `CommandResult` object is instantiated and returned to `LogicManager`.
-
-#### Design Considerations
+#### Design consideration:
 ##### Aspect 1: Concern while adding a new feature
 * Workflow must be consistent with other deleting commands e.g. delete recipe and delete ingredient.
+
+### Delete ingredient feature
+
+#### Implementation
+This feature allows users to delete the ingredients they have in the fridge.
+
+Substitutability is used in Command and Parser:
+* `DeleteIngredientCommand` extends `Command`
+* `DeleteIngredientCommandParser` implements `Parser<DeleteIngredientCommand>`
+
+The following sequence diagram shows how eat Ingredient operation works when `execute(deleteF 1)` API call:
+
+![DeleteIngredientSequence](images/DeleteIngredientSequence.png)
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+1. User inputs the delete ingredient command to delete an ingredient from the `UniqueIngredientList`.
+1. After successful parsing of user input, the `DeleteIngredientCommand#execute(Model model)` method is called.
+1. The Ingredient that the user has specified by using index will be deleted from the `UniqueIngredienList`.
+1. After the successful deleting of an `Ingredient`, a `CommandResult` object is instantiated and returned to `LogicManager`.
+
+
+#### Design consideration:
+##### Aspect 1: Concern while adding a new feature
+* Workflow must be consistent with other deleting commands e.g. delete recipe and delete consumption.
+
 
 ### Recommend feature
 
