@@ -12,27 +12,33 @@ import static seedu.flashcard.testutil.TypicalFlashcards.getTypicalFlashcardDeck
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.flashcard.model.Model;
 import seedu.flashcard.model.ModelManager;
 import seedu.flashcard.model.UserPrefs;
+import seedu.flashcard.model.flashcard.AnswerContainsKeywordsPredicate;
+import seedu.flashcard.model.flashcard.CategoryContainsKeywordsPredicate;
+import seedu.flashcard.model.flashcard.Flashcard;
+import seedu.flashcard.model.flashcard.NoteContainsKeywordsPredicate;
 import seedu.flashcard.model.flashcard.QuestionContainsKeywordsPredicate;
+import seedu.flashcard.model.flashcard.TagsContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
+
     private Model model = new ModelManager(getTypicalFlashcardDeck(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalFlashcardDeck(), new UserPrefs());
 
     @Test
     public void equals() {
-        QuestionContainsKeywordsPredicate firstPredicate =
-                new QuestionContainsKeywordsPredicate(Collections.singletonList("first"));
-        QuestionContainsKeywordsPredicate secondPredicate =
-                new QuestionContainsKeywordsPredicate(Collections.singletonList("second"));
+        List<String> firstPredicate = Collections.singletonList("first");
+        List<String> secondPredicate = Collections.singletonList("second");
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -57,9 +63,20 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noFlashcardFound() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 0);
-        QuestionContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredFlashcardList(predicate);
+        List<String> keywords = prepareKeywords(" ");
+        FindCommand command = new FindCommand(keywords);
+
+        QuestionContainsKeywordsPredicate questionPredicate = new QuestionContainsKeywordsPredicate(keywords);
+        AnswerContainsKeywordsPredicate answerPredicate = new AnswerContainsKeywordsPredicate(keywords);
+        CategoryContainsKeywordsPredicate categoryPredicate = new CategoryContainsKeywordsPredicate(keywords);
+        NoteContainsKeywordsPredicate notePredicate = new NoteContainsKeywordsPredicate(keywords);
+        TagsContainsKeywordsPredicate tagPredicate = new TagsContainsKeywordsPredicate(keywords);
+
+        List<Predicate<Flashcard>> listOfPredicates = Arrays.asList(questionPredicate, answerPredicate,
+                categoryPredicate, notePredicate, tagPredicate);
+        Predicate<Flashcard> allPredicates = listOfPredicates.stream().reduce(Predicate::or).orElse(x->false);
+
+        expectedModel.updateFilteredFlashcardList(allPredicates);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredFlashcardList());
     }
@@ -67,17 +84,30 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleFlashcardsFound() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 3);
-        QuestionContainsKeywordsPredicate predicate = preparePredicate("SDLC control assertions");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredFlashcardList(predicate);
+        List<String> keywords = prepareKeywords("SDLC control assertions");
+        FindCommand command = new FindCommand(keywords);
+
+        QuestionContainsKeywordsPredicate questionPredicate = new QuestionContainsKeywordsPredicate(keywords);
+        AnswerContainsKeywordsPredicate answerPredicate = new AnswerContainsKeywordsPredicate(keywords);
+        CategoryContainsKeywordsPredicate categoryPredicate = new CategoryContainsKeywordsPredicate(keywords);
+        NoteContainsKeywordsPredicate notePredicate = new NoteContainsKeywordsPredicate(keywords);
+        TagsContainsKeywordsPredicate tagPredicate = new TagsContainsKeywordsPredicate(keywords);
+
+        List<Predicate<Flashcard>> listOfPredicates = Arrays.asList(questionPredicate, answerPredicate,
+                categoryPredicate, notePredicate, tagPredicate);
+
+        Predicate<Flashcard> allPredicates = listOfPredicates.stream().reduce(Predicate::or).orElse(x->false);
+
+        expectedModel.updateFilteredFlashcardList(allPredicates);
+
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(FLASHCARD_1, FLASHCARD_2, FLASHCARD_3), model.getFilteredFlashcardList());
     }
 
     /**
-     * Parses {@code userInput} into a {@code QuestionContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code List<String>}.
      */
-    private QuestionContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new QuestionContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private List<String> prepareKeywords(String userInput) {
+        return Arrays.asList(userInput.split("\\s+"));
     }
 }

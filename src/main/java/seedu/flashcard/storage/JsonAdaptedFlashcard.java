@@ -17,6 +17,7 @@ import seedu.flashcard.model.flashcard.Flashcard;
 import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
 import seedu.flashcard.model.flashcard.Rating;
+import seedu.flashcard.model.flashcard.Statistics;
 import seedu.flashcard.model.tag.Tag;
 
 /**
@@ -33,6 +34,7 @@ class JsonAdaptedFlashcard {
     private String rating;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private String diagramFilePath;
+    private Statistics statistics;
     private String isFavourite;
 
     /**
@@ -44,6 +46,7 @@ class JsonAdaptedFlashcard {
                                 @JsonProperty("rating") String rating,
                                 @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                                 @JsonProperty("diagramFilePath") String diagramFilePath,
+                                @JsonProperty("statistics") Statistics statistics,
                                 @JsonProperty("favourite") String isFavourite) {
         this.question = question;
         this.answer = answer;
@@ -54,6 +57,7 @@ class JsonAdaptedFlashcard {
             this.tagged.addAll(tagged);
         }
         this.diagramFilePath = diagramFilePath;
+        this.statistics = statistics;
         this.isFavourite = isFavourite;
     }
 
@@ -71,6 +75,7 @@ class JsonAdaptedFlashcard {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         diagramFilePath = source.getDiagram().toString();
+        statistics = source.getStatistics();
         isFavourite = Boolean.toString(source.isFavourite());
     }
 
@@ -133,12 +138,18 @@ class JsonAdaptedFlashcard {
         }
         final Diagram modelDiagram = new Diagram(diagramFilePath);
 
+        if (statistics == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Statistics.class.getSimpleName()));
+        }
+        final Statistics modelStatistics = statistics;
+
         final Boolean modelIsFavourite = Boolean.parseBoolean(isFavourite);
 
         final Set<Tag> modelTags = new HashSet<>(flashcardTags);
 
         return new Flashcard(modelQuestion, modelAnswer, modelCategory, modelNote, modelRating, modelTags, modelDiagram,
-                modelIsFavourite);
+                modelStatistics, modelIsFavourite);
     }
 
 }

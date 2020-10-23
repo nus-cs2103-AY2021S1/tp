@@ -21,6 +21,7 @@ import seedu.flashcard.logic.commands.exceptions.CommandException;
 import seedu.flashcard.model.FlashcardDeck;
 import seedu.flashcard.model.Model;
 import seedu.flashcard.model.flashcard.Flashcard;
+import seedu.flashcard.model.flashcard.Statistics;
 import seedu.flashcard.testutil.EditFlashcardDescriptorBuilder;
 
 /**
@@ -55,6 +56,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_3 = "important";
     public static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
             "ImageTest");
+    public static final Statistics VALID_STATISTICS_1 = new Statistics(3, 1);
 
     public static final Path VALID_FILE_TYPE = TEST_DATA_FOLDER.resolve("valid_image.jpg");
     public static final String VALID_DIAGRAM_1 = "";

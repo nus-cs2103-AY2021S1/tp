@@ -7,6 +7,7 @@ import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_CATEGORY_2;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_NOTE_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_NOTE_2;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_QUESTION_2;
+import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_STATISTICS_1;
 import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_TAG_1;
 import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_1;
 import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_2;
@@ -43,6 +44,14 @@ public class FlashcardTest {
 
         // different tag -> returns true
         editedFlashcardOne = new FlashcardBuilder(FLASHCARD_1).withTags(VALID_TAG_1).build();
+        assertTrue(FLASHCARD_1.isSameQuestion(editedFlashcardOne));
+
+        // different tag -> returns true
+        editedFlashcardOne = new FlashcardBuilder(FLASHCARD_1).withTags(VALID_TAG_1).build();
+        assertTrue(FLASHCARD_1.isSameQuestion(editedFlashcardOne));
+
+        // different statistics -> returns true
+        editedFlashcardOne = new FlashcardBuilder(FLASHCARD_1).withStatistics(VALID_STATISTICS_1).build();
         assertTrue(FLASHCARD_1.isSameQuestion(editedFlashcardOne));
     }
 
@@ -86,6 +95,10 @@ public class FlashcardTest {
 
         // different tag -> returns false
         editedFlashcardOne = new FlashcardBuilder(FLASHCARD_1).withTags(VALID_TAG_1).build();
+        assertFalse(FLASHCARD_1.equals(editedFlashcardOne));
+
+        // different statistics -> returns false
+        editedFlashcardOne = new FlashcardBuilder(FLASHCARD_1).withStatistics(VALID_STATISTICS_1).build();
         assertFalse(FLASHCARD_1.equals(editedFlashcardOne));
     }
 }

@@ -8,6 +8,10 @@
       "rating": "2",
       "tagged": [ "revise" ],
       "diagramFilePath": "",
+      "statistics": {
+        "reviewFrequency": 5,
+        "successFrequency": 1
+      },
       "isFavourite": "false"
     },
     {
@@ -18,6 +22,10 @@
       "rating": "",
       "tagged": [ ],
       "diagramFilePath": "",
+      "statistics": {
+        "reviewFrequency": 5,
+        "successFrequency": 2
+      },
       "isFavourite": "true"
     },
     {
@@ -28,6 +36,10 @@
       "rating": "",
       "tagged": [ ],
       "diagramFilePath": "",
+      "statistics": {
+        "reviewFrequency": 4,
+        "successFrequency": 3
+      },
       "isFavourite": "false"
     }
   ]
