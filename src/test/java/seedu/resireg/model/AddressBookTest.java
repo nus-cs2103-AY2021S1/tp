@@ -26,10 +26,12 @@ import javafx.collections.ObservableList;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.room.exceptions.DuplicateRoomException;
+import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.student.Student;
 import seedu.resireg.model.student.exceptions.DuplicateStudentException;
 import seedu.resireg.testutil.RoomBuilder;
 import seedu.resireg.testutil.StudentBuilder;
+import seedu.resireg.testutil.TypicalSemesters;
 
 public class AddressBookTest {
 
@@ -56,7 +58,7 @@ public class AddressBookTest {
     public void resetData_withDuplicateStudents_throwsDuplicateStudentException() {
         // Two students with the same identity fields
         Student editedAlice = new StudentBuilder(ALICE).withFaculty(VALID_FACULTY_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+            .build();
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newStudents, new ArrayList<>());
 
@@ -83,7 +85,7 @@ public class AddressBookTest {
     public void hasStudent_studentWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addStudent(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withFaculty(VALID_FACULTY_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+            .build();
         assertTrue(addressBook.hasStudent(editedAlice));
     }
 
@@ -137,6 +139,7 @@ public class AddressBookTest {
      * A stub ReadOnlyAddressBook whose students list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
+        private final Semester semester = TypicalSemesters.AY2020_SEM_2;
         private final ObservableList<Student> students = FXCollections.observableArrayList();
         private final ObservableList<Room> rooms = FXCollections.observableArrayList();
         private final ObservableList<Allocation> allocations = FXCollections.observableArrayList();
@@ -144,6 +147,11 @@ public class AddressBookTest {
         AddressBookStub(Collection<Student> students, Collection<Room> rooms) {
             this.students.setAll(students);
             this.rooms.setAll(rooms);
+        }
+
+        @Override
+        public Semester getSemester() {
+            return semester;
         }
 
         @Override
