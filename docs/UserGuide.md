@@ -14,7 +14,7 @@ Hospify is a desktop app for a digital medical record management solution.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `hospify.jar` from [here](https://github.com/AY2021S1-CS2103T-W15-3/tp/releases).
+1. Download the latest `hospify.jar` from [here](https://github.com/AY2021S1-CS2103T-W15-3/tp/releases/tag/v1.3.trial).
 
 1. Copy the file to the folder you want to use as the _home folder_ for the Hospify app.
 
