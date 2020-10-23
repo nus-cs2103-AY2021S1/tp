@@ -15,12 +15,12 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Deadline;
-import seedu.address.model.assignment.ModuleCode;
-import seedu.address.model.assignment.Name;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.ModuleCode;
+import seedu.address.model.task.Name;
 
 /**
  * Edits the details of an existing assignment in the address book.

@@ -1,7 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.assignment.Deadline.DEADLINE_DATE_TIME_FORMAT;
+import static seedu.address.model.task.Deadline.DEADLINE_DATE_TIME_FORMAT;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -13,10 +13,10 @@ import org.json.simple.parser.ParseException;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Task;
 import seedu.address.model.assignment.UniqueAssignmentList;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.UniqueLessonList;
+import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 import seedu.address.timetable.TimetableData;
 import seedu.address.timetable.TimetableRetriever;

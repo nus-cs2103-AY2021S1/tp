@@ -5,12 +5,12 @@ import java.time.LocalDateTime;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Deadline;
-import seedu.address.model.assignment.ModuleCode;
-import seedu.address.model.assignment.Name;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.ModuleCode;
+import seedu.address.model.task.Name;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.

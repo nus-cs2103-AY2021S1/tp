@@ -8,9 +8,9 @@ import static seedu.address.testutil.TypicalAssignments.CS2103T_TUT;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.assignment.Deadline;
-import seedu.address.model.assignment.ModuleCode;
-import seedu.address.model.assignment.Name;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.ModuleCode;
+import seedu.address.model.task.Name;
 
 public class JsonAdaptedAssignmentTest {
     private static final String INVALID_NAME = "Tutori@l";

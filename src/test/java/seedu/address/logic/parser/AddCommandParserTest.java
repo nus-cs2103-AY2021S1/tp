@@ -27,9 +27,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Deadline;
-import seedu.address.model.assignment.ModuleCode;
-import seedu.address.model.assignment.Name;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.ModuleCode;
+import seedu.address.model.task.Name;
 import seedu.address.testutil.AssignmentBuilder;
 
 public class AddCommandParserTest {

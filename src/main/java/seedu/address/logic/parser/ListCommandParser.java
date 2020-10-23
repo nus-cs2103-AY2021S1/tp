@@ -13,8 +13,8 @@ public class ListCommandParser implements Parser<ListCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ListCommand parse(String args) throws ParseException {
-        boolean isNotListAll = args.matches(".*\\b.+\\b$"); //Has argument
-        if (!isNotListAll) {
+        boolean hasArgumentIndex = args.matches("(.+|[$&+,:;=?@#|'<>.^*()%!-])$"); //Has argument
+        if (!hasArgumentIndex) {
             return new ListCommand(Index.fromZeroBased(0));
         }
         try {

@@ -2,8 +2,8 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Task;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.task.Task;
 import seedu.address.timetable.TimetableData;
 
 /**

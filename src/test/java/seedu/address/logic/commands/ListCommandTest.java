@@ -20,7 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Deadline;
+import seedu.address.model.task.Deadline;
 
 
 /**

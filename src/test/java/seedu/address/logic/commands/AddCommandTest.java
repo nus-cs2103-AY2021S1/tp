@@ -21,7 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Task;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.AssignmentBuilder;
 import seedu.address.timetable.TimetableData;
 

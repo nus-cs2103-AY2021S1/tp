@@ -1,6 +1,6 @@
 package seedu.address.ui;
 
-import static seedu.address.model.assignment.Deadline.DEADLINE_DATE_TIME_FORMAT;
+import static seedu.address.model.task.Deadline.DEADLINE_DATE_TIME_FORMAT;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -16,9 +16,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Deadline;
-import seedu.address.model.assignment.Task;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Task;
 
 /**
  * Panel containing the list of tasks.

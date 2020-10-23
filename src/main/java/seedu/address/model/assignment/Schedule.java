@@ -1,5 +1,7 @@
 package seedu.address.model.assignment;
 
+import seedu.address.model.task.Deadline;
+
 public class Schedule {
     private final boolean schedule;
     private final Deadline suggestedStartTime;

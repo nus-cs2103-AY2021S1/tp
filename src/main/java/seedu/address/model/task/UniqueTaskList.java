@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.assignment.Task;
 import seedu.address.model.assignment.exceptions.DuplicateTaskException;
 import seedu.address.model.assignment.exceptions.TaskNotFoundException;
 

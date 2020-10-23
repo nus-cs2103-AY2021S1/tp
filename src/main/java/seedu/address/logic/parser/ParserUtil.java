@@ -6,10 +6,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.ScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.assignment.Deadline;
-import seedu.address.model.assignment.ModuleCode;
-import seedu.address.model.assignment.Name;
 import seedu.address.model.assignment.Priority;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.ModuleCode;
+import seedu.address.model.task.Name;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -32,7 +32,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * Parses {@code zeroBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
