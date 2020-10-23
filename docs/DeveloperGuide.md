@@ -241,6 +241,12 @@ Some of the important operations implemented here are:
 * `UpdateCommand#execute()` <br>
   Generates a new `CommandResult` with the updated stocks message as its argument.
 
+* `UpdateCommand#stocksAsString()` <br>
+  Generates the updated stocks message by transforming the updated stocks into their string descriptions.
+
+* `UpdateCommand#createUpdatedStock()` <br>
+  Generates the updated stock based on the information of the current stock in inventory and `UpdateStockDescriptor`.
+
 #### UpdateCommandParser
 
 `UpdateCommandParser` class implements `Parser` interface. `UpdateCommandParser` class is tasked with parsing the user inputs
@@ -261,6 +267,41 @@ Some of the important operations implemented here are:
 
 `UpdateStockDescriptor` is a inner static class inside `UpdateCommand`. This class is tasked with storing the temporary
 values for the fields to be later updated into the stock in inventory.
+
+#### Example Usage Scenario
+
+Given below are some example usage scenarios and how the update mechanism behaves at each step. It is assumed that
+the stock with serial number `fairprice1` exists in the inventory.
+
+**Example 1: Update a stock's name and quantity**
+
+Step 1. The user enters `update sn/fairprice1 n/Banana q/10000` to the CLI.
+
+Step 2. The command word `update` is extracted out in `StockBookParser` and checked if it matches any valid command word.
+
+Step 3. `update` is a valid command word. User input prefixes and their values are passed down to `UpdateCommandParser#parse()`
+
+Step 4. `UpdateCommandParser#parse()` will check if the prefixes `sn/` exists as it is compulsory.
+
+Step 5. The prefix `sn/` exist. `UpdateCommandParser#parse()` will extract the value of the prefix `sn/` which in this
+case is `fairprice1` 
+
+Step 6. `UpdateCommandParser#parse()` will extract the value of other prefixes present as well.
+
+Step 7. `UpdateCommandParser#parse()` returns a new `UpdateCommand` with the `UpdateStockDescriptor` as its argument.
+The `UpdateStockDescriptor` contains the values of the parsed prefixes.
+
+Step 8. `Logic Manager` then calls `UpdateCommand#execute()`. Inside the method, it will check if the serial numbers
+in `UpdateStockDescriptor` is found in the `Model`.
+
+Step 9. All serial numbers matched. The method `UpdateCommand#createUpdatedStock()` is called to produce the new updated
+stock.
+
+Step 10. The corresponding stocks in current inventory is replaced by the new updated stocks.
+
+Step 11. Returns a new `CommandResult` containing the updated stocks message as its argument.
+
+Step 12. The updated stocks message is displayed to the user.
 
 ### Suggestion Feature
 
