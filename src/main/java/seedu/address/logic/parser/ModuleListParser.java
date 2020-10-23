@@ -6,19 +6,40 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindContactCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.contactlistcommands.AddContactCommand;
 import seedu.address.logic.commands.contactlistcommands.DeleteContactCommand;
 import seedu.address.logic.commands.contactlistcommands.EditContactCommand;
+import seedu.address.logic.commands.gradetrackercommands.AddAssignmentCommand;
+import seedu.address.logic.commands.gradetrackercommands.AddGradeCommand;
+import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
+import seedu.address.logic.commands.modulelistcommands.AddZoomLinkCommand;
+import seedu.address.logic.commands.modulelistcommands.DeleteModuleCommand;
+import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
+import seedu.address.logic.commands.modulelistcommands.ViewModuleCommand;
 import seedu.address.logic.parser.contactlistparsers.AddContactParser;
 import seedu.address.logic.parser.contactlistparsers.DeleteContactParser;
 import seedu.address.logic.parser.contactlistparsers.EditContactParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.gradetrackerparsers.AddAssignmentParser;
+import seedu.address.logic.parser.gradetrackerparsers.AddGradeParser;
+import seedu.address.logic.parser.modulelistparsers.AddModuleParser;
+import seedu.address.logic.parser.modulelistparsers.AddZoomLinkParser;
+import seedu.address.logic.parser.modulelistparsers.DeleteModuleParser;
+import seedu.address.logic.parser.modulelistparsers.EditModuleParser;
+import seedu.address.logic.parser.modulelistparsers.ViewModuleParser;
 
 /**
  * Parses user input.
  */
-public class ModuleListParser {
+public class ModuleListParser implements FeatureParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -89,9 +110,14 @@ public class ModuleListParser {
 
         case AddGradeCommand.COMMAND_WORD:
             return new AddGradeParser().parse(arguments);
-
         case UndoCommand.COMMAND_WORD:
             return new UndoParser().parse(arguments);
+        //case EditGradeCommand.COMMAND_WORD:
+        //            return new EditGradeParser().parse(arguments);
+
+        //case DeleteGradeCommand.COMMAND_WORD:
+        //            return new DeleteGradeParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
