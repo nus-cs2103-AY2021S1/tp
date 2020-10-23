@@ -16,56 +16,28 @@ import seedu.address.model.tag.Tag;
 public class Task {
 
     // Identity fields
-    private final Title title;
-    private final DateTime dateTime;
-    private final Description description;
+    protected final Title title;
+    protected final Description description;
 
     // Data fields
-    private final Type type;
-    private final Set<Tag> tags = new HashSet<>();
-    private final Status status;
+    protected final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Task(Title title, DateTime dateTime, Description description, Type type, Set<Tag> tags) {
-        requireAllNonNull(title, dateTime, description, type, tags);
+    protected Task(Title title, Description description, Set<Tag> tags) {
+        requireAllNonNull(title, description, tags);
         this.title = title;
-        this.dateTime = dateTime;
         this.description = description;
-        this.type = type;
         this.tags.addAll(tags);
-        this.status = Status.defaultStatus();
-    }
-
-    /**
-     * Every field must be present and not null.
-     */
-    public Task(Title title, DateTime dateTime, Description description, Type type, Set<Tag> tags,
-                Status status) {
-        requireAllNonNull(title, dateTime, description, type, tags);
-        this.title = title;
-        this.dateTime = dateTime;
-        this.description = description;
-        this.type = type;
-        this.tags.addAll(tags);
-        this.status = status;
     }
 
     public Title getTitle() {
         return title;
     }
 
-    public DateTime getDateTime() {
-        return dateTime;
-    }
-
     public Description getDescription() {
         return description;
-    }
-
-    public Type getType() {
-        return type;
     }
 
     /**
@@ -74,18 +46,6 @@ public class Task {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    /**
-     * Returns true if the task's status is in the given State.
-     * @param state
-     */
-    public boolean statusIs(State state) {
-        return status.is(state);
     }
 
     /**
@@ -98,12 +58,7 @@ public class Task {
         }
 
         return otherTask != null
-                && otherTask.getTitle().equals(getTitle())
-                && otherTask.getDateTime().equals(getDateTime());
-    }
-
-    public Task markAsDone() {
-        return new Task(title, dateTime, description, type, tags, new Status(State.COMPLETE));
+                && otherTask.getTitle().equals(getTitle());
     }
 
     /**
@@ -122,32 +77,24 @@ public class Task {
 
         Task otherTask = (Task) other;
         return otherTask.getTitle().equals(getTitle())
-                && otherTask.getDateTime().equals(getDateTime())
                 && otherTask.getDescription().equals(getDescription())
-                && otherTask.getType().equals(getType())
-                && otherTask.getTags().equals(getTags())
-                && otherTask.getStatus().equals(getStatus());
+                && otherTask.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, dateTime, description, type, tags, status);
+        return Objects.hash(title, description, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
-                .append(" Date: ")
-                .append(getDateTime())
                 .append(" Description: ")
                 .append(getDescription())
-                .append(" Type: ")
-                .append(getType())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
-        builder.append(" Status: ").append(getStatus());
         return builder.toString();
     }
 

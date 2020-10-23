@@ -1,9 +1,9 @@
-package seedu.address.model.task;
+package seedu.address.model.task.event;
+
+import java.util.ArrayList;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-
-import java.util.ArrayList;
 
 /**
  * Represents a Task's type in the PlaNus task list.
