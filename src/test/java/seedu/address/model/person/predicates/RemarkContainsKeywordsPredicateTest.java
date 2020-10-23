@@ -54,10 +54,6 @@ public class RemarkContainsKeywordsPredicateTest {
         predicate = new RemarkContainsKeywordsPredicate(Arrays.asList("glasses", "bob-hair"));
         assertTrue(predicate.test(new PersonBuilder().withRemark("glasses bob-hair").build()));
 
-        // Only one matching keyword -> fail
-        predicate = new RemarkContainsKeywordsPredicate(Arrays.asList("bob-hair", "beard"));
-        assertFalse(predicate.test(new PersonBuilder().withRemark("glasses beard").build()));
-
         // Mixed-case keywords
         predicate = new RemarkContainsKeywordsPredicate(Arrays.asList("gLaSsEs", "bOB-HAiR"));
         assertTrue(predicate.test(new PersonBuilder().withRemark("glasses bob-hair").build()));
@@ -69,6 +65,10 @@ public class RemarkContainsKeywordsPredicateTest {
         RemarkContainsKeywordsPredicate predicate =
                 new RemarkContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withRemark("glasses").build()));
+
+        // Only one matching keyword
+        predicate = new RemarkContainsKeywordsPredicate(Arrays.asList("bob-hair", "beard"));
+        assertFalse(predicate.test(new PersonBuilder().withRemark("glasses beard").build()));
 
         // Non-matching keyword
         predicate = new RemarkContainsKeywordsPredicate(Collections.singletonList("beard"));

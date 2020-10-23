@@ -1,10 +1,12 @@
-package seedu.address.model.module;
+package seedu.address.model.module.predicates;
 
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.module.Module;
 
 public class ModuleCodeContainsKeywordsPredicate implements Predicate<Module> {
+
     private final String keyword;
 
     public ModuleCodeContainsKeywordsPredicate(String keyword) {

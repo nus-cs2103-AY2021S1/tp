@@ -146,6 +146,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a module with the same module code as {@code moduleCode} exists in the address book.
+     */
+    public boolean hasModuleCode(ModuleCode moduleCode) {
+        requireNonNull(moduleCode);
+        return modules.containsModuleCode(moduleCode);
+    }
+
+    /**
      * Adds a module to the address book.
      * The module must not already exist in the address book.
      */
@@ -172,6 +180,30 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireAllNonNull(instructor, moduleCode);
 
         modules.assignInstructor(instructor, moduleCode);
+    }
+
+    public void unassignAllInstructors() {
+        modules.unassignAllInstructors();
+    }
+
+    /**
+     * Unassigns an {@code instructor} from the module with the given {@code moduleCode}.
+     * The module with the {@code moduleCode} must exist in the address book.
+     */
+    public void unassignInstructor(Person instructor, ModuleCode moduleCode) {
+        requireAllNonNull(instructor, moduleCode);
+
+        modules.unassignInstructor(instructor, moduleCode);
+    }
+
+    /**
+     * Checks whether an {@code instructor} in the module with the given {@code moduleCode} exists.
+     * The module with the {@code moduleCode} must exist in the address book.
+     * @return true if the {@code instructor} is an instructor of the module with the {@code moduleCode}
+     */
+    public boolean moduleCodeHasInstructor(ModuleCode moduleCode, Person instructor) {
+        requireAllNonNull(instructor, moduleCode);
+        return modules.moduleCodeHasInstructor(moduleCode, instructor);
     }
 
     //// util methods

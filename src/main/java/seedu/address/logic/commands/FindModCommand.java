@@ -5,14 +5,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_INSTRUCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_NAME;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
-import seedu.address.model.module.ModuleInstructorsContainsKeywordsPredicate;
-import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
 
 public class FindModCommand extends Command {
 
@@ -27,35 +25,30 @@ public class FindModCommand extends Command {
             + PREFIX_MODULE_NAME + "MODULE NAME ... "
             + PREFIX_MODULE_INSTRUCTOR + "INSTRUCTOR's NAME ... \n"
             + "Examples: "
-            + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "CS2103 CS2100, "
+            + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "CS2103 "
             + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "CS2 " + PREFIX_MODULE_INSTRUCTOR + "John, "
             + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "CS1 "
-            + PREFIX_MODULE_NAME + "programming " + PREFIX_MODULE_INSTRUCTOR + "Martin";
-    private final ModuleCodeContainsKeywordsPredicate codePredicate;
-    private final ModuleNameContainsKeywordsPredicate namePredicate;
-    private final ModuleInstructorsContainsKeywordsPredicate instructorPredicate;
+            + PREFIX_MODULE_NAME + "programming methodology" + PREFIX_MODULE_INSTRUCTOR + "Martin";
+
+    private final List<Predicate<Module>> predicates;
 
     /**
      * Constructor that creates a FindMod Command.
      */
-    public FindModCommand(ModuleCodeContainsKeywordsPredicate codePredicate,
-                          ModuleNameContainsKeywordsPredicate namePredicate,
-                          ModuleInstructorsContainsKeywordsPredicate instructorPredicate) {
-        this.codePredicate = codePredicate;
-        this.namePredicate = namePredicate;
-        this.instructorPredicate = instructorPredicate;
+    public FindModCommand(List<Predicate<Module>> predicates) {
+        this.predicates = predicates;
     }
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        Predicate<Module> composedPredicate = getComposedPredicate(
-                this.codePredicate, this.namePredicate, this.instructorPredicate);
+        Predicate<Module> composedPredicate = getComposedPredicate(this.predicates);
         model.updateFilteredModuleList(composedPredicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_MODULES_LISTED, model.getFilteredModuleList().size()));
     }
 
-    private static Predicate<Module> getComposedPredicate(Predicate<Module> ...predicates) {
+    private static Predicate<Module> getComposedPredicate(List<Predicate<Module>> predicates) {
         assert(predicates != null);
         Predicate<Module> composedPredicate = module -> true;
         for (Predicate<Module> predicate : predicates) {
@@ -71,8 +64,6 @@ public class FindModCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindModCommand // instanceof handles nulls
-                && codePredicate.equals(((FindModCommand) other).codePredicate)
-                && namePredicate.equals(((FindModCommand) other).namePredicate)
-                && instructorPredicate.equals(((FindModCommand) other).instructorPredicate)); // state check
+                && predicates.equals(((FindModCommand) other).predicates)); // state check
     }
 }

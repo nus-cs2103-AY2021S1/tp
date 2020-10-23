@@ -32,7 +32,11 @@ public class AssignCommandParser implements Parser<AssignCommand> {
                     AssignCommand.MESSAGE_USAGE), ive);
         }
 
+        assert index != null;
+
         Set<ModuleCode> moduleCodes = ParserUtil.parseModuleCodes(argMultimap.getAllValues(PREFIX_MODULE_CODE));
+
+        assert moduleCodes != null;
 
         return new AssignCommand(index, moduleCodes);
     }
