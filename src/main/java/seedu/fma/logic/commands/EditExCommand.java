@@ -39,6 +39,11 @@ public class EditExCommand extends Command {
     private final Index index;
     private final EditExCommand.EditExDescriptor editExDescriptor;
 
+    /**
+     * Constructor for EditExCommand
+     * @param index index of the exercise to be edited
+     * @param editExDescriptor extracted EditDescriptor
+     */
     public EditExCommand(Index index, EditExDescriptor editExDescriptor) {
         requireNonNull(index);
         requireNonNull(editExDescriptor);
@@ -128,7 +133,8 @@ public class EditExCommand extends Command {
         assert exerciseToEdit != null;
 
         Name updatedExerciseName = editExDescriptor.getExerciseName().orElse(exerciseToEdit.getName());
-        Calories updatedCaloriesPerRep = editExDescriptor.getCaloriesPerRep().orElse(exerciseToEdit.getCaloriesPerRep());
+        Calories updatedCaloriesPerRep = editExDescriptor.getCaloriesPerRep()
+                .orElse(exerciseToEdit.getCaloriesPerRep());
 
         return new Exercise(updatedExerciseName, updatedCaloriesPerRep);
     }
