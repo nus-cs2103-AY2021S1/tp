@@ -14,6 +14,7 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.Question;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Year;
+import seedu.address.model.student.academic.exam.Score;
 import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
@@ -201,6 +202,15 @@ public class ParserUtil {
             detailSet.add(parseAdditionalDetail(detail));
         }
         return detailSet;
+    }
+
+    public static Score parseScore(String score) throws ParseException {
+        requireNonNull(score);
+        String trimmedScore = score.trim();
+        if (!Score.isValidExamScore(trimmedScore)) {
+            throw new ParseException(Score.MESSAGE_CONSTRAINTS);
+        }
+        return new Score(trimmedScore);
     }
 
 }

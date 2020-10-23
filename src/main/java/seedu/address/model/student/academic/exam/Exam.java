@@ -1,25 +1,35 @@
 package seedu.address.model.student.academic.exam;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Objects;
 
 public class Exam {
-    private final ExamName examName;
-    private final ExamDate examDate;
-    private final Score expectedScore;
+    private final String examName;
+    private final LocalDate examDate;
     private final Score score;
 
-    public Exam(ExamName examName, ExamDate examDate, Score expectedScore, Score score) {
+    private static final DateTimeFormatter INPUT_DEF = DateTimeFormatter.ofPattern("d/M/yy");
+    private static final DateTimeFormatter INPUT_ALT = DateTimeFormatter.ofPattern("d/M/yyyy");
+
+    public Exam(String examName, String examDate, Score score) {
         this.examName = examName;
-        this.examDate = examDate;
-        this.expectedScore = expectedScore;
+        LocalDate formattedDate;
+        try {
+            formattedDate= LocalDate.parse(examDate, INPUT_DEF);
+        } catch (DateTimeParseException ignored) {
+            formattedDate = LocalDate.parse(examDate, INPUT_ALT);
+        }
+        this.examDate = formattedDate;
         this.score = score;
     }
 
-    public ExamName getName() {
+    public String getName() {
         return examName;
     }
 
-    public ExamDate getDate() {
+    public LocalDate getDate() {
         return examDate;
     }
 
@@ -27,13 +37,33 @@ public class Exam {
         return score;
     }
 
-    public Score getExpectedScore() {
-        return expectedScore;
+    public String getUserInputDate() {
+        return this.examDate.format(INPUT_ALT);
+    }
+
+    public static boolean isValidDate(String date) {
+        String VALIDATION_REGEX = "(\\d{1,2})(\\/)(\\d{1,2})(\\/)(\\d{2}|\\d{4})";
+        if (!date.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+
+        LocalDate testDate = null;
+
+        for (DateTimeFormatter format : new DateTimeFormatter[] {INPUT_DEF, INPUT_ALT}) {
+            try {
+                testDate = LocalDate.parse(date, format);
+                break;
+            } catch (DateTimeParseException ignored) {
+                // does not match the DateTimeFormat, try the next
+            }
+        }
+        
+        return testDate != null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(examName, examDate, score, expectedScore);
+        return Objects.hash(examName, examDate, score);
     }
 
     @Override
@@ -56,8 +86,6 @@ public class Exam {
                 examName +
                 "\n\tDate: " +
                 examDate +
-                "\n\tExpected Score: " +
-                expectedScore +
                 "\n\tActual Score: " +
                 score;
     }

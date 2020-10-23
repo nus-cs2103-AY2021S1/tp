@@ -1,5 +1,7 @@
 package seedu.address.model.student.academic.exam;
 
+import java.text.ParseException;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -10,12 +12,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Score {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Grades should be in the form int/int";
-
-    /*
-     * Format of exam score is integer/integer.
-     */
-    public static final String VALIDATION_REGEX = "(\\d{1,2})(\\/)(\\d{1,2})";
+            "Scores should be in the form int/int";
 
     public final String examScore;
 
@@ -33,8 +30,22 @@ public class Score {
     /**
      * Returns true if a given string is a valid score.
      */
-    public static boolean isValidExamScore(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidExamScore(String score) {
+        String[] splitScore = score.split("/");
+
+        if (splitScore.length != 2) {
+            return false;
+        }
+
+        int firstInt;
+        int secInt;
+        try {
+            firstInt = Integer.parseInt(splitScore[0]);
+            secInt = Integer.parseInt(splitScore[1]);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return firstInt <= secInt;
     }
 
     @Override

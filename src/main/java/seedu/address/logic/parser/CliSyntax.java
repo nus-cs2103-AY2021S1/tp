@@ -24,8 +24,8 @@ public class CliSyntax {
     /* Prefix for exam commands */
     public static final Prefix PREFIX_EXAM_NAME = new Prefix("n/");
     public static final Prefix PREFIX_EXAM_DATE = new Prefix("d/");
-    public static final Prefix PREFIX_EXPECTED_SCORE = new Prefix("e/");
     public static final Prefix PREFIX_SCORE = new Prefix("s/");
+    public static final Prefix PREFIX_EXAM_INDEX = new Prefix("i/");
 
     public static final Prefix[] COMPULSORY_PREFIXES = new Prefix[] {PREFIX_NAME, PREFIX_PHONE,
         PREFIX_SCHOOL, PREFIX_YEAR, PREFIX_VENUE, PREFIX_TIME, PREFIX_FEE, PREFIX_PAYMENT};
@@ -40,5 +40,5 @@ public class CliSyntax {
             new Prefix[] {PREFIX_ADD_QUESTION, PREFIX_SOLVE_QUESTION, PREFIX_DELETE_QUESTION};
 
     public static final Prefix[] EXAM_COMMAND_PREFIXES =
-            new Prefix[] {PREFIX_EXAM_NAME, PREFIX_EXAM_DATE, PREFIX_EXPECTED_SCORE};
+            new Prefix[] {PREFIX_EXAM_NAME, PREFIX_EXAM_DATE, PREFIX_SCORE};
 }

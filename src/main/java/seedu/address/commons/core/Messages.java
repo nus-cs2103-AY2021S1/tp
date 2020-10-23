@@ -9,5 +9,5 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_STUDENTS_LISTED_OVERVIEW = "%1$d persons listed!";
-
+    public static final String MESSAGE_UNKNOWN_EXAM_COMMAND = "Unknown Exam Command";
 }
