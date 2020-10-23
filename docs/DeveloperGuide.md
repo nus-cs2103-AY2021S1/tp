@@ -243,6 +243,7 @@ Some of the important operations implemented here are:
   Generates a new `CommandResult` with the suggestion message as its argument.
 
 #### SuggestionCommandParser
+
 `SugestionCommandParser` class extends `Parser` interface. `SuggestionCommandParser` class is tasked with parsing the
 user inputs and generate a new `SuggestionCommand`. The main logic of the suggestion feature is encapsulated here.
 
@@ -256,26 +257,37 @@ Some of the important operations implemented here are:
   Parses the user input and parsing error messages thrown from another `Parser` and returns a new `SuggestionCommand`
   with the suggestion to be shown as its argument. The inference for the command word to be suggested is made in here.
   After the correct command word is inferred, then it will call helper functions to generate the suggestion messages.
+
 * `SuggestionCommandParser#generateAddSuggestion()` <br>
   Generates the suggestion message for an add command.
+
 * `SuggestionCommandParser#generateListSuggestion()` <br>
   Generates the suggestion message for a list command.
+
 * `SuggestionCommandParser#generateHelpSuggestion()` <br>
   Generates the suggestion message for a help command.
+
 * `SuggestionCommandParser#generateExitSuggestion()` <br>
   Generates the suggestion message for a exit command.
+
 * `SuggestionCommandParser#generateUpdateSuggestion()` <br>
   Generates the suggestion message for an update command.
+
 * `SuggestionCommandParser#generateDeleteSuggestion()` <br>
   Generates the suggestion message for a delete command.
+
 * `SuggestionCommandParser#generateFindSuggestion()` <br>
   Generates the suggestion message for a find command.
+
 * `SuggestionCommandParser#generateFindExactSuggestion()` <br>
   Generates the suggestion message for a find exact command.
+
 * `SuggestionCommandParser#generateStatisticsSuggestion()` <br>
   Generates the suggestion message for a stats command.
+
 * `SuggestionCommandParser#generateNoteSuggestion()` <br>
   Generates the suggestion message for a note command.
+
 * `SuggestionCommandParser#generateNoteDeleteSuggestion()` <br>
   Generates the suggestion message for a note delete command.
 
@@ -287,6 +299,7 @@ The utilities provided inside are:
 
 * `SuggestionUtil#min()` <br>
   Computes the minimum of three integers.
+
 * `SuggestionUtil#minimumEditDistance()` <br>
   Computes the minimum edit distance between 2 strings.
 
@@ -369,17 +382,16 @@ will fill the argument with a default value. In this case, the prefix `n/` is pr
 `n/Milk` is then added to the suggestion message. The prefix `s/` is present, but its argument is empty.
 `s/<source>` is then added to the suggestion message.
 
-Step 9. Lastly `SuggestionCommandParser#generateUpdateSuggestion()` will append the usage message for `update` command.
+Step 12. Lastly `SuggestionCommandParser#generateUpdateSuggestion()` will append the usage message for `update` command.
 
-Step 10. `SuggestionCommandParser#parse()` method returns a new `SuggestionCommand` with the suggestion message
+Step 13. `SuggestionCommandParser#parse()` method returns a new `SuggestionCommand` with the suggestion message
 to be displayed as its argument.
 
-Step 11. `SuggestionCommand` is executed and produces a new `CommandResult` to display the message to the user.
+Step 14. `SuggestionCommand` is executed and produces a new `CommandResult` to display the message to the user.
 
-Step 12. The suggestion `update sn/<serial number> n/Milk s/<source>` is displayed to the user along with what kind of
+Step 15. The suggestion `update sn/<serial number> n/Milk s/<source>` is displayed to the user along with what kind of
 error and the message usage information. In this case the error is `Invalid command format` and the message usage is from
 `UpdateCommand`.
-
 
 #### Sequence Diagram
 
