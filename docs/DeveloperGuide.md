@@ -219,6 +219,99 @@ New command | Undo command
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
+
+### Redo feature (by Jun Cheng)
+
+#### Implementation
+
+The Redo feature was added as a complement to the Undo feature which was done earlier. The addition of this
+feature required the integration of the `RedoCommand` class, which extends from the `Command` class like all other commands.
+The `HistoryStack` class also has new key features to support the `redo` command:
+
+* `HistoryStack#addToRedo(ReadOnlyZooKeepBook)` - Adds a given state of the ZooKeep book into the redo stack.
+* `HistoryStack#removeRecentRedo()` - Removes the most 'recent' update of the ZooKeep book from the redo stack.
+* `HistoryStack#viewRecentRedo()` - Returns (but does not remove) the most 'recent' update of the ZooKeep book.
+* `HistoryStack#clearRedo()` - Clears the future updates of the ZooKeep book stored in the redo stack.
+
+The `RedoCommand` class references some of these methods to accomplish the feature required. Given below is an example
+usage scenario and how the redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The ZooKeep book is initialised with the initial state
+given in `data/zookeepbook.json`, and the `HistoryStack` consists of 2 stacks; the history stack and the redo stack,
+each in their respective initial states.
+
+![RedoState0](images/RedoState0.png)
+
+Step 2. The user executes `add n/Harambe...` to add a new animal into the ZooKeep book. The `LogicManager` calls
+`Model#getZooKeepBook()` to retrieve the new state of the book and calls `HistoryStack#addToHistory(ReadOnlyZooKeepBook)`
+as per normal undo protocol.
+
+![RedoState1](images/RedoState1.png)
+
+Step 3. The user then executes `delete 567` which deletes the animal in the book with an ID of 567. Similar to step 2, 
+`LogicManager` will call `Model#getZooKeepBook()` to retrieve the new state of the book and then calls 
+`HistoryStack#addToHistory(ReadOnlyZooKeepBook)` to store this state into the history stack.
+
+![RedoState2](images/RedoState2.png)
+
+Step 4. Now the user thinks that deleting that animal was a mistake and restores the previous state by 
+executing `undo` (explained in the previous section). However, before the current state is deleted and replaced with 
+the previous one, `HistoryStack#addToRedo(ReadOnlyZooKeepBook)` is called to store the current state into the redo 
+stack for further use.
+
+![RedoState3](images/RedoState3.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If `UndoCommand` is never executed, the 
+redo stack will remain empty and calling `RedoCommand` will do nothing, since there are no future states recorded in
+the stack for retrieval. 
+
+</div>
+
+Step 5. However, now the user decides that deleting that animal was the correct decision after all, and now executes 
+`redo` which calls `HistoryStack#viewRecentRedo()` to retrieve the future state of the ZooKeep book where the animal
+was deleted. The future state is then loaded into the model using `Model#setZooKeepBook(ReadOnlyZooKeepBook)`.
+Lastly, `HistoryStack#removeRecentRedo()` is called to delete that state from redo stack. 
+
+![RedoState4](images/RedoState4.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If commands which alter the state of the 
+ZooKeep book (e.g. add or delete) are executed after an undo command, the redo stack will be emptied since the 
+immediate future has been altered and the future states previously stored in the redo stack are now invalid. Hence 
+executing redo now will do nothing.
+
+</div>
+
+
+The following sequence diagram illustrates how the `Redo` operation is performed:
+
+![RedoSequenceDiagram](images/RedoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `RedoCommand` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following 2 activity diagrams summarise what happens when a user executes the `undo` and `redo` commands:
+
+Undo command | Redo command
+:-------------------------:|:-------------------------:
+![UndoCommandWithRedoActivityDiagram](images/UndoCommandWithRedoActivityDiagram.png) | ![RedoCommandActivityDiagram](images/RedoCommandActivityDiagram.png)
+
+
+#### Design consideration:
+
+##### Aspect: How redo executes
+
+* **Alternative 1 (current choice):** Saves the entire ZooKeep book as a state.
+  * Pros: Easy to implement, works with all commands immediately.
+  * Cons: May have performance issues in terms of memory usage as product scales.
+
+* **Alternative 2:** Individual command knows how to redo by
+  itself.
+  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
+
+
 ### Snapshot feature (by Aizat)
 
 #### Implementation
@@ -234,6 +327,46 @@ parses the user's input as a file name and then creates a `SnapCommand` object w
 * We chose to prevent users from creating a snapshot if the specified file name already exists
 as overwriting a file is irreversible and would be disastrous for zookeepers if done unintentionally
 
+### Sort feature (by Malcolm)
+
+#### Implementation
+
+This section explains the implementation of the Sort command feature in the ZooKeepBook. This feature is used to sort the animals based on the different categories: **name, id or feedtime**.
+* For the animal name, it will be in alphabetical order.
+* For the animal id, it will be in increasing order.
+* For the animal feed time, it will be from earliest to latest. 
+  
+The following sequence diagram shows the Logic and Model Components when a sort command is being executed:
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source:  **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+In the **Logic** Component,
+After the user keys in "sort name" as input, these key methods are called:
+* `LogicManager#execute("sort name")`: The `LogicManager` takes in a command text string ("sort name/id/feedtime").
+* `ZooKeepBookParser#parseCommand("sort name")`: The `ZooKeepBookParser` parses the user input into a command word ("sort") and arguments ("name"). Using the command word, a `SortCommandParser` is created. 
+* `SortCommandParser#parse("name")`: The `SortCommandParser` takes in the argument("name") and parses it. An `AnimalComparator` is created and contains the specific static comparator required to sort the animals according to the category provided. A `SortCommand` is created with the `AnimalComparator` as an attribute.
+	* The `AnimalComparator` contains 3 different static comparators to be used for sorting: `ANIMAL_NAME_COMPARATOR`,  `ANIMAL_ID_COMPARATOR` and `ANIMAL_FEEDTIME_COMPARATOR`.
+	* In this case, the `ANIMAL_NAME_COMPARATOR` is taken.
+* `SortCommand#execute(model)`: The `SortCommand` uses the `AnimalComparator` to sort the animals and returns a `CommandResult` object which represents the result of a command execution. 
+
+In the **Model** Component,
+The in-memory model of the ZooKeepBook data sorts and updates the animal list. The following key methods are used: 
+* `Model#sortAnimals(animalComparator)`: sorts the animals in the `ZooKeepBook` using the given `AnimalComparator` object.
+* `ZooKeepBook#sortAnimals(animalComparator)` : Retrieves the static comparator in the `AnimalComparator` object and creates a `SortedList` object. The `UniqueAnimalList` in the `ZooKeepBook` is then replaced by this `SortedList` object.
+* `ZooKeepBook#updateFilteredAnimalList(predicate)`: Updates the filter of the filtered animal list to filter by the given predicate, which will be true here so that the sorted list will be displayed once sorted.
+
+Upon the completion of the user command, a success message (Sorted all animals by name) and the updated sorted list is displayed below the message.
+
+The following activity diagram summarises what happens when a user executes a sort command.
+
+![SortCommandActivityDiagram](images/SortCommandActivityDiagram.png)
+  
+#### Design Consideration  
+##### Aspect: Sorting based on different categories  
+We chose to allow the user to sort not only based on animal names but also by their id and feedtime to ease the convenience of the user when he needs data to be sorted in other ways.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -291,17 +424,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AnimalBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ZooKeepBook` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add an animal**
 
 **MSS**
 
-1. User specifies the add command with name, species and ID of animal
+1. User specifies the add command with name, ID and species of animal
 
-2. AnimalBook adds the animal
+2. ZooKeepBook adds the animal
 
-3. AnimalBook refreshes to show the updated list
+3. ZooKeepBook shows the new animal added
+
+4. ZooKeepBook refreshes to show the updated list
 
    Use case ends
 
@@ -309,15 +444,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The command is incorrectly formatted
 
-  AnimalBook shows an error message
+  * 1a1. ZooKeepBook shows an error message
 
-  Use case resumes at step 1
+  * Use case resumes at step 1
 
 * 2a. The given ID is already taken
 
-  AnimalBook shows an error message
+  * 2a1. ZooKeepBook shows an error message
 
-  Use case resumes at step 1
+  * Use case resumes at step 1
 
 **Use case: Delete an animal**
 
@@ -325,9 +460,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User specifies the delete command with ID of animal
 
-2. AnimalBook deletes the animal
+2. ZooKeepBook deletes the animal
 
-3. AnimalBook refreshes to show the updated list
+3. ZooKeepBook shows the deleted animal
+
+4. ZooKeepBook refreshes to show the updated list
 
    Use case ends
 
@@ -335,15 +472,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The command is incorrectly formatted
 
-  AnimalBook shows an error message
+  * 1a1. ZooKeepBook shows an error message
 
-  Use case resumes at step 1
+  * Use case resumes at step 1
 
 * 2a. The given ID does not exist
 
-  AnimalBook shows an error message
+  * 2a1. ZooKeepBook shows an error message
 
-  Use case resumes at step 1
+  * Use case resumes at step 1
 
 **Use case: List all animals**
 
@@ -351,7 +488,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User specifies the list command
 
-2. AnimalBook displays list of all existing animals
+2. ZooKeepBook displays list of all existing animals
 
    Use case ends
 
@@ -361,7 +498,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User specifies the exit command
 
-2. AnimalBook quits
+2. ZooKeepBook quits
 
    Use case ends
 
@@ -371,10 +508,92 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User specifies the help command
 
-2. AnimalBook displays list of all available commands
+2. ZooKeepBook displays list of all available commands
+
+   Use case ends
+   
+**Use case: Find animals based on keywords**
+
+**MSS**
+
+1. User specifies the keywords (case-insensitive) regarding an animal's name, id, species, medical condition or feed time
+
+2. ZooKeepBook searches for all animals with any of the exact keywords
+
+3. ZooKeepBook shows the list of animals with any of those keywords
 
    Use case ends
 
+**Extensions**
+
+* 1a. The command is incorrectly formatted
+
+  * 1a1. ZooKeepBook shows an error message
+
+  * Use case resumes at step 1
+  
+**Use case: Sort all animals**
+
+**MSS**
+
+1. User specifies the sort command and the specific category (name, id or feedtime)
+
+2. ZooKeepBook sorts the animals according to the category
+
+3. ZooKeepBook shows a success message
+
+4. ZooKeepBook refreshes to show the sorted list
+
+   Use case ends
+
+**Extensions**
+
+* 1a. The command is incorrectly formatted
+
+  * 1a1. ZooKeepBook shows an error message
+
+  * Use case resumes at step 1
+
+**Use case: Undo last command**
+
+**MSS**
+
+1. User enters undo command.
+
+2. ZooKeepBook reverts to the state before last command was made.
+
+3. ZooKeepBook shows a success message
+
+   Use case ends
+
+**Extensions**
+
+* 2a. There is no previous state to revert to.
+
+  * 2a1. ZooKeepBook shows an error message
+
+  * Use case ends
+
+**Use case: Redo last undo**
+
+**MSS**
+
+1. User enters redo command.
+
+2. ZooKeepBook reverts to the state before undo command was made.
+
+3. ZooKeepBook shows a success message
+
+   Use case ends
+
+**Extensions**
+
+* 2a. There is no previous state to revert to.
+
+  * 2a1. ZooKeepBook shows an error message
+
+  * Use case ends
+  
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
