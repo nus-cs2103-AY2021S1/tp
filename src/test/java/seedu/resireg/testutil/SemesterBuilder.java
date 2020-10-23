@@ -13,10 +13,10 @@ import seedu.resireg.model.semester.SemesterNumber;
 
 public class SemesterBuilder {
 
-    public static final int DEFAULT_ACADEMIC_YEAR = 2020;
+    public static final AcademicYear DEFAULT_ACADEMIC_YEAR = new AcademicYear(2020);
     public static final SemesterNumber DEFAULT_SEMESTER_NUMBER = new SemesterNumber(1);
 
-    private int academicYear;
+    private AcademicYear academicYear;
     private SemesterNumber semesterNumber;
     private List<Allocation> allocations;
     private Map<RoomType, Integer> roomFees;
@@ -35,7 +35,7 @@ public class SemesterBuilder {
      * Initializes the SemesterBuilder with the data of {@code semesterToCopy}.
      */
     public SemesterBuilder(Semester semesterToCopy) {
-        academicYear = semesterToCopy.getAcademicYear().value;
+        academicYear = new AcademicYear(semesterToCopy.getAcademicYear().value);
         semesterNumber = semesterToCopy.getSemesterNumber();
         allocations = semesterToCopy.getAllocations();
         roomFees = semesterToCopy.getRoomFees();
@@ -45,15 +45,15 @@ public class SemesterBuilder {
      * Sets the {@code academicYear} of the {@code Semester} that we are building.
      */
     public SemesterBuilder withAcademicYear(int academicYear) {
-        this.academicYear = academicYear;
+        this.academicYear = new AcademicYear(academicYear);
         return this;
     }
 
     /**
      * Sets the {@code semesterNumber} of the {@code Semester} that we are building.
      */
-    public SemesterBuilder withSemesterNumber(SemesterNumber semesterNumber) {
-        this.semesterNumber = semesterNumber;
+    public SemesterBuilder withSemesterNumber(int semesterNumber) {
+        this.semesterNumber = new SemesterNumber(semesterNumber);
         return this;
     }
 
@@ -77,6 +77,6 @@ public class SemesterBuilder {
      * Returns a new {@code Semester} created.
      */
     public Semester build() {
-        return new Semester(new AcademicYear(academicYear), semesterNumber, allocations, roomFees);
+        return new Semester(academicYear, semesterNumber, allocations, roomFees);
     }
 }

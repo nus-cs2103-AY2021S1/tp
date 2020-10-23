@@ -10,11 +10,11 @@ public class TypicalSemesters {
 
     public static final Semester AY2020_SEM_1 = new SemesterBuilder()
             .withAcademicYear(2020)
-            .withSemesterNumber(new SemesterNumber(1)).build();
+            .withSemesterNumber(1).build();
 
     public static final Semester AY2020_SEM_2 = new SemesterBuilder()
             .withAcademicYear(2020)
-            .withSemesterNumber(new SemesterNumber(2)).build();
+            .withSemesterNumber(2).build();
 
     private TypicalSemesters() {
     } // prevents instantiation
