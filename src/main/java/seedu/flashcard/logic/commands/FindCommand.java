@@ -13,6 +13,7 @@ import seedu.flashcard.model.flashcard.CategoryContainsKeywordsPredicate;
 import seedu.flashcard.model.flashcard.Flashcard;
 import seedu.flashcard.model.flashcard.NoteContainsKeywordsPredicate;
 import seedu.flashcard.model.flashcard.QuestionContainsKeywordsPredicate;
+import seedu.flashcard.model.flashcard.TagsContainsKeywordsPredicate;
 
 /**
  * Finds and lists all flashcards in flashcard deck who contains any of the argument keywords.
@@ -41,11 +42,12 @@ public class FindCommand extends Command {
         AnswerContainsKeywordsPredicate answerPredicate = new AnswerContainsKeywordsPredicate(keywords);
         CategoryContainsKeywordsPredicate categoryPredicate = new CategoryContainsKeywordsPredicate(keywords);
         NoteContainsKeywordsPredicate notePredicate = new NoteContainsKeywordsPredicate(keywords);
+        TagsContainsKeywordsPredicate tagPredicate = new TagsContainsKeywordsPredicate(keywords);
 
         List<Predicate<Flashcard>> listOfPredicates = Arrays.asList(questionPredicate, answerPredicate,
-                categoryPredicate, notePredicate);
-        Predicate<Flashcard> predicates = listOfPredicates.stream().reduce(Predicate::or).orElse(x->false);
-        model.updateFilteredFlashcardList(predicates);
+                categoryPredicate, notePredicate, tagPredicate);
+        Predicate<Flashcard> allPredicates = listOfPredicates.stream().reduce(Predicate::or).orElse(x->false);
+        model.updateFilteredFlashcardList(allPredicates);
 
         return new CommandResult(
                 String.format(Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW, model.getFilteredFlashcardList().size()));

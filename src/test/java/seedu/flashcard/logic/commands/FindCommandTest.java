@@ -25,6 +25,7 @@ import seedu.flashcard.model.flashcard.CategoryContainsKeywordsPredicate;
 import seedu.flashcard.model.flashcard.Flashcard;
 import seedu.flashcard.model.flashcard.NoteContainsKeywordsPredicate;
 import seedu.flashcard.model.flashcard.QuestionContainsKeywordsPredicate;
+import seedu.flashcard.model.flashcard.TagsContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -69,8 +70,10 @@ public class FindCommandTest {
         AnswerContainsKeywordsPredicate answerPredicate = new AnswerContainsKeywordsPredicate(keywords);
         CategoryContainsKeywordsPredicate categoryPredicate = new CategoryContainsKeywordsPredicate(keywords);
         NoteContainsKeywordsPredicate notePredicate = new NoteContainsKeywordsPredicate(keywords);
+        TagsContainsKeywordsPredicate tagPredicate = new TagsContainsKeywordsPredicate(keywords);
+
         List<Predicate<Flashcard>> listOfPredicates = Arrays.asList(questionPredicate, answerPredicate,
-                categoryPredicate, notePredicate);
+                categoryPredicate, notePredicate, tagPredicate);
         Predicate<Flashcard> allPredicates = listOfPredicates.stream().reduce(Predicate::or).orElse(x->false);
 
         expectedModel.updateFilteredFlashcardList(allPredicates);
@@ -88,8 +91,11 @@ public class FindCommandTest {
         AnswerContainsKeywordsPredicate answerPredicate = new AnswerContainsKeywordsPredicate(keywords);
         CategoryContainsKeywordsPredicate categoryPredicate = new CategoryContainsKeywordsPredicate(keywords);
         NoteContainsKeywordsPredicate notePredicate = new NoteContainsKeywordsPredicate(keywords);
+        TagsContainsKeywordsPredicate tagPredicate = new TagsContainsKeywordsPredicate(keywords);
+
         List<Predicate<Flashcard>> listOfPredicates = Arrays.asList(questionPredicate, answerPredicate,
-                categoryPredicate, notePredicate);
+                categoryPredicate, notePredicate, tagPredicate);
+
         Predicate<Flashcard> allPredicates = listOfPredicates.stream().reduce(Predicate::or).orElse(x->false);
 
         expectedModel.updateFilteredFlashcardList(allPredicates);
