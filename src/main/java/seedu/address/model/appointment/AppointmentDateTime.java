@@ -10,11 +10,8 @@ public class AppointmentDateTime {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Times should be entered in the format: 2007-12-03T10:15";
-
-    /*
-     * A regex pattern for the ISO Date format, with additional hours and minutes.
-     */
-    public static final String VALIDATION_REGEX = "\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d";
+    // Compared to other classes, this class uses the LocalDateTime class to check validity of the String
+    // rather than a regex.
 
     public final LocalDateTime dateTime;
 
