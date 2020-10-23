@@ -20,7 +20,7 @@ public class ListAliasCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        if(model.getCommandWordAliases().isEmpty()) {
+        if (model.getCommandWordAliases().isEmpty()) {
             return new CommandResult(MESSAGE_EMPTY_ALIAS);
         }
 

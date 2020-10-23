@@ -10,6 +10,7 @@ import java.util.Objects;
 
 import seedu.resireg.commons.core.GuiSettings;
 import seedu.resireg.model.alias.CommandWordAlias;
+import seedu.resireg.model.alias.exceptions.DuplicateCommandWordAliasException;
 
 /**
  * Represents User's preferences.
@@ -61,13 +62,17 @@ public class UserPrefs implements ReadOnlyUserPrefs {
      */
     public void setCommandAliases(List<CommandWordAlias> commandWordAliases) {
         requireNonNull(commandWordAliases);
-        this.commandWordAliases = commandWordAliases;
+        if (!aliasesAreUnique(commandWordAliases)) {
+            throw new DuplicateCommandWordAliasException();
+        }
+        this.commandWordAliases = new ArrayList<>(commandWordAliases);
     }
 
     /**
      * Checks whether the existing commandAliases of this {@code UserPrefs} contains the target object.
      */
     public boolean hasAlias(CommandWordAlias target) {
+        requireNonNull(target);
         return commandWordAliases.stream().anyMatch(commandWordAlias ->
             commandWordAlias.getAlias().equals(target.getAlias()));
     }
@@ -126,9 +131,23 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     public String getCommandWordAliasesAsString() {
         String res = "";
-        for(CommandWordAlias commandWordAlias : commandWordAliases) {
+        for (CommandWordAlias commandWordAlias : commandWordAliases) {
             res = res + commandWordAlias.toString() + "\n";
         }
         return res;
+    }
+
+    /**
+     * Returns true if {@code commandAliases} contains only unique command word aliases.
+     */
+    private boolean aliasesAreUnique(List<CommandWordAlias> commandWordAliases) {
+        for (int i = 0; i < commandWordAliases.size() - 1; i++) {
+            for (int j = i + 1; j < commandWordAliases.size(); j++) {
+                if (commandWordAliases.get(i).equals(commandWordAliases.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

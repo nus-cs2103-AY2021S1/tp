@@ -1,7 +1,5 @@
 package seedu.resireg.storage;
 
-import static seedu.resireg.storage.JsonAdaptedStudent.MISSING_FIELD_MESSAGE_FORMAT;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -15,6 +13,8 @@ import seedu.resireg.model.tag.Tag;
  * Jackson-friendly version of {@link Tag}.
  */
 class JsonAdaptedCommandWordAlias {
+
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Command word alias' %s field is missing!";
 
     private final String commandWord;
     private final String alias;

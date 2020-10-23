@@ -16,6 +16,7 @@ public class CommandWord {
 
     public static final String MESSAGE_CONSTRAINTS =
         "Invalid command word. Type \"help\" to see a list of command words.";
+    public static final String VALIDATION_REGEX = "^[A-Za-z]+$";
 
     public final String commandWord;
 
@@ -35,7 +36,8 @@ public class CommandWord {
      */
     public static boolean isValidCommandWord(String test) {
         List<CommandWordEnum> commandWords = Arrays.asList(CommandWordEnum.values());
-        return commandWords.stream().anyMatch(commandWord -> commandWord.toString().equals(test));
+        return test.matches(VALIDATION_REGEX)
+            && commandWords.stream().anyMatch(commandWord -> commandWord.toString().equals(test));
     }
 
 

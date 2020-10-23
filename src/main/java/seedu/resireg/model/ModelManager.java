@@ -86,6 +86,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean hasCommandWordAlias(CommandWordAlias target) {
+        requireNonNull(target);
         return userPrefs.hasAlias(target);
     }
 
@@ -123,6 +124,9 @@ public class ModelManager implements Model {
         return versionedResiReg;
     }
 
+
+    //=========== Student  ================================================================================
+
     @Override
     public boolean hasStudent(Student student) {
         requireNonNull(student);
@@ -147,6 +151,32 @@ public class ModelManager implements Model {
         versionedResiReg.setStudent(target, editedStudent);
     }
 
+    //=========== Room ================================================================================
+    @Override
+    public void setRoom(Room target, Room editedRoom) {
+        requireAllNonNull(target, editedRoom);
+        versionedResiReg.setRoom(target, editedRoom);
+    }
+
+    @Override
+    public boolean hasRoom(Room room) {
+        requireNonNull(room);
+        return versionedResiReg.hasRoom(room);
+    }
+
+    @Override
+    public void deleteRoom(Room target) {
+        versionedResiReg.removeRoom(target);
+    }
+
+    @Override
+    public void addRoom(Room room) {
+        requireNonNull(room);
+        versionedResiReg.addRoom(room);
+        updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
+    }
+
+    //=========== Allocation ================================================================================
     @Override
     public boolean isAllocated(Student student) {
         requireNonNull(student);
@@ -160,18 +190,6 @@ public class ModelManager implements Model {
     public boolean isAllocated(Room room) {
         requireNonNull(room);
         return versionedResiReg.isAllocated(room);
-    }
-
-    @Override
-    public void setRoom(Room target, Room editedRoom) {
-        requireAllNonNull(target, editedRoom);
-        versionedResiReg.setRoom(target, editedRoom);
-    }
-
-    @Override
-    public boolean hasRoom(Room room) {
-        requireNonNull(room);
-        return versionedResiReg.hasRoom(room);
     }
 
     @Override

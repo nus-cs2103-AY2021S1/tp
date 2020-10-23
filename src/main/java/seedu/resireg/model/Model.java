@@ -114,15 +114,24 @@ public interface Model {
      */
     void setStudent(Student target, Student editedStudent);
 
-    /**
-     * Returns true if an allocation with the {@code student} exists in the address book.
-     */
-    boolean isAllocated(Student student);
+    // === ROOMS ====
 
     /**
-     * Returns true if an allocation with the {@code room} exists in the address book.
+     * Returns true if a room with the same data as {@code room} exists in the address book.
      */
-    boolean isAllocated(Room room);
+    boolean hasRoom(Room room);
+
+    /**
+     * Deletes the given room.
+     * The room must exist in ResiReg.
+     */
+    void deleteRoom(Room target);
+
+    /**
+     * Adds the given room.
+     * {@code room} must already exist in ResiReg.
+     */
+    void addRoom(Room room);
 
     /**
      * Replaces the given room {@code target} with {@code editedRoom}.
@@ -132,10 +141,17 @@ public interface Model {
      */
     void setRoom(Room target, Room editedRoom);
 
+
+    // === ALLOCATIONS ====
     /**
-     * Returns true if a room with the same data as {@code room} exists in the address book.
+     * Returns true if an allocation with the {@code student} exists in the address book.
      */
-    boolean hasRoom(Room room);
+    boolean isAllocated(Student student);
+
+    /**
+     * Returns true if an allocation with the {@code room} exists in the address book.
+     */
+    boolean isAllocated(Room room);
 
     /**
      * Returns true if an allocation with the same identity as {@code allocation} exists in the address book.

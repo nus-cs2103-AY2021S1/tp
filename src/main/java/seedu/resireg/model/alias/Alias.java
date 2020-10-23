@@ -10,13 +10,13 @@ import static seedu.resireg.commons.util.AppUtil.checkArgument;
 public class Alias {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Aliases should only contain alphanumeric characters and spaces, and it should not be a command word";
+        "Aliases should be single alphabetic words, and should not be command words";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "^[A-Za-z]+$";
 
     public final String alias;
 

@@ -17,66 +17,66 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.resireg.commons.core.GuiSettings;
 import seedu.resireg.logic.commands.exceptions.CommandException;
-import seedu.resireg.model.AddressBook;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ReadOnlyAddressBook;
 import seedu.resireg.model.ReadOnlyUserPrefs;
+import seedu.resireg.model.UserPrefs;
 import seedu.resireg.model.alias.CommandWordAlias;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
-import seedu.resireg.testutil.StudentBuilder;
+import seedu.resireg.testutil.CommandWordAliasBuilder;
 
-public class AddCommandTest {
+public class AddAliasCommandTest {
 
     @Test
-    public void constructor_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullAlias_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddAliasCommand(null));
     }
 
     @Test
-    public void execute_studentAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingStudentAdded modelStub = new ModelStubAcceptingStudentAdded();
-        Student validStudent = new StudentBuilder().build();
+    public void execute_aliasAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingAliasAdded modelStub = new ModelStubAcceptingAliasAdded();
+        CommandWordAlias validAlias = new CommandWordAliasBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validStudent).execute(modelStub);
+        CommandResult commandResult = new AddAliasCommand(validAlias).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validStudent.getName().fullName,
-            validStudent.getStudentId().value), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validStudent), modelStub.studentsAdded);
+        assertEquals(String.format(AddAliasCommand.MESSAGE_SUCCESS, validAlias), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validAlias), modelStub.aliasesAdded);
     }
 
     @Test
-    public void execute_duplicateStudent_throwsCommandException() {
-        Student validStudent = new StudentBuilder().build();
-        AddCommand addCommand = new AddCommand(validStudent);
-        ModelStub modelStub = new ModelStubWithStudent(validStudent);
+    public void execute_duplicateAlias_throwsCommandException() {
+        CommandWordAlias validAlias = new CommandWordAliasBuilder().build();
+        AddAliasCommand addAliasCommand = new AddAliasCommand(validAlias);
+        ModelStub modelStub = new ModelStubWithAlias(validAlias);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+            AddAliasCommand.MESSAGE_DUPLICATE_ALIAS, () -> addAliasCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Student alice = new StudentBuilder().withName("Alice").build();
-        Student bob = new StudentBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        CommandWordAlias roomsR = new CommandWordAliasBuilder().withAlias("r").build();
+        CommandWordAlias roomsRo = new CommandWordAliasBuilder().withAlias("ro").build();
+        AddAliasCommand addRoomsRCommand = new AddAliasCommand(roomsR);
+        AddAliasCommand addRoomsRoCommand = new AddAliasCommand(roomsRo);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addRoomsRCommand.equals(addRoomsRCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddAliasCommand addRoomsRCommandCopy = new AddAliasCommand(roomsR);
+        assertTrue(addRoomsRCommand.equals(addRoomsRCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addRoomsRCommandCopy.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addRoomsRCommandCopy.equals(null));
 
-        // different student -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different command -> returns false
+        assertFalse(addRoomsRCommand.equals(addRoomsRoCommand));
     }
 
     /**
@@ -277,47 +277,42 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single student.
      */
-    private class ModelStubWithStudent extends ModelStub {
-        private final Student student;
+    private class ModelStubWithAlias extends ModelStub {
+        private final CommandWordAlias commandWordAlias;
 
-        ModelStubWithStudent(Student student) {
-            requireNonNull(student);
-            this.student = student;
+        ModelStubWithAlias(CommandWordAlias commandWordAlias) {
+            requireNonNull(commandWordAlias);
+            this.commandWordAlias = commandWordAlias;
         }
 
         @Override
-        public boolean hasStudent(Student student) {
-            requireNonNull(student);
-            return this.student.isSameStudent(student);
+        public boolean hasCommandWordAlias(CommandWordAlias commandWordAlias) {
+            requireNonNull(commandWordAlias);
+            return this.commandWordAlias.getAlias().equals(commandWordAlias.getAlias());
         }
     }
 
     /**
      * A Model stub that always accept the student being added.
      */
-    private class ModelStubAcceptingStudentAdded extends ModelStub {
-        final ArrayList<Student> studentsAdded = new ArrayList<>();
+    private class ModelStubAcceptingAliasAdded extends ModelStub {
+        final ArrayList<CommandWordAlias> aliasesAdded = new ArrayList<>();
 
         @Override
-        public boolean hasStudent(Student student) {
-            requireNonNull(student);
-            return studentsAdded.stream().anyMatch(student::isSameStudent);
+        public boolean hasCommandWordAlias(CommandWordAlias commandWordAlias) {
+            requireNonNull(commandWordAlias);
+            return aliasesAdded.stream().anyMatch(commandWordAlias::equals);
         }
 
         @Override
-        public void addStudent(Student student) {
-            requireNonNull(student);
-            studentsAdded.add(student);
+        public void addCommandWordAlias(CommandWordAlias commandWordAlias) {
+            requireNonNull(commandWordAlias);
+            aliasesAdded.add(commandWordAlias);
         }
 
         @Override
-        public void saveStateResiReg() {
-            // called by {@code AddCommand#execute()}
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyUserPrefs getUserPrefs() {
+            return new UserPrefs();
         }
     }
 
