@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 public class Time {
     public static final String MESSAGE_CONSTRAINTS =
             "Time should be in the format of HH:mm";
+    public static final String RANGE_CONSTRAINTS = "Start time should be before end time";
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
     public static final LocalTime DEFAULT_TIME = LocalTime.parse("00:00", FORMATTER);
     public static final String VALIDATION_REGEX = "^(2[0-3]|[01][0-9]):([0-5][0-9])$";

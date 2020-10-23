@@ -58,12 +58,18 @@ public class LessonCommandParser implements Parser<LessonCommand> {
         } else {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
+        if (!areDateInputsValid(startDate, endDate)) {
+            throw new ParseException(Date.RANGE_CONSTRAINTS);
+        }
         if (argMultimap.getValue(PREFIX_START_TIME).isPresent()
                 && argMultimap.getValue(PREFIX_END_TIME).isPresent()) {
             startTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_START_TIME).get());
             endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_END_TIME).get());
         } else {
             throw new ParseException(Time.MESSAGE_CONSTRAINTS);
+        }
+        if (!areTimeInputsValid(startTime, endTime)) {
+            throw new ParseException(Time.RANGE_CONSTRAINTS);
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
@@ -87,4 +93,17 @@ public class LessonCommandParser implements Parser<LessonCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
+    /**
+     * Returns true if the start date is before the end date.
+     */
+    private static boolean areDateInputsValid(LocalDate startDate, LocalDate endDate) {
+        return startDate.isBefore(endDate);
+    }
+
+    /**
+     * Returns true if the start time is before the end time.
+     */
+    private static boolean areTimeInputsValid(LocalTime startTime, LocalTime endTime) {
+        return startTime.isBefore(endTime);
+    }
 }
