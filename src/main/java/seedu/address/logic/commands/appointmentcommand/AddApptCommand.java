@@ -31,7 +31,8 @@ public class AddApptCommand extends Command {
 
     public static final String COMMAND_WORD = "addAppt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add an appointment to the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Adds an appointment for the patient specified "
             + "by the index number used in the displayed person list. \n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_APPOINTMENT + "APPOINTMENT TIME] \n"
@@ -79,7 +80,7 @@ public class AddApptCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Patient} with the details of {@code personToAddAppt}
+     * Creates and returns a {@code Patient} with the details of {@code patientToAddAppt}
      * edited with {@code editPersonDescriptor}.
      */
     private static Patient createChangedPerson(Patient patientToAddAppt, Appointment appointment) {
