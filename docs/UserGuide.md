@@ -90,31 +90,46 @@ Examples:
 * `list` followed by `open 2` opens the 2nd flashcard in the list.
 
 ### Adding a flashcard with open ended question: `add`
-
+<div class="alert alert-danger">
+You cannot add a flashcard with empty question and empty answer.
+</div>
 Adds a new flashcard to the application.
 
 Format: `add q/QUESTION ans/ANSWER`
 
 Examples:
 * `add q/Plants give out ___ when they photosynthesise? ans/Oxygen`
+![addOpenEnded](images/addOpenEnded.png)
 
 ### Adding a flashcard with multiple choice question: `addmcq`
 
 Adds a new flashcard to the application.
+<div class="alert alert-danger">
+You cannot add flashcard with missing question or missing answer or missing choice.
+<br>
+You should have more than one choice.
+</div>
 
-Format: `addmcq q/QUESTION ans/ANSWER c/first choice c/second choice ..`
+Format: `addmcq q/QUESTION ans/ANSWER c/FIRST_CHOICE c/SECOND_CHOICE ..`
 
 Examples:
 * `addmcq q/Plants give out ___ when they photosynthesise? ans/1 c/Oxygen c/Carbon c/Carbon dioxide`
+![addMCQ](images/addMCQ.png)
 
 ### Edit a flashcard: `edit`
 
 Edit a flashcard.
 
-Format: `edit INDEX q/QUESTION ans/ANSWER c/first choice c/second choice ..`
+<div class="alert alert-danger">
+You cannot edit the flashcard with an empty question and empty answer.
+</div>
+
+Format: `edit INDEX q/QUESTION ans/ANSWER c/FIRST_CHOICE c/SECOND_CHOICE ..`
 
 Examples:
 * `edit 1 q/Plants give out ___ when they photosynthesise? ans/2 c/Oxygen c/Carbon c/Carbon dioxide`
+
+![edit](images/edit.png)
 
 ### Testing a flashcard : `test`
 
@@ -197,7 +212,7 @@ Format: `delete INDEX`
 Examples:
 
 * `list` followed by `delete 2` deletes the 2nd flashcard in the list.
-
+![deleteIndex](images/deleteIndex.png)
 
 Format: `delete t/TAG1 TAG2`
 
