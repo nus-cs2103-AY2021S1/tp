@@ -192,7 +192,7 @@ public class MainWindow extends UiPart<Stage> {
         commandModePane.setVisible(true);
         studyPanePlaceholder.getChildren().clear();
         studyPanePlaceholder.setVisible(false);
-        resultDisplay.setFeedbackToUser(exitReason + ReviewManager.EXIT_MESSAGE);
+        resultDisplay.setFeedbackToUser(exitReason);
     }
 
     /**
