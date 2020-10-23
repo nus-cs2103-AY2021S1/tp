@@ -219,15 +219,17 @@ _{more aspects and alternatives to be added}_
 
 The proposed switching mechanism is facilitated by `CategoryExpenseBook`. It extends `ExpenseBook` with a tag-matching method. Additionally, it implements the following operations:
 
-* `CategoryExpenseBook#matchTag(Tag category)` — Checks if the given tag matches the tag of category budget.
+* `CategoryExpenseBook#containsCategory(Tag toCheck)` — Checks if the given tag matches the tag of category budget.
+* `CategoryExpenseBook#updateFilteredBudgets(Predicate<CategoryBudget> predicate)` — Filters the budget list to the given tag.
+* `CategoryExpenseBook#updateFilteredExpenses(Predicate<Expense> predicate)` — Filters the expense list to the given tag.
 
-These operations are exposed in the `Model` interface as `Model#switchExpenseBook(Tag category)`
+These operations are exposed in the `Model` interface as `Model#switchCategory(Tag category)`
 Given below is an example usage scenario and how the switching mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `CategoryExpenseBook` will be initialized with the initial expense book state.
+Step 1. The user launches the application for the first time. The `CategoryExpenseBook` will be initialized with the initial expense book state in Model.
 
 
-Step 2. The user executes `switch t/Food` command to switch to CategoryExpenseBook with "Food" tag in category budget in the expense book. The `switch` command calls `Model#switchExpenseBook()`, causing the filteredExpenses to be modified.
+Step 2. The user executes `switch t/Food` command to switch to CategoryExpenseBook with "Food" tag in category budget in the expense book. The `switch` command calls `Model#switchCategory(Tag category)`, causing the filteredExpenses and filteredBudgets to be modified.
 
 
 The following sequence diagram shows how the switch operation works:
@@ -241,7 +243,7 @@ The following sequence diagram shows how the switch operation works:
 Step 3. The user then decides to execute the command `topup`. Commands that modify the expense book, such as `topup`, `delete`, `edit`, will usually call their respectively method in Model. Thus, the `expenseBookStateList` remains unchanged.
 
 
-Step 4. The user then decides to execute the command `list`. Commands that do not modify the expense book, such as `list`, will usually revert the display view to initial expensebook`. Thus, the `expenseBookStateList` remains unchanged.
+Step 4. The user then decides to execute the command `list`. Commands that do not modify the expense book, such as `list`, `find`, will usually revert the display budget view to initial expensebook`. Thus, the `expenseBookStateList` remains unchanged.
 
 
 #### Design consideration:

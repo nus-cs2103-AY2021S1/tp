@@ -148,5 +148,5 @@ public interface Model {
     /**
      * Switches the category expense book into the one that matches the given Tag.
      */
-    void switchCategory(Tag toCheck);
+    void switchCategory(Tag category);
 }
