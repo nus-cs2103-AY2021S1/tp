@@ -48,7 +48,7 @@ public class LogicManager implements Logic {
 
         if (command instanceof StorageCommand) {
             StorageCommand storageCommand = (StorageCommand) command;
-            storageCommand.initaliseStorage(storage);
+            storageCommand.initialiseStorage(storage);
             commandResult = storageCommand.execute(model);
         } else {
             commandResult = command.execute(model);

@@ -28,6 +28,7 @@ class JsonSerializableAttendanceList {
      */
     @JsonCreator
     public JsonSerializableAttendanceList(@JsonProperty("attendances") List<JsonAdaptedAttendance> attendances) {
+        assert attendances != null;
         this.attendances.addAll(attendances);
     }
 
@@ -38,6 +39,7 @@ class JsonSerializableAttendanceList {
      * @param source future changes to this will not affect the created {@code JsonSerializableAttendanceList}.
      */
     public static JsonSerializableAttendanceList getSerializableListFromAttendances(List<StudentRecord> source) {
+        assert source != null;
         return new JsonSerializableAttendanceList(source.stream()
                                                     .map(JsonAdaptedAttendance::new)
                                                     .collect(Collectors.toList()));
