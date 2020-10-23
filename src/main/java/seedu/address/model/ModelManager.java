@@ -234,6 +234,10 @@ public class ModelManager implements Model {
         return filteredRecipes;
     }
 
+    public void resetRecipeFilters() {
+        filteredRecipes.setPredicate(x -> true);
+    }
+
     @Override
     public void updateFilteredItemList(Predicate<Item> predicate) {
         requireNonNull(predicate);

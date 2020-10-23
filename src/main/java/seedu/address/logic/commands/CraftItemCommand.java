@@ -67,7 +67,7 @@ public class CraftItemCommand extends Command {
         requireNonNull(productQuantity);
         requireNonNull(index);
         this.itemName = itemName;
-        this.productQuantity = Integer.parseInt(productQuantity.value);
+        this.productQuantity = productQuantity.number;
         this.index = index;
         this.hasCraftedExcess = false;
         this.hasDefaultIndex = false;
@@ -80,7 +80,7 @@ public class CraftItemCommand extends Command {
         requireNonNull(itemName);
         requireNonNull(productQuantity);
         this.itemName = itemName;
-        this.productQuantity = Integer.parseInt(productQuantity.value);
+        this.productQuantity = productQuantity.number;
         this.index = DEFAULT_INDEX;
         this.hasCraftedExcess = false;
         this.hasDefaultIndex = true;
@@ -119,7 +119,7 @@ public class CraftItemCommand extends Command {
             throw new CommandException(MESSAGE_INDEX_OUT_OF_RANGE); //index out of range
         }
 
-        int recipeProductQuantity = Integer.parseInt(recipeToUse.getProductQuantity().value);
+        int recipeProductQuantity = recipeToUse.getProductQuantity().number;
 
         if (productQuantity == 0) {
             throw new CommandException(MESSAGE_INVALID_PRODUCT_QUANTITY);
@@ -185,7 +185,7 @@ public class CraftItemCommand extends Command {
         for (Ingredient ingredient : ingredientList) {
             int itemId = ingredient.getKey();
             int quantityRequired = ingredient.getValue() * productQuantity / recipeProductQuantity;
-            int currentQuantity = Integer.parseInt(itemList.get(itemId).getQuantity().value);
+            int currentQuantity = itemList.get(itemId).getQuantity().number;
             if (quantityRequired > currentQuantity) {
                 return false;
             }

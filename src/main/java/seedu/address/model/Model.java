@@ -214,5 +214,7 @@ public interface Model {
 
     void resetItemFilters();
 
+    void resetRecipeFilters();
+
     void setLocationList(LocationList locationList);
 }
