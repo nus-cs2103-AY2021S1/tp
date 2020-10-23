@@ -85,7 +85,7 @@ class JsonAdaptedQuickCache {
 
         tagged.addAll(source.getTags().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
 
-        this.difficulty = source.getDifficulty().value;
+        this.difficulty = source.getDifficulty().getValue();
 
         this.statistics = source.getStatistics();
 
