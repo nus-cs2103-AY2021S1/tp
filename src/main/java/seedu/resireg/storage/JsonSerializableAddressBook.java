@@ -25,6 +25,7 @@ class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_ROOM = "Rooms list contains duplicate room(s).";
     public static final String MESSAGE_DUPLICATE_ALLOCATION = "Rooms list contains duplicate allocation(s).";
 
+    private final JsonAdaptedSemester semester;
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
     private final List<JsonAdaptedRoom> rooms = new ArrayList<>();
     private final List<JsonAdaptedAllocation> allocations = new ArrayList<>();
@@ -33,9 +34,11 @@ class JsonSerializableAddressBook {
      * Constructs a {@code JsonSerializableAddressBook} with the given students.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("students") List<JsonAdaptedStudent> students,
+    public JsonSerializableAddressBook(@JsonProperty("semester") JsonAdaptedSemester semester,
+                                       @JsonProperty("students") List<JsonAdaptedStudent> students,
                                        @JsonProperty("rooms") List<JsonAdaptedRoom> rooms,
                                        @JsonProperty("allocations") List<JsonAdaptedAllocation> allocations) {
+        this.semester = semester;
         this.students.addAll(students);
         this.rooms.addAll(rooms);
         this.allocations.addAll(allocations);
@@ -47,6 +50,7 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+        semester = new JsonAdaptedSemester(source.getSemester());
         students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
         rooms.addAll(source.getRoomList().stream().map(JsonAdaptedRoom::new).collect(Collectors.toList()));
         allocations.addAll(
@@ -60,6 +64,8 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
+        assert semester != null;
+        addressBook.setSemester(semester.toModelType());
         for (JsonAdaptedStudent jsonAdaptedStudent : students) {
             Student student = jsonAdaptedStudent.toModelType();
             if (addressBook.hasStudent(student)) {

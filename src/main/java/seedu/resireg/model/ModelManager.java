@@ -16,6 +16,7 @@ import seedu.resireg.commons.core.LogsCenter;
 import seedu.resireg.model.alias.CommandWordAlias;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
+import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.student.Student;
 
 /**
@@ -26,6 +27,7 @@ public class ModelManager implements Model {
 
     private final VersionedResiReg versionedResiReg;
     private final UserPrefs userPrefs;
+    private final Semester semester;
     private final FilteredList<Student> filteredStudents;
     private final FilteredList<Room> filteredRooms;
     private final FilteredList<Allocation> filteredAllocations;
@@ -41,6 +43,7 @@ public class ModelManager implements Model {
 
         versionedResiReg = new VersionedResiReg(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        semester = versionedResiReg.getSemester();
         filteredStudents = new FilteredList<>(versionedResiReg.getStudentList());
         filteredRooms = new FilteredList<>(versionedResiReg.getRoomList());
         filteredAllocations = new FilteredList<>(versionedResiReg.getAllocationList());

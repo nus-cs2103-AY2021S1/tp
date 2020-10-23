@@ -2,6 +2,7 @@ package seedu.resireg.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,6 +11,9 @@ import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.allocation.UniqueAllocationList;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.room.UniqueRoomList;
+import seedu.resireg.model.semester.AcademicYear;
+import seedu.resireg.model.semester.Semester;
+import seedu.resireg.model.semester.SemesterNumber;
 import seedu.resireg.model.student.Student;
 import seedu.resireg.model.student.UniqueStudentList;
 
@@ -19,6 +23,7 @@ import seedu.resireg.model.student.UniqueStudentList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
+    private Semester semester;
     private final UniqueStudentList students;
     private final UniqueRoomList rooms;
     private final UniqueAllocationList allocations;
@@ -31,6 +36,10 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
+        semester = new Semester(
+                new AcademicYear(LocalDate.now().getYear()),
+                new SemesterNumber(1)
+        );
         students = new UniqueStudentList();
         rooms = new UniqueRoomList();
         allocations = new UniqueAllocationList();
@@ -44,6 +53,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
+    }
+
+    /**
+     *
+     * @param semester
+     */
+    public void setSemester(Semester semester) {
+        this.semester = semester;
     }
 
     //// list overwrite operations
@@ -78,6 +95,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
+        setSemester(newData.getSemester());
         setStudents(newData.getStudentList());
         setRooms(newData.getRoomList());
         setAllocations(newData.getAllocationList());
@@ -218,6 +236,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String toString() {
         return students.asUnmodifiableObservableList().size() + " students";
         // TODO: refine later
+    }
+
+    @Override
+    public Semester getSemester() {
+        return semester;
     }
 
     @Override
