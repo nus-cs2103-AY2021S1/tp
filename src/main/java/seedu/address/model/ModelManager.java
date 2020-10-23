@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.contact.Contact;
@@ -29,6 +31,7 @@ public class ModelManager implements Model {
     private final FilteredList<Module> filteredModules;
     private final FilteredList<Contact> filteredContacts;
     private final FilteredList<Task> filteredTasks;
+    private final SortedList<Task> sortedTasks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -49,6 +52,7 @@ public class ModelManager implements Model {
         filteredModules = new FilteredList<Module>(this.moduleList.getModuleList());
         filteredContacts = new FilteredList<Contact>(this.contactList.getContactList());
         filteredTasks = new FilteredList<Task>(this.todoList.getTodoList());
+        sortedTasks = new SortedList<Task>(this.todoList.getTodoList());
     }
 
     public ModelManager() {
@@ -80,7 +84,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getModuleListFilePath() {
         return userPrefs.getModuleListFilePath();
     }
 
@@ -179,6 +183,11 @@ public class ModelManager implements Model {
         contactList.setContact(target, editedContact);
     }
 
+    @Override
+    public Path getContactListFilePath() {
+        return userPrefs.getContactListFilePath();
+    }
+
     //=========== Todo List =============================================================
 
     @Override
@@ -247,6 +256,11 @@ public class ModelManager implements Model {
         filteredContacts.setPredicate(predicate);
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
     public ObservableList<Task> getFilteredTodoList() {
         return filteredTasks;
     }
@@ -255,6 +269,23 @@ public class ModelManager implements Model {
     public void updateFilteredTodoList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
+    }
+
+    //=========== Sorted List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Task> getSortedTodoList() {
+        return sortedTasks;
+    }
+
+    @Override
+    public void updateSortedTodoList(Comparator<Task> comparator) {
+        requireNonNull(comparator);
+        sortedTasks.setComparator(comparator);
     }
 
     @Override
@@ -275,7 +306,8 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredModules.equals(other.filteredModules)
                 && filteredContacts.equals(other.filteredContacts)
-                && filteredTasks.equals(other.filteredTasks);
+                && filteredTasks.equals(other.filteredTasks)
+                && sortedTasks.equals(other.sortedTasks);
     }
 
 }

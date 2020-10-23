@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -45,7 +46,7 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getModuleListFilePath();
 
     /**
      * Sets the user prefs' address book file path.
@@ -153,6 +154,12 @@ public interface Model {
      */
     void updateFilteredContactList(Predicate<Contact> predicate);
 
+    /**
+     * Returns the file path of the contact list.
+     * @return Path contact list file path.
+     */
+    public Path getContactListFilePath();
+
     // ============================ TodoList ==================================================
 
     /**
@@ -195,4 +202,13 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTodoList(Predicate<Task> predicate);
+
+    /** Returns an unmodifiable view of the filtered todo list */
+    ObservableList<Task> getSortedTodoList();
+
+    /**
+     * Updates the filter of the filtered todo list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateSortedTodoList(Comparator<Task> comparator);
 }
