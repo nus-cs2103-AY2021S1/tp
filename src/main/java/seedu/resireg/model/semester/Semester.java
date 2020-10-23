@@ -1,6 +1,5 @@
 package seedu.resireg.model.semester;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.resireg.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
@@ -12,6 +11,10 @@ import java.util.Objects;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.roomtype.RoomType;
 
+/**
+ * Represents a Semester in ResiReg.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Semester {
 
     // Identity fields
