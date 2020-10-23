@@ -40,7 +40,7 @@ public class StudentUtil {
         sb.append(PREFIX_NAME + student.getName().fullName + " ")
                 .append(PREFIX_PHONE + student.getPhone().value + " ")
                 .append(PREFIX_SCHOOL + student.getSchool().school + " ")
-                .append(PREFIX_YEAR + String.valueOf(student.getYear().year) + " ")
+                .append(PREFIX_YEAR + String.valueOf(student.getYear()) + " ")
                 .append(getAdminDetails(student.getAdmin()));
         return sb.toString();
     }
@@ -71,7 +71,7 @@ public class StudentUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getSchool().ifPresent(school -> sb.append(PREFIX_SCHOOL).append(school.school).append(" "));
-        descriptor.getYear().ifPresent(year -> sb.append(PREFIX_YEAR).append(year.year).append(" "));
+        descriptor.getYear().ifPresent(year -> sb.append(PREFIX_YEAR).append(year).append(" "));
 
         return sb.toString();
     }
@@ -91,11 +91,8 @@ public class StudentUtil {
                     .reduce("", (x, y) -> x + " " + y);
             sb.append(PREFIX_SCHOOL).append(stringSchool).append(" ");
         });
-        descriptor.getYearPredicate().ifPresent(predicate -> {
-            String stringYear = predicate.keywords.stream() // Convert the keywords list in predicate into a string
-                    .reduce("", (x, y) -> x + " " + y);
-            sb.append(PREFIX_YEAR).append(stringYear).append(" ");
-        });
+        descriptor.getYearPredicate().ifPresent(predicate ->
+                sb.append(PREFIX_YEAR).append(predicate.year).append(" "));
 
         return sb.toString();
     }

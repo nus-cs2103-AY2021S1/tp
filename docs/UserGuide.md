@@ -2,7 +2,8 @@
 
 **Welcome to Reeve!**
 
-Reeve is a desktop app for **private tutors to manage the details of their students**, optimised for use via a
+Reeve is a desktop application for **private tutors to to better manage both administrative and academic details of their students**, optimised for use via a 
+
 **Command Line Interface (CLI)** for receiving inputs while still having the benefits of a **Graphical User Interface (GUI)** for displaying information.
 
 * Table of Contents

@@ -17,6 +17,7 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Question;
 import seedu.address.model.student.School;
+import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.ClassTime;
@@ -39,7 +40,9 @@ public class ParserUtilTest {
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_SCHOOL = "Raffles Institution";
-    private static final String VALID_YEAR = "Year 6";
+    private static final String VALID_YEAR = "JC 2";
+    private static final SchoolType VALID_SCHOOL_TYPE = SchoolType.JC;
+    private static final Integer VALID_SCHOOL_LEVEL = 2;
     private static final String VALID_CLASS_VENUE = "Blk 411 #04-11, Lorong Chuan, Singapore 234332";
     private static final String VALID_CLASS_TIME = "3 1240-1530";
     private static final String VALID_FEE = "2350.30";
@@ -154,15 +157,38 @@ public class ParserUtilTest {
 
     @Test
     public void parseYear_validYear_returnsYear() throws Exception {
-        Year expectedYear = new Year(VALID_YEAR);
+        Year expectedYear = new Year(VALID_SCHOOL_TYPE, VALID_SCHOOL_LEVEL);
         assertEquals(expectedYear, ParserUtil.parseYear(VALID_YEAR));
+        assertEquals(expectedYear, ParserUtil.parseYear("J2")); // no whitespace
+        assertEquals(expectedYear, ParserUtil.parseYear("J2               ")); // lots of trailing whitespace
+        assertEquals(expectedYear, ParserUtil.parseYear("J         2               ")); // lots of whitespace
+        assertEquals(expectedYear, ParserUtil.parseYear("Jc 2")); // only one letter capitalised
+        assertEquals(expectedYear, ParserUtil.parseYear("jc 2")); // no letter capitalised
+        assertEquals(expectedYear, ParserUtil.parseYear("jc 2")); // no letter capitalised
+        assertEquals(expectedYear, ParserUtil.parseYear("j2")); // short form
     }
 
     @Test
     public void parseYear_validYearWithWhiteSpace_returnsTrimmedYear() throws Exception {
         String yearWithWhiteSpace = WHITESPACE + VALID_YEAR + WHITESPACE;
-        Year expectedYear = new Year(VALID_YEAR);
+        Year expectedYear = new Year(VALID_SCHOOL_TYPE, VALID_SCHOOL_LEVEL);
         assertEquals(expectedYear, ParserUtil.parseYear(yearWithWhiteSpace));
+    }
+
+    @Test
+    public void parseSchoolType_validSchoolType_returnsCorrectSchoolType() throws ParseException {
+        assertEquals(SchoolType.PRIMARY, ParserUtil.parseSchoolType("Primary")); // full word first letter capitalised
+        assertEquals(SchoolType.PRIMARY, ParserUtil.parseSchoolType("primary")); // full word all lower case
+        assertEquals(SchoolType.SECONDARY, ParserUtil.parseSchoolType("s")); // one letter not capitalised
+        assertEquals(SchoolType.SECONDARY, ParserUtil.parseSchoolType("S")); // one letter capitalised
+        assertEquals(SchoolType.SECONDARY, ParserUtil.parseSchoolType("  Sec   ")); // lots of whitespace
+    }
+
+    @Test
+    public void parseSchoolType_invalidSchoolType_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSchoolType("pri  mary")); // mangled school type
+        assertThrows(ParseException.class, () -> ParserUtil.parseSchoolType("ns")); // not valid school type
+        assertThrows(ParseException.class, () -> ParserUtil.parseSchoolType("yramirp")); // reverse spelling
     }
 
     @Test

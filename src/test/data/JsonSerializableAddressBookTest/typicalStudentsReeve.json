@@ -4,7 +4,7 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "school": "Anderson Secondary",
-    "year": "3",
+    "year": "Secondary 3",
     "admin" : {
       "classVenue": "123, Jurong West Ave 6, #08-111",
       "classTime": "1 1500-1700",
@@ -20,7 +20,7 @@
     "name" : "Benson Meier",
     "phone" : "98765432",
     "school": "Pei Hwa Secondary",
-    "year": "2",
+    "year": "Secondary 2",
     "admin" : {
       "classVenue": "311, Clementi Ave 2, #02-25",
       "classTime": "2 1200-1430",
@@ -36,7 +36,7 @@
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "school": "Catholic High",
-    "year": "5",
+    "year": "Secondary 5",
     "admin" : {
       "classVenue": "311, Clementi Ave 2, #02-25",
       "classTime": "1 1500-1700",
@@ -52,7 +52,7 @@
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "school": "Methodist Girls School",
-    "year": "1",
+    "year": "Secondary 1",
     "admin" : {
       "classVenue": "311, Clementi Ave 2, #02-25",
       "classTime": "1 1500-1700",
@@ -68,7 +68,7 @@
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "school": "River Valley High",
-    "year": "6",
+    "year": "JC 2",
     "admin" : {
       "classVenue": "311, Clementi Ave 2, #02-25",
       "classTime": "1 1500-1700",
@@ -84,7 +84,7 @@
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "school": "Raffles Girls School",
-    "year": "2",
+    "year": "Secondary 2",
     "admin" : {
       "classVenue": "311, Clementi Ave 2, #02-25",
       "classTime": "1 1500-1700",
@@ -100,7 +100,7 @@
     "name" : "George Best",
     "phone" : "9482442",
     "school": "Montford Secondary",
-    "year": "4",
+    "year": "Secondary 4",
     "admin" : {
       "classVenue": "311, Clementi Ave 2, #02-25",
       "classTime": "1 1500-1700",
