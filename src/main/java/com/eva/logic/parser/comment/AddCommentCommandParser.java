@@ -2,8 +2,8 @@ package com.eva.logic.parser.comment;
 
 import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static com.eva.logic.parser.CliSyntax.PREFIX_ADDORDELETE_COMMENT;
-import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICANT_LIST;
-import static com.eva.logic.parser.CliSyntax.PREFIX_STAFF_LIST;
+import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICANT;
+import static com.eva.logic.parser.CliSyntax.PREFIX_STAFF;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
@@ -34,7 +34,7 @@ public class AddCommentCommandParser {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ADDORDELETE_COMMENT,
-                        PREFIX_APPLICANT_LIST, PREFIX_STAFF_LIST);
+                        PREFIX_APPLICANT, PREFIX_STAFF);
 
         Index index;
 
@@ -51,9 +51,9 @@ public class AddCommentCommandParser {
         if (!commentPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
-        if (!argMultimap.getValue(PREFIX_APPLICANT_LIST).isEmpty()) {
+        if (!argMultimap.getValue(PREFIX_APPLICANT).isEmpty()) {
             return new AddCommentCommand(index, commentPersonDescriptor, "applicant");
-        } else if (!argMultimap.getValue(PREFIX_STAFF_LIST).isEmpty()) {
+        } else if (!argMultimap.getValue(PREFIX_STAFF).isEmpty()) {
             return new AddCommentCommand(index, commentPersonDescriptor, "staff");
         }
         return new AddCommentCommand(index, commentPersonDescriptor, "staff");

@@ -1,9 +1,10 @@
 package com.eva.logic.parser;
+
 import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static com.eva.logic.parser.CliSyntax.PREFIX_ADDORDELETE_COMMENT;
-import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICANT_LIST;
+import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICANT;
 import static com.eva.logic.parser.CliSyntax.PREFIX_LEAVE;
-import static com.eva.logic.parser.CliSyntax.PREFIX_STAFF_LIST;
+import static com.eva.logic.parser.CliSyntax.PREFIX_STAFF;
 
 import java.util.Optional;
 
@@ -29,11 +30,11 @@ public class DeleteCommandParser implements Parser<Command> {
      */
     public Command parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_STAFF_LIST, PREFIX_APPLICANT_LIST,
+                ArgumentTokenizer.tokenize(args, PREFIX_STAFF, PREFIX_APPLICANT,
                         PREFIX_ADDORDELETE_COMMENT, PREFIX_LEAVE);
         Index index;
-        Optional<String> deleteStaffCommand = argMultimap.getValue(PREFIX_STAFF_LIST);
-        Optional<String> deleteApplicantCommand = argMultimap.getValue(PREFIX_APPLICANT_LIST);
+        Optional<String> deleteStaffCommand = argMultimap.getValue(PREFIX_STAFF);
+        Optional<String> deleteApplicantCommand = argMultimap.getValue(PREFIX_APPLICANT);
         Optional<String> deleteCommentCommand = argMultimap.getValue(PREFIX_ADDORDELETE_COMMENT);
         Optional<String> deleteLeaveCommand = argMultimap.getValue(PREFIX_LEAVE);
         try {

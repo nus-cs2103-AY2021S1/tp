@@ -1,12 +1,12 @@
 package com.eva.logic.commands;
 
 import static com.eva.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICANT_LIST;
+import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICANT;
 import static com.eva.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static com.eva.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static com.eva.logic.parser.CliSyntax.PREFIX_NAME;
 import static com.eva.logic.parser.CliSyntax.PREFIX_PHONE;
-import static com.eva.logic.parser.CliSyntax.PREFIX_STAFF_LIST;
+import static com.eva.logic.parser.CliSyntax.PREFIX_STAFF;
 import static com.eva.logic.parser.CliSyntax.PREFIX_TAG;
 import static java.util.Objects.requireNonNull;
 
@@ -24,8 +24,8 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE_2 = COMMAND_WORD + ": Adds staff, applicant or comment. "
             + "Parameters: "
             + "Index "
-            + PREFIX_STAFF_LIST + " / "
-            + PREFIX_APPLICANT_LIST + " / "
+            + PREFIX_STAFF + " / "
+            + PREFIX_APPLICANT + " / "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
