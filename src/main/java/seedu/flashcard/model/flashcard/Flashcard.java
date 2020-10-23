@@ -25,6 +25,7 @@ public class Flashcard {
     private final Rating rating;
     private final Set<Tag> tags = new HashSet<>();
     private final Diagram diagram;
+    private final Statistics statistics;
 
     // State fields
     private final boolean isFavourite;
@@ -43,16 +44,16 @@ public class Flashcard {
         this.tags.addAll(tags);
         this.diagram = diagram;
         this.isFavourite = false;
+        this.statistics = new Statistics();
     }
 
     /**
-     * Overloaded constructor for creating a flashcard when flashcard is favourited/unfavourited.
+     * Overloaded constructor for creating a flashcard.
      * All fields must be present and not null.
      */
-
     public Flashcard(Question question, Answer answer, Category category, Note note, Rating rating, Set<Tag> tags,
-                     Diagram diagram, boolean isFavourite) {
-        requireAllNonNull(question, answer, category, note, rating, diagram, isFavourite);
+                     Diagram diagram, Statistics statistics, boolean isFavourite) {
+        requireAllNonNull(question, answer, category, note, rating, diagram, statistics, isFavourite);
         this.question = question;
         this.answer = answer;
         this.category = category;
@@ -61,6 +62,7 @@ public class Flashcard {
         this.tags.addAll(tags);
         this.diagram = diagram;
         this.isFavourite = isFavourite;
+        this.statistics = statistics;
     }
 
     public Question getQuestion() {
@@ -93,6 +95,10 @@ public class Flashcard {
 
     public Diagram getDiagram() {
         return diagram;
+    }
+
+    public Statistics getStatistics() {
+        return statistics;
     }
 
     public boolean isFavourite() {
@@ -142,13 +148,14 @@ public class Flashcard {
                 && otherFlashcard.getRating().equals(getRating())
                 && otherFlashcard.getTags().equals(getTags())
                 && otherFlashcard.getDiagram().equals(getDiagram())
+                && otherFlashcard.getStatistics().equals(getStatistics())
                 && otherFlashcard.isFavourite() == isFavourite();
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(question, answer, category, note, rating, diagram, isFavourite);
+        return Objects.hash(question, answer, category, note, rating, diagram, statistics, isFavourite);
     }
 
     @Override
@@ -174,6 +181,7 @@ public class Flashcard {
         }
 
         builder.append(" Diagram: ").append(getDiagram());
+        builder.append(" Statistics: ").append(getStatistics());
         builder.append(" Favourite: ")
                 .append(isFavourite());
         return builder.toString();
