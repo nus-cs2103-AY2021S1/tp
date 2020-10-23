@@ -8,22 +8,29 @@ import java.util.TreeMap;
  * Represents the criteria that flashcards can be sorted by.
  */
 public enum SortCriteria implements Comparator<Flashcard> {
-    LEAST_REVIEWED("leastReviewed") {
+    REVIEWED_ASCENDING("reviewed a") {
         @Override
         public final int compare(final Flashcard o1, final Flashcard o2) {
             return o1.getStatistics().getReviewFrequency() - o2.getStatistics().getReviewFrequency();
         }
     },
-    MOST_REVIEWED("mostReviewed") {
+    REVIEWED_DESCENDING("reviewed d") {
         @Override
         public final int compare(final Flashcard o1, final Flashcard o2) {
             return o2.getStatistics().getReviewFrequency() - o1.getStatistics().getReviewFrequency();
         }
     },
-    SUCCESS_RATE("successRate") {
+    SUCCESS_RATE_ASCENDING("success a") {
         @Override
         public final int compare(final Flashcard o1, final Flashcard o2) {
             return Double.compare(o1.getStatistics().getSuccessRate(), o2.getStatistics().getSuccessRate());
+        }
+    },
+
+    SUCCESS_RATE_DESCENDING("success d") {
+        @Override
+        public final int compare(final Flashcard o1, final Flashcard o2) {
+            return Double.compare(o2.getStatistics().getSuccessRate(), o1.getStatistics().getSuccessRate());
         }
     };
 

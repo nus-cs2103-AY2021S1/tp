@@ -1,7 +1,7 @@
 package seedu.flashcard.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_CRITERIA;
 
 import seedu.flashcard.commons.core.Messages;
 import seedu.flashcard.model.Model;
@@ -15,8 +15,8 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sorts and lists flashcards according to criteria given by user.\n"
-            + "Parameters: Sort Criteria (leastReviewed/mostReviewed/successRate)\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_CATEGORY + " SDLC";
+            + "Parameters: Sort Criteria (review/success) (-a/-d)\n"
+            + "Example: " + COMMAND_WORD + " review " + PREFIX_CRITERIA + "d";
 
     private final SortCriteria criteria;
 

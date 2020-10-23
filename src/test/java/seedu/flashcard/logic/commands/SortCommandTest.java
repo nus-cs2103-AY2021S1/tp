@@ -29,14 +29,14 @@ public class SortCommandTest {
 
     @Test
     public void equals() {
-        SortCommand leastReviewedCommand = new SortCommand(SortCriteria.LEAST_REVIEWED);
-        SortCommand mostReviewedCommand = new SortCommand(SortCriteria.MOST_REVIEWED);
+        SortCommand leastReviewedCommand = new SortCommand(SortCriteria.REVIEWED_ASCENDING);
+        SortCommand mostReviewedCommand = new SortCommand(SortCriteria.REVIEWED_DESCENDING);
 
         // same object -> returns true
         assertTrue(leastReviewedCommand.equals(leastReviewedCommand));
 
         // same values -> returns true
-        SortCommand leastReviewedCommandCopy = new SortCommand(SortCriteria.LEAST_REVIEWED);
+        SortCommand leastReviewedCommandCopy = new SortCommand(SortCriteria.REVIEWED_ASCENDING);
         assertTrue(leastReviewedCommand.equals(leastReviewedCommandCopy));
 
         // different types -> returns false
@@ -50,30 +50,39 @@ public class SortCommandTest {
     }
 
     @Test
-    public void execute_leastReviewed_success() {
+    public void execute_reviewedAscending_success() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 3);
-        SortCommand sortCommand = new SortCommand(SortCriteria.LEAST_REVIEWED);
-        expectedModel.sortFilteredFlashcardList(SortCriteria.LEAST_REVIEWED);
+        SortCommand sortCommand = new SortCommand(SortCriteria.REVIEWED_ASCENDING);
+        expectedModel.sortFilteredFlashcardList(SortCriteria.REVIEWED_ASCENDING);
         assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(FLASHCARD_5, FLASHCARD_4, FLASHCARD_6), model.getFilteredFlashcardList());
     }
 
     @Test
-    public void execute_mostReviewed_success() {
+    public void execute_reviewedDescending_success() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 3);
-        SortCommand sortCommand = new SortCommand(SortCriteria.MOST_REVIEWED);
-        expectedModel.sortFilteredFlashcardList(SortCriteria.MOST_REVIEWED);
+        SortCommand sortCommand = new SortCommand(SortCriteria.REVIEWED_DESCENDING);
+        expectedModel.sortFilteredFlashcardList(SortCriteria.REVIEWED_DESCENDING);
         assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(FLASHCARD_6, FLASHCARD_4, FLASHCARD_5), model.getFilteredFlashcardList());
     }
 
     @Test
-    public void execute_successRateUnfilteredList_success() {
+    public void execute_successAscending_success() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 3);
-        SortCommand sortCommand = new SortCommand(SortCriteria.SUCCESS_RATE);
-        expectedModel.sortFilteredFlashcardList(SortCriteria.SUCCESS_RATE);
+        SortCommand sortCommand = new SortCommand(SortCriteria.SUCCESS_RATE_ASCENDING);
+        expectedModel.sortFilteredFlashcardList(SortCriteria.SUCCESS_RATE_ASCENDING);
         assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(FLASHCARD_5, FLASHCARD_6, FLASHCARD_4), model.getFilteredFlashcardList());
+    }
+
+    @Test
+    public void execute_successDescending_success() {
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 3);
+        SortCommand sortCommand = new SortCommand(SortCriteria.SUCCESS_RATE_DESCENDING);
+        expectedModel.sortFilteredFlashcardList(SortCriteria.SUCCESS_RATE_DESCENDING);
+        assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(FLASHCARD_4, FLASHCARD_6, FLASHCARD_5), model.getFilteredFlashcardList());
     }
 
 }

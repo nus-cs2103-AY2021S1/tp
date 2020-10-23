@@ -171,17 +171,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String sortCriteria } into a {@code SortCriteria}.
+     * Parses a {@code String criteria } and {@code String order }into a {@code SortCriteria}.
      * Leading and trailing whitespaces will be trimmed.
      */
-
-    public static SortCriteria parseSortCriteria(String sortCriteria) throws ParseException {
-        requireNonNull(sortCriteria);
-        String trimmedCriteria = sortCriteria.trim();
-        if (!SortCriteria.isValidCriteria(trimmedCriteria)) {
+    public static SortCriteria parseSortCriteria(String criteria, String order) throws ParseException {
+        requireNonNull(criteria, order);
+        String trimmedCriteria = criteria.trim();
+        String trimmedOrder = order.trim();
+        String sortCriteria = trimmedCriteria + " " + trimmedOrder;
+        if (!SortCriteria.isValidCriteria(sortCriteria)) {
             throw new ParseException(SortCriteria.MESSAGE_INVALID_SORT_CRITERIA);
         }
-        return SortCriteria.getCriteria(trimmedCriteria);
+        return SortCriteria.getCriteria(sortCriteria);
     }
 
 

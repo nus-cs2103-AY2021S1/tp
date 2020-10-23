@@ -18,17 +18,21 @@ public class SortCommandParserTest {
     }
 
     @Test
+    public void parse_invalidArg_throwsParseException() {
+        assertParseFailure(parser, "reviewed -c",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "test -a",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_validArgs_returnsSortCommand() {
         // no leading and trailing whitespaces
         SortCommand expectedSortCommand =
-                new SortCommand(SortCriteria.LEAST_REVIEWED);
-        assertParseSuccess(parser, "leastReviewed", expectedSortCommand);
+                new SortCommand(SortCriteria.REVIEWED_ASCENDING);
+        assertParseSuccess(parser, "reviewed -a", expectedSortCommand);
 
         // leading and trailing whitespaces
-        assertParseSuccess(parser, " \n leastReviewed  \t", expectedSortCommand);
-
-        // case insensitive criteria
-        assertParseSuccess(parser, "leASTRevieWED", expectedSortCommand);
-
+        assertParseSuccess(parser, " \n reviewed -a  \t", expectedSortCommand);
     }
 }
