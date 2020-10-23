@@ -19,7 +19,7 @@ public class AmountTest {
     }
 
     @Test
-    public void isValidAmount() {
+    public void isValidAmount_success() {
         // null amount
         assertThrows(NullPointerException.class, () -> Amount.isValidAmount(null));
 
@@ -55,6 +55,18 @@ public class AmountTest {
         assertTrue(Amount.isValidAmount("0.39")); //start with 0 only decimal a dot with two decimal places
         assertTrue(Amount.isValidAmount("000000.39")); //start with multiple 0only decimal a dot with two decimal places
         assertTrue(Amount.isValidAmount("2147483647")); // max INT
+    }
+
+    @Test
+    public void isValidAmount_max() {
+        // Valid Amounts
+        assertTrue(Amount.isValidAmount("1000000.00"));
+        assertTrue(Amount.isValidAmount("1000000"));
+
+        // Invalid Amounts
+        assertFalse(Amount.isValidAmount("1000000.01"));
+        assertFalse(Amount.isValidAmount("1000001.00"));
+        assertFalse(Amount.isValidAmount("99999999.99"));
     }
 
 }
