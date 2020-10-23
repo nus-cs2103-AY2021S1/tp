@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import seedu.expense.model.ExpenseBook;
 import seedu.expense.model.ReadOnlyExpenseBook;
+import seedu.expense.model.alias.AliasEntry;
+import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Date;
 import seedu.expense.model.expense.Description;
@@ -62,6 +64,13 @@ public class SampleDataUtil {
             sampleAb.addExpense(sampleExpense);
         }
         return sampleAb;
+    }
+
+    public static AliasMap getSampleAliasMap() {
+        AliasMap sampleMap = new AliasMap();
+
+        sampleMap.addAlias(new AliasEntry("get", "find"));
+        return sampleMap;
     }
 
     /**

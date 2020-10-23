@@ -326,45 +326,47 @@ Step 4. The user then decides to execute the command `list`. This will revert th
   * Pros: Greater degree of customisation with regards to GUI.
   * Cons: Difficult to implement as it requires the creation of multiple subclasses of `ListCommand`.
 
-### \[Proposed\] Customisation of Command Keywords
+### \[Proposed\] Customisation of Command Keywords using Alias Feature
 
 #### Proposed Implementation
 
-The proposed implementation for the customisation of `COMMAND_WORD` field for various `Command` subclasses is by introducing another `Command` subclass, called the `AliasCommand`. This command takes in a command keyword that the user wishes to alter, and takes a second keyword which determines what the new COMMAND_WORD for the stated `Command` subclass would be. To allow for customisation to remain even after the app is closed, a customised keyword-to-command mapping will be stored in JSON format. Upon starting the app, the static field `COMMAND_WORD` will be initialized for each command.
+The proposed implementation for the customisation of `COMMAND_WORD` field for various `Command` subclasses is by introducing another `Command` subclass, called the `AliasCommand`. This command takes in a command keyword for which the user wishes to create a shortcut (an alias), and takes a second keyword which determines what its alias would be. 
 
 Sample usage:
-By default, `FindCommand.COMMAND_WORD` is `“find”`
+By default, the only command word for `FindCommand` is `“find”`
 
-* `alias find get` -> `FindCommand.COMMAND_WORD` will be updated to `“get”`
+* `alias find get` -> The user can now trigger a `FindCommand` with `“get”` command word, the alias for `"find"`.
 
-This mapping will also be stored in an external JSON so that the customisation remains even after the app is closed.
+To maintain some degree of simplicity and neatness, we require that `AliasCommand` cannot have an alias for itself. 
 
-To maintain some degree of simplicity and neatness, we require that the `AliasCommand.COMMAND_WORD` itself to not be customisable. Furthermore, the user also has the ability to revert the command keywords back to their default using the `DefaultAliasCommand` with the default `COMMAND_WORD` as `defaultalias`. This is made a little longer and slightly more complicated to input because this will override the entire customisation to default and user will not be able to retrieve his previous customisations. Like the AliasCommand, `DefaultAliasCommand.COMMAND_WORD` itself is not customisable.
+To allow for customisation to remain even after the user exits the app and subsequently restarts it, a customised alias-to-command mapping will be stored in JSON format, which can be converted to `AliasMap` and `AliasEntry` objects when Bamboo runs. 
 
-Another change required here is for the COMMAND_WORD fields to not be final, except for AliasCommand and DefaultAliasCommand. This will allow changes to a COMMAND_WORD field to be reflected directly in the current running instance of the application.
+The `ExpenseBookParser`'s `parseCommand()` method now takes in an AliasMap object in addition to the user input, which allows the parser to map aliases to the default keyword and allows the execution of the associated Command object.
 
-Step 1. The user launches the application for the first time. The `COMMAND_WORD` static fields for all the subclasses will be initialized to the current mapping retrieved from JSON.
+Step 1. The user launches the application for the first time. Assume no alias is present (by default, aliases in the JSON file will be the default command word).
 
-Step 2. The user executes the `alias find get` command to update the current `FindCommand.COMMAND_WORD` from `”find”’ to `”get”`.  This will not only update the current state, but will also update the JSON mapping.
+Step 2. The user executes the `alias find get` command to update the alias for `FindCommand` as `”get”`.  
+This will not only update the current AliasMap object, but will also update the JSON mapping with the help of StorageManager which handles all types of storage including JsonAliasMapStorage.
 
 The following is a sequence diagram showing how it works:
 ![AliasSequenceDiagram](images/AliasSequenceDiagram.png)
 
-Similarly, the following sequence diagram shows how the DefaultAliasCommand works:
-![DefaultAliasSequenceDiagram](images/DefaultAliasSequenceDiagram.png)
-
-Step 3. The user can now use the following command to trigget a FindCommand.
+Step 3. The user can now use the following command to trigger a FindCommand.
 
 * `get -d lunch at macs`
 #### Design consideration:
 
 ##### Aspect: How alias executes
-* **Alternative 1 (current choice):** Allows customisation of all command words except for `AliasCommand` and `DefaultAliasCommand`.
-  * Pros: Neater implementation especially if the user might frequently change his alias, and DefaultAliasCommand has a long default and uncustomisable command word in order to prevent accidental reset of previous customisations.
+* **Alternative 1 (current choice):** Allows aliases of all command words except for `AliasCommand`. Does not override default command words but merely adds an alias. Reserved keywords cannot be applied unless it is for its associated subclass (i.e. removing the custom alias).
+  * Pros: Neater implementation especially if the user might frequently change his alias.
   * Cons: Restricts degree of customisation.
 
-* **Alternative 2:** Allows customisation of ALL command words.
-  * Pros: Higher degree of flexibility in customisation.
+* **Alternative 2:** Allows aliases of all command words. Does not override default command words but merely adds an alias. Reserved keywords cannot be applied unless it is for its associated subclass (i.e. removing the custom alias).
+  * Pros: More flexibility than Alternative 1.
+  * Cons: Restricts degree of customisation due to reserved keywords not being allowed to use as alias for other Commands.
+  
+* **Alternative 3:** Allows customisation of ALL command words.
+  * Pros: Highest degree of flexibility, better for users who can easily get used to Command Line Apps.
   * Cons: May be messy and slower learning users may get confused.
 _{more aspects and alternatives to be added}_
 

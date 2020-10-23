@@ -21,8 +21,10 @@ import seedu.expense.model.ModelManager;
 import seedu.expense.model.ReadOnlyExpenseBook;
 import seedu.expense.model.ReadOnlyUserPrefs;
 import seedu.expense.model.UserPrefs;
+import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.util.SampleDataUtil;
 import seedu.expense.storage.ExpenseBookStorage;
+import seedu.expense.storage.JsonAliasMapStorage;
 import seedu.expense.storage.JsonExpenseBookStorage;
 import seedu.expense.storage.JsonUserPrefsStorage;
 import seedu.expense.storage.Storage;
@@ -57,7 +59,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         ExpenseBookStorage expenseBookStorage = new JsonExpenseBookStorage(userPrefs.getExpenseBookFilePath());
-        storage = new StorageManager(expenseBookStorage, userPrefsStorage);
+        JsonAliasMapStorage aliasMapStorage = new JsonAliasMapStorage(userPrefs.getAliasMapFilePath());
+        storage = new StorageManager(expenseBookStorage, userPrefsStorage, aliasMapStorage);
 
         initLogging(config);
 
@@ -75,7 +78,9 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyExpenseBook> expenseBookOptional;
+        Optional<AliasMap> aliasMapOptional;
         ReadOnlyExpenseBook initialData;
+        AliasMap aliasMap;
         try {
             expenseBookOptional = storage.readExpenseBook();
             if (!expenseBookOptional.isPresent()) {
@@ -89,8 +94,21 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty ExpenseBook");
             initialData = new ExpenseBook();
         }
+        try {
+            aliasMapOptional = storage.readAliasMap();
+            if (!aliasMapOptional.isPresent()) {
+                logger.info("Alias file not found. Will be starting with default settings");
+            }
+            aliasMap = aliasMapOptional.orElseGet(SampleDataUtil::getSampleAliasMap);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with default commands");
+            aliasMap = new AliasMap();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with default commands");
+            aliasMap = new AliasMap();
+        }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialData, userPrefs, aliasMap);
     }
 
     private void initLogging(Config config) {

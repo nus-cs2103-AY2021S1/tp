@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.expense.model.Model;
 import seedu.expense.model.ModelManager;
 import seedu.expense.model.UserPrefs;
+import seedu.expense.model.alias.AliasMap;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -22,8 +23,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalExpenseBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getExpenseBook(), new UserPrefs());
+        model = new ModelManager(getTypicalExpenseBook(), new UserPrefs(), new AliasMap());
+        expectedModel = new ModelManager(model.getExpenseBook(), new UserPrefs(), new AliasMap());
     }
 
     @Test

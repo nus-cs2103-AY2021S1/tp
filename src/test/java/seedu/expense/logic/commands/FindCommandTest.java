@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.expense.model.Model;
 import seedu.expense.model.ModelManager;
 import seedu.expense.model.UserPrefs;
+import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.expense.DateMatchesPredicate;
 import seedu.expense.model.expense.NameContainsKeywordsPredicate;
 import seedu.expense.model.expense.TagsMatchesPredicate;
@@ -26,8 +27,8 @@ import seedu.expense.model.expense.TagsMatchesPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalExpenseBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalExpenseBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalExpenseBook(), new UserPrefs(), new AliasMap());
+    private Model expectedModel = new ModelManager(getTypicalExpenseBook(), new UserPrefs(), new AliasMap());
 
     @Test
     public void equals() {
