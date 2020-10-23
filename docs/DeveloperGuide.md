@@ -444,15 +444,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The command is incorrectly formatted
 
-  ZooKeepBook shows an error message
+  * 1a1. ZooKeepBook shows an error message
 
-  Use case resumes at step 1
+  * Use case resumes at step 1
 
 * 2a. The given ID is already taken
 
-  ZooKeepBook shows an error message
+  * 2a1. ZooKeepBook shows an error message
 
-  Use case resumes at step 1
+  * Use case resumes at step 1
 
 **Use case: Delete an animal**
 
@@ -472,15 +472,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The command is incorrectly formatted
 
-  ZooKeepBook shows an error message
+  * 1a1. ZooKeepBook shows an error message
 
-  Use case resumes at step 1
+  * Use case resumes at step 1
 
 * 2a. The given ID does not exist
 
-  ZooKeepBook shows an error message
+  * 2a1. ZooKeepBook shows an error message
 
-  Use case resumes at step 1
+  * Use case resumes at step 1
 
 **Use case: List all animals**
 
@@ -528,9 +528,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The command is incorrectly formatted
 
-  ZooKeepBook shows an error message
+  * 1a1. ZooKeepBook shows an error message
 
-  Use case resumes at step 1
+  * Use case resumes at step 1
   
 **Use case: Sort all animals**
 
@@ -550,11 +550,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The command is incorrectly formatted
 
-  ZooKeepBook shows an error message
+  * 1a1. ZooKeepBook shows an error message
 
-  Use case resumes at step 1
+  * Use case resumes at step 1
 
+**Use case: Undo last command**
 
+**MSS**
+
+1. User enters undo command.
+
+2. ZooKeepBook reverts to the state before last command was made.
+
+3. ZooKeepBook shows a success message
+
+   Use case ends
+
+**Extensions**
+
+* 2a. There is no previous state to revert to.
+
+  * 2a1. ZooKeepBook shows an error message
+
+  * Use case ends
+
+**Use case: Redo last undo**
+
+**MSS**
+
+1. User enters redo command.
+
+2. ZooKeepBook reverts to the state before undo command was made.
+
+3. ZooKeepBook shows a success message
+
+   Use case ends
+
+**Extensions**
+
+* 2a. There is no previous state to revert to.
+
+  * 2a1. ZooKeepBook shows an error message
+
+  * Use case ends
+  
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
