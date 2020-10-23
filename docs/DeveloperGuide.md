@@ -332,15 +332,15 @@ as overwriting a file is irreversible and would be disastrous for zookeepers if 
 #### Implementation
 
 This section explains the implementation of the Sort command feature in the ZooKeepBook. This feature is used to sort the animals based on the different categories: **name, id or feedtime**.
+
 * For the animal name, it will be in alphabetical order.
 * For the animal id, it will be in increasing order.
 * For the animal feed time, it will be from earliest to latest. 
-  
+
 The following sequence diagram shows the Logic and Model Components when a sort command is being executed:
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source:  **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
 </div>
 
 In the **Logic** Component,
@@ -363,10 +363,69 @@ Upon the completion of the user command, a success message (Sorted all animals b
 The following activity diagram summarises what happens when a user executes a sort command.
 
 ![SortCommandActivityDiagram](images/SortCommandActivityDiagram.png)
-  
+
 #### Design Consideration  
 ##### Aspect: Sorting based on different categories  
 We chose to allow the user to sort not only based on animal names but also by their id and feedtime to ease the convenience of the user when he needs data to be sorted in other ways.
+
+
+### Feeding times feature (by Jeremy)
+
+#### Implementation
+
+The feeding time feature utilizes a TreeSet with a custom comparator.
+
+Each Animal object has a `FeedTimes` TreeSet.
+
+The custom comparator `FeedTimeComparator` compares the integer values of the feeding times, returning them in ascending order.
+
+The feeding times feature allows for the following functionality:
+
+* Add multiple feeding times to each animal listing.
+* Ensure feeding times are always displayed in chronological order.
+
+The following notable methods are used for the feeding times feature:
+* `ParserUtil#parseFeedTimes(Collection<String>)` - returns a Set of `FeedTime` objects from user input
+* `FeedTime#isValidFeedTime(String)` - validates the feeding time to ensure it is in the HHmm format
+
+The parsing and displaying of feeding times were adapted from the Medical Condition field.
+
+Given below is a sequence diagram shows how the operation of adding feeding times works.
+
+![FeedTimesSequenceDiagram](images/FeedTimesSequenceDiagram.png)
+
+Step 1. The user inputs an add command, specifying feeding times to be added for an Animal (eg. add n/Pikachu i/1307 s/Pokemon f/1234 f/0001 f/2200)
+
+Step 2. The `ZooKeepBook` class receives the user input. `AddCommand.COMMAND_WORD` is used to identify the type of command.
+
+Step 3. The `AddCommandParser` class receives the arguments in the user input. The `ArgumentTokenizer` class is called with the `PREFIX_FEED_TIME` variable.
+
+Step 4. The `ArgumentTokenizer` class returns the feeding times found in the users input. A set of `FeedTime` objects is created by the `parseFeedTimes` method in the `ParserUtil` class.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** A ParseException is thrown by parseFeedTimes if the feeding time input does not match the defined format.
+</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The TreeSet created by parseFeedTimes utilizes the FeedTimeComparator, ensuring that the set is returned in chronological order.
+</div>
+
+Step 5. An `Animal` object is created with the Set of `FeedTime` objects.
+
+
+The following activity diagram summarizes what happens when feeding times are added to an Animal:
+
+![FeedTimesActivityDiagram](images/FeedTimesActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How chronological order is maintained
+
+* **Alternative 1 (current choice):** Store the feeding times in chronological order
+  * Pros: Quick to display when retrieving information
+  * Cons: Initial creation and storage of feeding times takes longer
+
+* **Alternative 2:** Sort the feeding times when information is retrieved
+  itself.
+  * Pros: Quick during the initial creation of Animal objects
+  * Cons: Additional processing time required when displaying each Animal object
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -512,6 +571,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends
    
+
 **Use case: Find animals based on keywords**
 
 **MSS**
@@ -532,6 +592,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * Use case resumes at step 1
   
+
 **Use case: Sort all animals**
 
 **MSS**

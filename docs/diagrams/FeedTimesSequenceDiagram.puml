@@ -1,0 +1,62 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ZooKeepBookParser" as ZooKeepBookParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "<<class>>:ArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
+participant "<<class>>:ParserUtil" as ParserUtil LOGIC_COLOR
+participant "addCommand:AddCommand" as AddCommand LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("add ... f/1234 f/0001")
+activate LogicManager
+
+LogicManager -> ZooKeepBookParser : parseCommand(userInput)
+activate ZooKeepBookParser
+
+create AddCommandParser
+ZooKeepBookParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> ZooKeepBookParser
+deactivate AddCommandParser
+
+ZooKeepBookParser -> AddCommandParser : parse("... f/1234 f/0001")
+activate AddCommandParser
+
+create ArgumentTokenizer
+AddCommandParser -> ArgumentTokenizer : tokenize(args, PREFIX ...)
+activate ArgumentTokenizer
+
+ArgumentTokenizer --> AddCommandParser : argMultiMap
+deactivate ArgumentTokenizer
+
+create ParserUtil
+AddCommandParser -> ParserUtil : parseFeedTimes(feedTimes)
+activate ParserUtil
+
+ParserUtil --> AddCommandParser : feedTimeSet
+deactivate ParserUtil
+
+AddCommandParser --> ZooKeepBookParser : addCommand
+deactivate AddCommandParser
+
+ZooKeepBookParser --> LogicManager : addCommand
+deactivate ZooKeepBookParser
+
+LogicManager -> AddCommand : execute(model)
+activate AddCommand
+
+AddCommand ->] : addAnimal(toAdd)
+
+AddCommand  <--] : commandResult
+AddCommand --> LogicManager : commandResult
+deactivate AddCommand
+destroy AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
