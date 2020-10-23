@@ -38,20 +38,20 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
         commandHistory = new ArrayList<>();
         // No commands entered yet.
-        historyPointer = -1;
+        historyPointer = 0;
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 if (event.getCode().equals(KeyCode.DOWN)) {
-                    commandTextField.setText(commandHistory.get(historyPointer));
                     if (historyPointer < commandHistory.size() - 1) {
                         historyPointer++;
+                        commandTextField.setText(commandHistory.get(historyPointer));
                     }
                 }
                 if (event.getCode().equals(KeyCode.UP)) {
-                    commandTextField.setText(commandHistory.get(historyPointer));
                     if (historyPointer > 0) {
                         historyPointer--;
+                        commandTextField.setText(commandHistory.get(historyPointer));
                     }
                 }
             }
@@ -70,7 +70,7 @@ public class CommandBox extends UiPart<Region> {
             setStyleToIndicateCommandFailure();
         } finally {
             commandHistory.add(command);
-            historyPointer += 1;
+            historyPointer = commandHistory.size();
             commandTextField.setText("");
         }
     }
