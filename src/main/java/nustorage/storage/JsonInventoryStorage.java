@@ -33,6 +33,8 @@ public class JsonInventoryStorage implements InventoryStorage {
      * @param filePath file path to storage file.
      */
     public JsonInventoryStorage(Path filePath) {
+        assert filePath != null : "File path for finance account storage is null!";
+
         this.filePath = filePath;
     }
 
