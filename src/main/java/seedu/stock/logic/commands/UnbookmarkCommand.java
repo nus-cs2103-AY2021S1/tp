@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.stock.commons.util.SortUtil;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
 import seedu.stock.model.stock.SerialNumber;
@@ -74,9 +75,6 @@ public class UnbookmarkCommand extends Command {
             }
         }
 
-        System.out.println(serialNumbers.size());
-        System.out.println(stocksNotFound.size());
-
         // Find stocks to unbookmark
         for (Stock currentStock : lastShownStocks) {
             String currentStockSerialNumber = currentStock.getSerialNumber().getSerialNumberAsString();
@@ -108,6 +106,7 @@ public class UnbookmarkCommand extends Command {
         }
 
         model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.sortFilteredStockList(SortUtil.generateGeneralComparator());
 
         if (stocksNotFound.size() == serialNumbers.size()) {
             return new CommandResult(String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND , arrayAsString(stocksNotFound)));

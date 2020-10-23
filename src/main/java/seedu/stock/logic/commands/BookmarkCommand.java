@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.stock.commons.util.SortUtil;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
 import seedu.stock.model.stock.SerialNumber;
@@ -67,8 +68,6 @@ public class BookmarkCommand extends Command {
                 String currentStockSerialNumber = currentStock.getSerialNumber().getSerialNumberAsString();
                 if (currentSerialNumber.equals(currentStockSerialNumber)) {
                     noMatches = false;
-                } else {
-                    assert false : "FALSE";
                 }
             }
             if (noMatches) {
@@ -104,6 +103,7 @@ public class BookmarkCommand extends Command {
         }
 
         model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.sortFilteredStockList(SortUtil.generateGeneralComparator());
 
         if (stocksNotFound.size() == serialNumbers.size()) {
             return new CommandResult(String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND , arrayAsString(stocksNotFound)));

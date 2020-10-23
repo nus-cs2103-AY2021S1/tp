@@ -3,6 +3,7 @@ package seedu.stock.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.stock.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import seedu.stock.commons.util.SortUtil;
 import seedu.stock.model.Model;
 
 /**
@@ -18,6 +19,7 @@ public class ListAllCommand extends ListCommand {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredStockList(PREDICATE_SHOW_ALL_PERSONS);
+        model.sortFilteredStockList(SortUtil.generateGeneralComparator());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
