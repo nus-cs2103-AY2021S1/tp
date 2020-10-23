@@ -13,6 +13,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.delivery.predicate.DeliveryContainsKeywordsPredicate;
 import seedu.address.testutil.DeliveryBuilder;
 
 public class DeliveryContainsKeywordsPredicateTest {

@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.delivery.Delivery;
-import seedu.address.model.delivery.DeliveryContainsKeywordsPredicate;
+import seedu.address.model.delivery.predicate.DeliveryContainsKeywordsPredicate;
 import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.deliverymodel.DeliveryModelManager;
 import seedu.address.testutil.DeliveryBuilder;

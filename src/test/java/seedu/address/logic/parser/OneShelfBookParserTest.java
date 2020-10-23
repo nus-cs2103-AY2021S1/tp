@@ -29,7 +29,7 @@ import seedu.address.logic.commands.itemcommand.ItemListCommand;
 import seedu.address.logic.commands.itemcommand.ItemRemoveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.delivery.Delivery;
-import seedu.address.model.delivery.DeliveryContainsKeywordsPredicate;
+import seedu.address.model.delivery.predicate.DeliveryContainsKeywordsPredicate;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.ItemContainsKeywordsPredicate;
 import seedu.address.testutil.DeliveryBuilder;

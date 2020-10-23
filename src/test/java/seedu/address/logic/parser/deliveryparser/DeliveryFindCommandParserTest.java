@@ -22,7 +22,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.deliverycommand.DeliveryFindCommand;
-import seedu.address.model.delivery.DeliveryContainsKeywordsPredicate;
+import seedu.address.model.delivery.predicate.DeliveryContainsKeywordsPredicate;
 
 class DeliveryFindCommandParserTest {
 

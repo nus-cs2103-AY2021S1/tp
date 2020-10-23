@@ -25,7 +25,7 @@ import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Models;
 import seedu.address.model.ModelsManager;
 import seedu.address.model.delivery.Delivery;
-import seedu.address.model.delivery.DeliveryContainsKeywordsPredicate;
+import seedu.address.model.delivery.predicate.DeliveryContainsKeywordsPredicate;
 import seedu.address.model.deliverymodel.DeliveryBook;
 import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.deliverymodel.DeliveryModelManager;
