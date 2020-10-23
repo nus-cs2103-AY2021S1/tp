@@ -36,7 +36,7 @@
         </StackPane>
             <HBox maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                <children>
-      
+
               <VBox fx:id="vendorList" minWidth="-Infinity" styleClass="pane-with-border" HBox.hgrow="SOMETIMES">
               <padding>
                 <Insets bottom="10" left="10" right="10" top="10" />
@@ -46,7 +46,7 @@
                  <StackPane fx:id="vendorListPanelPlaceholder" minWidth="-Infinity" prefWidth="200.0" />
                      </children>
             </VBox>
-      
+
               <VBox fx:id="foodList" minWidth="-Infinity" styleClass="pane-with-border" HBox.hgrow="SOMETIMES">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
@@ -54,7 +54,7 @@
                      <Label style="-fx-text-fill: WHITE;" text="Menu" />
                 <StackPane fx:id="foodListPanelPlaceholder" minWidth="-Infinity" prefWidth="200.0" VBox.vgrow="ALWAYS" />
             </VBox>
-      
+
               <VBox fx:id="orderItemList" minWidth="-Infinity" styleClass="pane-with-border" HBox.hgrow="SOMETIMES">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
