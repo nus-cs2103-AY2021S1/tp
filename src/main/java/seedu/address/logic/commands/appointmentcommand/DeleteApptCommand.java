@@ -49,8 +49,8 @@ public class DeleteApptCommand extends Command {
     /**
      * Initialize a DeleteApptCommand using Index and Appointment.
      *
-     * @param index       of the person in the filtered person list to add appointment to
-     * @param appointment the appointment to delete from the patient
+     * @param index Index of the patient in the filtered person list to delete appointment from.
+     * @param appointment The appointment to delete from the patient.
      */
     public DeleteApptCommand(Index index, Appointment appointment) {
         this.index = index;

@@ -14,16 +14,20 @@ Given below are my contributions to the project.
     * What it does: Allows the user to find a patient's medical records.
     * Justification: This feature provides a convenient way to access patients' medical records.
     * Highlights: The implementation does not require changes to existing commands.
-  * Added `Appointment` Class. (Pull requests [\#80](), [\#87](), [\#115](), [\#116](), [\#125]())
+  * Added `Appointment` Class. (Pull requests [\#80](), [\#87](), [\#115](), [\#116]())
     * What it does: The user is now able to schedule and store new appointments for patients.
     * Justification: This feature provides added functionality to keep track of appointment for patients.
     * Highlights: The implementation requires changes to the UI and some classes.
-  * Added the ability to delete an appointment from a patient. (Pull requests [\#125]())
-    * What it does: Allows the user to delete the specified appointment from his list of appointments.
+  * Added the ability to `delete` an appointment from a patient. (Pull requests [\#125]())
+    * What it does: Allows the user to delete the specified appointment from a patient's list of appointments.
     * Justification: This feature allows the user to get rid of old appointments that have passed.
     * Highlights: The implementation does not require changes to existing commands.
+  * Added the ability to `edit` an appointment of a patient. (Pull requests [\#126]())
+    * What it does: Allows the user to edit the specified appointment of a patient.
+    * Justification: This feature allows the user to reschedule a patient's appointment.
+    * Highlights: The implementation does not require changes to existing commands.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=GabrielTeo&tabRepo=AY2021S1-CS2103T-W15-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=GabrielTeo&tabRepo=AY2021S1-CS2103T-W15-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
   * Managed releases `v1.3` (1 releases) on GitHub
