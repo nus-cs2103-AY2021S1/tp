@@ -2,6 +2,8 @@
 
 package chopchop.commons.util;
 
+import java.util.List;
+
 import chopchop.logic.parser.ArgName;
 
 /**
@@ -26,6 +28,19 @@ public class Strings {
     public static final String COMMAND_MAKE         = "make";
     public static final String COMMAND_UNDO         = "undo";
     public static final String COMMAND_REDO         = "redo";
+
+
+    public static final List<String> COMMAND_NAMES = List.of(
+        COMMAND_ADD,
+        COMMAND_HELP,
+        COMMAND_LIST,
+        COMMAND_FIND,
+        COMMAND_QUIT,
+        COMMAND_DELETE,
+        COMMAND_MAKE,
+        COMMAND_UNDO,
+        COMMAND_REDO
+    );
 
     // command targets
     // public static final String TARGET_RECIPE        = "recipe";

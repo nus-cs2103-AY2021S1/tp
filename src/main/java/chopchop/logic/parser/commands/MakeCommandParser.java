@@ -1,6 +1,5 @@
 package chopchop.logic.parser.commands;
 
-import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
 import static chopchop.logic.parser.commands.CommonParser.getFirstUnknownArgument;
 
 import java.util.ArrayList;
@@ -35,28 +34,12 @@ public class MakeCommandParser {
             return Result.error("'make' command doesn't support '%s'", foo.get());
         }
 
-        return getCommandTarget(args)
-            .then(target -> {
-                if (target.fst() == CommandTarget.RECIPE) {
-                    if (target.snd().isEmpty()) {
-                        return Result.error("recipe name cannot be empty");
-                    }
-
-                    return parseMakeRecipeCommand(target.snd().strip(), args);
-                }
-
-                return Result.error("can only make recipes ('%s' invalid)", target.fst());
-            });
-    }
-
-    /**
-     * Parses a 'make recipe' command. Syntax:
-     * {@code make recipe REF}
-     */
-    private static Result<MakeRecipeCommand> parseMakeRecipeCommand(String name, CommandArguments args) {
-        assert args.getCommand().equals(commandName);
-
-        return ItemReference.parse(name)
-            .map(MakeRecipeCommand::new);
+        var name = args.getRemaining();
+        if (name.isEmpty()) {
+            return Result.error("recipe name cannot be empty");
+        } else {
+            return ItemReference.parse(name)
+                .map(MakeRecipeCommand::new);
+        }
     }
 }

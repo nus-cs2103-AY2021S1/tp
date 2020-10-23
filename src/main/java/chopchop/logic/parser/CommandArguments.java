@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import chopchop.commons.util.Pair;
+import chopchop.commons.util.StringView;
 
 /**
  * A container class to hold a parsed command, holding its:
@@ -86,6 +87,16 @@ public class CommandArguments {
 
     public String getRemaining() {
         return this.remaining;
+    }
+
+    public String getFirstWordFromRemaining() {
+        // get(0) will throw an exception if the list is empty, which we
+        // definitely don't want.
+        return new StringView(this.remaining)
+            .words()
+            .stream()
+            .findFirst()
+            .orElse("");
     }
 
     /**
