@@ -227,24 +227,59 @@ The following activity diagram summarizes what happens when the add feature is t
   corresponding arguments to override the last occurence of this prefix.
   * Cons: Users may type 2 of the required prefixes accidentally and add a wrong stock into the stockbook.
 
+### Update Feature
+
+The mechanism for update feature is facilitated by `UpdateCommandParser, UpdateCommand, UpdateStockDescriptor`.
+
+#### UpdateCommand
+
+`UpdateCommand` class implements `Command` interface. `UpdateCommand` class is tasked with creating a new `CommandResult`
+with the updated stocks message as its argument.
+
+Some of the important operations implemented here are:
+
+* `UpdateCommand#execute()` <br>
+  Generates a new `CommandResult` with the updated stocks message as its argument.
+
+#### UpdateCommandParser
+
+`UpdateCommandParser` class implements `Parser` interface. `UpdateCommandParser` class is tasked with parsing the user inputs
+and generate a new `UpdateCommand`.
+
+`UpdateCommandParser` receives the prefixes and their values from the user input. The `UpdateCommandParser#parse()` will
+check for compulsory prefixes and their values. `ParseException` will be thrown if the values are not valid or some
+compulsory prefixes are missing. 
+
+Some of the important operations implemented here are:
+
+* `UpdateCommandParser#parse()` <br>
+  Parses the prefixes and their values attained from user input. This method will first check if all compulsory prefixes
+  are present. This method will then create a new `UpdateStockDescriptor` based on the prefixes values. 
+  A `ParseException` will be thrown if any compulsory prefixes are missing or invalid values.
+
+#### UpdateStockDescriptor
+
+`UpdateStockDescriptor` is a inner static class inside `UpdateCommand`. This class is tasked with storing the temporary
+values for the fields to be later updated into the stock in inventory.
+
 ### Suggestion Feature
 
 The mechanism for suggestion feature is facilitated by `SuggestionCommandParser, SuggestionCommand, SuggestionUtil`.
 
 #### SuggestionCommand
 
-`SuggestionCommand` class extends `Command` interface. `SuggestionCommand` class is tasked with creating a new `CommandResult`
+`SuggestionCommand` class implements `Command` interface. `SuggestionCommand` class is tasked with creating a new `CommandResult`
 with the suggestion message to be displayed to the user as its argument. The suggestion message to be displayed
 is gathered from the result of the parsing stage for suggestion.
 
 Some of the important operations implemented here are:
 
-* `SuggestionCommand#execute()`
+* `SuggestionCommand#execute()` <br>
   Generates a new `CommandResult` with the suggestion message as its argument.
 
 #### SuggestionCommandParser
 
-`SugestionCommandParser` class extends `Parser` interface. `SuggestionCommandParser` class is tasked with parsing the
+`SugestionCommandParser` class implements `Parser` interface. `SuggestionCommandParser` class is tasked with parsing the
 user inputs and generate a new `SuggestionCommand`. The main logic of the suggestion feature is encapsulated here.
 
 `SuggestionCommandParser` receives the user input, along with either the faulty command word or parsing error messages
