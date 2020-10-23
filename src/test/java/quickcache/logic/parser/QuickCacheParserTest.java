@@ -62,7 +62,7 @@ public class QuickCacheParserTest {
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
             DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_FLASHCARD.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_FLASHCARD), command);
+        assertEquals(DeleteCommand.withIndex(INDEX_FIRST_FLASHCARD), command);
     }
 
     @Test

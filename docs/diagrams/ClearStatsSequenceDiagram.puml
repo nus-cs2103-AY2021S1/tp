@@ -1,0 +1,93 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":QuickCacheParser" as QuickCacheParser LOGIC_COLOR
+participant ":ClearStatsCommandParser" as ClearStatsCommandParser LOGIC_COLOR
+participant "c:ClearStatsCommand" as ClearStatsCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "lastShownList:ObservableList<Flashcard>" as ObservableList MODEL_COLOR
+participant "flashcardToClearStatistics:Flashcard" as Flashcard MODEL_COLOR
+participant "updatedFlashcard:Flashcard" as UpdatedFlashcard MODEL_COLOR
+end box
+
+[-> LogicManager : execute("clearstats 1")
+activate LogicManager
+
+LogicManager -> QuickCacheParser : parseCommand("clearstats 1")
+activate QuickCacheParser
+
+create ClearStatsCommandParser
+QuickCacheParser -> ClearStatsCommandParser
+activate ClearStatsCommandParser
+
+ClearStatsCommandParser --> QuickCacheParser
+deactivate ClearStatsCommandParser
+
+QuickCacheParser -> ClearStatsCommandParser : parse(" 1")
+activate ClearStatsCommandParser
+
+create ClearStatsCommand
+ClearStatsCommandParser -> ClearStatsCommand
+activate ClearStatsCommand
+
+ClearStatsCommand --> ClearStatsCommandParser : c
+deactivate ClearStatsCommand
+
+ClearStatsCommandParser --> QuickCacheParser: c
+deactivate ClearStatsCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ClearStatsCommandParser -[hidden]-> QuickCacheParser
+destroy ClearStatsCommandParser
+
+QuickCacheParser --> LogicManager : c
+deactivate QuickCacheParser
+
+LogicManager -> ClearStatsCommand : execute()
+activate ClearStatsCommand
+
+ClearStatsCommand -> Model : getFilteredFlashcardList()
+activate Model
+
+Model --> ClearStatsCommand : lastShownList
+deactivate Model
+
+ClearStatsCommand -> ObservableList : get(0)
+activate ObservableList
+
+ObservableList --> ClearStatsCommand : flashcardToClearStatistics
+deactivate ObservableList
+
+ClearStatsCommand -> Flashcard : getFlashcardAfterClearStatistics()
+activate Flashcard
+
+create UpdatedFlashcard
+Flashcard -> UpdatedFlashcard
+activate UpdatedFlashcard
+
+UpdatedFlashcard --> Flashcard : updatedFlashcard
+deactivate UpdatedFlashcard
+
+Flashcard --> ClearStatsCommand : updatedFlashcard
+deactivate Flashcard
+
+ClearStatsCommand -> Model : setFlashcard(flashcardToClearStatistics, updatedFlashcard)
+activate Model
+
+destroy Flashcard
+
+Model --> ClearStatsCommand
+deactivate Model
+
+ClearStatsCommand --> LogicManager : result
+deactivate ClearStatsCommand
+
+[<--LogicManager : result
+deactivate LogicManager
+destroy ClearStatsCommand
+@enduml

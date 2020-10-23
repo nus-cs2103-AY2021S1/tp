@@ -182,16 +182,30 @@ Example: `find t/MCQ q/What CS2103T q/is t/GoodQuestion` where `MCQ` and `GoodQu
 
 ### Deleting a flashcard : `delete`
 
-Deletes the specified flashcard from the list.
+Deletes a flashcard based on the index from the last displayed list or delete a set of flashcards based on their tags.
 
-Format: `delete INDEX`
+<div class="alert alert-danger">
+You can only delete based on index or based on tags but not both!
+</div>
+
+Format: `delete INDEX` 
 
 * Deletes the flashcard at the specified `INDEX`.
 * The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
+
 * `list` followed by `delete 2` deletes the 2nd flashcard in the list.
+
+
+Format: `delete t/TAG1 TAG2`
+
+* Deletes all flashcards with the tags `TAG1` and `TAG2`
+
+Examples:
+
+* `delete t/MCQ` will delete all flashcards with the tag `MCQ`
 
 ### Clearing a flashcard's statistics : `clearstats`
 
@@ -263,7 +277,7 @@ Action | Format, Examples
 **stats** | `stats INDEX`
 **Clear** | `clear`
 **ClearStats** | `clearstats INDEX`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete** | `delete INDEX` or `delete t/TAG1`<br> e.g., `delete 3` or `delete t/MCQ`
 **List** | `list`
 **Find** | `find t/TAG1 t/TAG2 .. q/KEYWORD1 q/KEYWORD2 ..` <br> e.g., `find t/MCQ q/What CS2103T q/is t/GoodQuestion`
 **Help** | `help`
