@@ -169,6 +169,99 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 Both options are equally feasible. However, Alternative 1 was chosen to avoid confusion for prospective users.
 
+### Assign feature
+
+#### Implementation
+
+The assign feature is facilitated by `AssignCommand` and `AssignCommandParser`.
+It uses an operation `AddressBook#assignInstructor()` which is exposed in the `Model` interface as `Model#assignInstructor()`.
+Then, the `assignInstructor()` operation is called in both `UniqueModuleList` and `Module`. `Module#assignInstructor()` will add the instructor to the module's set of instructors.
+
+#### Design consideration:
+
+##### Aspect: How to store assignments
+* **Alternative 1 (current choice):** A module has a set of instructors assigned to it.
+  * Pros: More efficient to list the instructors of a certain module.
+  * Cons: Less efficient to list the modules of a certain instructor.
+
+* **Alternative 2:** An instructor has a set of modules they are assigned to.
+  * Pros: More efficient to list the modules of a certain instructor.
+  * Cons: Less efficient to list the instructors of a certain module.
+
+Both are equally viable options but Alternative 1 was chosen so `Person` would not have to be redesigned or have too many fields.
+
+### Unassign feature
+
+The assign feature is facilitated by `UnassignCommand` and `UnassignCommandParser`.
+It uses an operation `AddressBook#unassignInstructor()` which is exposed in the `Model` interface as `Model#unassignInstructor()`.
+Then, the `unassignInstructor()` operation is called in both `UniqueModuleList` and `Module`. `Module#unassignInstructor()` will remove the instructor from the module's set of instructors.
+
+The following sequence diagram shows how the unassign operation works:
+
+![UnassignSequenceDiagram](images/UnassignSequenceDiagram.png)
+
+#### Unassigning a certain instructor from one or more modules
+a. Prerequisites : Unassign all instructors from all modules using the `unassignall` command. There are only 3 modules with module codes `CS2103`, `CS2100`, `CS1010S` in FaculType.
+Contact on index `1` is an instructor of module with module code `CS2103` and `CS2100`, while contact on index `2` is an instructor of module with module code `CS2100` and `CS1010S`.
+
+b. Test case : `unassign 1 m/CS2103 m/CS2100`<br>
+Expected : First contact is unassigned from both CS2103 and CS2100 modules. First contact is no longer an instructor of CS2103 nor CS2100 module.
+
+c. Test case : `unassign 2 m/CS2103 m/CS2100`<br>
+Expected : No contact is unassigned from any modules because instructor on index `2` is not an instructor of module `CS2103`.
+
+d. Test case : `unassign 0 m/CS1010S`<br>
+Expected : No contact is unassigned from any modules. Error details shown in the status message. Status bar remains the same.
+
+e. Test case : `unassign 1 m/CS3230`<br>
+Expected : No contact is unassigned from any modules. Error details shown in the status message. Status bar remains the same.
+
+f. Other incorrect unassign commands to try : `unassign`, `unassign x m/y` (where x is larger that the list size or is not an instructor of module y), `unassign a m/b` (where b does not exist in FaculType)<br>
+Expected : Similar to previous.
+
+{ more test cases ... }
+
+### Unassignall feature
+
+The assign feature is facilitated by `UnassignallCommand` and `UnassignallCommandParser`.
+It uses an operation `AddressBook#unassignAllInstructors()` which is exposed in the `Model` interface as `Model#unassignAllInstructors()`.
+Then, the `unassignAllInstructors()` operation is called in both `UniqueModuleList` and `Module`. `Module#unassignAllInstructors()` will remove all instructors from all modules' set of instructors.
+
+The following sequence diagram shows how the unassignall operation works:
+
+![UnassignallSequenceDiagram](images/UnassignallSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How unassignall executes
+
+* **Alternative 1 (current choice):** Unassigns all instructors from all modules.
+ * Pros : More efficient to unassign all instructors from all modules.
+ * Cons : Less efficient to unassign a certain instructor from all modules he/she teaches.
+ 
+* **Alternative 2:** Unassign a certain instructor from all modules he/she teaches.
+ * Pros : More efficient to unassign a certain instructor from all modules he/she teaches.
+ * Cons : Less efficient to unassign all instructors from all modules.
+ 
+### \[Proposed\] Switch feature
+
+#### Proposed Implementation
+
+The switch feature is facilitated by `AddressBook#switchActiveSemester()`.
+The `AddressBook` will store three module lists, one for Semester 1, one for Semester 2, and one to reference the active semester.
+All operations on `UniqueModuleList` will be done on the active semester. `AddressBook#switchActiveSemester()` toggles the active semester between Semester 1 and Semester 2.
+
+#### Design consideration:
+
+##### Aspect: Viewing a certain semester
+* **Alternative 1 (current choice):** There are two module lists and active semester references one of them.
+  * Pros: Less code to change, more difficult to test.
+  * Cons: Can only manage the modules in the active semester.
+
+* **Alternative 2:** There is only one module list and there is a filter to only show modules of a particular semester.
+  * Pros: More efficient to list the modules of a certain instructor.
+  * Cons: Need to add semester field to modules and commands, will have two copies of the same module if held in both semesters, more code to change.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.module.predicates.ModuleInstructorsContainsKeywordsPredicate;
 import seedu.address.testutil.ModuleBuilder;
 
 class ModuleInstructorsContainsKeywordsPredicateTest {

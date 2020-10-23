@@ -21,7 +21,6 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -145,6 +144,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasModuleCode(ModuleCode moduleCode) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addModule(Module module) {
             throw new AssertionError("This method should not be called.");
         }
@@ -160,17 +164,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public void unassignInstructor(Person instructor, ModuleCode moduleCode) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void unassignAllInstructors() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Module> getFilteredModuleList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableList<Person> getFilteredPersonList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public UniqueModuleList getModuleList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -201,6 +210,11 @@ public class AddCommandTest {
 
         @Override
         public void clearMod() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean moduleCodeHasInstructor(ModuleCode moduleCode, Person instructor) {
             throw new AssertionError("This method should not be called.");
         }
 

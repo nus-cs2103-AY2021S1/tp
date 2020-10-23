@@ -1,10 +1,11 @@
-package seedu.address.model.module;
+package seedu.address.model.module.predicates;
 
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 
 public class ModuleInstructorsContainsKeywordsPredicate implements Predicate<Module> {

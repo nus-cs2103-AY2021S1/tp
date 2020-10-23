@@ -24,6 +24,8 @@ import seedu.address.logic.commands.MclearCommand;
 import seedu.address.logic.commands.MlistCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.ResetCommand;
+import seedu.address.logic.commands.UnassignCommand;
+import seedu.address.logic.commands.UnassignallCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -72,7 +74,7 @@ public class AddressBookParser {
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            return new ListCommandParser().parse(arguments);
 
         case CclearCommand.COMMAND_WORD:
             return new CclearCommand();
@@ -97,6 +99,12 @@ public class AddressBookParser {
 
         case AssignCommand.COMMAND_WORD:
             return new AssignCommandParser().parse(arguments);
+
+        case UnassignallCommand.COMMAND_WORD:
+            return new UnassignallCommandParser().parse(arguments);
+
+        case UnassignCommand.COMMAND_WORD:
+            return new UnassignCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

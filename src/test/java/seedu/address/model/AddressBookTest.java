@@ -96,7 +96,7 @@ public class AddressBookTest {
         // Two modules with the same identity fields
         Module editedCs1101s = new ModuleBuilder(CS1101S).withName(VALID_MODULE_NAME_CS50).build();
         List<Module> newModules = Arrays.asList(CS1101S, editedCs1101s);
-        List<Person> persons = Arrays.asList(ALICE);
+        List<Person> persons = Collections.singletonList(ALICE);
         AddressBookStub newData = new AddressBookStub(persons, newModules);
 
         assertThrows(DuplicateModuleException.class, () -> addressBook.resetData(newData));
@@ -123,6 +123,29 @@ public class AddressBookTest {
         addressBook.addModule(CS1101S);
         Module editedCs1101s = new ModuleBuilder(CS1101S).withName(VALID_MODULE_NAME_CS50).build();
         assertTrue(addressBook.hasModule(editedCs1101s));
+    }
+
+    @Test
+    public void hasModuleCode_nullModuleCode_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasModule(null));
+    }
+
+    @Test
+    public void hasModuleCode_moduleCodeNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasModuleCode(CS1101S.getModuleCode()));
+    }
+
+    @Test
+    public void hasModuleCode_moduleCodeInAddressBook_returnsTrue() {
+        addressBook.addModule(CS1101S);
+        assertTrue(addressBook.hasModuleCode(CS1101S.getModuleCode()));
+    }
+
+    @Test
+    public void hasModuleCode_moduleCodeWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addModule(CS1101S);
+        Module editedCs1101s = new ModuleBuilder(CS1101S).withName(VALID_MODULE_NAME_CS50).build();
+        assertTrue(addressBook.hasModuleCode(editedCs1101s.getModuleCode()));
     }
 
     /**

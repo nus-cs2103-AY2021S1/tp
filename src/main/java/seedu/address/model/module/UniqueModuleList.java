@@ -81,16 +81,63 @@ public class UniqueModuleList implements Iterable<Module> {
      * Assigns an instructor to the module with the equivalent module code from the list.
      * The module with the module code must exist in the list.
      */
-    public void assignInstructor(Person instructor, ModuleCode moduleToAssign) {
-        requireAllNonNull(instructor, moduleToAssign);
+    public void assignInstructor(Person instructor, ModuleCode moduleCodeToAssign) {
+        requireAllNonNull(instructor, moduleCodeToAssign);
         int indexOfModuleToAssign = 0;
-        while (!internalList.get(indexOfModuleToAssign).hasModuleCode(moduleToAssign)
+        while (!internalList.get(indexOfModuleToAssign).hasModuleCode(moduleCodeToAssign)
                 && indexOfModuleToAssign < internalList.size()) {
             indexOfModuleToAssign++;
         }
-        Module toSet = internalList.get(indexOfModuleToAssign);
-        toSet.assignInstructor(instructor);
-        internalList.set((indexOfModuleToAssign), toSet);
+        Module moduleToAssign = internalList.get(indexOfModuleToAssign);
+        moduleToAssign.assignInstructor(instructor);
+        internalList.set((indexOfModuleToAssign), moduleToAssign);
+    }
+
+    /**
+     * Unassigns all instructors from all modules.
+     */
+    public void unassignAllInstructors() {
+        for (int index = 0; index < internalList.size(); index++) {
+            Module toSet = internalList.get(index);
+            Module moduleWithEmptyInstructors = toSet.moduleWithEmptyInstructors();
+            internalList.set((index), moduleWithEmptyInstructors);
+        }
+    }
+
+    /**
+     * Unassigns an instructor from the module with the equivalent module code from the list.
+     * The module with the module code must exist in the list.
+     */
+    public void unassignInstructor(Person instructor, ModuleCode moduleToUnassign) {
+        requireAllNonNull(instructor, moduleToUnassign);
+        int indexOfModuleToUnassign = 0;
+        while (!internalList.get(indexOfModuleToUnassign).hasModuleCode(moduleToUnassign)
+                && indexOfModuleToUnassign < internalList.size()) {
+            indexOfModuleToUnassign++;
+        }
+        Module toSet = internalList.get(indexOfModuleToUnassign);
+        toSet.unassignInstructor(instructor);
+        internalList.set((indexOfModuleToUnassign), toSet);
+    }
+
+    /**
+     * Checks whether an {@code instructor} in the module with the given {@code moduleCode} exists.
+     * The module with the {@code moduleCode} must exist in the address book.
+     * @return true if the {@code instructor} is an instructor of the module with the {@code moduleCode}
+     */
+    public boolean moduleCodeHasInstructor(ModuleCode moduleCode, Person instructor) {
+        requireAllNonNull(instructor, moduleCode);
+
+        for (int index = 0; index < internalList.size(); index++) {
+
+            Module moduleToCheck = internalList.get(index);
+            if (moduleToCheck.hasModuleCode(moduleCode)
+                && !moduleToCheck.hasInstructor(instructor)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**

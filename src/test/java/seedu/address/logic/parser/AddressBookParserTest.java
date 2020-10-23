@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -30,9 +31,9 @@ import seedu.address.logic.commands.MlistCommand;
 import seedu.address.logic.commands.ResetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
-import seedu.address.model.module.ModuleInstructorsContainsKeywordsPredicate;
-import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
+import seedu.address.model.module.predicates.ModuleCodeContainsKeywordsPredicate;
+import seedu.address.model.module.predicates.ModuleInstructorsContainsKeywordsPredicate;
+import seedu.address.model.module.predicates.ModuleNameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -98,7 +99,7 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + String.join(" ", keywords));
+                FindCommand.COMMAND_WORD + " " + PREFIX_NAME + String.join(" ", keywords));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
@@ -114,7 +115,7 @@ public class AddressBookParserTest {
                 new ModuleNameContainsKeywordsPredicate(Arrays.asList("Software", "Engineering"));
         ModuleInstructorsContainsKeywordsPredicate instructorPredicate =
                 new ModuleInstructorsContainsKeywordsPredicate(Collections.singletonList("Damith"));
-        assertEquals(new FindModCommand(codePredicate, namePredicate, instructorPredicate), command);
+        assertEquals(new FindModCommand(Arrays.asList(codePredicate, namePredicate, instructorPredicate)), command);
     }
 
     @Test

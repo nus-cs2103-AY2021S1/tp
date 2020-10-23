@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.UniqueModuleList;
 
 public class DelModCommand extends Command {
 
@@ -20,7 +19,6 @@ public class DelModCommand extends Command {
             + PREFIX_MODULE_CODE + "CS2103 ";
 
     public static final String MESSAGE_SUCCESS = "Module deleted: %1$s";
-
 
     private final ModuleCode moduleCode;
 
@@ -35,9 +33,8 @@ public class DelModCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        UniqueModuleList moduleList = model.getModuleList();
 
-        if (!moduleList.containsModuleCode(this.moduleCode)) {
+        if (!model.hasModuleCode(this.moduleCode)) {
             throw new CommandException(MESSAGE_MODULE_DOES_NOT_EXIST);
         }
 
