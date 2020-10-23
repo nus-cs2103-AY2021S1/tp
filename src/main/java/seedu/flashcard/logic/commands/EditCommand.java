@@ -28,6 +28,7 @@ import seedu.flashcard.model.flashcard.Flashcard;
 import seedu.flashcard.model.flashcard.Note;
 import seedu.flashcard.model.flashcard.Question;
 import seedu.flashcard.model.flashcard.Rating;
+import seedu.flashcard.model.flashcard.Statistics;
 import seedu.flashcard.model.tag.Tag;
 
 
@@ -108,9 +109,10 @@ public class EditCommand extends Command {
         Rating updatedRating = editFlashcardDescriptor.getRating().orElse(flashcardToEdit.getRating());
         Set<Tag> updatedTags = editFlashcardDescriptor.getTags().orElse(flashcardToEdit.getTags());
         Diagram updatedDiagram = editFlashcardDescriptor.getDiagram().orElse(flashcardToEdit.getDiagram());
+        Statistics statistics = flashcardToEdit.getStatistics();
         boolean isFavourite = flashcardToEdit.isFavourite();
         return new Flashcard(updatedQuestion, updatedAnswer, updatedCategory, updatedNote, updatedRating,
-                updatedTags, updatedDiagram, isFavourite);
+                updatedTags, updatedDiagram, statistics, isFavourite);
     }
 
     @Override
