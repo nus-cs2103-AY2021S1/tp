@@ -167,9 +167,9 @@ for user's input of arrow up (which calls previousCommand()) and arrow down (whi
 
 ### Finding Items and Delivery
 OneShelf is capable of storing many items and pending deliveries. 
-Therefore, there is an utmost importance to have the ability to be able to find item 
-and delivery based on different fields. There could also be many similar item and 
-this will definitely benefit the user to find it quickly. <br>
+Therefore, it is of utmost importance to have the ability to find items
+and deliveries based on different fields. There could also be many similar items and 
+this will definitely aid the user in find them quickly. <br>
 
 We have modified the `find` command to be able to search for `NAME`, `SUPPLIER` 
 and `TAGS` for items using `find-i` Similarly, for deliveries, it is also possible 
