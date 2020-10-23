@@ -88,6 +88,8 @@ public class MakeRecipeCommand extends Command implements Undoable {
             }
         }
 
+        model.setRecipe(this.recipe, this.recipe.addUsage());
+
         return new CommandResult(String.format(MESSAGE_MAKE_RECIPE_SUCCESS, this.recipe));
     }
 
@@ -104,6 +106,7 @@ public class MakeRecipeCommand extends Command implements Undoable {
         }
 
         this.ingredients.clear();
+        model.setRecipe(this.recipe, this.recipe.removeUsage());
         return new CommandResult(String.format(MESSAGE_UNDO_SUCCESS, this.recipe));
     }
 
