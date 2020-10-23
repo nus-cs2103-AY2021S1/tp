@@ -14,12 +14,12 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the list of students in Reeve by a given"
-            + " sorting method.\n"
-            + "Supported sorting methods: "
-            + "name: sorts students by their name (case insensitive)"
-            + "classTime: sorts students by the day followed by time of their class"
-            + "year: sorts students by the year they are in school, with Primary 1 coming first"
-            + "and JC 2 coming last.\n\n"
+            + " sorting method.\n\n"
+            + "Supported sorting methods: \n"
+            + "name: Sorts students by their name (case insensitive)\n"
+            + "classTime: Sorts students by the day followed by time of their class\n"
+            + "year: Sorts students by the year they are in school, with Primary 1 coming first"
+            + " and JC 2 coming last.\n\n"
             + "Example: "
             + COMMAND_WORD + " " + "year";
 
