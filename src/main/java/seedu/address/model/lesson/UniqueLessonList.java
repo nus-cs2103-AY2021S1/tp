@@ -50,26 +50,6 @@ public class UniqueLessonList implements Iterable<Lesson> {
     }
 
     /**
-     * Replaces the lesson {@code target} in the list with {@code editedTask}.
-     * {@code target} must exist in the list.
-     * The lesson identity of {@code editedTask} must not be the same as another existing lesson in the list.
-     */
-    public void setTask(Lesson target, Lesson editLesson) {
-        requireAllNonNull(target, editLesson);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new TaskNotFoundException();
-        }
-
-        if (!target.isSameLesson(editLesson) && contains(editLesson)) {
-            throw new DuplicateTaskException();
-        }
-
-        internalList.set(index, editLesson);
-    }
-
-    /**
      * Removes the equivalent lesson from the list.
      * The lesson must exist in the list.
      */
