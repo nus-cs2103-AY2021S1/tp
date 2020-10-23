@@ -42,7 +42,7 @@ public class TypicalFlashcards {
                 "Collaboration system",
                 "Management information system",
                 "Transaction processing system"})
-        .build();
+        .withAnswer("Collaboration system").build();
     public static final Flashcard RANDOM8 = new FlashcardBuilder().withQuestion("Question One")
             .withAnswer("1").withTags("test").build();
     public static final Flashcard RANDOM9 = new FlashcardBuilder().withQuestion("Question Two")
@@ -71,5 +71,11 @@ public class TypicalFlashcards {
                     RANDOM7,
                     RANDOM8,
                     RANDOM9));
+    }
+
+    public static QuickCache getTypicalQuickCacheForStorage() {
+        QuickCache qc = new QuickCache();
+        qc.addFlashcard(RANDOM1);
+        return qc;
     }
 }

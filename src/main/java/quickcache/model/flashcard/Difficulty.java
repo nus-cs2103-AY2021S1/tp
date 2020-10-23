@@ -62,7 +62,7 @@ public class Difficulty {
         return '[' + value + ']';
     }
 
-    public String getName() {
+    public String getValue() {
         return value;
     }
 }
