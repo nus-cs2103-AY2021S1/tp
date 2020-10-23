@@ -22,6 +22,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_NOTE = "sd";
+    public static final boolean DEFAULT_IS_ARCHIVE = false;
 
     private Name name;
     private Phone phone;
@@ -29,6 +30,7 @@ public class PersonBuilder {
     private Address address;
     private Set<ClientSource> clientSources;
     private Note note;
+    private boolean isArchive;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,6 +42,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         clientSources = new HashSet<>();
         note = new Note(DEFAULT_NOTE);
+        isArchive = DEFAULT_IS_ARCHIVE;
     }
 
     /**
@@ -52,6 +55,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         clientSources = new HashSet<>(personToCopy.getClientSources());
         note = personToCopy.getNote();
+        isArchive = personToCopy.getIsArchive();
     }
 
     /**
@@ -135,8 +139,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code isArchive} of the {@code Person} that we are building to true.
+     */
+    public PersonBuilder addToArchive() {
+        this.isArchive = true;
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, clientSources, note);
+        return new Person(name, phone, email, address, clientSources, note, isArchive);
     }
 
 }

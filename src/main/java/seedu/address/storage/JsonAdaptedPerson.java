@@ -31,6 +31,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedClientSource> clientSource = new ArrayList<>();
     private final String note;
+    private final boolean isArchive;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -40,7 +41,7 @@ class JsonAdaptedPerson {
             @JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("clientSource") List<JsonAdaptedClientSource> clientSource,
-            @JsonProperty("note") String note) {
+            @JsonProperty("note") String note, @JsonProperty("isArchive") boolean isArchive) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -49,6 +50,7 @@ class JsonAdaptedPerson {
             this.clientSource.addAll(clientSource);
         }
         this.note = note;
+        this.isArchive = isArchive;
     }
 
     /**
@@ -85,6 +87,8 @@ class JsonAdaptedPerson {
         } else {
             note = null;
         }
+
+        isArchive = source.getIsArchive();
     }
 
     /**
@@ -148,7 +152,10 @@ class JsonAdaptedPerson {
             modelNote = new Note(note);
         }
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelClientSources, modelNote);
+        final boolean modelIsArchive = isArchive;
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelClientSources, modelNote,
+                modelIsArchive);
     }
 
 }
