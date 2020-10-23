@@ -1,6 +1,5 @@
 package chopchop.logic.parser.commands;
 
-import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
 import static chopchop.logic.parser.commands.CommonParser.getFirstUnknownArgument;
 
 import java.util.ArrayList;

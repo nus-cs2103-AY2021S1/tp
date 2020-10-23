@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import chopchop.commons.util.Pair;
 import chopchop.commons.util.StringView;
 import chopchop.commons.util.Strings;
 import chopchop.logic.parser.ArgName;
@@ -35,7 +34,8 @@ public class AutoCompleter {
      * available, the string is returned as-is.
      *
      * @param parser the command parser
-     * @param input  the input
+     * @param model  the model
+     * @param orig   the input
      * @return       the auto-completed input
      */
     public String getCompletionForInput(CommandParser parser, Model model, String orig) {
@@ -75,7 +75,7 @@ public class AutoCompleter {
         case TAG_NAME:
             return orig;
 
-        case NONE:  // fallthrough
+        case NONE: // fallthrough
         default:
             return orig;
         }
@@ -135,20 +135,19 @@ public class AutoCompleter {
         var validArguments = new ArrayList<ArgName>();
 
         if (cmd.equals(Strings.COMMAND_ADD)) {
-             if (tgt.equals(CommandTarget.RECIPE.toString())) {
-
+            if (tgt.equals(CommandTarget.RECIPE.toString())) {
                 validArguments.add(Strings.ARG_INGREDIENT);
                 validArguments.add(Strings.ARG_QUANTITY);
                 validArguments.add(Strings.ARG_STEP);
                 validArguments.add(Strings.ARG_TAG);
 
-             } else if (tgt.equals(CommandTarget.INGREDIENT.toString())) {
+            } else if (tgt.equals(CommandTarget.INGREDIENT.toString())) {
 
                 validArguments.add(Strings.ARG_QUANTITY);
                 validArguments.add(Strings.ARG_EXPIRY);
                 validArguments.add(Strings.ARG_TAG);
 
-             }
+            }
         }
 
         for (var validArg : validArguments) {
