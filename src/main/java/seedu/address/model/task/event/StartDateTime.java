@@ -1,12 +1,11 @@
 package seedu.address.model.task.event;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import seedu.address.commons.util.DateUtil;
 import seedu.address.model.lesson.Time;
-
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Task's date and time in PlaNus task list.
@@ -27,7 +26,7 @@ public class StartDateTime {
             value = DateUtil.DEFAULT_DATETIME;
         } else {
             checkArgument(isValidStartDateTime(dateTime), DateUtil.MESSAGE_CONSTRAINTS);
-            value = LocalDateTime.parse(dateTime, DateUtil.FORMATTER);
+            value = LocalDateTime.parse(dateTime, DateUtil.DATE_FORMATTER);
             isNull = false;
         }
     }
@@ -41,7 +40,7 @@ public class StartDateTime {
     public StartDateTime(String date, String time) {
         checkArgument(isValidStartDateTime(date, time), DateUtil.MESSAGE_CONSTRAINTS);
         String datetime = date + " " + time;
-        value = LocalDateTime.parse(datetime, DateUtil.FORMATTER);
+        value = LocalDateTime.parse(datetime, DateUtil.DATETIME_FORMATTER);
         isNull = false;
     }
 
@@ -86,7 +85,7 @@ public class StartDateTime {
         if (isNull) {
             return "";
         } else {
-            return value.format(DateUtil.FORMATTER);
+            return value.format(DateUtil.DATE_FORMATTER);
         }
     }
 

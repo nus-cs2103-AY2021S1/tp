@@ -57,29 +57,27 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         title.setText(task.getTitle().title);
-        type.setText(task.getType().value);
+        type.setText("haha");
         loadStatus(task);
         loadDescription(task);
         loadDateTime(task);
     }
 
     private boolean loadStatus(Task task) {
-        if (task.getStatus().value.equals(State.COMPLETE)) {
-            statusSign.setSelected(true);
-        }
-        status.setText(task.getStatus().value.toString());
+        statusSign.setSelected(true);
+        status.setText("haha");
         return true;
     }
 
     private boolean loadDateTime(Task task) {
-        if (task.getDateTime().equals(DateTime.defaultDateTime())) {
-            card.getChildren().remove(dateTimeHolder);
-            return false;
-        } else {
-            dateTime.setText(task.getDateTime().toString());
-            return true;
-        }
-
+//        if (task.getDateTime().equals(DateTime.defaultDateTime())) {
+//            card.getChildren().remove(dateTimeHolder);
+//            return false;
+//        } else {
+//            dateTime.setText(task.getDateTime().toString());
+//            return true;
+//        }
+        return false;
     }
 
     private boolean loadDescription(Task task) {

@@ -9,6 +9,7 @@ import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.UniqueLessonList;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
+import seedu.address.model.task.deadline.Deadline;
 
 /**
  * Wraps all data at the PlaNus level
@@ -106,9 +107,9 @@ public class Planus implements ReadOnlyPlanus {
      * Mark the given tasks {@code targets} in the list as done.
      * task in targets must exist in PlaNus.
      */
-    public void markAsDone(Task[] targets) {
+    public void markAsDone(Deadline[] targets, int[] durations) {
         requireNonNull(targets);
-        tasks.markAsDone(targets);
+        tasks.markAsDone(targets, durations);
     }
 
     /**

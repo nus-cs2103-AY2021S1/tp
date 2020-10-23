@@ -29,7 +29,7 @@ public class EndDateTime {
             value = DateUtil.DEFAULT_DATETIME;
         } else {
             checkArgument(isValidEndDateTime(dateTime), DateUtil.MESSAGE_CONSTRAINTS);
-            value = LocalDateTime.parse(dateTime, DateUtil.FORMATTER);
+            value = LocalDateTime.parse(dateTime, DateUtil.DATE_FORMATTER);
             isNull = false;
         }
     }
@@ -43,7 +43,7 @@ public class EndDateTime {
     public EndDateTime(String date, String time) {
         checkArgument(isValidEndDateTime(date, time), DateUtil.MESSAGE_CONSTRAINTS);
         String datetime = date + " " + time;
-        value = LocalDateTime.parse(datetime, DateUtil.FORMATTER);
+        value = LocalDateTime.parse(datetime, DateUtil.DATETIME_FORMATTER);
         isNull = false;
     }
 
@@ -81,7 +81,7 @@ public class EndDateTime {
         if (isNull) {
             return "";
         } else {
-            return value.format(DateUtil.FORMATTER);
+            return value.format(DateUtil.DATETIME_FORMATTER);
         }
     }
 

@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.DoneCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -18,8 +19,16 @@ public class DoneCommandParser implements Parser<DoneCommand> {
      */
     public DoneCommand parse(String args) throws ParseException {
         try {
-            Index[] indexes = ParserUtil.parseVarargsIndex(args);
-            return new DoneCommand(indexes);
+
+            String[] splited = args.trim().split(" ");
+            Index[] indexes = new Index[splited.length];
+            int[] durations = new int[splited.length];
+            for (int i = 0; i < splited.length; i++) {
+                String[] pair = splited[i].trim().split(":");
+                indexes[i] = ParserUtil.parseIndex(pair[0]);
+                durations[i] = Integer.parseInt((pair[1]));
+            }
+            return new DoneCommand(indexes, durations);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneCommand.MESSAGE_USAGE), pe);

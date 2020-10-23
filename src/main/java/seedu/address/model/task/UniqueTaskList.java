@@ -119,14 +119,14 @@ public class UniqueTaskList implements Iterable<Task> {
      * {@code tasks} must not contain duplicate tasks.
      * each task in tasks must exist in the list.
      */
-    public void markAsDone(Deadline[] deadlines) {
+    public void markAsDone(Deadline[] deadlines, int[] durations) {
         requireNonNull(deadlines);
         for (int i = 0; i < deadlines.length; i++) {
             int index = internalList.indexOf(deadlines[i]);
             if (index == -1) {
                 throw new TaskNotFoundException();
             }
-            internalList.set(index, deadlines[i].markAsDone());
+            internalList.set(index, deadlines[i].markAsDone(durations[i]));
         }
     }
 

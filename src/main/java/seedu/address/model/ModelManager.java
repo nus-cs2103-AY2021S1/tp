@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.deadline.Deadline;
 
 /**
  * Represents the in-memory model of the PlaNus data.
@@ -101,8 +102,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void markAsDone(Task[] targets) {
-        planus.markAsDone(targets);
+    public void markAsDone(Deadline[] targets, int[] durations) {
+        planus.markAsDone(targets, durations);
     }
 
     @Override

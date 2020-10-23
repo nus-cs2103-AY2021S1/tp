@@ -60,8 +60,8 @@ class JsonAdaptedLesson {
         dayOfWeek = source.getDayOfWeek().toString();
         startTime = source.getStartTime().format(Time.FORMATTER);
         endTime = source.getEndTime().format(Time.FORMATTER);
-        startDate = source.getStartDate().format(DateUtil.FORMATTER);
-        endDate = source.getEndDate().format(DateUtil.FORMATTER);
+        startDate = source.getStartDate().format(DateUtil.DATE_FORMATTER);
+        endDate = source.getEndDate().format(DateUtil.DATE_FORMATTER);
         logger.info("Planus lesson with title: '" + title + "' successfully converted to adapted lesson object");
     }
 
@@ -123,14 +123,14 @@ class JsonAdaptedLesson {
                     LocalDate.class.getSimpleName()));
         }
 
-        final LocalDate modelStartDate = LocalDate.parse(startDate, DateUtil.FORMATTER);
+        final LocalDate modelStartDate = LocalDate.parse(startDate, DateUtil.DATE_FORMATTER);
 
         if (endDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LocalDate.class.getSimpleName()));
         }
 
-        final LocalDate modelEndDate = LocalDate.parse(endDate, DateUtil.FORMATTER);
+        final LocalDate modelEndDate = LocalDate.parse(endDate, DateUtil.DATE_FORMATTER);
 
         return new Lesson(modelTitle, modelDescription, modelDayOfWeek,
                 modelStartTime, modelEndTime, modelStartDate, modelEndDate);

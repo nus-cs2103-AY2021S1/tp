@@ -28,13 +28,15 @@ public class DoneCommand extends Command {
     public static final String MESSAGE_DONE_TASK_SUCCESS = "Task: %1$s is marked as complete.";
 
     private final Index[] targetIndexes;
+    private final int[] durations;
 
     /**
      * Creates an DoneCommand to mark tasks with {@code targetIndexes} as done.
      */
-    public DoneCommand(Index[] targetIndexes) {
+    public DoneCommand(Index[] targetIndexes, int[] durations) {
         requireNonNull(targetIndexes);
         this.targetIndexes = targetIndexes;
+        this.durations = durations;
     }
 
     @Override
@@ -58,7 +60,7 @@ public class DoneCommand extends Command {
         if (!allHaveIncompleteStatus(deadlinesToMarkAsDone)) {
             throw new CommandException(Messages.MESSAGE_INCORRECT_TASK_STATUS);
         }
-        model.markAsDone(deadlinesToMarkAsDone);
+        model.markAsDone(deadlinesToMarkAsDone, durations);
         return new CommandResult(buildMessage(deadlinesToMarkAsDone));
     }
 

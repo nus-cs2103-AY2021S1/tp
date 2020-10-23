@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.deadline.Deadline;
 
 /**
  * The API of the Model component.
@@ -68,7 +69,7 @@ public interface Model {
      * Mark the given array of tasks to be done.
      * The tasks must exist in PlaNus.
      */
-    void markAsDone(Task[] targets);
+    void markAsDone(Deadline[] targets, int[] durations);
 
     /**
      * Adds the given task.
