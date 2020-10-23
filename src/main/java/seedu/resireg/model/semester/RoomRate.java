@@ -21,7 +21,7 @@ public class RoomRate {
         this.value = value;
     }
 
-    private boolean isValidRoomRate(int value) {
+    public static boolean isValidRoomRate(int value) {
         return value > 0;
     }
 

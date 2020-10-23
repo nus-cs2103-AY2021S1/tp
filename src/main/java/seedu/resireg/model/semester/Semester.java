@@ -71,8 +71,8 @@ public class Semester {
         }
 
         return otherSemester != null
-                && otherSemester.getAcademicYear() == getAcademicYear()
-                && otherSemester.getSemesterNumber().equals(getSemesterNumber());
+                && Objects.equals(otherSemester.getAcademicYear(), getAcademicYear())
+                && Objects.equals(otherSemester.getSemesterNumber(), getSemesterNumber());
     }
 
     @Override
@@ -102,6 +102,8 @@ public class Semester {
         final StringBuilder builder = new StringBuilder();
         builder.append(" Academic Year: ")
                 .append(getAcademicYear())
+                .append(" Semester: ")
+                .append(getSemesterNumber())
                 .append(" Room Fees: (");
         getRoomFees().forEach((roomType, fee) ->
                 builder.append(" Room type: ")
