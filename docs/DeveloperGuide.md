@@ -141,8 +141,10 @@ It is handled by the `EditCommand`.
 The following describes the flow of how `EditCommand` is executed.
 
 1. Upon successfully parsing the user input, `EditCommand#execute(Model model)` is called to edit the existing student to the new edited student.
-2. `Model#updateFilteredStudentsList(Predicate<Student> predicate)` is called to update the edited student within the student list. A new `CommandResult` is returned with a successful message indicating the number of matching students.
-3. The filtered student list replaces the displayed list on the GUI and a success message is shown in the result display.
+2. `Model#setStudent(Student student)` is called to replace the student with edited student within the model. 
+3. `Model#updateFilteredStudentsList(Predicate<Student> predicate)` is then called to update the student list with the new edited student.
+4. A new `CommandResult` is returned with a successful message indicating that the student has been edited.
+5. The edited student is now shown on the student list.
 
 
 The following sequence diagram shows how the `EditCommand` execution works.
@@ -157,7 +159,7 @@ The following activity diagram summarises the flow of events when `OverdueComman
 
 Figure \___. Activity diagram for `EditCommand` execution
 
-### 5.3 Overdue payment filter feature
+#### 5.1.3 Overdue payment filter feature
 
 The overdue payment filter feature allows the tutor to find all students who have not paid their tuition fees in the past month. It is handled by the `OverdueCommand`.
 
