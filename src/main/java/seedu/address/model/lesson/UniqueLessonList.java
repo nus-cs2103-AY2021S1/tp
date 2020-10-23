@@ -75,12 +75,6 @@ public class UniqueLessonList implements Iterable<Lesson> {
         }
     }
 
-
-    public void setTasks(UniqueLessonList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
     /**
      * Replaces the contents of this list with {@code lessons}.
      * {@code lessons} must not contain duplicate lessons.
