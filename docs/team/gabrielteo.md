@@ -22,7 +22,7 @@ Given below are my contributions to the project.
     * What it does: Allows the user to delete the specified appointment from a patient's list of appointments.
     * Justification: This feature allows the user to get rid of old appointments that have passed.
     * Highlights: The implementation does not require changes to existing commands.
-  * Added the ability to `edit` an appointment of a patient. (Pull requests [\#126]())
+  * Added the ability to `edit` an appointment of a patient. (Pull requests [\#128]())
     * What it does: Allows the user to edit the specified appointment of a patient.
     * Justification: This feature allows the user to reschedule a patient's appointment.
     * Highlights: The implementation does not require changes to existing commands.
