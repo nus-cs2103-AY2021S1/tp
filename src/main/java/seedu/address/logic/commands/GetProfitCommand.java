@@ -16,9 +16,7 @@ public class GetProfitCommand extends Command {
     public CommandResult execute(Model model, ActiveAccount activeAccount) {
         requireAllNonNull(model, activeAccount);
 
-        Double totalRevenue = activeAccount.getTotalRevenue();
-        Double totalExpenses = activeAccount.getTotalExpenses();
-        Double profit = totalRevenue - totalExpenses;
-        return new CommandResult(MESSAGE_SUCCESS + String.format("%.2f", profit));
+        double profits = activeAccount.getProfits();
+        return new CommandResult(MESSAGE_SUCCESS + String.format("%.2f", profits));
     }
 }

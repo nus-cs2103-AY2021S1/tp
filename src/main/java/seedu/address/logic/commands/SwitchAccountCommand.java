@@ -54,7 +54,7 @@ public class SwitchAccountCommand extends Command {
             throw new CommandException(MESSAGE_ACTIVE_ACCOUNT);
         }
 
-        activeAccount.setActiveAccount(toBeSwitched);
+        activeAccount.removePreviousState();
         return new CommandResult(String.format(MESSAGE_SWITCH_ACCOUNT_SUCCESS, toBeSwitched),
             false, false, true);
     }

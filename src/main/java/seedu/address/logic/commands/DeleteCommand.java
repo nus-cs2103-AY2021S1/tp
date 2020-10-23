@@ -55,10 +55,13 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_INDEX);
         }
 
+        // Set previous state for undo before entry is deleted
+        activeAccount.setPreviousState();
         if (isExpense) {
             Expense toDelete = expenseList.get(index);
             activeAccount.deleteExpense(toDelete);
-        } else if (isRevenue) {
+        } else {
+            assert isRevenue;
             Revenue toDelete = revenueList.get(index);
             activeAccount.deleteRevenue(toDelete);
         }

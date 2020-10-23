@@ -26,6 +26,9 @@ import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Edits an entry in Common Cents.
+ */
 public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
@@ -61,10 +64,12 @@ public class EditCommand extends Command {
         requireNonNull(model);
         assert(activeAccount != null && model != null);
 
+
         List<? extends Entry> lastShownList;
         if (editEntryDescriptor.isEntryExpense()) {
             lastShownList = activeAccount.getFilteredExpenseList();
         } else {
+            assert editEntryDescriptor.isEntryRevenue();
             lastShownList = activeAccount.getFilteredRevenueList();
         }
 
@@ -75,10 +80,13 @@ public class EditCommand extends Command {
         Entry entryToEdit = lastShownList.get(index.getZeroBased());
         Entry editedEntry = createEditedEntry(entryToEdit, editEntryDescriptor);
 
+        // Set previous state for undo before entry is edited
+        activeAccount.setPreviousState();
         if (entryToEdit instanceof Expense) {
             activeAccount.setExpense((Expense) entryToEdit, (Expense) editedEntry);
             activeAccount.updateFilteredExpenseList(ActiveAccount.PREDICATE_SHOW_ALL_EXPENSES);
         } else {
+            assert editedEntry instanceof Revenue;
             activeAccount.setRevenue((Revenue) entryToEdit, (Revenue) editedEntry);
             activeAccount.updateFilteredRevenueList(ActiveAccount.PREDICATE_SHOW_ALL_REVENUE);
         }
