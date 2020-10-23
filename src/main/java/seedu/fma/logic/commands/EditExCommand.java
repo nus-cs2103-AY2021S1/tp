@@ -3,7 +3,6 @@ package seedu.fma.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.fma.logic.parser.CliSyntax.PREFIX_C;
 import static seedu.fma.logic.parser.CliSyntax.PREFIX_E;
-import static seedu.fma.model.Model.PREDICATE_SHOW_ALL_LOGS;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +24,7 @@ public class EditExCommand extends Command {
     public static final String COMMAND_WORD = "editex";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the exercise identified "
-            + "by the index number used in the displayed log list. "
+            + "by the index number used in the displayed exercise list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_E + "EXERCISE] "
@@ -141,7 +140,7 @@ public class EditExCommand extends Command {
         List<Exercise> lastShownList = model.getFilteredExerciseList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_LOG_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_EXERCISE_DISPLAYED_INDEX);
         }
 
         Exercise exerciseToEdit = lastShownList.get(index.getZeroBased());
@@ -152,7 +151,6 @@ public class EditExCommand extends Command {
         }
 
         model.setExercise(exerciseToEdit, editedExercise);
-        model.updateFilteredLogList(PREDICATE_SHOW_ALL_LOGS);
         return new CommandResult(String.format(MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise));
     }
 
