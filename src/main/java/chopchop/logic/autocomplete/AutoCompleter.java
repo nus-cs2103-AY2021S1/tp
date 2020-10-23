@@ -175,7 +175,7 @@ public class AutoCompleter {
         assert !words.isEmpty();
 
         // the partial item name.
-        var partial = words.get(words.size() - 1);
+        var partial = words.get(words.size() - 1).toLowerCase();
         assert !partial.isEmpty();
 
         // the entire command string *except* the partial item name.
@@ -194,7 +194,7 @@ public class AutoCompleter {
             for (var entry : sortedList) {
                 var name = entry.getName();
 
-                if (name.startsWith(partial)) {
+                if (name.toLowerCase().startsWith(partial)) {
                     this.lastViableCompletions.add(name);
                 }
             }
