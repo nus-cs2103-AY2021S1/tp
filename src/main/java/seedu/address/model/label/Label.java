@@ -39,6 +39,7 @@ public class Label {
     }
 
     public void setLabel(String label) {
+        assert label != null;
         this.label = label;
     }
 
