@@ -54,6 +54,7 @@ public class StoreAttendanceCommandTest {
         }
 
         // Run command in the condition where file already exists
+        assert(isExistingFile);
         Model model = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         StorageCommand storeCommand = new StoreAttendanceCommand(filename);
@@ -75,6 +76,7 @@ public class StoreAttendanceCommandTest {
         }
 
         // Run command in the condition where file does not exist
+        assert(!isExistingFile);
         Model model = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         StorageCommand storeCommand = new StoreAttendanceCommand(filename);
