@@ -133,6 +133,30 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+#### 5.1.2 Edit Student Command
+
+The edit student feature allows the tutor to edit a particular student within **Reeve**.
+It is handled by the `EditCommand`.
+
+The following describes the flow of how `EditCommand` is executed.
+
+1. Upon successfully parsing the user input, `EditCommand#execute(Model model)` is called to edit the existing student to the new edited student.
+2. `Model#updateFilteredStudentsList(Predicate<Student> predicate)` is called to update the edited student within the student list. A new `CommandResult` is returned with a successful message indicating the number of matching students.
+3. The filtered student list replaces the displayed list on the GUI and a success message is shown in the result display.
+
+
+The following sequence diagram shows how the `EditCommand` execution works.
+
+![EditSequence](images/EditStudentSequenceDiagram.png)
+
+Figure \___. Sequence diagram for `EditCommand` execution
+
+The following activity diagram summarises the flow of events when `OverdueCommand` is executed.
+
+![EditActivity](images/EditStudentActivityDiagram.png)
+
+Figure \___. Activity diagram for `EditCommand` execution
+
 ### 5.3 Overdue payment filter feature
 
 The overdue payment filter feature allows the tutor to find all students who have not paid their tuition fees in the past month. It is handled by the `OverdueCommand`.
@@ -143,7 +167,7 @@ The following describes the flow of how `OverdueCommand` is executed.
 2. `Model#updateFilteredStudentsList(Predicate<Student> predicate)` is called to find only students that match the above condition. A new `CommandResult` is returned with a successful message indicating the number of matching students.
 3. The filtered student list replaces the displayed list on the GUI and a success message is shown in the result display.
 
-The following sequence diagram shows how the question adding operation works.
+The following sequence diagram shows how the `OverdueCommand` execution works.
 
 ![OverdueSequence](images/OverdueSequenceDiagram.png)
 
