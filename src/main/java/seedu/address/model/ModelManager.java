@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -246,6 +248,23 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getUpdatedFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
+        return new FilteredList(filteredPersons, predicate);
+    }
+
+    @Override
+    public ObservableList<Person> getUpdatedFilteredPersonList(Predicate<Person> predicate, List<ModuleName> modules)
+            throws CommandException {
+        requireNonNull(predicate);
+        List<Module> moduleList = new ArrayList<>();
+        for (ModuleName name : modules) {
+            Module m = moduleBook.getModule(name)
+                    .orElseThrow(() -> new CommandException(
+                            String.format("Module %s does not exist.", name.toString())));
+            moduleList.add(m);
+        }
+        Predicate<Person> combined = x -> predicate.test(x)
+                || moduleList.stream()
+                .anyMatch(m -> m.getClassmates().contains(x));
         return new FilteredList(filteredPersons, predicate);
     }
 

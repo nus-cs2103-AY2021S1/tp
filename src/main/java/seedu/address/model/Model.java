@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -122,6 +123,8 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     ObservableList<Person> getUpdatedFilteredPersonList(Predicate<Person> predicate);
+
+    ObservableList<Person> getUpdatedFilteredPersonList(Predicate<Person> predicate, List<ModuleName> modules) throws CommandException;
 
     boolean hasMeeting(Meeting meeting);
 
