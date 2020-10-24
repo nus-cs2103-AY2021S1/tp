@@ -1,12 +1,12 @@
 ![PlanusLogo](images/PlanusLogo.png)
 ---
 
-User Guide v1.3 - Gabriella Teh
+User Guide v1.3 
 ---
 
-##Introduction
+##Introduction - Gabriella Teh
 
-PlaNus is **task managing desktop application** for students in NUS, optimized for use via a Command Line Interface (CLI) with the benefits of Graphical User Interface (GUI). PlaNus allows you to keep track of all your deadlines, events and lessons easily.
+PlaNus is **task managing desktop application** for students in NUS with many projects and deadlines, optimized for use via a Command Line Interface (CLI) with the benefits of Graphical User Interface (GUI). PlaNus reduces the time spent by students in task management as adding tasks and lessons is now simple and quick! 
 
 ##About
 This user guide provides a detailed description of all the features available in the application.
