@@ -1,7 +1,11 @@
 package seedu.pivot.logic.commands.suspectcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
 
 import java.util.List;
@@ -21,9 +25,17 @@ public class AddSuspectCommand extends AddCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_SUSPECT
             + ": Adds a suspect to the opened case in PIVOT.\n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME\n"
+            + PREFIX_NAME + "NAME "
+            + PREFIX_GENDER + "GENDER "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS]\n"
             + "Example: " + COMMAND_WORD + " " + TYPE_SUSPECT + " "
-            + PREFIX_NAME + "John Doe";
+            + PREFIX_NAME + "John Doe "
+            + PREFIX_GENDER + "M "
+            + PREFIX_PHONE + "912345678 "
+            + PREFIX_EMAIL + "john@email.com "
+            + PREFIX_ADDRESS + "Blk 123";
 
     private static final String MESSAGE_ADD_SUSPECT_SUCCESS = "New suspect added: %1$s";
     private static final String MESSAGE_DUPLICATE_SUSPECT = "This suspect already exists in the case.";

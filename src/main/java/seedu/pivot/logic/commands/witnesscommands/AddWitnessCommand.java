@@ -1,7 +1,11 @@
 package seedu.pivot.logic.commands.witnesscommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
 
 import java.util.List;
@@ -20,11 +24,19 @@ import seedu.pivot.model.investigationcase.caseperson.Witness;
 public class AddWitnessCommand extends AddCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_WITNESS
-            + ": Adds a victim to current case in PIVOT. "
+            + ": Adds a witness to the opened case in PIVOT.\n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME \n"
+            + PREFIX_NAME + "NAME "
+            + PREFIX_GENDER + "GENDER "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS]\n"
             + "Example: " + COMMAND_WORD + " " + TYPE_WITNESS + " "
-            + PREFIX_NAME + "John Doe ";
+            + PREFIX_NAME + "John Doe "
+            + PREFIX_GENDER + "M "
+            + PREFIX_PHONE + "912345678 "
+            + PREFIX_EMAIL + "john@email.com "
+            + PREFIX_ADDRESS + "Blk 123";
 
     public static final String MESSAGE_ADD_WITNESS_SUCCESS = "New witness added: %1$s";
     public static final String MESSAGE_DUPLICATE_WITNESS = "This witness already exists in the case";
