@@ -60,6 +60,11 @@ public interface Model {
     boolean hasTask(Task task);
 
     /**
+     * Returns true if a lesson with the same identity as {@code lesson} exists in PlaNus.
+     */
+    boolean hasLesson(Lesson lesson);
+
+    /**
      * Deletes the given task.
      * The task must exist in PlaNus.
      */
@@ -89,6 +94,13 @@ public interface Model {
      * The task identity of {@code editedTask} must not be the same as another existing task in the task list.
      */
     void setTask(Task target, Task editedTask);
+
+    /**
+     * Replaces the given lesson {@code target} with {@code editedLesson}.
+     * {@code target} must exist in PlaNus.
+     * The lesson identity of {@code editedLesson} must not be the same as another existing lesson in the lesson list.
+     */
+    void setLesson(Lesson target, Lesson editedLesson);
 
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();

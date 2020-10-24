@@ -8,25 +8,27 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LESSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
-import java.util.Collections;
-import java.util.HashSet;
+import java.lang.reflect.Array;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.task.DateTime;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
-import seedu.address.model.task.Type;
 
 /**
  * Edits the details of an existing lesson in PlaNus lesson list.
@@ -56,60 +58,76 @@ public class EditLessonCommand extends Command {
             + PREFIX_END_DATE + "01-05-2020 ";
 
 
-    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
+    public static final String MESSAGE_EDIT_LESSON_SUCCESS = "Edited Lesson: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in PlaNus.";
+    public static final String MESSAGE_DUPLICATE_LESSON = "This lesson already exists in PlaNus.";
 
     private final Index index;
-    private final EditTaskDescriptor editTaskDescriptor;
+    private final EditLessonDescriptor editLessonDescriptor;
 
     /**
-     * @param index of the task in the filtered task list to edit
-     * @param editTaskDescriptor details to edit the task with
+     * @param index of the lesson in the filtered lesson list to edit
+     * @param editLessonDescriptor details to edit the lesson with
      */
-    public EditCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
+    public EditLessonCommand(Index index, EditLessonDescriptor editLessonDescriptor) {
         requireNonNull(index);
-        requireNonNull(editTaskDescriptor);
+        requireNonNull(editLessonDescriptor);
 
         this.index = index;
-        this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
+        this.editLessonDescriptor = new EditLessonDescriptor(editLessonDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = model.getFilteredTaskList();
+        List<Lesson> lastShownList = model.getFilteredLessonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_LESSON_DISPLAYED_INDEX);
         }
 
-        Task taskToEdit = lastShownList.get(index.getZeroBased());
-        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+        Lesson lessonToEdit = lastShownList.get(index.getZeroBased());
 
-        if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        Lesson editedLesson = createEditedLesson(lessonToEdit, editLessonDescriptor);
+
+        if (!lessonToEdit.isSameLesson(editedLesson) && model.hasLesson(editedLesson)) {
+            throw new CommandException(MESSAGE_DUPLICATE_LESSON);
         }
 
-        model.setTask(taskToEdit, editedTask);
+        ArrayList<Task> associatedTasks = lessonToEdit.getAssociatedTasks();
+
+        model.deleteTask(associatedTasks.toArray(new Task[0]));
+        ArrayList<Task> tasksToAdd = editedLesson.createRecurringTasks();
+        for (Task taskToAdd: tasksToAdd) {
+            if (model.hasTask(taskToAdd)) {
+                throw new CommandException(MESSAGE_DUPLICATE_LESSON);
+            }
+            model.addTask(taskToAdd);
+        }
+
+        model.setLesson(lessonToEdit, editedLesson);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
+        model.updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
+        return new CommandResult(String.format(MESSAGE_EDIT_LESSON_SUCCESS, editedLesson));
     }
 
     /**
      * Creates and returns a {@code Task} with the details of {@code taskToEdit}
-     * edited with {@code editTaskDescriptor}.
+     * edited with {@code editLessonDescriptor}.
      */
-    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
-        assert taskToEdit != null;
+    private static Lesson createEditedLesson(Lesson lessonToEdit, EditLessonDescriptor editLessonDescriptor) {
+        assert lessonToEdit != null;
 
-        Title updatedTitle = editTaskDescriptor.getTitle().orElse(taskToEdit.getTitle());
-        DateTime updatedDateTime = editTaskDescriptor.getDateTime().orElse(taskToEdit.getDateTime());
-        Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
-        Type updatedType = editTaskDescriptor.getType().orElse(taskToEdit.getType());
-        Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
+        Title updatedTitle = editLessonDescriptor.getTitle().orElse(lessonToEdit.getTitle());
+        Description updatedDescription = editLessonDescriptor.getDescription().orElse(lessonToEdit.getDescription());
+        DayOfWeek updatedDayOfWeek = editLessonDescriptor.getDayOfWeek().orElse(lessonToEdit.getDayOfWeek());
+        LocalDate updatedStartDate = editLessonDescriptor.getStartDate().orElse(lessonToEdit.getStartDate());
+        LocalDate updatedEndDate = editLessonDescriptor.getEndDate().orElse(lessonToEdit.getEndDate());
+        LocalTime updatedStartTime = editLessonDescriptor.getStartTime().orElse(lessonToEdit.getStartTime());
+        LocalTime updatedEndTime = editLessonDescriptor.getEndTime().orElse(lessonToEdit.getEndTime());
 
-        return new Task(updatedTitle, updatedDateTime, updatedDescription, updatedType, updatedTags);
+        return new Lesson(updatedTitle, updatedDescription, updatedDayOfWeek, updatedStartTime, updatedEndTime,
+                updatedStartDate, updatedEndDate);
     }
 
     @Override
@@ -120,46 +138,50 @@ public class EditLessonCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditLessonCommand)) {
             return false;
         }
 
         // state check
-        EditCommand e = (EditCommand) other;
+        EditLessonCommand e = (EditLessonCommand) other;
         return index.equals(e.index)
-                && editTaskDescriptor.equals(e.editTaskDescriptor);
+                && editLessonDescriptor.equals(e.editLessonDescriptor);
     }
 
     /**
      * Stores the details to edit the task with. Each non-empty field value will replace the
      * corresponding field value of the task.
      */
-    public static class EditTaskDescriptor {
+    public static class EditLessonDescriptor {
         private Title title;
-        private DateTime dateTime;
         private Description description;
-        private Type type;
-        private Set<Tag> tags;
+        private DayOfWeek dayOfWeek;
+        private LocalDate startDate;
+        private LocalDate endDate;
+        private LocalTime startTime;
+        private LocalTime endTime;
 
-        public EditTaskDescriptor() {}
+        public EditLessonDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditTaskDescriptor(EditTaskDescriptor toCopy) {
+        public EditLessonDescriptor(EditLessonDescriptor toCopy) {
             setTitle(toCopy.title);
-            setDateTime(toCopy.dateTime);
             setDescription(toCopy.description);
-            setType(toCopy.type);
-            setTags(toCopy.tags);
+            setDayOfWeek(toCopy.dayOfWeek);
+            setStartDate(toCopy.startDate);
+            setEndDate(toCopy.endDate);
+            setStartTime(toCopy.startTime);
+            setEndTime(toCopy.endTime);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, dateTime, description, type, tags);
+            return CollectionUtil.isAnyNonNull(title, description, dayOfWeek, startDate, endDate, startTime, endTime);
         }
 
         public void setTitle(Title title) {
@@ -170,14 +192,6 @@ public class EditLessonCommand extends Command {
             return Optional.ofNullable(title);
         }
 
-        public void setDateTime(DateTime dateTime) {
-            this.dateTime = dateTime;
-        }
-
-        public Optional<DateTime> getDateTime() {
-            return Optional.ofNullable(dateTime);
-        }
-
         public void setDescription(Description description) {
             this.description = description;
         }
@@ -186,29 +200,44 @@ public class EditLessonCommand extends Command {
             return Optional.ofNullable(description);
         }
 
-        public void setType(Type type) {
-            this.type = type;
+        public void setDayOfWeek(DayOfWeek dayOfWeek) {
+            this.dayOfWeek = dayOfWeek;
         }
 
-        public Optional<Type> getType() {
-            return Optional.ofNullable(type);
+        public Optional<DayOfWeek> getDayOfWeek() {
+            return Optional.ofNullable(dayOfWeek);
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setStartDate(LocalDate startDate) {
+            this.startDate = startDate;
         }
 
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<LocalDate> getStartDate() {
+            return Optional.ofNullable(startDate);
+        }
+
+        public void setEndDate(LocalDate endDate) {
+            this.endDate = endDate;
+        }
+
+        public Optional<LocalDate> getEndDate() {
+            return Optional.ofNullable(endDate);
+        }
+
+        public void setStartTime(LocalTime startTime) {
+            this.startTime = startTime;
+        }
+
+        public Optional<LocalTime> getStartTime() {
+            return Optional.ofNullable(startTime);
+        }
+
+        public void setEndTime(LocalTime endTime) {
+            this.endTime = endTime;
+        }
+
+        public Optional<LocalTime> getEndTime() {
+            return Optional.ofNullable(endTime);
         }
 
         @Override
@@ -219,18 +248,20 @@ public class EditLessonCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditTaskDescriptor)) {
+            if (!(other instanceof EditLessonDescriptor)) {
                 return false;
             }
 
             // state check
-            EditTaskDescriptor e = (EditTaskDescriptor) other;
+            EditLessonDescriptor e = (EditLessonDescriptor) other;
 
             return getTitle().equals(e.getTitle())
-                    && getDateTime().equals(e.getDateTime())
                     && getDescription().equals(e.getDescription())
-                    && getType().equals(e.getType())
-                    && getTags().equals(e.getTags());
+                    && getDayOfWeek().equals(e.getDayOfWeek())
+                    && getStartTime().equals(e.getStartTime())
+                    && getEndTime().equals(e.getEndTime())
+                    && getStartDate().equals(e.getStartDate())
+                    && getEndDate().equals(e.getEndDate());
         }
     }
 }
