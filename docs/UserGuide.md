@@ -309,7 +309,7 @@ Action | Format, Examples
 **Set**  | `set INGREDIENT_NAME AMOUNT` <br> e.g., `set milk 20`
 **Set all**  | `set all ingredients AMOUNT` <br> e.g., `set all ingredients 5`
 **Set ingredients**  | `set ingredients m/MILK b/BLACK_TEA s/SUGAR o/BUBBLE` <br> e.g., `set ingredients m/19 b/20 s/5 o/0`
-**Get**| `i-view-single INGREDIENT_NAME`  <br> e.g., `i-view-single i/Milk`
+**View a single ingredient**| `i-view-single INGREDIENT_NAME`  <br> e.g., `i-view-single i/Milk`
 **Reset**| `i-reset-all`
 **List**| `i-list`
 
