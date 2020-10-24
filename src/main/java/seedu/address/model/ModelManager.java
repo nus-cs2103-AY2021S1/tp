@@ -269,12 +269,25 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    /**
+     * Returns an unmodifiable view of the updated list of {@code Person} without changing the internal list
+     * of {@code versionedAddressBook}
+     * @param predicate Predicate to filter and update list
+     * @return filtered list of {@code Person} that match the given Predicate
+     */
     @Override
     public ObservableList<Person> getUpdatedFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         return new FilteredList(filteredPersons, predicate);
     }
 
+    /**
+     * Returns an unmodifiable view of the updated list of {@code Person} without changing the internal list
+     * of {@code versionedAddressBook}
+     * @param predicate Predicate to filter and update list
+     * @param modules List of {@code ModuleName} of Modules
+     * @return filtered list of {@code Person} that match the given Predicate or are in the given modules
+     */
     @Override
     public ObservableList<Person> getUpdatedFilteredPersonList(Predicate<Person> predicate, List<ModuleName> modules)
             throws CommandException {

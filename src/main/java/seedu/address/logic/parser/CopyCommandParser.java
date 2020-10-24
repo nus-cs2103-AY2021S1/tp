@@ -42,6 +42,7 @@ public class CopyCommandParser implements Parser<CopyCommand> {
         } else if (preamble.equals("phone")) {
             isEmail = false;
         } else {
+            // invalid preamble
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
         }
 
@@ -49,6 +50,7 @@ public class CopyCommandParser implements Parser<CopyCommand> {
             Set<String> nameSet = ParserUtil.parseAllNames(argMultimap.getAllValues(PREFIX_NAME));
             Set<Tag> tagSet = parseTagsForFind(argMultimap.getAllValues(PREFIX_TAG)).orElse(new HashSet<>());
             List<String> moduleNames = argMultimap.getAllValues(PREFIX_MODULE);
+            // check if any of the collections are empty (no text after prefixes)
             if ((nameSet.size() == 1 && nameSet.contains(""))
                     || tagSet.isEmpty()
                     || (moduleNames.size() == 1 && moduleNames.contains(""))) {
@@ -61,6 +63,7 @@ public class CopyCommandParser implements Parser<CopyCommand> {
         } else if (arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TAG)) {
             Set<String> nameSet = ParserUtil.parseAllNames(argMultimap.getAllValues(PREFIX_NAME));
             Set<Tag> tagSet = parseTagsForFind(argMultimap.getAllValues(PREFIX_TAG)).orElse(new HashSet<>());
+            // check if any of the collections are empty (no text after prefixes)
             if ((nameSet.size() == 1 && nameSet.contains("")) || tagSet.isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
             }
@@ -70,6 +73,7 @@ public class CopyCommandParser implements Parser<CopyCommand> {
         } else if (arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE)) {
             Set<String> nameSet = ParserUtil.parseAllNames(argMultimap.getAllValues(PREFIX_NAME));
             List<String> moduleNames = argMultimap.getAllValues(PREFIX_MODULE);
+            // check if any of the collections are empty (no text after prefixes)
             if ((nameSet.size() == 1 && nameSet.contains(""))
                     || (moduleNames.size() == 1 && moduleNames.contains(""))) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
@@ -81,6 +85,7 @@ public class CopyCommandParser implements Parser<CopyCommand> {
         } else if (arePrefixesPresent(argMultimap, PREFIX_MODULE, PREFIX_TAG)) {
             Set<Tag> tagSet = parseTagsForFind(argMultimap.getAllValues(PREFIX_TAG)).orElse(new HashSet<>());
             List<String> moduleNames = argMultimap.getAllValues(PREFIX_MODULE);
+            // check if any of the collections are empty (no text after prefixes)
             if (tagSet.isEmpty() || (moduleNames.size() == 1 && moduleNames.contains(""))) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
             }
@@ -90,6 +95,7 @@ public class CopyCommandParser implements Parser<CopyCommand> {
                     isEmail, new ArrayList<>(moduleNameSet));
         } else if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
             Set<String> nameSet = ParserUtil.parseAllNames(argMultimap.getAllValues(PREFIX_NAME));
+            // check if any of the collections are empty (no text after prefixes)
             if (nameSet.size() == 1 && nameSet.contains("")) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
             }
@@ -105,6 +111,7 @@ public class CopyCommandParser implements Parser<CopyCommand> {
                     isEmail, new ArrayList<ModuleName>());
         } else if (arePrefixesPresent(argMultimap, PREFIX_MODULE)) {
             List<String> moduleNames = argMultimap.getAllValues(PREFIX_MODULE);
+            // check if any of the collections are empty (no text after prefixes)
             if (moduleNames.size() == 1 && moduleNames.contains("")) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
             }
@@ -113,6 +120,7 @@ public class CopyCommandParser implements Parser<CopyCommand> {
                     new PersonHasTagsPredicate(new ArrayList<>()),
                     isEmail, new ArrayList<>(moduleNameSet));
         } else {
+            // no valid prefixes provided
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
         }
     }

@@ -51,20 +51,26 @@ public class CopyCommand extends Command {
         requireNonNull(model);
         List<Person> people;
         if (moduleNames.isEmpty()) {
+            // finds Persons that match the predicate only
             people = model.getUpdatedFilteredPersonList(predicate);
         } else {
+            // finds Persons that match the predicate and Persons that have the given Modules
             people = model.getUpdatedFilteredPersonList(predicate, moduleNames);
         }
         String results;
         if (isEmail) {
+            // gets email addresses from Persons in people
             results = people.stream()
                     .map(p -> p.getEmail().toString())
                     .reduce("", (x, y) -> x + " " + y);
         } else {
+            // gets phone numbers from Persons in people
             results = people.stream()
                     .map(p -> p.getPhone().toString())
                     .reduce("", (x, y) -> x + " " + y);
         }
+
+        // copies results to clipboard
         StringSelection selection = new StringSelection(results);
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(selection, selection);
