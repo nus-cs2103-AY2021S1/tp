@@ -149,18 +149,22 @@ public class MainWindow extends UiPart<Stage> {
         summaryPanelPlaceholder.getChildren().add(summaryPanel.getRoot());
 
         //Update current value to total calories and macronutrient values.
-        summaryPanel.setTotalMacronutrients(getFoodListPanel().getCurrentCalories(),
-                getFoodListPanel().getCurrentProteins(),
-                getFoodListPanel().getCurrentCarbs(),
-                getFoodListPanel().getCurrentFats());
+        FoodListPanel foodListPanel = getFoodListPanel();
+        summaryPanel.setTotalMacronutrients(
+                foodListPanel.getCurrentCalories(),
+                foodListPanel.getCurrentProteins(),
+                foodListPanel.getCurrentCarbs(),
+                foodListPanel.getCurrentFats()
+        );
 
         //Set the date value to today's date
         datePicker.setValue(LocalDate.now());
 
         //Add listener to execute after date is changed
-        datePicker.valueProperty().addListener((observable, oldDate, newDate) -> {
-            setDate();
-        });
+        datePicker.valueProperty()
+                .addListener((observable, oldDate, newDate) -> {
+                    setDate();
+                });
     }
 
     /**
@@ -185,7 +189,6 @@ public class MainWindow extends UiPart<Stage> {
         } catch (CommandException | ParseException e) {
             assert false : "Help button on menu error";
         }
-
     }
 
     /**
@@ -230,7 +233,7 @@ public class MainWindow extends UiPart<Stage> {
             executeCommand(String.format("export %s", directory.toString()));
         } catch (RuntimeException | CommandException | ParseException e) {
             directory = null;
-            logger.info(String.format("User did not select a valid directory"));
+            logger.info("User did not select a valid directory");
             resultDisplay.setFeedbackToUser("Please select a valid directory");
         }
     }
@@ -303,6 +306,8 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            //Update the graphs
             summaryPanel.setTotalMacronutrients(getFoodListPanel().getCurrentCalories(),
                     getFoodListPanel().getCurrentProteins(),
                     getFoodListPanel().getCurrentCarbs(),
