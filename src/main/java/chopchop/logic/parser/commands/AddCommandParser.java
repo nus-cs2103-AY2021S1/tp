@@ -84,11 +84,15 @@ public class AddCommandParser {
         var qtys = args.getArgument(Strings.ARG_QUANTITY);
         if (qtys.size() > 1) {
             return Result.error("multiple quantities specified\n%s", AddIngredientCommand.MESSAGE_USAGE);
+        } else if (qtys.size() == 1 && qtys.get(0).isEmpty()) {
+            return Result.error("quantity cannot be empty");
         }
 
         var exps = args.getArgument(Strings.ARG_EXPIRY);
         if (exps.size() > 1) {
             return Result.error("multiple expiry dates specified\n%s", AddIngredientCommand.MESSAGE_USAGE);
+        } else if (exps.size() == 1 && exps.get(0).isEmpty()) {
+            return Result.error("expiry date cannot be empty");
         }
 
         var tags = args.getArgument(Strings.ARG_TAG);
@@ -112,7 +116,7 @@ public class AddCommandParser {
     }
 
     /**
-     * Parses an 'add ingredient' command. Syntax:
+     * Parses an 'add recipe' command. Syntax:
      * {@code add recipe NAME [/ingredient INGREDIENT_NAME [/qty QTY1]...]... [/step STEP]...}
      */
     private static Result<AddRecipeCommand> parseAddRecipeCommand(String name, CommandArguments args) {
@@ -120,7 +124,7 @@ public class AddCommandParser {
 
         Optional<ArgName> foo;
         if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_QUANTITY,
-            Strings.ARG_INGREDIENT, Strings.ARG_STEP))).isPresent()) {
+            Strings.ARG_INGREDIENT, Strings.ARG_STEP, Strings.ARG_TAG))).isPresent()) {
 
             return Result.error("'add recipe' command doesn't support '%s'\n%s",
                 foo.get(), AddRecipeCommand.MESSAGE_USAGE);
@@ -153,6 +157,10 @@ public class AddCommandParser {
             if (p.fst().equals(Strings.ARG_INGREDIENT)) {
 
                 var name = p.snd();
+                if (name.isEmpty()) {
+                    return Result.error("ingredient name cannot be empty");
+                }
+
                 Optional<Quantity> quantity = Optional.empty();
 
                 // check the next argument for a quantity (which is optional)

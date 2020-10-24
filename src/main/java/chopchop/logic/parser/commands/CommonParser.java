@@ -43,15 +43,11 @@ public class CommonParser {
         var x = new StringView(str).bisect(' ').fst().trim();
         var xs = new StringView(str).bisect(' ').snd().trim();
 
-        // any prefix of "recipes" and "ingredients" can be used.
-        if ("recipes".startsWith(x.toString())) {
-            return Result.of(Pair.of(CommandTarget.RECIPE, xs.toString()));
-        } else if ("ingredients".startsWith(x.toString())) {
-            return Result.of(Pair.of(CommandTarget.INGREDIENT, xs.toString()));
-        } else {
-            return Result.error("unknown target '%s...'",
-                x.takeWhile(c -> !Character.isWhitespace(c))
-            );
-        }
+        return Result.ofOptional(
+            CommandTarget.of(x.toString())
+                .map(target -> Pair.of(target, xs.toString())),
+
+            String.format("unknown target '%s'", x)
+        );
     }
 }

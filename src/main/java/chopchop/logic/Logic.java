@@ -27,6 +27,21 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
+     * Computes the completion for the given user input. If there is no completion
+     * available, the string is returned as-is.
+     *
+     * @param commandText the command
+     * @return            the auto-completed input
+     */
+    String getCompletionForInput(String commandText);
+
+    /**
+     * Resets the autocompleter's internal state. This function should be called when
+     * the text field is modified by the user.
+     */
+    void resetCompletionState();
+
+    /**
      * Returns the RecipeBook.
      */
     ReadOnlyEntryBook<Recipe> getRecipeBook();

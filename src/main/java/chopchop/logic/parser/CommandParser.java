@@ -68,7 +68,7 @@ public class CommandParser {
      * @param input the input string to parse
      * @return      the parsed components, iff parsing succeeded; an empty optional otherwise.
      */
-    private Result<CommandArguments> parseArgs(String input) {
+    public Result<CommandArguments> parseArgs(String input) {
 
         var sv = new StringView(input);
 

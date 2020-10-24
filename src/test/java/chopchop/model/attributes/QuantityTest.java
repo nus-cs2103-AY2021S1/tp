@@ -71,9 +71,9 @@ public class QuantityTest {
     @Test
     void parse_invalidUnits_failure() {
         var tests = Map.of(
-            "10 lg",        "unknown unit 'lg'",
-            "3.1.4 cups",   "couldn't parse number: multiple points",
-            "",             "empty input"
+            "10 lg",        "unknown unit 'lg' (from '10 lg')",
+            "3.1.4 cups",   "couldn't parse number from quantity '3.1.4 cups': multiple points",
+            "",             "quantity string cannot be empty"
         );
 
         tests.forEach((k, v) -> {

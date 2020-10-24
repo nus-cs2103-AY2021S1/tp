@@ -387,7 +387,10 @@ public class StringView {
         while (!sv.isEmpty()) {
             sv = sv.dropWhile(Character::isWhitespace);
             var word = sv.takeWhile(x -> !Character.isWhitespace(x));
-            ret.add(word.toString());
+
+            if (!word.isEmpty()) {
+                ret.add(word.toString());
+            }
 
             sv = sv.dropWhile(x -> !Character.isWhitespace(x));
         }

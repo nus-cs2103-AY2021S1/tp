@@ -30,6 +30,7 @@ public class ListIngredientCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
+
         showPersonAtIndex(model, INDEXED_FIRST);
         assertCommandSuccess(new ListIngredientCommand(), model, ListIngredientCommand.MESSAGE_SUCCESS, expectedModel);
     }
