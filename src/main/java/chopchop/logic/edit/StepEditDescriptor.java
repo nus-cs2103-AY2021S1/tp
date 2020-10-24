@@ -6,7 +6,6 @@ import java.util.Optional;
 
 public class StepEditDescriptor extends EditDescriptor {
 
-    private final EditOperationType editType;
     private final Optional<Integer> stepNumber;
     private final String stepText;
 
@@ -20,6 +19,8 @@ public class StepEditDescriptor extends EditDescriptor {
      */
     public StepEditDescriptor(EditOperationType editType, Optional<Integer> stepNumber, String stepText) {
 
+        super(editType);
+
         assert editType == EditOperationType.ADD
             || editType == EditOperationType.EDIT
             || editType == EditOperationType.DELETE;
@@ -30,13 +31,8 @@ public class StepEditDescriptor extends EditDescriptor {
             assert stepText.isEmpty();
         }
 
-        this.editType = editType;
         this.stepNumber = stepNumber;
         this.stepText = stepText;
-    }
-
-    public EditOperationType getEditType() {
-        return this.editType;
     }
 
     public String getStepText() {

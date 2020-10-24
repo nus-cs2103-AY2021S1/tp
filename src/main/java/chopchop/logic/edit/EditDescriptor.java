@@ -2,5 +2,15 @@
 
 package chopchop.logic.edit;
 
-public class EditDescriptor {
+public abstract class EditDescriptor {
+
+    private final EditOperationType editType;
+
+    public EditDescriptor(EditOperationType editType) {
+        this.editType = editType;
+    }
+
+    public EditOperationType getEditType() {
+        return this.editType;
+    }
 }

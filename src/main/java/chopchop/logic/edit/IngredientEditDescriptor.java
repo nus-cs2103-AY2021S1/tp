@@ -8,8 +8,6 @@ import chopchop.model.attributes.Quantity;
 
 public class IngredientEditDescriptor extends EditDescriptor {
 
-    private final EditOperationType editType;
-
     private final Optional<Quantity> ingredientQuantity;
     private final String ingredientName;
 
@@ -22,6 +20,8 @@ public class IngredientEditDescriptor extends EditDescriptor {
      */
     public IngredientEditDescriptor(EditOperationType editType, String name, Optional<Quantity> qty) {
 
+        super(editType);
+
         assert editType == EditOperationType.ADD
             || editType == EditOperationType.EDIT
             || editType == EditOperationType.DELETE;
@@ -32,13 +32,8 @@ public class IngredientEditDescriptor extends EditDescriptor {
             assert qty.isEmpty();
         }
 
-        this.editType = editType;
         this.ingredientName = name;
         this.ingredientQuantity = qty;
-    }
-
-    public EditOperationType getEditType() {
-        return this.editType;
     }
 
     public String getIngredientName() {
