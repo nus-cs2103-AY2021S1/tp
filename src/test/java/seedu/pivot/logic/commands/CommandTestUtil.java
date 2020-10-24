@@ -108,7 +108,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredCaseList().size());
 
         Case investigationCase = model.getFilteredCaseList().get(targetIndex.getZeroBased());
-        final String[] splitName = investigationCase.getTitle().alphaNum.split("\\s+");
+        final String[] splitName = investigationCase.getTitle().getAlphaNum().split("\\s+");
         model.updateFilteredCaseList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredCaseList().size());

@@ -14,6 +14,8 @@ import seedu.pivot.model.investigationcase.Victim;
 public class AddVictimCommandParser implements Parser<AddVictimCommand> {
     @Override
     public AddVictimCommand parse(String args) throws ParseException {
+        assert(StateManager.atCasePage()) : "Program should be at case page";
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME);
 
@@ -22,9 +24,7 @@ public class AddVictimCommandParser implements Parser<AddVictimCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddVictimCommand.MESSAGE_USAGE));
         }
 
-        assert(StateManager.atCasePage() == true) : "Program should be at case page";
         Index index = StateManager.getState();
-
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Victim victim = new Victim(name);
         return new AddVictimCommand(index, victim);

@@ -38,7 +38,8 @@ public class AddCaseCommandTest {
 
         CommandResult commandResult = new AddCaseCommand(validCase).execute(modelStub);
 
-        assertEquals(String.format(AddCaseCommand.MESSAGE_SUCCESS, validCase), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddCaseCommand.MESSAGE_ADD_CASE_SUCCESS, validCase),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validCase), modelStub.personsAdded);
     }
 

@@ -6,11 +6,14 @@ import static seedu.pivot.logic.parser.CliSyntax.PREFIX_REFERENCE;
 import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.AddCommand;
 import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.exceptions.CommandException;
+import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Document;
@@ -28,6 +31,7 @@ public class AddDocumentCommand extends AddCommand {
 
     private static final String MESSAGE_ADD_DOCUMENT_SUCCESS = "New document added: %1$s";
     private static final String MESSAGE_DUPLICATE_DOCUMENT = "This document already exists in the case.";
+    private static final Logger logger = LogsCenter.getLogger(AddDocumentCommand.class);
     private final Index index;
     private final Document doc;
 
@@ -47,12 +51,14 @@ public class AddDocumentCommand extends AddCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("Adding document to current case...");
         requireNonNull(model);
 
         List<Case> lastShownList = model.getFilteredCaseList();
 
         //check for valid index
-        assert(index.getZeroBased() >= lastShownList.size()) : "index should be valid";
+        assert(StateManager.atCasePage()) : "Program should be at case page";
+        assert(index.getZeroBased() < lastShownList.size()) : "index should be valid";
 
         //get current case in state
         Case stateCase = lastShownList.get(index.getZeroBased());
@@ -60,6 +66,7 @@ public class AddDocumentCommand extends AddCommand {
 
         //check for duplicate
         if (updatedDocuments.contains(this.doc)) {
+            logger.warning("Failed to add document: Tried to add a document that exists in PIVOT");
             throw new CommandException(MESSAGE_DUPLICATE_DOCUMENT);
         }
 

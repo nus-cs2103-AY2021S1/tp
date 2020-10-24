@@ -20,9 +20,9 @@ public class CasePersonCard extends UiPart<Region> {
 
     public final CasePerson casePerson;
 
-    @javafx.fxml.FXML
+    @FXML
     private HBox cardPane;
-    @javafx.fxml.FXML
+    @FXML
     private Label name;
     @FXML
     private Label id;

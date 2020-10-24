@@ -4,12 +4,15 @@ import static java.util.Objects.requireNonNull;
 import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.core.Messages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.DeleteCommand;
 import seedu.pivot.logic.commands.exceptions.CommandException;
+import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Witness;
@@ -20,6 +23,8 @@ import seedu.pivot.model.investigationcase.Witness;
 public class DeleteWitnessCommand extends DeleteCommand {
 
     public static final String MESSAGE_DELETE_WITNESS_SUCCESS = "Deleted witness: %1$s";
+
+    private static final Logger logger = LogsCenter.getLogger(DeleteWitnessCommand.class);
 
     private final Index caseIndex;
     private final Index witnessIndex;
@@ -36,30 +41,31 @@ public class DeleteWitnessCommand extends DeleteCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("Deleting witness from current case...");
+
         requireNonNull(model);
         List<Case> lastShownList = model.getFilteredCaseList();
 
-        // invalid case index
-        if (caseIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
-        }
+        assert(StateManager.atCasePage()) : "Program should be at case page";
+        assert(caseIndex.getZeroBased() < lastShownList.size()) : "index should be valid";
 
         Case stateCase = lastShownList.get(caseIndex.getZeroBased());
         List<Witness> updatedWitnesses = stateCase.getWitnesses();
 
         // invalid witness index
         if (witnessIndex.getZeroBased() >= updatedWitnesses.size()) {
+            logger.info("Invalid index: " + witnessIndex.getOneBased());
             throw new CommandException(Messages.MESSAGE_INVALID_WITNESS_DISPLAYED_INDEX);
         }
 
         Witness witnessToDelete = updatedWitnesses.get(witnessIndex.getZeroBased());
         updatedWitnesses.remove(witnessToDelete);
 
-        Case editedCase = new Case(stateCase.getTitle(), stateCase.getDescription(),
+        Case updatedCase = new Case(stateCase.getTitle(), stateCase.getDescription(),
                 stateCase.getStatus(), stateCase.getDocuments(), stateCase.getSuspects(),
                 stateCase.getVictims(), updatedWitnesses, stateCase.getTags());
 
-        model.setCase(stateCase, editedCase);
+        model.setCase(stateCase, updatedCase);
         model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
 
         return new CommandResult(String.format(MESSAGE_DELETE_WITNESS_SUCCESS, witnessToDelete));

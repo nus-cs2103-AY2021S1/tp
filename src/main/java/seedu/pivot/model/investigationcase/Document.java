@@ -2,8 +2,9 @@ package seedu.pivot.model.investigationcase;
 
 import static java.util.Objects.requireNonNull;
 
-public class Document {
+import java.util.Objects;
 
+public class Document {
 
     public final Name name;
     public final Reference reference;
@@ -17,12 +18,9 @@ public class Document {
     public Document(Name name, Reference reference) {
         requireNonNull(name);
         requireNonNull(reference);
-
         this.name = name;
         this.reference = reference;
     }
-
-
 
     public Name getName() {
         return this.name;
@@ -32,7 +30,6 @@ public class Document {
         return this.reference;
     }
 
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -41,10 +38,9 @@ public class Document {
                 && reference.equals(((Document) other).reference)); // state check
     }
 
-
     @Override
     public int hashCode() {
-        return name.hashCode() + reference.hashCode();
+        return Objects.hash(name, reference);
     }
 
     @Override

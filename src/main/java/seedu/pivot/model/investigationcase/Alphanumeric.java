@@ -3,6 +3,8 @@ package seedu.pivot.model.investigationcase;
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.util.AppUtil.checkArgument;
 
+import java.util.Objects;
+
 public abstract class Alphanumeric {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -13,7 +15,7 @@ public abstract class Alphanumeric {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String alphaNum;
+    private final String alphaNum;
 
     /**
      * Constructs a {@code Name}.
@@ -26,14 +28,18 @@ public abstract class Alphanumeric {
         this.alphaNum = alphaNum;
     }
 
+    public String getAlphaNum() {
+        return alphaNum;
+    }
+
     /**
      * Returns true if a given string is a valid name.
      */
     protected static boolean isValidAlphanum(String test, boolean canBeBlank) {
-        return canBeBlank ? test.isEmpty() || test.matches(VALIDATION_REGEX)
+        return canBeBlank
+                ? test.isEmpty() || test.matches(VALIDATION_REGEX)
                 : test.matches(VALIDATION_REGEX);
     }
-
 
     @Override
     public String toString() {
@@ -49,6 +55,6 @@ public abstract class Alphanumeric {
 
     @Override
     public int hashCode() {
-        return alphaNum.hashCode();
+        return Objects.hash(alphaNum);
     }
 }

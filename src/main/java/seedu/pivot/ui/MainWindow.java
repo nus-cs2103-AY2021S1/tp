@@ -34,6 +34,11 @@ import seedu.pivot.model.investigationcase.CasePerson;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String EMPTY = "";
+    private static final String HEADER_DOCUMENTS = "DOCUMENTS";
+    private static final String HEADER_SUSPECTS = "SUSPECTS";
+    private static final String HEADER_WITNESSES = "WITNESSES";
+    private static final String HEADER_VICTIMS = "VICTIMS";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -170,6 +175,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        logger.info("MainWindow: Setup Placeholders");
         personListPanel = new PersonListPanel(logic.getFilteredCaseList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
@@ -190,61 +196,45 @@ public class MainWindow extends UiPart<Stage> {
      * @param index
      */
     private void updateCaseInformationPanel(Index index) {
-        if (index == null) {
-            showBlankPanel();
-        } else {
-            fillPanel();
+        logger.info("MainWindow: Updating Case Information Panel");
+        setMainWindowPanel(index);
+    }
+
+    private void setMainWindowPanel(Index index) {
+        logger.info("Updating Case Information Panel with index:" + index);
+        Case investigationCase = null;
+
+        if (index != null) {
+            logger.info("Updating Case Information Panel with Case");
+            investigationCase = logic.getFilteredCaseList().get(indexSimpleObjectProperty.get().getZeroBased());
         }
-    }
 
-    private void showBlankPanel() {
-        caseTitle.setText("");
-        caseDescription.setText("");
-        caseStatus.setText("");
+        caseTitle.setText(investigationCase == null ? EMPTY : investigationCase.getTitle().toString());
+        caseDescription.setText(investigationCase == null ? EMPTY : investigationCase.getDescription().toString());
+        caseStatus.setText(investigationCase == null ? EMPTY : investigationCase.getStatus().toString());
 
-        caseDocumentsTitle.setText("");
-        caseSuspectsTitle.setText("");
-        caseWitnessesTitle.setText("");
-        caseVictimsTitle.setText("");
+        caseDocumentsTitle.setText(investigationCase == null ? EMPTY : HEADER_DOCUMENTS);
+        caseSuspectsTitle.setText(investigationCase == null ? EMPTY : HEADER_SUSPECTS);
+        caseWitnessesTitle.setText(investigationCase == null ? EMPTY : HEADER_WITNESSES);
+        caseVictimsTitle.setText(investigationCase == null ? EMPTY : HEADER_VICTIMS);
 
-        documentListPanel = new DocumentListPanel(FXCollections.observableList(new ArrayList<>()));
-        documentListPanelPlaceholder.getChildren().add(documentListPanel.getRoot());
-
-        suspectListPanel = new CasePersonListPanel(FXCollections.observableList(new ArrayList<>()));
-        suspectListPanelPlaceholder.getChildren().add(suspectListPanel.getRoot());
-
-        witnessListPanel = new CasePersonListPanel(FXCollections.observableList(new ArrayList<>()));
-        witnessListPanelPlaceholder.getChildren().add(witnessListPanel.getRoot());
-
-        victimListPanel = new CasePersonListPanel(FXCollections.observableList(new ArrayList<>()));
-        victimListPanelPlaceholder.getChildren().add(victimListPanel.getRoot());
-    }
-
-    private void fillPanel() {
-        Case investigationCase = logic.getFilteredCaseList().get(indexSimpleObjectProperty.get().getZeroBased());
-
-        caseTitle.setText(investigationCase.getTitle().toString());
-        caseDescription.setText(investigationCase.getDescription().toString());
-        caseStatus.setText(investigationCase.getStatus().toString());
-
-        caseDocumentsTitle.setText("DOCUMENTS");
-        caseSuspectsTitle.setText("SUSPECTS");
-        caseWitnessesTitle.setText("WITNESSES");
-        caseVictimsTitle.setText("VICTIMS");
-
-        documentListPanel = new DocumentListPanel(FXCollections.observableList(investigationCase.getDocuments()));
+        documentListPanel = new DocumentListPanel(FXCollections.observableList(
+                investigationCase == null ? new ArrayList<>() : investigationCase.getDocuments()));
         documentListPanelPlaceholder.getChildren().add(documentListPanel.getRoot());
 
         suspectListPanel = new CasePersonListPanel(FXCollections.observableList(
-                investigationCase.getSuspects().stream().map(x -> (CasePerson) x).collect(Collectors.toList())));
+                investigationCase == null ? new ArrayList<>() : investigationCase.getSuspects().stream()
+                        .map(x -> (CasePerson) x).collect(Collectors.toList())));
         suspectListPanelPlaceholder.getChildren().add(suspectListPanel.getRoot());
 
         witnessListPanel = new CasePersonListPanel(FXCollections.observableList(
-                investigationCase.getWitnesses().stream().map(x -> (CasePerson) x).collect(Collectors.toList())));
+                investigationCase == null ? new ArrayList<>() : investigationCase.getWitnesses().stream()
+                        .map(x -> (CasePerson) x).collect(Collectors.toList())));
         witnessListPanelPlaceholder.getChildren().add(witnessListPanel.getRoot());
 
         victimListPanel = new CasePersonListPanel(FXCollections.observableList(
-                investigationCase.getVictims().stream().map(x -> (CasePerson) x).collect(Collectors.toList())));
+                investigationCase == null ? new ArrayList<>() : investigationCase.getVictims().stream()
+                        .map(x -> (CasePerson) x).collect(Collectors.toList())));
         victimListPanelPlaceholder.getChildren().add(victimListPanel.getRoot());
     }
 
@@ -265,6 +255,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
+        logger.info("MainWindow: Handling Help");
         if (!helpWindow.isShowing()) {
             helpWindow.show();
         } else {
@@ -281,6 +272,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
+        logger.info("MainWindow: Handling Exit");
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);

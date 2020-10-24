@@ -1,12 +1,14 @@
 package seedu.pivot.model.investigationcase;
 
 /**
- * Represents a Suspect in PIVOT
+ * Represents a Suspect in the investigation case.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Suspect extends CasePerson {
     /**
-     * Every field must be present and not null.
+     * Constructs a {@code Suspect}.
+     *
+     * @param name A valid name.
      */
     public Suspect(Name name) {
         super(name);

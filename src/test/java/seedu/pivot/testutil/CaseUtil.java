@@ -28,7 +28,7 @@ public class CaseUtil {
      */
     public static String getPersonDetails(Case investigationCase) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_TITLE + investigationCase.getTitle().alphaNum + " ");
+        sb.append(PREFIX_TITLE + investigationCase.getTitle().getAlphaNum() + " ");
         sb.append(PREFIX_STATUS + investigationCase.getStatus().name() + " ");
         investigationCase.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
@@ -41,7 +41,7 @@ public class CaseUtil {
      */
     public static String getEditPersonDescriptorDetails(EditCaseDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getTitle().ifPresent(title -> sb.append(PREFIX_TITLE).append(title.alphaNum).append(" "));
+        descriptor.getTitle().ifPresent(title -> sb.append(PREFIX_TITLE).append(title.getAlphaNum()).append(" "));
         descriptor.getStatus().ifPresent(status -> sb.append(PREFIX_STATUS).append(status.name()).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();

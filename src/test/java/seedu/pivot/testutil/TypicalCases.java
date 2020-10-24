@@ -24,6 +24,7 @@ public class TypicalCases {
             .withStatus("COLD")
             .withVictims("Tom")
             .withWitnesses("Janice")
+            .withSuspects("Peter")
             .withTags("friends")
             .build();
     public static final Case BENSON = new CaseBuilder().withTitle("Benson Meier")

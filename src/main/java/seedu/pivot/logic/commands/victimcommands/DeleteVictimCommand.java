@@ -4,12 +4,15 @@ import static java.util.Objects.requireNonNull;
 import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.core.Messages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.DeleteCommand;
 import seedu.pivot.logic.commands.exceptions.CommandException;
+import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Victim;
@@ -20,6 +23,8 @@ import seedu.pivot.model.investigationcase.Victim;
 public class DeleteVictimCommand extends DeleteCommand {
 
     public static final String MESSAGE_DELETE_VICTIM_SUCCESS = "Deleted victim: %1$s";
+
+    private static final Logger logger = LogsCenter.getLogger(DeleteVictimCommand.class);
 
     private final Index caseIndex;
     private final Index victimIndex;
@@ -36,27 +41,30 @@ public class DeleteVictimCommand extends DeleteCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("Deleting victim from current case...");
         requireNonNull(model);
         List<Case> lastShownList = model.getFilteredCaseList();
 
-        assert(caseIndex.getZeroBased() >= lastShownList.size()) : "index should be valid";
+        assert(StateManager.atCasePage()) : "Program should be at case page";
+        assert(caseIndex.getZeroBased() < lastShownList.size()) : "index should be valid";
 
         Case stateCase = lastShownList.get(caseIndex.getZeroBased());
         List<Victim> updatedVictims = stateCase.getVictims();
 
         // invalid victim index
         if (victimIndex.getZeroBased() >= updatedVictims.size()) {
+            logger.info("Invalid index: " + victimIndex.getOneBased());
             throw new CommandException(Messages.MESSAGE_INVALID_VICTIM_DISPLAYED_INDEX);
         }
 
         Victim victimToDelete = updatedVictims.get(victimIndex.getZeroBased());
         updatedVictims.remove(victimToDelete);
 
-        Case editedCase = new Case(stateCase.getTitle(), stateCase.getDescription(),
+        Case updatedCase = new Case(stateCase.getTitle(), stateCase.getDescription(),
                 stateCase.getStatus(), stateCase.getDocuments(), stateCase.getSuspects(),
                 updatedVictims, stateCase.getWitnesses(), stateCase.getTags());
 
-        model.setCase(stateCase, editedCase);
+        model.setCase(stateCase, updatedCase);
         model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
 
         return new CommandResult(String.format(MESSAGE_DELETE_VICTIM_SUCCESS, victimToDelete));

@@ -7,12 +7,18 @@ package seedu.pivot.model.investigationcase;
 public class Witness extends CasePerson {
 
     /**
-     * Every field must be present and not null.
+     * Constructs a {@code Witness}.
+     *
+     * @param name A valid name.
      */
     public Witness(Name name) {
         super(name);
     }
 
+    /**
+     * Returns true if both suspects have the same identity and data fields.
+     * This defines a stronger notion of equality between two suspects.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {

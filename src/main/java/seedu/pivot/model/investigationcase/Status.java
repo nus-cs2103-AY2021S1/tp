@@ -13,8 +13,8 @@ public enum Status {
      * Returns true if a given string is a valid status.
      */
     public static boolean isValidStatus(String test) {
-        for (Status s : Status.values()) {
-            if (s.name().equals(test.toUpperCase())) {
+        for (Status status : Status.values()) {
+            if (status.name().equals(test.toUpperCase())) {
                 return true;
             }
         }

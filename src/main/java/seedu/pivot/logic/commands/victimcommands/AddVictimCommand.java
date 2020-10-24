@@ -5,11 +5,14 @@ import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.AddCommand;
 import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.exceptions.CommandException;
+import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Victim;
@@ -25,6 +28,7 @@ public class AddVictimCommand extends AddCommand {
 
     public static final String MESSAGE_ADD_VICTIM_SUCCESS = "New victim added: %1$s";
     public static final String MESSAGE_DUPLICATE_VICTIM = "This victim already exists in the case";
+    private static final Logger logger = LogsCenter.getLogger(AddVictimCommand.class);
 
     private final Index index;
     private final Victim victim;
@@ -44,26 +48,29 @@ public class AddVictimCommand extends AddCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("Adding victim to current case...");
         requireNonNull(model);
         List<Case> lastShownList = model.getFilteredCaseList();
 
         //check for valid index
-        assert(index.getZeroBased() >= lastShownList.size()) : "index should be valid";
+        assert(StateManager.atCasePage()) : "Program should be at case page";
+        assert(index.getZeroBased() < lastShownList.size()) : "index should be valid";
 
         Case stateCase = lastShownList.get(index.getZeroBased());
         List<Victim> updatedVictims = stateCase.getVictims();
 
         if (updatedVictims.contains(victim)) {
+            logger.warning("Failed to add victim: Tried to add a victim that exists in PIVOT");
             throw new CommandException(MESSAGE_DUPLICATE_VICTIM);
         }
 
         updatedVictims.add(victim);
 
-        Case editedCase = new Case(stateCase.getTitle(), stateCase.getDescription(),
+        Case updatedCase = new Case(stateCase.getTitle(), stateCase.getDescription(),
                 stateCase.getStatus(), stateCase.getDocuments(), stateCase.getSuspects(),
                 updatedVictims, stateCase.getWitnesses(), stateCase.getTags());
 
-        model.setCase(stateCase, editedCase);
+        model.setCase(stateCase, updatedCase);
         model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
 
         return new CommandResult(String.format(MESSAGE_ADD_VICTIM_SUCCESS, victim));

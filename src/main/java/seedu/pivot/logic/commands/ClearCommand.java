@@ -11,13 +11,12 @@ import seedu.pivot.model.Pivot;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "PIVOT has been cleared!";
-
+    public static final String MESSAGE_CLEAR_SUCCESS = "PIVOT has been cleared!";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setPivotBook(new Pivot());
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_CLEAR_SUCCESS);
     }
 }

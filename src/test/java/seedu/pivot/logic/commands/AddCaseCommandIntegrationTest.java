@@ -34,7 +34,7 @@ public class AddCaseCommandIntegrationTest {
         expectedModel.addCase(validCase);
 
         assertCommandSuccess(new AddCaseCommand(validCase), model,
-                String.format(AddCaseCommand.MESSAGE_SUCCESS, validCase), expectedModel);
+                String.format(AddCaseCommand.MESSAGE_ADD_CASE_SUCCESS, validCase), expectedModel);
     }
 
     @Test

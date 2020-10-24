@@ -5,7 +5,9 @@ import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.AddCommand;
 import seedu.pivot.logic.commands.CommandResult;
@@ -25,13 +27,13 @@ public class AddSuspectCommand extends AddCommand {
 
     private static final String MESSAGE_ADD_SUSPECT_SUCCESS = "New suspect added: %1$s";
     private static final String MESSAGE_DUPLICATE_SUSPECT = "This suspect already exists in the case.";
+    private static final Logger logger = LogsCenter.getLogger(AddSuspectCommand.class);
 
     private final Index index;
-    private final Suspect toAdd;
+    private final Suspect suspect;
 
     /**
-     * Creates an AddSuspectCommand to add the specified {@code Suspect
-     * }
+     * Creates an AddSuspectCommand to add the specified {@code Suspect}
      *
      * @param suspect
      */
@@ -39,38 +41,41 @@ public class AddSuspectCommand extends AddCommand {
         requireNonNull(index);
         requireNonNull(suspect);
         this.index = index;
-        toAdd = suspect;
+        this.suspect = suspect;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("Adding suspect to current case...");
         requireNonNull(model);
         List<Case> lastShownList = model.getFilteredCaseList();
 
         assert(StateManager.atCasePage()) : "Program should be at case page";
+        assert(index.getZeroBased() < lastShownList.size()) : "index should be valid";
 
         Case openCase = lastShownList.get(index.getZeroBased());
         List<Suspect> updatedSuspects = openCase.getSuspects();
 
-        if (updatedSuspects.contains(toAdd)) {
+        if (updatedSuspects.contains(suspect)) {
+            logger.warning("Failed to add suspect: Tried to add a suspect that exists in PIVOT");
             throw new CommandException(MESSAGE_DUPLICATE_SUSPECT);
         }
 
-        updatedSuspects.add(toAdd);
-        Case editedCase = new Case(openCase.getTitle(), openCase.getDescription(), openCase.getStatus(),
+        updatedSuspects.add(suspect);
+        Case updatedCase = new Case(openCase.getTitle(), openCase.getDescription(), openCase.getStatus(),
                 openCase.getDocuments(), updatedSuspects, openCase.getVictims(), openCase.getWitnesses(),
                 openCase.getTags());
 
-        model.setCase(openCase, editedCase);
+        model.setCase(openCase, updatedCase);
         model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
-        return new CommandResult(String.format(MESSAGE_ADD_SUSPECT_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_ADD_SUSPECT_SUCCESS, suspect));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddSuspectCommand // instanceof handles nulls
-                && toAdd.equals(((AddSuspectCommand) other).toAdd)
+                && suspect.equals(((AddSuspectCommand) other).suspect)
                 && index.equals(((AddSuspectCommand) other).index));
     }
 }

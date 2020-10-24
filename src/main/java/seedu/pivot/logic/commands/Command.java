@@ -9,11 +9,11 @@ import seedu.pivot.model.Model;
 public abstract class Command {
 
     public static final String TYPE_CASE = "case";
-    public static final String TYPE_VICTIM = "victim";
+    public static final String TYPE_DESC = "desc";
+    public static final String TYPE_DOC = "doc";
     public static final String TYPE_SUSPECT = "suspect";
     public static final String TYPE_WITNESS = "witness";
-    public static final String TYPE_DOC = "doc";
-    public static final String TYPE_DESC = "desc";
+    public static final String TYPE_VICTIM = "victim";
 
     /**
      * Executes the command and returns the result message.
