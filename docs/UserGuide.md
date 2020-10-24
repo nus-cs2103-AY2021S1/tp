@@ -16,11 +16,11 @@ exhaustive of updating, searching and ordering supplies, via Command Line Interf
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `warenager.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `warenager.jar` from [here](https://github.com/AY2021S1-CS2103T-T15-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Warenager.
+1. Copy the jar file to the folder you want to use as the _home folder_ for your Warenager.
 
-1. Double-click the file to start the app. The commands available in the current version of
+1. Double-click the jar file to start the app. The commands available in the current version of
    Warenager are listed below:
 
 --------------------------------------------------------------------------------------------------------------------
@@ -75,7 +75,7 @@ Format (the header fields can be in any order):<br>
 ⚠ Each specific fields specified in the `add` command should only be entered once.<br>
 e.g. `add n/banana n/apple s/fairprice q/1000 l/Fruit section` is not a valid command.
 
-## Listing of stock: `list`
+### Listing of stock: `list`
 Lists all the stock(s) in the inventory.
 Format: `list`
 
@@ -325,7 +325,6 @@ Data (all stocks in inventory in json) is automatically saved to
 * add
 * delete
 * note
-* notedelete
 * update
 
 The set of used serial number sources is automatically saved to
@@ -352,19 +351,48 @@ Example usages:
 * `list n/Duck q/100` <br>
   Warenager will suggest: `list`
 
+### Sorting inventory: `sort`
+Sort the inventory by a specific field and order.
+
+* Required fields:
+    1. The field to be sorted by
+    2. The order of the sorting
+
+Format: `sort o/<order> by/<field>`
+
+* The order can only be one of the following:
+    1. `ascending` - sorts the inventory in ascending order
+    2. `descending` - sorts the inventory in descending order
+    
+* The field can only be one of the following:
+    1. `name` - sorts the inventory by name
+    2. `source` - sorts the inventory by source
+    3. `quantity` - sorts the inventory by quantity
+    4. `location` - sorts the inventory by location
+    5. `serialnumber` - sorts the inventory by serial number
+
+Example usages:
+
+Stock | Details
+------| --------
+**Stock 1** | Name: Chicken Breast<br> Serial Number: Fairprice1<br> Quantity: 10<br> Source: Fairprice<br> Location in warehouse: Poultry Section
+**Stock 2** | Name: Pork Belly<br> Serial Number: Fairprice2<br> Quantity: 25<br> Source: Fairprice<br> Location in warehouse: Poultry Section
+**Stock 3** | Name: Coca Cola<br> Serial Number: NTUC1<br> Quantity: 100<br> Source: NTUC<br> Location in warehouse: Drinks Section
+**Stock 4** | Name: Sprite<br> Serial Number: NTUC2<br> Quantity: 100<br> Source: NTUC<br> Location in warehouse: Drinks Section
+
+Command: `sort o/descending by/quantity` will sort based on quantity and in descending order. <br>
+
+![SortQuantityDescending](images/SortQuantityDescending.png)
+
+Command: `sort o/ascending by/name` will sort based on name and in ascending order. <br>
+
+![SortNameAscending](images/SortNameAscending.png)
+
 ### Exiting Warenager: `exit`
 Terminates the program.
 
 Format : `exit`
 
-### Sorting `[coming in v1.3]`
-_{explain the feature here}_
-
-### Personalized GUI `[coming in v1.3]`
-_{explain the feature here}_
-
-### Bookmark `[coming in v1.3]`
-_{explain the feature here}_
 
 --------------------------------------------------------------------------------------------------------------------
 
