@@ -26,6 +26,14 @@ public class CasePersonCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
+    @FXML
+    private Label gender;
+    @FXML
+    private Label phone;
+    @FXML
+    private Label email;
+    @FXML
+    private Label address;
 
 
     /**
@@ -36,6 +44,16 @@ public class CasePersonCard extends UiPart<Region> {
         this.casePerson = casePerson;
         id.setText(displayedIndex + ". ");
         name.setText(casePerson.getName().toString());
+        gender.setText("(" + casePerson.getGender().toString() + ")");
+
+        String checkPhone = casePerson.getPhone().toString();
+        phone.setText(checkPhone.isBlank() ? "" : "Phone: " + casePerson.getPhone().toString());
+
+        String checkEmail = casePerson.getEmail().toString();
+        email.setText(checkEmail.isBlank() ? "" : "Email: " + casePerson.getEmail().toString());
+
+        String checkAddress = casePerson.getAddress().toString();
+        address.setText(checkAddress.isBlank() ? "" : "Address: " + casePerson.getAddress().toString());
     }
 
     @Override
