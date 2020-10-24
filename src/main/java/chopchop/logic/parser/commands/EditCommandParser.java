@@ -58,7 +58,7 @@ public class EditCommandParser {
                     var argName = arg.fst();
                     var argValue = arg.snd();
 
-                    if (argName.getComponents().isEmpty()) {
+                    if (!argName.name().equals(Strings.ARG_NAME.name()) && argName.getComponents().isEmpty()) {
                         return Result.error("'%s' needs an edit-argument in an edit command", argName);
                     }
 
