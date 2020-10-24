@@ -75,4 +75,18 @@ public class CopyCommand extends Command {
             return new CommandResult(MESSAGE_PHONE_COPIED_TO_CLIPBOARD);
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } else if (other instanceof CopyCommand) {
+            CopyCommand that = (CopyCommand) other;
+            return predicate.equals(that.predicate)
+                    && isEmail == that.isEmail
+                    && moduleNames.equals(that.moduleNames);
+        } else {
+            return false;
+        }
+    }
 }
