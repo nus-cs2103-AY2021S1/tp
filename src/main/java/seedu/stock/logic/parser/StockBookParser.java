@@ -124,7 +124,7 @@ public class StockBookParser {
 
         case NoteDeleteCommand.COMMAND_WORD:
             try {
-                return new DeleteNoteCommandParser().parse(arguments);
+                return new NoteDeleteCommandParser().parse(arguments);
             } catch (ParseException ex) {
                 return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
             }

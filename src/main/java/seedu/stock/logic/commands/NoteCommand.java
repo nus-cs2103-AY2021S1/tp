@@ -31,7 +31,9 @@ public class NoteCommand extends Command {
 
     private final SerialNumber serialNumber;
     private final Note note;
+
     /**
+     * Constructs a NoteCommand
      * @param serialNumber of the stock in the stock book
      * @param note to add to the stock
      */

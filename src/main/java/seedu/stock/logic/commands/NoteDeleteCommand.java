@@ -35,7 +35,9 @@ public class NoteDeleteCommand extends Command {
 
     private final SerialNumber serialNumber;
     private final int index;
+
     /**
+     * Constructs a NoteDeleteCommand
      * @param serialNumber of the stock in the stock book
      * @param index of note to delete from the stock
      */

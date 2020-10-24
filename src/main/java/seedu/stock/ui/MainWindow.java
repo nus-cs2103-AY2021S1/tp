@@ -14,6 +14,7 @@ import seedu.stock.logic.commands.CommandResult;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.logic.commands.exceptions.SourceCompanyNotFoundException;
 import seedu.stock.logic.parser.exceptions.ParseException;
+import seedu.stock.model.stock.Stock;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -110,6 +111,11 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    @FXML
+    public void handleShowStockNotes(Stock stockToShowNotes) {
+        
+    }
+
     /**
      * Opens the statisticsWindow or focuses on it if it's already opened.
      */
@@ -158,6 +164,11 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowNotes()) {
+                Stock stockToShowNotes = commandResult.getStockToShowNotes();
+                handleShowStockNotes(stockToShowNotes);
             }
 
             if (commandResult.isShowStatistics()) {
