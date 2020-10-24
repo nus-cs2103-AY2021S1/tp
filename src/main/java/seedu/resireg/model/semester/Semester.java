@@ -78,6 +78,12 @@ public class Semester {
             && Objects.equals(otherSemester.getSemesterNumber(), getSemesterNumber());
     }
 
+    /**
+     * Returns the successor of a given Semester. A next semester should be the second semester of the academic year if
+     * the given semester is in sem 1, otherwise it should be the first semester of the next academic year.
+     *
+     * @param semester the {@code Semester} to compute the next Semester for
+     */
     public static Semester getNextSemester(Semester semester) {
         requireAllNonNull(semester);
         switch (semester.semesterNumber.value) {
