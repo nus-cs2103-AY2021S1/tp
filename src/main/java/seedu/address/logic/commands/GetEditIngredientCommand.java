@@ -44,8 +44,7 @@ public class GetEditIngredientCommand extends Command {
         assert(ingredientPositionToEdit > 0);
         CommandResult commandResult =
                 new CommandResult(String.format(MESSAGE_GET_EDIT_INGREDIENT_SUCCESS, ingredientToEdit.toString()),
-                false, false, false, false, false,
-                false, true);
+                COMMAND_WORD);
         commandResult.setCommandBox(ingredientToEdit.stringify(ingredientPositionToEdit));
         return commandResult;
     }

@@ -37,8 +37,7 @@ public class RecommendCommand extends Command {
             builder.append((i + 1) + ". " + recipes.get(i).getName() + "\n");
         }
         logger.log(Level.INFO, "end of recommending");
-        return new CommandResult(MESSAGE_SUCCESS + builder.toString(), false, false,
-                true, false, false, false, false);
+        return new CommandResult(MESSAGE_SUCCESS + builder.toString(), ListRecipesCommand.COMMAND_WORD);
     }
 
     /**

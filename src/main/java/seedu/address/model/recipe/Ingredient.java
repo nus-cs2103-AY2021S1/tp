@@ -123,8 +123,7 @@ public class Ingredient {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Ingredient // instanceof handles nulls
-                && value.equals(((Ingredient) other).getValue())
-                && quantity.equals(((Ingredient) other).getQuantity())); // state check
+                && value.equals(((Ingredient) other).getValue()));
     }
 
     @Override
