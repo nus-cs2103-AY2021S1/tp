@@ -1,25 +1,36 @@
 package seedu.fma.logic.parser;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import seedu.fma.commons.core.index.Index;
-import seedu.fma.logic.commands.EditCommand;
-import seedu.fma.logic.commands.EditExCommand;
-import seedu.fma.model.LogBook;
-import seedu.fma.model.log.Rep;
-import seedu.fma.model.util.Calories;
-import seedu.fma.model.util.Name;
-import seedu.fma.testutil.EditExDescriptorBuilder;
-import seedu.fma.testutil.EditLogDescriptorBuilder;
-
-import java.util.Arrays;
-
 import static seedu.fma.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.fma.logic.commands.CommandTestUtil.*;
+import static seedu.fma.logic.commands.CommandTestUtil.CALORIES_DESC_A;
+import static seedu.fma.logic.commands.CommandTestUtil.CALORIES_DESC_B;
+import static seedu.fma.logic.commands.CommandTestUtil.EXERCISE_DESC_A;
+import static seedu.fma.logic.commands.CommandTestUtil.EXERCISE_DESC_B;
+import static seedu.fma.logic.commands.CommandTestUtil.INVALID_CALORIES_DESC_A;
+import static seedu.fma.logic.commands.CommandTestUtil.INVALID_CALORIES_DESC_B;
+import static seedu.fma.logic.commands.CommandTestUtil.INVALID_EXERCISE_DESC;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_CALORIES_A;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_CALORIES_B;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_A;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_B;
 import static seedu.fma.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.fma.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.fma.model.util.SampleDataUtil.getSampleExercises;
-import static seedu.fma.testutil.TypicalIndexes.*;
+import static seedu.fma.testutil.TypicalIndexes.INDEX_FIRST_EXERCISE;
+import static seedu.fma.testutil.TypicalIndexes.INDEX_SECOND_EXERCISE;
+
+import java.util.Arrays;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import seedu.fma.commons.core.index.Index;
+import seedu.fma.logic.commands.EditExCommand;
+import seedu.fma.model.LogBook;
+import seedu.fma.model.util.Calories;
+import seedu.fma.model.util.Name;
+import seedu.fma.testutil.EditExDescriptorBuilder;
+
+
 
 public class EditExCommandParserTest {
 
@@ -123,7 +134,7 @@ public class EditExCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_LOG;
+        Index targetIndex = INDEX_FIRST_EXERCISE;
         String userInput = targetIndex.getOneBased() + EXERCISE_DESC_A + CALORIES_DESC_A + EXERCISE_DESC_B
                 + EXERCISE_DESC_B + CALORIES_DESC_B;
 
@@ -137,7 +148,7 @@ public class EditExCommandParserTest {
 
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
-        Index targetIndex = INDEX_FIRST_LOG;
+        Index targetIndex = INDEX_FIRST_EXERCISE;
         String userInput = targetIndex.getOneBased() + INVALID_CALORIES_DESC_A + CALORIES_DESC_A + EXERCISE_DESC_B
                 + EXERCISE_DESC_B + CALORIES_DESC_B;
 

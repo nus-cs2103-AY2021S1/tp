@@ -2,14 +2,14 @@ package seedu.fma.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.fma.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.fma.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.fma.logic.commands.CommandTestUtil.EDIT_EX_DESCRIPTOR_A;
 import static seedu.fma.logic.commands.CommandTestUtil.EDIT_EX_DESCRIPTOR_B;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_CALORIES_A;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_CALORIES_B;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_NAME_A;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_NAME_B;
+import static seedu.fma.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.fma.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.fma.testutil.TypicalIndexes.INDEX_FIRST_EXERCISE;
 import static seedu.fma.testutil.TypicalIndexes.INDEX_SECOND_EXERCISE;
 import static seedu.fma.testutil.TypicalLogs.getTypicalLogBook;
