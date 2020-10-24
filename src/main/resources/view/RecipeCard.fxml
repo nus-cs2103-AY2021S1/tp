@@ -18,25 +18,7 @@
                      <Image url="@../images/recipe.png" />
                   </image>
                </ImageView>
-               <Label fx:id="name" alignment="CENTER" styleClass="recipe_name_label" text="\$name" wrapText="true" />
-               <HBox prefHeight="100.0" prefWidth="200.0" alignment="CENTER">
-                  <children>
-                     <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../images/pink_timer.png" />
-                        </image>
-                     </ImageView>
-                     <Pane prefHeight="4.0" prefWidth="4.0"></Pane>
-                     <Label text="X mins" />
-                     <Pane prefHeight="5.0" prefWidth="20.0"></Pane>
-                     <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../images/pax.png" />
-                        </image>
-                     </ImageView>
-                     <Pane prefHeight="4.0" prefWidth="4.0"></Pane>
-                     <Label text="1" />
-                  </children></HBox>
+               <Label fx:id="name" alignment="CENTER" styleClass="recipe_name_label" text="\$name" wrapText="false" />
             </children>
          </VBox>
       </graphic></Button>
