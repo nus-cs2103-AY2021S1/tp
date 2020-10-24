@@ -162,6 +162,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setAsProjectList() {
+        mainCatalogue.setStatus(Status.PROJECT_LIST);
+    }
+
+    @Override
+    public void setAsPersonList() {
+        mainCatalogue.setStatus(Status.PERSON_LIST);
+    }
+
+    @Override
     public void enter(Project project) {
         mainCatalogue.enter(project);
         updateProjectToBeDisplayedOnDashboard(project);

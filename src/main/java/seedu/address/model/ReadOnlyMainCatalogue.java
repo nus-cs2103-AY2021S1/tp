@@ -29,6 +29,11 @@ public interface ReadOnlyMainCatalogue {
     Status getStatus();
 
     /**
+     * Resets the status.
+     */
+    void setStatus(Status status);
+
+    /**
      * Enters a designated project.
      */
     void enter(Project project);

@@ -133,6 +133,16 @@ public interface Model {
     Status getStatus();
 
     /**
+     * Sets current status to project_list branch.
+     */
+    void setAsProjectList();
+
+    /**
+     * Sets current status to person_list branch.
+     */
+    void setAsPersonList();
+
+    /**
      * Enters the designated project.
      */
     void enter(Project project);
