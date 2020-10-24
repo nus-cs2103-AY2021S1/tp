@@ -30,8 +30,8 @@ public class DeleteInventoryRecordCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        assert !model.getFilteredInventory().isEmpty();
         List<InventoryRecord> lastShownList = model.getFilteredInventory();
-
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }

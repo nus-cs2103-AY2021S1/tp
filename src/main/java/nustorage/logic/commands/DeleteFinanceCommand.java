@@ -37,6 +37,7 @@ public class DeleteFinanceCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        assert !model.getFilteredFinanceList().isEmpty();
         Optional<FinanceRecord> record = model.deleteFinanceRecord(targetIndex);
 
         if (record.isPresent()) {
