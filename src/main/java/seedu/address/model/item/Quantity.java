@@ -13,8 +13,6 @@ public class Quantity {
             "Quantity should only contain numbers, and it should be at least 1 digit long";
     public static final String VALIDATION_REGEX = "\\d+";
     public final String value;
-    // for ease of access
-    public final int number;
 
     /**
      * Constructs a {@code Quantity}.
@@ -25,7 +23,13 @@ public class Quantity {
         requireNonNull(quantity);
         checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS);
         value = quantity;
-        number = Integer.parseInt(quantity);
+    }
+
+    /**
+     * Returns the numerical value for ease of access
+     */
+    public int getNumber() {
+        return Integer.parseInt(value);
     }
 
     /**

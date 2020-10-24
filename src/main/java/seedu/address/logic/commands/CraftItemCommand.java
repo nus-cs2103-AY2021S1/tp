@@ -9,7 +9,9 @@ import static seedu.address.logic.parser.ItemParserUtil.DEFAULT_INDEX;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -52,6 +54,8 @@ public class CraftItemCommand extends Command {
     public static final String MESSAGE_RECIPE_NOT_FOUND = "No relevant recipes found in the recipe list";
     public static final String MESSAGE_INDEX_OUT_OF_RANGE = "Recipe ID is out of range";
 
+    private static final Logger logger = LogsCenter.getLogger(CraftItemCommand.class);
+
     private final String itemName;
     private int productQuantity;
     private final Index index;
@@ -70,7 +74,7 @@ public class CraftItemCommand extends Command {
         requireNonNull(productQuantity);
         requireNonNull(index);
         this.itemName = itemName;
-        this.productQuantity = productQuantity.number;
+        this.productQuantity = productQuantity.getNumber();
         this.index = index;
         this.hasCraftedExcess = false;
         this.hasDefaultIndex = false;
@@ -83,7 +87,7 @@ public class CraftItemCommand extends Command {
         requireNonNull(itemName);
         requireNonNull(productQuantity);
         this.itemName = itemName;
-        this.productQuantity = productQuantity.number;
+        this.productQuantity = productQuantity.getNumber();
         this.index = DEFAULT_INDEX;
         this.hasCraftedExcess = false;
         this.hasDefaultIndex = true;
@@ -123,7 +127,7 @@ public class CraftItemCommand extends Command {
             throw new CommandException(MESSAGE_INDEX_OUT_OF_RANGE);
         }
 
-        int recipeProductQuantity = recipeToUse.getProductQuantity().number;
+        int recipeProductQuantity = recipeToUse.getProductQuantity().getNumber();
         // check if quantity to craft is not an exact multiple of recipe product quantity
         int intendedQuantity = productQuantity;
         if (productQuantity % recipeProductQuantity != 0) {
@@ -148,28 +152,28 @@ public class CraftItemCommand extends Command {
                 new AddQuantityToItemCommand(itemList.get(itemId).getName(), -quantityRequired).execute(model);
             } catch (CommandException e) {
                 // change of quantity should never fail
-                assert false;
+                logger.info("error in changing quantity of item " + itemId);
             }
         });
 
         // update the quantity of the item crafted
         new AddQuantityToItemCommand(itemName, productQuantity).execute(model);
 
-        String displayMessage = "";
+        StringBuilder displayMessage = new StringBuilder();
         // indicate if user left out the recipe index
         if (hasDefaultIndex) {
-            displayMessage += MESSAGE_MISSING_RECIPE_INDEX;
+            displayMessage.append(MESSAGE_MISSING_RECIPE_INDEX);
         }
 
         // indicate if crafted more than intended due to recipe
         if (hasCraftedExcess) {
-            displayMessage += String.format(MESSAGE_SUCCESS_EXCESS, itemToCraft,
-                    productQuantity, intendedQuantity);
+            displayMessage.append(String.format(MESSAGE_SUCCESS_EXCESS, itemToCraft,
+                    productQuantity, intendedQuantity));
         } else {
-            displayMessage += String.format(MESSAGE_SUCCESS, itemToCraft, productQuantity);
+            displayMessage.append(String.format(MESSAGE_SUCCESS, itemToCraft, productQuantity));
         }
 
-        return new CommandResult(displayMessage);
+        return new CommandResult(displayMessage.toString());
     }
 
     /**
@@ -184,7 +188,7 @@ public class CraftItemCommand extends Command {
         for (Ingredient ingredient : ingredientList) {
             int itemId = ingredient.getKey();
             int quantityRequired = ingredient.getValue() * productQuantity / recipeProductQuantity;
-            int currentQuantity = itemList.get(itemId).getQuantity().number;
+            int currentQuantity = itemList.get(itemId).getQuantity().getNumber();
             if (quantityRequired > currentQuantity) {
                 return false;
             }
