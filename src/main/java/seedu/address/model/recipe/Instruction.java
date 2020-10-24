@@ -7,8 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Instruction {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Instructions should only contain alphanumeric characters and spaces, and it should not be blank. "
-                    + "They are separated by full stop";
+            "Instructions should only contain alphanumeric characters, punctuations and spaces, " 
+                    + "and it should not be blank. They are separated by full stop";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -28,6 +28,10 @@ public class Instruction {
         this.instructions = instructions;
     }
 
+    /**
+     * 
+     * @return Contents of instruction.
+     */
     public String getInstruction() {
         return this.instructions;
     }
