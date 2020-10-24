@@ -194,7 +194,7 @@ The following sequence diagram shows how the `EditCommand` execution works.
 
 Figure \___. Sequence diagram for `EditCommand` execution
 
-The following activity diagram summarises the flow of events when `OverdueCommand` is executed.
+The following activity diagram summarises the flow of events when `EditCommand` is executed.
 
 ![EditActivity](images/EditStudentActivityDiagram.png)
 
@@ -210,7 +210,7 @@ The following describes the flow of how `OverdueCommand` is executed.
 2. `Model#updateFilteredStudentsList(Predicate<Student> predicate)` is called to find only students that match the above condition. A new `CommandResult` is returned with a successful message indicating the number of matching students.
 3. The filtered student list replaces the displayed list on the GUI and a success message is shown in the result display.
 
-The following sequence diagram shows how the question adding operation works.
+The following sequence diagram shows how the `OverdueCommand` execution works.
 
 ![OverdueSequence](images/OverdueSequenceDiagram.png)
 
