@@ -1,16 +1,16 @@
 package seedu.address.logic.commands.deliverycommand;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Models;
 import seedu.address.model.delivery.Delivery;
 import seedu.address.model.deliverymodel.DeliveryModel;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 /**
  * Adds a delivery to the delivery book.
@@ -31,7 +31,7 @@ public class DeliveryAddCommand extends DeliveryCommand {
             + PREFIX_ADDRESS + "Blk 30 Geylang Street 29, #06-40 "
             + PREFIX_ORDER + "2x Chicken Rice, 1x Ice Milo";
 
-    public static final String MESSAGE_SUCCESS = "New delivery added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New delivery added: \n%1$s";
     public static final String MESSAGE_DUPLICATE_DELIVERY = "This delivery already existed in the delivery book";
 
 

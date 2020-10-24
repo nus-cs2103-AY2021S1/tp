@@ -1,5 +1,11 @@
 package seedu.address.logic.commands.itemcommand;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.model.Models;
+import seedu.address.model.inventorymodel.InventoryModel;
+import seedu.address.model.item.Item;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_METRIC;
@@ -7,12 +13,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUPPLIER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.results.CommandResult;
-import seedu.address.model.Models;
-import seedu.address.model.inventorymodel.InventoryModel;
-import seedu.address.model.item.Item;
 
 /**
  * Adds a item to the inventory book.
@@ -35,8 +35,8 @@ public class ItemAddCommand extends ItemCommand {
             + PREFIX_MAX_QUANTITY + "50 "
             + PREFIX_METRIC + "kg ";
 
-    public static final String MESSAGE_SUCCESS = "New item added: %1$s";
-    public static final String MESSAGE_ITEM_ADDED_TO_INVENTORY = "Item added to inventory. Stock is now: %1$s";
+    public static final String MESSAGE_SUCCESS = "New item added: \n%1$s";
+    public static final String MESSAGE_ITEM_ADDED_TO_INVENTORY = "Item added to inventory. Stock is now: \n%1$s";
 
     public static final String MESSAGE_CHANGE_MAX_ON_EXISTING_ITEM =
             "You cannot change the max quantity when adding to existing items.";

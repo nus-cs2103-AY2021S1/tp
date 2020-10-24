@@ -1,8 +1,8 @@
 package seedu.address.model.delivery;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.util.Objects;
+
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a delivery in the delivery book
@@ -74,12 +74,16 @@ public class Delivery {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" Phone: ")
+        builder.append("Deliverer's Name")
+                .append(getName())
+                .append("\n")
+                .append("Phone: ")
                 .append(getPhone())
-                .append(" Address: ")
+                .append("\n")
+                .append("Address: ")
                 .append(getAddress())
-                .append(" Order: ")
+                .append("\n")
+                .append("Order: ")
                 .append(getOrder());
         return builder.toString();
 

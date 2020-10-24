@@ -1,12 +1,12 @@
 package seedu.address.model.item;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Item in the inventory book.
@@ -110,16 +110,21 @@ public class Item {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" Quantity: ")
+        builder.append("Name: ")
+                .append(getName())
+                .append("\n")
+                .append("Quantity: ")
                 .append(getQuantity())
-                .append(" Supplier: ")
+                .append("\n")
+                .append("Supplier: ")
                 .append(getSupplier())
-                .append(" Tags: ");
+                .append("\n")
+                .append("Tags: ");
         getTags().forEach(builder::append);
         if (maxQuantity.isPresent()) {
-            builder.append(" Max Quantity: ")
-                   .append(getMaxQuantity().get().value);
+            builder.append("\n")
+                    .append("Max Quantity: ")
+                    .append(getMaxQuantity().get().value);
         }
 
         return builder.toString();
