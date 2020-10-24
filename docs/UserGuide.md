@@ -88,7 +88,7 @@ Adds a new stock into the inventory. A unique serial number for the new stock wi
     3. Quantity (default 0)
     4. Location in warehouse
 
-#### Format
+<h5>Format</h5>
 The header fields can be in any order:<br>
 `add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>`<br>
 `add n/<name> s/<source of stock> l/<location in warehouse> q/<quantity>`
@@ -98,7 +98,7 @@ e.g. `add n/banana n/apple s/fairprice q/1000 l/Fruit section` is not a valid co
 
 ### Listing of stock: `list`
 Lists all the stock(s) in the inventory.
-#### Format
+<h5>Format</h5>
 `list`
 
 ### Deleting of stock: `delete`
@@ -106,7 +106,7 @@ Deletes the stock(s) using the stock's serial number from the inventory. Multipl
 * Required fields:
     1. Serial number of product
 
-#### Format
+<h5>Format</h5>
 * Single: `delete sn/<serial number>`
 * Multiple: `delete sn/<serial number> sn/<serial number 2> ...`
 
@@ -121,7 +121,7 @@ specified in ANY one of fields searched.
     * Location stored
     * Source of the stock
 
-#### Format 
+<h5>Format</h5> 
 Any combination of 1,2,3 or 4 of the fields: <br>
 * Single:
     * `find n/<name keyword(s) to be searched in stock name>` <br>
@@ -134,7 +134,7 @@ Any combination of 1,2,3 or 4 of the fields: <br>
 ⚠ Each specific fields specified in the `find` command should only be entered once.<br>
 e.g. `find n/banana n/apple` is not a valid command.
 
-#### Search criteria
+<h5>Search criteria</h5>
 * Only stocks that contain all the search keywords for a field will be displayed. <br>
     e.g. `find n/ChickenNuggets` will not match stock with Name: Chick. <br>
     e.g. `find n/ChickenNuggets abcdef` will not match stock with Name: ChickenNuggets. <br>
@@ -163,7 +163,7 @@ Displays a list of stocks found in the inventory that contains all keywords spec
     * Location stored
     * Source of the stock
 
-#### Format
+<h5>Format</h5>
 Any combination of 1,2,3 or 4 of the fields: <br>
 * Single:
     * `findexact n/<name keyword(s) to be searched in stock name>` <br>
@@ -176,7 +176,7 @@ Any combination of 1,2,3 or 4 of the fields: <br>
 ⚠ Each specific fields specified in the `findexact` command should only be entered once.<br>
 e.g. `findexact n/banana n/apple s/fairprice l/Fruit section` is not a valid command.
 
-#### Search criteria
+<h5>Search criteria</h5>
 * Only stocks that contain all the search keywords for all fields will be displayed. <br>
     e.g. `findexact n/ChickenNuggets s/ntuc` 
     will match stock with Name: Chick, Source: ntuc. <br>
@@ -219,7 +219,7 @@ Prefixes:
 * `l/<new location>`
 * `s/<new source>`
 
-#### Format
+<h5>Format</h5>
 * Any combination of the prefixes may be passed in and updated at once.
 * Only at most one of `iq/` or `nq/` may be passed.
 * User may pass in more than one serial number to update all at once.
@@ -244,7 +244,7 @@ will not update anything and shows an error message.
 Values to be updated are case-sensitive.
 * e.g. `update sn/NUS1 n/Book` will update the name of the stock with serial number `NUS1` to `Book` instead of `book`.
 
-#### Example usages
+<h5>Example usages</h5>
 
 Stock | Details
 ------| --------
@@ -275,10 +275,10 @@ To view full notes for the stock, use the `noteview` command.
     1. Serial number of stock
     2. Note to add to stock
 
-#### Format
+<h5>Format</h5>
 `note sn/<serial number> nt/<note>`
 
-#### Example usages
+<h5>Example usages</h5>
 
 Stock | Details
 ------| --------
@@ -306,10 +306,10 @@ Deletes a note, specified by the note's index, from the stock specified by its s
 ⚠ Note index must be an integer.
 To delete ALL notes from a stock, note index to specify is 0.
 
-#### Format
+<h5>Format</h5>
 `notedelete sn/<serial number> ni/<note index>`
 
-#### Example usages
+<h5>Example usages</h5>
 * Before: <br>
 
 ![before notes](images/add_note1_to_banana.png)
@@ -327,7 +327,7 @@ Generates a statistical view in a pie chart depicting the target fields.
 * Required fields:
     1. Type of statistics to generate and display.
 
-#### Format
+<h5>Format</h5>
 `stats `, followed by one of the following:
 
 **Command to append** | **What the statistics describes**
@@ -352,7 +352,7 @@ Sort the inventory by a specific field and order.
     1. The field to be sorted by
     2. The order of the sorting
 
-#### Format
+<h5>Format</h5>
 `sort o/<order> by/<field>`
 
 * The order can only be one of the following:
@@ -366,7 +366,7 @@ Sort the inventory by a specific field and order.
     4. `location` - sorts the inventory by location
     5. `serialnumber` - sorts the inventory by serial number
 
-#### Example usages
+<h5>Example usages</h5>
 
 Stock | Details
 ------| --------
@@ -392,7 +392,7 @@ and suggest the closest command to whatever the user has typed.
 are errors such as serial number not found, then Warenager will not suggest anything to the user and instead displays
 an error message.
 
-#### Example usages
+<h5>Example usages</h5>
 
 * `del` <br>
   Warenager will suggest: `delete sn/<serial number>`
@@ -408,10 +408,10 @@ Generates a csv file that contains all stocks. Users may want to sort the stocks
 to sort the stock in their preferred order before converting it into the csv file. The csv file is saved
 to `[root directory]/data/stocks.csv` after successfully executing the command.
 
-#### Format
+<h5>Format</h5>
 Single: `print`
 
-#### Example usages
+<h5>Example usages</h5>
 
 After executing the `print` command, proceed to the folder which contains Warenager. Click on the `data`
 folder circled in red.
