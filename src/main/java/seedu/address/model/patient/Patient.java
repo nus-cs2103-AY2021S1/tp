@@ -73,7 +73,7 @@ public class Patient {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable allergy set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Allergy> getAllergies() {
@@ -86,6 +86,10 @@ public class Patient {
      */
     public Set<Appointment> getAppointments() {
         return Collections.unmodifiableSet(appointments);
+    }
+
+    public Set<Appointment> getModifiableAppointments() {
+        return appointments;
     }
 
     /**
@@ -146,7 +150,7 @@ public class Patient {
                 .append(getEmail())
                 .append(" Address: ")
                 .append(getAddress())
-                .append(" Tags: ");
+                .append(" Allergies: ");
         getAllergies().forEach(builder::append);
         builder.append(" Appointments: ");
         getAppointments().forEach(builder::append);

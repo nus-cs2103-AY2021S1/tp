@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedPatient.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPatients.BENSON;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,8 +33,8 @@ public class JsonAdaptedPatientTest {
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getAllergies().stream()
-            .map(JsonAdaptedTag::new)
+    private static final List<JsonAdaptedAllergy> VALID_TAGS = BENSON.getAllergies().stream()
+            .map(JsonAdaptedAllergy::new)
             .collect(Collectors.toList());
     private static final List<JsonAdaptedAppointment> VALID_APPOINTMENTS = BENSON.getAppointments().stream()
             .map(JsonAdaptedAppointment::new)
@@ -151,8 +151,8 @@ public class JsonAdaptedPatientTest {
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
-        List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
-        invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
+        List<JsonAdaptedAllergy> invalidTags = new ArrayList<>(VALID_TAGS);
+        invalidTags.add(new JsonAdaptedAllergy(INVALID_TAG));
         JsonAdaptedPatient person =
                 new JsonAdaptedPatient(VALID_NAME, VALID_NRIC, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                         invalidTags, VALID_APPOINTMENTS, VALID_URL);

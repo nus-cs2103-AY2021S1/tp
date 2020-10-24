@@ -6,7 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in Hospify to the user.
+ * Lists all patients in Hospify to the user.
  */
 public class ListCommand extends Command {
 

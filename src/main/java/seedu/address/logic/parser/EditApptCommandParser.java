@@ -10,23 +10,23 @@ import java.util.logging.Logger;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.appointmentcommand.AddApptCommand;
+import seedu.address.logic.commands.appointmentcommand.EditApptCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Appointment;
 
 /**
- * Parses input arguments and creates a new AddApptCommand object
+ * Parses input arguments and creates a new EditApptCommand object
  */
-public class AddApptCommandParser implements Parser<AddApptCommand> {
+public class EditApptCommandParser implements Parser<EditApptCommand> {
 
     private final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddApptCommand
-     * and returns an AddApptCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EditApptCommand
+     * and returns an EditApptCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddApptCommand parse(String args) throws ParseException {
+    public EditApptCommand parse(String args) throws ParseException {
         logger.info("----------------[STRING TO PARSE][" + args + "]");
         logger.log(Level.INFO, "Start parsing");
         requireNonNull(args);
@@ -39,16 +39,23 @@ public class AddApptCommandParser implements Parser<AddApptCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddApptCommand.MESSAGE_USAGE), pe);
+                    EditApptCommand.MESSAGE_USAGE), pe);
         }
 
-        Appointment appointment = new Appointment();
+        Appointment oldAppointment = new Appointment();
 
         if (argMultimap.getValue(PREFIX_APPOINTMENT).isPresent()) {
-            appointment = ParserUtil.parseAppointment(argMultimap.getValue(PREFIX_APPOINTMENT).get());
+            oldAppointment = ParserUtil.parseAppointment(argMultimap.getValue(PREFIX_APPOINTMENT).get());
         }
-        assert !appointment.equals(new Appointment()) : "Appointment should not be empty!";
+        assert !oldAppointment.equals(new Appointment()) : "Appointment should not be empty!";
 
-        return new AddApptCommand(index, appointment);
+        Appointment newAppointment = new Appointment();
+
+        if (argMultimap.getValue(PREFIX_APPOINTMENT).isPresent()) {
+            newAppointment = ParserUtil.parseAppointment(argMultimap.getValue(PREFIX_APPOINTMENT).get());
+        }
+
+        return new EditApptCommand(index, oldAppointment, newAppointment);
     }
+
 }

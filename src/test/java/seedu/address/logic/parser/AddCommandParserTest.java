@@ -3,13 +3,15 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.ALLERGY_DESC_NUT;
+import static seedu.address.logic.commands.CommandTestUtil.ALLERGY_DESC_POLLEN;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ALLERGY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_URL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
@@ -19,22 +21,20 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.URL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.URL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ALLERGY_NUT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ALLERGY_POLLEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_URL_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPatients.AMY;
+import static seedu.address.testutil.TypicalPatients.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -52,39 +52,39 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Patient expectedPatient = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Patient expectedPatient = new PersonBuilder(BOB).withAllergies(VALID_ALLERGY_NUT).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + NRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + URL_DESC_BOB, new AddCommand(expectedPatient));
+                + ADDRESS_DESC_BOB + ALLERGY_DESC_NUT + URL_DESC_BOB, new AddCommand(expectedPatient));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + NRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + URL_DESC_BOB, new AddCommand(expectedPatient));
+                + ADDRESS_DESC_BOB + ALLERGY_DESC_NUT + URL_DESC_BOB, new AddCommand(expectedPatient));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + NRIC_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + URL_DESC_BOB, new AddCommand(expectedPatient));
+                + ADDRESS_DESC_BOB + ALLERGY_DESC_NUT + URL_DESC_BOB, new AddCommand(expectedPatient));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + NRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + URL_DESC_BOB, new AddCommand(expectedPatient));
+                + ADDRESS_DESC_BOB + ALLERGY_DESC_NUT + URL_DESC_BOB, new AddCommand(expectedPatient));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + NRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + URL_DESC_BOB, new AddCommand(expectedPatient));
+                + ADDRESS_DESC_BOB + ALLERGY_DESC_NUT + URL_DESC_BOB, new AddCommand(expectedPatient));
 
         // multiple tags - all accepted
-        Patient expectedPatientMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .build();
+        Patient expectedPatientMultipleTags = new PersonBuilder(BOB)
+                .withAllergies(VALID_ALLERGY_NUT, VALID_ALLERGY_POLLEN).build();
         assertParseSuccess(parser, NAME_DESC_BOB + NRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + URL_DESC_BOB, new AddCommand(expectedPatientMultipleTags));
+                + ALLERGY_DESC_POLLEN + ALLERGY_DESC_NUT + URL_DESC_BOB, new AddCommand(expectedPatientMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Patient expectedPatient = new PersonBuilder(AMY).withTags().build();
+        Patient expectedPatient = new PersonBuilder(AMY).withAllergies().build();
         assertParseSuccess(parser, NAME_DESC_AMY + NRIC_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                 + URL_DESC_AMY, new AddCommand(expectedPatient));
     }
@@ -126,28 +126,29 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + NRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + URL_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
+                + ADDRESS_DESC_BOB + ALLERGY_DESC_POLLEN + ALLERGY_DESC_NUT + URL_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + NRIC_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + URL_DESC_BOB, Phone.MESSAGE_CONSTRAINTS);
+                + ADDRESS_DESC_BOB + ALLERGY_DESC_POLLEN + ALLERGY_DESC_NUT + URL_DESC_BOB, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + NRIC_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + URL_DESC_BOB, Email.MESSAGE_CONSTRAINTS);
+                + ADDRESS_DESC_BOB + ALLERGY_DESC_POLLEN + ALLERGY_DESC_NUT + URL_DESC_BOB, Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + NRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + INVALID_ADDRESS_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + URL_DESC_BOB,
+                + INVALID_ADDRESS_DESC + ALLERGY_DESC_POLLEN + ALLERGY_DESC_NUT + URL_DESC_BOB,
                 Address.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + NRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_FRIEND + URL_DESC_BOB, Allergy.MESSAGE_CONSTRAINTS);
+                + ADDRESS_DESC_BOB + INVALID_ALLERGY_DESC + VALID_ALLERGY_NUT
+                + URL_DESC_BOB, Allergy.MESSAGE_CONSTRAINTS);
 
         // invalid url
         assertParseFailure(parser, NAME_DESC_BOB + NRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + INVALID_ADDRESS_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + INVALID_URL_DESC,
+                + INVALID_ADDRESS_DESC + ALLERGY_DESC_POLLEN + ALLERGY_DESC_NUT + INVALID_URL_DESC,
                 Address.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
@@ -156,7 +157,7 @@ public class AddCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + NRIC_DESC_BOB + PHONE_DESC_BOB
-                        + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + URL_DESC_BOB,
+                        + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + ALLERGY_DESC_POLLEN + ALLERGY_DESC_NUT + URL_DESC_BOB,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

@@ -3,6 +3,10 @@ package seedu.address.model.patient;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Patient's Medical Record in Hospify.
+ * Guarantees: immutable; is valid as declared in {@link #isValidUrl(String)}
+ */
 public class MedicalRecord {
 
     public static final String MESSAGE_CONSTRAINTS = "Medical Record URL may start with http:// or https:// "

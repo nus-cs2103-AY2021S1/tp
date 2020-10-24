@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -47,10 +48,10 @@ public interface Model {
     /**
      * Replaces Hospify data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setHospifyBook(ReadOnlyHospifyBook hospifyBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the HospifyBook */
+    ReadOnlyHospifyBook getHospifyBook();
 
     /**
      * Returns true if a patient with the same identity as {@code person} exists in Hospify.
@@ -90,4 +91,9 @@ public interface Model {
      * @return number of patients.
      */
     int count();
+
+    /**
+     * Sorts the patient list based on predicate.
+     */
+    void sort(Comparator<Patient> comparator);
 }

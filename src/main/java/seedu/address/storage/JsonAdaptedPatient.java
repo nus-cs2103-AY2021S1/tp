@@ -32,7 +32,7 @@ class JsonAdaptedPatient {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedAllergy> allergy = new ArrayList<>();
     private final List<JsonAdaptedAppointment> appointed = new ArrayList<>();
     private final String medicalRecordUrl;
 
@@ -43,7 +43,7 @@ class JsonAdaptedPatient {
     public JsonAdaptedPatient(@JsonProperty("name") String name, @JsonProperty("nric") String nric,
                               @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
-                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                              @JsonProperty("allergy") List<JsonAdaptedAllergy> allergy,
                               @JsonProperty("appointed") List<JsonAdaptedAppointment> appointed,
                               @JsonProperty("medicalRecordUrl") String medicalRecordUrl) {
         this.name = name;
@@ -52,8 +52,8 @@ class JsonAdaptedPatient {
         this.email = email;
         this.address = address;
         this.medicalRecordUrl = medicalRecordUrl;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        if (allergy != null) {
+            this.allergy.addAll(allergy);
         }
         if (appointed != null) {
             this.appointed.addAll(appointed);
@@ -69,8 +69,8 @@ class JsonAdaptedPatient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tagged.addAll(source.getAllergies().stream()
-                .map(JsonAdaptedTag::new)
+        allergy.addAll(source.getAllergies().stream()
+                .map(JsonAdaptedAllergy::new)
                 .collect(Collectors.toList()));
         appointed.addAll(source.getAppointments().stream()
                 .map(JsonAdaptedAppointment::new)
@@ -86,8 +86,8 @@ class JsonAdaptedPatient {
     public Patient toModelType() throws IllegalValueException {
         final List<Allergy> personAllergies = new ArrayList<>();
         final List<Appointment> personAppointments = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personAllergies.add(tag.toModelType());
+        for (JsonAdaptedAllergy allergy : allergy) {
+            personAllergies.add(allergy.toModelType());
         }
         for (JsonAdaptedAppointment appointment: appointed) {
             personAppointments.add(appointment.toModelType());

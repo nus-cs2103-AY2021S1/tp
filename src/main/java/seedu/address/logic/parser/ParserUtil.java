@@ -114,18 +114,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String allergy} into a {@code Allergy}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code allergy} is invalid.
      */
-    public static Allergy parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Allergy.isValidAllergyName(trimmedTag)) {
+    public static Allergy parseAllergy(String allergy) throws ParseException {
+        requireNonNull(allergy);
+        String trimmedAllergy = allergy.trim();
+        if (!Allergy.isValidAllergyName(trimmedAllergy)) {
             throw new ParseException(Allergy.MESSAGE_CONSTRAINTS);
         }
-        return new Allergy(trimmedTag);
+        return new Allergy(trimmedAllergy);
     }
 
     /**
@@ -144,13 +144,13 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> allergies} into a {@code Set<Allergy>}.
      */
-    public static Set<Allergy> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
+    public static Set<Allergy> parseAllergies(Collection<String> allergies) throws ParseException {
+        requireNonNull(allergies);
         final Set<Allergy> allergySet = new HashSet<>();
-        for (String tagName : tags) {
-            allergySet.add(parseTag(tagName));
+        for (String allergyName : allergies) {
+            allergySet.add(parseAllergy(allergyName));
         }
         return allergySet;
     }

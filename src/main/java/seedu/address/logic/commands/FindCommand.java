@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.patient.KeywordsPredicate;
 
 /**
- * Finds and lists all persons in Hospify whose name contains any of the argument keywords.
+ * Finds and lists all patients in Hospify whose name contains any of the argument keywords or Nric.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {

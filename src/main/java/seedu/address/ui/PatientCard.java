@@ -24,7 +24,7 @@ public class PatientCard extends UiPart<Region> {
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on HospifyBook level 4</a>
      */
 
     public final Patient patient;
@@ -46,6 +46,8 @@ public class PatientCard extends UiPart<Region> {
     @FXML
     private FlowPane allergies;
     @FXML
+    private Label numberOfAppointments;
+    @FXML
     private Button copyButton;
     @FXML
     private Label copyButtonNotification;
@@ -62,6 +64,7 @@ public class PatientCard extends UiPart<Region> {
         phone.setText(patient.getPhone().value);
         address.setText(patient.getAddress().value);
         email.setText(patient.getEmail().value);
+        numberOfAppointments.setText(Integer.toString(patient.getAppointments().size()));
         patient.getAllergies().stream()
                 .sorted(Comparator.comparing(allergy -> allergy.allergyName))
                 .forEach(allergy -> allergies.getChildren().add(new Label(allergy.allergyName)));

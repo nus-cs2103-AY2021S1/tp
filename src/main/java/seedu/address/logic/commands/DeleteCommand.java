@@ -14,7 +14,7 @@ import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 
 /**
- * Deletes a person identified using it's displayed index from Hospify.
+ * Deletes a patient identified using it's displayed index or Nric from Hospify.
  */
 public class DeleteCommand extends Command {
 
@@ -43,7 +43,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Initialize a DeleteCommand using Nric, set targetIndex to empty Optional
-     * @param targetNric
+     * @param targetNric Nric of patient
      */
     public DeleteCommand(Nric targetNric) {
         this.targetNric = Optional.ofNullable(targetNric);

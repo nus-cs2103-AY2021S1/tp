@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -19,26 +20,26 @@ import seedu.address.model.patient.Patient;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final HospifyBook hospifyBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
 
     /**
      * Initializes a ModelManager with the given hospify and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook hospify, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyHospifyBook hospify, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(hospify, userPrefs);
 
         logger.fine("Initializing with Hospify: " + hospify + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(hospify);
+        this.hospifyBook = new HospifyBook(hospify);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPatients = new FilteredList<>(this.addressBook.getPatientList());
+        filteredPatients = new FilteredList<>(this.hospifyBook.getPatientList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new HospifyBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -67,41 +68,41 @@ public class ModelManager implements Model {
 
     @Override
     public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getHospifyFilePath();
     }
 
     @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setHospifyFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== HospifyBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setHospifyBook(ReadOnlyHospifyBook hospifyBook) {
+        this.hospifyBook.resetData(hospifyBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyHospifyBook getHospifyBook() {
+        return hospifyBook;
     }
 
     @Override
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
-        return addressBook.hasPatient(patient);
+        return hospifyBook.hasPatient(patient);
     }
 
     @Override
     public void deletePatient(Patient target) {
-        addressBook.removePatient(target);
+        hospifyBook.removePatient(target);
     }
 
     @Override
     public void addPatient(Patient patient) {
-        addressBook.addPatient(patient);
+        hospifyBook.addPatient(patient);
         updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
     }
 
@@ -109,12 +110,12 @@ public class ModelManager implements Model {
     public void setPatient(Patient target, Patient editedPatient) {
         requireAllNonNull(target, editedPatient);
 
-        addressBook.setPatient(target, editedPatient);
+        hospifyBook.setPatient(target, editedPatient);
     }
 
     @Override
     public int count() {
-        return addressBook.count();
+        return hospifyBook.count();
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -134,6 +135,14 @@ public class ModelManager implements Model {
         filteredPatients.setPredicate(predicate);
     }
 
+    /**
+     * Sorts the patientList based on the predicate in ascending order.
+     */
+    @Override
+    public void sort(Comparator<Patient> comparator) {
+        hospifyBook.sort(comparator);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -148,7 +157,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return hospifyBook.equals(other.hospifyBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPatients.equals(other.filteredPatients);
     }

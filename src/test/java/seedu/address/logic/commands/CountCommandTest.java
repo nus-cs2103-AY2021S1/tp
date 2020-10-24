@@ -2,9 +2,9 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.IDA;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPatients.HOON;
+import static seedu.address.testutil.TypicalPatients.IDA;
+import static seedu.address.testutil.TypicalPatients.getTypicalHospifyBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ import seedu.address.model.patient.Patient;
 
 public class CountCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalHospifyBook(), new UserPrefs());
 
     @Test
     void execute_defaultCount_success() {

@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -12,7 +13,7 @@ import seedu.address.model.patient.UniquePatientList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePatient comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class HospifyBook implements ReadOnlyHospifyBook {
 
     private final UniquePatientList patients;
 
@@ -27,12 +28,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         patients = new UniquePatientList();
     }
 
-    public AddressBook() {}
+    public HospifyBook() {}
 
     /**
      * Creates an Hospify using the Patients in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public HospifyBook(ReadOnlyHospifyBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -48,9 +49,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code HospifyBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyHospifyBook newData) {
         requireNonNull(newData);
 
         setPatients(newData.getPatientList());
@@ -87,7 +88,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code HospifyBook}.
      * {@code key} must exist in Hospify.
      */
     public void removePatient(Patient key) {
@@ -115,11 +116,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         return patients.asUnmodifiableObservableList();
     }
 
+    public void sort(Comparator<Patient> comparator) {
+        patients.sort(comparator);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && patients.equals(((AddressBook) other).patients));
+                || (other instanceof HospifyBook // instanceof handles nulls
+                && patients.equals(((HospifyBook) other).patients));
     }
 
     @Override

@@ -357,7 +357,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Admin types “add” followed by patient details.
+1.  Admin types `add` followed by patient details.
 2.  Hospify notifies that patient information is added.
 
     Use case ends.
@@ -377,7 +377,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Admin types “delete” followed by patient NRIC.
+1.  Admin types `delete` followed by patient NRIC.
 2.  Hospify requests for confirmation.
 3.  Admin confirms.
 4.  Hospify notifies that patient information is deleted.
@@ -400,7 +400,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  Admin wants to find a patient using their name.
-2.  Admin types “find” followed by keyword (name).
+2.  Admin types `find` followed by keyword (name).
 3.  Hospify returns all matches (if any) to the staff.
 4.  Admin selects the patient of interest.
 
@@ -421,7 +421,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Admin types “count”.
+1.  Admin types `count`.
 2.  Hospify displays the number of patients that are currently not archived.
 
     Use case ends.
@@ -430,10 +430,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Admin types “help” followed by patient NRIC.
+1.  Admin types `help` followed by patient NRIC.
 2.  Hospify displays help interface.
 
     Use case ends.
+    
+**Use case: UC6 - Display Patient's Appointment**
+
+**MSS**
+
+1.  Admin types `ShowAppt` followed by patient NRIC.
+2.  Hospify shows a window which shows all of the patient's appointments.
+3. Admin sorts the appointments by earliest to latest or latest to earliest.
+
+    Use case ends.
+    
+**Extensions**
+* 1a. User with NRIC not found.
+    * 1a1. Hospify notifies the User that the User is not found.
+    * 1a2. User enters another NRIC.
+
+* 1b. User enters an invalid NRIC.
+    * 1b1. Hospify prompts User to enter in the stipulated format.
+    
+    Steps 1b1 repeats until user enters a valid NRIC.
+
+    
 
 *{More to be added}*
 
