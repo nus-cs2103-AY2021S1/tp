@@ -91,9 +91,40 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredProjectList(Predicate<Project> predicate);
-    //boolean hasPerson(Person person);
-    //void deletePerson(Person person);
-    //void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the main catalogue.
+     */
+    boolean hasPerson(Person person);
+
+    /**
+     * Deletes the given person.
+     * The person must exist in the main catalogue.
+     */
+    void deletePerson(Person target);
+
+    /**
+     * Adds the given person.
+     * {@code person} must not already exist in the main catalogue.
+     */
+    void addPerson(Person person);
+
+    /**
+     * Replaces the given person {@code target} with {@code editedPerson}.
+     * {@code target} must exist in the main catalogue.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the main
+     * catalogue.
+     */
+    void setPerson(Person target, Person editedPerson);
+
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<Person> getFilteredPersonList();
+
+    /**
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
      * Gets the current status for valid scope.
