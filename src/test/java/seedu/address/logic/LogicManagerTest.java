@@ -85,6 +85,7 @@ public class LogicManagerTest {
         Tag expectedTag = new TagBuilder(CS2101).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addTag(expectedTag.toAbsolute(false, new FileAddress(USER_DIRECTORY_ADDRESS)));
+        expectedModel.commitAddressBook();
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(tagCommand, CommandException.class, expectedMessage, expectedModel);
     }

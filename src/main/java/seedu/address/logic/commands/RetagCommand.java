@@ -78,10 +78,13 @@ public class RetagCommand extends Command {
         // Delete old tag
         model.deleteTag(tagToChange);
 
-        //TODO: Adjust the constructor to take
-        Tag newTag = new Tag(newTagName, fileAddress, tagToChange.getLabels());
         // Add new tag
+        Tag newTag = new Tag(newTagName, fileAddress, tagToChange.getLabels());
         model.addTag(newTag);
+
+        // Save commit for undo
+        model.commitAddressBook();
+
         return new CommandResult(String.format(MESSAGE_RETAG_TAG_SUCCESS, oldTagName, newTagName));
     }
 

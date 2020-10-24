@@ -10,6 +10,7 @@ import seedu.address.model.tag.Tag;
 
 public class ModelStubDeleteTag extends ModelStub {
     private List<Tag> tagList;
+    private int commitCount = 0;
 
     ModelStubDeleteTag(List<Tag> tagList) {
         requireNonNull(tagList);
@@ -34,19 +35,21 @@ public class ModelStubDeleteTag extends ModelStub {
     }
 
     @Override
+    public void commitAddressBook() {
+        commitCount++;
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
         }
 
-        if (other instanceof ModelStubDeleteTag) {
-            if (tagList.isEmpty() && ((ModelStubDeleteTag) other).tagList.isEmpty()) {
-                return true;
-            } else if (this.tagList.equals(((ModelStubDeleteTag) other).tagList)) {
-                return true;
-            }
+        if (!(other instanceof ModelStubDeleteTag)) {
+            return false;
         }
 
-        return false;
+        ModelStubDeleteTag o = (ModelStubDeleteTag) other;
+        return this.tagList.equals(o.tagList) && this.commitCount == o.commitCount;
     }
 }

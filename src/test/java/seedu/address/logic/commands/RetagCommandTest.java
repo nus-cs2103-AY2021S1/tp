@@ -34,6 +34,7 @@ public class RetagCommandTest {
 
         ModelStubWithTagAndTaglist expectedModelStub = new ModelStubWithTagAndTaglist();
         expectedModelStub.addTag(newTag);
+        expectedModelStub.commitAddressBook();
 
         RetagCommand retagCommand = new RetagCommand(oldTagName, newTagName);
 
@@ -63,6 +64,7 @@ public class RetagCommandTest {
 
         ModelStubWithTagAndTaglist expectedModelStub = new ModelStubWithTagAndTaglist();
         expectedModelStub.addTag(newTag);
+        expectedModelStub.commitAddressBook();
 
         assertCommandSuccess(retagCommand, modelStub,
                 String.format(RetagCommand.MESSAGE_RETAG_TAG_SUCCESS, oldTagName, newTagName), expectedModelStub);
