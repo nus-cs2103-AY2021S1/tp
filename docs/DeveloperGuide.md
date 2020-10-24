@@ -216,7 +216,7 @@ possible without breaking abstraction or heavy modifications to `Model` or `Mode
 
 ### Delete Item Feature
 
-`DeleteItemCommand` facilitates the deletion of an existing `Item`. This consequentially cascades to impact any 
+`DeleteItemCommand` facilitates the deletion of an existing `Item`. This deletion cascades to impact any 
 `Recipe` in the list of recipes that are associated with this item, as such, these matching `Recipe` are also deleted.
 
 This command was implemented to resolve the [userstory](user-stories-for-v1.1), regarding "As a user I want to delete
@@ -230,21 +230,31 @@ word and determines that command is a `DeleteItemCommand`. This also cleans the 
 
 Then `InventoryParser` calls the specific `DeleteItemCommandParser#parse(Input)` to read and parse the given field, in this case,
  **"-n Bob's Toenail"**. This process reads the given input string, and checks for validity. Then assuming no `ParseException` occurs,
- the resulting `DeleteItemCommand` is created for the input item. This `DeleteItemCommand` is returned up the method call stack to the `LogicManager` where the `Command#execute(model)`
+ the resulting `DeleteItemCommand` is created for the input item.
+  This `DeleteItemCommand` is returned up the method call stack to the `LogicManager` where the `Command#execute(model)`
  occurs.
  
-This is where change is made into the cached `Model` within the `DeleteItemCommand`. `Model` is used as an abstraction of the internal
+This is where change is made into the stored `Model` within the `DeleteItemCommand`. `Model` is used as an abstraction of the internal
 details of cached storage.
  
-First a query is made to the `Model` to validate that the `Item` exists, and if so, deletes the item from the the `Model`.
+First a query is made to the `Model` to check that the `Item` exists, and if so, deletes the item from the the `Model`.
 
 Then, a query is made for any `Recipe` in the `Item`, or has the `Item` as a product of the `Recipe` and this reference is
  then deleted from the product.
 
-Lastly, the deleted `Recipe` also cascade their `Recipe` deletion to any items that contain them. This concludes the deletion routine.
+Lastly, the deleted `Recipe` also cascade their `Recipe` deletion to any items that contain the `Recipe`.
+
+This concludes the **deletion routine**.
  
 After successful deletion occurs, the resulting `CommandResult` with a success message is returned 
-successfully to the  `LogicManager` and subsequently displayed on the GUI.
+successfully to the  `LogicManager` and then displayed on the GUI.
+
+The following sequence diagram details in depth how the `DeleteItemCommand` works:
+
+Initial user input is shown in full, but as the system transforms the input,
+ inputs and returned values abstracted out into apt representations.
+ 
+![DeleteItemSequenceDiagram](images/commandseqdiagrams/DeleteItemSequenceDiagram.png)
 
 #### Alternative Implementation and Reasoning against its implementation
 
@@ -252,17 +262,12 @@ One problem with the current implementation is that there is a deep coupling bet
 the internal structure of the `Model`, that is namely the `FilteredItemList` and `FilteredRecipeList`,
  with no direct methods manipulating these classes from the `ModelManager` facade design pattern itself.
 
-This causes some direct manipulation of non-neighbouring classes, which violates Law of Demeter. 
+This causes some direct manipulation of non-neighbouring classes, which violates 
+[`Law of Demeter`](https://hackernoon.com/object-oriented-tricks-2-law-of-demeter-4ecc9becad85). 
 However, the facade design pattern applied to `ModelManager` also prevents excessive bloat and coupling.
 
-Hence adding extra methods that manipulate the internal structure of `ModelManager` facade class reduces the
-size of the class significantly, improving readability and preventing `ModelManager` from entailing extra responsibility.
-
-The following sequence diagram details in depth how the delete item command works:
-
-Initial user input is shown in depth, but as the input is converted into the internal representation of the system,
- inputs and returned values are abstracted into apt representations.
-![DeleteItemSequenceDiagram](images/commandseqdiagrams/DeleteItemSequenceDiagram.png)
+Hence refraining from this implementation reduces the size of the class significantly,
+ improving readability of the code and preventing `ModelManager` from entailing extra responsibility.
 
 
 ### List item/recipe feature
