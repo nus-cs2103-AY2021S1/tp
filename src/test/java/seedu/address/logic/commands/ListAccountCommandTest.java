@@ -19,8 +19,8 @@ public class ListAccountCommandTest {
         expectedModel.addAccount(getTypicalAccount());
         ListAccountCommand listacc = new ListAccountCommand();
         CommandResult expectedCommandResult =
-                CommandResultFactory.createDefaultCommandResult(
-                        listacc.accountsToString(expectedModel.getFilteredAccountList()));
+                new CommandResultFactory().createDefaultCommandResult(listacc
+                        .accountsToString(expectedModel.getFilteredAccountList()));
         assertCommandSuccess(listacc, model, expectedCommandResult, expectedModel);
     }
 }
