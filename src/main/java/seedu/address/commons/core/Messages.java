@@ -52,7 +52,11 @@ public class Messages {
                         "now is the time to do it! Afterwards, you may add the item and delivery above again just by scrolling up\n" +
                         "with the KEY ARROW UP button.\n")
                 .append(DIVIDER)
-                .append("You may add a few more inventory items and pending deliveries if you would to do so.\n" +
+                .append("If you want to decrease the quantity of an inventory item, you can use `remove-i INDEX q/QUANTITY`\n" +
+                        "Example: `remove-i 1 30` would remove the quantity of item on first index by 30.\n" +
+                        "Note that remove command is only available for inventory item as pending delivery does not have quantity.")
+                .append(DIVIDER)
+                .append("You may add a few more unique inventory items and pending deliveries if you would to do so.\n" +
                         "In the next step, we will learn about delete-i and delete-d\n" +
                         "Command for deleting an item is by using `delete-i INDEX`. An example would be like:\n" +
                         "`delete-i 1`\n" +
@@ -95,7 +99,7 @@ public class Messages {
                 .append("Delete an inventory item: delete-i INDEX\n")
                 .append("Edit an inventory item: edit-i INDEX [n/NAME] [q/QUANTITY]"
                         + " [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]\n")
-                .append("Find an inventory item: find-i KEYWORD [MORE_KEYWORDS]\n")
+                .append("Find an inventory item: find-i n/KEYWORD [MORE_KEYWORDS]\n")
                 .append("Clear all inventory items: clear-i\n")
                 .append("List all inventory items: list-i\n")
                 .append(DIVIDER)
@@ -104,7 +108,7 @@ public class Messages {
                 .append("Add delivery: add-d n/NAME p/PHONE a/ADDRESS o/ORDER\n")
                 .append("Delete a delivery: delete-d INDEX\n")
                 .append("Edit a delivery: edit-d INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]\n")
-                .append("Find a delivery: find-d KEYWORD [MORE_KEYWORDS]\n")
+                .append("Find a delivery: find-d n/KEYWORD [MORE_KEYWORDS]\n")
                 .append("Clear all deliveries: clear-d\n")
                 .append("List all deliveries: list-d\n");
         return summary.toString();
