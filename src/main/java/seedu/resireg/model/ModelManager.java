@@ -259,7 +259,8 @@ public class ModelManager implements Model {
         return versionedResiReg.equals(other.versionedResiReg)
                 && userPrefs.equals(other.userPrefs)
                 && filteredStudents.equals(other.filteredStudents)
-                && filteredRooms.equals(other.filteredRooms);
+                && filteredRooms.equals(other.filteredRooms)
+                && filteredAllocations.equals(other.filteredAllocations);
     }
 
 }
