@@ -40,10 +40,10 @@ public class SwitchAccountCommand extends Command {
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
         requireAllNonNull(model, activeAccount);
-      
+
         activeAccount.updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
         activeAccount.updateFilteredRevenueList(PREDICATE_SHOW_ALL_REVENUE);
-      
+
         List<Account> accounts = model.getFilteredAccountList();
 
         int index = targetIndex.getZeroBased();
