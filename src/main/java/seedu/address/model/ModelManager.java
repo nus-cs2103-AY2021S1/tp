@@ -23,7 +23,7 @@ import seedu.address.model.tag.Tag;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final VersionedAddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Tag> filteredTags;
     private final FilteredList<File> filteredFiles;
@@ -38,7 +38,7 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.addressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTags = new FilteredList<>(this.addressBook.getTagList());
         filteredFiles = new FilteredList<>(this.addressBook.getObservableFileList());
