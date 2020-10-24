@@ -46,26 +46,26 @@ public class AddAdditionalDetailCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withDetails().build();
         AdditionalDetail additionalDetail = new AdditionalDetail(TEST_DETAIL);
         AddAdditionalDetailCommand addAdditionalDetailCommand =
                 new AddAdditionalDetailCommand(INDEX_FIRST_PERSON, additionalDetail);
         Student expectedStudent = new StudentBuilder(ALICE).withDetails(TEST_DETAIL).build();
-        model.setPerson(asker, clone);
+        model.setStudent(asker, clone);
 
         String expectedMessage = String.format(AddAdditionalDetailCommand.MESSAGE_SUCCESS, clone.getName(),
                 additionalDetail);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
-        expectedModel.setPerson(clone, expectedStudent);
+        expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(addAdditionalDetailCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBounds = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBounds = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         AddAdditionalDetailCommand command = new AddAdditionalDetailCommand(outOfBounds,
                 new AdditionalDetail(TEST_DETAIL));
 
@@ -76,10 +76,10 @@ public class AddAdditionalDetailCommandTest {
     public void execute_validIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         AdditionalDetail detail = new AdditionalDetail(TEST_DETAIL);
         Student clone = new StudentBuilder(asker).withDetails().build();
-        model.setPerson(asker, clone);
+        model.setStudent(asker, clone);
 
         AddAdditionalDetailCommand command = new AddAdditionalDetailCommand(INDEX_FIRST_PERSON, detail);
         Student expectedStudent = new StudentBuilder(BENSON).withDetails(TEST_DETAIL).build();
@@ -88,7 +88,7 @@ public class AddAdditionalDetailCommandTest {
                 clone.getName(), detail);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
-        expectedModel.setPerson(clone, expectedStudent);
+        expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }

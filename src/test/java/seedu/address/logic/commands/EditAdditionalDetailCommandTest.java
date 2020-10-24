@@ -64,26 +64,26 @@ public class EditAdditionalDetailCommandTest {
 
     @Test
     public void execute_validStudentIndexUnfilteredList_success() {
-        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withDetails(TEST_WRONG_DETAIL).build();
         AdditionalDetail additionalDetail = new AdditionalDetail(TEST_CORRECT_DETAIL);
         EditAdditionalDetailCommand editAdditionalDetailCommand = new EditAdditionalDetailCommand(
                 TEST_INDEX_FIRST_STUDENT, TEST_INDEX_FIRST_DETAIL, additionalDetail);
         Student expectedStudent = new StudentBuilder(ALICE).withDetails(TEST_CORRECT_DETAIL).build();
-        model.setPerson(asker, clone);
+        model.setStudent(asker, clone);
 
         String expectedMessage = String.format(EditAdditionalDetailCommand.MESSAGE_SUCCESS,
                 clone.getName(), additionalDetail);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
-        expectedModel.setPerson(clone, expectedStudent);
+        expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(editAdditionalDetailCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidStudentIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundsStudentIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundsStudentIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         AdditionalDetail additionalDetail = new AdditionalDetail(TEST_CORRECT_DETAIL);
         EditAdditionalDetailCommand invalidCommand = new EditAdditionalDetailCommand(
                 outOfBoundsStudentIndex, TEST_INDEX_FIRST_DETAIL, additionalDetail);
@@ -93,7 +93,8 @@ public class EditAdditionalDetailCommandTest {
 
     @Test
     public void execute_invalidDetailIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundsDetailIndex = Index.fromOneBased(model.getFilteredPersonList().get(0).getDetails().size() + 1);
+        Index outOfBoundsDetailIndex =
+                Index.fromOneBased(model.getFilteredStudentList().get(0).getDetails().size() + 1);
         AdditionalDetail additionalDetail = new AdditionalDetail(TEST_CORRECT_DETAIL);
         EditAdditionalDetailCommand invalidCommand = new EditAdditionalDetailCommand(
                 TEST_INDEX_FIRST_STUDENT, outOfBoundsDetailIndex, additionalDetail);
@@ -105,19 +106,19 @@ public class EditAdditionalDetailCommandTest {
     public void execute_validStudentIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withDetails(TEST_WRONG_DETAIL).build();
         AdditionalDetail additionalDetail = new AdditionalDetail(TEST_CORRECT_DETAIL);
         EditAdditionalDetailCommand editAdditionalDetailCommand = new EditAdditionalDetailCommand(
                 TEST_INDEX_FIRST_STUDENT, TEST_INDEX_FIRST_DETAIL, additionalDetail);
         Student expectedStudent = new StudentBuilder(BENSON).withDetails(TEST_CORRECT_DETAIL).build();
-        model.setPerson(asker, clone);
+        model.setStudent(asker, clone);
 
         String expectedMessage = String.format(EditAdditionalDetailCommand.MESSAGE_SUCCESS,
                 clone.getName(), additionalDetail);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
-        expectedModel.setPerson(clone, expectedStudent);
+        expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(editAdditionalDetailCommand, model, expectedMessage, expectedModel);
     }
@@ -126,7 +127,7 @@ public class EditAdditionalDetailCommandTest {
     public void execute_invalidStudentIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Index outOfBoundsStudentIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundsStudentIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         AdditionalDetail additionalDetail = new AdditionalDetail(TEST_CORRECT_DETAIL);
         EditAdditionalDetailCommand invalidCommand = new EditAdditionalDetailCommand(
                 outOfBoundsStudentIndex, TEST_INDEX_FIRST_DETAIL, additionalDetail);
@@ -138,7 +139,8 @@ public class EditAdditionalDetailCommandTest {
     public void execute_invalidDetailIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Index outOfBoundsDetailIndex = Index.fromOneBased(model.getFilteredPersonList().get(0).getDetails().size() + 1);
+        Index outOfBoundsDetailIndex =
+                Index.fromOneBased(model.getFilteredStudentList().get(0).getDetails().size() + 1);
         AdditionalDetail additionalDetail = new AdditionalDetail(TEST_CORRECT_DETAIL);
         EditAdditionalDetailCommand invalidCommand = new EditAdditionalDetailCommand(
                 TEST_INDEX_FIRST_STUDENT, outOfBoundsDetailIndex, additionalDetail);

@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes add student command;
+:Parses the command;
+if () then ([command is valid])
+    :Add command is executed;
+    if() then ([student already exists])
+        :Display duplicate student error message;
+    else ([student is unique])
+        :Add student into student list;
+        :Display add student success message;
+    endif
+else ([command is invalid - missing or invalid arguments])
+    :Display parse error message;
+endif
+stop
+@enduml
