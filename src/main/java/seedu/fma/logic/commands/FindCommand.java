@@ -1,6 +1,7 @@
 package seedu.fma.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.fma.logic.parser.CliSyntax.*;
 
 import seedu.fma.commons.core.Messages;
 import seedu.fma.model.Model;
@@ -13,6 +14,9 @@ import seedu.fma.model.util.NameContainsKeywordsPredicate;
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
+
+
+    public static final String AC_SUGGESTION = COMMAND_WORD + " abs";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all logs that contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
@@ -39,4 +43,5 @@ public class FindCommand extends Command {
                 || (other instanceof FindCommand // instanceof handles nulls
                 && predicate.equals(((FindCommand) other).predicate)); // state check
     }
+
 }

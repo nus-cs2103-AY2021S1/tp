@@ -18,6 +18,9 @@ import seedu.fma.model.exercise.Exercise;
 public class DeleteExCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteex";
+
+    public static final String AC_SUGGESTION = COMMAND_WORD + " 1";
+
     public static final String MESSAGE_DELETE_EXERCISE_SUCCESS = "Deleted Exercise: %1$s";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the exercise identified by the index number used in the displayed exercise list.\n"
@@ -53,4 +56,5 @@ public class DeleteExCommand extends Command {
                 || (other instanceof DeleteExCommand // instanceof handles nulls
                 && targetIndex.equals(((DeleteExCommand) other).targetIndex)); // state check
     }
+
 }

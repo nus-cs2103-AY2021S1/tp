@@ -1,6 +1,8 @@
 package seedu.fma.logic;
 
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.fma.commons.core.GuiSettings;
@@ -47,4 +49,10 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Get command message usages
+     */
+    HashMap<String, String> getCommandMessageUsage();
+
 }

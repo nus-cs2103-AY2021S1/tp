@@ -8,6 +8,8 @@ import seedu.fma.logic.commands.CommandResult;
 import seedu.fma.logic.commands.exceptions.CommandException;
 import seedu.fma.logic.parser.exceptions.ParseException;
 
+import javax.xml.transform.Result;
+
 /**
  * The UI component that is responsible for receiving user command inputs.
  */
@@ -21,6 +23,7 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private TextField commandTextField;
 
+
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
@@ -29,6 +32,14 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+    }
+
+    /**
+     * Set listener for display result
+     */
+    public void setListener(ResultDisplay resultDisplay) {
+        // This is how you listen into the text
+        commandTextField.textProperty().addListener((unused1, unused2, unused3) -> resultDisplay.getAutoCompleteResult(unused3));
     }
 
     /**

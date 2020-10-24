@@ -20,4 +20,5 @@ public class ClearCommand extends Command {
         model.setLogBook(new LogBook());
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
 }

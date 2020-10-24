@@ -16,6 +16,13 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
+    public static final String AC_SUGGESTION = COMMAND_WORD + " "
+            + PREFIX_E + "Sit ups "
+            + PREFIX_R + "30 "
+            + PREFIX_C + "my abs hurt:(";
+
+    public static final String AC_REGEX = COMMAND_WORD + "*" + PREFIX_E + "*" + PREFIX_R + "*" + PREFIX_C + "*";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a log to the log book. "
             + "Parameters: "
             + PREFIX_E + "EXERCISE "

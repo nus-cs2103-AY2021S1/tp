@@ -1,8 +1,7 @@
 package seedu.fma.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.fma.logic.parser.CliSyntax.PREFIX_C;
-import static seedu.fma.logic.parser.CliSyntax.PREFIX_E;
+import static seedu.fma.logic.parser.CliSyntax.*;
 
 import seedu.fma.logic.commands.exceptions.CommandException;
 import seedu.fma.model.Model;
@@ -14,6 +13,13 @@ import seedu.fma.model.exercise.Exercise;
 public class AddExCommand extends Command {
 
     public static final String COMMAND_WORD = "addex";
+
+    public static final String AC_SUGGESTION = COMMAND_WORD + " "
+            + PREFIX_E + "<exercise> "
+            + PREFIX_C + "<calories per rep>";
+
+    public static final String AC_REGEX = COMMAND_WORD + "?" + PREFIX_E + "?" + PREFIX_C + "?";
+
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an exercise to the log book. "
             + "Parameters: "
@@ -51,4 +57,5 @@ public class AddExCommand extends Command {
                 || (other instanceof AddExCommand
                 && toAdd.equals(((AddExCommand) other).toAdd));
     }
+
 }

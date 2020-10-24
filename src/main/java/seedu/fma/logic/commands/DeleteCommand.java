@@ -1,6 +1,7 @@
 package seedu.fma.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.fma.logic.parser.CliSyntax.*;
 
 import java.util.List;
 
@@ -16,6 +17,8 @@ import seedu.fma.model.log.Log;
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
+
+    public static final String AC_SUGGESTION = COMMAND_WORD + " 1";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the log identified by the index number used in the displayed log list.\n"
@@ -50,4 +53,5 @@ public class DeleteCommand extends Command {
                 || (other instanceof DeleteCommand // instanceof handles nulls
                 && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
     }
+
 }

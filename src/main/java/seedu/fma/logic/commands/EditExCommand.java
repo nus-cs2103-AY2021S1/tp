@@ -1,8 +1,8 @@
 package seedu.fma.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.fma.logic.parser.CliSyntax.PREFIX_C;
-import static seedu.fma.logic.parser.CliSyntax.PREFIX_E;
+import static seedu.fma.logic.parser.CliSyntax.*;
+import static seedu.fma.logic.parser.CliSyntax.PREFIX_R;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +22,15 @@ import seedu.fma.model.util.Name;
 public class EditExCommand extends Command {
 
     public static final String COMMAND_WORD = "editex";
+
+    public static final String AC_SUGGESTION = COMMAND_WORD + " 1" + " "
+            + "[" + PREFIX_E + "EXERCISE] "
+            + "[" + PREFIX_R + "REPS] "
+            + "[" + PREFIX_C + "COMMENT] "
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_R + "3000 "
+            + PREFIX_C + "I love my abs 3000";
+
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the exercise identified "
             + "by the index number used in the displayed exercise list. "
@@ -177,4 +186,5 @@ public class EditExCommand extends Command {
         return index.equals(e.index)
                 && editExDescriptor.equals(e.editExDescriptor);
     }
+
 }

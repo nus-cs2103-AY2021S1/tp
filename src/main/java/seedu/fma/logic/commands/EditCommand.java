@@ -27,6 +27,14 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
+    public static final String AC_SUGGESTION = COMMAND_WORD + " 1" + " "
+            + "[" + PREFIX_E + "EXERCISE] "
+            + "[" + PREFIX_R + "REPS] "
+            + "[" + PREFIX_C + "COMMENT] "
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_R + "3000 "
+            + PREFIX_C + "I love my abs 3000";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the log identified "
             + "by the index number used in the displayed log list. "
             + "Existing values will be overwritten by the input values.\n"
@@ -195,4 +203,5 @@ public class EditCommand extends Command {
                     && getRep().equals(e.getRep());
         }
     }
+
 }
