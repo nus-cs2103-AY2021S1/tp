@@ -27,7 +27,7 @@ public class TypicalFlashcards {
 
     public static final Flashcard FLASHCARD_3 = new FlashcardBuilder()
             .withQuestion("It is recommended that assertions to be used liberally in the code. True or False?")
-            .withAnswer("True").withFavouriteStatus(true).build();
+            .withAnswer("True").build();
 
     public static final Flashcard FLASHCARD_4 = new FlashcardBuilder()
             .withQuestion("Can the singleton pattern can reduce testability?")

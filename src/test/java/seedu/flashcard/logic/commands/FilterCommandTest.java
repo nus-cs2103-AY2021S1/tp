@@ -8,6 +8,7 @@ import static seedu.flashcard.logic.commands.CommandTestUtil.assertCommandSucces
 import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_1;
 import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_2;
 import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_3;
+import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_6;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -119,15 +120,15 @@ public class FilterCommandTest {
     @Test
     public void execute_oneKeyword_multipleFlashcardsFound() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 2);
-        FavouriteEqualsKeywordsPredicate favouritePredicate = new FavouriteEqualsKeywordsPredicate(true);
-        FilterCommand command = new FilterCommand(nullCategoryPredicate, nullRatingPredicate,
-                favouritePredicate, nullTagsPredicate);
+        CategoryEqualsKeywordsPredicate categoryPredicate = new CategoryEqualsKeywordsPredicate(new Category("general"));
         MultipleFieldsEqualsKeywordsPredicate combinedPredicate =
-                new MultipleFieldsEqualsKeywordsPredicate(nullCategoryPredicate, nullRatingPredicate,
-                        favouritePredicate, nullTagsPredicate);
+                new MultipleFieldsEqualsKeywordsPredicate(categoryPredicate, nullRatingPredicate,
+                        nullFavouritePredicate, nullTagsPredicate);
+        FilterCommand command = new FilterCommand(categoryPredicate, nullRatingPredicate,
+                nullFavouritePredicate, nullTagsPredicate);
         expectedModel.updateFilteredFlashcardList(combinedPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(FLASHCARD_2, FLASHCARD_3), model.getFilteredFlashcardList());
+        assertEquals(Arrays.asList(FLASHCARD_3, FLASHCARD_6), model.getFilteredFlashcardList());
     }
 
     @Test

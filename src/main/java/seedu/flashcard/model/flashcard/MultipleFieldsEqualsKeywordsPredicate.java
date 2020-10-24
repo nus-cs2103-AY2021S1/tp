@@ -35,29 +35,21 @@ public class MultipleFieldsEqualsKeywordsPredicate implements Predicate<Flashcar
 
     @Override
     public boolean test(Flashcard flashcard) {
-        boolean categoryOutcome;
-        boolean ratingOutcome;
-        boolean favouriteOutcome;
-        boolean tagsOutcome;
+        boolean categoryOutcome = true;
+        boolean ratingOutcome = true;
+        boolean favouriteOutcome = true;
+        boolean tagsOutcome = true;
         if (isCategoryApplied) {
             categoryOutcome = categoryPredicate.test(flashcard);
-        } else {
-            categoryOutcome = true;
         }
         if (isRatingApplied) {
             ratingOutcome = ratingPredicate.test(flashcard);
-        } else {
-            ratingOutcome = true;
         }
         if (isFavouriteApplied) {
             favouriteOutcome = favouritePredicate.test(flashcard);
-        } else {
-            favouriteOutcome = true;
         }
         if (isTagsApplied) {
             tagsOutcome = tagsPredicate.test(flashcard);
-        } else {
-            tagsOutcome = true;
         }
         return categoryOutcome && ratingOutcome && favouriteOutcome && tagsOutcome;
     }
