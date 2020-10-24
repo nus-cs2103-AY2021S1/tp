@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import nustorage.model.person.exceptions.DuplicatePersonException;
-import nustorage.model.person.exceptions.PersonNotFoundException;
+import nustorage.model.record.exceptions.DuplicateInventoryRecordException;
+import nustorage.model.record.exceptions.InventoryRecordNotFoundException;
 
 public class InventoryRecordList implements Iterable<InventoryRecord> {
 
@@ -43,11 +43,11 @@ public class InventoryRecordList implements Iterable<InventoryRecord> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new InventoryRecordNotFoundException();
         }
 
         if (!target.equals(editedInventoryRecord) && contains(editedInventoryRecord)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateInventoryRecordException();
         }
 
         internalList.set(index, editedInventoryRecord);
@@ -59,7 +59,10 @@ public class InventoryRecordList implements Iterable<InventoryRecord> {
      */
     public void setInventoryRecords(List<InventoryRecord> inventoryRecords) {
         requireNonNull(inventoryRecords);
-        this.internalList.setAll(inventoryRecords);
+        if (!inventoryRecordsAreUnique(inventoryRecords)) {
+            throw new DuplicateInventoryRecordException();
+        }
+        internalList.setAll(inventoryRecords);
     }
 
     /**
@@ -69,7 +72,7 @@ public class InventoryRecordList implements Iterable<InventoryRecord> {
     public void remove(InventoryRecord toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new InventoryRecordNotFoundException();
         }
     }
 
@@ -95,5 +98,19 @@ public class InventoryRecordList implements Iterable<InventoryRecord> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
+    }
+
+    /**
+     * Returns true if {@code inventoryRecords} contains only unique records.
+     */
+    private boolean inventoryRecordsAreUnique(List<InventoryRecord> inventoryRecords) {
+        for (int i = 0; i < inventoryRecords.size() - 1; i++) {
+            for (int j = i + 1; j < inventoryRecords.size(); j++) {
+                if (inventoryRecords.get(i).equals(inventoryRecords.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
