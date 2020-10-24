@@ -155,6 +155,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void commitCliniCal(String command) {
             throw new AssertionError("This method should not be called.");
         }

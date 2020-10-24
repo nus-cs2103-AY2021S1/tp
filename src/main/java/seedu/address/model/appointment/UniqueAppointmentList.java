@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.ConflictingAppointmentException;
-import seedu.address.model.patient.Name;
 
 /**
  * A list of appointments that prevents time conflicts between its elements and does not allow nulls.
