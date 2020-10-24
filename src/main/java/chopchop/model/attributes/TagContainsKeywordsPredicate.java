@@ -2,7 +2,6 @@ package chopchop.model.attributes;
 
 import chopchop.commons.util.StringUtil;
 import chopchop.model.Entry;
-import chopchop.model.recipe.Recipe;
 
 import java.util.List;
 import java.util.function.Predicate;

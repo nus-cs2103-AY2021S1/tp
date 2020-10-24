@@ -13,7 +13,7 @@ import chopchop.model.attributes.TagContainsKeywordsPredicate;
 import chopchop.ui.DisplayNavigator;
 
 /**
- * Finds and lists all ingredients in ingredient book whose name contains any of the argument keywords.
+ * Filters and lists all ingredients in ingredient book that match all filtering criteria.
  * Keyword matching is case insensitive.
  */
 public class FilterIngredientCommand extends FilterCommand {

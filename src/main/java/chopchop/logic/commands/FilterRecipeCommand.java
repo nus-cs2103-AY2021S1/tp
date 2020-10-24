@@ -2,19 +2,18 @@ package chopchop.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import chopchop.commons.core.Messages;
 import chopchop.logic.history.HistoryManager;
-import chopchop.model.recipe.Recipe;
-import chopchop.model.Entry;
 import chopchop.model.Model;
 import chopchop.model.attributes.IngredientsContainsKeywordsPredicate;
 import chopchop.model.attributes.TagContainsKeywordsPredicate;
+import chopchop.model.recipe.Recipe;
 import chopchop.ui.DisplayNavigator;
 
-import java.util.function.Predicate;
-
 /**
- * Finds and lists all ingredients in ingredient book whose name contains any of the argument keywords.
+ * Filters and lists all recipes in recipe book that match all filtering criteria.
  * Keyword matching is case insensitive.
  */
 public class FilterRecipeCommand extends FilterCommand {

@@ -86,14 +86,14 @@ public class FilterCommandParser {
         }
 
         var exps = args.getArgument(Strings.ARG_EXPIRY);
-        Result<FilterCommand> rst_fst = checkImproperFieldInput(exps);
-        if (rst_fst != null) {
-            return rst_fst;
+        Result<FilterCommand> expError = checkImproperFieldInput(exps);
+        if (expError != null) {
+            return expError;
         }
         var tags = args.getArgument(Strings.ARG_TAG);
-        Result<FilterCommand> rst_snd = checkImproperFieldInput(tags);
-        if (rst_snd != null) {
-            return rst_snd;
+        Result<FilterCommand> tagError = checkImproperFieldInput(tags);
+        if (tagError != null) {
+            return tagError;
         }
 
         Result<ExpiryDate> nearestExpDate = null;
@@ -133,14 +133,14 @@ public class FilterCommandParser {
                     foo.get(), FilterRecipeCommand.MESSAGE_USAGE);
         }
         var ingredients = args.getArgument(Strings.ARG_INGREDIENT);
-        Result<FilterCommand> rst_fst = checkImproperFieldInput(ingredients);
-        if (rst_fst != null) {
-            return rst_fst;
+        Result<FilterCommand> indError = checkImproperFieldInput(ingredients);
+        if (indError != null) {
+            return indError;
         }
         var tags = args.getArgument(Strings.ARG_TAG);
-        Result<FilterCommand> rst_snd = checkImproperFieldInput(tags);
-        if (rst_snd != null) {
-            return rst_snd;
+        Result<FilterCommand> tagError = checkImproperFieldInput(tags);
+        if (tagError != null) {
+            return tagError;
         }
 
         return Result.of(new FilterRecipeCommand(
