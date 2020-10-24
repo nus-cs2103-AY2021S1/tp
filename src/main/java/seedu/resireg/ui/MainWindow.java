@@ -5,8 +5,6 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -34,10 +32,9 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private StudentListPanel studentListPanel;
-    private RoomListPanel roomListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private MainPanel mainPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,10 +46,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane semesterDisplayPlaceholder;
 
     @FXML
-    private StackPane studentListPanelPlaceholder;
-
-    @FXML
-    private StackPane roomListPanelPlaceholder;
+    private StackPane mainPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -60,14 +54,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
-    @FXML
-    private TabPane tabPane;
-
-    @FXML
-    private Tab studentsTab;
-
-    @FXML
-    private Tab roomsTab;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -130,7 +116,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        updatePanels();
+        setMainPanel(new TabbedView());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -170,27 +156,6 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    /**
-     * Sets what is displayed in the listPanelStackPane based on the toggle.
-     *
-     * @param toggleView enum representing what should be displayed
-     */
-    public void handleToggle(TabView toggleView) {
-        if (toggleView == TabView.ROOMS) {
-            showRoomsPanel();
-        } else {
-            showStudentPanel();
-        }
-    }
-
-    private void showStudentPanel() {
-        tabPane.getSelectionModel().select(studentsTab);
-    }
-
-    private void showRoomsPanel() {
-        tabPane.getSelectionModel().select(roomsTab);
-    }
-
     void show() {
         primaryStage.show();
     }
@@ -207,8 +172,31 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public StudentListPanel getStudentListPanel() {
-        return studentListPanel;
+    private void setMainPanel(MainPanel mainPanel) {
+        this.mainPanel = mainPanel;
+        mainPanelPlaceholder.getChildren().clear();
+        mainPanelPlaceholder.getChildren().add(mainPanel.getRoot());
+        mainPanel.updatePanels(logic);
+    }
+
+    /**
+     * Sets what is displayed in the listPanelStackPane based on the toggle.
+     *
+     * @param toggleView enum representing what should be displayed
+     */
+    public void handleToggle(TabView toggleView) {
+        mainPanel.handleToggle(toggleView);
+    }
+
+    /**
+     * Toggles the layout of the main panel between a tabbed layout and the side-by-side split layout.
+     */
+    public void toggleMainPanelLayout() {
+        if (mainPanel instanceof TabbedView) {
+            setMainPanel(new SplitView());
+        } else {
+            setMainPanel(new TabbedView());
+        }
     }
 
     /**
@@ -232,7 +220,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            updatePanels();
+            mainPanel.updatePanels(logic);
 
             return commandResult;
         } catch (CommandException | ParseException e) {
@@ -240,24 +228,5 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandText, e.getMessage(), true);
             throw e;
         }
-    }
-
-    /**
-     * Updates the panels for Student and Room lists for changes visually.
-     */
-    private void updatePanels() {
-        studentListPanel = new StudentListPanel(
-                logic.getFilteredStudentList(),
-                logic.getFilteredAllocationList(),
-                logic.getFilteredRoomList());
-        studentListPanelPlaceholder.getChildren()
-                .add(studentListPanel.getRoot());
-
-        roomListPanel = new RoomListPanel(
-                logic.getFilteredRoomList(),
-                logic.getFilteredAllocationList(),
-                logic.getFilteredStudentList());
-        roomListPanelPlaceholder.getChildren()
-                .add(roomListPanel.getRoot());
     }
 }
