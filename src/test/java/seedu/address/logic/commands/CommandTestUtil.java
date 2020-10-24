@@ -78,7 +78,6 @@ public class CommandTestUtil {
     public static final String ADDITIONAL_DETAILS_DESC_BOB = " " + PREFIX_DETAILS + VALID_ADDITIONAL_DETAILS_BOB;
 
     public static final String QUESTION_DESC_AMY = " " + PREFIX_DETAILS + VALID_QUESTION_AMY;
-    public static final String QUESTION_DESC_BOB = " " + PREFIX_DETAILS + VALID_QUESTION_BOB;
 
     public static final String ADDITIONAL_DETAIL_DESC_AMY = " " + PREFIX_DETAIL_TEXT + VALID_ADDITIONAL_DETAILS_AMY;
     public static final String ADDITIONAL_DETAIL_DESC_BOB = " " + PREFIX_DETAIL_TEXT + VALID_ADDITIONAL_DETAILS_BOB;

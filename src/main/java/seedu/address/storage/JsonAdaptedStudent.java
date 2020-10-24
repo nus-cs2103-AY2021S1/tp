@@ -11,11 +11,11 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
-import seedu.address.model.student.Question;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.admin.Admin;
+import seedu.address.model.student.question.Question;
 
 /**
  * Jackson-friendly version of {@link Student}.
