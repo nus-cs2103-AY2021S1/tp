@@ -22,7 +22,7 @@ public class DeleteLabelCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the given tag(s) from the person identified by the name used in the displayed person list.\n"
             + "Parameters: NAME (must be name of person existing in ModDuke) "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_TAG + "TAG\n"
             + "Example: " + COMMAND_WORD + " "
             + "Roy "
             + PREFIX_TAG + "classmate";

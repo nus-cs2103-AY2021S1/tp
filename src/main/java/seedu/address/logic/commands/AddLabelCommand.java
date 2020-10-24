@@ -28,7 +28,7 @@ public class AddLabelCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a label to the person specified.\n"
             + "Parameters: NAME (must be name of person existing in ModDuke) "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_TAG + "TAG\n"
             + "Example: " + COMMAND_WORD + " "
             + "Roy "
             + PREFIX_TAG + "classmate";

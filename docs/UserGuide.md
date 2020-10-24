@@ -121,15 +121,37 @@ Note: A Module can have more than 1 member separated by “,” but can only hav
 
 ### Adding a tag to a user : `label add`
 
-Adds a label to a contact
+Adds the given labels to a contact
 
-Format: ` label add c/CONTACT_NAME [t/TAG_NAMES]…`
+Format: ` label add CONTACT_NAME t/TAG_NAME`
 
 * Only 1 contact name can be used at a time but multiple tags can be added.
-* Tag names are to be separated by a ",".
 
 Examples:
-* `label add c/Jay t/2103, teamproject`
+* `label add Jay t/classmate t/friend`
+
+### Deleting a tag from a user : `label delete`
+
+Deletes the given labels from a contact
+
+Format: ` label delete CONTACT_NAME t/TAG_NAMES`
+
+* Only 1 contact name can be used at a time but multiple tags can be deleted.
+* The contact has to have the given tag.
+
+Examples:
+* `label delete Jay t/friend`
+
+### Clear tags of a user : `label clear`
+
+Deletes all labels of a contact
+
+Format: ` label clear CONTACT_NAME`
+
+* Only 1 contact name can be used at a time.
+
+Examples:
+* `label clear Jay`
 
 ### Adding a meeting: `meeting add`
 
@@ -209,6 +231,32 @@ Format: `consult edit CONSULT_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [cD/CO
 View all the existing consults
 
 Format: `consult list`
+
+### Copy email address of contacts : `copy email`
+
+Copies email address of contacts with the given criteria to your clipboard
+
+Format: `copy email [n/CONTACT_NAME] [m/MODULE_NAME] [t/TAG_NAME]`
+
+* [n/CONTACT_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields,
+* At least one of the optional fields must be provided.
+
+Examples:
+* `copy email n/Roy n/Ekam`
+* `copy email m/CS2103 t/classmate n/Tom n/Jerryl`
+
+### Copy phone numbers of contacts : `copy phone`
+
+Copies phone numbers of contacts with the given criteria to your clipboard
+
+Format: `copy phone [n/CONTACT_NAME] [m/MODULE_NAME] [t/TAG_NAME]`
+
+* [n/CONTACT_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields,
+* At least one of the optional fields must be provided.
+
+Examples:
+* `copy phone m/CS2103`
+* `copy phone m/CS1010 t/classmate n/Bob n/Roy`
 
 ### Exiting the program : `exit`
 
