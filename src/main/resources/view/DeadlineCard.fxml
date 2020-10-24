@@ -15,7 +15,7 @@
    <VBox alignment="CENTER" fillWidth="false" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" HBox.hgrow="NEVER">
       <children>
          <Label text="D" />
-         <CheckBox fx:id="statusSign" alignment="CENTER" disable="true" mnemonicParsing="false">
+         <CheckBox fx:id="statusSign" alignment="CENTER" disable="true" mnemonicParsing="false" VBox.vgrow="NEVER">
             <VBox.margin>
                <Insets />
             </VBox.margin>
