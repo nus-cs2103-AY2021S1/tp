@@ -14,7 +14,7 @@ public class ViewCommand extends Command {
             + "Parameters: NAME \n"
             + "Example: " + COMMAND_WORD + " chicken soup";
 
-    public static final String MESSAGE_VIEW_SUCCESS = "Recipe deleted: %s";
+    public static final String MESSAGE_VIEW_SUCCESS = "Recipe: %s";
     public static final String MESSAGE_RECIPE_NOT_FOUND = "No recipe named '%s'";
 
     private final ItemReference item;
@@ -26,6 +26,6 @@ public class ViewCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) {
-        return new CommandResult("", /* showHelp: */ false, /* exit: */ true);
+        return new CommandResult("");
     }
 }
