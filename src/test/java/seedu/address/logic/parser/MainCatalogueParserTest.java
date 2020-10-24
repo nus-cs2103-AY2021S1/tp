@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import seedu.address.logic.commands.global.ListPersonsCommand;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_ASSIGNEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
@@ -122,11 +123,19 @@ public class MainCatalogueParserTest {
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
+    public void parseCommand_listProjects() throws Exception {
         assertTrue(parser.parseCommand(ListProjectsCommand.COMMAND_WORD, Status.PROJECT_LIST)
                 instanceof ListProjectsCommand);
         assertTrue(parser.parseCommand(ListProjectsCommand.COMMAND_WORD + " 3",
                 Status.PROJECT_LIST) instanceof ListProjectsCommand);
+    }
+
+    @Test
+    public void parseCommand_listPersons() throws Exception {
+        assertTrue(parser.parseCommand(ListPersonsCommand.COMMAND_WORD, Status.PERSON_LIST)
+                instanceof ListPersonsCommand);
+        assertTrue(parser.parseCommand(ListPersonsCommand.COMMAND_WORD + " 1",
+                Status.PERSON_LIST) instanceof  ListPersonsCommand);
     }
 
     @Test
