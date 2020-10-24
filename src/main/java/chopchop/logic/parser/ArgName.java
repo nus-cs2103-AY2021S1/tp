@@ -2,12 +2,18 @@
 
 package chopchop.logic.parser;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import chopchop.commons.util.StringView;
+
 /**
  * A helper class to abtract away the menial task of handling '/' when printing argument names
  */
 public class ArgName {
 
     private final String name;
+    private final List<String> components;
 
     /**
      * Constructs a new argument name from the given string. Note that it *should not* include
@@ -20,7 +26,26 @@ public class ArgName {
             && !name.isEmpty()
             && !name.startsWith("/");
 
-        this.name = name;
+        this.components = new ArrayList<>();
+
+        var sv = new StringView(name);
+
+        // check for components
+        if (sv.find(':') != -1) {
+
+            var parts = sv.splitBy(c -> c == ':');
+            assert parts.size() > 0;
+
+            this.name = parts.get(0);
+            this.components.addAll(parts.subList(1, parts.size()));
+
+        } else {
+            this.name = name;
+        }
+    }
+
+    public List<String> getComponents() {
+        return this.components;
     }
 
     /**
@@ -46,6 +71,7 @@ public class ArgName {
     @Override
     public boolean equals(Object obj) {
         return (obj instanceof ArgName)
-            && ((ArgName) obj).name.equals(this.name);
+            && ((ArgName) obj).name.equals(this.name)
+            && ((ArgName) obj).components.equals(this.components);
     }
 }

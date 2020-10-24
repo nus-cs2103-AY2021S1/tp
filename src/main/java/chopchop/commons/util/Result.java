@@ -2,6 +2,8 @@
 
 package chopchop.commons.util;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Consumer;
@@ -298,6 +300,28 @@ public class Result<T> extends Either<String, T> {
                 return Result.of(value.fromRight());
             }
         }
+    }
+
+    /**
+     * Collapses a list of results into a result of the list. If any of the results contained
+     * within the list was an error, then the first such error is returned; if not, then the
+     * returned result is the list.
+     *
+     * @param list the list to sequence
+     * @return     the sequenced list
+     */
+    public static <T> Result<List<T>> sequence(List<? extends Result<T>> list) {
+        var ret = new ArrayList<T>();
+
+        for (var item : list) {
+            if (item.isError()) {
+                return Result.error(item.getError());
+            } else {
+                ret.add(item.getValue());
+            }
+        }
+
+        return Result.of(ret);
     }
 
     /**

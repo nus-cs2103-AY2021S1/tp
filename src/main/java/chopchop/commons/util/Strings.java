@@ -22,6 +22,7 @@ public class Strings {
     public static final String COMMAND_ADD          = "add";
     public static final String COMMAND_HELP         = "help";
     public static final String COMMAND_LIST         = "list";
+    public static final String COMMAND_EDIT         = "edit";
     public static final String COMMAND_FIND         = "find";
     public static final String COMMAND_QUIT         = "quit";
     public static final String COMMAND_DELETE       = "delete";
@@ -35,6 +36,7 @@ public class Strings {
         COMMAND_HELP,
         COMMAND_LIST,
         COMMAND_FIND,
+        COMMAND_EDIT,
         COMMAND_QUIT,
         COMMAND_DELETE,
         COMMAND_MAKE,

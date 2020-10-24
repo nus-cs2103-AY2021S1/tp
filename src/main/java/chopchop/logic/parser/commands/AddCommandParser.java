@@ -31,6 +31,7 @@ import chopchop.logic.commands.AddIngredientCommand;
 
 import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
 import static chopchop.logic.parser.commands.CommonParser.getFirstUnknownArgument;
+import static chopchop.logic.parser.commands.CommonParser.getFirstAugmentedComponent;
 
 public class AddCommandParser {
 
@@ -43,9 +44,7 @@ public class AddCommandParser {
      * @return     an AddCommand, if the input was valid.
      */
     public static Result<? extends Command> parseAddCommand(CommandArguments args) {
-        if (!args.getCommand().equals(Strings.COMMAND_ADD)) {
-            return Result.error("invalid command '%s' (expected '%s')", args.getCommand(), Strings.COMMAND_ADD);
-        }
+        assert args.getCommand().equals(Strings.COMMAND_ADD);
 
         return getCommandTarget(args)
             .then(target -> {
@@ -71,7 +70,6 @@ public class AddCommandParser {
      * {@code add ingredient NAME [/qty QUANTITY] [/expiry DATE]}
      */
     private static Result<AddIngredientCommand> parseAddIngredientCommand(String name, CommandArguments args) {
-        assert args.getCommand().equals(Strings.COMMAND_ADD);
 
         Optional<ArgName> foo;
         if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_QUANTITY,
@@ -79,6 +77,11 @@ public class AddCommandParser {
 
             return Result.error("'add ingredient' command doesn't support '%s'\n%s",
                 foo.get(), AddIngredientCommand.MESSAGE_USAGE);
+        }
+
+        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
+            return Result.error("'add ingredient' command doesn't support edit-arguments\n%s",
+                AddIngredientCommand.MESSAGE_USAGE);
         }
 
         var qtys = args.getArgument(Strings.ARG_QUANTITY);
@@ -120,7 +123,6 @@ public class AddCommandParser {
      * {@code add recipe NAME [/ingredient INGREDIENT_NAME [/qty QTY1]...]... [/step STEP]...}
      */
     private static Result<AddRecipeCommand> parseAddRecipeCommand(String name, CommandArguments args) {
-        assert args.getCommand().equals(Strings.COMMAND_ADD);
 
         Optional<ArgName> foo;
         if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_QUANTITY,
@@ -128,6 +130,11 @@ public class AddCommandParser {
 
             return Result.error("'add recipe' command doesn't support '%s'\n%s",
                 foo.get(), AddRecipeCommand.MESSAGE_USAGE);
+        }
+
+        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
+            return Result.error("'add recipe' command doesn't support edit-arguments\n%s",
+                AddRecipeCommand.MESSAGE_USAGE);
         }
 
         return parseIngredientList(args)

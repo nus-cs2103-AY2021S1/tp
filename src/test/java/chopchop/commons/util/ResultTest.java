@@ -2,6 +2,7 @@
 
 package chopchop.commons.util;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.NoSuchElementException;
 import org.junit.jupiter.api.Test;
@@ -135,4 +136,27 @@ public class ResultTest {
         assertThrows(RuntimeException.class, () -> Result.extractException(re1));
         assertEquals(Result.of(1234), Result.extractException(rr1));
     }
+
+    @Test
+    public void test_sequencing() {
+        var ok = List.of(Result.of(11), Result.of(22), Result.of(33));
+        var seq1 = Result.sequence(ok);
+
+        assertTrue(seq1.hasValue());
+        assertEquals(List.of(11, 22, 33), seq1.getValue());
+
+        List<Result<Integer>> notOk = List.of(Result.of(11), Result.of(22), Result.error("owo"), Result.of(44));
+        var seq2 = Result.sequence(notOk);
+
+        assertTrue(seq2.isError());
+        assertEquals(Result.error("owo"), seq2);
+    }
 }
+
+
+
+
+
+
+
+
