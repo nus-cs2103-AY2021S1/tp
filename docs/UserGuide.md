@@ -135,7 +135,7 @@ Finds a task by a set of attributes given below.
 Format: `find ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...`
 
 If you provide different attributes in the command, tasks that match all attributes will be displayed.
-If you provide multiple search phrases of the same attribute, tasks that match any of the 
+If you provide multiple search phrases of the same attribute, tasks that match any of the
 search phrase of the same attribute will be displayed.
 
 Available attributes in v1.3 include:
@@ -155,7 +155,7 @@ Examples:
 * `find title:dinner title:lunch type:todo` will list all tasks with the type `todo` and with the title
    that includes either `dinner` or `lunch`
 
- 
+
 
 ### Edit a task: `edit`
 
