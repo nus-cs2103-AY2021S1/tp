@@ -8,7 +8,6 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.record.StudentRecord;
-import seedu.taskmaster.model.record.StudentRecordList;
 import seedu.taskmaster.model.record.StudentRecordListManager;
 import seedu.taskmaster.model.session.Session;
 import seedu.taskmaster.model.session.SessionDateTime;
@@ -37,8 +36,6 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     {
         students = new UniqueStudentList();
     }
-
-    private StudentRecordList studentRecordList;
 
     // TODO: Current session is a placeholder for now
     private Session currentSession = new Session(
@@ -134,7 +131,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     public void markStudentWithNusnetId(NusnetId nusnetId, AttendanceType attendanceType) {
         assert nusnetId != null;
         assert attendanceType != null;
-        studentRecordList.markStudentAttendance(nusnetId, attendanceType);
+        currentSession.markStudentAttendance(nusnetId, attendanceType);
     }
 
     /* Util Methods */
