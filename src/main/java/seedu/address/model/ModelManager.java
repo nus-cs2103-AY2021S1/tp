@@ -14,6 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
+import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
 
@@ -31,7 +32,7 @@ public class ModelManager implements Model {
     //private final List<Person> filteredTeammates;
     private Optional<Project> projectToBeDisplayedOnDashboard;
     private Optional<Task> taskToBeDisplayedOnDashboard;
-    private Optional<Person> teammateToBeDisplayedOnDashboard;
+    private Optional<Participation> teammateToBeDisplayedOnDashboard;
     private Optional<Meeting> meetingToBeDisplayedOnDashboard;
 
     /**
@@ -203,7 +204,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void enterTeammate(Person teammate) {
+    public void enterTeammate(Participation teammate) {
         mainCatalogue.enterTeammate(teammate);
         this.meetingToBeDisplayedOnDashboard = Optional.empty();
         this.taskToBeDisplayedOnDashboard = Optional.empty();
@@ -308,13 +309,13 @@ public class ModelManager implements Model {
 
     //=========== Teammate To Be Displayed On DashBoard Accessors ======================================================
     @Override
-    public void updateTeammateToBeDisplayedOnDashboard(Person teammate) {
+    public void updateTeammateToBeDisplayedOnDashboard(Participation teammate) {
         requireNonNull(teammate);
         this.teammateToBeDisplayedOnDashboard = Optional.of(teammate);
     }
 
     @Override
-    public Optional<Person> getTeammateToBeDisplayedOnDashboard() {
+    public Optional<Participation> getTeammateToBeDisplayedOnDashboard() {
         return teammateToBeDisplayedOnDashboard;
     }
 

@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_B;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_A;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_ADDRESS_B;
+import seedu.address.model.project.Participation;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalProjects.APEAKAPP;
@@ -211,7 +212,7 @@ public class MainCatalogueTest {
         }
 
         @Override
-        public void enterTeammate(Person teammate) {
+        public void enterTeammate(Participation teammate) {
             // TODO: Add content if test case need this.
         }
 

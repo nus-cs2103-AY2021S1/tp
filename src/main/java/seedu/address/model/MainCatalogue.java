@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.task.Task;
@@ -208,7 +209,7 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     }
 
     @Override
-    public void enterTeammate(Person teammate) {
+    public void enterTeammate(Participation teammate) {
         status = Status.TEAMMATE;
         project.get().updateTaskOnView(null);
         project.get().updateMeetingFilter(null);

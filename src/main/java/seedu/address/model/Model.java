@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
+import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
 
@@ -159,8 +160,9 @@ public interface Model {
 
     /**
      * Enters the designated teammate of the current project.
+     * @param teammate
      */
-    void enterTeammate(Person teammate);
+    void enterTeammate(Participation teammate);
 
     /**
      * Enters the designated meeting of the current project.
@@ -192,12 +194,12 @@ public interface Model {
     /**
      * Updates the teammate to be displayed on dashboard.
      */
-    void updateTeammateToBeDisplayedOnDashboard(Person teammate);
+    void updateTeammateToBeDisplayedOnDashboard(Participation teammate);
 
     /**
      * Gets the teammate to be displayed on dashboard.
      */
-    Optional<Person> getTeammateToBeDisplayedOnDashboard();
+    Optional<Participation> getTeammateToBeDisplayedOnDashboard();
 
     /**
      * Updates the meeting to be displayed on dashboard.

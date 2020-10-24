@@ -47,7 +47,7 @@ public class Project {
     private final Set<Meeting> meetings = new HashSet<>();
     // Display helper
     private Optional<Task> taskOnView;
-    private Optional<Person> teammateOnView;
+    private Optional<Participation> teammateOnView;
     private Optional<Meeting> meetingOnView;
 
     /**
@@ -132,7 +132,7 @@ public class Project {
         return taskOnView;
     }
 
-    public Optional<Person> getTeammateOnView() {
+    public Optional<Participation> getTeammateOnView() {
         return this.teammateOnView;
     }
     public Optional<Meeting> getMeetingOnView() {
@@ -155,7 +155,7 @@ public class Project {
      * Updates teammateOnView with t.
      * @param p teammateOnView.
      */
-    public void updateTeammateOnView(Person p) {
+    public void updateTeammateOnView(Participation p) {
         if (p == null) {
             teammateOnView = Optional.empty();
         } else {
@@ -263,13 +263,18 @@ public class Project {
     /**
      * Gets the complete list of Teammates associated with this project
      */
-    public List<Person> getTeammates() {
+    /*public List<Person> getTeammates() {
         List<Person> listOfPersons = new ArrayList<>();
         for (Map.Entry<GitUserName, Participation> entry : listOfParticipations.entrySet()) {
             Person p = entry.getValue().getPerson();
             listOfPersons.add(p);
         }
         return listOfPersons;
+    }*/
+    public List<Participation> getTeammates() {
+        List<Participation> res = Collections.emptyList();
+        res.addAll(listOfParticipations.values());
+        return res;
     }
 
     /**
@@ -278,9 +283,9 @@ public class Project {
      */
     public boolean getTeammatePresence(GitUserIndex gitUserIndex) {
         boolean teammatePresent = false;
-        List<Person> listOfTeammates = this.getTeammates();
-        for (Person teammate : listOfTeammates) {
-            if (teammate.getGitUserNameString().equals(gitUserIndex.getGitUserName())) {
+        List<Participation> listOfTeammates = this.getTeammates();
+        for (Participation teammate : listOfTeammates) {
+            if (teammate.getPerson().getGitUserNameString().equals(gitUserIndex.getGitUserName())) {
                 teammatePresent = true;
                 break;
             }
@@ -292,9 +297,9 @@ public class Project {
      * returns the index of teammate found in the list
      */
     public int getTeammateIndex(GitUserIndex gitUserIndex) {
-        List<Person> listOfTeammates = this.getTeammates();
+        List<Participation> listOfTeammates = this.getTeammates();
         for (int i = 0; i < listOfTeammates.size(); i++) {
-            if (listOfTeammates.get(i).getGitUserNameString().equals(gitUserIndex.getGitUserName())) {
+            if (listOfTeammates.get(i).getPerson().getGitUserNameString().equals(gitUserIndex.getGitUserName())) {
                 return i;
             }
         }

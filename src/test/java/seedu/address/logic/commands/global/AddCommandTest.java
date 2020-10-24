@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import seedu.address.model.project.Participation;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -175,7 +176,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void enterTeammate(Person teammate) {
+        public void enterTeammate(Participation teammate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -205,12 +206,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateTeammateToBeDisplayedOnDashboard(Person teammate) {
+        public void updateTeammateToBeDisplayedOnDashboard(Participation teammate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public Optional<Person> getTeammateToBeDisplayedOnDashboard() {
+        public Optional<Participation> getTeammateToBeDisplayedOnDashboard() {
             throw new AssertionError("This method should not be called.");
         }
 
