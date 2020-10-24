@@ -31,6 +31,9 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     private final ObservableList<Appointment> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    /**
+     * Sample Appointment
+     */
     public UniqueAppointmentList() {
         super();
         add(new Appointment(new Name("Kim Test"),

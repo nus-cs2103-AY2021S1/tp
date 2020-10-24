@@ -93,6 +93,7 @@ public class ModelManager implements Model {
         return cliniCal;
     }
 
+    //=========== Patient ==================================================================================
     @Override
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
@@ -115,6 +116,32 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPatient);
 
         cliniCal.setPatient(target, editedPatient);
+    }
+
+    //=========== Appointment ==============================================================================
+
+    @Override
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        return cliniCal.hasAppointment(appointment);
+    }
+
+    @Override
+    public void deleteAppointment(Appointment target) {
+        cliniCal.removeAppointment(target);
+    }
+
+    @Override
+    public void addAppointment(Appointment toAdd) {
+        cliniCal.addAppointment(toAdd);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+    }
+
+    @Override
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireAllNonNull(target, editedAppointment);
+
+        cliniCal.setAppointment(target, editedAppointment);
     }
 
     //=========== Undo/Redo ===============================================================================
@@ -150,12 +177,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addAppointment(Appointment toAdd) {
-        cliniCal.addAppointment(toAdd);
-        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
-    }
-
-    @Override
     public String getRedoCommand() {
         return versionedCliniCal.getRedoCommand();
     }
@@ -177,6 +198,11 @@ public class ModelManager implements Model {
         filteredPatients.setPredicate(predicate);
     }
 
+    //=========== Filtered Appointment List Accessors =============================================================
+    /**
+     * Returns an unmodifiable view of the list of {@code Appointment} backed by the internal list of
+     * {@code versionedCliniCal}
+     */
     @Override
     public ObservableList<Appointment> getFilteredAppointmentList() {
         return filteredAppointments;
