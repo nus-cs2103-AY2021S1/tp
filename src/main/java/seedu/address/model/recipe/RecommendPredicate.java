@@ -3,7 +3,6 @@ package seedu.address.model.recipe;
 import static java.util.stream.Collectors.toList;
 
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import seedu.address.commons.util.StringUtil;
@@ -11,11 +10,12 @@ import seedu.address.commons.util.StringUtil;
 /**
  * Tests that a {@code Recipe}'s {@code ingredients} matches all of the ingredients in the user's fridge.
  */
-public class RecommendPredicate extends RecipeContainsKeywordsPredicate
-        implements Predicate<Recipe> {
+public class RecommendPredicate implements RecipeContainsKeywordsPredicate {
+
+    protected final List<String> keywords;
 
     public RecommendPredicate(List<String> keywords) {
-        super(keywords);
+        this.keywords = keywords;
     }
 
     @Override
