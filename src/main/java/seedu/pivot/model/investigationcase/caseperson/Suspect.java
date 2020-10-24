@@ -29,6 +29,10 @@ public class Suspect extends CasePerson {
         }
 
         Suspect otherSuspect = (Suspect) other;
-        return otherSuspect.getName().equals(getName());
+        return otherSuspect.getName().equals(getName())
+                && otherSuspect.getGender().equals(getGender())
+                && otherSuspect.getPhone().equals(getPhone())
+                && otherSuspect.getEmail().equals(getEmail())
+                && otherSuspect.getAddress().equals(getAddress());
     }
 }

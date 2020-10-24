@@ -30,7 +30,11 @@ public class Witness extends CasePerson {
         }
 
         Witness otherWitness = (Witness) other;
-        return otherWitness.getName().equals(getName());
+        return otherWitness.getName().equals(getName())
+                && otherWitness.getGender().equals(getGender())
+                && otherWitness.getPhone().equals(getPhone())
+                && otherWitness.getEmail().equals(getEmail())
+                && otherWitness.getAddress().equals(getAddress());
     }
 
 }

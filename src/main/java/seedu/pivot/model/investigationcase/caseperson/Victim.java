@@ -30,6 +30,10 @@ public class Victim extends CasePerson {
         }
 
         Victim otherVictim = (Victim) other;
-        return otherVictim.getName().equals(getName());
+        return otherVictim.getName().equals(getName())
+                && otherVictim.getGender().equals(getGender())
+                && otherVictim.getPhone().equals(getPhone())
+                && otherVictim.getEmail().equals(getEmail())
+                && otherVictim.getAddress().equals(getAddress());
     }
 }
