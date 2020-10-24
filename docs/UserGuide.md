@@ -5,18 +5,22 @@ title: User Guide
 * Table of Contents
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
-
-## Introduction
- OneShelf is a desktop application for you to manage restaurant inventories and pending deliveries.
-It is easy to build and customise your inventories by using
-only Command Line Interface. If you are a busy restaurant manager
+## 1. Introduction
+OneShelf is a desktop application for you to manage restaurant inventories and pending deliveries.
+It is easy to build and customise your inventories and deliveries by using
+only Command Line Interface. If you are a fast-typist restaurant manager
 who prefers to use the Command Line Interface and needs to keep
 track of inventory items and pending deliveries, OneShelf is for you!
+<br><br>
+This User Guide document will provide a general overview of installation, existing features, coming-up features
+as well as summary commands.
 
 
-## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+--------------------------------------------------------------------------------------------------------------------
+## 2. Quick start
+
+1. Ensure you have Java `11` or above irnstalled in your Computer.
 
 2. Download the latest `oneshelf.jar` from [here](https://github.com/AY2021S1-CS2103T-T12-1/tp/releases).
 
@@ -24,29 +28,28 @@ track of inventory items and pending deliveries, OneShelf is for you!
 
 4. Double-click the file to start the app. The similar GUI shown below (Figure 1) should appear in a few seconds. <br>
    *Note how the app contains some sample data but the installed version on your desktop might have a different data set.*<br>
-   ![Ui](images/Ui.png)
+   <br> ![Ui](images/Ui.png) <br>
    Figure 1: Introduction to OneShelf User Interface
 
 5. Type the command `help start` in the command box and press Enter to execute it. <br>
    A new help window shown below (Figure 2) should appear on your desktop.
-   ![Help Window](images/UiHelpStart.png)
+   <br> ![Help Window](images/UiHelpStart.png) <br>
    Figure 2: Help Start Window
    
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-
-## Features
-
-<div markdown="block" class="alert alert-info">
+## 3. Features
 
 OneShelf has 2 main features that it is able to store, namely are:
 1. Inventory items
 2. Pending deliveries
 
 From here onwards, the term `item` and `delivery` are used specifically for inventory items and pending deliveries respectively.
+*You may want to refer to Figure 1 above.*
 
+<div markdown="block" class="alert alert-info">
 **:information_source: Notes about the item command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
@@ -64,9 +67,10 @@ From here onwards, the term `item` and `delivery` are used specifically for inve
 *Note: The above notes are also applicable for `delivery`.*
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+### 3.1 Command Features
 
-
-### Viewing help : `help`
+#### 3.1.1 Viewing help : `help`
 
 Format: `help start`
 If you are a first time user, we strongly encourage you to enter `help start` and follow the guide to kick-start your journey in OneShelf.
@@ -84,12 +88,12 @@ Alternatives:
 * Press `F2` at any point in the usage of the app
 * GUI navigation menu at the top left
 
-![Help Summary Screenshot](images/HelpSummaryWindow.png)
+![Help Summary Screenshot](images/HelpSummaryWindow.png) <br>
 Figure 3: Help Summary Window
 
 
 
-### Adding an item: `add-i` or `add-d`
+#### 3.1.2 Adding an item: `add-i` or `add-d`
 
 Adds inventory item or pending delivery to OneShelf.
 
@@ -115,7 +119,7 @@ Examples: `add-d n/DAMITH p/91111111 a/Blk 251 Orchard Road o/Nasi goreng x1`
 
 
 
-### Removing quantity from an item: `remove-i`
+#### 3.1.3 Removing quantity from an item: `remove-i`
 
 Removes a specified quantity of an existing item from OneShelf.
 
@@ -132,7 +136,7 @@ Examples:
 
 
 
-### Editing an item : `edit-i` or `edit-d`
+#### 3.1.4 Editing an item : `edit-i` or `edit-d`
 
 Edits an existing item in the Inventory book or an existing pending delivery in the Delivery book.
 
@@ -160,7 +164,7 @@ Edits the name and phone number of the 1st item to be `AARON` and `91111233` res
 
 
 
-### Locating items by keywords: `find-i` or `find-d`
+#### 3.1.5 Locating items by keywords: `find-i` or `find-d`
 
 Finds items or deliveries whose atributes contain any of the given keywords.
 
@@ -184,7 +188,7 @@ Examples:
 
 
 
-### Listing all items : `list-i` or `list-d`
+#### 3.1.6 Listing all items : `list-i` or `list-d`
 
 After entering `find-i` or `find-d`, the placeholder in your application will only show the items or deliveries 
 that match your find KEYWORD. If you would like to show **all** the items and deliveries again, 
@@ -194,7 +198,7 @@ Format: `list-i` or `list-d`
 
 
 
-### Deleting an item : `delete-i` or `delete-d`
+#### 3.1.7 Deleting an item : `delete-i` or `delete-d`
 
 Deletes an item or delivery from inventory book or delivery book respectively. Delete command is especially useful
 for delivery as you would often need to delete a pending delivery once it has been delivered.
@@ -211,7 +215,7 @@ Examples:
 
 
 
-### Clearing all entries : `clear-i` or `clear-d`
+#### 3.1.8 Clearing all entries : `clear-i` or `clear-d`
 
 Clears all entries from the Inventory/ Delivery book.
 
@@ -219,7 +223,7 @@ Format: `clear-i` or `clear-d`
 
 
 
-### Exiting the program : `exit`
+#### 3.1.9 Exiting the program : `exit`
 
 Exits the program.
 
@@ -227,7 +231,7 @@ Format: `exit`
 
 
 
-### Undo last command : `undo`
+#### 3.1.10 Undo last command : `undo`
 
 Undoes the previous command by reverting the current data displayed to the state it was in before the last command was executed.
 
@@ -238,7 +242,7 @@ Format: `undo`
 
 
 
-### Redo last command : `redo`
+#### 3.1.11 Redo last command : `redo`
 
 Redoes the last undone command by reverting the current data displayed to the state it was in before the last undo command was executed.
 
@@ -249,47 +253,53 @@ Format: `redo`
 * After any command that changes the state of data (such as add, clear, delete, edit), the new state becomes the latest state
 (i.e. the previous undo commands are "forgotten" and `redo` will have no effect)
 
-
-
-### Saving the data
+--------------------------------------------------------------------------------------------------------------------
+### 3.2 Default Features
+#### 3.2.1 Saving the data
 
 OneShelf data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 
 
-### Scroll through command history
+#### 3.2.2 Scroll through command history
 
 OneShelf commands are traversable much like Window's command prompt with the arrow up key traversing into previous commands and arrow down key traversing into next commands.  
 
 
 
-### Sorting items
+#### 3.2.3 Sorting items
 
 * Inventory items are sorted based on percentage of quantity in ascending order. 
 * If the maximum quantity does not exist for that particular item then it the item will be located at the end of the list.
 * If 2 items have the same quantity, they are then sorted lexicographically.
 
 
+--------------------------------------------------------------------------------------------------------------------
+### 3.3 Coming Soon
+#### 3.3.1 Countdown to deliver [`Coming Soon]`
 
-### Statistics `[Coming Soon]`
+Allows user to input a countdown timer when adding a new delivery so that the user will be able to keep track
+the deliveries that needs to be delivered out based on their urgency
+
+#### 3.3.2 Statistics `[Coming Soon]`
 
 Prints the total amount of delivery and reservation for the day
 
 
 
-### Scheduling `[Coming Soon]`
+#### 3.3.3 Scheduling `[Coming Soon]`
 
 Allows user to know when to do restocking
 
 
 
-### Prices of items `[Coming Soon]`
+#### 3.3.4 Prices of items `[Coming Soon]`
 
 Look up prices on a 'supplier' database
 
 
 
-### Notification `[Coming Soon]`
+#### 3.3.5 Notification `[Coming Soon]`
 
 Notify the user if a certain stock is below threshold
 
@@ -297,7 +307,7 @@ Notify the user if a certain stock is below threshold
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 4. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous InventoryBook home folder.
@@ -306,9 +316,9 @@ Notify the user if a certain stock is below threshold
 
 
 
-## Command summary
+## 5. Command summary
 
-#### General commands summary
+#### 5.1 General commands summary
 
 | Action    | Format, Examples                                                                                    |
 |-----------|-----------------------------------------------------------------------------------------------------|
@@ -317,7 +327,7 @@ Notify the user if a certain stock is below threshold
 |**Undo last command**   | `undo`  |
 |**Redo last undone command**   | `redo`  |
 
-#### Inventory summary
+#### 5.2 Inventory summary
 
 | Action    | Format, Examples                                                                                    |
 |-----------|-----------------------------------------------------------------------------------------------------|
@@ -330,13 +340,12 @@ Notify the user if a certain stock is below threshold
 |**Remove from Inventory** | `remove-i INDEX q/QUANTITY`                                                                                              |                                                                                          |
 
 
-
-#### Delivery summary
+#### 5.3 Delivery summary
 | Action    | Format, Examples                                                                                    |
 |-----------|-----------------------------------------------------------------------------------------------------|
-|**Add to Delivery**    | `add-d` <br> e.g `add-d n/Alex Yeoh p/87438807 a/Blk 30 Geylang Street 29, #06-40 o/2x Chicken Rice, 1x Ice Milo`
+|**Add to Delivery**    | `add-d` <br> e.g `add-d n/Alex Yeoh p/87438807 a/Blk 30 Geylang Street 29, #06-40 o/2x Chicken Rice, 1x Ice Milo` |
 |**Clear from Delivery**  | `clear-d`                                                                                             |
 |**Delete from Delivery** | `delete-d INDEX`<br> e.g., `delete 3`                                                                 |
 |**Edit Delivery**   | `edit-d INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]`<br> e.g.,`edit 3 n/AARON p/91111233`                |
-|**List Delivery**   | `list-d`
+|**List Delivery**   | `list-d` |
 |**Find in Delivery**  | `find-d PREFIX KEYWORD [MORE_KEYWORDS]` <br> e.g., `find-d n/Alex`           |
