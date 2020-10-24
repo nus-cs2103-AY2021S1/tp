@@ -64,12 +64,11 @@ public class PersonDashboard extends UiPart<Region> {
         email.setText("Email: " + this.person.getEmail().value);
         address.setText("Address: " + this.person.getAddress().value);
         header1.setText("Projects: ");
+        this.person.getProjects().stream()
+                .sorted(Comparator.comparing(project -> project.getProjectName().fullProjectName))
+                .forEach(project -> projects.getChildren().add(new Label(project.getProjectName().fullProjectName)));
 
 
-        header1.setText("Tasks: ");
-        this.person.getFilteredTaskList().stream()
-                .sorted(Comparator.comparing(task -> task.taskName))
-                .forEach(task -> tasks.getChildren().add(new Label(task.taskName)));
         header2.setText("Teammates: ");
         this.person.getTeammates().stream()
                 .forEach(person -> teammates.getChildren().add(
