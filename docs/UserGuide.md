@@ -31,7 +31,7 @@ track of inventory items and pending deliveries, OneShelf is for you!
    A new help window shown below (Figure 2) should appear on your desktop.
    ![Help Window](images/UiHelpStart.png)
    Figure 2: Help Start Window
-   
+
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -120,7 +120,7 @@ Examples: `add-d n/DAMITH p/91111111 a/Blk 251 Orchard Road o/Nasi goreng x1`
 Removes a specified quantity of an existing item from OneShelf.
 
 Format: `remove-i INDEX q/QUANTITY`
-* Subtracts `QUANTITY` from the current quantity of an item at the specified `INDEX`. 
+* Subtracts `QUANTITY` from the current quantity of an item at the specified `INDEX`.
 The index refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -192,7 +192,7 @@ Format: `find-d PREFIX KEYWORD [MORE_KEYWORDS]`
   e.g. `Bernice Adam` will return `Bernice Yeo`, `Adam Tan`
 * More than one Prefix can be specified (i.e. `AND` search).
   e.g. 'find-d n/Bernice p/85783742' will return delivery matching name and phone.
-  
+ 
 Examples:
 * `find-d n/John` returns `John Tay` and `John Lim`'s deliveries
 
@@ -200,8 +200,8 @@ Examples:
 
 ### Listing all items : `list-i` or `list-d`
 
-After entering `find-i` or `find-d`, the placeholder in your application will only show the items or deliveries 
-that match your find KEYWORD. If you would like to show **all** the items and deliveries again, 
+After entering `find-i` or `find-d`, the placeholder in your application will only show the items or deliveries
+that match your find KEYWORD. If you would like to show **all** the items and deliveries again,
 `list-i` or `list-d` command would be useful.
 
 Format: `list-i` or `list-d`
@@ -273,13 +273,13 @@ OneShelf data are saved in the hard disk automatically after any command that ch
 
 ### Scroll through command history
 
-OneShelf commands are traversable much like Window's command prompt with the arrow up key traversing into previous commands and arrow down key traversing into next commands.  
+OneShelf commands are traversable much like Window's command prompt with the arrow up key traversing into previous commands and arrow down key traversing into next commands.
 
 
 
 ### Sorting items
 
-* Inventory items are sorted based on percentage of quantity in ascending order. 
+* Inventory items are sorted based on percentage of quantity in ascending order.
 * If the maximum quantity does not exist for that particular item then it the item will be located at the end of the list.
 * If 2 items have the same quantity, they are then sorted lexicographically.
 
