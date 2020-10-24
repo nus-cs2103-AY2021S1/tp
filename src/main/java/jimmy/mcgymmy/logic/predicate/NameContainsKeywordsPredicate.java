@@ -21,6 +21,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Food> {
 
     @Override
     public boolean test(Food food) {
+        assert food != null : "NameContainsKeywordsPredicate -> Name cannot be null";
         try {
             return keywords.stream()
                     .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(food.getName().fullName, keyword));
