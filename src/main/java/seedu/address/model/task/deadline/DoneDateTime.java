@@ -14,7 +14,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class DoneDateTime {
 
     public final LocalDateTime value;
-    public final boolean isNull;
+    public final boolean isFilled;
 
     /**
      * Constructs a {@code DateTime}.
@@ -23,18 +23,18 @@ public class DoneDateTime {
      */
     public DoneDateTime(String dateTime) {
         if (dateTime.isEmpty() || dateTime.isBlank() || dateTime == null) {
-            this.isNull = true;
+            this.isFilled = false;
             this.value = DateUtil.DEFAULT_DATETIME;
         } else {
             checkArgument(isValidDoneDateTime(dateTime), DateUtil.MESSAGE_CONSTRAINTS);
             this.value = LocalDateTime.parse(dateTime, DateUtil.DATETIME_FORMATTER);
-            this.isNull = false;
+            this.isFilled = true;
         }
     }
 
     private DoneDateTime(LocalDateTime value) {
         this.value = value;
-        this.isNull = false;
+        this.isFilled = true;
     }
 
     /**
@@ -48,8 +48,8 @@ public class DoneDateTime {
         return new DoneDateTime(LocalDateTime.now());
     }
 
-    public boolean isNull() {
-        return isNull;
+    public boolean isFilled() {
+        return isFilled;
     }
 
     /**
@@ -74,7 +74,7 @@ public class DoneDateTime {
 
     @Override
     public String toString() {
-        if (isNull) {
+        if (isFilled) {
             return "";
         } else {
             return value.format(DateUtil.DATETIME_FORMATTER);
@@ -84,9 +84,9 @@ public class DoneDateTime {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeadlineDateTime // instanceof handles nulls
-                && (value.equals(((DeadlineDateTime) other).value)
-                || isNull && ((DeadlineDateTime) other).isNull())); // state check
+                || (other instanceof DoneDateTime // instanceof handles nulls
+                && (value.equals(((DoneDateTime) other).value)
+                || isFilled && ((DoneDateTime) other).isFilled())); // state check
     }
 
     @Override

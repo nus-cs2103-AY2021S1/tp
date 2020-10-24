@@ -10,6 +10,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
+import seedu.address.model.task.deadline.Deadline;
 
 /**
  * Represents a Task in the PlaNus task list.
@@ -65,6 +66,15 @@ public class Event extends Task {
         return Collections.unmodifiableSet(tags);
     }
 
+    @Override
+    public boolean isSameTask(Task otherTask) {
+        if (otherTask instanceof Event) {
+            return isSameEvent((Event) otherTask);
+        } else {
+            return false;
+        }
+    }
+
     /**
      * Returns true if both events of the same title, start and end datetime.
      * This defines a strong notion of equality between two events to allow recurring events yet preventing duplicates.
@@ -73,7 +83,6 @@ public class Event extends Task {
         if (otherEvent == this) {
             return true;
         }
-
         return otherEvent != null
                 && otherEvent.getTitle().equals(getTitle())
                 && otherEvent.getStartDateTime().equals(getStartDateTime())
@@ -126,6 +135,26 @@ public class Event extends Task {
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
+    }
+
+    /**
+     * compares event with another task object, if the otherTask is also an event, compare there endDateTime,
+     * if another task is deadline object, check whether if has the deadlineDateTime filled by user, if exits,
+     * compare the this event's entDateTime with the deadlineDateTime, if not exits, the event is consider to be
+     * before the deadline.
+     */
+    @Override
+    public int compareTo(Task otherTask) {
+        if (otherTask instanceof Event) {
+            return getEndDateTime().value.compareTo(((Event) otherTask).getEndDateTime().value);
+        } else {
+            Deadline deadline = (Deadline) otherTask;
+            if (deadline.isDeadlineDateTimeFilled()) {
+                return getEndDateTime().value.compareTo(deadline.getDeadlineDateTime().value);
+            } else {
+                return -1;
+            }
+        }
     }
 
 }

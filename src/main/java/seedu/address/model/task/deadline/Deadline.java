@@ -11,6 +11,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
+import seedu.address.model.task.event.Event;
 
 /**
  * Represents a Deadline in the PlaNus task list.
@@ -65,12 +66,21 @@ public class Deadline extends Task {
         return duration;
     }
 
+    public boolean isDeadlineDateTimeFilled() {
+        return deadlineDateTime.isFilled();
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    @Override
+    public boolean isSameTask(Task otherTask) {
+        return false;
     }
 
     public Status getStatus() {
@@ -142,6 +152,31 @@ public class Deadline extends Task {
         getTags().forEach(builder::append);
         builder.append(" Status: ").append(getStatus());
         return builder.toString();
+    }
+
+    /**
+     * compares deadline with another task object
+     */
+    @Override
+    public int compareTo(Task otherTask) {
+        if (otherTask instanceof Event) {
+            if (deadlineDateTime.isFilled) {
+                return getDeadlineDateTime().value.compareTo(((Event) otherTask).getEndDateTime().value);
+            } else {
+                return 1;
+            }
+        } else { //otherTask instanceof Deadline
+            Deadline deadline = (Deadline) otherTask;
+            if (deadline.isDeadlineDateTimeFilled() && deadlineDateTime.isFilled) {
+                return getDeadlineDateTime().value.compareTo(deadline.getDeadlineDateTime().value);
+            } else if (deadline.isDeadlineDateTimeFilled() && !deadlineDateTime.isFilled){
+                return 1;
+            } else if (!deadline.isDeadlineDateTimeFilled() && deadlineDateTime.isFilled) {
+                return -1;
+            } else {
+                return getTitle().toString().compareTo(deadline.getTitle().toString());
+            }
+        }
     }
 
 }
