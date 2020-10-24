@@ -13,6 +13,7 @@ import seedu.fma.logic.commands.Command;
 import seedu.fma.logic.commands.DeleteCommand;
 import seedu.fma.logic.commands.DeleteExCommand;
 import seedu.fma.logic.commands.EditCommand;
+import seedu.fma.logic.commands.EditExCommand;
 import seedu.fma.logic.commands.ExitCommand;
 import seedu.fma.logic.commands.FindCommand;
 import seedu.fma.logic.commands.HelpCommand;
@@ -52,6 +53,9 @@ public class FixMyAbsParser {
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments, logBook);
+
+        case EditExCommand.COMMAND_WORD:
+            return new EditExCommandParser().parse(arguments, logBook);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments, logBook);
