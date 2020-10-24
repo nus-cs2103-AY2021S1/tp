@@ -10,9 +10,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.fma.logic.commands.AddCommand;
+import seedu.fma.logic.commands.AddExCommand;
 import seedu.fma.logic.commands.ClearCommand;
 import seedu.fma.logic.commands.DeleteCommand;
+import seedu.fma.logic.commands.DeleteExCommand;
 import seedu.fma.logic.commands.EditCommand;
+import seedu.fma.logic.commands.EditExCommand;
 import seedu.fma.logic.commands.ExitCommand;
 import seedu.fma.logic.commands.FindCommand;
 import seedu.fma.logic.commands.HelpCommand;
@@ -90,5 +93,26 @@ class FixMyAbsParserTest {
         FixMyAbsParser parser = new FixMyAbsParser();
         assertTrue(parser.parseCommand(DeleteCommand.COMMAND_WORD
                 + " 1", logBook) instanceof DeleteCommand);
+    }
+
+    @Test
+    void parseCommand_containsAddExCommand_returnsAddExCommand() throws ParseException {
+        FixMyAbsParser parser = new FixMyAbsParser();
+        assertTrue(parser.parseCommand(AddExCommand.COMMAND_WORD
+                + " e/love c/100000", logBook) instanceof AddExCommand);
+    }
+
+    @Test
+    void parseCommand_containsEditExCommand_returnsEditExCommand() throws ParseException {
+        FixMyAbsParser parser = new FixMyAbsParser();
+        assertTrue(parser.parseCommand(EditExCommand.COMMAND_WORD
+                + " 1 c/100", logBook) instanceof EditExCommand);
+    }
+
+    @Test
+    void parseCommand_containsDeleteExCommand_returnsDeleteExCommand() throws ParseException {
+        FixMyAbsParser parser = new FixMyAbsParser();
+        assertTrue(parser.parseCommand(DeleteExCommand.COMMAND_WORD
+                + " 1", logBook) instanceof DeleteExCommand);
     }
 }
