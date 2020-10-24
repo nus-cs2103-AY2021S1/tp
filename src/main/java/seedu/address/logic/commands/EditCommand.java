@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -27,6 +28,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Priority;
 
 /**
  * Edits the details of an existing person in the client list.
@@ -44,7 +46,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_CLIENTSOURCE + "CLIENTSOURCE]..."
-            + "[" + PREFIX_NOTE + "NOTE]\n"
+            + "[" + PREFIX_NOTE + "NOTE]"
+            + "[" + PREFIX_PRIORITY + "PRIORITY]"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -103,6 +106,7 @@ public class EditCommand extends Command {
         Set<ClientSource> updatedClientSources =
                 editPersonDescriptor.getClientSources().orElse(personToEdit.getClientSources());
         Note updatedNote = editPersonDescriptor.getNote().orElse(personToEdit.getNote());
+        Priority updatedPriority = editPersonDescriptor.getPriority().orElse(personToEdit.getPriority());
 
         return new Person(
                 updatedName,
@@ -110,7 +114,8 @@ public class EditCommand extends Command {
                 updatedEmail,
                 updatedAddress,
                 updatedClientSources,
-                updatedNote);
+                updatedNote,
+                updatedPriority);
     }
 
     @Override
@@ -142,6 +147,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<ClientSource> clientSources;
         private Note note;
+        private Priority priority;
 
         public EditPersonDescriptor() {}
 
@@ -156,6 +162,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setClientSources(toCopy.clientSources);
             setNote(toCopy.note);
+            setPriority(toCopy.priority);
         }
 
         /**
@@ -222,6 +229,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(note);
         }
 
+        public void setPriority(Priority priority) {
+            this.priority = priority;
+        }
+
+        public Optional<Priority> getPriority() {
+            return Optional.ofNullable(priority);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -242,7 +257,8 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getClientSources().equals(e.getClientSources())
-                    && getNote().equals(e.getNote());
+                    && getNote().equals(e.getNote())
+                    && getPriority().equals(e.getPriority());
         }
     }
 }
