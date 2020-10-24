@@ -245,6 +245,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isVendor()) {
                 handleVendor();
             }
+            // TODO: add commandResult.isUpdatedMenu?
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

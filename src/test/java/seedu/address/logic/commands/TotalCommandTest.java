@@ -17,7 +17,7 @@ public class TotalCommandTest {
     public void execute_orderTotal_success() {
         Model model = TypicalModel.getModelManagerWithMenu();
         Model expectedModel = TypicalModel.getModelManagerWithMenu();
-        ObservableList<Food> menu = model.getFilteredFoodList(0);
+        ObservableList<Food> menu = model.getFilteredFoodList();
 
         double calculatedTotal = 0;
         for (int i = 0; i < 5; i++) {

@@ -16,7 +16,7 @@ public class SubmitCommandTest {
     public void execute_submit_success() {
         Model model = TypicalModel.getModelManagerWithMenu();
         Model expectedModel = TypicalModel.getModelManagerWithMenu();
-        ObservableList<Food> menu = model.getFilteredFoodList(0);
+        ObservableList<Food> menu = model.getFilteredFoodList();
 
         StringBuilder expectedMessage = new StringBuilder();
         double calculatedTotal = 0;
