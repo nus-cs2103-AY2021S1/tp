@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -41,13 +40,13 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
     @FXML
-    private Label semesterLabel;
-
-    @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private StackPane semesterDisplayPlaceholder;
 
     @FXML
     private StackPane studentListPanelPlaceholder;
@@ -138,6 +137,9 @@ public class MainWindow extends UiPart<Stage> {
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getResiRegFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+        SemesterDisplay semesterDisplay = new SemesterDisplay(logic.getSemester());
+        semesterDisplayPlaceholder.getChildren().add(semesterDisplay.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
