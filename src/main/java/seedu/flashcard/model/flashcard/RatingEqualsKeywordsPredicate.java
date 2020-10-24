@@ -1,6 +1,5 @@
 package seedu.flashcard.model.flashcard;
 
-import java.util.List;
 import java.util.function.Predicate;
 
 /**
@@ -9,8 +8,8 @@ import java.util.function.Predicate;
 public class RatingEqualsKeywordsPredicate implements Predicate<Flashcard> {
     private final Rating rating;
 
-    public RatingEqualsKeywordsPredicate(Rating Rating) {
-        this.rating = Rating;
+    public RatingEqualsKeywordsPredicate(Rating rating) {
+        this.rating = rating;
     }
 
     @Override
@@ -27,7 +26,7 @@ public class RatingEqualsKeywordsPredicate implements Predicate<Flashcard> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof RatingEqualsKeywordsPredicate // instanceof handles nulls
-                && rating.equals(((RatingEqualsKeywordsPredicate) other).rating)); // state check
+                && rating == ((RatingEqualsKeywordsPredicate) other).rating); // state check
     }
 
     public Rating getRating() {

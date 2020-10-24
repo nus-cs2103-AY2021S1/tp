@@ -2,14 +2,17 @@ package seedu.flashcard.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_FAV;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.flashcard.commons.core.Messages;
 import seedu.flashcard.model.Model;
-import seedu.flashcard.model.flashcard.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
+import seedu.flashcard.model.flashcard.CategoryEqualsKeywordsPredicate;
+import seedu.flashcard.model.flashcard.FavouriteEqualsKeywordsPredicate;
+import seedu.flashcard.model.flashcard.MultipleFieldsEqualsKeywordsPredicate;
+import seedu.flashcard.model.flashcard.RatingEqualsKeywordsPredicate;
+import seedu.flashcard.model.flashcard.TagsEqualKeywordsPredicate;
 
 /**
  * Filters and lists flashcards belonging to the category input by user.
@@ -20,34 +23,31 @@ public class FilterCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Filters and lists flashcards belonging to the category input by user.\n"
-            + "Parameters: " + PREFIX_CATEGORY + " CATEGORY\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_CATEGORY + " SDLC";
+            + "Parameters: [" + PREFIX_CATEGORY + " CATEGORY] "
+            + "[" + PREFIX_RATING + " RATING] [" + PREFIX_FAV + " FAVOURITE] "
+            + "[" + PREFIX_TAG + " [TAG]...] \n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_CATEGORY + " SDLC " + PREFIX_RATING + " 2 "
+            + PREFIX_FAV + " yes " + PREFIX_TAG + " exam";
 
     private final CategoryEqualsKeywordsPredicate categoryPredicate;
     private final RatingEqualsKeywordsPredicate ratingPredicate;
     private final FavouriteEqualsKeywordsPredicate favouritePredicate;
+    private final TagsEqualKeywordsPredicate tagsPredicate;
     private final MultipleFieldsEqualsKeywordsPredicate combinedPredicate;
 
+    /**
+     * Creates a FilterCommand to filter according to specified predicates
+     */
     public FilterCommand(CategoryEqualsKeywordsPredicate categoryPredicate,
                          RatingEqualsKeywordsPredicate ratingPredicate,
-                         FavouriteEqualsKeywordsPredicate favouritePredicate) {
+                         FavouriteEqualsKeywordsPredicate favouritePredicate,
+                         TagsEqualKeywordsPredicate tagsPredicate) {
         this.categoryPredicate = categoryPredicate;
         this.ratingPredicate = ratingPredicate;
         this.favouritePredicate = favouritePredicate;
+        this.tagsPredicate = tagsPredicate;
         this.combinedPredicate = new MultipleFieldsEqualsKeywordsPredicate(categoryPredicate,
-                ratingPredicate, favouritePredicate);
-//        if (categoryPredicate.getCategory() != null) {
-//            System.out.println("category added");
-//            predicateList.add(categoryPredicate);
-//        }
-//        if (ratingPredicate.getRating() != null) {
-//            System.out.println("rating added");
-//            predicateList.add(ratingPredicate);
-//        }
-//        if (favouritePredicate.getIsFavourite() != null) {
-//            System.out.println("favourite added");
-//            predicateList.add(favouritePredicate);
-//        }
+                ratingPredicate, favouritePredicate, tagsPredicate);
     }
 
     @Override
@@ -62,6 +62,8 @@ public class FilterCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FilterCommand // instanceof handles nulls
-                && categoryPredicate.equals(((FilterCommand) other).categoryPredicate)); // state check
+                && categoryPredicate.equals(((FilterCommand) other).categoryPredicate)
+                && ratingPredicate.equals(((FilterCommand) other).ratingPredicate)
+                && favouritePredicate.equals(((FilterCommand) other).favouritePredicate)); // state check
     }
 }

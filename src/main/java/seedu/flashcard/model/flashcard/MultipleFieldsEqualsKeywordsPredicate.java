@@ -2,23 +2,35 @@ package seedu.flashcard.model.flashcard;
 
 import java.util.function.Predicate;
 
+/**
+ * Tests that a {@code Flashcard}'s {@code Category, Rating, isFavourite, Tags} matches any of the keywords given.
+ */
 public class MultipleFieldsEqualsKeywordsPredicate implements Predicate<Flashcard> {
     private final CategoryEqualsKeywordsPredicate categoryPredicate;
     private final RatingEqualsKeywordsPredicate ratingPredicate;
     private final FavouriteEqualsKeywordsPredicate favouritePredicate;
+    private final TagsEqualKeywordsPredicate tagsPredicate;
     private final boolean isCategoryApplied;
     private final boolean isRatingApplied;
     private final boolean isFavouriteApplied;
+    private final boolean isTagsApplied;
 
+    /**
+     * Creates MultipleFieldsEqualsKeywordsPredicate that contains specific predicates for category, rating
+     * favourite and tags.
+     */
     public MultipleFieldsEqualsKeywordsPredicate(CategoryEqualsKeywordsPredicate categoryPredicate,
                                                  RatingEqualsKeywordsPredicate ratingPredicate,
-                                                 FavouriteEqualsKeywordsPredicate favouritePredicate) {
+                                                 FavouriteEqualsKeywordsPredicate favouritePredicate,
+                                                 TagsEqualKeywordsPredicate tagsPredicate) {
         this.categoryPredicate = categoryPredicate;
         this.ratingPredicate = ratingPredicate;
         this.favouritePredicate = favouritePredicate;
+        this.tagsPredicate = tagsPredicate;
         this.isCategoryApplied = categoryPredicate.getCategory() != null;
         this.isRatingApplied = ratingPredicate.getRating() != null;
         this.isFavouriteApplied = favouritePredicate.getIsFavourite() != null;
+        this.isTagsApplied = tagsPredicate.getTags() != null;
     }
 
     @Override
@@ -26,22 +38,28 @@ public class MultipleFieldsEqualsKeywordsPredicate implements Predicate<Flashcar
         boolean categoryOutcome;
         boolean ratingOutcome;
         boolean favouriteOutcome;
+        boolean tagsOutcome;
         if (isCategoryApplied) {
-            categoryOutcome = categoryPredicate.getCategory().equals(flashcard.getCategory());
+            categoryOutcome = categoryPredicate.test(flashcard);
         } else {
             categoryOutcome = true;
         }
         if (isRatingApplied) {
-            ratingOutcome = ratingPredicate.getRating().equals(flashcard.getRating());
+            ratingOutcome = ratingPredicate.test(flashcard);
         } else {
             ratingOutcome = true;
         }
         if (isFavouriteApplied) {
-            favouriteOutcome = favouritePredicate.getIsFavourite().equals(flashcard.isFavourite());
+            favouriteOutcome = favouritePredicate.test(flashcard);
         } else {
             favouriteOutcome = true;
         }
-        return categoryOutcome && ratingOutcome && favouriteOutcome;
+        if (isTagsApplied) {
+            tagsOutcome = tagsPredicate.test(flashcard);
+        } else {
+            tagsOutcome = true;
+        }
+        return categoryOutcome && ratingOutcome && favouriteOutcome && tagsOutcome;
     }
 
     @Override
@@ -50,7 +68,8 @@ public class MultipleFieldsEqualsKeywordsPredicate implements Predicate<Flashcar
                 || (other instanceof MultipleFieldsEqualsKeywordsPredicate // instanceof handles nulls
                 && categoryPredicate.equals(((MultipleFieldsEqualsKeywordsPredicate) other).categoryPredicate)
                 && ratingPredicate.equals(((MultipleFieldsEqualsKeywordsPredicate) other).ratingPredicate)
-                && favouritePredicate.equals(((MultipleFieldsEqualsKeywordsPredicate) other).favouritePredicate));
+                && favouritePredicate.equals(((MultipleFieldsEqualsKeywordsPredicate) other).favouritePredicate)
+                && tagsPredicate.equals(((MultipleFieldsEqualsKeywordsPredicate) other).tagsPredicate));
     }
 
 }

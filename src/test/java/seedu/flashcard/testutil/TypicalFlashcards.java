@@ -26,7 +26,7 @@ public class TypicalFlashcards {
 
     public static final Flashcard FLASHCARD_3 = new FlashcardBuilder()
             .withQuestion("It is recommended that assertions to be used liberally in the code. True or False?")
-            .withAnswer("True").build();
+            .withAnswer("True").withFavouriteStatus(true).build();
 
     private TypicalFlashcards() {
     } // prevents instantiation

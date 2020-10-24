@@ -21,7 +21,7 @@ public class CategoryEqualsKeywordsPredicate implements Predicate<Flashcard> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof CategoryEqualsKeywordsPredicate // instanceof handles nulls
-                && category.equals(((CategoryEqualsKeywordsPredicate) other).category)); // state check
+                && category == ((CategoryEqualsKeywordsPredicate) other).category); // state check
     }
 
     public Category getCategory() {

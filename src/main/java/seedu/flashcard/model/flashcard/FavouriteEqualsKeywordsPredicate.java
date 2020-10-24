@@ -14,7 +14,6 @@ public class FavouriteEqualsKeywordsPredicate implements Predicate<Flashcard> {
 
     @Override
     public boolean test(Flashcard flashcard) {
-        System.out.println(isFavourite + "   versus   " + flashcard.isFavourite());
         return isFavourite == flashcard.isFavourite();
     }
 

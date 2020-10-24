@@ -25,6 +25,7 @@ import seedu.flashcard.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String INVALID_FAV_INPUT = "Favourite should only take in 'yes' or 'no'.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -107,7 +108,6 @@ public class ParserUtil {
      */
     public static Boolean parseFavourite(String isFavourite) throws ParseException {
         requireNonNull(isFavourite);
-        final String INVALID_FAV_INPUT = "Favourite should only take in 'yes' or 'no'.";
         String trimmedIsFavourite = isFavourite.trim().toLowerCase();
         if (!trimmedIsFavourite.equals("yes") && !trimmedIsFavourite.equals("no")) {
             throw new ParseException(INVALID_FAV_INPUT);

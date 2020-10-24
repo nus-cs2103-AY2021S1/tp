@@ -1,14 +1,23 @@
 package seedu.flashcard.logic.parser;
 
 import static seedu.flashcard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.flashcard.logic.parser.CliSyntax.*;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_FAV;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.flashcard.logic.commands.FilterCommand;
 import seedu.flashcard.logic.parser.exceptions.ParseException;
-import seedu.flashcard.model.flashcard.*;
+import seedu.flashcard.model.flashcard.Category;
+import seedu.flashcard.model.flashcard.CategoryEqualsKeywordsPredicate;
+import seedu.flashcard.model.flashcard.FavouriteEqualsKeywordsPredicate;
+import seedu.flashcard.model.flashcard.Rating;
+import seedu.flashcard.model.flashcard.RatingEqualsKeywordsPredicate;
+import seedu.flashcard.model.flashcard.TagsEqualKeywordsPredicate;
+import seedu.flashcard.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new FilterCommand object
@@ -24,17 +33,20 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         Category category = null;
         Rating rating = null;
         Boolean isFavourite = null;
+        Set<Tag> tags = null;
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_RATING, PREFIX_FAV);
+                ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_RATING, PREFIX_FAV, PREFIX_TAG);
 
         boolean noPrefixesPresent = !arePrefixesPresent(argMultimap, PREFIX_CATEGORY)
                 && !arePrefixesPresent(argMultimap, PREFIX_RATING)
-                && !arePrefixesPresent(argMultimap, PREFIX_FAV);
+                && !arePrefixesPresent(argMultimap, PREFIX_FAV)
+                && !arePrefixesPresent(argMultimap, PREFIX_TAG);
         if (noPrefixesPresent
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
+
         if (arePrefixesPresent(argMultimap, PREFIX_CATEGORY)) {
             category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
         }
@@ -44,9 +56,13 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         if (arePrefixesPresent(argMultimap, PREFIX_FAV)) {
             isFavourite = ParserUtil.parseFavourite(argMultimap.getValue(PREFIX_FAV).get());
         }
+        if (arePrefixesPresent(argMultimap, PREFIX_TAG)) {
+            tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        }
 
         return new FilterCommand(new CategoryEqualsKeywordsPredicate(category),
-                new RatingEqualsKeywordsPredicate(rating), new FavouriteEqualsKeywordsPredicate(isFavourite));
+                new RatingEqualsKeywordsPredicate(rating), new FavouriteEqualsKeywordsPredicate(isFavourite),
+                new TagsEqualKeywordsPredicate(tags));
     }
 
     /**
