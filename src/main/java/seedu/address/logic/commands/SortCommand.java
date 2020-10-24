@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Arrays;
 
 import seedu.address.commons.core.Messages;
@@ -27,7 +29,11 @@ public class SortCommand extends Command {
 
     private final String comparisonMeans;
 
+    /**
+     * @param comparisonMeans Means that we use to sort students in reeve
+     */
     public SortCommand(String comparisonMeans) {
+        requireNonNull(comparisonMeans);
         this.comparisonMeans = comparisonMeans;
     }
 
@@ -58,5 +64,12 @@ public class SortCommand extends Command {
 
         return new CommandResult(
                 String.format(Messages.MESSAGE_STUDENTS_SORTED, comparisonMeans));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SortCommand // instanceof handles nulls
+                && comparisonMeans.equals(((SortCommand) other).comparisonMeans)); // state check
     }
 }
