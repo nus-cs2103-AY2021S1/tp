@@ -54,6 +54,20 @@ public class CommandArguments {
     }
 
     /**
+     * Constructs a set of command arguments consisting of the command name, any remaining
+     * non-named arguments, and some number of named arguments.
+     *
+     * @param command   the name of the command
+     * @param remaining any remaining non-named arguments
+     */
+    public CommandArguments(String command, String remaining) {
+
+        this.command    = command;
+        this.remaining  = remaining;
+        this.arguments  = new ArrayList<>();
+    }
+
+    /**
      * Constructs a set of command arguments consisting of the command name and
      * some number of named arguments.
      *
@@ -67,8 +81,8 @@ public class CommandArguments {
     }
 
     /**
-     * Constructs a set of command arguments consisting of the command name, the command
-     * target, any remaining non-named arguments, and some number of named arguments.
+     * Constructs a set of command arguments consisting of the command name, any remaining
+     * non-named arguments, and some number of named arguments.
      *
      * @param command   the name of the command
      * @param remaining any remaining non-named arguments
