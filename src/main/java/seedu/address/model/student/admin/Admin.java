@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Represents all administrative details of a Student in Reeve.
@@ -90,16 +91,22 @@ public class Admin {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(" Class Venue: ")
+        builder.append("\nClass Venue: ")
                 .append(classVenue)
-                .append(" Lesson Times: ")
+                .append("\nLesson Times: ")
                 .append(classTime)
-                .append(" Fee: ")
+                .append("\nFee: ")
                 .append(fee)
-                .append(" Last Paid: ")
-                .append(paymentDate)
-                .append(" Details: ");
-        details.forEach(builder::append);
+                .append("\nLast Paid: ")
+                .append(paymentDate);
+
+        if (!details.isEmpty()) {
+            builder.append("\nDetails:\n");
+            String detailList = details.stream()
+                    .map(detail -> String.format("- %s", detail))
+                    .collect(Collectors.joining("\n"));
+            builder.append(detailList);
+        }
         return builder.toString();
     }
 }

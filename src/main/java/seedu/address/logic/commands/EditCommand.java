@@ -55,7 +55,7 @@ public class EditCommand extends Command {
             + PREFIX_VENUE + "Anderson Junior College"
             + PREFIX_TIME + "2 1300-1400";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student:\n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in Reeve.";
 

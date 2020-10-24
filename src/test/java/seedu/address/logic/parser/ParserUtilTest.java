@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.address.logic.parser.ParserUtil.parseSchool;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -28,7 +27,7 @@ import seedu.address.model.student.admin.PaymentDate;
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_SCHOOL = "Method!st Girls School";
+    private static final String INVALID_SCHOOL = " ";
     private static final String INVALID_YEAR = "$4";
     private static final String INVALID_CLASS_VENUE = " ";
     private static final String INVALID_CLASS_TIME = "8 1240-2400";
@@ -127,9 +126,6 @@ public class ParserUtilTest {
     @Test
     public void parseSchool_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseSchool(INVALID_SCHOOL));
-
-        String invalidSchool = "Method!st Girls School";
-        assertThrows(ParseException.class, () -> parseSchool(invalidSchool));
     }
 
     @Test
