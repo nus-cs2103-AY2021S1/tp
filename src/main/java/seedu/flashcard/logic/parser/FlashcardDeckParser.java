@@ -19,6 +19,7 @@ import seedu.flashcard.logic.commands.HelpCommand;
 import seedu.flashcard.logic.commands.ListCommand;
 import seedu.flashcard.logic.commands.QuizCommand;
 import seedu.flashcard.logic.commands.ReviewCommand;
+import seedu.flashcard.logic.commands.SortCommand;
 import seedu.flashcard.logic.commands.UnfavCommand;
 import seedu.flashcard.logic.commands.ViewCommand;
 import seedu.flashcard.logic.parser.exceptions.ParseException;
@@ -91,6 +92,9 @@ public class FlashcardDeckParser {
 
         case QuizCommand.COMMAND_WORD:
             return new QuizCommand();
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
