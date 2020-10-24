@@ -165,10 +165,10 @@ public class ParserUtil {
      * @throws ParseException if the given {@code difficulty} is invalid.
      */
     public static Difficulty parseDifficulty(String difficulty) throws ParseException {
+        requireNonNull(difficulty);
         if (difficulty.isEmpty()) {
             return new Difficulty(Difficulties.UNSPECIFIED.name());
         }
-        requireNonNull(difficulty);
         String trimmedDifficulty = difficulty.trim();
         if (!Difficulty.isValidDifficultyName(trimmedDifficulty)) {
             throw new ParseException(Difficulty.MESSAGE_CONSTRAINTS);
