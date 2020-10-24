@@ -14,6 +14,7 @@ public class Appointment {
             "Appointment times should follow the format (dd/MM/yyyy HH:mm)";
     public static final String MISSING_TIMING =
             "Appointment timing is missing!";
+    public static final String TIME_RANGE_CONSTRAINTS = "Time entered cannot be earlier than system time!";
     private final String description;
     private final LocalDateTime time;
 
@@ -78,7 +79,7 @@ public class Appointment {
         } catch (DateTimeParseException e) {
             return false;
         }
-        return isPassed(localDateTime);
+        return true;
     }
 
     /**
@@ -87,7 +88,7 @@ public class Appointment {
      * @param currentTime current local time.
      */
     public static boolean isPassed(LocalDateTime currentTime) {
-        return currentTime.compareTo(java.time.LocalDateTime.now()) > 0;
+        return currentTime.compareTo(java.time.LocalDateTime.now()) < 0;
     }
 
     @Override
