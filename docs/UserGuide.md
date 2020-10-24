@@ -326,6 +326,7 @@ Notify the user if a certain stock is below threshold
 |**Get help summary**    | `help summary` or press `F2` or use GUI help menu at the top left |                                                                                       |                                                                                             |
 |**Undo last command**   | `undo`  |
 |**Redo last undone command**   | `redo`  |
+|**Exit command** | `exit` |
 
 #### 5.2 Inventory summary
 
