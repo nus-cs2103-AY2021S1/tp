@@ -12,7 +12,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.lesson.Lesson;
 import seedu.address.model.task.Task;
 import seedu.address.timetable.TimetableData;
 
@@ -26,7 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Assignment> filteredAssignments;
     private final FilteredList<Assignment> remindedAssignments;
-    private final FilteredList<Lesson> lessons;
+    //private final FilteredList<Lesson> lessons;
     private final FilteredList<Task> filteredTasks;
     private Model previousModel;
 
@@ -44,7 +43,7 @@ public class ModelManager implements Model {
         filteredAssignments = new FilteredList<>(this.addressBook.getAssignmentList());
         remindedAssignments = new FilteredList<>(
                 this.addressBook.getAssignmentList(), PREDICATE_SHOW_ALL_REMINDED_ASSIGNMENTS);
-        lessons = new FilteredList<>(this.addressBook.getLessonList());
+        //lessons = new FilteredList<>(this.addressBook.getLessonList());
         filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
         this.previousModel = previousModel;
     }
@@ -168,15 +167,6 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
-    }
-
-    /**
-     * Updates filtered task list with given predicate.
-     * @param predicate Returns a true if a task matches the predicate, false otherwise.
-     */
-    public void updateFilteredTaskList(Predicate<Task> predicate) {
-        requireNonNull(predicate);
-        filteredTasks.setPredicate(predicate);
     }
 
     //=========== Reminded Assignments List Accessors =============================================================

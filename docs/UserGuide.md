@@ -3,18 +3,19 @@ layout: page
 title: ProductiveNUS
 ---
 
-ProductiveNUS is a **desktop application for managing and scheduling your academic tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
-It is a convenient platform for you to keep track of your lessons and assignments at hand and being able to type quickly will make the process fast as well.
+ProductiveNUS is a **desktop application for managing and scheduling your academic tasks, optimized for use via a Command Line Interface** (CLI) contained in a **Graphical User Interface** (GUI). ProductiveNUS allows you to keep track of all your lessons and assignments at hand and type in your assignments quickly so that no time is wasted.
 
-### Table of Contents
-1. Quick Start
+--------------------------------------------------------------------------------------------------------------------
+
+## Table of Contents
+1. Getting started
 2. Features
 3. FAQ
 4. Summary of commands supported
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Getting started
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -23,6 +24,7 @@ It is a convenient platform for you to keep track of your lessons and assignment
 1. Copy the file to the folder you want to use as the _home folder_ for ProductiveNUS.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -33,7 +35,7 @@ It is a convenient platform for you to keep track of your lessons and assignment
 
    * **`delete`**`3` : Deletes the 3rd assignment shown in the current list.
 
-   * **`import YOUR_NUSMODS_URL`** : Imports your timetable.
+   * **`import url/YOUR_NUSMODS_URL`** : Imports your timetable.
 
    * **`list`**`2` : Lists assignments with deadline 2 days from current date (48 hours from current date and time).
    
@@ -41,8 +43,16 @@ It is a convenient platform for you to keep track of your lessons and assignment
 
    * **`remind`**`3` : Sets reminders for the 3rd assignment which will be displayed in `Your Reminders` section.
    
-   * **`unremind`**`3` : Removes reminders set for the 3rd assignment (assignment will be removed from `Your Reminders` section)
+   * **`unremind`**`3` : Removes reminders set for the 3rd assignment (assignment will be removed from `Your Reminders` section).
 
+   * **`prioritize`**`3 priority/HIGH` : Sets a "HIGH" priority tag for the 3rd assignment.
+   
+   * **`unprioritize`**`3` : Removes the priority tag for the 3rd assignment.
+   
+   * **`done`**`3` : Marks the 3rd assignment as done.
+  
+   * **`undone`**`3` : Marks the 3rd assignment as not done.
+   
    * **`exit`** : Exits the application.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -144,6 +154,7 @@ Examples:
 - `find priority/HIGH` Finds all assignments with high priority.
 
 ### Setting reminders for assignments : `remind`
+
 Sets reminders for the specified assignment which will be displayed in `Your Reminders` section.
 
 Format: `remind INDEX`
@@ -156,11 +167,57 @@ Examples:
 * `list` followed by `remind 2` sets reminders for the 2nd assignment in the assignment list.
 
 ### Removing reminders for assignments : `unremind`
+
 Removes reminders set for the specified assignment (assignment will be removed from `Your Reminders` section)
 
 Format: `unremind INDEX`
 
 * Removes reminders set for the assignment at the specified `INDEX`.
+* The index refers to the index number shown in the displayed assignment list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+### Setting priority for assignments : `prioritize`
+
+Sets a priority tag for the specified assignment.
+
+Format: `prioritize INDEX priority/PRIORITY`
+
+* Sets the priority to the assignment at the specified `INDEX`.
+* Priority levels include LOW, MEDIUM and HIGH.
+* The index refers to the index number shown in the displayed assignment list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* If the assignment already has a priority tag, this command will replace the previous priority tag with the new one.
+
+### Removing priority for assignments : `unprioritize`
+
+Removes a priority tag for the specified assignment.
+
+Format: `unprioritze INDEX`
+
+* Removes the priority of the assignment at the specified `INDEX`.
+* The index refers to the index number shown in the displayed assignment list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+### Marking assignments as done : `done`
+
+Marks the specified assignment as done.
+
+Format: `done INDEX`
+
+* Marks the assignment at the specified `INDEX` as done.
+* The index refers to the index number shown in the displayed assignment list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+### Marking assignments as not done : `undone`
+
+Marks the specified assignment as not done.
+
+Format: `undone INDEX`
+
+**Tip:**
+Assignments are marked as not done by default.
+
+* Marks the assignment at the specified `INDEX` as not done.
 * The index refers to the index number shown in the displayed assignment list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -179,7 +236,12 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ProductiveNUS app home folder.
+**A**: 
+1. Install the app in your other computer and start the app.
+2. Notice that a data file named `addressbook.json` is created under the `/data` folder.
+3. Close the app in your other computer.
+4. Overwrite the newly created data file with the data file from your previous computer.
+5. All your existing data has been successfully transferred!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -189,8 +251,12 @@ Action | Format, Examples
 --------|------------------
 **add** | `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE​ [remind]` <br> e.g., `add n/Math tutorial d/21-03-2020 1100 mod/ST2334`
 **delete** | `delete INDEX`<br> e.g., `delete 3`
-**import** | `import NUSMODS_URL`
+**import** | `import url/NUSMODS_URL`
 **list** | `list [NUMBER]` e.g., `list 2`, `list`
 **find** | `find PREFIX/ KEYWORD [MORE KEYWORD]` e.g., `find mod/CS2103T CS2100`, `find priority/HIGH`
 **remind** | `remind INDEX`
 **unremind** | `unremind INDEX`
+**prioritize** | `prioritize INDEX priority/PRIORITY`
+**unprioritize** | `unprioritize INDEX`
+**done** | `done INDEX`
+**undone** | `undone INDEX`

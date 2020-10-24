@@ -10,6 +10,7 @@ public class Priority {
     public static final String LOW_PRIORITY = "LOW";
     public static final String MEDIUM_PRIORITY = "MEDIUM";
     public static final String HIGH_PRIORITY = "HIGH";
+    public static final String NONE_PRIORITY = "NONE";
     public static final String MESSAGE_CONSTRAINTS = "Priority levels should be either LOW, MEDIUM or HIGH.";
     public enum Level {
         NONE, LOW, HIGH, MEDIUM

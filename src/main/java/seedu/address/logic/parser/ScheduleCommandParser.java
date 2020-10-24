@@ -17,8 +17,8 @@ import seedu.address.model.task.Deadline;
 public class ScheduleCommandParser implements Parser<ScheduleCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ScheduleCommand
+     * and returns an ScheduleCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ScheduleCommand parse(String args) throws ParseException {

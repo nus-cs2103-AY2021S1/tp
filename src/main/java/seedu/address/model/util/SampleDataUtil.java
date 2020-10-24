@@ -21,6 +21,9 @@ public class SampleDataUtil {
     private static final Remind IS_REMINDED = new Remind(true);
     private static final Schedule NOT_SCHEDULED = new Schedule();
     private static final Priority NO_PRIORITY = new Priority();
+    private static final Priority HIGH_PRIORITY = new Priority("HIGH");
+    private static final Priority LOW_PRIORITY = new Priority("LOW");
+    private static final Priority MEDIUM_PRIORITY = new Priority("MEDIUM");
     private static final Done NOT_DONE = new Done();
     private static final Done IS_DONE = new Done(true);
     private static final Deadline DEADLINE_OVERDUE = new Deadline(LocalDateTime.now().minusDays(1));
@@ -32,11 +35,11 @@ public class SampleDataUtil {
     public static Assignment[] getSampleAssignments() {
         return new Assignment[] {
             new Assignment(new Name("CS1231S Homework"), DEADLINE_5_DAYS,
-                    new ModuleCode("CS1231S"), NOT_REMINDED, getValidScheduleBeforeNextWeek(), NO_PRIORITY, NOT_DONE),
+                    new ModuleCode("CS1231S"), NOT_REMINDED, getValidScheduleBeforeNextWeek(), MEDIUM_PRIORITY, IS_DONE),
             new Assignment(new Name("CS2103T Quiz"), DEADLINE_12_HOURS,
-                    new ModuleCode("CS2103T"), NOT_REMINDED, NOT_SCHEDULED, NO_PRIORITY, IS_DONE),
+                    new ModuleCode("CS2103T"), NOT_REMINDED, NOT_SCHEDULED, HIGH_PRIORITY, IS_DONE),
             new Assignment(new Name("CS2106 Lab"), DEADLINE_25_DAYS,
-                    new ModuleCode("CS2106"), IS_REMINDED, NOT_SCHEDULED, NO_PRIORITY, NOT_DONE),
+                    new ModuleCode("CS2106"), IS_REMINDED, NOT_SCHEDULED, LOW_PRIORITY, NOT_DONE),
             new Assignment(new Name("Peer review"), DEADLINE_60_DAYS,
                     new ModuleCode("CS2101"), NOT_REMINDED, getValidScheduleBeforeNextMonth(), NO_PRIORITY, NOT_DONE),
             new Assignment(new Name("IS1103 Mission"), DEADLINE_OVERDUE,
