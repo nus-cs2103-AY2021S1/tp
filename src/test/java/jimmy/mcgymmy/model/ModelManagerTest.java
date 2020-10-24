@@ -2,6 +2,7 @@ package jimmy.mcgymmy.model;
 
 import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 import static jimmy.mcgymmy.testutil.TypicalFoods.CHICKEN_RICE;
+import static jimmy.mcgymmy.testutil.TypicalFoods.DANISH_COOKIES;
 import static jimmy.mcgymmy.testutil.TypicalFoods.NASI_LEMAK;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -10,12 +11,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import jimmy.mcgymmy.commons.core.GuiSettings;
 import jimmy.mcgymmy.commons.core.index.Index;
+import jimmy.mcgymmy.logic.commands.CommandTestUtil;
 import jimmy.mcgymmy.logic.predicate.NameContainsKeywordsPredicate;
 import jimmy.mcgymmy.model.food.Food;
 import jimmy.mcgymmy.testutil.FoodBuilder;
@@ -160,8 +163,30 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void undo_undoAfterUpdateFilteredFoodList_modelManagerHasCorrectContent() {
+        McGymmy expectedMcGymmy = new McGymmyBuilder().withFood(CHICKEN_RICE).withFood(DANISH_COOKIES).build();
+        ModelManager expectedModelManager = new ModelManager(expectedMcGymmy, new UserPrefs());
+        modelManager.addFood(CHICKEN_RICE);
+        modelManager.addFood(DANISH_COOKIES);
+        CommandTestUtil.showFoodAtIndex(modelManager, Index.fromOneBased(2)); // updateFilterdFoodList
+        modelManager.undo();
+        assertEquals(modelManager, expectedModelManager);
+    }
+
+    @Test
+    public void undo_undoAfterClearFilteredFood_modelManagerHasCorrectContent() {
+        McGymmy expectedMcGymmy = new McGymmyBuilder().withFood(CHICKEN_RICE).withFood(DANISH_COOKIES).build();
+        ModelManager expectedModelManager = new ModelManager(expectedMcGymmy, new UserPrefs());
+        modelManager.addFood(CHICKEN_RICE);
+        modelManager.addFood(DANISH_COOKIES);
+        modelManager.clearFilteredFood();
+        modelManager.undo();
+        assertEquals(modelManager, expectedModelManager);
+    }
+
+    @Test
     public void undo_undoMultipleTimes_mcGymmyHasCorrectContent() {
-        Food newChickenRice = new FoodBuilder(CHICKEN_RICE).withDate("2020-04-20").build();
+        Food newChickenRice = new FoodBuilder(CHICKEN_RICE).withDate("2020-04-12").build();
         Food newNasiLemak = new FoodBuilder().withTags("Lunch").build();
 
         McGymmy expected1 = new McGymmyBuilder().build();
@@ -191,6 +216,19 @@ public class ModelManagerTest {
         modelManager.undo();
         assertEquals(expected1, modelManager.getMcGymmy());
 
+    }
+
+    @Test
+    public void undo_updateFilteredFoodListWithSamePredicateMultipleTime_onlyUndoOnce() {
+        McGymmy expectedMcGymmy = new McGymmyBuilder().withFood(CHICKEN_RICE).withFood(DANISH_COOKIES).build();
+        ModelManager expectedModelManager = new ModelManager(expectedMcGymmy, new UserPrefs());
+        modelManager = new ModelManager(expectedMcGymmy, new UserPrefs());
+        Predicate<Food> predicate = food -> false;
+        modelManager.updateFilteredFoodList(predicate);
+        modelManager.updateFilteredFoodList(predicate);
+        modelManager.undo();
+        assertFalse(modelManager.canUndo());
+        assertEquals(modelManager, expectedModelManager);
     }
 
     @Test
