@@ -11,10 +11,17 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Name;
+import seedu.address.model.contact.Telegram;
+import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.module.grade.Assignment;
+import seedu.address.model.module.grade.Grade;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Criterion;
+import seedu.address.model.task.Date;
+import seedu.address.model.task.Priority;
+import seedu.address.model.task.TaskName;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -64,6 +71,21 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String telegramUsername} into an {@code Telegram}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code telegramUsername} is invalid.
+     */
+    public static Telegram parseTelegram(String telegramUsername) throws ParseException {
+        requireNonNull(telegramUsername);
+        String trimmedTelegram = telegramUsername.trim();
+        if (!Telegram.isValidTelegram(trimmedTelegram)) {
+            throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
+        }
+        return new Telegram(trimmedTelegram);
     }
 
     /**
@@ -157,5 +179,108 @@ public class ParserUtil {
             throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_RESULT_CONSTRAINTS);
         }
         return trimmedAssignmentResult;
+    }
+
+    /**
+     * Parses a {@code String modularCredits}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static ModularCredits parseModularCredits(String modularCredits) throws ParseException {
+        double trimmedModularCredits;
+        if (!ModularCredits.isValidModularCredits(modularCredits)) {
+            throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_RESULT_CONSTRAINTS);
+        } else {
+            trimmedModularCredits = Double.parseDouble(modularCredits.trim());
+        }
+        return new ModularCredits(trimmedModularCredits);
+    }
+    /**
+     * Parses a {@code String grade}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static double parseGrade(String grade) throws ParseException {
+        double trimmedGrade = Double.parseDouble(grade.trim());
+        if (!Grade.isValidGrade(trimmedGrade)) {
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedGrade;
+    }
+
+    // ==================== TodoList ===============================================================
+
+    /**
+     * Parses a {@code String name} into a {@code TaskName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static TaskName parseTaskName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!TaskName.isValidTaskName(trimmedName)) {
+            throw new ParseException(TaskName.MESSAGE_CONSTRAINTS);
+        }
+        return new TaskName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String priority} into a {@code Priority}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code priority} is invalid.
+     */
+    public static Priority parseTaskPriority(String priority) throws ParseException {
+        assert priority != null;
+        String priorityAllUpperCase = priority.toUpperCase();
+        switch(priorityAllUpperCase) {
+        case("HIGHEST"):
+            return Priority.HIGHEST;
+        case("HIGH"):
+            return Priority.HIGH;
+        case("NORMAL"):
+            return Priority.NORMAL;
+        case("LOW"):
+            return Priority.LOW;
+        default:
+            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static Date parseTaskDate(String date) throws ParseException {
+        assert date != null;
+        if (!Date.isValidDate(date)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return new Date(date);
+    }
+
+    /**
+     * Parses a {@code String criterion} into a {@code Criterion}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code criterion} is invalid.
+     */
+    public static Criterion parseTaskCriterion(String criterion) throws ParseException {
+        assert criterion != null;
+        String criterionAllUpperCase = criterion.toUpperCase();
+        switch(criterionAllUpperCase) {
+        case("DESCRIPTION"):
+        case("DESC"):
+            return Criterion.NAME;
+        case("DATE"):
+        case("DEADLINE"):
+            return Criterion.DATE;
+        case("PRIORITY"):
+        case("PRIO"):
+            return Criterion.PRIORITY;
+        default:
+            throw new ParseException(Criterion.MESSAGE_CONSTRAINTS);
+        }
     }
 }

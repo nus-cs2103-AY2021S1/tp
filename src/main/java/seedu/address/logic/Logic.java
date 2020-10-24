@@ -7,7 +7,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.module.Module;
 
 /**
@@ -26,17 +28,17 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getModuleList()
      */
-    ReadOnlyModuleList getAddressBook();
+    ReadOnlyModuleList getModuleList();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Module> getFilteredPersonList();
+    ObservableList<Module> getFilteredModuleList();
 
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getModuleListFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -47,4 +49,20 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the Contact List.
+     */
+    ReadOnlyContactList getContactList();
+
+    /**
+     * Returns an unmodifiable list of filtered contacts.
+     */
+    ObservableList<Contact> getFilteredContactList();
+
+    /**
+     * Returns the file Path of the Contact List.
+     * @return Path of contact list.
+     */
+    public Path getContactListFilePath();
 }

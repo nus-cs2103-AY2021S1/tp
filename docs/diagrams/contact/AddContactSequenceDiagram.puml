@@ -1,0 +1,74 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ContactListParser" as ContactListParser LOGIC_COLOR
+participant ":AddContactParser" as AddContactParser LOGIC_COLOR
+participant ":AddContactCommand" as AddContactCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(addcontact)
+activate LogicManager
+
+LogicManager -> ContactListParser : parseCommand(addcontact)
+activate ContactListParser
+
+create AddContactParser
+ContactListParser -> AddContactParser
+activate AddContactParser
+
+AddContactParser --> ContactListParser
+deactivate AddContactParser
+
+ContactListParser -> AddContactParser :parse(commandArgument)
+activate AddContactParser
+
+ref over AddContactParser: Tokenize user input and parse arguments
+
+create AddContactCommand
+AddContactParser -> AddContactCommand
+activate AddContactCommand
+
+AddContactCommand --> AddContactParser: command
+deactivate AddContactCommand
+
+AddContactParser --> ContactListParser: command
+deactivate AddContactParser
+
+AddContactParser -[hidden]-> AddContactCommand
+destroy AddContactParser
+
+ContactListParser --> LogicManager: command
+deactivate ContactListParser
+
+LogicManager -> AddContactCommand : execute(model)
+activate AddContactCommand
+
+AddContactCommand -> Model : addContact(contact)
+activate Model
+
+Model --> AddContactCommand
+deactivate Model
+
+create CommandResult
+AddContactCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddContactCommand: CommandResult
+deactivate CommandResult
+
+AddContactCommand --> LogicManager: CommandResult
+deactivate AddContactCommand
+
+AddContactCommand -[hidden]-> LogicManager
+destroy AddContactCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

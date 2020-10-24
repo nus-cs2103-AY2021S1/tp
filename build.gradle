@@ -7,7 +7,6 @@ plugins {
 }
 
 mainClassName = 'seedu.address.Main'
-//mainClassName = 'tp.cap5buddy.cap5buddy'
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
@@ -68,6 +67,10 @@ dependencies {
 
 shadowJar {
     archiveName = 'cap5buddy.jar'
+}
+
+run {
+    enableAssertions = true
 }
 
 defaultTasks 'clean', 'test'

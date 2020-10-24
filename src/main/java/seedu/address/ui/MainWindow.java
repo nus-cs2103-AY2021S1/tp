@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private ModuleListPanel moduleListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ContactListPanel contactListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -43,7 +44,16 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private VBox personListPanelPlaceholder;
+    private VBox moduleListPanelPlaceholder;
+
+    @FXML
+    private VBox contactListPanelPlaceholder;
+
+    @FXML
+    private VBox taskListPanelPlaceholder;
+
+    @FXML
+    private VBox eventListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -64,7 +74,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
+        //resizeTest();
         //setAccelerators();
 
         helpWindow = new HelpWindow();
@@ -112,9 +122,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        moduleListPanel = new ModuleListPanel(logic.getFilteredPersonList());
-        //temp only until null error is resolved
-        personListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
+        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+
+        // Waiting for contact list storage to be implemented.
+        contactListPanel = new ContactListPanel(logic.getFilteredContactList());
+        contactListPanelPlaceholder.getChildren().add(contactListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -136,6 +149,11 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+    }
+
+    private void resizeTest() {
+        primaryStage.setHeight(1000);
+        primaryStage.setWidth(1000);
     }
 
     /**

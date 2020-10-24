@@ -1,25 +1,25 @@
 package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-// import static org.junit.jupiter.api.Assertions.assertFalse;
-// import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_CS2103T;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalModules.CS2030;
+import static seedu.address.testutil.TypicalModules.getTypicalModuleList;
 
 import java.util.Arrays;
 import java.util.Collection;
-// import java.util.Collections;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.contact.Contact;
-// import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.ContactBuilder;
+import seedu.address.model.module.Module;
+// import seedu.address.model.module.exceptions.DuplicateModulesException;
+import seedu.address.testutil.ModuleBuilder;
 
 public class ModuleListTest {
 
@@ -27,7 +27,7 @@ public class ModuleListTest {
 
     @Test
     public void constructor() {
-        // assertEquals(Collections.emptyList(), moduleList.getPersonList());
+        assertEquals(Collections.emptyList(), moduleList.getModuleList());
     }
 
     @Test
@@ -36,65 +36,65 @@ public class ModuleListTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        ModuleList newData = getTypicalAddressBook();
+    public void resetData_withValidReadOnlyModuleList_replacesData() {
+        ModuleList newData = getTypicalModuleList();
         moduleList.resetData(newData);
         assertEquals(newData, moduleList);
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Contact editedAlice = new ContactBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+    public void resetData_withDuplicateModules_throwsDuplicateModuleException() {
+        // Two modules with the same name
+        Module editedCS2030 = new ModuleBuilder(CS2030).withZoomLink(VALID_ZOOMLINK_CS2103T)
                 .build();
-        List<Contact> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        List<Module> newModules = Arrays.asList(CS2030, editedCS2030);
+        ModuleListStub newData = new ModuleListStub(newModules);
 
-        // assertThrows(DuplicatePersonException.class, () -> moduleList.resetData(newData));
+        // assertThrows(DuplicateModuleException.class, () -> moduleList.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        // assertThrows(NullPointerException.class, () -> moduleList.hasPerson(null));
+    public void hasModule_nullModule_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> moduleList.hasModule(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        // assertFalse(moduleList.hasPerson(ALICE));
+    public void hasModule_moduleNotInModuleList_returnsFalse() {
+        assertFalse(moduleList.hasModule(CS2030));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        // oduleList.addPerson(ALICE);
-        // assertTrue(moduleList.hasPerson(ALICE));
+    public void hasModule_moduleInModuleList_returnsTrue() {
+        moduleList.addModule(CS2030);
+        assertTrue(moduleList.hasModule(CS2030));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        // moduleList.addPerson(ALICE);
-        Contact editedAlice = new ContactBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+    public void hasModule_moduleWithSameNameModuleList_returnsTrue() {
+        moduleList.addModule(CS2030);
+        Module editedCS2030 = new ModuleBuilder(CS2030).withZoomLink(VALID_ZOOMLINK_CS2103T)
                 .build();
-        // assertTrue(moduleList.hasPerson(editedAlice));
+        assertTrue(moduleList.hasModule(editedCS2030));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        // assertThrows(UnsupportedOperationException.class, () -> moduleList.getPersonList().remove(0));
+    public void getModuleList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> moduleList.getModuleList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyModuleList whose modules list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
-        private final ObservableList<Contact> persons = FXCollections.observableArrayList();
+    private static class ModuleListStub implements ReadOnlyModuleList {
+        private final ObservableList<Module> modules = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Contact> persons) {
-            this.persons.setAll(persons);
+        ModuleListStub(Collection<Module> modules) {
+            this.modules.setAll(modules);
         }
 
         @Override
-        public ObservableList<Contact> getPersonList() {
-            return persons;
+        public ObservableList<Module> getModuleList() {
+            return modules;
         }
     }
 
