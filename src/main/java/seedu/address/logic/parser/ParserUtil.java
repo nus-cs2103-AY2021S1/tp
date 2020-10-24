@@ -1,24 +1,29 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.regex.Matcher;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
-import seedu.address.model.student.Question;
 import seedu.address.model.student.School;
+import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
 import seedu.address.model.student.admin.Fee;
 import seedu.address.model.student.admin.PaymentDate;
+import seedu.address.model.student.question.Question;
+import seedu.address.model.student.question.SolvedQuestion;
+import seedu.address.model.student.question.UnsolvedQuestion;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -98,19 +103,56 @@ public class ParserUtil {
         if (!Year.isValidYear(trimmedYear)) {
             throw new ParseException(Year.MESSAGE_CONSTRAINTS);
         }
-        return new Year(trimmedYear);
+        final Matcher matcher = Year.YEAR_FORMAT.matcher(year.trim());
+        boolean isMatched = matcher.matches();
+        assert isMatched;
+        String schoolTypeString = matcher.group("school").trim().toLowerCase();
+        String levelString = matcher.group("level").trim().toLowerCase();
+
+        SchoolType schoolType = parseSchoolType(schoolTypeString);
+        Integer level = Integer.parseInt(levelString);
+
+        return new Year(schoolType, level);
     }
 
     /**
-     * Parses a {@code String question} into a {@code Question}.
+     * Parses a {@code String schoolType} into a {@code SchoolType}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code schoolType} is invalid.
      */
-    public static Question parseQuestion(String question) throws ParseException {
+    public static SchoolType parseSchoolType(String schoolType) throws ParseException {
+        requireNonNull(schoolType);
+        String trimmed = schoolType.trim().toLowerCase();
+        if (!SchoolType.isValidSchoolType(trimmed)) {
+            throw new ParseException(SchoolType.SCHOOL_TYPE_CONSTRANTS);
+        }
+        checkArgument(SchoolType.isValidSchoolType(trimmed), SchoolType.SCHOOL_TYPE_CONSTRANTS);
+        return SchoolType.LOOKUP_TABLE.get(trimmed);
+    }
+
+    /**
+     * Parses a {@code String question} into an {@code UnsolvedQuestion}.
+     */
+    public static UnsolvedQuestion parseQuestion(String question) throws ParseException {
         requireNonNull(question);
         String trimmedQuestion = question.trim();
         if (!Question.isValidQuestion(trimmedQuestion)) {
             throw new ParseException(Question.MESSAGE_CONSTRAINTS);
         }
-        return new Question(trimmedQuestion);
+        return new UnsolvedQuestion(trimmedQuestion);
+    }
+
+    /**
+     * Parses a {@code String solution} a trimmed {@code solution}.
+     */
+    public static String parseSolution(String solution) throws ParseException {
+        requireNonNull(solution);
+        String trimmedSolution = solution.trim();
+        if (!SolvedQuestion.isValidSolution(trimmedSolution)) {
+            throw new ParseException(SolvedQuestion.MESSAGE_SOLUTION_CONSTRAINTS);
+        }
+        return trimmedSolution;
     }
 
     /**
@@ -193,10 +235,10 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> additionalDetails} into a {@code Set<Tag>}.
      */
-    public static Set<AdditionalDetail> parseAdditionalDetails(Collection<String> additionalDetails)
+    public static List<AdditionalDetail> parseAdditionalDetails(Collection<String> additionalDetails)
             throws ParseException {
         requireNonNull(additionalDetails);
-        final Set<AdditionalDetail> detailSet = new HashSet<>();
+        final List<AdditionalDetail> detailSet = new ArrayList<>();
         for (String detail : additionalDetails) {
             detailSet.add(parseAdditionalDetail(detail));
         }

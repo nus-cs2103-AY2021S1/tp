@@ -18,12 +18,15 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.SchoolContainsKeywordsPredicate;
+import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.Year;
 import seedu.address.model.student.YearMatchPredicate;
 import seedu.address.testutil.FindStudentDescriptorBuilder;
 
@@ -92,11 +95,11 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multiplePredicates_oneStudentsFound() {
+    public void execute_multiplePredicates_oneStudentsFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 1);
         NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Kurz Elle Kunz");
         SchoolContainsKeywordsPredicate schoolPredicate = prepareSchoolPredicate("Girls School");
-        YearMatchPredicate yearMatchPredicate = prepareYearPredicate("2");
+        YearMatchPredicate yearMatchPredicate = prepareYearPredicate(SchoolType.SECONDARY, 2);
         List<Predicate<Student>> predicates = Arrays.asList(namePredicate,
                 schoolPredicate, yearMatchPredicate);
         Predicate<Student> consolidatedPredicates = consolidatePredicates(predicates);
@@ -112,11 +115,11 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multiplePredicates_noStudentFound() {
+    public void execute_multiplePredicates_noStudentFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Kurz Elle Kunz");
         SchoolContainsKeywordsPredicate schoolPredicate = prepareSchoolPredicate("Girls School");
-        YearMatchPredicate yearMatchPredicate = prepareYearPredicate("sec 3");
+        YearMatchPredicate yearMatchPredicate = prepareYearPredicate(SchoolType.SECONDARY, 3);
         List<Predicate<Student>> predicates = Arrays.asList(namePredicate,
                 schoolPredicate, yearMatchPredicate);
         Predicate<Student> consolidatedPredicates = consolidatePredicates(predicates);
@@ -148,8 +151,9 @@ public class FindCommandTest {
     /**
      * Parses {@code userInput} into a {@code YearMatchPredicate}.
      */
-    private YearMatchPredicate prepareYearPredicate(String userInput) {
-        return new YearMatchPredicate(Arrays.asList(userInput.split("\\s+")));
+    private YearMatchPredicate prepareYearPredicate(SchoolType schoolType, Integer level) throws ParseException {
+        Year year = new Year(schoolType, level);
+        return new YearMatchPredicate(year);
     }
 
     /**

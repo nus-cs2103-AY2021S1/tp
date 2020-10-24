@@ -3,7 +3,7 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "school": "NUS High School",
-    "year": "6",
+    "year": "JC 2",
     "admin" : {
       "classVenue": "123, Jurong West Ave 6, #08-111",
       "classTime": "1 1500-1700",
@@ -11,15 +11,20 @@
       "paymentDate": "21/05/2020",
       "additionalDetails": ["Clever"]
     },
-    "questions": [
-      "0 | What is Newton's Second Law?",
-      "0 | How do you inverse a matrix?"
-    ]
+    "questions": [ {
+      "status" : false,
+      "question" : "What is Newton's Second Law?",
+      "solution" : ""
+    }, {
+      "status" : false,
+      "question" : "How do you inverse a matrix?",
+      "solution" : ""
+    } ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "school": "NUS High School",
-    "year": "6",
+    "year": "JC 2",
     "admin" : {
       "classVenue": "123, Jurong West Ave 6, #08-111",
       "classTime": "1 1500-1700",
@@ -27,9 +32,14 @@
       "paymentDate": "21/05/2020",
       "additionalDetails": ["Clever"]
     },
-    "questions": [
-      "0 | What is Newton's Second Law?",
-      "0 | How do you inverse a matrix?"
-    ]
+    "questions": [ {
+      "status" : false,
+      "question" : "What is Newton's Second Law?",
+      "solution" : ""
+    }, {
+      "status" : false,
+      "question" : "How do you inverse a matrix?",
+      "solution" : ""
+    } ]
   } ]
 }

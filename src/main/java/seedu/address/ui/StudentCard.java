@@ -6,8 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.student.Question;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.question.Question;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -61,16 +61,18 @@ public class StudentCard extends UiPart<Region> {
         name.setText(student.getName().fullName);
         phone.setText("Phone: " + student.getPhone().value);
         school.setText("School: " + student.getSchool().school);
-        year.setText("Year: " + student.getYear().year);
+        year.setText("Year: " + student.getYear());
         venue.setText("Class Venue: " + student.getAdmin().getClassVenue().venue);
         time.setText("Class Time: " + student.getAdmin().getClassTime().toString());
         fee.setText("Fee: " + student.getAdmin().getFee().toString());
         payment.setText("Last Payment Date: " + student.getAdmin().getPaymentDate().toString());
         details.setText("Additional Details: \n" + student.getAdmin().getFormattedDetails());
+        details.setVisible(!student.getDetails().isEmpty());
         questions.setText("Questions:\n" + student.getQuestions()
                 .stream()
                 .map(Question::toString)
                 .collect(Collectors.joining("\n")));
+        questions.setVisible(!student.getQuestions().isEmpty());
     }
 
     @Override

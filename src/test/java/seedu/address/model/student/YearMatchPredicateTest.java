@@ -5,63 +5,64 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Arrays;
-import java.util.Collections;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.StudentBuilder;
 
 public class YearMatchPredicateTest {
 
-    private YearMatchPredicate yearMatchPredicateOne = new YearMatchPredicate(Arrays.asList("sec", "1"));
-    private YearMatchPredicate yearMatchPredicateTwo = new YearMatchPredicate(Collections.singletonList("2"));
+    private Year secondaryOne = new Year(SchoolType.SECONDARY, 1);
+    private Year secondaryOneDuplicate = new Year(SchoolType.SECONDARY, 1);
+    private Year secondaryThree = new Year(SchoolType.SECONDARY, 3);
 
-    private YearMatchPredicate yearMatchPredicateOneDuplicate =
-            new YearMatchPredicate(Arrays.asList("sec", "1"));
+    private YearMatchPredicate yearMatchPredicateSecondaryOne = new YearMatchPredicate(secondaryOne);
+    private YearMatchPredicate yearMatchPredicateSecondaryThree = new YearMatchPredicate(secondaryThree);
+
+    private YearMatchPredicate yearMatchPredicateSecondaryOneDuplicate =
+            new YearMatchPredicate(secondaryOneDuplicate);
 
     private Student yearOneStudent = new StudentBuilder().withName("Alice").withSchool("Changi Junior College")
-            .withYear("secondary 1").build();
-    private Student yearTwoStudent = new StudentBuilder().withName("Pikachu").withSchool("Trainers School")
-            .withYear("2").build();
+            .withYear(SchoolType.SECONDARY, 1).build();
+    private Student yearThreeStudent = new StudentBuilder().withName("Pikachu").withSchool("Trainers School")
+            .withYear(SchoolType.SECONDARY, 3).build();
 
     @Test
     public void equals() {
 
         // same object -> returns true
-        assertEquals(yearMatchPredicateOne, yearMatchPredicateOne);
+        assertEquals(yearMatchPredicateSecondaryOne, yearMatchPredicateSecondaryOne);
 
         // different type -> return false
-        assertNotEquals("1", yearMatchPredicateOne);
+        assertNotEquals("1", yearMatchPredicateSecondaryOne);
 
         // null -> returns false
-        assertNotEquals(yearMatchPredicateOne, null);
+        assertNotEquals(yearMatchPredicateSecondaryOne, null);
 
         // same year -> returns true
-        assertTrue(yearMatchPredicateOne.equals(yearMatchPredicateOneDuplicate));
+        assertTrue(yearMatchPredicateSecondaryOne.equals(yearMatchPredicateSecondaryOneDuplicate));
 
         // different year -> returns false
-        assertFalse(yearMatchPredicateOne.equals(yearMatchPredicateTwo));
+        assertFalse(yearMatchPredicateSecondaryOne.equals(yearMatchPredicateSecondaryThree));
 
     }
 
     @Test
     public void test_matchingYear_returnsTrue() {
-        assertTrue(yearMatchPredicateOne.test(yearOneStudent));
+        assertTrue(yearMatchPredicateSecondaryOne.test(yearOneStudent));
+        assertTrue(yearMatchPredicateSecondaryThree.test(yearThreeStudent));
 
         // User guide test cases
-        YearMatchPredicate predicate = new YearMatchPredicate(Arrays.asList("sec", "3"));
-        assertTrue(predicate.test(new StudentBuilder().withYear("sec 3").build()));
-        assertTrue(predicate.test(new StudentBuilder().withYear("Secondary 3").build()));
+        assertTrue(yearMatchPredicateSecondaryThree.test(new StudentBuilder()
+                .withYear(SchoolType.SECONDARY, 3).build()));
 
     }
 
     @Test
     public void test_notMatchingYear_returnsFalse() {
-        assertFalse(yearMatchPredicateOne.test(yearTwoStudent));
+        assertFalse(yearMatchPredicateSecondaryOne.test(yearThreeStudent));
 
         // User guide test cases
-        YearMatchPredicate predicate = new YearMatchPredicate(Arrays.asList("sec", "3"));
-        assertFalse(predicate.test(new StudentBuilder().withYear("sec 4").build()));
+        assertFalse(yearMatchPredicateSecondaryThree.test(new StudentBuilder()
+                .withYear(SchoolType.SECONDARY, 4).build()));
     }
 }

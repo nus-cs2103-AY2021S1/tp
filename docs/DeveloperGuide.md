@@ -173,90 +173,108 @@ The following activity diagram summarizes the flow of events when the `AddComman
 ![Flow of Add Student Command](images/AddStudentActivityDiagram.png)
 
 Figure ___. Activity Diagram for AddStudentCommand
-### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+### 5.2 Student questions features
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The student questions feature keeps track of questions raised by a student to his tutor. The features comprises of the following commands:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `AddQuestionCommand` - Adds a question to a specified student
+* `SolveQuestionCommand` - Marks a specified question from a specified student as solved
+* `DeleteQuestionCommand` - Deletes a specified question from a specified student
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+#### 5.2.1 Add question command
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+The following describes the flow of how `AddQuestionCommand` is performed.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+1. Upon successfully parsing the user input, `AddQuestionCommand#execute(Model model)` is called to check if the student at the specified position exists.
+2. If there is no student at the specified position,  a `CommandException` is thrown and the question will not be added.
+3. If the student exists, `AddQuestionCommand#execute(Model model)` checks if the student already has a similar question recorded.
+4. A unique question is defined solely by its `question` and does not take into account if the question has been solved. If a duplicate question is found, a `CommandException` is thrown and the question will not be added.
+5. If the question is not a duplicate, `Student#addQuestion(Question question)` is called to create a modified copy of the student with a newly added question.
+6. `Model#setPerson(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the question added.
+7. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+The following sequence diagram shows how the question adding operation works.
 
-Step 2. The user executes `delete 5` command to delete the 5th student in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+![AddQuestionSequence](images/AddQuestionSequenceDiagram.png)
 
-![UndoRedoState1](images/UndoRedoState1.png)
+Figure \___. Sequence diagram for `AddQuestionCommand` execution
 
-Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+The following activity diagram summarises the flow of events when `AddQuestionCommand` is executed.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+![AddQuestionActivity](images/AddQuestionActivityDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+Figure \___. Activity diagram for `AddQuestionCommand` execution
 
-</div>
+#### 5.2.2 Solve question command
 
-Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+The following describes the flow of how `SolveQuestionCommand` is performed.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+1. Upon successfully parsing the user input, `SolveQuestionCommand#execute(Model model)` is called to check if the student at the specified position exists.
+2. If there is no student at the specified position,  a `CommandException` is thrown and the question will not be added.
+3. If the student exists, `SolveQuestionCommand#execute(Model model)` checks if there is a question at the specified position.
+4. If the question does not exist, a `CommandException` is thrown and the question will not be resolved.
+5. If the question exists, `Student#setQuestion(Question target, Question newQuestion)` is called to create a modified copy of the student where the specified question has been replaced with a solved version.
+6. `Model#setPerson(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the question solved.
+7. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+The following sequence diagram shows how the question solving operation works.
 
-</div>
+![SolveQuestionSequence](images/SolveQuestionSequenceDiagram.png)
 
-The following sequence diagram shows how the undo operation works:
+Figure \___. Sequence diagram for `SolveQuestionCommand` execution
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+The following activity diagram summarises the flow of events when `SolveQuestionCommand` is executed.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+![SolveQuestionActivity](images/SolveQuestionActivityDiagram.png)
 
-</div>
+Figure \___. Activity diagram for `SolveQuestionCommand` execution
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+#### 5.2.3 Delete question command
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+The following describes the flow of how `DeleteQuestionCommand` is performed.
 
-</div>
+1. Upon successfully parsing the user input, `DeleteQuestionCommand#execute(Model model)` is called to check if the student at the specified position exists.
+2. If there is no student at the specified position,  a `CommandException` is thrown and the question will not be added.
+3. If the student exists, `DeleteQuestionCommand#execute(Model model)` checks if there is a question at the specified position.
+4. If the question does not exist, a `CommandException` is thrown and the question will not be resolved.
+5. If the question exists, `Student#deleteQuestion(Question target)` is called to create a modified copy of the student without the specified question.
+6. `Model#setPerson(Student target, Student editedStudent)` is called to replace the student with the modified copy. A new `CommandResult` is returned with a success message showing the affected student and the question removed.
+7. The modified student replaces the outdated student in the `UniqueStudentList` and a success message is shown in the result display.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+The following sequence diagram shows how the question deletion operation works.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+![DeleteQuestionSequence](images/DeleteQuestionSequenceDiagram.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Figure \___. Sequence diagram for `DeleteQuestionCommand` execution
 
-![UndoRedoState5](images/UndoRedoState5.png)
+The following activity diagram summarises the flow of events when `DeleteQuestionCommand` is executed.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+![DeleteQuestionActivity](images/DeleteQuestionActivityDiagram.png)
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+Figure \___. Activity diagram for `DeleteQuestionCommand` execution
 
-#### Design consideration:
+### 5.3 Overdue payment filter feature
 
-##### Aspect: How undo & redo executes
+The overdue payment filter feature allows the tutor to find all students who have not paid their tuition fees in the past month. It is handled by the `OverdueCommand`.
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+The following describes the flow of how `OverdueCommand` is executed.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+1. Upon successfully parsing the user input, `OverdueCommand#execute(Model model)` is called to filter all students in Reeve whose last date of payment was more than a month ago.
+2. `Model#updateFilteredStudentsList(Predicate<Student> predicate)` is called to find only students that match the above condition. A new `CommandResult` is returned with a successful message indicating the number of matching students.
+3. The filtered student list replaces the displayed list on the GUI and a success message is shown in the result display.
 
-_{more aspects and alternatives to be added}_
+The following sequence diagram shows how the question adding operation works.
 
-### \[Proposed\] Data archiving
+![OverdueSequence](images/OverdueSequenceDiagram.png)
 
-_{Explain here how the data archiving feature will be implemented}_
+Figure \___. Sequence diagram for `OverdueCommand` execution
 
+The following activity diagram summarises the flow of events when `OverdueCommand` is executed.
+
+![OverdueActivity](images/OverdueActivityDiagram.png)
+
+Figure \___. Activity diagram for `OverdueCommand` execution
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -324,41 +342,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Reeve requests for appropriate input.
 
       Use case resumes from step 1.
-        	
+
 * 1b. User provides input with invalid format.
     * 1b1. Reeve requests for appropriate input with valid format.
-      
+
       Use case resumes from step 1.
-        	
+
 **UC02: Searching for a student**
 
 **MSS**
 
 1.  User enters a command to find all students that match the given search parameter (name, school, year or subject).
-2.  Reeve displays all students matching the criteria. 
-    
+2.  Reeve displays all students matching the criteria.
+
     Use case ends.
 
 **Extensions**
 
 * 1a. User provides input with invalid data into the search parameter.
-    * 1a1. Reeve displays erroneous field and expected format.       
-      
-      Use case resumes at step 1.      
+    * 1a1. Reeve displays erroneous field and expected format.
+
+      Use case resumes at step 1.
 * 1b. User provides input without a search parameter.
-    * 1a1. Reeve displays a message indicating a search parameter was not provided.       
-      
+    * 1a1. Reeve displays a message indicating a search parameter was not provided.
+
       Use case resumes at step 1.
 * 1c. No students match the given criteria.
-    * 1c1. Reeve displays a message indicating no match found.    
-      
+    * 1c1. Reeve displays a message indicating no match found.
+
       Use case ends.
 
 **UC03: Editing a student's details**
 
 **MSS**
 
-1.  User enters a command to list all students.
+1.  User enters a command to list students.
 2.  Reeve shows the list of students.
 3.  User enters command to edit a specific student in the list and provides needed parameters.
 4.  Reeve updates the specified student with the input parameters and displays a success message.
@@ -367,7 +385,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
   Use case ends.
 
 * 3a. User provides input with invalid index.
@@ -376,11 +394,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 * 3b. User provides input without any parameters.
     * 3b1. Reeve requests for input with parameters.
-      
+
       Use case resumes at step 2.
 * 3c. User provides input with invalid format.
 	* 3c1. Reeve requests for input with valid format.
-	
+
 	  Use case resumes at step 2.
 
 **UC04: Deleting a student**
@@ -396,7 +414,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
@@ -404,16 +422,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Reeve displays an error message.
 
       Use case resumes at step 2.
-    
-**UC05: Listing all students** 
+
+**UC05: Listing all students**
 
 **MSS**
 
-1. User enters command to display students list.
+1. User enters a command to list students.
 2. Reeve displays the students list with student details.
 
    Use case ends.
- 
 
 **UC06: Clearing all student records**
 
@@ -421,10 +438,124 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User enters a command to clear the students list.
 2. Reeve displays a success message.
-   
+
    Use case ends.
-   
-*{More to be added}*
+
+**UC07: Adding a question to a student**
+
+**MSS**
+
+1. User enters a command to list students.
+2. Reeve displays a list of students.
+3. User enters a command to add an unresolved question to a specific student in the list.
+4. Reeve updates the specified student in the list with the newly added question.
+5. Reeve displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. User provides input with an invalid student index.
+    * 3a1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User inputs a question in an invalid format.
+    * 3b1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+**UC07: Resolving a question from a student**
+
+**MSS**
+
+1. User enters a command to list students.
+2. Reeve displays a list of students.
+3. User enters a command to resolve a question from a specific student in the list with a solution.
+4. Reeve updates the specified student in the list with the updated question.
+5. Reeve displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. User provides input with an invalid student.
+    * 3a1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User provides input with an invalid question.
+    * 3b1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+* 3c. User inputs the solution in an invalid format.
+    * 3c1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+* 3d. User specifies a question that has already been solved.
+    * 3d1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+
+**UC07: Deleting a question from a student**
+
+**MSS**
+
+1. User enters a command to list students.
+2. Reeve displays a list of students.
+3. User enters a command to delete a question from a specific student in the list.
+4. Reeve updates the specified student in the list with the removed question.
+5. Reeve displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. User provides input with an invalid student.
+    * 3a1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User provides input with an invalid question.
+    * 3b1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+
+**UC08: Finding all students with overdue tuition fees**
+
+**MSS**
+
+1. User enter command to filter all students by those who have not paid their fees in the past month.
+2. Reeve displays all students that match the above criteria.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 1b. All students have paid their fees in the past month.
+
+  * 1b1. Reeve displays an empty list.
+
+    Use case ends.
 
 ### Non-Functional Requirements
 

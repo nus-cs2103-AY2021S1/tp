@@ -1,9 +1,7 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -110,7 +108,7 @@ public class JsonAdaptedAdmin {
         }
         final PaymentDate modelPaymentDate = new PaymentDate(paymentDate);
 
-        final Set<AdditionalDetail> modelAdditionalDetails = new HashSet<>(details);
+        final List<AdditionalDetail> modelAdditionalDetails = new ArrayList<>(details);
         return new Admin(modelClassVenue, modelClassTime , modelFee, modelPaymentDate, modelAdditionalDetails);
     }
 }

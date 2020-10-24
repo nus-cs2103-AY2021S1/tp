@@ -5,13 +5,14 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.SchoolContainsKeywordsPredicate;
+import seedu.address.model.student.SchoolType;
+import seedu.address.model.student.Year;
 import seedu.address.model.student.YearMatchPredicate;
 import seedu.address.testutil.FindStudentDescriptorBuilder;
 
@@ -45,7 +46,7 @@ public class FindCommandParserTest {
         NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
         SchoolContainsKeywordsPredicate schoolPredicate =
                 new SchoolContainsKeywordsPredicate(Arrays.asList("Changi", "Sec"));
-        YearMatchPredicate yearPredicate = new YearMatchPredicate(Collections.singletonList("3"));
+        YearMatchPredicate yearPredicate = new YearMatchPredicate(new Year(SchoolType.SECONDARY, 3));
 
         FindCommand.FindStudentDescriptor descriptor = new FindStudentDescriptorBuilder()
                 .withNamePredicate(namePredicate)
@@ -55,11 +56,11 @@ public class FindCommandParserTest {
 
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand = new FindCommand(descriptor);
-        assertParseSuccess(parser, " n/Alice Bob s/Changi Sec y/3", expectedFindCommand);
+        assertParseSuccess(parser, " n/Alice Bob s/Changi Sec y/Secondary 3", expectedFindCommand);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser,
-                " n/ \n Alice \n \t Bob  \n s/Changi\t Sec\t \t y/3", expectedFindCommand);
+                " n/ \n Alice \n \t Bob  \n s/Changi\t Sec\t \t y/Secondary 3", expectedFindCommand);
     }
 
 }

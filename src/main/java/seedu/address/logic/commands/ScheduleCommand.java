@@ -39,6 +39,8 @@ public class ScheduleCommand extends Command {
         // this date is given by the user, we extract out the day
         DayOfWeek day = this.dateToFindSchedule.getDayOfWeek();
 
+        assert day != null;
+
         // checks which student has the same day as the one given extracted out
         Predicate<Student> predicate = student -> student.getAdmin().getClassTime().isSameDay(day);
 
