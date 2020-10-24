@@ -6,26 +6,31 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.resireg.testutil.Assert.assertThrows;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.resireg.commons.core.GuiSettings;
+import seedu.resireg.commons.exceptions.DataConversionException;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ReadOnlyResiReg;
 import seedu.resireg.model.ReadOnlyUserPrefs;
 import seedu.resireg.model.ResiReg;
+import seedu.resireg.model.UserPrefs;
 import seedu.resireg.model.alias.CommandWordAlias;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.student.Student;
+import seedu.resireg.storage.Storage;
 import seedu.resireg.testutil.StudentBuilder;
 
 public class AddCommandTest {
@@ -38,9 +43,10 @@ public class AddCommandTest {
     @Test
     public void execute_studentAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingStudentAdded modelStub = new ModelStubAcceptingStudentAdded();
+        StorageStub storageStub = new StorageStub();
         Student validStudent = new StudentBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validStudent).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validStudent).execute(modelStub, storageStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validStudent.getName().fullName,
             validStudent.getStudentId().value), commandResult.getFeedbackToUser());
@@ -52,8 +58,10 @@ public class AddCommandTest {
         Student validStudent = new StudentBuilder().build();
         AddCommand addCommand = new AddCommand(validStudent);
         ModelStub modelStub = new ModelStubWithStudent(validStudent);
+        StorageStub storageStub = new StorageStub();
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () ->
+            addCommand.execute(modelStub, storageStub));
     }
 
     @Test
@@ -327,4 +335,56 @@ public class AddCommandTest {
         }
     }
 
+    /**
+     * A stub class for Storage.
+     */
+    private static class StorageStub implements Storage {
+        @Override
+        public Path getUserPrefsFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getResiRegFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<ReadOnlyResiReg> readResiReg() throws DataConversionException, IOException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<ReadOnlyResiReg> readResiReg(Path filePath) throws DataConversionException, IOException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveResiReg(ReadOnlyResiReg resiReg) throws IOException {
+
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveResiReg(ReadOnlyResiReg resiReg, Path filePath) throws IOException {
+
+
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void archiveResiReg(ReadOnlyResiReg resiReg) throws IOException {
+            throw new AssertionError("This method should not be called.");
+        }
+    }
 }

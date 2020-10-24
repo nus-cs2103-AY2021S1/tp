@@ -76,4 +76,10 @@ public class StorageManager implements Storage {
         resiRegStorage.saveResiReg(resiReg, filePath);
     }
 
+    @Override
+    public void archiveResiReg(ReadOnlyResiReg resiReg) throws IOException {
+        logger.fine("Attempting to archive the current semester's data");
+        resiRegStorage.archiveResiReg(resiReg);
+    }
+
 }

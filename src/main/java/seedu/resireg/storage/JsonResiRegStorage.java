@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -75,6 +76,14 @@ public class JsonResiRegStorage implements ResiRegStorage {
 
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableResiReg(resiReg), filePath);
+    }
+
+    @Override
+    public void archiveResiReg(ReadOnlyResiReg resiReg) throws IOException {
+        Path currentPath = filePath.subpath(0, filePath.getNameCount() - 1).toAbsolutePath();
+        Path newPath = Paths.get(currentPath.toString(), resiReg.getSemesterString(), "archive.json");
+
+        saveResiReg(resiReg, newPath);
     }
 
 }

@@ -78,9 +78,23 @@ public class Semester {
             && Objects.equals(otherSemester.getSemesterNumber(), getSemesterNumber());
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(academicYear, semesterNumber);
+    public static Semester getNextSemester(Semester semester) {
+        requireAllNonNull(semester);
+        switch (semester.semesterNumber.value) {
+        case 1:
+            return new Semester(semester.academicYear, new SemesterNumber(2));
+        case 2:
+            return new Semester(new AcademicYear(semester.academicYear.value + 1), new SemesterNumber(1));
+        default:
+            throw new AssertionError("This statement should not be reachable");
+        }
+    }
+
+    /**
+     * @return a shortened String representation of the semester in form of "AY" + year + "S" + semesterNumber.
+     */
+    public String getShortRepresentation() {
+        return String.format("AY%sS%s", academicYear, semesterNumber);
     }
 
     @Override

@@ -13,6 +13,7 @@ import seedu.resireg.logic.commands.CommandResult;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.logic.parser.exceptions.ParseException;
 import seedu.resireg.model.Model;
+import seedu.resireg.storage.Storage;
 
 public class ResiRegParserTest {
     private static final String MOCK_COMMAND_WORD = "command";
@@ -27,7 +28,7 @@ public class ResiRegParserTest {
         }
 
         @Override
-        public CommandResult execute(Model model) throws CommandException {
+        public CommandResult execute(Model model, Storage storage) throws CommandException {
             throw new CommandException("unimplemented stub method");
         }
 

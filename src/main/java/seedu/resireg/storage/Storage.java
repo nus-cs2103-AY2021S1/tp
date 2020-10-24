@@ -29,4 +29,6 @@ public interface Storage extends ResiRegStorage, UserPrefsStorage {
     @Override
     void saveResiReg(ReadOnlyResiReg resiReg) throws IOException;
 
+    @Override
+    void archiveResiReg(ReadOnlyResiReg resiReg) throws IOException;
 }

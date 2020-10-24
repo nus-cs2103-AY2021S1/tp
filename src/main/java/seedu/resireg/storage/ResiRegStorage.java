@@ -45,4 +45,11 @@ public interface ResiRegStorage {
      */
     void saveResiReg(ReadOnlyResiReg resiReg, Path filePath) throws IOException;
 
+    /**
+     * Archives the given {@link ReadOnlyResiReg} to the storage.
+     *
+     * @param resiReg cannot be null.
+     * @throws IOException if there was any problem writing to the file.
+     */
+    void archiveResiReg(ReadOnlyResiReg resiReg) throws IOException;
 }

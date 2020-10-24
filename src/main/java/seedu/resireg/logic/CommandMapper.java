@@ -8,6 +8,7 @@ import java.util.Map;
 import seedu.resireg.logic.commands.AddAliasCommand;
 import seedu.resireg.logic.commands.AddCommand;
 import seedu.resireg.logic.commands.AllocateCommand;
+import seedu.resireg.logic.commands.ArchiveCommand;
 import seedu.resireg.logic.commands.ClearCommand;
 import seedu.resireg.logic.commands.Command;
 import seedu.resireg.logic.commands.DeallocateCommand;
@@ -57,6 +58,7 @@ public class CommandMapper {
         commandMap = new CommandMap();
         // note: new Parser()::parse assumes that Parser does not depend on state
         commandMap.addCommand(AddCommand.COMMAND_WORD, AddCommand.HELP, new AddCommandParser()::parse);
+        commandMap.addCommand(ArchiveCommand.COMMAND_WORD, ArchiveCommand.HELP, unused -> new ArchiveCommand());
         commandMap.addCommand(ClearCommand.COMMAND_WORD, ClearCommand.HELP, unused -> new ClearCommand());
         commandMap.addCommand(DeleteCommand.COMMAND_WORD, DeleteCommand.HELP, new DeleteCommandParser()::parse);
         commandMap.addCommand(EditCommand.COMMAND_WORD, EditCommand.HELP, new EditCommandParser()::parse);

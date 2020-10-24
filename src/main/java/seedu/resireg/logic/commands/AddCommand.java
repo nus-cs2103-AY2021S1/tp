@@ -11,6 +11,7 @@ import static seedu.resireg.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.student.Student;
+import seedu.resireg.storage.Storage;
 
 /**
  * Adds a student to ResiReg.
@@ -23,20 +24,20 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in ResiReg";
 
     public static final Help HELP = new Help(COMMAND_WORD,
-            "Adds a student to ResiReg.\n",
-            "Parameters: "
-                    + PREFIX_NAME + "NAME "
-                    + PREFIX_STUDENT_ID + "STUDENT_ID "
-                    + PREFIX_PHONE + "PHONE "
-                    + PREFIX_EMAIL + "EMAIL "
-                    + PREFIX_FACULTY + "FACULTY "
-                    + "[" + PREFIX_TAG + "TAG]...\n"
-                    + "Example: " + COMMAND_WORD + " "
-                    + PREFIX_NAME + "John Doe "
-                    + PREFIX_STUDENT_ID + "E0123456 "
-                    + PREFIX_PHONE + "98765432 "
-                    + PREFIX_EMAIL + "johnd@u.nus.edu "
-                    + PREFIX_FACULTY + "FASS ");
+        "Adds a student to ResiReg.\n",
+        "Parameters: "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_STUDENT_ID + "STUDENT_ID "
+            + PREFIX_PHONE + "PHONE "
+            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_FACULTY + "FACULTY "
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "John Doe "
+            + PREFIX_STUDENT_ID + "E0123456 "
+            + PREFIX_PHONE + "98765432 "
+            + PREFIX_EMAIL + "johnd@u.nus.edu "
+            + PREFIX_FACULTY + "FASS ");
 
     private final Student toAdd;
 
@@ -49,7 +50,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
 
         if (model.hasStudent(toAdd)) {
@@ -64,7 +65,7 @@ public class AddCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+            || (other instanceof AddCommand // instanceof handles nulls
+            && toAdd.equals(((AddCommand) other).toAdd));
     }
 }

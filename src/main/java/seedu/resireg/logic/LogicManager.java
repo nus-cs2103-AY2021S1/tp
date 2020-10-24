@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         resiRegParser = new CommandMapper(model.getCommandWordAliases()).getParser();
         Command command = resiRegParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        commandResult = command.execute(model, storage);
 
         try {
             storage.saveResiReg(model.getResiReg());

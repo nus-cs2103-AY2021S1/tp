@@ -63,6 +63,24 @@ public class ResiReg implements ReadOnlyResiReg {
         this.semester = semester;
     }
 
+    public static ResiReg getNextSemesterResiReg(ReadOnlyResiReg toBeCopied) {
+        ResiReg newResiReg = new ResiReg();
+        newResiReg.setStudents(toBeCopied.getStudentList());
+        newResiReg.setRooms(toBeCopied.getRoomList());
+
+        Semester currentSemester = toBeCopied.getSemester();
+        newResiReg.semester = Semester.getNextSemester(currentSemester);
+
+        return newResiReg;
+    }
+
+    /**
+     * @return the shortened representation of the semester.
+     */
+    public String getSemesterString() {
+        return semester.getShortRepresentation();
+    }
+
     //// list overwrite operations
 
     /**

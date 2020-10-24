@@ -155,6 +155,11 @@ public class ResiRegTest {
         }
 
         @Override
+        public String getSemesterString() {
+            return semester.getShortRepresentation();
+        }
+
+        @Override
         public ObservableList<Student> getStudentList() {
             return students;
         }

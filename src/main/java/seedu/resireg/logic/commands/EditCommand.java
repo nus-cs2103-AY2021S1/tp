@@ -29,6 +29,7 @@ import seedu.resireg.model.student.Student;
 import seedu.resireg.model.student.StudentId;
 import seedu.resireg.model.student.faculty.Faculty;
 import seedu.resireg.model.tag.Tag;
+import seedu.resireg.storage.Storage;
 
 /**
  * Edits the details of an existing student in ResiReg.
@@ -71,7 +72,7 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
         List<Student> lastShownList = model.getFilteredStudentList();
         List<Allocation> lastShownAllocationList = model.getFilteredAllocationList();

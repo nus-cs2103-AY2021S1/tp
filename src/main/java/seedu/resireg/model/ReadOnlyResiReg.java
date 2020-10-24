@@ -17,6 +17,11 @@ public interface ReadOnlyResiReg {
     Semester getSemester();
 
     /**
+     * Returns a String representation of the semester that this view is mapped to.
+     */
+    public String getSemesterString();
+
+    /**
      * Returns an unmodifiable view of the students list.
      * This list will not contain any duplicate students.
      */
