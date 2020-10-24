@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddTemplateCommand;
 import seedu.address.logic.commands.ArchiveCommand;
 import seedu.address.logic.commands.CommandForExercise;
 import seedu.address.logic.commands.DeleteCommand;
@@ -46,6 +47,9 @@ public class ExerciseBookParser {
         switch (commandWord) {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+
+        case AddTemplateCommand.COMMAND_WORD:
+            return new AddTempCommandParser().parse(arguments);
 
         case ArchiveCommand.COMMAND_WORD:
             return new ArchiveCommandParser().parse(arguments);
