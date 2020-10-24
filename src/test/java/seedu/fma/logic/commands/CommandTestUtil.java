@@ -86,12 +86,16 @@ public class CommandTestUtil {
     public static final String REP_DESC_B = " " + PREFIX_R + VALID_REP_B;
     public static final String COMMENT_DESC_A = " " + PREFIX_C + VALID_COMMENT_A_STR;
     public static final String COMMENT_DESC_B = " " + PREFIX_C + VALID_COMMENT_B_STR;
-    public static final String CALORIES_DESC_A = " " + PREFIX_C + "90";
+    public static final String CALORIES_DESC_A = " " + PREFIX_C + VALID_CALORIES_A_STR;
+    public static final String CALORIES_DESC_B = " " + PREFIX_C + VALID_CALORIES_B_STR;
 
     // '?' not allowed in exercise names
     public static final String INVALID_EXERCISE_DESC = " " + PREFIX_E + "Sit ups?";
     public static final String INVALID_REP_DESC = " " + PREFIX_R + "911a"; // 'a' not allowed in rep
     public static final String INVALID_COMMENT_DESC = " " + PREFIX_C + "    "; // comment cannot be blank
+
+    public static final String INVALID_CALORIES_DESC_A = " " + PREFIX_C + "   "; // cannot be blank
+    public static final String INVALID_CALORIES_DESC_B = " " + PREFIX_C + " 1x2 "; // cannot understand math
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
