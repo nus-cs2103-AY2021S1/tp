@@ -27,6 +27,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.OverdueCommand;
 import seedu.address.logic.commands.QuestionCommand;
 import seedu.address.logic.commands.ScheduleCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Question;
@@ -116,6 +117,12 @@ public class ReeveParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_sort() throws Exception {
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " classTime") instanceof SortCommand);
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " year") instanceof SortCommand);
     }
 
     @Test
