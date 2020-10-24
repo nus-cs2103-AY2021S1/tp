@@ -84,4 +84,16 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns the archive mode.
+     * @return Archive mode.
+     */
+    boolean getArchiveMode();
+
+    /**
+     * Sets the archive mode.
+     * @param isArchiveMode Archive mode to be set.
+     */
+    void setArchiveMode(boolean isArchiveMode);
 }
