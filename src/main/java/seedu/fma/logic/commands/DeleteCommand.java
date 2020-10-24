@@ -18,7 +18,7 @@ public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
-    public static final String AC_SUGGESTION = COMMAND_WORD + " 1";
+    public static final String AC_SUGGESTION = COMMAND_WORD + " <index>";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the log identified by the index number used in the displayed log list.\n"

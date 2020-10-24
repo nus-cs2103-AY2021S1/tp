@@ -3,7 +3,6 @@ package seedu.fma.logic;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -58,19 +57,19 @@ public class LogicManager implements Logic {
 
 
     @Override
-    public HashMap<String, String> getCommandMessageUsage() {
-        HashMap<String,String> messageUsageList = new HashMap<>();
-        messageUsageList.put(AddCommand.AC_REGEX, AddCommand.AC_SUGGESTION);
-        messageUsageList.put(AddExCommand.AC_REGEX, AddExCommand.AC_SUGGESTION);
-//        messageUsageList.add(ClearCommand.COMMAND_WORD);
-//        messageUsageList.add(DeleteCommand.AC_SUGGESTION);
-//        messageUsageList.add(DeleteExCommand.AC_SUGGESTION);
-//        messageUsageList.add(EditCommand.AC_SUGGESTION);
-//        messageUsageList.add(EditExCommand.AC_SUGGESTION);
-//        messageUsageList.add(ExitCommand.COMMAND_WORD);
-//        messageUsageList.add(FindCommand.AC_SUGGESTION);
-//        messageUsageList.add(HelpCommand.COMMAND_WORD);
-//        messageUsageList.add(ListCommand.COMMAND_WORD);
+    public List<String> getCommandSuggestionList() {
+        List<String> messageUsageList = new ArrayList<>();
+        messageUsageList.add(AddCommand.AC_SUGGESTION);
+        messageUsageList.add(AddExCommand.AC_SUGGESTION);
+        messageUsageList.add(ClearCommand.COMMAND_WORD);
+        messageUsageList.add(DeleteCommand.AC_SUGGESTION);
+        messageUsageList.add(DeleteExCommand.AC_SUGGESTION);
+        messageUsageList.add(EditCommand.AC_SUGGESTION);
+        messageUsageList.add(EditExCommand.AC_SUGGESTION);
+        messageUsageList.add(ExitCommand.COMMAND_WORD);
+        messageUsageList.add(FindCommand.AC_SUGGESTION);
+        messageUsageList.add(HelpCommand.COMMAND_WORD);
+        messageUsageList.add(ListCommand.COMMAND_WORD);
         return messageUsageList;
     }
 

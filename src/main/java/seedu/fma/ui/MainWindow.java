@@ -139,7 +139,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
 
         // For autocompletion
-        resultDisplay.setAutoCompleteList(logic.getCommandMessageUsage());
+        resultDisplay.setSuggestionList(logic.getCommandSuggestionList());
         commandBox.setListener(resultDisplay);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }

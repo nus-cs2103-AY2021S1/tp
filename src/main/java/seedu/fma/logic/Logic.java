@@ -53,6 +53,6 @@ public interface Logic {
     /**
      * Get command message usages
      */
-    HashMap<String, String> getCommandMessageUsage();
+    List<String> getCommandSuggestionList();
 
 }

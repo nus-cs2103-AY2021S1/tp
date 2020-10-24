@@ -18,8 +18,6 @@ public class AddExCommand extends Command {
             + PREFIX_E + "<exercise> "
             + PREFIX_C + "<calories per rep>";
 
-    public static final String AC_REGEX = COMMAND_WORD + "?" + PREFIX_E + "?" + PREFIX_C + "?";
-
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an exercise to the log book. "
             + "Parameters: "
