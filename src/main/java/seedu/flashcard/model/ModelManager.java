@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.flashcard.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.flashcard.commons.core.GuiSettings;
 import seedu.flashcard.commons.core.LogsCenter;
 import seedu.flashcard.model.flashcard.Flashcard;
@@ -21,6 +23,7 @@ public class ModelManager implements Model {
 
     private final FlashcardDeck flashcardDeck;
     private final UserPrefs userPrefs;
+    private final SortedList<Flashcard> sortedFlashcards;
     private final FilteredList<Flashcard> filteredFlashcards;
 
     /**
@@ -34,7 +37,8 @@ public class ModelManager implements Model {
 
         this.flashcardDeck = new FlashcardDeck(flashcardDeck);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredFlashcards = new FilteredList<>(this.flashcardDeck.getFlashcardList());
+        sortedFlashcards = new SortedList<>(this.flashcardDeck.getFlashcardList());
+        filteredFlashcards = new FilteredList<>(this.sortedFlashcards);
     }
 
     public ModelManager() {
@@ -127,6 +131,13 @@ public class ModelManager implements Model {
     public void updateFilteredFlashcardList(Predicate<Flashcard> predicate) {
         requireNonNull(predicate);
         filteredFlashcards.setPredicate(predicate);
+    }
+
+    @Override
+    public void sortFilteredFlashcardList(Comparator<Flashcard> comparator) {
+        requireNonNull(comparator);
+        sortedFlashcards.setComparator(comparator);
+        flashcardDeck.setFlashcards(sortedFlashcards);
     }
 
     @Override
