@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.module.Module;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Module}.
  */
 public class ModuleCard extends UiPart<Region> {
 
@@ -37,6 +37,8 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private Label zoomLink;
     @FXML
+    private Label modularCredits;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -47,7 +49,12 @@ public class ModuleCard extends UiPart<Region> {
         this.module = module;
         id.setText(displayedIndex + ". ");
         name.setText(module.getName().fullName);
-        zoomLink.setText(module.getLink().getLink());
+        if (module.getLink() == null) {
+            zoomLink.setText("No link provided");
+        } else {
+            zoomLink.setText(module.getLink().getLink());
+        }
+        modularCredits.setText(module.getModularCredits().toString());
         //module.getTags().stream()
         //        .sorted(Comparator.comparing(tag -> tag.tagName))
         //        .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

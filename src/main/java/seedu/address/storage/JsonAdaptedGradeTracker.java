@@ -2,12 +2,15 @@ package seedu.address.storage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.module.grade.Grade;
+import seedu.address.model.module.grade.GradePoint;
 import seedu.address.model.module.grade.GradeTracker;
 
 /**
@@ -19,17 +22,19 @@ public class JsonAdaptedGradeTracker {
 
     private final List<JsonAdaptedAssignment> assignments = new ArrayList<>();
     private final double grade;
-
+    //private final Optional<GradePoint> gradePoint;
+    private final String gradePoint;
     /**
      * Constructs a {@code JsonAdaptedGradeTracker} with the given Grade Tracker details.
      */
     @JsonCreator
     public JsonAdaptedGradeTracker(@JsonProperty("assignments") List<JsonAdaptedAssignment> assignments,
-                             @JsonProperty("grade") double grade) {
+                             @JsonProperty("grade") double grade, @JsonProperty("gradepoint") String gradePoint) {
         this.grade = grade;
         if (assignments != null) {
             this.assignments.addAll(assignments);
         }
+        this.gradePoint = gradePoint;
     }
 
     /**
@@ -39,7 +44,13 @@ public class JsonAdaptedGradeTracker {
         assignments.addAll(source.getAssignments().stream()
                 .map(JsonAdaptedAssignment::new)
                 .collect(Collectors.toList()));
-        this.grade = source.getGrade();
+        this.grade = source.getGrade().gradeResult;
+        assert source.getGradePoint() != null : "Assertion error, gradepoint not defined";
+        if (source.getGradePoint().isEmpty()) {
+            this.gradePoint = null;
+        } else {
+            this.gradePoint = source.getGradePoint().get().toString();
+        }
     }
 
     /**
@@ -57,13 +68,22 @@ public class JsonAdaptedGradeTracker {
             }
         }
         if (Double.isNaN(grade)) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    "grade"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Grade.class.getSimpleName()));
         }
-        if (!GradeTracker.isValidGrade(grade)) {
+        if (!Grade.isValidGrade(grade)) {
             throw new IllegalValueException(GradeTracker.MESSAGE_INVALID_GRADE);
         }
-        modelGradeTracker.setGrade(grade);
+        final Grade modelGrade = new Grade(grade);
+        final Optional<GradePoint> modelGradePoint;
+        if (gradePoint == null) {
+            modelGradePoint = Optional.empty();
+        } else if (!GradePoint.isValidGradePoint(gradePoint)) {
+            throw new IllegalValueException(GradeTracker.MESSAGE_INVALID_GRADEPOINT);
+        } else {
+            modelGradePoint = Optional.of(new GradePoint(Double.parseDouble(gradePoint)));
+        }
+        modelGradeTracker.setGrade(modelGrade);
+        modelGradeTracker.setGradePoint(modelGradePoint);
         return modelGradeTracker;
     }
 }
