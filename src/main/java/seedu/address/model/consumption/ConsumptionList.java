@@ -31,31 +31,6 @@ public class ConsumptionList implements Iterable<Consumption> {
     }
 
     /**
-     * Replaces the consumption {@code target} in the list with {@code editedConsumption}.
-     * {@code target} must exist in the list.
-     * The consumption identity of {@code editedConsumption} must not be the same as another existing ingredient in the
-     * list.
-     */
-    public void setConsumption(Consumption target, Consumption editedConsumption) {
-        requireAllNonNull(target, editedConsumption);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new ConsumptionNotFoundException();
-        }
-
-        internalList.set(index, editedConsumption);
-    }
-
-    /**
-     * Replaces the consumption list with the new consumption list.
-     */
-    public void setConsumptions(ConsumptionList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
-    /**
      * Replaces the contents of this list with {@code consumptions}.
      */
     public void setConsumptions(List<Consumption> consumptions) {

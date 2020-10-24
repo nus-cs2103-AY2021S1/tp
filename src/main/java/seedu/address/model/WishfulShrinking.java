@@ -146,18 +146,6 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
     }
 
     /**
-     * Replaces the given consumption {@code target} in the list with {@code editedConsumption}.
-     * {@code target} must exist in the consumption collection.
-     * The consumption identity of {@code editedConsumption} must not be the same as
-     * another existing consumption in the consumption collection.
-     */
-    public void setConsumption(Consumption target, Consumption editedConsumption) {
-        requireNonNull(editedConsumption);
-
-        consumption.setConsumption(target, editedConsumption);
-    }
-
-    /**
      * Clear ingredients from this {@code WishfulShrinking}.
      */
     public void clearConsumption() {
