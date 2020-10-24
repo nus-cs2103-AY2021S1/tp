@@ -774,7 +774,6 @@ Method(s):
 * Step 7: `FindUtil#generateCombinedPredicatesWithOr()` to
  `FindUtil#generateCombinedPredicatesWithAnd()`
 
-
 #### Sequence Diagram
 The following sequence diagram shows how the Find feature works for Example 1:
 ![Find Feature Sequence Diagram](images/FindFeatureSequenceDiagram.png)
@@ -783,6 +782,38 @@ The following sequence diagram shows how the Find feature works for Example 1:
 The following activity diagram summarizes what happens when
  the Find feature is triggered:
 ![Find Feature Activity Diagram](images/FindFeatureActivityDiagram.png)
+
+#### Design Consideration
+
+##### Aspect: Matching of stock and user input for each field
+* **Alternative 1 (current implementation):** For any field prefix, a stock
+matches user input if the stock's field contains all of the keywords entered. <br>
+(eg. For `find n/ this is a banana`, stock matches user input if it contains
+all keywords `this`, `is`, `a`, `banana`)
+ * Pros: Results in a more accurate matching of stocks to user input.
+ * Cons: User has to be careful not to input irrelevant terms along with terms
+ that match with the stock's field, else the stock intended will not show up.
+ 
+* **Alternative 2:** For any field prefix, a stock matches user input
+if the stock's field contains at least one of the keywords entered. <br>
+(eg. For `find n/ this is a banana`, stock matches user input if it contains
+at least one of `a`, `this`, `is`, `banana`.)
+ * Pros: More flexible as desired stock will be displayed with at least
+ one matching keyword, even when irrelevant keywords are entered.
+ * Cons: A less accurate list of matching stocks is displayed as more stocks will
+ match with the keywords since the search criteria is less rigid.
+
+##### Aspect: Input format for find command.
+
+* **Alternative 1 (current implementation):** Duplicate prefixes cannot be present in user input.
+  * Pros: Removes ambiguity in choosing the corresponding arguments used in searching for stocks.
+  * Cons: Users have to retype their command in the case where
+  they forget which prefixes they have typed and input duplicate prefixes.
+
+* **Alternative 2:** Duplicate prefixes can be present in user input.
+  * Pros: Only the argument corresponding to the last appearance of the prefix will be used.
+  Allows users to input prefix and corresponding arguments to override the last occurrence of this prefix.
+  * Cons: Users may type 2 of the required prefixes accidentally and search for unintended stocks.
 
 ### Statistics Feature
 
