@@ -35,7 +35,8 @@ public class SampleDataUtil {
     public static Assignment[] getSampleAssignments() {
         return new Assignment[] {
             new Assignment(new Name("CS1231S Homework"), DEADLINE_5_DAYS,
-                    new ModuleCode("CS1231S"), NOT_REMINDED, getValidScheduleBeforeNextWeek(), MEDIUM_PRIORITY, IS_DONE),
+                    new ModuleCode("CS1231S"), NOT_REMINDED, getValidScheduleBeforeNextWeek(), MEDIUM_PRIORITY,
+                    IS_DONE),
             new Assignment(new Name("CS2103T Quiz"), DEADLINE_12_HOURS,
                     new ModuleCode("CS2103T"), NOT_REMINDED, NOT_SCHEDULED, HIGH_PRIORITY, IS_DONE),
             new Assignment(new Name("CS2106 Lab"), DEADLINE_25_DAYS,
