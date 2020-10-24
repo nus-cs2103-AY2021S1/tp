@@ -10,13 +10,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class School {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "School names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "School name can take any values, and should not be blank";
 
     /*
      * School names must have at least 1 alphabet with spaces in between allowed.
      * First character cannot be empty string if not empty string becomes valid school.
      */
-    public static final String VALIDATION_REGEX = "^[A-Za-z][A-Za-z ]*$";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String school;
 
