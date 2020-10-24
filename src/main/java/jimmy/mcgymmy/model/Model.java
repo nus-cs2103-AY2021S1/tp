@@ -53,7 +53,7 @@ public interface Model {
     ReadOnlyMcGymmy getMcGymmy();
 
     /**
-     * Set McGymmy
+     * Sets McGymmy
      */
     void setMcGymmy(ReadOnlyMcGymmy mcGymmy);
 
@@ -72,7 +72,6 @@ public interface Model {
 
     /**
      * Adds the given food.
-     * {@code food} must not already exist in mcgymmy.
      */
     void addFood(Food food);
 
