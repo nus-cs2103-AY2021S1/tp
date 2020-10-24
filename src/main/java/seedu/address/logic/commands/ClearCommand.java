@@ -40,6 +40,7 @@ public class ClearCommand extends Command {
         boolean isExpense = this.category.isExpense();
         boolean isRevenue = this.category.isRevenue();
 
+        activeAccount.setPreviousState();
         if (isExpense) {
             activeAccount.clearExpenses();
         } else {
