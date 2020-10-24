@@ -16,12 +16,13 @@ This user guide provides a detailed description of all the features available in
 * [Features](#features)
   * [Show all commands : `help`](#show-all-commands--help) - Gabriella Teh
   * [List all tasks : `list`](#list-all-tasks--list) - Marcus Tan
-  * [Add a task: `add`](#add-a-task-add) - Li Gangwei
-  * [Add a lesson: `lesson`](#add-a-lesson-lesson) - Marcus Tan
+  * [Add a deadline: `deadline`](#add-a-deadline--deadline) - Li Gangwei
+  * [Add a event: `event`](#add-an-event--event) - Li Gangwei
+  * [Add a lesson: `lesson`](#add-a-lesson--lesson) - Marcus Tan
   * [Delete a task : `delete`](#delete-a-task--delete) - Li Beining
-  * [Mark a task as done: `done`](#mark-a-task-as-done-done) - Li Beining
-  * [Find a task : `find`](#find-a-task-by-attribute-find) - Zhou Zijian
-  * [Edit a task : `edit`](#edit-a-task-edit`) - Gabriella Teh
+  * [Mark a task as done: `done`](#mark-a-task-as-done--done) - Li Beining
+  * [Find a task : `find`](#find-a-task-by-an-attribute--find) - Zhou Zijian
+  * [Edit a task : `edit`](#edit-a-task--edit) - Gabriella Teh
   * [Exit the program : `exit`](#exit-the-program--exit) - Li Gangwei
 * [FAQ](#faq) - Li Gangwei
 * [Command summary](#command-summary) - Zhou Zijian
@@ -67,26 +68,41 @@ Shows a list of all tasks in PlaNus.
 Format: `list`
 
 
-### Add a task: `add`
+### Add a deadline : `deadline`
 
-Adds a task of the specified type to PlaNus.
+Adds a deadline to PlaNus.
 
-Format: `add title:TITLE type:TYPE_OF_TASK [desc:DESCRIPTION] [date:DATE_TIME] [tag:MODULE_CODE]`
+Format: `deadline title:TITLE [desc:DESCRIPTION] [date:DATE_TIME] [tag:MODULE_CODE]`
 
-* Adds the task of the specified `type:TYPE_OF_TASK` to PlaNus.
-* The type must be of the following types(case-sensitive):
-  * deadline
-  * event
+* Adds a deadline to PlaNus.
+  * The added deadline will be tracked for time analysis if it has a tag.
 
 Examples:
 
-* `add title:Return book type:todo date:01-01-2020 18:00`
-Adds a task with title "Return book", of type "deadline", and a date and time of "01-01-2020" to PlaNus.
-* `add title:Birthday party type:deadline desc:Frank’s birthday party date:01-01-2020 18:00`
-  Adds a task with title “Birthday party”, of type "event",
-  description “Frank’s birthday party” and a date and time of “01-01-2020 18:00” to PlaNus.
+* `deadline title:Return book datetime:02-01-2020 18:00`<br>
+Adds a deadline with title "Return book", and a date and time of "02-01-2020 18:00" to PlaNus.
+* `deadline title:Assignment 1 desc:CS3230 Assignment 1 date:01-11-2020 18:00 tag:CS3230`<br>
+Adds a deadine with title “Assignment 1”, description “CS3230 Assignment 1”,
+and a date and time of “01-01-2020 18:00” with tag "CS3230" to PlaNus.
 
-### Add a lesson: `lesson`
+### Add an event : `event`
+
+Adds an event to PlaNus.
+
+Format: `event title:TITLE date:DATE from:START_TIME [desc:DESCRIPTION] [tag:MODULE_CODE]`
+
+* Adds a deadline to PlaNus.
+  * The added deadline will be tracked for time analysis if it has a tag.
+
+Examples:
+
+* `deadline title:Return book datetime:02-01-2020 18:00`<br>
+Adds a deadline with title "Return book", and a date and time of "02-01-2020 18:00" to PlaNus.
+* `deadline title:Assignment 1 desc:CS3230 Assignment 1 date:01-11-2020 18:00 tag:CS3230`<br>
+Adds a deadine with title “Assignment 1”, description “CS3230 Assignment 1”,
+and a date and time of “01-01-2020 18:00” with tag "CS3230" to PlaNus.
+
+### Add a lesson : `lesson`
 
 Adds a lesson to PlaNus.
 
@@ -118,7 +134,7 @@ Examples:
 * `list` followed by `delete 1 2` deletes the 1st task followed by the 2nd task in the results of the `list` command.
 * `find title:homework` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
-### Mark a task as done: `done`
+### Mark a task as done : `done`
 
 Marks a specified task in PlaNus as done.
 
@@ -133,7 +149,7 @@ Examples:
 * `list` followed by `done 2 3` marks the 2nd and the 3rd tasks in the results of the `list` command status to be done.
 * `find title:homework` followed by `done 1` marks the 1st task in the results of the `find` command status to be done.
 
-### Find a task by an attribute: `find`
+### Find a task by an attribute : `find`
 
 Finds a task by a set of attributes given below.
 
@@ -161,7 +177,7 @@ Examples:
    that includes either `dinner` or `lunch`
 
 
-### Edit a task: `edit`
+### Edit a task : `edit`
 
 Edits a task by a set of defined attributes by the user.
 
