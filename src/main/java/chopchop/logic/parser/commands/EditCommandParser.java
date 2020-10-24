@@ -18,16 +18,10 @@ import chopchop.logic.edit.TagEditDescriptor;
 import chopchop.logic.parser.ArgName;
 import chopchop.logic.parser.ItemReference;
 import chopchop.logic.parser.CommandArguments;
-import chopchop.logic.parser.commands.CommandTarget;
 
 import chopchop.logic.commands.Command;
 
 import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
-
-import chopchop.model.Model;
-import chopchop.logic.commands.CommandResult;
-import chopchop.logic.commands.exceptions.CommandException;
-import chopchop.logic.history.HistoryManager;
 
 public class EditCommandParser {
 
