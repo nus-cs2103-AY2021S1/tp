@@ -29,7 +29,7 @@ public class EditEntryDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditEntryDescriptor} with fields containing {@code entry}'s details
      */
     public EditEntryDescriptorBuilder(Entry entry) {
         descriptor = new EditEntryDescriptor();
