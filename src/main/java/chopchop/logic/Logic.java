@@ -92,9 +92,9 @@ public interface Logic {
     List<String> getInputHistory(String prefix);
 
     /**
-     * Returns a set of usage records.
+     * Returns a list of usage records.
      */
-    ObservableSet<Pair<String, LocalDateTime>> getRecordSet();
+    ObservableList<Pair<String, LocalDateTime>> getRecordList();
 
     /**
      * Set the user prefs' GUI settings.

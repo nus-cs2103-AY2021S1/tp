@@ -25,9 +25,7 @@ import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
 import chopchop.model.stats.StatsManager;
 import chopchop.storage.Storage;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
 
 /**
  * The main LogicManager governing the logic in the app.
@@ -155,8 +153,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableSet<Pair<String, LocalDateTime>> getRecordSet() {
-        return FXCollections.observableSet(this.statsManager.getRecords());
+    public ObservableList<Pair<String, LocalDateTime>> getRecordList() {
+        return this.statsManager.getRecords();
     }
 
     @Override

@@ -5,8 +5,8 @@ import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDateTime;
 
 import chopchop.commons.util.Pair;
-import javafx.collections.ObservableSet;
-import javafx.collections.SetChangeListener;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
@@ -18,7 +18,7 @@ import javafx.scene.layout.Region;
 public class PinBox extends UiPart<Region> {
     private static final String EMPTY_PROMPT = "You haven't cooked anything yet.";
     private static final String FXML = "PinBox.fxml";
-    private ObservableSet<Pair<String, LocalDateTime>> observableRecords;
+    private ObservableList<Pair<String, LocalDateTime>> observableRecords;
 
     @FXML
     private TextArea pins;
@@ -38,7 +38,7 @@ public class PinBox extends UiPart<Region> {
     /**
      * Creates a {@code PinBox}.
      */
-    public PinBox(ObservableSet<Pair<String, LocalDateTime>> records) {
+    public PinBox(ObservableList<Pair<String, LocalDateTime>> records) {
         super(FXML);
         this.observableRecords = records;
         pins.setText("Statistics\n");
@@ -49,7 +49,7 @@ public class PinBox extends UiPart<Region> {
             body1.setText(records.toString());
         }
         header2.setText("Ingredients expiring soon");
-        observableRecords.addListener(new SetChangeListener<Pair<String, LocalDateTime>>() {
+        observableRecords.addListener(new ListChangeListener<Pair<String, LocalDateTime>>() {
             @Override
             public void onChanged(Change<? extends Pair<String, LocalDateTime>> c) {
                 //todo: expiring ingredient.
