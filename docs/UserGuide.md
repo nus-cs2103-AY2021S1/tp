@@ -74,7 +74,7 @@ Adds a deadline to PlaNus.
 
 Format: `deadline title:TITLE [desc:DESCRIPTION] [datetime:DATE_TIME] [tag:MODULE_CODE]`
 
-* Adds a deadline to PlaNus.
+* Adds a deadline to PlaNus, with the specified title in `title:TITLE`, with the specified description in `description:DESCRIPTION`, with a date and time in `datetime:DATE_TIME` of when this deadline should be completed before, with a tag in `tag:MODULE_CODE` indicating the module of which this deadline belongs to.
   * The added deadline will be tracked for time analysis if it has a tag.
 
 Examples:
@@ -83,6 +83,7 @@ Examples:
 Adds a deadline with title "Return book", and a date and time of "02-01-2020 18:00" to PlaNus.
 * `deadline title:Assignment 1 desc:CS3230 Assignment 1 datetime:01-11-2020 18:00 tag:CS3230`<br>
 Adds a deadline with title “Assignment 1”, description “CS3230 Assignment 1”, and a date and time of “01-01-2020 18:00” with tag "CS3230" to PlaNus.
+<br>
 
 ### 4. Add an event : `event`
 
@@ -90,7 +91,7 @@ Adds an event to PlaNus.
 
 Format: `event title:TITLE date:DATE from:START_TIME to:END_TIME [desc:DESCRIPTION] [tag:MODULE_CODE]`
 
-* Adds an event to PlaNus.
+* Adds an event to PlaNus, with the specified title in `title:TITLE`, with the specified description in `description:DESCRIPTION`, on the date specified in `date:DATE`, starting from the time specified in `from:START_TIME` to the time specified in `to:TIME`, with a tag in `tag:MODULE_CODE` indicating the module of which this deadline belongs to.
   * The added event will be tracked for time analysis if it has a tag.
 
 Examples:
@@ -98,6 +99,7 @@ Examples:
 * `event title:Career Talk date:02-01-2020 from:09:00 to:12:30`<br>
 Adds an event with title "Career Talk", and a date "02-01-2020" with start time of "09:00" and end time of "11:30" to PlaNus.
 * `event title:Consultation date:13-10-2020 from:19:00 to:20:30 desc:CS2105 consultation tag:CS2105`<br> and a date "13-10-2020" with start time of "19:00" and end time of "20:30" with tag "CS2105" to PlaNus.
+<br>
 
 ### 5. Add a lesson : `lesson`
 
