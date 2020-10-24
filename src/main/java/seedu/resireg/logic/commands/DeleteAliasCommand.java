@@ -19,7 +19,7 @@ public class DeleteAliasCommand extends Command {
     public static final String MESSAGE_INVALID_ALIAS = "This alias doesn't exist.";
 
     public static final Help HELP = new Help(COMMAND_WORD,
-        "Adds an alias to ResiReg.\n",
+        "Deletes an alias from ResiReg.\n",
         "Parameters: "
             + PREFIX_COMMAND + "COMMAND "
             + PREFIX_ALIAS + "ALIAS ");

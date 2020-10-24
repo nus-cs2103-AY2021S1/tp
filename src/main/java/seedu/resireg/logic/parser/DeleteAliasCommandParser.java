@@ -6,7 +6,6 @@ import static seedu.resireg.logic.parser.CliSyntax.PREFIX_COMMAND;
 
 import java.util.stream.Stream;
 
-import seedu.resireg.logic.commands.AddAliasCommand;
 import seedu.resireg.logic.commands.DeleteAliasCommand;
 import seedu.resireg.logic.parser.exceptions.ParseException;
 import seedu.resireg.model.alias.Alias;
@@ -30,7 +29,7 @@ public class DeleteAliasCommandParser implements Parser<DeleteAliasCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_COMMAND, PREFIX_ALIAS)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                AddAliasCommand.HELP.getFullMessage()));
+                DeleteAliasCommand.HELP.getFullMessage()));
         }
 
         CommandWord commandWord = ParserUtil.parseCommandWord(argMultimap.getValue(PREFIX_COMMAND).get());
