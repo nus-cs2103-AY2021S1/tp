@@ -45,7 +45,7 @@
 //
 //        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
 //    }
-//
+
 //    @Test
 //    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
 //        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredAssignmentList().size() + 1);
@@ -53,7 +53,7 @@
 //
 //        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
 //    }
-//
+
 //    @Test
 //    public void execute_validIndexFilteredList_success() {
 //        showAssignmentAtIndex(model, INDEX_FIRST_ASSIGNMENT);
@@ -69,7 +69,7 @@
 //
 //        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
 //    }
-//
+
 //    @Test
 //    public void execute_invalidIndexFilteredList_throwsCommandException() {
 //        showAssignmentAtIndex(model, INDEX_FIRST_ASSIGNMENT);
