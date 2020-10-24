@@ -36,6 +36,7 @@ public class Comment {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Comment // instanceof handles nulls
+                && title.getTitle().equals(((Comment) other).getTitle().getTitle())
                 && description.equals(((Comment) other).description)
                 && date.equals(((Comment) other).date)); // state check
     }

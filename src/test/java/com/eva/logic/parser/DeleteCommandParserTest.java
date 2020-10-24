@@ -8,7 +8,8 @@ import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import com.eva.logic.commands.DeleteCommand;
-import com.eva.logic.parser.comment.DeleteCommandParser;
+import com.eva.logic.commands.DeleteStaffCommand;
+
 
 
 
@@ -25,7 +26,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_PERSON));
+        assertParseSuccess(parser, "1 s-", new DeleteStaffCommand(INDEX_FIRST_PERSON));
     }
 
     @Test

@@ -9,6 +9,8 @@ package Logic {
 package Parser {
 Interface Parser <<Interface>>
 Class AddressBookParser
+Class AddCommandParser
+Class DeleteCommandParser
 Class XYZCommandParser
 Class CliSyntax
 Class ParserUtil
@@ -36,7 +38,12 @@ HiddenOutside ..> Logic
 
 LogicManager .up.|> Logic
 LogicManager -->"1" AddressBookParser
-AddressBookParser .left.> XYZCommandParser: creates >
+AddressBookParser ..> AddCommandParser: creates >
+AddressBookParser ..> DeleteCommandParser: creates >
+AddCommandParser ..> XYZCommandParser: creates >
+DeleteCommandParser ..> XYZCommandParser: creates >
+
+
 
 XYZCommandParser ..> XYZCommand : creates >
 XYZCommandParser ..|> Parser
