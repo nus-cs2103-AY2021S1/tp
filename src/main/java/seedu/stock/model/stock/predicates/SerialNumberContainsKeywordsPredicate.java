@@ -1,16 +1,14 @@
 package seedu.stock.model.stock.predicates;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 import seedu.stock.model.stock.Stock;
-
 
 /**
  * Tests that a {@code Stock}'s {@code SerialNumber} matches or contains
  * any of the keywords given.
  */
-public class SerialNumberContainsKeywordsPredicate implements Predicate<Stock> {
+public class SerialNumberContainsKeywordsPredicate extends FieldContainsKeywordsPredicate {
 
     private final List<String> keywords;
 
