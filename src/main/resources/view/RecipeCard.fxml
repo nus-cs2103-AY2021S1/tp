@@ -15,7 +15,7 @@
             <children>
                <ImageView fitHeight="60.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" >
                   <image>
-                     <Image url="@../images/recipe.png" />
+                     <Image url="@../images/meal.png" />
                   </image>
                </ImageView>
                <Label fx:id="name" alignment="CENTER" styleClass="recipe_name_label" text="\$name" wrapText="false" />
