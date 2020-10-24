@@ -7,7 +7,7 @@ import seedu.taskmaster.model.student.NusnetId;
  * Represents a record of a student in a session.
  */
 public class StudentRecord {
-    private static final String STRING_FORMAT = "%s|%s";
+    private static final String STRING_FORMAT = "%s|%s|%s";
 
     private final Name name;
     private final NusnetId nusnetId;
@@ -60,7 +60,7 @@ public class StudentRecord {
 
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT, nusnetId, attendanceType.name());
+        return String.format(STRING_FORMAT, nusnetId, attendanceType.name(), classParticipation);
     }
 
     @Override
