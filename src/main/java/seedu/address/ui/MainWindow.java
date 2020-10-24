@@ -1,8 +1,5 @@
 package seedu.address.ui;
 
-import static seedu.address.commons.core.Messages.HELP_START;
-import static seedu.address.commons.core.Messages.HELP_SUMMARY;
-
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -19,6 +16,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.commands.results.HelpCommandResult;
 import seedu.address.logic.parser.exceptions.ParseException;
+
+import static seedu.address.commons.core.Messages.*;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -130,7 +129,7 @@ public class MainWindow extends UiPart<Stage> {
         itemListPanelPlaceholder.getChildren().add(itemListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
-        resultDisplay.setFeedbackToUser(HELP_SUMMARY);
+        resultDisplay.setFeedbackToUser(MESSAGE_HELP_ON_START);
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         deliveryListPanel = new DeliveryListPanel(logic.getFilteredDeliveryList());
