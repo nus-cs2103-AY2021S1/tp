@@ -137,7 +137,103 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Undo command
+
+### Order Commands
+
+Order commands represents the operations to which users interact with.
+
+#### Add Command
+
+- The Add Command allows the user to add an order from the selected menu `Model#getFilteredFoodList`
+- If the Index provided is greater or less than the size of the menu, a `CommandException will be thrown`
+- If the Quantity provided is less or equal to zero, a `CommandException will be thrown`
+
+
+
+The following diagram summarises the sequence when the AddCommand is executed.
+
+![AddCommandDiagram](images/AddCommandDiagram.png)
+
+
+
+Given below is an example usage scenario and how the AddCommand behaves at each step.
+
+Step 1: The user launches the application for the first time, by default, no vendor is selected.
+
+Step 2: The user selects a vendor with the VendorCommand `vendor i`, the corresponding menu will be loaded.
+
+Step 3: The user enters the command `add 2 3` which adds item 2 from the menu with a quantity of 3.
+
+Step 4: `Model#getFilteredFoodList()` is executed to retrieve the list of Food items or menu from the current vendor
+
+Step 5: AddCommand checks whether the index and quantity inputted is valid. Index and Quantity is valid.
+
+Step 6: An OrderItem object is created from input quantity and the retrieved Food item.
+
+Step 7: `Model#addOrderItem()` is executed to add the OrderItem into ModelManager.
+
+
+
+#### Remove Command
+
+- The RemoveCommand allows the user to remove an order from the selected menu `Model#getFilteredOrderItemList`
+- If the Index provided is greater or less than the size of the menu, a `CommandException will be thrown`
+- If the Quantity provided is less or equal to zero, a `CommandException will be thrown`
+
+
+
+The following diagram summarises the sequence when the RemoveCommand is executed.
+
+![RemoveCommandDiagram](images/RemoveCommandDiagram.png)
+
+
+
+Given below is an example usage scenario and how the RemoveCommand behaves at each step.
+
+Step 1: The user has selected a vendor with `vendor i`
+
+Step 2: The user has added items with `add i qty`
+
+Step 3: The user enters the command `remove 1 1` which removes 1 quantity of the item at the 1st index in the order.
+
+Step 4: `Model#getFilteredOrderItemList()` is executed to retrieve the list of OrderItems from the current order.
+
+Step 5: RemoveCommand checks whether the index and quantity inputted is valid. Index and Quantity is valid.
+
+Step 6: A new OrderItem object is created from input quantity and the retrieved OrderItem.
+
+Step 7: `Model#removeOrderItem()` is executed to remove the related OrderItem
+
+
+
+#### Clear Command
+
+- The ClearCommand allows the user to clear all orders in the current order
+- If the current Order has no items, a `CommandException will be thrown`
+
+
+
+The following diagram summarises the sequence when the ClearCommand is executed.
+
+![ClearCommandDiagram](images/ClearCommandDiagram.png)
+
+
+
+Given below is an example usage scenario and how the ClearCommand behaves at each step
+
+Step 1: The user has selected a vendor with `vendor i`
+
+Step 2: The user has added items with `add i qty`
+
+Step 3: The user enters the command `clear`.
+
+Step 4: ClearCommand checks whether the order has OrderItems with `Model#getOrderSize()`. The order has OrderItems.
+
+Step 5: `Model#clearOrder()` is executed to clear all OrderItems from the order.
+
+
+
+### Undo feature
 
 Changes made to the Order can be undone by using the `undo` command.
 
@@ -162,13 +258,48 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Vendor Command
 
-* The Vendor Command allows the user to select a vendor from the `AddressBook` to order from.
-* If the vendor does not exist, a `Command Exception will be thrown`
+* There are two VendorCommand classes in SupperStrikers.
+* `VendorCommand`, deselects the vendor to the default unintialized value.
+* `SwitchVendorCommand` allows the user to select a vendor from the `AddressBook` to order from,
+* If the vendor does not exist, a `Command Exception` will be thrown
 * If the vendor selected is different from the current vendor, the model will clear the current order.
 
-The following diagram summarises the sequence when the VendorCommmand is executed.
+Given below is an example usage scenario and how the SwitchVendorCommand behaves at each step.
+
+Step 1: The user launches the application for the first time, by default, no vendor is selected.
+
+Step 2: The user enters the vendor command `vendor i`.
+
+Step 3: `Model#getFilteredVendorList()` is executed to retrieve the list of vendors.
+
+Step 4: SwitchVendorCommand checks whether i<sup>th</sup> index is valid.
+
+Step 5: If the i<sup>th</sup> index is valid, `Model#setVendorIndex(i)` is executed to select the vendor. 
+
+Step 6: Supper Strikers loads the menu of the i<sup>th</sup> vendor into the UI by calling `MainWindow#handleVendor()`.
+
+Step 7: The UI component
+showing the vendor list is hidden and the UI showing the menu is displayed to the user by calling
+`MainWindow#displayMenu()`.
+
+Step 8: `Model#resetOrder()` creates a new empty order for the i<sup>th</sup> vendor.
+
+
+The following diagram summarises the sequence when the SwitchVendorCommmand is executed.
 ![VendorSequendeDiagram](images/VendorCommandSequenceDiagram.png)
 
+
+Given below is the example usage scenario of the VendorCommand
+
+Step 1: The user has already selected a vendor using the SwitchVendorCommand.
+
+Step 2: The user enters the vendor command `vendor`.
+
+Step 3: `Model#setVendorIndex(-1)` is executed to set the vendor index to its default value.
+
+Step 4: The UI component showing the menu UI component
+         is hidden and the UI component showing the vendor list is displayed to the user by calling
+        `MainWindow#displayMenu()`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -242,13 +373,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 3b1. SupperStrikers clears the order of the current vendor.
   
   Use case resumes at step 4.
-
-**Use case: Viewing current order**
-
-**MSS**
-
-1. User requests to list all the items in the current order
-2. SupperStrikers displays the current order to the user
 
 **Use case: Viewing total**
 
