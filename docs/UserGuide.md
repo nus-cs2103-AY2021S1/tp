@@ -3,18 +3,17 @@ layout: page
 title: User Guide
 ---
 ---
-
-## Warenager’s User Guide {.unlisted .unnumbered}
+<h1>Warenager’s User Guide</h1>
 This user guide introduces our inventory application, Warenager, and provides support
 for the usage of its functionalities. For quick reference, we have provided a summarised table of commands
 and their usage formats at the end of this guide.
 
-### About Warenager {.unlisted .unnumbered}
+<h3>About Warenager</h3>
 Warenager is an **inventory application** to help tech-savvy warehouse managers to keep track of items
 in their warehouse. It **optimizes management tasks** for warehouse managers including but not
 exhaustive of updating, searching, sorting and ordering supplies, via Command Line Interface (CLI).
 
-### Table of Contents {.unlisted .unnumbered}
+<h3>Table of Contents</h3>
 * Table of Contents
 {:toc}
 
@@ -450,8 +449,12 @@ Format : `exit`
 
 ## FAQ
 
-**Q**: Question<br>
-**A**: Answer.
+**Q**: Can I use Warenager on any OS?<br>
+**A**: Yes. Warenager is supported by Windows, Mac and Linux.
+
+**Q**: Can I use Warenager on another deivce?<br>
+**A**: Yes. Simply transfer the data files under `/data` and copy over to the same directory `/data` in the Warenager of your
+other device.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -472,3 +475,9 @@ Action | Format, Examples
 **Print** | `print`
 **Help** | `help`
 **Exit** | `exit`
+
+--------------------------------------------------------------------------------------------------------------------
+## Glossary
+Term | Definition
+--------|------------------
+**CSV File** | Comma-separated values File. It contains data separated by commas.
