@@ -317,7 +317,7 @@
 
 .text-area {
     -fx-font-family: "Roboto Mono";
-    -fx-font-size: 10pt;
+    -fx-font-size: 13pt;
     -fx-text-fill: white;
 }
 
@@ -423,7 +423,7 @@
     -fx-background-insets: 0;
     -fx-background-radius: 15px;
     -fx-font-family: "Roboto Mono";
-    -fx-font-size: 12pt;
+    -fx-font-size: 13pt;
     -fx-text-fill: white;
     -fx-padding: 10px 15px;
 }
