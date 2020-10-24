@@ -1,19 +1,17 @@
 package seedu.address.testutil;
 
-import jfxtras.icalendarfx.components.VEvent;
-import seedu.address.model.CliniCal;
-import seedu.address.model.appointment.Appointment;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_FIRST;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_SECOND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_NAME_FIRST;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_NAME_SECOND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_FIRST;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_SECOND;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import jfxtras.icalendarfx.components.VEvent;
 
 /**
  * A utility class containing a list of {@code Appointment} objects to be used in tests.
@@ -43,16 +41,16 @@ public class TypicalVEvents {
 
     private TypicalVEvents() {} // prevents instantiation
 
-//    /**
-//     * Returns an {@code CliniCal} with all the typical appointments.
-//     */
-//    public static CliniCal getTypicalCliniCal() {
-//        CliniCal ab = new CliniCal();
-//        for (VEvent vEvent : getTypicalVEvents()) {
-//            ab.addVEvent(vEvent);
-//        }
-//        return ab;
-//    }
+    //    /**
+    //     * Returns an {@code CliniCal} with all the typical appointments.
+    //     */
+    //    public static CliniCal getTypicalCliniCal() {
+    //        CliniCal ab = new CliniCal();
+    //        for (VEvent vEvent : getTypicalVEvents()) {
+    //            ab.addVEvent(vEvent);
+    //        }
+    //        return ab;
+    //    }
 
     public static List<VEvent> getTypicalVEvents() {
         return new ArrayList<>(Arrays.asList(VEVENT1, VEVENT2, VEVENT3, VEVENT4, VEVENT5));

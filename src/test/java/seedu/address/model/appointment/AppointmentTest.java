@@ -1,15 +1,16 @@
 package seedu.address.model.appointment;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.AppointmentBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_SECOND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_NAME_SECOND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_SECOND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_FIRST;
 import static seedu.address.testutil.TypicalAppointments.FIRST_APP;
 import static seedu.address.testutil.TypicalAppointments.SECOND_APP;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.AppointmentBuilder;
 
 public class AppointmentTest {
 
@@ -54,7 +55,7 @@ public class AppointmentTest {
         assertFalse(FIRST_APP.equals(editedFirst));
 
         // different start time -> returns false
-        editedFirst = new AppointmentBuilder(FIRST_APP).withStartTime(VALID_START_TIME_SECOND).build();
+        editedFirst = new AppointmentBuilder(SECOND_APP).withStartTime(VALID_START_TIME_FIRST).build();
         assertFalse(FIRST_APP.equals(editedFirst));
 
         // different end time -> returns false

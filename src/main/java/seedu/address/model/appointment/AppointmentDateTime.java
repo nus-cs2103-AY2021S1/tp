@@ -9,7 +9,7 @@ import java.time.format.DateTimeParseException;
 
 public class AppointmentDateTime {
 
-    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     public static final String MESSAGE_CONSTRAINTS =
             "Times should be entered in the format: yyyy-MM-dd HH:mm";
     // Compared to other classes, this class uses the LocalDateTime class to check validity of the String
@@ -25,7 +25,7 @@ public class AppointmentDateTime {
     public AppointmentDateTime(String dateTime) {
         requireNonNull(dateTime);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
-        this.dateTime = LocalDateTime.parse(dateTime, formatter);
+        this.dateTime = LocalDateTime.parse(dateTime, FORMATTER);
     }
 
     /**
@@ -33,7 +33,7 @@ public class AppointmentDateTime {
      */
     public static boolean isValidDateTime(String test) {
         try {
-            LocalDateTime.parse(test, formatter);
+            LocalDateTime.parse(test, FORMATTER);
             return true;
         } catch (DateTimeParseException e) {
             return false;

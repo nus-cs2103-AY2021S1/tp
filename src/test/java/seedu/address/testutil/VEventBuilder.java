@@ -1,20 +1,16 @@
 package seedu.address.testutil;
 
-import jfxtras.icalendarfx.components.VEvent;
-import seedu.address.commons.util.VEventUtil;
-import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.AppointmentDateTime;
-import seedu.address.model.patient.Name;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import jfxtras.icalendarfx.components.VEvent;
 
 /**
  * A utility class to help with building VEvent objects.
  */
 public class VEventBuilder {
 
-    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     public static final String DEFAULT_NAME = "Danny Williams";
     public static final String DEFAULT_START_TIME = "2020-02-02 14:20";
     public static final String DEFAULT_END_TIME = "2020-02-02 14:35";
@@ -37,8 +33,8 @@ public class VEventBuilder {
      */
     public VEventBuilder(VEvent vEventToCopy) {
         patientName = vEventToCopy.getSummary().getValue();
-        startTime = vEventToCopy.getDateTimeStart().getValue().toString();
-        endTime = vEventToCopy.getDateTimeEnd().getValue().toString();
+        startTime = LocalDateTime.parse(vEventToCopy.getDateTimeStart().getValue().toString()).format(FORMATTER);
+        endTime = LocalDateTime.parse(vEventToCopy.getDateTimeEnd().getValue().toString()).format(FORMATTER);
     }
 
     /**
@@ -71,8 +67,8 @@ public class VEventBuilder {
     public VEvent build() {
         VEvent resultVEvent = new VEvent();
         resultVEvent.setSummary(patientName);
-        resultVEvent.setDateTimeStart(LocalDateTime.parse(startTime, formatter));
-        resultVEvent.setDateTimeEnd(LocalDateTime.parse(endTime, formatter));
+        resultVEvent.setDateTimeStart(LocalDateTime.parse(startTime, FORMATTER));
+        resultVEvent.setDateTimeEnd(LocalDateTime.parse(endTime, FORMATTER));
         return resultVEvent;
     }
 
