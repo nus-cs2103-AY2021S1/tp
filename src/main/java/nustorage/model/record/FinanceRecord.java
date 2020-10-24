@@ -69,7 +69,7 @@ public class FinanceRecord {
      * @param obj Object to compare with
      * @return True if {@code obj} is a {@code Finance Record} and has the same amount and datetime value.
      */
-    public boolean equalsWithoutID(Object obj) {
+    public boolean hasSameData(Object obj) {
         if (obj instanceof FinanceRecord) {
             return ((FinanceRecord) obj).amount == this.amount
                     && ((FinanceRecord) obj).getDatetimeString().equals(this.getDatetimeString());
@@ -77,11 +77,24 @@ public class FinanceRecord {
         return false;
     }
 
+    /**
+     * Compares if {@code obj} is a {@code Finance Record} and has the same amount and datetime value.
+     *
+     * @param obj Object to compare with
+     * @return True if {@code obj} is a {@code Finance Record} and has the same amount and datetime value.
+     */
+    public boolean isSameRecord(Object obj) {
+        if (obj instanceof FinanceRecord) {
+            return this.id == ((FinanceRecord) obj).id;
+        }
+        return false;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof FinanceRecord) {
-            return ((FinanceRecord) obj).id == this.id
-                    && this.equalsWithoutID(obj);
+            return this.isSameRecord(obj)
+                    && this.hasSameData(obj);
         }
         return false;
     }
