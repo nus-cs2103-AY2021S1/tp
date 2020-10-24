@@ -46,14 +46,9 @@ public class EditLessonCommand extends Command {
             + "[" + PREFIX_END_TIME + "TIME] "
             + "[" + PREFIX_START_DATE + "DATE] "
             + "[" + PREFIX_END_DATE + "DATE] \n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TITLE + "CS2103T Lecture "
-            + PREFIX_DESCRIPTION + "Most exciting lecture in NUS! "
-            + PREFIX_DAY + "Mon "
-            + PREFIX_START_TIME + "12:00 "
-            + PREFIX_END_TIME + "14:00 "
-            + PREFIX_START_DATE + "01-01-2020 "
-            + PREFIX_END_DATE + "01-05-2020 ";
+            + PREFIX_DESCRIPTION + "Most exciting lecture in NUS! ";
 
 
     public static final String MESSAGE_EDIT_LESSON_SUCCESS = "Edited Lesson: %1$s";
