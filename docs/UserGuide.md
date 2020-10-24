@@ -11,6 +11,9 @@ It is easy to build and customise your inventories and deliveries by using
 only Command Line Interface. If you are a fast-typist restaurant manager
 who prefers to use the Command Line Interface and needs to keep
 track of inventory items and pending deliveries, OneShelf is for you!
+<br><br>
+This User Guide document will provide a general overview of installation, existing features, coming-up features
+as well as summary commands.
 
 
 
