@@ -27,8 +27,8 @@ public class FindCommandParser {
 
     /**
      * Parses a 'find' command. Syntax(es):
-     * {@code delete recipe (keywords)+}
-     * {@code delete ingredient (keywords)+}
+     * {@code find recipe (keywords)+}
+     * {@code find ingredient (keywords)+}
      *
      * @param args the parsed command arguments from the {@code CommandParser}.
      * @return     a FindCommand, if the input was valid.
