@@ -30,16 +30,19 @@ public class FilterCommandParser {
 
     /**
      * Parses a 'filter' command. Syntax(es):
-     * {@code delete recipe (keywords)+}
-     * {@code delete ingredient (keywords)+}
+     * {@code filter recipe (keywords)+}
+     * {@code filter ingredient (keywords)+}
      *
      * @param args the parsed command arguments from the {@code CommandParser}.
-     * @return     a FindCommand, if the input was valid.
+     * @return     a FilterCommand, if the input was valid.
      */
     public static Result<? extends Command> parseFilterCommand(CommandArguments args) {
 
         if (!args.getCommand().equals(commandName)) {
             return Result.error("invalid command '%s' (expected '%s')", args.getCommand(), commandName);
+        }
+        if (args.getRemaining().isBlank()) {
+            return Result.error("filtering target cannot be empty!");
         }
 
         // we expect no named arguments
@@ -48,36 +51,38 @@ public class FilterCommandParser {
         s.add(Strings.ARG_EXPIRY);
         s.add(Strings.ARG_INGREDIENT);
         s.add(Strings.ARG_TAG);
+        if (args.getAllArguments().isEmpty()) {
+            return Result.error("filtering criteria cannot be empty!");
+        }
+
         if ((foo = getFirstUnknownArgument(args, s)).isPresent()) {
             return Result.error("'filter' command doesn't support '%s'\n%s",
                 foo.get(), FilterRecipeCommand.MESSAGE_USAGE);
         }
 
-        if (getCommandTarget(args).equals(args)) {
+        /*if ((foo = getFirstUnknownArgument(args, new ArrayList<>())).isPresent()) {
             return Result.error("filtering criteria cannot be empty!\n%s",
                     foo.get(), FilterRecipeCommand.MESSAGE_USAGE);
-        }
+        }*/
 
         return getCommandTarget(args)
             .then(target -> {
-                var words = new StringView(target.snd()).words();
+                /*var words = new StringView(target.snd()).words();
 
                 if (words.isEmpty()) {
                     return Result.error("'%s' command requires at least one search term\n%s",
                         commandName, FilterRecipeCommand.MESSAGE_USAGE);
-                }
+                }*/
 
                 switch (target.fst()) {
                 case RECIPE:
-                    //return Result.of(new FindRecipeCommand(new NameContainsKeywordsPredicate(words)));
                     return parseFilterRecipeCommand(args);
 
                 case INGREDIENT:
-                    //return Result.of(new FindIngredientCommand(new NameContainsKeywordsPredicate(words)));
                     return parseFilterIngredientCommand(args);
 
                 default:
-                    return Result.error("can only find recipes or ingredients ('%s' invalid)", target.fst());
+                    return Result.error("can only filter recipes or ingredients ('%s' invalid)", target.fst());
                 }
             });
     }

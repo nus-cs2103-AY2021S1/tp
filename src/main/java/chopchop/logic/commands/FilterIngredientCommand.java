@@ -18,13 +18,9 @@ public class FilterIngredientCommand extends Command {
     public static final String COMMAND_WORD = "filter ingredient";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all ingredients whose content contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + "the specified keywords (case-insensitive) as tags and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " sugar";
-
-
-    //    private final Set<TagContainsKeywordsPredicate> tagPredicates;
-    //    private final ExpiryDateMatchesKeywordsPredicate expPredicate;
+            + "Example: " + COMMAND_WORD + " /tag favourite /expiry 2020-04-05";
 
     private final TagContainsKeywordsPredicate tagPredicates;
     private final ExpiryDateMatchesKeywordsPredicate expPredicate;
@@ -50,10 +46,6 @@ public class FilterIngredientCommand extends Command {
         if (tagPredicates != null) {
             model.updateFilteredIngredientList(tagPredicates);
         }
-
-        /*for (TagContainsKeywordsPredicate tp : tagPredicates) {
-            model.updateFilteredIngredientList(tp);
-        }*/
 
         if (DisplayNavigator.hasDisplayController()) {
             DisplayNavigator.loadIngredientPanel();
