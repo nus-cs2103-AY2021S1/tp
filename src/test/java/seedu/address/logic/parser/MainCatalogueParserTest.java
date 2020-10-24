@@ -135,7 +135,7 @@ public class MainCatalogueParserTest {
         assertTrue(parser.parseCommand(ListPersonsCommand.COMMAND_WORD, Status.PERSON_LIST)
                 instanceof ListPersonsCommand);
         assertTrue(parser.parseCommand(ListPersonsCommand.COMMAND_WORD + " 1",
-                Status.PERSON_LIST) instanceof  ListPersonsCommand);
+                Status.PERSON_LIST) instanceof ListPersonsCommand);
     }
 
     @Test
