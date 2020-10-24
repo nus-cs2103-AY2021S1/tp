@@ -11,6 +11,7 @@ import java.util.Objects;
 import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.task.Task;
 
 /**
  * Represents a Teammate in the team.
@@ -98,6 +99,15 @@ public class Person {
         List<Project> projects = Collections.emptyList();
         listOfParticipations.values().forEach(p -> projects.add(p.getProject()));
         return projects;
+    }
+
+    /**
+     * Gets all tasks that this person participates in.
+     */
+    public List<Task> getTasks() {
+        List<Task> tasks = Collections.emptyList();
+        listOfParticipations.values().forEach(p -> tasks.addAll(p.getTasks()));
+        return tasks;
     }
 
     public void updatePersonName(String newPersonNameStr) {

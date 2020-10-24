@@ -67,15 +67,10 @@ public class PersonDashboard extends UiPart<Region> {
         this.person.getProjects().stream()
                 .sorted(Comparator.comparing(project -> project.getProjectName().fullProjectName))
                 .forEach(project -> projects.getChildren().add(new Label(project.getProjectName().fullProjectName)));
-
-
-        header2.setText("Teammates: ");
-        this.person.getTeammates().stream()
-                .forEach(person -> teammates.getChildren().add(
-                        new Label(person.getPerson().getPersonName().toString())));
-        header3.setText("Meetings: ");
-        this.person.getMeetings()
-                .forEach(meeting -> meetings.getChildren().add(new Label(meeting.getMeetingName())));
+        header2.setText("Tasks: ");
+        this.person.getTasks().stream()
+                .sorted(Comparator.comparing(task -> task.taskName))
+                .forEach(task -> tasks.getChildren().add(new Label(task.taskName)));
     }
 
     @Override
