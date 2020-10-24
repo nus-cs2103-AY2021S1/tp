@@ -421,13 +421,13 @@ Command: `sort o/ascending by/name` will sort based on name and in ascending ord
 ![SortNameAscending](images/SortNameAscending.png)
 
 ### Generates a csv file that contains all stocks: `print`
-Generates a csv file that contains all stocks. Users may want to sort the stock using `sort` command
+Generates a csv file that contains all stocks. Users may want to sort the stocks using `sort` command
 to sort the stock in their preferred order before converting it into the csv file. The csv file is saved
 to `[root directory]/data/stocks.csv` after successfully executing the command.
 
 Format (single): `print`
 
-Example Usage:
+#### Example usage:
 
 After executing the `print` command, proceed to the folder which contains Warenager. Click on the `data`
 folder circled in red.
