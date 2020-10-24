@@ -107,4 +107,13 @@ public class ItemReference {
             || (obj instanceof ItemReference
                 && ((ItemReference) obj).reference.equals(this.reference));
     }
+
+    @Override
+    public String toString() {
+        if (this.reference.isLeft()) {
+            return String.format("#%d", this.getZeroIndex() + 1);
+        } else {
+            return this.reference.fromRight();
+        }
+    }
 }

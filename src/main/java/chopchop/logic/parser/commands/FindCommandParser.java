@@ -51,8 +51,7 @@ public class FindCommandParser {
                 var words = new StringView(target.snd()).words();
 
                 if (words.isEmpty()) {
-                    return Result.error("'%s' command requires at least one search term\n%s",
-                        commandName, FindRecipeCommand.MESSAGE_USAGE);
+                    return Result.error("'%s' command requires at least one search term", commandName);
                 }
 
                 switch (target.fst()) {

@@ -19,4 +19,14 @@ public class UndoCommand extends Command {
 
         return historyManager.undo(model);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this || (other instanceof UndoCommand);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("UndoCommand");
+    }
 }

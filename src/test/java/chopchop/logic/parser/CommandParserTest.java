@@ -4,6 +4,7 @@ package chopchop.logic.parser;
 
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 
 import chopchop.commons.util.Pair;
 import chopchop.logic.parser.exceptions.ParseException;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static chopchop.testutil.Assert.assertThrows;
 
 public class CommandParserTest {
@@ -21,18 +23,47 @@ public class CommandParserTest {
 
         var parser = new CommandParser();
 
-        var tests = Map.of(
-            "add ingredient squid /qty 30g /expiry 2020-12-24",
-            "Result(AddIngredientCommand: squid (30g) expires: 2020-12-24 \nTags: \nNo tags attached)",
+        var tests = new HashMap<String, String>();
 
-            "add ingredient milk /qty 600ml",
-            "Result(AddIngredientCommand: milk (600ml) \nTags: \nNo tags attached)",
+        tests.put("add ingredient squid /qty 30g /expiry 2020-12-24",
+            "Result(AddIngredientCommand: squid (30g) expires: 2020-12-24 \nTags: \nNo tags attached)");
 
-            "add recipe cake /ingredient milk /qty 400ml /ingredient flour /qty 500g "
-                    + "/ingredient egg /qty 7 /step mix /step bake /step eat",
+        tests.put("add ingredient milk /qty 600ml",
+            "Result(AddIngredientCommand: milk (600ml) \nTags: \nNo tags attached)");
+
+        tests.put("add recipe cake /ingredient milk /qty 400ml /ingredient flour /qty 500g "
+            + "/ingredient egg /qty 7 /step mix /step bake /step eat",
             "Result(AddRecipeCommand: cake Ingredients: milk (400ml), flour (500g), "
-                    + "egg (7) Steps: 1. mix, 2. bake, 3. eat Tags: No tags attached)"
-        );
+                + "egg (7) Steps: 1. mix, 2. bake, 3. eat Tags: No tags attached)");
+
+        tests.put("delete recipe cake",
+            "Result(DeleteRecipeCommand: cake)");
+
+        tests.put("delete ingredient milk",
+            "Result(DeleteIngredientCommand: milk)");
+
+        tests.put("delete ingredient milk /qty 500ml",
+            "Result(DeleteIngredientCommand: milk (500ml))");
+
+        tests.put("help", "Result(HelpCommand)");
+        tests.put("quit", "Result(QuitCommand)");
+        tests.put("undo", "Result(UndoCommand)");
+        tests.put("redo", "Result(RedoCommand)");
+
+        tests.put("list recipe", "Result(ListRecipeCommand)");
+        tests.put("list recipes", "Result(ListRecipeCommand)");
+        tests.put("list ingredient", "Result(ListIngredientCommand)");
+        tests.put("list ingredients", "Result(ListIngredientCommand)");
+
+        tests.put("make cake", "Result(MakeRecipeCommand(cake))");
+
+        tests.put("find recipe cake cucumber", "Result(FindRecipeCommand(keywords: [cake, cucumber]))");
+        tests.put("find ingredient cake cucumber", "Result(FindIngredientCommand(keywords: [cake, cucumber]))");
+
+        tests.put("find recipe", "Error('find' command requires at least one search term)");
+        tests.put("add recipe cake /", "Error(expected argument name after '/')");
+
+        tests.put("OWO", "Error(unknown command 'OWO')");
 
         tests.forEach((k, v) -> {
             var x = parser.parse(k);
@@ -41,6 +72,10 @@ public class CommandParserTest {
             assertEquals(v, x.toString());
         });
     }
+
+
+
+
 
     @Test
     void parse_commandArgs_success() {
@@ -63,5 +98,17 @@ public class CommandParserTest {
         assertThrows(ParseException.class, () -> {
             throw new ParseException("owo");
         });
+
+        assertNotEquals(new CommandArguments("add"), "add");
+        assertNotEquals(new CommandArguments("add"), new CommandArguments("subtract"));
+
+        var tests2 = Map.of(
+            "add", new CommandArguments("add"),
+            "add /stuff kekw", new CommandArguments("add", List.of(Pair.of(new ArgName("stuff"), "kekw")))
+        );
+
+        assertNotEquals(new CommandArguments("add", "aaa", List.of()), new CommandArguments("add", "bbb", List.of()));
+        assertNotEquals(new CommandArguments("add", "aaa", List.of(Pair.of(new ArgName("kekw"), "3"))),
+            new CommandArguments("add", "aaa", List.of(Pair.of(new ArgName("kekw"), "4"))));
     }
 }

@@ -19,4 +19,14 @@ public class RedoCommand extends Command {
 
         return historyManager.redo(model);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this || (other instanceof RedoCommand);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("RedoCommand");
+    }
 }
