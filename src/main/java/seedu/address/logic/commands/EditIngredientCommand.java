@@ -7,6 +7,8 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RECIPES;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -33,6 +35,8 @@ public class EditIngredientCommand extends Command {
     public static final String MESSAGE_DUPLICATE_INGREDIENT = "This recipe already exists in the Recipe "
             + "collection.";
 
+    private static Logger logger = Logger.getLogger("EditIngredientLogger");
+
     private final Index index;
     private final EditIngredientCommand.EditIngredientDescriptor editIngredientDescriptor;
 
@@ -52,12 +56,13 @@ public class EditIngredientCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        logger.log(Level.INFO, "Editing ingredient at position " + index.getOneBased());
         List<Ingredient> lastShownList = model.getFilteredIngredientList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_INGREDIENT_DISPLAYED_INDEX);
         }
-
+        assert(index.getZeroBased() >= 0);
         Ingredient ingredientToEdit = lastShownList.get(index.getZeroBased());
         Ingredient editedIngredient = createEditedIngredient(ingredientToEdit, editIngredientDescriptor);
 
@@ -70,6 +75,9 @@ public class EditIngredientCommand extends Command {
         if (ingredientToEdit.isSameIngredient(editedIngredient)) {
             return new CommandResult(String.format(MESSAGE_NOT_EDITED, editedIngredient));
         }
+
+        assert(!editedIngredient.equals(ingredientToEdit));
+
         return new CommandResult(String.format(MESSAGE_EDIT_INGREDIENT_SUCCESS, editedIngredient));
     }
 

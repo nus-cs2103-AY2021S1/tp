@@ -25,7 +25,7 @@ import seedu.address.model.WishfulShrinking;
 import seedu.address.model.consumption.Consumption;
 import seedu.address.model.consumption.ConsumptionContainsKeywordsPredicate;
 import seedu.address.model.recipe.Ingredient;
-import seedu.address.model.recipe.KeywordsContainIngredientPredicate;
+import seedu.address.model.recipe.IngredientContainsKeywordsPredicate;
 import seedu.address.model.recipe.NameContainsKeywordsPredicate;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.testutil.EditRecipeDescriptorBuilder;
@@ -418,7 +418,7 @@ public class CommandTestUtil {
 
         Ingredient ingredient = model.getFilteredIngredientList().get(targetIndex.getZeroBased());
         final String[] splitName = ingredient.getValue().split("\\s+");
-        model.updateFilteredIngredientList(new KeywordsContainIngredientPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredIngredientList(new IngredientContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredIngredientList().size());
     }

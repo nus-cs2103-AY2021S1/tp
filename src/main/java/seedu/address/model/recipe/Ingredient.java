@@ -106,9 +106,8 @@ public class Ingredient {
      */
     public String stringify(int position) {
         String commandWord = EditIngredientCommand.COMMAND_WORD;
-        String ingredientValue = PREFIX_INGREDIENT + getValue();
-        String quantity = PREFIX_QUANTITY + getQuantity();
-        return commandWord + " " + position + " " + ingredientValue + " " + quantity;
+        String ingredient = PREFIX_INGREDIENT + parseToString();
+        return commandWord + " " + position + " " + ingredient;
     }
 
     @Override

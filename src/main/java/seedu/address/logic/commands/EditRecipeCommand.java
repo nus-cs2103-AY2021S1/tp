@@ -17,6 +17,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -59,6 +61,7 @@ public class EditRecipeCommand extends Command {
     public static final String MESSAGE_EDIT_RECIPE_SUCCESS = "Edited Recipe: %1$s";
     public static final String MESSAGE_NOT_EDITED = "No edit made. At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the Recipe collection.";
+    private static Logger logger = Logger.getLogger("EditRecipeLogger");
 
     private final Index index;
     private final EditRecipeDescriptor editRecipeDescriptor;
@@ -79,6 +82,7 @@ public class EditRecipeCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Recipe> lastShownList = model.getFilteredRecipeList();
+        logger.log(Level.INFO, "Editing recipe at position " + index.getOneBased());
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);

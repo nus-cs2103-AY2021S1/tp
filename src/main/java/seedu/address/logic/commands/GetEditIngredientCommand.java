@@ -38,6 +38,7 @@ public class GetEditIngredientCommand extends Command {
 
         Ingredient ingredientToEdit = lastShownList.get(toEdit.getZeroBased());
         int ingredientPositionToEdit = lastShownList.indexOf(ingredientToEdit) + 1;
+        assert(ingredientPositionToEdit > 0);
         CommandResult commandResult =
                 new CommandResult(String.format(MESSAGE_GET_EDIT_INGREDIENT_SUCCESS, ingredientToEdit.toString()),
                 false, false, false, false, false,
