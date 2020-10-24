@@ -13,6 +13,7 @@ who prefers to use the Command Line Interface and needs to keep
 track of inventory items and pending deliveries, OneShelf is for you!
 
 
+
 --------------------------------------------------------------------------------------------------------------------
 ## 2. Quick start
 
@@ -24,16 +25,16 @@ track of inventory items and pending deliveries, OneShelf is for you!
 
 4. Double-click the file to start the app. The similar GUI shown below (Figure 1) should appear in a few seconds. <br>
    *Note how the app contains some sample data but the installed version on your desktop might have a different data set.*<br>
-   ![Ui](images/Ui.png) <br>
+   <br> ![Ui](images/Ui.png) <br>
    Figure 1: Introduction to OneShelf User Interface
 
 5. Type the command `help start` in the command box and press Enter to execute it. <br>
    A new help window shown below (Figure 2) should appear on your desktop.
-   ![Help Window](images/UiHelpStart.png) <Br>
+   <br> ![Help Window](images/UiHelpStart.png) <br>
    Figure 2: Help Start Window
    
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 ## 3. Features
@@ -43,6 +44,7 @@ OneShelf has 2 main features that it is able to store, namely are:
 2. Pending deliveries
 
 From here onwards, the term `item` and `delivery` are used specifically for inventory items and pending deliveries respectively.
+*You may want to refer to Figure 1 above.*
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about the item command format:**<br>
