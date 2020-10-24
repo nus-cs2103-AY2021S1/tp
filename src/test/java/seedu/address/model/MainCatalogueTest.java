@@ -7,9 +7,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_B;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_A;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_ADDRESS_B;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import static seedu.address.testutil.Assert.assertThrows;
-import seedu.address.testutil.PersonBuilder;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalProjects.APEAKAPP;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
@@ -25,11 +23,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
 import seedu.address.model.task.Task;
 import seedu.address.model.util.SampleDataUtil;
+import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.ProjectBuilder;
 
 public class MainCatalogueTest {
@@ -107,8 +107,37 @@ public class MainCatalogueTest {
     }
 
     @Test
+    public void hasPerson_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> mainCatalogue.hasPerson(null));
+    }
+
+    @Test
+    public void hasPerson_personNotInMainCatalogue_returnsFalse() {
+        assertFalse(
+                mainCatalogue.hasPerson(ALICE));
+    }
+
+    @Test
+    public void hasPerson_personInMainCatalogue_returnsTrue() {
+        mainCatalogue.addPerson(ALICE);
+        assertTrue(mainCatalogue.hasPerson(ALICE));
+    }
+
+    @Test
+    public void hasPerson_personWithSameIdentityFieldsInMainCatalogue_returnsTrue() {
+        mainCatalogue.addPerson(ALICE);
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_TEAMMATE_ADDRESS_B).build();
+        assertTrue(mainCatalogue.hasPerson(editedAlice));
+    }
+
+    @Test
     public void getProjectList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> mainCatalogue.getProjectList().remove(0));
+    }
+
+    @Test
+    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> mainCatalogue.getPersonList().remove(0));
     }
 
     @Test
