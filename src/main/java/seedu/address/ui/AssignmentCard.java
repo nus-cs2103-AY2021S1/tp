@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Done;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Schedule;
 import seedu.address.model.task.Deadline;
@@ -83,6 +84,15 @@ public class AssignmentCard extends UiPart<Region> {
         getSchedule(displaySchedule, suggestedStartTime, suggestedEndTime, assignment.getSchedule());
         getPriority(priority, assignment.getPriority());
         done.setText(assignment.getDone().toString());
+        getDone(done, assignment.getDone());
+    }
+
+    public void getDone(Label label, Done done) {
+        if (!done.isMarkedDone()) {
+            label.setText("");
+            return;
+        }
+        label.setText(done.toString());
     }
 
     public void getSchedule(Label displaySchedule, Label suggestedStartTime, Label suggestedEndTime,

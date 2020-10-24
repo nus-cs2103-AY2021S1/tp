@@ -18,7 +18,8 @@
     <GridPane styleClass="card-with-big-round-border" GridPane.columnIndex="0">
       <columnConstraints>
         <ColumnConstraints percentWidth="50.0" />
-        <ColumnConstraints percentWidth="50.0" />
+        <ColumnConstraints percentWidth="40.0" />
+        <ColumnConstraints percentWidth="10.0" />
       </columnConstraints>
       <children>
         <VBox alignment="CENTER_LEFT" GridPane.columnIndex="1" minHeight="105">
@@ -28,6 +29,12 @@
           <Label fx:id="displaySchedule" styleClass="cell_small_label_blue_text" text="\$schedule"/>
           <Label fx:id="suggestedStartTime" styleClass="cell_small_label_blue_text" text="\$suggestedStartTime" />
           <Label fx:id="suggestedEndTime" styleClass="cell_small_label_blue_text" text="\$suggestedEndTime" />
+        </VBox>
+        <VBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="2" minHeight="105">
+          <padding>
+            <Insets top="5" right="15" bottom="5" left="5" />
+          </padding>
+          <Label fx:id="done" styleClass="done_label" text="\$isDone" />
         </VBox>
         <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0" minHeight="105">
           <padding>
@@ -46,7 +53,6 @@
           <Label fx:id="moduleCode" styleClass="cell_small_label" text="\$moduleCode" />
           <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
           <Label fx:id="dueDate" styleClass="cell_small_label" text="\$dueDate" />
-          <Label fx:id="done" styleClass="cell_small_label" text="\$isDone" />
         </VBox>
       </children>
       <rowConstraints>
