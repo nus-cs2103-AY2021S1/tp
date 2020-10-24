@@ -89,81 +89,81 @@ All tCheck data (i.e. contact details, ingredient data, sales data) are saved in
 
 ### 2. Commands - Contact details <a name="commands-contact-details"></a>
 
-#### 2.1 Adding a person : `add`
+#### 2.1 Adding an employee : `c-add`
 
-Adds a person to the contact list.
+Adds an employee to the contact list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT [t/TAG]…​`
+Format: `c-add [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+An employee can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/81234567`.
-* `add n/Betsy Crowe e/81234567 p/1234567 t/morning shift t/part-time`.
+* `c-add n/John Doe p/98765432 e/81234567`.
+* `c-add n/Betsy Crowe e/81234567 p/1234567 t/morning shift t/part-time`.
 
-#### 2.2 Listing all persons : `list`
+#### 2.2 Listing all employees : `c-list`
 
-Shows a list of all persons in the address book.
+Shows a list of all employees in the contact list.
 
-Format: `list`
+Format: `c-list`
   
-#### 2.3 Editing a person : `edit`
+#### 2.3 Editing a person : `c-edit`
 
 Edits the corresponding contact information in the contact list.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMERGENCY_CONTACT] [t/TAG] …​​`
+Format: `c-edit INDEX [n/NAME] [p/PHONE] [e/EMERGENCY_CONTACT] [t/TAG] …​​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the employee will be removed i.e adding of tags is not cumulative.
+* You can remove all the employees’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/81234567` Edits the phone number and emergency contact of the 1st person to be `91234567` and
+*  `c-edit 1 p/91234567 e/81234567` Edits the phone number and emergency contact of the 1st employee to be `91234567` and
  `81234567` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `c-edit 2 n/Betsy Crower t/` Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
 
 
-#### 2.4 Locating persons by keywords: `search`
+#### 2.4 Locating persons by keywords: `c-find`
 
 Finds all contacts that contain the KEYWORD(s).
 
-Format: `search KEYWORD [MORE_KEYWORDS]`
+Format: `c-find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`.
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Employees matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Examples:
-* `find John` returns `john` and `John Doe`.
-* `find alex david` returns `Alex Yeoh`, `David Li`.<br>
+* `c-find John` returns `john` and `John Doe`.
+* `c-find alex david` returns `Alex Yeoh`, `David Li`.<br>
 
-#### 2.5 Deleting a person : `delete`
+#### 2.5 Deleting a person : `c-delete`
 
-Deletes the specified person from the address book.
+Deletes the specified employee from the contact list.
 
-Format: `delete INDEX`
+Format: `c-delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the contact list.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `c-list` followed by `c-delete 2` deletes the 2nd employee in the contact list.
+* `c-find Betsy` followed by `c-delete 1` deletes the 1st employee in the results of the `c-find` command.
 
-#### 2.6 Clearing all entries : `clear`
+#### 2.6 Clearing all entries : `c-clear`
 
 Clears all entries from the contact list.
 
-Format: `clear`
+Format: `c-clear`
 
 #### 2.7 Archiving a person : `archive`
 Archives the specified employee's contact detail from the tCheck.
@@ -293,12 +293,12 @@ Action | Format, Examples
 
 Action | Format, Examples
 -------|------------------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT [t/TAG]…` <br> e.g., `add n/James Ho p/22224444 e/81234567 t/morning shift`
-**List** | `list`
-**Edit** | `edit INDEX [n/NAME] [e/EMERGENCY_CONTACT] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/81234567`
-**Search** | `search KEYWORD [MORE_KEYWORDS]`<br> e.g., `search James Jake`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Clear** | `clear`
+**Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT [t/TAG]…` <br> e.g., `c-add n/James Ho p/22224444 e/81234567 t/morning shift`
+**List** | `c-list`
+**Edit** | `c-edit INDEX [n/NAME] [e/EMERGENCY_CONTACT] [t/TAG]…​`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
+**Search** | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
+**Delete** | `c-delete INDEX`<br> e.g., `c-delete 3`
+**Clear** | `c-clear`
 **Archive** |  1. **Archive \(1 entry\):**  `archive INDEX`<br> e.g., `archive 1` <br>2. **Archive \(all\):**  `archvie all` <br>3. **List all archived data:**  `archvie list`</br>
 
 ### Ingredients  Tracking
