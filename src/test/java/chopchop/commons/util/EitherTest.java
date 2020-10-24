@@ -54,7 +54,14 @@ public class EitherTest {
         assertEquals(r2, r1.mapRight(x -> x + x));
 
         var n1 = Either.left(null);
+        var n2 = Either.right(null);
+
+        assertEquals(n1, n2);
+
         assertNotEquals(n1, l1);
         assertNotEquals(n1, r1);
+
+        assertEquals("Left(foo)", l1.toString());
+        assertEquals("Right(123)", r1.toString());
     }
 }
