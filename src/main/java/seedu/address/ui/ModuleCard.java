@@ -49,7 +49,11 @@ public class ModuleCard extends UiPart<Region> {
         this.module = module;
         id.setText(displayedIndex + ". ");
         name.setText(module.getName().fullName);
-        zoomLink.setText(module.getLink().getLink());
+        if (module.getLink() == null) {
+            zoomLink.setText("No link provided");
+        } else {
+            zoomLink.setText(module.getLink().getLink());
+        }
         modularCredits.setText(module.getModularCredits().toString());
         //module.getTags().stream()
         //        .sorted(Comparator.comparing(tag -> tag.tagName))
