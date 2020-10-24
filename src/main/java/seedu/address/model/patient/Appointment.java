@@ -12,6 +12,8 @@ public class Appointment {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Appointment times should follow the format (dd/MM/yyyy HH:mm)";
+    public static final String MISSING_TIMING =
+            "Appointment timing is missing!";
     private final String description;
     private final LocalDateTime time;
 
