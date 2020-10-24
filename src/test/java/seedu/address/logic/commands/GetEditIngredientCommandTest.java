@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showEditIngredientCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showIngredientAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INGREDIENT;
@@ -44,23 +45,19 @@ public class GetEditIngredientCommandTest {
         assertCommandFailure(getEditIngredientCommand, model, Messages.MESSAGE_INVALID_INGREDIENT_DISPLAYED_INDEX);
     }
 
-    //@Test
-    //public void execute_validIndexFilteredList_success() {
-    //    showIngredientAtIndex(model, INDEX_FIRST_INGREDIENT);
-    //
-    //    Ingredient ingredientToDelete =
-    //            model.getFilteredIngredientList().get(INDEX_FIRST_INGREDIENT.getZeroBased());
-    //    DeleteIngredientCommand deleteIngredientCommand = new DeleteIngredientCommand(INDEX_FIRST_INGREDIENT);
-    //
-    //    String expectedMessage = String.format(DeleteIngredientCommand.MESSAGE_DELETE_INGREDIENT_SUCCESS,
-    //            ingredientToDelete);
-    //
-    //    Model expectedModel = new ModelManager(model.getWishfulShrinking(), new UserPrefs());
-    //    expectedModel.deleteIngredient(ingredientToDelete);
-    //    showNoIngredient(expectedModel);
-    //
-    //    assertCommandSuccess(deleteIngredientCommand, model, expectedMessage, expectedModel);
-    //}
+    @Test
+    public void execute_validIndexFilteredList_success() {
+        Ingredient ingredientToEdit =
+                model.getFilteredIngredientList().get(INDEX_FIRST_INGREDIENT.getZeroBased());
+        GetEditIngredientCommand getEditIngredientCommand = new GetEditIngredientCommand(INDEX_FIRST_INGREDIENT);
+
+        String expectedMessage = String.format(GetEditIngredientCommand.MESSAGE_GET_EDIT_INGREDIENT_SUCCESS,
+                ingredientToEdit);
+
+        Model expectedModel = new ModelManager(model.getWishfulShrinking(), new UserPrefs());
+
+        assertCommandSuccess(getEditIngredientCommand, model, expectedMessage, expectedModel);
+    }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
@@ -100,12 +97,4 @@ public class GetEditIngredientCommandTest {
         assertFalse(getEditIngredientFirstCommand.equals(getEditIngredientSecondCommand));
     }
 
-    ///**
-    // * Updates {@code model}'s filtered list to show no one.
-    // */
-    //private void showNoIngredient(Model model) {
-    //    model.updateFilteredIngredientList(p -> false);
-    //
-    //    assertTrue(model.getFilteredIngredientList().isEmpty());
-    //}
 }

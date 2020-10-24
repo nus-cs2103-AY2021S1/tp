@@ -6,6 +6,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.GetEditIngredientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new GetEditIngredientCommand object.
+ */
 public class GetEditIngredientCommandParser implements Parser<GetEditIngredientCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the GetEditIngredientCommand
@@ -15,6 +18,7 @@ public class GetEditIngredientCommandParser implements Parser<GetEditIngredientC
     public GetEditIngredientCommand parse(String args) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);
+            assert(index.getZeroBased() >= 0);
             return new GetEditIngredientCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,

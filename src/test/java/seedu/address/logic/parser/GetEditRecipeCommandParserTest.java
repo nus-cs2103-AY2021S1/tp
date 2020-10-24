@@ -21,5 +21,9 @@ public class GetEditRecipeCommandParserTest {
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 GetEditRecipeCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                GetEditRecipeCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "  ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                GetEditRecipeCommand.MESSAGE_USAGE));
     }
 }

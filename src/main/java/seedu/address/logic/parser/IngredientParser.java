@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class IngredientParser {
      * @throws ParseException
      */
     public static ArrayList<Ingredient> parse(String ingredientString) throws ParseException {
+        requireNonNull(ingredientString);
         String[] ingredientsToken = ingredientString.split(",");
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         for (int i = 0; i < ingredientsToken.length; i++) {
@@ -42,6 +44,7 @@ public class IngredientParser {
      * @throws ParseException
      */
     private static String getIngredientQuantity(String args) throws ParseException {
+        requireNonNull(args);
         ArgumentMultimap argMultimapQuantity =
                 ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY);
         //if (!argMultimapQuantity.getPreamble().isEmpty()) {

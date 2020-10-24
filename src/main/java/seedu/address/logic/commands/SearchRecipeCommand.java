@@ -34,7 +34,7 @@ public class SearchRecipeCommand extends Command {
         model.updateFilteredRecipeList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_RECIPES_LISTED_OVERVIEW, model.getFilteredRecipeList().size()),
-                false, false, true, false, false, false, false);
+                ListRecipesCommand.COMMAND_WORD);
     }
 
     @Override

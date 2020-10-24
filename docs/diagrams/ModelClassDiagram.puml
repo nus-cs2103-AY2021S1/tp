@@ -17,10 +17,11 @@ Class ReadOnlyUserPrefs
 
 Package Recipe {
 Class Recipe
-Class Address
-Class Email
-Class Name
 Class Ingredient
+Class Name
+Class Calories
+Class Instruction
+Class Image
 Class UniqueRecipeList
 }
 
@@ -44,13 +45,15 @@ WishfulShrinking *--> "1" UniqueRecipeList
 UniqueRecipeList o--> "*" Recipe
 Recipe *--> Name
 Recipe *--> Ingredient
-Recipe *--> Email
-Recipe *--> Address
-Recipe *--> "*" Tag
+Recipe *--> Calories
+Recipe *--> Instruction
+Recipe *--> Image
+Recipe --> "*" Tag
 
 Name -[hidden]right-> Ingredient
-Ingredient -[hidden]right-> Address
-Address -[hidden]right-> Email
+Ingredient -[hidden]right-> Calories
+Calories -[hidden]right-> Instruction
+Instruction -[hidden]right-> Image
 
 ModelManager -->"1" Recipe : filtered list
 @enduml

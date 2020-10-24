@@ -11,8 +11,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.BorderPane?>
 
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import javafx.scene.layout.AnchorPane?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Wishful Shrinking" minWidth="600" minHeight="500" width="1000" onCloseRequest="#handleExit">
+         title="Wishful Shrinking" minWidth="600" minHeight="500" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -22,18 +24,17 @@
         <URL value="@LightTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
-    <BorderPane fx:id="container">
-        <left>
+    <BorderPane fx:id="container" prefWidth="600" prefHeight="500">
+            <left>
             <VBox fx:id="leftPanel" minWidth="340" VBox.vgrow="ALWAYS">
                 <padding>
                     <Insets top="10" right="10" bottom="10" left="10" />
                 </padding>
                 <StackPane fx:id="listPanelPlaceholder" VBox.vgrow="ALWAYS" minHeight="500"/>
             </VBox>
-
-        </left>
-        <center>
-      <VBox VBox.vgrow="ALWAYS" fx:id="messageArea">
+            </left>
+          <center>
+      <VBox VBox.vgrow="ALWAYS" fx:id="messageArea" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -48,15 +49,12 @@
           </padding>
         </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border" alignment="BOTTOM_CENTER">
-          <padding>
-            <Insets right="10" bottom="5" left="10" />
-          </padding>
+        <StackPane VBox.vgrow="ALWAYS" fx:id="commandBoxPlaceholder" alignment="BOTTOM_CENTER">
         </StackPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
-        </center>
+          </center>
     </BorderPane>
     </Scene>
   </scene>

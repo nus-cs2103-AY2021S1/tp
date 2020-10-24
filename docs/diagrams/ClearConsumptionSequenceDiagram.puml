@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WishfulShrinkingParser" as WishfulShrinkingParser LOGIC_COLOR
+participant "command :ClearConsumptionCommand" as ClearConsumptionCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":WishfulShrinking" as WishfulShrinking MODEL_COLOR
+participant ":ConsumptionList" as ConsumptionList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("clearC")
+activate LogicManager
+
+LogicManager -> WishfulShrinkingParser : parseCommand("clearC")
+activate WishfulShrinkingParser
+
+create ClearConsumptionCommand
+WishfulShrinkingParser -> ClearConsumptionCommand
+activate ClearConsumptionCommand
+
+ClearConsumptionCommand --> WishfulShrinkingParser
+deactivate ClearConsumptionCommand
+
+WishfulShrinkingParser --> LogicManager : command
+deactivate WishfulShrinkingParser
+
+LogicManager -> ClearConsumptionCommand : execute()
+activate ClearConsumptionCommand
+
+ClearConsumptionCommand -> Model : clearConsumption()
+activate Model
+
+Model -> WishfulShrinking : clearConsumption()
+activate WishfulShrinking
+
+WishfulShrinking --> ConsumptionList: clear()
+activate ConsumptionList
+
+ConsumptionList --> WishfulShrinking
+deactivate ConsumptionList
+
+WishfulShrinking --> Model
+deactivate WishfulShrinking
+
+Model --> ClearConsumptionCommand
+deactivate Model
+
+create CommandResult
+ClearConsumptionCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ClearConsumptionCommand
+deactivate CommandResult
+
+ClearConsumptionCommand --> LogicManager : result
+deactivate ClearConsumptionCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

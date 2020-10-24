@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MARGARITAS
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showIngredientAtIndex;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RECIPES;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INGREDIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_INGREDIENT;
 import static seedu.address.testutil.TypicalIngredients.getTypicalWishfulShrinking;
@@ -82,26 +83,25 @@ public class EditIngredientCommandTest {
         assertCommandSuccess(editIngredientCommand, model, expectedMessage, expectedModel);
     }
 
-    //@Test
-    //public void execute_filteredList_success() {
-    //    showIngredientAtIndex(model, INDEX_FIRST_INGREDIENT);
-    //
-    //    Ingredient IngredientInFilteredList =
-    //            model.getFilteredIngredientList().get(INDEX_FIRST_INGREDIENT.getZeroBased());
-    //    Ingredient editedIngredient =
-    //            new IngredientBuilder(IngredientInFilteredList).withValue(VALID_NAME_MARGARITAS).build();
-    //    EditIngredientCommand editIngredientCommand = new EditIngredientCommand(INDEX_FIRST_INGREDIENT,
-    //            new EditIngredientDescriptorBuilder().withIngredient(new Ingredient(VALID_NAME_MARGARITAS))
-    //                    .build());
-    //
-    //    String expectedMessage = String.format(EditIngredientCommand.MESSAGE_EDIT_INGREDIENT_SUCCESS,
-    //            editedIngredient);
-    //
-    //    Model expectedModel = new ModelManager(new WishfulShrinking(model.getWishfulShrinking()), new UserPrefs());
-    //    expectedModel.setIngredient(model.getFilteredIngredientList().get(0), editedIngredient);
-    //
-    //    assertCommandSuccess(editIngredientCommand, model, expectedMessage, expectedModel);
-    //}
+    @Test
+    public void execute_filteredList_success() {
+        Ingredient IngredientInFilteredList =
+                model.getFilteredIngredientList().get(INDEX_FIRST_INGREDIENT.getZeroBased());
+        Ingredient editedIngredient =
+                new IngredientBuilder(IngredientInFilteredList).withValue(VALID_NAME_MARGARITAS).build();
+        EditIngredientCommand editIngredientCommand = new EditIngredientCommand(INDEX_FIRST_INGREDIENT,
+                new EditIngredientDescriptorBuilder().withIngredient(new Ingredient(VALID_NAME_MARGARITAS))
+                        .build());
+
+        String expectedMessage = String.format(EditIngredientCommand.MESSAGE_EDIT_INGREDIENT_SUCCESS,
+                editedIngredient);
+
+        Model expectedModel = new ModelManager(new WishfulShrinking(model.getWishfulShrinking()), new UserPrefs());
+        expectedModel.setIngredient(model.getFilteredIngredientList().get(0), editedIngredient);
+        expectedModel.updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPES);
+
+        assertCommandSuccess(editIngredientCommand, model, expectedMessage, expectedModel);
+    }
 
     @Test
     public void execute_duplicateIngredientUnfilteredList_failure() {
@@ -175,7 +175,7 @@ public class EditIngredientCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new ClearIngredientCommand()));
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditIngredientCommand(INDEX_SECOND_INGREDIENT,
