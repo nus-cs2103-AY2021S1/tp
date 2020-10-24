@@ -157,9 +157,6 @@ public class MainWindow extends UiPart<Stage> {
                 foodListPanel.getCurrentFats()
         );
 
-        //Set the date value to today's date
-        datePicker.setValue(LocalDate.now());
-
         //Add listener to execute after date is changed
         datePicker.valueProperty()
                 .addListener((observable, oldDate, newDate) -> {
@@ -261,6 +258,7 @@ public class MainWindow extends UiPart<Stage> {
         if (getDate().isPresent()) {
             logger.info(String.format("Selected %s", getDate().get().toString()));
             commandBox.insertText(getDate().get().toString());
+            datePicker.setValue(null);
         }
     }
 
