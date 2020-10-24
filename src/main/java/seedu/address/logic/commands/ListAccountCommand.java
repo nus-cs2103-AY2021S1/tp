@@ -26,7 +26,7 @@ public class ListAccountCommand extends Command {
         requireAllNonNull(model, activeAccount);
         List<Account> accounts = model.getFilteredAccountList();
         String messageSuccess = accountsToString(accounts);
-        return new CommandResult(messageSuccess);
+        return CommandResultFactory.createDefaultCommandResult(messageSuccess);
     }
 
     /**
