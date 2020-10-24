@@ -4,7 +4,6 @@ import java.math.BigInteger;
 import java.util.Comparator;
 
 import seedu.stock.model.stock.Stock;
-import seedu.stock.model.stock.predicates.LowStocksPredicate;
 
 public class SortUtil {
 
@@ -87,11 +86,11 @@ public class SortUtil {
                 int quantityB = Integer.valueOf(b.getQuantity().toString());
 
                 if (quantityA <= 50) {
-                    pointsA ++;
+                    pointsA++;
                 }
 
                 if (quantityB <= 50) {
-                    pointsB ++;
+                    pointsB++;
                 }
 
                 String serialNumberA = a.getSerialNumber().toString();
@@ -99,7 +98,7 @@ public class SortUtil {
 
                 if (pointsA == pointsB) {
                     return serialNumberA.compareTo(serialNumberB);
-                } else if (pointsA > pointsB){
+                } else if (pointsA > pointsB) {
                     return -1;
                 } else {
                     return 1;

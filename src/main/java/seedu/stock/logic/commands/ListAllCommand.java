@@ -20,7 +20,6 @@ public class ListAllCommand extends ListCommand {
         requireNonNull(model);
         model.updateFilteredStockList(PREDICATE_SHOW_ALL_PERSONS);
         model.sortFilteredStockList(SortUtil.generateGeneralComparator());
-//        model.updateFilteredStockList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

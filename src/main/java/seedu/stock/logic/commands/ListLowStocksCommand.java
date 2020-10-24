@@ -1,7 +1,6 @@
 package seedu.stock.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.stock.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.function.Predicate;
 
