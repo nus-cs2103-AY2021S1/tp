@@ -13,25 +13,36 @@ import java.util.List;
 
 import seedu.pivot.model.Pivot;
 import seedu.pivot.model.investigationcase.Case;
+import seedu.pivot.model.investigationcase.caseperson.Suspect;
+import seedu.pivot.model.investigationcase.caseperson.Victim;
+import seedu.pivot.model.investigationcase.caseperson.Witness;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
 public class TypicalCases {
 
+    // CasePersons
+    public static final Suspect PETER = new CasePersonBuilder().withName("Peter").withGender("M").withPhone("912345678")
+            .withEmail("peter@gmail.com").withAddress("Blk 123").buildSuspect();
+    public static final Victim TOM = new CasePersonBuilder().withName("Tom").withGender("M").withPhone("912345678")
+            .withEmail("tom@gmail.com").withAddress("Blk 123").buildVictim();
+    public static final Witness JANICE = new CasePersonBuilder().withName("Janice").withGender("F").buildWitness();
+
+    // Cases
     public static final Case ALICE = new CaseBuilder().withTitle("Alice Pauline")
             .withDocument("name", "test1.txt")
             .withStatus("COLD")
-            .withVictims("Tom")
-            .withWitnesses("Janice")
-            .withSuspects("Peter")
+            .withVictims(TOM)
+            .withWitnesses(JANICE)
+            .withSuspects(PETER)
             .withTags("friends")
             .build();
     public static final Case BENSON = new CaseBuilder().withTitle("Benson Meier")
             .withStatus("CLOSED")
             .withDocument("name", "test1.txt")
-            .withVictims("Tom")
-            .withWitnesses("Mary")
+            .withVictims(TOM)
+            .withWitnesses(JANICE)
             .withTags("owesMoney", "friends")
             .build();
 

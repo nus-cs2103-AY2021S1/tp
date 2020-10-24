@@ -1,18 +1,18 @@
-package seedu.pivot.model.investigationcase;
+package seedu.pivot.model.investigationcase.caseperson;
 
 /**
- * Represents a Victim in the investigation case.
+ * Represents a Witness in the investigation case.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Victim extends CasePerson {
+public class Witness extends CasePerson {
 
     /**
-     * Constructs a {@code Victim}.
+     * Constructs a {@code Witness}.
      *
      * @param name A valid name.
      */
-    public Victim(Name name) {
-        super(name);
+    public Witness(Name name, Gender gender, Phone phone, Email email, Address address) {
+        super(name, gender, phone, email, address);
     }
 
     /**
@@ -25,11 +25,12 @@ public class Victim extends CasePerson {
             return true;
         }
 
-        if (!(other instanceof Victim)) {
+        if (!(other instanceof Witness)) {
             return false;
         }
 
-        Victim otherVictim = (Victim) other;
-        return otherVictim.getName().equals(getName());
+        Witness otherWitness = (Witness) other;
+        return otherWitness.getName().equals(getName());
     }
+
 }

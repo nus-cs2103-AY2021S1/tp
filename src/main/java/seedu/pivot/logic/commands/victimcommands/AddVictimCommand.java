@@ -15,7 +15,7 @@ import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
-import seedu.pivot.model.investigationcase.Victim;
+import seedu.pivot.model.investigationcase.caseperson.Victim;
 
 public class AddVictimCommand extends AddCommand {
 

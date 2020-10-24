@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.pivot.model.investigationcase.CasePerson;
+import seedu.pivot.model.investigationcase.caseperson.CasePerson;
 
 public class CasePersonCard extends UiPart<Region> {
 
