@@ -219,6 +219,11 @@ public class MainCatalogueTest {
         public void enterMeeting(Meeting meeting) {
             // TODO: Add content if test case need this.
         }
+
+        @Override
+        public void setStatus(Status status) {
+            // TODO: Add content if test case need this.
+        }
     }
 
 }
