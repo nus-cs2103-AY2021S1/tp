@@ -36,7 +36,7 @@ public class AddLeaveCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Leave recorded: %1$s took %2$s";
     public static final String MESSAGE_DUPLICATE_RECORD = "This staff: %s "
-            + "has already taken leave during this period: %s";
+            + "has overlapping leave date during this period: %s";
 
     private final Index targetIndex;
     private final List<Leave> toAdd;
@@ -49,7 +49,7 @@ public class AddLeaveCommand extends Command {
         this.targetIndex = targetIndex;
         this.toAdd = leave;
     }
-
+    // TODO checks for leave balance.
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -63,7 +63,8 @@ public class AddLeaveCommand extends Command {
         Staff staffToTakeLeave = lastShownList.get(targetIndex.getZeroBased());
         StringBuilder sb = new StringBuilder();
         for (Leave leave : toAdd) {
-            if (model.hasStaffLeave(staffToTakeLeave, leave)) {
+            if (model.hasStaffLeave(staffToTakeLeave, leave)
+                    || model.hasLeavePeriod(staffToTakeLeave, leave)) {
                 throw new CommandException(
                         String.format(MESSAGE_DUPLICATE_RECORD, staffToTakeLeave.getName(), leave.toErrorMessage()));
             }
@@ -71,6 +72,7 @@ public class AddLeaveCommand extends Command {
             sb.append(leave.toString()).append(", ");
         }
         model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, staffToTakeLeave.getName(), sb));
     }
 }
