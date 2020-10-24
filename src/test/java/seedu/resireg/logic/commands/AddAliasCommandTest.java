@@ -19,13 +19,15 @@ import seedu.resireg.commons.core.GuiSettings;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelPredicate;
-import seedu.resireg.model.ReadOnlyAddressBook;
+import seedu.resireg.model.ReadOnlyResiReg;
 import seedu.resireg.model.ReadOnlyUserPrefs;
 import seedu.resireg.model.UserPrefs;
 import seedu.resireg.model.alias.CommandWordAlias;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
+import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.student.Student;
+import seedu.resireg.storage.Storage;
 import seedu.resireg.testutil.CommandWordAliasBuilder;
 
 public class AddAliasCommandTest {
@@ -39,8 +41,9 @@ public class AddAliasCommandTest {
     public void execute_aliasAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingAliasAdded modelStub = new ModelStubAcceptingAliasAdded();
         CommandWordAlias validAlias = new CommandWordAliasBuilder().build();
+        Storage storageStub = null;
 
-        CommandResult commandResult = new AddAliasCommand(validAlias).execute(modelStub);
+        CommandResult commandResult = new AddAliasCommand(validAlias).execute(modelStub, storageStub);
 
         assertEquals(String.format(AddAliasCommand.MESSAGE_SUCCESS, validAlias), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validAlias), modelStub.aliasesAdded);
@@ -51,9 +54,10 @@ public class AddAliasCommandTest {
         CommandWordAlias validAlias = new CommandWordAliasBuilder().build();
         AddAliasCommand addAliasCommand = new AddAliasCommand(validAlias);
         ModelStub modelStub = new ModelStubWithAlias(validAlias);
+        Storage storageStub = null;
 
         assertThrows(CommandException.class,
-            AddAliasCommand.MESSAGE_DUPLICATE_ALIAS, () -> addAliasCommand.execute(modelStub));
+            AddAliasCommand.MESSAGE_DUPLICATE_ALIAS, () -> addAliasCommand.execute(modelStub, storageStub));
     }
 
     @Test
@@ -130,12 +134,12 @@ public class AddAliasCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getResiRegFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setResiRegFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -145,12 +149,12 @@ public class AddAliasCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setResiReg(ReadOnlyResiReg newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyResiReg getResiReg() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -217,6 +221,11 @@ public class AddAliasCommandTest {
         @Override
         public void setAllocation(Allocation target, Allocation editedAllocation) {
 
+        }
+
+        @Override
+        public Semester getSemester() {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

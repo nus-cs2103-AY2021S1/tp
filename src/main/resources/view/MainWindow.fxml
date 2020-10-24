@@ -16,7 +16,7 @@
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
 <fx:root xmlns:fx="http://javafx.com/fxml/1" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="ResiReg" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
     <icons>
         <Image url="@/images/address_book_32.png"/>
     </icons>
@@ -36,6 +36,7 @@
 
                 <rowConstraints>
                     <RowConstraints/>
+                    <RowConstraints vgrow="NEVER"/>
                     <RowConstraints vgrow="ALWAYS"/>
                     <RowConstraints/>
                 </rowConstraints>
@@ -51,10 +52,15 @@
                     </Menu>
                 </MenuBar>
 
+                <StackPane fx:id="semesterDisplayPlaceholder"
+                           VBox.vgrow="NEVER"
+                           GridPane.columnIndex="0" GridPane.rowIndex="1"
+                           GridPane.columnSpan="2" GridPane.rowSpan="1"/>
+
                 <StackPane fx:id="resultDisplayPlaceholder"
                            VBox.vgrow="ALWAYS"
                            styleClass="pane-with-border"
-                           GridPane.rowSpan="1" GridPane.columnSpan="1" GridPane.rowIndex="1" GridPane.columnIndex="0">
+                           GridPane.rowSpan="1" GridPane.columnSpan="1" GridPane.rowIndex="2" GridPane.columnIndex="0">
                     <padding>
                         <Insets top="5" right="10" bottom="5" left="10"/>
                     </padding>
@@ -62,7 +68,7 @@
 
                 <TabPane fx:id="tabPane"
                          tabClosingPolicy="UNAVAILABLE"
-                         GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
+                         GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="2">
 
                     <!-- Students tab -->
                     <Tab fx:id="studentsTab" text="Students">
@@ -93,7 +99,7 @@
                 <StackPane fx:id="commandBoxPlaceholder"
                            VBox.vgrow="NEVER"
                            styleClass="pane-with-border"
-                           GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="2">
+                           GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="2">
                     <padding>
                         <Insets top="5" right="10" bottom="5" left="10"/>
                     </padding>
@@ -101,7 +107,7 @@
 
                 <StackPane fx:id="statusbarPlaceholder"
                            VBox.vgrow="NEVER"
-                           GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="2"/>
+                           GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2"/>
             </GridPane>
         </Scene>
     </scene>

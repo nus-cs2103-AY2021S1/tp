@@ -20,7 +20,7 @@ import seedu.resireg.model.UserPrefs;
  */
 public class JsonUserPrefsStorage implements UserPrefsStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonResiRegStorage.class);
 
     private Path filePath;
 

@@ -16,9 +16,10 @@ import seedu.resireg.model.room.Floor;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.room.RoomNumber;
 import seedu.resireg.model.room.roomtype.RoomType;
+import seedu.resireg.storage.Storage;
 
 /**
- * Lists rooms in the address book to the user, optionally filtered by some criteria.
+ * Lists rooms in ResiReg to the user, optionally filtered by some criteria.
  */
 public class ListRoomCommand extends Command {
     public static final String COMMAND_WORD = CommandWordEnum.LIST_ROOM_COMMAND.toString();
@@ -45,7 +46,7 @@ public class ListRoomCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model, Storage storage) {
         requireNonNull(model);
 
         model.updateFilteredRoomList(filter.getRoomPredicate());

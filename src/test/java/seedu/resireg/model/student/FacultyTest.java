@@ -16,7 +16,7 @@ public class FacultyTest {
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
+    public void constructor_invalidFaculty_throwsIllegalArgumentException() {
         String invalidFaculty = "";
         assertThrows(IllegalArgumentException.class, () -> new Faculty(invalidFaculty));
     }

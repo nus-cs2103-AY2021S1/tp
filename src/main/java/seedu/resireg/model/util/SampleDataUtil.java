@@ -1,16 +1,21 @@
 package seedu.resireg.model.util;
 
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.resireg.model.AddressBook;
-import seedu.resireg.model.ReadOnlyAddressBook;
+import seedu.resireg.model.ReadOnlyResiReg;
+import seedu.resireg.model.ResiReg;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Floor;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.room.RoomNumber;
 import seedu.resireg.model.room.roomtype.RoomType;
+import seedu.resireg.model.semester.Semester;
+import seedu.resireg.model.semester.academicyear.AcademicYear;
+import seedu.resireg.model.semester.semesternumber.SemesterNumber;
 import seedu.resireg.model.student.Email;
 import seedu.resireg.model.student.Name;
 import seedu.resireg.model.student.Phone;
@@ -20,11 +25,19 @@ import seedu.resireg.model.student.faculty.Faculty;
 import seedu.resireg.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code ResiReg} with sample data.
  */
 public class SampleDataUtil {
+    public static Semester getSampleSemester() {
+        return new Semester(
+            new AcademicYear(LocalDate.now().getYear()),
+            new SemesterNumber(1),
+            Arrays.asList(getSampleAllocations()),
+            new HashMap<>());
+    }
+
     public static Student[] getSampleStudents() {
-        return new Student[] {
+        return new Student[]{
             new Student(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Faculty("FASS"), new StudentId("E0111111"),
                 getTagSet("friends")),
@@ -47,38 +60,39 @@ public class SampleDataUtil {
     }
 
     public static Room[] getSampleRooms() {
-        return new Room[] {
+        return new Room[]{
             new Room(new Floor("11"), new RoomNumber("108"), new RoomType("CA"),
-                    getTagSet("normal")),
+                getTagSet("normal")),
             new Room(new Floor("11"), new RoomNumber("104"), new RoomType("CN"),
-                    getTagSet("normal")),
+                getTagSet("normal")),
             new Room(new Floor("9"), new RoomNumber("102"), new RoomType("NN"),
-                    getTagSet("normal")),
+                getTagSet("normal")),
             new Room(new Floor("8"), new RoomNumber("107"), new RoomType("NA"),
-                    getTagSet("room")),
+                getTagSet("room")),
             new Room(new Floor("7"), new RoomNumber("106"), new RoomType("CN"),
-                    getTagSet("hello"))
+                getTagSet("hello"))
         };
     }
 
     public static Allocation[] getSampleAllocations() {
-        return new Allocation[] {
+        return new Allocation[]{
             new Allocation(new Floor("11"), new RoomNumber("108"), new StudentId("E0111111"))
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyResiReg getSampleResiReg() {
+        ResiReg sampleResiReg = new ResiReg();
+        sampleResiReg.setSemester(getSampleSemester());
         for (Student sampleStudent : getSampleStudents()) {
-            sampleAb.addStudent(sampleStudent);
+            sampleResiReg.addStudent(sampleStudent);
         }
         for (Room sampleRoom : getSampleRooms()) {
-            sampleAb.addRoom(sampleRoom);
+            sampleResiReg.addRoom(sampleRoom);
         }
         for (Allocation sampleAllocation : getSampleAllocations()) {
-            sampleAb.addAllocation(sampleAllocation);
+            sampleResiReg.addAllocation(sampleAllocation);
         }
-        return sampleAb;
+        return sampleResiReg;
     }
 
     /**
@@ -86,7 +100,7 @@ public class SampleDataUtil {
      */
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
+            .map(Tag::new)
+            .collect(Collectors.toSet());
     }
 }

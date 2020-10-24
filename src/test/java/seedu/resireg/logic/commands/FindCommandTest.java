@@ -8,7 +8,7 @@ import static seedu.resireg.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.resireg.testutil.TypicalStudents.CARL;
 import static seedu.resireg.testutil.TypicalStudents.ELLE;
 import static seedu.resireg.testutil.TypicalStudents.FIONA;
-import static seedu.resireg.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.resireg.testutil.TypicalStudents.getTypicalResiReg;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +24,8 @@ import seedu.resireg.model.student.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalResiReg(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalResiReg(), new UserPrefs());
 
     @Test
     public void equals() {

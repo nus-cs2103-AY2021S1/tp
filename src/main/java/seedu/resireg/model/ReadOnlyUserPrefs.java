@@ -15,6 +15,6 @@ public interface ReadOnlyUserPrefs {
 
     List<CommandWordAlias> getCommandWordAliases();
 
-    Path getAddressBookFilePath();
+    Path getResiRegFilePath();
 
 }

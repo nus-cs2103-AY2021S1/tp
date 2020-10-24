@@ -9,7 +9,7 @@ import static seedu.resireg.testutil.TypicalCommandWordAliases.ROOMS_R;
 import static seedu.resireg.testutil.TypicalCommandWordAliases.ROOMS_RO;
 import static seedu.resireg.testutil.TypicalCommandWordAliases.STUDENTS_STU;
 import static seedu.resireg.testutil.TypicalCommandWordAliases.getTypicalUserPrefs;
-import static seedu.resireg.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.resireg.testutil.TypicalStudents.getTypicalResiReg;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +23,7 @@ import seedu.resireg.model.alias.CommandWordAlias;
  */
 public class DeleteAliasCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalUserPrefs());
+    private Model model = new ModelManager(getTypicalResiReg(), getTypicalUserPrefs());
 
     @Test
     public void execute_validAlias_success() {
@@ -32,7 +32,7 @@ public class DeleteAliasCommandTest {
 
         String expectedMessage = String.format(DeleteAliasCommand.MESSAGE_SUCCESS, aliasToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getUserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getResiReg(), model.getUserPrefs());
         expectedModel.deleteCommandWordAlias(aliasToDelete);
 
 

@@ -23,9 +23,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.resireg.logic.commands.ListRoomCommand.RoomFilter;
-import seedu.resireg.model.AddressBook;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelManager;
+import seedu.resireg.model.ResiReg;
 import seedu.resireg.model.UserPrefs;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Floor;
@@ -41,7 +41,7 @@ public class ListRoomCommandTest {
 
     @BeforeEach
     public void setUp() {
-        AddressBook ab = new AddressBook();
+        ResiReg ab = new ResiReg();
         Room room1 = new RoomBuilder()
                 .withFloor(VALID_FLOOR_A).withRoomNumber(VALID_ROOM_NUMBER_A).withRoomType(VALID_ROOM_TYPE_A).build();
         Room room2 = new RoomBuilder()
@@ -64,7 +64,7 @@ public class ListRoomCommandTest {
             ab.addAllocation(a);
         }
         model = new ModelManager(ab, new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel = new ModelManager(model.getResiReg(), new UserPrefs());
     }
 
     @Test

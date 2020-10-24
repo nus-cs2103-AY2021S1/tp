@@ -14,7 +14,7 @@ public class RoomTypeTest {
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
+    public void constructor_invalidRoomType_throwsIllegalArgumentException() {
         String invalidRoomType = "";
         assertThrows(IllegalArgumentException.class, () -> new RoomType(invalidRoomType));
     }

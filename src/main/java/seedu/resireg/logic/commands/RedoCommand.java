@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
+import seedu.resireg.storage.Storage;
 
 /**
  * Reverts the {@code model}'s ResiReg to its previously undone state.
@@ -18,7 +19,7 @@ public class RedoCommand extends Command {
     public static final Help HELP = new Help(COMMAND_WORD, "Redo a previous command.");
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
 
         if (!model.canRedoResiReg()) {

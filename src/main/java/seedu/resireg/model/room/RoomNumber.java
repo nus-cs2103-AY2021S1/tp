@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.resireg.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a room's number in the address book.
+ * Represents a room's number in ResiReg.
  * Guarantees: immutable; is valid as declared in {@link #isValidRoomNumber(String)}
  */
 public class RoomNumber {

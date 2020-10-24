@@ -12,19 +12,27 @@ import static seedu.resireg.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.resireg.testutil.Assert.assertThrows;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import seedu.resireg.commons.core.index.Index;
+import seedu.resireg.commons.exceptions.DataConversionException;
 import seedu.resireg.logic.commands.exceptions.CommandException;
-import seedu.resireg.model.AddressBook;
 import seedu.resireg.model.Model;
+import seedu.resireg.model.ReadOnlyResiReg;
+import seedu.resireg.model.ReadOnlyUserPrefs;
+import seedu.resireg.model.ResiReg;
+import seedu.resireg.model.UserPrefs;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.room.RoomNameContainsKeywordPairsPredicate;
 import seedu.resireg.model.student.NameContainsKeywordsPredicate;
 import seedu.resireg.model.student.Student;
+import seedu.resireg.storage.Storage;
 import seedu.resireg.testutil.EditStudentDescriptorBuilder;
 
 /**
@@ -105,13 +113,13 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withFaculty(VALID_FACULTY_AMY)
-                .withStudentId(VALID_STUDENT_ID_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+            .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withFaculty(VALID_FACULTY_AMY)
+            .withStudentId(VALID_STUDENT_ID_AMY)
+            .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withFaculty(VALID_FACULTY_BOB)
-                .withStudentId(VALID_STUDENT_ID_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withFaculty(VALID_FACULTY_BOB)
+            .withStudentId(VALID_STUDENT_ID_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**
@@ -120,9 +128,10 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
+        StorageStub storageStub = new StorageStub();
         try {
-            CommandResult result = command.execute(actualModel);
+            CommandResult result = command.execute(actualModel, storageStub);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
@@ -135,7 +144,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -146,7 +155,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertToggleCommandSuccess(Command command, Model actualModel, String expectedMessage,
-                                            Model expectedModel, TabView tabView) {
+                                                  Model expectedModel, TabView tabView) {
         ToggleCommandResult expectedCommandResult = new ToggleCommandResult(expectedMessage, tabView);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -155,21 +164,23 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered student list and selected student in {@code actualModel} remain unchanged
+     * - the rest of the model, filtered student list and selected student in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        ResiReg expectedResiReg = new ResiReg(actualModel.getResiReg());
         List<Student> expectedFilteredList = new ArrayList<>(actualModel.getFilteredStudentList());
+        StorageStub storageStub = new StorageStub();
 
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel, storageStub));
+        assertEquals(expectedResiReg, actualModel.getResiReg());
         assertEquals(expectedFilteredList, actualModel.getFilteredStudentList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the student at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s ResiReg.
      */
     public static void showStudentAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredStudentList().size());
@@ -183,7 +194,7 @@ public class CommandTestUtil {
 
     /**
      * Updates {@code model}'s filtered list to show only the room at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s ResiReg.
      */
     public static void showRoomAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredRoomList().size());
@@ -191,7 +202,7 @@ public class CommandTestUtil {
         Room room = model.getFilteredRoomList().get(targetIndex.getZeroBased());
         final String[] info = new String[]{room.getFloor().value, room.getRoomNumber().value};
         model.updateFilteredRoomList(
-                new RoomNameContainsKeywordPairsPredicate(Arrays.asList(Map.entry(info[0], info[1])))
+            new RoomNameContainsKeywordPairsPredicate(Arrays.asList(Map.entry(info[0], info[1])))
         );
 
         assertEquals(1, model.getFilteredRoomList().size());
@@ -204,5 +215,55 @@ public class CommandTestUtil {
         Student firstStudent = model.getFilteredStudentList().get(0);
         model.deleteStudent(firstStudent);
         model.saveStateResiReg();
+    }
+
+    /**
+     * A stub class for Storage.
+     */
+    private static class StorageStub implements Storage {
+        @Override
+        public Path getUserPrefsFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getResiRegFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<ReadOnlyResiReg> readResiReg() throws DataConversionException, IOException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<ReadOnlyResiReg> readResiReg(Path filePath) throws DataConversionException, IOException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveResiReg(ReadOnlyResiReg resiReg) throws IOException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveResiReg(ReadOnlyResiReg resiReg, Path filePath) throws IOException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void archiveResiReg(ReadOnlyResiReg resiReg) throws IOException {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 }

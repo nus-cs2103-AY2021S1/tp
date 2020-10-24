@@ -1,4 +1,10 @@
 {
+  "semester" : {
+    "academicYear" : 2020,
+    "semesterNumber" : 1,
+    "allocations" : [ ],
+    "roomFees" : { }
+  },
   "students": [
     {
       "name": "Valid Person",

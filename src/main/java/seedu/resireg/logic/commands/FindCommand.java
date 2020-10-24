@@ -5,9 +5,10 @@ import static java.util.Objects.requireNonNull;
 import seedu.resireg.commons.core.Messages;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.student.NameContainsKeywordsPredicate;
+import seedu.resireg.storage.Storage;
 
 /**
- * Finds and lists all students in address book whose name contains any of the argument keywords.
+ * Finds and lists all students in ResiReg whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
@@ -26,7 +27,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model, Storage storage) {
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
         return new CommandResult(

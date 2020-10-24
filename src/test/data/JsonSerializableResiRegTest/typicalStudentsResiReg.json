@@ -1,5 +1,11 @@
 {
-  "_comment": "AddressBook save file which contains the same Student values as in TypicalStudents#getTypicalAddressBook()",
+  "semester" : {
+    "academicYear" : 2020,
+    "semesterNumber" : 1,
+    "allocations" : [ ],
+    "roomFees" : { }
+  },
+  "_comment": "ResiReg save file which contains the same Student values as in TypicalStudents#getTypicalResiReg()",
   "students" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",

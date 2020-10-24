@@ -14,7 +14,7 @@ public class StudentIdTest {
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
+    public void constructor_invalidStudentId_throwsIllegalArgumentException() {
         String invalidStudentId = "";
         assertThrows(IllegalArgumentException.class, () -> new StudentId((invalidStudentId)));
     }
