@@ -51,7 +51,10 @@ public class Planus implements ReadOnlyPlanus {
     public void setTasks(List<Task> tasks) {
         this.tasks.setTasks(tasks);
     }
-
+    /**
+     * Replaces the contents of the lesson list with {@code lessons}.
+     * {@code lessons} must not contain duplicate lessons.
+     */
     public void setLessons(List<Lesson> lessons) {
         this.lessons.setLessons(lessons);
     }

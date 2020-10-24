@@ -20,7 +20,7 @@ public class DeadlineTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Deadline deadline = new DeadlineBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> deadline.getTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> deadline.getTag());
     }
 
     @Test
@@ -43,17 +43,17 @@ public class DeadlineTest {
 
         // same title, same dateTime, different attributes -> returns true
         editedAlice = new DeadlineBuilder(ALICE).withDescription(VALID_DESCRIPTION_BOB).withType(VALID_TYPE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withTag(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameTask(editedAlice));
 
         // same title, same type, different attributes -> returns false
 
         editedAlice = new DeadlineBuilder(ALICE).withDateTime(VALID_DATE_TIME_BOB).withType(VALID_TYPE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withTag(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.isSameTask(editedAlice));
 
         // same title, same dateTime, same type, different attributes -> returns true
-        editedAlice = new DeadlineBuilder(ALICE).withType(VALID_TYPE_BOB).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new DeadlineBuilder(ALICE).withType(VALID_TYPE_BOB).withTag(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameTask(editedAlice));
     }
 
@@ -91,8 +91,8 @@ public class DeadlineTest {
         editedAlice = new DeadlineBuilder(ALICE).withType(VALID_TYPE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different tags -> returns false
-        editedAlice = new DeadlineBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        // different tag -> returns false
+        editedAlice = new DeadlineBuilder(ALICE).withTag(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

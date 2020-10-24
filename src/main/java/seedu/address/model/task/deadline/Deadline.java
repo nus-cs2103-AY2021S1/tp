@@ -23,7 +23,6 @@ public class Deadline extends Task {
     private final DeadlineDateTime deadlineDateTime;
 
     // Data fields
-    private final Set<Tag> tags = new HashSet<>();
     private final Status status;
     private final Duration duration;
     private final DoneDateTime doneDateTime;
@@ -31,9 +30,9 @@ public class Deadline extends Task {
     /**
      * Every field must be present and not null.
      */
-    public Deadline(Title title, DeadlineDateTime deadlineDateTime, Description description, Set<Tag> tags,
+    public Deadline(Title title, DeadlineDateTime deadlineDateTime, Description description, Tag tag,
                      Status status, Duration duration, DoneDateTime doneDateTime) {
-        super(title, description, tags);
+        super(title, description, tag);
         requireAllNonNull(deadlineDateTime);
         this.deadlineDateTime = deadlineDateTime;
         this.status = status;
@@ -45,8 +44,8 @@ public class Deadline extends Task {
      * Factory method to create a new Deadline object
      */
     public static Deadline createDeadline(Title title, DeadlineDateTime deadlineDateTime,
-                                          Description description, Set<Tag> tags) {
-        return new Deadline(title, deadlineDateTime, description, tags, Status.createIncompleteStatus(),
+                                          Description description, Tag tag) {
+        return new Deadline(title, deadlineDateTime, description, tag, Status.createIncompleteStatus(),
                 Duration.createNullDuration(), DoneDateTime.createNullDoneDateTime());
     }
 
@@ -61,7 +60,8 @@ public class Deadline extends Task {
     public int getDurationValue() {
         return duration.valueInMinutes;
     }
-
+    
+    @Override
     public Duration getDuration() {
         return duration;
     }
@@ -74,8 +74,8 @@ public class Deadline extends Task {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Tag getTag() {
+        return tag;
     }
 
     @Override
@@ -108,7 +108,7 @@ public class Deadline extends Task {
      * mark the task as done by updating the status, duration and done time.
      */
     public Deadline markAsDone(int durationInMinutes) {
-        return new Deadline(title, deadlineDateTime, description, tags, Status.createIncompleteStatus(),
+        return new Deadline(title, deadlineDateTime, description, tag, Status.createIncompleteStatus(),
                 new Duration(durationInMinutes), DoneDateTime.createDoneNow());
     }
 
@@ -130,14 +130,14 @@ public class Deadline extends Task {
         return otherDeadline.getTitle().equals(getTitle())
                 && otherDeadline.getDeadlineDateTime().equals(getDeadlineDateTime())
                 && otherDeadline.getDescription().equals(getDescription())
-                && otherDeadline.getTags().equals(getTags())
+                && otherDeadline.getTag().equals(getTag())
                 && otherDeadline.getStatus().equals(getStatus());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, deadlineDateTime, description, tags, status);
+        return Objects.hash(title, deadlineDateTime, description, tag, status);
     }
 
     @Override
@@ -148,8 +148,8 @@ public class Deadline extends Task {
                 .append(getDeadlineDateTime())
                 .append(" Description: ")
                 .append(getDescription())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(" Tag: ")
+                .append(getTag());
         builder.append(" Status: ").append(getStatus());
         return builder.toString();
     }

@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Objects;
 
 import seedu.address.commons.util.DateUtil;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
@@ -23,6 +24,7 @@ import seedu.address.model.task.event.StartDateTime;
  */
 public class Lesson {
     private final Title title;
+    private final Tag tag;
     private final Description description;
     private final DayOfWeek dayOfWeek;
     private final LocalTime startTime;
@@ -33,10 +35,11 @@ public class Lesson {
     /**
      * Every field must be present and not null.
      */
-    public Lesson(Title title, Description description, DayOfWeek dayOfWeek, LocalTime startTime, LocalTime endTime,
+    public Lesson(Title title, Tag tag, Description description, DayOfWeek dayOfWeek, LocalTime startTime, LocalTime endTime,
                   LocalDate startDate, LocalDate endDate) {
         requireAllNonNull(title, description, dayOfWeek, startTime, endTime, startDate, endDate);
         this.title = title;
+        this.tag = tag;
         this.description = description;
         this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
@@ -66,6 +69,9 @@ public class Lesson {
     public LocalDate getEndDate() {
         return endDate;
     }
+    public Tag getTag() {
+        return tag;
+    }
     /**
      *  Creates recurring event tasks based on the lesson's details.
      * @return a list of recurring tasks to add.
@@ -83,7 +89,7 @@ public class Lesson {
             String endDateTimeString = localEndDateTime.format(DateUtil.DATE_FORMATTER);
             StartDateTime startDateTime = new StartDateTime(startDateTimeString);
             EndDateTime endDateTime = new EndDateTime(endDateTimeString);
-            Event eventToAdd = Event.createLessonEvent(title, startDateTime, endDateTime, description, new HashSet<>());
+            Event eventToAdd = Event.createLessonEvent(title, startDateTime, endDateTime, description, tag);
             tasksToAdd.add(eventToAdd);
             currentDate = currentDate.plusDays(7);
         }
@@ -108,7 +114,7 @@ public class Lesson {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, description, dayOfWeek, startTime, endTime, startDate, endDate);
+        return Objects.hash(title, tag, description, dayOfWeek, startTime, endTime, startDate, endDate);
     }
     @Override
     public String toString() {
@@ -116,6 +122,8 @@ public class Lesson {
         builder.append(getTitle())
                 .append(" Description: ")
                 .append(getDescription())
+                .append(" Tag: ")
+                .append(getTag())
                 .append(" Day: ")
                 .append(getDayOfWeek())
                 .append(" Start Time: ")

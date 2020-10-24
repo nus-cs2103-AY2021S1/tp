@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.time.DayOfWeek;
@@ -20,6 +21,7 @@ import seedu.address.logic.commands.LessonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.Time;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Title;
 
@@ -44,6 +46,7 @@ public class LessonCommandParser implements Parser<LessonCommand> {
         }
         Description description = Description.defaultDescription();
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
+        Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
         LocalDate startDate = null;
         LocalDate endDate = null;
         LocalTime startTime = null;
@@ -79,7 +82,7 @@ public class LessonCommandParser implements Parser<LessonCommand> {
             throw new ParseException(DateUtil.DAY_MESSAGE_CONSTRAINTS);
         }
         requireAllNonNull(startDate, endDate, startTime, endTime, dayOfWeek);
-        Lesson lesson = new Lesson(title, description, dayOfWeek, startTime, endTime, startDate, endDate);
+        Lesson lesson = new Lesson(title, tag, description, dayOfWeek, startTime, endTime, startDate, endDate);
 
         return new LessonCommand(lesson);
     }

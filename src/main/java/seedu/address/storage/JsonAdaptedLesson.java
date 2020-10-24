@@ -14,6 +14,7 @@ import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.Time;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Title;
 
@@ -27,6 +28,7 @@ class JsonAdaptedLesson {
     private static final Logger logger = LogsCenter.getLogger(JsonAdaptedLesson.class);
 
     private final String title;
+    private final String tag;
     private final String description;
     private final String dayOfWeek;
     private final String startTime;
@@ -38,11 +40,13 @@ class JsonAdaptedLesson {
      * Constructs a {@code JsonAdaptedLesson} with the given lesson details.
      */
     @JsonCreator
-    public JsonAdaptedLesson(@JsonProperty("title") String title, @JsonProperty("description") String description,
+    public JsonAdaptedLesson(@JsonProperty("title") String title, @JsonProperty("tag") String tag,
+                             @JsonProperty("description") String description,
                          @JsonProperty("dayOfWeek") String dayOfWeek, @JsonProperty("startTime") String startTime,
                        @JsonProperty("endTime") String endTime, @JsonProperty("startDate") String startDate,
                              @JsonProperty("endDate") String endDate) {
         this.title = title;
+        this.tag = tag;
         this.description = description;
         this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
@@ -56,6 +60,7 @@ class JsonAdaptedLesson {
      */
     public JsonAdaptedLesson(Lesson source) {
         title = source.getTitle().title;
+        tag = source.getTag().tagName;
         description = source.getDescription().value;
         dayOfWeek = source.getDayOfWeek().toString();
         startTime = source.getStartTime().format(Time.FORMATTER);
@@ -75,10 +80,15 @@ class JsonAdaptedLesson {
         if (title == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
         }
+        if (tag == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Tag.class.getSimpleName()));
+        }
         if (!Title.isValidTitle(title)) {
             throw new IllegalValueException(Title.MESSAGE_CONSTRAINTS);
         }
         final Title modelTitle = new Title(title);
+
+        final Tag modelTag = new Tag(tag);
 
         // tentatively description field is not allowed to be empty
         if (description == null) {
@@ -132,7 +142,7 @@ class JsonAdaptedLesson {
 
         final LocalDate modelEndDate = LocalDate.parse(endDate, DateUtil.DATE_FORMATTER);
 
-        return new Lesson(modelTitle, modelDescription, modelDayOfWeek,
+        return new Lesson(modelTitle, modelTag, modelDescription, modelDayOfWeek,
                 modelStartTime, modelEndTime, modelStartDate, modelEndDate);
     }
 

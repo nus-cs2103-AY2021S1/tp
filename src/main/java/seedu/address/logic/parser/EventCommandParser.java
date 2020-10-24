@@ -45,6 +45,7 @@ public class EventCommandParser implements Parser<EventCommand> {
 
         Description description = Description.defaultDescription();
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
+        Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
         StartDateTime startDateTime = ParserUtil.parseStartDateTime(
                 argMultimap.getValue(PREFIX_DATE).get(), argMultimap.getValue(PREFIX_START_TIME).get());
         EndDateTime endDateTime = ParserUtil.parseEndDateTime(
@@ -53,9 +54,8 @@ public class EventCommandParser implements Parser<EventCommand> {
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         }
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Event event = Event.createUserEvent(title, startDateTime, endDateTime, description, tagList);
+        Event event = Event.createUserEvent(title, startDateTime, endDateTime, description, tag);
 
         return new EventCommand(event);
     }
