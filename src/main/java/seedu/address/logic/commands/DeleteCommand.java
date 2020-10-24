@@ -46,19 +46,21 @@ public class DeleteCommand extends Command {
         // Update address book
         List<Person> filteredList = model.getFilteredPersonList().stream()
                 .filter(person -> person.isSameName(targetName)).collect(Collectors.toList());
+        assert filteredList.size() == 1;
         Person personToDelete = filteredList.get(0);
         model.deletePerson(personToDelete);
 
         // Update meeting book
         List<Meeting> filteredMeetingList = model.getFilteredMeetingList().stream()
-                .filter(meeting -> meeting.getMembers().contains(personToDelete)).map(meeting -> {
-                    Set<Person> updatedMembers = new HashSet<>(meeting.getMembers());
+                .filter(meeting -> meeting.getParticipants().contains(personToDelete)).map(meeting -> {
+                    Set<Person> updatedMembers = new HashSet<>(meeting.getParticipants());
                     updatedMembers.remove(personToDelete);
-                    Meeting updatedMeeting = new Meeting(meeting.getMeetingName(), meeting.getDate(),
-                            meeting.getTime(), updatedMembers);
+                    Meeting updatedMeeting = new Meeting(meeting.getModule(), meeting.getMeetingName(),
+                            meeting.getDate(), meeting.getTime(), updatedMembers);
                     model.setMeeting(meeting, updatedMeeting);
                     return updatedMeeting;
                 }).collect(Collectors.toList());
+        model.updatePersonInMeetingBook(personToDelete);
 
         // todo update module book
         //        List<Meeting> filteredModuleList = model.getFilteredModuleList().stream()

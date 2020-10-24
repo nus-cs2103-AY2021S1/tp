@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -24,7 +24,7 @@ public class CopyCommand extends Command {
             + "the specified names (case-insensitive), modules and tags "
             + "Parameters: email/phone (depending on what is to be copied) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_MEMBER + "MODULE] "
+            + "[" + PREFIX_MODULE + "MODULE] "
             + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " "
             + "email "

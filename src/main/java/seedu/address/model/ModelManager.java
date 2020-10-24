@@ -5,8 +5,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -65,14 +67,14 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -123,13 +125,13 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public ReadOnlyAddressBook getAddressBook() {
+        return addressBook;
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+        this.addressBook.resetData(addressBook);
     }
 
     @Override
@@ -162,15 +164,15 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public ReadOnlyMeetingBook getMeetingBook() {
+        return meetingBook;
+    }
+
     //=========== Meetings ===================================================================================
     @Override
     public void setMeetingBook(ReadOnlyMeetingBook meetingBook) {
         this.meetingBook.resetData(meetingBook);
-    }
-
-    @Override
-    public ReadOnlyMeetingBook getMeetingBook() {
-        return meetingBook;
     }
 
     @Override
@@ -195,6 +197,35 @@ public class ModelManager implements Model {
         meetingBook.addMeeting(meeting);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
+
+    @Override
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireAllNonNull(target, editedMeeting);
+
+        meetingBook.setMeeting(target, editedMeeting);
+    }
+
+    @Override
+    public void updatePersonInMeetingBook(Person... persons) {
+        requireNonNull(persons);
+        Person personToUpdate = persons[0];
+        boolean isReplacement = persons.length > 1;
+
+        filteredMeetings.stream().filter(meeting -> meeting.getParticipants()
+                .contains(personToUpdate)).forEach(meeting -> {
+                    Set<Person> updatedMembers = new HashSet<>(meeting.getParticipants());
+                    updatedMembers.remove(personToUpdate);
+                    if (isReplacement) {
+                        assert persons.length == 2;
+                        Person editedPerson = persons[1];
+                        updatedMembers.add(editedPerson);
+                    }
+                    Meeting updatedMeeting = new Meeting(meeting.getModule(), meeting.getMeetingName(),
+                            meeting.getDate(), meeting.getTime(), updatedMembers);
+                    meetingBook.setMeeting(meeting, updatedMeeting);
+                });
+    }
+
     //=========== Modules ===================================================================================
     @Override
     public void addModule(Module module) {
@@ -219,13 +250,6 @@ public class ModelManager implements Model {
     @Override
     public void setModuleBook(ReadOnlyModuleBook newBook) {
         this.moduleBook.resetData(newBook);
-    }
-
-    @Override
-    public void setMeeting(Meeting target, Meeting editedMeeting) {
-        requireAllNonNull(target, editedMeeting);
-
-        meetingBook.setMeeting(target, editedMeeting);
     }
 
     //=========== Filtered Person List Accessors =============================================================

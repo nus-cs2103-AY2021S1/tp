@@ -402,3 +402,9 @@
     -fx-background-radius: 50;
     -fx-font-size: 11;
 }
+
+.hat_icon {
+    -fx-padding: 0 100 0 10;
+    -fx-translate-x: 285;
+    -fx-translate-y: -25;
+}

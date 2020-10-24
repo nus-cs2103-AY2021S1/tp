@@ -75,6 +75,7 @@ public class EditCommand extends Command {
 
         List<Person> filteredList = lastShownList.stream()
                 .filter(person -> person.isSameName(name)).collect(Collectors.toList());
+        assert filteredList.size() == 1;
         Person personToEdit = filteredList.get(0);
 
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
@@ -89,16 +90,16 @@ public class EditCommand extends Command {
 
         // update meeting book
         List<Meeting> filteredMeetingList = model.getFilteredMeetingList().stream()
-                .filter(meeting -> meeting.getMembers().contains(personToEdit)).map(meeting -> {
-                    Set<Person> updatedMembers = new HashSet<>(meeting.getMembers());
+                .filter(meeting -> meeting.getParticipants().contains(personToEdit)).map(meeting -> {
+                    Set<Person> updatedMembers = new HashSet<>(meeting.getParticipants());
                     updatedMembers.remove(personToEdit);
                     updatedMembers.add(editedPerson);
-                    Meeting updatedMeeting = new Meeting(meeting.getMeetingName(), meeting.getDate(),
-                            meeting.getTime(), updatedMembers);
+                    Meeting updatedMeeting = new Meeting(meeting.getModule(), meeting.getMeetingName(),
+                            meeting.getDate(), meeting.getTime(), updatedMembers);
                     model.setMeeting(meeting, updatedMeeting);
                     return updatedMeeting;
                 }).collect(Collectors.toList());
-
+        model.updatePersonInMeetingBook(personToEdit, editedPerson);
         // todo update module book
 
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));

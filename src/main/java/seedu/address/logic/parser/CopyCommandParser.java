@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -33,7 +33,7 @@ public class CopyCommandParser implements Parser<CopyCommand> {
     public CopyCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TAG, PREFIX_MEMBER);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TAG, PREFIX_MODULE);
 
         boolean isEmail;
         String preamble = argMultimap.getPreamble().trim().toLowerCase();
@@ -45,10 +45,10 @@ public class CopyCommandParser implements Parser<CopyCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
         }
 
-        if (arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TAG, PREFIX_MEMBER)) {
+        if (arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TAG, PREFIX_MODULE)) {
             Set<String> nameSet = ParserUtil.parseAllNames(argMultimap.getAllValues(PREFIX_NAME));
             Set<Tag> tagSet = parseTagsForFind(argMultimap.getAllValues(PREFIX_TAG)).orElse(new HashSet<>());
-            List<String> moduleNames = argMultimap.getAllValues(PREFIX_MEMBER);
+            List<String> moduleNames = argMultimap.getAllValues(PREFIX_MODULE);
             if ((nameSet.size() == 1 && nameSet.contains(""))
                     || tagSet.isEmpty()
                     || (moduleNames.size() == 1 && moduleNames.contains(""))) {
@@ -67,9 +67,9 @@ public class CopyCommandParser implements Parser<CopyCommand> {
             return new CopyCommand(
                     new PersonHasTagsAndNamePredicate(new ArrayList<>(nameSet), new ArrayList<>(tagSet)),
                     isEmail, new ArrayList<ModuleName>());
-        } else if (arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MEMBER)) {
+        } else if (arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE)) {
             Set<String> nameSet = ParserUtil.parseAllNames(argMultimap.getAllValues(PREFIX_NAME));
-            List<String> moduleNames = argMultimap.getAllValues(PREFIX_MEMBER);
+            List<String> moduleNames = argMultimap.getAllValues(PREFIX_MODULE);
             if ((nameSet.size() == 1 && nameSet.contains(""))
                     || (moduleNames.size() == 1 && moduleNames.contains(""))) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
@@ -78,9 +78,9 @@ public class CopyCommandParser implements Parser<CopyCommand> {
             return new CopyCommand(
                     new NameContainsKeywordsPredicate(new ArrayList<>(nameSet)),
                     isEmail, new ArrayList<>(moduleNameSet));
-        } else if (arePrefixesPresent(argMultimap, PREFIX_MEMBER, PREFIX_TAG)) {
+        } else if (arePrefixesPresent(argMultimap, PREFIX_MODULE, PREFIX_TAG)) {
             Set<Tag> tagSet = parseTagsForFind(argMultimap.getAllValues(PREFIX_TAG)).orElse(new HashSet<>());
-            List<String> moduleNames = argMultimap.getAllValues(PREFIX_MEMBER);
+            List<String> moduleNames = argMultimap.getAllValues(PREFIX_MODULE);
             if (tagSet.isEmpty() || (moduleNames.size() == 1 && moduleNames.contains(""))) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
             }
@@ -103,8 +103,8 @@ public class CopyCommandParser implements Parser<CopyCommand> {
             return new CopyCommand(
                     new PersonHasTagsPredicate(new ArrayList<>(tagSet)),
                     isEmail, new ArrayList<ModuleName>());
-        } else if (arePrefixesPresent(argMultimap, PREFIX_MEMBER)) {
-            List<String> moduleNames = argMultimap.getAllValues(PREFIX_MEMBER);
+        } else if (arePrefixesPresent(argMultimap, PREFIX_MODULE)) {
+            List<String> moduleNames = argMultimap.getAllValues(PREFIX_MODULE);
             if (moduleNames.size() == 1 && moduleNames.contains("")) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
             }
