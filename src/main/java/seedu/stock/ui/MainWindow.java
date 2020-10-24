@@ -113,7 +113,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     public void handleShowStockNotes(Stock stockToShowNotes) {
-        
+
     }
 
     /**
