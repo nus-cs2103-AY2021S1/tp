@@ -353,7 +353,7 @@ _{explain the feature here}_
 _{explain the feature here}_
 
 ### Bookmarking stocks in the list: `bookmark`
-Bookmarks the desired stock. 
+Bookmarks the desired stock.
 Bookmarking a stock pushes the stock to the top of the stocklist.
 
 * Required fields:
@@ -368,6 +368,8 @@ Removes bookmark from the desired stock
     1. Serial number of stock
     
 Format: `unbookmark sn/<serial number>`
+
+<font color='red'>test blue color font</font>
 
 
 --------------------------------------------------------------------------------------------------------------------
