@@ -225,6 +225,11 @@ public class MainCatalogueTest {
         public void setStatus(Status status) {
             // TODO: Add content if test case need this.
         }
+
+        @Override
+        public void enter(Person person) {
+            // TODO: Add content if test case need this.
+        }
     }
 
 }
