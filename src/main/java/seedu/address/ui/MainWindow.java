@@ -129,11 +129,15 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         if (logic.isProjectsView()) {
+            projectListPanelPlaceholder.setVisible(true);
+            projectListPanelPlaceholder.setManaged(true);
             projectListPanel = new ProjectListPanel(logic.getFilteredProjectList());
             projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
             personListPanelPlaceholder.setManaged(false);
             personListPanelPlaceholder.setVisible(false);
         } else {
+            personListPanelPlaceholder.setVisible(true);
+            personListPanelPlaceholder.setManaged(true);
             personListPanel = new PersonListPanel(logic.getFilteredPersonList());
             personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
             projectListPanelPlaceholder.setManaged(false);
