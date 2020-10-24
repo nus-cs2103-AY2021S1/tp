@@ -64,7 +64,7 @@ class JsonAdaptedApplicant {
         if (comments != null) {
             this.comments.addAll(comments);
         }
-        this.application = application; // could be null if no application is set
+        this.application = application;
     }
 
     /**

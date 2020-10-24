@@ -19,7 +19,7 @@ import com.eva.model.tag.Tag;
 public class Applicant extends Person {
     private Optional<InterviewDate> interviewDate;
     private ApplicationStatus applicationStatus;
-    private Optional<Application> application;
+    private Application application;
 
     /**
      * Creates of an applicant object with a fixed interview date.
@@ -35,7 +35,7 @@ public class Applicant extends Person {
         super(name, phone, email, address, tags, comments);
         this.interviewDate = interviewDate;
         this.applicationStatus = status;
-        this.application = Optional.empty(); // default null
+        this.application = new Application();
     }
 
     /**
@@ -51,7 +51,7 @@ public class Applicant extends Person {
         super(name, phone, email, address, tags, comments);
         this.interviewDate = Optional.empty();
         this.applicationStatus = status;
-        this.application = Optional.empty();
+        this.application = new Application();
     }
 
     /**
@@ -63,6 +63,7 @@ public class Applicant extends Person {
     public Applicant(Person person, InterviewDate interviewDate, ApplicationStatus status) {
         this(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(),
                 person.getTags(), person.getComments(), Optional.ofNullable(interviewDate), status);
+        this.application = new Application();
     }
 
     /**
@@ -90,10 +91,6 @@ public class Applicant extends Person {
         return interviewDate;
     }
 
-    public Application getApplication() {
-        return application.get();
-    }
-
     /**
      * Sets the interview date of the specific applicant.
      */
@@ -106,11 +103,12 @@ public class Applicant extends Person {
     }
 
     public void setApplication(Application application) {
-        if (application == null) {
-            this.application = Optional.empty();
-        }
         assert application != null;
-        this.application = Optional.of(application);
+        this.application = application;
+    }
+
+    public Application getApplication() {
+        return application;
     }
 
     @Override

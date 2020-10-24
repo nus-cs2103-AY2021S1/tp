@@ -22,10 +22,14 @@ import com.eva.model.Model;
 import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.ReadOnlyUserPrefs;
 import com.eva.model.person.Person;
+<<<<<<< Updated upstream
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
+=======
+import com.eva.model.person.staff.Staff;
+>>>>>>> Stashed changes
 import com.eva.testutil.PersonBuilder;
 
 import javafx.collections.ObservableList;
@@ -178,6 +182,11 @@ public class AddCommandTest {
         @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteStaff(Staff target) {
+
         }
 
         @Override

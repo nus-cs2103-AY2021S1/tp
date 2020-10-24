@@ -14,7 +14,9 @@ import com.eva.model.person.applicant.application.Application;
 public class AddApplicationCommand extends Command {
     public static final String COMMAND_WORD = "addapplication";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " Adds an application to an applicant. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an application to an applicant. ";
+
+    public static final String MESSAGE_USAGE_2 = COMMAND_WORD + " Adds an application to an applicant. "
             + "Parameters: "
             + "FILEPATH "
             + "Example: " + COMMAND_WORD + " "

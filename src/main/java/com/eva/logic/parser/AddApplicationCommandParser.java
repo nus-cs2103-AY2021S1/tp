@@ -1,5 +1,7 @@
 package com.eva.logic.parser;
 
+import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -21,51 +23,60 @@ public class AddApplicationCommandParser implements Parser<AddApplicationCommand
      */
     @Override
     public AddApplicationCommand parse(String userInput) throws ParseException, FileNotFoundException {
-        String indexNo = userInput.split(" ")[1];
-        String filePath = userInput.split(" ")[2];
-        File file = new File(filePath);
 
-        Scanner sc = new Scanner(file);
-        List<Education> eduList = new ArrayList<>();
-        List<Experience> expList = new ArrayList<>();
-
-        // Name
-        String name = sc.nextLine().split(":")[1];
-        sc.nextLine(); // read blank line
-
-        // Education
-        while (sc.hasNextLine()) {
-            String line = sc.nextLine();
-            // System.out.println(line.split(" ")[0]);
-            if (line.equals("Experience:")) {
-                break;
+        try {
+            String[] substrings = userInput.split(" ");
+            if (substrings.length <= 1) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        AddApplicationCommand.MESSAGE_USAGE_2));
             }
-            if (line.length() > 6 && line.substring(0, 6).equals("School")) {
-                String schoolName = line.split(" ")[1];
+            String indexNo = substrings[1];
+            String filePath = substrings[2];
+            File file = new File(filePath);
+            Scanner sc = new Scanner(file);
+
+            List<Education> eduList = new ArrayList<>();
+            List<Experience> expList = new ArrayList<>();
+
+            // Name
+            String name = sc.nextLine().split(":")[1];
+            sc.nextLine(); // read blank line
+
+            // Education
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                // System.out.println(line.split(" ")[0]);
+                if (line.equals("Experience:")) {
+                    break;
+                }
+                if (line.length() > 6 && line.substring(0, 6).equals("School")) {
+                    String schoolName = line.split(" ")[1];
+                    String startDate = sc.nextLine().split(" ")[1];
+                    String endDate = sc.nextLine().split(" ")[1];
+                    Education edu = new Education(startDate, endDate, schoolName);
+                    eduList.add(edu);
+                }
+            }
+
+            // Experience
+            while (sc.hasNextLine()) {
+                sc.nextLine(); // this should be number
+                String company = sc.nextLine().split(" ")[1];
+                String position = sc.nextLine().split(" ")[1];
+                // take note of semi colon, as 2nd element needs to be entire desc
+                String description = sc.nextLine().split(":")[1];
                 String startDate = sc.nextLine().split(" ")[1];
                 String endDate = sc.nextLine().split(" ")[1];
-                Education edu = new Education(startDate, endDate, schoolName);
-                eduList.add(edu);
+                Experience exp = new Experience(startDate, endDate, company, position, description);
+                expList.add(exp);
             }
+            sc.close();
+            Application application = new Application(name, expList, eduList);
+            Index index = ParserUtil.parseIndex(indexNo);
+            return new AddApplicationCommand(index, application);
+        } catch (ParseException pe){
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddApplicationCommand.MESSAGE_USAGE_2), pe);
         }
-
-        // Experience
-        while (sc.hasNextLine()) {
-            sc.nextLine(); // this should be number
-            String company = sc.nextLine().split(" ")[1];
-            String position = sc.nextLine().split(" ")[1];
-            // take note of semi colon, as 2nd element needs to be entire desc
-            String description = sc.nextLine().split(":")[1];
-            String startDate = sc.nextLine().split(" ")[1];
-            String endDate = sc.nextLine().split(" ")[1];
-            Experience exp = new Experience(startDate, endDate, company, position, description);
-            expList.add(exp);
-        }
-        sc.close();
-
-        Application application = new Application(name, expList, eduList);
-        Index index = ParserUtil.parseIndex(indexNo);
-
-        return new AddApplicationCommand(index, application);
     }
 }

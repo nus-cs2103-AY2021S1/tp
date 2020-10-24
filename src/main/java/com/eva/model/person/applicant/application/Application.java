@@ -3,6 +3,7 @@ package com.eva.model.person.applicant.application;
 import static com.eva.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.eva.model.person.Name;
@@ -25,10 +26,15 @@ public class Application {
         requireNonNull(applicantName);
         requireNonNull(experienceSection);
         requireNonNull(educationSection);
-        checkArgument(Name.isValidName(applicantName), Name.MESSAGE_CONSTRAINTS);
         this.applicantName = applicantName;
         this.experienceSection = experienceSection;
         this.educationSection = educationSection;
+    }
+
+    public Application() {
+        this.applicantName = "Default";
+        this.experienceSection = new ArrayList<>();
+        this.educationSection = new ArrayList<>();
     }
 
     public List<Experience> getExperienceSection() {
@@ -42,6 +48,7 @@ public class Application {
     public String getApplicantName() {
         return applicantName;
     }
+
 
     @Override
     public String toString() {
