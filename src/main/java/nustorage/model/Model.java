@@ -2,12 +2,10 @@ package nustorage.model;
 
 
 import java.nio.file.Path;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import nustorage.commons.core.GuiSettings;
-import nustorage.commons.core.index.Index;
 import nustorage.model.person.Person;
 import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.InventoryRecord;
@@ -127,7 +125,7 @@ public interface Model {
     // --------- Finance Account ---------
 
 
-    Optional<FinanceRecord> deleteFinanceRecord(Index targetIndex);
+    void deleteFinanceRecord(FinanceRecord target);
 
 
     ReadOnlyFinanceAccount getFinanceAccount();

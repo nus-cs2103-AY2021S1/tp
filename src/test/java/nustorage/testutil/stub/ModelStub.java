@@ -1,12 +1,10 @@
 package nustorage.testutil.stub;
 
 import java.nio.file.Path;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import nustorage.commons.core.GuiSettings;
-import nustorage.commons.core.index.Index;
 import nustorage.model.Inventory;
 import nustorage.model.Model;
 import nustorage.model.ReadOnlyAddressBook;
@@ -88,8 +86,8 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public Optional<FinanceRecord> deleteFinanceRecord(Index targetIndex) {
-        return Optional.empty();
+    public void deleteFinanceRecord(FinanceRecord target) {
+
     }
 
     @Override

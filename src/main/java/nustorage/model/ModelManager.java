@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import static nustorage.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,7 +12,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import nustorage.commons.core.GuiSettings;
 import nustorage.commons.core.LogsCenter;
-import nustorage.commons.core.index.Index;
 import nustorage.model.person.Person;
 import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.InventoryRecord;
@@ -204,8 +202,9 @@ public class ModelManager implements Model {
 
 
     @Override
-    public Optional<FinanceRecord> deleteFinanceRecord(Index targetIndex) {
-        return financeAccount.removeFinanceRecord(targetIndex);
+    public void deleteFinanceRecord(FinanceRecord target) {
+        requireNonNull(target);
+        financeAccount.removeFinanceRecord(target);
     }
 
 
