@@ -7,6 +7,7 @@ import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.ItemReference;
 import chopchop.model.Model;
 import chopchop.model.recipe.Recipe;
+import chopchop.ui.DisplayNavigator;
 
 /**
  * Display a recipe identified using its name from the recipe book.
@@ -39,6 +40,11 @@ public class ViewCommand extends Command {
                 .findRecipeWithName(this.item.getName())
                 .orElseThrow(() -> new CommandException(String.format(MESSAGE_RECIPE_NOT_FOUND,
                         this.item.getName())));
+
+        if (DisplayNavigator.hasDisplayController()) {
+            DisplayNavigator.loadRecipeDisplay(recipe);
+        }
+
         return new CommandResult(String.format(MESSAGE_VIEW_SUCCESS, recipe));
     }
 }

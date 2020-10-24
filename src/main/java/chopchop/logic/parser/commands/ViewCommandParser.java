@@ -31,7 +31,7 @@ public class ViewCommandParser {
         // we expect no named arguments
         Optional<ArgName> foo;
         if ((foo = getFirstUnknownArgument(args, new ArrayList<>())).isPresent()) {
-            return Result.error("'make' command doesn't support '%s'", foo.get());
+            return Result.error("'view' command doesn't support '%s'", foo.get());
         }
 
         var name = args.getRemaining();
