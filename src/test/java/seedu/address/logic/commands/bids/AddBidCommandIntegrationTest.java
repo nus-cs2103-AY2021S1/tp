@@ -44,7 +44,7 @@ public class AddBidCommandIntegrationTest {
                 model.getPropertyBook(),
                 model.getBidderAddressBook(),
                 model.getSellerAddressBook(),
-                model.getMeetingManager()
+                model.getMeetingBook()
         );
         expectedModel.addBid(validBid);
 

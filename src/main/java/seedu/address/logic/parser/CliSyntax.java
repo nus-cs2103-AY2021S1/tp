@@ -14,12 +14,12 @@ public class CliSyntax {
     public static final Prefix PREFIX_MONEY = new Prefix("m/");
 
     /* Calendar Prefix definitions */
-    public static final Prefix PREFIX_CALENDAR_VENUE = new Prefix("v/");
-    public static final Prefix PREFIX_CALENDAR_TIME = new Prefix("t/");
-    public static final Prefix PREFIX_CALENDAR_PROPERTY_ID = new Prefix("p/");
-    public static final Prefix PREFIX_CALENDAR_BIDDER_ID = new Prefix("b/");
-    public static final Prefix PREFIX_CALENDAR_TYPE = new Prefix("q/");
-    public static final Prefix PREFIX_CALENDAR_ORDER = new Prefix("order/");
+    public static final Prefix PREFIX_MEETING_VENUE = new Prefix("v/");
+    public static final Prefix PREFIX_MEETING_TIME = new Prefix("t/");
+    public static final Prefix PREFIX_MEETING_PROPERTY_ID = new Prefix("p/");
+    public static final Prefix PREFIX_MEETING_BIDDER_ID = new Prefix("b/");
+    public static final Prefix PREFIX_MEETING_TYPE = new Prefix("q/");
+    public static final Prefix PREFIX_MEETING_ORDER = new Prefix("order/");
 
     /* Property Prefix definitions */
     public static final Prefix PREFIX_PROPERTY_NAME = new Prefix("n/");

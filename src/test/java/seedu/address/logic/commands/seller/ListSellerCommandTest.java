@@ -32,7 +32,7 @@ public class ListSellerCommandTest {
                 new MeetingBook());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
                 model.getPropertyBook(), model.getBidderAddressBook(),
-                model.getSellerAddressBook(), model.getMeetingManager());
+                model.getSellerAddressBook(), model.getMeetingBook());
     }
 
     @Test
