@@ -333,20 +333,20 @@ Notify the user if a certain stock is below threshold
 | Action    | Format, Examples                                                                                    |
 |-----------|-----------------------------------------------------------------------------------------------------|
 |**Add to Inventory**    | `add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]...​` <br> e.g., `add n/Chicken q/3 s/ShengSiong t/Poultry` |
-|**Clear from Inventory**  | `clear-i`                                                                                             |
-|**Delete from Inventory** | `delete-i INDEX`<br> e.g., `delete 3`                                                                 |
-|**Edit Inventory**   | `edit-i INDEX [n/NAME] [q/QUANTITY] [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]…​`<br> e.g.,`edit 1 n/Chicken q/50`                |
-|**Find in Inventory**   | `find-i PREFIX KEYWORD [MORE_KEYWORDS]`<br> e.g., `find-i n/Chicken Steak`                                       |
-|**List Inventory**   | `list-i`
-|**Remove from Inventory** | `remove-i INDEX q/QUANTITY`                                                                                              |
+|**Clear from Inventory**  | `clear-i`            |
+|**Delete from Inventory** | `delete-i INDEX`<br> e.g., `delete 3`         |
+|**Edit Inventory**   | `edit-i INDEX [n/NAME] [q/QUANTITY] [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]…​`<br> e.g.,`edit 1 n/Chicken q/50`    |
+|**Find in Inventory**   | `find-i PREFIX KEYWORD [MORE_KEYWORDS]`<br> e.g., `find-i n/Chicken Steak`     |
+|**List Inventory**   | `list-i` |
+|**Remove from Inventory** | `remove-i INDEX q/QUANTITY`    |
 
 
 #### 5.3 Delivery summary
 | Action    | Format, Examples                                                                                    |
 |-----------|-----------------------------------------------------------------------------------------------------|
 |**Add to Delivery**    | `add-d` <br> e.g `add-d n/Alex Yeoh p/87438807 a/Blk 30 Geylang Street 29, #06-40 o/2x Chicken Rice, 1x Ice Milo` |
-|**Clear from Delivery**  | `clear-d`                                                                                             |
-|**Delete from Delivery** | `delete-d INDEX`<br> e.g., `delete 3`                                                                 |
-|**Edit Delivery**   | `edit-d INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]`<br> e.g.,`edit 3 n/AARON p/91111233`                |
+|**Clear from Delivery**  | `clear-d`               |
+|**Delete from Delivery** | `delete-d INDEX`<br> e.g., `delete 3`     |
+|**Edit Delivery**   | `edit-d INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]`<br> e.g.,`edit 3 n/AARON p/91111233`   |
 |**List Delivery**   | `list-d` |
-|**Find in Delivery**  | `find-d PREFIX KEYWORD [MORE_KEYWORDS]` <br> e.g., `find-d n/Alex`           |
+|**Find in Delivery**  | `find-d PREFIX KEYWORD [MORE_KEYWORDS]` <br> e.g., `find-d n/Alex`   |
