@@ -43,7 +43,7 @@ public class TypicalFlashcards {
             .build();
 
     public static final Flashcard FLASHCARD_6 = new FlashcardBuilder()
-            .withQuestion("IMore test cases is always better. True or False?")
+            .withQuestion("More test cases is always better. True or False?")
             .withStatistics(new Statistics(5, 2))
             .withAnswer("True").build();
 
