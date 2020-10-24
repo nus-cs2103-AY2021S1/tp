@@ -289,7 +289,7 @@ public class ModelManager implements Model {
         Predicate<Person> combined = x -> predicate.test(x)
                 || moduleList.stream()
                 .anyMatch(m -> m.getClassmates().contains(x));
-        return new FilteredList(filteredPersons, predicate);
+        return new FilteredList(filteredPersons, combined);
     }
 
     //=========== Filtered Meeting List Accessors =============================================================
