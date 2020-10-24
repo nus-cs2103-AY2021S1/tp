@@ -6,7 +6,14 @@ User Guide v1.3
 
 ##Introduction - Gabriella Teh
 
-PlaNus is **task managing desktop application** for students in NUS with many projects and deadlines, optimized for use via a Command Line Interface (CLI) with the benefits of Graphical User Interface (GUI). PlaNus reduces the time spent by students in task management as adding tasks and lessons is now simple and quick! 
+PlaNus is a project done under NUS module CS2103T by a group of five aspiring computer science students.
+
+PlaNus is **task managing desktop application** for students in NUS with many projects and deadlines, optimized for use via a Command Line Interface (CLI) with the benefits of Graphical User Interface (GUI). PlaNus reduces the time spent by students in task management as adding tasks and lessons is now simple and quick!
+
+Objectives of PlaNus:
+1. Provide students with a detailed breakdown of how much time they spend on their tasks and lessons in their respective modules.
+2. Allow students to have a organised view of their schedule. (coming soon in v1.3B)
+3. Allocate tasks and lessons to their schedule automatically. (coming soon in v1.4)
 
 ##About
 This user guide provides a detailed description of all the features available in the application.
@@ -134,6 +141,8 @@ Examples:
 * `list` followed by `delete 1 2` deletes the 1st task followed by the 2nd task in the results of the `list` command.
 * `find title:homework` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
+<br>
+
 ### 7. Mark a deadline as done : `done`
 
 Users can mark a specified deadline in PlaNus as done.
@@ -147,17 +156,12 @@ Format: `done INDEX:TIME_TAKEN...`
 * Take note that there are two type of task, one is event, another one is deadline, only task of deadline can be marked as done through this command, an error message will be shown if user attempts to mark the event as done.
 * After user marked a deadline as done, user cannot edit the deadline or undo the done command anymore.
 
-In order to avoid any typo from user, this command will not be executed successfully when (and a corresponding error message will be shown):
-* one or more target indexes are event rather than deadline.
-* one or more target deadline are already in complete status.
-* same index appear more than one time in the command, eg. done 1:20 2:20 2:30
-* wrong INDEX/TIME_TAKEN value
-
-
 Examples:
 
 * `list` followed by `done 2:30 3:60` marks the 2nd and the 3rd tasks in the results of the `list` command status to be done, and record that the user has spent 30 minutes to finish the 2nd task, and 60 minutes to finish the 3rd task.
 * `find title:homework` followed by `done 1:20` marks the 1st task in the results of the `find` command status to be done and record the time taken to complete the deadline is 20 minutes.
+
+<br>
 
 ### 8. Find a task by an attribute : `find`
 
@@ -165,10 +169,9 @@ Users can find a task by a set of attributes given below.
 
 Format: `find ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...`
 
+If the user provides different attributes in the command, tasks that match all attributes will be displayed.
 
-If different attributes are provided in the command, tasks that match all attributes will be displayed.
-
-If multiple search phrases of the same attribute are provided in the command, tasks that match any of the
+If the user provides multiple search phrases of the same attribute in the command, tasks that match any of the search phrases will be displayed.
 
 Available attributes in v1.3 include:
 * `title:` finds all tasks which contain the search phrase in the given title
@@ -185,6 +188,8 @@ Examples:
 * `find title:dinner type:deadline` will list all deadlines with a title that includes `dinner`
 * `find date:01-01-2020 11:00` will list all tasks with the date 01-01-2020 11:00
 * `find title:dinner title:lunch type:deadline` will list all deadlines with the title includes either `dinner` or `lunch`
+
+<br>
 
 ### 9. Edit a task : `edit`
 
@@ -212,6 +217,8 @@ Examples:
 * `find type:deadline` followed by `edit 3 desc:This is very urgent!` will edit the first deadline of the third deadline in the results of the `find` command, changing its description to "This is very urgent!"
 * `find title:homework` followed by`edit 2 desc:Homework is difficult date:01-01-2020` will edit the second task in the results of the `find` command if the task is an event, changing its date to 01-01-2020 and its description to "Homework is difficult", otherwise, PlaNus will notify the user of the incompatible error
 * `edit 1 tag:CS2103T` will edit the first task in the results of the `list` command, changing its tag to "CS2103T"
+
+<br>
 
 ### 10. Exit the program : `exit`
 
