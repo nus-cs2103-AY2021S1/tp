@@ -8,7 +8,6 @@ import seedu.address.model.ReadOnlyReeve;
 import seedu.address.model.Reeve;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
-import seedu.address.model.student.Question;
 import seedu.address.model.student.School;
 import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Student;
@@ -19,6 +18,9 @@ import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
 import seedu.address.model.student.admin.Fee;
 import seedu.address.model.student.admin.PaymentDate;
+import seedu.address.model.student.question.Question;
+import seedu.address.model.student.question.SolvedQuestion;
+import seedu.address.model.student.question.UnsolvedQuestion;
 
 
 /**
@@ -38,7 +40,7 @@ public class SampleDataUtil {
                     new Admin(new ClassVenue("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                             new ClassTime("1 1500-1600"), new Fee("50"),
                             new PaymentDate("30/6/20"), getDetailList()),
-                    getSolvedQuestions("Explain heat flow.")),
+                    getSolvedQuestions("Read your textbook", "Explain heat flow.")),
             new Student(new Name("Charlotte Oliveiro"), new Phone("93210283"),
                     new School("Raffles Girls School"), new Year(SchoolType.SECONDARY, 3),
                     new Admin(new ClassVenue("Blk 11 Ang Mo Kio Street 74, #11-04"),
@@ -88,16 +90,16 @@ public class SampleDataUtil {
      */
     public static List<Question> getQuestions(String... strings) {
         return Arrays.stream(strings)
-                .map(Question::new)
+                .map(UnsolvedQuestion::new)
                 .collect(Collectors.toList());
     }
 
     /**
      * Returns a list of solved {@code Questions} containing the given strings.
      */
-    public static List<Question> getSolvedQuestions(String... strings) {
+    public static List<Question> getSolvedQuestions(String solution, String... strings) {
         return Arrays.stream(strings)
-                .map(string -> new Question(string, true))
+                .map(string -> new SolvedQuestion(string, solution))
                 .collect(Collectors.toList());
     }
 

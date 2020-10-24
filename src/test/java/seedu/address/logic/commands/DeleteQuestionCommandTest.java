@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.logic.commands.DeleteQuestionCommand.MESSAGE_BAD_QUESTION_INDEX;
 import static seedu.address.logic.commands.DeleteQuestionCommand.MESSAGE_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.StudentBuilder.DEFAULT_SOLUTION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
@@ -23,8 +24,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.student.Question;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.question.Question;
 import seedu.address.testutil.StudentBuilder;
 
 public class DeleteQuestionCommandTest {
@@ -57,14 +58,14 @@ public class DeleteQuestionCommandTest {
         expectedModel.setPerson(clone, expected);
 
         DeleteQuestionCommand command = new DeleteQuestionCommand(INDEX_FIRST_PERSON, questionIndex);
-        String expectedMessage = String.format(MESSAGE_SUCCESS, removed);
+        String expectedMessage = String.format(MESSAGE_SUCCESS, expected.getName(), removed);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_validIndicesSolved_success() {
         Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Student clone = new StudentBuilder(asker).withSolved(TEST_QUESTIONS).build();
+        Student clone = new StudentBuilder(asker).withSolved(DEFAULT_SOLUTION, TEST_QUESTIONS).build();
         model.setPerson(asker, clone);
 
         Index questionIndex = Index.fromOneBased(2);
@@ -75,7 +76,7 @@ public class DeleteQuestionCommandTest {
         expectedModel.setPerson(clone, expected);
 
         DeleteQuestionCommand command = new DeleteQuestionCommand(INDEX_FIRST_PERSON, questionIndex);
-        String expectedMessage = String.format(MESSAGE_SUCCESS, removed);
+        String expectedMessage = String.format(MESSAGE_SUCCESS, expected.getName(), removed);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
@@ -84,7 +85,7 @@ public class DeleteQuestionCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Student clone = new StudentBuilder(asker).withSolved(TEST_QUESTIONS).build();
+        Student clone = new StudentBuilder(asker).withSolved(DEFAULT_SOLUTION, TEST_QUESTIONS).build();
         model.setPerson(asker, clone);
 
         Index questionIndex = Index.fromOneBased(2);
@@ -95,7 +96,7 @@ public class DeleteQuestionCommandTest {
         expectedModel.setPerson(clone, expected);
 
         DeleteQuestionCommand command = new DeleteQuestionCommand(INDEX_FIRST_PERSON, questionIndex);
-        String expectedMessage = String.format(MESSAGE_SUCCESS, removed);
+        String expectedMessage = String.format(MESSAGE_SUCCESS, expected.getName(), removed);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
@@ -119,7 +120,7 @@ public class DeleteQuestionCommandTest {
     @Test
     public void execute_invalidQuestionIndex_success() {
         Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Student clone = new StudentBuilder(asker).withSolved(TEST_QUESTIONS).build();
+        Student clone = new StudentBuilder(asker).withSolved(DEFAULT_SOLUTION, TEST_QUESTIONS).build();
         model.setPerson(asker, clone);
 
         Index questionIndex = Index.fromZeroBased(TEST_QUESTIONS.length);

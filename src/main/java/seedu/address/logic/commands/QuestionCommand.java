@@ -13,8 +13,8 @@ public abstract class QuestionCommand extends Command {
             + "Supported actions: \n"
             + PREFIX_ADD_QUESTION + " QUESTION: adds an unresolved question.\n"
             + "Examples:\n" + COMMAND_WORD + " 1 " + PREFIX_ADD_QUESTION + "1 + 1 = ?\n"
-            + PREFIX_SOLVE_QUESTION + "QUESTION_INDEX: marks a question as solved.\n"
-            + "Examples:\n" + COMMAND_WORD + " 2 " + PREFIX_SOLVE_QUESTION + " 1 \n"
+            + PREFIX_SOLVE_QUESTION + "QUESTION_INDEX SOLUTION: marks a question as solved.\n"
+            + "Examples:\n" + COMMAND_WORD + " 2 " + PREFIX_SOLVE_QUESTION + " 1 Read your textbook.\n"
             + PREFIX_DELETE_QUESTION + "QUESTION_INDEX: deletes a question.\n"
             + "Examples:\n" + COMMAND_WORD + " 2 " + PREFIX_DELETE_QUESTION + " 1 \n";
 }
