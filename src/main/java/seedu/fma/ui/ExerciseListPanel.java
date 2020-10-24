@@ -35,7 +35,6 @@ public class ExerciseListPanel extends UiPart<Region> {
             super.updateItem(exercise, empty);
 
             if (empty || exercise == null) {
-                assert exercise == null;
                 setGraphic(null);
                 setText(null);
             } else {
