@@ -3,15 +3,14 @@ package seedu.taskmaster.model;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.record.StudentRecordListManager;
-import seedu.taskmaster.model.session.Session;
-import seedu.taskmaster.model.session.SessionDateTime;
-import seedu.taskmaster.model.session.SessionName;
+import seedu.taskmaster.model.session.*;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.student.Student;
 import seedu.taskmaster.model.student.UniqueStudentList;
@@ -24,6 +23,8 @@ import seedu.taskmaster.model.student.exceptions.StudentNotFoundException;
 public class Taskmaster implements ReadOnlyTaskmaster {
 
     private final UniqueStudentList students;
+    private final SessionList sessions;
+    private Session currentSession;
 
     /*
      * The 'unusual' code block below is a non-static initialization block,
@@ -35,13 +36,18 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      */
     {
         students = new UniqueStudentList();
-    }
 
-    // TODO: Current session is a placeholder for now
-    private Session currentSession = new Session(
-            new SessionName("Placeholder session"),
-            new SessionDateTime(LocalDateTime.now()),
-            StudentRecordListManager.of(students.asUnmodifiableObservableList()));
+        // TODO: Current session is a placeholder for now
+        currentSession = new Session(
+                new SessionName("Placeholder session"),
+                new SessionDateTime(LocalDateTime.now()),
+                StudentRecordListManager.of(students.asUnmodifiableObservableList()));
+
+        // TODO: SessionList is temporary a list with one placeholder session
+        List<Session> sessionList = new ArrayList<>();
+        sessionList.add(currentSession);
+        sessions = SessionListManager.of(sessionList);
+    }
 
     public Taskmaster() {}
 
