@@ -206,6 +206,8 @@ public class ModelManager implements Model {
         case PERSON:
             personToBeDisplayedOnDashboard = Optional.empty();
             break;
+        default:
+            break;
         }
         mainCatalogue.quit();
     }
