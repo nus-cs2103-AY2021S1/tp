@@ -3,7 +3,9 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 import seedu.address.model.project.Participation;
@@ -87,6 +89,15 @@ public class Person {
 
     public HashMap<ProjectName, Participation> getParticipations() {
         return this.listOfParticipations;
+    }
+
+    /**
+     * Gets all projects that this person participates in.
+     */
+    public List<Project> getProjects() {
+        List<Project> projects = Collections.emptyList();
+        listOfParticipations.values().forEach(p -> projects.add(p.getProject()));
+        return projects;
     }
 
     public void updatePersonName(String newPersonNameStr) {
