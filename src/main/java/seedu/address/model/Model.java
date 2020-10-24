@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.student.NameComparator;
 import seedu.address.model.student.Student;
 
 /**
@@ -16,6 +17,11 @@ public interface Model {
      * {@code Predicate} that always evaluate to true
      */
     Predicate<Student> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    /**
+     * An instance of {@code NameComparator}
+     */
+    Comparator<Student> COMPARATOR_NAME = new NameComparator();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.

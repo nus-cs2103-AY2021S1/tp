@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.student.NameComparator;
 import seedu.address.model.student.Student;
 
 /**
@@ -38,7 +39,7 @@ public class ModelManager implements Model {
         this.reeve = new Reeve(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.reeve.getStudentList());
-        sortedStudents = new SortedList<>(this.filteredStudents);
+        sortedStudents = new SortedList<>(this.filteredStudents, new NameComparator());
     }
 
     public ModelManager() {
