@@ -41,6 +41,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane note;
     @FXML
+    private FlowPane priority;
+    @FXML
     private FlowPane clientSources;
 
     /**
@@ -66,6 +68,10 @@ public class PersonCard extends UiPart<Region> {
 
         if (person.getNote() != null) {
             note.getChildren().add(new Label(person.getNote().noteName));
+        }
+
+        if (person.getPriority() != null) {
+            priority.getChildren().add(new Label(person.getPriority().value));
         }
 
         person.getClientSources().stream()

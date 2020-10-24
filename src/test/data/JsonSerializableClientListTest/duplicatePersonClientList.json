@@ -5,12 +5,15 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "clientSource": [ "friends" ],
-    "note": "Fake fwen"
+    "note": "Fake fwen",
+    "priority": "high"
+
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street",
-    "note": "real fwen"
+    "note": "real fwen",
+    "priority": "low"
   } ]
 }

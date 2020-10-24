@@ -12,6 +12,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Priority;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -39,6 +40,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getAddress());
         descriptor.setClientSources(person.getClientSources());
         descriptor.setNote(person.getNote());
+        descriptor.setPriority(person.getPriority());
     }
 
     /**
@@ -88,6 +90,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withNote(String note) {
         descriptor.setNote(new Note(note));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Priority} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withPriority(String priority) {
+        descriptor.setPriority(new Priority(priority));
         return this;
     }
 

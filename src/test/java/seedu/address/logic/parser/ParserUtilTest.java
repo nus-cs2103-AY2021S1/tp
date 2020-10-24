@@ -21,6 +21,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Priority;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -29,6 +30,8 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_CLIENTSOURCE =
             "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";
+    private static final String INVALID_NOTE = " ";
+    private static final String INVALID_PRIORITY = "x";
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
@@ -36,7 +39,9 @@ public class ParserUtilTest {
     private static final String VALID_CLIENTSOURCE_1 = "friend from work";
     private static final String VALID_CLIENTSOURCE_2 = "neighbour";
     private static final String VALID_NOTE = "friend";
-    private static final String INVALID_NOTE = " ";
+    private static final String VALID_SHORT_PRIORITY = "l";
+    private static final String VALID_LONG_PRIORITY = "low";
+
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -222,5 +227,36 @@ public class ParserUtilTest {
         String noteWithWhitespace = WHITESPACE + VALID_NOTE + WHITESPACE;
         Note expectedNote = new Note(VALID_NOTE);
         assertEquals(expectedNote, ParserUtil.parseNote(noteWithWhitespace));
+    }
+
+    // This does not give a null, but a priority made from null so it is undefined
+    @Test
+    public void parsePriority_null_returnsNullPriority() throws Exception {
+        assertEquals(ParserUtil.parsePriority((String) null), new Priority(null));
+    }
+
+    @Test
+    public void parsePriority_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePriority(INVALID_PRIORITY));
+    }
+
+    @Test
+    public void parsePriority_validValueWithoutWhitespace_returnsPriority() throws Exception {
+        Priority expectedPriority = new Priority(VALID_SHORT_PRIORITY);
+        assertEquals(expectedPriority, ParserUtil.parsePriority(VALID_SHORT_PRIORITY));
+    }
+
+    @Test
+    public void parsePriority_validValueWithWhitespace_returnsTrimmedPriority() throws Exception {
+        String priorityWithWhitespace = WHITESPACE + VALID_LONG_PRIORITY + WHITESPACE;
+        Priority expectedPriority = new Priority(VALID_LONG_PRIORITY);
+        assertEquals(expectedPriority, ParserUtil.parsePriority(priorityWithWhitespace));
+    }
+
+    @Test
+    public void parsePriority_validShortenedPriority_returnsFullPriority() throws Exception {
+        String priorityShort = VALID_SHORT_PRIORITY;
+        Priority expectedPriority = new Priority(VALID_LONG_PRIORITY);
+        assertEquals(expectedPriority, ParserUtil.parsePriority(priorityShort));
     }
 }
