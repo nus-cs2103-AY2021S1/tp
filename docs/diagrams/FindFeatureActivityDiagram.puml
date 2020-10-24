@@ -1,0 +1,25 @@
+@startuml
+start
+:User enters command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([find command])
+    :Parser for find command parses user input.;
+    if () then ([valid input])
+        :Command parsed successfully and executed;
+        if () then ([Stock matches search terms])
+            : Stock will be displayed.;
+        else([else])
+            : Stock will not be displayed.;
+        endif
+    else ([invalid input])
+        :Parsing error messages thrown;
+    endif
+else ([else])
+    :Warenager passes command input \n to their respective parsers.;
+
+endif
+stop
+@enduml

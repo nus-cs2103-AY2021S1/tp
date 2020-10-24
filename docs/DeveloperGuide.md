@@ -573,55 +573,232 @@ The following activity diagram summarizes what happens when the suggestion featu
   * Cons: The distance estimate between two strings is quite bad, especially if no substring overlaps. Slow in speed
     compared to minimum edit distance. Generates worse suggestion compared to minimum edit distance.
 
-### Find Feature
+### Find and FindExact Features
 
-The mechanism for the Find feature (as with the FindExact feature) is facilitated by classes `FindCommand`, `FindCommandParser`, `FindUtil` and `FieldContainsKeywordsPredicate` subclasses that include:
+#### Description
+The Find and FindExact Features allow users to search for `Stock` items in the stockbook. 
+
+There are two commands users can use:
+* `find` - Stock that matches ALL keywords of ANY field will be displayed.
+* `findexact` - Stock that matches ALL keywords of ALL fields will be displayed.
+
+Find and FindExact features allow search for four fields:
+
+Field         | Prefix
+--------------| -------
+Name          |   n/
+Source        |   s/
+Serial Number |   sn/
+Location      |   l/
+
+#### Mechanism
+The mechanism for the Find feature is facilitated by classes `FindCommand`(or `FindExactCommand`),
+`FindCommandParser` (or `FindExactCommandParser`), `FindUtil` and `FieldContainsKeywordsPredicate`
+subclasses that include:
 * `NameContainsKeywordsPredicate`
 * `SerialNumberContainsKeywordsPredicate`
 * `SourceContainsKeywordsPredicate`
 * `LocationContainsKeywordsPredicate`
 
 #### FindCommandParser
-The `FindCommandParser` class implements the `Parser` interface. `FindCommandParser` class is tasked with parsing the user inputs, generating a list of `FieldContainsKeywordsPredicate`s and then constructing a `FindCommand` with the list of `FieldContainsKeywordsPredicate`s. 
+The `FindCommandParser` (as with the `FindExactCommandParser`) class
+implements the `Parser` interface. 
+`FindCommandParser` class is tasked with parsing the user inputs
+to generate a `FindCommand` with a list of `FieldContainsKeywordsPredicate`.
+
+The list of `FieldContainsKeywordsPredicate` is obtained from parsing
+the user input, to produce either of the following predicates shown
+in the table below, for each `Prefix` and keywords pair.
+
+(Note that the user input should contain at least one `Prefix` and keywords to search.
+The table below shows which `FieldContainsKeywordsPredicate`
+is generate for the specific `Prefix`.)
+
+Prefix       | FieldContainsKeywordsPredicate
+-------------| -------------------------
+n/<keywords> | NameContainsKeywordsPredicate
+s/<keywords> | SourceContainsKeywordsPredicate
+l/<keywords> | LocationContainsKeywordsPredicate
+sn/<keywords>| SerialNumberContainsKeywordsPredicate
 
 `FindCommandParser` implements the following important operations:
 
-* `FindCommandParser#parse()` - Parses the user input to produce a `FindCommand`.
-* `FindCommandParser#parsePrefixAndKeywords()` - Generates a list of `FieldContainsKeywordsPredicate` from a map of `Prefix`s and keywords.
-* `FindCommandParser#generatePredicate() - Generates a `FieldContainsKeywordsPredicate` from a `Prefix` and keywords.
+* `FindCommandParser#parse()` -
+ Parses the user input to produce a `FindCommand`.
+* `FindCommandParser#parsePrefixAndKeywords()` -
+ Generates a list of `FieldContainsKeywordsPredicate` from a map of `Prefix` and keywords.
+* `FindCommandParser#generatePredicate()` -
+ Generates a `FieldContainsKeywordsPredicate` from a `Prefix` and keywords.
 
-#### FindCommand
-The `FindCommand` class extends the `Command` interface. The `FindCommand` class is tasked with creating a new `CommandResult` that represents the result of the execution of a `FindCommand`. 
-The construction of a `FindCommand` takes in a list of `FieldContainsKeywordsPredicate`. These predicates will be evaluated to filter out the Stock items.
-When a `FindCommand` is executed, a `CommandResult` is constructed with the status message, showing the searched terms and searched results of the number of stocks found from the search, to be displayed to the user as its argument.
+#### FindCommand / FindExactCommand
+The `FindCommand` class (as with the `FindExactCommand` class)
+extends the `Command` abstract class. The `FindCommand` class
+is tasked with creating a new `CommandResult` that represents
+the result of the execution of a `FindCommand`. 
+
+The construction of a `FindCommand` takes in a list of `FieldContainsKeywordsPredicate`.
+These predicates will be evaluated to filter the Stock items to be displayed to user.
+
+When a `FindCommand` is executed, a `CommandResult` is constructed with the status message,
+showing the searched terms and searched results of the number of stocks found from the search.
 
 `FindCommand` implements the following important operations:
 
-* `FindCommand#execute()` - Executes the search and returns the result message of the search.
+* `FindCommand#execute()` -
+Executes the search and returns the result message of the search.
 
 #### FindUtil
-The `FindUtil` class is part of the util package. It provides utility to combine the list of `FieldContainsKeywordsPredicate`s of the `FindCommand` into a single `Predicate<Stock>`.
-`Find` feature requires the `Stock` to fulfill only one `FieldContainsKeywordsPredicate` in the list for `Stock` to be displayed. The mechansim used to combine the predicates into a single Predicate<Stock> for `Find` is Java 8 Predicate method, Predicate.or().
-`FindExact` feature requires the `Stock` to fulfill all `FieldContainsKeywordsPredicate` in the list for `Stock` to be displayed. The mechansim used to combine the predicates into a single Predicate<Stock> for `FindExact` is Java 8 Predicate method, Predicate.and().
+The `FindUtil` class is part of the util package.
+It provides utility to combine the list of `FieldContainsKeywordsPredicate`
+of the `FindCommand` into a composed `Predicate<Stock>`.
+
+`Find` feature requires the `Stock` to fulfill only one
+`FieldContainsKeywordsPredicate` in the list for `Stock`
+to be displayed. The mechansim used to combine the predicates
+into a composed Predicate<Stock> for `Find` is Java 8 Predicate method,
+Predicate.or().
+
+`FindExact` feature requires the `Stock` to fulfill all
+`FieldContainsKeywordsPredicate` in the list for `Stock` to be displayed.
+The mechansim used to combine the predicates into a composed Predicate<Stock>
+for `FindExact` is Java 8 Predicate method, Predicate.and().
 
 `FindUtil` implements the following important operations:
 
-* `FindUtil#generateCombinedPredicatesWithOr()` - Combines predicates using Predicate.or()
-* `FindUtil#generateCombinedPredicatesWithAnd()` - Combines predicates using Predicate.and()
+* `FindUtil#generateCombinedPredicatesWithOr()` -
+ Combines predicates using Predicate.or()
+* `FindUtil#generateCombinedPredicatesWithAnd()` -
+ Combines predicates using Predicate.and()
 
 #### FieldContainsKeywordsPredicate
 
-`FieldContainsKeywordsPredicate` is an abstract class that implements the interface Predicate<Stock>. Its subclasses are `NameContainsKeywordsPredicate`, `LocationContainsKeywordsPredicate`, `SerialNumberContainsKeywordsPredicate` and `SourceContainsKeywordsPredicate`, which inherit and implement the method `test(Stock)`, and is constructed with a list of String keywords to test.
+`FieldContainsKeywordsPredicate` is an abstract class
+that implements the interface Predicate<Stock>.
+Its subclasses are `NameContainsKeywordsPredicate`,
+`LocationContainsKeywordsPredicate`, `SerialNumberContainsKeywordsPredicate`
+and `SourceContainsKeywordsPredicate`, which inherit and implement the method
+`test(Stock)`, and is constructed with a list of String keywords to test.
 
-* `NameContainsKeywordsPredicate` implements test() to evaluate true when a `Stock`'s name contains all the keywords in the list.
-* `SerialNumberContainsKeywordsPredicate` implements test() to evaluate true when a `Stock`'s serial number contains all the keywords in the list.
-* `LocationContainsKeywordsPredicate` implements test() to evaluate true when a `Stock`'s location stored contains all the keywords in the list.
-* `SourceContainsKeywordsPredicate` implements test() to evaluate true when a `Stock`'s source contains all the keywords in the list.
+* `NameContainsKeywordsPredicate` implements test() to evaluate true
+ when a `Stock`'s name contains all the keywords in the list.
+* `SerialNumberContainsKeywordsPredicate` implements test() to evaluate true
+ when a `Stock`'s serial number contains all the keywords in the list.
+* `LocationContainsKeywordsPredicate` implements test() to evaluate true
+ when a `Stock`'s location stored contains all the keywords in the list.
+* `SourceContainsKeywordsPredicate` implements test() to evaluate true
+ when a `Stock`'s source contains all the keywords in the list.
+* For all `FieldContainsKeywordsPredicate`, if keyword given is an
+ empty string, method test() evaluates to false.
 
-For all FieldContainsKeywordsPredicate, if keyword given is an empty string, method test() evaluates to false.
+Note: For any `FieldContainsKeywordsPredicate#test()` to return true,
+ field of `Stock` must contain ALL keywords in the list.  
 
 `FieldContainsKeywordsPredicate` implements the following important operations:
-* `FieldContainsKeywordsPredicate#test()` - Evaluates this predicate on the given argument.
+* `FieldContainsKeywordsPredicate#test()` -
+ Evaluates this predicate on the given Stock argument.
+
+#### Example Usage Scenario
+Given below are some example usage scenarios and how
+ the find feature mechanism behaves at each step.
+
+**Example 1: Finding all stocks with Name that contains
+ "pineapple" OR serial number that contains "pine"**
+
+Step 1. The user enters `find n/pineapple sn/pine`.
+
+Step 2. `MainWindow#executeCommand()` is called with the user input.
+Within this method, `LogicManager#execute()` is called with the
+user input to obtain a `CommandResult`.
+
+Step 3. The command word `find` is extracted out in `StockBookParser`.
+The command word matches `COMMAND_WORD`: `find` in the `FindCommand` class.
+
+Step 4. The remaining user input is passed to the `FindCommandParser`
+to generate a list of `FieldContainsKeywordsPredicate` to evaluate on the stocks. 
+
+Step 5. Within the `FindCommandParser#parsePrefixAndKeywords()` method,
+the respective `NameContainsKeywordsPredicate` and `SerialNumberContainsKeywordsPredicate`
+will be created using the `Prefix` and keywords given, and
+added to the list of `FieldContainsKeywordsPredicate`.
+
+Step 6. The `FindCommandParser#parse()` method then returns a `FindCommand`,
+constructed with the list of `FieldContainsKeywordsPredicate`. 
+
+Step 7. On construction of the `FindCommand`, the method
+`FindUtil#generateCombinedPredicatesWithOr()` is called to generate
+a composed Predicate<Stock>, which only requires one `FieldContainsKeywordsPredicate`
+to be fulfilled for stock to be displayed.
+
+Step 8. `LogicManager#execute()` then calls `FindCommand#execute()` method,
+with current `Model` as argument. Within this method call,
+`Model#updateFilteredStockList` method evaluates the composed
+Predicate<Stock> on all the stocks in the stock list.
+
+Step 9. For each `FieldContainsKeywordsPredicate`, `FieldContainsKeywordsPredicate#test()`
+evaluates the predicate on the stock.
+
+Step 10. Stocks that do not match the search terms are filtered out.
+The result of the search is stored in the returning `CommandResult`object
+and displayed with `ResultDisplay`.
+
+Step 11. User views the new `StockListPanel` with the filtered stock list.
+
+**Example 2: Finding all stocks with Name that contains "pineapple"
+AND serial number that contains "pine"**
+
+Steps are the same as Example 1, with the replacement of:
+
+Command word:
+* `find` to `findexact`
+
+Classes:
+* `FindCommandParser` to `FindExactCommandParser`
+* `FindCommand` to `FindExactCommand`
+
+Method(s):
+* Step 7: `FindUtil#generateCombinedPredicatesWithOr()` to
+ `FindUtil#generateCombinedPredicatesWithAnd()`
+
+#### Sequence Diagram
+The following sequence diagram shows how the Find feature works for Example 1:
+![Find Feature Sequence Diagram](images/FindFeatureSequenceDiagram.png)
+
+#### Activity Diagram
+The following activity diagram summarizes what happens when
+ the Find feature is triggered:
+![Find Feature Activity Diagram](images/FindFeatureActivityDiagram.png)
+
+#### Design Consideration
+
+##### Aspect: Matching of stock and user input for each field
+* **Alternative 1 (current implementation):** For any field prefix, a stock
+matches user input if the stock's field contains all of the keywords entered. <br>
+(eg. For `find n/ this is a banana`, stock matches user input if it contains
+all keywords `this`, `is`, `a`, `banana`)
+ * Pros: Results in a more accurate matching of stocks to user input.
+ * Cons: User has to be careful not to input irrelevant terms along with terms
+ that match with the stock's field, else the stock intended will not show up.
+ 
+* **Alternative 2:** For any field prefix, a stock matches user input
+if the stock's field contains at least one of the keywords entered. <br>
+(eg. For `find n/ this is a banana`, stock matches user input if it contains
+at least one of `a`, `this`, `is`, `banana`.)
+ * Pros: More flexible as desired stock will be displayed with at least
+ one matching keyword, even when irrelevant keywords are entered.
+ * Cons: A less accurate list of matching stocks is displayed as more stocks will
+ match with the keywords since the search criteria is less rigid.
+
+##### Aspect: Input format for find command.
+
+* **Alternative 1 (current implementation):** Duplicate prefixes cannot be present in user input.
+  * Pros: Removes ambiguity in choosing the corresponding arguments used in searching for stocks.
+  * Cons: Users have to retype their command in the case where
+  they forget which prefixes they have typed and input duplicate prefixes.
+
+* **Alternative 2:** Duplicate prefixes can be present in user input.
+  * Pros: Only the argument corresponding to the last appearance of the prefix will be used.
+  Allows users to input prefix and corresponding arguments to override the last occurrence of this prefix.
+  * Cons: Users may type 2 of the required prefixes accidentally and search for unintended stocks.
 
 ### Statistics Feature
 
