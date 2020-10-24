@@ -45,10 +45,13 @@ public class CommandTestUtil {
 
     public static final String VALID_FLOOR_A = "21";
     public static final String VALID_FLOOR_B = "7";
+    public static final String VALID_FLOOR_C = "11";
     public static final String VALID_ROOM_NUMBER_A = "120";
     public static final String VALID_ROOM_NUMBER_B = "105";
+    public static final String VALID_ROOM_NUMBER_C = "103";
     public static final String VALID_ROOM_TYPE_A = "CA";
     public static final String VALID_ROOM_TYPE_B = "NA";
+    public static final String VALID_ROOM_TYPE_C = "NN";
     public static final String VALID_TAG_RENOVATED = "renovated";
     public static final String VALID_TAG_DAMAGED = "damaged";
 
@@ -71,6 +74,10 @@ public class CommandTestUtil {
     public static final String INVALID_FACULTY_DESC = " " + PREFIX_FACULTY; // empty string not allowed for faculties
     public static final String INVALID_STUDENT_ID_DESC = " " + PREFIX_STUDENT_ID; // empty string not allowed for ids
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    public static final String INVALID_FLOOR = "asfdj";
+    public static final String INVALID_ROOM_NUMBER = "asdfj";
+    public static final String INVALID_ROOM_TYPE = "asdfjk";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

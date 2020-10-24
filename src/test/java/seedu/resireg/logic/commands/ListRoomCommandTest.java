@@ -1,53 +1,210 @@
 package seedu.resireg.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.resireg.logic.commands.CommandTestUtil.VALID_FLOOR_A;
+import static seedu.resireg.logic.commands.CommandTestUtil.VALID_FLOOR_B;
+import static seedu.resireg.logic.commands.CommandTestUtil.VALID_FLOOR_C;
+import static seedu.resireg.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_A;
+import static seedu.resireg.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_B;
+import static seedu.resireg.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_C;
+import static seedu.resireg.logic.commands.CommandTestUtil.VALID_ROOM_TYPE_A;
+import static seedu.resireg.logic.commands.CommandTestUtil.VALID_ROOM_TYPE_B;
+import static seedu.resireg.logic.commands.CommandTestUtil.VALID_ROOM_TYPE_C;
 import static seedu.resireg.logic.commands.CommandTestUtil.assertToggleCommandSuccess;
-import static seedu.resireg.testutil.TypicalRooms.getTypicalAddressBook;
+import static seedu.resireg.testutil.TypicalStudents.ALICE;
+import static seedu.resireg.testutil.TypicalStudents.BENSON;
+import static seedu.resireg.testutil.TypicalStudents.CARL;
+
+import java.util.Arrays;
+import java.util.Collection;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.resireg.logic.commands.ListRoomCommand.RoomFilter;
+import seedu.resireg.model.AddressBook;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelManager;
 import seedu.resireg.model.UserPrefs;
+import seedu.resireg.model.allocation.Allocation;
+import seedu.resireg.model.room.Floor;
+import seedu.resireg.model.room.Room;
+import seedu.resireg.model.room.RoomNumber;
+import seedu.resireg.model.room.roomtype.RoomType;
+import seedu.resireg.testutil.RoomBuilder;
+import seedu.resireg.testutil.RoomFilterBuilder;
 
 public class ListRoomCommandTest {
-
-    private static final ListRoomFilter DISPLAY_ALL = ListRoomFilter.ALL;
-    private static final ListRoomFilter DISPLAY_VACANT = ListRoomFilter.VACANT;
-    private static final ListRoomFilter DISPLAY_ALLOCATED = ListRoomFilter.ALLOCATED;
-
     private Model model;
     private Model expectedModel;
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        AddressBook ab = new AddressBook();
+        Room room1 = new RoomBuilder()
+                .withFloor(VALID_FLOOR_A).withRoomNumber(VALID_ROOM_NUMBER_A).withRoomType(VALID_ROOM_TYPE_A).build();
+        Room room2 = new RoomBuilder()
+                .withFloor(VALID_FLOOR_A).withRoomNumber(VALID_ROOM_NUMBER_B).withRoomType(VALID_ROOM_TYPE_B).build();
+        Room room3 = new RoomBuilder()
+                .withFloor(VALID_FLOOR_B).withRoomNumber(VALID_ROOM_NUMBER_A).withRoomType(VALID_ROOM_TYPE_C).build();
+        Room room4 = new RoomBuilder()
+                .withFloor(VALID_FLOOR_B).withRoomNumber(VALID_ROOM_NUMBER_C).withRoomType(VALID_ROOM_TYPE_A).build();
+        Room room5 = new RoomBuilder()
+                .withFloor(VALID_FLOOR_C).withRoomNumber(VALID_ROOM_NUMBER_C).withRoomType(VALID_ROOM_TYPE_B).build();
+        Room room6 = new RoomBuilder()
+                .withFloor(VALID_FLOOR_C).withRoomNumber(VALID_ROOM_NUMBER_B).withRoomType(VALID_ROOM_TYPE_C).build();
+        Allocation allocation2 = new Allocation(room2.getFloor(), room2.getRoomNumber(), ALICE.getStudentId());
+        Allocation allocation3 = new Allocation(room3.getFloor(), room3.getRoomNumber(), BENSON.getStudentId());
+        Allocation allocation5 = new Allocation(room5.getFloor(), room5.getRoomNumber(), CARL.getStudentId());
+        for (Room r: Arrays.asList(room1, room2, room3, room4, room5, room6)) {
+            ab.addRoom(r);
+        }
+        for (Allocation a: Arrays.asList(allocation2, allocation3, allocation5)) {
+            ab.addAllocation(a);
+        }
+        model = new ModelManager(ab, new UserPrefs());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
     }
 
     @Test
+    public void testSetUp() {
+        assertEquals(expectedModel, model);
+    }
+
+    // RoomFilter tests
+    // not sure how to test predicates
+
+    @Test
+    public void roomFilterEquals() {
+        assertEquals(new RoomFilter(), new RoomFilter());
+
+        assertEquals(new RoomFilter(), new RoomFilterBuilder().build());
+
+        RoomFilter filter = new RoomFilter();
+        filter.addFloors(Arrays.asList(new Floor(VALID_FLOOR_A)));
+        assertEquals(filter, new RoomFilterBuilder().addFloor(VALID_FLOOR_A).build());
+        assertNotEquals(new RoomFilter(), filter);
+    }
+
+    @Test
+    public void equals() {
+        assertEquals(new ListRoomCommand(new RoomFilter()), new ListRoomCommand(new RoomFilter()));
+
+        ListRoomCommand command1 = new ListRoomCommand(new RoomFilterBuilder().addRoomType(VALID_ROOM_TYPE_A).build());
+        ListRoomCommand command2 = new ListRoomCommand(new RoomFilterBuilder().addRoomType(VALID_ROOM_TYPE_A).build());
+        assertEquals(command1, command2);
+
+        // negative test
+        ListRoomCommand command3 = new ListRoomCommand(new RoomFilterBuilder().addRoomType(VALID_ROOM_TYPE_B).build());
+        assertNotEquals(command1, command3);
+    }
+
+    // ListRoomCommand tests
+
+    @Test
     public void execute_listIsNotFiltered_showsSameList() {
         assertToggleCommandSuccess(
-                new ListRoomCommand(DISPLAY_ALL),
+                new ListRoomCommand(new RoomFilter()),
                 model, ListRoomCommand.MESSAGE_SUCCESS, expectedModel, TabView.ROOMS);
     }
 
     @Test
     void execute_listFilterIsVacant_showsOnlyVacantRooms() {
-        expectedModel.updateFilteredRoomList(room -> !model.isAllocated(room));
+        expectedModel.updateFilteredRoomList(room -> !expectedModel.isAllocated(room));
+        var cmd = new ListRoomCommand(new RoomFilterBuilder().onlyVacant().build());
         assertToggleCommandSuccess(
-                new ListRoomCommand(DISPLAY_VACANT),
+                cmd,
                 model,
-                ListRoomCommand.MESSAGE_VACANT_SUCCESS, expectedModel, TabView.ROOMS);
+                ListRoomCommand.MESSAGE_FILTERED_SUCCESS, expectedModel, TabView.ROOMS);
     }
 
     @Test
     void execute_listFilterIsAllocated_showsOnlyAllocatedRooms() {
-        expectedModel.updateFilteredRoomList(room -> model.isAllocated(room));
-        var cmd = new ListRoomCommand(DISPLAY_ALLOCATED);
+        expectedModel.updateFilteredRoomList(room -> expectedModel.isAllocated(room));
+        var cmd = new ListRoomCommand(new RoomFilterBuilder().onlyAllocated().build());
         assertToggleCommandSuccess(
                 cmd,
                 model,
-                ListRoomCommand.MESSAGE_ALLOCATED_SUCCESS, expectedModel, TabView.ROOMS);
+                ListRoomCommand.MESSAGE_FILTERED_SUCCESS, expectedModel, TabView.ROOMS);
+    }
+
+    @Test
+    void execute_listFilterSingleFloor_showsCorrect() {
+        Floor floor = new Floor(VALID_FLOOR_A);
+        expectedModel.updateFilteredRoomList(room -> room.getFloor().equals(floor));
+        var cmd = new ListRoomCommand(new RoomFilterBuilder().addFloor(floor).build());
+        assertToggleCommandSuccess(
+                cmd,
+                model,
+                ListRoomCommand.MESSAGE_FILTERED_SUCCESS, expectedModel, TabView.ROOMS);
+    }
+
+    @Test
+    void execute_listFilterMultipleFloors_showsCorrect() {
+        Collection<Floor> floors = Arrays.asList(new Floor(VALID_FLOOR_A), new Floor(VALID_FLOOR_B));
+        expectedModel.updateFilteredRoomList(room -> floors.contains(room.getFloor()));
+        var cmd = new ListRoomCommand(new RoomFilterBuilder().addFloors(floors).build());
+        assertToggleCommandSuccess(
+                cmd,
+                model,
+                ListRoomCommand.MESSAGE_FILTERED_SUCCESS, expectedModel, TabView.ROOMS);
+    }
+
+    @Test
+    void execute_listFilterSingleRoomType_showsCorrect() {
+        RoomType type = new RoomType(VALID_ROOM_TYPE_A);
+        expectedModel.updateFilteredRoomList(room -> room.getRoomType().equals(type));
+        var cmd = new ListRoomCommand(new RoomFilterBuilder().addRoomType(type).build());
+        assertToggleCommandSuccess(
+                cmd,
+                model,
+                ListRoomCommand.MESSAGE_FILTERED_SUCCESS, expectedModel, TabView.ROOMS);
+    }
+
+    @Test
+    void execute_listFilterMultipleRoomTypes_showsCorrect() {
+        Collection<RoomType> types = Arrays.asList(new RoomType(VALID_ROOM_TYPE_A), new RoomType(VALID_ROOM_TYPE_B));
+        expectedModel.updateFilteredRoomList(room -> types.contains(room.getRoomType()));
+        var cmd = new ListRoomCommand(new RoomFilterBuilder().addRoomTypes(types).build());
+        assertToggleCommandSuccess(
+                cmd,
+                model,
+                ListRoomCommand.MESSAGE_FILTERED_SUCCESS, expectedModel, TabView.ROOMS);
+    }
+
+    @Test
+    void execute_listFilterSingleRoomNumber_showsCorrect() {
+        RoomNumber number = new RoomNumber(VALID_ROOM_NUMBER_A);
+        expectedModel.updateFilteredRoomList(room -> room.getRoomNumber().equals(number));
+        var cmd = new ListRoomCommand(new RoomFilterBuilder().addRoomNumber(number).build());
+        assertToggleCommandSuccess(
+                cmd,
+                model,
+                ListRoomCommand.MESSAGE_FILTERED_SUCCESS, expectedModel, TabView.ROOMS);
+    }
+
+    @Test
+    void execute_listFilterMultipleRoomNumbers_showsCorrect() {
+        Collection<RoomNumber> numbers = Arrays.asList(new RoomNumber(VALID_ROOM_NUMBER_A),
+                new RoomNumber(VALID_ROOM_NUMBER_B));
+        expectedModel.updateFilteredRoomList(room -> numbers.contains(room.getRoomNumber()));
+        var cmd = new ListRoomCommand(new RoomFilterBuilder().addRoomNumbers(numbers).build());
+        assertToggleCommandSuccess(
+                cmd,
+                model,
+                ListRoomCommand.MESSAGE_FILTERED_SUCCESS, expectedModel, TabView.ROOMS);
+    }
+
+    @Test
+    void execute_listFilterDifferentAttributes_showsCorrect() {
+        RoomType type = new RoomType(VALID_ROOM_TYPE_B);
+        Floor floor = new Floor(VALID_FLOOR_A);
+        expectedModel.updateFilteredRoomList(room -> room.getFloor().equals(floor) && room.getRoomType().equals(type));
+        var cmd = new ListRoomCommand(new RoomFilterBuilder().addRoomType(type).addFloor(floor).build());
+        assertToggleCommandSuccess(
+                cmd,
+                model,
+                ListRoomCommand.MESSAGE_FILTERED_SUCCESS, expectedModel, TabView.ROOMS);
     }
 }
