@@ -196,7 +196,7 @@ Format: `archive list`
     
 #### 3.1 Setting one ingredient's level : `i-set`
 
-Sets the level of one ingredient's level predefined in the ingredient book.
+Sets the level of one single ingredient predefined in the ingredient book to the specified amount.
 
 Format: `i-set i/INGREDIENT_NAME m/AMOUNT`
 
