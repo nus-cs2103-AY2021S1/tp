@@ -10,6 +10,7 @@ public class FinanceRecord {
     private final int id;
     private LocalDateTime datetime;
     private double amount;
+    private String numberId;
 
     /**
      * Constructs a {@code Finance Record}.
@@ -20,6 +21,7 @@ public class FinanceRecord {
         id = this.hashCode();
         this.amount = amount;
         this.datetime = LocalDateTime.now();
+        this.numberId = "" + numberId;
     }
 
     /**
@@ -32,6 +34,7 @@ public class FinanceRecord {
         id = this.hashCode();
         this.amount = amount;
         this.datetime = datetime;
+        this.numberId = "" + numberId;
     }
 
     /**
@@ -45,6 +48,7 @@ public class FinanceRecord {
         this.id = id;
         this.amount = amount;
         this.datetime = datetime;
+        this.numberId = "" + numberId;
     }
 
     public int getID() {
@@ -63,13 +67,17 @@ public class FinanceRecord {
         return DATETIME_FORMAT.format(datetime);
     }
 
+    public String getNumberId() {
+        return numberId;
+    }
+
     /**
      * Compares if {@code obj} is a {@code Finance Record} and has the same amount and datetime value.
      *
      * @param obj Object to compare with
      * @return True if {@code obj} is a {@code Finance Record} and has the same amount and datetime value.
      */
-    public boolean equalsWithoutID(Object obj) {
+    public boolean hasSameData(Object obj) {
         if (obj instanceof FinanceRecord) {
             return ((FinanceRecord) obj).amount == this.amount
                     && ((FinanceRecord) obj).getDatetimeString().equals(this.getDatetimeString());
@@ -77,11 +85,24 @@ public class FinanceRecord {
         return false;
     }
 
+    /**
+     * Compares if {@code obj} is a {@code Finance Record} and has the same amount and datetime value.
+     *
+     * @param obj Object to compare with
+     * @return True if {@code obj} is a {@code Finance Record} and has the same amount and datetime value.
+     */
+    public boolean isSameRecord(Object obj) {
+        if (obj instanceof FinanceRecord) {
+            return this.id == ((FinanceRecord) obj).id;
+        }
+        return false;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof FinanceRecord) {
-            return ((FinanceRecord) obj).id == this.id
-                    && this.equalsWithoutID(obj);
+            return this.isSameRecord(obj)
+                    && this.hasSameData(obj);
         }
         return false;
     }
@@ -92,5 +113,9 @@ public class FinanceRecord {
                 id,
                 getDatetimeString(),
                 amount);
+    }
+
+    public void setId(int i) {
+        this.numberId = "" + i;
     }
 }
