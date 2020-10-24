@@ -6,7 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_B;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_A;
+import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_ADDRESS_B;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 import static seedu.address.testutil.Assert.assertThrows;
+import seedu.address.testutil.PersonBuilder;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalProjects.APEAKAPP;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
 
@@ -35,6 +39,7 @@ public class MainCatalogueTest {
     @Test
     public void constructor() {
         assertEquals(Collections.emptyList(), mainCatalogue.getProjectList());
+        assertEquals(Collections.emptyList(), mainCatalogue.getPersonList());
     }
 
     @Test
@@ -52,15 +57,25 @@ public class MainCatalogueTest {
     @Test
     public void resetData_withDuplicateProjects_throwsDuplicateProjectException() {
         // Two projects with the same identity fields
-        Project editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(
+        Project editedApeakapp = new ProjectBuilder(APEAKAPP).withProjectDescription(
             VALID_PROJECT_DESCRIPTION_B).withTags(
             VALID_PROJECT_TAG_A)
                 .withTasks(SampleDataUtil.getTask4())
                 .build();
-        List<Project> newProjects = Arrays.asList(APEAKAPP, editedAlice);
-        MainCatalogueStub newData = new MainCatalogueStub(newProjects);
+        List<Project> newProjects = Arrays.asList(APEAKAPP, editedApeakapp);
+        MainCatalogueStub newData = new MainCatalogueStub(newProjects, Collections.emptyList());
 
         assertThrows(DuplicateProjectException.class, () -> mainCatalogue.resetData(newData));
+    }
+
+    @Test
+    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+        // Two persons with the same identity fields
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_TEAMMATE_ADDRESS_B).build();
+        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
+        MainCatalogueStub newData = new MainCatalogueStub(Collections.emptyList(), newPersons);
+
+        assertThrows(DuplicatePersonException.class, () -> mainCatalogue.resetData(newData));
     }
 
     @Test
@@ -128,15 +143,22 @@ public class MainCatalogueTest {
      */
     private static class MainCatalogueStub implements ReadOnlyMainCatalogue {
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
+        private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private Status status = Status.CATALOGUE;
 
-        MainCatalogueStub(Collection<Project> projects) {
+        MainCatalogueStub(Collection<Project> projects, Collection<Person> persons) {
             this.projects.setAll(projects);
+            this.persons.setAll(persons);
         }
 
         @Override
         public ObservableList<Project> getProjectList() {
             return projects;
+        }
+
+        @Override
+        public ObservableList<Person> getPersonList() {
+            return persons;
         }
 
         @Override
