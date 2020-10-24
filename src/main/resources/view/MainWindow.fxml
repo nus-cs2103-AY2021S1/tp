@@ -35,7 +35,7 @@
                   </children>
                </VBox>
                <StackPane fx:id="displayPlaceholder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="610.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="8.0" />
-               <StackPane fx:id="commandBoxPlaceholder" prefHeight="20.0" prefWidth="610.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="36.0" />
+               <StackPane fx:id="commandBoxPlaceholder" prefHeight="20.0" prefWidth="610.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="38.0" />
             </children>
          </AnchorPane>
       </Scene>
