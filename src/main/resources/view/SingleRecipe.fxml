@@ -22,13 +22,28 @@
             <ImageView fx:id="recipeImage" pickOnBounds="true">
             </ImageView>
             <HBox spacing="5" alignment="CENTER_LEFT">
+                <padding>
+                    <Insets top="5" right="5" bottom="5" left="5" />
+                </padding>
                 <Label fx:id="id" styleClass="cell_big_label" wrapText="true" />
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true" />
             </HBox>
             <FlowPane fx:id="tags" />
-            <Label fx:id="ingredients" styleClass="cell_small_label" text="\$ingredients" wrapText="true" />
-            <Label fx:id="calories" styleClass="cell_small_label" text="\$calories" wrapText="true" />
-            <Label fx:id="instruction" styleClass="cell_small_label" text="\$instruction" wrapText="true" />
+            <Label fx:id="ingredients" styleClass="cell_small_label" text="\$ingredients" wrapText="true">
+                <padding>
+                    <Insets top="5" right="5" bottom="5" left="5" />
+                </padding>
+            </Label>
+            <Label fx:id="calories" styleClass="cell_small_label" text="\$calories" wrapText="true">
+                <padding>
+                    <Insets top="5" right="5" bottom="5" left="5" />
+                </padding>
+            </Label>
+            <Label fx:id="instruction" styleClass="cell_small_label" text="\$instruction" wrapText="true">
+                <padding>
+                    <Insets top="5" right="5" bottom="5" left="5" />
+                </padding>
+            </Label>
 
         </VBox>
 

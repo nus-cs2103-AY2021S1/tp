@@ -52,12 +52,9 @@ public class SingleRecipeCard extends UiPart<HBox> {
     public SingleRecipeCard(Recipe recipe, int displayedIndex) {
         super(FXML);
         this.recipe = recipe;
-        double maxWidth = 100;
         id.setText(displayedIndex + ". ");
         name.setText(recipe.getName().fullName);
-        name.setMaxWidth(maxWidth);
         instruction.setText(recipe.getInstruction());
-        instruction.setMaxWidth(maxWidth);
 
         Image rawImage = new Image(recipe.getRecipeImage(), 340, 0, true, true);
         recipeImage.setImage(rawImage);
@@ -65,18 +62,13 @@ public class SingleRecipeCard extends UiPart<HBox> {
 
         //Responsive resizing
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
-            final double newMaxWidth = getRoot().getWidth();
-            recipeImage.setFitWidth(newMaxWidth - 10);
-            name.setMaxWidth(newMaxWidth);
-            instruction.setMaxWidth(newMaxWidth);
-            ingredients.setMaxWidth(newMaxWidth);
+            recipeImage.setFitWidth(getRoot().getWidth() - 10);
         };
         getRoot().widthProperty().addListener(stageSizeListener);
 
         ingredients.setText(recipe.getIngredient().stream()
                 .map(item -> item.getQuantity() + " " + item.getValue())
                 .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a));
-        ingredients.setMaxWidth(maxWidth);
         calories.setText(recipe.getCalories().value.toString() + " cal");
 
         this.recipe.getTags().stream()
