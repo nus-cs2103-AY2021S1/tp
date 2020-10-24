@@ -65,6 +65,7 @@ public class DeleteCommand extends Command {
             Revenue toDelete = revenueList.get(index);
             activeAccount.deleteRevenue(toDelete);
         }
+
         model.setAccount(activeAccount.getAccount());
         return CommandResultFactory
             .createCommandResultForEntryListChangingCommand(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, category));
