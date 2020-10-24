@@ -194,7 +194,13 @@ Format: `untag INDEX -t TAG_NAME`
 
 Finds food items based on the keywords supplied.
 
-Format: `find KEYWORDS`
+Format: `find [KEYWORDS] [-n WORDS_IN_NAME] [-t WORDS_IN_TAG] [-d DATE]`
+
+Examples:
+* `find` - finds all food items
+* `find -n Sushi -d 20/04/2020` - finds all food items with name "Sushi" and date "20/04/2020"
+* `find -t lunch dinner` - finds all food items with tag "lunch" and/or tag "dinner"
+* `find sushi lunch` - finds all food items that have the keywords "sushi" and/or "lunch" in their name and/or tag
 
 <div markdown="block" class="alert alert-info">
 
