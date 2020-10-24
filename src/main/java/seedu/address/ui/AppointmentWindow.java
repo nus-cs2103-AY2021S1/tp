@@ -61,6 +61,10 @@ public class AppointmentWindow extends UiPart<Stage> {
         patientName.setText(patient.getName().fullName);
         patientAddress.setText(patient.getAddress().value);
         patientNric.setText(patient.getNric().value);
+        // clear the lists
+        patientAllergies.getChildren().clear();
+        appointmentDescriptions.clear();
+
         patient.getAllergies().stream()
                 .sorted(Comparator.comparing(allergy -> allergy.allergyName))
                 .forEach(allergy -> patientAllergies.getChildren().add(new Label(allergy.allergyName)));
