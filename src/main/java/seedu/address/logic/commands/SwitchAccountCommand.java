@@ -62,7 +62,7 @@ public class SwitchAccountCommand extends Command {
         activeAccount.setActiveAccount(toBeSwitched);
         activeAccount.removePreviousState();
         return CommandResultFactory.createCommandResultForEntryListChangingCommand(
-            String.format(MESSAGE_SWITCH_ACCOUNT_SUCCESS, toBeSwitched));
+                String.format(MESSAGE_SWITCH_ACCOUNT_SUCCESS, toBeSwitched));
     }
 
     @Override
