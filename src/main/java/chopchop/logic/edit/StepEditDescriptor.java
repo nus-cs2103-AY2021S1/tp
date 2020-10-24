@@ -4,7 +4,7 @@ package chopchop.logic.edit;
 
 import java.util.Optional;
 
-public class StepEditDescriptor {
+public class StepEditDescriptor extends EditDescriptor {
 
     private final EditOperationType editType;
     private final Optional<Integer> stepNumber;

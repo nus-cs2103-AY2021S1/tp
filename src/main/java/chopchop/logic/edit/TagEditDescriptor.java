@@ -4,7 +4,7 @@ package chopchop.logic.edit;
 
 import chopchop.model.attributes.Tag;
 
-public class TagEditDescriptor {
+public class TagEditDescriptor extends EditDescriptor {
 
     private final String tagName;
     private final EditOperationType editType;

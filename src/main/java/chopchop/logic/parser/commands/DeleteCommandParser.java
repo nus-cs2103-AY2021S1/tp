@@ -4,7 +4,6 @@ package chopchop.logic.parser.commands;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.ArrayList;
 
 import chopchop.model.attributes.Quantity;
 import chopchop.commons.util.Result;

@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import chopchop.model.attributes.Quantity;
 
-public class IngredientEditDescriptor {
+public class IngredientEditDescriptor extends EditDescriptor {
 
     private final EditOperationType editType;
 
