@@ -10,6 +10,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.taskmaster.commons.core.GuiSettings;
@@ -33,7 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private StudentListPanel studentListPanel;
+    private UiPart<Region> mainListPanel;
     private StudentRecordListPanel studentRecordListPanel; ///////////////////////////attendance stufffffffffffff
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -59,6 +60,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Menu studentRecordMenu;
 
+    @FXML
+    private StackPane buttonListPanelPlaceholder;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -81,7 +85,7 @@ public class MainWindow extends UiPart<Stage> {
         newMenuItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                fillInnerParts2(0);
+                fillInnerParts(1);
             }
         });
         studentRecordMenu.getItems().add(newMenuItem);
@@ -128,9 +132,10 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
-        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-        viewListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+    void fillInnerParts(int index) {
+        assert index >= 0;
+        fillMainList(index);
+        viewListPanelPlaceholder.getChildren().add(mainListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -143,21 +148,15 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Fills up with attendance instead.
+     * Decides on what to fill the main list with.
      */
-    void fillInnerParts2(int index) {
+    void fillMainList(int index) {
         assert index >= 0;
-        studentRecordListPanel = new StudentRecordListPanel(logic.getFilteredStudentRecordList());
-        viewListPanelPlaceholder.getChildren().add(studentRecordListPanel.getRoot());
-
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTaskmasterFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        if (index == 0) {
+            mainListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        } else {
+            mainListPanel = new StudentRecordListPanel(logic.getFilteredStudentRecordList());
+        }
     }
 
     /**
@@ -205,11 +204,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleStudent() {
-        fillInnerParts();
-    }
-
-    public StudentListPanel getStudentListPanel() {
-        return studentListPanel;
+        fillInnerParts(0);
     }
 
     /**

@@ -14,19 +14,19 @@ import seedu.taskmaster.model.student.Student;
  * Panel containing the list of students.
  */
 public class StudentListPanel extends UiPart<Region> {
-    private static final String FXML = "StudentListPanel.fxml";
+    private static final String FXML = "ListDisplayPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(StudentListPanel.class);
 
     @FXML
-    private ListView<Student> studentListView;
+    private ListView<Student> mainListView;
 
     /**
      * Creates a {@code StudentListPanel} with the given {@code ObservableList}.
      */
     public StudentListPanel(ObservableList<Student> studentList) {
         super(FXML);
-        studentListView.setItems(studentList);
-        studentListView.setCellFactory(listView -> new StudentListViewCell());
+        mainListView.setItems(studentList);
+        mainListView.setCellFactory(listView -> new StudentListViewCell());
     }
 
     /**
