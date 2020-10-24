@@ -232,11 +232,26 @@ Format: `deleteC INDEX`
 Examples:
 * `calories` followed by `deleteC 2` deletes the 2nd recipe in Consumption List.
 
-### Clearing all consumption : `clearC'
+### Clearing all consumption : `clearC`
 
 Clear all the recipe ate in the daily consumption list.
 
 Format: `clearC`
+
+### Open a single recipe : `selectR`
+
+Display a single recipe in full view.
+
+Format: `selectR INDEX`
+
+Examples:
+* `selectR 1` shows the 1st recipe in full view (left drawer).
+
+### Close left drawer : `close`
+
+Close the left drawer.
+
+Format: `close`
 
 ### Saving the data
 
