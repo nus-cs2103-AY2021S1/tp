@@ -114,7 +114,6 @@ public class ModelManager implements Model {
     @Override
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
-
         taskmaster.setStudent(target, editedStudent);
     }
 
