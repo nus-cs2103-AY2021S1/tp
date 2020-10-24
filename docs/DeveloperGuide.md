@@ -505,7 +505,7 @@ When a `FindCommand` is executed, a `CommandResult` is constructed with the stat
 
 * `FindCommand#execute()` - Executes the search and returns the result message of the search.
 
-####FindUtil
+#### FindUtil
 The `FindUtil` class is part of the util package. It provides utility to combine the list of `FieldContainsKeywordsPredicate`s of the `FindCommand` into a single `Predicate<Stock>`.
 `Find` feature requires the `Stock` to fulfill only one `FieldContainsKeywordsPredicate` in the list for `Stock` to be displayed. The mechansim used to combine the predicates into a single Predicate<Stock> for `Find` is Java 8 Predicate method, Predicate.or().
 `FindExact` feature requires the `Stock` to fulfill all `FieldContainsKeywordsPredicate` in the list for `Stock` to be displayed. The mechansim used to combine the predicates into a single Predicate<Stock> for `FindExact` is Java 8 Predicate method, Predicate.and().
@@ -515,7 +515,7 @@ The `FindUtil` class is part of the util package. It provides utility to combine
 * `FindUtil#generateCombinedPredicatesWithOr()` - Combines predicates using Predicate.or()
 * `FindUtil#generateCombinedPredicatesWithAnd()` - Combines predicates using Predicate.and()
 
-####FieldContainsKeywordsPredicate
+#### FieldContainsKeywordsPredicate
 
 `FieldContainsKeywordsPredicate` is an abstract class that implements the interface Predicate<Stock>. Its subclasses are `NameContainsKeywordsPredicate`, `LocationContainsKeywordsPredicate`, `SerialNumberContainsKeywordsPredicate` and `SourceContainsKeywordsPredicate`, which inherit and implement the method `test(Stock)`, and is constructed with a list of String keywords to test.
 
