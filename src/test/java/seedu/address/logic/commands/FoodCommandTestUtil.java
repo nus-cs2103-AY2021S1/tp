@@ -89,24 +89,24 @@ public class FoodCommandTestUtil {
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
         //check first filtered food list
-        List<Food> expectedFilteredList = new ArrayList<>(actualModel.getFilteredFoodList(0));
+        List<Food> expectedFilteredList = new ArrayList<>(actualModel.getFilteredFoodList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredFoodList(0));
+        assertEquals(expectedFilteredList, actualModel.getFilteredFoodList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the food at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showFoodAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredFoodList(0).size());
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredFoodList().size());
 
-        Food food = model.getFilteredFoodList(0).get(targetIndex.getZeroBased());
+        Food food = model.getFilteredFoodList().get(targetIndex.getZeroBased());
         final String[] splitName = food.getName().split("\\s+");
-        model.updateFilteredFoodList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])), 0);
+        model.updateFilteredFoodList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredFoodList(0).size());
+        assertEquals(1, model.getFilteredFoodList().size());
     }
 
 }

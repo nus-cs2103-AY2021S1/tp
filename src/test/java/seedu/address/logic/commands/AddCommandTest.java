@@ -30,7 +30,7 @@ public class AddCommandTest {
         Index index = Index.fromOneBased(1);
         AddCommand addCommand = new AddCommand(index);
 
-        ObservableList<Food> menu = model.getFilteredFoodList(0);
+        ObservableList<Food> menu = model.getFilteredFoodList();
         Food firstItem = menu.get(0);
         OrderItem addedItem = new OrderItem(firstItem, 1);
 
@@ -49,7 +49,7 @@ public class AddCommandTest {
         int quantity = 3;
         AddCommand addCommand = new AddCommand(first, quantity);
 
-        ObservableList<Food> menu = model.getFilteredFoodList(0);
+        ObservableList<Food> menu = model.getFilteredFoodList();
         Food secondItem = menu.get(1);
         OrderItem addedItem = new OrderItem(secondItem, 3);
 
@@ -64,7 +64,7 @@ public class AddCommandTest {
     public void execute_invalidIndex_throwsCommandException() {
         Model model = TypicalModel.getModelManagerWithMenu();
 
-        ObservableList<Food> menu = model.getFilteredFoodList(0);
+        ObservableList<Food> menu = model.getFilteredFoodList();
         Index outOfBoundIndex = Index.fromOneBased(menu.size() + 1);
         AddCommand addCommand = new AddCommand(outOfBoundIndex);
 

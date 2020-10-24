@@ -224,8 +224,8 @@ public class ModelManager implements Model {
 
     @Override
     public void addFood(Food food, int index) {
-//        menuManagers.get(index).addFood(food);
-//        updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
+    //        menuManagers.get(index).addFood(food);
+    //        updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
     }
 
     @Override
