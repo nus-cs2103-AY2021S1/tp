@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
 import org.junit.jupiter.api.Test;
 
 class MacronutrientTest {
@@ -13,8 +14,14 @@ class MacronutrientTest {
     private static final Fat DEFAULT_FAT_2 = new Fat(1);
     private static final Fat DEFAULT_FAT_3 = new Fat(2);
     private static final Protein DEFAULT_PROTEIN_1 = new Protein(1);
+    private static final Carbohydrate DEFAULT_CARBOHYDRATE_1 = new Carbohydrate(1);
     private static final Macronutrient MACRONUTRIENT_1 = new MacronutrientStub(4, 9);
     private static final Macronutrient MACRONUTRIENT_2 = new MacronutrientStub(9, 4);
+    private static int CARBOHYDRATEMULTIPLIER = 4;
+    private static int PROTEINMULTIPLIER = 4;
+    private static int FATSMULTIPLIER = 9;
+    private static int INVALIDMULTIPLIER = 5;
+    private static int DEFAULTAMOUNT =  10;
 
     @Test
     public void amount_lesserThanZero_throwIllegalArgumentException() {
@@ -45,7 +52,20 @@ class MacronutrientTest {
 
     @Test
     public void getTotalCalories() {
-        assertEquals(new MacronutrientStub(4, 4).getTotalCalories(), 16);
+        assertEquals(new MacronutrientStub(DEFAULTAMOUNT , CARBOHYDRATEMULTIPLIER).getTotalCalories(), 40);
+    }
+
+    @Test
+    public void getCaloricMultiplier() {
+        assertEquals(new MacronutrientStub(DEFAULTAMOUNT, PROTEINMULTIPLIER).getCaloricMultiplier(), PROTEINMULTIPLIER);
+        assertEquals(DEFAULT_FAT_1.getCaloricMultiplier(), FATSMULTIPLIER);
+        assertEquals(DEFAULT_CARBOHYDRATE_1.getCaloricMultiplier(), CARBOHYDRATEMULTIPLIER);
+        assertEquals(DEFAULT_PROTEIN_1.getCaloricMultiplier(), PROTEINMULTIPLIER);
+    }
+
+    @Test
+    public void constructor_invalidMultiplier_throwsAssertionError() {
+        assertThrows(AssertionError.class, ()->new InvalidMacronutrientStub());
     }
 
     private static class MacronutrientStub extends Macronutrient {
@@ -53,4 +73,11 @@ class MacronutrientTest {
             super(amount, caloricMultiplier);
         }
     }
+
+    private static class InvalidMacronutrientStub extends Macronutrient {
+        InvalidMacronutrientStub() {
+            super(1, INVALIDMULTIPLIER);
+        }
+    }
+
 }
