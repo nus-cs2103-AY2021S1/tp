@@ -233,7 +233,7 @@ Users inputs will be validated, if an invalid command is given, the program will
 Example of Error Message:  `No ingredient called ‘suger’ found !` .
 </div>
 
-#### 3.4 Viewing a Single Ingredient's Level : `i-view-single`
+#### 3.4 Viewing a single ingredient's level : `i-view-single`
 Shows the ingredient's level of a particular type of ingredient which is specified by the user’s command.
 
 Format: `i-view-single i/INGREDIENT_NAME`
@@ -242,12 +242,12 @@ Example:
 * `i-view-single i/Milk`
 Shows the amount of milk which is recorded by tCheck.
 
-#### 3.5 Resetting All Ingredients' Levels to Zero : `i-reset-all`
+#### 3.5 Resetting all ingredients' levels to zero : `i-reset-all`
 Sets all ingredients' levels to zero.
 
 Format: `i-reset-all`
 
-#### 3.6 Listing All Ingredients' Levels : `i-list`
+#### 3.6 Listing all ingredients' levels : `i-list`
 Shows the ingredient's levels of all ingredient types.
 
 Format: `i-list`
