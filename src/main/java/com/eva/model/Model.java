@@ -147,7 +147,9 @@ public interface Model {
      */
     void setStaffDatabase(ReadOnlyEvaDatabase<Staff> personDatabase);
 
-    /** Returns the EvaDatabase */
+    /**
+     * Returns the EvaDatabase.
+     */
     ReadOnlyEvaDatabase<Staff> getStaffDatabase();
 
     /**
