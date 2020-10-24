@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
 import org.junit.jupiter.api.Test;
 
 class MacronutrientTest {
@@ -17,11 +16,11 @@ class MacronutrientTest {
     private static final Carbohydrate DEFAULT_CARBOHYDRATE_1 = new Carbohydrate(1);
     private static final Macronutrient MACRONUTRIENT_1 = new MacronutrientStub(4, 9);
     private static final Macronutrient MACRONUTRIENT_2 = new MacronutrientStub(9, 4);
-    private static int CARBOHYDRATEMULTIPLIER = 4;
-    private static int PROTEINMULTIPLIER = 4;
-    private static int FATSMULTIPLIER = 9;
-    private static int INVALIDMULTIPLIER = 5;
-    private static int DEFAULTAMOUNT =  10;
+    private static final int CARBOHYDRATE_MULTIPLIER = 4;
+    private static final int PROTEIN_MULTIPLIER = 4;
+    private static final int FATS_MULTIPLIER = 9;
+    private static final int INVALID_MULTIPLIER = 5;
+    private static final int DEFAULT_AMOUNT = 10;
 
     @Test
     public void amount_lesserThanZero_throwIllegalArgumentException() {
@@ -37,7 +36,7 @@ class MacronutrientTest {
         // same type same amount -> return true
         assertTrue(DEFAULT_FAT_1.equals(DEFAULT_FAT_2)); // same type same amount
 
-        // same type differnet amount -> return false
+        // same type different amount -> return false
         assertFalse(DEFAULT_FAT_1.equals(DEFAULT_FAT_3));
 
         // different type -> return false
@@ -52,20 +51,21 @@ class MacronutrientTest {
 
     @Test
     public void getTotalCalories() {
-        assertEquals(new MacronutrientStub(DEFAULTAMOUNT , CARBOHYDRATEMULTIPLIER).getTotalCalories(), 40);
+        assertEquals(new MacronutrientStub(DEFAULT_AMOUNT, CARBOHYDRATE_MULTIPLIER).getTotalCalories(), 40);
     }
 
     @Test
     public void getCaloricMultiplier() {
-        assertEquals(new MacronutrientStub(DEFAULTAMOUNT, PROTEINMULTIPLIER).getCaloricMultiplier(), PROTEINMULTIPLIER);
-        assertEquals(DEFAULT_FAT_1.getCaloricMultiplier(), FATSMULTIPLIER);
-        assertEquals(DEFAULT_CARBOHYDRATE_1.getCaloricMultiplier(), CARBOHYDRATEMULTIPLIER);
-        assertEquals(DEFAULT_PROTEIN_1.getCaloricMultiplier(), PROTEINMULTIPLIER);
+        assertEquals(new MacronutrientStub(DEFAULT_AMOUNT, PROTEIN_MULTIPLIER).getCaloricMultiplier(),
+                PROTEIN_MULTIPLIER);
+        assertEquals(DEFAULT_FAT_1.getCaloricMultiplier(), FATS_MULTIPLIER);
+        assertEquals(DEFAULT_CARBOHYDRATE_1.getCaloricMultiplier(), CARBOHYDRATE_MULTIPLIER);
+        assertEquals(DEFAULT_PROTEIN_1.getCaloricMultiplier(), PROTEIN_MULTIPLIER);
     }
 
     @Test
     public void constructor_invalidMultiplier_throwsAssertionError() {
-        assertThrows(AssertionError.class, ()->new InvalidMacronutrientStub());
+        assertThrows(AssertionError.class, InvalidMacronutrientStub::new);
     }
 
     private static class MacronutrientStub extends Macronutrient {
@@ -76,7 +76,7 @@ class MacronutrientTest {
 
     private static class InvalidMacronutrientStub extends Macronutrient {
         InvalidMacronutrientStub() {
-            super(1, INVALIDMULTIPLIER);
+            super(1, INVALID_MULTIPLIER);
         }
     }
 

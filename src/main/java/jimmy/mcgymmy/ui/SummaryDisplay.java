@@ -3,8 +3,6 @@ package jimmy.mcgymmy.ui;
 import static java.util.Objects.requireNonNull;
 import static jimmy.mcgymmy.commons.util.CollectionUtil.requireAllNonNull;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.chart.PieChart;
@@ -19,10 +17,9 @@ public class SummaryDisplay extends UiPart<AnchorPane> {
     private Label totalCalories;
 
     @FXML
-    private Group group;
+    private Group pieChartPlaceholder;
 
-    private ObservableList<PieChart.Data> data;
-
+    @FXML
     private PieChart pieChart;
 
     /**
@@ -31,10 +28,6 @@ public class SummaryDisplay extends UiPart<AnchorPane> {
      */
     public SummaryDisplay() {
         super(FXML);
-        setTotalCalories(200);
-        pieChart = new PieChart();
-        group.getChildren().add(pieChart);
-
         pieChart.setTitle("Summary");
         pieChart.setClockwise(true);
         pieChart.setLabelLineLength(50);
@@ -43,12 +36,11 @@ public class SummaryDisplay extends UiPart<AnchorPane> {
 
     public void setTotalMacronutrients(int totalProtein, int totalCarbs, int totalFats) {
         requireAllNonNull(totalProtein, totalCarbs, totalFats);
-        data = FXCollections.observableArrayList(
-                new PieChart.Data("Protein", totalProtein),
-                new PieChart.Data("Carbohydrate", totalCarbs),
-                new PieChart.Data("Fat", totalFats)
+        pieChart.getData().setAll(
+                new PieChart.Data(String.format("Protein: %s", totalProtein), totalProtein),
+                new PieChart.Data(String.format("Carbohydrate: %s", totalCarbs), totalCarbs),
+                new PieChart.Data(String.format("Fat: %s", totalFats), totalFats)
         );
-        pieChart.setData(data);
     }
 
     /**

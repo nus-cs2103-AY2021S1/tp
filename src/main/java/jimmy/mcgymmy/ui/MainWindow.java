@@ -150,6 +150,8 @@ public class MainWindow extends UiPart<Stage> {
 
         //Update current value to total calories
         summaryPanel.setTotalCalories(getFoodListPanel().getCurrentCalories());
+        summaryPanel.setTotalMacronutrients(getFoodListPanel().getCurrentProteins(),
+                getFoodListPanel().getCurrentCarbs(), getFoodListPanel().getCurrentFats());
 
         //Set the date value to today's date
         datePicker.setValue(LocalDate.now());
