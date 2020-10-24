@@ -90,7 +90,7 @@ public class DoneCommandTest {
     public void execute_alreadyMarkedDoneAssignmentUnfilteredList_failure() {
 
         // TODO: Find out what exactly is unfilteredList
-        // Set reminders for assignment in filtered list in address book
+        // Set assignment in filtered list in address book as done
         Assignment firstAssignment = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
         Assignment firstAssignmentMarkedDone = new AssignmentBuilder(firstAssignment).withDoneStatusSet().build();
         model.setAssignment(firstAssignment, firstAssignmentMarkedDone);
@@ -104,7 +104,7 @@ public class DoneCommandTest {
     public void execute_alreadyMarkedDoneAssignmentFilteredList_failure() {
         showAssignmentAtIndex(model, INDEX_FIRST_ASSIGNMENT);
 
-        // Set reminders for assignment in filtered list in address book
+        // Set assignment in filtered list in address book as done
         Assignment assignmentInList = model.getAddressBook().getAssignmentList()
                 .get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
         Assignment assignmentInListMarkedDone = new AssignmentBuilder(assignmentInList).withDoneStatusSet().build();

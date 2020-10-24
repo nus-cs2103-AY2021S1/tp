@@ -8,7 +8,7 @@ public class Done {
     private boolean isMarkedDone;
 
     /**
-     * Constructs a {@code Remind}.
+     * Constructs a {@code Done}.
      */
     public Done() {
         this.isMarkedDone = false;

@@ -19,7 +19,7 @@ import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
 
 /**
- * Sets priority for an assignment identified using it's displayed index from the address book.
+ * Sets an assignment identified using it's displayed index from the address book as done.
  */
 public class DoneCommand extends Command {
 
@@ -69,7 +69,7 @@ public class DoneCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Assignment} with the details of {@code assignmentToMarkDone}.
+     * Creates and returns an {@code Assignment} with the details of {@code assignmentToMarkDone}.
      */
     private static Assignment createAssignmentMarkedDone(Assignment assignmentToMarkAsDone) {
         assert assignmentToMarkAsDone != null;

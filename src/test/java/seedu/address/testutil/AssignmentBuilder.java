@@ -84,8 +84,6 @@ public class AssignmentBuilder {
 
     /**
      * Sets the {@code Remind} of the {@code Assignment} that we are building.
-     *
-     * @return
      */
     public AssignmentBuilder withRemindersSet() {
         this.remind = new Remind().setReminder();

@@ -9,8 +9,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class DoneCommandParser implements Parser<DoneCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the RemindCommand
-     * and returns a RemindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the DoneCommand
+     * and returns a DoneCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public DoneCommand parse(String args) throws ParseException {
