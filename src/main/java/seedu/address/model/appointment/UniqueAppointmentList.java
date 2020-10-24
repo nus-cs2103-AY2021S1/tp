@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.ConflictingAppointmentException;
+import seedu.address.model.patient.IcNumber;
 import seedu.address.model.patient.Name;
 
 /**
@@ -33,6 +34,7 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     public UniqueAppointmentList() {
         super();
         add(new Appointment(new Name("Kim Test"),
+                new IcNumber("S1234567A"),
                 new AppointmentDateTime("2020-10-24T15:40"),
                 new AppointmentDateTime("2020-10-24T15:55")));
     }

@@ -14,7 +14,7 @@ import seedu.address.model.patient.Patient;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Patient> PREDICATE_SHOW_ALL_PATIENTS = unused -> true;
-
+    Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -135,4 +135,6 @@ public interface Model {
      *  Restores a previously undone CliniCal application state from its history.
      */
     void redoCliniCal();
+
+    void addAppointment(Appointment toAdd);
 }

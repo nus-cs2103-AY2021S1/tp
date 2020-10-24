@@ -150,6 +150,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addAppointment(Appointment toAdd) {
+        cliniCal.addAppointment(toAdd);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+    }
+
+    @Override
     public String getRedoCommand() {
         return versionedCliniCal.getRedoCommand();
     }
