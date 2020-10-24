@@ -16,9 +16,9 @@ This guide will help you to get started with tCheck, and provide useful tips alo
     * [Quick start](#quick-start)
     * [Features](#features)
         * [Commands - General](#commands-general)
-        * [Commands - Contact details](#commands-contact-details) 
-        * [Commands - Ingredients Tracking](#commands-ingredients-tracking)
         * [Commands - Sales Tracking](#commands-sales-tracking) 
+        * [Commands - Ingredients Tracking](#commands-ingredients-tracking)
+        * [Commands - Contact details](#commands-contact-details)
     * [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
