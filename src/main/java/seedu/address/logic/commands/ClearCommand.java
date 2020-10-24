@@ -39,9 +39,6 @@ public class ClearCommand extends Command {
         requireAllNonNull(model, activeAccount);
         assert(!isNull(model));
 
-        activeAccount.updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
-        activeAccount.updateFilteredRevenueList(PREDICATE_SHOW_ALL_REVENUE);
-
         boolean isExpense = this.category.isExpense();
         boolean isRevenue = this.category.isRevenue();
 
@@ -52,6 +49,9 @@ public class ClearCommand extends Command {
             assert isRevenue;
             activeAccount.clearRevenues();
         }
+
+        activeAccount.updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
+        activeAccount.updateFilteredRevenueList(PREDICATE_SHOW_ALL_REVENUE);
 
         model.setAccount(activeAccount.getAccount());
         return CommandResultFactory

@@ -53,8 +53,7 @@ public class AddCommand extends Command {
         requireAllNonNull(model, activeAccount);
         // Set previous state for undo before new entry is added
         activeAccount.setPreviousState();
-        activeAccount.updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
-        activeAccount.updateFilteredRevenueList(PREDICATE_SHOW_ALL_REVENUE);
+
 
         if (entry instanceof Expense) {
             activeAccount.addExpense((Expense) entry);
@@ -63,6 +62,8 @@ public class AddCommand extends Command {
             activeAccount.addRevenue((Revenue) entry);
         }
 
+        activeAccount.updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
+        activeAccount.updateFilteredRevenueList(PREDICATE_SHOW_ALL_REVENUE);
         model.setAccount(activeAccount.getAccount());
         return CommandResultFactory
             .createCommandResultForEntryListChangingCommand(String.format(MESSAGE_SUCCESS, this.entry));
