@@ -653,29 +653,14 @@ It provides utility to combine the list of `FieldContainsKeywordsPredicate`
 of the `FindCommand` into a composed `Predicate<Stock>`.
 
 `Find` feature requires the `Stock` to fulfill only one
-`FieldContainsKeywordsPredicate` in the list for `Stock` to be displayed.
-The mechanism used to combine the predicates into a composed Predicate<Stock>
-for `Find` is Java 8 Predicate method, Predicate.or().
-
-`FindExact` feature requires the `Stock` to fulfill all
-`FieldContainsKeywordsPredicate` in the list for `Stock` to be displayed.
-The mechanism used to combine the predicates into a composed Predicate<Stock>
-for `FindExact` is Java 8 Predicate method, Predicate.and().
-
-#### FindUtil
-The `FindUtil` class is part of the util package.
-It provides utility to combine the list of `FieldContainsKeywordsPredicate`
-of the `FindCommand` into a single `Predicate<Stock>`.
-
-`Find` feature requires the `Stock` to fulfill only one
 `FieldContainsKeywordsPredicate` in the list for `Stock`
 to be displayed. The mechansim used to combine the predicates
-into a single Predicate<Stock> for `Find` is Java 8 Predicate method,
+into a composed Predicate<Stock> for `Find` is Java 8 Predicate method,
 Predicate.or().
 
 `FindExact` feature requires the `Stock` to fulfill all
 `FieldContainsKeywordsPredicate` in the list for `Stock` to be displayed.
-The mechansim used to combine the predicates into a single Predicate<Stock>
+The mechansim used to combine the predicates into a composed Predicate<Stock>
 for `FindExact` is Java 8 Predicate method, Predicate.and().
 
 `FindUtil` implements the following important operations:
