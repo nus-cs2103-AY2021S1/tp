@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 
 import com.eva.commons.core.GuiSettings;
 import com.eva.commons.core.LogsCenter;
+import com.eva.commons.util.DateUtil;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.staff.Staff;
@@ -176,6 +177,17 @@ public class ModelManager implements Model {
             }
         }
         return Optional.empty();
+    }
+
+    @Override
+    public boolean hasLeavePeriod(Staff target, Leave toCheck) {
+        List<LocalDate> leaveDates = DateUtil.getDatesBetween(toCheck.getStartDate(), toCheck.getEndDate());
+        for (LocalDate date : leaveDates) {
+            if (hasLeaveDate(target, date).isPresent()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

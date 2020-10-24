@@ -115,10 +115,16 @@ public interface Model {
     boolean hasStaffLeave(Staff target, Leave leave);
 
     /**
-     * Returns true if a staff with the same identity as {@code staff} has the same leave as {@code leave}.
-     * @return
+     * Returns the conflicting leave if a staff with the same identity as {@code staff}
+     * has the same leave period as {@code leave}.
      */
     Optional<Leave> hasLeaveDate(Staff target, LocalDate date);
+
+    /**
+     * Returns true if a staff with the same identity as {@code staff}
+     * has the same leave period as {@code leave}.
+     */
+    boolean hasLeavePeriod(Staff target, Leave leave);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -141,7 +147,9 @@ public interface Model {
      */
     void setStaffDatabase(ReadOnlyEvaDatabase<Staff> personDatabase);
 
-    /** Returns the EvaDatabase */
+    /**
+     * Returns the EvaDatabase.
+     */
     ReadOnlyEvaDatabase<Staff> getStaffDatabase();
 
     /**
