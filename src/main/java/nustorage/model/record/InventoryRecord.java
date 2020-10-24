@@ -16,6 +16,7 @@ public class InventoryRecord {
     private final int quantity;
     private final String itemName;
     private int financeID;
+    private String id;
 
     /**
      * Constructs an InventoryRecord.
@@ -26,6 +27,7 @@ public class InventoryRecord {
         this.quantity = 0;
         this.dateTime = LocalDateTime.now();
         this.financeID = -1;
+        this.id = "" + id;
     }
 
     /**
@@ -38,6 +40,7 @@ public class InventoryRecord {
         this.quantity = quantity;
         this.dateTime = LocalDateTime.now();
         this.financeID = -1;
+        this.id = "" + id;
     }
 
     /**
@@ -51,6 +54,7 @@ public class InventoryRecord {
         this.quantity = quantity;
         this.dateTime = dateTime;
         this.financeID = -1;
+        this.id = "" + id;
     }
 
     public void setFinanceRecord(FinanceRecord financeRecord) {
@@ -84,6 +88,10 @@ public class InventoryRecord {
         return financeID;
     }
 
+    public String getId() {
+        return this.id;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof InventoryRecord) {
@@ -98,4 +106,7 @@ public class InventoryRecord {
                 + ": " + itemName + ", " + quantity + " in stock";
     }
 
+    public void setId(int i) {
+        this.id = "" + i;
+    }
 }
