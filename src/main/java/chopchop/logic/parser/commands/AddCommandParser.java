@@ -20,7 +20,6 @@ import chopchop.model.ingredient.IngredientReference;
 import chopchop.model.attributes.Step;
 import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.ExpiryDate;
-import chopchop.model.attributes.units.Count;
 
 import chopchop.logic.parser.ArgName;
 import chopchop.logic.parser.CommandArguments;
@@ -229,7 +228,7 @@ public class AddCommandParser {
 
 
     private static IngredientReference createIngredientReference(String name, Optional<Quantity> qty) {
-        return new IngredientReference(name, qty.orElse(Count.of(1)));
+        return new IngredientReference(name, qty);
     }
 
     private static AddRecipeCommand createAddRecipeCommand(String name,
@@ -245,7 +244,7 @@ public class AddCommandParser {
         return Result.transpose(expiry
             .map(ExpiryDate::of))
             .map(exp -> new AddIngredientCommand(new Ingredient(name,
-                qty.orElse(Count.of(1)), exp.orElse(null), tags))
+                qty, exp, tags))
             );
     }
 }

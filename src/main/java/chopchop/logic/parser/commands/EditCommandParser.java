@@ -167,7 +167,7 @@ public class EditCommandParser {
 
         if (argValue.isEmpty()) {
             return Result.error("expected tag name after /tag:add or /tag:delete");
-        } else if (!Tag.isValidTagName(argValue)) {
+        } else if (!Tag.isValidTag(argValue)) {
             return Result.error(Tag.MESSAGE_CONSTRAINTS);
         }
 

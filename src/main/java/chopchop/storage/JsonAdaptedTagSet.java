@@ -28,7 +28,7 @@ public class JsonAdaptedTagSet {
      */
     public JsonAdaptedTagSet(Set<Tag> source) {
         this.tags = source.stream()
-                .map(Tag::getTagName)
+                .map(Tag::toString)
                 .collect(Collectors.toList());
     }
 

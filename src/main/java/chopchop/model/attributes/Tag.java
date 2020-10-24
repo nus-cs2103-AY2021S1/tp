@@ -1,59 +1,50 @@
 package chopchop.model.attributes;
 
-import static java.util.Objects.requireNonNull;
 import static chopchop.commons.util.AppUtil.checkArgument;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Tag for both Recipe and Ingredient.
  * E.G. "Halal", "Vegetarian" for Recipe. "Carbs", "Vitamin E" for Ingredient.
- * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}.
+ * Guarantees: immutable; name is valid as declared in {@link #isValidTag(String)} (String)}.
  */
 public class Tag {
+    public static final String MESSAGE_CONSTRAINTS = "Tags should not be blank";
 
-    public static final String MESSAGE_CONSTRAINTS = "Tag name should be alphanumeric";
-    public static final String VALIDATION_REGEX = ".+";
-
-    public final String tagName;
+    private final String tag;
 
     /**
      * Constructs a {@code Tag}.
      *
-     * @param tagName A valid tag name.
+     * @param tag A valid tag name.
      */
-    public Tag(String tagName) {
-        requireNonNull(tagName);
-        checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName;
+    public Tag(String tag) {
+        requireNonNull(tag);
+        checkArgument(isValidTag(tag), MESSAGE_CONSTRAINTS);
+        this.tag = tag;
     }
 
     /**
      * Returns true if a given string is a valid tag name.
      */
-    public static boolean isValidTagName(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidTag(String test) {
+        return !test.isBlank() && test.equals(test.trim());
     }
 
-    public String getTagName() {
-        return this.tagName;
+    @Override
+    public String toString() {
+        return this.tag;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this
-            || (other instanceof Tag
-            && tagName.equals(((Tag) other).tagName));
+                || (other instanceof Tag
+                && this.tag.equalsIgnoreCase(((Tag) other).tag));
     }
 
     @Override
     public int hashCode() {
-        return tagName.hashCode();
+        return this.tag.toLowerCase().hashCode();
     }
-
-    /**
-     * Format state as text for viewing.
-     */
-    public String toString() {
-        return '[' + tagName + ']';
-    }
-
 }

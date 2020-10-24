@@ -131,7 +131,7 @@ public class EditRecipeCommand extends Command implements Undoable {
                 tags.add(new Tag(tagEditDescriptor.getTagName()));
                 break;
             case DELETE:
-                var existingTag = tags.stream().filter(tag -> tag.getTagName()
+                var existingTag = tags.stream().filter(tag -> tag.toString()
                         .equalsIgnoreCase(tagEditDescriptor.getTagName())).findFirst().orElseThrow();
                 tags.remove(existingTag);
                 break;
