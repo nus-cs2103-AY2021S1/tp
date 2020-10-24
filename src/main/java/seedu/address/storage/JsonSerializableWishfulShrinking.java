@@ -82,14 +82,10 @@ class JsonSerializableWishfulShrinking {
         WishfulShrinking wishfulShrinking = new WishfulShrinking();
         for (JsonAdaptedRecipe jsonAdaptedRecipe : recipes) {
             Recipe recipe = jsonAdaptedRecipe.toModelType();
-            System.out.println(recipe.toString());
-            System.out.println(wishfulShrinking.toString());
             if (wishfulShrinking.hasRecipe(recipe)) {
-                System.out.println("error");
                 throw new IllegalValueException(MESSAGE_DUPLICATE_RECIPE);
             }
             wishfulShrinking.addRecipe(recipe);
-            System.out.println("add");
         }
         for (JsonAdaptedIngredient jsonAdaptedIngredient : ingredients) {
             Ingredient ingredient = jsonAdaptedIngredient.toModelType();

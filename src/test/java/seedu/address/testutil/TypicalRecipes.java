@@ -31,10 +31,10 @@ public class TypicalRecipes {
             .withCalories(70)
             .withInstruction(
                     "Make egg salad by chopping the hard boiled eggs and mixing in a bowl with mayonnaise, Dijon. "
-                    + "Halve the rolls and spread one half with Dijon, the other half with mayonnaise.")
-            //+ "Sprinkle the mayonnaise-spread half with salt and pepper. "
-            //+ "Lay cheese and ham on the mustard half; "
-            //+ "lay avocado, onion slices, tomato slices, egg salad, and lettuce on the other half.")
+                    + "Halve the rolls and spread one half with Dijon, the other half with mayonnaise."
+                    + "Sprinkle the mayonnaise-spread half with salt and pepper. "
+                    + "Lay cheese and ham on the mustard half; "
+                    + "lay avocado, onion slices, tomato slices, egg salad, and lettuce on the other half.")
             .withRecipeImage("images/sandwich.jpeg")
             .withTags("healthy")
             .build();
@@ -45,13 +45,13 @@ public class TypicalRecipes {
             .withInstruction(
                     "Cook pasta until al dente. "
                     + "Add basil leaves, 1/2 cup Parmesan, pine nuts, and salt and pepper to food "
-                    + "processor or blender.")
-            //+ " Turn machine on, then drizzle in olive oil while it mixes. "
-            //+ "Continue blending until combined, adding additional olive oil if needed. Set aside. "
-            //+ "Heat cream and butter in a small saucepan over medium-low heat. Add pesto and stir. "
-            //+ "Drain pasta and place in a serving bowl. Pour pesto cream over the top. "
-            //+ "Toss to combine, add diced tomatoes and toss quickly. "
-            //+ "Serve immediately.")
+                    + "processor or blender."
+                    + " Turn machine on, then drizzle in olive oil while it mixes. "
+                    + "Continue blending until combined, adding additional olive oil if needed. Set aside. "
+                    + "Heat cream and butter in a small saucepan over medium-low heat. Add pesto and stir. "
+                    + "Drain pasta and place in a serving bowl. Pour pesto cream over the top. "
+                    + "Toss to combine, add diced tomatoes and toss quickly. "
+                    + "Serve immediately.")
             .withRecipeImage("images/pesto1.jpg")
             .withTags("healthy")
             .build();
@@ -61,13 +61,13 @@ public class TypicalRecipes {
             .withCalories(102)
             .withInstruction(
                     "Preheat oven to 350 degrees. "
-                    + "In a small bowl, combine garlic, basil, oregano, thyme, parsley, and sage.")
-            //+ "Generously season meat with salt and pepper. "
-            //+ "Add to pan, and cook on all sides until dark golden brown. "
-            //+ "Wrap in foil, bake until meat is 150 degrees internally at the widest,"
-            //        + " thickest part of the tenderloin (about 25 minutes). "
-            //+ "When pork has come to temperature, remove and let rest, "
-            //        + "tented with foil, for at least five minutes to lock in juices."
+                    + "In a small bowl, combine garlic, basil, oregano, thyme, parsley, and sage."
+                    + "Generously season meat with salt and pepper. "
+                    + "Add to pan, and cook on all sides until dark golden brown. "
+                    + "Wrap in foil, bake until meat is 150 degrees internally at the widest,"
+                    + " thickest part of the tenderloin (about 25 minutes). "
+                    + "When pork has come to temperature, remove and let rest, "
+                    + "tented with foil, for at least five minutes to lock in juices.")
             .withRecipeImage("images/pork.jpeg")
             .withTags("healthy")
             .build();
@@ -77,20 +77,20 @@ public class TypicalRecipes {
             .withCalories(100)
             .withInstruction(
                     "Cook pasta according to package directions in lightly salted water. "
-                    + "Cut chicken breasts into chunks and sprinkle on salt and pepper.")
-            //+ "Heat butter and olive oil over high heat in a large skillet. "
-            //+ "Add chicken chunks in a single layer and do not stir for a minute or "
-            //+ "two in order to allow the chicken to brown on the first side. "
-            //+ "Turn the chicken and brown on the other side. "
-            //+ "Cook until done, then remove chicken from the skillet. "
-            //+ "Add garlic and quickly stir to avoid burning. "
-            //+ "After about 30 seconds, pour in wine and broth, stirring to deglaze the pan. "
-            //+ "Allow the liquid to bubble up, then continue cooking until it's reduced by at least half "
-            //        + "(most of the surface of the liquid should be bubbling at this point). "
-            //+ "Turn off the heat. "
-            //+ "Add spinach, tomatoes, chicken, and cooked pasta to the skillet. "
-            //+ "Toss to combine; the spinach will wilt as you toss everything. "
-            //+ "Add plenty of Parmesan shavings and toss to combine.")
+                    + "Cut chicken breasts into chunks and sprinkle on salt and pepper."
+                    + "Heat butter and olive oil over high heat in a large skillet. "
+                    + "Add chicken chunks in a single layer and do not stir for a minute or "
+                    + "two in order to allow the chicken to brown on the first side. "
+                    + "Turn the chicken and brown on the other side. "
+                    + "Cook until done, then remove chicken from the skillet. "
+                    + "Add garlic and quickly stir to avoid burning. "
+                    + "After about 30 seconds, pour in wine and broth, stirring to deglaze the pan. "
+                    + "Allow the liquid to bubble up, then continue cooking until it's reduced by at least half "
+                    + "(most of the surface of the liquid should be bubbling at this point). "
+                    + "Turn off the heat. "
+                    + "Add spinach, tomatoes, chicken, and cooked pasta to the skillet. "
+                    + "Toss to combine; the spinach will wilt as you toss everything. "
+                    + "Add plenty of Parmesan shavings and toss to combine.")
             .withRecipeImage("images/florentine1.jpeg")
             .withTags("healthy")
             .build();
@@ -102,9 +102,9 @@ public class TypicalRecipes {
                     "In a small skillet, saute onions with the butter over medium-low heat until "
                     + "the onions are nice and golden brown."
                     + "In a small saucepan, combine green enchilada sauce with green chilies "
-                    + "and heat until very warm.")
-            //+ "In the oven (on a baking sheet) or microwave, melt cheese all over "
-            //       + "the top of each tortilla so that it covers most of the surface area.")
+                    + "and heat until very warm."
+                    + "In the oven (on a baking sheet) or microwave, melt cheese all over "
+                    + "the top of each tortilla so that it covers most of the surface area.")
             .withRecipeImage("images/enchilada1.jpeg")
             .withTags("healthy", "low calories")
             .build();
@@ -113,18 +113,18 @@ public class TypicalRecipes {
             .withIngredient("Small Chocolate Easter Eggs", "20 pieces")
             .withCalories(102)
             .withInstruction(
-                    "In a large saucepan, melt butter over low heat. "
-                            + "Add marshmallows and stir until melted.")
-            //+ "Remove from heat, then add rice cereal and stir until well coated. "
-            //+ "Lightly spray interior of the plastic eggs with non-stick cooking spray. "
-            //+ "If mixture is too sticky, you can also spray your hands. "
-            //+ "Fill both sides of the plastic egg with rice cereal mixture, "
-            //        + "slightly over-filling one side. "
-            //+ "Press chocolate egg in the center on one side of the egg, "
-            //    + "then close the plastic egg to shape it. "
-            //+ "(It should be full enough to meet with a little resistance as you close it.) "
-            //+ "Gently release the rice cereal egg from the mold, decorate with your choice of sprinkles"
-            //        + " and set aside in egg crate until set.")
+                    "In a large saucepan, melt butter over low heat. " 
+                            + "Add marshmallows and stir until melted."
+                            + "Remove from heat, then add rice cereal and stir until well coated. "
+                            + "Lightly spray interior of the plastic eggs with non-stick cooking spray. "
+                            + "If mixture is too sticky, you can also spray your hands. "
+                            + "Fill both sides of the plastic egg with rice cereal mixture, "
+                            + "slightly over-filling one side. "
+                            + "Press chocolate egg in the center on one side of the egg, "
+                            + "then close the plastic egg to shape it. "
+                            + "(It should be full enough to meet with a little resistance as you close it.) "
+                            + "Gently release the rice cereal egg from the mold, decorate with your choice of sprinkles"
+                            + " and set aside in egg crate until set.")
             .withRecipeImage("images/easter.jpeg")
             .withTags("healthy")
             .build();
@@ -135,11 +135,11 @@ public class TypicalRecipes {
             .withInstruction(
                     "In a medium skillet, melt 2 tablespoons of butter over medium-low heat. "
                     + "Throw in the sliced onions and cook slowly for 20 to 25 minutes, stirring occasionally,"
-                            + " until the onions are golden brown and soft.")
-            //+ "In a medium bowl, mix together the ground beef, salt & pepper, and Worcestershire. "
-            //+ "Form into 4 patties. Melt 2 tablespoons butter in a separate skillet over medium heat. "
-            //+ "Cook the patties on both sides until totally done in the middle. "
-            //+ "Assemble patty melts.")
+                            + " until the onions are golden brown and soft."
+                            + "In a medium bowl, mix together the ground beef, salt & pepper, and Worcestershire. "
+                            + "Form into 4 patties. Melt 2 tablespoons butter in a separate skillet over medium heat. "
+                            + "Cook the patties on both sides until totally done in the middle. "
+                            + "Assemble patty melts.")
             .withRecipeImage("images/party.jpeg")
             .withTags("healthy", "low calories")
             .build();
