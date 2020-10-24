@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class VersionedModuleList extends ModuleList {
     private List<ReadOnlyModuleList> moduleListStateList = new ArrayList<>();
