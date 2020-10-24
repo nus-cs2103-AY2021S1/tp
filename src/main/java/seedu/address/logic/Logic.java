@@ -51,7 +51,7 @@ public interface Logic {
     /**
      * Returns an unmodifiable view of the list of appointments.
      */
-    ObservableList<Appointment> getAppointmentList();
+    ObservableList<Appointment> getFilteredAppointmentList();
 
     /**
      * Returns the user prefs' CliniCal application file path.

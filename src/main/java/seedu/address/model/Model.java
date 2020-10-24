@@ -92,7 +92,13 @@ public interface Model {
     /**
      * Returns an unmodifable view of the appointment list.
      */
-    ObservableList<Appointment> getAppointmentList();
+    ObservableList<Appointment> getFilteredAppointmentList();
+
+    /**
+     * Updates the filter of the filtered patient list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null/
+     */
+    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
 
     /**
      * Saves the current CliniCal application state in its history.

@@ -23,7 +23,7 @@ public class ModelManager implements Model {
     private final CliniCal cliniCal;
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
-    private final ObservableList<Appointment> appointments;
+    private final FilteredList<Appointment> filteredAppointments;
     private final VersionedCliniCal versionedCliniCal;
 
     /**
@@ -38,7 +38,7 @@ public class ModelManager implements Model {
         this.cliniCal = new CliniCal(cliniCal);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatients = new FilteredList<>(this.cliniCal.getPatientList());
-        appointments = this.cliniCal.getAppointmentList();
+        filteredAppointments = new FilteredList<>(this.cliniCal.getAppointmentList());
         this.versionedCliniCal = new VersionedCliniCal(this.cliniCal);
     }
 
@@ -172,8 +172,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Appointment> getAppointmentList() {
-        return appointments;
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointments;
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointments.setPredicate(predicate);
     }
 
     @Override
@@ -193,7 +199,7 @@ public class ModelManager implements Model {
         return cliniCal.equals(other.cliniCal)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPatients.equals(other.filteredPatients)
-                && appointments.equals(other.appointments);
+                && filteredAppointments.equals(other.filteredAppointments);
     }
 
 }
