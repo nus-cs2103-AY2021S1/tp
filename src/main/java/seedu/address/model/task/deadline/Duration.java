@@ -9,19 +9,19 @@ public class Duration {
     public static final int NULL_VALUE = -1;
     public static final String INVALID_DURATION_FORMAT = "The valid of duration is not valid";
     public final int valueInMinutes;
-    public final boolean isNull;
+    public final boolean isFill;
     /**
      * Constructs a {@code Duration}.
      * @param valueInMinutes
      */
     public Duration(int valueInMinutes) {
         if (valueInMinutes == NULL_VALUE) {
-            this.isNull = true;
+            this.isFill = true;
             this.valueInMinutes = valueInMinutes;
         } else {
             //do a check
             this.valueInMinutes = valueInMinutes;
-            this.isNull = false;
+            this.isFill = false;
         }
     }
 
@@ -32,8 +32,8 @@ public class Duration {
         return new Duration(NULL_VALUE);
     }
 
-    public boolean isNull() {
-        return isNull;
+    public boolean isFilled() {
+        return isFill;
     }
 
     public static boolean isValidDuration(int duration) {

@@ -68,7 +68,7 @@ public class DeadlineCard extends UiPart<Region> {
     }
 
     private boolean loadDateTime(Deadline deadline) {
-        if (deadline.getDeadlineDateTime().isNull()) {
+        if (!deadline.getDeadlineDateTime().isFilled()) {
             card.getChildren().remove(dateTimeHolder);
             return false;
         } else {
@@ -88,11 +88,11 @@ public class DeadlineCard extends UiPart<Region> {
     }
 
     private boolean loadDuration(Deadline deadline) {
-        if (deadline.getDuration().isNull()) {
+        if (deadline.getDuration().isFilled()) {
             card.getChildren().remove(durationHolder);
             return false;
         } else {
-            duration.setText(deadline.getDurationValue() + " mins");
+            duration.setText(deadline.getTimeTaken() + " mins");
             return true;
         }
     }

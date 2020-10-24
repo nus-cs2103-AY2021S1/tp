@@ -57,13 +57,12 @@ public class Deadline extends Task {
         return doneDateTime;
     }
 
-    public int getDurationValue() {
-        return duration.valueInMinutes;
-    }
-    
-    @Override
     public Duration getDuration() {
         return duration;
+    }
+    @Override
+    public int getTimeTaken() {
+        return duration.valueInMinutes;
     }
 
     public boolean isDeadlineDateTimeFilled() {

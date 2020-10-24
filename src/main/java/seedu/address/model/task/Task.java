@@ -43,7 +43,7 @@ public abstract class Task implements Comparable<Task> {
         return tag;
     }
     
-    public abstract int getDuration();
+    public abstract int getTimeTaken();
 
     /**
      * Returns true if both tasks of the same title, date and time.

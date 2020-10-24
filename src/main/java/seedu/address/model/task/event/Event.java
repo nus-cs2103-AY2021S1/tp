@@ -2,6 +2,7 @@ package seedu.address.model.task.event;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.Duration;
 import java.util.Objects;
 
 import seedu.address.model.tag.Tag;
@@ -9,6 +10,7 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 import seedu.address.model.task.deadline.Deadline;
+
 
 /**
  * Represents a Task in the PlaNus task list.
@@ -59,6 +61,11 @@ public class Event extends Task {
      */
     public Tag getTag() {
         return tag;
+    }
+
+    @Override
+    public int getTimeTaken() {
+        return (int) Duration.between(getStartDateTime().value, getEndDateTime().value).toMinutes();
     }
 
     @Override

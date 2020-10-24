@@ -65,7 +65,7 @@ class JsonAdaptedDeadline {
         description = source.getDescription().value;
         doneDateTime = source.getDoneDateTime().toString();
         status = source.getStatus().toString();
-        duration = source.getDurationValue();
+        duration = source.getTimeTaken();
         tag = source.getTag().tagName;
 
         logger.info("Planus task with title: '" + title + "' successfully converted to adapted task object");
