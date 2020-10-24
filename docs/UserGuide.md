@@ -343,13 +343,6 @@ e.g. `stats st/source`, `stats st/source-qd-abc`
 
 ![SourceQuantityDistributionStatistics](images/SourceQuantityDistributionStatistics.png)
 
-### Generating a csv file that contains all stocks: `print`
-Generates a csv file that contains all stocks. Users may want to sort the stock using `sort` command
-to sort the stock in their preferred format before converting it into the csv file.
-
-#### Format:
-`print`
-
 ### Saving data
 Data generated in Warenager (all stocks in inventory in json) is automatically saved to
 `[root directory]/data/stockbook.json` when any of these commands is executed:
@@ -425,7 +418,8 @@ Generates a csv file that contains all stocks. Users may want to sort the stocks
 to sort the stock in their preferred order before converting it into the csv file. The csv file is saved
 to `[root directory]/data/stocks.csv` after successfully executing the command.
 
-Format (single): `print`
+#### Format:
+`print`
 
 #### Example usage:
 
