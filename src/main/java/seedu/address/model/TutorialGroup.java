@@ -7,7 +7,7 @@ import java.util.HashMap;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.StudentId;
 
-public class TutorialGroup {
+public class TutorialGroup implements Showable<TutorialGroup> {
     private final String id;
     private Module module;
     private HashMap<StudentId, Student> studentList;
@@ -105,7 +105,7 @@ public class TutorialGroup {
      * @param otherTutorialGroup to check against
      * @return true if same, false if not
      */
-    public boolean isSameTutorialGroup(TutorialGroup otherTutorialGroup) {
+    public boolean isSame(TutorialGroup otherTutorialGroup) {
         if (otherTutorialGroup == this) {
             return true;
         }

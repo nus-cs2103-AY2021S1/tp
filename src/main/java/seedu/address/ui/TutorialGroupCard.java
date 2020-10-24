@@ -25,12 +25,12 @@ public class TutorialGroupCard extends UiPart<Region> {
     private Label groupId;
     @FXML
     private Label id;
-    @FXML
-    private Label startTime;
-    @FXML
-    private Label endTime;
-    @FXML
-    private Label duration;
+    //    @FXML
+    //    private Label startTime;
+    //    @FXML
+    //    private Label endTime;
+    //    @FXML
+    //    private Label duration;
     //    @FXML
     //    private FlowPane tags;
 
@@ -43,9 +43,9 @@ public class TutorialGroupCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         groupId.setText(tutorialGroup.getId());
         //totalStudents.setText("Total Students: " + module.getTotalStudents());
-        startTime.setText(tutorialGroup.getStartTime().toString());
-        endTime.setText(tutorialGroup.getEndTime().toString());
-        duration.setText("" + tutorialGroup.getDurationInHours());
+        //        startTime.setText(tutorialGroup.getStartTime().toString());
+        //        endTime.setText(tutorialGroup.getEndTime().toString());
+        //        duration.setText("" + tutorialGroup.getDurationInHours());
 
         //        person.getTags().stream()
         //                .sorted(Comparator.comparing(tag -> tag.tagName))

@@ -6,6 +6,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.TutorialGroup;
 
+import java.util.List;
+
 
 public class AddTutorialGroupCommand extends Command {
 
@@ -29,16 +31,14 @@ public class AddTutorialGroupCommand extends Command {
     // todo Implement execution of TG Addition
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        //        requireNonNull(model);
-        //
-        //        if (model.hasTutorialGroup(toAdd)) {
-        //            throw new CommandException(MESSAGE_DUPLICATE_TUTGRP);
-        //        }
-        //        System.out.println("after");
-        //
-        //        model.addTutorialGroup(toAdd);
-        //        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-        return new CommandResult("NOT IMPLEMENTED YET");
+        requireNonNull(model);
+        List<TutorialGroup> lastShownList = model.getFilteredTutorialGroupList();
+        if (lastShownList.contains(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TUTGRP);
+        }
+
+        model.addTutorialGroup(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override

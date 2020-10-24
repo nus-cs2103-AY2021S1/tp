@@ -10,20 +10,19 @@ import javafx.collections.ObservableList;
 /**
  * Wraps all data at the Trackr level.
  * Duplicates are not allowed (by .isSame comparison).
- * @param <T> A class that implements {@code Showable}.
  */
-public class Trackr<T extends Showable<T>> implements ReadOnlyTrackr<T> {
+public class Trackr implements ReadOnlyTrackr<Module> {
 
-    private final UniqueList<T> uniqueList;
+    private final UniqueModuleList moduleList;
 
     public Trackr() {
-        uniqueList = new UniqueList<>();
+        moduleList = new UniqueModuleList();
     }
 
     /**
      * Creates a Trackr using the data in the {@code toBeCopied}
      */
-    public Trackr(ReadOnlyTrackr<T> toBeCopied) {
+    public Trackr(ReadOnlyTrackr<Module> toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -32,33 +31,35 @@ public class Trackr<T extends Showable<T>> implements ReadOnlyTrackr<T> {
      * Replaces the contents of the list with {@code data}.
      * {@code data} must not contain duplicate objects.
      */
-    public void setData(List<T> data) {
-        this.uniqueList.setList(data);
+    public void setData(List<Module> data) {
+        this.moduleList.setModuleList(data);
     }
 
     /**
      * Resets the existing data of this {@code Trackr} with {@code newData}.
      */
-    public void resetData(ReadOnlyTrackr<T> newData) {
+    public void resetData(ReadOnlyTrackr<Module> newData) {
         requireNonNull(newData);
         setData(newData.getList());
     }
 
+    // Module Operations
+
     /**
      * Returns true if an object with the same identity as {@code object} exists in Trackr.
      */
-    public boolean hasObject(T object) {
+    public boolean hasModule(Module object) {
         requireNonNull(object);
-        return uniqueList.contains(object);
+        return moduleList.contains(object);
     }
 
     /**
      * Adds an object to Trackr.
      * The object must not already exist in Trackr.
      */
-    public void addObject(T object) {
+    public void addModule(Module object) {
         requireNonNull(object);
-        uniqueList.add(object);
+        moduleList.addModule(object);
     }
 
     /**
@@ -66,39 +67,53 @@ public class Trackr<T extends Showable<T>> implements ReadOnlyTrackr<T> {
      * {@code target} must exist in Trackr.
      * The identity of {@code editedObject} must not be the same as another existing object.
      */
-    public void setObject(T target, T editedObject) {
+    public void setModule(Module target, Module editedObject) {
         requireAllNonNull(target, editedObject);
-        uniqueList.set(target, editedObject);
+        moduleList.setModule(target, editedObject);
     }
 
     /**
      * Removes {@code key} from this {@code Trackr}.
      * {@code key} must exist in Trackr.
      */
-    public void removeObject(T key) {
-        uniqueList.remove(key);
+    public void removeModule(Module key) {
+        moduleList.removeModule(key);
+    }
+
+    //Tutorial Group Operations
+    public ObservableList<TutorialGroup> getTutorialGroupListOfModule(Module target) {
+        return moduleList.getTutorialGroupListOfModule(target);
+    }
+
+    /**
+     * Adds an object to Trackr.
+     * The object must not already exist in Trackr.
+     */
+    public void addTutorialGroup(TutorialGroup tutorialGroup, Module currentModuleInView) {
+        requireNonNull(tutorialGroup);
+        moduleList.addTutorialGroup(tutorialGroup, currentModuleInView);
     }
 
     @Override
     public String toString() {
-        return uniqueList.asUnmodifiableObservableList().size() + " data objects";
+        return moduleList.asUnmodifiableObservableList().size() + " data objects";
     }
 
     @Override
-    public ObservableList<T> getList() {
-        return uniqueList.asUnmodifiableObservableList();
+    public ObservableList<Module> getList() {
+        return moduleList.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Trackr // instanceof handles nulls
-                && uniqueList.equals(((Trackr) other).uniqueList));
+                && moduleList.equals(((Trackr) other).moduleList));
     }
 
     @Override
     public int hashCode() {
-        return uniqueList.hashCode();
+        return moduleList.hashCode();
     }
 
 }
