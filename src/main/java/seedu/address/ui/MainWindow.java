@@ -54,7 +54,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane projectListPanelPlaceholder;
 
     @FXML
-    private StackPane personListPanePlaceholder;
+    private StackPane personListPanelPlaceholder;
 
     @FXML
     private StackPane projectDashboardPlaceHolder;
@@ -131,7 +131,7 @@ public class MainWindow extends UiPart<Stage> {
         projectListPanel = new ProjectListPanel(logic.getFilteredProjectList());
         projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanePlaceholder.getChildren().add(personListPanel.getRoot());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         if (logic.getProjectToBeDisplayedOnDashBoard().isEmpty()) {
             emptyProjectDashboard = new EmptyDashboard(EMPTY_PROJECT_DASHBOARD_MSG);
