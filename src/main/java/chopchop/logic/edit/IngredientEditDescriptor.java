@@ -4,12 +4,9 @@ package chopchop.logic.edit;
 
 import java.util.Optional;
 
-import chopchop.logic.edit.exceptions.IllegalEditOperation;
 import chopchop.model.attributes.Quantity;
 
-public class IngredientEditDescriptor {
-
-    private final EditOperationType editType;
+public class IngredientEditDescriptor extends EditDescriptor {
 
     private final Optional<Quantity> ingredientQuantity;
     private final String ingredientName;
@@ -20,26 +17,23 @@ public class IngredientEditDescriptor {
      * @param editType the type of edit
      * @param name     the name of the ingredient to edit
      * @param qty      the new quantity of the ingredient; should only be present iff type is EDIT or ADD
-     * @throws IllegalEditOperation if the quantity was provided when not required, or vice-versa
      */
-    public IngredientEditDescriptor(EditOperationType editType, String name, Optional<Quantity> qty)
-        throws IllegalEditOperation {
+    public IngredientEditDescriptor(EditOperationType editType, String name, Optional<Quantity> qty) {
 
-        this.editType = editType;
+        super(editType);
+
+        assert editType == EditOperationType.ADD
+            || editType == EditOperationType.EDIT
+            || editType == EditOperationType.DELETE;
+
+        if (editType == EditOperationType.EDIT || editType == EditOperationType.ADD) {
+            assert qty.isPresent();
+        } else {
+            assert qty.isEmpty();
+        }
+
         this.ingredientName = name;
         this.ingredientQuantity = qty;
-
-        if ((this.editType == EditOperationType.EDIT || this.editType == EditOperationType.ADD)
-            && qty.isEmpty()) {
-
-            throw new IllegalEditOperation("quantity cannot be empty when editing ingredient in recipe");
-        } else if (qty.isPresent()) {
-            throw new IllegalEditOperation("edit to delete a recipe should not have a quantity");
-        }
-    }
-
-    public EditOperationType getEditType() {
-        return this.editType;
     }
 
     public String getIngredientName() {

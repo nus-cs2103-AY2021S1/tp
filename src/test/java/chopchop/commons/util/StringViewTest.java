@@ -2,6 +2,7 @@
 
 package chopchop.commons.util;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,11 +13,11 @@ import static chopchop.testutil.Assert.assertThrows;
 
 public class StringViewTest {
 
+    private final StringView sv1 = new StringView("abcdef ghi jklmno ");
+    private final StringView sv2 = new StringView("owo uwu AYAYA");
+
     @Test
     public void test_stringViews() {
-
-        var sv1 = new StringView("abcdef ghi jklmno ");
-        var sv2 = new StringView("owo uwu AYAYA");
 
         assertEquals(3, sv1.find("def"));
         assertEquals(7, sv1.find(new StringView("ghi")));
@@ -50,5 +51,11 @@ public class StringViewTest {
         assertFalse(sv2.startsWith(new StringView("kekw")));
 
         assertEquals("asdf".hashCode(), new StringView("asdf").hashCode());
+
+
+        var sv3 = new StringView("AAA      BBB CCC\t\t\tDDD    \t  \t");
+        assertEquals(List.of("owo", "uwu", "AYAYA"), sv2.words());
+        assertEquals(List.of("AAA", "BBB", "CCC", "DDD"), sv3.words());
+        assertEquals(List.of("AAA"), new StringView("AAA::::").splitBy(c -> c == ':'));
     }
 }

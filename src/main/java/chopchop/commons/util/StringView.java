@@ -312,7 +312,7 @@ public class StringView {
      * @param pred the predicate to use
      * @return a new string view
      */
-    public StringView dropWhile(Predicate<Character> pred) {
+    public StringView dropWhile(Predicate<? super Character> pred) {
         int i = this.begin;
         while (i < this.end && pred.test(this.chars[i])) {
             i += 1;
@@ -328,7 +328,7 @@ public class StringView {
      * @param pred the predicate to use
      * @return a new string view
      */
-    public StringView takeWhile(Predicate<Character> pred) {
+    public StringView takeWhile(Predicate<? super Character> pred) {
         int n = this.begin;
         while (n < this.end && pred.test(this.chars[n])) {
             n += 1;
@@ -345,7 +345,7 @@ public class StringView {
      * @param pred the predicate to use
      * @return a pair of string views
      */
-    public Pair<StringView, StringView> span(Predicate<Character> pred) {
+    public Pair<StringView, StringView> span(Predicate<? super Character> pred) {
         return new Pair<>(
             this.takeWhile(pred),
             this.dropWhile(pred)
@@ -391,24 +391,32 @@ public class StringView {
     }
 
     /**
-     * Splits the given stringview into a list of words by whitespace.
+     * Splits the given stringview into a list of words by using the given predicate.
      */
-    public List<String> words() {
+    public List<String> splitBy(Predicate<? super Character> predicate) {
         var ret = new ArrayList<String>();
 
         var sv = this;
         while (!sv.isEmpty()) {
-            sv = sv.dropWhile(Character::isWhitespace);
-            var word = sv.takeWhile(x -> !Character.isWhitespace(x));
+            sv = sv.dropWhile(predicate);
+            var word = sv.takeWhile(x -> !predicate.test(x));
 
             if (!word.isEmpty()) {
                 ret.add(word.toString());
             }
 
-            sv = sv.dropWhile(x -> !Character.isWhitespace(x));
+            sv = sv.dropWhile(x -> !predicate.test(x));
         }
 
         return ret;
+    }
+
+    /**
+     * Splits the given stringview into a list of words by whitespace. Equivalent
+     * to splitBy(c -> Character.isWhitespace(c));
+     */
+    public List<String> words() {
+        return this.splitBy(c -> Character.isWhitespace(c));
     }
 
     /**
