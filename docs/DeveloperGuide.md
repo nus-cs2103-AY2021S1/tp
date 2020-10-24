@@ -227,23 +227,106 @@ The following activity diagram summarizes what happens when the add feature is t
   corresponding arguments to override the last occurence of this prefix.
   * Cons: Users may type 2 of the required prefixes accidentally and add a wrong stock into the stockbook.
 
+### Update Feature
+
+The mechanism for update feature is facilitated by `UpdateCommandParser, UpdateCommand, UpdateStockDescriptor`.
+
+#### UpdateCommand
+
+`UpdateCommand` class implements `Command` interface. `UpdateCommand` class is tasked with creating a new `CommandResult`
+with the updated stocks message as its argument.
+
+Some of the important operations implemented here are:
+
+* `UpdateCommand#execute()` <br>
+  Generates a new `CommandResult` with the updated stocks message as its argument.
+
+* `UpdateCommand#stocksAsString()` <br>
+  Generates the updated stocks message by transforming the updated stocks into their string descriptions.
+
+* `UpdateCommand#createUpdatedStock()` <br>
+  Generates the updated stock based on the information of the current stock in inventory and `UpdateStockDescriptor`.
+
+#### UpdateCommandParser
+
+`UpdateCommandParser` class implements `Parser` interface. `UpdateCommandParser` class is tasked with parsing the user inputs
+and generate a new `UpdateCommand`.
+
+`UpdateCommandParser` receives the prefixes and their values from the user input. The `UpdateCommandParser#parse()` will
+check for compulsory prefixes and their values. `ParseException` will be thrown if the values are not valid or some
+compulsory prefixes are missing. 
+
+Some of the important operations implemented here are:
+
+* `UpdateCommandParser#parse()` <br>
+  Parses the prefixes and their values attained from user input. This method will first check if all compulsory prefixes
+  are present. This method will then create a new `UpdateStockDescriptor` based on the prefixes values. 
+  A `ParseException` will be thrown if any compulsory prefixes are missing or invalid values.
+
+#### UpdateStockDescriptor
+
+`UpdateStockDescriptor` is a inner static class inside `UpdateCommand`. This class is tasked with storing the temporary
+values for the fields to be later updated into the stock in inventory.
+
+#### Example Usage Scenario
+
+Given below are some example usage scenarios and how the update mechanism behaves at each step. It is assumed that
+the stock with serial number `fairprice1` exists in the inventory.
+
+**Example 1: Update a stock's name and quantity**
+
+Step 1. The user enters `update sn/fairprice1 n/Banana q/10000` to the CLI.
+
+Step 2. The command word `update` is extracted out in `StockBookParser` and checked if it matches any valid command word.
+
+Step 3. `update` is a valid command word. User input prefixes and their values are passed down to `UpdateCommandParser#parse()`
+
+Step 4. `UpdateCommandParser#parse()` will check if the prefixes `sn/` exists as it is compulsory.
+
+Step 5. The prefix `sn/` exist. `UpdateCommandParser#parse()` will extract the value of the prefix `sn/` which in this
+case is `fairprice1` 
+
+Step 6. `UpdateCommandParser#parse()` will extract the value of other prefixes present as well.
+
+Step 7. `UpdateCommandParser#parse()` returns a new `UpdateCommand` with the `UpdateStockDescriptor` as its argument.
+The `UpdateStockDescriptor` contains the values of the parsed prefixes.
+
+Step 8. `Logic Manager` then calls `UpdateCommand#execute()`. Inside the method, it will check if the serial numbers
+in `UpdateStockDescriptor` is found in the `Model`.
+
+Step 9. All serial numbers matched. The method `UpdateCommand#createUpdatedStock()` is called to produce the new updated
+stock.
+
+Step 10. The corresponding stocks in current inventory is replaced by the new updated stocks.
+
+Step 11. Returns a new `CommandResult` containing the updated stocks message as its argument.
+
+Step 12. The updated stocks message is displayed to the user.
+
+#### Sequence Diagram
+
+The following sequence diagram shows how the update feature works for **Example 1**:
+
+![Update Example 1](images/UpdateSequenceDiagramExample1.png)
+
 ### Suggestion Feature
 
 The mechanism for suggestion feature is facilitated by `SuggestionCommandParser, SuggestionCommand, SuggestionUtil`.
 
 #### SuggestionCommand
 
-`SuggestionCommand` class extends `Command` interface. `SuggestionCommand` class is tasked with creating a new `CommandResult`
+`SuggestionCommand` class implements `Command` interface. `SuggestionCommand` class is tasked with creating a new `CommandResult`
 with the suggestion message to be displayed to the user as its argument. The suggestion message to be displayed
 is gathered from the result of the parsing stage for suggestion.
 
 Some of the important operations implemented here are:
 
-* `SuggestionCommand#execute()`
+* `SuggestionCommand#execute()` <br>
   Generates a new `CommandResult` with the suggestion message as its argument.
 
 #### SuggestionCommandParser
-`SugestionCommandParser` class extends `Parser` interface. `SuggestionCommandParser` class is tasked with parsing the
+
+`SugestionCommandParser` class implements `Parser` interface. `SuggestionCommandParser` class is tasked with parsing the
 user inputs and generate a new `SuggestionCommand`. The main logic of the suggestion feature is encapsulated here.
 
 `SuggestionCommandParser` receives the user input, along with either the faulty command word or parsing error messages
@@ -256,26 +339,37 @@ Some of the important operations implemented here are:
   Parses the user input and parsing error messages thrown from another `Parser` and returns a new `SuggestionCommand`
   with the suggestion to be shown as its argument. The inference for the command word to be suggested is made in here.
   After the correct command word is inferred, then it will call helper functions to generate the suggestion messages.
+
 * `SuggestionCommandParser#generateAddSuggestion()` <br>
   Generates the suggestion message for an add command.
+
 * `SuggestionCommandParser#generateListSuggestion()` <br>
   Generates the suggestion message for a list command.
+
 * `SuggestionCommandParser#generateHelpSuggestion()` <br>
   Generates the suggestion message for a help command.
+
 * `SuggestionCommandParser#generateExitSuggestion()` <br>
   Generates the suggestion message for a exit command.
+
 * `SuggestionCommandParser#generateUpdateSuggestion()` <br>
   Generates the suggestion message for an update command.
+
 * `SuggestionCommandParser#generateDeleteSuggestion()` <br>
   Generates the suggestion message for a delete command.
+
 * `SuggestionCommandParser#generateFindSuggestion()` <br>
   Generates the suggestion message for a find command.
+
 * `SuggestionCommandParser#generateFindExactSuggestion()` <br>
   Generates the suggestion message for a find exact command.
+
 * `SuggestionCommandParser#generateStatisticsSuggestion()` <br>
   Generates the suggestion message for a stats command.
+
 * `SuggestionCommandParser#generateNoteSuggestion()` <br>
   Generates the suggestion message for a note command.
+
 * `SuggestionCommandParser#generateNoteDeleteSuggestion()` <br>
   Generates the suggestion message for a note delete command.
 
@@ -287,6 +381,7 @@ The utilities provided inside are:
 
 * `SuggestionUtil#min()` <br>
   Computes the minimum of three integers.
+
 * `SuggestionUtil#minimumEditDistance()` <br>
   Computes the minimum edit distance between 2 strings.
 
@@ -369,17 +464,16 @@ will fill the argument with a default value. In this case, the prefix `n/` is pr
 `n/Milk` is then added to the suggestion message. The prefix `s/` is present, but its argument is empty.
 `s/<source>` is then added to the suggestion message.
 
-Step 9. Lastly `SuggestionCommandParser#generateUpdateSuggestion()` will append the usage message for `update` command.
+Step 12. Lastly `SuggestionCommandParser#generateUpdateSuggestion()` will append the usage message for `update` command.
 
-Step 10. `SuggestionCommandParser#parse()` method returns a new `SuggestionCommand` with the suggestion message
+Step 13. `SuggestionCommandParser#parse()` method returns a new `SuggestionCommand` with the suggestion message
 to be displayed as its argument.
 
-Step 11. `SuggestionCommand` is executed and produces a new `CommandResult` to display the message to the user.
+Step 14. `SuggestionCommand` is executed and produces a new `CommandResult` to display the message to the user.
 
-Step 12. The suggestion `update sn/<serial number> n/Milk s/<source>` is displayed to the user along with what kind of
+Step 15. The suggestion `update sn/<serial number> n/Milk s/<source>` is displayed to the user along with what kind of
 error and the message usage information. In this case the error is `Invalid command format` and the message usage is from
 `UpdateCommand`.
-
 
 #### Sequence Diagram
 
@@ -478,6 +572,217 @@ The following activity diagram summarizes what happens when the suggestion featu
   * Pros: Very simple to implement. A brute force algorithm that checks every substring.
   * Cons: The distance estimate between two strings is quite bad, especially if no substring overlaps. Slow in speed
     compared to minimum edit distance. Generates worse suggestion compared to minimum edit distance.
+
+### Find and FindExact Features
+
+#### Description
+The Find and FindExact Features allow users to search for `Stock` items in the stockbook. 
+
+There are two commands users can use:
+* `find` - Stock that matches ALL keywords of ANY field will be displayed.
+* `findexact` - Stock that matches ALL keywords of ALL fields will be displayed.
+
+Find and FindExact features allow search for four fields:
+
+Field         | Prefix
+--------------| -------
+Name          |   n/
+Source        |   s/
+Serial Number |   sn/
+Location      |   l/
+
+#### Mechanism
+The mechanism for the Find feature is facilitated by classes `FindCommand`(or `FindExactCommand`),
+`FindCommandParser` (or `FindExactCommandParser`), `FindUtil` and `FieldContainsKeywordsPredicate`
+subclasses that include:
+* `NameContainsKeywordsPredicate`
+* `SerialNumberContainsKeywordsPredicate`
+* `SourceContainsKeywordsPredicate`
+* `LocationContainsKeywordsPredicate`
+
+#### FindCommandParser
+The `FindCommandParser` (as with the `FindExactCommandParser`) class
+implements the `Parser` interface. 
+`FindCommandParser` class is tasked with parsing the user inputs
+to generate a `FindCommand` with a list of `FieldContainsKeywordsPredicate`.
+
+The list of `FieldContainsKeywordsPredicate` is obtained from parsing
+the user input, to produce either of the following predicates shown
+in the table below, for each `Prefix` and keywords pair.
+
+(Note that the user input should contain at least one `Prefix` and keywords to search.
+The table below shows which `FieldContainsKeywordsPredicate`
+is generate for the specific `Prefix`.)
+
+Prefix       | FieldContainsKeywordsPredicate
+-------------| -------------------------
+n/<keywords> | NameContainsKeywordsPredicate
+s/<keywords> | SourceContainsKeywordsPredicate
+l/<keywords> | LocationContainsKeywordsPredicate
+sn/<keywords>| SerialNumberContainsKeywordsPredicate
+
+`FindCommandParser` implements the following important operations:
+
+* `FindCommandParser#parse()` -
+ Parses the user input to produce a `FindCommand`.
+* `FindCommandParser#parsePrefixAndKeywords()` -
+ Generates a list of `FieldContainsKeywordsPredicate` from a map of `Prefix` and keywords.
+* `FindCommandParser#generatePredicate()` -
+ Generates a `FieldContainsKeywordsPredicate` from a `Prefix` and keywords.
+
+#### FindCommand / FindExactCommand
+The `FindCommand` class (as with the `FindExactCommand` class)
+extends the `Command` abstract class. The `FindCommand` class
+is tasked with creating a new `CommandResult` that represents
+the result of the execution of a `FindCommand`. 
+
+The construction of a `FindCommand` takes in a list of `FieldContainsKeywordsPredicate`.
+These predicates will be evaluated to filter the Stock items to be displayed to user.
+
+When a `FindCommand` is executed, a `CommandResult` is constructed with the status message,
+showing the searched terms and searched results of the number of stocks found from the search.
+
+`FindCommand` implements the following important operations:
+
+* `FindCommand#execute()` -
+Executes the search and returns the result message of the search.
+
+#### FindUtil
+The `FindUtil` class is part of the util package.
+It provides utility to combine the list of `FieldContainsKeywordsPredicate`
+of the `FindCommand` into a composed `Predicate<Stock>`.
+
+`Find` feature requires the `Stock` to fulfill only one
+`FieldContainsKeywordsPredicate` in the list for `Stock` to be displayed.
+The mechanism used to combine the predicates into a composed Predicate<Stock>
+for `Find` is Java 8 Predicate method, Predicate.or().
+
+`FindExact` feature requires the `Stock` to fulfill all
+`FieldContainsKeywordsPredicate` in the list for `Stock` to be displayed.
+The mechanism used to combine the predicates into a composed Predicate<Stock>
+for `FindExact` is Java 8 Predicate method, Predicate.and().
+
+#### FindUtil
+The `FindUtil` class is part of the util package.
+It provides utility to combine the list of `FieldContainsKeywordsPredicate`
+of the `FindCommand` into a single `Predicate<Stock>`.
+
+`Find` feature requires the `Stock` to fulfill only one
+`FieldContainsKeywordsPredicate` in the list for `Stock`
+to be displayed. The mechansim used to combine the predicates
+into a single Predicate<Stock> for `Find` is Java 8 Predicate method,
+Predicate.or().
+
+`FindExact` feature requires the `Stock` to fulfill all
+`FieldContainsKeywordsPredicate` in the list for `Stock` to be displayed.
+The mechansim used to combine the predicates into a single Predicate<Stock>
+for `FindExact` is Java 8 Predicate method, Predicate.and().
+
+`FindUtil` implements the following important operations:
+
+* `FindUtil#generateCombinedPredicatesWithOr()` -
+ Combines predicates using Predicate.or()
+* `FindUtil#generateCombinedPredicatesWithAnd()` -
+ Combines predicates using Predicate.and()
+
+#### FieldContainsKeywordsPredicate
+
+`FieldContainsKeywordsPredicate` is an abstract class
+that implements the interface Predicate<Stock>.
+Its subclasses are `NameContainsKeywordsPredicate`,
+`LocationContainsKeywordsPredicate`, `SerialNumberContainsKeywordsPredicate`
+and `SourceContainsKeywordsPredicate`, which inherit and implement the method
+`test(Stock)`, and is constructed with a list of String keywords to test.
+
+* `NameContainsKeywordsPredicate` implements test() to evaluate true
+ when a `Stock`'s name contains all the keywords in the list.
+* `SerialNumberContainsKeywordsPredicate` implements test() to evaluate true
+ when a `Stock`'s serial number contains all the keywords in the list.
+* `LocationContainsKeywordsPredicate` implements test() to evaluate true
+ when a `Stock`'s location stored contains all the keywords in the list.
+* `SourceContainsKeywordsPredicate` implements test() to evaluate true
+ when a `Stock`'s source contains all the keywords in the list.
+* For all `FieldContainsKeywordsPredicate`, if keyword given is an
+ empty string, method test() evaluates to false.
+
+Note: For any `FieldContainsKeywordsPredicate#test()` to return true,
+ field of `Stock` must contain ALL keywords in the list.  
+
+`FieldContainsKeywordsPredicate` implements the following important operations:
+* `FieldContainsKeywordsPredicate#test()` -
+ Evaluates this predicate on the given Stock argument.
+
+#### Example Usage Scenario
+Given below are some example usage scenarios and how
+ the find feature mechanism behaves at each step.
+
+**Example 1: Finding all stocks with Name that contains
+ "pineapple" OR serial number that contains "pine"**
+
+Step 1. The user enters `find n/pineapple sn/pine`.
+
+Step 2. `MainWindow#executeCommand()` is called with the user input.
+Within this method, `LogicManager#execute()` is called with the
+user input to obtain a `CommandResult`.
+
+Step 3. The command word `find` is extracted out in `StockBookParser`.
+The command word matches `COMMAND_WORD`: `find` in the `FindCommand` class.
+
+Step 4. The remaining user input is passed to the `FindCommandParser`
+to generate a list of `FieldContainsKeywordsPredicate` to evaluate on the stocks. 
+
+Step 5. Within the `FindCommandParser#parsePrefixAndKeywords()` method,
+the respective `NameContainsKeywordsPredicate` and `SerialNumberContainsKeywordsPredicate`
+will be created using the `Prefix` and keywords given, and
+added to the list of `FieldContainsKeywordsPredicate`.
+
+Step 6. The `FindCommandParser#parse()` method then returns a `FindCommand`,
+constructed with the list of `FieldContainsKeywordsPredicate`. 
+
+Step 7. On construction of the `FindCommand`, the method
+`FindUtil#generateCombinedPredicatesWithOr()` is called to generate
+a composed Predicate<Stock>, which only requires one `FieldContainsKeywordsPredicate`
+to be fulfilled for stock to be displayed.
+
+Step 8. `LogicManager#execute()` then calls `FindCommand#execute()` method,
+with current `Model` as argument. Within this method call,
+`Model#updateFilteredStockList` method evaluates the composed
+Predicate<Stock> on all the stocks in the stock list.
+
+Step 9. For each `FieldContainsKeywordsPredicate`, `FieldContainsKeywordsPredicate#test()`
+evaluates the predicate on the stock.
+
+Step 10. Stocks that do not match the search terms are filtered out.
+The result of the search is stored in the returning `CommandResult`object
+and displayed with `ResultDisplay`.
+
+Step 11. User views the new `StockListPanel` with the filtered stock list.
+
+**Example 2: Finding all stocks with Name that contains "pineapple"
+AND serial number that contains "pine"**
+
+Steps are the same as Example 1, with the replacement of:
+
+Command word:
+* `find` to `findexact`
+
+Classes:
+* `FindCommandParser` to `FindExactCommandParser`
+* `FindCommand` to `FindExactCommand`
+
+Method(s):
+* Step 7: `FindUtil#generateCombinedPredicatesWithOr()` to
+ `FindUtil#generateCombinedPredicatesWithAnd()`
+
+
+#### Sequence Diagram
+The following sequence diagram shows how the Find feature works for Example 1:
+![Find Feature Sequence Diagram](images/FindFeatureSequenceDiagram.png)
+
+#### Activity Diagram
+The following activity diagram summarizes what happens when
+ the Find feature is triggered:
+![Find Feature Activity Diagram](images/FindFeatureActivityDiagram.png)
 
 ### Statistics Feature
 
@@ -648,7 +953,7 @@ The following sequence diagram shows how the Logic aspect of the statistics feat
 
 The following sequence diagram shows how the Ui aspect of the statistics feature works for **Example 1**:
 
-![Statistics-Ui Example 1](images/StatisticsCommandSequenceDiagramUiExample1.png
+![Statistics-Ui Example 1](images/StatisticsCommandSequenceDiagramUiExample1.png)
 
 #### Activity Diagram
 
@@ -679,6 +984,121 @@ are more useful when working out the compositions of the data.
 #### Future statistical features
 With the expansion of more data fields for each stock, there will be more varieties of statistics that can be
 shown based on these new fields.
+
+### Sort Feature
+
+The mechanism for sort feature is facilitated by `SortCommandParser, SortCommand, SortUtil`.
+
+#### SortCommand
+
+`SortCommand` class extends `Command` interface. `SortCommand` class is tasked with creating a new `CommandResult`
+with the sort result to be displayed to the user as its argument. The sort message generated is based on the sorted
+field.
+
+Some of the important operations implemented here are:
+
+* `SortCommand#execute()` <br>
+  Generates a new `CommandResult` with the sort result as its argument. Creates the comparator needed to sort
+  from the `fieldToSort` and `isReversed` passed down by `SortCommandParser#parse()`. 
+  After the comparator is created, `Model#sortFilteredStockList()` is called with the comparator as
+  its argument to sort the inventory.
+
+#### SuggestionCommandParser
+
+`SortCommandParser` class implements `Parser` interface. `SortCommandParser` class is tasked with parsing the
+user inputs and generate a new `SortCommand`.
+
+`SortCommandParser` receives the user input and gets the compulsory prefixes needed for sort feature to function.
+If any of the compulsory prefixes are not present or their values are invalid, then a `ParseException` will be thrown
+indicating an error in parsing the user input.
+
+Some of the important operations implemented here are:
+
+* `SortCommandParser#parse()` <br>
+  Generates a new `SortCommand` with the field to be sorted and its order as the arguments. This method is tasked
+  with parsing the compulsory prefixes needed and passing their values to `SortCommand`. If any of the compulsory
+  prefixes are not present or their values are invalid, a `ParseException` will be thrown.
+
+#### SortUtil
+
+`SortUtil` class contains the utilities needed to generate the comparator for the sorting to be executed.
+
+The utilities provided inside are:
+
+* `SortUtil#getFieldDescription()` <br>
+  Generates a string describing the current sorted field.
+
+* `SortUtil#generateComparator()` <br>
+  Generates a suitable comparator for sorting based on the provided field.
+
+* `SortUtil#generateReverseComparator()` <br>
+  Generates a reversed comparator for sorting based on the provided field.
+
+* `SortUtil#generateNameComparator()` <br>
+  Generates a comparator based on name field. The behavior is that it will compare two names `n1`, `n2` and
+  returns an integer with value
+    * `< 0` if `n1 < n2`
+    * `= 0` if `n1 == n2`
+    * `> 0` if `n1 > n2`
+  
+  Based on this behavior, this method by default sort by name in ascending order.
+
+* `SortUtil#generateSourceComparator()` <br>
+  Generates a comparator based on source field. It will compare two sources `s1`, `s2` and have the same exact
+  behaviour as `SortUtil#generateNameComparator()`. This method by default sort by source in ascending order.
+
+* `SortUtil#generateLocationComparator()` <br>
+  Generates a comparator based on location field. It will compare two locations `l1`, `l2` and have the same exact
+  behaviour as `SortUtil#generateNameComparator()`. This method by default sort by location in ascending order.
+
+* `SortUtil#generateSerialNumberComparator()` <br>
+  Generates a comparator based on serial number field. It will compare two serial numbers `sn1`, `sn2` 
+  and have the same exact behaviour as `SortUtil#generateNameComparator()`.
+  This method by default sort by serial number in ascending order.
+
+* `SortUtil#generateQuantityComparator()` <br>
+  Generates a comparator based on quantity field. It will compare two quantity `q1`, `q2` and have the same exact
+  behaviour as `SortUtil#generateNameComparator()`. This method by default sort by quantity in ascending order.
+
+#### Example Usage Scenario
+
+Given below are some example usage scenarios and how the sort mechanism behaves at each step.
+
+**Example 1: Sort by name and in ascending order**
+
+Step 1. The user enters `sort o/ascending by/name` to the CLI.
+
+Step 2. The command word `sort` is extracted out in `StockBookParser` and checked if it matches any valid command word.
+
+Step 3. `sort` is a valid command word. User input prefixes and their values are passed down to `SortCommandParser#parse()`
+
+Step 4. `SortCommandParser#parse()` will check if the prefixes `o/` and `by/` both exist.
+
+Step 5. Both prefixes exist. `SortCommandParser#parse()` will extract the value of the prefix `o/` which in this case is
+`ascending` and create a new enum `Order` with value `ASCENDING`.
+
+Step 6. Since the `Order` is `ASCENDING`, `isReversed` will be set to `false`.
+
+Step 7. `SortCommandParser#parse()` will extract the value of the prefix `by/` which in this case is `name`
+and create a new enum `Field` with value `NAME`
+
+Step 8. The method returns a new `SortCommand` with the `NAME` and `isReversed` as its arguments.
+
+Step 9. `LogicManager` calls `SortCommand#execute()`. `SortCommand#execute()` generates the comparator based on
+the field and `isReversed`.
+
+Step 10. `SortCommand#execute()` calls `Model#sortFilteredStockList()` and sorts the inventory.
+
+Step 11. `SortCommand#execute()` returns the `CommandResult`. The message generated is based on the field sorted.
+
+Step 12. The sort success message is displayed to the user.
+
+#### Sequence Diagram
+
+The following sequence diagram shows how the sort feature works for **Example 1**:
+
+![SortFeatureExample1](images/SortFeatureExample1.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -1396,7 +1816,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 3.
 
-#### Use case 20: Exit Warenager
+#### Use case 20: Sort stocks by field and order
+
+**MSS**
+
+1. User types in command
+2. User provides the field to sort and the sort order.
+3. Warenager sorts the inventory according to the field and order specified.
+
+   Use case ends.
+
+**Extensions**
+* 2a. The field user provided is not valid but the order is valid.
+
+    * 2a1. Warenager will generate command suggestion to the user (Use case 19).
+    
+    Use case ends.
+
+* 2b. The order user provided is not valid but the field is valid.
+
+    * 2b1. Warenager will generate command suggestion for the user (Use case 19).
+
+    Use case ends.
+
+* 2c. Both the order and field user provided is not valid.
+
+    * 2c1. Warenager will generate command suggesstion for the user (Use case 19).
+
+    Use case ends.
+
+#### Use case 21: Exit Warenager
 
 **MSS**
 
