@@ -14,16 +14,16 @@ This user guide provides a detailed description of all the features available in
 ## Quick start
 
 * [Features](#features)
-  * [Show all commands : `help`](#show-all-commands--help) - Gabriella Teh
-  * [List all tasks : `list`](#list-all-tasks--list) - Marcus Tan
-  * [Add a deadline: `deadline`](#add-a-deadline--deadline) - Li Gangwei
-  * [Add a event: `event`](#add-an-event--event) - Li Gangwei
-  * [Add a lesson: `lesson`](#add-a-lesson--lesson) - Marcus Tan
-  * [Delete a task : `delete`](#delete-a-task--delete) - Li Beining
-  * [Mark a task as done: `done`](#mark-a-task-as-done--done) - Li Beining
-  * [Find a task : `find`](#find-a-task-by-an-attribute--find) - Zhou Zijian
-  * [Edit a task : `edit`](#edit-a-task--edit) - Gabriella Teh
-  * [Exit the program : `exit`](#exit-the-program--exit) - Li Gangwei
+  * [1. Show all commands : `help`](#1-show-all-commands--help) - Gabriella Teh
+  * [2. List all tasks : `list`](#2-list-all-tasks--list) - Marcus Tan
+  * [3. Add a deadline: `deadline`](#3-add-a-deadline--deadline) - Li Gangwei
+  * [4. Add an event: `event`](#4-add-an-event--event) - Li Gangwei
+  * [5. Add a lesson: `lesson`](#5-add-a-lesson--lesson) - Marcus Tan
+  * [6. Delete a task : `delete`](#6-delete-a-task--delete) - Li Beining
+  * [7. Mark a task as done: `done`](#7-mark-a-task-as-done--done) - Li Beining
+  * [8. Find a task : `find`](#8-find-a-task-by-an-attribute--find) - Zhou Zijian
+  * [9. Edit a task : `edit`](#9-edit-a-task--edit) - Gabriella Teh
+  * [10. Exit the program : `exit`](#10-exit-the-program--exit) - Li Gangwei
 * [FAQ](#faq) - Li Gangwei
 * [Command summary](#command-summary) - Zhou Zijian
 
@@ -50,7 +50,7 @@ This user guide provides a detailed description of all the features available in
 
 </div>
 
-### Show all commands : `help`
+### 1. Show all commands : `help`
 
 Shows a message with a link to the user guide.
 
@@ -59,7 +59,7 @@ Shows a message with a link to the user guide.
 Format: `help`
 
 
-### List all tasks : `list`
+### 2. List all tasks : `list`
 
 Shows a list of all tasks in PlaNus.
 
@@ -68,11 +68,11 @@ Shows a list of all tasks in PlaNus.
 Format: `list`
 
 
-### Add a deadline : `deadline`
+### 3. Add a deadline : `deadline`
 
 Adds a deadline to PlaNus.
 
-Format: `deadline title:TITLE [desc:DESCRIPTION] [date:DATE_TIME] [tag:MODULE_CODE]`
+Format: `deadline title:TITLE [desc:DESCRIPTION] [datetime:DATE_TIME] [tag:MODULE_CODE]`
 
 * Adds a deadline to PlaNus.
   * The added deadline will be tracked for time analysis if it has a tag.
@@ -81,11 +81,11 @@ Examples:
 
 * `deadline title:Return book datetime:02-01-2020 18:00`<br>
 Adds a deadline with title "Return book", and a date and time of "02-01-2020 18:00" to PlaNus.
-* `deadline title:Assignment 1 desc:CS3230 Assignment 1 date:01-11-2020 18:00 tag:CS3230`<br>
+* `deadline title:Assignment 1 desc:CS3230 Assignment 1 datetime:01-11-2020 18:00 tag:CS3230`<br>
 Adds a deadline with title “Assignment 1”, description “CS3230 Assignment 1”,
 and a date and time of “01-01-2020 18:00” with tag "CS3230" to PlaNus.
 
-### Add an event : `event`
+### 4. Add an event : `event`
 
 Adds an event to PlaNus.
 
@@ -102,7 +102,7 @@ to PlaNus.
 * `event title:Consultation date:13-10-2020 from:19:00 to:20:30 desc:CS2105 consultation tag:CS2105`<br>
 and a date "13-10-2020" with start time of "19:00" and end time of "20:30" with tag "CS2105" to PlaNus.
 
-### Add a lesson : `lesson`
+### 5. Add a lesson : `lesson`
 
 Adds a lesson to PlaNus.
 
@@ -119,7 +119,7 @@ Examples:
 
 * `lesson title:CS2103T Lecture tag:CS2103T desc:Most exciting lecture in NUS! day:Mon from:12:00 to:14:00 start:01-01-2020 end:01-05-2020 ` Adds a lesson to PlaNus with a title "CS2103 Lecture", under the module "CS2103T", with a description "Most exciting lecture in NUS!", on all Mondays 12:00-14:00 in the date range 01-01-2020 to 01-05-2020.
 
-### Delete a task : `delete`
+### 6. Delete a task : `delete`
 
 Deletes the specified task from PlaNus.
 
@@ -134,7 +134,7 @@ Examples:
 * `list` followed by `delete 1 2` deletes the 1st task followed by the 2nd task in the results of the `list` command.
 * `find title:homework` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
-### Mark a task as done : `done`
+### 7. Mark a task as done : `done`
 
 Marks a specified task in PlaNus as done.
 
@@ -149,7 +149,7 @@ Examples:
 * `list` followed by `done 2 3` marks the 2nd and the 3rd tasks in the results of the `list` command status to be done.
 * `find title:homework` followed by `done 1` marks the 1st task in the results of the `find` command status to be done.
 
-### Find a task by an attribute : `find`
+### 8. Find a task by an attribute : `find`
 
 Finds a task by a set of attributes given below.
 
@@ -177,30 +177,39 @@ Examples:
    that includes either `dinner` or `lunch`
 
 
-### Edit a task : `edit`
+### 9. Edit a task : `edit`
 
 Edits a task by a set of defined attributes by the user.
 
 Format: `edit INDEX ATTRIBUTE_1:NEW_VALUE ATTRIBUTE_2:NEW_VALUE ...`
 
-If you provide different attributes in the command, multiple attributes of the specified task will be changed simultaneously.
+* If you provide different attributes in the command, multiple attributes of the specified task will be changed
+simultaneously. 
+* If a deadline has a status of complete, it cannot be edited.
+* Available attributes that the use can modify differs by the type of task the use is trying modify.
+  * Available attributes for both deadline and event in v1.3 include:
+    * `title` edits the title of the specified task
+    * `desc` edits the description of the specified task
+    * `tag` edits the tag of the specified task
+  * Available attributes for **deadline only** in v1.3 include:
+      * `datetime` edits the date and time of the specified deadline
+  * Available attributes for **event only** in v1.3 include:
+      * `date` edits the date of the specified event
+      * `from` edits the start time of the specified event
+      * `to` edits the end time of the specified event
 
-Available attributes in v1.3 include:
-
-* `title` edits the title of the specified task
-* `desc` edits the description of the specified task
-* `type` edits the type of the specified task
-* `date` edits the date and/or time of the specified task
-* `tag` edits the tag of the specified task
 
 Examples:
 
-* `edit 1 title:play games type:todo` will edit the first task in the results of the `list` command, changing its title to `play games` and type of task to `todo`
-* `find type:todo` followed by `edit 3 desc:This is very urgent!` will edit the first task of the third task in the results of the `find` command, changing its description to "This is very urgent!"
-* `find title:homework` followed by`edit 2 desc:Homework is difficult date:01-01-2020` will edit the second task in the results of the `find` command, changing its date to 01-01-2020 and its description to "Homework is difficult"
+* `edit 1 title:play games` will edit the first task in the results of the `list` command, changing its title
+to `play games`
+* `find type:todo` followed by `edit 3 desc:This is very urgent!` will edit the first task of the third task in the
+results of the `find` command, changing its description to "This is very urgent!"
+* `find title:homework` followed by`edit 2 desc:Homework is difficult date:01-01-2020` will edit the second task in the
+results of the `find` command, changing its date to 01-01-2020 and its description to "Homework is difficult"
 * `edit 1 tag:CS2103T` will edit the first task in the results of the `list` command, changing its tag to "CS2103T"
 
-### Exit the program : `exit`
+### 10. Exit the program : `exit`
 
 Exits PlaNus.
 
