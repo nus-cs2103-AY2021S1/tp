@@ -39,6 +39,11 @@ public interface ReadOnlyMainCatalogue {
     void enter(Project project);
 
     /**
+     * Enters a designated person.
+     */
+    void enter(Person person);
+
+    /**
      * Quits the current project view.
      */
     void quit();

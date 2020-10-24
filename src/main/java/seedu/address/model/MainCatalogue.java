@@ -174,6 +174,12 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     }
 
     @Override
+    public void enter(Person person) {
+        status = Status.PERSON;
+        this.person = Optional.of(persons.getPerson(person));
+    }
+
+    @Override
     public void quit() {
         if (status == Status.PROJECT) {
             status = Status.PROJECT_LIST;
