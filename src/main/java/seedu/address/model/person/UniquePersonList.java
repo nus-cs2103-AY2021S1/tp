@@ -1,15 +1,17 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
