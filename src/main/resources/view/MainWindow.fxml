@@ -26,7 +26,7 @@
       </stylesheets>
     <BorderPane fx:id="container" prefWidth="600" prefHeight="500">
             <left>
-            <VBox fx:id="leftPanel" minWidth="340" VBox.vgrow="ALWAYS">
+            <VBox fx:id="leftPanel" VBox.vgrow="ALWAYS">
                 <padding>
                     <Insets top="10" right="10" bottom="10" left="10" />
                 </padding>
