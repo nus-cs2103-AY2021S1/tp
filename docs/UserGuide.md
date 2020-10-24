@@ -119,16 +119,6 @@ Exits the program.
 
 Format: `exit`
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note that for manually saving data:**<br>
-
-Animal data is saved in the hard disk with the preferred file name automatically after any command that changes the data. 
-By default, the preferred file name is `zookeepbook.json`
-There is no need to save manually, though you can create a copy of the current data with the `snap` command which will be explained below.
-
-</div>
-
 ---
 
 ### Finding animals by their fields : `find`
@@ -231,6 +221,16 @@ Undoes the most recently used command. No changes if no previous state exists.
 Format: `undo`
 
 ---
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note for manually saving data:**<br>
+
+Animal data is saved in the hard disk with the preferred file name automatically after any command that changes the data. 
+By default, the preferred file name is `zookeepbook.json`
+There is no need to save manually, though you can create a copy of the current data with the `snap` command which will be explained below.
+
+</div>
 
 ## FAQ
 
