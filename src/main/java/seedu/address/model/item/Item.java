@@ -46,7 +46,6 @@ public class Item extends InventoryComponent {
         this.tags.addAll(tags);
         if (!this.getType().equals(DisplayedInventoryType.DETAILED_ITEM)) {
             idCounter++;
-            // TODO Fix ID by parsing Setting counter to MAX ID when encountered in json
         }
     }
 

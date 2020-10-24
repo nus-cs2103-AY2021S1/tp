@@ -15,6 +15,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_INT_AL
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalItems.APPLE;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditItemCommandTest.ModelStubWithItemList;
@@ -27,9 +28,16 @@ public class AddQuantityToItemCommandTest {
     private ModelStubWithItemList modelStub;
     private ModelStubWithItemList expectedModelStub;
 
-    private Item apple = new ItemBuilder(APPLE).withQuantity(VALID_ITEM_QUANTITY_ORIGINAL).build();
-    private ItemList itemList = new ItemList();
-    private ItemList expectedItemList = new ItemList();
+    private Item apple;
+    private ItemList itemList;
+    private ItemList expectedItemList;
+
+    @BeforeEach
+    public void setUp() {
+        apple = new ItemBuilder(APPLE).withQuantity(VALID_ITEM_QUANTITY_ORIGINAL).build();
+        itemList = new ItemList();
+        expectedItemList = new ItemList();
+    }
 
     @Test
     public void constructor_throwsNullException() {
@@ -45,10 +53,11 @@ public class AddQuantityToItemCommandTest {
         modelStub = new ModelStubWithItemList(itemList);
 
         AddQuantityToItemCommand aic = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, VALID_QUANTITY_INCREMENT);
-        String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, apple);
 
         // expected model should contain the edited apple
-        Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_INCREASED_QUANTITY).build();
+        Item editedApple = new ItemBuilder(apple).withQuantity(VALID_INCREASED_QUANTITY).build();
+
+        String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedApple);
         expectedItemList.addItem(editedApple);
         expectedModelStub = new ModelStubWithItemList(expectedItemList);
 
@@ -64,10 +73,12 @@ public class AddQuantityToItemCommandTest {
         modelStub = new ModelStubWithItemList(itemList);
 
         AddQuantityToItemCommand aic = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, VALID_QUANTITY_DECREMENT);
-        String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, apple);
 
         // expected model should contain the edited apple
         Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_DECREASED_QUANTITY).build();
+
+        String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedApple);
+
         expectedItemList.addItem(editedApple);
         expectedModelStub = new ModelStubWithItemList(expectedItemList);
 

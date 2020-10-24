@@ -8,8 +8,8 @@
       "itemId" : 2,
       "itemQuantity" : 2
     } ],
-    "productId" : 0,
-    "productName" : "Apple",
+    "productId" : 4,
+    "productName" : "Apple pie",
     "productQuantity" : "1",
     "description" : "Apple-y!",
     "isDeleted" : false
@@ -27,5 +27,20 @@
     "productQuantity" : "1",
     "description" : "Banana-y!",
     "isDeleted" : false
-  } ]
+  }, {
+    "id" : 3,
+    "ingredients" : [ {
+      "itemId" : 2,
+      "itemQuantity" : 2
+    }, {
+      "itemId" : 3,
+      "itemQuantity" : 1
+    } ],
+    "productId" : 1,
+    "productName" : "Apple",
+    "productQuantity" : "1",
+    "description" : "Make Apple.inc",
+    "isDeleted" : false
+  }
+  ]
 }

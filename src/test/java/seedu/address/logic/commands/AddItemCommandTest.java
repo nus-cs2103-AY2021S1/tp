@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -20,6 +21,12 @@ import seedu.address.testutil.ItemBuilder;
 import seedu.address.testutil.ItemPrecursorBuilder;
 
 public class AddItemCommandTest {
+
+    @BeforeEach
+    public void setUp() {
+        Item.setIdCounter(0);
+    }
+
     @Test
     public void constructor_nullItem_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddItemCommand(null));

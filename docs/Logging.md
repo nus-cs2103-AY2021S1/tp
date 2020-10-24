@@ -4,9 +4,7 @@ title: Logging guide
 ---
 * Table of Contents
 {:toc}
-#Logging Guide
-
-
+# Logging Guide
 * We are using `java.util.logging` package for logging.
 * The `LogsCenter` class is used to manage the logging levels and logging destinations.
 *  The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified logging level.

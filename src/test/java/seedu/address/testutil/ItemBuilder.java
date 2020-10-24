@@ -46,7 +46,10 @@ public class ItemBuilder {
         name = itemToCopy.getName();
         quantity = itemToCopy.getQuantity();
         description = itemToCopy.getDescription();
-        recipes = new HashSet<>(itemToCopy.getRecipeIds());
+        recipes = new HashSet<>();
+        recipes.addAll(itemToCopy.getRecipeIds());
+        tags = new HashSet<>();
+        tags.addAll(itemToCopy.getTags());
     }
 
     /**
@@ -77,7 +80,8 @@ public class ItemBuilder {
      * Sets the {@code Recipes} of the {@code Item} that we are building.
      */
     public ItemBuilder withRecipe(Set<Integer> recipes) {
-        this.recipes = recipes;
+        this.recipes = new HashSet<>();
+        this.recipes.addAll(recipes);
         return this;
     }
 
@@ -93,7 +97,8 @@ public class ItemBuilder {
      * Sets the {@code Tags} of the {@code Item} that we are building.
      */
     public ItemBuilder withTags(Set<Tag> tags) {
-        this.tags = tags;
+        this.tags = new HashSet<>();
+        this.tags.addAll(tags);
         return this;
     }
 
@@ -104,6 +109,6 @@ public class ItemBuilder {
      */
     public Item build() {
         return new Item(id, name, quantity, description,
-                new HashSet<>(), recipes, new HashSet<>());
+                new HashSet<>(), recipes, tags);
     }
 }

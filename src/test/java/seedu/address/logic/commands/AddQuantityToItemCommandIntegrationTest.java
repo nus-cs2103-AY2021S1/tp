@@ -35,6 +35,8 @@ public class AddQuantityToItemCommandIntegrationTest {
      */
     @BeforeEach
     public void setUp() {
+        // this is necessary for reasons
+        Item.setIdCounter(0);
         model = new ModelManager(new ItemList(), new LocationList(), new RecipeList(), new UserPrefs());
         expectedModel = new ModelManager(new ItemList(), new LocationList(), new RecipeList(), new UserPrefs());
         apple = new ItemBuilder(APPLE).withQuantity(VALID_ITEM_QUANTITY_ORIGINAL).build();
@@ -52,10 +54,10 @@ public class AddQuantityToItemCommandIntegrationTest {
     @Test
     public void execute_addQuantity_success() {
         AddQuantityToItemCommand aic = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, VALID_QUANTITY_INCREMENT);
-        String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, apple);
 
         // expected model should contain the edited apple
         Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_INCREASED_QUANTITY).build();
+        String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedApple);
         expectedModel.addItem(editedApple);
 
         assertCommandSuccess(aic, model, expectedMessage, expectedModel);
@@ -67,10 +69,11 @@ public class AddQuantityToItemCommandIntegrationTest {
     @Test
     public void execute_decreaseQuantity_success() {
         AddQuantityToItemCommand aic = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, VALID_QUANTITY_DECREMENT);
-        String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, apple);
 
         // expected model should contain the edited apple
         Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_DECREASED_QUANTITY).build();
+        String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedApple);
+
         expectedModel.addItem(editedApple);
 
         assertCommandSuccess(aic, model, expectedMessage, expectedModel);

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.model.ItemList;
 import seedu.address.model.item.Item;
@@ -20,7 +21,7 @@ public class TypicalItems {
 
     public static final Item APPLE = new ItemBuilder()
             .withId(1)
-            .withRecipe(new HashSet<>())
+            .withRecipe(Set.of(3))
             .withName("Apple")
             .withDescription("Recovers 10 hp")
             .withQuantity("9")
@@ -40,6 +41,11 @@ public class TypicalItems {
             .withQuantity(DEFAULT_QUANTITY)
             .withTags(getSingleTagSet())
             .build();
+    public static final Item APPLE_PIE_ITEM = new ItemBuilder()
+            .withName("Apple pie")
+            .withId(4)
+            .withRecipe(Set.of(1))
+            .build();
 
     private TypicalItems() {} // prevents instantiation
 
@@ -49,12 +55,12 @@ public class TypicalItems {
     public static ItemList getTypicalItemList() {
         ItemList ab = new ItemList();
         for (Item item : getTypicalItems()) {
-            ab.addItem(item);
+            ab.addItem(new ItemBuilder(item).build());
         }
         return ab;
     }
 
     public static List<Item> getTypicalItems() {
-        return new ArrayList<>(Arrays.asList(APPLE, BANANA, PEAR));
+        return new ArrayList<>(Arrays.asList(APPLE, BANANA, PEAR, APPLE_PIE_ITEM));
     }
 }
