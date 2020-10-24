@@ -1,12 +1,6 @@
 package chopchop.model.ingredient;
 
-import java.util.HashSet;
-
-import java.util.Objects;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.Optional;
-import java.util.Comparator;
+import java.util.*;
 
 import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.model.Entry;
@@ -107,6 +101,10 @@ public class Ingredient extends Entry {
 
         // just return the first expiry date.
         return this.sets.firstKey();
+    }
+
+    public Optional<List<ExpiryDate>> getExpiryDates() {
+        return null;
     }
 
     public TreeMap<Optional<ExpiryDate>, Quantity> getIngredientSets() {

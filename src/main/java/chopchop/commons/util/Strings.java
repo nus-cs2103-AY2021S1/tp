@@ -21,6 +21,7 @@ public class Strings {
     public static final String COMMAND_HELP         = "help";
     public static final String COMMAND_LIST         = "list";
     public static final String COMMAND_FIND         = "find";
+    public static final String COMMAND_FILTER       = "filter";
     public static final String COMMAND_QUIT         = "quit";
     public static final String COMMAND_DELETE       = "delete";
     public static final String COMMAND_MAKE         = "make";

@@ -2,16 +2,11 @@ package chopchop.model.recipe;
 
 import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-import java.util.StringJoiner;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import chopchop.model.Entry;
+import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.Step;
 import chopchop.model.attributes.Tag;
 import chopchop.model.ingredient.IngredientReference;
@@ -58,12 +53,18 @@ public class Recipe extends Entry {
         return Collections.unmodifiableList(steps);
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
     public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+        return new HashSet<>(this.tags);
+    }
+
+    @Override
+    public Optional<ExpiryDate> getExpiryDate() {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<List<ExpiryDate>> getExpiryDates() {
+        return Optional.empty();
     }
 
     public String getTagList() {
