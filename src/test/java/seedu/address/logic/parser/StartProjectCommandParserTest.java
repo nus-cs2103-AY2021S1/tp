@@ -18,7 +18,7 @@ import seedu.address.logic.commands.global.StartProjectCommand;
  */
 public class StartProjectCommandParserTest {
 
-    private StartCommandParser parser = new StartCommandParser();
+    private StartProjectCommandParser parser = new StartProjectCommandParser();
 
     @Test
     public void parse_validArgs_returnsStartCommand() {

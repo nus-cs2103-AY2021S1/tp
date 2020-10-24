@@ -9,7 +9,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new StartProjectCommand object
  */
-public class StartCommandParser implements Parser<StartProjectCommand> {
+public class StartProjectCommandParser implements Parser<StartProjectCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the StartProjectCommand

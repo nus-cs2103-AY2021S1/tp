@@ -94,7 +94,7 @@ public class MainCatalogueParser {
 
         case StartProjectCommand.COMMAND_WORD:
             assert true;
-            return new StartCommandParser().parse(arguments);
+            return new StartProjectCommandParser().parse(arguments);
 
         case LeaveProjectViewCommand.COMMAND_WORD:
             if (status == Status.PROJECT) {
