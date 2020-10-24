@@ -29,7 +29,7 @@ Given below are my contributions to the project.
   * User Guide:
     * Added documentation for the features `delete` and `Coming Soon`
     * Updated documentation for `find` feature
-    
+
   * Developer Guide:
     * Added Use Cases.
     * Modified Model and Storage section.
