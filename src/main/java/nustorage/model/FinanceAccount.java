@@ -4,10 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
 import javafx.collections.ObservableList;
-import nustorage.commons.core.index.Index;
 import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.FinanceRecordList;
 
@@ -90,13 +88,11 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
     /**
      * Removes the finance record with the corresponding index
      *
-     * @param targetIndex Index of finance record to be removed
-     * @return Optional containing removed finance record if index is valid, else an empty optional
+     * @param key Finance record to be removed
      */
-    public Optional<FinanceRecord> removeFinanceRecord(Index targetIndex) {
-        Optional<FinanceRecord> removedRecord = financeRecords.remove(targetIndex);
-        removedRecord.ifPresent(record -> financeRecordHashMap.remove(record.getID()));
-        return removedRecord;
+    public void removeFinanceRecord(FinanceRecord key) {
+        financeRecords.remove(key);
+        financeRecordHashMap.remove(key.getID());
     }
 
     //// util methods
