@@ -47,6 +47,14 @@ public class Appointment {
     }
 
     /**
+     * @param description An appointment description.
+     * @return An Appointment object with description specified by the given String.
+     */
+    public Appointment setDescription(String description) {
+        return new Appointment(description, this.time);
+    }
+
+    /**
      * Returns appointment description.
      */
     public String getAppointmentDescription() {
