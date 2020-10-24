@@ -15,6 +15,9 @@
             <children>
                 <TextArea fx:id="pins" maxHeight="262.0" maxWidth="285.0" prefHeight="320.0" prefWidth="290.0" text="\$pins" editable="false"/>
                 <TextArea fx:id="header1" styleClass="header1" maxHeight="262.0" maxWidth="285.0" prefHeight="320.0" prefWidth="290.0" text="\$header1" editable="false"/>
+                <TextArea fx:id="body1" styleClass="header1" maxHeight="262.0" maxWidth="285.0" prefHeight="320.0" prefWidth="290.0" text="\$body1" editable="false"/>
+                <TextArea fx:id="header2" styleClass="header1" maxHeight="262.0" maxWidth="285.0" prefHeight="320.0" prefWidth="290.0" text="\$header2" editable="false"/>
+                <TextArea fx:id="body2" styleClass="header1" maxHeight="262.0" maxWidth="285.0" prefHeight="320.0" prefWidth="290.0" text="\$body2" editable="false"/>
             </children>
         </VBox>
     </children>

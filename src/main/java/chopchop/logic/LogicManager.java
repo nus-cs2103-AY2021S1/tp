@@ -2,11 +2,16 @@ package chopchop.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import chopchop.commons.core.GuiSettings;
 import chopchop.commons.core.LogsCenter;
+import chopchop.commons.util.Pair;
 import chopchop.logic.autocomplete.AutoCompleter;
 import chopchop.logic.commands.CommandResult;
 import chopchop.logic.commands.Undoable;
@@ -18,6 +23,7 @@ import chopchop.model.Model;
 import chopchop.model.ReadOnlyEntryBook;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
+import chopchop.model.stats.StatsManager;
 import chopchop.storage.Storage;
 import javafx.collections.ObservableList;
 
@@ -30,6 +36,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
+    private final StatsManager statsManager;
     private final HistoryManager historyManager;
     private final CommandParser parser;
     private final AutoCompleter completer;
@@ -40,6 +47,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
+        this.statsManager = initStatsManager(model);
         this.historyManager = new HistoryManager();
         this.parser = new CommandParser();
         this.completer = new AutoCompleter();
@@ -75,6 +83,17 @@ public class LogicManager implements Logic {
         }
 
         return result;
+    }
+
+    private StatsManager initStatsManager(Model model) {
+        List<Recipe> recipes = model.getRecipeBook().getEntryList();
+        List<Pair<String, LocalDateTime>> records = new ArrayList<>();
+        for (var recipe : recipes) {
+            records.addAll(recipe.getUsages().stream()
+                .map(x -> new Pair<String, LocalDateTime>(recipe.getName(), x))
+                .collect(Collectors.toList()));
+        }
+        return new StatsManager(records);
     }
 
     @Override

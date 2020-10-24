@@ -1,6 +1,7 @@
 package chopchop.model.recipe;
 
 import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -8,9 +9,11 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.StringJoiner;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 import chopchop.model.Entry;
 import chopchop.model.attributes.Step;
@@ -126,6 +129,39 @@ public class Recipe extends Entry {
         List<LocalDateTime> updatedUsages = new ArrayList<>(this.usages);
         updatedUsages.remove(this.usages.size() - 1);
         return new Recipe(this.name.toString(), this.ingredients, this.steps, this.tags, updatedUsages);
+    }
+
+    public Optional<LocalDateTime> getLastCooked() {
+        if (this.usages.size() == 0) {
+            return Optional.empty();
+        }
+        return Optional.of(this.usages.get(this.usages.size() - 1));
+    }
+
+    public int getUsageCount() {
+        return this.usages.size();
+    }
+
+    public List<LocalDateTime> getUsagesAfter(LocalDateTime lowerBound) {
+        requireNonNull(lowerBound);
+        return this.usages.stream()
+            .filter(x-> x.isAfter(lowerBound))
+            .collect(Collectors.toList());
+    }
+
+    public List<LocalDateTime> getUsagesBefore(LocalDateTime upperBound) {
+        requireNonNull(upperBound);
+        return this.usages.stream()
+            .filter(x-> x.isAfter(upperBound))
+            .collect(Collectors.toList());
+    }
+
+    public List<LocalDateTime> getUsagesBetween(LocalDateTime start, LocalDateTime end) {
+        requireAllNonNull(start, end);
+        return this.usages.stream()
+            .filter(x -> x.isAfter(start))
+            .filter(x -> x.isBefore(end))
+            .collect(Collectors.toList());
     }
 
     @Override

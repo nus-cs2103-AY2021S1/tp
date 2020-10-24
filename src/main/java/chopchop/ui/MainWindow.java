@@ -117,8 +117,8 @@ public class MainWindow extends UiPart<Stage> {
         CommandOutput commandOutput = new CommandOutput();
         this.commandOutput = commandOutput;
         commandOutputPlaceholder.getChildren().add(commandOutput.getRoot());
-
-        PinBox pinBox = new PinBox();
+//logic.getusage list
+        PinBox pinBox = new PinBox(logic);
         pinBoxPlaceholder.getChildren().add(pinBox.getRoot());
 
         DisplayController displayController = new DisplayController(logic);
