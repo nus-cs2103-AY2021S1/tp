@@ -189,21 +189,45 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.
+     * If the predicate needs to use methods from {@code Model}, use
+     * {@link Model#updateFilteredStudentList(ModelPredicate)} instead to ensure the list is automatically
+     * updated when the {@code Model}'s contents changes.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
 
     /**
+     * @see Model#updateFilteredStudentList(Predicate)
+     */
+    void updateFilteredStudentList(ModelPredicate<Student> predicate);
+
+    /**
      * Updates the filter of the filtered room list to filter by the given {@code predicate}.
+     * If the predicate needs to use methods from {@code Model}, use
+     * {@link Model#updateFilteredRoomList(ModelPredicate)} instead to ensure the list is automatically
+     * updated when the {@code Model}'s contents changes.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredRoomList(Predicate<Room> predicate);
 
     /**
+     * @see Model#updateFilteredRoomList(Predicate)
+     */
+    void updateFilteredRoomList(ModelPredicate<Room> predicate);
+
+    /**
      * Updates the filter of the filtered allocation list to filter by the given {@code predicate}.
+     * If the predicate needs to use methods from {@code Model}, use
+     * {@link Model#updateFilteredAllocationList(ModelPredicate)} instead to ensure the list is automatically
+     * updated when the {@code Model}'s contents changes.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredAllocationList(Predicate<Allocation> predicate);
+
+    /**
+     * @see Model#updateFilteredAllocationList(Predicate)
+     */
+    void updateFilteredAllocationList(ModelPredicate<Allocation> predicate);
 
     /**
      * Returns true if the model has previous ResiReg states to restore.

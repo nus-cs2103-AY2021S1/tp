@@ -115,9 +115,8 @@ public class DeleteCommandTest {
     /**
      * 1. Deletes a {@code Student} from a filtered list.
      * 2. Undo deletion.
-     * 3. Unfiltered list should be shown.
-     * 4. Index of previously deleted student in unfiltered list
-     * should be verified to be different from the index in filtered list.
+     * 3. The list should have the same filtering as before.
+     * 4. Remove list filtering. Verify the index of the deleted student has changed.
      * 5. Redo deletion, ensuring {@code RedoCommand} deletes the student
      * regardless of indexing.
      */
@@ -134,9 +133,14 @@ public class DeleteCommandTest {
         // delete -> deletes second student in unfiltered student list, first student in filtered student list
         deleteCommand.execute(model);
 
-        // undo -> reverts resireg back to previous state and filtered student list to show all students
+        // undo -> reverts resireg back to previous state, keeps filtering
         expectedModel.undoResiReg();
+        showStudentAtIndex(expectedModel, INDEX_SECOND_PERSON);
         assertCommandSuccess(new UndoCommand(), model, UndoCommand.MESSAGE_SUCCESS, expectedModel);
+
+        // remove filtering
+        model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        expectedModel.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
         assertNotEquals(toDelete, model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased()));
         // redo -> delete same second student in unfiltered student list

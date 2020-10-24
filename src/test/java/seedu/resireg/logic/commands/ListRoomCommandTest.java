@@ -111,7 +111,7 @@ public class ListRoomCommandTest {
 
     @Test
     void execute_listFilterIsVacant_showsOnlyVacantRooms() {
-        expectedModel.updateFilteredRoomList(room -> !expectedModel.isAllocated(room));
+        expectedModel.updateFilteredRoomList((room, m) -> !m.isAllocated(room));
         var cmd = new ListRoomCommand(new RoomFilterBuilder().onlyVacant().build());
         assertToggleCommandSuccess(
                 cmd,
@@ -121,7 +121,7 @@ public class ListRoomCommandTest {
 
     @Test
     void execute_listFilterIsAllocated_showsOnlyAllocatedRooms() {
-        expectedModel.updateFilteredRoomList(room -> expectedModel.isAllocated(room));
+        expectedModel.updateFilteredRoomList((room, m) -> m.isAllocated(room));
         var cmd = new ListRoomCommand(new RoomFilterBuilder().onlyAllocated().build());
         assertToggleCommandSuccess(
                 cmd,

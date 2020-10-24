@@ -97,6 +97,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        showStudentAtIndex(expectedModel, INDEX_FIRST_PERSON);
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
         expectedModel.saveStateResiReg();
 
@@ -189,8 +190,8 @@ public class EditCommandTest {
     /**
      * 1. Edits a {@code Student} from a filtered list.
      * 2. Undo the edit.
-     * 3. The unfiltered list should be shown. The index of the unfiltered list
-     * should be verified to be different from the index at the filtered list.
+     * 3. The list should have the same filtering as before.
+     * 4. Remove list filtering. Verify the index of the edited student has changed.
      * 4. Redo the edit. This ensures {@code RedoCommand} edits the student object
      * regardless of indexing.
      */
@@ -209,9 +210,14 @@ public class EditCommandTest {
         // edit -> edits second student in unfiltered list / first student in filtered student list
         editCommand.execute(model);
 
-        // undo -> reverts resireg back to prev state and filtered student list to show all students
+        // undo -> reverts resireg back to prev state, keeps filtering
         expectedModel.undoResiReg();
+        showStudentAtIndex(expectedModel, INDEX_SECOND_PERSON);
         assertCommandSuccess(new UndoCommand(), model, UndoCommand.MESSAGE_SUCCESS, expectedModel);
+
+        // remove filtering
+        model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        expectedModel.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
         assertNotEquals(model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased()), studentToEdit);
         // redo -> edits same second student in unfiltered student list

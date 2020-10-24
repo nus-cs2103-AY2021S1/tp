@@ -11,6 +11,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.resireg.model.Model;
+import seedu.resireg.model.ModelPredicate;
 import seedu.resireg.model.room.Floor;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.room.RoomNumber;
@@ -47,7 +48,7 @@ public class ListRoomCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        model.updateFilteredRoomList(filter.getRoomPredicate(model));
+        model.updateFilteredRoomList(filter.getRoomPredicate());
         String message = filter.equals(new RoomFilter()) ? MESSAGE_SUCCESS : MESSAGE_FILTERED_SUCCESS;
         return new ToggleCommandResult(message, TabView.ROOMS);
     }
@@ -126,8 +127,8 @@ public class ListRoomCommand extends Command {
         }
 
         /**
-         * Returns predicate to apply based on the given collection. If the collection is empty, allow any
-         * value for this attribute, otherwise, only allow attributes in the collection.
+         * Returns predicate to apply based on the given collection. If the collection is empty, the predicate
+         * will always return true, otherwise, only allow attributes in the collection are allowed.
          *
          * @param collection Collection of valid room attributes.
          */
@@ -137,14 +138,12 @@ public class ListRoomCommand extends Command {
 
         /**
          * Returns predicate to use to filter rooms.
-         * @param model Current model.
          */
-        Predicate<Room> getRoomPredicate(Model model) {
-            // if the collection of valid values is empty, the predicate should always return true
+        ModelPredicate<Room> getRoomPredicate() {
             Predicate<RoomNumber> roomNumberPredicate = getPredicateFromCollection(validRoomNumbers);
             Predicate<Floor> floorPredicate = getPredicateFromCollection(validFloors);
             Predicate<RoomType> roomTypePredicate = getPredicateFromCollection(validRoomTypes);
-            Predicate<Room> vacancyPredicate = room -> {
+            ModelPredicate<Room> vacancyPredicate = (room, model) -> {
                 switch (vacancyFilter) {
                 case ALL:
                     return true;
@@ -158,10 +157,10 @@ public class ListRoomCommand extends Command {
                 }
             };
 
-            return room -> roomNumberPredicate.test(room.getRoomNumber())
+            return (room, model) -> roomNumberPredicate.test(room.getRoomNumber())
                     && floorPredicate.test(room.getFloor())
                     && roomTypePredicate.test(room.getRoomType())
-                    && vacancyPredicate.test(room);
+                    && vacancyPredicate.test(room, model);
         }
 
         @Override

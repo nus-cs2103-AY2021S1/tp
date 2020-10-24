@@ -18,6 +18,7 @@ import javafx.collections.ObservableList;
 import seedu.resireg.commons.core.GuiSettings;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
+import seedu.resireg.model.ModelPredicate;
 import seedu.resireg.model.ReadOnlyAddressBook;
 import seedu.resireg.model.ReadOnlyUserPrefs;
 import seedu.resireg.model.UserPrefs;
@@ -239,13 +240,28 @@ public class AddAliasCommandTest {
         }
 
         @Override
+        public void updateFilteredStudentList(ModelPredicate<Student> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredRoomList(Predicate<Room> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredAllocationList(Predicate<Allocation> predicate) {
+        public void updateFilteredRoomList(ModelPredicate<Room> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
 
+        @Override
+        public void updateFilteredAllocationList(Predicate<Allocation> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredAllocationList(ModelPredicate<Allocation> predicate) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

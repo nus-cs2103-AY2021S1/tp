@@ -1,8 +1,6 @@
 package seedu.resireg.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.resireg.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static seedu.resireg.model.Model.PREDICATE_SHOW_ALL_ROOMS;
 
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
@@ -27,8 +25,6 @@ public class UndoCommand extends Command {
         }
 
         model.undoResiReg();
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

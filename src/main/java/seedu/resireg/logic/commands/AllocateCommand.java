@@ -84,10 +84,6 @@ public class AllocateCommand extends Command {
         model.setRoom(roomToAllocate, roomToEdit);
         model.addAllocation(toAllocate);
 
-        model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredRoomList(Model.PREDICATE_SHOW_ALL_ROOMS);
-        model.updateFilteredAllocationList(Model.PREDICATE_SHOW_ALL_ALLOCATIONS);
-
         model.saveStateResiReg();
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, roomToAllocate.getRoomLabel(),
