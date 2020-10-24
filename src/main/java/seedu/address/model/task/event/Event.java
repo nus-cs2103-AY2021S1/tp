@@ -2,23 +2,19 @@ package seedu.address.model.task.event;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
+import seedu.address.model.task.deadline.Deadline;
 
 /**
  * Represents a Task in the PlaNus task list.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Event extends Task {
-
-    // Identity fields
-
     // Data fields
     private final StartDateTime startDateTime;
     private final EndDateTime endDateTime;
@@ -28,8 +24,8 @@ public class Event extends Task {
      * Every field must be present and not null.
      */
     public Event(Title title, StartDateTime startDateTime, EndDateTime endDateTime, Description description,
-                  Set<Tag> tags, boolean isLesson) {
-        super(title, description, tags);
+                  Tag tag, boolean isLesson) {
+        super(title, description, tag);
         requireAllNonNull(startDateTime, endDateTime);
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
@@ -37,12 +33,13 @@ public class Event extends Task {
     }
 
     public static Event createLessonEvent(Title title, StartDateTime startDateTime, EndDateTime endDateTime,
-                                          Description description, Set<Tag> tags) {
-        return new Event(title, startDateTime, endDateTime, description, tags, true);
+                                          Description description, Tag tag) {
+        return new Event(title, startDateTime, endDateTime, description, tag, true);
     }
 
-    public static Event createUserEvent(Title title, StartDateTime startDateTime, EndDateTime endDateTime, Description description, Set<Tag> tags) {
-        return new Event(title, startDateTime, endDateTime, description, tags, false);
+    public static Event createUserEvent(Title title, StartDateTime startDateTime, EndDateTime endDateTime,
+                                        Description description, Tag tag) {
+        return new Event(title, startDateTime, endDateTime, description, tag, false);
     }
 
     public boolean isLesson() {
@@ -56,15 +53,22 @@ public class Event extends Task {
     public EndDateTime getEndDateTime() {
         return endDateTime;
     }
-
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable tag, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Tag getTag() {
+        return tag;
     }
 
+    @Override
+    public boolean isSameTask(Task otherTask) {
+        if (otherTask instanceof Event) {
+            return isSameEvent((Event) otherTask);
+        } else {
+            return false;
+        }
+    }
     /**
      * Returns true if both events of the same title, start and end datetime.
      * This defines a strong notion of equality between two events to allow recurring events yet preventing duplicates.
@@ -73,7 +77,6 @@ public class Event extends Task {
         if (otherEvent == this) {
             return true;
         }
-
         return otherEvent != null
                 && otherEvent.getTitle().equals(getTitle())
                 && otherEvent.getStartDateTime().equals(getStartDateTime())
@@ -100,14 +103,14 @@ public class Event extends Task {
                 && otherEvent.getStartDateTime().equals(getStartDateTime())
                 && otherEvent.getEndDateTime().equals(getEndDateTime())
                 && otherEvent.getDescription().equals(getDescription())
-                && otherEvent.getTags().equals(getTags())
+                && otherEvent.getTag().equals(getTag())
                 && otherEvent.isLesson() == isLesson();
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, startDateTime, endDateTime, description, tags, isLesson);
+        return Objects.hash(title, startDateTime, endDateTime, description, tag, isLesson);
     }
 
     @Override
@@ -123,9 +126,28 @@ public class Event extends Task {
                 .append(getEndDateTime())
                 .append(" Description: ")
                 .append(getDescription())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(" Tag: ");
         return builder.toString();
+    }
+
+    /**
+     * compares event with another task object, if the otherTask is also an event, compare there endDateTime,
+     * if another task is deadline object, check whether if has the deadlineDateTime filled by user, if exits,
+     * compare the this event's entDateTime with the deadlineDateTime, if not exits, the event is consider to be
+     * before the deadline.
+     */
+    @Override
+    public int compareTo(Task otherTask) {
+        if (otherTask instanceof Event) {
+            return getEndDateTime().value.compareTo(((Event) otherTask).getEndDateTime().value);
+        } else {
+            Deadline deadline = (Deadline) otherTask;
+            if (deadline.isDeadlineDateTimeFilled()) {
+                return getEndDateTime().value.compareTo(deadline.getDeadlineDateTime().value);
+            } else {
+                return -1;
+            }
+        }
     }
 
 }

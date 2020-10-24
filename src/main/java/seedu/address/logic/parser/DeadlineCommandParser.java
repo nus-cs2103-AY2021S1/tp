@@ -45,9 +45,9 @@ public class DeadlineCommandParser implements Parser<DeadlineCommand> {
             description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         }
 
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
 
-        Deadline deadline = Deadline.createDeadline(title, deadlineDateTime, description, tagList);
+        Deadline deadline = Deadline.createDeadline(title, deadlineDateTime, description, tag);
 
         return new DeadlineCommand(deadline);
     }

@@ -1,11 +1,6 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -36,7 +31,7 @@ class JsonAdaptedEvent {
     private final String endDateTime;
     private final String description;
     private final boolean isLesson;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String tag;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
@@ -45,15 +40,13 @@ class JsonAdaptedEvent {
     public JsonAdaptedEvent(@JsonProperty("title") String title, @JsonProperty("startDateTime") String startDateTime,
                             @JsonProperty("endDateTime") String endDateTime,
                             @JsonProperty("description") String description, @JsonProperty("isLesson") boolean isLesson,
-                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                            @JsonProperty("tagged") String tag) {
         this.title = title;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         this.description = description;
         this.isLesson = isLesson;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
+        this.tag = tag;
     }
 
     /**
@@ -65,9 +58,7 @@ class JsonAdaptedEvent {
         endDateTime = source.getEndDateTime().toString();
         description = source.getDescription().value;
         isLesson = source.isLesson();
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+        tag = source.getTag().tagName;
 
         logger.info("Planus task with title: '" + title + "' successfully converted to adapted task object");
     }
@@ -78,11 +69,10 @@ class JsonAdaptedEvent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted task.
      */
     public Event toModelType() throws IllegalValueException {
-        final List<Tag> taskTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            taskTags.add(tag.toModelType());
+        
+        if (tag == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Tag.class.getSimpleName()));
         }
-
         if (title == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
         }
@@ -133,9 +123,9 @@ class JsonAdaptedEvent {
             modelDescription = new Description(description);
         }
 
-        final Set<Tag> modelTags = new HashSet<>(taskTags);
+        final Tag modelTag = new Tag(tag);
 
-        return new Event(modelTitle, modelStartDateTime, modelEndDateTime, modelDescription, modelTags, isLesson);
+        return new Event(modelTitle, modelStartDateTime, modelEndDateTime, modelDescription, modelTag, isLesson);
     }
 
 }

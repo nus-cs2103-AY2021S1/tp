@@ -24,13 +24,14 @@ public class DeadlineBuilder {
     public static final String DEFAULT_DONE_DATE_TIME = "02-01-2020 12:00";
     public static final int DEFAULT_DURATION = 60;
     public static final boolean DEFAULT_STATUS = true;
+    public static final String DEFAULT_TAG = "CS2100";
 
     private Title title;
     private DeadlineDateTime deadlineDateTime;
     private Description description;
     private DoneDateTime doneDateTime;
     private Duration duration;
-    private Set<Tag> tags;
+    private Tag tag;
     private Status status;
 
     /**
@@ -41,7 +42,7 @@ public class DeadlineBuilder {
         deadlineDateTime = new DeadlineDateTime(DEFAULT_DEADLINE_DATE_TIME);
         description = new Description(DEFAULT_DESCRIPTION);
         doneDateTime = new DoneDateTime(DEFAULT_DONE_DATE_TIME);
-        tags = new HashSet<>();
+        tag = new Tag(DEFAULT_TAG);
         status = new Status(DEFAULT_STATUS);
         duration = new Duration(DEFAULT_DURATION);
     }
@@ -54,7 +55,7 @@ public class DeadlineBuilder {
         deadlineDateTime = deadlineToCopy.getDeadlineDateTime();
         description = deadlineToCopy.getDescription();
         doneDateTime = deadlineToCopy.getDoneDateTime();
-        tags = deadlineToCopy.getTags();
+        tag = deadlineToCopy.getTag();
         status = deadlineToCopy.getStatus();
         duration = deadlineToCopy.getDuration();
     }
@@ -70,8 +71,8 @@ public class DeadlineBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Task} that we are building.
      */
-    public DeadlineBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public DeadlineBuilder withTags(String tag) {
+        this.tag = new Tag(tag);
         return this;
     }
 
@@ -152,6 +153,6 @@ public class DeadlineBuilder {
     }
 
     public Deadline build() {
-        return new Deadline(title, deadlineDateTime, description, tags, status, duration, doneDateTime);
+        return new Deadline(title, deadlineDateTime, description, tag, status, duration, doneDateTime);
     }
 }

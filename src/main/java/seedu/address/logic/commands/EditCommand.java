@@ -112,14 +112,14 @@ public class EditCommand extends Command {
 
         Title updatedTitle = editTaskDescriptor.getTitle().orElse(taskToEdit.getTitle());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
-        Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
+        Tag updatedTag = editTaskDescriptor.getTag().orElse(taskToEdit.getTag());
 
         if (taskToEdit instanceof Deadline) {
             Deadline deadlineToEdit = (Deadline) taskToEdit;
-            return Deadline.createDeadline(updatedTitle, deadlineToEdit.getDeadlineDateTime(), updatedDescription, updatedTags);
+            return Deadline.createDeadline(updatedTitle, deadlineToEdit.getDeadlineDateTime(), updatedDescription, updatedTag);
         } else {
             Event eventToEdit = (Event) taskToEdit;
-            return Event.createUserEvent(updatedTitle, eventToEdit.getStartDateTime(), eventToEdit.getEndDateTime(), updatedDescription, updatedTags);
+            return Event.createUserEvent(updatedTitle, eventToEdit.getStartDateTime(), eventToEdit.getEndDateTime(), updatedDescription, updatedTag);
         }
     }
 
@@ -150,7 +150,7 @@ public class EditCommand extends Command {
     public static class EditTaskDescriptor {
         private Title title;
         private Description description;
-        private Set<Tag> tags;
+        private Tag tag;
 
         public EditTaskDescriptor() {}
 
@@ -161,14 +161,14 @@ public class EditCommand extends Command {
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setTitle(toCopy.title);
             setDescription(toCopy.description);
-            setTags(toCopy.tags);
+            setTag(toCopy.tag);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, description, tags);
+            return CollectionUtil.isAnyNonNull(title, description, tag);
         }
 
         public void setTitle(Title title) {
@@ -191,8 +191,8 @@ public class EditCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setTag(Tag tag) {
+            this.tag = tag;
         }
 
         /**
@@ -200,8 +200,8 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Tag> getTag() {
+            return (tag != null) ? Optional.of(tag) : Optional.empty();
         }
 
         @Override
@@ -221,7 +221,7 @@ public class EditCommand extends Command {
 
             return getTitle().equals(e.getTitle())
                     && getDescription().equals(e.getDescription())
-                    && getTags().equals(e.getTags());
+                    && getTag().equals(e.getTag());
         }
     }
 

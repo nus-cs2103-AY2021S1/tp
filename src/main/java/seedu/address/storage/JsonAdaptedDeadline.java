@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -38,7 +37,7 @@ class JsonAdaptedDeadline {
     private final String doneDateTime;
     private final String status;
     private final int duration;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String tag;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
@@ -46,16 +45,14 @@ class JsonAdaptedDeadline {
     @JsonCreator
     public JsonAdaptedDeadline(@JsonProperty("title") String title, @JsonProperty("deadlineDateTime") String deadlineDateTime,
            @JsonProperty("description") String description, @JsonProperty("doneDateTime") String doneDateTime,
-                               @JsonProperty("duration") int duration, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                               @JsonProperty("duration") int duration, @JsonProperty("tagged") String tag,
                                @JsonProperty("status") String status) {
         this.title = title;
         this.deadlineDateTime = deadlineDateTime;
         this.description = description;
         this.doneDateTime = doneDateTime;
         this.duration = duration;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
+        this.tag = tag;
         this.status = status;
     }
 
@@ -69,9 +66,7 @@ class JsonAdaptedDeadline {
         doneDateTime = source.getDoneDateTime().toString();
         status = source.getStatus().toString();
         duration = source.getDurationValue();
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+        tag = source.getTag().tagName;
 
         logger.info("Planus task with title: '" + title + "' successfully converted to adapted task object");
     }
@@ -82,11 +77,6 @@ class JsonAdaptedDeadline {
      * @throws IllegalValueException if there were any data constraints violated in the adapted task.
      */
     public Deadline toModelType() throws IllegalValueException {
-        final List<Tag> taskTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            taskTags.add(tag.toModelType());
-        }
-
         if (title == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
         }
@@ -163,9 +153,9 @@ class JsonAdaptedDeadline {
             modelDuration = new Duration(duration);
         }
 
-        final Set<Tag> modelTags = new HashSet<>(taskTags);
+        final Tag modelTag = new Tag(tag);
 
-        return new Deadline(modelTitle, modelDeadlineDateTime, modelDescription, modelTags, modelStatus, modelDuration,
+        return new Deadline(modelTitle, modelDeadlineDateTime, modelDescription, modelTag, modelStatus, modelDuration,
                 modelDoneDateTime);
     }
 

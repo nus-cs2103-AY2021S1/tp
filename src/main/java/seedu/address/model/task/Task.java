@@ -2,34 +2,29 @@ package seedu.address.model.task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Task in the PlaNus task list.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Task {
+public abstract class Task implements Comparable<Task> {
 
     // Identity fields
     protected final Title title;
     protected final Description description;
 
     // Data fields
-    protected final Set<Tag> tags = new HashSet<>();
+    protected final Tag tag;
 
     /**
      * Every field must be present and not null.
      */
-    protected Task(Title title, Description description, Set<Tag> tags) {
-        requireAllNonNull(title, description, tags);
+    protected Task(Title title, Description description, Tag tag) {
+        requireAllNonNull(title, description, tag);
         this.title = title;
         this.description = description;
-        this.tags.addAll(tags);
+        this.tag = (tag);
     }
 
     public Title getTitle() {
@@ -44,58 +39,31 @@ public class Task {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Tag getTag() {
+        return tag;
     }
+    
+    public abstract int getDuration();
 
     /**
      * Returns true if both tasks of the same title, date and time.
      * This defines a strong notion of equality between two tasks to allow recurring tasks yet preventing duplicates.
      */
-    public boolean isSameTask(Task otherTask) {
-        if (otherTask == this) {
-            return true;
-        }
-
-        return otherTask != null
-                && otherTask.getTitle().equals(getTitle());
-    }
+    public abstract boolean isSameTask(Task otherTask);
 
     /**
      * Returns true if both tasks have the same identity and data fields.
      * This defines a stronger notion of equality between two tasks.
      */
     @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof Task)) {
-            return false;
-        }
-
-        Task otherTask = (Task) other;
-        return otherTask.getTitle().equals(getTitle())
-                && otherTask.getDescription().equals(getDescription())
-                && otherTask.getTags().equals(getTags());
-    }
+    public abstract boolean equals(Object other);
 
     @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, description, tags);
-    }
+    public abstract int hashCode();
 
     @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getTitle())
-                .append(" Description: ")
-                .append(getDescription())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
-        return builder.toString();
-    }
+    public abstract String toString();
 
+    @Override
+    public abstract int compareTo(Task otherTask);
 }

@@ -1,15 +1,11 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Title;
 import seedu.address.model.task.event.EndDateTime;
 import seedu.address.model.task.event.Event;
 import seedu.address.model.task.event.StartDateTime;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Task objects.
@@ -21,12 +17,13 @@ public class EventBuilder {
     public static final String DEFAULT_END_DATE_TIME = "01-01-2020 12:00";
     public static final String DEFAULT_DESCRIPTION = "6 midterms next week.";
     public static final boolean DEFAULT_ISLESSON = false;
+    public static final String DEFAULT_TAG = "CS1101S";
 
     private Title title;
     private StartDateTime startDateTime;
     private EndDateTime endDateTime;
     private Description description;
-    private Set<Tag> tags;
+    private Tag tag;
     private boolean isLesson;
 
     /**
@@ -38,7 +35,7 @@ public class EventBuilder {
         endDateTime = new EndDateTime(DEFAULT_END_DATE_TIME);
         description = new Description(DEFAULT_DESCRIPTION);
         isLesson = DEFAULT_ISLESSON;
-        tags = new HashSet<>();
+        tag = new Tag(DEFAULT_TAG);
     }
 
     /**
@@ -50,7 +47,7 @@ public class EventBuilder {
         endDateTime = eventToCopy.getEndDateTime();
         description = eventToCopy.getDescription();
         isLesson = eventToCopy.isLesson();
-        tags = new HashSet<>();
+        tag = eventToCopy.getTag();
     }
 
     /**
@@ -62,10 +59,10 @@ public class EventBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Task} that we are building.
+     * Sets the {@code Tag} of the {@code Task} that we are building.
      */
-    public EventBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public EventBuilder withTag(String tag) {
+        this.tag = new Tag(tag);
         return this;
     }
 
@@ -112,6 +109,6 @@ public class EventBuilder {
     }
 
     public Event build() {
-        return new Event(title, startDateTime, endDateTime, description, tags, isLesson);
+        return new Event(title, startDateTime, endDateTime, description, tag, isLesson);
     }
 }

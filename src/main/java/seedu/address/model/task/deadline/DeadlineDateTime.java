@@ -15,7 +15,7 @@ public class DeadlineDateTime {
 
     public static final LocalDateTime DEFAULT_DATETIME = LocalDateTime.parse("01-01-1000 00:00", DateUtil.DATETIME_FORMATTER);
     public final LocalDateTime value;
-    public final boolean isNull;
+    public final boolean isFilled;
 
     /**
      * Constructs a {@code DateTime}.
@@ -24,12 +24,12 @@ public class DeadlineDateTime {
      */
     public DeadlineDateTime(String dateTime) {
         if (dateTime.isEmpty() || dateTime.isBlank() || dateTime == null || dateTime.equals(DEFAULT_DATETIME)) {
-            this.isNull = true;
+            this.isFilled = false;
             value = DEFAULT_DATETIME;
         } else {
             checkArgument(isValidDeadlineDateTime(dateTime), DateUtil.MESSAGE_CONSTRAINTS);
             value = LocalDateTime.parse(dateTime, DateUtil.DATETIME_FORMATTER);
-            isNull = false;
+            isFilled = true;
         }
     }
 
@@ -37,8 +37,8 @@ public class DeadlineDateTime {
         return new DeadlineDateTime("");
     }
 
-    public boolean isNull() {
-        return isNull;
+    public boolean isFilled() {
+        return isFilled;
     }
 
     /**
@@ -63,7 +63,7 @@ public class DeadlineDateTime {
 
     @Override
     public String toString() {
-        if (isNull) {
+        if (isFilled) {
             return "";
         } else {
             return value.format(DateUtil.DATETIME_FORMATTER);
@@ -75,7 +75,7 @@ public class DeadlineDateTime {
         return other == this // short circuit if same object
                 || (other instanceof DeadlineDateTime // instanceof handles nulls
                 && (value.equals(((DeadlineDateTime) other).value)
-                    || isNull && ((DeadlineDateTime) other).isNull())); // state check
+                    || isFilled && ((DeadlineDateTime) other).isFilled())); // state check
     }
 
     @Override
