@@ -79,9 +79,8 @@ public class LogicManager implements Logic {
             this.statsManager.add(((MakeRecipeCommand) cmd).getRecipe());
         }
 
-        logger.info("RECORD IS " + this.statsManager.getRecords().toString());
-
         try {
+            this.storage.saveRecords(this.statsManager.getRecords());
             this.storage.saveIngredientBook(this.model.getIngredientBook());
             this.storage.saveRecipeBook(this.model.getRecipeBook());
         } catch (IOException ioe) {

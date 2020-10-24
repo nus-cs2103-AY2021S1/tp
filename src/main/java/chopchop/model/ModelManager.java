@@ -12,6 +12,8 @@ import chopchop.commons.core.GuiSettings;
 import chopchop.commons.core.LogsCenter;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
+import chopchop.model.usage.IngredientUsage;
+import chopchop.model.usage.RecipeUsage;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
@@ -26,6 +28,8 @@ public class ModelManager implements Model {
     private final EntryBook<Ingredient> ingredientBook;
     private final FilteredList<Recipe> filteredRecipes;
     private final FilteredList<Ingredient> filteredIngredients;
+    private final UsageList<RecipeUsage> recipeUsageList;
+    private final UsageList<IngredientUsage> ingredientUsageList;
 
     /**
      * Initializes a ModelManager with the given RecipeBook, IngredientBook and userPrefs.
@@ -41,9 +45,10 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.recipeBook = new EntryBook<>(recipeBook);
         this.ingredientBook = new EntryBook<>(ingredientBook);
-
         this.filteredRecipes = new FilteredList<>(this.recipeBook.getEntryList());
         this.filteredIngredients = new FilteredList<>(this.ingredientBook.getEntryList());
+        //this.recipeUsageList = new UsageList<>();
+        //this.ingredientUsageList = new UsageList<>();
     }
 
     public ModelManager() {

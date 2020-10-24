@@ -2,6 +2,7 @@ package chopchop.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -12,6 +13,8 @@ import chopchop.model.ReadOnlyUserPrefs;
 import chopchop.model.UserPrefs;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
+import chopchop.model.usage.IngredientUsage;
+import chopchop.model.usage.RecipeUsage;
 
 /**
  * Manages storage of IngredientBook and RecipeBook data in local storage.
@@ -20,6 +23,8 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private final IngredientBookStorage ingredientBookStorage;
     private final RecipeBookStorage recipeBookStorage;
+    private final UsageStorage<JsonAdaptedRecipeUsage, RecipeUsage> recipeUsageStorage;
+    private final UsageStorage<JsonAdaptedIngredientUsage, IngredientUsage> ingredientUsageStorage;
     private final UserPrefsStorage userPrefsStorage;
 
     /**
@@ -27,9 +32,13 @@ public class StorageManager implements Storage {
      * {@code UserPrefStorage}.
      */
     public StorageManager(RecipeBookStorage recipeBookStorage, IngredientBookStorage ingredientBookStorage,
+                          UsageStorage<JsonAdaptedRecipeUsage, RecipeUsage> recipeUsageStorage,
+                          UsageStorage<JsonAdaptedIngredientUsage, IngredientUsage> ingredientUsageStorage,
                           UserPrefsStorage userPrefsStorage) {
         this.recipeBookStorage = recipeBookStorage;
         this.ingredientBookStorage = ingredientBookStorage;
+        this.recipeUsageStorage = recipeUsageStorage;
+        this.ingredientUsageStorage = ingredientUsageStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -128,5 +137,58 @@ public class StorageManager implements Storage {
     public void saveRecipeBook(ReadOnlyEntryBook<Recipe> recipeBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         this.recipeBookStorage.saveRecipeBook(recipeBook, filePath);
+    }
+
+    @Override
+    public Path getRecipeUsageFilePath() {
+        return this.recipeUsageStorage.getUsageFilePath();
+    }
+
+    @Override
+    public Optional<List<RecipeUsage>> readRecipeUsages() throws DataConversionException {
+        return this.readRecipeUsages(this.getRecipeUsageFilePath());
+    }
+
+    @Override
+    public Optional<List<RecipeUsage>> readRecipeUsages(Path filePath) throws DataConversionException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return this.recipeUsageStorage.readUsages(filePath);
+    }
+
+    @Override
+    public void saveRecipeUsages(List<JsonAdaptedRecipeUsage> usages) throws IOException {
+        this.saveRecipeUsages(usages, this.getRecipeUsageFilePath());
+    }
+
+    @Override
+    public void saveRecipeUsages(List<JsonAdaptedRecipeUsage> usages, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        this.recipeUsageStorage.saveUsages(usages, filePath);
+    }
+
+    @Override
+    public Path getIngredientUsageFilePath() {
+        return this.ingredientUsageStorage.getUsageFilePath();
+    }
+
+    @Override
+    public Optional<List<IngredientUsage>> readIngredientUsages() throws DataConversionException {
+        return this.readIngredientUsages(this.getIngredientUsageFilePath());
+    }
+
+    @Override
+    public Optional<List<IngredientUsage>> readIngredientUsages(Path filePath) throws DataConversionException {
+        return this.ingredientUsageStorage.readUsages(filePath);
+    }
+
+    @Override
+    public void saveIngredientUsages(List<JsonAdaptedIngredientUsage> usages) throws IOException {
+        this.saveIngredientUsages(usages, this.getIngredientUsageFilePath());
+    }
+
+    @Override
+    public void saveIngredientUsages(List<JsonAdaptedIngredientUsage> usages, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        this.ingredientUsageStorage.saveUsages(usages, filePath);
     }
 }

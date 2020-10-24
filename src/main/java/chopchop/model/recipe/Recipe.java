@@ -131,38 +131,7 @@ public class Recipe extends Entry {
         return new Recipe(this.name.toString(), this.ingredients, this.steps, this.tags, updatedUsages);
     }
 
-    public Optional<LocalDateTime> getLastCooked() {
-        if (this.usages.size() == 0) {
-            return Optional.empty();
-        }
-        return Optional.of(this.usages.get(this.usages.size() - 1));
-    }
 
-    public int getUsageCount() {
-        return this.usages.size();
-    }
-
-    public List<LocalDateTime> getUsagesAfter(LocalDateTime lowerBound) {
-        requireNonNull(lowerBound);
-        return this.usages.stream()
-            .filter(x-> x.isAfter(lowerBound))
-            .collect(Collectors.toList());
-    }
-
-    public List<LocalDateTime> getUsagesBefore(LocalDateTime upperBound) {
-        requireNonNull(upperBound);
-        return this.usages.stream()
-            .filter(x-> x.isAfter(upperBound))
-            .collect(Collectors.toList());
-    }
-
-    public List<LocalDateTime> getUsagesBetween(LocalDateTime start, LocalDateTime end) {
-        requireAllNonNull(start, end);
-        return this.usages.stream()
-            .filter(x -> x.isAfter(start))
-            .filter(x -> x.isBefore(end))
-            .collect(Collectors.toList());
-    }
 
     @Override
     public boolean isSame(Entry other) {

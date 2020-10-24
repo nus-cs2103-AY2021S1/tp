@@ -27,6 +27,7 @@ import chopchop.storage.JsonIngredientBookStorage;
 import chopchop.storage.JsonRecipeBookStorage;
 import chopchop.storage.JsonUserPrefsStorage;
 import chopchop.storage.RecipeBookStorage;
+import chopchop.storage.UsageStorage;
 import chopchop.storage.Storage;
 import chopchop.storage.StorageManager;
 import chopchop.storage.UserPrefsStorage;
@@ -62,7 +63,7 @@ public class MainApp extends Application {
         RecipeBookStorage recipeBookStorage = new JsonRecipeBookStorage(userPrefs.getRecipeBookFilePath());
         IngredientBookStorage ingredientBookStorage =
                 new JsonIngredientBookStorage(userPrefs.getIngredientBookFilePath());
-        storage = new StorageManager(recipeBookStorage, ingredientBookStorage, userPrefsStorage);
+        storage = new StorageManager(recipeBookStorage, ingredientBookStorage, statsStorage, userPrefsStorage);
 
         initLogging(config);
 
