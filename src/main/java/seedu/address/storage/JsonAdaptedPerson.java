@@ -17,6 +17,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Priority;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -31,6 +32,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedClientSource> clientSource = new ArrayList<>();
     private final String note;
+    private final String priority;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -40,7 +42,8 @@ class JsonAdaptedPerson {
             @JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("clientSource") List<JsonAdaptedClientSource> clientSource,
-            @JsonProperty("note") String note) {
+            @JsonProperty("note") String note,
+            @JsonProperty("priority") String priority) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -49,6 +52,7 @@ class JsonAdaptedPerson {
             this.clientSource.addAll(clientSource);
         }
         this.note = note;
+        this.priority = priority;
     }
 
     /**
@@ -85,6 +89,7 @@ class JsonAdaptedPerson {
         } else {
             note = null;
         }
+        priority = source.getPriority().value;
     }
 
     /**
@@ -148,7 +153,18 @@ class JsonAdaptedPerson {
             modelNote = new Note(note);
         }
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelClientSources, modelNote);
+        final Priority modelPriority;
+        if (priority == null) {
+            modelPriority = new Priority(null);
+        } else {
+            if (!Priority.isValidPriority(priority)) {
+                throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
+            }
+
+            modelPriority = new Priority(priority);
+        }
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelClientSources, modelNote,
+                modelPriority);
     }
 
 }

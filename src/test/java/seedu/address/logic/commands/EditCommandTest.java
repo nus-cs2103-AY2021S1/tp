@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENTSOURCE_HU
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NOTE_DOG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_LOW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -56,11 +57,13 @@ public class EditCommandTest {
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withClientSources(VALID_CLIENTSOURCE_HUSBAND).withNote(VALID_NOTE_DOG).build();
+                .withClientSources(VALID_CLIENTSOURCE_HUSBAND).withNote(VALID_NOTE_DOG)
+                .withPriority(VALID_PRIORITY_LOW).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB)
-                .withClientSources(VALID_CLIENTSOURCE_HUSBAND).withNote(VALID_NOTE_DOG).build();
+                .withClientSources(VALID_CLIENTSOURCE_HUSBAND).withNote(VALID_NOTE_DOG)
+                .withPriority(VALID_PRIORITY_LOW).build();
 
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 

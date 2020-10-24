@@ -25,19 +25,23 @@ public class Person {
     private final Address address;
     private final Set<ClientSource> clientSources = new HashSet<>();
     private final Note note;
+    private final Priority priority;
 
 
     /**
      * Only name and tags need to be non-null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<ClientSource> clientSources, Note note) {
-        requireAllNonNull(name, clientSources);
+    public Person(Name name, Phone phone, Email email, Address address, Set<ClientSource> clientSources, Note note,
+                  Priority priority) {
+        requireAllNonNull(name, clientSources, priority);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.clientSources.addAll(clientSources);
         this.note = note;
+        this.priority = priority;
+
     }
 
     public Name getName() {
@@ -66,6 +70,10 @@ public class Person {
 
     public Note getNote() {
         return note;
+    }
+
+    public Priority getPriority() {
+        return priority;
     }
 
     /**
@@ -101,7 +109,7 @@ public class Person {
      * If either objects are null, false is returned, as the other identity field
      * would be used to check for "sameness" instead.
      *
-     * @param obj First object to test for is same.
+     * @param obj      First object to test for is same.
      * @param otherObj Second object to test for is same.
      * @return Boolean representing if 2 objects are the same.
      */
@@ -145,7 +153,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, clientSources, note);
+        return Objects.hash(name, phone, email, address, clientSources, note, priority);
     }
 
     @Override
@@ -173,6 +181,8 @@ public class Person {
             builder.append(" Note: ")
                     .append(getNote());
         }
+        builder.append(" Priority: ")
+                .append(getPriority());
 
         return builder.toString();
     }
