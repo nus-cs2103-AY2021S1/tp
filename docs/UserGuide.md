@@ -4,7 +4,12 @@
 User Guide v1.3 - Gabriella Teh
 ---
 
-PlaNus is a desktop app for **managing tasks, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PlaNus can get your tasks managed faster than traditional GUI apps.
+##Introduction
+
+PlaNus is **task managing desktop application** for students in NUS, optimized for use via a Command Line Interface (CLI) with the benefits of Graphical User Interface (GUI). PlaNus allows you to keep track of all your deadlines, events and lessons easily.
+
+##About
+This user guide provides a detailed description of all the features available in the application.
 
 ## Quick start
 
@@ -46,7 +51,7 @@ PlaNus is a desktop app for **managing tasks, optimized for use via a Command Li
 
 ### Show all commands : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message with a link to the user guide.
 
 ![help message](images/helpMessage.png)
 
@@ -156,24 +161,28 @@ Examples:
    that includes either `dinner` or `lunch`
 
 
-
 ### Edit a task: `edit`
 
-Finds a task by a set of defined attribute by the user.
+Edits a task by a set of defined attributes by the user.
 
-Format: `edit ATTRIBUTE_1:NEW_VALUE ATTRIBUTE_2:NEW_VALUE ...`
+Format: `edit INDEX ATTRIBUTE_1:NEW_VALUE ATTRIBUTE_2:NEW_VALUE ...`
+
+If you provide different attributes in the command, multiple attributes of the specified task will be changed simultaneously.
 
 Available attributes in v1.3 include:
 
-* `title`
-* `desc`
-* `type`
-* `date`
+* `title` edits the title of the specified task
+* `desc` edits the description of the specified task
+* `type` edits the type of the specified task
+* `date` edits the date and/or time of the specified task
+* `tag` edits the tag of the specified task
 
 Examples:
 
-* `edit 1 title:play games` will edit the first task in the results of the `list` command, changing its title to `play games` and type of task to `todo`
-* `find title:homework` followed by`edit 2 date:01-01-2020` will edit the 1st task in the results of the `find` command, changing its date to 01-01-2020
+* `edit 1 title:play games type:todo` will edit the first task in the results of the `list` command, changing its title to `play games` and type of task to `todo`
+* `find type:todo` followed by `edit 3 desc:This is very urgent!` will edit the first task of the third task in the results of the `find` command, changing its description to "This is very urgent!"
+* `find title:homework` followed by`edit 2 desc:Homework is difficult date:01-01-2020` will edit the second task in the results of the `find` command, changing its date to 01-01-2020 and its description to "Homework is difficult"
+* `edit 1 tag:CS2103T` will edit the first task in the results of the `list` command, changing its tag to "CS2103T"
 
 ### Exit the program : `exit`
 
