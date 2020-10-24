@@ -92,10 +92,10 @@ public interface Model {
     void addVendor(Vendor vendor);
 
     /**
-     * Creates a new AddressBook with the vendor with index {@code vendorIndex} .
+     * Selects the vendor with index {@code vendorIndex} .
      * {@code vendorIndex} must be a valid index in the model.
      */
-    AddressBook selectVendor(int vendorIndex);
+    void selectVendor(int vendorIndex);
 
 
     /**
@@ -190,7 +190,7 @@ public interface Model {
     /**
      * Returns an unmodifiable view of the filtered food list at the corresponding index
      */
-    ObservableList<Food> getFilteredFoodList(int index);
+    ObservableList<Food> getFilteredFoodList();
 
     /**
      * Clears the order.
@@ -209,7 +209,7 @@ public interface Model {
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredFoodList(Predicate<Food> predicate, int index);
+    void updateFilteredFoodList(Predicate<Food> predicate);
 
     /**
      * Returns an unmodifiable view of the filtered orderItem list at the corresponding index
@@ -233,4 +233,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredOrderItemList(Predicate<OrderItem> predicate);
+
+    void updateVendor();
 }

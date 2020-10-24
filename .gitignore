@@ -14,7 +14,7 @@ src/main/resources/docs/
 /*.log.*
 
 # Data files
-data/
+/data/
 
 # Test sandbox files
 src/test/data/sandbox/

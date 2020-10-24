@@ -18,13 +18,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     private int vendorIndex;
 
     /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
-     */
-    {
+    * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
+    * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+    *
+    * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
+    *   among constructors.
+    */ {
         vendors = new UniqueVendorList();
 
     }
@@ -70,6 +69,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
         setVendors(newData.getVendorList());
+        selectVendor(newData.getVendorIndex());
     }
 
     //// vendor-level operations
@@ -101,11 +101,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         vendors.setVendor(target, editedVendor);
     }
 
-    /**
-     * Returns a new AddressBook which has the selected vendor from {@code vendorIndex}
-     */
-    public AddressBook selectVendor(int vendorIndex) {
-        return new AddressBook(this.getVendorList(), vendorIndex);
+    public void selectVendor(int vendorIndex) {
+        this.vendorIndex = vendorIndex;
     }
 
     @Override

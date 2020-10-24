@@ -23,11 +23,11 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103-T16-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103-T16-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103-T16-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -51,7 +51,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `remove 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -62,11 +62,11 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103-T16-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103-T16-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103-T16-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -82,32 +82,32 @@ The `UI` component,
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding an order item).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("remove 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `remove 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `RemoveCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103-T16-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * contains the `AddressBook` and `MenuManager`, `OrderManager` components.
     * `AddressBook` stores the data for vendors.
-    * `MenuManager` stores the data for food items.
+    * `MenuManager` stores the data for food items of the vendor's menu.
     * `OrderManager` stores the data for order items.
 
-* Each of these coponents exposes an unmodifiable `ObservableList` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* Each of these components exposes an unmodifiable `ObservableList` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
@@ -121,7 +121,7 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103-T16-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
@@ -317,6 +317,16 @@ _{more aspects and alternatives to be added}_
 _{Explain here how the data archiving feature will be implemented}_
 
 
+### Vendor Command
+
+* The Vendor Command allows the user to select a vendor from the `AddressBook` to order from.
+* If the vendor does not exist, a `Command Exception will be thrown`
+* If the vendor selected is different from the current vendor, the model will clear the current order.
+
+The following diagram summarises the sequence when the VendorCommmand is executed.
+![VendorSequendeDiagram](images/VendorCommandSequenceDiagram.png)
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -355,10 +365,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | NUS resident                           | add a food item to my supper order |                                                                        |
 | `* * *`  | NUS resident | remove a food item from my supper order |                                    |
 | `* * *`  | NUS resident | see the menu | view all the items currently ordered by me |
-| `* * *` | NUS resident | see the vendor list and select vendor | confirm which vendor to order from       
-| `* * ` | NUS resident | see the total price of my current order | decide whether I want to order more   
-| `*`      | NUS resident | confirm order | finalize my supper selection                     |
-
+| `* * *` | NUS resident | see the vendor list and select vendor | confirm which vendor to order from |
+| `* * ` | NUS resident | see the total price of my current order | decide whether I want to order more |
+| `*` | NUS resident | confirm order | finalize my supper selection |
+| `* * *` | NUS resident | undo my commands | fix any mistakes made while ordering |
+| `* * *` | NUS resident | submit my order |  |
+| `* *` | NUS resident | clear the current order | start a new order |
 *{More to be added}*
 
 ### Use cases
@@ -383,16 +395,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use Case resumes at step 2
 - 3b. The user has already selected a different vendor.
+  
   - 3b1. SupperStrikers clears the order of the current vendor.
   
   Use case resumes at step 4.
-
-**Use case: Creating a new supper order**
-
-**MSS**
-
-1. User requests to start a new supper order
-2. SupperStrikers creates a new supper order
 
 **Use case: Viewing current order**
 
@@ -401,13 +407,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list all the items in the current order
 2. SupperStrikers displays the current order to the user
 
+**Use case: Viewing total**
+
+**MSS**
+
+1. User requests to see the total price of the current order
+2. SupperStrikers displays the total price of the current order to the user
+
+**Use case: Clearing current order**
+
+**MSS**
+
+1. User requests to clear the current order
+2. SupperStrikers clears the current order
+3. SupperStrikers creates a new empty order of the selected order  
+
+**Use case: Submit order**
+
+**MSS**
+
+1. User requests to submit the current order
+2. SupperStrikers displays a copy of the order in a submittable format to the user
+
 **Use case: Add an item**
 
 **MSS**
 
 1. User requests to add a specified quantity of an item listed in the vendor menu
 2. SupperStrikers adds the item along with the quantity specified into the current order
-3. User requests to list all the items in the current order
 4. SupperStrikers displays the updated order with the newly added item
 
 **Extensions**
@@ -423,6 +450,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1b1. SupperStrikers shows an error message.
 
     Use Case resumes at step 1
+  
+- 1c. The quantity is not specified
+
+  - 1c1. SupperStrikers adds the quantity of the item by 1.
+
+    Use case resumes at step 1.
 
 **Use case: Remove an item**
 
@@ -446,16 +479,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
     
 * 1c. The given quantity is invalid.
-     * 1c1. SupperStrikers shows an error message.
      
+     * 1c1. SupperStrikers shows an error message.
+
       Use case ends.
      
-* 1d. The given quantity is larger or equal to the quantity fo the order item.
-     * 1d1. SupperStrikers removes the order item at the specified index.
-     
-     Use case ends.
-     
+* 1d. The given quantity is larger or equal to the quantity to the order item.
 
+     * 1d1. SupperStrikers removes the order item at the specified index.
+
+      Use case ends.
+
+* 1e. The quantity is not specified.
+
+     - 1e1. SupperStrikers removes the order item at the specified index.
+
+      Use case ends.
 
 *{More to be added}*
 

@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -10,14 +9,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.vendor.NameContainsKeywordsPredicate;
 import seedu.address.model.vendor.Vendor;
 import seedu.address.testutil.EditVendorDescriptorBuilder;
 
@@ -111,18 +107,18 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredVendorList());
     }
-    /**
-     * Updates {@code model}'s filtered list to show only the vendor at the given {@code targetIndex} in the
-     * {@code model}'s address book.
-     */
-    public static void showVendorAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredVendorList().size());
-
-        Vendor vendor = model.getFilteredVendorList().get(targetIndex.getZeroBased());
-        final String[] splitName = vendor.getName().fullName.split("\\s+");
-        model.updateFilteredVendorList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
-
-        assertEquals(1, model.getFilteredVendorList().size());
-    }
+    //    /**
+    //     * Updates {@code model}'s filtered list to show only the vendor at the given {@code targetIndex} in the
+    //     * {@code model}'s address book.
+    //     */
+    //    public static void showVendorAtIndex(Model model, Index targetIndex) {
+    //        assertTrue(targetIndex.getZeroBased() < model.getFilteredVendorList().size());
+    //
+    //        Vendor vendor = model.getFilteredVendorList().get(targetIndex.getZeroBased());
+    //        final String[] splitName = vendor.getName().fullName.split("\\s+");
+    //        model.updateFilteredVendorList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+    //
+    //        assertEquals(1, model.getFilteredVendorList().size());
+    //    }
 
 }
