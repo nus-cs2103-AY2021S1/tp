@@ -23,6 +23,6 @@ public class ReviewCommand extends Command {
             throw new CommandException(MESSAGE_INITIATE_REVIEW_ERROR);
         }
 
-        return new CommandResult(MESSAGE_INITIATE_REVIEW_SUCCESS, false, false, true);
+        return new CommandResult(MESSAGE_INITIATE_REVIEW_SUCCESS, false, false, true, false);
     }
 }

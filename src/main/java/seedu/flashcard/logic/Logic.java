@@ -4,6 +4,7 @@ import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
 import seedu.flashcard.commons.core.GuiSettings;
+import seedu.flashcard.logic.commands.Command;
 import seedu.flashcard.logic.commands.CommandResult;
 import seedu.flashcard.logic.commands.exceptions.CommandException;
 import seedu.flashcard.logic.parser.exceptions.ParseException;
@@ -22,6 +23,14 @@ public interface Logic {
      * @throws ParseException If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
+
+    /**
+     * Executes the given command and returns the result. Used internally.
+     * @param command The command provided by the system.
+     * @return the result of the command execution.
+     * @throws CommandException If an error occurs during command execution.
+     */
+    CommandResult executeCommand(Command command) throws CommandException;
 
     /**
      * Returns the FlashcardDeck.

@@ -17,7 +17,8 @@ public class ReviewCommandTest {
 
     @Test
     public void execute_review_success() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_INITIATE_REVIEW_SUCCESS, false, false, true);
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_INITIATE_REVIEW_SUCCESS, false, false, true,
+                false);
         assertCommandSuccess(new ReviewCommand(), model, expectedCommandResult, expectedModel);
     }
 

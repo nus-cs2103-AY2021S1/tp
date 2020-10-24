@@ -4,33 +4,32 @@ import javafx.event.EventHandler;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyEvent;
 import seedu.flashcard.logic.Logic;
+import seedu.flashcard.logic.commands.exceptions.CommandException;
 import seedu.flashcard.model.flashcard.Flashcard;
 
 /**
- * An UI component that handles review mode.
+ * An UI component that handles the quiz mode.
  */
-public class ReviewPanel extends StudyPanel {
+public class QuizPanel extends StudyPanel {
 
-    public static final String EXIT_MESSAGE = "Exited review mode";
-    public static final String HELP_MESSAGE = "You are in review mode \n\u2191 hide answer   \u2193 show answer   "
-            + "\u2190 previous flashcard" + "   \u2192 next flashcard" + "   q quit review mode";
-    public static final int RIGHT_ARROW = 39;
-    public static final int LEFT_ARROW = 37;
+    public static final String EXIT_MESSAGE = "Exited Quiz mode";
+    public static final String HELP_MESSAGE = "You are in quiz mode \n\u2193 show answer   q quit quiz mode";
     public static final int DOWN_ARROW = 40;
-    public static final int UP_ARROW = 38;
     public static final int Q_KEY = 81;
+    public static final int Y_KEY = 89;
+    public static final int N_KEY = 78;
 
     /**
-     * Creates a {@code ReviewPanel} that handles review mode.
+     * Creates a {@code QuizPanel} that handles quiz mode.
      */
-    public ReviewPanel(Logic logic, MainWindow parent) {
+    public QuizPanel(Logic logic, MainWindow parent) {
         super(logic, parent);
         showFlashcard(studyManager.getCurrentFlashcard());
         handleStudy();
     }
 
     /**
-     * Executes review function.
+     * Executes quiz function.
      */
     @Override
     protected void handleStudy() {
@@ -41,22 +40,19 @@ public class ReviewPanel extends StudyPanel {
                     return;
                 }
                 switch (event.getCode().getCode()) {
-                case RIGHT_ARROW: // right arrow key down
-                    handleUserNextFlashcardInput();
-                    break;
-                case LEFT_ARROW: // left arrow key down
-                    handleUserPreviousFlashcardInput();
-                    break;
                 case DOWN_ARROW: // down arrow key down
                     FlashcardAnswerCard flashcardAnswerCard = new FlashcardAnswerCard(
                             studyManager.getCurrentFlashcard());
                     showAnswer(flashcardAnswerCard);
                     break;
-                case UP_ARROW: // up arrow key down
-                    hideAnswer();
-                    break;
                 case Q_KEY: // 'q' key down
                     exitStudyMode(EXIT_MESSAGE);
+                    break;
+                case Y_KEY: // 'y' key down
+                    handleUserAnswerInput(true);
+                    break;
+                case N_KEY:// 'n' key down
+                    handleUserAnswerInput(false);
                     break;
                 default:
                     break;
@@ -67,20 +63,19 @@ public class ReviewPanel extends StudyPanel {
         parent.getRoot().addEventFilter(KeyEvent.KEY_PRESSED, keyDownEventHandler);
     }
 
-    private void handleUserNextFlashcardInput() {
-        if (!studyManager.hasNextFlashcard()) {
-            parent.setResultDisplayMessage("This are no more flashcards to be reviewed\n" + HELP_MESSAGE);
-        } else {
-            showFlashcard(studyManager.getNextFlashcard());
+    private void handleUserAnswerInput(boolean isCorrect) {
+        if (!studyManager.isCurrentFlashcardReviewed()) {
+            return;
         }
-    }
-
-    private void handleUserPreviousFlashcardInput() {
-        if (!studyManager.hasPreviousFlashcard()) {
-            parent.setResultDisplayMessage("This are no more previous flashcards to be reviewed\n"
-                    + HELP_MESSAGE);
+        try {
+            studyManager.incrementCurrentFlashcardStatistics(isCorrect);
+        } catch (CommandException e) {
+            parent.setResultDisplayMessage(e.getMessage());
+        }
+        if (studyManager.hasNextFlashcard()) {
+            showFlashcard(studyManager.getNextFlashcard());
         } else {
-            showFlashcard(studyManager.getPrevFlashcard());
+            exitStudyMode("End of quiz" + "\n" + EXIT_MESSAGE);
         }
     }
 
@@ -88,6 +83,13 @@ public class ReviewPanel extends StudyPanel {
     protected void showFlashcard(Flashcard flashcard) {
         super.showFlashcard(flashcard);
         parent.setResultDisplayMessage(HELP_MESSAGE);
+    }
+
+    @Override
+    protected void showAnswer(FlashcardAnswerCard flashcardAnswerCard) {
+        super.showAnswer(flashcardAnswerCard);
+        studyManager.markCurrentFlashcardAsReviewed();
+        parent.setResultDisplayMessage("Did you get the answer correct? Press y/n");
     }
 
 }

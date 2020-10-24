@@ -238,11 +238,15 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isReviewMode()) {
-                enterStudyMode(new ReviewPanel(logic.getFilteredFlashcardList(), this));
+                enterStudyMode(new ReviewPanel(logic, this));
             }
 
             if (commandResult.getViewIndex() != null) {
                 handleView(commandResult.getViewIndex(), commandResult.isShowAnswer());
+            }
+
+            if (commandResult.isQuizMode()) {
+                enterStudyMode(new QuizPanel(logic, this));
             }
 
             return commandResult;
@@ -251,5 +255,9 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    public void setResultDisplayMessage(String message) {
+        resultDisplay.setFeedbackToUser(message);
     }
 }

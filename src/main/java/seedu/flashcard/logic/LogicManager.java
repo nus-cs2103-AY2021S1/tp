@@ -55,6 +55,20 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public CommandResult executeCommand(Command command) throws CommandException {
+        logger.info("----------------[INTERNAL COMMAND]");
+        CommandResult commandResult;
+        commandResult = command.execute(model);
+
+        try {
+            storage.saveFlashcardDeck(model.getFlashcardDeck());
+        } catch (IOException ioe) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        }
+        return commandResult;
+    }
+
+    @Override
     public ReadOnlyFlashcardDeck getFlashcardDeck() {
         return model.getFlashcardDeck();
     }

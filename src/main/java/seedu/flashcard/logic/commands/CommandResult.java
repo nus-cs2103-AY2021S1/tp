@@ -11,29 +11,45 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
+    /**
+     * Help information should be shown to the user.
+     */
     private final boolean showHelp;
 
-    /** The application should exit. */
+    /**
+     * The application should exit.
+     */
     private final boolean exit;
 
-    /** The application enters review mode. */
+    /**
+     * The application enters review mode.
+     */
     private final boolean reviewMode;
 
-    /** The flashcard index to view */
+    /**
+     * The flashcard index to view
+     */
     private final Integer viewIndex;
 
-    /** The application should show answer for view command. */
+    /**
+     * The application should show answer for view command.
+     */
     private final boolean showAnswer;
+
+    /**
+     * The application enters quiz mode
+     */
+    private final boolean quizMode;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean reviewMode) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean reviewMode, boolean quizMode) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.reviewMode = reviewMode;
+        this.quizMode = quizMode;
         this.viewIndex = null;
         this.showAnswer = false;
     }
@@ -46,6 +62,7 @@ public class CommandResult {
         this.showHelp = false;
         this.exit = false;
         this.reviewMode = false;
+        this.quizMode = false;
         this.viewIndex = viewIndex;
         this.showAnswer = showAnswer;
     }
@@ -56,7 +73,7 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false,
-                false);
+                false, false);
     }
 
     public String getFeedbackToUser() {
@@ -83,6 +100,10 @@ public class CommandResult {
         return exit;
     }
 
+    public boolean isQuizMode() {
+        return quizMode;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -98,12 +119,13 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
-                && reviewMode == otherCommandResult.reviewMode;
+                && reviewMode == otherCommandResult.reviewMode
+                && quizMode == otherCommandResult.quizMode;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, reviewMode);
+        return Objects.hash(feedbackToUser, showHelp, exit, reviewMode, quizMode);
     }
 
 }
