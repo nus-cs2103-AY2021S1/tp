@@ -55,6 +55,7 @@ public class AddZoomLinkCommand extends Command {
         Module updatedModule = moduleToAddLink.addZoomLink(zoomLink);
         model.setModule(moduleToAddLink, updatedModule);
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        model.commitModuleList();
         return new CommandResult(createSuccessMessage(updatedModule.getName().fullName));
     }
 
