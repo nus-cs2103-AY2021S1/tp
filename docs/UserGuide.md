@@ -93,7 +93,7 @@ All tCheck data (i.e. contact details, ingredient data, sales data) are saved in
 
 Adds an employee to the contact list.
 
-Format: `c-add [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [t/TAG]…​`
+Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An employee can have any number of tags (including 0)
@@ -113,7 +113,7 @@ Format: `c-list`
 
 Edits the corresponding contact information in the contact list.
 
-Format: `c-edit INDEX [n/NAME] [p/PHONE] [e/EMERGENCY_CONTACT] [t/TAG] …​​`
+Format: `c-edit INDEX n/NAME p/PHONE e/EMERGENCY_CONTACT [t/TAG] …​​`
 
 * Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
