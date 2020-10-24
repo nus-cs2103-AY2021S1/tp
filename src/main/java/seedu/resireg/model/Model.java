@@ -1,10 +1,12 @@
 package seedu.resireg.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.resireg.commons.core.GuiSettings;
+import seedu.resireg.model.alias.CommandWordAlias;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
@@ -41,6 +43,33 @@ public interface Model {
      * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the user prefs' command aliases.
+     */
+    List<CommandWordAlias> getCommandWordAliases();
+
+    /**
+     * Returns the user prefs' command aliases.
+     */
+    String getCommandWordAliasesAsString();
+
+    /**
+     * Returns true if a command alias with the same data as {@code target} exists in user preferences.
+     */
+    boolean hasCommandWordAlias(CommandWordAlias target);
+
+    /**
+     * Deletes the given alias.
+     * The alias must exist in user prefs.
+     */
+    void deleteCommandWordAlias(CommandWordAlias target);
+
+    /**
+     * Adds the given alias.
+     * {@code alias} must not already exist in user prefs.
+     */
+    void addCommandWordAlias(CommandWordAlias source);
 
     /**
      * Returns the user prefs' address book file path.
@@ -85,15 +114,24 @@ public interface Model {
      */
     void setStudent(Student target, Student editedStudent);
 
-    /**
-     * Returns true if an allocation with the {@code student} exists in the address book.
-     */
-    boolean isAllocated(Student student);
+    // === ROOMS ====
 
     /**
-     * Returns true if an allocation with the {@code room} exists in the address book.
+     * Returns true if a room with the same data as {@code room} exists in the address book.
      */
-    boolean isAllocated(Room room);
+    boolean hasRoom(Room room);
+
+    /**
+     * Deletes the given room.
+     * The room must exist in ResiReg.
+     */
+    void deleteRoom(Room target);
+
+    /**
+     * Adds the given room.
+     * {@code room} must already exist in ResiReg.
+     */
+    void addRoom(Room room);
 
     /**
      * Replaces the given room {@code target} with {@code editedRoom}.
@@ -103,10 +141,17 @@ public interface Model {
      */
     void setRoom(Room target, Room editedRoom);
 
+
+    // === ALLOCATIONS ====
     /**
-     * Returns true if a room with the same data as {@code room} exists in the address book.
+     * Returns true if an allocation with the {@code student} exists in the address book.
      */
-    boolean hasRoom(Room room);
+    boolean isAllocated(Student student);
+
+    /**
+     * Returns true if an allocation with the {@code room} exists in the address book.
+     */
+    boolean isAllocated(Room room);
 
     /**
      * Returns true if an allocation with the same identity as {@code allocation} exists in the address book.

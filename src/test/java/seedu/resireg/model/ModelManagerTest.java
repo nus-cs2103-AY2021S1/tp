@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.resireg.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.resireg.testutil.Assert.assertThrows;
+import static seedu.resireg.testutil.TypicalCommandWordAliases.ROOMS_R;
+import static seedu.resireg.testutil.TypicalCommandWordAliases.STUDENTS_ST;
+import static seedu.resireg.testutil.TypicalRooms.ROOM_ONE;
 import static seedu.resireg.testutil.TypicalStudents.ALICE;
 import static seedu.resireg.testutil.TypicalStudents.BENSON;
 
@@ -17,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import seedu.resireg.commons.core.GuiSettings;
 import seedu.resireg.model.student.NameContainsKeywordsPredicate;
 import seedu.resireg.testutil.AddressBookBuilder;
+import seedu.resireg.testutil.UserPrefsBuilder;
 
 public class ModelManagerTest {
 
@@ -93,11 +97,60 @@ public class ModelManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
     }
 
+    // Rooms
+    @Test
+    public void getFilteredRoomList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredRoomList().remove(0));
+    }
+
+    @Test
+    public void hasRoom_nullRoom_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasRoom(null));
+    }
+
+    @Test
+    public void hasRoom_roomNotInResiReg_returnsFalse() {
+        assertFalse(modelManager.hasRoom(ROOM_ONE));
+    }
+
+    @Test
+    public void hasRoom_roomInResiReg_returnsTrue() {
+        modelManager.addRoom(ROOM_ONE);
+        assertTrue(modelManager.hasRoom(ROOM_ONE));
+    }
+
+    // Allocations (to be added)
+
+    // Command word aliases
+    @Test
+    public void getAliasList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getCommandWordAliases().remove(0));
+    }
+
+    @Test
+    public void hasCommandWordAlias_nullAlias_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasCommandWordAlias(null));
+    }
+
+    @Test
+    public void hasCommandWordAlias_aliasNotInUserPrefs_returnsFalse() {
+        assertFalse(modelManager.hasCommandWordAlias(ROOMS_R));
+    }
+
+    @Test
+    public void hasCommandWordAlias_aliasInUserPrefs_returnsTrue() {
+        modelManager.addCommandWordAlias(ROOMS_R);
+        assertTrue(modelManager.hasCommandWordAlias(ROOMS_R));
+    }
+
     @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withStudent(ALICE).withStudent(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
-        UserPrefs userPrefs = new UserPrefs();
+        UserPrefs userPrefs = new UserPrefsBuilder().withCommandWordAlias(ROOMS_R)
+            .withCommandWordAlias(STUDENTS_ST).build();
+        UserPrefs differentUserPrefs = new UserPrefs();
+
 
         // same values -> returns true
         modelManager = new ModelManager(addressBook, userPrefs);
@@ -116,16 +169,23 @@ public class ModelManagerTest {
         // different addressBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
+        // different addressBook -> returns false
+        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
+        // different alias list -> returns false
+        modelManager.deleteCommandWordAlias(STUDENTS_ST);
+        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.addCommandWordAlias(STUDENTS_ST);
 
         // different userPrefs -> returns false
-        UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
     }

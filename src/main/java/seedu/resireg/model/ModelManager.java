@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.resireg.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Collections;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.resireg.commons.core.GuiSettings;
 import seedu.resireg.commons.core.LogsCenter;
+import seedu.resireg.model.alias.CommandWordAlias;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
@@ -72,6 +75,33 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public List<CommandWordAlias> getCommandWordAliases() {
+        return Collections.unmodifiableList(userPrefs.getCommandWordAliases());
+    }
+
+    @Override
+    public String getCommandWordAliasesAsString() {
+        return userPrefs.getCommandWordAliasesAsString();
+    }
+
+    @Override
+    public boolean hasCommandWordAlias(CommandWordAlias target) {
+        requireNonNull(target);
+        return userPrefs.hasAlias(target);
+    }
+
+    @Override
+    public void deleteCommandWordAlias(CommandWordAlias target) {
+        userPrefs.deleteAlias(target);
+    }
+
+    @Override
+    public void addCommandWordAlias(CommandWordAlias source) {
+        requireNonNull(source);
+        userPrefs.addAlias(source);
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return userPrefs.getAddressBookFilePath();
     }
@@ -93,6 +123,9 @@ public class ModelManager implements Model {
     public ReadOnlyAddressBook getAddressBook() {
         return versionedResiReg;
     }
+
+
+    //=========== Student  ================================================================================
 
     @Override
     public boolean hasStudent(Student student) {
@@ -118,6 +151,32 @@ public class ModelManager implements Model {
         versionedResiReg.setStudent(target, editedStudent);
     }
 
+    //=========== Room ================================================================================
+    @Override
+    public void setRoom(Room target, Room editedRoom) {
+        requireAllNonNull(target, editedRoom);
+        versionedResiReg.setRoom(target, editedRoom);
+    }
+
+    @Override
+    public boolean hasRoom(Room room) {
+        requireNonNull(room);
+        return versionedResiReg.hasRoom(room);
+    }
+
+    @Override
+    public void deleteRoom(Room target) {
+        versionedResiReg.removeRoom(target);
+    }
+
+    @Override
+    public void addRoom(Room room) {
+        requireNonNull(room);
+        versionedResiReg.addRoom(room);
+        updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
+    }
+
+    //=========== Allocation ================================================================================
     @Override
     public boolean isAllocated(Student student) {
         requireNonNull(student);
@@ -131,18 +190,6 @@ public class ModelManager implements Model {
     public boolean isAllocated(Room room) {
         requireNonNull(room);
         return versionedResiReg.isAllocated(room);
-    }
-
-    @Override
-    public void setRoom(Room target, Room editedRoom) {
-        requireAllNonNull(target, editedRoom);
-        versionedResiReg.setRoom(target, editedRoom);
-    }
-
-    @Override
-    public boolean hasRoom(Room room) {
-        requireNonNull(room);
-        return versionedResiReg.hasRoom(room);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package seedu.resireg.logic.commands;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -13,7 +14,7 @@ import seedu.resireg.model.Model;
  */
 public class HelpCommand extends Command {
 
-    public static final String COMMAND_WORD = "help";
+    public static final String COMMAND_WORD = CommandWordEnum.HELP_COMMAND.toString();
 
     public static final Help HELP = new Help(COMMAND_WORD,
             "Gets help for a command or ResiReg in general.",
@@ -24,7 +25,7 @@ public class HelpCommand extends Command {
 
     public static final String MESSAGE_GENERAL_HELP = "Commands available:\n"
             // summary for commands available (excluding help command), in alphabetical order
-            + new CommandMapper().getCommandWordToHelpMap().entrySet().stream()
+            + new CommandMapper(new ArrayList<>()).getCommandWordToHelpMap().entrySet().stream()
                     .sorted(Map.Entry.comparingByKey())
                     .filter(entry -> !entry.getKey().equals(HelpCommand.COMMAND_WORD))
                     .map(entry -> entry.getValue().getSummary())
@@ -35,7 +36,7 @@ public class HelpCommand extends Command {
             + "You can also refer to our user guide at: https://ay2021s1-cs2103-t16-3.github.io/tp/UserGuide.html";
 
     private static final Map<String, Help> commandWordToHelpMap =
-            new CommandMapper().getCommandWordToHelpMap();
+            new CommandMapper(new ArrayList<>()).getCommandWordToHelpMap();
 
     private String input;
 
