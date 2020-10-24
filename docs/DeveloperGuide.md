@@ -166,17 +166,28 @@ for user's input of arrow up (which calls previousCommand()) and arrow down (whi
 
 
 ### Finding Items and Delivery
-OneShelf is capable of storing many items and deliveries. Therefore, there is an utmost importance to have the ability to be able to find item and delivery based on different fields. There could also be many similar item and this will definitely benefit the user to find it quickly. <br>
+OneShelf is capable of storing many items and pending deliveries. 
+Therefore, it is of utmost importance to have the ability to find items
+and deliveries based on different fields. There could also be many similar items and 
+this will definitely aid the user in finding them quickly. <br>
 
-We have modified the `find` command to be able to search for `NAME`, `SUPPLIER` and `TAGS` for items using `find-i` Similarly, for deliveries, it is also possible to search using the `DELIVERYNAME`, `PHONE`, `ADDRESS` or `ORDER` using `find-d`
+We have modified the `find` command to be able to search for `NAME`, `SUPPLIER` 
+and `TAGS` for items using `find-i`. Similarly, for deliveries, it is also possible 
+to search using the `DELIVERYNAME`, `PHONE`, `ADDRESS` or `ORDER` using `find-d`.
+Note that the implementation of `find-i` and `find-d` are relatively similar and in this example, we will only show
+`find-i`.
 
-By using `ArgumentMultimap`, we are able to record the searching criteria together with the prefixes. We will then pass this criteria along with the prefix to create an `ItemContainsKeywordsPredicate` object which implements `Predicate<Item>`.
-The predicate is then passed to the `InventoryModel#UpdateItemListFilter` which will then be used to set the predicate on the existing filteredlist.
+By using `ArgumentMultimap`, we are able to record the searching criteria together with the prefixes. We will then pass
+ this criteria along with the prefix to create an `ItemContainsKeywordsPredicate` object which implements 
+ `Predicate<Item>`.
+The predicate is then passed to the `InventoryModel#UpdateItemListFilter` which will then be used to set the 
+predicate on the existing filteredList.
 
 Below is a usage example
 
-Step 1: User execute `find s/NTUC` command to search the list of items by Supplier <br>
-Step 2: `ArguementMultiMap` maps each prefix to their values and `ItemFindCommandParser` checks which prefix has a value <br>
+Step 1: User executes `find-i s/NTUC` command to search the list of items by Supplier <br>
+Step 2: `ArguementMultiMap` maps each prefix to their values and `ItemFindCommandParser` checks which prefix has a 
+value <br>
 Step 3: The value and prefix is then used to create the predicate and passed to `ItemFindCommand` <br>
 Step 4: `ItemFindCommand` executes the command and update the filteredList <br>
 
@@ -288,18 +299,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**: Business Owners who needs to keep track of their stock inventory
-
-* needs to manage table reservations
-* needs to handle pending deliveries
+**Target user profile**: Restaurant owners
+* needs to keep track of pending deliveries
 * needs to manage purchasing appropriate amounts of raw materials based on usage
 * wants to be updated on raw materials stock level on a daily basis
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is reasonably comfortable using CLI commands
 
-**Value proposition**: manage inventory faster than a typical mouse/GUI driven app
+**Value proposition**: manage inventory and pending delivery faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -468,9 +477,9 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a item
+### Deleting an item
 
-1. Deleting a item while all items are being shown
+1. Deleting an item while all items are being shown
 
    1. Prerequisites: List all items using the `list-i` command. Multiple items in the list.
 
