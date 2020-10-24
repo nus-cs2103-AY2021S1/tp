@@ -10,6 +10,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.recipe.Ingredient;
 
+/**
+ * Sets the main window command box to the command of the specified ingredient for editing purposes.
+ */
 public class GetEditIngredientCommand extends Command {
     public static final String COMMAND_WORD = "editF";
 
@@ -38,6 +41,7 @@ public class GetEditIngredientCommand extends Command {
 
         Ingredient ingredientToEdit = lastShownList.get(toEdit.getZeroBased());
         int ingredientPositionToEdit = lastShownList.indexOf(ingredientToEdit) + 1;
+        assert(ingredientPositionToEdit > 0);
         CommandResult commandResult =
                 new CommandResult(String.format(MESSAGE_GET_EDIT_INGREDIENT_SUCCESS, ingredientToEdit.toString()),
                 COMMAND_WORD);
