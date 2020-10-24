@@ -219,7 +219,13 @@ Format: `test INDEX o/OPTION`
 Examples:
 * `list` followed by `test 1 o/2` tests the 1st flashcard in the list with `OPTION 2` corresponding to the 2nd choice in the choices of the multiple choice question as the answer.
 
-### Displaying statistics for a Flashcard: `stats`
+### Displaying statistics:
+
+<div class="alert alert-danger">
+You can only show statistics based on index or based on tags but not both!
+</div>
+
+#### Statistics by index: `stats`
 
 Shows the Pie Chart for a specified Flashcard in the list.
 
@@ -233,6 +239,19 @@ Format: `stats INDEX`
 * Displays the statistics of a flashcard at the specified `INDEX`.
 * The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer** 1, 2, 3, …
+
+#### Statistics by tags: `stats`
+
+Shows a Pie Chart summary for statistics of all flashcards containing the specified tag(s).
+
+Statistics include:
+
+* The number of times and the percentage the user answers all flashcards containing the specified tag(s) correctly.
+* The number of times and the percentage the user answers all flashcards containing the specified tag(s) incorrectly.
+
+Format: `stats t/TAG1 TAG2`
+        
+* Displays the statistics of all flashcards with the tags `TAG1` and `TAG2`
 
 ### Clearing a flashcard's statistics : `clearstats`
 
