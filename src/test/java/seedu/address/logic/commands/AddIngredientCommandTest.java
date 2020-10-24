@@ -164,6 +164,11 @@ public class AddIngredientCommandTest {
         }
 
         @Override
+        public void clearRecipe() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addConsumption(Consumption target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -178,12 +183,15 @@ public class AddIngredientCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-
         @Override
         public void updateFilteredConsumptionList(Predicate<Consumption> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void clearConsumption() {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public boolean hasIngredient(Ingredient ingredient) {
@@ -212,6 +220,11 @@ public class AddIngredientCommandTest {
 
         @Override
         public void updateFilteredIngredientList(Predicate<Ingredient> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearIngredient() {
             throw new AssertionError("This method should not be called.");
         }
     }

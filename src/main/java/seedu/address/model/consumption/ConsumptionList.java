@@ -31,16 +31,11 @@ public class ConsumptionList implements Iterable<Consumption> {
     }
 
     /**
-     * Removes the equivalent food eaten from the list.
-     * The food must exist in the list.
+     * Replaces the consumption {@code target} in the list with {@code editedConsumption}.
+     * {@code target} must exist in the list.
+     * The consumption identity of {@code editedConsumption} must not be the same as another existing ingredient in the
+     * list.
      */
-    public void remove(Consumption toRemove) {
-        requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
-            throw new ConsumptionNotFoundException();
-        }
-    }
-
     public void setConsumption(Consumption target, Consumption editedConsumption) {
         requireAllNonNull(target, editedConsumption);
 
@@ -52,6 +47,9 @@ public class ConsumptionList implements Iterable<Consumption> {
         internalList.set(index, editedConsumption);
     }
 
+    /**
+     * Replaces the consumption list with the new consumption list.
+     */
     public void setConsumptions(ConsumptionList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -59,12 +57,29 @@ public class ConsumptionList implements Iterable<Consumption> {
 
     /**
      * Replaces the contents of this list with {@code consumptions}.
-     * {@code consumptions} must not contain duplicate consumptions.
      */
     public void setConsumptions(List<Consumption> consumptions) {
         requireAllNonNull(consumptions);
 
         internalList.setAll(consumptions);
+    }
+
+    /**
+     * Removes the equivalent food eaten from the list.
+     * The food must exist in the list.
+     */
+    public void remove(Consumption toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new ConsumptionNotFoundException();
+        }
+    }
+
+    /**
+     * Clears all the consumption from the list.
+     */
+    public void clear() {
+        internalList.clear();
     }
 
     /**
