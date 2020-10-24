@@ -1,5 +1,9 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.core.Messages.HELP_START;
+import static seedu.address.commons.core.Messages.HELP_SUMMARY;
+import static seedu.address.commons.core.Messages.MESSAGE_HELP_ON_START;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -16,8 +20,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.commands.results.HelpCommandResult;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-import static seedu.address.commons.core.Messages.*;
 
 /**
  * The Main Window. Provides the basic application layout containing

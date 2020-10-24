@@ -13,8 +13,8 @@ public class Messages {
     public static final String MESSAGE_ITEMS_LISTED_OVERVIEW = "%1$d items listed!";
     public static final String MESSAGE_DELIVERIES_LISTED_OVERVIEW = "%1$d deliveries listed!";
     public static final String MESSAGE_EARLY_TEST_FAILURE = "Test should not have failed at this point!";
-    public static final String MESSAGE_HELP_ON_START = "Press F1 to view the user guide,\n" +
-            "Press F2 to get started with some commands!";
+    public static final String MESSAGE_HELP_ON_START = "Press F1 to view the user guide,\n"
+            + "Press F2 to get started with some commands!";
     public static final String HELP_START = getHelpStart();
     public static final String HELP_SUMMARY = getHelpSummary();
     public static final String DIVIDER = "======================================================================\n";
