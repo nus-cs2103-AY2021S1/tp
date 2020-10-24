@@ -12,8 +12,6 @@ import chopchop.logic.commands.HelpCommand;
 
 public class HelpCommandParser {
 
-    private static final String commandName = Strings.COMMAND_HELP;
-
     /**
      * Parses a 'help' command.
      *
@@ -21,10 +19,7 @@ public class HelpCommandParser {
      * @return     a HelpCommand, if the input was valid.
      */
     public static Result<? extends Command> parseHelpCommand(CommandArguments args) {
-
-        if (!args.getCommand().equals(commandName)) {
-            return Result.error("invalid command '%s' (expected '%s')", args.getCommand(), commandName);
-        }
+        assert args.getCommand().equals(Strings.COMMAND_HELP);
 
         // for now, instead of erroring on arguments, we just let it pass through.
         // we might want to display command-specific help in the future.

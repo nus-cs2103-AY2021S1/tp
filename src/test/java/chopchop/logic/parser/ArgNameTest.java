@@ -34,5 +34,8 @@ public class ArgNameTest {
         assertEquals(new ArgName("step:add:1").name(), "step");
         assertEquals(new ArgName("step:add:1").getComponents(), List.of("add", "1"));
         assertEquals(new ArgName("step:edit:30:40:50").getComponents(), List.of("edit", "30", "40", "50"));
+
+        assertEquals(new ArgName("step:add:1"), new ArgName("step:add:1"));
+        assertNotEquals(new ArgName("step:add:1"), new ArgName("step:add:2"));
     }
 }

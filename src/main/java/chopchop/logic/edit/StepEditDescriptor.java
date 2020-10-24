@@ -4,8 +4,6 @@ package chopchop.logic.edit;
 
 import java.util.Optional;
 
-import chopchop.logic.edit.exceptions.IllegalEditOperation;
-
 public class StepEditDescriptor {
 
     private final EditOperationType editType;
@@ -19,21 +17,22 @@ public class StepEditDescriptor {
      * @param editType   the type of edit
      * @param stepNumber the 1-based index of the step to edit.
      * @param stepText   the new content of the step
-     * @throws IllegalEditOperation if the stepText was not empty when required, or vice versa
      */
-    public StepEditDescriptor(EditOperationType editType, Optional<Integer> stepNumber, String stepText)
-        throws IllegalEditOperation {
+    public StepEditDescriptor(EditOperationType editType, Optional<Integer> stepNumber, String stepText) {
+
+        assert editType == EditOperationType.ADD
+            || editType == EditOperationType.EDIT
+            || editType == EditOperationType.DELETE;
+
+        if (editType == EditOperationType.ADD || editType == EditOperationType.EDIT) {
+            assert !stepText.isEmpty();
+        } else {
+            assert stepText.isEmpty();
+        }
 
         this.editType = editType;
         this.stepNumber = stepNumber;
         this.stepText = stepText;
-
-        if ((editType == EditOperationType.ADD || editType == EditOperationType.EDIT)
-            && stepText.isEmpty()) {
-            throw new IllegalEditOperation("step content should not be empty");
-        } else if (editType == EditOperationType.DELETE && !stepText.isEmpty()) {
-            throw new IllegalEditOperation("step content should be empty when deleting");
-        }
     }
 
     public EditOperationType getEditType() {
