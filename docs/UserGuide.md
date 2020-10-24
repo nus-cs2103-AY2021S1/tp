@@ -82,25 +82,25 @@ Examples:
 * `deadline title:Return book datetime:02-01-2020 18:00`<br>
 Adds a deadline with title "Return book", and a date and time of "02-01-2020 18:00" to PlaNus.
 * `deadline title:Assignment 1 desc:CS3230 Assignment 1 date:01-11-2020 18:00 tag:CS3230`<br>
-Adds a deadine with title “Assignment 1”, description “CS3230 Assignment 1”,
+Adds a deadline with title “Assignment 1”, description “CS3230 Assignment 1”,
 and a date and time of “01-01-2020 18:00” with tag "CS3230" to PlaNus.
 
 ### Add an event : `event`
 
 Adds an event to PlaNus.
 
-Format: `event title:TITLE date:DATE from:START_TIME [desc:DESCRIPTION] [tag:MODULE_CODE]`
+Format: `event title:TITLE date:DATE from:START_TIME to:END_TIME [desc:DESCRIPTION] [tag:MODULE_CODE]`
 
-* Adds a deadline to PlaNus.
-  * The added deadline will be tracked for time analysis if it has a tag.
+* Adds an event to PlaNus.
+  * The added event will be tracked for time analysis if it has a tag.
 
 Examples:
 
-* `deadline title:Return book datetime:02-01-2020 18:00`<br>
-Adds a deadline with title "Return book", and a date and time of "02-01-2020 18:00" to PlaNus.
-* `deadline title:Assignment 1 desc:CS3230 Assignment 1 date:01-11-2020 18:00 tag:CS3230`<br>
-Adds a deadine with title “Assignment 1”, description “CS3230 Assignment 1”,
-and a date and time of “01-01-2020 18:00” with tag "CS3230" to PlaNus.
+* `event title:Career Talk date:02-01-2020 from:09:00 to:12:30`<br>
+Adds an event with title "Career Talk", and a date "02-01-2020" with start time of "09:00" and end time of "11:30"
+to PlaNus.
+* `event title:Consultation date:13-10-2020 from:19:00 to:20:30 desc:CS2105 consultation tag:CS2105`<br>
+and a date "13-10-2020" with start time of "19:00" and end time of "20:30" with tag "CS2105" to PlaNus.
 
 ### Add a lesson : `lesson`
 
