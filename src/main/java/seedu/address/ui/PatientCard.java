@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.Set;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,6 +11,7 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.patient.Appointment;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -64,7 +66,15 @@ public class PatientCard extends UiPart<Region> {
         phone.setText(patient.getPhone().value);
         address.setText(patient.getAddress().value);
         email.setText(patient.getEmail().value);
-        numberOfAppointments.setText(Integer.toString(patient.getAppointments().size()));
+
+        Set<Appointment> appointmentList = patient.getAppointments();
+        int numOfAppts = 0;
+        for (Appointment appt : appointmentList) {
+            if (Appointment.isPassed(appt.getAppointmentTime())) {
+                numOfAppts++;
+            }
+        }
+        numberOfAppointments.setText(Integer.toString(numOfAppts));
         patient.getAllergies().stream()
                 .sorted(Comparator.comparing(allergy -> allergy.allergyName))
                 .forEach(allergy -> allergies.getChildren().add(new Label(allergy.allergyName)));

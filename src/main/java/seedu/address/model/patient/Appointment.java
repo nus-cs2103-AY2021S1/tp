@@ -82,7 +82,7 @@ public class Appointment {
     }
 
     /**
-     * Returns true if appointment time is past the current local time.
+     * Returns true if appointment time is ahead of the current local time.
      *
      * @param currentTime current local time.
      */
