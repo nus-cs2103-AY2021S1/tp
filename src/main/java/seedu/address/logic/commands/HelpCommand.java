@@ -17,6 +17,6 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
+        return CommandResultFactory.createCommandResultForHelpCommand(SHOWING_HELP_MESSAGE);
     }
 }

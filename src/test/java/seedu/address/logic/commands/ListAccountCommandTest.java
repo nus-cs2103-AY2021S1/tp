@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
 import static seedu.address.testutil.TypicalEntries.getTypicalAccount;
 
 import org.junit.jupiter.api.Test;
@@ -10,15 +9,17 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
 
-public class HelpCommandTest {
+public class ListAccountCommandTest {
     private Model model = new ModelManager();
     private Model expectedModel = new ModelManager();
 
     @Test
-    public void execute_help_success() {
+    public void execute_listacc_success() {
         model.addAccount(getTypicalAccount());
         expectedModel.addAccount(getTypicalAccount());
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false, false);
-        assertCommandSuccess(new HelpCommand(), model, expectedCommandResult, expectedModel);
+        ListAccountCommand listacc = new ListAccountCommand();
+        CommandResult expectedCommandResult =
+                new CommandResult(listacc.accountsToString(expectedModel.getFilteredAccountList()));
+        assertCommandSuccess(listacc, model, expectedCommandResult, expectedModel);
     }
 }

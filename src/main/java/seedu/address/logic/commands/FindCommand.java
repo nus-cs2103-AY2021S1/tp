@@ -63,6 +63,6 @@ public class FindCommand extends Command {
             activeAccount.updateFilteredRevenueList(revenuePredicate);
         }
 
-        return new CommandResult(Messages.MESSAGE_ENTRIES_LISTED_OVERVIEW);
+        return CommandResultFactory.createDefaultCommandResult(Messages.MESSAGE_ENTRIES_LISTED_OVERVIEW);
     }
 }

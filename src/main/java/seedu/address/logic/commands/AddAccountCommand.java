@@ -42,8 +42,8 @@ public class AddAccountCommand extends Command {
         }
 
         model.addAccount(this.account);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, this.account));
-
+        return CommandResultFactory
+            .createCommandResultForEntryListChangingCommand(String.format(MESSAGE_SUCCESS, this.account));
     }
 
     @Override

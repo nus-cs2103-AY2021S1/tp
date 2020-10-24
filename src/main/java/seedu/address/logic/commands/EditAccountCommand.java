@@ -42,8 +42,8 @@ public class EditAccountCommand extends Command {
         model.setAccount(previousAccount, newAccount);
         Name previousName = previousAccount.getName();
         Name newName = newAccount.getName();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, previousName.toString(), newName.toString()));
-
+        return CommandResultFactory
+            .createDefaultCommandResult(String.format(MESSAGE_SUCCESS, previousName.toString(), newName.toString()));
     }
 
     @Override

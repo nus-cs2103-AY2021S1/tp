@@ -13,7 +13,6 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.stage.Stage?>
 
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.control.Label?>
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Common Cents - If you have it, use it." type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
@@ -26,8 +25,7 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox styleClass="bodybg" stylesheets="@PinkTheme.css">
-
+      <VBox stylesheets="@PinkTheme.css">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -37,15 +35,21 @@
           </Menu>
         </MenuBar>
 
-        <Label fx:id="activeAccountName">
+        <HBox fx:id="accountNameBar">
           <padding>
-            <Insets top="5" left="10" right="10"/>
+            <Insets top="10" left="10" right="5" bottom="0"/>
           </padding>
-        </Label>
+          <Label fx:id="activeAccountName" styleClass="account-name">
+            <padding>
+              <Insets top="5" left="5" right="5" bottom="5"/>
+            </padding>
+          </Label>
+        </HBox>
+
 
       <HBox fx:id="commandBoxPlaceholder" maxHeight="150" minHeight="120" prefHeight="120" styleClass="pane-with-border" VBox.vgrow="NEVER"  >
         <padding>
-          <Insets bottom="10" left="10" top="10" />
+          <Insets bottom="5" left="10" top="5" />
         </padding>
         <Circle fx:id="accountDisplayPicture" radius="40.0" strokeType="INSIDE" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);">
           <HBox.margin>
@@ -68,11 +72,16 @@
 <!--          <StackPane fx:id="entryListPanelPlaceholder" VBox.vgrow="ALWAYS" />-->
 <!--        </VBox>-->
 
-        <HBox fx:id="entryListGridPlaceholder" prefWidth="Infinity"
-              VBox.vgrow="ALWAYS" alignment="BASELINE_RIGHT" spacing="10" >
+        <HBox fx:id="entryListPlaceholder"
+              VBox.vgrow="ALWAYS" spacing="10" >
               <padding>
                 <Insets top="5" bottom="5" right="10"/>
               </padding>
+              <StackPane fx:id="pieChartPlaceholder">
+                <padding>
+                  <Insets top="10" bottom="10" right="10"/>
+                </padding>
+              </StackPane>
               <StackPane fx:id="expenseListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
               <StackPane fx:id="revenueListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
         </HBox>

@@ -34,17 +34,16 @@ public class GetTotalCommand extends Command {
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) {
         requireAllNonNull(model, activeAccount);
-        assert(model != null);
-        assert(activeAccount != null);
 
-        Double totalSum = 0.00;
-        if (this.category.isExpense()) {
+        double totalSum;
+        if (category.isExpense()) {
             totalSum = activeAccount.getTotalExpenses();
-        } else if (this.category.isRevenue()) {
+        } else {
+            assert category.isRevenue();
             totalSum = activeAccount.getTotalRevenue();
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, category)
+        return CommandResultFactory.createDefaultCommandResult(String.format(MESSAGE_SUCCESS, category)
             + String.format("%.2f", totalSum));
     }
 }

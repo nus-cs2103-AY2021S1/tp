@@ -3,8 +3,12 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.animation.PauseTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Side;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
@@ -43,6 +47,9 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
     @FXML
+    private HBox accountNameBar;
+
+    @FXML
     private Label activeAccountName;
 
     @FXML
@@ -55,7 +62,12 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private HBox entryListGridPlaceholder;
+    private HBox entryListPlaceholder;
+
+    @FXML
+    private StackPane pieChartPlaceholder;
+
+    private LabeledPieChart pieChart;
 
     @FXML
     private StackPane expenseListPanelPlaceholder;
@@ -132,10 +144,12 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
-        // activeAccountName.textProperty().bind(logic.getActiveAccountName().getName());
-
+    public void fillInnerParts() {
         fillEntryDisplay();
+        createPieChart();
+        updateActiveAccountName();
+
+        accountNameBar.getChildren().setAll(activeAccountName);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -147,12 +161,40 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().addAll(commandBox.getRoot());
     }
 
-    void fillEntryDisplay() {
+    private void fillEntryDisplay() {
         expenseListPanel = new ExpenseListPanel(logic.getFilteredExpenseList());
-        entryListGridPlaceholder.getChildren().add(expenseListPanel.getRoot());
+        entryListPlaceholder.getChildren().add(expenseListPanel.getRoot());
 
         revenueListPanel = new RevenueListPanel(logic.getFilteredRevenueList());
-        entryListGridPlaceholder.getChildren().add(revenueListPanel.getRoot());
+        entryListPlaceholder.getChildren().add(revenueListPanel.getRoot());
+    }
+
+    void updateActiveAccountName() {
+        activeAccountName.setText(logic.getActiveAccountName().toString());
+    }
+
+    private void updatePieChart() {
+        ObservableList<PieChart.Data> pieChartData = createPieChartDataFromLogic();
+        setPieChartData(pieChartData);
+    }
+
+    void createPieChart() {
+        ObservableList<PieChart.Data> pieChartData = createPieChartDataFromLogic();
+        pieChart = new LabeledPieChart();
+        setPieChartData(pieChartData);
+        pieChart.setLegendSide(Side.LEFT);
+        pieChartPlaceholder.getChildren().add(pieChart);
+    }
+
+    private ObservableList<PieChart.Data> createPieChartDataFromLogic() {
+        return FXCollections.observableArrayList(
+            new PieChart.Data("Expense", logic.getTotalExpense()),
+            new PieChart.Data("Revenue", logic.getTotalRevenue())
+        );
+    }
+
+    private void setPieChartData(ObservableList<PieChart.Data> pieChartData) {
+        pieChart.getData().setAll(pieChartData);
     }
 
     /**
@@ -218,6 +260,12 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            if (commandResult.isEntryListChange()) {
+                updatePieChart();
+            }
+
+            updateActiveAccountName();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

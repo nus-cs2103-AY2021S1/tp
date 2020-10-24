@@ -1,5 +1,6 @@
 package seedu.address.model.account;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -16,6 +17,36 @@ public interface ActiveAccount {
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Entry> PREDICATE_SHOW_ALL_ENTRY = unused -> true;
+
+    /**
+     * Returns a copy of this {@code ActiveAccount}.
+     */
+    ActiveAccount getCopy();
+
+    /**
+     * Returns the most recent previous state of this {@code ActiveAccount}.
+     */
+    Optional<ActiveAccount> getPreviousState();
+
+    /**
+     * Returns true if this {@code ActiveAccount} does not have a previous state.
+     */
+    boolean hasNoPreviousState();
+
+    /**
+     * Sets the existing data of this {@code ActiveAccount} {@code ActiveAccount} to be the previous state.
+     */
+    void setPreviousState();
+
+    /**
+     * Removes the previous state of this {@code ActiveAccount}.
+     */
+    void removePreviousState();
+
+    /**
+     * Resets the existing data of this {@code ActiveAccount} with the data of the previous state.
+     */
+    void returnToPreviousState();
 
     /**
      * Replaces account data with the data in {@code newActiveAccount}.
@@ -110,11 +141,13 @@ public interface ActiveAccount {
     /**
      * Returns the total sum of the expenses.
      */
-    public Double getTotalExpenses();
+    public double getTotalExpenses();
 
     /**
      * Returns the total sum of the revenues.
      */
-    public Double getTotalRevenue();
+    public double getTotalRevenue();
+
+    public double getProfits();
 
 }
