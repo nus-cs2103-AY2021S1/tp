@@ -165,28 +165,58 @@ Clears all entries from the contact list.
 
 Format: `clear`
 
-#### 2.7 Archiving a person : `archive`
+#### 2.7 Archiving an employee : `c-archive`
 Archives the specified employee's contact detail from the tCheck.
 
-Format: `archive INDEX`
+Format: `c-archive INDEX`
 
 * Archives the employee at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed `employees' contact details` panel.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+<div markdown="span" class="alert alert-primary">:bulb: ** Tip: **
+Command `c-list` can be used first to show a list of all active employees' contact details. 
+Then, `c-archive INDEX` can be used to archive a specific employee.
+</div>
+
+<div markdown="span" class="alert alert-primary">:warning: ** Warning: **
+A warning message will be shown if user tries to archive a person who is already in the archived list.
+</div>
+
 Examples:
-* `list` followed by `archive 2` archives the 2nd person in the employees' contact details.
-* `find Betsy` followed by `archive 1` deletes the 1st person in the results of the `find` command.
+* `c-list` followed by `c-archive 2` archives the 2nd person in the employees' contact details.
+* `c-find Betsy` followed by `c-archive 1` archives the 1st person in the results of the `find` command.
 
-#### 2.8 Archiving all employees : `archive all`
-Archives all employees' contact detail from the tCheck.
+#### 2.8 Archiving all employees : `c-archive all`
+Archives all employees' contact details from the tCheck.
 
-Format: `archive all`
+Format: `c-archive all`
 
-#### 2.9 Listing all archived employees : `archive list`
+#### 2.9 Listing all archived employees : `c-archive list`
 Shows a list of all archived employees' contact details in tCheck.
 
-Format: `archive list`
+Format: `c-archive list`
+
+#### 2.10 Unarchiving an employee : `c-unarchive`
+Unarchives the specified employee's contact detail from the tCheck's archived employee list.
+
+Format: `c-unarchive INDEX`
+
+* Unarchives the employee at the specified `INDEX`.
+* The index refers to the index number shown in the displayed `employees' contact details` panel.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+<div markdown="span" class="alert alert-primary">:bulb: ** Tip: **
+Command `c-archive-list` can be used first to show a list of all archived employees' contact details. 
+Then, `c-unarchive INDEX` can be used to unarchive a specific employee.
+</div>
+
+<div markdown="span" class="alert alert-primary">:warning: ** Warning: **
+A warning message will be shown if user tries to unarchive a person who is not in the archived list.
+</div>
+
+Examples:
+* `c-archive-list` followed by `c-unarchive 2` unarchives the 2nd person in the archived employees' contact details.
 
 ### 3. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
 
@@ -299,7 +329,8 @@ Action | Format, Examples
 **Search** | `search KEYWORD [MORE_KEYWORDS]`<br> e.g., `search James Jake`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Clear** | `clear`
-**Archive** |  1. **Archive \(1 entry\):**  `archive INDEX`<br> e.g., `archive 1` <br>2. **Archive \(all\):**  `archvie all` <br>3. **List all archived data:**  `archvie list`</br>
+**Archive** |  1. **Archive \(1 employee\):**  `c-archive INDEX`<br> e.g., `c-archive 1` <br>2. **Archive \(all emp;oees\):**  `c-archvie all` <br>3. **List all archived data:**  `c-archvie list`</br>
+**Unarchive** | `c-unarchive INDEX`<br> e.g., `c-unarchive 1` 
 
 ### Ingredients  Tracking
 
