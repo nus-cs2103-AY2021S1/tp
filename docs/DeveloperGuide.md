@@ -666,18 +666,13 @@ Method(s):
 
 
 #### Sequence Diagram
-The following sequence diagram shows how the Logic aspect
- of the Find feature works for Example 1:
-
-The following sequence diagram shows how the Ui aspect
- of the Find feature works for Example 1:
+The following sequence diagram shows how the Find feature works for Example 1:
+![Find Feature Sequence Diagram](images/FindFeatureSequenceDiagram.png)
 
 #### Activity Diagram
 The following activity diagram summarizes what happens when
  the Find feature is triggered:
-
-#### Design Considerations
-
+![Find Feature Activity Diagram](images/FindFeatureActivityDiagram.png)
 
 ### Statistics Feature
 
