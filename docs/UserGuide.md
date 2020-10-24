@@ -16,7 +16,7 @@ track of inventory items and pending deliveries, OneShelf is for you!
 --------------------------------------------------------------------------------------------------------------------
 ## 2. Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above irnstalled in your Computer.
 
 2. Download the latest `oneshelf.jar` from [here](https://github.com/AY2021S1-CS2103T-T12-1/tp/releases).
 
@@ -24,12 +24,12 @@ track of inventory items and pending deliveries, OneShelf is for you!
 
 4. Double-click the file to start the app. The similar GUI shown below (Figure 1) should appear in a few seconds. <br>
    *Note how the app contains some sample data but the installed version on your desktop might have a different data set.*<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/Ui.png) <br>
    Figure 1: Introduction to OneShelf User Interface
 
 5. Type the command `help start` in the command box and press Enter to execute it. <br>
    A new help window shown below (Figure 2) should appear on your desktop.
-   ![Help Window](images/UiHelpStart.png)
+   ![Help Window](images/UiHelpStart.png) <Br>
    Figure 2: Help Start Window
    
 
@@ -83,7 +83,7 @@ Alternatives:
 * Press `F2` at any point in the usage of the app
 * GUI navigation menu at the top left
 
-![Help Summary Screenshot](images/HelpSummaryWindow.png)
+![Help Summary Screenshot](images/HelpSummaryWindow.png) <br>
 Figure 3: Help Summary Window
 
 

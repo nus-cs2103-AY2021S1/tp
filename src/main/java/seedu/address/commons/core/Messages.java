@@ -44,11 +44,13 @@ public class Messages {
                         "of quantity 50 that was bought from NTUC store and tagged with meat category. If you want to add a metric of KG\n" +
                         "to the quantity, you can press KEY ARROW UP, and add metric/KG to it or whichever metric you deem suitable.\n")
                 .append("Once you have added the metric, you should see that the item has a metric attribute attached to it.\n" +
-                        "We are done with adding an inventory item! Adding a pending delivery is very similar to this,\n" +
+                        "We are done with adding an inventory item! " +
+                        "Adding a pending delivery is very similar to this,\n" +
                         "with just a slight difference in the command. You can enter the following command to add a delivery:\n" +
                         "`add-d n/NAME p/PHONE a/ADDRESS o/ORDER`\n" +
-                        "Example: `add-d n/DAMITH p/91231231 a/Jln Burong no 92 o/Mie Rebus`\n" +
-                        "GREAT JOB! Seems like you are getting the hang of it. If you have not seen the effect of clear-i and clear-d\n" +
+                        "Example: `add-d n/DAMITH p/91231231 a/Jln Burong no 92 o/Mie Rebus`\n")
+                .append(DIVIDER)
+                .append("GREAT JOB! Seems like you are getting the hang of it. If you have not seen the effect of clear-i and clear-d\n" +
                         "now is the time to do it! Afterwards, you may add the item and delivery above again just by scrolling up\n" +
                         "with the KEY ARROW UP button.\n")
                 .append(DIVIDER)
