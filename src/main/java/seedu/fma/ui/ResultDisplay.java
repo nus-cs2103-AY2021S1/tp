@@ -40,6 +40,11 @@ public class ResultDisplay extends UiPart<Region> {
      */
     public void showAutoCompleteResult(String input) {
         requireNonNull(input);
+
+        if (input.length() == 0) {
+            return;
+        }
+
         String feedback = "";
         input = input.length() > 3 ? input.substring(0, 3) : input;
         for (String suggestion : commandSuggestionList) {
