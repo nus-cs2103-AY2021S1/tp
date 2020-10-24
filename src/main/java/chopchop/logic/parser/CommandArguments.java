@@ -115,4 +115,17 @@ public class CommandArguments {
     public List<Pair<ArgName, String>> getAllArguments() {
         return new ArrayList<>(this.arguments);
     }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof CommandArguments)) {
+            return false;
+        }
+
+        var ca = (CommandArguments) obj;
+        return this.command.equals(ca.command)
+            && this.remaining.equals(ca.remaining)
+            && this.arguments.equals(ca.arguments);
+    }
 }

@@ -49,6 +49,7 @@ public class ItemReference {
      * @return    an ItemReference
      */
     public static ItemReference ofZeroIndex(int idx) {
+        assert idx >= 0;
         return new ItemReference(Either.left(idx));
     }
 

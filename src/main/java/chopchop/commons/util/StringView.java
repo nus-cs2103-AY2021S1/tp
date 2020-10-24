@@ -409,7 +409,7 @@ public class StringView {
 
         } catch (NumberFormatException e) {
 
-            return Result.error(e.getMessage());
+            return Result.error("couldn't parse integer: " + e.getMessage());
         }
     }
 

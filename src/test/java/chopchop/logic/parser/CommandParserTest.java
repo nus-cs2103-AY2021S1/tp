@@ -2,10 +2,14 @@
 
 package chopchop.logic.parser;
 
+import java.util.List;
 import java.util.Map;
+
+import chopchop.commons.util.Pair;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CommandParserTest {
@@ -33,6 +37,23 @@ public class CommandParserTest {
 
             System.err.println(x);
             assertEquals(v, x.toString());
+        });
+    }
+
+    @Test
+    void parse_commandArgs_success() {
+        var parser = new CommandParser();
+
+        var tests = Map.of(
+            "add", new CommandArguments("add"),
+            "add /stuff kekw", new CommandArguments("add", List.of(Pair.of(new ArgName("stuff"), "kekw")))
+        );
+
+        tests.forEach((k, v) -> {
+            var x = parser.parseArgs(k);
+            assertTrue(x.hasValue());
+
+            assertEquals(v, x.getValue());
         });
     }
 }
