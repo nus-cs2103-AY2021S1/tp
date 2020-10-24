@@ -452,13 +452,6 @@ Terminates the program.
 
 Format : `exit`
 
-
-### Sorting `[coming in v1.3]`
-_{explain the feature here}_
-
-### Personalized GUI `[coming in v1.3]`
-_{explain the feature here}_
-
 ### Bookmarking stocks in the list: `bookmark`
 Bookmarks the desired stock. 
 Bookmarking a stock pushes the stock to the top of the stocklist.
@@ -482,7 +475,7 @@ Format: `unbookmark sn/<serial number>`
 **Q**: Can I use Warenager on any OS?<br>
 **A**: Yes. Warenager is supported by Windows, Mac and Linux.
 
-**Q**: Can I use Warenager on another deivce?<br>
+**Q**: Can I use Warenager on another device?<br>
 **A**: Yes. Simply transfer the data files under `/data` and copy over to the same directory `/data` in the Warenager of your
 other device.
 
