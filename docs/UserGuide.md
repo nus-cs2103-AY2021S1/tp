@@ -159,7 +159,7 @@ Example: `find t/MCQ q/What CS2103T q/is t/GoodQuestion` where `MCQ` and `GoodQu
 
 ### Deleting a flashcard
 
-To delete a flashcard, you can either delete it by it's index or based off its tags.
+To delete a flashcard, you can either delete it by its index or based off its tags.
 
 <div markdown="block" class="alert alert-danger">
 
