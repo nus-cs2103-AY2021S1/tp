@@ -3,30 +3,42 @@ layout: page
 title: User Guide
 ---
 
-1. Table of Contents
+* Table of Contents
 {:toc}
 
 ## Introduction
 ZooKeep is a desktop app for managing animals under a zookeeper’s care, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ZooKeep can get your management tasks done faster than traditional GUI apps.
 
+## Legend
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Provides additional notes and constraints for certain information:**<br>
+
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Provides tips while performing the feature stated.
+</div>
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `ZooKeep.jar` from [here](https://github.com/AY2021S1-CS2103T-W15-4/tp/releases).
+1. You can download the latest `ZooKeep.jar` from [here](https://github.com/AY2021S1-CS2103T-W15-4/tp/releases).
 
 1. Copy `ZooKeep.jar` to the folder you want to use as the _home folder_ for the app.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it, e.g. typing **`help`** and pressing Enter will open the help window.
+1. Type the command you want in the command box and press Enter to execute it, e.g. typing **`help`** and pressing Enter will open the help window.
    <br> Here are some example commands you can try:
 
    * **`list`** : Lists all animals.
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. You can refer to the [Features](#features) below for details of each command.
 
 ## Features
 
@@ -50,7 +62,7 @@ ZooKeep is a desktop app for managing animals under a zookeeper’s care, optimi
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how you can access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -58,7 +70,7 @@ Format: `help`
 
 ---
 
-### Adding an animal: `add`
+### Adding an animal : `add`
 
 Adds an animal under the care of the user.
 
@@ -82,17 +94,20 @@ Format: `list`
 
 ---
 
-### Sorting animals: `sort`
+### Sorting animals : `sort`
 
-Sorts the animals by the given field in lexicographical order.
+Sorts the animals by the given category in a specific order and updates the list of animals accordingly.
 
-Format: `sort fieldname`
+Format: `sort CATEGORY`
 
-Example: `sort name` sorts all animals by name in alphabetical order.
+Examples:
+* `sort name` sorts all animals by name in alphabetical order.
+* `sort id` sorts all animals by id in ascending order.
+* `sort feedtime` sorts all animals by feeding time from the earliest to the latest.
 
 ---
 
-### Replacing an animal's fields: `replace`
+### Replacing an animal's fields : `replace`
 
 Replaces the information in the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
 
@@ -107,7 +122,7 @@ Examples:
 
 ---
 
-### Appending information to an animal's fields: `append`
+### Appending information to an animal's fields : `append`
 
 Appends information to the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
 
@@ -117,12 +132,12 @@ An animal can have any number of medical conditions and feeding times (including
 </div>
 
 Examples:
-* `append 1307 f/1900` appends a feeding time of 1900 to the animal identified by ID 1307..
+* `append 1307 f/1900` appends a feeding time of 1900 to the animal identified by ID 1307.
 * `append 1307 m/Healthy` append a medical condition "Healthy" to the animal identified by ID 1307.
 
 ---
 
-### Deleting an animal: `delete`
+### Deleting an animal : `delete`
 
 Deletes the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
 
@@ -141,7 +156,7 @@ Format: `clear`
 
 ---
 
-### Undoing a command: `undo`
+### Undoing a command : `undo`
 
 Undoes the most recently used command. No changes if no previous state exists.
 
@@ -149,7 +164,7 @@ Format: `undo`
 
 ---
 
-### Redoing an undo: `redo`
+### Redoing an undo : `redo`
 
 Redoes the previous undo. No changes if no previous state exists.
 
@@ -157,19 +172,19 @@ Format: `redo`
 
 ---
 
-### Saving a snapshot of animal data: `snap`
+### Saving a snapshot of animal data : `snap`
 
-Creates a snapshot of the current zookeep book data, saved as a file with the user specified file name
+Creates a snapshot of the current zookeep book data, saved as a file with the user specified file name.
 
 <div markdown="block" class="alert alert-primary">
 
 **:information_source: Constraints:**<br>
 
-* File name can only contain alphanumeric characters, hyphens `-` and underscores `_`
+* File name can only contain alphanumeric characters, hyphens `-` and underscores `_`.
 
-* File name must be at least 1 character long and at most 100 characters long
+* File name must be at least 1 character long and at most 100 characters long.
 
-* File name must not already exist in the data folder
+* File name must not already exist in the data folder.
 
 </div>
 
@@ -193,7 +208,7 @@ Format: `exit`
 
 Animal data is saved in the hard disk with the preferred file name automatically after any command that changes the data. 
 By default, the preferred file name is `zookeepbook.json`
-There is no need to save manually, though a copy of the current data can be created with the `snap` command. 
+There is no need to save manually, though you can create a copy of the current data with the `snap` command. 
 
 ## FAQ
 
