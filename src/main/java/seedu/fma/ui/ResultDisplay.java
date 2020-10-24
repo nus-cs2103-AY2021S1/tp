@@ -46,7 +46,7 @@ public class ResultDisplay extends UiPart<Region> {
         }
 
         String feedback = "";
-        input = input.length() > 3 ? input.substring(0, 3) : input;
+        input = input.split(" ")[0];
         for (String suggestion : commandSuggestionList) {
             if (suggestion.startsWith(input.toLowerCase())) {
                 feedback += suggestion + "\n";
