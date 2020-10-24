@@ -75,12 +75,12 @@ Format: `add title:TITLE type:TYPE_OF_TASK [desc:DESCRIPTION] [date:DATE_TIME] [
 
 Examples:
 
-* `add title:Return book type:todo date:01-01-2020 18:00` 
+* `add title:Return book type:todo date:01-01-2020 18:00`
 Adds a task with title "Return book", of type "deadline", and a date and time of "01-01-2020" to PlaNus.
 * `add title:Birthday party type:deadline desc:Frank’s birthday party date:01-01-2020 18:00`
   Adds a task with title “Birthday party”, of type "event",
   description “Frank’s birthday party” and a date and time of “01-01-2020 18:00” to PlaNus.
-  
+
 ### Add a lesson: `lesson`
 
 Adds a lesson to PlaNus.
@@ -152,10 +152,10 @@ Examples:
 * `find type:todo` will list all tasks with the type `todo`
 * `find title:dinner type:todo` will list all tasks with a title that includes `dinner` and is of the type `todo`
 * `find date:01-01-2020 11:00` will list all tasks with the date 01-01-2020 11:00
-* `find title:dinner title:lunch type:todo` will list all tasks with the type `todo` and with the title 
+* `find title:dinner title:lunch type:todo` will list all tasks with the type `todo` and with the title
    that includes either `dinner` or `lunch`
 
-  
+ 
 
 ### Edit a task: `edit`
 
