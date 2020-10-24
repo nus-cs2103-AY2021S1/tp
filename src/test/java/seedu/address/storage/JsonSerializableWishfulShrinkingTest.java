@@ -26,9 +26,7 @@ public class JsonSerializableWishfulShrinkingTest {
         JsonSerializableWishfulShrinking dataFromFile = JsonUtil.readJsonFile(TYPICAL_RECIPES_FILE,
                 JsonSerializableWishfulShrinking.class).get();
         WishfulShrinking wishfulShrinkingFromFile = dataFromFile.toModelType();
-        //System.out.println(wishfulShrinkingFromFile.toString());
         WishfulShrinking typicalRecipesWishfulShrinking = TypicalRecipes.getTypicalWishfulShrinking();
-        //System.out.println(typicalRecipesWishfulShrinking.toString());
         assertEquals(wishfulShrinkingFromFile, typicalRecipesWishfulShrinking);
     }
 
