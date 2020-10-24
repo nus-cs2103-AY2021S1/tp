@@ -192,6 +192,8 @@ public interface Model {
      */
     ObservableList<Food> getFilteredFoodList();
 
+    int getFilteredFoodListSize();
+
     /**
      * Clears the order.
      */
@@ -216,15 +218,15 @@ public interface Model {
      */
     ObservableList<OrderItem> getFilteredOrderItemList();
 
-    public int getOrderSize();
+    int getOrderSize();
 
     int getVendorIndex();
 
-    public int getOrderHistorySize();
+    int getOrderHistorySize();
 
-    public int getOrderItemQuantity(int index);
+    int getOrderItemQuantity(int index);
 
-    public void undoOrder();
+    void undoOrder();
 
     /**
      * Updates the filter of the filtered orderItem list at the

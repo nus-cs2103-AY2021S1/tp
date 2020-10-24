@@ -314,6 +314,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public int getFilteredFoodListSize() {
+        return getFilteredFoodList().size();
+    }
+
+    @Override
     public void clearOrder() {
         orderManager.setOrder(new ArrayList<>());
     }

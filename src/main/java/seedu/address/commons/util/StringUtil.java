@@ -1,11 +1,16 @@
 package seedu.address.commons.util;
 
+import seedu.address.logic.commands.enums.Inequality;
+import seedu.address.logic.parser.exceptions.ParseException;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Helper functions for handling strings.
@@ -64,5 +69,22 @@ public class StringUtil {
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    public static boolean isNonNegativeUnsignedDouble(String s) {
+        requireNonNull(s);
+
+        try {
+            double value = Double.parseDouble(s);
+            return value >= 0 && !s.startsWith("+");
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
+    public static boolean isInequality(String s) {
+        requireNonNull(s);
+
+        return Inequality.get(s) != null;
     }
 }

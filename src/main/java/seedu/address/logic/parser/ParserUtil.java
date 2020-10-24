@@ -3,11 +3,14 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.enums.Inequality;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.exceptions.ParseIndexException;
 import seedu.address.model.tag.Tag;
@@ -33,7 +36,26 @@ public class ParserUtil {
             + "provided is invalid";
     public static final String MESSAGE_INSUFFICENT_ARGUMENTS = "%s command requires at least %s argument(s). \n %s";
     public static final String MESSAGE_TOO_MANY_ARGUMENTS = "%s command should not have more than %s arguments. \n %s";
+    public static final String MESSAGE_INVALID_PRICE = "%s is not a non-negative unsigned real number.";
+    public static final String MESSAGE_INVALID_INEQUALITY = "%s is not a valid inequality sign.";
 
+    public static Inequality parseInequality(String inequality) throws ParseException {
+        String trimmedInequality = inequality.trim();
+
+        if (!StringUtil.isInequality(trimmedInequality)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_INEQUALITY, trimmedInequality));
+        }
+
+        return Inequality.get(trimmedInequality);
+    }
+
+    public static double parsePrice(String price) throws ParseException {
+        String trimmedPrice = price.trim();
+        if (!StringUtil.isNonNegativeUnsignedDouble(trimmedPrice)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_PRICE, trimmedPrice));
+        }
+        return Double.parseDouble(trimmedPrice);
+    }
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
