@@ -18,6 +18,7 @@ import quickcache.logic.commands.AddMultipleChoiceQuestionCommand;
 import quickcache.logic.parser.exceptions.ParseException;
 import quickcache.model.flashcard.Answer;
 import quickcache.model.flashcard.Choice;
+import quickcache.model.flashcard.Difficulties;
 import quickcache.model.flashcard.Difficulty;
 import quickcache.model.flashcard.MultipleChoiceQuestion;
 import quickcache.model.flashcard.OpenEndedQuestion;
@@ -164,6 +165,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code difficulty} is invalid.
      */
     public static Difficulty parseDifficulty(String difficulty) throws ParseException {
+        if (difficulty.isEmpty()) {
+            return new Difficulty(Difficulties.UNSPECIFIED.name());
+        }
         requireNonNull(difficulty);
         String trimmedDifficulty = difficulty.trim();
         if (!Difficulty.isValidDifficultyName(trimmedDifficulty)) {
@@ -173,16 +177,16 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String choice} into a {@code Choice}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code choice} is invalid.
      */
     public static Choice parseChoice(String choice) throws ParseException {
         requireNonNull(choice);
         String trimmedChoice = choice.trim();
         if (!Choice.isValidChoice(trimmedChoice)) {
-            throw new ParseException("Choices cannot be empty");
+            throw new ParseException(Choice.MESSAGE_CONSTRAINTS);
         }
         return new Choice(trimmedChoice);
     }
