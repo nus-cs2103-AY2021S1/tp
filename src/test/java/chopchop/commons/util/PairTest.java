@@ -47,16 +47,5 @@ public class PairTest {
         assertNotEquals(p3, p1);
         assertNotEquals(p5, p1);
         assertNotEquals(p6, p1);
-
-
-
-        var c1 = Pair.of(10, 20);
-        var c2 = Pair.of(30, 10);
-
-        assertEquals(-1, Pair.comparingFirst().compare(c1, c2));
-        assertEquals(+1, Pair.comparingSecond().compare(c1, c2));
-
-        assertEquals(0, Pair.comparingFirst().compare(c1, c1));
-        assertEquals(0, Pair.comparingSecond().compare(c1, c1));
     }
 }
