@@ -64,11 +64,7 @@ public class Ingredient extends Entry {
 
         this.sets = new TreeMap<>(SET_COMPARATOR);
         this.sets.put(Optional.ofNullable(expiryDate), quantity);
-        if (tags == null) {
-            this.tags = new HashSet<>();
-        } else {
-            this.tags = new HashSet<>(tags);
-        }
+        this.tags = tags == null ? new HashSet<>() : new HashSet<>(tags);
     }
 
     public Ingredient(String name, TreeMap<Optional<ExpiryDate>, Quantity> sets) {
@@ -80,10 +76,9 @@ public class Ingredient extends Entry {
      */
     public Ingredient(String name, TreeMap<Optional<ExpiryDate>, Quantity> sets, Set<Tag> tags) {
         super(name);
-        this.sets = sets;
-        this.tags = (tags == null
-            ? new HashSet<>()
-            : new HashSet<>(tags));
+        this.sets = new TreeMap<>(SET_COMPARATOR);
+        this.sets.putAll(sets);
+        this.tags = tags == null ? new HashSet<>() : new HashSet<>(tags);
     }
 
     public Quantity getQuantity() {
@@ -226,8 +221,8 @@ public class Ingredient extends Entry {
             secondSets.put(splitKey, remainingQuantity);
         }
 
-        return new Pair<>(new Ingredient(this.name.toString(), firstSets),
-                new Ingredient(this.name.toString(), secondSets));
+        return new Pair<>(new Ingredient(this.name.toString(), firstSets, this.tags),
+                new Ingredient(this.name.toString(), secondSets, this.tags));
     }
 
     @Override
