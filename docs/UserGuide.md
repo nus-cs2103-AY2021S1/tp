@@ -253,21 +253,21 @@ Format: `ingredient list`
 
 ### 4. Commands - Sales Tracking <a name="commands-sales-tracking"></a>
 
-#### 4.1 Updating the number of drinks sold for the day :
-Asks the user to enter the number of each type of drink sold for the current day.
+#### 4.1 Updating the number of drinks sold for the day : `s-update`
+Updates tCheck on the number of each type of drink sold for the current day.
 
-Format: `sales A/NUM B/NUM C/NUM ...`
+Format: `s-update A/NUM B/NUM C/NUM ...`
 * `A`, `B`, `C` are abbreviations for the drink types.
-* `NUM` refers to the number of drinks sold.
+* `NUM` refers to the number of drinks sold. It should be a non-negative integer.
 
 Example:
-* `sales BSBM/100 BSBBT/120` Updates the sales of Brown Sugar Boba Milk `BSBM` to 100 and
+* `s-update BSBM/100 BSBBT/120` Updates the sales of Brown Sugar Boba Milk `BSBM` to 100 and
  Brown Sugar Boba Black Tea `BSBBT` to 120.
 
-#### 4.2 Listing the number of drinks sold for the day :
+#### 4.2 Listing the number of drinks sold for the day : `s-list`
 Shows a list of all types of drinks sold for the current day.
 
-Format: `sales list`
+Format: `s-list`
 
 #### 4.3 Listing the sales record for a specific day :
 Shows a sales record for each type of mile tea on a specific date.
@@ -316,7 +316,7 @@ Action | Format, Examples
 
 Action | Format, Examples
 -------|------------------------------
-**Update**| `sales A/NUM B/NUM C/NUM ...` <br> e.g., `sales BSBM/100 BSBBT/120`
-**List**| `sales list`
+**Update**| `s-update A/NUM B/NUM C/NUM ...` <br> e.g., `s-update BSBM/100 BSBBT/120`
+**List**| `s-list`
 **Find**| `sales YYYY-MM-DD`
  
