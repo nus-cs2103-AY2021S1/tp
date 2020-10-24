@@ -444,8 +444,7 @@ public class CommandTestUtil {
                                                         Ingredient ingredientToEdit, Model expectedModel) {
         String editIngredientCommandString = ingredientToEdit.stringify(INDEX_FIRST_INGREDIENT.getOneBased());
         CommandResult expectedCommandResult = new CommandResult(String.format(MESSAGE_GET_EDIT_INGREDIENT_SUCCESS,
-                ingredientToEdit.toString()), false, false, false, false,
-                false, false, true);
+                ingredientToEdit.toString()), GetEditIngredientCommand.COMMAND_WORD);
         expectedCommandResult.setCommandBox(editIngredientCommandString);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -457,8 +456,7 @@ public class CommandTestUtil {
                                                         Recipe recipeToEdit, Model expectedModel) {
         String editRecipeCommandString = recipeToEdit.stringify(INDEX_FIRST_INGREDIENT.getOneBased());
         CommandResult expectedCommandResult = new CommandResult(String.format(MESSAGE_GET_EDIT_RECIPE_SUCCESS,
-                recipeToEdit.toString()), false, false, false, false,
-                false, true, false);
+                recipeToEdit.toString()), GetEditRecipeCommand.COMMAND_WORD);
         expectedCommandResult.setCommandBox(editRecipeCommandString);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }

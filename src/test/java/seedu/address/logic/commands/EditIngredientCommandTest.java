@@ -175,7 +175,7 @@ public class EditIngredientCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new ClearIngredientCommand()));
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditIngredientCommand(INDEX_SECOND_INGREDIENT,
