@@ -21,6 +21,7 @@ public class ListProjectsCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+        model.setAsProjectList();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
