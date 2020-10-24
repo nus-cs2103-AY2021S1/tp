@@ -36,6 +36,7 @@ public class ParserUtil {
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
+        assert !trimmedIndex.equals("");
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
@@ -103,7 +104,7 @@ public class ParserUtil {
      * Parses calories string input
      * @param calories string input
      * @return Calories object
-     * @throws ParseException
+     * @throws ParseException if the given calories string is invalid
      */
     public static Calories parseCalories(String calories) throws ParseException {
         requireNonNull(calories);
