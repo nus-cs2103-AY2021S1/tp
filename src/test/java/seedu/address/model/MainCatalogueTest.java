@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_B;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_A;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_ADDRESS_B;
-import seedu.address.model.project.Participation;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalProjects.APEAKAPP;
@@ -25,6 +24,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
@@ -202,6 +202,11 @@ public class MainCatalogueTest {
         }
 
         @Override
+        public void enter(Person person) {
+            // TODO: Add content if test case need this.
+        }
+
+        @Override
         public void quit() {
             // TODO: Add content if test case need this.
         }
@@ -223,11 +228,6 @@ public class MainCatalogueTest {
 
         @Override
         public void setStatus(Status status) {
-            // TODO: Add content if test case need this.
-        }
-
-        @Override
-        public void enter(Person person) {
             // TODO: Add content if test case need this.
         }
     }

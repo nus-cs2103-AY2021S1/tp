@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import seedu.address.model.project.Participation;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -26,6 +25,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Status;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
+import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.ProjectBuilder;
@@ -166,6 +166,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void enter(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void quit() {
             throw new AssertionError("This method should not be called.");
         }
@@ -262,11 +267,6 @@ public class AddCommandTest {
 
         @Override
         public void setAsPersonList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void enter(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 
