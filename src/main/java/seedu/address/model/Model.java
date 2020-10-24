@@ -149,6 +149,11 @@ public interface Model {
     void enter(Project project);
 
     /**
+     * Enters the designated person.
+     */
+    void enter(Person person);
+
+    /**
      * Quits the current project view.
      */
     void quit();

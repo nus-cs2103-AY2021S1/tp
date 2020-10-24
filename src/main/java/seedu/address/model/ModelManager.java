@@ -181,6 +181,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void enter(Person person) {
+        mainCatalogue.enter(person);
+
+    }
+
+    @Override
     public void quit() {
         switch (mainCatalogue.getStatus()) {
         case PROJECT:
