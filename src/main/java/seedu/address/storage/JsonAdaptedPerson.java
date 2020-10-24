@@ -32,6 +32,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedClientSource> clientSource = new ArrayList<>();
     private final String note;
+    private final boolean isArchive;
     private final String priority;
 
     /**
@@ -42,8 +43,9 @@ class JsonAdaptedPerson {
             @JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("clientSource") List<JsonAdaptedClientSource> clientSource,
-            @JsonProperty("note") String note,
+            @JsonProperty("note") String note, @JsonProperty("isArchive") boolean isArchive,
             @JsonProperty("priority") String priority) {
+
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -52,6 +54,7 @@ class JsonAdaptedPerson {
             this.clientSource.addAll(clientSource);
         }
         this.note = note;
+        this.isArchive = isArchive;
         this.priority = priority;
     }
 
@@ -89,6 +92,8 @@ class JsonAdaptedPerson {
         } else {
             note = null;
         }
+
+        isArchive = source.getIsArchive();
         priority = source.getPriority().value;
     }
 
@@ -153,6 +158,8 @@ class JsonAdaptedPerson {
             modelNote = new Note(note);
         }
 
+        final boolean modelIsArchive = isArchive;
+
         final Priority modelPriority;
         if (priority == null) {
             modelPriority = new Priority(null);
@@ -164,7 +171,7 @@ class JsonAdaptedPerson {
             modelPriority = new Priority(priority);
         }
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelClientSources, modelNote,
-                modelPriority);
+                modelIsArchive, modelPriority);
     }
 
 }

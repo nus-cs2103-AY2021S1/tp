@@ -22,6 +22,7 @@ public class ModelManager implements Model {
     private final ClientList clientList;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private boolean isArchiveMode;
 
     /**
      * Initializes a ModelManager with the given clientList and userPrefs.
@@ -35,6 +36,7 @@ public class ModelManager implements Model {
         this.clientList = new ClientList(clientList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.clientList.getPersonList());
+        isArchiveMode = false;
     }
 
     public ModelManager() {
@@ -148,4 +150,15 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+    //=========== Archive Mode =============================================================
+
+    @Override
+    public boolean getArchiveMode() {
+        return isArchiveMode;
+    }
+
+    @Override
+    public void setArchiveMode(boolean isArchiveMode) {
+        this.isArchiveMode = isArchiveMode;
+    }
 }
