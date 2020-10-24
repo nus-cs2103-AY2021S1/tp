@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private ProjectListPanel projectListPanel;
+    private PersonListPanel personListPanel;
     private ProjectDashboard projectDashboard;
     private EmptyDashboard emptyProjectDashboard;
     private TaskDashboard taskDashboard;
@@ -129,6 +130,8 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         projectListPanel = new ProjectListPanel(logic.getFilteredProjectList());
         projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanePlaceholder.getChildren().add(personListPanel.getRoot());
 
         if (logic.getProjectToBeDisplayedOnDashBoard().isEmpty()) {
             emptyProjectDashboard = new EmptyDashboard(EMPTY_PROJECT_DASHBOARD_MSG);
