@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.account.ActiveAccount.PREDICATE_SHOW_ALL_EXPENSES;
+import static seedu.address.model.account.ActiveAccount.PREDICATE_SHOW_ALL_REVENUE;
 
 import java.util.List;
 
@@ -38,7 +40,10 @@ public class SwitchAccountCommand extends Command {
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
         requireAllNonNull(model, activeAccount);
-
+      
+        activeAccount.updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
+        activeAccount.updateFilteredRevenueList(PREDICATE_SHOW_ALL_REVENUE);
+      
         List<Account> accounts = model.getFilteredAccountList();
 
         int index = targetIndex.getZeroBased();
