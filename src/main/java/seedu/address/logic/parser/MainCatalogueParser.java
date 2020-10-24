@@ -23,7 +23,7 @@ import seedu.address.logic.commands.project.AllTasksCommand;
 import seedu.address.logic.commands.project.AssignCommand;
 import seedu.address.logic.commands.project.EditTaskCommand;
 import seedu.address.logic.commands.project.EditTeammateCommand;
-import seedu.address.logic.commands.project.LeaveProjectViewCommand;
+import seedu.address.logic.commands.project.LeaveCommand;
 import seedu.address.logic.commands.project.MeetingFilterCommand;
 import seedu.address.logic.commands.project.NewTeammateCommand;
 import seedu.address.logic.commands.project.TaskFilterCommand;
@@ -92,9 +92,9 @@ public class MainCatalogueParser {
             assert true;
             return new StartCommandParser().parse(arguments);
 
-        case LeaveProjectViewCommand.COMMAND_WORD:
+        case LeaveCommand.COMMAND_WORD:
             if (status == Status.PROJECT) {
-                return new LeaveProjectViewCommand();
+                return new LeaveCommand();
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
@@ -107,10 +107,10 @@ public class MainCatalogueParser {
             }
 
         case LeaveTeammateViewCommand.COMMAND_WORD:
-            if (status == Status.PERSON) {
+            if (status == Status.TEAMMATE) {
                 return new LeaveTeammateViewCommand();
             } else {
-                throw new InvalidScopeException(Status.PERSON, status);
+                throw new InvalidScopeException(Status.TEAMMATE, status);
             }
 
         case LeaveMeetingViewCommand.COMMAND_WORD:

@@ -39,7 +39,7 @@ import seedu.address.logic.commands.meeting.LeaveMeetingViewCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
 import seedu.address.logic.commands.project.AssignCommand;
 import seedu.address.logic.commands.project.EditTaskCommand;
-import seedu.address.logic.commands.project.LeaveProjectViewCommand;
+import seedu.address.logic.commands.project.LeaveCommand;
 import seedu.address.logic.commands.project.NewTeammateCommand;
 import seedu.address.logic.commands.project.TaskFilterCommand;
 import seedu.address.logic.commands.project.ViewTaskCommand;
@@ -137,10 +137,10 @@ public class MainCatalogueParserTest {
 
     @Test
     public void parseCommand_leaveProjectView() throws Exception {
-        assertTrue(parser.parseCommand(LeaveProjectViewCommand.COMMAND_WORD,
-                Status.PROJECT) instanceof LeaveProjectViewCommand);
-        assertTrue(parser.parseCommand(LeaveProjectViewCommand.COMMAND_WORD + " 3",
-                Status.PROJECT) instanceof LeaveProjectViewCommand);
+        assertTrue(parser.parseCommand(LeaveCommand.COMMAND_WORD,
+                Status.PROJECT) instanceof LeaveCommand);
+        assertTrue(parser.parseCommand(LeaveCommand.COMMAND_WORD + " 3",
+                Status.PROJECT) instanceof LeaveCommand);
     }
 
     @Test
@@ -154,9 +154,9 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_leaveTeammateView() throws Exception {
         assertTrue(parser.parseCommand(LeaveTeammateViewCommand.COMMAND_WORD,
-                Status.PERSON) instanceof LeaveTeammateViewCommand);
+                Status.TEAMMATE) instanceof LeaveTeammateViewCommand);
         assertTrue(parser.parseCommand(LeaveTeammateViewCommand.COMMAND_WORD + " 3",
-                Status.PERSON) instanceof LeaveTeammateViewCommand);
+                Status.TEAMMATE) instanceof LeaveTeammateViewCommand);
     }
 
     @Test
