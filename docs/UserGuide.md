@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-![Logo](images/logo.png [image,width=322,height=322])
+<img src="images/logo.png" width="200" height="200" />
 
 Welcome to the tCheck User Guide! Thank you for choosing tCheck, the most popular command-line milk tea shop management desktop application in the T-Sugar chain!
 
