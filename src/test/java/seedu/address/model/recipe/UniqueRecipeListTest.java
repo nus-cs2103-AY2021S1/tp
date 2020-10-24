@@ -165,4 +165,13 @@ public class UniqueRecipeListTest {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueRecipeList.asUnmodifiableObservableList().remove(0));
     }
+
+    @Test
+    public void clear_allRecipe_clearRecipe() {
+        uniqueRecipeList.add(SANDWICH);
+        uniqueRecipeList.add(MARGARITAS);
+        uniqueRecipeList.clear();
+        UniqueRecipeList expectedUniqueRecipeList = new UniqueRecipeList();
+        assertEquals(expectedUniqueRecipeList, uniqueRecipeList);
+    }
 }

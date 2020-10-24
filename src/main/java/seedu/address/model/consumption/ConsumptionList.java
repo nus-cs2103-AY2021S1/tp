@@ -31,6 +31,15 @@ public class ConsumptionList implements Iterable<Consumption> {
     }
 
     /**
+     * Replaces the contents of this list with {@code consumptions}.
+     */
+    public void setConsumptions(List<Consumption> consumptions) {
+        requireAllNonNull(consumptions);
+
+        internalList.setAll(consumptions);
+    }
+
+    /**
      * Removes the equivalent food eaten from the list.
      * The food must exist in the list.
      */
@@ -41,30 +50,11 @@ public class ConsumptionList implements Iterable<Consumption> {
         }
     }
 
-    public void setConsumption(Consumption target, Consumption editedConsumption) {
-        requireAllNonNull(target, editedConsumption);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new ConsumptionNotFoundException();
-        }
-
-        internalList.set(index, editedConsumption);
-    }
-
-    public void setConsumptions(ConsumptionList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
     /**
-     * Replaces the contents of this list with {@code consumptions}.
-     * {@code consumptions} must not contain duplicate consumptions.
+     * Clears all the consumption from the list.
      */
-    public void setConsumptions(List<Consumption> consumptions) {
-        requireAllNonNull(consumptions);
-
-        internalList.setAll(consumptions);
+    public void clear() {
+        internalList.clear();
     }
 
     /**
