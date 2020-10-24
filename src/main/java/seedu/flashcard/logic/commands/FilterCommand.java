@@ -22,7 +22,7 @@ public class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Filters and lists flashcards belonging to the category input by user. "
+            + ": Filters and lists flashcards according to the fields specified by user. "
             + "At least one field must be provided.\n"
             + "Parameters: [" + PREFIX_CATEGORY + " CATEGORY] "
             + "[" + PREFIX_RATING + " RATING] [" + PREFIX_FAV + " FAVOURITE] "
