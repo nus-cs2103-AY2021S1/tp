@@ -178,6 +178,9 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
         if (status == Status.PROJECT) {
             status = Status.PROJECT_LIST;
             this.project = Optional.empty();
+        } else if (status == Status.PERSON) {
+            status = Status.PERSON_LIST;
+            this.person = Optional.empty();
         } else if (status == Status.TASK) {
             status = Status.PROJECT;
             project.get().updateTaskOnView(null);
