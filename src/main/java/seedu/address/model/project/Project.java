@@ -205,9 +205,9 @@ public class Project {
     /**
      * Adds a participation instance of a Person to a project
      */
-    public void addParticipation(Person p) {
-        listOfParticipations.put(
-                p.getGitUserName(), new Participation(p.getGitUserNameString(), projectName.toString()));
+    public void addParticipation(Participation p) {
+        listOfParticipations.put(p.getPerson().getGitUserName(),
+                new Participation(p.getPerson().getGitUserNameString(), projectName.toString()));
     }
 
     /**
@@ -311,8 +311,8 @@ public class Project {
      * Removes Teammate from Project
      * TODO: UPDATE STORAGE BY REMOVING TEAMMATE
      */
-    public void removeParticipation(Person teammate) {
-        listOfParticipations.remove(teammate.getGitUserName());
+    public void removeParticipation(Participation teammate) {
+        listOfParticipations.remove(teammate.getPerson().getGitUserName());
     }
 
     /**
