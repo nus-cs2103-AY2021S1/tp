@@ -2,23 +2,26 @@
 layout: page
 title: User Guide
 ---
+This guide serves to provide a reference for first-time users to get familiar with the `ZooKeep` app.
 
 * Table of Contents
 {:toc}
 
 ## Introduction
-ZooKeep is a desktop app for managing animals under a zookeeper’s care, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ZooKeep can get your management tasks done faster than traditional GUI apps.
+`ZooKeep` is a desktop app for managing animals under a zookeeper’s care, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, `ZooKeep` can get your management tasks done faster than traditional GUI apps.
 
 ## Legend
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Provides additional notes and constraints for certain information:**<br>
+**:information_source: Provides additional notes and constraints for certain information.**<br>
 
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Provides tips while performing the feature stated.
+<div markdown="span" class="alert alert-primary">
+
+**:bulb: Provides tips while performing the feature stated.**
+
 </div>
 
 ## Quick start
@@ -38,7 +41,7 @@ Provides tips while performing the feature stated.
    * **`list`** : Lists all animals.
    * **`exit`** : Exits the app.
 
-1. You can refer to the [Features](#features) below for details of each command.
+1. You can refer to the [Features](#features) below for the details of each command. The features are categorised in alphabetical order for easier reference.
 
 ## Features
 
@@ -60,16 +63,6 @@ Provides tips while performing the feature stated.
 
 </div>
 
-### Viewing help : `help`
-
-Shows a message explaining how you can access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
----
-
 ### Adding an animal : `add`
 
 Adds an animal under the care of the user.
@@ -83,42 +76,6 @@ An animal can have any number of medical conditions and feeding times (including
 Examples:
 * `add n/Hershey s/Rufous Hummingbird i/193`
 * `add n/Lonesome George s/Galapagos Tortoise i/117 m/Healthy f/1200`
-
----
-
-### Listing all animals : `list`
-
-Lists all animals under the care of the user.
-
-Format: `list`
-
----
-
-### Sorting animals : `sort`
-
-Sorts the animals by the given category in a specific order and updates the list of animals accordingly.
-
-Format: `sort CATEGORY`
-
-Examples:
-* `sort name` sorts all animals by name in alphabetical order.
-* `sort id` sorts all animals by id in ascending order.
-* `sort feedtime` sorts all animals by feeding time from the earliest to the latest.
-
----
-
-### Replacing an animal's fields : `replace`
-
-Replaces the information in the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
-
-Format: `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEEDING TIME]…​`
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An animal can have any number of medical conditions and feeding times (including 0).
-</div>
-
-Examples:
-* `replace 1307 i/2910` replaces the ID of animal 1307 with 2910.
-* `replace 1307 i/2910 n/Jirachi` replaces the ID of animal 1307 with 2910 and the name with "Jirachi".
 
 ---
 
@@ -137,6 +94,14 @@ Examples:
 
 ---
 
+### Clearing all entries : `clear`
+
+Clears all entries from the app.
+
+Format: `clear`
+
+---
+
 ### Deleting an animal : `delete`
 
 Deletes the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
@@ -148,19 +113,39 @@ Example:
 
 ---
 
-### Clearing all entries : `clear`
+### Exiting the program : `exit`
 
-Clears all entries from the app.
+Exits the program.
 
-Format: `clear`
+Format: `exit`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note that for manually saving data:**<br>
+
+Animal data is saved in the hard disk with the preferred file name automatically after any command that changes the data. 
+By default, the preferred file name is `zookeepbook.json`
+There is no need to save manually, though you can create a copy of the current data with the `snap` command which will be explained below.
+
+</div>
 
 ---
 
-### Undoing a command : `undo`
+### Viewing help : `help`
 
-Undoes the most recently used command. No changes if no previous state exists.
+Shows a message explaining how you can access the help page.
 
-Format: `undo`
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+---
+
+### Listing all animals : `list`
+
+Lists all animals under the care of the user.
+
+Format: `list`
 
 ---
 
@@ -169,6 +154,34 @@ Format: `undo`
 Redoes the previous undo. No changes if no previous state exists.
 
 Format: `redo`
+
+---
+
+### Replacing an animal's fields : `replace`
+
+Replaces the information in the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
+
+Format: `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEEDING TIME]…​`
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+An animal can have any number of medical conditions and feeding times (including 0).
+</div>
+
+Examples:
+* `replace 1307 i/2910` replaces the ID of animal 1307 with 2910.
+* `replace 1307 i/2910 n/Jirachi` replaces the ID of animal 1307 with 2910 and the name with "Jirachi".
+
+---
+
+### Sorting animals : `sort`
+
+Sorts the animals by the given category in a specific order and updates the list of animals accordingly.
+
+Format: `sort CATEGORY`
+
+Examples:
+* `sort name` sorts all animals by name in alphabetical order.
+* `sort id` sorts all animals by id in ascending order.
+* `sort feedtime` sorts all animals by feeding time from the earliest to the latest.
 
 ---
 
@@ -196,19 +209,13 @@ Example:
 
 ---
 
-### Exiting the program : `exit`
+### Undoing a command : `undo`
 
-Exits the program.
+Undoes the most recently used command. No changes if no previous state exists.
 
-Format: `exit`
+Format: `undo`
 
 ---
-
-#### Manually saving data
-
-Animal data is saved in the hard disk with the preferred file name automatically after any command that changes the data. 
-By default, the preferred file name is `zookeepbook.json`
-There is no need to save manually, though you can create a copy of the current data with the `snap` command. 
 
 ## FAQ
 
@@ -219,16 +226,17 @@ There is no need to save manually, though you can create a copy of the current d
 
 Action | Format, Examples
 --------|------------------
-**Help** | `help`
 **Add** | `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]…​[f/FEEDING TIME]…` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/117 m/Healthy f/1200`
-**List** | `list`
-**Sort** | `sort fieldname` <br> e.g. `sort name` 
-**Replace** | `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEEDING TIME]…` 
 **Append** | `append ID [m/MEDICAL CONDITION]… [f/FEEDING TIME]…`
-**Delete** | `delete ID` <br> e.g. `delete 193` 
 **Clear** | `clear`
-**Undo** | `undo`
-**Redo** | `redo`
-**Snap** | `snap FILE_NAME` <br> e.g. `snap zookeepbook_19-10-2020`
+**Delete** | `delete ID` <br> e.g. `delete 193`
 **Exit** | `exit`
+**Help** | `help`
+**List** | `list`
+**Redo** | `redo`
+**Replace** | `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEEDING TIME]…` 
+**Sort** | `sort CATEGORY` <br> e.g. `sort name` 
+**Snap** | `snap FILE_NAME` <br> e.g. `snap zookeepbook_19-10-2020`
+**Undo** | `undo`
+
 
