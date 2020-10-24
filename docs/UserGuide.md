@@ -165,28 +165,58 @@ Clears all entries from the contact list.
 
 Format: `c-clear`
 
-#### 2.7 Archiving a person : `archive`
+#### 2.7 Archiving an employee : `c-archive`
 Archives the specified employee's contact detail from the tCheck.
 
-Format: `archive INDEX`
+Format: `c-archive INDEX`
 
 * Archives the employee at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed `employees' contact details` panel.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+<div markdown="span" class="alert alert-primary">:bulb: ** Tip: **
+Command `c-list` can be used first to show a list of all active employees' contact details. 
+Then, `c-archive INDEX` can be used to archive a specific employee.
+</div>
+
+<div markdown="span" class="alert alert-primary">:warning: ** Warning: **
+A warning message will be shown if user tries to archive a person who is already in the archived list.
+</div>
+
 Examples:
-* `list` followed by `archive 2` archives the 2nd person in the employees' contact details.
-* `find Betsy` followed by `archive 1` deletes the 1st person in the results of the `find` command.
+* `c-list` followed by `c-archive 2` archives the 2nd person in the employees' contact details.
+* `c-find Betsy` followed by `c-archive 1` archives the 1st person in the results of the `find` command.
 
-#### 2.8 Archiving all employees : `archive all`
-Archives all employees' contact detail from the tCheck.
+#### 2.8 Archiving all employees : `c-archive all`
+Archives all employees' contact details from the tCheck.
 
-Format: `archive all`
+Format: `c-archive all`
 
-#### 2.9 Listing all archived employees : `archive list`
+#### 2.9 Listing all archived employees : `c-archive list`
 Shows a list of all archived employees' contact details in tCheck.
 
-Format: `archive list`
+Format: `c-archive list`
+
+#### 2.10 Unarchiving an employee : `c-unarchive`
+Unarchives the specified employee's contact detail from the tCheck's archived employee list.
+
+Format: `c-unarchive INDEX`
+
+* Unarchives the employee at the specified `INDEX`.
+* The index refers to the index number shown in the displayed `employees' contact details` panel.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+<div markdown="span" class="alert alert-primary">:bulb: ** Tip: **
+Command `c-archive-list` can be used first to show a list of all archived employees' contact details. 
+Then, `c-unarchive INDEX` can be used to unarchive a specific employee.
+</div>
+
+<div markdown="span" class="alert alert-primary">:warning: ** Warning: **
+A warning message will be shown if user tries to unarchive a person who is not in the archived list.
+</div>
+
+Examples:
+* `c-archive-list` followed by `c-unarchive 2` unarchives the 2nd person in the archived employees' contact details.
 
 ### 3. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
 
@@ -233,41 +263,51 @@ Users inputs will be validated, if an invalid command is given, the program will
 Example of Error Message:  `No ingredient called ‘suger’ found !` .
 </div>
 
-#### 3.4 View a Single Ingredient Level: `ingredient single`
-Prints the ingredient level for a particular type of ingredient which is specified by the user’s command.
+#### 3.4 Viewing a single ingredient's level : `i-view-single`
+Shows the ingredient's level of a particular type of ingredient which is specified by the user’s command.
 
-Format: `ingredient single INGREDIENT_NAME`
+Format: `i-view-single i/INGREDIENT_NAME`
 
 Example:
-* `ingredient single milk`
+* `i-view-single i/Milk`
+Shows the amount of milk which is recorded by tCheck.
 
-#### 3.5 Resetting all to zero : `ingredient resetAll`
-Sets all ingredient levels to 0 by updating the database when the command is entered.
+#### 3.5 Resetting all ingredients' levels to zero : `i-reset-all`
+Sets all ingredients' levels to zero.
 
-Format: `ingredient resetAll`
+Format: `i-reset-all`
 
-#### 3.6 Listing Ingredient Levels : `ingredient list`
-Prints the ingredient levels for all ingredient types retrieved from the database.
+#### 3.6 Listing all ingredients' levels : `i-list`
+Shows the ingredient's levels of all ingredient types.
 
-Format: `ingredient list`
+Format: `i-list`
 
 ### 4. Commands - Sales Tracking <a name="commands-sales-tracking"></a>
+Currently, there are 6 types of drinks that can be tracked by tCheck's sales tracker. The drinks and their respective
+ abbreviations are shown as below:
+* `BSBM`  : Brown Sugar Boba Milk
+* `BSBBT` : Brown Sugar Boba Black Tea
+* `BSBGT` : Brown Sugar Boba Green Tea
+* `BSPM`  : Brown Sugar Pearl Milk
+* `BSPBT` : Brown Sugar Pearl Black Tea
+* `BSPGT` : Brown Sugar Pearl Green Tea
 
-#### 4.1 Updating the number of drinks sold for the day :
-Asks the user to enter the number of each type of drink sold for the current day.
+#### 4.1 Updating the number of drinks sold for the day : `s-update`
+Updates tCheck on the number of each type of drink sold for the current day, based on the sales data provided by the
+user.
 
-Format: `sales A/NUM B/NUM C/NUM ...`
+Format: `s-update A/NUM B/NUM C/NUM ...`
 * `A`, `B`, `C` are abbreviations for the drink types.
-* `NUM` refers to the number of drinks sold.
+* `NUM` refers to the number of drinks sold. It should be a non-negative integer.
 
 Example:
-* `sales BSBM/100 BSBBT/120` Updates the sales of Brown Sugar Boba Milk `BSBM` to 100 and
+* `s-update BSBM/100 BSBBT/120` Updates the sales of Brown Sugar Boba Milk `BSBM` to 100 and
  Brown Sugar Boba Black Tea `BSBBT` to 120.
 
-#### 4.2 Listing the number of drinks sold for the day :
+#### 4.2 Listing the number of drinks sold for the day : `s-list`
 Shows a list of all types of drinks sold for the current day.
 
-Format: `sales list`
+Format: `s-list`
 
 #### 4.3 Listing the sales record for a specific day :
 Shows a sales record for each type of mile tea on a specific date.
@@ -299,7 +339,9 @@ Action | Format, Examples
 **Find** | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
 **Delete** | `c-delete INDEX`<br> e.g., `c-delete 3`
 **Clear** | `c-clear`
-**Archive** |  1. **Archive \(1 entry\):**  `archive INDEX`<br> e.g., `archive 1` <br>2. **Archive \(all\):**  `archvie all` <br>3. **List all archived data:**  `archvie list`</br>
+**Archive** |  1. **Archive \(1 employee\):**  `c-archive INDEX`<br> e.g., `c-archive 1` <br>2. **Archive \(all employees\):**  `c-archive all` <br>3. **List all archived data:**  `c-archive list`</br>
+**Unarchive** | `c-unarchive INDEX`<br> e.g., `c-unarchive 1` 
+
 
 ### Ingredients  Tracking
 
@@ -308,15 +350,15 @@ Action | Format, Examples
 **Set**  | `set INGREDIENT_NAME AMOUNT` <br> e.g., `set milk 20`
 **Set all**  | `set all ingredients AMOUNT` <br> e.g., `set all ingredients 5`
 **Set ingredients**  | `set ingredients m/MILK b/BLACK_TEA s/SUGAR o/BUBBLE` <br> e.g., `set ingredients m/19 b/20 s/5 o/0`
-**Get**| `ingredient single INGREDIENT_NAME`  <br> e.g., `ingredient single milk`
-**Reset**| `ingredient resetAll`
-**List**| `ingredient list`
+**View a single ingredient**| `i-view-single INGREDIENT_NAME`  <br> e.g., `i-view-single i/Milk`
+**Reset**| `i-reset-all`
+**List**| `i-list`
 
 ### Sales Tracking
 
 Action | Format, Examples
 -------|------------------------------
-**Update**| `sales A/NUM B/NUM C/NUM ...` <br> e.g., `sales BSBM/100 BSBBT/120`
-**List**| `sales list`
+**Update**| `s-update A/NUM B/NUM C/NUM ...` <br> e.g., `s-update BSBM/100 BSBBT/120`
+**List**| `s-list`
 **Find**| `sales YYYY-MM-DD`
  
