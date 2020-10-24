@@ -67,7 +67,8 @@ public class RecipeViewPanel extends UiPart<Region> {
         int col = START_COL;
         for (int i = 0; i < recipeObservableList.size(); i++) {
             Recipe recipe = recipeObservableList.get(i);
-            RecipeCard recipeCard = new RecipeCard(recipe);
+            // Change from 0 based index to 1 based index
+            RecipeCard recipeCard = new RecipeCard(recipe, i + 1);
             row = calculate_row(i);
             if (row == 0) {
                 col++;

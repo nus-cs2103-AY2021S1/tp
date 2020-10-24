@@ -21,7 +21,7 @@ import chopchop.model.recipe.Recipe;
  * removing the ingredients used.
  */
 public class MakeRecipeCommand extends Command implements Undoable {
-    public static final String COMMAND_WORD = "make recipe";
+    public static final String COMMAND_WORD = "make";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Makes a dish according to the recipe identified by the index number or name used in the displayed "
