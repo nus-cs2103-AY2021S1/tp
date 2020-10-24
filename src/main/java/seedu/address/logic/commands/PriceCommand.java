@@ -13,8 +13,6 @@ public class PriceCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists Food in within price range.\n"
         + "Parameters: INEQUALITY PRICE";
 
-    public static final String MESSAGE_CONTEXT = "All food priced %2$s.";
-
     private final PriceWithinRangePredicate predicate;
 
     public PriceCommand(PriceWithinRangePredicate predicate) {
@@ -26,7 +24,7 @@ public class PriceCommand extends Command {
         requireNonNull(model);
         model.updateFilteredFoodList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_FOOD_LISTED_OVERVIEW + " " + MESSAGE_CONTEXT,
+                String.format(Messages.MESSAGE_FOOD_LISTED_PRICE_CONTEXT,
                         model.getFilteredFoodListSize(), predicate), false, false, true);
     }
 }
