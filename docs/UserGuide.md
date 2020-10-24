@@ -162,13 +162,13 @@ Example:
 ### 3. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
 
     
-<div markdown="span" class="alert alert-primary">:information_source:
+<div markdown="span" class="alert alert-primary">
 
 **:information_source: Notes about ingredients:**<br>
 
 * Unit of measurement for ingredients:<br>
-    * Unit for solid items / jelly (Pearl, Boba and Brown Sugar) : **KG**
-    * Unit for liquids (Milk and Oolong Tea) : **L**
+    * - Unit for solid items / jelly (Pearl, Boba and Brown Sugar) : **KG**<br>
+    * - Unit for liquids (Milk and Oolong Tea) : **L**<br>
 
 * All ingredients' levels are set to 0.<br>
 
@@ -177,11 +177,11 @@ Example:
 * Please note that the ingredient names are case-sensitive.<br>
 
 * Here is a comprehensive list of all available ingredients :<br>
-    * Milk
-    * Pearl
-    * Boba
-    * Oolong Tea
-    * Brown Sugar
+    * - Milk<br>
+    * - Pearl<br>
+    * - Boba<br>
+    * - Oolong Tea<br>
+    * - Brown Sugar<br>
 
 </div>
 
