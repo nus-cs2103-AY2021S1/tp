@@ -21,6 +21,6 @@ public class ListCommand extends Command {
         requireAllNonNull(model, activeAccount);
         activeAccount.updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
         activeAccount.updateFilteredRevenueList(PREDICATE_SHOW_ALL_REVENUE);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return CommandResultFactory.createDefaultCommandResult(MESSAGE_SUCCESS);
     }
 }

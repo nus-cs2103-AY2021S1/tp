@@ -59,8 +59,8 @@ public class AddCommand extends Command {
             activeAccount.addRevenue((Revenue) entry);
         }
         model.setAccount(activeAccount.getAccount());
-        return new CommandResult(String.format(MESSAGE_SUCCESS, this.entry),
-            false, false, true);
+        return CommandResultFactory
+            .createCommandResultForEntryListChangingCommand(String.format(MESSAGE_SUCCESS, this.entry));
 
     }
 
