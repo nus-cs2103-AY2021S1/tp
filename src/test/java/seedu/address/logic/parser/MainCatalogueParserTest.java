@@ -164,9 +164,9 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_leaveTeammateView() throws Exception {
         assertTrue(parser.parseCommand(LeaveTeammateViewCommand.COMMAND_WORD,
-                Status.PERSON) instanceof LeaveTeammateViewCommand);
+                Status.TEAMMATE) instanceof LeaveTeammateViewCommand);
         assertTrue(parser.parseCommand(LeaveTeammateViewCommand.COMMAND_WORD + " 3",
-                Status.PERSON) instanceof LeaveTeammateViewCommand);
+                Status.TEAMMATE) instanceof LeaveTeammateViewCommand);
     }
 
     @Test

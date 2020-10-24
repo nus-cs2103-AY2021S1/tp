@@ -23,6 +23,7 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     private final UniquePersonList persons;
     private Status status;
     private Optional<Project> project;
+    private Optional<Person> person;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -36,6 +37,7 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
         persons = new UniquePersonList();
         status = Status.PROJECT_LIST;
         project = Optional.empty();
+        person = Optional.empty();
     }
 
     public MainCatalogue() {}
@@ -179,7 +181,7 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
         } else if (status == Status.TASK) {
             status = Status.PROJECT;
             project.get().updateTaskOnView(null);
-        } else if (status == Status.PERSON) {
+        } else if (status == Status.TEAMMATE) {
             status = Status.PROJECT;
             project.get().updateTeammateOnView(null);
         } else if (status == Status.MEETING) {
@@ -198,7 +200,7 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
 
     @Override
     public void enterTeammate(Person teammate) {
-        status = Status.PERSON;
+        status = Status.TEAMMATE;
         project.get().updateTaskOnView(null);
         project.get().updateMeetingFilter(null);
         project.get().updateTeammateOnView(teammate);

@@ -111,10 +111,10 @@ public class MainCatalogueParser {
             }
 
         case LeaveTeammateViewCommand.COMMAND_WORD:
-            if (status == Status.PERSON) {
+            if (status == Status.TEAMMATE) {
                 return new LeaveTeammateViewCommand();
             } else {
-                throw new InvalidScopeException(Status.PERSON, status);
+                throw new InvalidScopeException(Status.TEAMMATE, status);
             }
 
         case LeaveMeetingViewCommand.COMMAND_WORD:

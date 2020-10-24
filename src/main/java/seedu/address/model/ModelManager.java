@@ -183,7 +183,7 @@ public class ModelManager implements Model {
             projectToBeDisplayedOnDashboard = Optional.empty();
             teammateToBeDisplayedOnDashboard = Optional.empty();
             taskToBeDisplayedOnDashboard = Optional.empty();
-        } else if (mainCatalogue.getStatus() == Status.PERSON) {
+        } else if (mainCatalogue.getStatus() == Status.TEAMMATE) {
             teammateToBeDisplayedOnDashboard = Optional.empty();
         } else if (mainCatalogue.getStatus() == Status.TASK) {
             taskToBeDisplayedOnDashboard = Optional.empty();
