@@ -17,16 +17,19 @@ public class Assignment extends Task {
     private final Remind remind;
     private final Schedule schedule;
     private final Priority priority;
+    private final Done done;
+
     /**
      * Every field must be present and not null.
      */
     public Assignment(Name name, Deadline deadline, ModuleCode moduleCode, Remind remind, Schedule schedule,
-                      Priority priority) {
+                      Priority priority, Done done) {
         super(name, deadline, moduleCode);
         requireAllNonNull(name, deadline, moduleCode, remind);
         this.remind = remind;
         this.schedule = schedule;
         this.priority = priority;
+        this.done = done;
     }
 
     public Schedule getSchedule() {
@@ -43,6 +46,10 @@ public class Assignment extends Task {
 
     public Priority getPriority() {
         return priority;
+    }
+
+    public Done getDone() {
+        return done;
     }
 
     /**
@@ -66,6 +73,13 @@ public class Assignment extends Task {
      */
     public boolean isReminded() {
         return remind.isReminded();
+    }
+
+    /**
+     * Returns true if assignment is already marked as done. Otherwise, returns false.
+     */
+    public boolean isMarkedDone() {
+        return done.isMarkedDone();
     }
 
     /**

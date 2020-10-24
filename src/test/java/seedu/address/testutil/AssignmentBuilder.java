@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Done;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
@@ -20,6 +21,7 @@ public class AssignmentBuilder {
     public static final Deadline DEFAULT_SUGGESTED_START_TIME = new Deadline("01-02-2020 1800");
     public static final Deadline DEFAULT_SUGGESTED_END_TIME = new Deadline("01-02-2020 2100");
     public static final String DEFAULT_PRIORITY = "None";
+    public static final boolean DEFAULT_DONE = false;
 
     private Name name;
     private Deadline deadline;
@@ -27,6 +29,7 @@ public class AssignmentBuilder {
     private Remind remind;
     private Schedule schedule;
     private Priority priority;
+    private Done done;
 
     /**
      * Creates a {@code AssignmentBuilder} with the default details.
@@ -38,6 +41,7 @@ public class AssignmentBuilder {
         remind = new Remind(DEFAULT_REMIND);
         schedule = new Schedule(DEFAULT_SUGGESTED_START_TIME, DEFAULT_SUGGESTED_END_TIME);
         priority = new Priority();
+        done = new Done(DEFAULT_DONE);
     }
 
     /**
@@ -51,6 +55,7 @@ public class AssignmentBuilder {
         remind = assignmentToCopy.getRemind();
         schedule = assignmentToCopy.getSchedule();
         priority = assignmentToCopy.getPriority();
+        done = assignmentToCopy.getDone();
     }
 
     /**
@@ -79,7 +84,6 @@ public class AssignmentBuilder {
 
     /**
      * Sets the {@code Remind} of the {@code Assignment} that we are building.
-     * @return
      */
     public AssignmentBuilder withRemindersSet() {
         this.remind = new Remind().setReminder();
@@ -94,8 +98,16 @@ public class AssignmentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Done} of the {@code Assignment} that we are building.
+     */
+    public AssignmentBuilder withDoneStatusSet() {
+        this.done = new Done().markAsDone();
+        return this;
+    }
+
     public Assignment build() {
-        return new Assignment(name, deadline, moduleCode, remind, schedule, priority);
+        return new Assignment(name, deadline, moduleCode, remind, schedule, priority, done);
     }
 
 }

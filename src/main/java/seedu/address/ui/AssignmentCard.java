@@ -66,6 +66,8 @@ public class AssignmentCard extends UiPart<Region> {
     private Label suggestedEndTime;
     @FXML
     private Label priority;
+    @FXML
+    private Label done;
 
     /**
      * Creates a {@code AssignmentCode} with the given {@code Assignment} and index to display.
@@ -80,6 +82,7 @@ public class AssignmentCard extends UiPart<Region> {
         getDueDate(dueDate, assignment.getDeadline());
         getSchedule(displaySchedule, suggestedStartTime, suggestedEndTime, assignment.getSchedule());
         getPriority(priority, assignment.getPriority());
+        done.setText(assignment.getDone().toString());
     }
 
     public void getSchedule(Label displaySchedule, Label suggestedStartTime, Label suggestedEndTime,

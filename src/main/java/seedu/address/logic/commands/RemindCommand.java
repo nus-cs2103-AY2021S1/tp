@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Done;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
@@ -80,9 +81,10 @@ public class RemindCommand extends Command {
         Remind updatedRemind = assignmentToRemind.getRemind().setReminder();
         Schedule updatedSchedule = assignmentToRemind.getSchedule();
         Priority priority = assignmentToRemind.getPriority();
+        Done updatedDone = assignmentToRemind.getDone();
 
         return new Assignment(updatedName, updatedDeadline, updatedModuleCode, updatedRemind, updatedSchedule,
-                priority);
+                priority, updatedDone);
     }
 
     @Override
