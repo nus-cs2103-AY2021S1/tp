@@ -17,7 +17,7 @@ import seedu.address.model.project.Project;
 /**
  * Starts a project identified using it's displayed index from the main catalogue.
  */
-public class StartCommand extends Command {
+public class StartProjectCommand extends Command {
 
     public static final String COMMAND_WORD = "start";
 
@@ -32,7 +32,7 @@ public class StartCommand extends Command {
 
     private final Index targetIndex;
 
-    public StartCommand(Index targetIndex) {
+    public StartProjectCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -54,7 +54,7 @@ public class StartCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof StartCommand // instanceof handles nulls
-                && targetIndex.equals(((StartCommand) other).targetIndex)); // state check
+                || (other instanceof StartProjectCommand // instanceof handles nulls
+                && targetIndex.equals(((StartProjectCommand) other).targetIndex)); // state check
     }
 }

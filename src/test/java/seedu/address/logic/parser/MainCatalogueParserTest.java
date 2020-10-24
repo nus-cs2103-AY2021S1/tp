@@ -35,7 +35,7 @@ import seedu.address.logic.commands.global.FindCommand;
 import seedu.address.logic.commands.global.HelpCommand;
 import seedu.address.logic.commands.global.ListPersonsCommand;
 import seedu.address.logic.commands.global.ListProjectsCommand;
-import seedu.address.logic.commands.global.StartCommand;
+import seedu.address.logic.commands.global.StartProjectCommand;
 import seedu.address.logic.commands.meeting.LeaveMeetingViewCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
 import seedu.address.logic.commands.project.AssignCommand;
@@ -140,9 +140,9 @@ public class MainCatalogueParserTest {
 
     @Test
     public void parseCommand_start() throws Exception {
-        StartCommand command = (StartCommand) parser.parseCommand(
-            StartCommand.COMMAND_WORD + " " + INDEX_FIRST_PROJECT.getOneBased(), Status.PROJECT_LIST);
-        assertEquals(new StartCommand(INDEX_FIRST_PROJECT), command);
+        StartProjectCommand command = (StartProjectCommand) parser.parseCommand(
+            StartProjectCommand.COMMAND_WORD + " " + INDEX_FIRST_PROJECT.getOneBased(), Status.PROJECT_LIST);
+        assertEquals(new StartProjectCommand(INDEX_FIRST_PROJECT), command);
     }
 
     @Test

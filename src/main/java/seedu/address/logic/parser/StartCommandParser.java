@@ -3,26 +3,26 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.global.StartCommand;
+import seedu.address.logic.commands.global.StartProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new StartCommand object
+ * Parses input arguments and creates a new StartProjectCommand object
  */
-public class StartCommandParser implements Parser<StartCommand> {
+public class StartCommandParser implements Parser<StartProjectCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the StartCommand
-     * and returns a StartCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the StartProjectCommand
+     * and returns a StartProjectCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public StartCommand parse(String args) throws ParseException {
+    public StartProjectCommand parse(String args) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);
-            return new StartCommand(index);
+            return new StartProjectCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, StartCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, StartProjectCommand.MESSAGE_USAGE), pe);
         }
     }
 }
