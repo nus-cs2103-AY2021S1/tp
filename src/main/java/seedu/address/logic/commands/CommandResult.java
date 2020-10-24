@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.recipe.Recipe;
+
 /**
  * Represents the result of a command execution.
  */
@@ -12,25 +14,30 @@ public class CommandResult {
     private final String feedbackToUser;
 
     /** Help information should be shown to the user. */
-    private final boolean showHelp;
+    private boolean showHelp = false;
 
     /** The application should exit. */
-    private final boolean exit;
+    private boolean exit = false;
 
     /** Should show recipe list. */
-    private final boolean isShowRecipe;
+    private boolean isShowRecipe = false;
 
     /** Should show ingredient list. */
-    private final boolean isShowIngredient;
+    private boolean isShowIngredient = false;
 
     /** Should show consumption list. */
-    private final boolean isShowConsumption;
+    private boolean isShowConsumption = false;
 
     /** Should show edit ingredient command. */
-    private final boolean isEditIngredient;
+    private boolean isEditIngredient = false;
 
     /** Should show edit recipe command. */
-    private final boolean isEditRecipe;
+    private boolean isEditRecipe = false;
+
+    /** Should close drawer. */
+    private boolean isClose = false;
+
+    private Recipe recipe;
 
     private String commandBoxText;
 
@@ -38,26 +45,49 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                         boolean isShowRecipe, boolean isShowIngredient, boolean isShowConsumption,
-                         boolean isEditRecipe, boolean isEditIngredient) {
+    public CommandResult(String feedbackToUser, String keyword) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
-        this.isShowRecipe = isShowRecipe;
-        this.isShowIngredient = isShowIngredient;
-        this.isShowConsumption = isShowConsumption;
-        this.isEditRecipe = isEditRecipe;
-        this.isEditIngredient = isEditIngredient;
+        switch (keyword) {
+        case HelpCommand.COMMAND_WORD:
+            this.showHelp = true;
+            break;
+        case ExitCommand.COMMAND_WORD:
+            this.exit = true;
+            break;
+        case GetEditIngredientCommand.COMMAND_WORD:
+            this.isEditIngredient = true;
+            break;
+        case GetEditRecipeCommand.COMMAND_WORD:
+            this.isEditRecipe = true;
+            break;
+        case ListIngredientsCommand.COMMAND_WORD:
+            this.isShowIngredient = true;
+            break;
+        case ListConsumptionCommand.COMMAND_WORD:
+            this.isShowConsumption = true;
+            break;
+        case ListRecipesCommand.COMMAND_WORD:
+            this.isShowRecipe = true;
+            break;
+        case CloseCommand.COMMAND_WORD:
+            this.isClose = true;
+            break;
+        default:
+            break;
+        }
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
+     * Constructor for selecting single recipe
+     * @param feedbackToUser
+     * @param recipe
      */
+    public CommandResult(String feedbackToUser, Recipe recipe) {
+        this(feedbackToUser, "showRecipe");
+        this.recipe = recipe;
+    }
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false,
-                false, false, false);
+        this(feedbackToUser, "general");
     }
 
     public String getFeedbackToUser() {
@@ -66,6 +96,10 @@ public class CommandResult {
 
     public boolean isShowHelp() {
         return showHelp;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
     }
 
     public boolean isExit() {
@@ -90,6 +124,10 @@ public class CommandResult {
 
     public boolean isEditIngredient() {
         return isEditIngredient;
+    }
+
+    public boolean isClose() {
+        return isClose;
     }
 
     public void setCommandBox(String str) {
