@@ -27,6 +27,8 @@ public class StockCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private VBox bookmark;
+    @FXML
     private Label name;
     @FXML
     private Label serialNumber;
@@ -55,6 +57,8 @@ public class StockCard extends UiPart<Region> {
         quantity.setText(stock.getQuantity().quantity);
         source.setText(stock.getSource().value);
         locationStored.setText(stock.getLocation().value);
+        bookmark.setVisible(stock.getIsBookmarked());
+
 
         if (stock.getNotes().size() != 0) {
             StringBuilder notesAppended = new StringBuilder();

@@ -97,7 +97,15 @@ e.g. `add n/banana n/apple s/fairprice q/1000 l/Fruit section` is not a valid co
 ### Listing of stock: `list`
 Lists all the stock(s) in the inventory.
 <h5>Format</h5>
-`list`
+`list`, followed by one of the following:
+
+**Command to append** | **What the list shows**
+------| --------
+**lt/all** | All the stocks in the inventory.
+**lt/bookmark** | All the stocks in the inventory that is bookmarked.
+**lt/low** | All the stocks in the inventory that is low in quantity.
+
+e.g. `list lt/all`, `list lt/bookmark`, `list lt/low`
 
 ### Deleting of stock: `delete`
 Deletes the stock(s) using the stock's serial number from the inventory. Multiple stocks can be deleted simultaneously.
@@ -278,6 +286,8 @@ To view full notes for the stock, use the `noteview` command.
 
 <h5>Example usages</h5>
 
+Example Usages:
+
 Stock | Details
 ------| --------
 **Stock 1** | Name: banana<br> Serial Number: ntuc1<br> Source: ntuc<br> Quantity: 5<br> Location in warehouse: Fruits Section
@@ -442,6 +452,29 @@ Terminates the program.
 
 Format : `exit`
 
+
+### Sorting `[coming in v1.3]`
+_{explain the feature here}_
+
+### Personalized GUI `[coming in v1.3]`
+_{explain the feature here}_
+
+### Bookmarking stocks in the list: `bookmark`
+Bookmarks the desired stock. 
+Bookmarking a stock pushes the stock to the top of the stocklist.
+
+* Required fields:
+    1. Serial number of stock
+
+Format: `bookmark sn/<serial number>`
+
+### Unbookmarking stocks in the list: `unbookmark`
+Removes bookmark from the desired stock
+
+* Required fields:
+    1. Serial number of stock
+    
+Format: `unbookmark sn/<serial number>`
 
 --------------------------------------------------------------------------------------------------------------------
 ## FAQ
