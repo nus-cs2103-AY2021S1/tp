@@ -11,7 +11,7 @@ import seedu.taskmaster.commons.core.LogsCenter;
 import seedu.taskmaster.model.session.StudentRecord;
 
 /**
- * Panel containing the list of attendance.
+ * Panel containing the list of student records.
  */
 public class StudentRecordListPanel extends UiPart<Region> {
     private static final String FXML = "ListDisplayPanel.fxml";

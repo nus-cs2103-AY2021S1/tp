@@ -74,6 +74,7 @@ public class StudentRecordCard extends UiPart<Region> {
 
         // state check
         StudentRecordCard card = (StudentRecordCard) other;
-        return this.studentRecord.equals(card.studentRecord);
+        return id.getText().equals(card.id.getText())
+                && this.studentRecord.equals(card.studentRecord);
     }
 }
