@@ -252,9 +252,18 @@ Prints the ingredient levels for all ingredient types retrieved from the databas
 Format: `ingredient list`
 
 ### 4. Commands - Sales Tracking <a name="commands-sales-tracking"></a>
+Currently, there are 6 types of drinks that can be tracked by tCheck's sales tracker. The drinks and their respective
+ abbreviations are shown as below:
+* `BSBM`  : Brown Sugar Boba Milk
+* `BSBBT` : Brown Sugar Boba Black Tea
+* `BSBGT` : Brown Sugar Boba Green Tea
+* `BSPM`  : Brown Sugar Pearl Milk
+* `BSPBT` : Brown Sugar Pearl Black Tea
+* `BSPGT` : Brown Sugar Pearl Green Tea
 
 #### 4.1 Updating the number of drinks sold for the day : `s-update`
-Updates tCheck on the number of each type of drink sold for the current day.
+Updates tCheck on the number of each type of drink sold for the current day, based on the sales data provided by the
+user.
 
 Format: `s-update A/NUM B/NUM C/NUM ...`
 * `A`, `B`, `C` are abbreviations for the drink types.
