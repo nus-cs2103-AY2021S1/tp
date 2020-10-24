@@ -22,7 +22,7 @@ public class AddIngredientCommand extends Command {
             + PREFIX_INGREDIENT + "INGREDIENT "
             + "[" + PREFIX_QUANTITY + "QUANTITY" + "]" + "\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_INGREDIENT + "bread, oranges" + PREFIX_QUANTITY + "2kg" + ", cheese ";
+            + PREFIX_INGREDIENT + "bread, oranges " + PREFIX_QUANTITY + "2kg" + ", cheese ";
 
     public static final String MESSAGE_SUCCESS = "New ingredient added: %1$s";
     public static final String MESSAGE_DUPLICATE_RECIPE = "This ingredient already exists in the fridge";

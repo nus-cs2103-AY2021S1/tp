@@ -9,7 +9,9 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddIngredientCommand;
 import seedu.address.logic.commands.AddRecipeCommand;
-import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ClearConsumptionCommand;
+import seedu.address.logic.commands.ClearIngredientCommand;
+import seedu.address.logic.commands.ClearRecipeCommand;
 import seedu.address.logic.commands.CloseCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteConsumptionCommand;
@@ -88,8 +90,14 @@ public class WishfulShrinkingParser {
         case DeleteConsumptionCommand.COMMAND_WORD:
             return new DeleteConsumptionCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case ClearIngredientCommand.COMMAND_WORD:
+            return new ClearIngredientCommand();
+
+        case ClearRecipeCommand.COMMAND_WORD:
+            return new ClearRecipeCommand();
+
+        case ClearConsumptionCommand.COMMAND_WORD:
+            return new ClearConsumptionCommand();
 
         case SearchRecipeCommand.COMMAND_WORD:
             return new SearchRecipeCommandParser().parse(arguments);
@@ -117,6 +125,7 @@ public class WishfulShrinkingParser {
 
         case SelectRecipeCommand.COMMAND_WORD:
             return new SelectRecipeCommandParser().parse(arguments);
+
         case CloseCommand.COMMAND_WORD:
             return new CloseCommand();
 

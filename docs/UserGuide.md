@@ -134,6 +134,11 @@ Format: `recommend`
 Examples:
 * `recommend` returns `salad` with ingredients `lettuce`, `onion` and `tomato` only if the user has all `lettuce`, `onion` and `tomato` in the fridge
 
+### Clearing all recipes : `clearR'
+
+Clear all the recipes in the Recipe Collection.
+
+Format: `clearR`
 
 ## Fridge
 
@@ -184,6 +189,12 @@ Examples:
 * `searchF peanut` returns `peanut`
 
 
+### Clearing all ingredients : `clearF'
+
+Clear all the recipes in the Fridge.
+
+Format: `clearF`
+
 ## Consumption
 
 ### Eating a recipe : `eatR`
@@ -221,6 +232,11 @@ Format: `deleteC INDEX`
 Examples:
 * `calories` followed by `deleteC 2` deletes the 2nd recipe in Consumption List.
 
+### Clearing all consumption : `clearC'
+
+Clear all the recipe ate in the daily consumption list.
+
+Format: `clearC`
 
 ### Saving the data
 
