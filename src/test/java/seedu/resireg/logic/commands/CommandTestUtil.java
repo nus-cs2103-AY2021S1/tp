@@ -246,14 +246,11 @@ public class CommandTestUtil {
 
         @Override
         public void saveResiReg(ReadOnlyResiReg resiReg) throws IOException {
-
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void saveResiReg(ReadOnlyResiReg resiReg, Path filePath) throws IOException {
-
-
             throw new AssertionError("This method should not be called.");
         }
 
