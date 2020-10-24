@@ -346,6 +346,18 @@ public class ModelManager implements Model {
     public Optional<Meeting> getMeetingToBeDisplayedOnDashboard() {
         return meetingToBeDisplayedOnDashboard;
     }
+
+    //=========== Person To Be Displayed On DashBoard Accessors ======================================================
+    @Override
+    public void updatePersonToBeDisplayedOnDashboard(Person person) {
+        requireNonNull(person);
+        this.personToBeDisplayedOnDashboard = Optional.of(person);
+    }
+
+    @Override
+    public Optional<Person> getPersonToBeDisplayedOnDashboard() {
+        return personToBeDisplayedOnDashboard;
+    }
 }
 
 //    //=========== Filtered Task List Accessors =============================================================

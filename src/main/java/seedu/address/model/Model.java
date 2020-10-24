@@ -216,6 +216,16 @@ public interface Model {
      */
     Optional<Meeting> getMeetingToBeDisplayedOnDashboard();
 
+    /**
+     * Updates the person to be displayed on dashboard.
+     */
+    void updatePersonToBeDisplayedOnDashboard(Person person);
+
+    /**
+     * Gets the person to be displayed on dashboard.
+     */
+    Optional<Person> getPersonToBeDisplayedOnDashboard();
+
 }
 
 ///** Returns an unmodifiable view of the filtered task list */
