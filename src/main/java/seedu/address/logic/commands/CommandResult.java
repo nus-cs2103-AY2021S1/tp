@@ -29,14 +29,6 @@ public class CommandResult {
         this.isEntryListChange = isEntryListChange;
     }
 
-    /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
-     */
-    public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
-    }
-
     public String getFeedbackToUser() {
         return feedbackToUser;
     }

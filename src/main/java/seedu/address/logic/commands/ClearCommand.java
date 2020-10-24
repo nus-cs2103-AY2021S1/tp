@@ -45,6 +45,7 @@ public class ClearCommand extends Command {
         boolean isExpense = this.category.isExpense();
         boolean isRevenue = this.category.isRevenue();
 
+        activeAccount.setPreviousState();
         if (isExpense) {
             activeAccount.clearExpenses();
         } else {
@@ -53,8 +54,8 @@ public class ClearCommand extends Command {
         }
 
         model.setAccount(activeAccount.getAccount());
-        return new CommandResult(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, category),
-            false, false, true);
+        return CommandResultFactory
+            .createCommandResultForEntryListChangingCommand(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, category));
     }
 
     @Override

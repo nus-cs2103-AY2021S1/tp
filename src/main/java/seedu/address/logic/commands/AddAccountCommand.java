@@ -41,8 +41,8 @@ public class AddAccountCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_ACCOUNT);
         }
         model.addAccount(this.account);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, this.account),
-            false, false, true);
+        return CommandResultFactory
+            .createCommandResultForEntryListChangingCommand(String.format(MESSAGE_SUCCESS, this.account));
     }
 
     @Override

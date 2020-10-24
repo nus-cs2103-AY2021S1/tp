@@ -22,6 +22,6 @@ public class GetProfitCommand extends Command {
         activeAccount.updateFilteredRevenueList(PREDICATE_SHOW_ALL_REVENUE);
 
         double profits = activeAccount.getProfits();
-        return new CommandResult(MESSAGE_SUCCESS + String.format("%$.2f", profits));
+        return CommandResultFactory.createDefaultCommandResult(MESSAGE_SUCCESS + String.format("%.2f", profits));
     }
 }

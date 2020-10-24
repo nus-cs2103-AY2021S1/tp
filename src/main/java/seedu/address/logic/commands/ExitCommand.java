@@ -14,7 +14,7 @@ public class ExitCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) {
-        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, false);
+        return CommandResultFactory.createCommandResultForExitCommand(MESSAGE_EXIT_ACKNOWLEDGEMENT);
     }
 
 }

@@ -96,8 +96,9 @@ public class EditCommand extends Command {
         }
 
         model.setAccount(activeAccount.getAccount());
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedEntry),
-            false, false, true);
+
+        return CommandResultFactory
+            .createCommandResultForEntryListChangingCommand(String.format(MESSAGE_SUCCESS, editedEntry));
     }
 
     private static Entry createEditedEntry(Entry entryToEdit, EditEntryDescriptor editEntryDescriptor) {
