@@ -80,6 +80,14 @@ public class Planus implements ReadOnlyPlanus {
     }
 
     /**
+     * Returns true if a lesson with the same identity as {@code lesson} exists in the PlaNUS lesson list.
+     */
+    public boolean hasLesson(Lesson lesson) {
+        requireNonNull(lesson);
+        return lessons.contains(lesson);
+    }
+
+    /**
      * Adds a task to PlaNus.
      * The task must not already exist in the PlaNus task list.
      */
@@ -104,6 +112,17 @@ public class Planus implements ReadOnlyPlanus {
         requireNonNull(editedTask);
 
         tasks.setTask(target, editedTask);
+    }
+
+    /**
+     * Replaces the given task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in the PlaNus task list.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the task list.
+     */
+    public void setLesson(Lesson target, Lesson editedLesson) {
+        requireNonNull(editedLesson);
+
+        lessons.setLesson(target, editedLesson);
     }
 
     /**

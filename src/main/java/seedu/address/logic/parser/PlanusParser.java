@@ -38,34 +38,32 @@ public class PlanusParser {
 
         case EventCommand.COMMAND_WORD:
             return new EventCommandParser().parse(arguments);
-
         case DeadlineCommand.COMMAND_WORD:
             return new DeadlineCommandParser().parse(arguments);
-
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
-
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
-
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
         case LessonCommand.COMMAND_WORD:
             return new LessonCommandParser().parse(arguments);
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
-
         case DoneCommand.COMMAND_WORD:
             return new DoneCommandParser().parse(arguments);
-
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
-
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        // commands related to lessons
+        case ListLessonCommand.COMMAND_WORD:
+            return new ListLessonCommand();
+        case EditLessonCommand.COMMAND_WORD:
+            return new EditLessonCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

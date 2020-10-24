@@ -41,7 +41,7 @@ public class TaskUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditTaskDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditLessonDescriptor}'s details.
      */
     public static String getEditTaskDescriptorDetails(EditTaskDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();

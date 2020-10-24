@@ -99,6 +99,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasLesson(Lesson lesson) {
+        requireNonNull(lesson);
+        return planus.hasLesson(lesson);
+    }
+
+    @Override
     public void deleteTask(Task[] targets) {
         planus.removeTask(targets);
     }
@@ -125,6 +131,13 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedTask);
 
         planus.setTask(target, editedTask);
+    }
+
+    @Override
+    public void setLesson(Lesson target, Lesson editedLesson) {
+        requireAllNonNull(target, editedLesson);
+
+        planus.setLesson(target, editedLesson);
     }
 
     //=========== Filtered Task List Accessors =============================================================

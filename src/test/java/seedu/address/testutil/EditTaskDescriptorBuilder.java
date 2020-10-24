@@ -13,7 +13,7 @@ import seedu.address.model.task.Title;
 import seedu.address.model.task.Type;
 
 /**
- * A utility class to help with building EditTaskDescriptor objects.
+ * A utility class to help with building EditLessonDescriptor objects.
  */
 public class EditTaskDescriptorBuilder {
 
@@ -28,7 +28,7 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditTaskDescriptor} with fields containing {@code task}'s details
+     * Returns an {@code EditLessonDescriptor} with fields containing {@code task}'s details
      */
     public EditTaskDescriptorBuilder(Task task) {
         descriptor = new EditTaskDescriptor();
@@ -40,7 +40,7 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Title} of the {@code EditTaskDescriptor} that we are building.
+     * Sets the {@code Title} of the {@code EditLessonDescriptor} that we are building.
      */
     public EditTaskDescriptorBuilder withTitle(String title) {
         descriptor.setTitle(new Title(title));
@@ -48,7 +48,7 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code DateTime} of the {@code EditTaskDescriptor} that we are building.
+     * Sets the {@code DateTime} of the {@code EditLessonDescriptor} that we are building.
      */
     public EditTaskDescriptorBuilder withDateTime(String dateTime) {
         descriptor.setDateTime(new DateTime(dateTime));
@@ -56,7 +56,7 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Description} of the {@code EditTaskDescriptor} that we are building.
+     * Sets the {@code Description} of the {@code EditLessonDescriptor} that we are building.
      */
     public EditTaskDescriptorBuilder withDescription(String description) {
         descriptor.setDescription(new Description(description));
@@ -64,7 +64,7 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Type} of the {@code EditTaskDescriptor} that we are building.
+     * Sets the {@code Type} of the {@code EditLessonDescriptor} that we are building.
      */
     public EditTaskDescriptorBuilder withType(String type) {
         descriptor.setType(new Type(type));
@@ -72,7 +72,7 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditTaskDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditLessonDescriptor}
      * that we are building.
      */
     public EditTaskDescriptorBuilder withTags(String... tags) {

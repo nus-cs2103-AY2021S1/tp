@@ -9,7 +9,7 @@ import seedu.address.model.lesson.Lesson;
 import seedu.address.model.task.Description;
 
 /**
- * An UI component that displays information of a {@code Task}.
+ * An UI component that displays information of a {@code Lesson}.
  */
 public class LessonCard extends UiPart<Region> {
 
@@ -43,7 +43,7 @@ public class LessonCard extends UiPart<Region> {
     private Label description;
 
     /**
-     * Creates a {@code TaskCode} with the given {@code Task} and index to display.
+     * Creates a {@code LessonCode} with the given {@code Lesson} and index to display.
      */
     public LessonCard(Lesson lesson, int displayedIndex) {
         super(FXML);

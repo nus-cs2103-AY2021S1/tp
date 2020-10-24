@@ -32,6 +32,8 @@ public class Lesson {
     private final LocalDate startDate;
     private final LocalDate endDate;
 
+    private ArrayList<Task> associatedTasks = new ArrayList<>();
+
     /**
      * Every field must be present and not null.
      */
@@ -73,7 +75,7 @@ public class Lesson {
         return tag;
     }
     /**
-     *  Creates recurring event tasks based on the lesson's details.
+     * Creates recurring event tasks based on the lesson's details.
      * @return a list of recurring tasks to add.
      */
     public ArrayList<Task> createRecurringTasks() {
@@ -93,8 +95,18 @@ public class Lesson {
             tasksToAdd.add(eventToAdd);
             currentDate = currentDate.plusDays(7);
         }
+        associatedTasks = tasksToAdd;
         return tasksToAdd;
     }
+
+    /**
+     * Returns the set of tasks the lesson created.
+     * @return an array list of tasks created by the lesson.
+     */
+    public ArrayList<Task> getAssociatedTasks() {
+        return associatedTasks;
+    }
+
     /**
      * Returns true if both lessons of the same title have the same start and end date, and the same start and end time.
      */
