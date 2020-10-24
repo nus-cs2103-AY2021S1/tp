@@ -465,9 +465,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  The system should work on both 32-bit and 64-bit environments.
-5.  The system should respond within two seconds.
-6.  The product does not support printing of reports (patient details).
-7.  The product does not support syncing data with other clinics’ patients’ details.
+5.  The system should respond within two seconds to user inputs.
+6.  The system should be user-friendly to new users and easy to learn.
+7.  The system should be backward compatible with older versions of the product.
+8.  The system is expected to be able to save and load user input data from the hard drive.
+9.  The system is expected to be able to `sort` patients according to their `name`, `NRIC` or `appointment`.
+10.  The system does not support printing of reports (patient details).
+11.  The system does not support syncing data with other clinics’ patients’ details.
 
 *{More to be added}*
 

@@ -38,7 +38,7 @@
                   <children>
                      <HBox alignment="CENTER_LEFT" layoutY="6.800000190734863" AnchorPane.leftAnchor="0.0">
                         <children>
-                            <Label text="NUMBER OF APPOINTMENT(s): ">
+                            <Label text="UPCOMING APPOINTMENT(s): ">
                                 <font>
                                     <Font name="Consolas Bold" size="11.0" />
                                 </font>

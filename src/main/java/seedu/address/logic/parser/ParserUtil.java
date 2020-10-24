@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -139,6 +141,12 @@ public class ParserUtil {
         String trimmedAppointment = appointment.trim();
         if (!Appointment.isValidAppointment(trimmedAppointment)) {
             throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
+        }
+
+        LocalDateTime localDateTime =
+                LocalDateTime.parse(trimmedAppointment, DateTimeFormatter.ofPattern("d/M/yyyy HH:mm"));
+        if (Appointment.isPassed(localDateTime)) {
+            throw new ParseException(Appointment.TIME_RANGE_CONSTRAINTS);
         }
         return new Appointment().setTime(trimmedAppointment);
     }
