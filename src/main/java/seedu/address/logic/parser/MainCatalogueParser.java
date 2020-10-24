@@ -14,7 +14,7 @@ import seedu.address.logic.commands.global.EditCommand;
 import seedu.address.logic.commands.global.ExitCommand;
 import seedu.address.logic.commands.global.FindCommand;
 import seedu.address.logic.commands.global.HelpCommand;
-import seedu.address.logic.commands.global.ListCommand;
+import seedu.address.logic.commands.global.ListProjectsCommand;
 import seedu.address.logic.commands.global.StartCommand;
 import seedu.address.logic.commands.meeting.LeaveMeetingViewCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
@@ -79,8 +79,8 @@ public class MainCatalogueParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListProjectsCommand.COMMAND_WORD:
+            return new ListProjectsCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

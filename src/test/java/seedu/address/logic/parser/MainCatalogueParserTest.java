@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import seedu.address.logic.commands.global.ListProjectsCommand;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_ASSIGNEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
@@ -33,7 +34,6 @@ import seedu.address.logic.commands.global.EditCommand.EditProjectDescriptor;
 import seedu.address.logic.commands.global.ExitCommand;
 import seedu.address.logic.commands.global.FindCommand;
 import seedu.address.logic.commands.global.HelpCommand;
-import seedu.address.logic.commands.global.ListCommand;
 import seedu.address.logic.commands.global.StartCommand;
 import seedu.address.logic.commands.meeting.LeaveMeetingViewCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
@@ -123,9 +123,9 @@ public class MainCatalogueParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD, Status.CATALOGUE) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3",
-                Status.CATALOGUE) instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListProjectsCommand.COMMAND_WORD, Status.CATALOGUE) instanceof ListProjectsCommand);
+        assertTrue(parser.parseCommand(ListProjectsCommand.COMMAND_WORD + " 3",
+                Status.CATALOGUE) instanceof ListProjectsCommand);
     }
 
     @Test

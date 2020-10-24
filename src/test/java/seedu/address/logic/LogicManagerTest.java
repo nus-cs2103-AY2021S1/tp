@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_A;
 import static seedu.address.logic.commands.CommandTestUtil.PROJECT_DESCRIPTION_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PROJECT_NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.REPOURL_DESC_A;
+import seedu.address.logic.commands.global.ListProjectsCommand;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProjects.AI;
 
@@ -20,7 +21,6 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.global.AddCommand;
-import seedu.address.logic.commands.global.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -64,8 +64,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listCommand = ListProjectsCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, ListProjectsCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
