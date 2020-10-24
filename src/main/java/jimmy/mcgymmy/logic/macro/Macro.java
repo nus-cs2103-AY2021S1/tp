@@ -83,7 +83,7 @@ public class Macro {
         try {
             for (lastCommandIndex = 0; lastCommandIndex < commandExecutables.size(); lastCommandIndex++) {
                 CommandResult result = commandExecutables.get(lastCommandIndex).execute(model);
-                if (result.isExit() || result.isShowHelp()) {
+                if (result.isExit()) {
                     return result;
                 }
                 messagesToUser.add(result.getFeedbackToUser());
