@@ -219,6 +219,9 @@ public class ModelManager implements Model {
         versionedResiReg.setAllocation(target, editedAllocation);
     }
 
+    public Semester getSemester() {
+        return semester;
+    }
     //=========== Filtered Student List Accessors =============================================================
 
     /**

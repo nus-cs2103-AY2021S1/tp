@@ -24,6 +24,7 @@ import seedu.resireg.model.ResiReg;
 import seedu.resireg.model.alias.CommandWordAlias;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
+import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.student.Student;
 import seedu.resireg.testutil.StudentBuilder;
 
@@ -216,6 +217,11 @@ public class AddCommandTest {
         @Override
         public void setAllocation(Allocation target, Allocation editedAllocation) {
 
+        }
+
+        @Override
+        public Semester getSemester() {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

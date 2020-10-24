@@ -16,6 +16,7 @@ import seedu.resireg.model.Model;
 import seedu.resireg.model.ReadOnlyResiReg;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
+import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.student.Student;
 import seedu.resireg.storage.Storage;
 
@@ -60,6 +61,11 @@ public class LogicManager implements Logic {
     @Override
     public ReadOnlyResiReg getResiReg() {
         return model.getResiReg();
+    }
+
+    @Override
+    public Semester getSemester() {
+        return model.getSemester();
     }
 
     @Override

@@ -10,6 +10,7 @@ import seedu.resireg.logic.parser.exceptions.ParseException;
 import seedu.resireg.model.ReadOnlyResiReg;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
+import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.student.Student;
 
 /**
@@ -31,6 +32,9 @@ public interface Logic {
      * @see seedu.resireg.model.Model#getResiReg()
      */
     ReadOnlyResiReg getResiReg();
+
+    /** Returns the current semester ResiReg is working with */
+    Semester getSemester();
 
     /** Returns an unmodifiable view of the filtered list of students */
     ObservableList<Student> getFilteredStudentList();

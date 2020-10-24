@@ -9,6 +9,7 @@ import seedu.resireg.commons.core.GuiSettings;
 import seedu.resireg.model.alias.CommandWordAlias;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
+import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.student.Student;
 
 /**
@@ -191,9 +192,10 @@ public interface Model {
      */
     void setAllocation(Allocation target, Allocation editedAllocation);
 
-    /**
-     * Returns an unmodifiable view of the filtered student list
-     */
+    /** Returns the current semester */
+    Semester getSemester();
+
+    /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
 
     /**
