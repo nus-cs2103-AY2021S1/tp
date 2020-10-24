@@ -12,6 +12,7 @@ import seedu.address.model.ReadOnlyMainCatalogue;
 import seedu.address.model.Status;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
+import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
 
@@ -55,7 +56,7 @@ public interface Logic {
     /**
      * Gets the teammate to be displayed on dashboard.
      */
-    Optional<Person> getTeammateToBeDisplayedOnDashboard();
+    Optional<Participation> getTeammateToBeDisplayedOnDashboard();
 
     /**
      * Gets the meeting to be displayed on dashboard.

@@ -97,7 +97,8 @@ public class EditTeammateCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Participation createEditedTeammate(Participation teammateToEdit, EditTeammateDescriptor editTeammateDescriptor) {
+    private static Participation createEditedTeammate(Participation teammateToEdit,
+                                                      EditTeammateDescriptor editTeammateDescriptor) {
         assert teammateToEdit != null;
 
         Person personToEdit = teammateToEdit.getPerson();

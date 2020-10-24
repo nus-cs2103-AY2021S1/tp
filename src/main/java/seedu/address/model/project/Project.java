@@ -203,11 +203,19 @@ public class Project {
     }
 
     /**
-     * Adds a participation instance of a Person to a project
+     * Adds a participation instance to a project
      */
     public void addParticipation(Participation p) {
         listOfParticipations.put(p.getPerson().getGitUserName(),
                 new Participation(p.getPerson().getGitUserNameString(), projectName.toString()));
+    }
+
+    /**
+     * Adds a participation instance to a project with a person
+     */
+    public void addParticipation(Person p) {
+        listOfParticipations.put(p.getGitUserName(),
+                new Participation(p.getGitUserNameString(), projectName.fullProjectName));
     }
 
     /**
