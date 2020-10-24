@@ -35,7 +35,6 @@ import seedu.address.logic.commands.global.FindCommand;
 import seedu.address.logic.commands.global.HelpCommand;
 import seedu.address.logic.commands.global.ListCommand;
 import seedu.address.logic.commands.global.StartCommand;
-import seedu.address.logic.commands.meeting.LeaveMeetingViewCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
 import seedu.address.logic.commands.project.AssignCommand;
 import seedu.address.logic.commands.project.EditTaskCommand;
@@ -44,8 +43,6 @@ import seedu.address.logic.commands.project.NewTeammateCommand;
 import seedu.address.logic.commands.project.TaskFilterCommand;
 import seedu.address.logic.commands.project.ViewTaskCommand;
 import seedu.address.logic.commands.project.ViewTeammateCommand;
-import seedu.address.logic.commands.task.LeaveTaskViewCommand;
-import seedu.address.logic.commands.teammate.LeaveTeammateViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Status;
 import seedu.address.model.exceptions.InvalidScopeException;
@@ -136,35 +133,11 @@ public class MainCatalogueParserTest {
     }
 
     @Test
-    public void parseCommand_leaveProjectView() throws Exception {
+    public void parseCommand_leave() throws Exception {
         assertTrue(parser.parseCommand(LeaveCommand.COMMAND_WORD,
                 Status.PROJECT) instanceof LeaveCommand);
         assertTrue(parser.parseCommand(LeaveCommand.COMMAND_WORD + " 3",
-                Status.PROJECT) instanceof LeaveCommand);
-    }
-
-    @Test
-    public void parseCommand_leaveTaskView() throws Exception {
-        assertTrue(parser.parseCommand(LeaveTaskViewCommand.COMMAND_WORD,
-                Status.TASK) instanceof LeaveTaskViewCommand);
-        assertTrue(parser.parseCommand(LeaveTaskViewCommand.COMMAND_WORD + " 3",
-                Status.TASK) instanceof LeaveTaskViewCommand);
-    }
-
-    @Test
-    public void parseCommand_leaveTeammateView() throws Exception {
-        assertTrue(parser.parseCommand(LeaveTeammateViewCommand.COMMAND_WORD,
-                Status.TEAMMATE) instanceof LeaveTeammateViewCommand);
-        assertTrue(parser.parseCommand(LeaveTeammateViewCommand.COMMAND_WORD + " 3",
-                Status.TEAMMATE) instanceof LeaveTeammateViewCommand);
-    }
-
-    @Test
-    public void parseCommand_leaveMeetingView() throws Exception {
-        assertTrue(parser.parseCommand(LeaveMeetingViewCommand.COMMAND_WORD,
-                Status.MEETING) instanceof LeaveMeetingViewCommand);
-        assertTrue(parser.parseCommand(LeaveMeetingViewCommand.COMMAND_WORD + " 3",
-                Status.MEETING) instanceof LeaveMeetingViewCommand);
+                Status.TEAMMATE) instanceof LeaveCommand);
     }
 
     @Test

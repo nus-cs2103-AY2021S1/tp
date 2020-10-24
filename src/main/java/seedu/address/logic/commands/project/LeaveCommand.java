@@ -18,10 +18,6 @@ public class LeaveCommand extends Command {
 
     public static final String MESSAGE_LEAVE_SUCCESS = "Left the current detail view";
 
-    public LeaveCommand() {
-
-    }
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

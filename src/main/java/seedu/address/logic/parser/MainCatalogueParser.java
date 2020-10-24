@@ -16,7 +16,6 @@ import seedu.address.logic.commands.global.FindCommand;
 import seedu.address.logic.commands.global.HelpCommand;
 import seedu.address.logic.commands.global.ListCommand;
 import seedu.address.logic.commands.global.StartCommand;
-import seedu.address.logic.commands.meeting.LeaveMeetingViewCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
 import seedu.address.logic.commands.project.AllMeetingsCommand;
 import seedu.address.logic.commands.project.AllTasksCommand;
@@ -30,8 +29,6 @@ import seedu.address.logic.commands.project.TaskFilterCommand;
 import seedu.address.logic.commands.project.ViewMeetingCommand;
 import seedu.address.logic.commands.project.ViewTaskCommand;
 import seedu.address.logic.commands.project.ViewTeammateCommand;
-import seedu.address.logic.commands.task.LeaveTaskViewCommand;
-import seedu.address.logic.commands.teammate.LeaveTeammateViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Status;
 import seedu.address.model.exceptions.InvalidScopeException;
@@ -93,32 +90,7 @@ public class MainCatalogueParser {
             return new StartCommandParser().parse(arguments);
 
         case LeaveCommand.COMMAND_WORD:
-            if (status == Status.PROJECT) {
-                return new LeaveCommand();
-            } else {
-                throw new InvalidScopeException(Status.PROJECT, status);
-            }
-
-        case LeaveTaskViewCommand.COMMAND_WORD:
-            if (status == Status.TASK) {
-                return new LeaveTaskViewCommand();
-            } else {
-                throw new InvalidScopeException(Status.TASK, status);
-            }
-
-        case LeaveTeammateViewCommand.COMMAND_WORD:
-            if (status == Status.TEAMMATE) {
-                return new LeaveTeammateViewCommand();
-            } else {
-                throw new InvalidScopeException(Status.TEAMMATE, status);
-            }
-
-        case LeaveMeetingViewCommand.COMMAND_WORD:
-            if (status == Status.MEETING) {
-                return new LeaveMeetingViewCommand();
-            } else {
-                throw new InvalidScopeException(Status.MEETING, status);
-            }
+            return new LeaveCommand();
 
         case AssignCommand.COMMAND_WORD:
             if (status != Status.CATALOGUE) {
