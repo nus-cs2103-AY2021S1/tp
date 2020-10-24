@@ -296,7 +296,7 @@ Action | Format, Examples
 **Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT [t/TAG]…` <br> e.g., `c-add n/James Ho p/22224444 e/81234567 t/morning shift`
 **List** | `c-list`
 **Edit** | `c-edit INDEX [n/NAME] [e/EMERGENCY_CONTACT] [t/TAG]…​`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
-**Search** | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
+**Find** | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
 **Delete** | `c-delete INDEX`<br> e.g., `c-delete 3`
 **Clear** | `c-clear`
 **Archive** |  1. **Archive \(1 entry\):**  `archive INDEX`<br> e.g., `archive 1` <br>2. **Archive \(all\):**  `archvie all` <br>3. **List all archived data:**  `archvie list`</br>
