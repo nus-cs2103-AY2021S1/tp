@@ -174,6 +174,54 @@ The following activity diagram summarizes the flow of events when the `AddComman
 
 Figure ___. Activity Diagram for AddStudentCommand
 
+#### 5.1.2 Edit Student Command
+
+The edit student feature allows the tutor to edit a particular student within **Reeve**.
+It is handled by the `EditCommand`.
+
+The following describes the flow of how `EditCommand` is executed.
+
+1. Upon successfully parsing the user input, `EditCommand#execute(Model model)` is called to edit the existing student to the new edited student.
+2. `Model#setStudent(Student student)` is called to replace the student with edited student within the model.
+3. `Model#updateFilteredStudentsList(Predicate<Student> predicate)` is then called to update the student list with the new edited student.
+4. A new `CommandResult` is returned with a successful message indicating that the student has been edited.
+5. The edited student is now shown on the student list.
+
+
+The following sequence diagram shows how the `EditCommand` execution works.
+
+![EditSequence](images/EditStudentSequenceDiagram.png)
+
+Figure \___. Sequence diagram for `EditCommand` execution
+
+The following activity diagram summarises the flow of events when `EditCommand` is executed.
+
+![EditActivity](images/EditStudentActivityDiagram.png)
+
+Figure \___. Activity diagram for `EditCommand` execution
+
+#### 5.1.5 Overdue Command
+
+The overdue payment filter feature allows the tutor to find all students who have not paid their tuition fees in the past month. It is handled by the `OverdueCommand`.
+
+The following describes the flow of how `OverdueCommand` is executed.
+
+1. Upon successfully parsing the user input, `OverdueCommand#execute(Model model)` is called to filter all students in Reeve whose last date of payment was more than a month ago.
+2. `Model#updateFilteredStudentsList(Predicate<Student> predicate)` is called to find only students that match the above condition. A new `CommandResult` is returned with a successful message indicating the number of matching students.
+3. The filtered student list replaces the displayed list on the GUI and a success message is shown in the result display.
+
+The following sequence diagram shows how the `OverdueCommand` execution works.
+
+![OverdueSequence](images/OverdueSequenceDiagram.png)
+
+Figure \___. Sequence diagram for `OverdueCommand` execution
+
+The following activity diagram summarises the flow of events when `OverdueCommand` is executed.
+
+![OverdueActivity](images/OverdueActivityDiagram.png)
+
+Figure \___. Activity diagram for `OverdueCommand` execution
+
 ### 5.2 Student questions features
 
 The student questions feature keeps track of questions raised by a student to his tutor. The features comprises of the following commands:
@@ -253,28 +301,6 @@ The following activity diagram summarises the flow of events when `DeleteQuestio
 ![DeleteQuestionActivity](images/DeleteQuestionActivityDiagram.png)
 
 Figure \___. Activity diagram for `DeleteQuestionCommand` execution
-
-### 5.3 Overdue payment filter feature
-
-The overdue payment filter feature allows the tutor to find all students who have not paid their tuition fees in the past month. It is handled by the `OverdueCommand`.
-
-The following describes the flow of how `OverdueCommand` is executed.
-
-1. Upon successfully parsing the user input, `OverdueCommand#execute(Model model)` is called to filter all students in Reeve whose last date of payment was more than a month ago.
-2. `Model#updateFilteredStudentsList(Predicate<Student> predicate)` is called to find only students that match the above condition. A new `CommandResult` is returned with a successful message indicating the number of matching students.
-3. The filtered student list replaces the displayed list on the GUI and a success message is shown in the result display.
-
-The following sequence diagram shows how the question adding operation works.
-
-![OverdueSequence](images/OverdueSequenceDiagram.png)
-
-Figure \___. Sequence diagram for `OverdueCommand` execution
-
-The following activity diagram summarises the flow of events when `OverdueCommand` is executed.
-
-![OverdueActivity](images/OverdueActivityDiagram.png)
-
-Figure \___. Activity diagram for `OverdueCommand` execution
 
 --------------------------------------------------------------------------------------------------------------------
 
