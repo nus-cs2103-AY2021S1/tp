@@ -31,7 +31,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
-import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.DeadlineBuilder;
 import seedu.address.testutil.TaskUtil;
 
 
@@ -41,7 +41,7 @@ public class PlanusParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Task task = new TaskBuilder().build();
+        Task task = new DeadlineBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(TaskUtil.getAddCommand(task));
         assertEquals(new AddCommand(task), command);
     }
@@ -70,7 +70,7 @@ public class PlanusParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Task task = new TaskBuilder().build();
+        Task task = new DeadlineBuilder().build();
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(task).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_TASK.getOneBased() + " " + TaskUtil.getEditTaskDescriptorDetails(descriptor));

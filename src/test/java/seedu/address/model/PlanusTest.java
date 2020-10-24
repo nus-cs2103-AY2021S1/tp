@@ -21,7 +21,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
-import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.DeadlineBuilder;
 
 public class PlanusTest {
 
@@ -47,7 +47,7 @@ public class PlanusTest {
     @Test
     public void resetData_withDuplicateTasks_throwsDuplicateTaskException() {
         // Two tasks with the same identity fields
-        Task editedAlice = new TaskBuilder(ALICE).withType(VALID_TYPE_BOB).withTags(VALID_TAG_HUSBAND)
+        Task editedAlice = new DeadlineBuilder(ALICE).withType(VALID_TYPE_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Task> newTasks = Arrays.asList(ALICE, editedAlice);
         PlanusStub newData = new PlanusStub(newTasks);
@@ -74,7 +74,7 @@ public class PlanusTest {
     @Test
     public void hasTask_taskWithSameIdentityFieldsInPlanus_returnsTrue() {
         planus.addTask(ALICE);
-        Task editedAlice = new TaskBuilder(ALICE).withType(VALID_TYPE_BOB).withTags(VALID_TAG_HUSBAND)
+        Task editedAlice = new DeadlineBuilder(ALICE).withType(VALID_TYPE_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(planus.hasTask(editedAlice));
     }

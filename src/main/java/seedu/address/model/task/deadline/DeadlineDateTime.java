@@ -9,7 +9,7 @@ import seedu.address.model.lesson.Time;
 
 /**
  * Represents a Task's date and time in PlaNus task list.
- * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidDeadlineDateTime(String)}
  */
 public class DeadlineDateTime {
 
@@ -27,7 +27,7 @@ public class DeadlineDateTime {
             this.isNull = true;
             value = DEFAULT_DATETIME;
         } else {
-            checkArgument(isValidDateTime(dateTime), DateUtil.MESSAGE_CONSTRAINTS);
+            checkArgument(isValidDeadlineDateTime(dateTime), DateUtil.MESSAGE_CONSTRAINTS);
             value = LocalDateTime.parse(dateTime, DateUtil.DATETIME_FORMATTER);
             isNull = false;
         }
@@ -47,7 +47,7 @@ public class DeadlineDateTime {
      * @param test the string value to be put to test.
      * @return true if the test string is valid and false otherwise
      */
-    public static boolean isValidDateTime(String test) {
+    public static boolean isValidDeadlineDateTime(String test) {
         return DateUtil.isValidDateTime(test);
     }
 
@@ -58,7 +58,7 @@ public class DeadlineDateTime {
      * @return true if the test string is valid and false otherwise
      */
     public static boolean isValidSearchPhrase(String test) {
-        return isValidDateTime(test) || DateUtil.isValidDate(test) || Time.isValidTime(test);
+        return isValidDeadlineDateTime(test) || DateUtil.isValidDate(test) || Time.isValidTime(test);
     }
 
     @Override

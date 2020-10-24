@@ -24,35 +24,35 @@ import seedu.address.model.task.Task;
  */
 public class TypicalTasks {
 
-    public static final Task ALICE = new TaskBuilder().withTitle("Alice Pauline")
+    public static final Task ALICE = new DeadlineBuilder().withTitle("Alice Pauline")
             .withType("event").withDescription("alice,example.com")
             .withDateTime("01-01-2020 12:00")
             .withTags("friends").build();
-    public static final Task BENSON = new TaskBuilder().withTitle("Benson Meier")
+    public static final Task BENSON = new DeadlineBuilder().withTitle("Benson Meier")
             .withType("event")
             .withDescription("johnd,example.com").withDateTime("02-02-2020 12:00")
             .withTags("owesMoney", "friends").build();
-    public static final Task CARL = new TaskBuilder().withTitle("Carl Kurz").withDateTime("03-03-2020 12:00")
+    public static final Task CARL = new DeadlineBuilder().withTitle("Carl Kurz").withDateTime("03-03-2020 12:00")
             .withDescription("heinz,example.com").withType("event").withStatus(State.COMPLETE).build();
-    public static final Task DANIEL = new TaskBuilder().withTitle("Daniel Meier").withDateTime("04-04-2020 12:00")
+    public static final Task DANIEL = new DeadlineBuilder().withTitle("Daniel Meier").withDateTime("04-04-2020 12:00")
             .withDescription("cornelia,example.com").withType("event").withTags("friends").build();
-    public static final Task ELLE = new TaskBuilder().withTitle("Elle Meyer").withDateTime("05-05-2020 12:00")
+    public static final Task ELLE = new DeadlineBuilder().withTitle("Elle Meyer").withDateTime("05-05-2020 12:00")
             .withDescription("werner,example.com").withType("event").build();
-    public static final Task FIONA = new TaskBuilder().withTitle("Fiona Kunz").withDateTime("06-06-2020 12:00")
+    public static final Task FIONA = new DeadlineBuilder().withTitle("Fiona Kunz").withDateTime("06-06-2020 12:00")
             .withDescription("lydia,example.com").withType("event").build();
-    public static final Task GEORGE = new TaskBuilder().withTitle("George Best").withDateTime("07-07-2020 12:00")
+    public static final Task GEORGE = new DeadlineBuilder().withTitle("George Best").withDateTime("07-07-2020 12:00")
             .withDescription("anna,example.com").withType("event").build();
 
     // Manually added
-    public static final Task HOON = new TaskBuilder().withTitle("Hoon Meier").withDateTime("08-08-2020 12:00")
+    public static final Task HOON = new DeadlineBuilder().withTitle("Hoon Meier").withDateTime("08-08-2020 12:00")
             .withDescription("stefan,example.com").withType("event").build();
-    public static final Task IDA = new TaskBuilder().withTitle("Ida Mueller").withDateTime("09-09-2020 12:00")
+    public static final Task IDA = new DeadlineBuilder().withTitle("Ida Mueller").withDateTime("09-09-2020 12:00")
             .withDescription("hans,example.com").withType("event").build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
-    public static final Task AMY = new TaskBuilder().withTitle(VALID_TITLE_AMY).withDateTime(VALID_DATE_TIME_AMY)
+    public static final Task AMY = new DeadlineBuilder().withTitle(VALID_TITLE_AMY).withDateTime(VALID_DATE_TIME_AMY)
             .withDescription(VALID_DESCRIPTION_AMY).withType(VALID_TYPE_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Task BOB = new TaskBuilder().withTitle(VALID_TITLE_BOB).withDateTime(VALID_DATE_TIME_BOB)
+    public static final Task BOB = new DeadlineBuilder().withTitle(VALID_TITLE_BOB).withDateTime(VALID_DATE_TIME_BOB)
             .withDescription(VALID_DESCRIPTION_BOB).withType(VALID_TYPE_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();

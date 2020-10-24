@@ -38,14 +38,14 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 import seedu.address.model.task.Type;
-import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.DeadlineBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Task expectedTask = new TaskBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Task expectedTask = new DeadlineBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + TITLE_DESC_BOB + DATE_TIME_DESC_BOB + DESCRIPTION_DESC_BOB
@@ -68,7 +68,7 @@ public class AddCommandParserTest {
                 + TYPE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
         // multiple tags - all accepted
-        Task expectedTaskMultipleTags = new TaskBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Task expectedTaskMultipleTags = new DeadlineBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, TITLE_DESC_BOB + DATE_TIME_DESC_BOB + DESCRIPTION_DESC_BOB + TYPE_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedTaskMultipleTags));
@@ -77,17 +77,17 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Task expectedTask = new TaskBuilder(AMY).withTags().build();
+        Task expectedTask = new DeadlineBuilder(AMY).withTags().build();
         assertParseSuccess(parser, TITLE_DESC_AMY + DATE_TIME_DESC_AMY + DESCRIPTION_DESC_AMY + TYPE_DESC_AMY,
                 new AddCommand(expectedTask));
 
         // missing dateTime field
-        expectedTask = new TaskBuilder(AMY).withTags().withDefaultDateTime().build();
+        expectedTask = new DeadlineBuilder(AMY).withTags().withDefaultDateTime().build();
         assertParseSuccess(parser, TITLE_DESC_AMY + DESCRIPTION_DESC_AMY + TYPE_DESC_AMY,
                 new AddCommand(expectedTask));
 
         // missing description field
-        expectedTask = new TaskBuilder(AMY).withTags().withDefaultDescription().build();
+        expectedTask = new DeadlineBuilder(AMY).withTags().withDefaultDescription().build();
         assertParseSuccess(parser, TITLE_DESC_AMY + DATE_TIME_DESC_AMY + TYPE_DESC_AMY,
                 new AddCommand(expectedTask));
 

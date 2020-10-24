@@ -1,4 +1,4 @@
-package seedu.address.model.task;
+package seedu.address.model.task.deadline;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -15,12 +15,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.DeadlineBuilder;
 
-public class TaskTest {
+public class DeadlineTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Task task = new DeadlineBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> task.getTags().remove(0));
+        Deadline deadline = new DeadlineBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> deadline.getTags().remove(0));
     }
 
     @Test
@@ -32,9 +32,9 @@ public class TaskTest {
         assertFalse(ALICE.isSameTask(null));
 
         // different dateTime and description -> returns false
-        Task editedAlice = new DeadlineBuilder(ALICE).withDateTime(VALID_DATE_TIME_BOB)
-                                                 .withDescription(VALID_DESCRIPTION_BOB)
-                                                 .build();
+        Deadline editedAlice = new DeadlineBuilder(ALICE).withDateTime(VALID_DATE_TIME_BOB)
+                .withDescription(VALID_DESCRIPTION_BOB)
+                .build();
         assertFalse(ALICE.isSameTask(editedAlice));
 
         // different title -> returns false

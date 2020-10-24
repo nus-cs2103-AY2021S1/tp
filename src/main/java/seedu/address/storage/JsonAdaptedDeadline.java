@@ -68,7 +68,7 @@ class JsonAdaptedDeadline {
         description = source.getDescription().value;
         doneDateTime = source.getDoneDateTime().toString();
         status = source.getStatus().toString();
-        duration = source.getDuration();
+        duration = source.getDurationValue();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));

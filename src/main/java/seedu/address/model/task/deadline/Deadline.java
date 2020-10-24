@@ -57,8 +57,12 @@ public class Deadline extends Task {
         return doneDateTime;
     }
 
-    public int getDuration() {
+    public int getDurationValue() {
         return duration.valueInMinutes;
+    }
+
+    public Duration getDuration() {
+        return duration;
     }
 
     /**

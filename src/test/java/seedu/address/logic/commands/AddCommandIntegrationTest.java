@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.DeadlineBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -27,7 +27,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newTask_success() {
-        Task validTask = new TaskBuilder().build();
+        Task validTask = new DeadlineBuilder().build();
 
         Model expectedModel = new ModelManager(model.getPlanus(), new UserPrefs());
         expectedModel.addTask(validTask);

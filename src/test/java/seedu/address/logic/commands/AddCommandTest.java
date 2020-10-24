@@ -22,7 +22,7 @@ import seedu.address.model.ReadOnlyPlanus;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.DeadlineBuilder;
 
 public class AddCommandTest {
 
@@ -34,7 +34,7 @@ public class AddCommandTest {
     @Test
     public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
-        Task validTask = new TaskBuilder().build();
+        Task validTask = new DeadlineBuilder().build();
 
         CommandResult commandResult = new AddCommand(validTask).execute(modelStub);
 
@@ -44,7 +44,7 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicateTask_throwsCommandException() {
-        Task validTask = new TaskBuilder().build();
+        Task validTask = new DeadlineBuilder().build();
         AddCommand addCommand = new AddCommand(validTask);
         ModelStub modelStub = new ModelStubWithTask(validTask);
 
@@ -53,8 +53,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Task cook = new TaskBuilder().withTitle("Cook dinner").build();
-        Task wash = new TaskBuilder().withTitle("Wash dishes").build();
+        Task cook = new DeadlineBuilder().withTitle("Cook dinner").build();
+        Task wash = new DeadlineBuilder().withTitle("Wash dishes").build();
         AddCommand addCookCommand = new AddCommand(cook);
         AddCommand addWashCommand = new AddCommand(wash);
 

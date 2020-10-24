@@ -30,7 +30,7 @@ import seedu.address.model.task.Task;
 import seedu.address.storage.JsonPlanusStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
-import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.DeadlineBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -81,7 +81,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + DATE_TIME_DESC_AMY + DESCRIPTION_DESC_AMY
                 + TYPE_DESC_AMY;
-        Task expectedTask = new TaskBuilder(AMY).withTags().build();
+        Task expectedTask = new DeadlineBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addTask(expectedTask);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
