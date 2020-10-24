@@ -264,6 +264,21 @@ public class AddCommandTest {
         public void setAsPersonList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void enter(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updatePersonToBeDisplayedOnDashboard(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Person> getPersonToBeDisplayedOnDashboard() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
