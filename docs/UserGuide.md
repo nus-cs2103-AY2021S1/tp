@@ -38,14 +38,13 @@ track of inventory items and pending deliveries, OneShelf is for you!
 --------------------------------------------------------------------------------------------------------------------
 ## 3. Features
 
-<div markdown="block" class="alert alert-info">
-
 OneShelf has 2 main features that it is able to store, namely are:
 1. Inventory items
 2. Pending deliveries
 
 From here onwards, the term `item` and `delivery` are used specifically for inventory items and pending deliveries respectively.
 
+<div markdown="block" class="alert alert-info">
 **:information_source: Notes about the item command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
