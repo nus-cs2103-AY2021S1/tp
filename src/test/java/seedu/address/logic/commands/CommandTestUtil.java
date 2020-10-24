@@ -20,7 +20,6 @@ import seedu.address.logic.commands.global.EditCommand;
 import seedu.address.model.MainCatalogue;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonNameContainsKeywordsPredicate;
 import seedu.address.model.project.NameContainsKeywordsPredicate;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
@@ -152,10 +151,9 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getGitUserNameString().split("\\s+");
-        model.updateFilteredPersonList(new PersonNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPersonList(p -> p.getGitUserNameString().equals(person.getGitUserNameString()));
 
-        assertEquals(1, model.getFilteredProjectList().size());
+        assertEquals(1, model.getFilteredPersonList().size());
     }
 
 }

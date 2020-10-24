@@ -3,7 +3,7 @@ package seedu.address.logic.commands.global;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
+import static seedu.address.testutil.TypicalPersons.getTypicalMainCatalogue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
