@@ -61,9 +61,9 @@ public class SolveQuestionCommandTest {
 
     @Test
     void execute_validIndexUnfilteredList_success() {
-        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withQuestions(TEST_QUESTIONS).build();
-        model.setPerson(asker, clone);
+        model.setStudent(asker, clone);
 
         Index question = Index.fromOneBased(1);
         Student expectedStudent = getAnsweredStudent(question, clone);
@@ -73,14 +73,14 @@ public class SolveQuestionCommandTest {
 
         SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, question, DEFAULT_SOLUTION);
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
-        expectedModel.setPerson(clone, expectedStudent);
+        expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(solveCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     void execute_invalidStudentIndexUnfilteredList_throwsCommandException() {
-        Index outOfBounds = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBounds = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         Index question = Index.fromOneBased(1);
         SolveQuestionCommand solveCommand = new SolveQuestionCommand(outOfBounds, question, DEFAULT_SOLUTION);
         assertCommandFailure(solveCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
@@ -90,9 +90,9 @@ public class SolveQuestionCommandTest {
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withQuestions(TEST_QUESTIONS).build();
-        model.setPerson(asker, clone);
+        model.setStudent(asker, clone);
 
         Index question = Index.fromOneBased(2);
         Student expectedStudent = getAnsweredStudent(question, clone);
@@ -102,7 +102,7 @@ public class SolveQuestionCommandTest {
 
         SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, question, DEFAULT_SOLUTION);
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
-        expectedModel.setPerson(clone, expectedStudent);
+        expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(solveCommand, model, expectedMessage, expectedModel);
 
@@ -119,9 +119,9 @@ public class SolveQuestionCommandTest {
 
     @Test
     public void execute_invalidQuestionIndex_throwsCommandException() {
-        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withQuestions(TEST_QUESTIONS).build();
-        model.setPerson(asker, clone);
+        model.setStudent(asker, clone);
 
         Index outOfBounds = Index.fromOneBased(TEST_QUESTIONS.length + 1);
         SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, outOfBounds, DEFAULT_SOLUTION);
@@ -130,9 +130,9 @@ public class SolveQuestionCommandTest {
 
     @Test
     public void execute_alreadySolvedQuestion_throwsCommandException() {
-        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withSolved(DEFAULT_SOLUTION, TEST_QUESTIONS).build();
-        model.setPerson(asker, clone);
+        model.setStudent(asker, clone);
 
         Index question = Index.fromOneBased(1);
         SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, question, DEFAULT_SOLUTION);
