@@ -16,6 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.account.Account;
 import seedu.address.model.account.ActiveAccount;
 import seedu.address.model.account.ActiveAccountManager;
+import seedu.address.testutil.EditEntryDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -48,7 +49,20 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    public static final EditCommand.EditEntryDescriptor DESC_TYPICAL_EXPENSE;
+    public static final EditCommand.EditEntryDescriptor DESC_TYPICAL_REVENUE;
+
     private static final int GENERAL_ACC_INDEX = 0;
+
+    static {
+        DESC_TYPICAL_EXPENSE = new EditEntryDescriptorBuilder().withCategory(VALID_CATEGORY_EXPENSE)
+                .withDescription(VALID_DESCRIPTION_EXPENSE).withAmount(VALID_AMOUNT_EXPENSE)
+                .withTags(VALID_TAG_ROSES).build();
+
+        DESC_TYPICAL_REVENUE = new EditEntryDescriptorBuilder().withCategory(VALID_CATEGORY_REVENUE)
+                .withDescription(VALID_DESCRIPTION_REVENUE).withAmount(VALID_AMOUNT_REVENUE)
+                .withTags(VALID_TAG_SUNFLOWER).build();
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>

@@ -61,7 +61,7 @@ public class SwitchAccountCommand extends Command {
         activeAccount.updateFilteredRevenueList(PREDICATE_SHOW_ALL_REVENUE);
         activeAccount.removePreviousState();
         return CommandResultFactory.createCommandResultForEntryListChangingCommand(
-            String.format(MESSAGE_SWITCH_ACCOUNT_SUCCESS, toBeSwitched));
+                String.format(MESSAGE_SWITCH_ACCOUNT_SUCCESS, toBeSwitched));
     }
 
     @Override
