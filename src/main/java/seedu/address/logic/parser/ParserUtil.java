@@ -3,9 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -39,6 +37,12 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_PRICE = "%s is not a non-negative unsigned real number.";
     public static final String MESSAGE_INVALID_INEQUALITY = "%s is not a valid inequality sign.";
 
+    /**
+     * Parses {@code inequality} into an {@code Inequality} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     *
+     * @throws ParseException if the string is not recognized as an inequality symbol
+     */
     public static Inequality parseInequality(String inequality) throws ParseException {
         String trimmedInequality = inequality.trim();
 
@@ -49,6 +53,12 @@ public class ParserUtil {
         return Inequality.get(trimmedInequality);
     }
 
+    /**
+     * Parses {@code price} into a double and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     *
+     * @throws ParseException if the string is not a valid price
+     */
     public static double parsePrice(String price) throws ParseException {
         String trimmedPrice = price.trim();
         if (!StringUtil.isNonNegativeUnsignedDouble(trimmedPrice)) {

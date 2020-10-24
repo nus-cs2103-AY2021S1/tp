@@ -1,16 +1,13 @@
 package seedu.address.commons.util;
 
-import seedu.address.logic.commands.enums.Inequality;
-import seedu.address.logic.parser.exceptions.ParseException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+
+import seedu.address.logic.commands.enums.Inequality;
 
 /**
  * Helper functions for handling strings.
@@ -71,6 +68,11 @@ public class StringUtil {
         }
     }
 
+    /**
+     * Returns true if {@code s} represents a non-negative unsigned double
+     *
+     * @throws NullPointerException if {@code s} is null.
+     */
     public static boolean isNonNegativeUnsignedDouble(String s) {
         requireNonNull(s);
 
@@ -82,6 +84,11 @@ public class StringUtil {
         }
     }
 
+    /**
+     * Returns true if {@code s} represents the symbol of inequality.
+     *
+     * @throws NullPointerException if {@code s} is null.
+     */
     public static boolean isInequality(String s) {
         requireNonNull(s);
 
