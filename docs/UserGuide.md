@@ -416,12 +416,12 @@ folder circled in red.
 
 ![stockCsvExample1](images/stockCsvExample1.png)
  
-Open `stock.csv` folder circled in red with excel.
+Open `stocks.csv` folder circled in red with excel.
 
 ![stockCsvExample2](images/stockCsvExample2.png)
 
 The stocks in your inventory will be listed according the to format shown below. The file also includes
-the latest update time for the `stock.csv`.
+the latest update time for the `stocks.csv`.
 
 ![stockCsvExample3](images/stockCsvExample3.png)
 
