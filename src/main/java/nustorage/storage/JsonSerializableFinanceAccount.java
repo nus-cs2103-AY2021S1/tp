@@ -57,6 +57,9 @@ class JsonSerializableFinanceAccount {
         for (JsonAdaptedFinanceRecord jsonFinRecord : this.financeRecords) {
             FinanceRecord finRecord = jsonFinRecord.toModelType();
 
+            /*
+            This section prevents adding of duplicate finance records.
+             */
             // if (finAccount.hasFinanceRecord(finRecord)) {
             //     throw new IllegalValueException(MESSAGE_DUPLICATE_FINANCE_RECORD);
             // }
