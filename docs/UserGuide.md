@@ -130,9 +130,9 @@ You can edit a flashcard that you have created previously.
 ![edit](images/Edit.png)
 2. Using the indices of the displayed list, enter the edit command followed by the index of the flashcard you want to edit. 
 For example, if you want to edit the 3rd flashcard in the displayed list, you can enter `edit 3 q/Updated Question`.
-![edit2](images/edit2.png)
+![edit2](images/Edit2.png)
 3. Press enter and QuickCache will edit the flashcard specified by the index.
-![edit3](images/edit3.png)
+![edit3](images/Edit3.png)
 
 You have successfully edited a flashcard.
 
