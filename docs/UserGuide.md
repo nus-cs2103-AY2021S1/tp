@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-<img src="images/logo.png" width="200" height="200" />
+<img src="images/tCheckLogo.png" width="200" height="200" />
 
 Welcome to the tCheck User Guide! Thank you for choosing tCheck, the most popular command-line milk tea shop management desktop application in the T-Sugar chain!
 
@@ -113,16 +113,21 @@ All tCheck data (i.e. contact details, ingredient data, sales data) are saved in
 
 <div markdown="span" class="alert alert-primary">:information_source:
 
-**Notes about available drinks:**
+**Notes about available drinks:**<br>
 Currently, there are 6 types of drinks that can be tracked by tCheck's sales tracker. The drinks and their respective
- abbreviations are shown as below:
+ abbreviations are shown as below:<br>
  
-* `BSBM`  : Brown Sugar Boba Milk
-* `BSBBT` : Brown Sugar Boba Black Tea
-* `BSBGT` : Brown Sugar Boba Green Tea
-* `BSPM`  : Brown Sugar Pearl Milk
-* `BSPBT` : Brown Sugar Pearl Black Tea
-* `BSPGT` : Brown Sugar Pearl Green Tea
+* `BSBM`  : Brown Sugar Boba Milk<br>
+
+* `BSBBT` : Brown Sugar Boba Black Tea<br>
+
+* `BSBGT` : Brown Sugar Boba Green Tea<br>
+
+* `BSPM`  : Brown Sugar Pearl Milk<br>
+
+* `BSPBT` : Brown Sugar Pearl Black Tea<br>
+
+* `BSPGT` : Brown Sugar Pearl Green Tea<br>
 
 </div>
 
@@ -158,24 +163,24 @@ Example:
     
 <div markdown="span" class="alert alert-primary">:information_source:
 
-**Notes about ingredients:**
+**Notes about ingredients:**<br>
 
-* Unit of measurement for ingredients: 
-    * Unit for solid items / jelly (Pearl, Boba and Brown Sugar) : **KG**
-    * Unit for liquids (Milk and Oolong Tea) : **L**
+* Unit of measurement for ingredients:<br>
+    * Unit for solid items / jelly (Pearl, Boba and Brown Sugar) : **KG**<br>
+    * Unit for liquids (Milk and Oolong Tea) : **L**<br>
 
-* All ingredients' levels are set to 0.
+* All ingredients' levels are set to 0.<br>
 
-* All ingredients which are available and thus can be set are predefined in the ingredient book. 
+* All ingredients which are available and thus can be set are predefined in the ingredient book.<br>
   
-* Please note that the ingredient names are case-sensitive.
+* Please note that the ingredient names are case-sensitive.<br>
 
-* Here is a comprehensive list of all available ingredients :
-    * Milk
-    * Pearl
-    * Boba
-    * Oolong Tea
-    * Brown Sugar
+* Here is a comprehensive list of all available ingredients :<br>
+    * Milk<br>
+    * Pearl<br>
+    * Boba<br>
+    * Oolong Tea<br>
+    * Brown Sugar<br>
 
 </div>
 
