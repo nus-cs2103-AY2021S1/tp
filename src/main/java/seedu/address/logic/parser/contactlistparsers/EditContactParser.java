@@ -16,14 +16,14 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new EditContactCommand object
+ * Parses input arguments and creates a new EditContactCommand object.
  */
 public class EditContactParser implements Parser<EditContactCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditContactCommand
      * and returns an EditContactCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public EditContactCommand parse(String args) throws ParseException {
         requireNonNull(args);

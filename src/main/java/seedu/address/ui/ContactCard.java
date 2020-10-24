@@ -39,8 +39,10 @@ public class ContactCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(contact.getName().fullName);
         email.setText(contact.getEmail().value);
-        if (contact.getTelegram())
-        telegram.setText(contact.getTelegram().telegramUsername);
+        if (contact.getTelegram().isPresent()) {
+            telegram.setText(contact.getTelegram().get().telegramUsername);
+        }
+
         //contact.getTags().stream()
         //        .sorted(Comparator.comparing(tag -> tag.tagName))
         //        .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

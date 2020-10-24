@@ -20,14 +20,14 @@ import seedu.address.model.contact.Name;
 import seedu.address.model.contact.Telegram;
 
 /**
- * Parses input arguments and creates a new AddContactCommand object
+ * Parses input arguments and creates a new AddContactCommand object.
  */
 public class AddContactParser implements Parser<AddContactCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddContactCommand
-     * and returns an AddCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * and returns an AddContactCommand object for execution.
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public AddContactCommand parse(String args) throws ParseException {
         ArgumentTokenizer tokenizer =
