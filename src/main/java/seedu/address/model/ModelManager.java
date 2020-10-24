@@ -65,14 +65,14 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -123,13 +123,13 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public ReadOnlyAddressBook getAddressBook() {
+        return addressBook;
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+        this.addressBook.resetData(addressBook);
     }
 
     @Override
@@ -162,15 +162,15 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public ReadOnlyMeetingBook getMeetingBook() {
+        return meetingBook;
+    }
+
     //=========== Meetings ===================================================================================
     @Override
     public void setMeetingBook(ReadOnlyMeetingBook meetingBook) {
         this.meetingBook.resetData(meetingBook);
-    }
-
-    @Override
-    public ReadOnlyMeetingBook getMeetingBook() {
-        return meetingBook;
     }
 
     @Override
@@ -204,7 +204,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updatePersonInMeetingBook(Person ...persons) {
+    public void updatePersonInMeetingBook(Person... persons) {
         requireNonNull(persons);
         Person personToUpdate = persons[0];
         boolean isReplacement = persons.length > 1;
