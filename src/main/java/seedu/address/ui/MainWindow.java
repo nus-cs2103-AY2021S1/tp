@@ -203,7 +203,7 @@ public class MainWindow extends UiPart<Stage> {
         //Responsive resizing
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
             leftPanel.setPrefWidth(primaryStage.getWidth() / 3);
-            leftDrawer.setDefaultDrawerSize(primaryStage.getWidth() / 3);
+            leftDrawer.setDefaultDrawerSize(primaryStage.getWidth() / 3.1);
         };
         primaryStage.widthProperty().addListener(stageSizeListener);
 
@@ -228,7 +228,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void showDrawer(Recipe selected) {
         StackPane leftDrawerPane = new StackPane();
-        leftDrawerPane.getChildren().add(new SingleRecipeCard(selected, 0).getRoot());
+        leftDrawerPane.getChildren().add(new SingleRecipeCard(selected).getRoot());
         final KeyFrame kf1 = new KeyFrame(Duration.seconds(0), e ->
                 leftDrawer.setSidePane(leftDrawerPane));
         final KeyFrame kf2 = new KeyFrame(Duration.seconds(0.05), e -> {
