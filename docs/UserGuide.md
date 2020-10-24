@@ -92,7 +92,7 @@ All tCheck data (i.e. contact details, ingredient data, sales data) are saved in
 
 <div markdown="span" class="alert alert-primary">:information_source:
 
-**Notice:**
+**Notes about available drinks:**
 Currently, there are 6 types of drinks that can be tracked by tCheck's sales tracker. The drinks and their respective
  abbreviations are shown as below:
  
@@ -134,10 +134,21 @@ Example:
  
 ### 3. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
 
+    
+<div markdown="span" class="alert alert-primary">:information_source:
+
+**Notes about ingredients:**
+
 * Unit of measurement for ingredients: 
     * Unit for solid items / jelly (Pearl, Boba and Brown Sugar) : **KG**
     * Unit for liquids (Milk and Oolong Tea) : **L**
-    
+
+All ingredients which are available and thus can be set are predefined in the ingredient book. 
+Here is a comprehensive list of all available ingredients : Milk, Pearl, Boba, Oolong Tea, Brown Sugar. 
+Please note that the ingredient names are case-sensitive.
+
+</div>
+
 #### 3.1 Setting one ingredient's level : `i-set`
 
 Sets the level of one single ingredient predefined in the ingredient book to the specified amount.
@@ -149,14 +160,6 @@ Format: `i-set i/INGREDIENT_NAME m/AMOUNT`
 Example:
 * `i-set i/Milk m/15`
 
-
-<div markdown="span" class="alert alert-primary">:information_source:
-
-**Notice:**
-All ingredients which are available and thus can be set are predefined in the ingredient book. 
-Here is a comprehensive list of all available ingredients : Milk, Pearl, Boba, Oolong Tea, Brown Sugar. 
-Please note that the ingredient names are case-sensitive.
-</div>
 
 #### 3.2 Setting all ingredients' levels to different specified amounts : `i-set-all`
 
