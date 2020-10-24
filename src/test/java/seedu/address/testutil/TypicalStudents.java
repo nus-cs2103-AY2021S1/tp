@@ -44,6 +44,7 @@ public class TypicalStudents {
             .withClassVenue("123, Jurong West Ave 6, #08-111")
             .withClassTime("5 1500-1700")
             .withDetails("Clever")
+            .withDetails("owesMoney", "friends")
             .build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withSchool("Pei Hwa Secondary").withYear(SchoolType.SECONDARY, 2).withPhone("98765432")
