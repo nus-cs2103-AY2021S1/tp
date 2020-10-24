@@ -1,15 +1,15 @@
 package seedu.address.logic.commands.appointment;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 public class DeleteAppointmentCommand extends AppointmentCommand {
 
@@ -20,6 +20,8 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
+    public static final String MESSAGE_SUCCESS = "Deleted appointment: %1$s";
+
     private final Index targetIndex;
 
     /**
@@ -28,8 +30,6 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
     public DeleteAppointmentCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
-
-    public static final String MESSAGE_SUCCESS = "Deleted appointment: %1$s";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
