@@ -14,14 +14,15 @@ import static chopchop.testutil.Assert.assertThrows;
 
 public class EitherTest {
 
+    private final Either<String, Integer> l1 = Either.left("foo");
+    private final Either<String, Integer> l2 = Either.left("foofoo");
+
+    private final Either<String, Integer> r1 = Either.right(123);
+    private final Either<String, Integer> r2 = Either.right(246);
+
+
     @Test
-    public void test_eithers() {
-
-        Either<String, Integer> l1 = Either.left("foo");
-        Either<String, Integer> l2 = Either.left("foofoo");
-
-        Either<String, Integer> r1 = Either.right(123);
-        Either<String, Integer> r2 = Either.right(246);
+    public void test_values() {
 
         assertTrue(l1.isLeft());
         assertFalse(l1.isRight());
@@ -41,12 +42,23 @@ public class EitherTest {
         assertTrue(r1.fromRightOpt().isPresent());
         assertTrue(r1.fromLeftOpt().isEmpty());
 
+        assertThrows(AssertionError.class, () -> new Either<>("asdf", "bsdf"));
+
+        // this is a bit hacky, but just make a new Strings() class owo
+        var s = new Strings();
+    }
+
+    @Test
+    public void test_mapping() {
         assertEquals(l2, l1.mapLeft(x -> x + x));
         assertEquals(r2, r1.mapRight(x -> x + x));
 
         assertEquals(l1, l1.mapRight(x -> x + x));
         assertEquals(r1, r1.mapLeft(x -> x + x));
+    }
 
+    @Test
+    public void test_equals() {
 
         assertNotEquals(l1, "foo");
         assertEquals(l1, l1);
@@ -60,15 +72,11 @@ public class EitherTest {
 
         assertNotEquals(n1, l1);
         assertNotEquals(n1, r1);
+    }
 
+    @Test
+    public void test_toString() {
         assertEquals("Left(foo)", l1.toString());
         assertEquals("Right(123)", r1.toString());
-
-        assertThrows(AssertionError.class, () -> new Either<>("asdf", "bsdf"));
-
-
-
-        // this is a bit hacky, but just make a new Strings() class owo
-        var s = new Strings();
     }
 }
