@@ -32,7 +32,8 @@ class SetDefaultCommandTest {
         stubBook.addIngredient(new Ingredient(new IngredientName("Milk")));
         stubBook.addIngredient(new Ingredient(new IngredientName("Pearl")));
         stubBook.addIngredient(new Ingredient(new IngredientName("Boba")));
-        stubBook.addIngredient(new Ingredient(new IngredientName("Oolong Tea")));
+        stubBook.addIngredient(new Ingredient(new IngredientName("Black Tea")));
+        stubBook.addIngredient(new Ingredient(new IngredientName("Green Tea")));
         stubBook.addIngredient(new Ingredient(new IngredientName("Brown Sugar")));
 
         stubBook.setIngredient(new Ingredient(new IngredientName("Milk")),
@@ -41,8 +42,10 @@ class SetDefaultCommandTest {
                 new Ingredient(new IngredientName("Pearl"), new Amount("20")));
         stubBook.setIngredient(new Ingredient(new IngredientName("Boba")),
                 new Ingredient(new IngredientName("Boba"), new Amount("20")));
-        stubBook.setIngredient(new Ingredient(new IngredientName("Oolong Tea")),
-                new Ingredient(new IngredientName("Oolong Tea"), new Amount("50")));
+        stubBook.setIngredient(new Ingredient(new IngredientName("Black Tea")),
+                new Ingredient(new IngredientName("Black Tea"), new Amount("50")));
+        stubBook.setIngredient(new Ingredient(new IngredientName("Green Tea")),
+                new Ingredient(new IngredientName("Green Tea"), new Amount("50")));
         stubBook.setIngredient(new Ingredient(new IngredientName("Brown Sugar")),
                 new Ingredient(new IngredientName("Brown Sugar"), new Amount("20")));
 
@@ -58,7 +61,8 @@ class SetDefaultCommandTest {
         filledBook.addIngredient(new Ingredient(new IngredientName("Milk")));
         filledBook.addIngredient(new Ingredient(new IngredientName("Pearl")));
         filledBook.addIngredient(new Ingredient(new IngredientName("Boba")));
-        filledBook.addIngredient(new Ingredient(new IngredientName("Oolong Tea")));
+        filledBook.addIngredient(new Ingredient(new IngredientName("Black Tea")));
+        filledBook.addIngredient(new Ingredient(new IngredientName("Green Tea")));
         filledBook.addIngredient(new Ingredient(new IngredientName("Brown Sugar")));
 
         Model model = new ModelManager(getTypicalAddressBook(), new SalesBook(),
@@ -76,7 +80,8 @@ class SetDefaultCommandTest {
         stubBook2.addIngredient(new Ingredient(new IngredientName("Milk")));
         stubBook2.addIngredient(new Ingredient(new IngredientName("Pearl")));
         stubBook2.addIngredient(new Ingredient(new IngredientName("Boba")));
-        stubBook2.addIngredient(new Ingredient(new IngredientName("Oolong Tea")));
+        stubBook2.addIngredient(new Ingredient(new IngredientName("Black Tea")));
+        stubBook2.addIngredient(new Ingredient(new IngredientName("Green Tea")));
         stubBook2.addIngredient(new Ingredient(new IngredientName("Brown Sugar")));
 
         stubBook2.setIngredient(new Ingredient(new IngredientName("Milk")),
@@ -85,8 +90,10 @@ class SetDefaultCommandTest {
                 new Ingredient(new IngredientName("Pearl"), new Amount("20")));
         stubBook2.setIngredient(new Ingredient(new IngredientName("Boba")),
                 new Ingredient(new IngredientName("Boba"), new Amount("20")));
-        stubBook2.setIngredient(new Ingredient(new IngredientName("Oolong Tea")),
-                new Ingredient(new IngredientName("Oolong Tea"), new Amount("50")));
+        stubBook2.setIngredient(new Ingredient(new IngredientName("Black Tea")),
+                new Ingredient(new IngredientName("Black Tea"), new Amount("50")));
+        stubBook2.setIngredient(new Ingredient(new IngredientName("Green Tea")),
+                new Ingredient(new IngredientName("Green Tea"), new Amount("50")));
         stubBook2.setIngredient(new Ingredient(new IngredientName("Brown Sugar")),
                 new Ingredient(new IngredientName("Brown Sugar"), new Amount("20")));
 
