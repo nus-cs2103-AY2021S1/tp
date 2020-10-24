@@ -206,7 +206,7 @@ Examples:
 
 :information_source:
 
-* Filters the displayed list of food items to only include food items containing the supplied keywords.
+* Filters the displayed list of food items to only include food items corresponding to the provided parameters.
 
 </div>
 
