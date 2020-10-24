@@ -24,7 +24,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonFlashcardDeckStorage flashcardDeckStorage = new JsonFlashcardDeckStorage(getTempFilePath("ab"));
+        JsonFlashcardDeckStorage flashcardDeckStorage = new JsonFlashcardDeckStorage(getTempFilePath("fd"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(flashcardDeckStorage, userPrefsStorage);
     }
