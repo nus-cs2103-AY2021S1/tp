@@ -5,12 +5,14 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.resireg.commons.core.index.Index;
 import seedu.resireg.commons.util.StringUtil;
 import seedu.resireg.logic.parser.exceptions.ParseException;
 import seedu.resireg.model.room.Floor;
 import seedu.resireg.model.room.RoomNumber;
+import seedu.resireg.model.room.roomtype.RoomType;
 import seedu.resireg.model.student.Email;
 import seedu.resireg.model.student.Name;
 import seedu.resireg.model.student.Phone;
@@ -159,14 +161,61 @@ public class ParserUtil {
      * Parses {@code String roomNumber} into a {@code roomNumber}.
      * Leading and training whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code floor} is invalid.
+     * @throws ParseException if the given {@code roomNumber} is invalid.
      */
     public static RoomNumber parseRoomNumber(String roomNumber) throws ParseException {
         requireNonNull(roomNumber);
         String trimmedRoomNumber = roomNumber.trim();
-        if (!Floor.isValidFloor(trimmedRoomNumber)) {
+        if (!RoomNumber.isValidRoomNumber(trimmedRoomNumber)) {
             throw new ParseException(RoomNumber.MESSAGE_CONSTRAINTS);
         }
         return new RoomNumber(trimmedRoomNumber);
+    }
+
+    /**
+     * Parses {@code String roomType} into a {@code RoomType}.
+     * Leading and training whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code roomType} is invalid.
+     */
+    public static RoomType parseRoomType(String roomType) throws ParseException {
+        requireNonNull(roomType);
+        String trimmedRoomType = roomType.trim();
+        if (!RoomType.isValidRoomType(trimmedRoomType)) {
+            throw new ParseException(RoomType.MESSAGE_CONSTRAINTS);
+        }
+        return new RoomType(trimmedRoomType);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Parses a collection of strings to some other type using the given parser function.
+     *
+     * @param strings Strings to parse.
+     * @param parser Parser function which parses strings into objects of type T.
+     * @param <T> Type of output objects.
+     * @return Set of objects of type T.
+     * @throws ParseException If any of the strings cannot be parsed to T.
+     */
+    public static <T> Set<T> parseCollection(Collection<String> strings, ParserFunction<T> parser)
+            throws ParseException {
+        requireNonNull(strings);
+        final Set<T> things = new HashSet<>();
+        for (String s: strings) {
+            things.add(parser.parse(s));
+        }
+        return things;
+    }
+
+    @FunctionalInterface
+    public interface ParserFunction<T> {
+        T parse(String string) throws ParseException;
     }
 }
