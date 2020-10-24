@@ -29,6 +29,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private Label isArchived;
+    @FXML
     private Label name;
     @FXML
     private Label id;
@@ -48,6 +50,11 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
+        if (person.getArchiveStatus().archiveStatus) {
+            isArchived.setText("[Archived]");
+        } else {
+            isArchived.setText("");
+        }
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         emergency.setText(person.getEmergency().value);
