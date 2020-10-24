@@ -14,6 +14,7 @@ import seedu.address.model.task.Task;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+    Predicate<Lesson> PREDICATE_SHOW_ALL_LESSONS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
