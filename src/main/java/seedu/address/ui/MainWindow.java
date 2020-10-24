@@ -264,6 +264,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isEntryListChange()) {
                 updatePieChart();
             }
+
             updateActiveAccountName();
 
             if (commandResult.isShowHelp()) {
