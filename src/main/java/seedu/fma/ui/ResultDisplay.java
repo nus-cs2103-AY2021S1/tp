@@ -47,6 +47,6 @@ public class ResultDisplay extends UiPart<Region> {
                 feedback += suggestion + "\n";
             }
         }
-        resultDisplay.setText(feedback);
+        resultDisplay.setText(feedback.trim());
     }
 }
