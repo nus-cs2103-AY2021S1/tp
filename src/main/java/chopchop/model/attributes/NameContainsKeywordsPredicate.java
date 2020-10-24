@@ -1,5 +1,6 @@
 package chopchop.model.attributes;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -14,6 +15,10 @@ public class NameContainsKeywordsPredicate implements Predicate<Entry> {
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
+    }
+
+    public List<String> getKeywords() {
+        return new ArrayList<>(this.keywords);
     }
 
     @Override

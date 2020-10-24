@@ -121,4 +121,9 @@ public class MakeRecipeCommand extends Command implements Undoable {
                 && this.item.equals(((MakeRecipeCommand) other).item)
                 && this.ingredients.equals(((MakeRecipeCommand) other).ingredients));
     }
+
+    @Override
+    public String toString() {
+        return String.format("MakeRecipeCommand(%s)", this.item);
+    }
 }

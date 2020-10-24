@@ -186,7 +186,20 @@ public class StringView {
      *         or {@code -1} if it does not exist
      */
     public int find(StringView sub) {
-        return Collections.indexOfSubList(Arrays.asList(this.chars), Arrays.asList(sub.chars));
+        var l1 = new ArrayList<Character>();
+        var l2 = new ArrayList<Character>();
+
+        // FFS java, FFS
+        for (char c : this.chars) {
+            l1.add(c);
+        }
+
+        for (char c : sub.chars) {
+            l2.add(c);
+        }
+
+        return Collections.indexOfSubList(l1.subList(this.begin, this.end),
+            l2.subList(sub.begin, sub.end));
     }
 
     /**
@@ -289,7 +302,7 @@ public class StringView {
      */
     public StringView takeLast(int n) {
         assert n >= 0;
-        return new StringView(this.chars, Math.min(this.begin + n, this.end), this.end);
+        return new StringView(this.chars, Math.max(this.end - n, 0), this.end);
     }
 
     /**
@@ -299,7 +312,7 @@ public class StringView {
      * @param pred the predicate to use
      * @return a new string view
      */
-    public StringView dropWhile(Predicate<Character> pred) {
+    public StringView dropWhile(Predicate<? super Character> pred) {
         int i = this.begin;
         while (i < this.end && pred.test(this.chars[i])) {
             i += 1;
@@ -315,7 +328,7 @@ public class StringView {
      * @param pred the predicate to use
      * @return a new string view
      */
-    public StringView takeWhile(Predicate<Character> pred) {
+    public StringView takeWhile(Predicate<? super Character> pred) {
         int n = this.begin;
         while (n < this.end && pred.test(this.chars[n])) {
             n += 1;
@@ -332,7 +345,7 @@ public class StringView {
      * @param pred the predicate to use
      * @return a pair of string views
      */
-    public Pair<StringView, StringView> span(Predicate<Character> pred) {
+    public Pair<StringView, StringView> span(Predicate<? super Character> pred) {
         return new Pair<>(
             this.takeWhile(pred),
             this.dropWhile(pred)
@@ -378,24 +391,32 @@ public class StringView {
     }
 
     /**
-     * Splits the given stringview into a list of words by whitespace.
+     * Splits the given stringview into a list of words by using the given predicate.
      */
-    public List<String> words() {
+    public List<String> splitBy(Predicate<? super Character> predicate) {
         var ret = new ArrayList<String>();
 
         var sv = this;
         while (!sv.isEmpty()) {
-            sv = sv.dropWhile(Character::isWhitespace);
-            var word = sv.takeWhile(x -> !Character.isWhitespace(x));
+            sv = sv.dropWhile(predicate);
+            var word = sv.takeWhile(x -> !predicate.test(x));
 
             if (!word.isEmpty()) {
                 ret.add(word.toString());
             }
 
-            sv = sv.dropWhile(x -> !Character.isWhitespace(x));
+            sv = sv.dropWhile(x -> !predicate.test(x));
         }
 
         return ret;
+    }
+
+    /**
+     * Splits the given stringview into a list of words by whitespace. Equivalent
+     * to splitBy(c -> Character.isWhitespace(c));
+     */
+    public List<String> words() {
+        return this.splitBy(c -> Character.isWhitespace(c));
     }
 
     /**
@@ -409,7 +430,7 @@ public class StringView {
 
         } catch (NumberFormatException e) {
 
-            return Result.error(e.getMessage());
+            return Result.error("couldn't parse integer: " + e.getMessage());
         }
     }
 

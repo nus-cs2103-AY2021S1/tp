@@ -19,4 +19,9 @@ public class RedoCommand extends Command {
 
         return historyManager.redo(model);
     }
+
+    @Override
+    public String toString() {
+        return String.format("RedoCommand");
+    }
 }

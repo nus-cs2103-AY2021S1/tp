@@ -10,4 +10,9 @@ public class QuitCommand extends Command {
     public CommandResult execute(Model model, HistoryManager historyManager) {
         return new CommandResult("", /* showHelp: */ false, /* exit: */ true);
     }
+
+    @Override
+    public String toString() {
+        return String.format("QuitCommand");
+    }
 }

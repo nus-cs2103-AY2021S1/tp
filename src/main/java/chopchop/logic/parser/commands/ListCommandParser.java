@@ -2,8 +2,8 @@
 
 package chopchop.logic.parser.commands;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.ArrayList;
 
 import chopchop.commons.util.Result;
 import chopchop.commons.util.Strings;
@@ -20,8 +20,6 @@ import static chopchop.logic.parser.commands.CommonParser.getFirstUnknownArgumen
 
 public class ListCommandParser {
 
-    private static final String commandName = Strings.COMMAND_LIST;
-
     /**
      * Parses a 'list' command. Syntax(es):
      * {@code list recipe}
@@ -31,18 +29,15 @@ public class ListCommandParser {
      * @return     a ListCommand, if the input was valid.
      */
     public static Result<? extends Command> parseListCommand(CommandArguments args) {
-
-        if (!args.getCommand().equals(commandName)) {
-            return Result.error("invalid command '%s' (expected '%s')", args.getCommand(), commandName);
-        }
+        assert args.getCommand().equals(Strings.COMMAND_LIST);
 
         // we expect no named arguments
         Optional<ArgName> foo;
-        if ((foo = getFirstUnknownArgument(args, new ArrayList<>())).isPresent()) {
+        if ((foo = getFirstUnknownArgument(args, List.of())).isPresent()) {
             return Result.error("'list' command doesn't support '%s'", foo.get());
         }
 
-        return getCommandTarget(args)
+        return getCommandTarget(args, /* acceptsPlural: */ true)
             .then(target -> {
                 switch (target.fst()) {
                 case RECIPE:
