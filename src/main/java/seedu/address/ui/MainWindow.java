@@ -128,10 +128,17 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        projectListPanel = new ProjectListPanel(logic.getFilteredProjectList());
-        projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        if (logic.isProjectsView()) {
+            projectListPanel = new ProjectListPanel(logic.getFilteredProjectList());
+            projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
+            personListPanelPlaceholder.setManaged(false);
+            personListPanelPlaceholder.setVisible(false);
+        } else {
+            personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            projectListPanelPlaceholder.setManaged(false);
+            projectListPanelPlaceholder.setVisible(false);
+        }
 
         if (logic.getProjectToBeDisplayedOnDashBoard().isEmpty()) {
             emptyProjectDashboard = new EmptyDashboard(EMPTY_PROJECT_DASHBOARD_MSG);
